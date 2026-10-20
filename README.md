@@ -42,8 +42,20 @@ together, scope it to one task, or tell you afterwards whether it helped.
 
 - [ ] **v0.1** `skillfetch scan <dir>` — conflict/duplicate report for a local
       skills directory, with evidence; first public corpus index.
+  - [x] fixture corpus with labelled conflicts and duplicates; `resolve/` rules
+        and `resolve_set`, conflict precision 1.0 on fixtures
+  - [x] lint, injection scan, dedup by content hash, `skillfetch scan` with
+        `--json` and `--fail-on`
+  - [ ] constraint extraction through the API (`ingest --with-api`,
+        `--calibrate` against the fixtures); until then `scan` needs a
+        `constraints.json` per skill
+  - [ ] public corpus ingest (`skillfetch ingest <source>`, `sources.yaml`,
+        snapshots) and the top-N public skills scan + write-up
+  - [ ] keyword-Jaccard dedup groups, tiers A/B/C, index layout and manifest
+        (index-format §1.6–§2)
 - [ ] **v0.2** `skillfetch serve` — MCP server (`search_skills`, `resolve_set`,
       `load_skills`, …) + the one router skill you install.
+  - [ ] surface the `complementary` hint in `resolve_set` output
 - [ ] **v0.3** isolation runner, outcome log, and an honest on/off comparison on
       a verified task set.
 
