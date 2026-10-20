@@ -8,10 +8,11 @@
 #   target                line (default) | outside_links (markdown link targets,
 #                         autolinks and reference definitions removed first) |
 #                         html_comment (pattern applied to each <!-- --> body)
+#   effect                fail | warn, overrides the family's effect for this rule
 #   allow_negated         skip a match when a negation (not, never, n't, no, without)
 #                         appears at most two words before it: "never run sudo X"
 #                         is advice, "do not hesitate to run sudo X" is not
-version: 1
+version: 2
 
 effects:
   override: fail
@@ -58,15 +59,27 @@ rules:
     family: exfil
     allow_negated: true
     pattern: '\b(?:send|sent|post|upload|exfiltrate|transmit|forward)\b[^\n]{0,60}\b(?:keys?|tokens?|secrets?|passwords?|credentials?|cookies?|\.env|env(?:ironment)?\s+var(?:iable)?s?|ssh|contents?)\b[^\n]{0,60}\bto\s+<?https?://'
+  # Piping a downloaded script into a shell is how uv, rustup, Homebrew and nvm
+  # install, so on its own it only warns. It fails with sudo, or when the URL is
+  # not something a reviewer can trust at a glance (http, raw IP, URL shortener).
   - id: exfil.pipe-to-shell
     family: exfil
-    pattern: '\b(?:curl|wget)\b[^\n|]*\|\s*(?:sudo\s+)?(?:ba|z|da)?sh\b'
+    effect: warn
+    pattern: '\b(?:curl|wget)\b[^\n|]*\|\s*(?:sudo\s+(?:-\w+\s+)*)?(?:ba|z|da)?sh\b|\b(?:ba|z|da)?sh\s+(?:-c\s+["'']?\$\(|<\()\s*(?:curl|wget)\b'
+  - id: exfil.remote-script-untrusted-url
+    family: exfil
+    pattern: '\b(?:curl|wget)\b[^\n|]*?(?:http://|(?:https?://|(?<=[\s"''=]))(?:\d{1,3}\.){3}\d{1,3}(?=[:/\s"'')]|$)|https?://\[[0-9a-f:]+\]|(?:https?://)?(?:bit\.ly|tinyurl\.com|t\.co|goo\.gl|is\.gd|ow\.ly|buff\.ly|rb\.gy|cutt\.ly|shorturl\.at|tiny\.cc)/)[^\n|]*\|\s*(?:sudo\s+(?:-\w+\s+)*)?(?:ba|z|da)?sh\b|\b(?:ba|z|da)?sh\s+(?:-c\s+["'']?\$\(|<\()\s*(?:curl|wget)\b[^\n)]*?(?:http://|(?:https?://|(?<=[\s"''=]))(?:\d{1,3}\.){3}\d{1,3}(?=[:/\s"'')]|$)|https?://\[[0-9a-f:]+\]|(?:https?://)?(?:bit\.ly|tinyurl\.com|t\.co|goo\.gl|is\.gd|ow\.ly|buff\.ly|rb\.gy|cutt\.ly|shorturl\.at|tiny\.cc)/)'
 
   # --- privilege: escalation or disabling safety --------------------------------------
+  # sudo alone is common in setup steps (apt-get install ...): warn.
   - id: privilege.sudo
     family: privilege
+    effect: warn
     allow_negated: true
     pattern: '\bsudo\s+(?:-\w+\s+)*[a-z]'
+  - id: privilege.sudo-remote-script
+    family: privilege
+    pattern: '\b(?:curl|wget)\b[^\n|]*\|\s*sudo\s+(?:-\w+\s+)*(?:ba|z|da)?sh\b|\bsudo\s+(?:-\w+\s+)*(?:/\S*/)?(?:ba|z|da)?sh\s+(?:-c\s+["'']?\$\(|<\()\s*(?:curl|wget)\b|\bsudo\s+(?:-\w+\s+)*(?:curl|wget)\b[^\n|]*\|\s*(?:ba|z|da)?sh\b'
   - id: privilege.run-as-root
     family: privilege
     allow_negated: true
@@ -92,7 +105,7 @@ rules:
   - id: hidden.html-comment-instruction
     family: hidden
     target: html_comment
-    pattern: '\b(?:ignore|disregard|you\s+(?:must|should|are|will)|always|never|do\s+not|don''t|assistant|claude|instructions?|system\s+prompt|execute|upload|run\s+the\s+following)\b'
+    pattern: '\b(?:ignore|disregard|you\s+(?:must|should|are|will)|assistant|claude|system\s+prompt|execute|upload|run\s+the\s+following)\b'
 
   # --- network: absolute URLs used as instructions, not as documentation links --------
   - id: network.bare-url

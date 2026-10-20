@@ -33,6 +33,7 @@ class Rule(BaseModel):
     target: Literal["line", "outside_links", "html_comment"] = "line"
     allow_negated: bool = False
     case_sensitive: bool = False
+    effect: Literal["fail", "warn"] | None = None  # overrides the family's effect
 
     def compiled(self) -> re.Pattern[str]:
         return _compile(self.pattern, self.case_sensitive)
@@ -54,6 +55,7 @@ class RuleSet(BaseModel):
 class Hit(BaseModel):
     rule_id: str
     family: str
+    effect: Literal["fail", "warn"]
     file: str
     line_no: int
     line: str
@@ -117,18 +119,23 @@ def scan_text(text: str, file: str = SKILL_FILE, rules: RuleSet | None = None) -
             for m in _HTML_COMMENT.finditer(text):
                 if _matches(rule, m.group(1)):
                     line_no = text.count("\n", 0, m.start()) + 1
-                    hits.append(_hit(rule, file, line_no, lines[line_no - 1]))
+                    hits.append(_hit(rule, rules, file, line_no, lines[line_no - 1]))
             continue
         for line_no, line in enumerate(lines, 1):
             target = _outside_links(line) if rule.target == "outside_links" else line
             if _matches(rule, target):
-                hits.append(_hit(rule, file, line_no, line))
+                hits.append(_hit(rule, rules, file, line_no, line))
     return sorted(hits, key=lambda h: (h.file, h.line_no, h.rule_id))
 
 
-def _hit(rule: Rule, file: str, line_no: int, line: str) -> Hit:
+def _hit(rule: Rule, rules: RuleSet, file: str, line_no: int, line: str) -> Hit:
     return Hit(
-        rule_id=rule.id, family=rule.family, file=file, line_no=line_no, line=_evidence(line)
+        rule_id=rule.id,
+        family=rule.family,
+        effect=rule.effect or rules.effects[rule.family],
+        file=file,
+        line_no=line_no,
+        line=_evidence(line),
     )
 
 
@@ -154,5 +161,5 @@ def scan_skill(skill_dir: Path, rules: RuleSet | None = None) -> ScanResult:
             hits += scan_text(read_text(path), rel, rules)
     result = ScanResult(scripts=scripts)
     for hit in hits:
-        (result.failures if rules.effects[hit.family] == "fail" else result.warnings).append(hit)
+        (result.failures if hit.effect == "fail" else result.warnings).append(hit)
     return result

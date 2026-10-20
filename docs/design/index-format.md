@@ -72,14 +72,22 @@ Pattern families, each a list of regexes in `scan_rules.yaml`. A hit records
 | family | examples | effect |
 |---|---|---|
 | `override` | "ignore previous/all instructions", "disregard the system prompt", "you are now" | hard fail |
-| `exfil` | reads of `~/.ssh`, `~/.aws`, `.env`, tokens/keys, "send to <url>", `curl ... \| sh` | hard fail |
-| `privilege` | "run with sudo", "disable sandbox", "--dangerously" | hard fail |
+| `exfil` | reads of `~/.ssh`, `~/.aws`, `.env`, tokens/keys, "send to <url>"; remote script execution from an untrusted URL (`http://`, raw IP, URL shortener) | hard fail |
+| `exfil` (warn rules) | remote script execution from an `https://` URL: `curl … \| sh`, `sh -c "$(curl …)"`, `sh <(curl …)` | warn |
+| `privilege` | remote script execution combined with sudo, "run as root", "disable sandbox", "--dangerously" | hard fail |
+| `privilege` (warn rules) | `sudo <command>` on its own (`sudo apt-get install …`) | warn |
 | `network` | any absolute `http(s)://` in an instruction (not in a docs link) | warn |
 | `scripts` | folder contains executable files or `scripts/` | tag `has_scripts`; tier cap B→C unless publisher verified |
 | `hidden` | zero-width chars, HTML comments with instructions, base64 blobs > 200 chars | hard fail |
 
 Hard fail → `status: scan_failed`, excluded. This is a blocklist, not a proof of
 safety; say so in README.
+
+Why `curl … | sh` and bare `sudo` only warn (rules v2): they are the standard
+install form of uv, rustup, Homebrew and nvm and of most setup steps. Failing
+them would drop a large share of legitimate setup skills, and anyone opening
+the "rejected because" list in the data write-up would stop trusting it. They
+fail only in the combinations above.
 
 Implementation notes (`ingest/injection.py`, rules in `ingest/scan_rules.yaml`):
 
@@ -91,6 +99,13 @@ Implementation notes (`ingest/injection.py`, rules in `ingest/scan_rules.yaml`):
   evidence for the tag.
 - `network` ignores markdown link targets, `<autolinks>` and reference
   definitions; a URL anywhere else (prose, inline code, code blocks) warns.
+- A rule may set `effect` to override its family's effect; that is how the warn
+  rules above live in the `exfil` and `privilege` families. Hits record their
+  effective `effect`.
+- HTML comments fail only for directive wording aimed at the agent (`ignore`,
+  `disregard`, `you must/should/are/will`, `assistant`, `claude`, `system
+  prompt`, `execute`, `upload`, `run the following`). Maintainer notes such as
+  "always keep this table sorted" or "do not remove" pass (rules v2).
 - Rules may set `allow_negated`: a match is skipped when a negation (`not`,
   `never`, `n't`, `no`, `without`) appears at most two words before it. "Never
   run sudo …" is advice; "Do not hesitate to run sudo …" still fails. Used only
