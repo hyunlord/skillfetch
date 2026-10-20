@@ -160,6 +160,16 @@ def scan_dir(root: Path) -> ScanReport:
     )
 
 
+def fail_counts(report: ScanReport) -> dict[str, int]:
+    """Counts behind `scan --fail-on`. Per stage, not per status: a skill can fail
+    both lint and the injection scan (its status is then lint_failed)."""
+    return {
+        "conflict": sum(f.kind == "conflict" for f in report.findings),
+        "scan": sum(not s.scan.ok for s in report.skills),
+        "lint": sum(not s.lint.ok for s in report.skills),
+    }
+
+
 # --- text rendering ------------------------------------------------------------------
 
 

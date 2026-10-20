@@ -12,6 +12,7 @@ piles up in `~/.claude/skills`.
 ```console
 $ uv run skillfetch scan path/to/skills          # human-readable report
 $ uv run skillfetch scan path/to/skills --json   # machine-readable
+$ uv run skillfetch scan path/to/skills --fail-on conflict,scan   # exit 1 for CI
 $ uv run skillfetch scan tests/fixtures/skills   # the labelled fixture corpus
 ```
 

@@ -270,4 +270,9 @@ As built (`ingest/local_scan.py`, `cli.py`):
   constraint findings. Every other pair of analyzed skills gets at most one
   finding: conflict, else redundant (directional; `a` is the superset), else
   tension, else needs_review.
-- Exit code 0 when the scan ran (findings do not change it), 2 on usage errors.
+- Exit code 0 when the scan ran, 2 on usage errors. `--fail-on
+  {conflict,scan,lint}` (repeatable or comma-separated) exits 1 when the scan
+  finds any conflict finding, injection-scan failure or lint failure; the
+  reason goes to stderr so `--json` output stays parseable. Warnings,
+  `tension`, `needs_review` and `redundant` never fail the run. Stage counts
+  are per stage: a skill failing both lint and the scan counts for both.
