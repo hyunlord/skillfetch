@@ -251,6 +251,14 @@ def test_exclusive_choices_across_ecosystems_are_independent():
     assert rel(c, d) == Relation.INDEPENDENT
 
 
+def test_conda_coexists_with_python_package_managers():
+    # conda manages environments across languages; `pip install` inside a conda
+    # env is routine, so conda is its own ecosystem, not a python alternative.
+    conda = k("package-manager", "require", "conda")
+    for other in ("pip", "uv", "poetry"):
+        assert rel(conda, k("package-manager", "require", other)) == Relation.INDEPENDENT
+
+
 def test_exclusive_same_choice_is_not_a_conflict():
     a = k("formatter", "require", "ruff")
     b = k("formatter", "require", "ruff format")

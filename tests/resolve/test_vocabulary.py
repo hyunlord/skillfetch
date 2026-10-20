@@ -46,6 +46,8 @@ def test_alternatives_are_unique_across_ecosystems():
         ("pnpm workspaces", ("javascript", "pnpm")),
         ("uv", ("python", "uv")),
         ("Poetry", ("python", "poetry")),
+        ("conda", ("conda", "conda")),
+        ("a conda environment", ("conda", "conda")),
         ("npm or yarn", None),
         ("our in-house installer", None),
         (None, None),

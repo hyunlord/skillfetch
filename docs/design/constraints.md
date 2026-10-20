@@ -80,12 +80,14 @@ term as `subject`." The machine-readable list is
 slot, so two different choices for it cannot both be followed — "always use
 npm" and "always use pnpm" conflict even though neither skill forbids the
 other. Choices only exclude each other within one ecosystem; across ecosystems
-they coexist (a repo can use pnpm for the front end and uv for the back end).
+they coexist (a repo can use pnpm for the front end and uv for the back end). conda is
+its own ecosystem: it manages environments across languages, and `pip install`
+inside a conda environment is routine, so "use conda" never excludes pip or uv.
 Each exclusive term therefore lists its known alternatives per ecosystem:
 
 | term | ecosystem: alternatives |
 |---|---|
-| package-manager | javascript: npm, pnpm, yarn, bun · python: pip, uv, poetry, pipenv, pdm, conda |
+| package-manager | javascript: npm, pnpm, yarn, bun · python: pip, uv, poetry, pipenv, pdm · conda: conda, mamba, micromamba |
 | formatter | javascript: prettier, biome, dprint · python: black, ruff, yapf, autopep8 |
 | test-runner | javascript: jest, vitest, mocha, ava · python: pytest, unittest, nose2 |
 | build-tool | javascript: vite, webpack, esbuild, rollup, parcel, rspack · jvm: maven, gradle, sbt |

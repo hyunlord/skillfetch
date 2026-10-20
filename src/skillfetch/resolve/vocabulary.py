@@ -79,7 +79,10 @@ VOCABULARY: tuple[Term, ...] = (
         exclusive=True,
         ecosystems=(
             _eco("javascript", "npm", "pnpm", "yarn", "bun"),
-            _eco("python", "pip", "uv", "poetry", "pipenv", "pdm", "conda"),
+            _eco("python", "pip", "uv", "poetry", "pipenv", "pdm"),
+            # conda manages environments across languages and routinely hosts pip
+            # installs, so it does not exclude the python tools above.
+            _eco("conda", "conda", "mamba", "micromamba"),
         ),
     ),
     Term(
