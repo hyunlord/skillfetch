@@ -1,0 +1,18 @@
+{
+  "constraints": [
+    {
+      "subject": "ask-before-acting",
+      "directive": "require",
+      "object": null,
+      "scope": {
+        "artifact": "any",
+        "phase": "any",
+        "condition": null
+      },
+      "evidence": {
+        "line_no": 12,
+        "text": "Always ask the user before modifying any file."
+      }
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "constraints": [
+    {
+      "subject": "package-manager",
+      "directive": "require",
+      "object": "pnpm",
+      "scope": {
+        "artifact": "any",
+        "phase": "any",
+        "condition": null
+      },
+      "evidence": {
+        "line_no": 12,
+        "text": "Always use pnpm for installing and running packages."
+      }
+    },
+    {
+      "subject": "package-manager",
+      "directive": "forbid",
+      "object": "npm",
+      "scope": {
+        "artifact": "any",
+        "phase": "any",
+        "condition": null
+      },
+      "evidence": {
+        "line_no": 13,
+        "text": "Never run npm commands in this repository."
+      }
+    }
+  ]
+}

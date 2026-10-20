@@ -1,0 +1,18 @@
+{
+  "constraints": [
+    {
+      "subject": "type-hints",
+      "directive": "forbid",
+      "object": null,
+      "scope": {
+        "artifact": "code",
+        "phase": "any",
+        "condition": "when editing django migration files"
+      },
+      "evidence": {
+        "line_no": 12,
+        "text": "When editing Django migration files, do not add type hints."
+      }
+    }
+  ]
+}

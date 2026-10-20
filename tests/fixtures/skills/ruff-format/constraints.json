@@ -1,0 +1,32 @@
+{
+  "constraints": [
+    {
+      "subject": "formatter",
+      "directive": "forbid",
+      "object": "black",
+      "scope": {
+        "artifact": "code",
+        "phase": "any",
+        "condition": null
+      },
+      "evidence": {
+        "line_no": 12,
+        "text": "Do not use black."
+      }
+    },
+    {
+      "subject": "formatter",
+      "directive": "require",
+      "object": "ruff format",
+      "scope": {
+        "artifact": "code",
+        "phase": "format",
+        "condition": null
+      },
+      "evidence": {
+        "line_no": 13,
+        "text": "Format Python code with ruff format."
+      }
+    }
+  ]
+}

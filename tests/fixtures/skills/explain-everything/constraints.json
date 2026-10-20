@@ -1,0 +1,32 @@
+{
+  "constraints": [
+    {
+      "subject": "preamble",
+      "directive": "require",
+      "object": "restate the question",
+      "scope": {
+        "artifact": "response",
+        "phase": "any",
+        "condition": null
+      },
+      "evidence": {
+        "line_no": 12,
+        "text": "Always begin by restating the user's question in your own words."
+      }
+    },
+    {
+      "subject": "explain-reasoning",
+      "directive": "require",
+      "object": null,
+      "scope": {
+        "artifact": "response",
+        "phase": "any",
+        "condition": null
+      },
+      "evidence": {
+        "line_no": 13,
+        "text": "Always explain your reasoning before giving the answer."
+      }
+    }
+  ]
+}

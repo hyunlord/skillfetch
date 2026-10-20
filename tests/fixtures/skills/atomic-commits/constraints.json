@@ -1,0 +1,32 @@
+{
+  "constraints": [
+    {
+      "subject": "commit-granularity",
+      "directive": "forbid",
+      "object": "squash",
+      "scope": {
+        "artifact": "commit-message",
+        "phase": "any",
+        "condition": null
+      },
+      "evidence": {
+        "line_no": 12,
+        "text": "Never squash; one logical change per commit, always."
+      }
+    },
+    {
+      "subject": "review-before-merge",
+      "directive": "require",
+      "object": null,
+      "scope": {
+        "artifact": "any",
+        "phase": "review",
+        "condition": null
+      },
+      "evidence": {
+        "line_no": 13,
+        "text": "Every commit must be reviewed before it is merged."
+      }
+    }
+  ]
+}

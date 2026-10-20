@@ -1,0 +1,33 @@
+{
+  "constraints": [
+    {
+      "subject": "tests",
+      "directive": "order",
+      "object": "implementation",
+      "scope": {
+        "artifact": "any",
+        "phase": "any",
+        "condition": "before"
+      },
+      "strength": "must",
+      "evidence": {
+        "line_no": 12,
+        "text": "Always write a failing test first, then the implementation."
+      }
+    },
+    {
+      "subject": "test-runner",
+      "directive": "require",
+      "object": "pytest",
+      "scope": {
+        "artifact": "tests",
+        "phase": "test",
+        "condition": null
+      },
+      "evidence": {
+        "line_no": 13,
+        "text": "Use pytest as the test runner."
+      }
+    }
+  ]
+}

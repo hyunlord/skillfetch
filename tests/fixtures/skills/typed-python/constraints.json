@@ -1,0 +1,32 @@
+{
+  "constraints": [
+    {
+      "subject": "type-hints",
+      "directive": "require",
+      "object": null,
+      "scope": {
+        "artifact": "code",
+        "phase": "any",
+        "condition": null
+      },
+      "evidence": {
+        "line_no": 12,
+        "text": "All functions must be fully type-annotated."
+      }
+    },
+    {
+      "subject": "docstrings",
+      "directive": "require",
+      "object": "public functions",
+      "scope": {
+        "artifact": "code",
+        "phase": "any",
+        "condition": null
+      },
+      "evidence": {
+        "line_no": 13,
+        "text": "Every public function must have a docstring."
+      }
+    }
+  ]
+}
