@@ -10,7 +10,7 @@ FIXTURES_DIR = Path(__file__).parent / "fixtures"
 SKILLS_DIR = FIXTURES_DIR / "skills"
 EXPECTED_PATH = FIXTURES_DIR / "expected.yaml"
 
-RELATION_KEYS = ("conflict", "redundant", "tension", "needs_review")
+RELATION_KEYS = ("conflict", "redundant", "subsumes", "tension", "needs_review")
 
 
 def fixture_skill_dirs() -> list[Path]:
@@ -32,7 +32,10 @@ def load_corpus() -> dict[str, Skill]:
 
 
 def load_expected() -> dict[frozenset[str], str]:
-    """Labelled skill-level relations, keyed by unordered pair of skill names."""
+    """Labelled skill-level relations, keyed by unordered pair of skill names.
+
+    Directional `subsumes` entries are labelled "subsumes:<superset>".
+    """
     raw = yaml.safe_load(EXPECTED_PATH.read_text())
     expected: dict[frozenset[str], str] = {}
     for relation in RELATION_KEYS:
@@ -40,5 +43,5 @@ def load_expected() -> dict[frozenset[str], str]:
             pair = frozenset((a, b))
             assert len(pair) == 2, f"self-pair in expected.yaml: {a}"
             assert pair not in expected, f"pair listed twice in expected.yaml: {a}, {b}"
-            expected[pair] = relation
+            expected[pair] = f"subsumes:{a}" if relation == "subsumes" else relation
     return expected

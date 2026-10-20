@@ -72,6 +72,26 @@ def test_redundant_auto_is_excluded():
     assert len(ex.evidence) == 2
 
 
+def test_subset_candidate_is_dropped_after_its_superset():
+    res = run(auto=["typed-python", "type-hints-strict"])
+    assert res.included == ["typed-python"]
+    [ex] = res.excluded
+    assert (ex.id, ex.reason, ex.conflicts_with) == (
+        "type-hints-strict",
+        "redundant_with",
+        "typed-python",
+    )
+    [ev] = ex.evidence
+    assert ev.b.text == "Every function signature must have complete type hints."
+
+
+def test_superset_candidate_is_kept_after_its_subset():
+    # typed-python adds the docstring rule, so dropping it would lose information.
+    res = run(auto=["type-hints-strict", "typed-python"])
+    assert res.included == ["type-hints-strict", "typed-python"]
+    assert res.excluded == []
+
+
 def test_conflict_takes_priority_over_redundancy():
     res = run(auto=["small-commits"], pinned=["atomic-commits", "commit-squash"])
     [ex] = res.excluded

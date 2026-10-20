@@ -134,27 +134,41 @@ automatically; it is shown to the user with both evidence lines.
 
 ## 4. Skill-level relation
 
-For skills A, B, compute all constraint pairs (|A|×|B| ≤ 900, trivial). Then:
+`relation(A, B)` is the relation of B given A (A is already in the set). For
+skills A, B, compute all constraint pairs (|A|×|B| ≤ 900, trivial). Then:
 
 - `conflict` if any pair is `conflict`.
-- else `redundant` if the constraint multisets are equal after normalization
-  (used by dedup, §index-format 1.6) — partial overlap alone is **not**
-  redundancy, and two skills with no constraints are **not** redundant (there
-  is no evidence line to show).
+- else `redundant` if **B ⊆ A**: B's constraint multiset, after normalization,
+  is a sub-multiset of A's. Dropping B then loses no constraint — the
+  "lossless" criterion. B must be non-empty: a skill with no constraints is
+  never redundant (the empty set is a subset of everything, but there is no
+  evidence line to show). Partial overlap (neither side contained) is **not**
+  redundancy.
 - else `tension` if any pair is `tension`.
 - else `needs_review` if any pair is `needs_review`.
 - else `independent`.
 
-Redundant ranks above tension: if two skills carry the same constraints, any
-tension between them is internal to each, and loading both adds nothing.
+Every relation is symmetric except `redundant`, which is directional: if B ⊊ A,
+then `relation(A, B) = redundant` but `relation(B, A)` is not (A adds
+constraints B lacks). Equal multisets are redundant in both directions; that
+two-way case is what dedup uses (index-format.md §1.6).
 
-Normalized identity of a constraint for multiset equality: `(norm(subject),
+Redundant ranks above tension: if B's constraints all appear in A, any tension
+between them is internal to A, and loading B adds nothing.
+
+Lossless is measured on extracted constraints only. Body text that yields no
+constraint (examples, background, scripts) is not compared; a subsumed skill
+can still carry useful examples. v0.1 accepts that: the set stays smaller and
+the superset's instructions are all present.
+
+Normalized identity of a constraint for multiset containment: `(norm(subject),
 directive, norm(object), artifact, phase, norm(condition), strength)`; for
 `order`, `(edge, artifact, phase, strength)`. Evidence is not part of identity.
+Containment is exact on identity: a `should` is not subsumed by a `must`.
 
 The result carries the constraint pairs at the winning relation (all
-conflicting pairs; for `redundant`, the one-to-one matching). These are the
-evidence lines of §6.
+conflicting pairs; for `redundant`, each of B's constraints paired with its
+match in A). These are the evidence lines of §6.
 
 Also compute `complementary` as a separate boolean (does not affect inclusion):
 `A.produces ∩ B.consumes ≠ ∅` in either direction, or (`A.tags.domain ∩
@@ -178,9 +192,11 @@ output: included, excluded[{id, reason, conflicts_with, evidence}], warnings, pr
 3. for each a in auto, in order, compare against every s currently in included
    (skills excluded earlier never block later candidates):
      any conflict   → excluded (reason=conflict, conflicts_with=first such s, evidence=both lines)
-     else any redundant → excluded (reason=redundant_with, conflicts_with=first such s, evidence=matched lines)
+     else any s with a ⊆ s → excluded (reason=redundant_with, conflicts_with=first such s, evidence=matched lines)
      else           → included; one warning per s with tension or needs_review
-   "first" = earliest in precedence order.
+   "first" = earliest in precedence order. A candidate that is a strict
+   superset of an included skill is included (it adds constraints); the
+   earlier skill stays, since resolve_set never removes what it already chose.
 4. precedence = pinned in given order, then auto in given order (included only).
    load_skills emits a header:
      "Skills are listed in precedence order. If two instructions disagree,

@@ -103,8 +103,9 @@ Cost guard: skip bodies > 12k tokens (record `status: too_large`).
 Two skills are a **duplicate group** when any of:
 
 - identical `content_hash`;
-- Jaccard(keywords) ≥ 0.8 **and** constraint-set equality after normalization
-  (see constraints.md §4);
+- Jaccard(keywords) ≥ 0.8 **and** constraint-multiset equality after
+  normalization, i.e. each is redundant with the other (constraints.md §4; a
+  one-way subset is not a duplicate group, it is handled by `resolve_set`);
 - same normalized `name` from the same publisher at different refs → keep newest.
 
 Each group gets a `canonical_id` (prefer verified publisher, then newest). The

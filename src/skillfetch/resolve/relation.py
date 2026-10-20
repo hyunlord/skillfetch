@@ -108,7 +108,7 @@ class SkillRelation:
 
 
 def _identity(c: Constraint) -> tuple:
-    """Normalized identity of a constraint, used for multiset equality (§4)."""
+    """Normalized identity of a constraint, used for multiset containment (§4)."""
     if c.directive == "order":
         return ("order", _order_edge(c), c.scope.artifact, c.scope.phase, c.strength)
     return (
@@ -122,26 +122,29 @@ def _identity(c: Constraint) -> tuple:
     )
 
 
-def _multiset_match(a: Skill, b: Skill) -> list[ConstraintPair] | None:
-    """Pair up constraints one-to-one if the normalized multisets are equal and non-empty."""
-    if not a.constraints or len(a.constraints) != len(b.constraints):
+def _subsumed(kept: Skill, cand: Skill) -> list[ConstraintPair] | None:
+    """If cand's constraints are a non-empty sub-multiset of kept's, pair each of cand's
+    constraints one-to-one with an identical one in kept (dropping cand is lossless)."""
+    if not cand.constraints or len(cand.constraints) > len(kept.constraints):
         return None
-    remaining = list(b.constraints)
+    remaining = list(kept.constraints)
     pairs = []
-    for ca in a.constraints:
-        key = _identity(ca)
-        match = next((cb for cb in remaining if _identity(cb) == key), None)
+    for cb in cand.constraints:
+        key = _identity(cb)
+        match = next((ca for ca in remaining if _identity(ca) == key), None)
         if match is None:
             return None
         remaining.remove(match)
-        pairs.append(ConstraintPair(ca, match, Relation.REDUNDANT))
+        pairs.append(ConstraintPair(match, cb, Relation.REDUNDANT))
     return pairs
 
 
 def skill_relation(a: Skill, b: Skill) -> SkillRelation:
-    """Skill-level relation with the constraint pairs that justify it.
+    """Relation of skill `b` given skill `a`, with the constraint pairs that justify it.
 
-    Ranking: conflict > redundant > tension > needs_review > independent.
+    Symmetric except for redundancy, which is directional: `redundant` means b ⊆ a
+    (b adds no constraint that a lacks). Ranking: conflict > redundant > tension >
+    needs_review > independent.
     """
     pairs = [
         ConstraintPair(ca, cb, rel)
@@ -152,7 +155,7 @@ def skill_relation(a: Skill, b: Skill) -> SkillRelation:
     conflicts = [p for p in pairs if p.relation == Relation.CONFLICT]
     if conflicts:
         return SkillRelation(Relation.CONFLICT, conflicts)
-    matched = _multiset_match(a, b)
+    matched = _subsumed(a, b)
     if matched is not None:
         return SkillRelation(Relation.REDUNDANT, matched)
     for relation in (Relation.TENSION, Relation.NEEDS_REVIEW):

@@ -297,35 +297,51 @@ def test_skill_tension_and_review_ranking():
     assert skill_relation(a2, b).relation == Relation.NEEDS_REVIEW
 
 
-def test_equal_multisets_are_redundant():
+def test_equal_multisets_are_redundant_both_ways():
     a = S("a", k("emoji", "forbid", text="No emoji."), k("Docstrings", "require"))
     b = S("b", k("docstring", "require", text="Docs!"), k("emoji", "forbid", text="Never emoji."))
+    for kept, cand in ((a, b), (b, a)):
+        result = skill_relation(kept, cand)
+        assert result.relation == Relation.REDUNDANT
+        assert len(result.pairs) == 2
+        assert all(p.relation == Relation.REDUNDANT for p in result.pairs)
+
+
+def test_subset_is_redundant_only_in_the_lossless_direction():
+    # b ⊆ a: dropping b loses nothing; dropping a would lose the docstring rule.
+    a = S("a", k("emoji", "forbid"), k("docstrings", "require"))
+    b = S("b", k("emoji", "forbid", text="the only rule in b"))
     result = skill_relation(a, b)
     assert result.relation == Relation.REDUNDANT
-    assert len(result.pairs) == 2
-    assert all(p.relation == Relation.REDUNDANT for p in result.pairs)
+    assert [p.b.evidence.text for p in result.pairs] == ["the only rule in b"]
+    assert skill_relation(b, a).relation == Relation.INDEPENDENT
 
 
 def test_partial_overlap_is_not_redundant():
     a = S("a", k("emoji", "forbid"), k("docstrings", "require"))
-    b = S("b", k("emoji", "forbid"))
+    b = S("b", k("emoji", "forbid"), k("headers", "require"))
     assert skill_relation(a, b).relation == Relation.INDEPENDENT
+    assert skill_relation(b, a).relation == Relation.INDEPENDENT
 
 
 def test_multiset_counts_matter():
     a = S("a", k("emoji", "forbid"), k("emoji", "forbid"))
     b = S("b", k("emoji", "forbid"))
-    assert skill_relation(a, b).relation == Relation.INDEPENDENT
+    assert skill_relation(a, b).relation == Relation.REDUNDANT
+    assert skill_relation(b, a).relation == Relation.INDEPENDENT
 
 
 def test_strength_is_part_of_multiset_identity():
     a = S("a", k("emoji", "forbid"))
     b = S("b", k("emoji", "forbid", strength="should"))
     assert skill_relation(a, b).relation == Relation.INDEPENDENT
+    assert skill_relation(b, a).relation == Relation.INDEPENDENT
 
 
 def test_skills_without_constraints_are_never_redundant():
     assert skill_relation(S("a"), S("b")).relation == Relation.INDEPENDENT
+    # The empty set is a subset of everything, but there is no evidence line to show.
+    assert skill_relation(S("a", k("emoji", "forbid")), S("b")).relation == Relation.INDEPENDENT
 
 
 def test_independent_skill_relation_has_no_pairs():

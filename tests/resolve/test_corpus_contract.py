@@ -5,19 +5,29 @@ labelled in expected.yaml (unlisted pairs: independent). That implies
 conflict precision = 1.0, which is the v0.1 gate.
 """
 
-from itertools import combinations
+from itertools import combinations, permutations
 
 from conftest import load_corpus, load_expected
 
 from skillfetch.resolve.relation import Relation, skill_relation
 
 
-def _predicted() -> dict[frozenset[str], str]:
+def _label(a: str, b: str) -> str:
+    """Unordered label of a pair. Redundancy is directional (b ⊆ a), the rest symmetric."""
     corpus = load_corpus()
-    return {
-        frozenset((a, b)): skill_relation(corpus[a], corpus[b]).relation.value
-        for a, b in combinations(sorted(corpus), 2)
-    }
+    forward = skill_relation(corpus[a], corpus[b]).relation
+    backward = skill_relation(corpus[b], corpus[a]).relation
+    if forward == backward:
+        return forward.value
+    if (forward, backward) == (Relation.REDUNDANT, Relation.INDEPENDENT):
+        return f"subsumes:{a}"
+    if (forward, backward) == (Relation.INDEPENDENT, Relation.REDUNDANT):
+        return f"subsumes:{b}"
+    return f"asymmetric:{forward.value}/{backward.value}"
+
+
+def _predicted() -> dict[frozenset[str], str]:
+    return {frozenset((a, b)): _label(a, b) for a, b in combinations(sorted(load_corpus()), 2)}
 
 
 def _expected_full() -> dict[frozenset[str], str]:
@@ -49,7 +59,7 @@ def test_every_pair_matches_its_label():
 
 def test_every_finding_has_evidence_from_both_skills():
     corpus = load_corpus()
-    for a, b in combinations(sorted(corpus), 2):
+    for a, b in permutations(sorted(corpus), 2):
         result = skill_relation(corpus[a], corpus[b])
         if result.relation == Relation.INDEPENDENT:
             continue
