@@ -40,14 +40,26 @@ normalized SKILL.md body + the sorted list of (relative path, sha256) of every
 file in the skill folder. Same content under two sources → two records, same
 `content_hash`, deduped at stage 5.
 
+Normalization for the hash (`ingest/skillfile.py`): UTF-8, BOM stripped, line
+endings `\n`, trailing whitespace stripped per line, leading/trailing blank
+lines dropped. "Every file" excludes hidden files and folders, `node_modules/`,
+`__pycache__/`, and a top-level `constraints.json` sidecar (§5).
+
 ### 1.3 Lint (static)
 
 Reuse the agentskills.io spec rules; do not reimplement a full linter. Minimal
 checks we own:
 
 - `SKILL.md` exists, frontmatter parses, has `name` and `description`.
-- Body ≤ 500 lines / ~5000 tokens (warn, not fail).
-- No broken relative links to files inside the folder.
+- Body ≤ 500 lines / ~5000 tokens (warn, not fail; tokens estimated as chars/4).
+- No broken relative links to files inside the folder. Inline links, images and
+  reference definitions are checked; links inside fenced or inline code, URLs
+  with a scheme, and `#anchors` are not. A link that leaves the folder (`../`,
+  or an absolute path) is an error too: the folder is materialized on its own.
+
+Rule ids: `lint.missing-skill-md`, `lint.frontmatter-{missing,unclosed,invalid}`,
+`lint.missing-{name,description}`, `lint.broken-link`, `lint.link-outside-skill`
+(errors); `lint.body-too-long`, `lint.body-too-many-tokens` (warnings).
 
 Fail → skill is recorded with `status: lint_failed` and excluded from the index.
 Lint findings are stored so the data write-up can count them.

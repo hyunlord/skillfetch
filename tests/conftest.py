@@ -45,3 +45,27 @@ def load_expected() -> dict[frozenset[str], str]:
             assert pair not in expected, f"pair listed twice in expected.yaml: {a}, {b}"
             expected[pair] = f"subsumes:{a}" if relation == "subsumes" else relation
     return expected
+
+
+DEFAULT_BODY = "# Title\n\nSome background text.\n"
+
+
+def write_skill(
+    root: Path,
+    name: str,
+    body: str = DEFAULT_BODY,
+    *,
+    frontmatter: str | None = None,
+    files: dict[str, str] | None = None,
+) -> Path:
+    """Write a throwaway skill folder for ingest tests."""
+    skill_dir = root / name
+    skill_dir.mkdir(parents=True)
+    if frontmatter is None:
+        frontmatter = f"---\nname: {name}\ndescription: A test skill.\n---\n"
+    (skill_dir / "SKILL.md").write_text(frontmatter + body)
+    for rel, content in (files or {}).items():
+        path = skill_dir / rel
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(content)
+    return skill_dir
