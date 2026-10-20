@@ -1,0 +1,101 @@
+# Injection scan rules (index-format.md §1.4). A blocklist, not a proof of safety.
+#
+# Bump `version` whenever a rule changes; it is recorded in the index manifest
+# as scan_rules_version.
+#
+# Rule fields:
+#   id, family, pattern   Python regex, case-insensitive unless case_sensitive: true
+#   target                line (default) | outside_links (markdown link targets,
+#                         autolinks and reference definitions removed first) |
+#                         html_comment (pattern applied to each <!-- --> body)
+#   allow_negated         skip a match when a negation (not, never, n't, no, without)
+#                         appears at most two words before it: "never run sudo X"
+#                         is advice, "do not hesitate to run sudo X" is not
+version: 1
+
+effects:
+  override: fail
+  exfil: fail
+  privilege: fail
+  hidden: fail
+  network: warn
+
+scripts:
+  dirs: [scripts]
+  extensions: [.sh, .bash, .zsh, .py, .js, .mjs, .cjs, .ts, .rb, .pl, .ps1, .bat, .cmd]
+
+rules:
+  # --- override: attempts to replace the host's instructions ----------------------
+  - id: override.ignore-previous
+    family: override
+    pattern: '\b(?:ignore|disregard|forget|override)\s+(?:all\s+)?(?:of\s+)?(?:the\s+|your\s+|any\s+)?(?:previous|prior|above|earlier|preceding|original|system)\s+(?:instructions?|prompts?|directions|directives|messages?|rules)\b|\b(?:ignore|disregard)\s+all\s+(?:other\s+)?instructions\b'
+  - id: override.system-prompt
+    family: override
+    allow_negated: true
+    pattern: '\b(?:ignore|disregard|override|bypass|reveal|print|repeat|leak|output)\b[^.\n]{0,20}\bsystem\s+prompt\b'
+  - id: override.persona
+    family: override
+    pattern: '\byou\s+are\s+now\s+(?:an?\s+)?(?:unrestricted|unfiltered|uncensored|jailbroken|evil|dan\b)|\byou\s+are\s+now\s+in\s+(?:developer|god|jailbreak|dan)\s+mode\b'
+
+  # --- exfil: reading secrets or shipping them elsewhere ---------------------------
+  - id: exfil.ssh-keys
+    family: exfil
+    allow_negated: true
+    pattern: '\b(?:read|cat|open|copy|cp|upload|send|print|load|base64|scp|access|include)\b[^\n]{0,40}(?:~|\$HOME|\$\{HOME\})/\.ssh\b'
+  - id: exfil.cloud-credentials
+    family: exfil
+    allow_negated: true
+    pattern: '\b(?:read|cat|open|copy|cp|upload|send|print|load|base64|scp|access|include)\b[^\n]{0,40}(?:~|\$HOME|\$\{HOME\})/\.(?:aws|azure|kube|netrc|config/gcloud|docker/config\.json)\b'
+  - id: exfil.dotenv
+    family: exfil
+    allow_negated: true
+    pattern: '\b(?:cat|less|more|head|tail|type|print|upload|send|post|exfiltrate)\b[^\n]{0,30}(?<![\w/.-])\.env\b(?!\.(?:example|sample|template))'
+  - id: exfil.secret-env
+    family: exfil
+    allow_negated: true
+    pattern: '\b(?:echo|printenv|print|cat|send|upload)\b[^\n]{0,40}\$\{?[A-Z0-9_]*(?:TOKEN|SECRET|API_?KEY|PASSWORD|PRIVATE_KEY)[A-Z0-9_]*\}?'
+  - id: exfil.send-to-url
+    family: exfil
+    allow_negated: true
+    pattern: '\b(?:send|sent|post|upload|exfiltrate|transmit|forward)\b[^\n]{0,60}\b(?:keys?|tokens?|secrets?|passwords?|credentials?|cookies?|\.env|env(?:ironment)?\s+var(?:iable)?s?|ssh|contents?)\b[^\n]{0,60}\bto\s+<?https?://'
+  - id: exfil.pipe-to-shell
+    family: exfil
+    pattern: '\b(?:curl|wget)\b[^\n|]*\|\s*(?:sudo\s+)?(?:ba|z|da)?sh\b'
+
+  # --- privilege: escalation or disabling safety --------------------------------------
+  - id: privilege.sudo
+    family: privilege
+    allow_negated: true
+    pattern: '\bsudo\s+(?:-\w+\s+)*[a-z]'
+  - id: privilege.run-as-root
+    family: privilege
+    allow_negated: true
+    pattern: '\b(?:run|execute|start)\b[^\n]{0,30}\bas\s+root\b'
+  - id: privilege.disable-sandbox
+    family: privilege
+    allow_negated: true
+    pattern: '\b(?:disable|turn\s+off|bypass|skip|escape)\b[^\n]{0,20}\bsandbox(?:ing)?\b'
+  - id: privilege.dangerous-flag
+    family: privilege
+    allow_negated: true
+    pattern: '--dangerously[\w-]*|--no-sandbox\b'
+
+  # --- hidden: content a human reviewer would not see ---------------------------------
+  - id: hidden.invisible-chars
+    family: hidden
+    case_sensitive: true
+    pattern: '[\u200b-\u200f\u202a-\u202e\u2060-\u2064\u2066-\u2069\ufeff]'
+  - id: hidden.base64-blob
+    family: hidden
+    case_sensitive: true
+    pattern: '[A-Za-z0-9+/]{200,}={0,2}'
+  - id: hidden.html-comment-instruction
+    family: hidden
+    target: html_comment
+    pattern: '\b(?:ignore|disregard|you\s+(?:must|should|are|will)|always|never|do\s+not|don''t|assistant|claude|instructions?|system\s+prompt|execute|upload|run\s+the\s+following)\b'
+
+  # --- network: absolute URLs used as instructions, not as documentation links --------
+  - id: network.bare-url
+    family: network
+    target: outside_links
+    pattern: 'https?://\S+'

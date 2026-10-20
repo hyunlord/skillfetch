@@ -81,6 +81,24 @@ Pattern families, each a list of regexes in `scan_rules.yaml`. A hit records
 Hard fail → `status: scan_failed`, excluded. This is a blocklist, not a proof of
 safety; say so in README.
 
+Implementation notes (`ingest/injection.py`, rules in `ingest/scan_rules.yaml`):
+
+- Scanned: `SKILL.md` plus every `.md/.markdown/.mdx/.txt` file in the folder.
+  Script files are tagged, not regex-scanned (they are code, and the `scripts`
+  tier cap already applies). A leading BOM is not an invisible character.
+- `scripts` = any file under `scripts/`, any file with a script extension
+  (`.sh .py .js .ts …`), or any executable file. The list is recorded as
+  evidence for the tag.
+- `network` ignores markdown link targets, `<autolinks>` and reference
+  definitions; a URL anywhere else (prose, inline code, code blocks) warns.
+- Rules may set `allow_negated`: a match is skipped when a negation (`not`,
+  `never`, `n't`, `no`, `without`) appears at most two words before it. "Never
+  run sudo …" is advice; "Do not hesitate to run sudo …" still fails. Used only
+  where benign negated phrasing is common (sudo, root, sandbox,
+  `--dangerously-*`, reading key/credential paths, system prompt).
+- Evidence lines show invisible characters as `<U+200B>` and are cut at 160
+  characters.
+
 ### 1.5 Extract (Claude API)
 
 One call per skill, structured output, temperature 0. Produces:
