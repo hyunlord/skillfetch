@@ -19,11 +19,11 @@ def test_excluded_conflict_renders_with_both_evidence_lines():
 
 def test_scope_shows_the_overlap():
     corpus = load_corpus()
-    res = resolve_set([corpus["friendly-tone"]], [corpus["plain-markdown"]])
+    res = resolve_set([corpus["pr-checklist"]], [corpus["prose-only"]])
     [w] = res.warnings
     text = render_finding(w)
-    assert text.splitlines()[0] == "TENSION  plain-markdown ⟷ friendly-tone"
-    assert "scope: markdown / any" in text
+    assert text.splitlines()[0] == "TENSION  prose-only ⟷ pr-checklist"
+    assert "scope: pr-description / any" in text
 
 
 def test_redundant_renders_every_matched_pair():

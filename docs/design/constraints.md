@@ -145,13 +145,23 @@ Relation of the pair (a, b) — evaluated top to bottom, first match wins
 | 9 | same_polarity, objects differ (otherwise) | `independent` |
 | 10 | opposite ∧ both objects non-null ∧ differ ("require pnpm" vs "forbid npm") | `independent` |
 | 11 | opposite ∧ positive side has no object, negative side has one ("use emoji" vs "never in headers": a carve-out) | `needs_review` |
-| 12 | opposite ∧ norm(conditions) differ (incl. one null) | `needs_review` |
-| 13 | opposite (objects equal, or a blanket ban vs a specific requirement; conditions equal) | opposed(a, b) |
+| 12 | opposite ∧ the positive side's scope is broader on artifact or phase (positive `any`, negative specific; "use emoji" vs "never in Markdown": a carve-out by scope) | `needs_review` |
+| 13 | opposite ∧ norm(conditions) differ (incl. one null) | `needs_review` |
+| 14 | opposite (objects and scopes equal, or a blanket ban — broader object or scope on the negative side — vs a specific requirement; conditions equal) | opposed(a, b) |
 
-Rows 8a, 8c and 10–12 are v0.1 precision choices: an object or condition
-mismatch means the rules cannot tell whether both instructions can be followed
-at once, so they never produce `conflict`. Consequences accepted for v0.1:
-mutually exclusive choices are only caught for exclusive vocabulary subjects
+Rows 11 and 12 are the same asymmetry, once by object and once by scope. A ban
+that is narrower than the requirement reads as an exception to it, so the pair
+is probably compatible: `needs_review`. A ban that is broader than (or equal
+to) the requirement cannot be followed together with it: opposed. When the
+positive side is broader on one dimension and the negative on the other, row 12
+applies (unsure → `needs_review`).
+
+Rows 8a, 8c and 10–13 are v0.1 precision choices: an object, scope or
+condition mismatch means the rules cannot tell whether both instructions can be
+followed at once, so they never produce `conflict`. Consequences accepted for
+v0.1: "always ask before editing" (any phase) vs "never ask during
+implementation" is `needs_review`, although most edits happen during
+implementation; mutually exclusive choices are only caught for exclusive vocabulary subjects
 and listed alternatives (row 8); two bans on different choices ("never npm",
 "never yarn") are compatible; and the same text under identical conditions is
 treated as unconditional.

@@ -43,6 +43,10 @@ def _overlaps(x: str, y: str) -> bool:
     return x == y or "any" in (x, y)
 
 
+def _broader(x: str, y: str) -> bool:
+    return x == "any" and y != "any"
+
+
 def scopes_overlap(a: Constraint, b: Constraint) -> bool:
     return _overlaps(a.scope.artifact, b.scope.artifact) and _overlaps(a.scope.phase, b.scope.phase)
 
@@ -97,10 +101,16 @@ def constraint_relation(a: Constraint, b: Constraint) -> Relation:
             return _exclusive_choice(a, b)
         return Relation.INDEPENDENT
 
-    pos_obj, neg_obj = (obj_a, obj_b) if a.directive in _POSITIVE else (obj_b, obj_a)
+    pos, neg = (a, b) if a.directive in _POSITIVE else (b, a)
+    pos_obj, neg_obj = (obj_a, obj_b) if pos is a else (obj_b, obj_a)
     if neg_obj is not None and neg_obj != pos_obj:
         # The ban is narrower than (or unrelated to) the requirement.
         return Relation.NEEDS_REVIEW if pos_obj is None else Relation.INDEPENDENT
+    if _broader(pos.scope.artifact, neg.scope.artifact) or _broader(
+        pos.scope.phase, neg.scope.phase
+    ):
+        # Same carve-out, by scope: "use emoji" + "never in markdown".
+        return Relation.NEEDS_REVIEW
 
     if _norm_opt(a.scope.condition) != _norm_opt(b.scope.condition):
         return Relation.NEEDS_REVIEW

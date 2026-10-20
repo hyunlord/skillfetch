@@ -98,7 +98,7 @@ def test_conflict_takes_priority_over_redundancy():
     assert (ex.reason, ex.conflicts_with) == ("conflict", "commit-squash")
 
 
-def test_redundant_wins_over_tension_and_suppresses_warnings():
+def test_redundant_wins_over_needs_review_and_suppresses_warnings():
     res = run(auto=["no-emoji-docs"], pinned=["friendly-tone", "plain-markdown"])
     [ex] = res.excluded
     assert (ex.id, ex.reason, ex.conflicts_with) == (
@@ -106,7 +106,7 @@ def test_redundant_wins_over_tension_and_suppresses_warnings():
         "redundant_with",
         "plain-markdown",
     )
-    # friendly-tone vs plain-markdown is tension between pinned skills: not warned (§5 step 2).
+    # friendly-tone vs plain-markdown is needs_review between pinned skills: not warned (§5 step 2).
     assert res.warnings == []
 
 
@@ -118,19 +118,26 @@ def test_excluded_skills_do_not_block_later_candidates():
 
 
 def test_tension_is_included_with_warning():
-    res = run(auto=["plain-markdown", "friendly-tone"])
-    assert res.included == ["plain-markdown", "friendly-tone"]
+    res = run(auto=["prose-only", "pr-checklist"])
+    assert res.included == ["prose-only", "pr-checklist"]
     [w] = res.warnings
-    assert (w.kind, w.a, w.b) == ("tension", "plain-markdown", "friendly-tone")
+    assert (w.kind, w.a, w.b) == ("tension", "prose-only", "pr-checklist")
     assert w.evidence
 
 
-def test_tension_warned_once_per_included_skill():
+def test_scope_carve_out_is_included_with_review_warning():
+    res = run(auto=["verbose-logging", "quiet-tests"])
+    assert res.included == ["verbose-logging", "quiet-tests"]
+    [w] = res.warnings
+    assert (w.kind, w.a, w.b) == ("needs_review", "verbose-logging", "quiet-tests")
+
+
+def test_warned_once_per_included_skill():
     res = run(auto=["friendly-tone"], pinned=["plain-markdown", "no-emoji-docs"])
     assert "friendly-tone" in res.included
     assert [(w.kind, w.a) for w in res.warnings] == [
-        ("tension", "plain-markdown"),
-        ("tension", "no-emoji-docs"),
+        ("needs_review", "plain-markdown"),
+        ("needs_review", "no-emoji-docs"),
     ]
 
 
@@ -166,13 +173,12 @@ def test_precedence_is_pinned_then_auto_in_given_order():
 
 
 def test_set_id_depends_only_on_included_set():
-    a = run(auto=["gitmoji-commits"], pinned=["careful-agent"])
-    b = run(auto=["careful-agent", "gitmoji-commits"])
-    c = run(auto=["gitmoji-commits", "careful-agent", "act-autonomously"])
-    expected = hashlib.sha256(b"careful-agent\ngitmoji-commits").hexdigest()[:12]
-    assert a.set_id == b.set_id == expected
-    assert c.set_id == hashlib.sha256(b"careful-agent\ngitmoji-commits").hexdigest()[:12]
-    assert run(auto=["gitmoji-commits"]).set_id != expected
+    a = run(auto=["typed-python"], pinned=["careful-agent"])
+    b = run(auto=["careful-agent", "typed-python"])
+    c = run(auto=["typed-python", "careful-agent", "type-hints-strict"])  # last one excluded
+    expected = hashlib.sha256(b"careful-agent\ntyped-python").hexdigest()[:12]
+    assert a.set_id == b.set_id == c.set_id == expected
+    assert run(auto=["typed-python"]).set_id != expected
 
 
 def test_result_is_plain_json():

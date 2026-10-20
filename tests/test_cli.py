@@ -13,14 +13,14 @@ def test_scan_prints_text_report(capsys):
     assert main(["scan", str(SKILLS_DIR)]) == 0
     out = capsys.readouterr().out
     assert "CONFLICT  atomic-commits ⟷ commit-squash" in out
-    assert out.rstrip().splitlines()[-1].startswith("summary: 20 conflict")
+    assert out.rstrip().splitlines()[-1].startswith("summary: 19 conflict")
 
 
 def test_scan_json(capsys):
     assert main(["scan", str(SKILLS_DIR), "--json"]) == 0
     data = json.loads(capsys.readouterr().out)
     assert {"root", "skills", "duplicates", "findings", "analyzed", "skipped"} <= set(data)
-    assert sum(f["kind"] == "conflict" for f in data["findings"]) == 20
+    assert sum(f["kind"] == "conflict" for f in data["findings"]) == 19
 
 
 def test_scan_missing_dir(tmp_path, capsys):

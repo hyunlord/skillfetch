@@ -152,6 +152,34 @@ def test_disjoint_phases_are_independent():
     assert rel(a, b) == Relation.INDEPENDENT
 
 
+def test_positive_broader_on_artifact_is_a_carve_out():
+    # "use emoji (anywhere)" + "never in markdown": followable together elsewhere.
+    a = k("emoji", "require", artifact="any")
+    b = k("emoji", "forbid", artifact="markdown")
+    assert rel(a, b) == Relation.NEEDS_REVIEW
+
+
+def test_positive_broader_on_phase_is_a_carve_out():
+    a = k("ask-before-acting", "require", phase="any")
+    b = k("ask-before-acting", "forbid", phase="implement")
+    assert rel(a, b) == Relation.NEEDS_REVIEW
+
+
+def test_negative_broader_is_a_blanket_ban():
+    a = k("emoji", "require", artifact="commit-message")
+    b = k("emoji", "forbid", artifact="any")
+    assert rel(a, b) == Relation.CONFLICT
+    soft = k("bullet-points", "avoid", artifact="any")
+    narrow = k("bullet-points", "require", artifact="pr-description")
+    assert rel(soft, narrow) == Relation.TENSION
+
+
+def test_mixed_breadth_needs_review():
+    a = k("emoji", "require", artifact="any", phase="format")
+    b = k("emoji", "forbid", artifact="markdown", phase="any")
+    assert rel(a, b) == Relation.NEEDS_REVIEW
+
+
 def test_any_overlaps_everything():
     a = k("emoji", "require", artifact="markdown", phase="format")
     b = k("emoji", "forbid", artifact="any", phase="any")

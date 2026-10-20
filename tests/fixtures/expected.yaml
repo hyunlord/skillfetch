@@ -29,8 +29,6 @@ conflict:
   # summary-at-end: forbidden vs required
   - [concise-responses, change-summary]
   - [terse-mode, change-summary]
-  # ask-before-acting: forbidden during implementation vs always required
-  - [act-autonomously, careful-agent]
   # package-manager: forbid npm vs require npm
   - [pnpm-only, npm-classic]
   - [pnpm-monorepo, npm-classic]
@@ -56,9 +54,9 @@ subsumes:
   - [typed-python, type-hints-strict]
 
 tension:
-  # emoji: soft "prefer" vs hard "forbid"
-  - [friendly-tone, plain-markdown]
-  - [friendly-tone, no-emoji-docs]
+  # bullet-points: soft blanket ban (any artifact) vs a narrow requirement (PR
+  # descriptions) — the negative side is broader, so the two are opposed
+  - [prose-only, pr-checklist]
 
 needs_review:
   # type-hints: forbidden only under a condition
@@ -66,6 +64,14 @@ needs_review:
   - [typed-python, django-migrations]
   # emoji: general "use emoji" vs a carve-out "not in headers"
   - [friendly-tone, clean-headings]
+  # scope carve-outs: the positive side has the broader scope, so the ban reads
+  # as an exception ("use emoji, but not in Markdown")
+  - [friendly-tone, plain-markdown]
+  - [friendly-tone, no-emoji-docs]
+  # "always ask" (any phase) vs "never ask during implementation"; recall cost
+  # accepted: in practice most file edits happen during implementation
+  - [act-autonomously, careful-agent]
+  - [verbose-logging, quiet-tests]
 
 # Deliberate near misses that must stay `independent` (listed for readers; the
 # test derives them from "not listed above"):
