@@ -26,9 +26,7 @@ def _narrower(x: str, y: str) -> str:
 def _subject(pair: ConstraintPair) -> str:
     c = pair.a
     if c.directive == "order":
-        first, second = (
-            (c.subject, c.object) if c.scope.condition == "before" else (c.object, c.subject)
-        )
+        first, second = (c.subject, c.object) if c.direction == "before" else (c.object, c.subject)
         return f"order: {first} before {second}"
     return c.subject
 

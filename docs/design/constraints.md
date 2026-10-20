@@ -41,15 +41,19 @@ Fields:
   - `require`/`forbid`: hard (the skill says must / never).
   - `prefer`/`avoid`: soft (should / try to / by default).
   - `order`: a sequencing claim ("write tests before code"); `object` holds the
-    thing it must precede/follow, `scope.condition` holds `before|after`.
+    thing it must precede/follow, `direction` holds `before|after`.
 - `object` — what the directive is about, when `subject` alone is ambiguous.
   Optional.
+- `direction` — `before | after`, `order` only (null otherwise): the subject
+  comes before / after the object.
 - `scope.artifact` — what the rule applies to: `code | tests | commit-message |
   pr-description | markdown | response | plan | any`. `any` when the skill does
   not narrow it.
 - `scope.phase` — `plan | implement | test | review | format | any`.
-- `scope.condition` — free-text condition if the rule is conditional ("when
-  writing Python"), else null.
+- `scope.condition` — condition if the rule is conditional, else null. When
+  possible a single language, framework or artifact name (`python`, `django`,
+  `migrations`), lowercase; otherwise a short phrase. Applies to every
+  directive, including `order` ("tests first *for bug fixes*").
 - `strength` — `must | should`. Derived from directive (require/forbid → must,
   prefer/avoid → should) unless the text clearly says otherwise. `order` has no
   polarity; its strength defaults to `must` unless stated.
@@ -57,8 +61,9 @@ Fields:
   quotable line is dropped by the extractor. `line_no` is 1-based in the
   original `SKILL.md`, counting the frontmatter, so users can jump to it.
 
-For `order`, `object` and `scope.condition` (`before|after`) are required;
-"A before B" and "B after A" are the same constraint.
+For `order`, `object` and `direction` are required; "A before B" and "B after
+A" are the same constraint. (Until v0.1 the direction lived in
+`scope.condition`, which left `order` without a real condition — issue #1.)
 
 ### 1.1 Controlled subject vocabulary (v0)
 
@@ -135,7 +140,7 @@ Relation of the pair (a, b) — evaluated top to bottom, first match wins
 | 1 | exactly one is `order` | `independent` |
 | 2 | both `order`, ¬scopes_overlap | `independent` |
 | 3 | both `order`, same edge (A before B, after normalizing "B after A") | `redundant` |
-| 4 | both `order`, reversed edge | opposed(a, b) |
+| 4 | both `order`, reversed edge | `needs_review` if norm(conditions) differ, else opposed(a, b) |
 | 5 | both `order`, otherwise | `independent` |
 | 6 | ¬same_subject ∨ ¬scopes_overlap | `independent` |
 | 7 | same_polarity ∧ norm(objects) equal (both null counts as equal) | `redundant` |
@@ -202,7 +207,8 @@ the superset's instructions are all present.
 
 Normalized identity of a constraint for multiset containment: `(norm(subject),
 directive, norm(object), artifact, phase, norm(condition), strength)`; for
-`order`, `(edge, artifact, phase, strength)`. Evidence is not part of identity.
+`order`, `(edge, artifact, phase, norm(condition), strength)`. Evidence is not
+part of identity.
 Containment is exact on identity: a `should` is not subsumed by a `must`.
 
 The result carries the constraint pairs at the winning relation (all

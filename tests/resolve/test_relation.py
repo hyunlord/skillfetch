@@ -24,11 +24,13 @@ def k(
     condition=None,
     strength=None,
     text="quoted line",
+    direction=None,
 ):
     data = {
         "subject": subject,
         "directive": directive,
         "object": obj,
+        "direction": direction,
         "scope": {"artifact": artifact, "phase": phase, "condition": condition},
         "evidence": {"line_no": next(_line), "text": text},
     }
@@ -92,11 +94,21 @@ def test_evidence_text_must_not_be_blank():
 
 def test_order_requires_object_and_direction():
     with pytest.raises(ValidationError):
-        k("tests", "order", None, condition="before")
+        k("tests", "order", None, direction="before")
     with pytest.raises(ValidationError):
-        k("tests", "order", "implementation", condition=None)
+        k("tests", "order", "implementation")
     with pytest.raises(ValidationError):
-        k("tests", "order", "implementation", condition="whenever")
+        k("tests", "order", "implementation", direction="whenever")
+
+
+def test_direction_only_on_order():
+    with pytest.raises(ValidationError):
+        k("tests", "require", direction="before")
+
+
+def test_order_can_carry_a_real_condition():
+    c = k("tests", "order", "implementation", direction="before", condition="bug fixes")
+    assert (c.direction, c.scope.condition) == ("before", "bug fixes")
 
 
 def test_unknown_directive_rejected():
@@ -338,44 +350,62 @@ def test_condition_with_different_objects_stays_independent():
 
 
 def test_reversed_order_conflicts():
-    a = k("tests", "order", "implementation", condition="before", strength="must")
-    b = k("implementation", "order", "tests", condition="before", strength="must")
+    a = k("tests", "order", "implementation", direction="before", strength="must")
+    b = k("implementation", "order", "tests", direction="before", strength="must")
     assert rel(a, b) == Relation.CONFLICT
 
 
 def test_before_vs_after_on_same_subject_conflicts():
-    a = k("tests", "order", "implementation", condition="before", strength="must")
-    b = k("tests", "order", "implementation", condition="after", strength="must")
+    a = k("tests", "order", "implementation", direction="before", strength="must")
+    b = k("tests", "order", "implementation", direction="after", strength="must")
     assert rel(a, b) == Relation.CONFLICT
 
 
 def test_same_order_written_two_ways_is_redundant():
-    a = k("tests", "order", "implementation", condition="before", strength="must")
-    b = k("implementation", "order", "tests", condition="after", strength="must")
+    a = k("tests", "order", "implementation", direction="before", strength="must")
+    b = k("implementation", "order", "tests", direction="after", strength="must")
     assert rel(a, b) == Relation.REDUNDANT
 
 
 def test_reversed_soft_order_is_tension():
-    a = k("tests", "order", "implementation", condition="before", strength="should")
-    b = k("implementation", "order", "tests", condition="before", strength="must")
+    a = k("tests", "order", "implementation", direction="before", strength="should")
+    b = k("implementation", "order", "tests", direction="before", strength="must")
     assert rel(a, b) == Relation.TENSION
 
 
+def test_reversed_order_under_different_conditions_needs_review():
+    a = k("tests", "order", "implementation", direction="before", condition="bug fixes")
+    b = k("implementation", "order", "tests", direction="before")
+    assert rel(a, b) == Relation.NEEDS_REVIEW
+
+
+def test_reversed_order_under_the_same_condition_conflicts():
+    a = k("tests", "order", "implementation", direction="before", condition="Bug fixes")
+    b = k("implementation", "order", "tests", direction="before", condition="bug fixes.")
+    assert rel(a, b) == Relation.CONFLICT
+
+
+def test_order_condition_is_part_of_identity():
+    a = S("a", k("tests", "order", "implementation", direction="before", condition="bug fixes"))
+    b = S("b", k("tests", "order", "implementation", direction="before"))
+    assert skill_relation(a, b).relation == Relation.INDEPENDENT
+
+
 def test_order_on_unrelated_objects_is_independent():
-    a = k("tests", "order", "implementation", condition="before", strength="must")
-    b = k("docs", "order", "release", condition="before", strength="must")
+    a = k("tests", "order", "implementation", direction="before", strength="must")
+    b = k("docs", "order", "release", direction="before", strength="must")
     assert rel(a, b) == Relation.INDEPENDENT
 
 
 def test_order_vs_non_order_is_independent():
-    a = k("tests", "order", "implementation", condition="before", strength="must")
+    a = k("tests", "order", "implementation", direction="before", strength="must")
     b = k("tests", "forbid")
     assert rel(a, b) == Relation.INDEPENDENT
 
 
 def test_reversed_order_in_disjoint_scope_is_independent():
-    a = k("tests", "order", "code", artifact="code", condition="before", strength="must")
-    b = k("code", "order", "tests", artifact="markdown", condition="before", strength="must")
+    a = k("tests", "order", "code", artifact="code", direction="before", strength="must")
+    b = k("code", "order", "tests", artifact="markdown", direction="before", strength="must")
     assert rel(a, b) == Relation.INDEPENDENT
 
 

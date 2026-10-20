@@ -54,7 +54,7 @@ def scopes_overlap(a: Constraint, b: Constraint) -> bool:
 def _order_edge(c: Constraint) -> tuple[str, str]:
     """(first, second) for an `order` constraint, independent of before/after phrasing."""
     subject, obj = normalize_term(c.subject), normalize_term(c.object or "")
-    return (subject, obj) if c.scope.condition == "before" else (obj, subject)
+    return (subject, obj) if c.direction == "before" else (obj, subject)
 
 
 def _opposed(a: Constraint, b: Constraint) -> Relation:
@@ -87,6 +87,8 @@ def constraint_relation(a: Constraint, b: Constraint) -> Relation:
         if edge_a == edge_b:
             return Relation.REDUNDANT
         if edge_a == edge_b[::-1]:
+            if _norm_opt(a.scope.condition) != _norm_opt(b.scope.condition):
+                return Relation.NEEDS_REVIEW
             return _opposed(a, b)
         return Relation.INDEPENDENT
 
@@ -133,7 +135,14 @@ class SkillRelation:
 def _identity(c: Constraint) -> tuple:
     """Normalized identity of a constraint, used for multiset containment (§4)."""
     if c.directive == "order":
-        return ("order", _order_edge(c), c.scope.artifact, c.scope.phase, c.strength)
+        return (
+            "order",
+            _order_edge(c),
+            c.scope.artifact,
+            c.scope.phase,
+            _norm_opt(c.scope.condition),
+            c.strength,
+        )
     return (
         normalize_term(c.subject),
         c.directive,
