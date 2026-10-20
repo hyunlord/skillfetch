@@ -69,3 +69,40 @@ def write_skill(
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(content)
     return skill_dir
+
+
+# --- recorded API responses -------------------------------------------------------------------
+
+RESPONSES_DIR = FIXTURES_DIR / "extract" / "responses"
+
+
+def _ns(value):
+    from types import SimpleNamespace
+
+    if isinstance(value, dict):
+        return SimpleNamespace(**{k: _ns(v) for k, v in value.items()})
+    if isinstance(value, list):
+        return [_ns(v) for v in value]
+    return value
+
+
+def recorded(name: str) -> dict:
+    return json.loads((RESPONSES_DIR / name).read_text())
+
+
+class FakeClient:
+    """Replays recorded Messages API responses; records every request it receives.
+
+    Each entry is a response dict, or a callable(request) -> response dict."""
+
+    def __init__(self, *responses):
+        self._responses = list(responses)
+        self.requests: list[dict] = []
+        self.messages = self
+
+    def create(self, **request):
+        self.requests.append(request)
+        if not self._responses:
+            raise AssertionError("FakeClient: unexpected API call")
+        nxt = self._responses.pop(0)
+        return _ns(nxt(request) if callable(nxt) else nxt)

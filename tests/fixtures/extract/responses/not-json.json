@@ -1,0 +1,15 @@
+{
+  "stop_reason": "end_turn",
+  "content": [
+    {
+      "type": "text",
+      "text": "I can't express this skill as JSON."
+    }
+  ],
+  "usage": {
+    "input_tokens": 1200,
+    "output_tokens": 12,
+    "cache_creation_input_tokens": 2400,
+    "cache_read_input_tokens": 0
+  }
+}

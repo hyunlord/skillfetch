@@ -105,14 +105,34 @@ schema has no language field). Grow these lists from extraction output.
 
 ## 2. Extraction prompt (summary; full text in `src/skillfetch/ingest/prompts/extract.md`)
 
-- Input: SKILL.md body with line numbers.
+- Input: the whole SKILL.md with line numbers (`  12| text`), counted from the
+  top of the file so `evidence.line_no` matches what users open.
+- System prompt: the template plus the controlled vocabulary of §1.1, rendered
+  from `resolve/vocabulary.py` (exclusive terms list their alternatives). It is
+  identical for every skill and sent with `cache_control`, so after the first
+  call it is a cache read.
 - Instruction: list every instruction that would change how an agent behaves
   if followed. Skip background explanation, examples, and anything not
-  actionable. One constraint per actionable instruction. Quote the line.
-- Output: JSON array matching §1, inside the larger extract object from
-  `index-format.md` §1.5.
-- Temperature 0. Validate with pydantic; on failure retry once with the
-  validation error appended; on second failure record `extract_failed`.
+  actionable. One constraint per actionable instruction. Quote the line: **no
+  quotable line, no constraint**. Conditions are, when possible, a single
+  language, framework or artifact name. Scopes are narrowed only when the line
+  names them or the subject only exists there (the §3 carve-out rules make a
+  one-sided narrowing change the relation).
+- Output: structured output (`output_config.format`, strict JSON schema in
+  `ingest/extract.py`) for the whole extract object of `index-format.md` §1.5.
+- Model `claude-sonnet-5` by default (`--model` to change). Current models
+  reject `temperature`; it is sent as 0 only to models that accept it
+  (`claude-sonnet-4-6`, `claude-haiku-4-5`). Reproducibility comes from the
+  extract cache: a skill is extracted once per `(extract_version, model,
+  content_hash)`.
+- Validate with pydantic; on failure retry once with the validation error
+  appended; on second failure record `extract_failed`. A refusal is not retried.
+- Evidence check after validation: a quote found on its cited line is kept; a
+  quote found on exactly one other line is kept with the line corrected (a
+  miscount, reported as `repaired`); anything else is dropped (`dropped`, with
+  the reason).
+- `EXTRACT_VERSION` must be bumped whenever the prompt or schema changes; a test
+  pins the prompt+schema fingerprint so a change cannot slip through.
 
 Calibration set: `tests/fixtures/skills/` has ≥ 15 skills with hand-labelled
 constraints. `skillfetch ingest --with-api --calibrate` prints per-field

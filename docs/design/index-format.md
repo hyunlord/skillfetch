@@ -116,7 +116,8 @@ Implementation notes (`ingest/injection.py`, rules in `ingest/scan_rules.yaml`):
 
 ### 1.5 Extract (Claude API)
 
-One call per skill, structured output, temperature 0. Produces:
+One call per skill, structured output (temperature 0 where the model accepts
+it; see constraints.md §2). Produces:
 
 ```json
 {
@@ -141,7 +142,9 @@ bumps `extract_version`; records with an older version are re-extracted on the
 next run. Extraction failures (schema invalid after one retry) → `status:
 extract_failed`, excluded from `B`, can still be `C`.
 
-Cost guard: skip bodies > 12k tokens (record `status: too_large`).
+Cost guard: skip bodies > 12k tokens (record `status: too_large`). Each
+record keeps the token usage of every attempt, so cost per skill is known
+(prices in `ingest/extract.py`, list prices; cache writes 1.25x, reads 0.1x).
 
 ### 1.6 Dedup (static)
 

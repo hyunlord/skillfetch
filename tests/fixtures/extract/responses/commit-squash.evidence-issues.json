@@ -1,0 +1,15 @@
+{
+  "stop_reason": "end_turn",
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"summary\": \"s\", \"keywords\": [\"k\"], \"tags\": {\"languages\": [], \"frameworks\": [], \"phase\": [], \"domain\": []}, \"synthetic_queries\": [\"q\"], \"constraints\": [{\"subject\": \"commit-granularity\", \"directive\": \"require\", \"object\": \"squash\", \"direction\": null, \"scope\": {\"artifact\": \"commit-message\", \"phase\": \"any\", \"condition\": null}, \"strength\": \"must\", \"evidence\": {\"line_no\": 3, \"text\": \"Squash every feature into a single commit before opening a PR.\"}}, {\"subject\": \"rebase\", \"directive\": \"require\", \"object\": null, \"direction\": null, \"scope\": {\"artifact\": \"any\", \"phase\": \"any\", \"condition\": null}, \"strength\": \"must\", \"evidence\": {\"line_no\": 13, \"text\": \"Always rebase onto main before merging.\"}}], \"consumes\": [], \"produces\": [], \"requires_tools\": []}"
+    }
+  ],
+  "usage": {
+    "input_tokens": 1210,
+    "output_tokens": 301,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 2400
+  }
+}

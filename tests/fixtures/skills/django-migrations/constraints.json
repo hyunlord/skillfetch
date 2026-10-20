@@ -7,7 +7,7 @@
       "scope": {
         "artifact": "code",
         "phase": "any",
-        "condition": "when editing django migration files"
+        "condition": "django migrations"
       },
       "evidence": {
         "line_no": 12,
