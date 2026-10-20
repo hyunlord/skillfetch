@@ -1,0 +1,18 @@
+{
+  "constraints": [
+    {
+      "subject": "ask-before-acting",
+      "directive": "forbid",
+      "object": null,
+      "scope": {
+        "artifact": "any",
+        "phase": "implement",
+        "condition": null
+      },
+      "evidence": {
+        "line_no": 12,
+        "text": "Never stop to ask for confirmation during implementation; make reasonable assumptions and proceed."
+      }
+    }
+  ]
+}

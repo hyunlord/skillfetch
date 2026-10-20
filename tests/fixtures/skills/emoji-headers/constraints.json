@@ -1,0 +1,32 @@
+{
+  "constraints": [
+    {
+      "subject": "emoji",
+      "directive": "require",
+      "object": "in headers",
+      "scope": {
+        "artifact": "markdown",
+        "phase": "format",
+        "condition": null
+      },
+      "evidence": {
+        "line_no": 12,
+        "text": "Always start every section header with an emoji."
+      }
+    },
+    {
+      "subject": "headers",
+      "directive": "prefer",
+      "object": "short",
+      "scope": {
+        "artifact": "markdown",
+        "phase": "format",
+        "condition": null
+      },
+      "evidence": {
+        "line_no": 13,
+        "text": "Keep headers short, ideally under six words."
+      }
+    }
+  ]
+}

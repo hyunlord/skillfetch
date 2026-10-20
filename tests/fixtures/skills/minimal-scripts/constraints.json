@@ -1,0 +1,32 @@
+{
+  "constraints": [
+    {
+      "subject": "type-hints",
+      "directive": "forbid",
+      "object": null,
+      "scope": {
+        "artifact": "code",
+        "phase": "any",
+        "condition": null
+      },
+      "evidence": {
+        "line_no": 12,
+        "text": "Do not add type hints; keep scripts minimal."
+      }
+    },
+    {
+      "subject": "docstrings",
+      "directive": "forbid",
+      "object": null,
+      "scope": {
+        "artifact": "code",
+        "phase": "any",
+        "condition": null
+      },
+      "evidence": {
+        "line_no": 13,
+        "text": "Never write docstrings."
+      }
+    }
+  ]
+}

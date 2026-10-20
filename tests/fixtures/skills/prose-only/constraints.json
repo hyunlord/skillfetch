@@ -1,0 +1,18 @@
+{
+  "constraints": [
+    {
+      "subject": "bullet-points",
+      "directive": "avoid",
+      "object": null,
+      "scope": {
+        "artifact": "any",
+        "phase": "any",
+        "condition": null
+      },
+      "evidence": {
+        "line_no": 12,
+        "text": "Avoid bullet points; write in full paragraphs."
+      }
+    }
+  ]
+}

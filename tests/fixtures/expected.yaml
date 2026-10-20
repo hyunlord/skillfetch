@@ -1,0 +1,84 @@
+# Hand-labelled skill-level relations for tests/fixtures/skills/.
+#
+# This file is the contract for resolve/ (constraints.md §7). Every unordered pair
+# of fixture skills that is NOT listed here is expected to be `independent`.
+# Each pair may appear at most once in this file. Pairs are unordered, except
+# under `subsumes`, which is directional.
+#
+# Constraints for each skill are hand-labelled in <skill>/constraints.json, with
+# evidence line numbers pointing into that skill's SKILL.md.
+
+conflict:
+  # commit-granularity: require squash vs forbid squash
+  - [commit-squash, atomic-commits]
+  - [commit-squash, small-commits]
+  # emoji: blanket ban vs required emoji in headers
+  - [emoji-headers, plain-markdown]
+  - [emoji-headers, no-emoji-docs]
+  # emoji: same object ("in headers"), opposite directives
+  - [emoji-headers, clean-headings]
+  # order: tests before implementation vs implementation before tests
+  - [tdd-strict, prototype-first]
+  - [red-green-refactor, prototype-first]
+  # type-hints (and docstrings) required vs forbidden
+  - [type-hints-strict, minimal-scripts]
+  - [typed-python, minimal-scripts]
+  # preamble: forbidden vs "restate the question" required
+  - [concise-responses, explain-everything]
+  - [terse-mode, explain-everything]
+  # summary-at-end: forbidden vs required
+  - [concise-responses, change-summary]
+  - [terse-mode, change-summary]
+  # package-manager: forbid npm vs require npm
+  - [pnpm-only, npm-classic]
+  - [pnpm-monorepo, npm-classic]
+  # formatter: forbid black vs require black
+  - [black-formatter, ruff-format]
+  # exclusive subjects (§1.1): two different choices from the same ecosystem,
+  # stated only positively — no skill forbids the other's choice
+  - [uv-python, poetry-python]          # package-manager, python
+  - [jest-tests, vitest-tests]          # test-runner, javascript
+  - [vite-build, webpack-build]         # build-tool, javascript
+
+redundant:
+  # equal constraint multisets, different wording: redundant in both directions
+  - [atomic-commits, small-commits]
+  - [plain-markdown, no-emoji-docs]
+  - [tdd-strict, red-green-refactor]
+  - [concise-responses, terse-mode]
+  - [pnpm-only, pnpm-monorepo]
+
+subsumes:
+  # [superset, subset]: the subset's constraints are all in the superset, so the
+  # subset is redundant once the superset is in the set (not the other way round)
+  - [typed-python, type-hints-strict]
+
+tension:
+  # bullet-points: soft blanket ban (any artifact) vs a narrow requirement (PR
+  # descriptions) — the negative side is broader, so the two are opposed
+  - [prose-only, pr-checklist]
+
+needs_review:
+  # type-hints: forbidden only under a condition
+  - [type-hints-strict, django-migrations]
+  - [typed-python, django-migrations]
+  # emoji: general "use emoji" vs a carve-out "not in headers"
+  - [friendly-tone, clean-headings]
+  # scope carve-outs: the positive side has the broader scope, so the ban reads
+  # as an exception ("use emoji, but not in Markdown")
+  - [friendly-tone, plain-markdown]
+  - [friendly-tone, no-emoji-docs]
+  # "always ask" (any phase) vs "never ask during implementation"; recall cost
+  # accepted: in practice most file edits happen during implementation
+  - [act-autonomously, careful-agent]
+  - [verbose-logging, quiet-tests]
+
+# Deliberate near misses that must stay `independent` (listed for readers; the
+# test derives them from "not listed above"):
+#   inline-comments / self-documenting   same subject, different objects
+#   gitmoji-commits / plain-markdown     same subject, disjoint artifacts
+#   pnpm-only / pnpm-monorepo pair (require pnpm, forbid npm) differ in object
+#   pdf-reference / glossary-reference   no constraints is not redundancy
+#   jest-tests / tdd-strict              exclusive control: test-runner, both must,
+#                                        same scope, but jest and pytest belong to
+#                                        different ecosystems

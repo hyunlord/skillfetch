@@ -1,0 +1,19 @@
+{
+  "constraints": [
+    {
+      "subject": "implementation",
+      "directive": "order",
+      "object": "tests",
+      "scope": {
+        "artifact": "any",
+        "phase": "any",
+        "condition": "before"
+      },
+      "strength": "must",
+      "evidence": {
+        "line_no": 12,
+        "text": "Write the implementation first; add tests only after the code works."
+      }
+    }
+  ]
+}

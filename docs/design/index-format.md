@@ -40,14 +40,26 @@ normalized SKILL.md body + the sorted list of (relative path, sha256) of every
 file in the skill folder. Same content under two sources → two records, same
 `content_hash`, deduped at stage 5.
 
+Normalization for the hash (`ingest/skillfile.py`): UTF-8, BOM stripped, line
+endings `\n`, trailing whitespace stripped per line, leading/trailing blank
+lines dropped. "Every file" excludes hidden files and folders, `node_modules/`,
+`__pycache__/`, and a top-level `constraints.json` sidecar (§5).
+
 ### 1.3 Lint (static)
 
 Reuse the agentskills.io spec rules; do not reimplement a full linter. Minimal
 checks we own:
 
 - `SKILL.md` exists, frontmatter parses, has `name` and `description`.
-- Body ≤ 500 lines / ~5000 tokens (warn, not fail).
-- No broken relative links to files inside the folder.
+- Body ≤ 500 lines / ~5000 tokens (warn, not fail; tokens estimated as chars/4).
+- No broken relative links to files inside the folder. Inline links, images and
+  reference definitions are checked; links inside fenced or inline code, URLs
+  with a scheme, and `#anchors` are not. A link that leaves the folder (`../`,
+  or an absolute path) is an error too: the folder is materialized on its own.
+
+Rule ids: `lint.missing-skill-md`, `lint.frontmatter-{missing,unclosed,invalid}`,
+`lint.missing-{name,description}`, `lint.broken-link`, `lint.link-outside-skill`
+(errors); `lint.body-too-long`, `lint.body-too-many-tokens` (warnings).
 
 Fail → skill is recorded with `status: lint_failed` and excluded from the index.
 Lint findings are stored so the data write-up can count them.
@@ -60,14 +72,47 @@ Pattern families, each a list of regexes in `scan_rules.yaml`. A hit records
 | family | examples | effect |
 |---|---|---|
 | `override` | "ignore previous/all instructions", "disregard the system prompt", "you are now" | hard fail |
-| `exfil` | reads of `~/.ssh`, `~/.aws`, `.env`, tokens/keys, "send to <url>", `curl ... \| sh` | hard fail |
-| `privilege` | "run with sudo", "disable sandbox", "--dangerously" | hard fail |
+| `exfil` | reads of `~/.ssh`, `~/.aws`, `.env`, tokens/keys, "send to <url>"; remote script execution from an untrusted URL (`http://`, raw IP, URL shortener) | hard fail |
+| `exfil` (warn rules) | remote script execution from an `https://` URL: `curl … \| sh`, `sh -c "$(curl …)"`, `sh <(curl …)` | warn |
+| `privilege` | remote script execution combined with sudo, "run as root", "disable sandbox", "--dangerously" | hard fail |
+| `privilege` (warn rules) | `sudo <command>` on its own (`sudo apt-get install …`) | warn |
 | `network` | any absolute `http(s)://` in an instruction (not in a docs link) | warn |
 | `scripts` | folder contains executable files or `scripts/` | tag `has_scripts`; tier cap B→C unless publisher verified |
 | `hidden` | zero-width chars, HTML comments with instructions, base64 blobs > 200 chars | hard fail |
 
 Hard fail → `status: scan_failed`, excluded. This is a blocklist, not a proof of
 safety; say so in README.
+
+Why `curl … | sh` and bare `sudo` only warn (rules v2): they are the standard
+install form of uv, rustup, Homebrew and nvm and of most setup steps. Failing
+them would drop a large share of legitimate setup skills, and anyone opening
+the "rejected because" list in the data write-up would stop trusting it. They
+fail only in the combinations above.
+
+Implementation notes (`ingest/injection.py`, rules in `ingest/scan_rules.yaml`):
+
+- Scanned: `SKILL.md` plus every `.md/.markdown/.mdx/.txt` file in the folder.
+  Script files are tagged, not regex-scanned (they are code, and the `scripts`
+  tier cap already applies). A leading BOM is not an invisible character.
+- `scripts` = any file under `scripts/`, any file with a script extension
+  (`.sh .py .js .ts …`), or any executable file. The list is recorded as
+  evidence for the tag.
+- `network` ignores markdown link targets, `<autolinks>` and reference
+  definitions; a URL anywhere else (prose, inline code, code blocks) warns.
+- A rule may set `effect` to override its family's effect; that is how the warn
+  rules above live in the `exfil` and `privilege` families. Hits record their
+  effective `effect`.
+- HTML comments fail only for directive wording aimed at the agent (`ignore`,
+  `disregard`, `you must/should/are/will`, `assistant`, `claude`, `system
+  prompt`, `execute`, `upload`, `run the following`). Maintainer notes such as
+  "always keep this table sorted" or "do not remove" pass (rules v2).
+- Rules may set `allow_negated`: a match is skipped when a negation (`not`,
+  `never`, `n't`, `no`, `without`) appears at most two words before it. "Never
+  run sudo …" is advice; "Do not hesitate to run sudo …" still fails. Used only
+  where benign negated phrasing is common (sudo, root, sandbox,
+  `--dangerously-*`, reading key/credential paths, system prompt).
+- Evidence lines show invisible characters as `<U+200B>` and are cut at 160
+  characters.
 
 ### 1.5 Extract (Claude API)
 
@@ -103,8 +148,9 @@ Cost guard: skip bodies > 12k tokens (record `status: too_large`).
 Two skills are a **duplicate group** when any of:
 
 - identical `content_hash`;
-- Jaccard(keywords) ≥ 0.8 **and** constraint-set equality after normalization
-  (see constraints.md §4);
+- Jaccard(keywords) ≥ 0.8 **and** constraint-multiset equality after
+  normalization, i.e. each is redundant with the other (constraints.md §4; a
+  one-way subset is not a duplicate group, it is handled by `resolve_set`);
 - same normalized `name` from the same publisher at different refs → keep newest.
 
 Each group gets a `canonical_id` (prefer verified publisher, then newest). The
@@ -206,3 +252,27 @@ latest, verifies hashes, swaps `~/.skillfetch/index/` atomically.
 human-readable report plus `--json`. Constraint extraction needs the API; without
 a key, scan still runs lint + scan + dedup-by-hash and prints
 "constraint analysis skipped (no ANTHROPIC_API_KEY)".
+
+As built (`ingest/local_scan.py`, `cli.py`):
+
+- Skills are folders containing `SKILL.md`, found recursively (hidden folders
+  and `node_modules/` skipped; folders inside a skill belong to it). The id is
+  the folder path relative to `<dir>`.
+- Constraints come from a `constraints.json` sidecar next to `SKILL.md` (the
+  schema of constraints.md §1; this is also the fixture format). Every
+  evidence quote must appear on its line of `SKILL.md`, or the sidecar is
+  reported as `INVALID_CONSTRAINTS` and the skill is skipped. Sidecars are a
+  local-scan input only; corpus ingest never trusts them. Until `--with-api`
+  extraction exists, skills without a sidecar are listed as skipped.
+- Skills that fail lint are not analyzed. Skills that fail the injection scan
+  are still analyzed, so the user sees their conflicts too.
+- Identical `content_hash` → `DUPLICATE`; those pairs are not re-reported as
+  constraint findings. Every other pair of analyzed skills gets at most one
+  finding: conflict, else redundant (directional; `a` is the superset), else
+  tension, else needs_review.
+- Exit code 0 when the scan ran, 2 on usage errors. `--fail-on
+  {conflict,scan,lint}` (repeatable or comma-separated) exits 1 when the scan
+  finds any conflict finding, injection-scan failure or lint failure; the
+  reason goes to stderr so `--json` output stays parseable. Warnings,
+  `tension`, `needs_review` and `redundant` never fail the run. Stage counts
+  are per stage: a skill failing both lint and the scan counts for both.

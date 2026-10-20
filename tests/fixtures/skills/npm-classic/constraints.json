@@ -1,0 +1,18 @@
+{
+  "constraints": [
+    {
+      "subject": "package-manager",
+      "directive": "require",
+      "object": "npm",
+      "scope": {
+        "artifact": "any",
+        "phase": "any",
+        "condition": null
+      },
+      "evidence": {
+        "line_no": 12,
+        "text": "Always install dependencies with npm."
+      }
+    }
+  ]
+}

@@ -5,7 +5,20 @@ task, your agent searches a vetted, pre-indexed corpus of `SKILL.md` files,
 assembles a *conflict-free* set, uses it for that task, and moves on. Nothing
 piles up in `~/.claude/skills`.
 
-> Status: design phase. Nothing runs yet. See the roadmap below.
+> Status: early v0.1. `skillfetch scan` runs on a local skills directory
+> (lint, injection scan, duplicate and conflict report). Constraint extraction
+> through the API, the public corpus and the MCP server are not built yet.
+
+```console
+$ uv run skillfetch scan path/to/skills          # human-readable report
+$ uv run skillfetch scan path/to/skills --json   # machine-readable
+$ uv run skillfetch scan path/to/skills --fail-on conflict,scan   # exit 1 for CI
+$ uv run skillfetch scan tests/fixtures/skills   # the labelled fixture corpus
+```
+
+Conflict analysis currently needs pre-extracted constraints in a
+`constraints.json` next to each `SKILL.md` (see `tests/fixtures/`); skills
+without one are linted and scanned, and listed as skipped.
 
 ## The problem
 
@@ -29,8 +42,20 @@ together, scope it to one task, or tell you afterwards whether it helped.
 
 - [ ] **v0.1** `skillfetch scan <dir>` — conflict/duplicate report for a local
       skills directory, with evidence; first public corpus index.
+  - [x] fixture corpus with labelled conflicts and duplicates; `resolve/` rules
+        and `resolve_set`, conflict precision 1.0 on fixtures
+  - [x] lint, injection scan, dedup by content hash, `skillfetch scan` with
+        `--json` and `--fail-on`
+  - [ ] constraint extraction through the API (`ingest --with-api`,
+        `--calibrate` against the fixtures); until then `scan` needs a
+        `constraints.json` per skill
+  - [ ] public corpus ingest (`skillfetch ingest <source>`, `sources.yaml`,
+        snapshots) and the top-N public skills scan + write-up
+  - [ ] keyword-Jaccard dedup groups, tiers A/B/C, index layout and manifest
+        (index-format §1.6–§2)
 - [ ] **v0.2** `skillfetch serve` — MCP server (`search_skills`, `resolve_set`,
       `load_skills`, …) + the one router skill you install.
+  - [ ] surface the `complementary` hint in `resolve_set` output
 - [ ] **v0.3** isolation runner, outcome log, and an honest on/off comparison on
       a verified task set.
 
@@ -47,6 +72,12 @@ together, scope it to one task, or tell you afterwards whether it helped.
 - Default mode injects skill text into the current context; true isolation
   requires the subagent runner (v0.3).
 - Semantic conflicts without a shared subject are not detected in v0.1.
+- Mutually exclusive choices ("always use npm" vs "always use pnpm") are caught
+  only for the tooling slots marked exclusive (package manager, formatter, test
+  runner, build tool) and only between known alternatives of the same
+  ecosystem. An unknown tool in one of those slots is `needs_review`; other
+  subjects, such as naming conventions, are never treated as exclusive.
+- When the rules are unsure, they report `needs_review`, never `conflict`.
 
 ## License
 

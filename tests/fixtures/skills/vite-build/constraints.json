@@ -1,0 +1,18 @@
+{
+  "constraints": [
+    {
+      "subject": "build-tool",
+      "directive": "require",
+      "object": "vite",
+      "scope": {
+        "artifact": "any",
+        "phase": "any",
+        "condition": null
+      },
+      "evidence": {
+        "line_no": 12,
+        "text": "Bundle the application with Vite."
+      }
+    }
+  ]
+}

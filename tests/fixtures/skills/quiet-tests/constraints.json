@@ -1,0 +1,18 @@
+{
+  "constraints": [
+    {
+      "subject": "logging",
+      "directive": "forbid",
+      "object": null,
+      "scope": {
+        "artifact": "tests",
+        "phase": "test",
+        "condition": null
+      },
+      "evidence": {
+        "line_no": 12,
+        "text": "Never log anything from inside test code."
+      }
+    }
+  ]
+}

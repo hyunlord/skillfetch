@@ -1,0 +1,32 @@
+{
+  "constraints": [
+    {
+      "subject": "commit-granularity",
+      "directive": "require",
+      "object": "squash",
+      "scope": {
+        "artifact": "commit-message",
+        "phase": "any",
+        "condition": null
+      },
+      "evidence": {
+        "line_no": 12,
+        "text": "Squash every feature into a single commit before opening a PR."
+      }
+    },
+    {
+      "subject": "branch-naming",
+      "directive": "require",
+      "object": "feature/<ticket-id>",
+      "scope": {
+        "artifact": "any",
+        "phase": "any",
+        "condition": null
+      },
+      "evidence": {
+        "line_no": 13,
+        "text": "Name branches feature/<ticket-id>."
+      }
+    }
+  ]
+}

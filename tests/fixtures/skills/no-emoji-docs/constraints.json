@@ -1,0 +1,32 @@
+{
+  "constraints": [
+    {
+      "subject": "emoji",
+      "directive": "forbid",
+      "object": null,
+      "scope": {
+        "artifact": "markdown",
+        "phase": "any",
+        "condition": null
+      },
+      "evidence": {
+        "line_no": 12,
+        "text": "Do not use emoji in Markdown documents."
+      }
+    },
+    {
+      "subject": "trailing-whitespace",
+      "directive": "forbid",
+      "object": null,
+      "scope": {
+        "artifact": "markdown",
+        "phase": "format",
+        "condition": null
+      },
+      "evidence": {
+        "line_no": 13,
+        "text": "Strip trailing whitespace from every line."
+      }
+    }
+  ]
+}

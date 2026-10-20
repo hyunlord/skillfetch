@@ -1,0 +1,18 @@
+{
+  "constraints": [
+    {
+      "subject": "type-hints",
+      "directive": "require",
+      "object": null,
+      "scope": {
+        "artifact": "code",
+        "phase": "any",
+        "condition": null
+      },
+      "evidence": {
+        "line_no": 12,
+        "text": "Every function signature must have complete type hints."
+      }
+    }
+  ]
+}

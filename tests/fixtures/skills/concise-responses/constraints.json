@@ -1,0 +1,32 @@
+{
+  "constraints": [
+    {
+      "subject": "preamble",
+      "directive": "forbid",
+      "object": null,
+      "scope": {
+        "artifact": "response",
+        "phase": "any",
+        "condition": null
+      },
+      "evidence": {
+        "line_no": 12,
+        "text": "Never open a response with a preamble or a restatement of the question."
+      }
+    },
+    {
+      "subject": "summary-at-end",
+      "directive": "forbid",
+      "object": null,
+      "scope": {
+        "artifact": "response",
+        "phase": "any",
+        "condition": null
+      },
+      "evidence": {
+        "line_no": 13,
+        "text": "Do not end responses with a summary of what you did."
+      }
+    }
+  ]
+}

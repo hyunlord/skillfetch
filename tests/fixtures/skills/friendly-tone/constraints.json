@@ -1,0 +1,18 @@
+{
+  "constraints": [
+    {
+      "subject": "emoji",
+      "directive": "prefer",
+      "object": null,
+      "scope": {
+        "artifact": "any",
+        "phase": "any",
+        "condition": null
+      },
+      "evidence": {
+        "line_no": 12,
+        "text": "Feel free to use emoji wherever they make the output friendlier."
+      }
+    }
+  ]
+}

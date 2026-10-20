@@ -1,0 +1,18 @@
+{
+  "constraints": [
+    {
+      "subject": "comments",
+      "directive": "require",
+      "object": "inline comment on non-obvious lines",
+      "scope": {
+        "artifact": "code",
+        "phase": "any",
+        "condition": null
+      },
+      "evidence": {
+        "line_no": 12,
+        "text": "Add an inline comment on every non-obvious line."
+      }
+    }
+  ]
+}
