@@ -5,7 +5,19 @@ task, your agent searches a vetted, pre-indexed corpus of `SKILL.md` files,
 assembles a *conflict-free* set, uses it for that task, and moves on. Nothing
 piles up in `~/.claude/skills`.
 
-> Status: design phase. Nothing runs yet. See the roadmap below.
+> Status: early v0.1. `skillfetch scan` runs on a local skills directory
+> (lint, injection scan, duplicate and conflict report). Constraint extraction
+> through the API, the public corpus and the MCP server are not built yet.
+
+```console
+$ uv run skillfetch scan path/to/skills          # human-readable report
+$ uv run skillfetch scan path/to/skills --json   # machine-readable
+$ uv run skillfetch scan tests/fixtures/skills   # the labelled fixture corpus
+```
+
+Conflict analysis currently needs pre-extracted constraints in a
+`constraints.json` next to each `SKILL.md` (see `tests/fixtures/`); skills
+without one are linted and scanned, and listed as skipped.
 
 ## The problem
 

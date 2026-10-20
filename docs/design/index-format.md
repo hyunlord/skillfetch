@@ -237,3 +237,22 @@ latest, verifies hashes, swaps `~/.skillfetch/index/` atomically.
 human-readable report plus `--json`. Constraint extraction needs the API; without
 a key, scan still runs lint + scan + dedup-by-hash and prints
 "constraint analysis skipped (no ANTHROPIC_API_KEY)".
+
+As built (`ingest/local_scan.py`, `cli.py`):
+
+- Skills are folders containing `SKILL.md`, found recursively (hidden folders
+  and `node_modules/` skipped; folders inside a skill belong to it). The id is
+  the folder path relative to `<dir>`.
+- Constraints come from a `constraints.json` sidecar next to `SKILL.md` (the
+  schema of constraints.md §1; this is also the fixture format). Every
+  evidence quote must appear on its line of `SKILL.md`, or the sidecar is
+  reported as `INVALID_CONSTRAINTS` and the skill is skipped. Sidecars are a
+  local-scan input only; corpus ingest never trusts them. Until `--with-api`
+  extraction exists, skills without a sidecar are listed as skipped.
+- Skills that fail lint are not analyzed. Skills that fail the injection scan
+  are still analyzed, so the user sees their conflicts too.
+- Identical `content_hash` → `DUPLICATE`; those pairs are not re-reported as
+  constraint findings. Every other pair of analyzed skills gets at most one
+  finding: conflict, else redundant (directional; `a` is the superset), else
+  tension, else needs_review.
+- Exit code 0 when the scan ran (findings do not change it), 2 on usage errors.

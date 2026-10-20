@@ -14,6 +14,8 @@ _LABELS = {
 
 def render_finding(finding: Finding) -> str:
     lines = [f"{_LABELS[finding.kind]}  {finding.a} ⟷ {finding.b}"]
+    if finding.kind == "redundant":
+        lines.append(f"  {finding.b} adds no constraint beyond {finding.a}")
     for ev in finding.evidence:
         label_a = f"{ev.a.skill_id}:{ev.a.line_no}"
         label_b = f"{ev.b.skill_id}:{ev.b.line_no}"

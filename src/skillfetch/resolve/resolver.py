@@ -46,7 +46,7 @@ def _evidence(rel: SkillRelation, a: Skill, b: Skill) -> list[EvidencePair]:
     ]
 
 
-def _finding(kind: FindingKind, rel: SkillRelation, a: Skill, b: Skill) -> Finding:
+def make_finding(kind: FindingKind, rel: SkillRelation, a: Skill, b: Skill) -> Finding:
     return Finding(kind=kind, a=a.id, b=b.id, evidence=_evidence(rel, a, b))
 
 
@@ -69,7 +69,7 @@ def resolve_set(auto: Sequence[Skill], pinned: Sequence[Skill] = ()) -> Resoluti
         for b in included[i + 1 :]:
             rel = skill_relation(a, b)
             if rel.relation == Relation.CONFLICT:
-                warnings.append(_finding("conflict", rel, a, b))
+                warnings.append(make_finding("conflict", rel, a, b))
 
     excluded: list[Excluded] = []
     for cand in auto:
@@ -93,7 +93,7 @@ def resolve_set(auto: Sequence[Skill], pinned: Sequence[Skill] = ()) -> Resoluti
             continue
         included.append(cand)
         warnings += [
-            _finding(r.relation.value, r, s, cand) for s, r in rels if r.relation in _WARN_ON
+            make_finding(r.relation.value, r, s, cand) for s, r in rels if r.relation in _WARN_ON
         ]
 
     ids = [s.id for s in included]

@@ -32,8 +32,9 @@ def test_redundant_renders_every_matched_pair():
     [ex] = res.excluded
     lines = render_finding(ex.to_finding()).splitlines()
     assert lines[0] == "REDUNDANT  concise-responses ⟷ terse-mode"
+    assert lines[1] == "  terse-mode adds no constraint beyond concise-responses"
     assert sum(line.startswith("  subject:") for line in lines) == 2
-    assert len(lines) == 1 + 2 * 3
+    assert len(lines) == 2 + 2 * 3
 
 
 def test_order_conflict_names_both_sides_of_the_order():
