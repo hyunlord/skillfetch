@@ -146,6 +146,27 @@ Cost guard: skip bodies > 12k tokens (record `status: too_large`). Each
 record keeps the token usage of every attempt, so cost per skill is known
 (prices in `ingest/extract.py`, list prices; cache writes 1.25x, reads 0.1x).
 
+**Extract cache and CLI** (`ingest/extract_cache.py`, `ingest/ingest.py`):
+
+- Every record is cached at `~/.skillfetch/extract-cache/v<extract_version>/<model>/<content_hash>.json`
+  (`--cache-dir` to move it). The key adds the model to `content_hash` +
+  `extract_version`, so `--model` never reuses another model's output. A
+  skill is never extracted twice for the same key.
+- Model-output failures (`extract_failed`, `too_large`) are cached like
+  successes. API errors are not: finished skills stay cached and a rerun
+  resumes.
+- Skills failing lint or the injection scan are never sent to the API.
+- `skillfetch ingest <dir>` uses the cache only; `--with-api` calls the API for
+  cache misses (`--jobs` parallel requests). Credentials are checked before
+  the first request. Output is a cost log: per skill, status, tokens (input,
+  cache reads/writes, output), dollars, dropped/repaired evidence; then the
+  totals for this run.
+- `--calibrate` takes a fixtures dir (`skills/` + `expected.yaml`) and prints
+  the calibration of constraints.md §2; it refuses to run (exit 2) while
+  fixture skills are missing from the cache, and exits 1 below the gate.
+- Index building (§1.6–§2) is not implemented yet; extraction results live in
+  the cache.
+
 ### 1.6 Dedup (static)
 
 Two skills are a **duplicate group** when any of:

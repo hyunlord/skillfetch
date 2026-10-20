@@ -302,10 +302,22 @@ class MessagesClient(Protocol):
     messages: Any
 
 
+class MissingCredentials(RuntimeError):
+    pass
+
+
 def make_client() -> MessagesClient:
     import anthropic  # optional dependency: pip install 'skillfetch[ingest]'
 
-    return anthropic.Anthropic(max_retries=4)
+    client = anthropic.Anthropic(max_retries=4)
+    # Without credentials the SDK only fails when it builds the first request, with a bare
+    # TypeError; check up front instead. `credentials` covers `ant auth login` profiles and
+    # workload identity federation.
+    if not (client.api_key or client.auth_token or getattr(client, "credentials", None)):
+        raise MissingCredentials(
+            "no Anthropic credentials found: set ANTHROPIC_API_KEY or run `ant auth login`"
+        )
+    return client
 
 
 def _response_text(response: Any) -> str:

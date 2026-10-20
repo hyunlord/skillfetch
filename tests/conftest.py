@@ -96,3 +96,43 @@ class FakeClient:
             raise AssertionError("FakeClient: unexpected API call")
         nxt = self._responses.pop(0)
         return _ns(nxt(request) if callable(nxt) else nxt)
+
+
+def oracle(request: dict) -> dict:
+    """A recorded-shape response that extracts exactly the hand labels of the fixture skill
+    named in the request (a perfect extractor), for pipeline and CLI tests."""
+    import re
+
+    text = request["messages"][0]["content"]
+    name = re.search(r"\| name: (\S+)", text).group(1)
+    skill = load_corpus()[name]
+    result = {
+        "summary": f"{name} summary",
+        "keywords": [name],
+        "tags": {"languages": [], "frameworks": [], "phase": [], "domain": []},
+        "synthetic_queries": [f"use {name}"],
+        "constraints": [c.model_dump(mode="json", exclude={"id"}) for c in skill.constraints],
+        "consumes": [],
+        "produces": [],
+        "requires_tools": [],
+    }
+    return {
+        "stop_reason": "end_turn",
+        "content": [{"type": "text", "text": json.dumps(result)}],
+        "usage": {
+            "input_tokens": 400,
+            "output_tokens": 300,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 2400,
+        },
+    }
+
+
+class OracleClient(FakeClient):
+    def __init__(self):
+        super().__init__()
+        self.messages = self
+
+    def create(self, **request):
+        self.requests.append(request)
+        return _ns(oracle(request))
