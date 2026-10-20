@@ -20,6 +20,7 @@ __all__ = [
     "complementary",
     "constraint_relation",
     "normalize_term",
+    "pair_label",
     "skill_relation",
 ]
 
@@ -195,6 +196,20 @@ def skill_relation(a: Skill, b: Skill) -> SkillRelation:
         if hits:
             return SkillRelation(relation, hits)
     return SkillRelation(Relation.INDEPENDENT)
+
+
+def pair_label(a: Skill, b: Skill) -> str:
+    """Unordered label of a pair, in the vocabulary of tests/fixtures/expected.yaml:
+    a symmetric relation's value, or `subsumes:<superset id>` when redundancy holds in one
+    direction only."""
+    forward, backward = skill_relation(a, b).relation, skill_relation(b, a).relation
+    if forward == backward:
+        return forward.value
+    if (forward, backward) == (Relation.REDUNDANT, Relation.INDEPENDENT):
+        return f"subsumes:{a.id}"
+    if (forward, backward) == (Relation.INDEPENDENT, Relation.REDUNDANT):
+        return f"subsumes:{b.id}"
+    return f"asymmetric:{forward.value}/{backward.value}"
 
 
 def _terms(values: Iterable[str]) -> set[str]:

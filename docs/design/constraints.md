@@ -135,8 +135,27 @@ schema has no language field). Grow these lists from extraction output.
   pins the prompt+schema fingerprint so a change cannot slip through.
 
 Calibration set: `tests/fixtures/skills/` has ≥ 15 skills with hand-labelled
-constraints. `skillfetch ingest --with-api --calibrate` prints per-field
-agreement so prompt changes can be measured, not eyeballed.
+constraints. `skillfetch ingest tests/fixtures --with-api --calibrate`
+(`ingest/calibrate.py`) extracts every fixture skill and prints:
+
+- **Field agreement.** Extracted constraints are aligned to labelled ones by
+  evidence line (per skill, best field match on the same line), then compared
+  per field: subject, directive, object, scope (artifact + phase + condition,
+  also broken out), strength, direction. Labelled constraints with no
+  extracted constraint on their line are `MISSED`; leftovers are `EXTRA`.
+- **Pair-relation accuracy** — the real metric. The §3–§4 rules run on the
+  extracted constraints for every pair of fixture skills, and each pair's
+  label (as in `expected.yaml`, `subsumes` direction included) is compared
+  with the hand label. Every mismatched pair is printed with the hand-labelled
+  evidence lines and what was extracted on those lines.
+
+**The gate (0.90) is on informative pairs**: pairs where the hand label or the
+extracted relation is not `independent`. Most fixture pairs are independent
+(787 of 820), so accuracy over all pairs is ~0.96 for an extractor that
+extracts nothing; over informative pairs that extractor scores 0, and every
+false conflict on an independent pair enlarges the denominator. Accuracy over
+all pairs is still printed. `--calibrate` exits 1 below the gate. Below the
+gate, fix the prompt before building on the extractor.
 
 ## 3. Pairwise relation
 
@@ -296,6 +315,8 @@ hard rule: it is what keeps false positives from destroying trust.
 
 ## 7. Precision policy for v0.1
 
+- Extraction quality is gated separately (§2, informative-pair accuracy ≥ 0.90);
+  this section is about the rules given correct constraints.
 - Measured on `tests/fixtures/skills/`: `conflict` precision must be 1.0;
   recall is reported but not gated. Because fixture constraints are
   hand-labelled, `tests/resolve/test_corpus_contract.py` additionally asserts
