@@ -69,11 +69,32 @@ formatting: emoji, headers, bullet-points, code-blocks, line-length, trailing-wh
 language:   type-hints, docstrings, comments, naming-convention, error-handling, logging
 process:    tests-first, commit-granularity, branch-naming, pr-size, review-before-merge
 output:     response-length, preamble, summary-at-end, ask-before-acting, explain-reasoning
-tooling:    package-manager, linter, formatter, test-runner, build-tool
+tooling:    package-manager*, linter, formatter*, test-runner*, build-tool*
 ```
 
 The extractor is told: "If the constraint is about one of these, use that exact
-term as `subject`."
+term as `subject`." The machine-readable list is
+`src/skillfetch/resolve/vocabulary.py`.
+
+**Exclusive terms** (marked `*`, `exclusive: true`): the subject is a single
+slot, so two different choices for it cannot both be followed — "always use
+npm" and "always use pnpm" conflict even though neither skill forbids the
+other. Choices only exclude each other within one ecosystem; across ecosystems
+they coexist (a repo can use pnpm for the front end and uv for the back end).
+Each exclusive term therefore lists its known alternatives per ecosystem:
+
+| term | ecosystem: alternatives |
+|---|---|
+| package-manager | javascript: npm, pnpm, yarn, bun · python: pip, uv, poetry, pipenv, pdm, conda |
+| formatter | javascript: prettier, biome, dprint · python: black, ruff, yapf, autopep8 |
+| test-runner | javascript: jest, vitest, mocha, ava · python: pytest, unittest, nose2 |
+| build-tool | javascript: vite, webpack, esbuild, rollup, parcel, rspack · jvm: maven, gradle, sbt |
+
+An object names a choice when exactly one alternative appears among its
+normalized words ("pnpm workspaces" → pnpm; "npm or yarn" → no single choice).
+`linter` is deliberately not exclusive (several linters routinely run together),
+nor is `naming-convention` (conventions differ per language and the constraint
+schema has no language field). Grow these lists from extraction output.
 
 ## 2. Extraction prompt (summary; full text in `src/skillfetch/ingest/prompts/extract.md`)
 
@@ -116,18 +137,24 @@ Relation of the pair (a, b) — evaluated top to bottom, first match wins
 | 5 | both `order`, otherwise | `independent` |
 | 6 | ¬same_subject ∨ ¬scopes_overlap | `independent` |
 | 7 | same_polarity ∧ norm(objects) equal (both null counts as equal) | `redundant` |
-| 8 | same_polarity, objects differ | `independent` |
-| 9 | opposite ∧ both objects non-null ∧ differ ("require pnpm" vs "forbid npm") | `independent` |
-| 10 | opposite ∧ positive side has no object, negative side has one ("use emoji" vs "never in headers": a carve-out) | `needs_review` |
-| 11 | opposite ∧ norm(conditions) differ (incl. one null) | `needs_review` |
-| 12 | opposite (objects equal, or a blanket ban vs a specific requirement; conditions equal) | opposed(a, b) |
+| 8 | both positive ∧ both objects non-null ∧ subject is exclusive (§1.1) | see 8a–8d |
+| 8a | … either object names no single known alternative | `needs_review` |
+| 8b | … choices from different ecosystems, or the same choice reworded | `independent` |
+| 8c | … different choices, same ecosystem, norm(conditions) differ | `needs_review` |
+| 8d | … different choices, same ecosystem, conditions equal | opposed(a, b) |
+| 9 | same_polarity, objects differ (otherwise) | `independent` |
+| 10 | opposite ∧ both objects non-null ∧ differ ("require pnpm" vs "forbid npm") | `independent` |
+| 11 | opposite ∧ positive side has no object, negative side has one ("use emoji" vs "never in headers": a carve-out) | `needs_review` |
+| 12 | opposite ∧ norm(conditions) differ (incl. one null) | `needs_review` |
+| 13 | opposite (objects equal, or a blanket ban vs a specific requirement; conditions equal) | opposed(a, b) |
 
-Rows 9–11 are v0.1 precision choices: an object or condition mismatch means the
-rules cannot tell whether both instructions can be followed at once, so they
-never produce `conflict`. Two consequences, both accepted for v0.1:
-mutually exclusive choices stated only positively ("always npm" vs "always
-pnpm") are missed unless one skill also forbids the other's choice; and the
-same text under identical conditions is treated as unconditional.
+Rows 8a, 8c and 10–12 are v0.1 precision choices: an object or condition
+mismatch means the rules cannot tell whether both instructions can be followed
+at once, so they never produce `conflict`. Consequences accepted for v0.1:
+mutually exclusive choices are only caught for exclusive vocabulary subjects
+and listed alternatives (row 8); two bans on different choices ("never npm",
+"never yarn") are compatible; and the same text under identical conditions is
+treated as unconditional.
 
 `needs_review` is a first-class outcome. v0.1 never upgrades it to `conflict`
 automatically; it is shown to the user with both evidence lines.

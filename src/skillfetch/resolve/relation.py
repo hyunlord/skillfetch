@@ -5,12 +5,23 @@ Pure functions over pre-extracted constraints. No I/O, no model calls.
 
 from __future__ import annotations
 
-import re
 from collections.abc import Iterable
 from dataclasses import dataclass, field
 from enum import StrEnum
 
 from skillfetch.resolve.models import Constraint, Skill
+from skillfetch.resolve.terms import normalize_term
+from skillfetch.resolve.vocabulary import choice_of, lookup
+
+__all__ = [
+    "ConstraintPair",
+    "Relation",
+    "SkillRelation",
+    "complementary",
+    "constraint_relation",
+    "normalize_term",
+    "skill_relation",
+]
 
 
 class Relation(StrEnum):
@@ -22,24 +33,6 @@ class Relation(StrEnum):
 
 
 _POSITIVE = frozenset({"require", "prefer"})
-_WORD = re.compile(r"[a-z0-9]+")
-
-
-def _singular(word: str) -> str:
-    if len(word) <= 3 or word.endswith(("ss", "us", "is")):
-        return word
-    if word.endswith("ies"):
-        return word[:-3] + "y"
-    if word.endswith("s"):
-        return word[:-1]
-    return word
-
-
-def normalize_term(text: str) -> str:
-    """Lowercase, collapse whitespace, naive per-word singular, strip edge punctuation."""
-    text = re.sub(r"\s+", " ", text.lower()).strip()
-    text = _WORD.sub(lambda m: _singular(m.group()), text)
-    return text.strip(" .,;:!?")
 
 
 def _norm_opt(text: str | None) -> str | None:
@@ -65,6 +58,22 @@ def _opposed(a: Constraint, b: Constraint) -> Relation:
     return Relation.CONFLICT if both_must else Relation.TENSION
 
 
+def _exclusive_choice(a: Constraint, b: Constraint) -> Relation:
+    """Two positive constraints naming different objects on the same subject (§3 rows 8-11)."""
+    term = lookup(a.subject)
+    if term is None or not term.exclusive:
+        return Relation.INDEPENDENT
+    choice_a, choice_b = choice_of(term, a.object), choice_of(term, b.object)
+    if choice_a is None or choice_b is None:
+        return Relation.NEEDS_REVIEW  # unknown or ambiguous choice: cannot tell
+    (eco_a, pick_a), (eco_b, pick_b) = choice_a, choice_b
+    if eco_a != eco_b or pick_a == pick_b:
+        return Relation.INDEPENDENT  # different ecosystems, or the same choice reworded
+    if _norm_opt(a.scope.condition) != _norm_opt(b.scope.condition):
+        return Relation.NEEDS_REVIEW
+    return _opposed(a, b)
+
+
 def constraint_relation(a: Constraint, b: Constraint) -> Relation:
     """Relation of two constraints from different skills. Symmetric."""
     if a.directive == "order" or b.directive == "order":
@@ -82,7 +91,11 @@ def constraint_relation(a: Constraint, b: Constraint) -> Relation:
 
     obj_a, obj_b = _norm_opt(a.object), _norm_opt(b.object)
     if (a.directive in _POSITIVE) == (b.directive in _POSITIVE):
-        return Relation.REDUNDANT if obj_a == obj_b else Relation.INDEPENDENT
+        if obj_a == obj_b:
+            return Relation.REDUNDANT
+        if a.directive in _POSITIVE and obj_a is not None and obj_b is not None:
+            return _exclusive_choice(a, b)
+        return Relation.INDEPENDENT
 
     pos_obj, neg_obj = (obj_a, obj_b) if a.directive in _POSITIVE else (obj_b, obj_a)
     if neg_obj is not None and neg_obj != pos_obj:

@@ -47,9 +47,12 @@ together, scope it to one task, or tell you afterwards whether it helped.
 - Default mode injects skill text into the current context; true isolation
   requires the subagent runner (v0.3).
 - Semantic conflicts without a shared subject are not detected in v0.1.
-- Mutually exclusive choices stated only positively ("always use npm" vs
-  "always use pnpm") are not flagged unless one skill also forbids the other.
-  When the rules are unsure, they report `needs_review`, never `conflict`.
+- Mutually exclusive choices ("always use npm" vs "always use pnpm") are caught
+  only for the tooling slots marked exclusive (package manager, formatter, test
+  runner, build tool) and only between known alternatives of the same
+  ecosystem. An unknown tool in one of those slots is `needs_review`; other
+  subjects, such as naming conventions, are never treated as exclusive.
+- When the rules are unsure, they report `needs_review`, never `conflict`.
 
 ## License
 

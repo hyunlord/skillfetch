@@ -36,6 +36,11 @@ conflict:
   - [pnpm-monorepo, npm-classic]
   # formatter: forbid black vs require black
   - [black-formatter, ruff-format]
+  # exclusive subjects (§1.1): two different choices from the same ecosystem,
+  # stated only positively — no skill forbids the other's choice
+  - [uv-python, poetry-python]          # package-manager, python
+  - [jest-tests, vitest-tests]          # test-runner, javascript
+  - [vite-build, webpack-build]         # build-tool, javascript
 
 redundant:
   # equal constraint multisets, different wording: redundant in both directions
@@ -68,3 +73,6 @@ needs_review:
 #   gitmoji-commits / plain-markdown     same subject, disjoint artifacts
 #   pnpm-only / pnpm-monorepo pair (require pnpm, forbid npm) differ in object
 #   pdf-reference / glossary-reference   no constraints is not redundancy
+#   jest-tests / tdd-strict              exclusive control: test-runner, both must,
+#                                        same scope, but jest and pytest belong to
+#                                        different ecosystems

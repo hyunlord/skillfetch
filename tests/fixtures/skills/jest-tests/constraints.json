@@ -1,0 +1,18 @@
+{
+  "constraints": [
+    {
+      "subject": "test-runner",
+      "directive": "require",
+      "object": "jest",
+      "scope": {
+        "artifact": "tests",
+        "phase": "test",
+        "condition": null
+      },
+      "evidence": {
+        "line_no": 12,
+        "text": "Run the test suite with Jest."
+      }
+    }
+  ]
+}

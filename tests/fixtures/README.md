@@ -10,7 +10,8 @@ The contract for `resolve/` (see `docs/design/constraints.md` §7).
   counting the frontmatter; `evidence.text` must appear verbatim on that line.
 - `expected.yaml` — hand-labelled skill-level relations. Every unordered pair not
   listed there must resolve to `independent`, so the tests check the full
-  pairwise matrix, not just the positives.
+  pairwise matrix, not just the positives. `subsumes: [superset, subset]` is
+  the one directional label: the subset is redundant given the superset.
 
 When you add a skill, label its constraints by hand and re-check every pair it
 forms with the existing skills. Prefer adding near misses (same subject,

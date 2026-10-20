@@ -187,7 +187,80 @@ def test_different_objects_are_independent():
 
 
 def test_same_polarity_different_objects_are_independent():
+    # naming-convention is not exclusive: snake_case in Python and camelCase in JS coexist.
+    a = k("naming-convention", "require", "snake_case")
+    b = k("naming-convention", "require", "camelCase")
+    assert rel(a, b) == Relation.INDEPENDENT
+
+
+# --- exclusive subjects (§1.1) ---------------------------------------------------------
+
+
+def test_exclusive_choices_in_same_ecosystem_conflict():
     a = k("package-manager", "require", "pnpm")
+    b = k("package-manager", "require", "npm")
+    assert rel(a, b) == Relation.CONFLICT
+
+
+def test_exclusive_soft_choice_is_tension():
+    a = k("package-manager", "prefer", "pnpm")
+    b = k("package-manager", "require", "npm")
+    assert rel(a, b) == Relation.TENSION
+
+
+def test_exclusive_choice_matches_on_a_word_of_the_object():
+    a = k("formatter", "require", "ruff format", artifact="code")
+    b = k("formatter", "require", "Black", artifact="code")
+    assert rel(a, b) == Relation.CONFLICT
+
+
+def test_exclusive_choices_across_ecosystems_are_independent():
+    a = k("package-manager", "require", "pnpm")
+    b = k("package-manager", "require", "pip")
+    assert rel(a, b) == Relation.INDEPENDENT
+    c = k("test-runner", "require", "jest", artifact="tests")
+    d = k("test-runner", "require", "pytest", artifact="tests")
+    assert rel(c, d) == Relation.INDEPENDENT
+
+
+def test_exclusive_same_choice_is_not_a_conflict():
+    a = k("formatter", "require", "ruff")
+    b = k("formatter", "require", "ruff format")
+    assert rel(a, b) == Relation.INDEPENDENT
+
+
+def test_exclusive_unknown_choice_needs_review():
+    a = k("package-manager", "require", "pnpm")
+    b = k("package-manager", "require", "our in-house installer")
+    assert rel(a, b) == Relation.NEEDS_REVIEW
+
+
+def test_exclusive_ambiguous_object_needs_review():
+    a = k("package-manager", "require", "pnpm")
+    b = k("package-manager", "require", "npm or yarn")
+    assert rel(a, b) == Relation.NEEDS_REVIEW
+
+
+def test_exclusive_with_different_conditions_needs_review():
+    a = k("package-manager", "require", "pnpm")
+    b = k("package-manager", "require", "npm", condition="in the legacy app")
+    assert rel(a, b) == Relation.NEEDS_REVIEW
+
+
+def test_exclusive_bans_on_different_choices_are_independent():
+    a = k("package-manager", "forbid", "npm")
+    b = k("package-manager", "forbid", "yarn")
+    assert rel(a, b) == Relation.INDEPENDENT
+
+
+def test_exclusive_in_disjoint_scope_is_independent():
+    a = k("build-tool", "require", "vite", phase="implement")
+    b = k("build-tool", "require", "webpack", phase="review")
+    assert rel(a, b) == Relation.INDEPENDENT
+
+
+def test_exclusive_without_object_is_not_a_choice():
+    a = k("package-manager", "require", None)
     b = k("package-manager", "require", "npm")
     assert rel(a, b) == Relation.INDEPENDENT
 
