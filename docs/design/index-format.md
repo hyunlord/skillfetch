@@ -130,6 +130,12 @@ Implementation notes (`ingest/injection.py`, rules in `ingest/scan_rules.yaml`):
   run sudo …" is advice; "Do not hesitate to run sudo …" still fails. Used only
   where benign negated phrasing is common (sudo, root, sandbox,
   `--dangerously-*`, reading key/credential paths, system prompt).
+- `override.system-prompt` needs one of `ignore`, `disregard`, `bypass`,
+  `reveal`, `print`, `repeat`, `leak` within 20 characters before "system
+  prompt". `output` and `override` were dropped in rules v4: "… without test or
+  build output, add to the system prompt" (anthropics claude-api) and "Direct:
+  override system prompts" (an OWASP table describing attacks) are
+  documentation.
 - `override` rules set `allow_quoted` (rules v3): a match that lies inside
   quotation marks (`"…"`, `“…”`) is downgraded to a warning, marked
   `quoted: true`. Prompt-writing advice quotes the phrase it warns against

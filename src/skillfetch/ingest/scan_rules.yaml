@@ -16,7 +16,7 @@
 #                         advice that quotes the phrase to avoid ("avoid override-style
 #                         language (\"disregard the previous instruction\")") is not an
 #                         attempt. It still warns, so the quote stays visible.
-version: 3
+version: 4
 
 effects:
   override: fail
@@ -35,11 +35,14 @@ rules:
     family: override
     allow_quoted: true
     pattern: '\b(?:ignore|disregard|forget|override)\s+(?:all\s+)?(?:of\s+)?(?:the\s+|your\s+|any\s+)?(?:previous|prior|above|earlier|preceding|original|system)\s+(?:instructions?|prompts?|directions|directives|messages?|rules)\b|\b(?:ignore|disregard)\s+all\s+(?:other\s+)?instructions\b'
+  # Not `output` or `override` (rules v4): "… without test or build output, add to the
+  # system prompt" (anthropics claude-api) and "Direct: override system prompts" (an
+  # OWASP table describing attacks) are documentation, and both verbs are common there.
   - id: override.system-prompt
     family: override
     allow_negated: true
     allow_quoted: true
-    pattern: '\b(?:ignore|disregard|override|bypass|reveal|print|repeat|leak|output)\b[^.\n]{0,20}\bsystem\s+prompt\b'
+    pattern: '\b(?:ignore|disregard|bypass|reveal|print|repeat|leak)\b[^.\n]{0,20}\bsystem\s+prompt\b'
   - id: override.persona
     family: override
     allow_quoted: true
