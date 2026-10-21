@@ -517,11 +517,60 @@ def test_normalization_respects_the_term_objects():
     assert c.subject == "test logging"  # `logging` does not allow that object
 
 
-def test_prompt_keeps_situational_clauses():
-    # v4 told the model to leave situations out of `condition`, and it dropped them from
-    # the rule altogether: "Once a team is selected, ... do not ask for separate
-    # confirmation" became a blanket `forbid ask-before-acting` (adjusted was empty: the
-    # clause never reached post-processing).
+def test_prompt_keeps_situations_out_of_the_subject():
+    # v4 dropped situations from the rule ("Once a team is selected, ... do not ask for
+    # separate confirmation" -> blanket forbid ask-before-acting); v5 put them into long
+    # free-text subjects, which hid real relations. v6: subject <= 3 words, situation in
+    # object_raw.
     prompt = system_prompt()
-    assert "## situations: keep the clause" in prompt
-    assert "Only a rule that applies whenever its subject comes up is a blanket rule." in prompt
+    assert "## situations" in prompt
+    assert "A subject has at\nmost three words" in prompt
+
+
+# --- subject cap and clause split (v6) ------------------------------------------------------
+
+
+def _with_subject(subject, index=1):
+    import json
+
+    response = recorded("commit-squash.ok.json")
+    data = json.loads(response["content"][0]["text"])
+    data["constraints"][index]["subject"] = subject
+    response["content"][0]["text"] = json.dumps(data)
+    return response
+
+
+def test_a_clause_in_the_subject_is_split_off():
+    record, client = run("commit-squash", _with_subject("branch name when the ticket exists"))
+    assert len(client.requests) == 1
+    branch = record.constraints()[1]
+    assert branch.subject == "branch name"
+    assert branch.object_raw == "when the ticket exists"
+    assert record.adjusted[0] == (
+        f"line {branch.evidence.line_no}: subject 'branch name when the ticket exists' -> "
+        "'branch name', clause 'when the ticket exists' -> condition and object_raw"
+    )
+
+
+def test_vocabulary_and_order_subjects_are_not_split():
+    from skillfetch.ingest.extract import split_subject_clause
+
+    assert split_subject_clause({"subject": "review-before-merge", "directive": "require"}) is None
+    order = {"subject": "tests before code", "directive": "order"}
+    assert split_subject_clause(order) is None and order["subject"] == "tests before code"
+
+
+def test_a_long_subject_is_sent_back_once():
+    long = _with_subject("branch names for every new feature")
+    record, client = run("commit-squash", long, "commit-squash.ok.json")
+    assert record.status == "ok" and len(client.requests) == 2
+    retry = client.requests[1]["messages"][-1]["content"]
+    assert "subject 'branch names for every new feature' has 6 words" in retry
+
+
+def test_a_long_subject_after_the_retry_drops_that_constraint_only():
+    long = _with_subject("branch names for every new feature")
+    record, _ = run("commit-squash", long, long)
+    assert record.status == "ok"
+    assert [c.subject for c in record.constraints()] == ["commit-granularity"]
+    assert [d.reason for d in record.dropped] == ["subject over 3 words after the retry"]

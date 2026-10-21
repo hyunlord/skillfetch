@@ -48,7 +48,9 @@ for a term that exists (`emojis`, `emoji usage` → `emoji`).
 {{VOCABULARY}}
 
 Otherwise use a short lowercase noun phrase for the thing being regulated, not the action:
-"Never squash commits" has subject `commit-granularity` and object `squash`.
+"Never squash commits" has subject `commit-granularity` and object `squash`. A subject has at
+most three words and never carries a situation ("when …", "after …", "before …", "if …"):
+output with a longer subject is sent back.
 
 ## directive and strength
 
@@ -133,23 +135,14 @@ a docstring", `public functions` is the object, not a condition. What a rule app
 `object` or `scope.artifact`; when it applies goes in `scope.condition`. Do not repeat
 `artifact` or `phase` in the condition.
 
-## situations: keep the clause
+## situations
 
-A situation is not a condition, but it still limits the rule; never drop it. "Once the user
-has picked a plan, go ahead without asking again" does not ban asking in general: it bans a
-second confirmation after the choice. A rule without its clause reads as a blanket rule about
-the whole subject and would contradict every skill that says the opposite in some other
-situation. So, when a line limits a rule with "once …", "after …", "if …", "when …", "unless …"
-or "for …" (anything but a phase, which goes in `scope.phase`, and a language, framework or
-file type, which goes in `scope.condition`):
-
-- use a vocabulary term only if the rule holds whatever the situation; otherwise use a
-  free-text subject that names the situation ("confirmation after plan selection", forbid);
-- for a free-text subject, put the situation in `object` when the subject alone does not
-  name it, in the line's own words;
-- always copy the clause into `object_raw` ("asking again once a plan is picked").
-
-Only a rule that applies whenever its subject comes up is a blanket rule.
+A situation that limits a rule ("once the user has picked a plan", "when the brief is
+unclear", "before opening a PR") is neither part of the subject nor a condition, but it
+still narrows the rule: copy it into `object_raw` in the line's words. "Once the user has
+picked a plan, go ahead without asking again" is `ask-before-acting`, `forbid`, object
+null, `object_raw` "asking again once a plan is picked": it bans a second confirmation, not
+asking in general, and `object_raw` is what tells the two apart.
 
 # Example
 
@@ -164,17 +157,16 @@ These lines are not from any real skill:
  14| - Commit messages must not contain emoji.
 ```
 
-Line 9 is rationale: no constraint. Line 11's "when fixing a bug" is a situation, not a
-condition; it is kept in the subject, since the rule is about regression tests for bug fixes
-only. Line 12 gives two instructions about one slot; the main one is kept. The others give
-these constraints:
+Line 9 is rationale: no constraint. Line 11's "when fixing a bug" is a situation: it goes in
+`object_raw`, not in the subject or the condition. Line 12 gives two instructions about one slot; the main one is
+kept. The others give these constraints:
 
 ```json
 [
   {"subject": "pr-size", "directive": "require", "object": "under 400 changed lines", "object_raw": "under 400 changed lines", "direction": null,
    "scope": {"artifact": "any", "phase": "any", "condition": null}, "strength": "must",
    "evidence": {"line_no": 10, "text": "Keep pull requests under 400 changed lines."}},
-  {"subject": "bug-fix regression test", "directive": "order", "object": "implementation", "object_raw": "when fixing a bug, before touching the code", "direction": "before",
+  {"subject": "tests", "directive": "order", "object": "implementation", "object_raw": "when fixing a bug", "direction": "before",
    "scope": {"artifact": "any", "phase": "any", "condition": null}, "strength": "must",
    "evidence": {"line_no": 11, "text": "When fixing a bug, write a failing regression test before touching the code."}},
   {"subject": "package-manager", "directive": "require", "object": "yarn", "object_raw": "yarn for all installs", "direction": null,

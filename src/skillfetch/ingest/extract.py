@@ -8,6 +8,7 @@ responses.
 
 from __future__ import annotations
 
+import copy
 import hashlib
 import json
 import re
@@ -17,7 +18,14 @@ from importlib import resources
 from pathlib import Path
 from typing import Literal, Protocol
 
-from pydantic import BaseModel, ConfigDict, ValidationError
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    ValidationError,
+    ValidationInfo,
+    field_validator,
+    model_validator,
+)
 
 from skillfetch.ingest.sections import record_sections
 from skillfetch.ingest.skillfile import SKILL_FILE, read_text
@@ -35,7 +43,7 @@ from skillfetch.resolve.vocabulary import (
 # Bump EXTRACT_VERSION whenever the prompt or the response schema changes; it is part of the
 # cache key. tests/ingest/test_extract.py pins PROMPT_SHA256 so a change cannot slip through.
 EXTRACT_VERSION = 6
-PROMPT_SHA256 = "ea4d1b6ceb584b2e7b45de4d4e02b9605004dcc57cfb5e68d1cdcfc4e1bad079"
+PROMPT_SHA256 = "4761ea49e47f851c9724a3f5a56dfda73eaa3ece5b8460bc06ca4572e4111f94"
 
 DEFAULT_MODEL = "openrouter/openai/gpt-6-luna"  # "provider/model"; see backends.parse_model
 REQUEST_TIMEOUT_S = 120  # per HTTP request; the SDK default (600 s) let one stuck call stall a run
@@ -195,7 +203,50 @@ class ExtractTags(BaseModel):
     domain: list[str]
 
 
+MAX_SUBJECT_WORDS = 3
+# Words that open a situation inside a subject: "confirmation when the overlap reaches 30%".
+_CLAUSE_MARKER = re.compile(
+    r"\s+(?=(?:when|whenever|if|unless|once|after|before|while|during|until|wherever)\s)",
+    re.IGNORECASE,
+)
+
+
+def _subject_words(subject: str) -> int:
+    return len(subject.split())
+
+
+def split_subject_clause(c: dict) -> str | None:
+    """Move a situation out of a raw constraint's subject: the clause becomes the
+    condition (when there is none) and is kept in object_raw (when that is empty), since
+    it narrows the rule. Vocabulary terms and `order` subjects are left alone. Returns a
+    note, or None when nothing was split."""
+    subject = c.get("subject")
+    if not isinstance(subject, str) or c.get("directive") == "order" or lookup(subject):
+        return None
+    m = _CLAUSE_MARKER.search(subject)
+    if m is None or not subject[: m.start()].strip():
+        return None
+    head, clause = subject[: m.start()].strip(), subject[m.end() :].strip()
+    c["subject"] = head
+    scope = c.get("scope") if isinstance(c.get("scope"), dict) else {}
+    c["scope"] = scope
+    moved = []
+    if scope.get("condition") is None:
+        scope["condition"] = clause
+        moved.append("condition")
+    if not c.get("object_raw"):
+        c["object_raw"] = clause
+        moved.append("object_raw")
+    line = (c.get("evidence") or {}).get("line_no", "?")
+    to = " and ".join(moved) or "nowhere (condition and object_raw already set)"
+    return f"line {line}: subject {subject!r} -> {head!r}, clause {clause!r} -> {to}"
+
+
 class ExtractResult(BaseModel):
+    """Validation context (optional): `notes` (list) collects clause splits;
+    `drop_long_subjects` drops constraints whose subject is still over MAX_SUBJECT_WORDS
+    into `dropped` (list) instead of failing — used on the last attempt."""
+
     model_config = ConfigDict(extra="forbid")
 
     summary: str
@@ -206,6 +257,41 @@ class ExtractResult(BaseModel):
     consumes: list[str]
     produces: list[str]
     requires_tools: list[str]
+
+    @model_validator(mode="before")
+    @classmethod
+    def _split_clauses(cls, data, info: ValidationInfo):
+        if not isinstance(data, dict) or not isinstance(data.get("constraints"), list):
+            return data
+        data = copy.deepcopy(data)
+        notes = (info.context or {}).get("notes")
+        for c in data["constraints"]:
+            if isinstance(c, dict) and (note := split_subject_clause(c)) and notes is not None:
+                notes.append(note)
+        return data
+
+    @field_validator("constraints")
+    @classmethod
+    def _short_subjects(cls, constraints: list[Constraint], info: ValidationInfo):
+        long = [c for c in constraints if _subject_words(c.subject) > MAX_SUBJECT_WORDS]
+        if not long:
+            return constraints
+        context = info.context or {}
+        if context.get("drop_long_subjects"):
+            reason = f"subject over {MAX_SUBJECT_WORDS} words after the retry"
+            context["dropped"].extend(
+                Dropped(constraint=c.model_dump(mode="json"), reason=reason) for c in long
+            )
+            return [c for c in constraints if c not in long]
+        raise ValueError(
+            "\n".join(
+                f"line {c.evidence.line_no}: subject {c.subject!r} has "
+                f"{_subject_words(c.subject)} words; use at most {MAX_SUBJECT_WORDS} words "
+                "naming the thing the rule regulates, and keep the rest of the line's "
+                "wording in object_raw"
+                for c in long
+            )
+        )
 
 
 TOKEN_FIELDS = (
@@ -483,18 +569,20 @@ def vocabulary_errors(result: ExtractResult) -> list[str]:
     return constraint_vocabulary_errors(result.constraints)
 
 
-def _validate(text: str) -> ExtractResult:
+def _validate(text: str, last_attempt: bool = False) -> tuple[ExtractResult, list[str], list]:
+    """(result, clause-split notes, constraints dropped for long subjects)."""
     try:
         data = json.loads(text)
     except json.JSONDecodeError as exc:
         raise ValueError(f"not valid JSON: {exc}") from exc
+    context: dict = {"notes": [], "dropped": [], "drop_long_subjects": last_attempt}
     try:
-        result = ExtractResult.model_validate(data)
+        result = ExtractResult.model_validate(data, context=context)
     except ValidationError as exc:
         raise ValueError(str(exc)) from exc
     if errors := vocabulary_errors(result):
         raise ValueError("\n".join(errors))
-    return result
+    return result, context["notes"], context["dropped"]
 
 
 @dataclass
@@ -529,7 +617,7 @@ class Extractor:
                 attempt.error = record.error = f"refused ({reply.refusal or 'no category'})"
                 return record
             try:
-                result = _validate(out)
+                result, split, too_long = _validate(out, last_attempt=attempt_no == 2)
             except ValueError as exc:
                 attempt.error = record.error = str(exc)
                 if attempt_no == 1:
@@ -545,9 +633,10 @@ class Extractor:
             lines = text.split("\n")
             result, record.dropped, record.repaired = verify_evidence(result, lines)
             adjusted, record.adjusted = apply_vocabulary(record_sections(result.constraints, lines))
+            record.adjusted = split + record.adjusted
             kept, merged = merge_per_line(adjusted)
             record.result = result.model_copy(update={"constraints": kept})
-            record.dropped += merged
+            record.dropped = too_long + record.dropped + merged
             record.status, record.error = "ok", None
             return record
         return record

@@ -35,8 +35,18 @@ One SKILL.md yields 0–30 constraints. Each:
 Fields:
 
 - `subject` — a short noun phrase, lowercase, from a **controlled vocabulary when
-  possible** (see §1.1), free text otherwise. The extractor must prefer vocabulary
-  terms and must not invent synonyms for an existing term.
+  possible** (see §1.1), free text otherwise, **at most three words** (extraction
+  v6). The extractor must prefer vocabulary terms and must not invent synonyms for
+  an existing term. A situation never belongs in the subject: before validation, a
+  free-text subject is split at the first clause marker (`when`, `whenever`, `if`,
+  `unless`, `once`, `after`, `before`, `while`, `during`, `until`, `wherever`) —
+  "confirmation when the overlap reaches 30%" → subject `confirmation`, the clause
+  → `condition` (if none was set) and `object_raw` (if empty). Vocabulary terms and
+  `order` subjects are not split. A subject still over three words fails
+  validation and is sent back once with the offending lines; after the retry only
+  those constraints are dropped (`subject over 3 words after the retry`), not the
+  skill. v5 had put situations into long subjects ("feature squashing before
+  opening a PR"), which hid real duplicates and conflicts.
 - `directive` — one of `require | forbid | prefer | avoid | order`.
   - `require`/`forbid`: hard (the skill says must / never).
   - `prefer`/`avoid`: soft (should / try to / by default).
