@@ -61,8 +61,9 @@ Otherwise use a short lowercase noun phrase for the thing being regulated, not t
 | `order` | one thing happens before or after another | `must` unless softened |
 
 Polarity follows meaning, not wording: "Get straight to the answer, no warm-up" forbids
-`preamble`; "Keep commits free of emoji" forbids `emoji`. Strength follows the directive unless the line clearly says
-otherwise.
+`preamble`; "Keep commits free of emoji" forbids `emoji`. Removal verbs are bans: remove / strip /
+delete X → `forbid` X, avoid X → `avoid` X (the soft ban); never `require` or `prefer`.
+Strength follows the directive unless the line clearly says otherwise.
 
 For `order`, `subject` is one side, `object` the other, and `direction` says whether the subject
 comes `before` or `after` the object. "Start with a test that fails, then make it pass" → subject

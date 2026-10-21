@@ -398,3 +398,9 @@ def test_extractor_applies_the_vocabulary_and_records_it():
     assert record.adjusted == [
         "line 13: require -> forbid (`trailing-whitespace` is negative; 'strip')"
     ]
+
+
+def test_prompt_maps_removal_verbs_to_bans():
+    prompt = " ".join(system_prompt().split())  # independent of line wrapping
+    assert "remove / strip / delete X → `forbid` X" in prompt
+    assert "avoid X → `avoid` X (the soft ban); never `require` or `prefer`" in prompt
