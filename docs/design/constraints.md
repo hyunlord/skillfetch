@@ -103,6 +103,24 @@ normalized words ("pnpm workspaces" → pnpm; "npm or yarn" → no single choice
 nor is `naming-convention` (conventions differ per language and the constraint
 schema has no language field). Grow these lists from extraction output.
 
+**Polarity and implied artifacts** (applied by extraction post-processing,
+§2):
+
+- `polarity: negative` marks a subject that rules usually remove:
+  `trailing-whitespace`, `preamble`. "Strip/remove/delete/trim/avoid X" on a
+  negative subject is a ban; an extracted `require`/`prefer` with such a verb
+  on its evidence line becomes `forbid`/`avoid`. Without the verb the
+  directive stands ("Always begin by restating the question" requires a
+  preamble).
+- `implied_artifact` is the only artifact a subject occurs in: type hints,
+  docstrings, comments, formatter → `code`; preamble, summary-at-end,
+  explain-reasoning → `response`; commit-granularity → `commit-message`; test
+  runner → `tests`; headers → `markdown`. Per object: `emoji` "in headers" →
+  `markdown` (emoji in general has none). It replaces an extracted `any`, never
+  an explicit artifact. Without it, a requirement left at `any` against a ban
+  on `markdown` reads as a scope carve-out (§3 row 12) and a real conflict
+  becomes `needs_review`.
+
 ## 2. Extraction prompt (summary; full text in `src/skillfetch/ingest/prompts/extract.md`)
 
 - Input: the whole SKILL.md with line numbers (`  12| text`), counted from the
@@ -140,8 +158,13 @@ schema has no language field). Grow these lists from extraction output.
   quote found on exactly one other line is kept with the line corrected (a
   miscount, reported as `repaired`); anything else is dropped (`dropped`, with
   the reason).
-- `EXTRACT_VERSION` must be bumped whenever the prompt or schema changes; a test
-  pins the prompt+schema fingerprint so a change cannot slip through.
+- Vocabulary post-processing (`apply_vocabulary`, after the evidence check and
+  before the per-line merge): the polarity flip and the implied artifact of
+  §1.1. Every change is recorded in the record's `adjusted` list. The hand
+  labels are a fixed point (a test checks it).
+- `EXTRACT_VERSION` must be bumped whenever the prompt, the schema or the
+  post-processing changes (it keys the cache); a test pins the prompt+schema
+  fingerprint so a prompt change cannot slip through.
 
 Calibration set: `tests/fixtures/skills/` has ≥ 15 skills with hand-labelled
 constraints. `skillfetch ingest tests/fixtures --with-api --calibrate`

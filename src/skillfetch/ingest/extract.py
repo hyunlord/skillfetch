@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 from dataclasses import dataclass
 from functools import cache
 from importlib import resources
@@ -21,11 +22,11 @@ from pydantic import BaseModel, ConfigDict, ValidationError
 from skillfetch.ingest.skillfile import SKILL_FILE, read_text
 from skillfetch.resolve.models import Constraint
 from skillfetch.resolve.terms import normalize_term
-from skillfetch.resolve.vocabulary import VOCABULARY, lookup
+from skillfetch.resolve.vocabulary import VOCABULARY, implied_artifact, lookup
 
 # Bump EXTRACT_VERSION whenever the prompt or the response schema changes; it is part of the
 # cache key. tests/ingest/test_extract.py pins PROMPT_SHA256 so a change cannot slip through.
-EXTRACT_VERSION = 2
+EXTRACT_VERSION = 3
 PROMPT_SHA256 = "29a95db4aad0d111b9e37b8b7ddf3b617f56a75315ca0b52fd1161dfdc9ec52a"
 
 DEFAULT_MODEL = "openrouter/openai/gpt-6-luna"  # "provider/model"; see backends.parse_model
@@ -243,6 +244,7 @@ class ExtractRecord(BaseModel):
     error: str | None = None
     dropped: list[Dropped] = []
     repaired: list[str] = []
+    adjusted: list[str] = []  # vocabulary post-processing (polarity, implied artifact)
     attempts: list[Attempt] = []
 
     @property
@@ -310,6 +312,44 @@ def verify_evidence(
             reason = "quote not found in SKILL.md" if not hits else "quote is ambiguous"
             dropped.append(Dropped(constraint=c.model_dump(mode="json"), reason=reason))
     return result.model_copy(update={"constraints": kept}), dropped, repaired
+
+
+_REMOVAL = re.compile(
+    r"\b(strip|strips|stripped|remove|removes|removed|delete|deletes|deleted|trim|trims|"
+    r"trimmed|drop|drops|eliminate|eliminates|avoid|avoids|get rid of)\b",
+    re.IGNORECASE,
+)
+_FLIP = {"require": ("forbid", "must"), "prefer": ("avoid", "should")}
+
+
+def apply_vocabulary(constraints: list[Constraint]) -> tuple[list[Constraint], list[str]]:
+    """Deterministic fixes from the vocabulary (resolve/vocabulary.py), with a note each.
+
+    - Negative subject + positive directive + a removal verb on the evidence line ("Strip
+      trailing whitespace") is a misread ban: require -> forbid, prefer -> avoid. Without a
+      removal verb the directive is kept: "Always begin by restating the question" really
+      requires a preamble. Negations are not cues ("don't skip the preamble").
+    - Artifact `any` becomes the subject's (or subject + object's) implied artifact; an
+      explicit artifact is never overridden."""
+    out, notes = [], []
+    for c in constraints:
+        term = lookup(c.subject)
+        line = c.evidence.line_no
+        negative = term is not None and term.polarity == "negative"
+        if negative and c.directive in _FLIP and (cue := _REMOVAL.search(c.evidence.text)):
+            directive, strength = _FLIP[c.directive]
+            notes.append(
+                f"line {line}: {c.directive} -> {directive} "
+                f"(`{term.name}` is negative; {cue.group(0).lower()!r})"
+            )
+            c = c.model_copy(update={"directive": directive, "strength": strength})
+        artifact = implied_artifact(term, c.object)
+        if artifact is not None and c.scope.artifact == "any":
+            on = f" {c.object}" if c.object and term.object_artifacts else ""
+            notes.append(f"line {line}: artifact any -> {artifact} (implied by `{term.name}`{on})")
+            c = c.model_copy(update={"scope": c.scope.model_copy(update={"artifact": artifact})})
+        out.append(c)
+    return out, notes
 
 
 def merge_per_line(constraints: list[Constraint]) -> tuple[list[Constraint], list[Dropped]]:
@@ -454,7 +494,8 @@ class Extractor:
                     ]
                 continue
             result, record.dropped, record.repaired = verify_evidence(result, text.split("\n"))
-            kept, merged = merge_per_line(result.constraints)
+            adjusted, record.adjusted = apply_vocabulary(result.constraints)
+            kept, merged = merge_per_line(adjusted)
             record.result = result.model_copy(update={"constraints": kept})
             record.dropped += merged
             record.status, record.error = "ok", None

@@ -3,7 +3,7 @@
 import pytest
 
 from skillfetch.resolve.relation import normalize_term
-from skillfetch.resolve.vocabulary import VOCABULARY, choice_of, lookup
+from skillfetch.resolve.vocabulary import VOCABULARY, choice_of, implied_artifact, lookup
 
 
 @pytest.mark.parametrize("subject", ["package-manager", "formatter", "test-runner", "build-tool"])
@@ -88,3 +88,31 @@ def test_restating_objects_are_not_allowed_where_the_subject_says_it_all():
         term = lookup(name)
         assert term.objects is not None
         assert "of what you did" not in term.objects
+
+
+# --- polarity and implied artifacts -------------------------------------------------------------
+
+
+def test_negative_subjects():
+    assert lookup("trailing-whitespace").polarity == "negative"
+    assert lookup("preamble").polarity == "negative"
+    assert lookup("emoji").polarity == "neutral"
+
+
+@pytest.mark.parametrize(
+    "subject, obj, artifact",
+    [
+        ("type-hints", None, "code"),
+        ("docstrings", "public functions", "code"),
+        ("preamble", None, "response"),
+        ("summary-at-end", None, "response"),
+        ("commit-granularity", "squash", "commit-message"),
+        ("test-runner", "pytest", "tests"),
+        ("headers", "short", "markdown"),
+        ("emoji", "in headers", "markdown"),  # object-level: emoji in general has no artifact
+        ("emoji", None, None),
+        ("ask-before-acting", None, None),
+    ],
+)
+def test_implied_artifact(subject, obj, artifact):
+    assert implied_artifact(lookup(subject), obj) == artifact

@@ -316,3 +316,85 @@ def test_prompt_covers_the_patterns_all_models_missed():
         "commit-granularity",
     ):
         assert prompt.count(f'"subject": "{marker}"') >= 1, marker
+
+
+# --- vocabulary post-processing (polarity, implied artifact) -------------------------------------
+
+
+def _k(subject, directive, text, obj=None, artifact="any", line=1):
+    return Constraint.model_validate(
+        {
+            "subject": subject,
+            "directive": directive,
+            "object": obj,
+            "scope": {"artifact": artifact},
+            "evidence": {"line_no": line, "text": text},
+        }
+    )
+
+
+def test_removal_verb_on_a_negative_subject_flips_to_a_ban():
+    from skillfetch.ingest.extract import apply_vocabulary
+
+    [c], notes = apply_vocabulary(
+        [
+            _k(
+                "trailing-whitespace",
+                "require",
+                "Strip trailing whitespace from every line.",
+                line=13,
+            )
+        ]
+    )
+    assert (c.directive, c.strength) == ("forbid", "must")
+    assert notes == ["line 13: require -> forbid (`trailing-whitespace` is negative; 'strip')"]
+
+
+def test_soft_positive_flips_to_avoid():
+    from skillfetch.ingest.extract import apply_vocabulary
+
+    [c], _ = apply_vocabulary([_k("preamble", "prefer", "Try to remove filler intros.")])
+    assert (c.directive, c.strength) == ("avoid", "should")
+
+
+def test_negative_subject_without_a_removal_verb_is_kept():
+    # a real requirement: this preamble rule is one side of a fixture conflict
+    from skillfetch.ingest.extract import apply_vocabulary
+
+    text = "Always begin by restating the user's question in your own words."
+    [c], notes = apply_vocabulary([_k("preamble", "require", text, artifact="response")])
+    assert c.directive == "require" and notes == []
+
+
+def test_implied_artifact_fills_any_but_never_overrides():
+    from skillfetch.ingest.extract import apply_vocabulary
+
+    out, notes = apply_vocabulary(
+        [
+            _k("emoji", "require", "Lead every heading with an emoji.", "in headers", line=5),
+            _k("type-hints", "require", "Annotate everything.", artifact="markdown", line=6),
+        ]
+    )
+    assert [c.scope.artifact for c in out] == ["markdown", "markdown"]
+    assert notes == ["line 5: artifact any -> markdown (implied by `emoji` in headers)"]
+
+
+def test_post_processing_leaves_the_hand_labels_unchanged():
+    from conftest import load_corpus
+
+    from skillfetch.ingest.extract import apply_vocabulary
+
+    for sid, skill in load_corpus().items():
+        out, notes = apply_vocabulary(skill.constraints)
+        assert notes == [] and out == skill.constraints, sid
+
+
+def test_extractor_applies_the_vocabulary_and_records_it():
+    record, _ = run("no-emoji-docs", "no-emoji-docs.strip-as-require.json")
+    assert [(c.subject, c.directive, c.scope.artifact) for c in record.constraints()] == [
+        ("emoji", "forbid", "markdown"),
+        ("trailing-whitespace", "forbid", "any"),
+    ]
+    assert record.adjusted == [
+        "line 13: require -> forbid (`trailing-whitespace` is negative; 'strip')"
+    ]
