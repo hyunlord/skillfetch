@@ -1,8 +1,9 @@
-"""Constraint extraction through the Claude API (index-format.md §1.5, constraints.md §2).
+"""Constraint extraction through a model API (index-format.md §1.5, constraints.md §2).
 
-The only stage that calls a model. `anthropic` is imported lazily in `make_client`, so the
-rest of the package (and every test) runs without it; tests pass a client that replays
-recorded responses.
+The only stage that calls a model. Provider specifics live behind `ExtractBackend`
+(`ingest/backends.py`); SDKs are imported lazily there, so the rest of the package (and
+every test) runs without them. Tests use backends over clients that replay recorded
+responses.
 """
 
 from __future__ import annotations
@@ -13,7 +14,7 @@ from dataclasses import dataclass
 from functools import cache
 from importlib import resources
 from pathlib import Path
-from typing import Any, Literal, Protocol
+from typing import Literal, Protocol
 
 from pydantic import BaseModel, ConfigDict, ValidationError
 
@@ -26,21 +27,32 @@ from skillfetch.resolve.vocabulary import VOCABULARY
 EXTRACT_VERSION = 1
 PROMPT_SHA256 = "11867143327050c97fadde99ad8fa1f07910061038dd5547a71b7e033a3d5a64"
 
-DEFAULT_MODEL = "claude-sonnet-5"
+DEFAULT_MODEL = "anthropic/claude-sonnet-5"  # "provider/model"; see backends.parse_model
 MAX_TOKENS = 16000
 MAX_SKILL_TOKENS = 12000  # index-format §1.5 cost guard, estimated as chars / 4
 
-# Models that still accept sampling parameters. Current models (Sonnet 5, Opus 5, ...)
-# reject `temperature` with a 400, so determinism there comes from the extract cache.
-TEMPERATURE_ZERO_MODELS = frozenset({"claude-sonnet-4-6", "claude-opus-4-6", "claude-haiku-4-5"})
 
-# USD per million tokens (input, output), Anthropic first-party list prices as of 2026-06-24.
-# Cache writes bill at 1.25x input, cache reads at 0.1x input.
-PRICES: dict[str, tuple[float, float]] = {
-    "claude-sonnet-5": (2.00, 10.00),
-    "claude-sonnet-4-6": (3.00, 15.00),
-    "claude-haiku-4-5": (1.00, 5.00),
-    "claude-opus-5": (5.00, 25.00),
+@dataclass(frozen=True)
+class Price:
+    """USD per million tokens."""
+
+    input: float
+    output: float
+    cache_read: float
+    cache_write: float
+
+
+def _anthropic(price_in: float, price_out: float) -> Price:
+    # cache writes bill at 1.25x input, cache reads at 0.1x input
+    return Price(price_in, price_out, price_in * 0.1, price_in * 1.25)
+
+
+# List prices, keyed like ExtractRecord.model. Anthropic first-party prices as of 2026-06-24.
+PRICES: dict[str, Price] = {
+    "anthropic/claude-sonnet-5": _anthropic(2.00, 10.00),
+    "anthropic/claude-sonnet-4-6": _anthropic(3.00, 15.00),
+    "anthropic/claude-haiku-4-5": _anthropic(1.00, 5.00),
+    "anthropic/claude-opus-5": _anthropic(5.00, 25.00),
 }
 
 ARTIFACTS = [
@@ -156,21 +168,6 @@ def numbered(text: str) -> str:
     return "\n".join(f"{i:>{width}}| {line}" for i, line in enumerate(lines, 1))
 
 
-def build_request(model: str, messages: list[dict]) -> dict[str, Any]:
-    request: dict[str, Any] = {
-        "model": model,
-        "max_tokens": MAX_TOKENS,
-        "system": [
-            {"type": "text", "text": system_prompt(), "cache_control": {"type": "ephemeral"}}
-        ],
-        "messages": messages,
-        "output_config": {"format": {"type": "json_schema", "schema": response_schema()}},
-    }
-    if model in TEMPERATURE_ZERO_MODELS:
-        request["temperature"] = 0
-    return request
-
-
 # --- result types -----------------------------------------------------------------------------
 
 
@@ -222,7 +219,7 @@ class ExtractRecord(BaseModel):
     """One skill's extraction; also the on-disk cache entry."""
 
     extract_version: int
-    model: str
+    model: str  # backend key, "provider/model"
     content_hash: str
     skill_id: str
     status: Literal["ok", "extract_failed", "too_large"]
@@ -253,14 +250,14 @@ class ExtractRecord(BaseModel):
 
 
 def cost_usd(model: str, usage: Usage) -> float | None:
-    if model not in PRICES:
+    price = PRICES.get(model)
+    if price is None:
         return None
-    price_in, price_out = PRICES[model]
     return (
-        usage.input_tokens * price_in
-        + usage.cache_creation_input_tokens * price_in * 1.25
-        + usage.cache_read_input_tokens * price_in * 0.1
-        + usage.output_tokens * price_out
+        usage.input_tokens * price.input
+        + usage.cache_creation_input_tokens * price.cache_write
+        + usage.cache_read_input_tokens * price.cache_read
+        + usage.output_tokens * price.output
     ) / 1_000_000
 
 
@@ -296,37 +293,32 @@ def verify_evidence(
 # --- extractor ---------------------------------------------------------------------------------
 
 
-class MessagesClient(Protocol):
-    """The slice of `anthropic.Anthropic` we use: `client.messages.create(**request)`."""
+@dataclass
+class Completion:
+    """One provider-neutral model response. `stop_reason` is normalized to `end_turn`,
+    `max_tokens` or `refusal` where the provider has an equivalent."""
 
-    messages: Any
+    text: str
+    stop_reason: str | None
+    usage: Usage
+    refusal: str | None = None  # refusal category or message, when stop_reason == "refusal"
+
+
+class ExtractBackend(Protocol):
+    """A model API behind the extractor (implementations in ingest/backends.py)."""
+
+    @property
+    def key(self) -> str:
+        """ "provider/model": the extract cache key and the PRICES key."""
+        ...
+
+    def complete(self, system: str, messages: list[dict[str, str]], schema: dict) -> Completion:
+        """Send system + user/assistant text messages; constrain output to `schema`."""
+        ...
 
 
 class MissingCredentials(RuntimeError):
     pass
-
-
-def make_client() -> MessagesClient:
-    import anthropic  # optional dependency: pip install 'skillfetch[ingest]'
-
-    client = anthropic.Anthropic(max_retries=4)
-    # Without credentials the SDK only fails when it builds the first request, with a bare
-    # TypeError; check up front instead. `credentials` covers `ant auth login` profiles and
-    # workload identity federation.
-    if not (client.api_key or client.auth_token or getattr(client, "credentials", None)):
-        raise MissingCredentials(
-            "no Anthropic credentials found: set ANTHROPIC_API_KEY or run `ant auth login`"
-        )
-    return client
-
-
-def _response_text(response: Any) -> str:
-    return "".join(b.text for b in response.content if getattr(b, "type", None) == "text")
-
-
-def _usage(response: Any) -> Usage:
-    u = response.usage
-    return Usage(**{k: getattr(u, k, None) or 0 for k in Usage.model_fields})
 
 
 def _validate(text: str) -> ExtractResult:
@@ -342,8 +334,11 @@ def _validate(text: str) -> ExtractResult:
 
 @dataclass
 class Extractor:
-    client: MessagesClient
-    model: str = DEFAULT_MODEL
+    backend: ExtractBackend
+
+    @property
+    def model(self) -> str:
+        return self.backend.key
 
     def extract(self, skill_dir: Path, skill_id: str, content_hash: str) -> ExtractRecord:
         text = read_text(skill_dir / SKILL_FILE)
@@ -359,17 +354,14 @@ class Extractor:
             record.error = f"SKILL.md is ~{len(text) // 4} tokens (> {MAX_SKILL_TOKENS})"
             return record
 
-        messages: list[dict] = [{"role": "user", "content": numbered(text)}]
+        messages: list[dict[str, str]] = [{"role": "user", "content": numbered(text)}]
         for attempt_no in (1, 2):
-            response = self.client.messages.create(**build_request(self.model, messages))
-            out = _response_text(response)
-            attempt = Attempt(stop_reason=response.stop_reason, text=out, usage=_usage(response))
+            reply = self.backend.complete(system_prompt(), messages, response_schema())
+            out = reply.text
+            attempt = Attempt(stop_reason=reply.stop_reason, text=out, usage=reply.usage)
             record.attempts.append(attempt)
-            if response.stop_reason == "refusal":
-                details = getattr(response, "stop_details", None)
-                attempt.error = record.error = (
-                    f"refused ({getattr(details, 'category', None) or 'no category'})"
-                )
+            if reply.stop_reason == "refusal":
+                attempt.error = record.error = f"refused ({reply.refusal or 'no category'})"
                 return record
             try:
                 result = _validate(out)
@@ -377,7 +369,7 @@ class Extractor:
                 attempt.error = record.error = str(exc)
                 if attempt_no == 1:
                     messages += [
-                        {"role": "assistant", "content": response.content or "(no output)"},
+                        {"role": "assistant", "content": out or "(no output)"},
                         {
                             "role": "user",
                             "content": "That output failed validation:\n"

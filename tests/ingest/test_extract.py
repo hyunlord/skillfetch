@@ -6,13 +6,13 @@ import sys
 import pytest
 from conftest import SKILLS_DIR, FakeClient, recorded, write_skill
 
+from skillfetch.ingest.backends import AnthropicBackend, anthropic_request, parse_model
 from skillfetch.ingest.extract import (
     EXTRACT_VERSION,
     PROMPT_SHA256,
     Extractor,
     ExtractResult,
     Usage,
-    build_request,
     cost_usd,
     numbered,
     prompt_fingerprint,
@@ -25,7 +25,8 @@ from skillfetch.resolve.vocabulary import VOCABULARY
 
 def run(skill, *responses, model="claude-sonnet-5"):
     client = FakeClient(*[recorded(r) if isinstance(r, str) else r for r in responses])
-    record = Extractor(client, model).extract(SKILLS_DIR / skill, skill, "0" * 64)
+    backend = AnthropicBackend(client, model)
+    record = Extractor(backend).extract(SKILLS_DIR / skill, skill, "0" * 64)
     return record, client
 
 
@@ -75,12 +76,12 @@ def test_schema_mirrors_the_result_models():
 
 def test_request_shape():
     messages = [{"role": "user", "content": "x"}]
-    req = build_request("claude-sonnet-5", messages)
+    req = anthropic_request("claude-sonnet-5", system_prompt(), messages, response_schema())
     assert req["model"] == "claude-sonnet-5" and req["messages"] is messages
     assert "temperature" not in req  # rejected by current models
     assert req["system"][0]["cache_control"] == {"type": "ephemeral"}
     assert req["output_config"]["format"]["type"] == "json_schema"
-    assert build_request("claude-sonnet-4-6", messages)["temperature"] == 0
+    assert anthropic_request("claude-sonnet-4-6", "s", messages, {})["temperature"] == 0
 
 
 def test_numbered_lines_match_file_line_numbers():
@@ -94,6 +95,7 @@ def test_numbered_lines_match_file_line_numbers():
 def test_successful_extraction():
     record, client = run("commit-squash", "commit-squash.ok.json")
     assert record.status == "ok" and record.error is None
+    assert record.model == "anthropic/claude-sonnet-5"
     assert len(client.requests) == 1
     assert (
         "12| - Squash every feature into a single commit"
@@ -150,7 +152,7 @@ def test_refusal_is_not_retried():
 def test_oversized_skill_is_not_sent(tmp_path):
     d = write_skill(tmp_path, "huge", "word " * 12000)
     client = FakeClient()
-    record = Extractor(client).extract(d, "huge", "0" * 64)
+    record = Extractor(AnthropicBackend(client, "claude-sonnet-5")).extract(d, "huge", "0" * 64)
     assert record.status == "too_large" and client.requests == []
 
 
@@ -170,9 +172,20 @@ def test_cost_counts_cache_writes_and_reads():
 
 
 def test_unknown_model_has_no_price():
-    assert cost_usd("claude-something-new", Usage(input_tokens=10)) is None
+    assert cost_usd("anthropic/claude-something-new", Usage(input_tokens=10)) is None
+
+
+def test_model_specs_carry_a_provider():
+    assert parse_model("anthropic/claude-sonnet-5") == ("anthropic", "claude-sonnet-5")
+    assert parse_model("claude-haiku-4-5") == ("anthropic", "claude-haiku-4-5")
+    for bad in ("gpt-x", "nope/model", "anthropic/"):
+        with pytest.raises(ValueError):
+            parse_model(bad)
 
 
 def test_extract_module_does_not_need_the_sdk():
-    code = "import sys, skillfetch.ingest.extract; assert 'anthropic' not in sys.modules"
+    code = (
+        "import sys, skillfetch.ingest.extract, skillfetch.ingest.backends, skillfetch.cli; "
+        "assert not {'anthropic', 'openai'} & set(sys.modules)"
+    )
     subprocess.run([sys.executable, "-c", code], check=True)

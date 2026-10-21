@@ -7,7 +7,7 @@ import sys
 from collections.abc import Sequence
 from pathlib import Path
 
-from skillfetch.ingest import extract
+from skillfetch.ingest import backends, extract
 from skillfetch.ingest.calibrate import calibrate, render_calibration
 from skillfetch.ingest.extract_cache import DEFAULT_CACHE_DIR, ExtractCache
 from skillfetch.ingest.ingest import extract_dir, render_cost_log
@@ -64,7 +64,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="compare extraction with the hand labels; exit 1 below the 0.90 gate",
     )
-    ingest.add_argument("--model", default=extract.DEFAULT_MODEL, help="extraction model")
+    ingest.add_argument(
+        "--model",
+        default=extract.DEFAULT_MODEL,
+        help="provider/model, e.g. anthropic/claude-sonnet-5 (default: %(default)s)",
+    )
     ingest.add_argument("--cache-dir", type=Path, default=DEFAULT_CACHE_DIR)
     ingest.add_argument("--jobs", type=int, default=4, help="parallel API requests")
     args = parser.parse_args(argv)
@@ -98,8 +102,13 @@ def _ingest(args: argparse.Namespace) -> int:
         return 2
     cache = ExtractCache(args.cache_dir)
     try:
-        extractor = extract.Extractor(extract.make_client(), args.model) if args.with_api else None
-        outcomes = extract_dir(skills_dir, cache, extractor, model=args.model, jobs=args.jobs)
+        key = backends.backend_key(args.model)
+    except ValueError as exc:
+        print(f"skillfetch: {exc}", file=sys.stderr)
+        return 2
+    try:
+        extractor = extract.Extractor(backends.make_backend(args.model)) if args.with_api else None
+        outcomes = extract_dir(skills_dir, cache, extractor, model=key, jobs=args.jobs)
     except ImportError:
         print("skillfetch: --with-api needs: pip install 'skillfetch[ingest]'", file=sys.stderr)
         return 2
