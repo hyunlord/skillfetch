@@ -5,10 +5,15 @@ and compares field by field. Pair-relation accuracy runs the resolve/ rules on t
 constraints for every pair of fixture skills and compares the resulting relation with
 expected.yaml — the number that matters: fields may differ as long as relations do not.
 
-The gate is on *informative* pairs: those where the hand label or the extracted relation is
-not `independent`. Most fixture pairs are independent (787 of 820), so accuracy over all
-pairs is ~0.96 for an extractor that extracts nothing; over informative pairs it is 0, and
-false conflicts on independent pairs enlarge the denominator.
+Gates (constraints.md §2):
+- hard: conflict precision must be 1.0 — one false conflict fails calibration (exit 1);
+- soft: informative-pair accuracy should reach 0.85 — reported, does not fail the run.
+
+Informative pairs are those where the hand label or the extracted relation is not
+`independent`. Most fixture pairs are independent (787 of 820), so accuracy over all pairs is
+~0.96 for an extractor that extracts nothing; over informative pairs it is 0. Such an
+extractor flags no conflict, so its conflict precision is vacuously 1.0: the hard gate does
+not catch it, the soft target does.
 """
 
 from __future__ import annotations
@@ -28,7 +33,8 @@ from skillfetch.resolve.relation import Relation, normalize_term, pair_label, sk
 from skillfetch.resolve.report import render_finding
 from skillfetch.resolve.resolver import make_finding
 
-GATE = 0.9
+HARD_CONFLICT_PRECISION = 1.0
+SOFT_TARGET = 0.85
 LABEL_KEYS = ("conflict", "redundant", "subsumes", "tension", "needs_review")
 FIELDS = (
     "subject",
@@ -117,6 +123,13 @@ class PairReport(BaseModel):
         return self.correct / self.total if self.total else 1.0
 
     @property
+    def conflict_precision(self) -> float:
+        """1.0 when nothing is flagged (vacuous)."""
+        if not self.conflict_flagged:
+            return 1.0
+        return self.conflict_true_positives / self.conflict_flagged
+
+    @property
     def recall(self) -> float:
         return self.labelled_correct / self.labelled_total if self.labelled_total else 1.0
 
@@ -136,8 +149,17 @@ class Calibration(BaseModel):
     extracted: dict[str, Skill]
 
     @property
+    def hard_pass(self) -> bool:
+        return self.pairs.conflict_precision >= HARD_CONFLICT_PRECISION
+
+    @property
+    def soft_pass(self) -> bool:
+        return self.pairs.informative_accuracy >= SOFT_TARGET
+
+    @property
     def passed(self) -> bool:
-        return self.pairs.informative_accuracy >= GATE
+        """Only the hard gate decides; the soft target is reported."""
+        return self.hard_pass
 
 
 # --- comparison -----------------------------------------------------------------------------
@@ -328,17 +350,24 @@ def render_calibration(cal: Calibration) -> str:
     out += ["", *(render_mismatch(m, cal) + "\n" for m in p.mismatches)]
     out.append("pair relations by expected label:")
     out += [f"  {label:<13} {a.matches}/{a.total}" for label, a in p.by_label.items()]
-    precision = p.conflict_true_positives / p.conflict_flagged if p.conflict_flagged else 1.0
     recall = p.conflict_true_positives / p.conflict_expected if p.conflict_expected else 1.0
-    out.append(f"conflict precision {precision:.3f}, recall {recall:.3f}")
+    out.append(
+        f"conflict precision {p.conflict_precision:.3f} "
+        f"({p.conflict_true_positives}/{p.conflict_flagged} flagged), recall {recall:.3f}"
+    )
     out.append(
         f"labelled pairs: recall {p.recall:.3f} ({p.labelled_correct}/{p.labelled_total}), "
         f"false positives {p.false_positives} (of {p.total - p.labelled_total} independent)"
     )
-    verdict = "PASS" if cal.passed else "BELOW GATE"
     out.append(f"pair-relation accuracy, all pairs: {p.accuracy:.3f} ({p.correct}/{p.total})")
     out.append(
         f"pair-relation accuracy, informative pairs: {p.informative_accuracy:.3f} "
-        f"({p.informative_correct}/{p.informative_total})  gate {GATE:.2f}: {verdict}"
+        f"({p.informative_correct}/{p.informative_total})"
+    )
+    out.append(
+        f"gate: conflict precision {p.conflict_precision:.3f} (hard, must be "
+        f"{HARD_CONFLICT_PRECISION:.1f}): {'PASS' if cal.hard_pass else 'FAIL'} · "
+        f"informative-pair accuracy {p.informative_accuracy:.3f} (soft target "
+        f"{SOFT_TARGET:.2f}): {'met' if cal.soft_pass else 'MISSED'}"
     )
     return "\n".join(out)

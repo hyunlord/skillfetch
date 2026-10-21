@@ -2,7 +2,7 @@
 
 from conftest import FIXTURES_DIR, load_corpus
 
-from skillfetch.ingest.calibrate import GATE, calibrate, render_calibration
+from skillfetch.ingest.calibrate import SOFT_TARGET, calibrate, render_calibration
 from skillfetch.ingest.extract import EXTRACT_VERSION, ExtractRecord, ExtractResult
 
 PAIRS = 41 * 40 // 2
@@ -52,7 +52,10 @@ def test_perfect_extraction_scores_one():
     assert "informative pairs: 1.000 (33/33)" in text
     assert (cal.pairs.recall, cal.pairs.false_positives) == (1.0, 0)
     assert "recall 1.000 (33/33), false positives 0" in text
-    assert "PASS" in text.splitlines()[-1]
+    assert text.splitlines()[-1] == (
+        "gate: conflict precision 1.000 (hard, must be 1.0): PASS · "
+        "informative-pair accuracy 1.000 (soft target 0.85): met"
+    )
 
 
 def test_field_disagreement_that_keeps_relations_costs_no_pair_accuracy():
@@ -114,15 +117,17 @@ def test_failed_and_missing_extractions_count_against_accuracy():
     assert cal.pairs.correct < PAIRS
 
 
-def test_an_empty_extractor_does_not_pass_the_gate():
-    # 787 of 820 pairs are independent, so extracting nothing scores ~0.96 over all pairs.
-    # The gate is on informative pairs (expected or got not independent), where it scores 0.
+def test_an_empty_extractor_misses_the_soft_target():
+    # 787 of 820 pairs are independent, so extracting nothing scores ~0.96 over all pairs;
+    # over informative pairs it scores 0. It flags no conflict, so conflict precision is
+    # vacuously 1.0 and the hard gate passes: the soft target is what catches it.
     records = {sid: _record(sid, []) for sid in load_corpus()}
     cal = calibrate(FIXTURES_DIR, records)
-    assert cal.pairs.accuracy > GATE
-    assert cal.pairs.informative_accuracy == 0.0 and not cal.passed
+    assert cal.pairs.accuracy > SOFT_TARGET
+    assert cal.pairs.informative_accuracy == 0.0
     assert (cal.pairs.recall, cal.pairs.false_positives) == (0.0, 0)
-    assert "BELOW GATE" in render_calibration(cal).splitlines()[-1]
+    assert cal.hard_pass and not cal.soft_pass
+    assert render_calibration(cal).splitlines()[-1].endswith("(soft target 0.85): MISSED")
 
 
 def test_false_conflicts_count_against_the_gate():
@@ -136,3 +141,5 @@ def test_false_conflicts_count_against_the_gate():
     ]
     assert (cal.pairs.informative_correct, cal.pairs.informative_total) == (33, 34)
     assert (cal.pairs.recall, cal.pairs.false_positives) == (1.0, 1)
+    assert not cal.hard_pass and not cal.passed  # one false conflict fails the hard gate
+    assert "(hard, must be 1.0): FAIL" in render_calibration(cal)

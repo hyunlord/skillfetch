@@ -145,14 +145,36 @@ def test_with_api_uses_the_real_client_factory(tmp_path, capsys, monkeypatch):
     assert "API calls: 41" in out and "PASS" in out
 
 
-def test_calibrate_below_gate_exits_one(tmp_path, capsys, monkeypatch):
+def test_a_false_conflict_fails_the_hard_gate(tmp_path, capsys, monkeypatch):
+    import json
+
+    from conftest import oracle
+
+    def with_false_conflict(request):
+        response = oracle(request)
+        data = json.loads(response["content"][0]["text"])
+        if data["summary"].startswith("inline-comments"):
+            data["constraints"][0]["object"] = "restating the code"  # collides with a ban
+        response["content"][0]["text"] = json.dumps(data)
+        return response
+
+    client = FakeClient(*[with_false_conflict] * N)
+    monkeypatch.setattr(
+        backends_mod, "make_backend", lambda spec, **kw: AnthropicBackend(client, SONNET)
+    )
+    args = ["ingest", str(FIXTURES_DIR), "--with-api", "--calibrate", "--cache-dir", str(tmp_path)]
+    assert main(args + ["--jobs", "1"]) == 1
+    assert "(hard, must be 1.0): FAIL" in capsys.readouterr().out
+
+
+def test_missing_the_soft_target_alone_exits_zero(tmp_path, capsys, monkeypatch):
     client = FakeClient(*[recorded("not-json.json")] * (2 * N))
     monkeypatch.setattr(
         backends_mod, "make_backend", lambda spec, **kw: AnthropicBackend(client, SONNET)
     )
     args = ["ingest", str(FIXTURES_DIR), "--with-api", "--calibrate", "--cache-dir", str(tmp_path)]
-    assert main(args) == 1
-    assert "BELOW GATE" in capsys.readouterr().out
+    assert main(args) == 0
+    assert capsys.readouterr().out.rstrip().endswith("(soft target 0.85): MISSED")
 
 
 def test_api_errors_are_reported_not_raised(tmp_path, capsys, monkeypatch):

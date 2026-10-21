@@ -62,7 +62,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     ingest.add_argument(
         "--calibrate",
         action="store_true",
-        help="compare extraction with the hand labels; exit 1 below the 0.90 gate",
+        help="compare extraction with the hand labels; exit 1 if any extracted conflict is "
+        "false (hard gate), report the 0.85 informative-accuracy soft target",
     )
     ingest.add_argument(
         "--model",

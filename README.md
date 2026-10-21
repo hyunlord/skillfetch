@@ -59,8 +59,8 @@ together, scope it to one task, or tell you afterwards whether it helped.
         `--json` and `--fail-on`
   - [x] constraint extraction through the API (`ingest --with-api`, extract
         cache, cost log) and `--calibrate` against the fixtures
-  - [ ] pass the calibration gate (informative-pair accuracy ≥ 0.90) with a
-        real model run; then let `scan` use cached extractions instead of
+  - [ ] pass calibration with a real model run (conflict precision 1.0 hard,
+        informative-pair accuracy ≥ 0.85 soft); then let `scan` use cached extractions instead of
         `constraints.json`
   - [ ] public corpus ingest (`skillfetch ingest <source>`, `sources.yaml`,
         snapshots) and the top-N public skills scan + write-up

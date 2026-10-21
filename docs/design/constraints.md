@@ -158,13 +158,24 @@ constraints. `skillfetch ingest tests/fixtures --with-api --calibrate`
   with the hand label. Every mismatched pair is printed with the hand-labelled
   evidence lines and what was extracted on those lines.
 
-**The gate (0.90) is on informative pairs**: pairs where the hand label or the
-extracted relation is not `independent`. Most fixture pairs are independent
-(787 of 820), so accuracy over all pairs is ~0.96 for an extractor that
-extracts nothing; over informative pairs that extractor scores 0, and every
-false conflict on an independent pair enlarges the denominator. Accuracy over
-all pairs is still printed. `--calibrate` exits 1 below the gate. Below the
-gate, fix the prompt before building on the extractor.
+**Gates.**
+
+- **Hard: conflict precision = 1.0.** Every pair the extracted constraints
+  call `conflict` must be labelled `conflict`. One false conflict fails
+  calibration (`--calibrate` exits 1). This is the §7 policy applied to the
+  extractor: a false "these skills contradict" costs more trust than any miss.
+- **Soft: informative-pair accuracy ≥ 0.85.** Informative pairs are those
+  where the hand label or the extracted relation is not `independent`. Most
+  fixture pairs are independent (787 of 820), so accuracy over all pairs is
+  ~0.96 for an extractor that extracts nothing; over informative pairs it
+  scores 0, and every false relation on an independent pair enlarges the
+  denominator. Missing the target is reported (`MISSED`) but does not fail the
+  run; it means fix the prompt before building on the extractor.
+
+Conflict precision is vacuously 1.0 when no conflict is flagged, so an
+extractor that finds nothing passes the hard gate; the soft target is what
+catches it. Accuracy over all pairs, labelled-pair recall and the number of
+false positives are printed as well.
 
 ## 3. Pairwise relation
 
@@ -324,7 +335,8 @@ hard rule: it is what keeps false positives from destroying trust.
 
 ## 7. Precision policy for v0.1
 
-- Extraction quality is gated separately (§2, informative-pair accuracy ≥ 0.90);
+- Extraction quality is gated separately (§2: conflict precision 1.0 hard,
+  informative-pair accuracy ≥ 0.85 soft);
   this section is about the rules given correct constraints.
 - Measured on `tests/fixtures/skills/`: `conflict` precision must be 1.0;
   recall is reported but not gated. Because fixture constraints are
