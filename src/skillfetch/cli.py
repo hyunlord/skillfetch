@@ -101,7 +101,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     ingest.add_argument(
         "--with-api",
         action="store_true",
-        help="call the model API for skills not in the extract cache (costs money)",
+        help="extract skills not in the cache with --model: claude-code (default) queues the "
+        "requests for Claude Code; openrouter/anthropic/openai backends call an API (costs money)",
     )
     ingest.add_argument(
         "--calibrate",
@@ -137,7 +138,11 @@ def main(argv: Sequence[str] | None = None) -> int:
     target.add_argument("--index", type=Path, help="a built index (with its -reports dir)")
     judge.add_argument("--work-dir", type=Path, default=DEFAULT_WORK_DIR, help="snapshots")
     judge.add_argument("--model", default=judge_mod.DEFAULT_JUDGE_MODEL)
-    judge.add_argument("--with-api", action="store_true", help="call the model (costs money)")
+    judge.add_argument(
+        "--with-api",
+        action="store_true",
+        help="judge uncached pairs with --model (claude-code queues them; API backends cost money)",
+    )
     judge.add_argument("--jobs", type=int, default=8)
     judge.add_argument("--creds-file", type=Path, default=credentials.DEFAULT_CREDS_FILE)
     judge.add_argument("--limit", type=int, help="judge only the first N pairs")
@@ -150,7 +155,11 @@ def main(argv: Sequence[str] | None = None) -> int:
     obey.add_argument("--work-dir", type=Path, default=DEFAULT_WORK_DIR, help="snapshots")
     obey.add_argument("--pairs", type=int, default=30, help="pairs to test (default 30)")
     obey.add_argument("--model", default=judge_mod.DEFAULT_JUDGE_MODEL, help="task writer")
-    obey.add_argument("--with-api", action="store_true", help="call the model (costs money)")
+    obey.add_argument(
+        "--with-api",
+        action="store_true",
+        help="write uncached tasks with --model (claude-code queues them; API backends cost money)",
+    )
     obey.add_argument("--creds-file", type=Path, default=credentials.DEFAULT_CREDS_FILE)
 
     for p in (scan, ingest, serve):

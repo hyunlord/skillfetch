@@ -27,7 +27,7 @@ from skillfetch.ingest.extract import ExtractBackend
 from skillfetch.ingest.judge_run import JudgePair
 
 DEFAULT_CACHE = Path("~/.skillfetch/obedience-cache").expanduser()
-DEFAULT_AGENT_MODEL = "openrouter/openai/gpt-6-luna"
+DEFAULT_AGENT_MODEL = "claude-code/sonnet"  # subagent sessions, not an API
 TRIALS = 10
 Followed = Literal["a", "b", "both", "neither"]
 

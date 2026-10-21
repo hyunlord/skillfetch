@@ -43,7 +43,7 @@ class LocalSkill:
 class Session:
     index: Index
     extract_cache: ExtractCache = field(default_factory=lambda: ExtractCache(DEFAULT_CACHE_DIR))
-    model: str = DEFAULT_MODEL
+    model: str | None = None  # extraction key for pinned paths; default: the index's
     bodies: BodyCache = field(default_factory=BodyCache)
     searcher: Searcher | None = None
     resolutions: dict[str, dict] = field(default_factory=dict)  # set_id -> resolve_set output
@@ -51,6 +51,8 @@ class Session:
     profiles: dict[str, dict] = field(default_factory=dict)  # resolved repo path -> profile
 
     def __post_init__(self):
+        if self.model is None:  # look up cached extractions made the way the index was built
+            self.model = self.index.manifest.get("extract_model") or DEFAULT_MODEL
         if self.searcher is None:
             self.searcher = Searcher(self.index)
 

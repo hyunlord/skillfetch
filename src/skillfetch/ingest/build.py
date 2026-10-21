@@ -106,7 +106,9 @@ class SkillRecord(BaseModel):
     dropped: list[str] = []
     extract_error: str | None = None
     # why a skill that passed lint and scan has no constraints: "too_large" keeps its tier
-    not_extracted_reason: Literal["too_large", "no cache entry", "api_error"] | None = None
+    not_extracted_reason: (
+        Literal["too_large", "no cache entry", "api_error", "pending_answer"] | None
+    ) = None
 
 
 @dataclass
@@ -487,7 +489,10 @@ def build_index(
         b.fresh = digest in fresh
         if digest in api_errors:
             # not cached: a rerun retries it; tier C until then
-            b.record.status, b.record.not_extracted_reason = "not_extracted", "api_error"
+            reason = (
+                "pending_answer" if api_errors[digest].startswith("PendingAnswer") else "api_error"
+            )
+            b.record.status, b.record.not_extracted_reason = "not_extracted", reason
             b.record.extract_error = api_errors[digest]
             continue
         _apply_extraction(b, fresh.get(digest) or cached[digest])
@@ -518,6 +523,7 @@ def build_index(
             "too_large": reasons.get("too_large", 0),
             "not_extracted": reasons.get("no cache entry", 0),
             "api_errors": reasons.get("api_error", 0),
+            "pending_answers": reasons.get("pending_answer", 0),
         },
         "licenses": dict(sorted(Counter(b.record.license for b in skills).items())),
         "license_sources": dict(sorted(Counter(b.record.license_source for b in skills).items())),

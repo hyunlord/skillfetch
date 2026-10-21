@@ -173,6 +173,15 @@ than `logging`, and as `logging` it would read as a blanket ban.
   one-sided narrowing change the relation).
 - Output: structured output (`output_config.format`, strict JSON schema in
   `ingest/extract.py`) for the whole extract object of `index-format.md` §1.5.
+- Default backend `claude-code/<model>` (`ingest/claude_code.py`, since the
+  "no external API" rule): requests are queued under
+  `~/.skillfetch/claude-code-queue/pending/` and answered inside a Claude Code
+  session (`answers/<request sha>.json`); a rerun caches them in the usual
+  format under the key `claude-code/<model>`. An unanswered request is that
+  item's `pending_answer`, never a failed run. The API backends below stay
+  available through `--model`; the index built so far was extracted with
+  `openrouter/openai/gpt-6-luna` and judged with
+  `openrouter/anthropic/claude-sonnet-5.5`.
 - Backends (`ingest/backends.py`, protocol `ExtractBackend` in `extract.py`):
   `anthropic/<model>` uses the Messages API with `output_config.format`;
   `openai/<model>` uses Chat Completions with `response_format: json_schema`

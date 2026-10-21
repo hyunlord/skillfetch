@@ -28,7 +28,9 @@ from skillfetch.ingest.extract import Completion, ExtractBackend
 from skillfetch.ingest.sections import section_headings
 
 JUDGE_VERSION = 1
-DEFAULT_JUDGE_MODEL = "openrouter/anthropic/claude-sonnet-5.5"
+# claude-code by default (no API). The 2011 judgments of the first full build were made with
+# openrouter/anthropic/claude-sonnet-5.5 and are imported into pairs.jsonl as they are.
+DEFAULT_JUDGE_MODEL = "claude-code/opus-5.5"
 DEFAULT_CACHE = Path("~/.skillfetch/judge-cache").expanduser()
 CONTEXT_LINES = 5
 MAX_EVIDENCE = 2  # evidence lines per side

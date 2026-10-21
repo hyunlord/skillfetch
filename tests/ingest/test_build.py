@@ -223,6 +223,7 @@ def test_manifest_counts_and_file_hashes(world):
         "extract_failed": 0,
         "too_large": 1,
         "api_errors": 0,
+        "pending_answers": 0,
         "not_extracted": 0,
     }
     src = {s["id"]: s for s in manifest["sources"]}

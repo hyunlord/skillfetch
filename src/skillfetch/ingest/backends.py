@@ -23,7 +23,7 @@ from skillfetch.ingest.extract import (
     Usage,
 )
 
-PROVIDERS = ("anthropic", "openai", "openrouter")
+PROVIDERS = ("claude-code", "anthropic", "openai", "openrouter")
 OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 _HOST_PROVIDERS = {"openrouter.ai": "openrouter"}  # base_url host -> cache-key provider
 
@@ -248,6 +248,10 @@ def make_backend(
 ) -> ExtractBackend:
     provider, model = parse_model(spec)
     label = _provider_label(provider, base_url)
+    if provider == "claude-code":
+        from skillfetch.ingest.claude_code import ClaudeCodeBackend
+
+        return ClaudeCodeBackend(model)
     if provider == "anthropic":
         return AnthropicBackend(make_anthropic_client(), model)
     if label == "openrouter":
