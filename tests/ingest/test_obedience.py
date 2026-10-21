@@ -65,8 +65,12 @@ def test_trials_count_a_and_b_and_flag_non_determinism(tmp_path):
     agent = Fake("agent", ["o1", "o2", "o3", "o4"])  # equal outputs share one verdict
     verdicts = [{"followed": f, "reason": "r"} for f in ["a", "b", "a", "neither"]]
     judge = Fake("judge", verdicts)
-    trials = run_trials(task, ("body a", "body b"), agent, judge, trials=4, cache_dir=tmp_path)
+    skills = (("skill-a", "body a"), ("skill-b", "body b"))
+    trials = run_trials(task, skills, agent, judge, trials=4, cache_dir=tmp_path)
     dist, mixed = summarize(trials)
     assert dist == {"a": 2, "b": 1, "neither": 1} and mixed
     assert agent.calls[0][2] == {}  # free text, default temperature
-    assert '<skill name="A">\nbody a' in agent.calls[0][0]
+    first, second = agent.calls[0][0], agent.calls[1][0]
+    assert first.index("skill-a") < first.index("skill-b")  # run 0: A first
+    assert second.index("skill-b") < second.index("skill-a")  # run 1: B first
+    assert [t.order for t in trials] == ["ab", "ba", "ab", "ba"]

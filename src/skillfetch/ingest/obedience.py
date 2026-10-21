@@ -23,12 +23,13 @@ from typing import Literal
 
 from pydantic import BaseModel
 
-from skillfetch.ingest.extract import ExtractBackend
+from skillfetch.ingest.claude_code import PendingAnswer
+from skillfetch.ingest.extract import Completion, ExtractBackend, Usage
 from skillfetch.ingest.judge_run import JudgePair
 
 DEFAULT_CACHE = Path("~/.skillfetch/obedience-cache").expanduser()
 DEFAULT_AGENT_MODEL = "claude-code/sonnet"  # subagent sessions, not an API
-TRIALS = 10
+TRIALS = 5
 Followed = Literal["a", "b", "both", "neither"]
 
 TASK_PROMPT = """You design one test task for a coding agent. The agent will have both of the
@@ -161,48 +162,116 @@ def render_tasks(tasks: list[ObedienceTask]) -> str:
 class Trial:
     pair: str
     run: int
+    order: str  # "ab": skill A loaded first; "ba": B first
     output: str
     followed: Followed | None
     reason: str
 
 
-def system_prompt(body_a: str, body_b: str) -> str:
+def system_prompt(skills: list[tuple[str, str]]) -> str:
+    """Both skills, as (name, body), in the given order and with no precedence rule: the
+    test asks which one the agent follows on its own."""
+    blocks = "\n\n".join(f'<skill name="{name}">\n{body}\n</skill>' for name, body in skills)
     return (
-        "You are a coding agent. Follow the skills below while you work.\n\n"
-        f'<skill name="A">\n{body_a}\n</skill>\n\n<skill name="B">\n{body_b}\n</skill>'
+        "The following skills are loaded for this task. Follow them while you work.\n\n"
+        f"{blocks}\n\n{NO_TOOLS}"
     )
+
+
+# The runs have no tools. Without this note most runs (51 of the first 90) wrote out a tool
+# call as text ("Let me find the file") and ended there, which says nothing about the skills.
+NO_TOOLS = (
+    "This session has no tools: no shell, no file access, no network. Everything you can use "
+    "is in the user's message. Do the task in this one reply and give the complete result "
+    "(code, text, plan or decision) directly, as you would after reading the files."
+)
+
+
+class ClaudeSessionAgent:
+    """The agent under test: one isolated headless Claude Code session per run
+    (`claude -p --safe-mode`: no CLAUDE.md, plugins, hooks or MCP; no tools), with the skills
+    appended to its system prompt. Not an API call from skillfetch."""
+
+    def __init__(self, model: str = "sonnet", workdir: Path | None = None):
+        self.model = model
+        self.workdir = workdir or Path("/tmp")
+
+    @property
+    def key(self) -> str:
+        return f"claude-code/{self.model}-session"
+
+    def complete(self, system: str, messages: list[dict[str, str]], schema: dict) -> Completion:
+        import subprocess
+        import tempfile
+
+        with tempfile.NamedTemporaryFile("w", suffix=".md", delete=False) as f:
+            f.write(system)
+        cmd = [
+            "claude",
+            "-p",
+            "--safe-mode",
+            "--tools",
+            "",
+            "--no-session-persistence",
+            "--model",
+            self.model,
+            "--output-format",
+            "json",
+            "--append-system-prompt-file",
+            f.name,
+            messages[-1]["content"],
+        ]
+        # stdin closed: `claude -p` appends piped stdin to the prompt
+        proc = subprocess.run(
+            cmd, capture_output=True, text=True, cwd=self.workdir, stdin=subprocess.DEVNULL
+        )
+        Path(f.name).unlink(missing_ok=True)
+        data = json.loads(proc.stdout)
+        if data.get("is_error") or data.get("terminal_reason") not in (None, "completed"):
+            raise RuntimeError(f"claude session failed: {data.get('terminal_reason')}")
+        return Completion(
+            text=data.get("result") or "",
+            stop_reason="end_turn",
+            # what the session would have cost at API prices (Claude Code reports it)
+            usage=Usage(reported_cost_usd=data.get("total_cost_usd")),
+        )
 
 
 def run_trials(
     task: ObedienceTask,
-    bodies: tuple[str, str],
+    skills: tuple[tuple[str, str], tuple[str, str]],
     agent: ExtractBackend,
     judge: ExtractBackend,
     trials: int = TRIALS,
     cache_dir: Path = DEFAULT_CACHE,
 ) -> list[Trial]:
-    """`trials` agent runs (each cached under its run number) and their classification."""
-    system = system_prompt(*bodies)
+    """`trials` agent runs (each cached under its run number) and their classification.
+    Even runs load A first, odd runs B first, so a position bias shows up."""
     out = []
     for n in range(trials):
+        order = "ab" if n % 2 == 0 else "ba"
+        system = system_prompt(list(skills) if order == "ab" else list(skills)[::-1])
 
-        def answer() -> dict:
+        def answer(system=system) -> dict:
             # empty schema: free text at the default temperature, so runs can differ
             reply = agent.complete(system, [{"role": "user", "content": task.task}], {})
-            return {"text": reply.text}
+            return {"text": reply.text, "cost_usd": reply.usage.reported_cost_usd}
 
         text = _cached(cache_dir, f"runs/{agent.key}", f"{system}\0{task.task}\0{n}", answer)
         user = (
             f"Task:\n{task.task}\n\nFollows A: {task.follows_a}\nFollows B: {task.follows_b}"
             f"\n\nAgent output:\n{text['text']}"
         )
-        verdict = _cached(
-            cache_dir,
-            f"classify/{judge.key}",
-            CLASSIFY_PROMPT + "\0" + user,
-            lambda user=user: _json_call(judge, CLASSIFY_PROMPT, user, CLASSIFY_SCHEMA),
-        )
-        out.append(Trial(task.pair, n, text["text"], verdict["followed"], verdict["reason"]))
+        try:
+            verdict = _cached(
+                cache_dir,
+                f"classify/{judge.key}",
+                CLASSIFY_PROMPT + "\0" + user,
+                lambda user=user: _json_call(judge, CLASSIFY_PROMPT, user, CLASSIFY_SCHEMA),
+            )
+        except PendingAnswer:  # queued for Claude Code; a rerun picks the answer up
+            verdict = {"followed": None, "reason": "pending"}
+        out.append(Trial(task.pair, n, order, text["text"], verdict["followed"], verdict["reason"]))
     return out
 
 
@@ -210,3 +279,41 @@ def summarize(trials: list[Trial]) -> tuple[Counter, bool]:
     """(distribution of followed, non-deterministic: both A and B occur)."""
     dist = Counter(t.followed for t in trials)
     return dist, dist["a"] > 0 and dist["b"] > 0
+
+
+def render_results(tasks: list[ObedienceTask], results: list[list[Trial]]) -> str:
+    """Per-pair distribution, the non-deterministic count, and a position-bias check."""
+    lines = ["# Obedience split test: results", ""]
+    mixed = 0
+    total: Counter = Counter()
+    first: Counter = Counter()  # followed the skill loaded first / second
+    rows = []
+    for t, trials in zip(tasks, results, strict=True):
+        dist, nondet = summarize(trials)
+        mixed += nondet
+        total.update(dist)
+        for tr in trials:
+            if tr.followed in ("a", "b"):
+                first["first" if tr.followed == tr.order[0] else "second"] += 1
+        a, b = (x.split("/")[1].split("@")[0] for x in t.pair.split("|"))
+        cells = " | ".join(str(dist.get(k, 0)) for k in ("a", "b", "both", "neither"))
+        rows.append(f"| {a} ⟷ {b} | {cells} | {dist.get(None, 0)} | {'yes' if nondet else ''} |")
+    n = sum(len(tr) for tr in results)
+    lines += [
+        f"{len(tasks)} pairs × {len(results[0]) if results else 0} runs = {n} runs. "
+        f"Non-deterministic pairs (both A and B followed across runs): **{mixed}**.",
+        "",
+        "Overall: "
+        + ", ".join(f"{k} {total.get(k, 0)}" for k in ("a", "b", "both", "neither"))
+        + (f", pending {total[None]}" if total.get(None) else ""),
+        "",
+        f"When exactly one skill was followed, it was the one loaded first {first['first']} "
+        f"times and the one loaded second {first['second']} times.",
+        "",
+        "## Per pair",
+        "",
+        "| pair (A ⟷ B) | A | B | both | neither | pending | non-deterministic |",
+        "|---|---|---|---|---|---|---|",
+        *rows,
+    ]
+    return "\n".join(lines)

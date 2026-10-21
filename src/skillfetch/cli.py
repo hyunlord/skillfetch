@@ -169,6 +169,16 @@ def main(argv: Sequence[str] | None = None) -> int:
         help="write uncached tasks with --model (claude-code queues them; API backends cost money)",
     )
     obey.add_argument("--creds-file", type=Path, default=credentials.DEFAULT_CREDS_FILE)
+    obey.add_argument(
+        "--run",
+        type=Path,
+        metavar="TASKS",
+        help="run the trials for an approved tasks.json: each run is an isolated Claude Code "
+        "session; classifications go to --model (claude-code: queued for Claude Code)",
+    )
+    obey.add_argument("--trials", type=int, default=5)
+    obey.add_argument("--agent-model", default="sonnet", help="Claude Code model for the runs")
+    obey.add_argument("--jobs", type=int, default=6)
 
     for p in (scan, ingest, serve):
         p.add_argument(
@@ -364,12 +374,65 @@ def _judge(args: argparse.Namespace) -> int:
     return 0 if not failed else 1
 
 
+def _obedience_run(args: argparse.Namespace) -> int:
+    import json as _json
+    from concurrent.futures import ThreadPoolExecutor
+
+    from skillfetch.ingest import obedience
+    from skillfetch.ingest.skillfile import read_skill
+
+    tasks = [obedience.ObedienceTask.model_validate(t) for t in _json.loads(args.run.read_text())]
+    records = {}
+    for line in (args.index / "skills.jsonl").open():
+        r = _json.loads(line)
+        records[r["id"]] = r
+
+    def skill(sid: str) -> tuple[str, str]:
+        r = records[sid]
+        doc = read_skill(args.work_dir / r["source_id"] / r["commit"] / r["path"])
+        return r["name"], "\n".join(doc.body_lines).strip()
+
+    agent = obedience.ClaudeSessionAgent(args.agent_model)
+    judge = backends.make_backend(args.model, creds_file=args.creds_file)
+
+    def one(task):
+        a, b = task.pair.split("|")
+        return obedience.run_trials(task, (skill(a), skill(b)), agent, judge, args.trials)
+
+    with ThreadPoolExecutor(max_workers=max(1, args.jobs)) as pool:
+        results = list(pool.map(one, tasks))
+    out_dir = args.run.parent
+    rows = [
+        {
+            "pair": t.pair,
+            "run": tr.run,
+            "order": tr.order,
+            "followed": tr.followed,
+            "reason": tr.reason,
+            "output": tr.output,
+        }
+        for t, trials in zip(tasks, results, strict=True)
+        for tr in trials
+    ]
+    (out_dir / "trials.jsonl").write_text(
+        "".join(_json.dumps(r, ensure_ascii=False) + "\n" for r in rows)
+    )
+    pending = sum(r["followed"] is None for r in rows)
+    report = obedience.render_results(tasks, results)
+    (out_dir / "results.md").write_text(report + "\n")
+    print(report.split("\n## ", 1)[0])
+    print(f"{len(rows)} runs · {pending} classifications pending · {out_dir / 'results.md'}")
+    return 0 if not pending else 3
+
+
 def _obedience(args: argparse.Namespace) -> int:
     """Writes the task list for review; the trials run only after it is approved."""
     import json as _json
 
     from skillfetch.ingest import judge_run, obedience
 
+    if args.run is not None:
+        return _obedience_run(args)
     report_dir = args.index.with_name(args.index.name + "-reports")
     rows = [_json.loads(line) for line in (report_dir / "judgments.jsonl").open()]
     selected = obedience.select_pairs(rows, args.pairs)
