@@ -268,7 +268,8 @@ def test_prompt_asks_for_one_constraint_per_line():
 
 def test_prompt_separates_conditions_from_targets():
     prompt = system_prompt()
-    assert '"Format all Python code with black"' in prompt
+    # the calibration counterexample, reworded (the original is a fixture line)
+    assert '"Run black on every Python file" has condition\nnull' in prompt
     assert "Python is what gets formatted" in prompt
 
 
@@ -282,3 +283,36 @@ def test_prompt_examples_do_not_quote_fixture_lines():
             rule = line.removeprefix("- ").strip()
             if line.startswith("- ") and len(rule) > 25:
                 assert rule not in prompt, (d.name, rule)
+
+
+def test_prompt_shares_no_five_word_run_with_a_fixture_rule():
+    import re
+
+    from conftest import fixture_skill_dirs
+
+    def words(text):
+        return re.findall(r"[a-z0-9']+", text.lower())
+
+    prompt = words(system_prompt())
+    shingles = {tuple(prompt[i : i + 5]) for i in range(len(prompt) - 4)}
+    for d in fixture_skill_dirs():
+        for line in (d / "SKILL.md").read_text().splitlines():
+            if not line.startswith("- "):
+                continue
+            w = words(line)
+            hits = [
+                " ".join(w[i : i + 5]) for i in range(len(w) - 4) if tuple(w[i : i + 5]) in shingles
+            ]
+            assert not hits, (d.name, hits)
+
+
+def test_prompt_covers_the_patterns_all_models_missed():
+    prompt = system_prompt()
+    for marker in (
+        "ask-before-acting",
+        "summary-at-end",
+        "preamble",
+        "type-hints",
+        "commit-granularity",
+    ):
+        assert prompt.count(f'"subject": "{marker}"') >= 1, marker

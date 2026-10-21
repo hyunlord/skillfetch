@@ -37,8 +37,8 @@ instruction, it is not a constraint.
 
 Emit at most one constraint per line. When a line gives several instructions, keep the main
 one: the one about a vocabulary term if there is one, otherwise the first. Do not split a rule
-into its parts or its reasons ("Never squash; one logical change per commit" is one constraint:
-`commit-granularity`, `forbid`, `squash`).
+into its parts or its reasons ("Don't squash; each commit holds one self-contained change" is
+one constraint: `commit-granularity`, `forbid`, `squash`).
 
 ## subject
 
@@ -60,25 +60,25 @@ Otherwise use a short lowercase noun phrase for the thing being regulated, not t
 | `avoid` | should not, avoid, try not to, prefer not to | `should` |
 | `order` | one thing happens before or after another | `must` unless softened |
 
-Polarity follows meaning, not wording: "Skip any preamble" forbids `preamble`; "Keep commits
-free of emoji" forbids `emoji`. Strength follows the directive unless the line clearly says
+Polarity follows meaning, not wording: "Get straight to the answer, no warm-up" forbids
+`preamble`; "Keep commits free of emoji" forbids `emoji`. Strength follows the directive unless the line clearly says
 otherwise.
 
 For `order`, `subject` is one side, `object` the other, and `direction` says whether the subject
-comes `before` or `after` the object. "Write the failing test before any code" → subject
+comes `before` or `after` the object. "Start with a test that fails, then make it pass" → subject
 `tests`, object `implementation`, direction `before`. `direction` is null for every other
 directive.
 
 ## object
 
 Null when the subject alone says it: "Never use emoji" → `emoji`, `forbid`, object null.
-Set it when the rule targets one part or one choice: "Never put emoji in section headers" →
+Set it when the rule targets one part or one choice: "Keep emoji out of headings" →
 object `in headers`.
 
 For a vocabulary subject the object must be one of the objects listed next to the term, or
 null; a term marked "(no object)" always takes null. Do not restate the subject in the object:
-"End with a summary of every change you made" is `summary-at-end` with object null, not
-"every change you made". If a line is narrower than every listed object, it is not about the
+"Close each reply with a recap of the edits you made" is `summary-at-end` with object null,
+not "the edits you made". If a line is narrower than every listed object, it is not about the
 vocabulary term: use a more specific free-text subject instead ("Never log request bodies" →
 subject `request body logging`, object null).
 
@@ -111,7 +111,7 @@ one language, framework or artifact name when possible, lowercase and without "w
 editing generated protobuf files, do not reformat them" → `generated protobuf files`; "When
 fixing a bug, …" → `bug fixes`. Otherwise a short phrase. Null for unconditional rules.
 
-A condition is not what the rule is about. "Format all Python code with black" has condition
+A condition is not what the rule is about. "Run black on every Python file" has condition
 null: Python is what gets formatted, not a situation in which the rule applies (the skill's
 languages go in `tags.languages`). The same holds for objects: in "Every exported function needs
 a docstring", `public functions` is the object, not a condition. What a rule applies to goes in
@@ -152,3 +152,63 @@ Line 9 is rationale: no constraint. Line 12 gives two instructions about one slo
    "evidence": {"line_no": 14, "text": "Commit messages must not contain emoji."}}
 ]
 ```
+
+# Patterns that are easy to get wrong
+
+Each pair below states the same rule in different words, or two rules that collide. Extract
+them so that the constraints are identical where the rules are identical: the comparison is
+exact, so paraphrased objects or extra constraints hide duplicates and contradictions.
+
+```
+  4| - Confirm with the user before you edit anything.
+  5| - Don't pause for approval while implementing; decide and carry on.
+  6| - Close each reply with a recap of the edits you made.
+  7| - No closing recap; stop when the work is done.
+  8| - Get straight to the answer, no warm-up sentence.
+  9| - Do not paraphrase the request back to the user first.
+ 10| - Annotate every parameter and return value.
+ 11| - Each function signature carries full type annotations.
+ 12| - Don't squash; each commit holds one self-contained change.
+ 13| - Keep every commit to a single logical change and never squash them.
+```
+
+```json
+[
+  {"subject": "ask-before-acting", "directive": "require", "object": null, "direction": null,
+   "scope": {"artifact": "any", "phase": "any", "condition": null}, "strength": "must",
+   "evidence": {"line_no": 4, "text": "Confirm with the user before you edit anything."}},
+  {"subject": "ask-before-acting", "directive": "forbid", "object": null, "direction": null,
+   "scope": {"artifact": "any", "phase": "implement", "condition": null}, "strength": "must",
+   "evidence": {"line_no": 5, "text": "Don't pause for approval while implementing; decide and carry on."}},
+  {"subject": "summary-at-end", "directive": "require", "object": null, "direction": null,
+   "scope": {"artifact": "response", "phase": "any", "condition": null}, "strength": "must",
+   "evidence": {"line_no": 6, "text": "Close each reply with a recap of the edits you made."}},
+  {"subject": "summary-at-end", "directive": "forbid", "object": null, "direction": null,
+   "scope": {"artifact": "response", "phase": "any", "condition": null}, "strength": "must",
+   "evidence": {"line_no": 7, "text": "No closing recap; stop when the work is done."}},
+  {"subject": "preamble", "directive": "forbid", "object": null, "direction": null,
+   "scope": {"artifact": "response", "phase": "any", "condition": null}, "strength": "must",
+   "evidence": {"line_no": 8, "text": "Get straight to the answer, no warm-up sentence."}},
+  {"subject": "preamble", "directive": "forbid", "object": null, "direction": null,
+   "scope": {"artifact": "response", "phase": "any", "condition": null}, "strength": "must",
+   "evidence": {"line_no": 9, "text": "Do not paraphrase the request back to the user first."}},
+  {"subject": "type-hints", "directive": "require", "object": null, "direction": null,
+   "scope": {"artifact": "code", "phase": "any", "condition": null}, "strength": "must",
+   "evidence": {"line_no": 10, "text": "Annotate every parameter and return value."}},
+  {"subject": "type-hints", "directive": "require", "object": null, "direction": null,
+   "scope": {"artifact": "code", "phase": "any", "condition": null}, "strength": "must",
+   "evidence": {"line_no": 11, "text": "Each function signature carries full type annotations."}},
+  {"subject": "commit-granularity", "directive": "forbid", "object": "squash", "direction": null,
+   "scope": {"artifact": "commit-message", "phase": "any", "condition": null}, "strength": "must",
+   "evidence": {"line_no": 12, "text": "Don't squash; each commit holds one self-contained change."}},
+  {"subject": "commit-granularity", "directive": "forbid", "object": "squash", "direction": null,
+   "scope": {"artifact": "commit-message", "phase": "any", "condition": null}, "strength": "must",
+   "evidence": {"line_no": 13, "text": "Keep every commit to a single logical change and never squash them."}}
+]
+```
+
+Lines 4–5 and 6–7 contradict each other; 8–9, 10–11 and 12–13 are the same rule twice, and
+their constraints are identical apart from the evidence. Line 4 has no object: "before you edit
+anything" is what asking before acting means. Line 5's ban is limited to implementation, so its
+phase is narrower than line 4's. Restatements such as "the edits you made" or "full type
+annotations" are not objects.
