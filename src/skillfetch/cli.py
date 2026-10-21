@@ -142,6 +142,17 @@ def main(argv: Sequence[str] | None = None) -> int:
     judge.add_argument("--creds-file", type=Path, default=credentials.DEFAULT_CREDS_FILE)
     judge.add_argument("--limit", type=int, help="judge only the first N pairs")
 
+    obey = sub.add_parser(
+        "obedience",
+        help="obedience split test over the judge's conflict / ambiguous pairs",
+    )
+    obey.add_argument("--index", type=Path, required=True, help="a judged index")
+    obey.add_argument("--work-dir", type=Path, default=DEFAULT_WORK_DIR, help="snapshots")
+    obey.add_argument("--pairs", type=int, default=30, help="pairs to test (default 30)")
+    obey.add_argument("--model", default=judge_mod.DEFAULT_JUDGE_MODEL, help="task writer")
+    obey.add_argument("--with-api", action="store_true", help="call the model (costs money)")
+    obey.add_argument("--creds-file", type=Path, default=credentials.DEFAULT_CREDS_FILE)
+
     for p in (scan, ingest, serve):
         p.add_argument(
             "--conflict-cap",
@@ -171,6 +182,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         return _ingest(args)
     if args.command == "judge":
         return _judge(args)
+    if args.command == "obedience":
+        return _obedience(args)
     if args.command == "serve":
         return _serve(args)
     return 2  # unreachable: argparse rejects unknown commands
@@ -320,6 +333,33 @@ def _judge(args: argparse.Namespace) -> int:
     print(summary)
     print(f"report: {path}")
     return 0 if not failed else 1
+
+
+def _obedience(args: argparse.Namespace) -> int:
+    """Writes the task list for review; the trials run only after it is approved."""
+    import json as _json
+
+    from skillfetch.ingest import judge_run, obedience
+
+    report_dir = args.index.with_name(args.index.name + "-reports")
+    rows = [_json.loads(line) for line in (report_dir / "judgments.jsonl").open()]
+    selected = obedience.select_pairs(rows, args.pairs)
+    wanted = {r["pair"] for r in selected}
+    pairs = {p.key: p for p in judge_run.index_pairs(args.index, args.work_dir) if p.key in wanted}
+    backend = (
+        backends.make_backend(args.model, creds_file=args.creds_file)
+        if args.with_api
+        else _NoAPI(backends.backend_key(args.model))
+    )
+    tasks = obedience.generate_tasks(selected, pairs, backend)
+    (report_dir / "obedience-tasks.json").write_text(
+        _json.dumps([t.model_dump() for t in tasks], indent=2, ensure_ascii=False)
+    )
+    path = report_dir / "obedience-tasks.md"
+    path.write_text(obedience.render_tasks(tasks) + "\n")
+    cost = sum(t.cost_usd or 0 for t in tasks)
+    print(f"{len(tasks)} tasks · cost ${cost:.4f} · {path}")
+    return 0
 
 
 def _ingest(args: argparse.Namespace) -> int:

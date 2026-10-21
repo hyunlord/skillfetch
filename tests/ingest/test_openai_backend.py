@@ -286,3 +286,11 @@ def test_a_response_without_usage_counts_zero_tokens():
     record, _ = run(response)
     assert record.status == "ok"
     assert record.usage == Usage() and record.usage.reported_cost_usd is None
+
+
+def test_an_empty_schema_asks_for_free_text_at_default_temperature():
+    client = FakeOpenAIClient(rec("commit-squash.ok.json"))
+    backend = OpenAICompatBackend(client, "gpt-test")
+    backend.complete("sys", [{"role": "user", "content": "hi"}], {})
+    [req] = client.requests
+    assert "response_format" not in req and "temperature" not in req

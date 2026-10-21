@@ -141,14 +141,17 @@ class OpenAICompatBackend:
         request: dict[str, Any] = {
             "model": self.model,
             "messages": [{"role": "system", "content": system}, *messages],
-            "response_format": {
-                "type": "json_schema",
-                "json_schema": {"name": "skill_extract", "schema": schema, "strict": True},
-            },
             self._token_param: MAX_TOKENS,
         }
-        if self._temperature:
-            request["temperature"] = 0
+        if schema:
+            request["response_format"] = {
+                "type": "json_schema",
+                "json_schema": {"name": "skill_extract", "schema": schema, "strict": True},
+            }
+            if self._temperature:
+                request["temperature"] = 0
+        # An empty schema asks for free text at the model's default temperature (the
+        # obedience test samples an agent several times; temperature 0 would hide variance).
         if self.extra_body:
             request["extra_body"] = self.extra_body
         return request

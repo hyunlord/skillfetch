@@ -508,3 +508,15 @@ pair (`relation.relation_reason`; for capped conflicts, row 14's reason) with
 the verdict and lists every `ambiguous_together` pair with its lines. The
 judge never changes an index or a `resolve_set` result.
 
+### 8.1 Obedience split test
+
+`skillfetch obedience --index <dir>` takes the judge's `conflict` and
+`ambiguous_together` pairs, ranked by confidence (top 30), and has the judge
+model write one short task per pair that makes both instructions apply, with
+a one-sentence description of an output that follows A and one that follows B
+(`obedience-tasks.md`, reviewed before anything runs). The trials
+(`obedience.run_trials`) put both full skill bodies in the agent's system
+prompt, run the task ten times with the extractor model at its default
+temperature, and have the judge classify each output as following A, B, both
+or neither; a pair whose runs include both A and B is non-deterministic.
+
