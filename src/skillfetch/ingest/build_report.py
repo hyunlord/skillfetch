@@ -169,6 +169,16 @@ def render_report(result: BuildResult) -> str:
         + f"; {len(cached)} extractions came from the cache.",
         "",
     ]
+    reused, n_reused, estimated = result.cached_cost()
+    if n_reused:
+        est = f", {estimated} of them estimated from the mean" if estimated else ""
+        out += [
+            f"The {n_reused} cached extractions cost ${reused:.4f} when earlier runs made "
+            f"them (provider-reported{est}); that includes runs that were interrupted and "
+            "never printed a total. Extraction cost behind this index: "
+            f"${cost + reused:.4f}.",
+            "",
+        ]
     return "\n".join(out)
 
 

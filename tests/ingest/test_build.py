@@ -446,3 +446,15 @@ def test_an_api_error_on_one_skill_does_not_stop_the_build(world):
     assert {b.record.id.split("@")[0]: b.record.status for b in again.skills}[
         "aggregator/atomic-commits"
     ] == "ok"
+
+
+def test_report_states_what_cached_extractions_cost(world):
+    from skillfetch.ingest.build_report import render_report
+
+    tmp_path, sources, _ = world
+    _build(tmp_path, sources, KeywordOracle())
+    again = _build(tmp_path, sources, KeywordOracle())  # everything from the cache
+    cost, n, estimated = again.cached_cost()
+    assert n == 8 and estimated == 0 and cost > 0
+    report = render_report(again)
+    assert f"The 8 cached extractions cost ${cost:.4f} when earlier runs made them" in report

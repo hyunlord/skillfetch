@@ -132,6 +132,24 @@ class BuildResult:
                 total += b.extraction.cost_usd or 0.0
         return total
 
+    def cached_cost(self) -> tuple[float, int, int]:
+        """(cost, extractions, of which estimated) of the extractions reused from the cache:
+        what earlier runs paid for them, including runs that were interrupted and never
+        printed a total. Provider-reported where the record has it, else the mean of the
+        reported ones."""
+        seen, known, unknown = set(), [], 0
+        for b in self.skills:
+            e = b.extraction
+            if b.fresh or e is None or not e.attempts or b.record.content_hash in seen:
+                continue
+            seen.add(b.record.content_hash)
+            if e.cost_usd is None:
+                unknown += 1
+            else:
+                known.append(e.cost_usd)
+        mean = sum(known) / len(known) if known else 0.0
+        return sum(known) + unknown * mean, len(seen), unknown
+
 
 # --- sampling and records ---------------------------------------------------------------------
 
