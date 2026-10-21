@@ -102,7 +102,7 @@ class SkillRecord(BaseModel):
     dropped: list[str] = []
     extract_error: str | None = None
     # why a skill that passed lint and scan has no constraints: "too_large" keeps its tier
-    not_extracted_reason: Literal["too_large", "no cache entry"] | None = None
+    not_extracted_reason: Literal["too_large", "no cache entry", "api_error"] | None = None
 
 
 @dataclass
@@ -444,10 +444,20 @@ def build_index(
         for b in ok
         if cached[b.record.content_hash] is None
     ]
-    fresh = run_extractions(todo, cache, extractor, jobs) if extractor and todo else {}
+    api_errors: dict[str, str] = {}
+    fresh = (
+        run_extractions(todo, cache, extractor, jobs, errors=api_errors)
+        if extractor and todo
+        else {}
+    )
     for b in ok:
         digest = b.record.content_hash
         b.fresh = digest in fresh
+        if digest in api_errors:
+            # not cached: a rerun retries it; tier C until then
+            b.record.status, b.record.not_extracted_reason = "not_extracted", "api_error"
+            b.record.extract_error = api_errors[digest]
+            continue
         _apply_extraction(b, fresh.get(digest) or cached[digest])
 
     candidates = [b for b in skills if b.record.status not in ("lint_failed", "scan_failed")]
@@ -475,6 +485,7 @@ def build_index(
             # too_large keeps its tier; "no cache entry" (a run without --with-api) is tier C
             "too_large": reasons.get("too_large", 0),
             "not_extracted": reasons.get("no cache entry", 0),
+            "api_errors": reasons.get("api_error", 0),
         },
         "licenses": dict(sorted(Counter(b.record.license for b in skills).items())),
         "license_sources": dict(sorted(Counter(b.record.license_source for b in skills).items())),
@@ -514,8 +525,8 @@ def render_summary(result: BuildResult) -> str:
         "not indexed: "
         + ", ".join(f"{k}={c[k]}" for k in ("lint_failed", "scan_failed"))
         + f" · tier C: extract_failed={c['extract_failed']}, "
-        f"not in cache={c['not_extracted']} · too large to extract (tier kept): "
-        f"{c['too_large']}"
+        f"not in cache={c['not_extracted']}, API errors={c.get('api_errors', 0)} · too large "
+        f"to extract (tier kept): {c['too_large']}"
     )
     lines.append(
         f"redistributable: {m['redistributable']} of {c['A'] + c['B'] + c['C']} indexed · "

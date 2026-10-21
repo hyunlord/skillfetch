@@ -207,6 +207,14 @@ def _build(args: argparse.Namespace, key: str, extractor: extract.Extractor | No
     print(render_summary(result))
     report, review = write_reports(result, args.out.with_name(args.out.name + "-reports"))
     print(f"reports: {report} · {review}")
+    failed = result.manifest["counts"].get("api_errors", 0)
+    if failed:
+        print(
+            f"skillfetch: {failed} skills hit API errors and were not extracted; rerun to "
+            "retry them (finished extractions are cached)",
+            file=sys.stderr,
+        )
+        return 1
     return 0
 
 

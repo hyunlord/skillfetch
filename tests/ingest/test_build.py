@@ -217,6 +217,7 @@ def test_manifest_counts_and_file_hashes(world):
         "scan_failed": 1,
         "extract_failed": 0,
         "too_large": 1,
+        "api_errors": 0,
         "not_extracted": 0,
     }
     src = {s["id"]: s for s in manifest["sources"]}
@@ -416,3 +417,32 @@ def test_upstream_licenses_fill_license_source(world, tmp_path):
     from skillfetch.ingest.build_report import render_report
 
     assert "## License source" in render_report(result)
+
+
+def test_an_api_error_on_one_skill_does_not_stop_the_build(world):
+    tmp_path, sources, _ = world
+
+    class Flaky(KeywordOracle):
+        def create(self, **request):
+            if "| name: atomic-commits" in request["messages"][0]["content"]:
+                raise ConnectionError("Connection error.")
+            return super().create(**request)
+
+    result = _build(tmp_path, sources, Flaky())
+    recs = {b.record.id.split("@")[0]: b.record for b in result.skills}
+    atomic = recs["aggregator/atomic-commits"]
+    assert (atomic.status, atomic.not_extracted_reason, atomic.tier) == (
+        "not_extracted",
+        "api_error",
+        "C",
+    )
+    assert "Connection error." in atomic.extract_error
+    assert recs["aggregator/small-commits"].status == "ok"  # the rest went on
+    assert result.manifest["counts"]["api_errors"] == 1
+
+    client = KeywordOracle()
+    again = _build(tmp_path, sources, client)  # the rerun retries only the failed skill
+    assert len(client.requests) == 1
+    assert {b.record.id.split("@")[0]: b.record.status for b in again.skills}[
+        "aggregator/atomic-commits"
+    ] == "ok"

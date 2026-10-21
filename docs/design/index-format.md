@@ -240,6 +240,11 @@ constraints, and keeps the tier the other rules give it (anthropics'
 claude-api is A). It can be searched and loaded but never takes part in a
 conflict or duplicate check. `extract_failed` and `not_extracted` with reason
 `no cache entry` (a build without `--with-api`) stay tier C.
+A request that fails (connection, provider or SDK error, after the SDK's own
+retries) does not stop the build: that skill gets `not_extracted_reason:
+api_error`, is tier C for this build, is not cached, and is retried by the next
+run; `ingest` exits 1 when any skill failed this way. (The first full UASL
+build was stopped by a single `Connection error.` after ~270 extractions.)
 
 `network.bare-url` warnings do not count as "warnings" for the tier: skills for
 web APIs are full of documentation URLs, and in the first public build that one
