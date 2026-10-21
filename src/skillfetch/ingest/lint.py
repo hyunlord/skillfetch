@@ -18,6 +18,11 @@ _REF_DEF = re.compile(r"^\s{0,3}\[[^\]]+\]:\s*(<[^>]*>|\S+)")
 _INLINE_CODE = re.compile(r"`+[^`]*`+")
 _FENCE = re.compile(r"^\s{0,3}(```|~~~)")
 _SCHEME = re.compile(r"^[a-zA-Z][a-zA-Z0-9+.-]*:")
+# Link targets that stand for a link the reader fills in: "[Title](URL)", "{baseDir}/x.md",
+# "${SKILL_DIR}/x", "<path>", "...".
+_PLACEHOLDER = re.compile(
+    r"[{}$]|^(?:url|uri|link|path|href|target|todo|tbd|placeholder|\.\.\.|…)$", re.IGNORECASE
+)
 
 
 class Issue(BaseModel):
@@ -130,6 +135,14 @@ def lint_skill(skill_dir: Path) -> LintResult:
         )
 
     for line_no, target in _link_targets(doc):
-        if issue := _check_link(skill_dir, line_no, target):
+        if _PLACEHOLDER.search(target):
+            result.warnings.append(
+                Issue(
+                    rule="lint.placeholder-link",
+                    message=f"link target {target!r} looks like a placeholder; not checked",
+                    line_no=line_no,
+                )
+            )
+        elif issue := _check_link(skill_dir, line_no, target):
             result.errors.append(issue)
     return result

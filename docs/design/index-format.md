@@ -69,10 +69,16 @@ checks we own:
   reference definitions are checked; links inside fenced or inline code, URLs
   with a scheme, and `#anchors` are not. A link that leaves the folder (`../`,
   or an absolute path) is an error too: the folder is materialized on its own.
+  A placeholder target is a warning (`lint.placeholder-link`), not checked:
+  template syntax (`{baseDir}/…`, `${VAR}`) or a stand-in word (`URL`, `link`,
+  `path`, `href`, `TODO`, `...`; not file names such as `README`). A template line such as
+  `[Title](URL) — one-sentence description` is not a broken link (it rejected
+  anthropics' academy-guide in the first public build).
 
 Rule ids: `lint.missing-skill-md`, `lint.frontmatter-{missing,unclosed,invalid}`,
 `lint.missing-{name,description}`, `lint.broken-link`, `lint.link-outside-skill`
-(errors); `lint.body-too-long`, `lint.body-too-many-tokens` (warnings).
+(errors); `lint.body-too-long`, `lint.body-too-many-tokens`,
+`lint.placeholder-link` (warnings).
 
 Fail → skill is recorded with `status: lint_failed` and excluded from the index.
 Lint findings are stored so the data write-up can count them.
