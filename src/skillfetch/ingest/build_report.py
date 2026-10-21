@@ -7,7 +7,7 @@ from collections import Counter, defaultdict
 from itertools import combinations
 from pathlib import Path
 
-from skillfetch.ingest.build import BuildResult, Built
+from skillfetch.ingest.build import BuildResult, Built, tier_warnings
 from skillfetch.ingest.calibrate import compact
 from skillfetch.ingest.local_scan import pair_finding
 from skillfetch.resolve.models import Constraint, Skill
@@ -38,7 +38,7 @@ def _c_reasons(b: Built, by_id: dict) -> list[str]:
         reasons.append("copy of a tier A skill")
     if r.has_scripts:
         reasons.append("has scripts (publisher not verified)")
-    if r.publisher_trust == "unknown" and r.scan.get("warnings"):
+    if r.publisher_trust == "unknown" and tier_warnings(r.scan):
         reasons.append("unknown publisher with scan warnings")
     return reasons
 

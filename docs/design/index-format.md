@@ -213,6 +213,11 @@ index keeps all members but `search_skills` returns only canonicals unless
 
 Tier is recomputed on every ingest; it is not stored in the source.
 
+`network.bare-url` warnings do not count as "warnings" for the tier: skills for
+web APIs are full of documentation URLs, and in the first public build that one
+rule alone put 129 of 185 UASL skills in tier C. The warning is still recorded
+in the skill's `scan` field and in the build report.
+
 ### 1.8 License and redistribution
 
 Each skill record carries `license` (an SPDX id, `proprietary`, or `unknown`)

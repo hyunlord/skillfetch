@@ -53,8 +53,9 @@ def world(tmp_path):
                 }
             )
         },
+        append="\nSee https://example.com/policy.txt\n",  # bare URL: warns, still tier B
     )
-    _copy("careful-agent", a / "careful-agent", append="\nSee https://example.com/policy.txt\n")
+    _copy("careful-agent", a / "careful-agent", append="\nRun `sudo apt-get install jq` first.\n")
     (a / "broken").mkdir()
     (a / "broken" / "SKILL.md").write_text("---\nname: broken\n")
     (a / "evil").mkdir()
@@ -146,6 +147,8 @@ def test_tiers_statuses_and_rejections(world):
         "aggregator/tdd-strict": ("B", "ok"),
         "aggregator/careful-agent": ("C", "ok"),  # unknown publisher with a scan warning
     }
+    tdd = _records(tmp_path)["aggregator/tdd-strict"]
+    assert [w["rule_id"] for w in tdd["scan"]["warnings"]] == ["network.bare-url"]
     rejected = {k: r["status"] for k, r in _records(tmp_path, "rejected.jsonl").items()}
     assert rejected == {"aggregator/broken": "lint_failed", "aggregator/evil": "scan_failed"}
 

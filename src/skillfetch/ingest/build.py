@@ -259,10 +259,21 @@ def dedup(skills: list[Built]) -> dict[str, list[str]]:
     return groups
 
 
+# Warnings that do not demote an unknown publisher's skill to tier C. Skills for web APIs are
+# full of documentation URLs; in the first public build `network.bare-url` alone put 129 of
+# 185 UASL skills in tier C.
+TIER_NEUTRAL_WARNINGS = frozenset({"network.bare-url"})
+
+
+def tier_warnings(scan: dict) -> list[dict]:
+    """Scan warnings that count against an unknown publisher (§1.7)."""
+    return [w for w in scan.get("warnings", []) if w["rule_id"] not in TIER_NEUTRAL_WARNINGS]
+
+
 def assign_tiers(skills: list[Built]) -> None:
     """§1.7. A: verified and passed lint + scan + extract. B: passed, no scripts, not a
-    duplicate of an A skill, and not an unknown publisher with scan warnings. C: the rest
-    that did not fail lint or the scan."""
+    duplicate of an A skill, and not an unknown publisher with scan warnings (bare URLs do not
+    count). C: the rest that did not fail lint or the scan."""
     by_id = {b.record.id: b.record for b in skills}
     for b in skills:
         r = b.record
@@ -276,7 +287,7 @@ def assign_tiers(skills: list[Built]) -> None:
             copy_of_a = (
                 r.canonical_id != r.id and by_id[r.canonical_id].publisher_trust == "verified"
             )
-            warned = r.publisher_trust == "unknown" and bool(r.scan.get("warnings"))
+            warned = r.publisher_trust == "unknown" and bool(tier_warnings(r.scan))
             r.tier = "C" if copy_of_a or r.has_scripts or warned else "B"
 
 
