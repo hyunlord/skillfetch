@@ -9,6 +9,7 @@ from pathlib import Path
 
 from skillfetch.ingest import backends, credentials, extract
 from skillfetch.ingest.build import build_index, render_summary
+from skillfetch.ingest.build_report import write_reports
 from skillfetch.ingest.calibrate import calibrate, render_calibration
 from skillfetch.ingest.extract_cache import DEFAULT_CACHE_DIR, ExtractCache
 from skillfetch.ingest.ingest import extract_dir, render_cost_log
@@ -161,6 +162,8 @@ def _build(args: argparse.Namespace, key: str, extractor: extract.Extractor | No
         jobs=args.jobs,
     )
     print(render_summary(result))
+    report, review = write_reports(result, args.out.with_name(args.out.name + "-reports"))
+    print(f"reports: {report} · {review}")
     return 0
 
 

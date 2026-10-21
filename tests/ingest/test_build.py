@@ -308,3 +308,72 @@ def test_cli_rejects_unknown_source_ids(world, capsys):
     args = ["ingest", "--sources", str(_sources_file(tmp_path, sources)), "--only", "nope"]
     assert main(args + ["--out", str(tmp_path / "idx")]) == 2
     assert "unknown source id: nope" in capsys.readouterr().err
+
+
+# --- reports --------------------------------------------------------------------------------------
+
+
+def test_reports(world):
+    from skillfetch.ingest.build_report import render_report, render_review
+
+    tmp_path, sources, _ = world
+    result = _build(tmp_path, sources, KeywordOracle())
+    report = render_report(result)
+    for section in (
+        "## Tiers",
+        "## Not indexed",
+        "## Why tier C",
+        "## Licenses",
+        "## Conditions set to null",
+        "## Cost",
+    ):
+        assert section in report, section
+    assert "| aggregator | 0 | 3 | 3 |" in report  # A, B, C for the aggregator
+    assert "`lint.frontmatter-unclosed` | 1" in report
+    assert "`override.ignore-previous` | 1" in report
+    assert "copy of a tier A skill | 1" in report
+
+    review = render_review(result)
+    assert "## conflict" in review
+    assert "commit-squash" in review and "atomic-commits" in review
+    assert '"Never squash; one logical change per commit, always."' in review
+    # canonicals only: the aggregator's copy of plain-markdown is not reviewed twice
+    assert "aggregator/plain-markdown" not in review
+
+
+def test_condition_nulls_are_listed(world, monkeypatch):
+    from skillfetch.ingest.build_report import render_report
+
+    tmp_path, sources, _ = world
+    result = _build(tmp_path, sources, KeywordOracle())
+    some = next(b for b in result.skills if b.record.status == "ok")
+    some.record.adjusted = ["line 12: condition 'feature work' -> null (not a language, ...)"]
+    report = render_report(result)
+    assert f"{some.record.id}` line 12: condition 'feature work' -> null" in report
+
+
+def test_cli_writes_reports(world, monkeypatch, capsys):
+    import skillfetch.ingest.backends as backends_mod
+    from skillfetch.cli import main
+
+    tmp_path, sources, _ = world
+    client = KeywordOracle()
+    monkeypatch.setattr(
+        backends_mod, "make_backend", lambda spec, **kw: AnthropicBackend(client, "claude-sonnet-5")
+    )
+    args = [
+        "ingest",
+        "--sources",
+        str(_sources_file(tmp_path, sources)),
+        "--with-api",
+        "--out",
+        str(tmp_path / "idx"),
+        "--work-dir",
+        str(tmp_path / "work"),
+        "--cache-dir",
+        str(tmp_path / "cache"),
+    ]
+    assert main(args) == 0
+    reports = tmp_path / "idx-reports"
+    assert (reports / "report.md").is_file() and (reports / "review.md").is_file()
+    assert str(reports / "review.md") in capsys.readouterr().out
