@@ -7,6 +7,7 @@ from skillfetch.resolve.models import Constraint, Skill
 from skillfetch.resolve.relation import (
     Relation,
     complementary,
+    conflict_cap,
     constraint_relation,
     normalize_term,
     skill_relation,
@@ -592,3 +593,98 @@ def test_equal_multisets_remain_redundant_both_ways_with_containment():
     a = S("a", k("emoji", "forbid", artifact="any"), k("preamble", "forbid"))
     b = S("b", k("preamble", "forbid"), k("emoji", "forbid", artifact="any"))
     assert skill_relation(a, b).relation == skill_relation(b, a).relation == Relation.REDUNDANT
+
+
+# --- conflict caps (§3 row 14) ------------------------------------------------------------------
+
+
+def _under(c, heading):
+    return c.model_copy(update={"section_heading": heading})
+
+
+def test_object_less_conflict_needs_a_vocabulary_subject():
+    # "Don't assume." -> forbid assumptions vs "State assumptions explicitly"
+    a, b = k("assumptions", "forbid"), k("assumptions", "require", "at each level")
+    assert rel(a, b) == Relation.NEEDS_REVIEW
+    assert conflict_cap(a, b) == "free-text subject"
+    # with objects on both sides a free-text subject still conflicts
+    assert rel(k("squash", "require", "every pr"), k("squash", "forbid", "every pr")) == (
+        Relation.CONFLICT
+    )
+
+
+def test_cap_mode_all_caps_every_object_less_pair(monkeypatch):
+    import skillfetch.resolve.relation as R
+
+    monkeypatch.setattr(R, "OBJECTLESS_CAP", "all")
+    assert rel(k("emoji", "require"), k("emoji", "forbid")) == Relation.NEEDS_REVIEW
+    assert rel(k("emoji", "require", "in headers"), k("emoji", "forbid", "in headers")) == (
+        Relation.CONFLICT
+    )
+
+
+@pytest.mark.parametrize(
+    "heading, text, uncertain",
+    [
+        ("Never", "Ignore naming conventions.", True),
+        ("❌ Don't", "Skip validation before activation", True),
+        ("Avoid (Common Mistakes)", "Don't use low-contrast elements", False),  # not a label
+        ("Never", "Use plural nouns for collections", False),  # no negating verb
+        ("Naming", "Ignore naming conventions.", False),  # not a negative heading
+        ("Do's and Don'ts", "Skip validation", False),
+    ],
+)
+def test_polarity_uncertain(heading, text, uncertain):
+    from skillfetch.resolve.polarity import polarity_uncertain
+
+    assert polarity_uncertain(_under(k("naming-convention", "forbid", text=text), heading)) is (
+        uncertain
+    )
+
+
+def test_polarity_uncertain_constraints_never_conflict():
+    gateway = _under(k("naming-convention", "forbid", text="Ignore naming conventions."), "Never")
+    plural = k("naming-convention", "require", text="Use plural nouns for collections.")
+    assert rel(gateway, plural) == Relation.NEEDS_REVIEW
+    assert conflict_cap(gateway, plural) == "polarity"
+
+
+def test_fan_out_caps_a_hub_constraint():
+    from skillfetch.resolve.relation import mark_fan_out
+
+    hub = S("hub", k("emoji", "forbid", text="Never emoji."))
+    others = [
+        S(f"s{i}", k("emoji", "require", obj, text=f"t{i}"))
+        for i, obj in enumerate(["in headers", "in commit subjects", "in release notes"])
+    ]
+    marked = mark_fan_out([hub, *others])
+    assert marked[0].constraints[0].fan_out is True
+    assert not any(c.fan_out for s in marked[1:] for c in s.constraints)
+    assert skill_relation(marked[0], marked[1]).relation == Relation.NEEDS_REVIEW
+    # two conflicting skills are not a fan-out
+    two = mark_fan_out([hub, *others[:2]])
+    assert skill_relation(two[0], two[1]).relation == Relation.CONFLICT
+
+
+def test_fan_out_counts_near_duplicates_once():
+    from skillfetch.resolve.relation import mark_fan_out
+
+    hub = S("hub", k("emoji", "forbid", text="Never emoji."))
+    same = [S(f"d{i}", k("emoji", "require", "in headers", text=f"t{i}")) for i in range(3)]
+    marked = mark_fan_out([hub, *same])
+    assert marked[0].constraints[0].fan_out is False
+
+
+def test_candidate_pairs_cover_every_related_fixture_pair():
+    from itertools import combinations
+
+    from conftest import load_corpus
+
+    from skillfetch.resolve.relation import candidate_pairs, pair_label
+
+    corpus = load_corpus()
+    skills = [corpus[n] for n in sorted(corpus)]
+    candidates = set(candidate_pairs(skills))
+    for i, j in combinations(range(len(skills)), 2):
+        if pair_label(skills[i], skills[j]) != "independent":
+            assert (i, j) in candidates, (skills[i].id, skills[j].id)

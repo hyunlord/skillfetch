@@ -74,6 +74,7 @@ def test_schema_mirrors_the_result_models():
     assert set(constraint["properties"]) == set(Constraint.model_fields) - {
         "id",
         "section_heading",
+        "fan_out",
     }
 
 

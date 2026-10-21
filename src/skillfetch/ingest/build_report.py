@@ -4,13 +4,13 @@ condition nulls, cost) and review.md (every informative pair, with evidence, for
 from __future__ import annotations
 
 from collections import Counter, defaultdict
-from itertools import combinations
 from pathlib import Path
 
 from skillfetch.ingest.build import BuildResult, Built, tier_warnings
 from skillfetch.ingest.calibrate import compact
 from skillfetch.ingest.local_scan import pair_finding
 from skillfetch.resolve.models import Constraint, Skill
+from skillfetch.resolve.relation import candidate_pairs
 from skillfetch.resolve.report import render_finding
 
 KIND_ORDER = ("conflict", "redundant", "tension", "needs_review")
@@ -189,12 +189,12 @@ def informative_findings(result: BuildResult):
         if b.record.tier and b.record.status == "ok" and b.record.canonical_id == b.record.id
     ]
     canon.sort(key=lambda b: b.record.id)
-    skills = {b.record.id: Skill(id=b.record.id, constraints=b.constraints) for b in canon}
+    skills = [Skill(id=b.record.id, constraints=b.constraints) for b in canon]
     found = []
-    for a, b in combinations(canon, 2):
-        f = pair_finding(skills[a.record.id], skills[b.record.id])
+    for i, j in candidate_pairs(skills):
+        f = pair_finding(skills[i], skills[j])
         if f is not None:
-            found.append((f, a, b))
+            found.append((f, canon[i], canon[j]))
     found.sort(key=lambda t: (KIND_ORDER.index(t[0].kind), t[0].a, t[0].b))
     return found
 

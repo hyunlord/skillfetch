@@ -91,9 +91,12 @@ together, scope it to one task, or tell you afterwards whether it helped.
   ecosystem. An unknown tool in one of those slots is `needs_review`; other
   subjects, such as naming conventions, are never treated as exclusive.
 - When the rules are unsure, they report `needs_review`, never `conflict`.
-- A rule whose line names something narrower than its subject ("don't swallow
-  errors" → error handling) never makes a conflict on its own: it is reported as
-  `needs_review`, because extraction turns such lines into blanket rules.
+- A conflict is only reported when both rules are clear. It is downgraded to
+  `needs_review` when one rule conflicts with three or more skills (more likely
+  a misread than a real contradiction), when its line is a double negative
+  under a "Don't" heading, when its line names something narrower than its
+  subject, or when it is a blanket rule about a subject outside the controlled
+  vocabulary.
 
 ## License
 

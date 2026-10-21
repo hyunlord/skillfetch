@@ -293,7 +293,7 @@ Relation of the pair (a, b) — evaluated top to bottom, first match wins
 | 11 | opposite ∧ positive side has no object, negative side has one ("use emoji" vs "never in headers": a carve-out) | `needs_review` |
 | 12 | opposite ∧ the positive side's scope is broader on artifact or phase (positive `any`, negative specific; "use emoji" vs "never in Markdown": a carve-out by scope) | `needs_review` |
 | 13 | opposite ∧ norm(conditions) differ (incl. one null) | `needs_review` |
-| 14 | opposite ∧ opposed(a, b) = `conflict` ∧ a side is *narrowed*: object null but `object_raw` names something other than the subject | `needs_review` |
+| 14 | any rule above gives `conflict`, but `conflict_cap(a, b)` names a reason (14a–d below) | `needs_review` |
 | 15 | opposite (objects and scopes equal, or a blanket ban — broader object or scope on the negative side — vs a specific requirement; conditions equal) | opposed(a, b) |
 
 Rows 11 and 12 are the same asymmetry, once by object and once by scope. A ban
@@ -303,24 +303,37 @@ to) the requirement cannot be followed together with it: opposed. When the
 positive side is broader on one dimension and the negative on the other, row 12
 applies (unsure → `needs_review`).
 
-Row 14 caps object-less hard rules that the line narrowed. A `require`/`forbid`
-without an object is a statement about the whole subject, and that is what
-extraction gets wrong on real skills: a narrow line becomes a blanket rule
-("Don't swallow errors" → `forbid error-handling`; "once a team is selected, do
-not ask for separate confirmation" → `forbid ask-before-acting`). In the first
-public build (extraction v4) all 24 `conflict` pairs were false, every one had
-an object-less ban on one side, and three such bans produced 21 of them. The
-extractor records what the line actually named in `object_raw` ("swallowing
-errors"); when the object is null and `object_raw` names something other than
-the subject, the rule is narrower than it reads, and the pair is
-`needs_review` with both lines shown. A rule with no `object_raw` ("Never use
-emoji") is a real blanket rule and still conflicts. Soft pairs keep `tension`.
+Row 14 caps a conflict at `needs_review` when one of these holds
+(`relation.conflict_cap`, checked in this order):
 
-v5 capped every object-less hard pair; that relabelled 8 real fixture
-conflicts (emoji, type hints, preamble, summary-at-end) as `needs_review`.
-v6 narrows the cap to rules with an `object_raw`, which depends on the
-extractor leaving `object_raw` null for blanket rules and restatements (the
-prompt says so; calibration measures it).
+- **14a fan-out.** One side conflicts with three or more distinct skills of the
+  corpus (`mark_fan_out`; skills that conflict with it through the same set of
+  rules count once). A hub is far more likely an extraction error than a real
+  contradiction with that many skills: in the first public build three
+  misread bans produced 21 of 24 false conflicts. The flag is computed at index
+  time over all indexed skills and stored on the constraint (`fan_out`), so
+  `resolve_set` sees it; `scan`, calibration and the holdout compute it over
+  their own corpus.
+- **14b polarity.** One side's directive is uncertain: its line sits under a
+  heading that lists what not to do (`polarity.negative_heading`: a label such
+  as "Don't", "Never", "Avoid", "Anti-patterns", "Drop", or a ❌ marker) and
+  negates again on its own ("Ignore naming conventions.", "Skip validation").
+  Such double negatives were misread in both directions in every extraction
+  version so far.
+- **14c narrowed.** An object-less side whose `object_raw` names something other
+  than the subject ("Don't swallow errors" → `forbid error-handling`, raw
+  "swallowing errors").
+- **14d free-text subject.** An object-less hard pair on a subject outside the
+  vocabulary. A blanket rule about a vocabulary term ("never use emoji") is
+  well defined; a blanket rule about free text is usually a misread ("Don't
+  assume." → `forbid assumptions`, vs "State assumptions explicitly").
+  `relation.OBJECTLESS_CAP = "all"` caps every object-less pair instead
+  (extraction v5's rule).
+
+History: v5 capped every object-less pair (8 real fixture conflicts lost); v6
+capped only narrowed ones (all 19 fixture conflicts kept, but 2 false
+conflicts on the holdout and 9 on the seed-43 build, all object-less with an
+empty `object_raw`). 14a, 14b and 14d were added after v6.
 
 Rows 8a, 8c and 10–14 are v0.1 precision choices: an object, scope or
 condition mismatch means the rules cannot tell whether both instructions can be

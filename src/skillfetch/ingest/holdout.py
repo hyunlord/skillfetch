@@ -29,6 +29,7 @@ from skillfetch.ingest.skillfile import content_hash
 from skillfetch.ingest.snapshot import DEFAULT_WORK_DIR, snapshot
 from skillfetch.ingest.sources import Source
 from skillfetch.resolve.models import Constraint, Skill
+from skillfetch.resolve.relation import fan_out_map
 from skillfetch.resolve.report import render_finding
 
 LABELS = (*LABEL_KEYS, "independent")
@@ -135,10 +136,12 @@ def measure_holdout(
         if digest in fresh:
             records[sid] = fresh[digest]
             cost += fresh[digest].cost_usd or 0.0
-    extracted = {
-        sid: Skill(id=sid, constraints=_with_ids(records[sid], sid) if sid in records else [])
-        for sid in holdout.skills
-    }
+    extracted = fan_out_map(
+        {
+            sid: Skill(id=sid, constraints=_with_ids(records[sid], sid) if sid in records else [])
+            for sid in holdout.skills
+        }
+    )
     missing = sorted(sid for sid in dirs if sid not in records or records[sid].status != "ok")
     return HoldoutResult(
         pairs=compare_pairs(holdout.labels(), extracted),

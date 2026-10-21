@@ -37,8 +37,8 @@ from skillfetch.ingest.skillfile import (
 )
 from skillfetch.ingest.snapshot import DEFAULT_WORK_DIR, Snapshot, snapshot
 from skillfetch.ingest.sources import Source
-from skillfetch.resolve.models import Constraint
-from skillfetch.resolve.relation import constraint_identity
+from skillfetch.resolve.models import Constraint, Skill
+from skillfetch.resolve.relation import constraint_identity, mark_fan_out
 
 SCHEMA_VERSION = 1
 KEYWORD_JACCARD = 0.8
@@ -291,6 +291,15 @@ def assign_tiers(skills: list[Built]) -> None:
             r.tier = "C" if copy_of_a or r.has_scripts or warned else "B"
 
 
+def _mark_fan_out(skills: list[Built]) -> None:
+    """constraints.md §3 row 14: flag constraints that conflict with three or more distinct
+    indexed skills; the flag is stored in constraints.jsonl for resolve_set."""
+    indexed = [b for b in skills if b.record.tier and b.constraints]
+    marked = mark_fan_out([Skill(id=b.record.id, constraints=b.constraints) for b in indexed])
+    for b, s in zip(indexed, marked, strict=True):
+        b.constraints = s.constraints
+
+
 # --- writing ------------------------------------------------------------------------------------
 
 
@@ -392,6 +401,7 @@ def build_index(
     candidates = [b for b in skills if b.record.status not in ("lint_failed", "scan_failed")]
     groups = dedup(candidates)
     assign_tiers(skills)
+    _mark_fan_out(skills)
 
     counts = Counter(b.record.tier for b in skills if b.record.tier)
     statuses = Counter(b.record.status for b in skills)

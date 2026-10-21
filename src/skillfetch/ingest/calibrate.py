@@ -29,7 +29,13 @@ from skillfetch.ingest.extract import ExtractRecord
 from skillfetch.ingest.local_scan import load_sidecar
 from skillfetch.ingest.skillfile import discover_skills
 from skillfetch.resolve.models import Constraint, Skill
-from skillfetch.resolve.relation import Relation, normalize_term, pair_label, skill_relation
+from skillfetch.resolve.relation import (
+    Relation,
+    fan_out_map,
+    normalize_term,
+    pair_label,
+    skill_relation,
+)
 from skillfetch.resolve.report import render_finding
 from skillfetch.resolve.resolver import make_finding
 
@@ -268,10 +274,12 @@ def calibrate(fixtures_dir: Path, records: Mapping[str, ExtractRecord]) -> Calib
     """fixtures_dir holds skills/ and expected.yaml (the layout of tests/fixtures/)."""
     labelled = load_labelled(fixtures_dir / "skills")
     labels = load_labels(fixtures_dir / "expected.yaml")
-    extracted = {
-        sid: Skill(id=sid, constraints=records[sid].constraints() if sid in records else [])
-        for sid in labelled
-    }
+    extracted = fan_out_map(
+        {
+            sid: Skill(id=sid, constraints=records[sid].constraints() if sid in records else [])
+            for sid in labelled
+        }
+    )
     return Calibration(
         fields=compare_fields(labelled, extracted),
         pairs=compare_pairs(labels, extracted),
