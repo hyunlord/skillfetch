@@ -155,9 +155,30 @@ def _identity(c: Constraint) -> tuple:
     )
 
 
+def _core(c: Constraint) -> tuple:
+    """Identity without the scope."""
+    if c.directive == "order":
+        return ("order", _order_edge(c), c.strength)
+    return (normalize_term(c.subject), c.directive, _norm_opt(c.object), c.strength)
+
+
+def _covers(broad: Constraint, narrow: Constraint) -> bool:
+    """The same rule, with `broad`'s scope containing `narrow`'s on every dimension:
+    artifact/phase `any` contains any value, no condition contains any condition."""
+    if _core(broad) != _core(narrow):
+        return False
+    a, b = broad.scope, narrow.scope
+    return (
+        a.artifact in ("any", b.artifact)
+        and a.phase in ("any", b.phase)
+        and (a.condition is None or _norm_opt(a.condition) == _norm_opt(b.condition))
+    )
+
+
 def _subsumed(kept: Skill, cand: Skill) -> list[ConstraintPair] | None:
-    """If cand's constraints are a non-empty sub-multiset of kept's, pair each of cand's
-    constraints one-to-one with an identical one in kept (dropping cand is lossless)."""
+    """If every constraint of cand is matched one-to-one by a constraint of kept that is the
+    same rule over the same or a broader scope, pair them (dropping cand is lossless).
+    cand must be non-empty. Exact matches are taken before broader ones."""
     if not cand.constraints or len(cand.constraints) > len(kept.constraints):
         return None
     remaining = list(kept.constraints)
@@ -165,6 +186,8 @@ def _subsumed(kept: Skill, cand: Skill) -> list[ConstraintPair] | None:
     for cb in cand.constraints:
         key = _identity(cb)
         match = next((ca for ca in remaining if _identity(ca) == key), None)
+        if match is None:
+            match = next((ca for ca in remaining if _covers(ca, cb)), None)
         if match is None:
             return None
         remaining.remove(match)

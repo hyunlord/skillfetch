@@ -521,3 +521,48 @@ def test_not_complementary_without_shared_domain():
     a = S("a", tags={"domain": ["backend"], "phase": ["plan"]})
     b = S("b", tags={"domain": ["frontend"], "phase": ["implement"]})
     assert not complementary(a, b)
+
+
+# --- redundancy with scope containment (§4) ---------------------------------------------------
+
+
+def test_broader_scope_covers_a_narrower_identical_rule():
+    a = S("a", k("trailing-whitespace", "forbid", artifact="any", phase="any"))
+    b = S("b", k("trailing-whitespace", "forbid", artifact="markdown", phase="format"))
+    assert skill_relation(a, b).relation == Relation.REDUNDANT  # b ⊆ a: dropping b is lossless
+    assert skill_relation(b, a).relation == Relation.INDEPENDENT  # a's wider ban would be lost
+
+
+def test_unconditional_rule_covers_the_conditional_one():
+    a = S("a", k("type-hints", "require"))
+    b = S("b", k("type-hints", "require", condition="django migrations"))
+    assert skill_relation(a, b).relation == Relation.REDUNDANT
+    assert skill_relation(b, a).relation == Relation.INDEPENDENT
+
+
+def test_containment_needs_the_same_rule():
+    a = S("a", k("emoji", "forbid", artifact="any"))
+    for other in (
+        k("emoji", "avoid", artifact="markdown"),  # different directive and strength
+        k("emoji", "forbid", "in headers", artifact="markdown"),  # different object
+        k("headers", "forbid", artifact="markdown"),  # different subject
+    ):
+        assert skill_relation(a, S("b", other)).relation == Relation.INDEPENDENT
+
+
+def test_disjoint_specific_scopes_do_not_cover():
+    a = S("a", k("emoji", "forbid", artifact="markdown"))
+    b = S("b", k("emoji", "forbid", artifact="commit-message"))
+    assert skill_relation(a, b).relation == Relation.INDEPENDENT
+
+
+def test_order_containment_ignores_phrasing():
+    a = S("a", k("tests", "order", "implementation", direction="before"))
+    b = S("b", k("implementation", "order", "tests", direction="after", artifact="code"))
+    assert skill_relation(a, b).relation == Relation.REDUNDANT
+
+
+def test_equal_multisets_remain_redundant_both_ways_with_containment():
+    a = S("a", k("emoji", "forbid", artifact="any"), k("preamble", "forbid"))
+    b = S("b", k("preamble", "forbid"), k("emoji", "forbid", artifact="any"))
+    assert skill_relation(a, b).relation == skill_relation(b, a).relation == Relation.REDUNDANT

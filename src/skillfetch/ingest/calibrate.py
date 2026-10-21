@@ -10,7 +10,7 @@ Gates (constraints.md §2):
 - soft: informative-pair accuracy should reach 0.85 — reported, does not fail the run.
 
 Informative pairs are those where the hand label or the extracted relation is not
-`independent`. Most fixture pairs are independent (787 of 820), so accuracy over all pairs is
+`independent`. Most fixture pairs are independent (786 of 820), so accuracy over all pairs is
 ~0.96 for an extractor that extracts nothing; over informative pairs it is 0. Such an
 extractor flags no conflict, so its conflict precision is vacuously 1.0: the hard gate does
 not catch it, the soft target does.

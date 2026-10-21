@@ -189,7 +189,7 @@ constraints. `skillfetch ingest tests/fixtures --with-api --calibrate`
   extractor: a false "these skills contradict" costs more trust than any miss.
 - **Soft: informative-pair accuracy ≥ 0.85.** Informative pairs are those
   where the hand label or the extracted relation is not `independent`. Most
-  fixture pairs are independent (787 of 820), so accuracy over all pairs is
+  fixture pairs are independent (786 of 820), so accuracy over all pairs is
   ~0.96 for an extractor that extracts nothing; over informative pairs it
   scores 0, and every false relation on an independent pair enlarges the
   denominator. Missing the target is reported (`MISSED`) but does not fail the
@@ -264,12 +264,21 @@ automatically; it is shown to the user with both evidence lines.
 skills A, B, compute all constraint pairs (|A|×|B| ≤ 900, trivial). Then:
 
 - `conflict` if any pair is `conflict`.
-- else `redundant` if **B ⊆ A**: B's constraint multiset, after normalization,
-  is a sub-multiset of A's. Dropping B then loses no constraint — the
-  "lossless" criterion. B must be non-empty: a skill with no constraints is
-  never redundant (the empty set is a subset of everything, but there is no
-  evidence line to show). Partial overlap (neither side contained) is **not**
-  redundancy.
+- else `redundant` if **B ⊆ A**: every constraint of B is matched one-to-one
+  by a constraint of A that is the same rule over the same or a broader scope.
+  Dropping B then loses no constraint — the "lossless" criterion. B must be
+  non-empty: a skill with no constraints is never redundant (the empty set is a
+  subset of everything, but there is no evidence line to show). Partial overlap
+  (neither side contained) is **not** redundancy.
+
+  *Same rule* = equal core identity: `(norm(subject), directive, norm(object),
+  strength)`, or `(edge, strength)` for `order`. *Same or broader scope* =
+  per dimension, A's artifact and phase are equal to B's or `any`, and A's
+  condition is equal to B's or absent ("never type hints" contains "never
+  type hints in migrations"). Exact matches are taken before broader ones.
+  Scope containment was added after calibration: extractors often narrow the
+  scope of one of two identical rules (`phase: format` on one side only), which
+  hid duplicates.
 - else `tension` if any pair is `tension`.
 - else `needs_review` if any pair is `needs_review`.
 - else `independent`.
@@ -287,11 +296,11 @@ constraint (examples, background, scripts) is not compared; a subsumed skill
 can still carry useful examples. v0.1 accepts that: the set stays smaller and
 the superset's instructions are all present.
 
-Normalized identity of a constraint for multiset containment: `(norm(subject),
-directive, norm(object), artifact, phase, norm(condition), strength)`; for
-`order`, `(edge, artifact, phase, norm(condition), strength)`. Evidence is not
-part of identity.
-Containment is exact on identity: a `should` is not subsumed by a `must`.
+Full normalized identity of a constraint (used for exact matches and for
+"equal multisets"): `(norm(subject), directive, norm(object), artifact, phase,
+norm(condition), strength)`; for `order`, `(edge, artifact, phase,
+norm(condition), strength)`. Evidence is not part of identity. The core
+identity is never relaxed: a `should` is not subsumed by a `must`.
 
 The result carries the constraint pairs at the winning relation (all
 conflicting pairs; for `redundant`, each of B's constraints paired with its

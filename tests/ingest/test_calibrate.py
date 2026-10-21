@@ -49,9 +49,9 @@ def test_perfect_extraction_scores_one():
     assert cal.fields.missed == [] and cal.fields.extra == []
     text = render_calibration(cal)
     assert f"pair-relation accuracy, all pairs: 1.000 ({PAIRS}/{PAIRS})" in text
-    assert "informative pairs: 1.000 (33/33)" in text
+    assert "informative pairs: 1.000 (34/34)" in text
     assert (cal.pairs.recall, cal.pairs.false_positives) == (1.0, 0)
-    assert "recall 1.000 (33/33), false positives 0" in text
+    assert "recall 1.000 (34/34), false positives 0" in text
     assert text.splitlines()[-1] == (
         "gate: conflict precision 1.000 (hard, must be 1.0): PASS · "
         "informative-pair accuracy 1.000 (soft target 0.85): met"
@@ -118,7 +118,7 @@ def test_failed_and_missing_extractions_count_against_accuracy():
 
 
 def test_an_empty_extractor_misses_the_soft_target():
-    # 787 of 820 pairs are independent, so extracting nothing scores ~0.96 over all pairs;
+    # 786 of 820 pairs are independent, so extracting nothing scores ~0.96 over all pairs;
     # over informative pairs it scores 0. It flags no conflict, so conflict precision is
     # vacuously 1.0 and the hard gate passes: the soft target is what catches it.
     records = {sid: _record(sid, []) for sid in load_corpus()}
@@ -139,7 +139,7 @@ def test_false_conflicts_count_against_the_gate():
     assert [(m.a, m.b, m.expected, m.got) for m in cal.pairs.mismatches] == [
         ("inline-comments", "self-documenting", "independent", "conflict")
     ]
-    assert (cal.pairs.informative_correct, cal.pairs.informative_total) == (33, 34)
+    assert (cal.pairs.informative_correct, cal.pairs.informative_total) == (34, 35)
     assert (cal.pairs.recall, cal.pairs.false_positives) == (1.0, 1)
     assert not cal.hard_pass and not cal.passed  # one false conflict fails the hard gate
     assert "(hard, must be 1.0): FAIL" in render_calibration(cal)
