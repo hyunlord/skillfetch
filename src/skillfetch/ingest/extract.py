@@ -193,14 +193,25 @@ class ExtractResult(BaseModel):
     requires_tools: list[str]
 
 
+TOKEN_FIELDS = (
+    "input_tokens",
+    "output_tokens",
+    "cache_creation_input_tokens",
+    "cache_read_input_tokens",
+)
+
+
 class Usage(BaseModel):
     input_tokens: int = 0
     output_tokens: int = 0
     cache_creation_input_tokens: int = 0
     cache_read_input_tokens: int = 0
+    reported_cost_usd: float | None = None  # billed amount, when the provider reports it
 
     def __add__(self, other: Usage) -> Usage:
-        return Usage(**{k: getattr(self, k) + getattr(other, k) for k in Usage.model_fields})
+        tokens = {k: getattr(self, k) + getattr(other, k) for k in TOKEN_FIELDS}
+        a, b = self.reported_cost_usd, other.reported_cost_usd
+        return Usage(**tokens, reported_cost_usd=None if a is None or b is None else a + b)
 
 
 class Attempt(BaseModel):
@@ -231,14 +242,20 @@ class ExtractRecord(BaseModel):
 
     @property
     def usage(self) -> Usage:
-        total = Usage()
-        for a in self.attempts:
+        if not self.attempts:
+            return Usage()
+        total = self.attempts[0].usage
+        for a in self.attempts[1:]:
             total = total + a.usage
         return total
 
     @property
     def cost_usd(self) -> float | None:
-        return cost_usd(self.model, self.usage)
+        """The provider-reported charge when every attempt has one, else list prices."""
+        usage = self.usage
+        if usage.reported_cost_usd is not None:
+            return usage.reported_cost_usd
+        return cost_usd(self.model, usage)
 
     def constraints(self) -> list[Constraint]:
         if self.result is None:

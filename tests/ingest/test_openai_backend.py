@@ -172,3 +172,67 @@ def test_cli_error_output_never_contains_the_key(tmp_path, capsys, monkeypatch):
     captured = capsys.readouterr()
     assert SECRET not in captured.err + captured.out
     assert "Claude API error" not in captured.err and "API error" in captured.err
+
+
+# --- OpenRouter -------------------------------------------------------------------------------
+
+
+class FakeOpenRouterClient(FakeOpenAIClient):
+    def __init__(self, catalog, *responses):
+        from types import SimpleNamespace
+
+        super().__init__(*responses)
+        self.models = SimpleNamespace(
+            list=lambda: [SimpleNamespace(id=mid, supported_parameters=p) for mid, p in catalog]
+        )
+
+
+CATALOG = [
+    ("openai/gpt-6-luna", ["structured_outputs", "response_format", "max_tokens"]),
+    ("openai/gpt-oss-20b", ["structured_outputs", "response_format", "temperature", "max_tokens"]),
+    ("some/plain-model", ["max_tokens", "temperature"]),
+]
+
+
+def test_openrouter_specs_and_keys():
+    assert parse_model("openrouter/openai/gpt-6-luna") == ("openrouter", "openai/gpt-6-luna")
+    assert backend_key("openrouter/openai/gpt-6-luna") == "openrouter/openai/gpt-6-luna"
+    # the same server reached through --base-url gets the same cache key
+    assert backend_key("openai/openai/gpt-6-luna", "https://openrouter.ai/api/v1") == (
+        "openrouter/openai/gpt-6-luna"
+    )
+
+
+def test_openrouter_requires_parameter_support_and_reports_cost():
+    client = FakeOpenRouterClient(CATALOG, rec("openrouter.commit-squash.ok.json"))
+    backend = backends_mod.openrouter_backend(client, "openai/gpt-oss-20b")
+    record = Extractor(backend).extract(SKILLS_DIR / "commit-squash", "commit-squash", "0" * 64)
+    [req] = client.requests
+    assert req["extra_body"] == {"provider": {"require_parameters": True}}
+    assert "max_tokens" in req and req["temperature"] == 0
+    assert record.model == "openrouter/openai/gpt-oss-20b"
+    assert record.cost_usd == pytest.approx(0.000231)  # billed amount, not the price table
+
+
+def test_openrouter_omits_unsupported_temperature():
+    client = FakeOpenRouterClient(CATALOG, rec("openrouter.commit-squash.ok.json"))
+    backend = backends_mod.openrouter_backend(client, "openai/gpt-6-luna")
+    Extractor(backend).extract(SKILLS_DIR / "commit-squash", "commit-squash", "0" * 64)
+    assert "temperature" not in client.requests[0]
+
+
+def test_openrouter_rejects_unknown_or_unstructured_models():
+    with pytest.raises(ValueError, match="not on OpenRouter"):
+        backends_mod.openrouter_backend(FakeOpenRouterClient(CATALOG), "openai/nope")
+    with pytest.raises(ValueError, match="structured outputs"):
+        backends_mod.openrouter_backend(FakeOpenRouterClient(CATALOG), "some/plain-model")
+
+
+def test_openrouter_key_from_env_or_creds_file(tmp_path, monkeypatch):
+    from skillfetch.ingest.credentials import api_key
+
+    path = _creds(tmp_path, f"OPEN_API_KEY={SECRET}\n")
+    monkeypatch.delenv("OPENROUTER_API_KEY", raising=False)
+    assert api_key("openrouter", path) == SECRET
+    monkeypatch.setenv("OPENROUTER_API_KEY", "from-env")
+    assert api_key("openrouter", path) == "from-env"

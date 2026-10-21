@@ -124,8 +124,12 @@ schema has no language field). Grow these lists from extraction output.
   `anthropic/<model>` uses the Messages API with `output_config.format`;
   `openai/<model>` uses Chat Completions with `response_format: json_schema`
   (`strict: true`), and `--base-url` points the same backend at any
-  OpenAI-compatible server (vLLM, Ollama). Both return one provider-neutral
-  completion; parsing, the retry and the evidence check are shared.
+  OpenAI-compatible server (vLLM, Ollama). `openrouter/<vendor>/<model>` uses
+  the same backend against OpenRouter with `provider.require_parameters` (so
+  structured output is honoured), sends only parameters the model lists as
+  supported, and records OpenRouter's billed `usage.cost`. All backends return
+  one provider-neutral completion; parsing, the retry and the evidence check
+  are shared.
 - Temperature 0 is sent where the model accepts it. Anthropic current models
   reject it (not sent); on the OpenAI backend a 400 naming `temperature` drops
   it for that model. Reproducibility comes from the extract cache: a skill is

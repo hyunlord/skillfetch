@@ -15,13 +15,16 @@ from skillfetch.ingest import credentials
 from skillfetch.ingest.extract import (
     DEFAULT_MODEL,
     MAX_TOKENS,
+    TOKEN_FIELDS,
     Completion,
     ExtractBackend,
     MissingCredentials,
     Usage,
 )
 
-PROVIDERS = ("anthropic", "openai")
+PROVIDERS = ("anthropic", "openai", "openrouter")
+OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
+_HOST_PROVIDERS = {"openrouter.ai": "openrouter"}  # base_url host -> cache-key provider
 
 # Anthropic models that still accept sampling parameters. Current models (Sonnet 5, Opus 5,
 # ...) reject `temperature` with a 400, so determinism there comes from the extract cache.
@@ -75,7 +78,7 @@ class AnthropicBackend:
         )
         text = "".join(b.text for b in response.content if getattr(b, "type", None) == "text")
         u = response.usage
-        usage = Usage(**{k: getattr(u, k, None) or 0 for k in Usage.model_fields})
+        usage = Usage(**{k: getattr(u, k, None) or 0 for k in TOKEN_FIELDS})
         details = getattr(response, "stop_details", None)
         return Completion(
             text=text,
@@ -112,11 +115,21 @@ class OpenAICompatBackend:
     naming them (`temperature` on reasoning models, the token limit name on some servers) are
     dropped or swapped once and remembered for later calls."""
 
-    def __init__(self, client: Any, model: str, *, provider: str = "openai", official: bool = True):
+    def __init__(
+        self,
+        client: Any,
+        model: str,
+        *,
+        provider: str = "openai",
+        official: bool = True,
+        temperature: bool = True,
+        extra_body: dict | None = None,
+    ):
         self.client = client
         self.model = model
         self.provider = provider
-        self._temperature = True
+        self.extra_body = extra_body
+        self._temperature = temperature
         self._token_param = "max_completion_tokens" if official else "max_tokens"
 
     @property
@@ -135,6 +148,8 @@ class OpenAICompatBackend:
         }
         if self._temperature:
             request["temperature"] = 0
+        if self.extra_body:
+            request["extra_body"] = self.extra_body
         return request
 
     def _create(self, request: dict) -> Any:
@@ -163,11 +178,13 @@ class OpenAICompatBackend:
         details = getattr(u, "prompt_tokens_details", None)
         cached = getattr(details, "cached_tokens", None) or 0
         written = getattr(details, "cache_write_tokens", None) or 0
+        reported = getattr(u, "cost", None)  # OpenRouter: amount charged, in USD credits
         usage = Usage(
             input_tokens=max(u.prompt_tokens - cached - written, 0),
             output_tokens=u.completion_tokens,
             cache_read_input_tokens=cached,
             cache_creation_input_tokens=written,
+            reported_cost_usd=float(reported) if reported is not None else None,
         )
         refusal = getattr(message, "refusal", None)
         stop = "refusal" if refusal else _FINISH.get(choice.finish_reason, choice.finish_reason)
@@ -182,12 +199,33 @@ class OpenAICompatBackend:
 # --- factory ------------------------------------------------------------------------------------
 
 
+def openrouter_backend(client: Any, model: str) -> OpenAICompatBackend:
+    """OpenRouter routes each request to one of several providers. `require_parameters`
+    keeps it to providers that honour every parameter sent (structured outputs above all),
+    so only parameters the model supports are sent."""
+    catalog = {m.id: m for m in client.models.list()}
+    if model not in catalog:
+        raise ValueError(f"model {model!r} is not on OpenRouter")
+    supported = set(getattr(catalog[model], "supported_parameters", None) or [])
+    if "structured_outputs" not in supported:
+        raise ValueError(f"OpenRouter model {model!r} does not support structured outputs")
+    return OpenAICompatBackend(
+        client,
+        model,
+        provider="openrouter",
+        official=False,
+        temperature="temperature" in supported,
+        extra_body={"provider": {"require_parameters": True}},
+    )
+
+
 def _provider_label(provider: str, base_url: str | None) -> str:
     if base_url is None:
         return provider
     if provider != "openai":
         raise ValueError("--base-url is only for OpenAI-compatible servers (openai/<model>)")
-    return f"openai-compat+{urlparse(base_url).netloc or base_url}"
+    host = urlparse(base_url).netloc or base_url
+    return _HOST_PROVIDERS.get(host, f"openai-compat+{host}")
 
 
 def backend_key(spec: str = DEFAULT_MODEL, base_url: str | None = None) -> str:
@@ -206,6 +244,17 @@ def make_backend(
     label = _provider_label(provider, base_url)
     if provider == "anthropic":
         return AnthropicBackend(make_anthropic_client(), model)
+    if label == "openrouter":
+        key = credentials.api_key("openrouter", creds_file)
+        if key is None:
+            raise MissingCredentials(
+                "no OpenRouter key found: set OPENROUTER_API_KEY, or OPEN_API_KEY in "
+                f"{creds_file or credentials.DEFAULT_CREDS_FILE}"
+            )
+        import openai
+
+        client = openai.OpenAI(api_key=key, base_url=OPENROUTER_BASE_URL, max_retries=4)
+        return openrouter_backend(client, model)
     key = credentials.openai_api_key(creds_file)
     if key is None and base_url is None:
         raise MissingCredentials(

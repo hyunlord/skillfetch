@@ -57,7 +57,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     ingest.add_argument(
         "--with-api",
         action="store_true",
-        help="call the Claude API for skills not in the extract cache (costs money)",
+        help="call the model API for skills not in the extract cache (costs money)",
     )
     ingest.add_argument(
         "--calibrate",
@@ -70,13 +70,16 @@ def main(argv: Sequence[str] | None = None) -> int:
         help="provider/model, e.g. anthropic/claude-sonnet-5 (default: %(default)s)",
     )
     ingest.add_argument(
-        "--base-url", help="OpenAI-compatible server for openai/<model> (vLLM, Ollama, ...)"
+        "--base-url",
+        help="OpenAI-compatible server for openai/<model> (vLLM, Ollama, ...); "
+        "for OpenRouter use --model openrouter/<vendor>/<model>",
     )
     ingest.add_argument(
         "--creds-file",
         type=Path,
         default=credentials.DEFAULT_CREDS_FILE,
-        help="dotenv file holding OPEN_API_KEY / OPENAI_API_KEY (default: %(default)s)",
+        help="dotenv file holding OPEN_API_KEY / OPENAI_API_KEY / OPENROUTER_API_KEY "
+        "(default: %(default)s)",
     )
     ingest.add_argument("--cache-dir", type=Path, default=DEFAULT_CACHE_DIR)
     ingest.add_argument("--jobs", type=int, default=4, help="parallel API requests")
@@ -130,7 +133,7 @@ def _ingest(args: argparse.Namespace) -> int:
     except ImportError:
         print("skillfetch: --with-api needs: pip install 'skillfetch[ingest]'", file=sys.stderr)
         return 2
-    except extract.MissingCredentials as exc:
+    except (extract.MissingCredentials, ValueError) as exc:
         print(f"skillfetch: {exc}", file=sys.stderr)
         return 2
     except Exception as exc:
@@ -144,7 +147,7 @@ def _ingest(args: argparse.Namespace) -> int:
                 "OpenAI": f" (check OPENAI_API_KEY or OPEN_API_KEY in {args.creds_file})",
             }[sdk]
         # providers echo (masked) keys in auth errors: never print key material
-        message = credentials.redact(str(exc), credentials.openai_api_key(args.creds_file))
+        message = credentials.redact(str(exc), *credentials.known_keys(args.creds_file))
         print(f"skillfetch: {sdk} API error: {message}{hint}", file=sys.stderr)
         print("skillfetch: finished extractions are cached; rerun to resume", file=sys.stderr)
         return 1

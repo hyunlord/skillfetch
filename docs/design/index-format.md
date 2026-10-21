@@ -152,7 +152,9 @@ record keeps the token usage of every attempt, so cost per skill is known
   `~/.skillfetch/extract-cache/v<extract_version>/<provider>/<model>/<content_hash>.json`
   (`--cache-dir` to move it). The key adds `provider/model` to `content_hash`
   + `extract_version`, so `--model` never reuses another model's output;
-  OpenAI-compatible servers get the provider `openai-compat+<host>`.
+  OpenRouter is `openrouter/<vendor>/<model>`; other OpenAI-compatible
+  servers get the provider `openai-compat+<host>`. Cost per record is the
+  provider-reported charge when there is one (OpenRouter), else list prices.
 - Credentials: Anthropic via the SDK's usual sources; OpenAI via
   `OPENAI_API_KEY`, else `OPEN_API_KEY` / `OPENAI_API_KEY` read from
   `~/.rnd_creds.env` (`--creds-file`). Only that one variable is read from the
