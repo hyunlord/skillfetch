@@ -117,7 +117,14 @@ def constraint_relation(a: Constraint, b: Constraint) -> Relation:
 
     if _norm_opt(a.scope.condition) != _norm_opt(b.scope.condition):
         return Relation.NEEDS_REVIEW
-    return _opposed(a, b)
+    relation = _opposed(a, b)
+    if relation == Relation.CONFLICT and None in (obj_a, obj_b):
+        # A hard rule without an object is a blanket statement about the whole subject.
+        # Extractors produce those from narrower lines ("Don't swallow errors" ->
+        # forbid error-handling), and one of them conflicts with every skill that
+        # requires the subject in any form, so it never makes a conflict on its own.
+        return Relation.NEEDS_REVIEW
+    return relation
 
 
 @dataclass(frozen=True)

@@ -120,7 +120,20 @@ def test_unknown_directive_rejected():
 
 
 def test_hard_opposites_conflict():
-    assert rel(k("emoji", "require"), k("emoji", "forbid")) == Relation.CONFLICT
+    a, b = k("emoji", "require", "in headers"), k("emoji", "forbid", "in headers")
+    assert rel(a, b) == Relation.CONFLICT
+
+
+def test_hard_opposites_without_an_object_need_review():
+    # A hard rule without an object is a blanket statement about the whole subject,
+    # which is where extraction over-generalizes ("Don't swallow errors" -> forbid
+    # error-handling). It never makes a conflict on its own (constraints.md §3 row 14).
+    assert rel(k("emoji", "require"), k("emoji", "forbid")) == Relation.NEEDS_REVIEW
+    assert rel(k("emoji", "require", "in headers"), k("emoji", "forbid")) == (Relation.NEEDS_REVIEW)
+
+
+def test_soft_opposites_without_an_object_stay_tension():
+    assert rel(k("emoji", "prefer"), k("emoji", "forbid")) == Relation.TENSION
 
 
 @pytest.mark.parametrize(
@@ -146,7 +159,11 @@ def test_different_subjects_are_independent():
 
 
 def test_subject_normalization_applies():
-    assert rel(k("Type-Hints", "require"), k("type-hint", "forbid")) == Relation.CONFLICT
+    a, b = (
+        k("Type-Hints", "require", "public functions"),
+        k("type-hint", "forbid", "public function"),
+    )
+    assert rel(a, b) == Relation.CONFLICT
 
 
 # --- scope -----------------------------------------------------------------------------
@@ -178,8 +195,8 @@ def test_positive_broader_on_phase_is_a_carve_out():
 
 
 def test_negative_broader_is_a_blanket_ban():
-    a = k("emoji", "require", artifact="commit-message")
-    b = k("emoji", "forbid", artifact="any")
+    a = k("emoji", "require", "in headers", artifact="commit-message")
+    b = k("emoji", "forbid", "in headers", artifact="any")
     assert rel(a, b) == Relation.CONFLICT
     soft = k("bullet-points", "avoid", artifact="any")
     narrow = k("bullet-points", "require", artifact="pr-description")
@@ -193,18 +210,19 @@ def test_mixed_breadth_needs_review():
 
 
 def test_any_overlaps_everything():
-    a = k("emoji", "require", artifact="markdown", phase="format")
-    b = k("emoji", "forbid", artifact="any", phase="any")
+    a = k("emoji", "require", "in headers", artifact="markdown", phase="format")
+    b = k("emoji", "forbid", "in headers", artifact="any", phase="any")
     assert rel(a, b) == Relation.CONFLICT
 
 
 # --- objects ---------------------------------------------------------------------------
 
 
-def test_blanket_ban_vs_specific_requirement_conflicts():
+def test_blanket_ban_vs_specific_requirement_needs_review():
+    # Opposed, but the ban has no object (§3 row 14): the cap applies.
     a = k("emoji", "require", "in headers")
     b = k("emoji", "forbid", None)
-    assert rel(a, b) == Relation.CONFLICT
+    assert rel(a, b) == Relation.NEEDS_REVIEW
 
 
 def test_general_requirement_vs_specific_ban_needs_review():
@@ -329,8 +347,8 @@ def test_different_conditions_need_review():
 
 
 def test_identical_conditions_behave_like_no_condition():
-    a = k("type-hints", "require", condition="When writing Python")
-    b = k("type-hints", "forbid", condition="when writing python.")
+    a = k("type-hints", "require", "public functions", condition="When writing Python")
+    b = k("type-hints", "forbid", "public functions", condition="when writing python.")
     assert rel(a, b) == Relation.CONFLICT
 
 
@@ -417,14 +435,14 @@ def S(sid, *constraints, **kw):
 
 
 def test_skill_conflict_wins_and_carries_evidence():
-    bad_a = k("emoji", "require", text="Always use emoji.")
-    bad_b = k("emoji", "forbid", text="Never use emoji.")
+    bad_a = k("emoji", "require", "in headers", text="Always put emoji in headers.")
+    bad_b = k("emoji", "forbid", "in headers", text="Never put emoji in headers.")
     a = S("a", k("comments", "prefer"), bad_a)
     b = S("b", k("comments", "avoid"), bad_b)
     result = skill_relation(a, b)
     assert result.relation == Relation.CONFLICT
     assert [(p.a.evidence.text, p.b.evidence.text) for p in result.pairs] == [
-        ("Always use emoji.", "Never use emoji.")
+        ("Always put emoji in headers.", "Never put emoji in headers.")
     ]
 
 

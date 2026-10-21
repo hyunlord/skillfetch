@@ -253,7 +253,8 @@ Relation of the pair (a, b) — evaluated top to bottom, first match wins
 | 11 | opposite ∧ positive side has no object, negative side has one ("use emoji" vs "never in headers": a carve-out) | `needs_review` |
 | 12 | opposite ∧ the positive side's scope is broader on artifact or phase (positive `any`, negative specific; "use emoji" vs "never in Markdown": a carve-out by scope) | `needs_review` |
 | 13 | opposite ∧ norm(conditions) differ (incl. one null) | `needs_review` |
-| 14 | opposite (objects and scopes equal, or a blanket ban — broader object or scope on the negative side — vs a specific requirement; conditions equal) | opposed(a, b) |
+| 14 | opposite ∧ either object is null ∧ opposed(a, b) = `conflict` (an object-less hard rule) | `needs_review` |
+| 15 | opposite (objects and scopes equal, or a blanket ban — broader object or scope on the negative side — vs a specific requirement; conditions equal) | opposed(a, b) |
 
 Rows 11 and 12 are the same asymmetry, once by object and once by scope. A ban
 that is narrower than the requirement reads as an exception to it, so the pair
@@ -262,7 +263,23 @@ to) the requirement cannot be followed together with it: opposed. When the
 positive side is broader on one dimension and the negative on the other, row 12
 applies (unsure → `needs_review`).
 
-Rows 8a, 8c and 10–13 are v0.1 precision choices: an object, scope or
+Row 14 caps object-less hard rules. A `require`/`forbid` without an object is a
+statement about the whole subject, and that is exactly what extraction gets
+wrong on real skills: a narrow line becomes a blanket rule ("Don't swallow
+errors" → `forbid error-handling`; "once a team is selected, do not ask for
+separate confirmation" → `forbid ask-before-acting`). In the first public
+build (anthropics/skills + 200 UASL skills, extraction v4) all 24 `conflict`
+pairs were false, every one had an object-less ban on one side, and three such
+bans produced 21 of them, each conflicting with every skill that required the
+subject in any form. So an object-less hard rule never makes a `conflict` on
+its own; the pair is `needs_review` with both lines shown. Soft pairs keep
+`tension`, which never excludes a skill either. The cap costs recall on real
+contradictions: "always use emoji in headers" vs "never use emoji", or
+"restate the question first" vs "no preamble", are `needs_review` now (8 of
+the fixture conflicts were relabelled). A conflict needs both sides to name the
+same object, an exclusive choice (row 8) or an order (row 4).
+
+Rows 8a, 8c and 10–14 are v0.1 precision choices: an object, scope or
 condition mismatch means the rules cannot tell whether both instructions can be
 followed at once, so they never produce `conflict`. Consequences accepted for
 v0.1: "always ask before editing" (any phase) vs "never ask during

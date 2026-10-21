@@ -91,6 +91,10 @@ together, scope it to one task, or tell you afterwards whether it helped.
   ecosystem. An unknown tool in one of those slots is `needs_review`; other
   subjects, such as naming conventions, are never treated as exclusive.
 - When the rules are unsure, they report `needs_review`, never `conflict`.
+- A rule without an object ("never use emoji") never makes a conflict on its
+  own: it is reported as `needs_review`, because extraction turns narrow lines
+  into such blanket rules. A conflict needs both skills to name the same object,
+  two exclusive tool choices, or opposite orders.
 
 ## License
 
