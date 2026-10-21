@@ -105,11 +105,18 @@ use `any`. Do not narrow a scope from the skill's general topic: in a documentat
 
 ## condition
 
-`scope.condition` is set only when the line makes the rule conditional ("when X", "if X",
-"for X files", "in X projects"). Write it as one language, framework or artifact name when
-possible, lowercase and without "when": "When editing Django migration files, …" →
-`django migrations`; "In Python code, …" → `python`. Otherwise a short phrase. Do not repeat what
-`artifact` or `phase` already say. Null for unconditional rules.
+`scope.condition` limits a rule to some situations: set it only when the line says the rule
+holds in some cases and not in others ("when X", "if X", "only for X", "unless X"). Write it as
+one language, framework or artifact name when possible, lowercase and without "when": "When
+editing generated protobuf files, do not reformat them" → `generated protobuf files`; "When
+fixing a bug, …" → `bug fixes`. Otherwise a short phrase. Null for unconditional rules.
+
+A condition is not what the rule is about. "Format all Python code with black" has condition
+null: Python is what gets formatted, not a situation in which the rule applies (the skill's
+languages go in `tags.languages`). The same holds for objects: in "Every exported function needs
+a docstring", `public functions` is the object, not a condition. What a rule applies to goes in
+`object` or `scope.artifact`; when it applies goes in `scope.condition`. Do not repeat
+`artifact` or `phase` in the condition.
 
 # Example
 

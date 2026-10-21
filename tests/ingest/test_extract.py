@@ -261,3 +261,24 @@ def test_merge_keeps_the_first_when_no_subject_is_in_the_vocabulary():
 
 def test_prompt_asks_for_one_constraint_per_line():
     assert "at most one constraint per line" in system_prompt()
+
+
+# --- condition vs target --------------------------------------------------------------------
+
+
+def test_prompt_separates_conditions_from_targets():
+    prompt = system_prompt()
+    assert '"Format all Python code with black"' in prompt
+    assert "Python is what gets formatted" in prompt
+
+
+def test_prompt_examples_do_not_quote_fixture_lines():
+    # examples copied from the calibration set would inflate calibration scores
+    from conftest import fixture_skill_dirs
+
+    prompt = system_prompt()
+    for d in fixture_skill_dirs():
+        for line in (d / "SKILL.md").read_text().splitlines():
+            rule = line.removeprefix("- ").strip()
+            if line.startswith("- ") and len(rule) > 25:
+                assert rule not in prompt, (d.name, rule)
