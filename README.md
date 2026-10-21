@@ -59,12 +59,14 @@ together, scope it to one task, or tell you afterwards whether it helped.
         `--json` and `--fail-on`
   - [x] constraint extraction through the API (`ingest --with-api`, extract
         cache, cost log) and `--calibrate` against the fixtures
-  - [ ] pass calibration with a real model run (conflict precision 1.0 hard,
-        informative-pair accuracy ≥ 0.85 soft); then let `scan` use cached extractions instead of
-        `constraints.json`
-  - [ ] public corpus ingest (`skillfetch ingest <source>`, `sources.yaml`,
-        snapshots) and the top-N public skills scan + write-up
-  - [ ] keyword-Jaccard dedup groups, tiers A/B/C, index layout and manifest
+  - [x] pass calibration with a real model run (conflict precision 1.0 hard,
+        informative-pair accuracy ≥ 0.85 soft: 0.912 with extraction v6), plus a
+        hand-labelled holdout from public skills (`ingest --holdout`)
+  - [ ] let `scan` use cached extractions instead of `constraints.json`
+  - [x] public corpus ingest (`skillfetch ingest --sources sources.yaml`,
+        snapshots, licenses, upstreams): anthropics/skills + all 1812 UASL skills
+  - [ ] write-up of the public-corpus scan
+  - [x] keyword-Jaccard dedup groups, tiers A/B/C, index layout and manifest
         (index-format §1.6–§2)
 - [ ] **v0.2** `skillfetch serve` — MCP server (`search_skills`, `resolve_set`,
       `load_skills`, …) + the one router skill you install.
