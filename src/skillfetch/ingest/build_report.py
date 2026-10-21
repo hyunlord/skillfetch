@@ -8,6 +8,7 @@ from pathlib import Path
 
 from skillfetch.ingest.build import BuildResult, Built, tier_warnings
 from skillfetch.ingest.calibrate import compact
+from skillfetch.ingest.licenses import REDISTRIBUTABLE
 from skillfetch.ingest.local_scan import pair_finding
 from skillfetch.resolve.models import Constraint, Skill
 from skillfetch.resolve.relation import candidate_pairs
@@ -117,8 +118,7 @@ def render_report(result: BuildResult) -> str:
     )
     redistributable = sum(b.record.redistributable for b in indexed)
     out += ["", f"Bodies included: {redistributable} of {len(indexed)} indexed skills.", ""]
-    origins = Counter(b.record.license_origin for b in indexed)
-    out += _counts("License taken from", origins)
+    out += license_source_section(skills)
     with_up = [b for b in indexed if b.record.upstream]
     repos = Counter(b.record.upstream["repo"] for b in with_up)
     out += [
@@ -170,6 +170,52 @@ def render_report(result: BuildResult) -> str:
         "",
     ]
     return "\n".join(out)
+
+
+LICENSE_SOURCES = ("explicit", "upstream_no_license", "upstream_unknown")
+LICENSE_CLASSES = ("permissive", "copyleft", "proprietary", "unrecognized", "none")
+
+
+def license_class(license: str) -> str:
+    if license in REDISTRIBUTABLE:
+        return "permissive"
+    if "GPL" in license:
+        return "copyleft"
+    if license in ("proprietary", "unrecognized"):
+        return license
+    return "none"
+
+
+def license_source_section(skills: list[Built]) -> list[str]:
+    """§1.8: where each skill's license comes from, never mixing "no license stated" with
+    "not redistributable". Counted over every discovered skill and over indexed ones."""
+    out = ["## License source", ""]
+    for title, group in (
+        ("All discovered skills", skills),
+        ("Indexed skills", [b for b in skills if b.record.tier]),
+    ):
+        cells = Counter((b.record.license_source, license_class(b.record.license)) for b in group)
+        rows = [
+            (
+                src,
+                *(cells.get((src, cls), 0) for cls in LICENSE_CLASSES),
+                sum(cells.get((src, cls), 0) for cls in LICENSE_CLASSES),
+            )
+            for src in LICENSE_SOURCES
+        ]
+        total = ("total", *(sum(r[i] for r in rows) for i in range(1, len(rows[0]))))
+        out += [f"{title} ({len(group)}):", ""]
+        out += _table(("license source", *LICENSE_CLASSES, "skills"), [*rows, total])
+        out.append("")
+    out += [
+        "`explicit`: a license is stated in the skill folder or its upstream (nearest license "
+        "file on the upstream path). `upstream_no_license`: the upstream repo was read and "
+        "states no license (all rights reserved by default). `upstream_unknown`: no upstream "
+        "is recorded, or it could not be read. Only `permissive` skills are redistributable.",
+        "",
+    ]
+    origins = Counter(b.record.license_origin.split(":", 1)[0] for b in skills if b.record.tier)
+    return out + _counts("License taken from (indexed)", origins)
 
 
 def _kind(note: str) -> str:

@@ -387,3 +387,32 @@ def test_cli_writes_reports(world, monkeypatch, capsys):
     reports = tmp_path / "idx-reports"
     assert (reports / "report.md").is_file() and (reports / "review.md").is_file()
     assert str(reports / "review.md") in capsys.readouterr().out
+
+
+def test_upstream_licenses_fill_license_source(world, tmp_path):
+    import base64
+
+    tmp_path, sources, _ = world
+
+    class OneRepo:  # tdd-strict's upstream (https://github.com/up/stream) is MIT
+        def get(self, path):
+            if path == "repos/up/stream":
+                return {"full_name": "up/stream"}
+            if path.startswith("repos/up/stream/git/trees"):
+                return {"sha": "abc", "tree": [{"path": "LICENSE", "type": "blob"}]}
+            if path.startswith("repos/up/stream/contents/LICENSE"):
+                return {"encoding": "base64", "content": base64.b64encode(MIT.encode()).decode()}
+            return None
+
+    result = _build(
+        tmp_path, sources, KeywordOracle(), github=OneRepo(), license_cache=tmp_path / "lic"
+    )
+    recs = {b.record.id.split("@")[0]: b.record for b in result.skills}
+    tdd = recs["aggregator/tdd-strict"]
+    assert (tdd.license_source, tdd.license, tdd.redistributable) == ("explicit", "MIT", True)
+    assert tdd.license_origin == "upstream:https://github.com/up/stream/LICENSE"
+    assert recs["verified-src/commit-squash"].license_source == "explicit"  # own LICENSE
+    assert recs["aggregator/small-commits"].license_source == "upstream_unknown"
+    from skillfetch.ingest.build_report import render_report
+
+    assert "## License source" in render_report(result)

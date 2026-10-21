@@ -43,6 +43,13 @@ from skillfetch.ingest.skillfile import (
 )
 from skillfetch.ingest.snapshot import DEFAULT_WORK_DIR, Snapshot, snapshot
 from skillfetch.ingest.sources import Source
+from skillfetch.ingest.upstream_licenses import DEFAULT_CACHE as DEFAULT_LICENSE_CACHE
+from skillfetch.ingest.upstream_licenses import (
+    GitHubClient,
+    LicenseSource,
+    license_finding,
+    read_repo,
+)
 from skillfetch.resolve import relation as relation_mod
 from skillfetch.resolve.models import Constraint, Skill
 from skillfetch.resolve.relation import constraint_identity, mark_fan_out
@@ -87,6 +94,9 @@ class SkillRecord(BaseModel):
     license: str
     redistributable: bool
     license_origin: str
+    # explicit (skill folder or upstream states a license) / upstream_no_license (upstream
+    # found, states none) / upstream_unknown (no upstream, or not read): §1.8
+    license_source: LicenseSource = "upstream_unknown"
     upstream: dict | None = None
     adjusted: list[str] = []
     dropped: list[str] = []
@@ -185,6 +195,25 @@ def _record(snap: Snapshot, skill_dir: Path) -> Built:
         upstream=up.__dict__ if up else None,
     )
     return Built(record, skill_dir, snap)
+
+
+def _apply_upstream_licenses(
+    skills: list[Built], github: GitHubClient | None, cache_dir: Path
+) -> None:
+    """§1.8: license_source for every record; with a GitHub client, a skill without a
+    license of its own takes its upstream's (the nearest license file on its upstream path)."""
+    repos = {}
+    if github is not None:
+        for url in sorted({b.record.upstream["repo"] for b in skills if b.record.upstream}):
+            repos[url] = read_repo(github, url, cache_dir)
+    for b in skills:
+        r = b.record
+        own = r.license_origin
+        found = license_finding(r.license, own, r.upstream, repos)
+        r.license_source = found.license_source
+        if own == "none" and found.license_source == "explicit":
+            r.license, r.license_origin = found.license, found.origin
+            r.redistributable = found.redistributable
 
 
 def _apply_extraction(b: Built, extraction: ExtractRecord | None) -> None:
@@ -365,6 +394,8 @@ def build_index(
     samples: dict[str, int] | None = None,
     seed: int = 42,
     jobs: int = 4,
+    github: GitHubClient | None = None,
+    license_cache: Path = DEFAULT_LICENSE_CACHE,
 ) -> BuildResult:
     model = extractor.model if extractor else (model or DEFAULT_MODEL)
     samples = samples or {}
@@ -398,6 +429,8 @@ def build_index(
                 else [],
             }
         )
+
+    _apply_upstream_licenses(skills, github, license_cache)
 
     ok = [b for b in skills if b.record.status == "ok"]
     cached = {b.record.content_hash: cache.get(b.record.content_hash, model) for b in ok}
@@ -444,6 +477,7 @@ def build_index(
             "not_extracted": reasons.get("no cache entry", 0),
         },
         "licenses": dict(sorted(Counter(b.record.license for b in skills).items())),
+        "license_sources": dict(sorted(Counter(b.record.license_source for b in skills).items())),
         "redistributable": sum(b.record.redistributable for b in skills if b.record.tier),
         "signature": None,
     }

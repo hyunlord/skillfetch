@@ -17,6 +17,7 @@ from skillfetch.ingest.ingest import extract_dir, render_cost_log
 from skillfetch.ingest.local_scan import fail_counts, render_report, scan_dir
 from skillfetch.ingest.snapshot import DEFAULT_WORK_DIR, SnapshotError
 from skillfetch.ingest.sources import load_sources
+from skillfetch.ingest.upstream_licenses import GhCli
 from skillfetch.resolve import relation
 
 FAIL_ON = ("conflict", "scan", "lint")
@@ -80,6 +81,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         help="take a seeded random sample of N skills from source ID",
     )
     ingest.add_argument("--seed", type=int, default=42, help="sampling seed (default: 42)")
+    ingest.add_argument(
+        "--upstream-licenses",
+        action="store_true",
+        help="read upstream repos' license files through the GitHub API (`gh`), cached in "
+        "~/.skillfetch/upstream-licenses/",
+    )
     ingest.add_argument("--out", type=Path, default=Path("data/index"), help="index directory")
     ingest.add_argument("--work-dir", type=Path, default=DEFAULT_WORK_DIR, help="snapshots")
     ingest.add_argument(
@@ -178,6 +185,7 @@ def _build(args: argparse.Namespace, key: str, extractor: extract.Extractor | No
         samples=samples,
         seed=args.seed,
         jobs=args.jobs,
+        github=GhCli() if args.upstream_licenses else None,
     )
     print(render_summary(result))
     report, review = write_reports(result, args.out.with_name(args.out.name + "-reports"))

@@ -254,6 +254,24 @@ in the skill folder (`LICENSE`, `LICENSE.txt`, `LICENSE.md`, `COPYING`),
 classified by its text; the frontmatter `license:` field; the source's SPDX
 license if it has one; else `unknown`.
 
+**Upstream licenses and `license_source`.** An aggregated skill is licensed by
+its upstream author, not by the aggregator. With `ingest --upstream-licenses`
+the build reads each upstream repo named in `.openskills.json` once (GitHub git
+trees API through `gh`, cached in `~/.skillfetch/upstream-licenses/`) and looks
+for a license file on the skill's upstream path, from its folder up to the repo
+root; the nearest one applies when the skill folder has none
+(`license_origin: upstream:<repo>/<file>`). Every record carries
+`license_source`, which keeps "no license stated" apart from "not
+redistributable":
+
+- `explicit`: a license is stated, in the skill folder or upstream;
+- `upstream_no_license`: the upstream repo was read and states no license —
+  all rights reserved by default, so not redistributable, but known;
+- `upstream_unknown`: no upstream is recorded, or it could not be read.
+
+The build report tabulates `license_source` × license class (permissive,
+copyleft, proprietary, unrecognized, none).
+
 `redistributable` is true only for permissive licenses: MIT, Apache-2.0,
 BSD-2-Clause, BSD-3-Clause, ISC, MPL-2.0, CC-BY-4.0, CC0-1.0, Unlicense.
 Copyleft (GPL, AGPL), `proprietary` and `unknown` are not redistributable in
