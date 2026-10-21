@@ -349,27 +349,25 @@ def fan_out_map(skills: Mapping[str, Skill]) -> dict[str, Skill]:
 
 def mark_fan_out(skills: list[Skill], threshold: int = FAN_OUT_SKILLS) -> list[Skill]:
     """The skills with `fan_out` set on every constraint that conflicts with `threshold` or
-    more distinct skills of the corpus. Skills that conflict with it through the same set
-    of rules count once (they are near-duplicates). Flags already set are recomputed."""
+    more distinct skills of the corpus. Skills with identical constraint multisets count
+    once (duplicates, index-format §1.6); skills that merely share the conflicting rule are
+    distinct. Flags already set are recomputed."""
     clean = [
         s.model_copy(
             update={"constraints": [c.model_copy(update={"fan_out": False}) for c in s.constraints]}
         )
         for s in skills
     ]
-    hits: dict[tuple[int, int], dict[int, set]] = {}
+    whole = [tuple(sorted(map(repr, map(_identity, s.constraints)))) for s in clean]
+    hits: dict[tuple[int, int], set[tuple]] = {}
     for i, j in candidate_pairs(clean):
         for ka, ca in enumerate(clean[i].constraints):
             for kb, cb in enumerate(clean[j].constraints):
                 if _keys(ca) != _keys(cb) or constraint_relation(ca, cb) != Relation.CONFLICT:
                     continue
-                hits.setdefault((i, ka), {}).setdefault(j, set()).add(_identity(cb))
-                hits.setdefault((j, kb), {}).setdefault(i, set()).add(_identity(ca))
-    flagged = {
-        key
-        for key, partners in hits.items()
-        if len({frozenset(rules) for rules in partners.values()}) >= threshold
-    }
+                hits.setdefault((i, ka), set()).add(whole[j])
+                hits.setdefault((j, kb), set()).add(whole[i])
+    flagged = {key for key, partners in hits.items() if len(partners) >= threshold}
     return [
         s.model_copy(
             update={

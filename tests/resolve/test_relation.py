@@ -670,13 +670,24 @@ def test_fan_out_caps_a_hub_constraint(vocab_cap):
     assert skill_relation(two[0], two[1]).relation == Relation.CONFLICT
 
 
-def test_fan_out_counts_near_duplicates_once(vocab_cap):
+def test_fan_out_counts_skills_that_share_the_rule(vocab_cap):
+    # output-skill "Nothing was shortened" vs five skills that each say "keep it short"
+    from skillfetch.resolve.relation import mark_fan_out
+
+    hub = S("hub", k("response-length", "forbid", "short", text="Nothing was shortened."))
+    same = [
+        S(f"d{i}", k("response-length", "require", "short", text=f"t{i}"), k(f"x{i}", "require"))
+        for i in range(3)
+    ]
+    assert mark_fan_out([hub, *same])[0].constraints[0].fan_out is True
+
+
+def test_fan_out_counts_duplicate_skills_once(vocab_cap):
     from skillfetch.resolve.relation import mark_fan_out
 
     hub = S("hub", k("emoji", "forbid", text="Never emoji."))
-    same = [S(f"d{i}", k("emoji", "require", "in headers", text=f"t{i}")) for i in range(3)]
-    marked = mark_fan_out([hub, *same])
-    assert marked[0].constraints[0].fan_out is False
+    dupes = [S(f"d{i}", k("emoji", "require", "in headers", text=f"t{i}")) for i in range(3)]
+    assert mark_fan_out([hub, *dupes])[0].constraints[0].fan_out is False
 
 
 def test_candidate_pairs_cover_every_related_fixture_pair():

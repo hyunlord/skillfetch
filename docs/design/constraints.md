@@ -312,8 +312,10 @@ Row 14 caps a conflict at `needs_review` when one of these holds
 (`relation.conflict_cap`, checked in this order):
 
 - **14a fan-out.** One side conflicts with three or more distinct skills of the
-  corpus (`mark_fan_out`; skills that conflict with it through the same set of
-  rules count once). A hub is far more likely an extraction error than a real
+  corpus (`mark_fan_out`; skills with identical constraint multisets — duplicates
+  — count once, skills that merely share the conflicting rule do not). The first
+  full build collapsed skills that shared the rule, so five skills saying "keep
+  it short" counted as two and a hub went uncapped. A hub is far more likely an extraction error than a real
   contradiction with that many skills: in the first public build three
   misread bans produced 21 of 24 false conflicts. The flag is computed at index
   time over all indexed skills and stored on the constraint (`fan_out`), so
