@@ -271,6 +271,25 @@ index/
 }
 ```
 
+As built (`ingest/build.py`, `skillfetch ingest --sources sources.yaml
+[--only ID] [--sample ID=N] [--seed N] --out DIR`):
+
+- Ids are `<source_id>/<name>@<content_hash[:12]>`; `bodies/<id>.md` and
+  `assets/<id>/` therefore nest one directory per source. Only
+  `redistributable` skills (§1.8) get a body and assets.
+- `rejected.jsonl` holds the records that failed lint or the injection scan
+  (not in the index, kept for the data write-up).
+- Extraction runs once per distinct `content_hash`.
+- Manifest additions: `extract_model`, per source `url`, `ref`,
+  `commit_date`, `discovered`, `sampled`, `sample_seed`,
+  `third_party_upstreams`; `licenses` (count per license) and
+  `redistributable`. `counts` also has `too_large` and `not_extracted`.
+- Sampling: the source's skill folders sorted by path, then
+  `random.Random(seed).sample`; the sample is recorded, so a build is
+  reproducible from the manifest.
+- `bm25/` is not built yet (search is the runtime half, v0.2).
+- The build is written next to `--out` and swapped in when complete.
+
 `signature` is reserved; v0.1 verifies file hashes only. Releases are a tarball
 of `index/` attached to a GitHub release; `skillfetch sync` downloads the
 latest, verifies hashes, swaps `~/.skillfetch/index/` atomically.

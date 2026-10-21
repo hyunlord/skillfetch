@@ -155,6 +155,11 @@ def _identity(c: Constraint) -> tuple:
     )
 
 
+def constraint_identity(c: Constraint) -> tuple:
+    """Full normalized identity (§4): equal identities are the same rule in the same scope."""
+    return _identity(c)
+
+
 def _core(c: Constraint) -> tuple:
     """Identity without the scope."""
     if c.directive == "order":
