@@ -30,17 +30,19 @@ A source is a YAML entry in `sources.yaml`:
 
 v0.1 ships with: `anthropics/skills`, the UASL corpus, and a hand-picked list of
 ~20 well-known publisher repos. The list lives in `sources.yaml` at the repo
-root (loaded by `ingest/sources.py`). As of 2026-10-21 it holds
-`anthropics/skills`; the UASL corpus is not added because no public project by
-that name could be identified.
+root (loaded by `ingest/sources.py`): `anthropics/skills` (verified) and the
+UASL corpus, `onfire7777/universal-ai-skills-library` (1812 skills, unknown
+trust). UASL is an aggregation: 954 skills carry an `.openskills.json` naming
+their upstream repo and path, recorded per skill as `upstream`. Its
+`docs/THIRD_PARTY_SOURCE_REPOS.md` lists only external router sources (GStack,
+GBrain) that are not copied into `skills/`; it is parsed into the source's
+`third_party_upstreams`, not into skill records.
 
 `license` records how a source licenses its skills: an SPDX id for the whole
-source, or `per-skill` when each skill folder has its own license file.
-`anthropics/skills` is per-skill: Apache-2.0 for most skills, "All rights
-reserved" for docx/pdf/pptx/xlsx, none for doc-coauthoring. The index
-redistributes bodies and files (§2), so ingest must check each skill's license
-and keep only metadata and a link for skills it may not redistribute; that rule
-is to be implemented with the ingest stage. skills.sh scraping is v0.2 (needs rate limiting
+source, or `per-skill` (the default) when each skill is licensed by its own
+license file or frontmatter, and is `unknown` without either. Both sources are
+per-skill; UASL's repository MIT license is not inherited because the
+repository aggregates third-party skills. See §1.8 for what follows. skills.sh scraping is v0.2 (needs rate limiting
 and a stable listing API; do not hand-roll a crawler in v0.1).
 
 ### 1.2 Snapshot
@@ -210,6 +212,36 @@ index keeps all members but `search_skills` returns only canonicals unless
 | C | anything else that is not `*_failed` (has scripts, extract failed, unknown publisher with warnings) | off |
 
 Tier is recomputed on every ingest; it is not stored in the source.
+
+### 1.8 License and redistribution
+
+Each skill record carries `license` (an SPDX id, `proprietary`, or `unknown`)
+and `redistributable` (bool). The license comes from, in order: a license file
+in the skill folder (`LICENSE`, `LICENSE.txt`, `LICENSE.md`, `COPYING`),
+classified by its text; the frontmatter `license:` field; the source's SPDX
+license if it has one; else `unknown`.
+
+`redistributable` is true only for permissive licenses: MIT, Apache-2.0,
+BSD-2-Clause, BSD-3-Clause, ISC, MPL-2.0, CC-BY-4.0, CC0-1.0, Unlicense.
+Copyleft (GPL, AGPL), `proprietary` and `unknown` are not redistributable in
+v0.1 — conservative on purpose, like the rest of the pipeline.
+
+A non-redistributable skill is still indexed (metadata, extracted
+constraints with their short evidence quotes, tier), so it can be searched and
+checked for conflicts, but its body and files are **not** written to
+`bodies/` or `assets/`; the record keeps `source_url` (the file at the
+snapshot commit) instead.
+
+**Runtime fetch (design only; implementation in v0.2).** `load_skills` and
+`prepare_set` need a body. For a non-redistributable skill the MCP server
+would, only when started with `--allow-fetch`, fetch `SKILL.md` (and, for
+`prepare_set`, the folder) from `source_url` at the recorded commit, verify
+its sha256 against the record's `content_hash`, and cache it under
+`~/.skillfetch/cache/<id>/` for the user's own use. Without `--allow-fetch` such
+a skill is returned by `search_skills` with `redistributable: false` and
+`resolve_set` excludes it with reason `not_available`. Fetching contradicts the
+v0.1 non-goal "no real-time fetching" (CLAUDE.md), which is why it is v0.2,
+opt-in, and pinned to a hash.
 
 ## 2. Index layout
 

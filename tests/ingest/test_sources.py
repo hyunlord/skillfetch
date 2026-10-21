@@ -20,6 +20,9 @@ def test_repo_sources_file_loads():
         "verified",
     )
     assert anthropics.license == "per-skill"
+    uasl = by_id["uasl"]
+    assert (uasl.publisher_trust, uasl.license, uasl.root) == ("unknown", "per-skill", "skills/")
+    assert uasl.third_party_doc == "docs/THIRD_PARTY_SOURCE_REPOS.md"
 
 
 def test_git_source_needs_a_ref():

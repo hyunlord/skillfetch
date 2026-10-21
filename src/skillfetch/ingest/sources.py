@@ -19,9 +19,11 @@ class Source(BaseModel):
     root: str = ""
     publisher: str
     publisher_trust: Literal["verified", "known", "unknown"]
-    # "per-skill": every skill folder carries its own license file; otherwise an SPDX id
-    # that applies to the whole source.
-    license: str | None = None
+    # "per-skill": each skill is licensed by its own LICENSE file or frontmatter, else
+    # unknown; otherwise an SPDX id that applies to every skill of the source.
+    license: str = "per-skill"
+    # Markdown file (relative to the snapshot) listing the source's third-party upstreams.
+    third_party_doc: str | None = None
 
     @model_validator(mode="after")
     def _ref_for_git(self):
