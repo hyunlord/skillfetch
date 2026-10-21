@@ -20,6 +20,7 @@ _LINK_TARGET = re.compile(r"\]\([^)]*\)")
 _AUTOLINK = re.compile(r"<https?://[^>]*>", re.I)
 _REF_DEF = re.compile(r"^\s{0,3}\[[^\]]+\]:\s*\S+")
 _HTML_COMMENT = re.compile(r"<!--(.*?)-->", re.S)
+_QUOTED = re.compile(r'"[^"\n]*"|“[^”\n]*”')
 _INVISIBLE = re.compile(r"[\u200b-\u200f\u202a-\u202e\u2060-\u2064\u2066-\u2069\ufeff]")
 _MAX_EVIDENCE = 160
 
@@ -32,6 +33,7 @@ class Rule(BaseModel):
     pattern: str
     target: Literal["line", "outside_links", "html_comment"] = "line"
     allow_negated: bool = False
+    allow_quoted: bool = False
     case_sensitive: bool = False
     effect: Literal["fail", "warn"] | None = None  # overrides the family's effect
 
@@ -59,6 +61,7 @@ class Hit(BaseModel):
     file: str
     line_no: int
     line: str
+    quoted: bool = False  # every match was inside quotation marks: downgraded to warn
 
 
 class ScanResult(BaseModel):
@@ -102,12 +105,22 @@ def _outside_links(line: str) -> str:
     return _AUTOLINK.sub("", _LINK_TARGET.sub("]", line))
 
 
-def _matches(rule: Rule, text: str) -> bool:
+def _inside_quotes(text: str, start: int, end: int) -> bool:
+    return any(q.start() < start and end < q.end() for q in _QUOTED.finditer(text))
+
+
+def _matches(rule: Rule, text: str) -> Literal["plain", "quoted"] | None:
+    """How the rule matches `text`: "plain", only inside quotation marks ("quoted", for
+    rules with allow_quoted), or not at all (None)."""
+    quoted = False
     for m in rule.compiled().finditer(text):
         if rule.allow_negated and _NEGATED.search(text[: m.start()]):
             continue
-        return True
-    return False
+        if rule.allow_quoted and _inside_quotes(text, m.start(), m.end()):
+            quoted = True
+            continue
+        return "plain"
+    return "quoted" if quoted else None
 
 
 def scan_text(text: str, file: str = SKILL_FILE, rules: RuleSet | None = None) -> list[Hit]:
@@ -117,25 +130,27 @@ def scan_text(text: str, file: str = SKILL_FILE, rules: RuleSet | None = None) -
     for rule in rules.rules:
         if rule.target == "html_comment":
             for m in _HTML_COMMENT.finditer(text):
-                if _matches(rule, m.group(1)):
+                if how := _matches(rule, m.group(1)):
                     line_no = text.count("\n", 0, m.start()) + 1
-                    hits.append(_hit(rule, rules, file, line_no, lines[line_no - 1]))
+                    hits.append(_hit(rule, rules, file, line_no, lines[line_no - 1], how))
             continue
         for line_no, line in enumerate(lines, 1):
             target = _outside_links(line) if rule.target == "outside_links" else line
-            if _matches(rule, target):
-                hits.append(_hit(rule, rules, file, line_no, line))
+            if how := _matches(rule, target):
+                hits.append(_hit(rule, rules, file, line_no, line, how))
     return sorted(hits, key=lambda h: (h.file, h.line_no, h.rule_id))
 
 
-def _hit(rule: Rule, rules: RuleSet, file: str, line_no: int, line: str) -> Hit:
+def _hit(rule: Rule, rules: RuleSet, file: str, line_no: int, line: str, how: str) -> Hit:
+    quoted = how == "quoted"
     return Hit(
         rule_id=rule.id,
         family=rule.family,
-        effect=rule.effect or rules.effects[rule.family],
+        effect="warn" if quoted else rule.effect or rules.effects[rule.family],
         file=file,
         line_no=line_no,
         line=_evidence(line),
+        quoted=quoted,
     )
 
 

@@ -130,6 +130,15 @@ Implementation notes (`ingest/injection.py`, rules in `ingest/scan_rules.yaml`):
   run sudo …" is advice; "Do not hesitate to run sudo …" still fails. Used only
   where benign negated phrasing is common (sudo, root, sandbox,
   `--dangerously-*`, reading key/credential paths, system prompt).
+- `override` rules set `allow_quoted` (rules v3): a match that lies inside
+  quotation marks (`"…"`, `“…”`) is downgraded to a warning, marked
+  `quoted: true`. Prompt-writing advice quotes the phrase it warns against
+  ("avoid override-style language (\"disregard the previous instruction\")"),
+  which rejected anthropics' claude-api in the first public build. It is a
+  warning, not a skip: a quoted injection is still text the agent reads, so
+  it stays visible and keeps an unknown publisher's skill in tier C. A line
+  with any unquoted match still fails, and quotes never soften the other
+  families.
 - Evidence lines show invisible characters as `<U+200B>` and are cut at 160
   characters.
 
