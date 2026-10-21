@@ -243,9 +243,11 @@ def split_subject_clause(c: dict) -> str | None:
 
 
 class ExtractResult(BaseModel):
-    """Validation context (optional): `notes` (list) collects clause splits;
-    `drop_long_subjects` drops constraints whose subject is still over MAX_SUBJECT_WORDS
-    into `dropped` (list) instead of failing — used on the last attempt."""
+    """The clause split and the subject cap apply to model output only: they run when
+    validating with a context (`_validate`), never when a stored record is loaded.
+    Context: `notes` (list) collects clause splits; `drop_long_subjects` drops constraints
+    whose subject is still over MAX_SUBJECT_WORDS into `dropped` (list) instead of
+    failing — used on the last attempt."""
 
     model_config = ConfigDict(extra="forbid")
 
@@ -261,6 +263,8 @@ class ExtractResult(BaseModel):
     @model_validator(mode="before")
     @classmethod
     def _split_clauses(cls, data, info: ValidationInfo):
+        if info.context is None:
+            return data
         if not isinstance(data, dict) or not isinstance(data.get("constraints"), list):
             return data
         data = copy.deepcopy(data)
@@ -273,10 +277,12 @@ class ExtractResult(BaseModel):
     @field_validator("constraints")
     @classmethod
     def _short_subjects(cls, constraints: list[Constraint], info: ValidationInfo):
+        if info.context is None:
+            return constraints
         long = [c for c in constraints if _subject_words(c.subject) > MAX_SUBJECT_WORDS]
         if not long:
             return constraints
-        context = info.context or {}
+        context = info.context
         if context.get("drop_long_subjects"):
             reason = f"subject over {MAX_SUBJECT_WORDS} words after the retry"
             context["dropped"].extend(

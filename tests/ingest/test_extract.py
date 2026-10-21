@@ -575,3 +575,23 @@ def test_a_long_subject_after_the_retry_drops_that_constraint_only():
     assert record.status == "ok"
     assert [c.subject for c in record.constraints()] == ["commit-granularity"]
     assert [d.reason for d in record.dropped] == ["subject over 3 words after the retry"]
+
+
+def test_stored_records_load_without_the_extraction_checks():
+    # the cap applies to model output, not to cache entries written by earlier versions
+    long = {
+        "subject": "table of contents headings",
+        "directive": "forbid",
+        "evidence": {"line_no": 3, "text": "x"},
+    }
+    data = {
+        "summary": "",
+        "keywords": [],
+        "tags": {"languages": [], "frameworks": [], "phase": [], "domain": []},
+        "synthetic_queries": [],
+        "constraints": [long],
+        "consumes": [],
+        "produces": [],
+        "requires_tools": [],
+    }
+    assert ExtractResult.model_validate(data).constraints[0].subject == long["subject"]
