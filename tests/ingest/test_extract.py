@@ -442,3 +442,9 @@ def test_prompt_defines_closed_conditions():
     prompt = " ".join(system_prompt().split())
     assert "language, framework or file type" in prompt
     assert "removed after extraction" in prompt
+
+
+def test_prompt_reads_scope_from_the_evidence_line_only():
+    prompt = " ".join(system_prompt().split())
+    assert "from the evidence line only" in prompt
+    assert '"wherever", "everywhere", "anywhere"' in prompt

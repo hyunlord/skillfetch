@@ -97,12 +97,14 @@ one constraint: require `pnpm`.
 the user), `plan`, or `any`. `scope.phase` is `plan`, `implement`, `test`, `review`, `format`,
 or `any`.
 
-Narrow a scope only when the line names it ("in Markdown output", "during implementation",
-"before merge") or the subject only exists there: type hints, docstrings and comments → `code`;
-preamble and summaries of the agent's work → `response`; commit granularity → `commit-message`;
-test runner → `tests` / `test`; formatter → `format`; review before merge → `review`. Otherwise
-use `any`. Do not narrow a scope from the skill's general topic: in a documentation skill,
-"Never use emoji" is still `any`.
+Read the scope from the evidence line only: not from the skill's title, description or
+topic, and not from what the skill is generally for. Narrow it only when that line names it
+("in Markdown output", "during implementation", "before merge"); otherwise use `any`.
+"wherever", "everywhere", "anywhere" and "in all output" mean `any`. In a documentation skill,
+"Never use emoji" is still `any`; in a chat-style skill, "Use emoji wherever it helps" is
+`any`, not `response`. Artifacts that follow from the subject itself (type hints → `code`,
+preamble → `response`, …) are filled in after extraction, so leave them `any` unless the line
+names them.
 
 ## condition
 
