@@ -69,9 +69,17 @@ directive.
 
 Null when the subject alone says it: "Never use emoji" → `emoji`, `forbid`, object null.
 Set it when the rule targets one part or one choice: "Never put emoji in section headers" →
-object `in headers`. Keep it short and lowercase, in the skill's own words, and use the same
-wording when one skill requires a thing and another forbids it (`squash` for both "squash
-commits" and "never squash").
+object `in headers`.
+
+For a vocabulary subject the object must be one of the objects listed next to the term, or
+null; a term marked "(no object)" always takes null. Do not restate the subject in the object:
+"End with a summary of every change you made" is `summary-at-end` with object null, not
+"every change you made". If a line is narrower than every listed object, it is not about the
+vocabulary term: use a more specific free-text subject instead ("Never log request bodies" →
+subject `request body logging`, object null).
+
+For a free-text subject, keep the object short and lowercase, in the skill's own words, and
+use the same wording when one skill requires a thing and another forbids it.
 
 For a tool slot (`package-manager`, `formatter`, `test-runner`, `build-tool`, `linter`) the
 object is the tool's name alone: `pnpm`, `ruff format`, `jest`. "Use pnpm; never run npm" is

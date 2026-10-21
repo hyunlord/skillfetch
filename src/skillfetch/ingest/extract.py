@@ -20,12 +20,13 @@ from pydantic import BaseModel, ConfigDict, ValidationError
 
 from skillfetch.ingest.skillfile import SKILL_FILE, read_text
 from skillfetch.resolve.models import Constraint
-from skillfetch.resolve.vocabulary import VOCABULARY
+from skillfetch.resolve.terms import normalize_term
+from skillfetch.resolve.vocabulary import VOCABULARY, lookup
 
 # Bump EXTRACT_VERSION whenever the prompt or the response schema changes; it is part of the
 # cache key. tests/ingest/test_extract.py pins PROMPT_SHA256 so a change cannot slip through.
-EXTRACT_VERSION = 1
-PROMPT_SHA256 = "11867143327050c97fadde99ad8fa1f07910061038dd5547a71b7e033a3d5a64"
+EXTRACT_VERSION = 2
+PROMPT_SHA256 = "242093a2d046d164df5a16e8dd941608a16e675d70b5e14e1370fbe5833240bd"
 
 DEFAULT_MODEL = "openrouter/openai/gpt-6-luna"  # "provider/model"; see backends.parse_model
 REQUEST_TIMEOUT_S = 120  # per HTTP request; the SDK default (600 s) let one stuck call stall a run
@@ -77,6 +78,9 @@ def _render_vocabulary() -> str:
     groups: dict[str, list[str]] = {}
     for term in VOCABULARY:
         label = f"`{term.name}`"
+        if term.objects is not None:
+            listed = ", ".join(f'"{o}"' for o in term.objects)
+            label += f" (objects: {listed})" if listed else " (no object)"
         if term.exclusive:
             choices = "; ".join(
                 f"{eco.name}: {', '.join(sorted(eco.choices))}" for eco in term.ecosystems
@@ -339,15 +343,41 @@ class MissingCredentials(RuntimeError):
     pass
 
 
+def constraint_vocabulary_errors(constraints: list[Constraint]) -> list[str]:
+    """Objects outside a closed vocabulary term's allowed list (§1.1)."""
+    errors = []
+    for i, c in enumerate(constraints):
+        term = lookup(c.subject)
+        if term is None or term.objects is None or c.object is None:
+            continue
+        if normalize_term(c.object) in {normalize_term(o) for o in term.objects}:
+            continue
+        allowed = ", ".join(f'"{o}"' for o in term.objects) or "(none)"
+        errors.append(
+            f"constraints[{i}] (line {c.evidence.line_no}): object {c.object!r} is not allowed "
+            f"for subject `{term.name}`. Allowed objects: {allowed}, or null. If the rule "
+            f"targets something narrower than these, use a more specific free-text subject "
+            f"instead of `{term.name}`."
+        )
+    return errors
+
+
+def vocabulary_errors(result: ExtractResult) -> list[str]:
+    return constraint_vocabulary_errors(result.constraints)
+
+
 def _validate(text: str) -> ExtractResult:
     try:
         data = json.loads(text)
     except json.JSONDecodeError as exc:
         raise ValueError(f"not valid JSON: {exc}") from exc
     try:
-        return ExtractResult.model_validate(data)
+        result = ExtractResult.model_validate(data)
     except ValidationError as exc:
         raise ValueError(str(exc)) from exc
+    if errors := vocabulary_errors(result):
+        raise ValueError("\n".join(errors))
+    return result
 
 
 @dataclass

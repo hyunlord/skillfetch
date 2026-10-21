@@ -189,3 +189,43 @@ def test_extract_module_does_not_need_the_sdk():
         "assert not {'anthropic', 'openai'} & set(sys.modules)"
     )
     subprocess.run([sys.executable, "-c", code], check=True)
+
+
+# --- object vocabulary ---------------------------------------------------------------------------
+
+
+def test_object_outside_the_vocabulary_is_retried_with_the_allowed_list():
+    record, client = run(
+        "concise-responses",
+        "concise-responses.disallowed-object.json",
+        "concise-responses.ok.json",
+    )
+    assert record.status == "ok" and len(record.attempts) == 2
+    retry = client.requests[1]["messages"][2]["content"]
+    assert "'of what you did' is not allowed for subject `summary-at-end`" in retry
+    assert "Allowed objects: (none), or null" in retry
+    assert "more specific free-text subject" in retry
+
+
+def test_free_text_subjects_keep_free_objects():
+    from skillfetch.ingest.extract import vocabulary_errors
+
+    result = ExtractResult.model_validate_json(
+        recorded("commit-squash.ok.json")["content"][0]["text"]
+    )
+    assert vocabulary_errors(result) == []  # branch-naming is open, squash is listed
+
+
+def test_hand_labels_follow_the_object_vocabulary():
+    from conftest import load_corpus
+
+    from skillfetch.ingest.extract import constraint_vocabulary_errors
+
+    for sid, skill in load_corpus().items():
+        assert constraint_vocabulary_errors(skill.constraints) == [], sid
+
+
+def test_prompt_lists_allowed_objects():
+    prompt = system_prompt()
+    assert '`emoji` (objects: "in headers")' in prompt
+    assert "`summary-at-end` (no object)" in prompt

@@ -129,7 +129,7 @@ def test_false_conflicts_count_against_the_gate():
     records = perfect_records()
     # turn inline-comments' rule into the same object self-documenting bans: a conflict
     # on a pair labelled independent
-    _edit(records, "inline-comments", 0, object="that restate the code")
+    _edit(records, "inline-comments", 0, object="restating the code")
     cal = calibrate(FIXTURES_DIR, records)
     assert [(m.a, m.b, m.expected, m.got) for m in cal.pairs.mismatches] == [
         ("inline-comments", "self-documenting", "independent", "conflict")

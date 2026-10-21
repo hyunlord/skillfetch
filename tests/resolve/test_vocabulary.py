@@ -55,3 +55,36 @@ def test_alternatives_are_unique_across_ecosystems():
 )
 def test_choice_of(obj, expected):
     assert choice_of(lookup("package-manager"), obj) == expected
+
+
+# --- object vocabulary ------------------------------------------------------------------------
+
+
+def test_closed_terms_list_normalized_unique_objects():
+    for term in VOCABULARY:
+        if term.objects is None:
+            continue
+        normalized = [normalize_term(o) for o in term.objects]
+        assert len(set(normalized)) == len(normalized), term.name
+
+
+def test_tool_slots_and_free_valued_terms_stay_open():
+    for name in (
+        "package-manager",
+        "formatter",
+        "test-runner",
+        "build-tool",
+        "linter",
+        "naming-convention",
+        "branch-naming",
+        "pr-size",
+        "line-length",
+    ):
+        assert lookup(name).objects is None, name
+
+
+def test_restating_objects_are_not_allowed_where_the_subject_says_it_all():
+    for name in ("summary-at-end", "preamble", "type-hints", "ask-before-acting"):
+        term = lookup(name)
+        assert term.objects is not None
+        assert "of what you did" not in term.objects

@@ -26,57 +26,50 @@ class Term:
     group: str
     exclusive: bool = False
     ecosystems: tuple[Ecosystem, ...] = field(default=())
+    # Allowed objects (null is always allowed). None = open: any object, as for tool names
+    # or values. A closed term keeps extracted objects comparable across skills: "of what
+    # you did" and "every change you made" both just restate `summary-at-end`.
+    objects: tuple[str, ...] | None = ()
 
 
 def _eco(name: str, *choices: str) -> Ecosystem:
     return Ecosystem(name, frozenset(normalize_term(c) for c in choices))
 
 
-def _terms(group: str, *names: str) -> list[Term]:
-    return [Term(name, group) for name in names]
+def _t(group: str, name: str, *objects: str, open_: bool = False) -> Term:
+    return Term(name, group, objects=None if open_ else objects)
 
 
 VOCABULARY: tuple[Term, ...] = (
-    *_terms(
-        "formatting",
-        "emoji",
-        "headers",
-        "bullet-points",
-        "code-blocks",
-        "line-length",
-        "trailing-whitespace",
-    ),
-    *_terms(
-        "language",
-        "type-hints",
-        "docstrings",
-        "comments",
-        "naming-convention",
-        "error-handling",
-        "logging",
-    ),
-    *_terms(
-        "process",
-        "tests-first",
-        "commit-granularity",
-        "branch-naming",
-        "pr-size",
-        "review-before-merge",
-    ),
-    *_terms(
-        "output",
-        "response-length",
-        "preamble",
-        "summary-at-end",
-        "ask-before-acting",
-        "explain-reasoning",
-    ),
+    _t("formatting", "emoji", "in headers"),
+    _t("formatting", "headers", "short", "sentence case", "title case", "numbered"),
+    _t("formatting", "bullet-points"),
+    _t("formatting", "code-blocks", "language tag"),
+    _t("formatting", "line-length", open_=True),
+    _t("formatting", "trailing-whitespace"),
+    _t("language", "type-hints", "public functions"),
+    _t("language", "docstrings", "public functions"),
+    _t("language", "comments", "on non-obvious code", "restating the code", "todo"),
+    _t("language", "naming-convention", open_=True),
+    _t("language", "error-handling", open_=True),
+    _t("language", "logging", "print statements", "secrets"),
+    _t("process", "tests-first"),
+    _t("process", "commit-granularity", "squash", "atomic"),
+    _t("process", "branch-naming", open_=True),
+    _t("process", "pr-size", open_=True),
+    _t("process", "review-before-merge"),
+    _t("output", "response-length", "short", "detailed"),
+    _t("output", "preamble"),
+    _t("output", "summary-at-end"),
+    _t("output", "ask-before-acting", "destructive actions"),
+    _t("output", "explain-reasoning"),
     # Several linters routinely run side by side, so `linter` is not exclusive.
-    Term("linter", "tooling"),
+    _t("tooling", "linter", open_=True),
     Term(
         "package-manager",
         "tooling",
         exclusive=True,
+        objects=None,
         ecosystems=(
             _eco("javascript", "npm", "pnpm", "yarn", "bun"),
             _eco("python", "pip", "uv", "poetry", "pipenv", "pdm"),
@@ -89,6 +82,7 @@ VOCABULARY: tuple[Term, ...] = (
         "formatter",
         "tooling",
         exclusive=True,
+        objects=None,
         ecosystems=(
             _eco("javascript", "prettier", "biome", "dprint"),
             _eco("python", "black", "ruff", "yapf", "autopep8"),
@@ -98,6 +92,7 @@ VOCABULARY: tuple[Term, ...] = (
         "test-runner",
         "tooling",
         exclusive=True,
+        objects=None,
         ecosystems=(
             _eco("javascript", "jest", "vitest", "mocha", "ava"),
             _eco("python", "pytest", "unittest", "nose2"),
@@ -107,6 +102,7 @@ VOCABULARY: tuple[Term, ...] = (
         "build-tool",
         "tooling",
         exclusive=True,
+        objects=None,
         ecosystems=(
             _eco("javascript", "vite", "webpack", "esbuild", "rollup", "parcel", "rspack"),
             _eco("jvm", "maven", "gradle", "sbt"),

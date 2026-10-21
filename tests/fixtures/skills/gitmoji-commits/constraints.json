@@ -3,7 +3,7 @@
     {
       "subject": "emoji",
       "directive": "require",
-      "object": "gitmoji prefix",
+      "object": null,
       "scope": {
         "artifact": "commit-message",
         "phase": "any",

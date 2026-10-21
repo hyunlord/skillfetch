@@ -1,0 +1,15 @@
+{
+  "stop_reason": "end_turn",
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"summary\": \"s\", \"keywords\": [\"k\"], \"tags\": {\"languages\": [], \"frameworks\": [], \"phase\": [], \"domain\": []}, \"synthetic_queries\": [\"q\"], \"constraints\": [{\"subject\": \"preamble\", \"directive\": \"forbid\", \"object\": null, \"scope\": {\"artifact\": \"response\", \"phase\": \"any\", \"condition\": null}, \"evidence\": {\"line_no\": 12, \"text\": \"Never open a response with a preamble or a restatement of the question.\"}, \"direction\": null, \"strength\": \"must\"}, {\"subject\": \"summary-at-end\", \"directive\": \"forbid\", \"object\": \"of what you did\", \"scope\": {\"artifact\": \"response\", \"phase\": \"any\", \"condition\": null}, \"evidence\": {\"line_no\": 13, \"text\": \"Do not end responses with a summary of what you did.\"}, \"direction\": null, \"strength\": \"must\"}], \"consumes\": [], \"produces\": [], \"requires_tools\": []}"
+    }
+  ],
+  "usage": {
+    "input_tokens": 900,
+    "output_tokens": 310,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 2600
+  }
+}

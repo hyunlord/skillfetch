@@ -3,7 +3,7 @@
     {
       "subject": "preamble",
       "directive": "require",
-      "object": "restate the question",
+      "object": null,
       "scope": {
         "artifact": "response",
         "phase": "any",
