@@ -15,6 +15,7 @@ from skillfetch.ingest import credentials
 from skillfetch.ingest.extract import (
     DEFAULT_MODEL,
     MAX_TOKENS,
+    REQUEST_TIMEOUT_S,
     TOKEN_FIELDS,
     Completion,
     ExtractBackend,
@@ -91,7 +92,7 @@ class AnthropicBackend:
 def make_anthropic_client() -> Any:
     import anthropic
 
-    client = anthropic.Anthropic(max_retries=4)
+    client = anthropic.Anthropic(max_retries=4, timeout=REQUEST_TIMEOUT_S)
     # Without credentials the SDK only fails when it builds the first request, with a bare
     # TypeError; check up front instead. `credentials` covers `ant auth login` profiles and
     # workload identity federation.
@@ -253,7 +254,9 @@ def make_backend(
             )
         import openai
 
-        client = openai.OpenAI(api_key=key, base_url=OPENROUTER_BASE_URL, max_retries=4)
+        client = openai.OpenAI(
+            api_key=key, base_url=OPENROUTER_BASE_URL, max_retries=4, timeout=REQUEST_TIMEOUT_S
+        )
         return openrouter_backend(client, model)
     key = credentials.openai_api_key(creds_file)
     if key is None and base_url is None:
@@ -264,5 +267,7 @@ def make_backend(
     import openai
 
     # local servers (vLLM, Ollama) usually accept any key
-    client = openai.OpenAI(api_key=key or "EMPTY", base_url=base_url, max_retries=4)
+    client = openai.OpenAI(
+        api_key=key or "EMPTY", base_url=base_url, max_retries=4, timeout=REQUEST_TIMEOUT_S
+    )
     return OpenAICompatBackend(client, model, provider=label, official=base_url is None)

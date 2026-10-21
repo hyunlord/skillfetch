@@ -236,3 +236,44 @@ def test_openrouter_key_from_env_or_creds_file(tmp_path, monkeypatch):
     assert api_key("openrouter", path) == SECRET
     monkeypatch.setenv("OPENROUTER_API_KEY", "from-env")
     assert api_key("openrouter", path) == "from-env"
+
+
+# --- defaults ---------------------------------------------------------------------------------
+
+
+def test_default_model_is_luna_on_openrouter():
+    from skillfetch.ingest.extract import DEFAULT_MODEL
+
+    assert DEFAULT_MODEL == "openrouter/openai/gpt-6-luna"
+    assert backend_key() == "openrouter/openai/gpt-6-luna"
+
+
+def test_clients_use_a_120_second_request_timeout(tmp_path, monkeypatch):
+    openai = pytest.importorskip("openai")
+    anthropic = pytest.importorskip("anthropic")
+    seen = {}
+
+    class FakeOpenAI:
+        def __init__(self, **kwargs):
+            seen["openai"] = kwargs
+            from types import SimpleNamespace
+
+            self.models = SimpleNamespace(
+                list=lambda: [
+                    SimpleNamespace(
+                        id="openai/gpt-6-luna", supported_parameters=["structured_outputs"]
+                    )
+                ]
+            )
+
+    class FakeAnthropic:
+        def __init__(self, **kwargs):
+            seen["anthropic"] = kwargs
+            self.api_key, self.auth_token, self.credentials = "k", None, None
+
+    monkeypatch.setattr(openai, "OpenAI", FakeOpenAI)
+    monkeypatch.setattr(anthropic, "Anthropic", FakeAnthropic)
+    monkeypatch.setenv("OPENROUTER_API_KEY", "test-key")
+    backends_mod.make_backend("openrouter/openai/gpt-6-luna")
+    backends_mod.make_backend("anthropic/claude-sonnet-5")
+    assert seen["openai"]["timeout"] == 120 and seen["anthropic"]["timeout"] == 120

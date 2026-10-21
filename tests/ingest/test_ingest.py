@@ -89,7 +89,7 @@ def test_api_errors_are_not_cached_and_earlier_results_are(tmp_path):
     client = FakeClient(recorded("commit-squash.ok.json"), boom)
     with pytest.raises(RuntimeError):
         extract_dir(root, cache, sonnet(client), jobs=1)
-    outcomes = {o.skill_id: o.source for o in extract_dir(root, cache, None)}
+    outcomes = {o.skill_id: o.source for o in extract_dir(root, cache, None, model=KEY)}
     assert outcomes == {"atomic-commits": "cache", "commit-squash": "missing"}
 
 
@@ -120,7 +120,8 @@ def test_cost_log_lists_tokens_and_dollars_per_skill(tmp_path):
 def test_calibrate_from_cache_without_api(tmp_path, capsys):
     cache_dir = tmp_path / "cache"
     extract_dir(SKILLS_DIR, ExtractCache(cache_dir), sonnet(OracleClient()))
-    code = main(["ingest", str(FIXTURES_DIR), "--calibrate", "--cache-dir", str(cache_dir)])
+    args = ["ingest", str(FIXTURES_DIR), "--calibrate", "--model", KEY]
+    code = main(args + ["--cache-dir", str(cache_dir)])
     out = capsys.readouterr().out
     assert code == 0
     assert "informative pairs: 1.000 (33/33)" in out and "PASS" in out

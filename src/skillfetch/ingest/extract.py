@@ -27,7 +27,8 @@ from skillfetch.resolve.vocabulary import VOCABULARY
 EXTRACT_VERSION = 1
 PROMPT_SHA256 = "11867143327050c97fadde99ad8fa1f07910061038dd5547a71b7e033a3d5a64"
 
-DEFAULT_MODEL = "anthropic/claude-sonnet-5"  # "provider/model"; see backends.parse_model
+DEFAULT_MODEL = "openrouter/openai/gpt-6-luna"  # "provider/model"; see backends.parse_model
+REQUEST_TIMEOUT_S = 120  # per HTTP request; the SDK default (600 s) let one stuck call stall a run
 MAX_TOKENS = 16000
 MAX_SKILL_TOKENS = 12000  # index-format §1.5 cost guard, estimated as chars / 4
 
