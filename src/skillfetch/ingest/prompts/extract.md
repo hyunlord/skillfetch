@@ -106,11 +106,13 @@ use `any`. Do not narrow a scope from the skill's general topic: in a documentat
 
 ## condition
 
-`scope.condition` limits a rule to some situations: set it only when the line says the rule
-holds in some cases and not in others ("when X", "if X", "only for X", "unless X"). Write it as
-one language, framework or artifact name when possible, lowercase and without "when": "When
-editing generated protobuf files, do not reformat them" → `generated protobuf files`; "When
-fixing a bug, …" → `bug fixes`. Otherwise a short phrase. Null for unconditional rules.
+`scope.condition` is closed: it is the language, framework or file type a rule is limited
+to, and nothing else. Set it only when the line limits the rule that way ("in Django
+projects", "for migration files", "when editing generated protobuf files"), written as those
+names, lowercase and without "when": `django`, `migrations`, `generated protobuf files`.
+Situations ("when fixing a bug"), purposes ("wherever it makes the output friendlier") and the
+work being done ("for feature work") are not conditions: leave the condition null. Conditions
+outside the set of language, framework and file-type names are removed after extraction.
 
 A condition is not what the rule is about. "Run black on every Python file" has condition
 null: Python is what gets formatted, not a situation in which the rule applies (the skill's
@@ -132,7 +134,9 @@ These lines are not from any real skill:
  14| - Commit messages must not contain emoji.
 ```
 
-Line 9 is rationale: no constraint. Line 12 gives two instructions about one slot; the main one is kept. The others give these constraints:
+Line 9 is rationale: no constraint. Line 11's "when fixing a bug" is a situation, not a
+condition. Line 12 gives two instructions about one slot; the main one is kept. The others give
+these constraints:
 
 ```json
 [
@@ -140,7 +144,7 @@ Line 9 is rationale: no constraint. Line 12 gives two instructions about one slo
    "scope": {"artifact": "any", "phase": "any", "condition": null}, "strength": "must",
    "evidence": {"line_no": 10, "text": "Keep pull requests under 400 changed lines."}},
   {"subject": "tests", "directive": "order", "object": "implementation", "direction": "before",
-   "scope": {"artifact": "any", "phase": "any", "condition": "bug fixes"}, "strength": "must",
+   "scope": {"artifact": "any", "phase": "any", "condition": null}, "strength": "must",
    "evidence": {"line_no": 11, "text": "When fixing a bug, write a failing regression test before touching the code."}},
   {"subject": "package-manager", "directive": "require", "object": "yarn", "direction": null,
    "scope": {"artifact": "any", "phase": "any", "condition": null}, "strength": "must",

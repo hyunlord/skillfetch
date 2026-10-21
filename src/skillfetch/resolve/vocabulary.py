@@ -185,3 +185,42 @@ def choice_of(term: Term | None, obj: str | None) -> tuple[str, str] | None:
     words = set(_WORD.findall(normalize_term(obj)))
     found = [(eco.name, choice) for eco in term.ecosystems for choice in eco.choices & words]
     return found[0] if len(found) == 1 else None
+
+
+# --- closed conditions (constraints.md §1) ---------------------------------------------------
+#
+# A condition limits a rule to a language, a framework or a kind of file. Situations ("when
+# fixing a bug"), purposes ("if it reads better") and the work being done ("feature work") are
+# not conditions; extraction post-processing removes them. A condition is allowed when every
+# word, after normalization and ignoring the words below, is in one of these sets.
+
+
+def _words(text: str) -> frozenset[str]:
+    return frozenset(text.split())
+
+
+CONDITION_LANGUAGES = _words(
+    """python javascript typescript go golang rust java kotlin swift scala ruby php c cpp
+    csharp elixir erlang haskell lua dart r julia perl shell bash zsh powershell sql html css
+    scss sass markdown yaml json toml xml terraform hcl solidity"""
+)
+CONDITION_FRAMEWORKS = _words(
+    """django flask fastapi rails react vue angular svelte next nextjs nuxt express nestjs
+    spring laravel symfony node nodejs deno electron flutter android ios tailwind pydantic
+    sqlalchemy prisma graphql pytorch tensorflow jax pandas numpy kubernetes docker helm"""
+)
+CONDITION_FILE_TYPES = _words(
+    """file code source test spec fixture migration config configuration setting lockfile lock
+    generated vendored script notebook dockerfile makefile workflow ci pipeline schema protobuf
+    proto readme changelog doc documentation template component model view controller route
+    api frontend backend library module package dependency monorepo"""
+)
+_CONDITION_FILLER = _words("a an the in for of and or on all any")
+_CONDITION_WORDS = frozenset(
+    normalize_term(w) for w in CONDITION_LANGUAGES | CONDITION_FRAMEWORKS | CONDITION_FILE_TYPES
+)
+
+
+def condition_allowed(condition: str) -> bool:
+    words = [w for w in _WORD.findall(normalize_term(condition)) if w not in _CONDITION_FILLER]
+    return bool(words) and all(w in _CONDITION_WORDS for w in words)

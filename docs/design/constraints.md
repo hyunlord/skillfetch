@@ -50,10 +50,20 @@ Fields:
   pr-description | markdown | response | plan | any`. `any` when the skill does
   not narrow it.
 - `scope.phase` — `plan | implement | test | review | format | any`.
-- `scope.condition` — condition if the rule is conditional, else null. When
-  possible a single language, framework or artifact name (`python`, `django`,
-  `migrations`), lowercase; otherwise a short phrase. Applies to every
-  directive, including `order` ("tests first *for bug fixes*").
+- `scope.condition` — closed: the language, framework or file type the rule is
+  limited to (`python`, `django`, `django migrations`, `generated protobuf
+  files`), lowercase, else null. A condition is allowed when every word of it
+  (ignoring articles and prepositions) is a language, framework or file-type
+  name from `resolve/vocabulary.py`; extraction post-processing nulls anything
+  else. Situations ("when fixing a bug"), purposes ("if it reads better") and
+  the work being done ("feature work") are not conditions. Applies to every
+  directive, including `order`.
+
+  Trade-off, accepted for v0.1: a real situational condition is dropped too,
+  which makes the rule unconditional and can turn a `needs_review` pair into a
+  `conflict`. Calibration showed free-text conditions to be mostly noise
+  ("feature work", "if they make the output friendlier"), each of which hid a
+  real relation; watch the hard gate if this assumption breaks.
 - `strength` — `must | should`. Derived from directive (require/forbid → must,
   prefer/avoid → should) unless the text clearly says otherwise. `order` has no
   polarity; its strength defaults to `must` unless stated.
@@ -159,8 +169,8 @@ schema has no language field). Grow these lists from extraction output.
   miscount, reported as `repaired`); anything else is dropped (`dropped`, with
   the reason).
 - Vocabulary post-processing (`apply_vocabulary`, after the evidence check and
-  before the per-line merge): the polarity flip and the implied artifact of
-  §1.1. Every change is recorded in the record's `adjusted` list. The hand
+  before the per-line merge): closed conditions (§1), the polarity flip and the
+  implied artifact of §1.1. Every change is recorded in the record's `adjusted` list. The hand
   labels are a fixed point (a test checks it).
 - `EXTRACT_VERSION` must be bumped whenever the prompt, the schema or the
   post-processing changes (it keys the cache); a test pins the prompt+schema

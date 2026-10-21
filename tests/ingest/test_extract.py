@@ -404,3 +404,41 @@ def test_prompt_maps_removal_verbs_to_bans():
     prompt = " ".join(system_prompt().split())  # independent of line wrapping
     assert "remove / strip / delete X → `forbid` X" in prompt
     assert "avoid X → `avoid` X (the soft ban); never `require` or `prefer`" in prompt
+
+
+# --- closed conditions ------------------------------------------------------------------------
+
+
+def _kc(condition, line=1):
+    return Constraint.model_validate(
+        {
+            "subject": "commit-granularity",
+            "directive": "require",
+            "object": "squash",
+            "scope": {"artifact": "commit-message", "condition": condition},
+            "evidence": {"line_no": line, "text": "Squash each feature branch."},
+        }
+    )
+
+
+def test_condition_outside_the_closed_set_is_removed_and_noted():
+    from skillfetch.ingest.extract import apply_vocabulary
+
+    [c], notes = apply_vocabulary([_kc("feature work", line=12)])
+    assert c.scope.condition is None
+    assert notes == [
+        "line 12: condition 'feature work' -> null (not a language, framework or file type)"
+    ]
+
+
+def test_condition_inside_the_closed_set_is_kept():
+    from skillfetch.ingest.extract import apply_vocabulary
+
+    [c], notes = apply_vocabulary([_kc("django migrations")])
+    assert c.scope.condition == "django migrations" and notes == []
+
+
+def test_prompt_defines_closed_conditions():
+    prompt = " ".join(system_prompt().split())
+    assert "language, framework or file type" in prompt
+    assert "removed after extraction" in prompt

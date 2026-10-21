@@ -22,12 +22,17 @@ from pydantic import BaseModel, ConfigDict, ValidationError
 from skillfetch.ingest.skillfile import SKILL_FILE, read_text
 from skillfetch.resolve.models import Constraint
 from skillfetch.resolve.terms import normalize_term
-from skillfetch.resolve.vocabulary import VOCABULARY, implied_artifact, lookup
+from skillfetch.resolve.vocabulary import (
+    VOCABULARY,
+    condition_allowed,
+    implied_artifact,
+    lookup,
+)
 
 # Bump EXTRACT_VERSION whenever the prompt or the response schema changes; it is part of the
 # cache key. tests/ingest/test_extract.py pins PROMPT_SHA256 so a change cannot slip through.
-EXTRACT_VERSION = 3
-PROMPT_SHA256 = "01f16d903e554715d3daca15fcc1b5f1b558fbe5a10f73791fa07de0b484a0f6"
+EXTRACT_VERSION = 4
+PROMPT_SHA256 = "a49f621c038d81e8c920f765762d27e4e78c8e5863bc9177694734532620a253"
 
 DEFAULT_MODEL = "openrouter/openai/gpt-6-luna"  # "provider/model"; see backends.parse_model
 REQUEST_TIMEOUT_S = 120  # per HTTP request; the SDK default (600 s) let one stuck call stall a run
@@ -330,11 +335,19 @@ def apply_vocabulary(constraints: list[Constraint]) -> tuple[list[Constraint], l
       removal verb the directive is kept: "Always begin by restating the question" really
       requires a preamble. Negations are not cues ("don't skip the preamble").
     - Artifact `any` becomes the subject's (or subject + object's) implied artifact; an
-      explicit artifact is never overridden."""
+      explicit artifact is never overridden.
+    - Conditions are closed: one that is not made of language, framework and file-type
+      names ("feature work", "if they make the output friendlier") becomes null."""
     out, notes = [], []
     for c in constraints:
         term = lookup(c.subject)
         line = c.evidence.line_no
+        if c.scope.condition is not None and not condition_allowed(c.scope.condition):
+            notes.append(
+                f"line {line}: condition {c.scope.condition!r} -> null "
+                "(not a language, framework or file type)"
+            )
+            c = c.model_copy(update={"scope": c.scope.model_copy(update={"condition": None})})
         negative = term is not None and term.polarity == "negative"
         if negative and c.directive in _FLIP and (cue := _REMOVAL.search(c.evidence.text)):
             directive, strength = _FLIP[c.directive]

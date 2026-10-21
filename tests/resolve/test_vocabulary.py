@@ -3,7 +3,13 @@
 import pytest
 
 from skillfetch.resolve.relation import normalize_term
-from skillfetch.resolve.vocabulary import VOCABULARY, choice_of, implied_artifact, lookup
+from skillfetch.resolve.vocabulary import (
+    VOCABULARY,
+    choice_of,
+    condition_allowed,
+    implied_artifact,
+    lookup,
+)
 
 
 @pytest.mark.parametrize("subject", ["package-manager", "formatter", "test-runner", "build-tool"])
@@ -116,3 +122,31 @@ def test_negative_subjects():
 )
 def test_implied_artifact(subject, obj, artifact):
     assert implied_artifact(lookup(subject), obj) == artifact
+
+
+# --- closed conditions ---------------------------------------------------------------------------
+
+
+@pytest.mark.parametrize(
+    "condition",
+    [
+        "python",
+        "Django",
+        "django migrations",
+        "generated protobuf files",
+        "test files",
+        "TypeScript code",
+        "the CI workflow",
+        "c++",
+    ],
+)
+def test_conditions_from_languages_frameworks_and_file_types(condition):
+    assert condition_allowed(condition)
+
+
+@pytest.mark.parametrize(
+    "condition",
+    ["feature work", "bug fixes", "they make the output friendlier", "hand edits", "unsure"],
+)
+def test_situational_conditions_are_not_conditions(condition):
+    assert not condition_allowed(condition)
