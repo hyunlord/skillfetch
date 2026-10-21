@@ -238,7 +238,20 @@ constraints. `skillfetch ingest tests/fixtures --with-api --calibrate`
 
 Conflict precision is vacuously 1.0 when no conflict is flagged, so an
 extractor that finds nothing passes the hard gate; the soft target is what
-catches it. Accuracy over all pairs, labelled-pair recall and the number of
+catches it.
+
+**Holdout.** The fixtures are what the prompt is tuned on; v4 scored 34/34
+informative pairs there and 0/24 conflicts on the first public build. The
+holdout (`tests/fixtures/holdout/public-v0.yaml`, measured by
+`ingest/holdout.py`) is the guard against tuning to the fixtures: every
+informative pair of that build (34, among 26 skills), labelled by hand
+(31 independent, 3 needs_review, no conflict), with each skill pinned by
+source commit, path and content hash. Bodies are not committed (most of the
+skills are not redistributable); `skillfetch ingest --sources sources.yaml
+--holdout <file> --with-api` snapshots the pinned commits, extracts (cache
+first) and compares every pair of the pinned skills — unlisted pairs are
+expected to be independent — with the same gates. Do not tune the prompt on
+holdout text; when it is used up, label a fresh sample instead. Accuracy over all pairs, labelled-pair recall and the number of
 false positives are printed as well.
 
 ## 3. Pairwise relation
