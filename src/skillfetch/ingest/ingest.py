@@ -58,17 +58,36 @@ def extract_dir(
         elif extractor is not None:
             todo.append((outcome, skill_dir))
 
-    def run(item: tuple[Outcome, Path]) -> None:
-        outcome, skill_dir = item
-        record = extractor.extract(skill_dir, outcome.skill_id, outcome.content_hash)
-        cache.put(record)
-        outcome.source, outcome.record = "api", record
-
-    if todo:
-        with ThreadPoolExecutor(max_workers=max(1, jobs)) as pool:
-            for _ in pool.map(run, todo):  # re-raises the first API error
-                pass
+    fresh = run_extractions(
+        [(skill_dir, o.skill_id, o.content_hash) for o, skill_dir in todo], cache, extractor, jobs
+    )
+    for outcome, _ in todo:
+        outcome.source, outcome.record = "api", fresh[outcome.content_hash]
     return outcomes
+
+
+def run_extractions(
+    items: list[tuple[Path, str, str]],
+    cache: ExtractCache,
+    extractor: Extractor,
+    jobs: int = 4,
+) -> dict[str, ExtractRecord]:
+    """Extract (skill_dir, skill_id, content_hash) items in parallel, once per distinct
+    content, caching each record. API errors propagate (finished records stay cached)."""
+    unique: dict[str, tuple[Path, str]] = {}
+    for skill_dir, skill_id, digest in items:
+        unique.setdefault(digest, (skill_dir, skill_id))
+
+    def run(digest: str) -> tuple[str, ExtractRecord]:
+        skill_dir, skill_id = unique[digest]
+        record = extractor.extract(skill_dir, skill_id, digest)
+        cache.put(record)
+        return digest, record
+
+    if not unique:
+        return {}
+    with ThreadPoolExecutor(max_workers=max(1, jobs)) as pool:
+        return dict(pool.map(run, unique))  # re-raises the first API error
 
 
 def _usd(value: float | None) -> str:

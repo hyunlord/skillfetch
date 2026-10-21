@@ -35,8 +35,18 @@ One SKILL.md yields 0–30 constraints. Each:
 Fields:
 
 - `subject` — a short noun phrase, lowercase, from a **controlled vocabulary when
-  possible** (see §1.1), free text otherwise. The extractor must prefer vocabulary
-  terms and must not invent synonyms for an existing term.
+  possible** (see §1.1), free text otherwise, **at most three words** (extraction
+  v6). The extractor must prefer vocabulary terms and must not invent synonyms for
+  an existing term. A situation never belongs in the subject: before validation, a
+  free-text subject is split at the first clause marker (`when`, `whenever`, `if`,
+  `unless`, `once`, `after`, `before`, `while`, `during`, `until`, `wherever`) —
+  "confirmation when the overlap reaches 30%" → subject `confirmation`, the clause
+  → `condition` (if none was set) and `object_raw` (if empty). Vocabulary terms and
+  `order` subjects are not split. A subject still over three words fails
+  validation and is sent back once with the offending lines; after the retry only
+  those constraints are dropped (`subject over 3 words after the retry`), not the
+  skill. v5 had put situations into long subjects ("feature squashing before
+  opening a PR"), which hid real duplicates and conflicts.
 - `directive` — one of `require | forbid | prefer | avoid | order`.
   - `require`/`forbid`: hard (the skill says must / never).
   - `prefer`/`avoid`: soft (should / try to / by default).
@@ -44,26 +54,34 @@ Fields:
     thing it must precede/follow, `direction` holds `before|after`.
 - `object` — what the directive is about, when `subject` alone is ambiguous.
   Optional.
+- `object_raw` — the object in the evidence line's own words ("swallowing
+  errors"), filled by the extractor even when `object` is null or one of a
+  vocabulary term's listed objects, or the situation the rule is limited to.
+  Null when the rule covers its whole subject (restatements, scope words and
+  conditions never go in it). Not part of identity; the only relation that
+  reads it is §3 row 14: an object-less rule with an `object_raw` is narrower
+  than its subject and does not make a conflict.
 - `direction` — `before | after`, `order` only (null otherwise): the subject
   comes before / after the object.
 - `scope.artifact` — what the rule applies to: `code | tests | commit-message |
   pr-description | markdown | response | plan | any`. `any` when the skill does
   not narrow it.
 - `scope.phase` — `plan | implement | test | review | format | any`.
-- `scope.condition` — closed: the language, framework or file type the rule is
-  limited to (`python`, `django`, `django migrations`, `generated protobuf
-  files`), lowercase, else null. A condition is allowed when every word of it
-  (ignoring articles and prepositions) is a language, framework or file-type
-  name from `resolve/vocabulary.py`; extraction post-processing nulls anything
-  else. Situations ("when fixing a bug"), purposes ("if it reads better") and
-  the work being done ("feature work") are not conditions. Applies to every
-  directive, including `order`.
+- `scope.condition` — the language, framework, library or file type the rule is
+  limited to (`python`, `django migrations`, `docx`, `generated protobuf files`),
+  lowercase, else null. Situations ("when fixing a bug"), purposes ("if it reads
+  better") and the work being done ("feature work") are not conditions; the prompt
+  sends situations to `object_raw`. Extraction post-processing nulls a condition
+  only when it reads like a clause (`condition_is_clause` in
+  `resolve/vocabulary.py`: a subordinating word such as `when`/`if`/`once`, a
+  pronoun, an auxiliary or modal verb, or more than six words); any other phrase
+  is kept. Applies to every directive, including `order`.
 
-  Trade-off, accepted for v0.1: a real situational condition is dropped too,
-  which makes the rule unconditional and can turn a `needs_review` pair into a
-  `conflict`. Calibration showed free-text conditions to be mostly noise
-  ("feature work", "if they make the output friendlier"), each of which hid a
-  real relation; watch the hard gate if this assumption breaks.
+  History: until v5 conditions were closed against word lists of languages,
+  frameworks and file types, which nulled real ones the lists lacked (`docx`,
+  `latex`, `blazor`, `reportlab`, `webpack` on the seed-43 build). A kept
+  free-text condition such as "feature work" can only turn a pair into
+  `needs_review` (§3 rows 8c, 13), never into a conflict.
 - `strength` — `must | should`. Derived from directive (require/forbid → must,
   prefer/avoid → should) unless the text clearly says otherwise. `order` has no
   polarity; its strength defaults to `must` unless stated.
@@ -170,14 +188,28 @@ than `logging`, and as `logging` it would read as a blanket ban.
   it for that model. Reproducibility comes from the extract cache: a skill is
   extracted once per `(extract_version, provider/model, content_hash)`.
 - Validate with pydantic; on failure retry once with the validation error
-  appended; on second failure record `extract_failed`. A refusal is not retried.
+  appended. After the retry, constraints that still break a per-constraint rule
+  (subject over three words, an object outside a vocabulary term's list) are
+  dropped one by one (`dropped`, with the reason); only an answer that still
+  fails as a whole (bad JSON, schema) records `extract_failed`. A refusal is not
+  retried. A cached `extract_failed` record whose last answer passes the current
+  validation is recovered by the build without another call (`revalidate`).
 - Evidence check after validation: a quote found on its cited line is kept; a
   quote found on exactly one other line is kept with the line corrected (a
   miscount, reported as `repaired`); anything else is dropped (`dropped`, with
   the reason).
+- Section headings (`ingest/sections.py`, after the evidence check): every
+  constraint records the markdown heading its line falls under
+  (`section_heading`; a bold label line such as `**Never:**` heads the block
+  right below it). A field for review only: it never changes a directive.
+  Extraction v5 inverted directives under "don't" headings after telling the
+  model to extract such lines by their own words; the model read them as bans
+  anyway, and 9 of 14 sampled inversions on the seed-43 build were double
+  inversions ("Write complex backend migrations" under "Never" → `require`).
+  Since v6 the prompt says to read a line under such a heading as a ban.
 - Vocabulary post-processing (`apply_vocabulary`, after the evidence check and
   before the per-line merge): subject normalization and the polarity flip and
-  implied artifact of §1.1, and closed conditions (§1). Every change is recorded in the record's `adjusted` list. The hand
+  implied artifact of §1.1, and clause-like conditions nulled (§1). Every change is recorded in the record's `adjusted` list. The hand
   labels are a fixed point (a test checks it).
 - `EXTRACT_VERSION` must be bumped whenever the prompt, the schema or the
   post-processing changes (it keys the cache); a test pins the prompt+schema
@@ -214,7 +246,20 @@ constraints. `skillfetch ingest tests/fixtures --with-api --calibrate`
 
 Conflict precision is vacuously 1.0 when no conflict is flagged, so an
 extractor that finds nothing passes the hard gate; the soft target is what
-catches it. Accuracy over all pairs, labelled-pair recall and the number of
+catches it.
+
+**Holdout.** The fixtures are what the prompt is tuned on; v4 scored 34/34
+informative pairs there and 0/24 conflicts on the first public build. The
+holdout (`tests/fixtures/holdout/public-v0.yaml`, measured by
+`ingest/holdout.py`) is the guard against tuning to the fixtures: every
+informative pair of that build (34, among 26 skills), labelled by hand
+(31 independent, 3 needs_review, no conflict), with each skill pinned by
+source commit, path and content hash. Bodies are not committed (most of the
+skills are not redistributable); `skillfetch ingest --sources sources.yaml
+--holdout <file> --with-api` snapshots the pinned commits, extracts (cache
+first) and compares every pair of the pinned skills — unlisted pairs are
+expected to be independent — with the same gates. Do not tune the prompt on
+holdout text; when it is used up, label a fresh sample instead. Accuracy over all pairs, labelled-pair recall and the number of
 false positives are printed as well.
 
 ## 3. Pairwise relation
@@ -253,7 +298,8 @@ Relation of the pair (a, b) — evaluated top to bottom, first match wins
 | 11 | opposite ∧ positive side has no object, negative side has one ("use emoji" vs "never in headers": a carve-out) | `needs_review` |
 | 12 | opposite ∧ the positive side's scope is broader on artifact or phase (positive `any`, negative specific; "use emoji" vs "never in Markdown": a carve-out by scope) | `needs_review` |
 | 13 | opposite ∧ norm(conditions) differ (incl. one null) | `needs_review` |
-| 14 | opposite (objects and scopes equal, or a blanket ban — broader object or scope on the negative side — vs a specific requirement; conditions equal) | opposed(a, b) |
+| 14 | any rule above gives `conflict`, but `conflict_cap(a, b)` names a reason (14a–d below) | `needs_review` |
+| 15 | opposite (objects and scopes equal, or a blanket ban — broader object or scope on the negative side — vs a specific requirement; conditions equal) | opposed(a, b) |
 
 Rows 11 and 12 are the same asymmetry, once by object and once by scope. A ban
 that is narrower than the requirement reads as an exception to it, so the pair
@@ -262,7 +308,44 @@ to) the requirement cannot be followed together with it: opposed. When the
 positive side is broader on one dimension and the negative on the other, row 12
 applies (unsure → `needs_review`).
 
-Rows 8a, 8c and 10–13 are v0.1 precision choices: an object, scope or
+Row 14 caps a conflict at `needs_review` when one of these holds
+(`relation.conflict_cap`, checked in this order):
+
+- **14a fan-out.** One side conflicts with three or more distinct skills of the
+  corpus (`mark_fan_out`; skills that conflict with it through the same set of
+  rules count once). A hub is far more likely an extraction error than a real
+  contradiction with that many skills: in the first public build three
+  misread bans produced 21 of 24 false conflicts. The flag is computed at index
+  time over all indexed skills and stored on the constraint (`fan_out`), so
+  `resolve_set` sees it; `scan`, calibration and the holdout compute it over
+  their own corpus.
+- **14b polarity.** One side's directive is uncertain: its line sits under a
+  heading that lists what not to do (`polarity.negative_heading`: a label such
+  as "Don't", "Never", "Avoid", "Anti-patterns", "Drop", or a ❌ marker) and
+  negates again on its own ("Ignore naming conventions.", "Skip validation").
+  Such double negatives were misread in both directions in every extraction
+  version so far.
+- **14c narrowed.** An object-less side whose `object_raw` names something other
+  than the subject ("Don't swallow errors" → `forbid error-handling`, raw
+  "swallowing errors").
+- **14d object-less.** By default (`--conflict-cap all`) every object-less
+  hard pair is capped. With `--conflict-cap vocabulary`, only pairs on a
+  subject outside the vocabulary are: a blanket rule about a vocabulary term
+  ("never use emoji") is well defined, a blanket rule about free text is
+  usually a misread ("Don't assume." → `forbid assumptions`, vs "State
+  assumptions explicitly"). The vocabulary mode finds 8 more fixture
+  conflicts (19 instead of 11; `conflict_with_vocabulary_cap` in
+  `expected.yaml`) but left one false conflict on the seed-43 build
+  (caveman-review's dropped hedging phrases → `forbid preamble` vs
+  sprite-animation's "One sentence before the artifact"), so it is not the
+  default. The build records the mode in the manifest (`conflict_cap`).
+
+History: v5 capped every object-less pair (8 real fixture conflicts lost); v6
+capped only narrowed ones (all 19 fixture conflicts kept, but 2 false
+conflicts on the holdout and 9 on the seed-43 build, all object-less with an
+empty `object_raw`). 14a, 14b and 14d were added after v6.
+
+Rows 8a, 8c and 10–14 are v0.1 precision choices: an object, scope or
 condition mismatch means the rules cannot tell whether both instructions can be
 followed at once, so they never produce `conflict`. Consequences accepted for
 v0.1: "always ask before editing" (any phase) vs "never ask during

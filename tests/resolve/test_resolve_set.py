@@ -40,12 +40,12 @@ def test_pinned_are_always_included_and_conflicts_warned():
 
 
 def test_auto_conflicting_with_pinned_is_excluded_with_evidence():
-    res = run(auto=["emoji-headers"], pinned=["plain-markdown"])
-    assert res.included == ["plain-markdown"]
+    res = run(auto=["emoji-headers"], pinned=["clean-headings"])
+    assert res.included == ["clean-headings"]
     [ex] = res.excluded
-    assert (ex.id, ex.reason, ex.conflicts_with) == ("emoji-headers", "conflict", "plain-markdown")
+    assert (ex.id, ex.reason, ex.conflicts_with) == ("emoji-headers", "conflict", "clean-headings")
     [ev] = ex.evidence
-    assert ev.a.text == "Never use emoji anywhere in Markdown output."
+    assert ev.a.text == "Never put emoji in section headers."
     assert ev.b.text == "Always start every section header with an emoji."
     assert ev.b.skill_id == "emoji-headers"
 
@@ -111,10 +111,13 @@ def test_redundant_wins_over_needs_review_and_suppresses_warnings():
 
 
 def test_excluded_skills_do_not_block_later_candidates():
-    # clean-headings conflicts with emoji-headers, but emoji-headers was already excluded.
-    res = run(auto=["plain-markdown", "emoji-headers", "clean-headings"])
-    assert res.included == ["plain-markdown", "clean-headings"]
-    assert [e.id for e in res.excluded] == ["emoji-headers"]
+    # pnpm-monorepo conflicts with npm-classic, but npm-classic was already excluded.
+    res = run(auto=["pnpm-only", "npm-classic", "pnpm-monorepo"])
+    assert res.included == ["pnpm-only"]
+    assert [(e.id, e.reason, e.conflicts_with) for e in res.excluded] == [
+        ("npm-classic", "conflict", "pnpm-only"),
+        ("pnpm-monorepo", "redundant_with", "pnpm-only"),
+    ]
 
 
 def test_tension_is_included_with_warning():
@@ -165,10 +168,10 @@ def test_repeated_ids_are_collapsed():
 
 def test_precedence_is_pinned_then_auto_in_given_order():
     res = run(
-        auto=["type-hints-strict", "gitmoji-commits", "minimal-scripts"],
+        auto=["tdd-strict", "gitmoji-commits", "prototype-first"],
         pinned=["pnpm-only", "careful-agent"],
     )
-    assert res.precedence == ["pnpm-only", "careful-agent", "type-hints-strict", "gitmoji-commits"]
+    assert res.precedence == ["pnpm-only", "careful-agent", "tdd-strict", "gitmoji-commits"]
     assert res.included == res.precedence
 
 
@@ -182,7 +185,7 @@ def test_set_id_depends_only_on_included_set():
 
 
 def test_result_is_plain_json():
-    res = run(auto=["emoji-headers", "friendly-tone"], pinned=["plain-markdown"])
+    res = run(auto=["emoji-headers", "friendly-tone"], pinned=["clean-headings"])
     data = json.loads(json.dumps(res.model_dump(mode="json")))
     assert set(data) == {"set_id", "included", "excluded", "warnings", "precedence"}
     assert data["excluded"][0]["evidence"][0]["a"]["line_no"] >= 1

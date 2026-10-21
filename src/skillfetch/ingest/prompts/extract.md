@@ -48,7 +48,9 @@ for a term that exists (`emojis`, `emoji usage` → `emoji`).
 {{VOCABULARY}}
 
 Otherwise use a short lowercase noun phrase for the thing being regulated, not the action:
-"Never squash commits" has subject `commit-granularity` and object `squash`.
+"Never squash commits" has subject `commit-granularity` and object `squash`. A subject has at
+most three words and never carries a situation ("when …", "after …", "before …", "if …"):
+output with a longer subject is sent back.
 
 ## directive and strength
 
@@ -64,6 +66,10 @@ Polarity follows meaning, not wording: "Get straight to the answer, no warm-up" 
 `preamble`; "Keep commits free of emoji" forbids `emoji`. Removal verbs are bans: remove / strip /
 delete X → `forbid` X, avoid X → `avoid` X (the soft ban); never `require` or `prefer`.
 Strength follows the directive unless the line clearly says otherwise.
+
+A line under a heading that names what not to do ("❌ Don't", "Avoid", "Anti-patterns") states
+bad practice: read it as a ban. Under "❌ Don't", "- Skip the review step" requires the review
+step, and "- Don't skip the review" says the same.
 
 For `order`, `subject` is one side, `object` the other, and `direction` says whether the subject
 comes `before` or `after` the object. "Start with a test that fails, then make it pass" → subject
@@ -85,6 +91,15 @@ subject `request body logging`, object null).
 
 For a free-text subject, keep the object short and lowercase, in the skill's own words, and
 use the same wording when one skill requires a thing and another forbids it.
+
+`object_raw` holds, in the line's own words, short and lowercase, what the subject, `object`
+and scope cannot: the narrower thing a listed object could not name ("swallowing errors" for
+`error-handling`), or the situation the rule is limited to ("asking again once a plan is
+picked"). It is null when the rule covers its whole subject: restatements of the subject ("a
+recap of the edits you made" for `summary-at-end`), scope words ("in Markdown output",
+"during implementation") and conditions never go in it. The comparison reads an object-less
+rule with an `object_raw` as narrower than its subject: leaving it out of a narrowed rule
+creates a false contradiction, and filling it for a blanket rule hides a real one.
 
 For a tool slot (`package-manager`, `formatter`, `test-runner`, `build-tool`, `linter`) the
 object is the tool's name alone: `pnpm`, `ruff format`, `jest`. "Use pnpm; never run npm" is
@@ -108,13 +123,14 @@ names them.
 
 ## condition
 
-`scope.condition` is closed: it is the language, framework or file type a rule is limited
-to, and nothing else. Set it only when the line limits the rule that way ("in Django
+`scope.condition` is the language, framework, library or file type a rule is limited to,
+and nothing else. Set it only when the line limits the rule that way ("in Django
 projects", "for migration files", "when editing generated protobuf files"), written as those
 names, lowercase and without "when": `django`, `migrations`, `generated protobuf files`.
 Situations ("when fixing a bug"), purposes ("wherever it makes the output friendlier") and the
-work being done ("for feature work") are not conditions: leave the condition null. Conditions
-outside the set of language, framework and file-type names are removed after extraction.
+work being done ("for feature work") are not conditions: leave the condition null. A condition
+that reads like a clause (when / if / once …, a pronoun, a verb such as "is" or "can") is
+removed after extraction.
 
 A condition is not what the rule is about. "Run black on every Python file" has condition
 null: Python is what gets formatted, not a situation in which the rule applies (the skill's
@@ -122,6 +138,15 @@ languages go in `tags.languages`). The same holds for objects: in "Every exporte
 a docstring", `public functions` is the object, not a condition. What a rule applies to goes in
 `object` or `scope.artifact`; when it applies goes in `scope.condition`. Do not repeat
 `artifact` or `phase` in the condition.
+
+## situations
+
+A situation that limits a rule ("once the user has picked a plan", "when the brief is
+unclear", "before opening a PR") is neither part of the subject nor a condition, but it
+still narrows the rule: copy it into `object_raw` in the line's words. "Once the user has
+picked a plan, go ahead without asking again" is `ask-before-acting`, `forbid`, object
+null, `object_raw` "asking again once a plan is picked": it bans a second confirmation, not
+asking in general, and `object_raw` is what tells the two apart.
 
 # Example
 
@@ -136,25 +161,25 @@ These lines are not from any real skill:
  14| - Commit messages must not contain emoji.
 ```
 
-Line 9 is rationale: no constraint. Line 11's "when fixing a bug" is a situation, not a
-condition. Line 12 gives two instructions about one slot; the main one is kept. The others give
-these constraints:
+Line 9 is rationale: no constraint. Line 11's "when fixing a bug" is a situation: it goes in
+`object_raw`, not in the subject or the condition. Line 12 gives two instructions about one slot; the main one is
+kept. The others give these constraints:
 
 ```json
 [
-  {"subject": "pr-size", "directive": "require", "object": "under 400 changed lines", "direction": null,
+  {"subject": "pr-size", "directive": "require", "object": "under 400 changed lines", "object_raw": "under 400 changed lines", "direction": null,
    "scope": {"artifact": "any", "phase": "any", "condition": null}, "strength": "must",
    "evidence": {"line_no": 10, "text": "Keep pull requests under 400 changed lines."}},
-  {"subject": "tests", "directive": "order", "object": "implementation", "direction": "before",
+  {"subject": "tests", "directive": "order", "object": "implementation", "object_raw": "when fixing a bug", "direction": "before",
    "scope": {"artifact": "any", "phase": "any", "condition": null}, "strength": "must",
    "evidence": {"line_no": 11, "text": "When fixing a bug, write a failing regression test before touching the code."}},
-  {"subject": "package-manager", "directive": "require", "object": "yarn", "direction": null,
+  {"subject": "package-manager", "directive": "require", "object": "yarn", "object_raw": "yarn for all installs", "direction": null,
    "scope": {"artifact": "any", "phase": "any", "condition": null}, "strength": "must",
    "evidence": {"line_no": 12, "text": "Use yarn for all installs; never run npm install."}},
-  {"subject": "early returns", "directive": "prefer", "object": null, "direction": null,
+  {"subject": "early returns", "directive": "prefer", "object": null, "object_raw": null, "direction": null,
    "scope": {"artifact": "code", "phase": "any", "condition": null}, "strength": "should",
    "evidence": {"line_no": 13, "text": "Prefer early returns over nested conditionals."}},
-  {"subject": "emoji", "directive": "forbid", "object": null, "direction": null,
+  {"subject": "emoji", "directive": "forbid", "object": null, "object_raw": null, "direction": null,
    "scope": {"artifact": "commit-message", "phase": "any", "condition": null}, "strength": "must",
    "evidence": {"line_no": 14, "text": "Commit messages must not contain emoji."}}
 ]
@@ -181,34 +206,34 @@ exact, so paraphrased objects or extra constraints hide duplicates and contradic
 
 ```json
 [
-  {"subject": "ask-before-acting", "directive": "require", "object": null, "direction": null,
+  {"subject": "ask-before-acting", "directive": "require", "object": null, "object_raw": null, "direction": null,
    "scope": {"artifact": "any", "phase": "any", "condition": null}, "strength": "must",
    "evidence": {"line_no": 4, "text": "Confirm with the user before you edit anything."}},
-  {"subject": "ask-before-acting", "directive": "forbid", "object": null, "direction": null,
+  {"subject": "ask-before-acting", "directive": "forbid", "object": null, "object_raw": null, "direction": null,
    "scope": {"artifact": "any", "phase": "implement", "condition": null}, "strength": "must",
    "evidence": {"line_no": 5, "text": "Don't pause for approval while implementing; decide and carry on."}},
-  {"subject": "summary-at-end", "directive": "require", "object": null, "direction": null,
+  {"subject": "summary-at-end", "directive": "require", "object": null, "object_raw": null, "direction": null,
    "scope": {"artifact": "response", "phase": "any", "condition": null}, "strength": "must",
    "evidence": {"line_no": 6, "text": "Close each reply with a recap of the edits you made."}},
-  {"subject": "summary-at-end", "directive": "forbid", "object": null, "direction": null,
+  {"subject": "summary-at-end", "directive": "forbid", "object": null, "object_raw": null, "direction": null,
    "scope": {"artifact": "response", "phase": "any", "condition": null}, "strength": "must",
    "evidence": {"line_no": 7, "text": "No closing recap; stop when the work is done."}},
-  {"subject": "preamble", "directive": "forbid", "object": null, "direction": null,
+  {"subject": "preamble", "directive": "forbid", "object": null, "object_raw": null, "direction": null,
    "scope": {"artifact": "response", "phase": "any", "condition": null}, "strength": "must",
    "evidence": {"line_no": 8, "text": "Get straight to the answer, no warm-up sentence."}},
-  {"subject": "preamble", "directive": "forbid", "object": null, "direction": null,
+  {"subject": "preamble", "directive": "forbid", "object": null, "object_raw": null, "direction": null,
    "scope": {"artifact": "response", "phase": "any", "condition": null}, "strength": "must",
    "evidence": {"line_no": 9, "text": "Do not paraphrase the request back to the user first."}},
-  {"subject": "type-hints", "directive": "require", "object": null, "direction": null,
+  {"subject": "type-hints", "directive": "require", "object": null, "object_raw": null, "direction": null,
    "scope": {"artifact": "code", "phase": "any", "condition": null}, "strength": "must",
    "evidence": {"line_no": 10, "text": "Annotate every parameter and return value."}},
-  {"subject": "type-hints", "directive": "require", "object": null, "direction": null,
+  {"subject": "type-hints", "directive": "require", "object": null, "object_raw": null, "direction": null,
    "scope": {"artifact": "code", "phase": "any", "condition": null}, "strength": "must",
    "evidence": {"line_no": 11, "text": "Each function signature carries full type annotations."}},
-  {"subject": "commit-granularity", "directive": "forbid", "object": "squash", "direction": null,
+  {"subject": "commit-granularity", "directive": "forbid", "object": "squash", "object_raw": "squash", "direction": null,
    "scope": {"artifact": "commit-message", "phase": "any", "condition": null}, "strength": "must",
    "evidence": {"line_no": 12, "text": "Don't squash; each commit holds one self-contained change."}},
-  {"subject": "commit-granularity", "directive": "forbid", "object": "squash", "direction": null,
+  {"subject": "commit-granularity", "directive": "forbid", "object": "squash", "object_raw": "squash", "direction": null,
    "scope": {"artifact": "commit-message", "phase": "any", "condition": null}, "strength": "must",
    "evidence": {"line_no": 13, "text": "Keep every commit to a single logical change and never squash them."}}
 ]
@@ -218,4 +243,4 @@ Lines 4–5 and 6–7 contradict each other; 8–9, 10–11 and 12–13 are the 
 their constraints are identical apart from the evidence. Line 4 has no object: "before you edit
 anything" is what asking before acting means. Line 5's ban is limited to implementation, so its
 phase is narrower than line 4's. Restatements such as "the edits you made" or "full type
-annotations" are not objects.
+annotations" are not objects, nor `object_raw`.

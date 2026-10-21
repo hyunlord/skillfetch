@@ -5,16 +5,21 @@ Pure functions over pre-extracted constraints. No I/O, no model calls.
 
 from __future__ import annotations
 
-from collections.abc import Iterable
+from collections.abc import Iterable, Mapping
 from dataclasses import dataclass, field
 from enum import StrEnum
 
 from skillfetch.resolve.models import Constraint, Skill
+from skillfetch.resolve.polarity import polarity_uncertain
 from skillfetch.resolve.terms import normalize_term
 from skillfetch.resolve.vocabulary import choice_of, lookup
 
 __all__ = [
     "ConstraintPair",
+    "candidate_pairs",
+    "conflict_cap",
+    "fan_out_map",
+    "mark_fan_out",
     "Relation",
     "SkillRelation",
     "complementary",
@@ -23,6 +28,21 @@ __all__ = [
     "pair_label",
     "skill_relation",
 ]
+
+
+# Which object-less hard pairs may conflict (§3 row 14d). "all" (the default) caps every
+# object-less pair; "vocabulary" lets a blanket rule about a vocabulary term conflict
+# ("never use emoji" vs "always use emoji"), which finds 8 more fixture conflicts but left
+# one false conflict on the seed-43 build. Set by `--conflict-cap`.
+CAP_MODES = ("all", "vocabulary")
+OBJECTLESS_CAP = "all"
+
+
+def set_objectless_cap(mode: str) -> None:
+    global OBJECTLESS_CAP
+    if mode not in CAP_MODES:
+        raise ValueError(f"conflict cap must be one of {CAP_MODES}, got {mode!r}")
+    OBJECTLESS_CAP = mode
 
 
 class Relation(StrEnum):
@@ -80,7 +100,42 @@ def _exclusive_choice(a: Constraint, b: Constraint) -> Relation:
 
 
 def constraint_relation(a: Constraint, b: Constraint) -> Relation:
-    """Relation of two constraints from different skills. Symmetric."""
+    """Relation of two constraints from different skills. Symmetric. A conflict that
+    `conflict_cap` gives a reason for is reported as needs_review (§3 row 14)."""
+    relation = _base_relation(a, b)
+    if relation == Relation.CONFLICT and conflict_cap(a, b) is not None:
+        return Relation.NEEDS_REVIEW
+    return relation
+
+
+def conflict_cap(a: Constraint, b: Constraint) -> str | None:
+    """Why a conflict between a and b must not be reported as one, or None (§3 row 14):
+
+    - `fan-out`: one side conflicts with three or more distinct skills of the corpus
+      (`mark_fan_out`); a hub is far more likely an extraction error than a real
+      contradiction with that many skills;
+    - `polarity`: one side's directive is uncertain (`polarity.polarity_uncertain`: under a
+      "don't" heading and negated again on its own line);
+    - `narrowed`: an object-less side whose `object_raw` names something narrower;
+    - `free-text subject`: an object-less hard pair on a subject outside the vocabulary.
+      A blanket rule about a vocabulary term ("never use emoji") is well defined; a blanket
+      rule about free text ("Don't assume." -> forbid assumptions) is usually a misread.
+    """
+    if a.fan_out or b.fan_out:
+        return "fan-out"
+    if polarity_uncertain(a) or polarity_uncertain(b):
+        return "polarity"
+    if a.directive != "order" and (a.object is None or b.object is None):
+        if _narrowed(a) or _narrowed(b):
+            return "narrowed"
+        if lookup(a.subject) is None and OBJECTLESS_CAP == "vocabulary":
+            return "free-text subject"
+        if OBJECTLESS_CAP == "all":
+            return "object-less"
+    return None
+
+
+def _base_relation(a: Constraint, b: Constraint) -> Relation:
     if a.directive == "order" or b.directive == "order":
         if a.directive != b.directive or not scopes_overlap(a, b):
             return Relation.INDEPENDENT
@@ -120,6 +175,13 @@ def constraint_relation(a: Constraint, b: Constraint) -> Relation:
     return _opposed(a, b)
 
 
+def _narrowed(c: Constraint) -> bool:
+    """An object-less rule whose line names something narrower than the subject."""
+    if c.object is not None or not c.object_raw or not c.object_raw.strip():
+        return False
+    return normalize_term(c.object_raw) != normalize_term(c.subject)
+
+
 @dataclass(frozen=True)
 class ConstraintPair:
     a: Constraint
@@ -153,6 +215,11 @@ def _identity(c: Constraint) -> tuple:
         _norm_opt(c.scope.condition),
         c.strength,
     )
+
+
+def constraint_identity(c: Constraint) -> tuple:
+    """Full normalized identity (§4): equal identities are the same rule in the same scope."""
+    return _identity(c)
 
 
 def _core(c: Constraint) -> tuple:
@@ -246,3 +313,71 @@ def complementary(a: Skill, b: Skill) -> bool:
     domains = _terms(a.tags.get("domain", [])) & _terms(b.tags.get("domain", []))
     phase_a, phase_b = _terms(a.tags.get("phase", [])), _terms(b.tags.get("phase", []))
     return bool(domains and phase_a and phase_b and not phase_a & phase_b)
+
+
+# --- corpus-level: blocking and fan-out --------------------------------------------------
+
+
+def _keys(c: Constraint) -> tuple:
+    if c.directive == "order":
+        return ("order", frozenset(_order_edge(c)))
+    return ("subject", normalize_term(c.subject))
+
+
+def candidate_pairs(skills: list[Skill]) -> list[tuple[int, int]]:
+    """Index pairs (i < j) of skills that share a subject (or an order edge). Every other
+    pair is independent, so corpus-wide comparisons only need these."""
+    by_key: dict[tuple, set[int]] = {}
+    for i, s in enumerate(skills):
+        for c in s.constraints:
+            by_key.setdefault(_keys(c), set()).add(i)
+    pairs: set[tuple[int, int]] = set()
+    for members in by_key.values():
+        ordered = sorted(members)
+        pairs.update((x, y) for n, x in enumerate(ordered) for y in ordered[n + 1 :])
+    return sorted(pairs)
+
+
+FAN_OUT_SKILLS = 3
+
+
+def fan_out_map(skills: Mapping[str, Skill]) -> dict[str, Skill]:
+    """mark_fan_out over a {skill id: skill} mapping."""
+    ids = list(skills)
+    return dict(zip(ids, mark_fan_out([skills[i] for i in ids]), strict=True))
+
+
+def mark_fan_out(skills: list[Skill], threshold: int = FAN_OUT_SKILLS) -> list[Skill]:
+    """The skills with `fan_out` set on every constraint that conflicts with `threshold` or
+    more distinct skills of the corpus. Skills that conflict with it through the same set
+    of rules count once (they are near-duplicates). Flags already set are recomputed."""
+    clean = [
+        s.model_copy(
+            update={"constraints": [c.model_copy(update={"fan_out": False}) for c in s.constraints]}
+        )
+        for s in skills
+    ]
+    hits: dict[tuple[int, int], dict[int, set]] = {}
+    for i, j in candidate_pairs(clean):
+        for ka, ca in enumerate(clean[i].constraints):
+            for kb, cb in enumerate(clean[j].constraints):
+                if _keys(ca) != _keys(cb) or constraint_relation(ca, cb) != Relation.CONFLICT:
+                    continue
+                hits.setdefault((i, ka), {}).setdefault(j, set()).add(_identity(cb))
+                hits.setdefault((j, kb), {}).setdefault(i, set()).add(_identity(ca))
+    flagged = {
+        key
+        for key, partners in hits.items()
+        if len({frozenset(rules) for rules in partners.values()}) >= threshold
+    }
+    return [
+        s.model_copy(
+            update={
+                "constraints": [
+                    c.model_copy(update={"fan_out": (i, k) in flagged})
+                    for k, c in enumerate(s.constraints)
+                ]
+            }
+        )
+        for i, s in enumerate(clean)
+    ]

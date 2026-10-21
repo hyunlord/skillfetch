@@ -78,6 +78,18 @@ together, scope it to one task, or tell you afterwards whether it helped.
 - [`docs/design/index-format.md`](docs/design/index-format.md) — ingestion pipeline, tiers, index layout
 - [`docs/design/constraints.md`](docs/design/constraints.md) — constraint schema, conflict rules, `resolve_set`
 
+## Conflict cap
+
+A conflict is reported only when the rules are sure. By default
+(`--conflict-cap all`) a pair where either rule has no object ("never use
+emoji" vs "always use emoji") is `needs_review`, not `conflict`: on public
+skills such blanket rules are mostly misreadings of narrower lines, and every
+false conflict we found was one. `--conflict-cap vocabulary` (on `scan` and
+`ingest`) lets a blanket rule about a controlled-vocabulary term conflict. It
+finds 19 instead of 11 of the hand-labelled fixture conflicts, and in our
+measurements it produced one false conflict on 200 public skills, where the
+default produced none. Use it when recall matters more than precision.
+
 ## Honest limits
 
 - The injection scan is a blocklist, not a proof of safety.
@@ -91,6 +103,12 @@ together, scope it to one task, or tell you afterwards whether it helped.
   ecosystem. An unknown tool in one of those slots is `needs_review`; other
   subjects, such as naming conventions, are never treated as exclusive.
 - When the rules are unsure, they report `needs_review`, never `conflict`.
+- A conflict is only reported when both rules are clear. It is downgraded to
+  `needs_review` when one rule conflicts with three or more skills (more likely
+  a misread than a real contradiction), when its line is a double negative
+  under a "Don't" heading, when its line names something narrower than its
+  subject, or when it is a blanket rule about a subject outside the controlled
+  vocabulary.
 
 ## License
 

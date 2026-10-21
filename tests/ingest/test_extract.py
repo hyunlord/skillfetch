@@ -11,6 +11,7 @@ from skillfetch.ingest.extract import (
     EXTRACT_VERSION,
     PROMPT_SHA256,
     Extractor,
+    ExtractRecord,
     ExtractResult,
     Usage,
     cost_usd,
@@ -71,7 +72,11 @@ def test_schema_mirrors_the_result_models():
     schema = response_schema()
     assert list(schema["properties"]) == list(ExtractResult.model_fields)
     constraint = schema["properties"]["constraints"]["items"]
-    assert set(constraint["properties"]) == set(Constraint.model_fields) - {"id"}
+    assert set(constraint["properties"]) == set(Constraint.model_fields) - {
+        "id",
+        "section_heading",
+        "fan_out",
+    }
 
 
 def test_request_shape():
@@ -109,6 +114,23 @@ def test_successful_extraction():
         "squash",
     )
     assert record.result.tags.domain == ["git"]
+
+
+def test_object_raw_is_kept_and_never_compared():
+    import json
+
+    from skillfetch.resolve.relation import constraint_identity, constraint_relation
+
+    response = recorded("commit-squash.ok.json")
+    data = json.loads(response["content"][0]["text"])
+    data["constraints"][0]["object_raw"] = "every feature into a single commit"
+    response["content"][0]["text"] = json.dumps(data)
+    record, _ = run("commit-squash", response)
+    squash = record.constraints()[0]
+    assert (squash.object, squash.object_raw) == ("squash", "every feature into a single commit")
+    plain = squash.model_copy(update={"object_raw": None})
+    assert constraint_identity(squash) == constraint_identity(plain)
+    assert constraint_relation(squash, plain).value == "redundant"
 
 
 def test_miscounted_line_is_repaired_and_invented_quote_dropped():
@@ -421,26 +443,27 @@ def _kc(condition, line=1):
     )
 
 
-def test_condition_outside_the_closed_set_is_removed_and_noted():
+def test_a_clause_condition_is_removed_and_noted():
     from skillfetch.ingest.extract import apply_vocabulary
 
-    [c], notes = apply_vocabulary([_kc("feature work", line=12)])
+    [c], notes = apply_vocabulary([_kc("when they make the output friendlier", line=12)])
     assert c.scope.condition is None
     assert notes == [
-        "line 12: condition 'feature work' -> null (not a language, framework or file type)"
+        "line 12: condition 'when they make the output friendlier' -> null (reads like a clause)"
     ]
 
 
-def test_condition_inside_the_closed_set_is_kept():
+@pytest.mark.parametrize("condition", ["django migrations", "docx", "latex", "feature work"])
+def test_other_conditions_are_kept(condition):
     from skillfetch.ingest.extract import apply_vocabulary
 
-    [c], notes = apply_vocabulary([_kc("django migrations")])
-    assert c.scope.condition == "django migrations" and notes == []
+    [c], notes = apply_vocabulary([_kc(condition)])
+    assert c.scope.condition == condition and notes == []
 
 
-def test_prompt_defines_closed_conditions():
+def test_prompt_defines_conditions():
     prompt = " ".join(system_prompt().split())
-    assert "language, framework or file type" in prompt
+    assert "language, framework, library or file type" in prompt
     assert "removed after extraction" in prompt
 
 
@@ -495,3 +518,114 @@ def test_normalization_respects_the_term_objects():
 
     [c], _ = apply_vocabulary([_ks("test logging", obj="stack traces", artifact="tests")])
     assert c.subject == "test logging"  # `logging` does not allow that object
+
+
+def test_prompt_keeps_situations_out_of_the_subject():
+    # v4 dropped situations from the rule ("Once a team is selected, ... do not ask for
+    # separate confirmation" -> blanket forbid ask-before-acting); v5 put them into long
+    # free-text subjects, which hid real relations. v6: subject <= 3 words, situation in
+    # object_raw.
+    prompt = system_prompt()
+    assert "## situations" in prompt
+    assert "A subject has at\nmost three words" in prompt
+
+
+# --- subject cap and clause split (v6) ------------------------------------------------------
+
+
+def _with_subject(subject, index=1):
+    import json
+
+    response = recorded("commit-squash.ok.json")
+    data = json.loads(response["content"][0]["text"])
+    data["constraints"][index]["subject"] = subject
+    response["content"][0]["text"] = json.dumps(data)
+    return response
+
+
+def test_a_clause_in_the_subject_is_split_off():
+    record, client = run("commit-squash", _with_subject("branch name when the ticket exists"))
+    assert len(client.requests) == 1
+    branch = record.constraints()[1]
+    assert branch.subject == "branch name"
+    assert branch.object_raw == "when the ticket exists"
+    assert record.adjusted[0] == (
+        f"line {branch.evidence.line_no}: subject 'branch name when the ticket exists' -> "
+        "'branch name', clause 'when the ticket exists' -> condition and object_raw"
+    )
+
+
+def test_vocabulary_and_order_subjects_are_not_split():
+    from skillfetch.ingest.extract import split_subject_clause
+
+    assert split_subject_clause({"subject": "review-before-merge", "directive": "require"}) is None
+    order = {"subject": "tests before code", "directive": "order"}
+    assert split_subject_clause(order) is None and order["subject"] == "tests before code"
+
+
+def test_a_long_subject_is_sent_back_once():
+    long = _with_subject("branch names for every new feature")
+    record, client = run("commit-squash", long, "commit-squash.ok.json")
+    assert record.status == "ok" and len(client.requests) == 2
+    retry = client.requests[1]["messages"][-1]["content"]
+    assert "subject 'branch names for every new feature' has 6 words" in retry
+
+
+def test_a_long_subject_after_the_retry_drops_that_constraint_only():
+    long = _with_subject("branch names for every new feature")
+    record, _ = run("commit-squash", long, long)
+    assert record.status == "ok"
+    assert [c.subject for c in record.constraints()] == ["commit-granularity"]
+    assert [d.reason for d in record.dropped] == ["subject over 3 words after the retry"]
+
+
+def test_stored_records_load_without_the_extraction_checks():
+    # the cap applies to model output, not to cache entries written by earlier versions
+    long = {
+        "subject": "table of contents headings",
+        "directive": "forbid",
+        "evidence": {"line_no": 3, "text": "x"},
+    }
+    data = {
+        "summary": "",
+        "keywords": [],
+        "tags": {"languages": [], "frameworks": [], "phase": [], "domain": []},
+        "synthetic_queries": [],
+        "constraints": [long],
+        "consumes": [],
+        "produces": [],
+        "requires_tools": [],
+    }
+    assert ExtractResult.model_validate(data).constraints[0].subject == long["subject"]
+
+
+def test_a_vocabulary_violation_after_the_retry_drops_that_constraint_only():
+    bad = "concise-responses.disallowed-object.json"
+    record, client = run("concise-responses", bad, bad)
+    assert record.status == "ok" and len(client.requests) == 2
+    assert any("after the retry" in d.reason for d in record.dropped)
+    assert all(c.object is None for c in record.constraints() if c.subject == "summary-at-end")
+
+
+def test_revalidate_recovers_a_cached_failure_without_the_api():
+    from skillfetch.ingest.extract import revalidate
+
+    failed = ExtractRecord(
+        extract_version=EXTRACT_VERSION,
+        model="anthropic/claude-sonnet-5",
+        content_hash="0" * 64,
+        skill_id="concise-responses",
+        status="extract_failed",
+        error="object not allowed",
+        attempts=[
+            {
+                "stop_reason": "end_turn",
+                "text": recorded("concise-responses.disallowed-object.json")["content"][0]["text"],
+                "usage": {},
+            }
+        ],
+    )
+    fixed = revalidate(failed, SKILLS_DIR / "concise-responses")
+    assert fixed is not None and fixed.status == "ok" and fixed.error is None
+    assert fixed.adjusted[0] == "revalidated from the cached answer of attempt 1"
+    assert revalidate(fixed, SKILLS_DIR / "concise-responses") is None  # only failures

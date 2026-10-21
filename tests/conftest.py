@@ -168,3 +168,18 @@ class FakeBadRequest(Exception):
     def __init__(self, param):
         super().__init__(f"Unsupported parameter: {param}")
         self.param = param
+
+
+def make_git_source(path: Path, skills: dict[str, Path], branch: str = "main") -> str:
+    """A local git repo with skills/<name>/ copied from fixture skill dirs; returns the
+    HEAD commit. Used as a `kind: git` source through a file:// URL."""
+    import shutil
+    import subprocess
+
+    for name, src in skills.items():
+        shutil.copytree(src, path / "skills" / name)
+    run = lambda *a: subprocess.run(["git", *a], cwd=path, check=True, capture_output=True)  # noqa: E731
+    run("init", "-q", "-b", branch)
+    run("add", "-A")
+    run("-c", "user.email=t@example.com", "-c", "user.name=t", "commit", "-q", "-m", "init")
+    return run("rev-parse", "HEAD").stdout.decode().strip()

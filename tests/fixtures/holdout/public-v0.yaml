@@ -1,0 +1,270 @@
+# Holdout: hand-labelled pairs from the first public build.
+#
+# Every informative pair of data/index-v0-reports/review.md (anthropics/skills at
+# dbd4588f9e10 + 200 UASL skills, seed 42, extraction v4 with gpt-6-luna), labelled
+# by hand after reading both skills. None of these skills is in the tuning set
+# (tests/fixtures/skills/); do not tune the prompt on their text. Bodies are not
+# copied here (most are not redistributable): the measurement snapshots each
+# source at the pinned commit and checks the content hash.
+#
+# `v4` is what extraction v4 + the rules then in force reported; `label` is the
+# hand label. Pairs of these skills that are not listed were independent in v4
+# and are expected to stay independent. Measure with
+#   skillfetch ingest --sources sources.yaml --holdout tests/fixtures/holdout/public-v0.yaml --with-api
+# Gates as for calibration: conflict precision 1.0 (hard), informative accuracy (soft).
+
+sources:
+  anthropics-skills: dbd4588f9e1033efb41dad4bef2f7947c8993d44
+  uasl: 2a76bf42ce5c860adf8d0f3fcf3f6804109ac65b
+
+skills:
+  anthropics-skills/discernment-nudge@a9d2caea7e0b:
+    path: skills/discernment-nudge
+    content_hash: a9d2caea7e0b29ca91ddd737167abae556073774849a879ea426ddd2883f2bba
+  anthropics-skills/doc-coauthoring@bb40097e54fb:
+    path: skills/doc-coauthoring
+    content_hash: bb40097e54fbb99b14b7fab0b9b3bae502cddfcb48ba530be2c339e2cabcbc4f
+  anthropics-skills/frontend-design@0a5ff23f1022:
+    path: skills/frontend-design
+    content_hash: 0a5ff23f1022e1040968429e52c37bf1d6d488ba6cdd654c93dd2635dde7c87a
+  anthropics-skills/mcp-builder@7e8426a435cb:
+    path: skills/mcp-builder
+    content_hash: 7e8426a435cbbb28fec7fafde8d172fbd7fef3ca0e066fd0a878bc12fa34bcd8
+  anthropics-skills/pptx@4eb5e13af97f:
+    path: skills/pptx
+    content_hash: 4eb5e13af97f74b2ac9fd2619552d3bb1b231c5e4e7fa0e1aa0e1c13518590ab
+  anthropics-skills/theme-factory@b505b234a3cd:
+    path: skills/theme-factory
+    content_hash: b505b234a3cd88223ebc813fd87f9f19dfd9c210ecd1da1487d86c8f47386909
+  uasl/api-testing@4ada9a2fac88:
+    path: skills/api-testing
+    content_hash: 4ada9a2fac88ef4c433388aad26e4e0af15958cef2dcfc1527b2e9094ce5f47a
+  uasl/apollo-automation@61cfd7b05b07:
+    path: skills/apollo-automation
+    content_hash: 61cfd7b05b0788537ac98abfbe2fddb4012352c1c673afa3329a599e0fb57292
+  uasl/builder@8d7f0953ade3:
+    path: skills/builder
+    content_hash: 8d7f0953ade31bb28b9c3ade0b2eb6d535c08e7ca2ed09fe30dd94af3f8afc26
+  uasl/code-security@e20eb3467925:
+    path: skills/code-security
+    content_hash: e20eb34679257b20a4523e599c0de8cd7d58d045b23afeb882ceb2c43690109b
+  uasl/deploy-to-vercel@261a4caec244:
+    path: skills/deploy-to-vercel
+    content_hash: 261a4caec244ca850bf7fbd247f12691c2d78a8c428d0d5db9efe1d3947158db
+  uasl/design-brief@3b3646a38d3e:
+    path: skills/design-brief
+    content_hash: 3b3646a38d3e49cb5054476e0f6a7e3a410153e6d1ad7ffa8edd7fed6e16c606
+  uasl/error-handling-patterns@4c19ee7d7821:
+    path: skills/error-handling-patterns
+    content_hash: 4c19ee7d7821be0d5409244830151bdd8ea89a0dbe5c1621d9434239c0e476ab
+  uasl/github-workflow-automation@519f4ba6e482:
+    path: skills/github-workflow-automation
+    content_hash: 519f4ba6e48277c316d9b8641d97d6fa2e9b875494d16eea631bb73225c3c0a4
+  uasl/harvest@0a6d85904f37:
+    path: skills/harvest
+    content_hash: 0a6d85904f379c21327c022064af1bfa3522c15295bfee2222bb074426bca877
+  uasl/karpathy-guidelines@da897c8c3bab:
+    path: skills/karpathy-guidelines
+    content_hash: da897c8c3bab0524cdb639698c4e0aab8a57020ce6b2bf97a55bdf5d621b3b6b
+  uasl/n8n-validation-expert@9fd2d7e332b0:
+    path: skills/n8n-validation-expert
+    content_hash: 9fd2d7e332b0a04fa4fdf9635cb04dc861f83dd5795dbaf45d1d6ba44ca5d854
+  uasl/owasp-security@9847d3666f75:
+    path: skills/owasp-security
+    content_hash: 9847d3666f75984a8f055ec70d9d82012fb2fe087863b6a38b751480b165be51
+  uasl/reel@a99ede7241fa:
+    path: skills/reel
+    content_hash: a99ede7241fab8e1974f1fecf653646bfddb2e0d75b9cd67613eb0fee5d3ede9
+  uasl/retain@80a5ca883d36:
+    path: skills/retain
+    content_hash: 80a5ca883d36b6f858f1cb3ec85528e872e561dbc8e677943f41e388d4d46060
+  uasl/similarweb-digitalrank-api-automation@4d42a17eba32:
+    path: skills/similarweb-digitalrank-api-automation
+    content_hash: 4d42a17eba323002c23e68ea29224aaad591526fc023deca2ebe57b66d38fefc
+  uasl/sora@316f043c57fc:
+    path: skills/sora
+    content_hash: 316f043c57fc4328894bc76bde235ae450f0a82a49b4278d08871479f6ed1d49
+  uasl/systematic-debugging@6ba907b7267e:
+    path: skills/systematic-debugging
+    content_hash: 6ba907b7267ec7e2241e6795e0c65dbfc82f13308dd2cbbb6b6f582c79599711
+  uasl/x-api@f7be0ce6f0ec:
+    path: skills/x-api
+    content_hash: f7be0ce6f0ec3b7ba4f1ea1d70c3454bb179b23cb1e94594e283cdc4a6ebce85
+  uasl/youtube-transcript-english@502e2b12befa:
+    path: skills/youtube-transcript-english
+    content_hash: 502e2b12befaa48acc787024f6186bf86021e0520f39cb03f1f2cc353c8a47d6
+  uasl/zapier-make-patterns@32e4bb74a0b3:
+    path: skills/zapier-make-patterns
+    content_hash: 32e4bb74a0b35f6595b5e824582b075331c95709212c7e85edce2090fee1edd5
+
+pairs:
+  - a: anthropics-skills/doc-coauthoring@bb40097e54fb
+    b: uasl/deploy-to-vercel@261a4caec244
+    v4: conflict
+    label: independent
+    note: "situational: only after the user picked a team, do not ask again (deploy-to-vercel:112); doc-coauthoring asks before searching"
+  - a: anthropics-skills/frontend-design@0a5ff23f1022
+    b: uasl/deploy-to-vercel@261a4caec244
+    v4: conflict
+    label: independent
+    note: "situational: only after the user picked a team, do not ask again (deploy-to-vercel:112); frontend-design confirms an unclear brief"
+  - a: anthropics-skills/frontend-design@0a5ff23f1022
+    b: uasl/n8n-validation-expert@9fd2d7e332b0
+    v4: conflict
+    label: independent
+    note: "n8n:652 sits under '### ❌ Don't': it says do not ignore error messages; both want helpful error messages"
+  - a: anthropics-skills/mcp-builder@7e8426a435cb
+    b: uasl/apollo-automation@61cfd7b05b07
+    v4: conflict
+    label: independent
+    note: "apollo-automation:139 says do not retry on HTTP 403, not that errors go unhandled"
+  - a: anthropics-skills/mcp-builder@7e8426a435cb
+    b: uasl/error-handling-patterns@4c19ee7d7821
+    v4: conflict
+    label: independent
+    note: "error-handling-patterns:576 bans swallowing errors, not error handling; the two agree"
+  - a: anthropics-skills/theme-factory@b505b234a3cd
+    b: uasl/deploy-to-vercel@261a4caec244
+    v4: conflict
+    label: independent
+    note: "situational: only after the user picked a team, do not ask again (deploy-to-vercel:112); theme-factory waits for a theme choice"
+  - a: uasl/api-testing@4ada9a2fac88
+    b: uasl/code-security@e20eb3467925
+    v4: conflict
+    label: independent
+    note: "never commit secrets vs keep secrets in env vars or a secret manager: the same advice"
+  - a: uasl/apollo-automation@61cfd7b05b07
+    b: uasl/builder@8d7f0953ade3
+    v4: conflict
+    label: independent
+    note: "apollo-automation:139 says do not retry on HTTP 403, not that errors go unhandled"
+  - a: uasl/apollo-automation@61cfd7b05b07
+    b: uasl/error-handling-patterns@4c19ee7d7821
+    v4: conflict
+    label: independent
+    note: "apollo-automation:139 says do not retry on HTTP 403, not that errors go unhandled"
+  - a: uasl/apollo-automation@61cfd7b05b07
+    b: uasl/owasp-security@9847d3666f75
+    v4: conflict
+    label: independent
+    note: "apollo-automation:139 says do not retry on HTTP 403, not that errors go unhandled"
+  - a: uasl/apollo-automation@61cfd7b05b07
+    b: uasl/similarweb-digitalrank-api-automation@4d42a17eba32
+    v4: conflict
+    label: independent
+    note: "apollo-automation:139 says do not retry on HTTP 403, not that errors go unhandled"
+  - a: uasl/apollo-automation@61cfd7b05b07
+    b: uasl/systematic-debugging@6ba907b7267e
+    v4: conflict
+    label: independent
+    note: "apollo-automation:139 says do not retry on HTTP 403, not that errors go unhandled; systematic-debugging's retry advice is general"
+  - a: uasl/apollo-automation@61cfd7b05b07
+    b: uasl/zapier-make-patterns@32e4bb74a0b3
+    v4: conflict
+    label: independent
+    note: "apollo-automation:139 says do not retry on HTTP 403, not that errors go unhandled"
+  - a: uasl/builder@8d7f0953ade3
+    b: uasl/error-handling-patterns@4c19ee7d7821
+    v4: conflict
+    label: independent
+    note: "error-handling-patterns:576 bans swallowing errors, not error handling; the two agree"
+  - a: uasl/deploy-to-vercel@261a4caec244
+    b: uasl/design-brief@3b3646a38d3e
+    v4: conflict
+    label: independent
+    note: "situational: only after the user picked a team, do not ask again (deploy-to-vercel:112)"
+  - a: uasl/deploy-to-vercel@261a4caec244
+    b: uasl/harvest@0a6d85904f37
+    v4: conflict
+    label: independent
+    note: "situational: only after the user picked a team, do not ask again (deploy-to-vercel:112)"
+  - a: uasl/deploy-to-vercel@261a4caec244
+    b: uasl/reel@a99ede7241fa
+    v4: conflict
+    label: independent
+    note: "situational: only after the user picked a team, do not ask again (deploy-to-vercel:112)"
+  - a: uasl/deploy-to-vercel@261a4caec244
+    b: uasl/retain@80a5ca883d36
+    v4: conflict
+    label: independent
+    note: "situational: only after the user picked a team, do not ask again (deploy-to-vercel:112)"
+  - a: uasl/deploy-to-vercel@261a4caec244
+    b: uasl/x-api@f7be0ce6f0ec
+    v4: conflict
+    label: independent
+    note: "situational: only after the user picked a team, do not ask again (deploy-to-vercel:112)"
+  - a: uasl/error-handling-patterns@4c19ee7d7821
+    b: uasl/n8n-validation-expert@9fd2d7e332b0
+    v4: conflict
+    label: independent
+    note: "both want meaningful error messages; n8n:652 is an anti-pattern list item"
+  - a: uasl/error-handling-patterns@4c19ee7d7821
+    b: uasl/owasp-security@9847d3666f75
+    v4: conflict
+    label: independent
+    note: "error-handling-patterns:576 bans swallowing errors, not error handling; the two agree"
+  - a: uasl/error-handling-patterns@4c19ee7d7821
+    b: uasl/similarweb-digitalrank-api-automation@4d42a17eba32
+    v4: conflict
+    label: independent
+    note: "error-handling-patterns:576 bans swallowing errors, not error handling; the two agree"
+  - a: uasl/error-handling-patterns@4c19ee7d7821
+    b: uasl/systematic-debugging@6ba907b7267e
+    v4: conflict
+    label: independent
+    note: "error-handling-patterns:576 bans swallowing errors, not error handling; the two agree"
+  - a: uasl/error-handling-patterns@4c19ee7d7821
+    b: uasl/zapier-make-patterns@32e4bb74a0b3
+    v4: conflict
+    label: independent
+    note: "error-handling-patterns:576 bans swallowing errors, not error handling; the two agree"
+  - a: anthropics-skills/mcp-builder@7e8426a435cb
+    b: uasl/n8n-validation-expert@9fd2d7e332b0
+    v4: tension
+    label: independent
+    note: "both want error messages that guide the agent; n8n:652 is an anti-pattern list item"
+  - a: anthropics-skills/discernment-nudge@a9d2caea7e0b
+    b: anthropics-skills/pptx@4eb5e13af97f
+    v4: needs_review
+    label: independent
+    note: "plain bullets in a reply vs no literal bullet character inside pptx text runs"
+  - a: anthropics-skills/mcp-builder@7e8426a435cb
+    b: uasl/karpathy-guidelines@da897c8c3bab
+    v4: needs_review
+    label: needs_review
+    note: "proper error handling vs no error handling for impossible scenarios: a carve-out"
+  - a: anthropics-skills/pptx@4eb5e13af97f
+    b: uasl/deploy-to-vercel@261a4caec244
+    v4: needs_review
+    label: independent
+    note: "pptx text runs vs a bulleted team list in a reply"
+  - a: uasl/builder@8d7f0953ade3
+    b: uasl/github-workflow-automation@519f4ba6e482
+    v4: needs_review
+    label: independent
+    note: "builder:81 'Never: skip input validation' requires validation, as does github-workflow-automation"
+  - a: uasl/builder@8d7f0953ade3
+    b: uasl/karpathy-guidelines@da897c8c3bab
+    v4: needs_review
+    label: needs_review
+    note: "error handling at system boundaries vs none for impossible scenarios: a carve-out"
+  - a: uasl/builder@8d7f0953ade3
+    b: uasl/owasp-security@9847d3666f75
+    v4: needs_review
+    label: independent
+    note: "builder:81 'Never: skip input validation' requires validation, as does owasp-security"
+  - a: uasl/karpathy-guidelines@da897c8c3bab
+    b: uasl/zapier-make-patterns@32e4bb74a0b3
+    v4: needs_review
+    label: needs_review
+    note: "design with error handling vs none for impossible scenarios: a carve-out"
+  - a: uasl/owasp-security@9847d3666f75
+    b: uasl/systematic-debugging@6ba907b7267e
+    v4: needs_review
+    label: independent
+    note: "do not expose stack traces to users vs read stack traces when debugging"
+  - a: uasl/sora@316f043c57fc
+    b: uasl/youtube-transcript-english@502e2b12befa
+    v4: needs_review
+    label: independent
+    note: "do not list specific rate limits in docs vs respect rate limits"

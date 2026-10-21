@@ -7,6 +7,7 @@ from skillfetch.resolve.models import Constraint, Skill
 from skillfetch.resolve.relation import (
     Relation,
     complementary,
+    conflict_cap,
     constraint_relation,
     normalize_term,
     skill_relation,
@@ -37,6 +38,13 @@ def k(
     if strength is not None:
         data["strength"] = strength
     return Constraint.model_validate(data)
+
+
+@pytest.fixture
+def vocab_cap(monkeypatch):
+    import skillfetch.resolve.relation as R
+
+    monkeypatch.setattr(R, "OBJECTLESS_CAP", "vocabulary")
 
 
 def rel(a, b):
@@ -120,7 +128,29 @@ def test_unknown_directive_rejected():
 
 
 def test_hard_opposites_conflict():
+    a, b = k("emoji", "require", "in headers"), k("emoji", "forbid", "in headers")
+    assert rel(a, b) == Relation.CONFLICT
+
+
+def test_hard_opposites_without_an_object_conflict(vocab_cap):
     assert rel(k("emoji", "require"), k("emoji", "forbid")) == Relation.CONFLICT
+
+
+def test_an_object_less_rule_narrowed_in_its_raw_object_needs_review():
+    # object null, but the line named something narrower (constraints.md §3 row 14):
+    # "Don't swallow errors" -> forbid error-handling, raw "swallowing errors"
+    swallow = k("error-handling", "forbid").model_copy(update={"object_raw": "swallowing errors"})
+    assert rel(k("error-handling", "require"), swallow) == Relation.NEEDS_REVIEW
+    assert rel(k("error-handling", "require", "retries"), swallow) == Relation.NEEDS_REVIEW
+
+
+def test_a_raw_object_that_restates_the_subject_does_not_narrow(vocab_cap):
+    restated = k("emoji", "forbid").model_copy(update={"object_raw": "Emoji"})
+    assert rel(k("emoji", "require"), restated) == Relation.CONFLICT
+
+
+def test_soft_opposites_without_an_object_stay_tension():
+    assert rel(k("emoji", "prefer"), k("emoji", "forbid")) == Relation.TENSION
 
 
 @pytest.mark.parametrize(
@@ -146,7 +176,11 @@ def test_different_subjects_are_independent():
 
 
 def test_subject_normalization_applies():
-    assert rel(k("Type-Hints", "require"), k("type-hint", "forbid")) == Relation.CONFLICT
+    a, b = (
+        k("Type-Hints", "require", "public functions"),
+        k("type-hint", "forbid", "public function"),
+    )
+    assert rel(a, b) == Relation.CONFLICT
 
 
 # --- scope -----------------------------------------------------------------------------
@@ -178,8 +212,8 @@ def test_positive_broader_on_phase_is_a_carve_out():
 
 
 def test_negative_broader_is_a_blanket_ban():
-    a = k("emoji", "require", artifact="commit-message")
-    b = k("emoji", "forbid", artifact="any")
+    a = k("emoji", "require", "in headers", artifact="commit-message")
+    b = k("emoji", "forbid", "in headers", artifact="any")
     assert rel(a, b) == Relation.CONFLICT
     soft = k("bullet-points", "avoid", artifact="any")
     narrow = k("bullet-points", "require", artifact="pr-description")
@@ -193,15 +227,15 @@ def test_mixed_breadth_needs_review():
 
 
 def test_any_overlaps_everything():
-    a = k("emoji", "require", artifact="markdown", phase="format")
-    b = k("emoji", "forbid", artifact="any", phase="any")
+    a = k("emoji", "require", "in headers", artifact="markdown", phase="format")
+    b = k("emoji", "forbid", "in headers", artifact="any", phase="any")
     assert rel(a, b) == Relation.CONFLICT
 
 
 # --- objects ---------------------------------------------------------------------------
 
 
-def test_blanket_ban_vs_specific_requirement_conflicts():
+def test_blanket_ban_vs_specific_requirement_conflicts(vocab_cap):
     a = k("emoji", "require", "in headers")
     b = k("emoji", "forbid", None)
     assert rel(a, b) == Relation.CONFLICT
@@ -329,8 +363,8 @@ def test_different_conditions_need_review():
 
 
 def test_identical_conditions_behave_like_no_condition():
-    a = k("type-hints", "require", condition="When writing Python")
-    b = k("type-hints", "forbid", condition="when writing python.")
+    a = k("type-hints", "require", "public functions", condition="When writing Python")
+    b = k("type-hints", "forbid", "public functions", condition="when writing python.")
     assert rel(a, b) == Relation.CONFLICT
 
 
@@ -417,14 +451,14 @@ def S(sid, *constraints, **kw):
 
 
 def test_skill_conflict_wins_and_carries_evidence():
-    bad_a = k("emoji", "require", text="Always use emoji.")
-    bad_b = k("emoji", "forbid", text="Never use emoji.")
+    bad_a = k("emoji", "require", "in headers", text="Always put emoji in headers.")
+    bad_b = k("emoji", "forbid", "in headers", text="Never put emoji in headers.")
     a = S("a", k("comments", "prefer"), bad_a)
     b = S("b", k("comments", "avoid"), bad_b)
     result = skill_relation(a, b)
     assert result.relation == Relation.CONFLICT
     assert [(p.a.evidence.text, p.b.evidence.text) for p in result.pairs] == [
-        ("Always use emoji.", "Never use emoji.")
+        ("Always put emoji in headers.", "Never put emoji in headers.")
     ]
 
 
@@ -566,3 +600,95 @@ def test_equal_multisets_remain_redundant_both_ways_with_containment():
     a = S("a", k("emoji", "forbid", artifact="any"), k("preamble", "forbid"))
     b = S("b", k("preamble", "forbid"), k("emoji", "forbid", artifact="any"))
     assert skill_relation(a, b).relation == skill_relation(b, a).relation == Relation.REDUNDANT
+
+
+# --- conflict caps (§3 row 14) ------------------------------------------------------------------
+
+
+def _under(c, heading):
+    return c.model_copy(update={"section_heading": heading})
+
+
+def test_object_less_conflict_needs_a_vocabulary_subject(vocab_cap):
+    # "Don't assume." -> forbid assumptions vs "State assumptions explicitly"
+    a, b = k("assumptions", "forbid"), k("assumptions", "require", "at each level")
+    assert rel(a, b) == Relation.NEEDS_REVIEW
+    assert conflict_cap(a, b) == "free-text subject"
+    # with objects on both sides a free-text subject still conflicts
+    assert rel(k("squash", "require", "every pr"), k("squash", "forbid", "every pr")) == (
+        Relation.CONFLICT
+    )
+
+
+def test_default_cap_caps_every_object_less_pair():
+    assert rel(k("emoji", "require"), k("emoji", "forbid")) == Relation.NEEDS_REVIEW
+    assert rel(k("emoji", "require", "in headers"), k("emoji", "forbid", "in headers")) == (
+        Relation.CONFLICT
+    )
+
+
+@pytest.mark.parametrize(
+    "heading, text, uncertain",
+    [
+        ("Never", "Ignore naming conventions.", True),
+        ("❌ Don't", "Skip validation before activation", True),
+        ("Avoid (Common Mistakes)", "Don't use low-contrast elements", False),  # not a label
+        ("Never", "Use plural nouns for collections", False),  # no negating verb
+        ("Naming", "Ignore naming conventions.", False),  # not a negative heading
+        ("Do's and Don'ts", "Skip validation", False),
+    ],
+)
+def test_polarity_uncertain(heading, text, uncertain):
+    from skillfetch.resolve.polarity import polarity_uncertain
+
+    assert polarity_uncertain(_under(k("naming-convention", "forbid", text=text), heading)) is (
+        uncertain
+    )
+
+
+def test_polarity_uncertain_constraints_never_conflict():
+    gateway = _under(k("naming-convention", "forbid", text="Ignore naming conventions."), "Never")
+    plural = k("naming-convention", "require", text="Use plural nouns for collections.")
+    assert rel(gateway, plural) == Relation.NEEDS_REVIEW
+    assert conflict_cap(gateway, plural) == "polarity"
+
+
+def test_fan_out_caps_a_hub_constraint(vocab_cap):
+    from skillfetch.resolve.relation import mark_fan_out
+
+    hub = S("hub", k("emoji", "forbid", text="Never emoji."))
+    others = [
+        S(f"s{i}", k("emoji", "require", obj, text=f"t{i}"))
+        for i, obj in enumerate(["in headers", "in commit subjects", "in release notes"])
+    ]
+    marked = mark_fan_out([hub, *others])
+    assert marked[0].constraints[0].fan_out is True
+    assert not any(c.fan_out for s in marked[1:] for c in s.constraints)
+    assert skill_relation(marked[0], marked[1]).relation == Relation.NEEDS_REVIEW
+    # two conflicting skills are not a fan-out
+    two = mark_fan_out([hub, *others[:2]])
+    assert skill_relation(two[0], two[1]).relation == Relation.CONFLICT
+
+
+def test_fan_out_counts_near_duplicates_once(vocab_cap):
+    from skillfetch.resolve.relation import mark_fan_out
+
+    hub = S("hub", k("emoji", "forbid", text="Never emoji."))
+    same = [S(f"d{i}", k("emoji", "require", "in headers", text=f"t{i}")) for i in range(3)]
+    marked = mark_fan_out([hub, *same])
+    assert marked[0].constraints[0].fan_out is False
+
+
+def test_candidate_pairs_cover_every_related_fixture_pair():
+    from itertools import combinations
+
+    from conftest import load_corpus
+
+    from skillfetch.resolve.relation import candidate_pairs, pair_label
+
+    corpus = load_corpus()
+    skills = [corpus[n] for n in sorted(corpus)]
+    candidates = set(candidate_pairs(skills))
+    for i, j in combinations(range(len(skills)), 2):
+        if pair_label(skills[i], skills[j]) != "independent":
+            assert (i, j) in candidates, (skills[i].id, skills[j].id)

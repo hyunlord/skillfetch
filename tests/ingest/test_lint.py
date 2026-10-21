@@ -1,5 +1,6 @@
 """Static lint (index-format.md §1.3)."""
 
+import pytest
 from conftest import write_skill
 
 from skillfetch.ingest.lint import lint_skill
@@ -75,6 +76,23 @@ def test_broken_relative_link_is_an_error(tmp_path):
     result = lint_skill(d)
     assert rules(result) == [("lint.broken-link", 7)]
     assert "references/nope.md" in result.errors[0].message
+
+
+@pytest.mark.parametrize(
+    "target",
+    ["URL", "url", "Link", "{baseDir}/references/x.md", "${SKILL_DIR}/x.md", "..."],
+)
+def test_placeholder_link_is_a_warning_not_an_error(tmp_path, target):
+    # academy-guide: "> You might also find this helpful: [Title](URL) — one-sentence description."
+    d = write_skill(tmp_path, "a", f"# T\n\nTemplate: [Title]({target}) — a description.\n")
+    result = lint_skill(d)
+    assert result.ok
+    assert [(w.rule, w.line_no) for w in result.warnings] == [("lint.placeholder-link", 7)]
+
+
+def test_file_names_are_not_placeholders(tmp_path):
+    d = write_skill(tmp_path, "a", "# T\n\nSee [readme](README) and [notes](notes.md).\n")
+    assert rules(lint_skill(d)) == [("lint.broken-link", 7), ("lint.broken-link", 7)]
 
 
 def test_link_forms_that_resolve(tmp_path):

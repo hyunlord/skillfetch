@@ -48,10 +48,19 @@ class Constraint(_Frozen):
     subject: str = Field(min_length=1)
     directive: Directive
     object: str | None = None
+    # The object in the line's own words, kept even when `object` is null or a vocabulary
+    # value. For review only: never part of identity or of any relation.
+    object_raw: str | None = None
     direction: Literal["before", "after"] | None = None  # `order` only: subject vs object
     scope: Scope = Scope()
     strength: Strength  # derived from directive when omitted (§1); `order` defaults to must
     evidence: Evidence
+    # The markdown heading the evidence line falls under, filled after extraction. Review
+    # only: not part of identity.
+    section_heading: str | None = None
+    # Set over a whole corpus (relation.mark_fan_out): this constraint conflicts with three
+    # or more distinct skills, so its conflicts are capped at needs_review. Not identity.
+    fan_out: bool = False
 
     @model_validator(mode="before")
     @classmethod

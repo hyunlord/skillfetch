@@ -8,10 +8,16 @@ from collections.abc import Sequence
 from pathlib import Path
 
 from skillfetch.ingest import backends, credentials, extract
+from skillfetch.ingest.build import build_index, render_summary
+from skillfetch.ingest.build_report import write_reports
 from skillfetch.ingest.calibrate import calibrate, render_calibration
 from skillfetch.ingest.extract_cache import DEFAULT_CACHE_DIR, ExtractCache
+from skillfetch.ingest.holdout import load_holdout, measure_holdout, render_holdout
 from skillfetch.ingest.ingest import extract_dir, render_cost_log
 from skillfetch.ingest.local_scan import fail_counts, render_report, scan_dir
+from skillfetch.ingest.snapshot import DEFAULT_WORK_DIR, SnapshotError
+from skillfetch.ingest.sources import load_sources
+from skillfetch.resolve import relation
 
 FAIL_ON = ("conflict", "scan", "lint")
 
@@ -52,8 +58,30 @@ def main(argv: Sequence[str] | None = None) -> int:
     ingest.add_argument(
         "dir",
         type=Path,
-        help="skills directory (with --calibrate: dir with skills/, expected.yaml)",
+        nargs="?",
+        help="skills directory to extract (with --calibrate: dir with skills/, expected.yaml); "
+        "omit it and pass --sources to build an index",
     )
+    ingest.add_argument("--sources", type=Path, help="build an index from this sources.yaml")
+    ingest.add_argument(
+        "--holdout",
+        type=Path,
+        help="with --sources: measure extraction + rules on this hand-labelled holdout "
+        "instead of building an index; exit 1 if any extracted conflict is false",
+    )
+    ingest.add_argument(
+        "--only", action="append", default=[], metavar="ID", help="build only these sources"
+    )
+    ingest.add_argument(
+        "--sample",
+        action="append",
+        default=[],
+        metavar="ID=N",
+        help="take a seeded random sample of N skills from source ID",
+    )
+    ingest.add_argument("--seed", type=int, default=42, help="sampling seed (default: 42)")
+    ingest.add_argument("--out", type=Path, default=Path("data/index"), help="index directory")
+    ingest.add_argument("--work-dir", type=Path, default=DEFAULT_WORK_DIR, help="snapshots")
     ingest.add_argument(
         "--with-api",
         action="store_true",
@@ -84,7 +112,17 @@ def main(argv: Sequence[str] | None = None) -> int:
     )
     ingest.add_argument("--cache-dir", type=Path, default=DEFAULT_CACHE_DIR)
     ingest.add_argument("--jobs", type=int, default=4, help="parallel API requests")
+    for p in (scan, ingest):
+        p.add_argument(
+            "--conflict-cap",
+            choices=relation.CAP_MODES,
+            default="all",
+            help="which rules without an object may conflict (constraints.md §3 row 14d): "
+            "'all' (default) reports every such pair as needs_review; 'vocabulary' lets a "
+            "blanket rule on a vocabulary term conflict (more recall, less precision)",
+        )
     args = parser.parse_args(argv)
+    relation.set_objectless_cap(args.conflict_cap)
 
     if args.command == "scan":
         if not args.dir.is_dir():
@@ -112,11 +150,79 @@ def _api_error(exc: Exception) -> str | None:
     return _SDK_NAMES.get(type(exc).__module__.split(".")[0])
 
 
-def _ingest(args: argparse.Namespace) -> int:
-    skills_dir = args.dir / "skills" if args.calibrate else args.dir
-    if not skills_dir.is_dir():
-        print(f"skillfetch: not a directory: {skills_dir}", file=sys.stderr)
+def _samples(specs: list[str]) -> dict[str, int]:
+    out = {}
+    for spec in specs:
+        sid, _, n = spec.partition("=")
+        if not sid or not n.isdigit():
+            raise ValueError(f"--sample expects ID=N, got {spec!r}")
+        out[sid] = int(n)
+    return out
+
+
+def _build(args: argparse.Namespace, key: str, extractor: extract.Extractor | None) -> int:
+    sources = load_sources(args.sources)
+    known = {s.id for s in sources}
+    samples = _samples(args.sample)
+    for sid in [*args.only, *samples]:
+        if sid not in known:
+            raise ValueError(f"unknown source id: {sid}")
+    selected = [s for s in sources if not args.only or s.id in args.only]
+    result = build_index(
+        selected,
+        out_dir=args.out,
+        work_dir=args.work_dir,
+        cache=ExtractCache(args.cache_dir),
+        extractor=extractor,
+        model=key,
+        samples=samples,
+        seed=args.seed,
+        jobs=args.jobs,
+    )
+    print(render_summary(result))
+    report, review = write_reports(result, args.out.with_name(args.out.name + "-reports"))
+    print(f"reports: {report} · {review}")
+    return 0
+
+
+def _holdout(args: argparse.Namespace, key: str, extractor: extract.Extractor | None) -> int:
+    result = measure_holdout(
+        load_holdout(args.holdout),
+        load_sources(args.sources),
+        cache=ExtractCache(args.cache_dir),
+        extractor=extractor,
+        model=key,
+        work_dir=args.work_dir,
+        jobs=args.jobs,
+    )
+    print(render_holdout(result))
+    if result.moved or (result.missing and extractor is None):
+        print(
+            "skillfetch: holdout incomplete: "
+            + ("pinned content moved; " if result.moved else "")
+            + (
+                "some skills are not in the extract cache; rerun with --with-api"
+                if result.missing and extractor is None
+                else ""
+            ),
+            file=sys.stderr,
+        )
         return 2
+    return 0 if result.hard_pass else 1
+
+
+def _ingest(args: argparse.Namespace) -> int:
+    if (args.dir is None) == (args.sources is None):
+        print("skillfetch: give either a directory or --sources", file=sys.stderr)
+        return 2
+    if args.holdout is not None and args.sources is None:
+        print("skillfetch: --holdout needs --sources", file=sys.stderr)
+        return 2
+    if args.dir is not None:
+        skills_dir = args.dir / "skills" if args.calibrate else args.dir
+        if not skills_dir.is_dir():
+            print(f"skillfetch: not a directory: {skills_dir}", file=sys.stderr)
+            return 2
     cache = ExtractCache(args.cache_dir)
     try:
         key = backends.backend_key(args.model, args.base_url)
@@ -130,6 +236,10 @@ def _ingest(args: argparse.Namespace) -> int:
                 args.model, base_url=args.base_url, creds_file=args.creds_file
             )
             extractor = extract.Extractor(backend)
+        if args.holdout is not None:
+            return _holdout(args, key, extractor)
+        if args.sources is not None:
+            return _build(args, key, extractor)
         outcomes = extract_dir(skills_dir, cache, extractor, model=key, jobs=args.jobs)
     except ImportError:
         print("skillfetch: --with-api needs: pip install 'skillfetch[ingest]'", file=sys.stderr)
@@ -137,6 +247,9 @@ def _ingest(args: argparse.Namespace) -> int:
     except (extract.MissingCredentials, ValueError) as exc:
         print(f"skillfetch: {exc}", file=sys.stderr)
         return 2
+    except SnapshotError as exc:
+        print(f"skillfetch: snapshot failed: {exc}", file=sys.stderr)
+        return 1
     except Exception as exc:
         sdk = _api_error(exc)
         if sdk is None:

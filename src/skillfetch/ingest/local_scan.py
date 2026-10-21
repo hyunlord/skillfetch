@@ -22,7 +22,7 @@ from skillfetch.ingest.skillfile import (
     read_text,
 )
 from skillfetch.resolve.models import Constraint, Finding, Skill
-from skillfetch.resolve.relation import Relation, skill_relation
+from skillfetch.resolve.relation import Relation, candidate_pairs, mark_fan_out, skill_relation
 from skillfetch.resolve.report import render_finding
 from skillfetch.resolve.resolver import make_finding
 
@@ -112,7 +112,7 @@ def _scan_one(root: Path, skill_dir: Path) -> tuple[SkillScan, Skill | None]:
     return record, Skill(id=skill_id, constraints=constraints) if analyzable else None
 
 
-def _pair_finding(a: Skill, b: Skill) -> Finding | None:
+def pair_finding(a: Skill, b: Skill) -> Finding | None:
     forward, backward = skill_relation(a, b), skill_relation(b, a)
     if forward.relation == Relation.CONFLICT:
         return make_finding("conflict", forward, a, b)
@@ -142,10 +142,12 @@ def scan_dir(root: Path) -> ScanReport:
     ]
     same_content = {frozenset(p) for g in duplicates for p in combinations(g.ids, 2)}
 
+    analyzable = mark_fan_out(analyzable)
     findings = [
         f
-        for a, b in combinations(analyzable, 2)
-        if frozenset((a.id, b.id)) not in same_content and (f := _pair_finding(a, b)) is not None
+        for i, j in candidate_pairs(analyzable)
+        if frozenset((analyzable[i].id, analyzable[j].id)) not in same_content
+        and (f := pair_finding(analyzable[i], analyzable[j])) is not None
     ]
     findings.sort(key=lambda f: (_KIND_ORDER[f.kind], f.a, f.b))
     analyzed = {s.id for s in analyzable}

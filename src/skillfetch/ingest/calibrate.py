@@ -28,8 +28,15 @@ from pydantic import BaseModel
 from skillfetch.ingest.extract import ExtractRecord
 from skillfetch.ingest.local_scan import load_sidecar
 from skillfetch.ingest.skillfile import discover_skills
+from skillfetch.resolve import relation
 from skillfetch.resolve.models import Constraint, Skill
-from skillfetch.resolve.relation import Relation, normalize_term, pair_label, skill_relation
+from skillfetch.resolve.relation import (
+    Relation,
+    fan_out_map,
+    normalize_term,
+    pair_label,
+    skill_relation,
+)
 from skillfetch.resolve.report import render_finding
 from skillfetch.resolve.resolver import make_finding
 
@@ -52,9 +59,12 @@ FIELDS = (
 # --- labels ----------------------------------------------------------------------------------
 
 
-def load_labels(path: Path) -> dict[frozenset[str], str]:
+def load_labels(path: Path, cap: str | None = None) -> dict[frozenset[str], str]:
     """expected.yaml → {unordered pair: label}; `subsumes` entries become
-    "subsumes:<superset>". Unlisted pairs are `independent`."""
+    "subsumes:<superset>". Unlisted pairs are `independent`. Labels are for the default
+    conflict cap; with cap "vocabulary" (default: the current `OBJECTLESS_CAP`) the pairs
+    under `conflict_with_vocabulary_cap` are conflicts instead."""
+    cap = cap or relation.OBJECTLESS_CAP
     raw = yaml.safe_load(path.read_text()) or {}
     labels: dict[frozenset[str], str] = {}
     for key in LABEL_KEYS:
@@ -65,6 +75,11 @@ def load_labels(path: Path) -> dict[frozenset[str], str]:
             if pair in labels:
                 raise ValueError(f"{path}: pair listed twice: {a}, {b}")
             labels[pair] = f"subsumes:{a}" if key == "subsumes" else key
+    if cap == "vocabulary":
+        for a, b in raw.get("conflict_with_vocabulary_cap") or []:
+            if frozenset((a, b)) not in labels:
+                raise ValueError(f"{path}: {a}, {b} must also be labelled for the default cap")
+            labels[frozenset((a, b))] = "conflict"
     return labels
 
 
@@ -268,10 +283,12 @@ def calibrate(fixtures_dir: Path, records: Mapping[str, ExtractRecord]) -> Calib
     """fixtures_dir holds skills/ and expected.yaml (the layout of tests/fixtures/)."""
     labelled = load_labelled(fixtures_dir / "skills")
     labels = load_labels(fixtures_dir / "expected.yaml")
-    extracted = {
-        sid: Skill(id=sid, constraints=records[sid].constraints() if sid in records else [])
-        for sid in labelled
-    }
+    extracted = fan_out_map(
+        {
+            sid: Skill(id=sid, constraints=records[sid].constraints() if sid in records else [])
+            for sid in labelled
+        }
+    )
     return Calibration(
         fields=compare_fields(labelled, extracted),
         pairs=compare_pairs(labels, extracted),

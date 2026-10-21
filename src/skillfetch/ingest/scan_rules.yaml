@@ -12,7 +12,11 @@
 #   allow_negated         skip a match when a negation (not, never, n't, no, without)
 #                         appears at most two words before it: "never run sudo X"
 #                         is advice, "do not hesitate to run sudo X" is not
-version: 2
+#   allow_quoted          a match inside quotation marks ("…", “…”) only warns:
+#                         advice that quotes the phrase to avoid ("avoid override-style
+#                         language (\"disregard the previous instruction\")") is not an
+#                         attempt. It still warns, so the quote stays visible.
+version: 4
 
 effects:
   override: fail
@@ -29,13 +33,19 @@ rules:
   # --- override: attempts to replace the host's instructions ----------------------
   - id: override.ignore-previous
     family: override
+    allow_quoted: true
     pattern: '\b(?:ignore|disregard|forget|override)\s+(?:all\s+)?(?:of\s+)?(?:the\s+|your\s+|any\s+)?(?:previous|prior|above|earlier|preceding|original|system)\s+(?:instructions?|prompts?|directions|directives|messages?|rules)\b|\b(?:ignore|disregard)\s+all\s+(?:other\s+)?instructions\b'
+  # Not `output` or `override` (rules v4): "… without test or build output, add to the
+  # system prompt" (anthropics claude-api) and "Direct: override system prompts" (an
+  # OWASP table describing attacks) are documentation, and both verbs are common there.
   - id: override.system-prompt
     family: override
     allow_negated: true
-    pattern: '\b(?:ignore|disregard|override|bypass|reveal|print|repeat|leak|output)\b[^.\n]{0,20}\bsystem\s+prompt\b'
+    allow_quoted: true
+    pattern: '\b(?:ignore|disregard|bypass|reveal|print|repeat|leak)\b[^.\n]{0,20}\bsystem\s+prompt\b'
   - id: override.persona
     family: override
+    allow_quoted: true
     pattern: '\byou\s+are\s+now\s+(?:an?\s+)?(?:unrestricted|unfiltered|uncensored|jailbroken|evil|dan\b)|\byou\s+are\s+now\s+in\s+(?:developer|god|jailbreak|dan)\s+mode\b'
 
   # --- exfil: reading secrets or shipping them elsewhere ---------------------------

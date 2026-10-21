@@ -1,0 +1,35 @@
+# Corpus sources for `skillfetch ingest --sources` (index-format.md §1.1).
+#
+# The snapshot stage resolves `ref` to a commit and records it; the commit, not
+# the ref, is what an index is built from.
+#
+# license: `per-skill` = every skill is licensed by its own LICENSE file or its
+# frontmatter `license:` field, and a skill with neither is `unknown`; an SPDX id
+# would apply to every skill of the source. Only skills whose license allows
+# redistribution get their body and files into the index (index-format.md §1.8).
+
+- id: anthropics-skills
+  kind: git
+  url: https://github.com/anthropics/skills
+  ref: main                 # 2026-10-21: dbd4588f9e10, 19 skills under skills/
+  root: skills/
+  publisher: anthropics
+  publisher_trust: verified
+  # Apache-2.0 for most skills; docx, pdf, pptx and xlsx are "All rights
+  # reserved"; doc-coauthoring has no LICENSE file.
+  license: per-skill
+
+- id: uasl
+  kind: git
+  url: https://github.com/onfire7777/universal-ai-skills-library
+  ref: main                 # 2026-10-21: 2a76bf42ce5c, 1812 skills under skills/
+  root: skills/
+  publisher: onfire7777
+  publisher_trust: unknown
+  # The repository is MIT, but it aggregates third-party skills (954 of them
+  # carry an .openskills.json naming their upstream repo), so the repository
+  # license is not inherited: per-skill files and frontmatter decide.
+  license: per-skill
+  # Source-level list of third-party upstreams; per-skill upstreams come from
+  # each skill's .openskills.json.
+  third_party_doc: docs/THIRD_PARTY_SOURCE_REPOS.md

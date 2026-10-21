@@ -29,7 +29,20 @@ A source is a YAML entry in `sources.yaml`:
 ```
 
 v0.1 ships with: `anthropics/skills`, the UASL corpus, and a hand-picked list of
-~20 well-known publisher repos. skills.sh scraping is v0.2 (needs rate limiting
+~20 well-known publisher repos. The list lives in `sources.yaml` at the repo
+root (loaded by `ingest/sources.py`): `anthropics/skills` (verified) and the
+UASL corpus, `onfire7777/universal-ai-skills-library` (1812 skills, unknown
+trust). UASL is an aggregation: 954 skills carry an `.openskills.json` naming
+their upstream repo and path, recorded per skill as `upstream`. Its
+`docs/THIRD_PARTY_SOURCE_REPOS.md` lists only external router sources (GStack,
+GBrain) that are not copied into `skills/`; it is parsed into the source's
+`third_party_upstreams`, not into skill records.
+
+`license` records how a source licenses its skills: an SPDX id for the whole
+source, or `per-skill` (the default) when each skill is licensed by its own
+license file or frontmatter, and is `unknown` without either. Both sources are
+per-skill; UASL's repository MIT license is not inherited because the
+repository aggregates third-party skills. See §1.8 for what follows. skills.sh scraping is v0.2 (needs rate limiting
 and a stable listing API; do not hand-roll a crawler in v0.1).
 
 ### 1.2 Snapshot
@@ -56,10 +69,16 @@ checks we own:
   reference definitions are checked; links inside fenced or inline code, URLs
   with a scheme, and `#anchors` are not. A link that leaves the folder (`../`,
   or an absolute path) is an error too: the folder is materialized on its own.
+  A placeholder target is a warning (`lint.placeholder-link`), not checked:
+  template syntax (`{baseDir}/…`, `${VAR}`) or a stand-in word (`URL`, `link`,
+  `path`, `href`, `TODO`, `...`; not file names such as `README`). A template line such as
+  `[Title](URL) — one-sentence description` is not a broken link (it rejected
+  anthropics' academy-guide in the first public build).
 
 Rule ids: `lint.missing-skill-md`, `lint.frontmatter-{missing,unclosed,invalid}`,
 `lint.missing-{name,description}`, `lint.broken-link`, `lint.link-outside-skill`
-(errors); `lint.body-too-long`, `lint.body-too-many-tokens` (warnings).
+(errors); `lint.body-too-long`, `lint.body-too-many-tokens`,
+`lint.placeholder-link` (warnings).
 
 Fail → skill is recorded with `status: lint_failed` and excluded from the index.
 Lint findings are stored so the data write-up can count them.
@@ -111,6 +130,21 @@ Implementation notes (`ingest/injection.py`, rules in `ingest/scan_rules.yaml`):
   run sudo …" is advice; "Do not hesitate to run sudo …" still fails. Used only
   where benign negated phrasing is common (sudo, root, sandbox,
   `--dangerously-*`, reading key/credential paths, system prompt).
+- `override.system-prompt` needs one of `ignore`, `disregard`, `bypass`,
+  `reveal`, `print`, `repeat`, `leak` within 20 characters before "system
+  prompt". `output` and `override` were dropped in rules v4: "… without test or
+  build output, add to the system prompt" (anthropics claude-api) and "Direct:
+  override system prompts" (an OWASP table describing attacks) are
+  documentation.
+- `override` rules set `allow_quoted` (rules v3): a match that lies inside
+  quotation marks (`"…"`, `“…”`) is downgraded to a warning, marked
+  `quoted: true`. Prompt-writing advice quotes the phrase it warns against
+  ("avoid override-style language (\"disregard the previous instruction\")"),
+  which rejected anthropics' claude-api in the first public build. It is a
+  warning, not a skip: a quoted injection is still text the agent reads, so
+  it stays visible and keeps an unknown publisher's skill in tier C. A line
+  with any unquoted match still fails, and quotes never soften the other
+  families.
 - Evidence lines show invisible characters as `<U+200B>` and are cut at 160
   characters.
 
@@ -194,11 +228,53 @@ index keeps all members but `search_skills` returns only canonicals unless
 
 | tier | rule | default in search |
 |---|---|---|
-| A | `publisher_trust: verified` and passed lint + scan + extract | on |
+| A | `publisher_trust: verified` and passed lint + scan + extract (or too large to extract, below) | on |
 | B | passed lint + scan + extract, no `has_scripts`, not a duplicate of an A skill | on |
 | C | anything else that is not `*_failed` (has scripts, extract failed, unknown publisher with warnings) | off |
 
 Tier is recomputed on every ingest; it is not stored in the source.
+
+A skill over the extraction cost guard (§1.5, ~12k tokens) is not sent to the
+model: it gets `status: not_extracted`, `not_extracted_reason: too_large`, no
+constraints, and keeps the tier the other rules give it (anthropics'
+claude-api is A). It can be searched and loaded but never takes part in a
+conflict or duplicate check. `extract_failed` and `not_extracted` with reason
+`no cache entry` (a build without `--with-api`) stay tier C.
+
+`network.bare-url` warnings do not count as "warnings" for the tier: skills for
+web APIs are full of documentation URLs, and in the first public build that one
+rule alone put 129 of 185 UASL skills in tier C. The warning is still recorded
+in the skill's `scan` field and in the build report.
+
+### 1.8 License and redistribution
+
+Each skill record carries `license` (an SPDX id, `proprietary`, or `unknown`)
+and `redistributable` (bool). The license comes from, in order: a license file
+in the skill folder (`LICENSE`, `LICENSE.txt`, `LICENSE.md`, `COPYING`),
+classified by its text; the frontmatter `license:` field; the source's SPDX
+license if it has one; else `unknown`.
+
+`redistributable` is true only for permissive licenses: MIT, Apache-2.0,
+BSD-2-Clause, BSD-3-Clause, ISC, MPL-2.0, CC-BY-4.0, CC0-1.0, Unlicense.
+Copyleft (GPL, AGPL), `proprietary` and `unknown` are not redistributable in
+v0.1 — conservative on purpose, like the rest of the pipeline.
+
+A non-redistributable skill is still indexed (metadata, extracted
+constraints with their short evidence quotes, tier), so it can be searched and
+checked for conflicts, but its body and files are **not** written to
+`bodies/` or `assets/`; the record keeps `source_url` (the file at the
+snapshot commit) instead.
+
+**Runtime fetch (design only; implementation in v0.2).** `load_skills` and
+`prepare_set` need a body. For a non-redistributable skill the MCP server
+would, only when started with `--allow-fetch`, fetch `SKILL.md` (and, for
+`prepare_set`, the folder) from `source_url` at the recorded commit, verify
+its sha256 against the record's `content_hash`, and cache it under
+`~/.skillfetch/cache/<id>/` for the user's own use. Without `--allow-fetch` such
+a skill is returned by `search_skills` with `redistributable: false` and
+`resolve_set` excludes it with reason `not_available`. Fetching contradicts the
+v0.1 non-goal "no real-time fetching" (CLAUDE.md), which is why it is v0.2,
+opt-in, and pinned to a hash.
 
 ## 2. Index layout
 
@@ -227,6 +303,25 @@ index/
   "signature": null
 }
 ```
+
+As built (`ingest/build.py`, `skillfetch ingest --sources sources.yaml
+[--only ID] [--sample ID=N] [--seed N] --out DIR`):
+
+- Ids are `<source_id>/<name>@<content_hash[:12]>`; `bodies/<id>.md` and
+  `assets/<id>/` therefore nest one directory per source. Only
+  `redistributable` skills (§1.8) get a body and assets.
+- `rejected.jsonl` holds the records that failed lint or the injection scan
+  (not in the index, kept for the data write-up).
+- Extraction runs once per distinct `content_hash`.
+- Manifest additions: `extract_model`, per source `url`, `ref`,
+  `commit_date`, `discovered`, `sampled`, `sample_seed`,
+  `third_party_upstreams`; `licenses` (count per license) and
+  `redistributable`. `counts` also has `too_large` and `not_extracted`.
+- Sampling: the source's skill folders sorted by path, then
+  `random.Random(seed).sample`; the sample is recorded, so a build is
+  reproducible from the manifest.
+- `bm25/` is not built yet (search is the runtime half, v0.2).
+- The build is written next to `--out` and swapped in when complete.
 
 `signature` is reserved; v0.1 verifies file hashes only. Releases are a tarball
 of `index/` attached to a GitHub release; `skillfetch sync` downloads the
