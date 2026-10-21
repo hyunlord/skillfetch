@@ -12,6 +12,8 @@ from collections import Counter
 from dataclasses import dataclass, field
 
 _TOKEN = re.compile(r"[a-z0-9]+")
+
+
 def _words(text: str) -> frozenset[str]:
     return frozenset(text.split())
 
