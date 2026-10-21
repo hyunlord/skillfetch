@@ -1,4 +1,4 @@
-"""Command line: `skillfetch scan|ingest`."""
+"""Command line: `skillfetch scan|ingest|serve`."""
 
 from __future__ import annotations
 
@@ -51,6 +51,14 @@ def main(argv: Sequence[str] | None = None) -> int:
         metavar="{conflict,scan,lint}",
         help="exit 1 if the scan finds any of these (repeatable or comma-separated): "
         "conflict findings, injection-scan failures, lint failures. Warnings never fail.",
+    )
+
+    serve = sub.add_parser("serve", help="run the MCP server over stdio")
+    serve.add_argument(
+        "--index",
+        type=Path,
+        default=Path("~/.skillfetch/index").expanduser(),
+        help="index directory (default: %(default)s)",
     )
 
     ingest = sub.add_parser(
@@ -134,7 +142,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     judge.add_argument("--creds-file", type=Path, default=credentials.DEFAULT_CREDS_FILE)
     judge.add_argument("--limit", type=int, help="judge only the first N pairs")
 
-    for p in (scan, ingest):
+    for p in (scan, ingest, serve):
         p.add_argument(
             "--conflict-cap",
             choices=relation.CAP_MODES,
@@ -163,7 +171,21 @@ def main(argv: Sequence[str] | None = None) -> int:
         return _ingest(args)
     if args.command == "judge":
         return _judge(args)
+    if args.command == "serve":
+        return _serve(args)
     return 2  # unreachable: argparse rejects unknown commands
+
+
+def _serve(args: argparse.Namespace) -> int:
+    from skillfetch.index.loader import IndexLoadError
+    from skillfetch.mcp.server import serve
+
+    try:
+        serve(args.index)
+    except IndexLoadError as exc:
+        print(f"skillfetch: {exc}", file=sys.stderr)
+        return 2
+    return 0
 
 
 _SDK_NAMES = {"anthropic": "Anthropic", "openai": "OpenAI"}

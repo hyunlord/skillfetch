@@ -75,6 +75,10 @@ class SkillRecord(BaseModel):
     commit: str
     path: str  # skill folder, relative to the snapshot root
     source_url: str
+    # every file of the skill folder (SKILL.md included) -> sha256 of its raw bytes, and the
+    # base URL they are fetched from at runtime: <fetch_base>/<relpath> (index-format §1.8)
+    files: dict[str, str] = {}
+    fetch_base: str | None = None
     content_hash: str
     tier: Literal["A", "B", "C"] | None = None
     status: Status
@@ -174,6 +178,24 @@ def _source_url(snap: Snapshot, rel: str) -> str:
     return f"{url}/{rel}/{SKILL_FILE}"
 
 
+def _fetch_base(snap: Snapshot, skill_dir: Path, rel: str) -> str:
+    """Where load_skills fetches the files: raw GitHub at the pinned commit, else the
+    local snapshot (dir sources, other git hosts)."""
+    url = snap.source.url.removesuffix(".git").rstrip("/")
+    if url.startswith("https://github.com/"):
+        repo = url.removeprefix("https://github.com/")
+        return f"https://raw.githubusercontent.com/{repo}/{snap.commit}/{rel}"
+    return skill_dir.resolve().as_uri()
+
+
+def file_manifest(skill_dir: Path) -> dict[str, str]:
+    paths = [skill_dir / SKILL_FILE, *skill_files(skill_dir)]
+    return {
+        p.relative_to(skill_dir).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
+        for p in paths
+    }
+
+
 def _record(snap: Snapshot, skill_dir: Path) -> Built:
     source = snap.source
     rel = skill_dir.relative_to(snap.path).as_posix()
@@ -200,6 +222,8 @@ def _record(snap: Snapshot, skill_dir: Path) -> Built:
         commit=snap.commit,
         path=rel,
         source_url=_source_url(snap, rel),
+        files=file_manifest(skill_dir),
+        fetch_base=_fetch_base(snap, skill_dir, rel),
         content_hash=digest,
         status=status,
         has_scripts=scan.has_scripts,
@@ -382,16 +406,6 @@ def _write_index(tmp: Path, result_skills: list[Built], groups: dict, manifest: 
         ],
     )
     (tmp / "dupgroups.json").write_text(json.dumps(groups, indent=2, sort_keys=True) + "\n")
-    for b in indexed:
-        if not b.record.redistributable:
-            continue
-        body = tmp / "bodies" / f"{b.record.id}.md"
-        body.parent.mkdir(parents=True, exist_ok=True)
-        body.write_text(read_text(b.skill_dir / SKILL_FILE))
-        for path in skill_files(b.skill_dir):
-            dest = tmp / "assets" / b.record.id / path.relative_to(b.skill_dir)
-            dest.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copy2(path, dest)
     files = {
         p.relative_to(tmp).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
         for p in sorted(tmp.rglob("*"))

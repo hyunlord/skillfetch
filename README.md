@@ -70,6 +70,14 @@ together, scope it to one task, or tell you afterwards whether it helped.
         (index-format §1.6–§2)
 - [ ] **v0.2** `skillfetch serve` — MCP server (`search_skills`, `resolve_set`,
       `load_skills`, …) + the one router skill you install.
+  - [x] index without bodies: per-file sha256 manifest + pinned fetch base
+  - [x] index loader (manifest-verified) and BM25 `search_skills` with profile boosts
+  - [x] `resolve_set` over index constraints (pinned `path:` skills linted and scanned)
+  - [x] `load_skills`: fetch from the pinned source, verify every hash, cache under
+        `~/.skillfetch/cache/`, refuse mismatches
+  - [x] MCP server (`skillfetch serve`) with `profile_repo`, `search_skills`,
+        `resolve_set`, `load_skills`
+  - [ ] router skill, `sync` command, end-to-end demo in Claude Code
   - [ ] surface the `complementary` hint in `resolve_set` output
 - [ ] **v0.3** isolation runner, outcome log, and an honest on/off comparison on
       a verified task set.
