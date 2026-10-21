@@ -65,6 +65,12 @@ Polarity follows meaning, not wording: "Get straight to the answer, no warm-up" 
 delete X → `forbid` X, avoid X → `avoid` X (the soft ban); never `require` or `prefer`.
 Strength follows the directive unless the line clearly says otherwise.
 
+Lists under a heading that names what not to do ("❌ Don't", "Avoid", "Anti-patterns") give
+bad practice as plain imperatives. Extract each such line by its own words, as if the heading
+were not there: "- Skip the review step" is `forbid` with subject `review step`. The heading is
+applied after extraction and inverts the directive. A line that negates on its own ("- Don't
+skip the review") is extracted as it reads and left alone.
+
 For `order`, `subject` is one side, `object` the other, and `direction` says whether the subject
 comes `before` or `after` the object. "Start with a test that fails, then make it pass" → subject
 `tests`, object `implementation`, direction `before`. `direction` is null for every other

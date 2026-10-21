@@ -149,7 +149,7 @@ def render_report(result: BuildResult) -> str:
     ]
     out += _counts("Post-processing adjustments (by kind)", kinds)
     out += _counts("Dropped constraints (by reason)", dropped)
-    nulls = [(b.record.id, n) for b in skills for n in b.record.adjusted if "condition" in n]
+    nulls = [(b.record.id, n) for b in skills for n in b.record.adjusted if _kind(n) == "condition"]
     out += ["## Conditions set to null", "", f"{len(nulls)} constraints.", ""]
     out += [f"- `{sid}` {note}" for sid, note in nulls]
     out.append("")
@@ -169,6 +169,8 @@ def render_report(result: BuildResult) -> str:
 
 
 def _kind(note: str) -> str:
+    if ": under heading " in note:
+        return "heading"
     for kind in ("condition", "subject", "artifact"):
         if f": {kind}" in note:
             return kind
@@ -202,6 +204,8 @@ def describe(c: Constraint) -> str:
     out = compact(c)
     if c.object_raw and c.object_raw != c.object:
         out += f' · raw object "{c.object_raw}"'
+    if c.section_heading:
+        out += f' · under "{c.section_heading}"'
     return out
 
 

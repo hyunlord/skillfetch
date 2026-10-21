@@ -180,6 +180,18 @@ than `logging`, and as `logging` it would read as a blanket ban.
   quote found on exactly one other line is kept with the line corrected (a
   miscount, reported as `repaired`); anything else is dropped (`dropped`, with
   the reason).
+- Section headings (`ingest/sections.py`, after the evidence check): every
+  constraint records the markdown heading its line falls under
+  (`section_heading`; a bold label line such as `**Never:**` heads the block
+  right below it). Under a heading that names what not to do — a ❌/🚫 marker,
+  or a heading that is only a label such as "Don't", "Avoid", "Anti-patterns",
+  "Common mistakes"; not "Do's and Don'ts", not "Never hardcode secrets" — the
+  directive is inverted (require ↔ forbid, prefer ↔ avoid), unless the line
+  negates on its own ("- Don't skip validation" restates the ban). The prompt
+  tells the model to extract such lines by their own words, so the inversion
+  is applied exactly once. Calibration-to-corpus gap that motivated it:
+  `### ❌ Don't` / `- Ignore error messages` was extracted as an instruction to
+  ignore error messages.
 - Vocabulary post-processing (`apply_vocabulary`, after the evidence check and
   before the per-line merge): subject normalization and the polarity flip and
   implied artifact of §1.1, and closed conditions (§1). Every change is recorded in the record's `adjusted` list. The hand

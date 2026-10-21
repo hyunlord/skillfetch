@@ -55,6 +55,9 @@ class Constraint(_Frozen):
     scope: Scope = Scope()
     strength: Strength  # derived from directive when omitted (§1); `order` defaults to must
     evidence: Evidence
+    # The markdown heading the evidence line falls under, filled after extraction. Review
+    # only: not part of identity.
+    section_heading: str | None = None
 
     @model_validator(mode="before")
     @classmethod

@@ -71,7 +71,10 @@ def test_schema_mirrors_the_result_models():
     schema = response_schema()
     assert list(schema["properties"]) == list(ExtractResult.model_fields)
     constraint = schema["properties"]["constraints"]["items"]
-    assert set(constraint["properties"]) == set(Constraint.model_fields) - {"id"}
+    assert set(constraint["properties"]) == set(Constraint.model_fields) - {
+        "id",
+        "section_heading",
+    }
 
 
 def test_request_shape():
