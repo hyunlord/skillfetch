@@ -15,7 +15,7 @@ from skillfetch.ingest.extract_cache import ExtractCache
 from skillfetch.mcp.server import build_server
 from skillfetch.mcp.session import Session
 
-TOOLS = {"search_skills", "resolve_set", "load_skills"}
+TOOLS = {"profile_repo", "search_skills", "resolve_set", "load_skills"}
 
 
 def _payload(result) -> dict:

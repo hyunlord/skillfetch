@@ -27,6 +27,13 @@ def build_server(session: Session) -> MCPServer:
     server = MCPServer("skillfetch", instructions=INSTRUCTIONS)
 
     @server.tool()
+    def profile_repo(path: str) -> dict[str, Any]:
+        """Languages, frameworks and package managers of a repo, from its manifest files
+        only (package.json, pyproject.toml, go.mod, Cargo.toml, lockfiles, framework
+        configs); never reads source. Pass the result to search_skills as `profile`."""
+        return session.profile_repo(path)
+
+    @server.tool()
     def search_skills(
         query: str,
         profile: dict[str, Any] | None = None,

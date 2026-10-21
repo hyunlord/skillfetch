@@ -11,6 +11,7 @@ from pathlib import Path
 
 from skillfetch.index.fetch import BodyCache, FetchError
 from skillfetch.index.loader import Index
+from skillfetch.index.profile import profile_repo
 from skillfetch.index.search import DEFAULT_TIERS, Searcher
 from skillfetch.ingest.extract import DEFAULT_MODEL
 from skillfetch.ingest.extract_cache import DEFAULT_CACHE_DIR, ExtractCache
@@ -47,10 +48,19 @@ class Session:
     searcher: Searcher | None = None
     resolutions: dict[str, dict] = field(default_factory=dict)  # set_id -> resolve_set output
     local: dict[str, LocalSkill] = field(default_factory=dict)
+    profiles: dict[str, dict] = field(default_factory=dict)  # resolved repo path -> profile
 
     def __post_init__(self):
         if self.searcher is None:
             self.searcher = Searcher(self.index)
+
+    # --- profile_repo ---------------------------------------------------------------------------
+
+    def profile_repo(self, path: str) -> dict:
+        key = str(Path(path).expanduser().resolve())
+        if key not in self.profiles:
+            self.profiles[key] = profile_repo(Path(key))
+        return self.profiles[key]
 
     # --- search_skills ------------------------------------------------------------------------
 
