@@ -484,3 +484,27 @@ hard rule: it is what keeps false positives from destroying trust.
   subject ("minimal design" vs "rich visual hierarchy"), script-level behaviour,
   conflicts that only manifest on a specific task. These are v0.3+ problems and
   need the outcome log, not better regexes.
+
+## 8. LLM judge over unsettled pairs (measurement, not resolution)
+
+`skillfetch judge` (`ingest/judge.py`, `ingest/judge_run.py`) sends every
+`needs_review` and `tension` pair of a built index to a second model — not the
+extractor, so its errors are not inherited (default
+`openrouter/anthropic/claude-sonnet-5.5`). The input is the original text only:
+each side's skill name and description, the section heading and the evidence
+lines marked `>` with five lines of context (at most two evidence lines per
+side); never the extracted constraints. Output (strict JSON): `verdict` ∈
+{conflict, carve_out, situational, independent, unclear}, one sentence of
+`reason`, `ambiguous_together` (would an agent given both skills be unsure
+which to follow), and `confidence`. Judgments are cached per input hash.
+
+Calibration comes first (`judge --calibrate tests/fixtures`): the 34
+labelled fixture pairs with their real relations (the `--conflict-cap
+vocabulary` labels); agreement must reach 0.8. Hand label → accepted
+verdicts: conflict and tension → conflict; needs_review → carve_out or
+situational; redundant and subsumes → independent. The report
+(`<index>-reports/judge.md`, `judgments.jsonl`) crosses the §3 row behind each
+pair (`relation.relation_reason`; for capped conflicts, row 14's reason) with
+the verdict and lists every `ambiguous_together` pair with its lines. The
+judge never changes an index or a `resolve_set` result.
+

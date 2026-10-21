@@ -26,6 +26,7 @@ __all__ = [
     "constraint_relation",
     "normalize_term",
     "pair_label",
+    "relation_reason",
     "skill_relation",
 ]
 
@@ -83,26 +84,26 @@ def _opposed(a: Constraint, b: Constraint) -> Relation:
     return Relation.CONFLICT if both_must else Relation.TENSION
 
 
-def _exclusive_choice(a: Constraint, b: Constraint) -> Relation:
+def _exclusive_choice(a: Constraint, b: Constraint) -> tuple[Relation, str]:
     """Two positive constraints naming different objects on the same subject (§3 rows 8-11)."""
     term = lookup(a.subject)
     if term is None or not term.exclusive:
-        return Relation.INDEPENDENT
+        return Relation.INDEPENDENT, "9 different objects"
     choice_a, choice_b = choice_of(term, a.object), choice_of(term, b.object)
     if choice_a is None or choice_b is None:
-        return Relation.NEEDS_REVIEW  # unknown or ambiguous choice: cannot tell
+        return Relation.NEEDS_REVIEW, "8a unknown choice"  # unknown or ambiguous: cannot tell
     (eco_a, pick_a), (eco_b, pick_b) = choice_a, choice_b
     if eco_a != eco_b or pick_a == pick_b:
-        return Relation.INDEPENDENT  # different ecosystems, or the same choice reworded
+        return Relation.INDEPENDENT, "8b other ecosystem or same choice"
     if _norm_opt(a.scope.condition) != _norm_opt(b.scope.condition):
-        return Relation.NEEDS_REVIEW
-    return _opposed(a, b)
+        return Relation.NEEDS_REVIEW, "8c conditions differ"
+    return _opposed(a, b), "8d exclusive choices"
 
 
 def constraint_relation(a: Constraint, b: Constraint) -> Relation:
     """Relation of two constraints from different skills. Symmetric. A conflict that
     `conflict_cap` gives a reason for is reported as needs_review (§3 row 14)."""
-    relation = _base_relation(a, b)
+    relation, _ = _base_relation(a, b)
     if relation == Relation.CONFLICT and conflict_cap(a, b) is not None:
         return Relation.NEEDS_REVIEW
     return relation
@@ -135,44 +136,55 @@ def conflict_cap(a: Constraint, b: Constraint) -> str | None:
     return None
 
 
-def _base_relation(a: Constraint, b: Constraint) -> Relation:
+def _base_relation(a: Constraint, b: Constraint) -> tuple[Relation, str]:
+    """The §3 relation before row 14's caps, with the row that decided it."""
     if a.directive == "order" or b.directive == "order":
         if a.directive != b.directive or not scopes_overlap(a, b):
-            return Relation.INDEPENDENT
+            return Relation.INDEPENDENT, "1-2 order vs other or disjoint"
         edge_a, edge_b = _order_edge(a), _order_edge(b)
         if edge_a == edge_b:
-            return Relation.REDUNDANT
+            return Relation.REDUNDANT, "3 same order"
         if edge_a == edge_b[::-1]:
             if _norm_opt(a.scope.condition) != _norm_opt(b.scope.condition):
-                return Relation.NEEDS_REVIEW
-            return _opposed(a, b)
-        return Relation.INDEPENDENT
+                return Relation.NEEDS_REVIEW, "4 reversed order, conditions differ"
+            return _opposed(a, b), "4 reversed order"
+        return Relation.INDEPENDENT, "5 unrelated orders"
 
     if normalize_term(a.subject) != normalize_term(b.subject) or not scopes_overlap(a, b):
-        return Relation.INDEPENDENT
+        return Relation.INDEPENDENT, "6 other subject or scope"
 
     obj_a, obj_b = _norm_opt(a.object), _norm_opt(b.object)
     if (a.directive in _POSITIVE) == (b.directive in _POSITIVE):
         if obj_a == obj_b:
-            return Relation.REDUNDANT
+            return Relation.REDUNDANT, "7 same rule"
         if a.directive in _POSITIVE and obj_a is not None and obj_b is not None:
             return _exclusive_choice(a, b)
-        return Relation.INDEPENDENT
+        return Relation.INDEPENDENT, "9 different objects"
 
     pos, neg = (a, b) if a.directive in _POSITIVE else (b, a)
     pos_obj, neg_obj = (obj_a, obj_b) if pos is a else (obj_b, obj_a)
     if neg_obj is not None and neg_obj != pos_obj:
         # The ban is narrower than (or unrelated to) the requirement.
-        return Relation.NEEDS_REVIEW if pos_obj is None else Relation.INDEPENDENT
+        if pos_obj is None:
+            return Relation.NEEDS_REVIEW, "11 object carve-out"
+        return Relation.INDEPENDENT, "10 different objects"
     if _broader(pos.scope.artifact, neg.scope.artifact) or _broader(
         pos.scope.phase, neg.scope.phase
     ):
         # Same carve-out, by scope: "use emoji" + "never in markdown".
-        return Relation.NEEDS_REVIEW
+        return Relation.NEEDS_REVIEW, "12 scope carve-out"
 
     if _norm_opt(a.scope.condition) != _norm_opt(b.scope.condition):
-        return Relation.NEEDS_REVIEW
-    return _opposed(a, b)
+        return Relation.NEEDS_REVIEW, "13 conditions differ"
+    return _opposed(a, b), "15 opposed"
+
+
+def relation_reason(a: Constraint, b: Constraint) -> str:
+    """The §3 row behind constraint_relation(a, b): "14b polarity", "12 scope carve-out", ..."""
+    relation, row = _base_relation(a, b)
+    if relation == Relation.CONFLICT and (cap := conflict_cap(a, b)) is not None:
+        return {"fan-out": "14a", "polarity": "14b", "narrowed": "14c"}.get(cap, "14d") + f" {cap}"
+    return row
 
 
 def _narrowed(c: Constraint) -> bool:

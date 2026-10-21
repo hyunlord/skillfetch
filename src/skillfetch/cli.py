@@ -8,6 +8,7 @@ from collections.abc import Sequence
 from pathlib import Path
 
 from skillfetch.ingest import backends, credentials, extract
+from skillfetch.ingest import judge as judge_mod
 from skillfetch.ingest.build import build_index, render_summary
 from skillfetch.ingest.build_report import write_reports
 from skillfetch.ingest.calibrate import calibrate, render_calibration
@@ -119,6 +120,20 @@ def main(argv: Sequence[str] | None = None) -> int:
     )
     ingest.add_argument("--cache-dir", type=Path, default=DEFAULT_CACHE_DIR)
     ingest.add_argument("--jobs", type=int, default=4, help="parallel API requests")
+    judge = sub.add_parser(
+        "judge",
+        help="LLM judge over the pairs the rules left open (needs_review, tension)",
+    )
+    target = judge.add_mutually_exclusive_group(required=True)
+    target.add_argument("--calibrate", type=Path, metavar="FIXTURES", help="fixture dir")
+    target.add_argument("--index", type=Path, help="a built index (with its -reports dir)")
+    judge.add_argument("--work-dir", type=Path, default=DEFAULT_WORK_DIR, help="snapshots")
+    judge.add_argument("--model", default=judge_mod.DEFAULT_JUDGE_MODEL)
+    judge.add_argument("--with-api", action="store_true", help="call the model (costs money)")
+    judge.add_argument("--jobs", type=int, default=8)
+    judge.add_argument("--creds-file", type=Path, default=credentials.DEFAULT_CREDS_FILE)
+    judge.add_argument("--limit", type=int, help="judge only the first N pairs")
+
     for p in (scan, ingest):
         p.add_argument(
             "--conflict-cap",
@@ -129,7 +144,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             "blanket rule on a vocabulary term conflict (more recall, less precision)",
         )
     args = parser.parse_args(argv)
-    relation.set_objectless_cap(args.conflict_cap)
+    relation.set_objectless_cap(getattr(args, "conflict_cap", "all"))
 
     if args.command == "scan":
         if not args.dir.is_dir():
@@ -146,6 +161,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         return 0
     if args.command == "ingest":
         return _ingest(args)
+    if args.command == "judge":
+        return _judge(args)
     return 2  # unreachable: argparse rejects unknown commands
 
 
@@ -217,6 +234,62 @@ def _holdout(args: argparse.Namespace, key: str, extractor: extract.Extractor | 
         )
         return 2
     return 0 if result.hard_pass else 1
+
+
+class _NoAPI:
+    """A judge backend for runs without --with-api: cache hits only."""
+
+    def __init__(self, key: str):
+        self.key = key
+
+    def complete(self, *_args, **_kw):
+        raise RuntimeError("not in the judge cache (run with --with-api)")
+
+
+def _judge(args: argparse.Namespace) -> int:
+    from skillfetch.ingest import judge_run
+
+    if args.calibrate is not None:
+        pairs = judge_run.fixture_pairs(args.calibrate)
+    else:
+        pairs = judge_run.index_pairs(args.index, args.work_dir)
+    if args.limit:
+        pairs = pairs[: args.limit]
+    key = backends.backend_key(args.model)
+    backend = (
+        backends.make_backend(args.model, creds_file=args.creds_file)
+        if args.with_api
+        else _NoAPI(key)
+    )
+    judge = judge_mod.Judge(backend)
+    outcomes = judge_mod.run_judge(
+        [p.item for p in pairs],
+        judge,
+        args.jobs,
+        progress=lambda n: print(f"  {n}/{len(pairs)} judged", file=sys.stderr),
+    )
+    cost = sum(o.record.cost_usd or 0 for o in outcomes if o.fresh and o.record)
+    failed = [o for o in outcomes if o.record is None]
+    summary = (
+        f"{len(pairs)} pairs · {sum(o.fresh for o in outcomes)} judged now, "
+        f"{sum(not o.fresh and o.record is not None for o in outcomes)} from cache, "
+        f"{len(failed)} failed · cost ${cost:.4f} · judge {key}"
+    )
+    if args.calibrate is not None:
+        rate, text = judge_run.calibration_report(pairs, outcomes)
+        print(text)
+        print(summary)
+        ok = rate >= judge_mod.JUDGE_TARGET
+        print(
+            f"gate: agreement {rate:.3f} (target {judge_mod.JUDGE_TARGET}): "
+            f"{'PASS' if ok else 'FAIL'}"
+        )
+        return 0 if ok and not failed else 1
+    report_dir = args.index.with_name(args.index.name + "-reports")
+    path = judge_run.write_judge_report(pairs, outcomes, report_dir, summary)
+    print(summary)
+    print(f"report: {path}")
+    return 0 if not failed else 1
 
 
 def _ingest(args: argparse.Namespace) -> int:
