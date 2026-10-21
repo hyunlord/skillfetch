@@ -124,12 +124,21 @@ def test_hard_opposites_conflict():
     assert rel(a, b) == Relation.CONFLICT
 
 
-def test_hard_opposites_without_an_object_need_review():
-    # A hard rule without an object is a blanket statement about the whole subject,
-    # which is where extraction over-generalizes ("Don't swallow errors" -> forbid
-    # error-handling). It never makes a conflict on its own (constraints.md §3 row 14).
-    assert rel(k("emoji", "require"), k("emoji", "forbid")) == Relation.NEEDS_REVIEW
-    assert rel(k("emoji", "require", "in headers"), k("emoji", "forbid")) == (Relation.NEEDS_REVIEW)
+def test_hard_opposites_without_an_object_conflict():
+    assert rel(k("emoji", "require"), k("emoji", "forbid")) == Relation.CONFLICT
+
+
+def test_an_object_less_rule_narrowed_in_its_raw_object_needs_review():
+    # object null, but the line named something narrower (constraints.md §3 row 14):
+    # "Don't swallow errors" -> forbid error-handling, raw "swallowing errors"
+    swallow = k("error-handling", "forbid").model_copy(update={"object_raw": "swallowing errors"})
+    assert rel(k("error-handling", "require"), swallow) == Relation.NEEDS_REVIEW
+    assert rel(k("error-handling", "require", "retries"), swallow) == Relation.NEEDS_REVIEW
+
+
+def test_a_raw_object_that_restates_the_subject_does_not_narrow():
+    restated = k("emoji", "forbid").model_copy(update={"object_raw": "Emoji"})
+    assert rel(k("emoji", "require"), restated) == Relation.CONFLICT
 
 
 def test_soft_opposites_without_an_object_stay_tension():
@@ -218,11 +227,10 @@ def test_any_overlaps_everything():
 # --- objects ---------------------------------------------------------------------------
 
 
-def test_blanket_ban_vs_specific_requirement_needs_review():
-    # Opposed, but the ban has no object (§3 row 14): the cap applies.
+def test_blanket_ban_vs_specific_requirement_conflicts():
     a = k("emoji", "require", "in headers")
     b = k("emoji", "forbid", None)
-    assert rel(a, b) == Relation.NEEDS_REVIEW
+    assert rel(a, b) == Relation.CONFLICT
 
 
 def test_general_requirement_vs_specific_ban_needs_review():

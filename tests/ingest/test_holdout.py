@@ -80,23 +80,24 @@ def test_measure_counts_true_and_false_relations(pinned):
     path = write(
         [
             {"a": "pub/commit-squash@x", "b": "pub/atomic-commits@x", "label": "conflict"},
+            {"a": "pub/plain-markdown@x", "b": "pub/emoji-headers@x", "label": "conflict"},
             {
-                "a": "pub/plain-markdown@x",
-                "b": "pub/emoji-headers@x",
-                "label": "independent",
-                "note": "hand label says these agree",
+                "a": "pub/atomic-commits@x",
+                "b": "pub/plain-markdown@x",
+                "label": "needs_review",
+                "note": "hand label says these need review",
             },
         ]
     )
     result, client = _measure(tmp_path, source, path)
     assert len(client.requests) == 4 and result.fresh == 4
     p = result.pairs
-    assert (p.conflict_flagged, p.conflict_true_positives) == (1, 1)
+    assert (p.conflict_flagged, p.conflict_true_positives) == (2, 2)
     assert result.hard_pass
-    [m] = p.mismatches  # plain-markdown vs emoji-headers is needs_review (object-less ban)
-    assert (m.expected, m.got) == ("independent", "needs_review")
+    [m] = p.mismatches
+    assert (m.expected, m.got) == ("needs_review", "independent")
     text = render_holdout(result)
-    assert "hand label: hand label says these agree" in text
+    assert "hand label: hand label says these need review" in text
     assert "gate: conflict precision 1.000 (hard, must be 1.0): PASS" in text
 
     again, client = _measure(tmp_path, source, path)  # from the cache
@@ -129,7 +130,11 @@ def test_cli_holdout_exit_codes(pinned, monkeypatch, capsys):
     tmp_path, source, write = pinned
     sources = tmp_path / "sources.yaml"
     sources.write_text(yaml.safe_dump([source.model_dump()]))
-    good = write([{"a": "pub/commit-squash@x", "b": "pub/atomic-commits@x", "label": "conflict"}])
+    both = [
+        ("pub/commit-squash@x", "pub/atomic-commits@x"),
+        ("pub/plain-markdown@x", "pub/emoji-headers@x"),
+    ]
+    good = write([{"a": a, "b": b, "label": "conflict"} for a, b in both])
     base = ["ingest", "--sources", str(sources), "--holdout", str(good)]
     base += ["--cache-dir", str(tmp_path / "c"), "--work-dir", str(tmp_path / "w")]
     base += ["--model", "anthropic/claude-sonnet-5"]

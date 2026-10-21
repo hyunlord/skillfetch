@@ -118,13 +118,20 @@ def constraint_relation(a: Constraint, b: Constraint) -> Relation:
     if _norm_opt(a.scope.condition) != _norm_opt(b.scope.condition):
         return Relation.NEEDS_REVIEW
     relation = _opposed(a, b)
-    if relation == Relation.CONFLICT and None in (obj_a, obj_b):
-        # A hard rule without an object is a blanket statement about the whole subject.
-        # Extractors produce those from narrower lines ("Don't swallow errors" ->
-        # forbid error-handling), and one of them conflicts with every skill that
-        # requires the subject in any form, so it never makes a conflict on its own.
+    if relation == Relation.CONFLICT and (_narrowed(a) or _narrowed(b)):
+        # The object is null, but the line named something narrower (object_raw): the
+        # vocabulary could not express it, and as a blanket rule it would conflict with
+        # every skill that requires the subject in any form ("Don't swallow errors" ->
+        # forbid error-handling, raw "swallowing errors").
         return Relation.NEEDS_REVIEW
     return relation
+
+
+def _narrowed(c: Constraint) -> bool:
+    """An object-less rule whose line names something narrower than the subject."""
+    if c.object is not None or not c.object_raw or not c.object_raw.strip():
+        return False
+    return normalize_term(c.object_raw) != normalize_term(c.subject)
 
 
 @dataclass(frozen=True)

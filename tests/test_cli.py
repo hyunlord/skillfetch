@@ -13,14 +13,14 @@ def test_scan_prints_text_report(capsys):
     assert main(["scan", str(SKILLS_DIR)]) == 0
     out = capsys.readouterr().out
     assert "CONFLICT  atomic-commits ⟷ commit-squash" in out
-    assert out.rstrip().splitlines()[-1].startswith("summary: 11 conflict")
+    assert out.rstrip().splitlines()[-1].startswith("summary: 19 conflict")
 
 
 def test_scan_json(capsys):
     assert main(["scan", str(SKILLS_DIR), "--json"]) == 0
     data = json.loads(capsys.readouterr().out)
     assert {"root", "skills", "duplicates", "findings", "analyzed", "skipped"} <= set(data)
-    assert sum(f["kind"] == "conflict" for f in data["findings"]) == 11
+    assert sum(f["kind"] == "conflict" for f in data["findings"]) == 19
 
 
 def test_scan_missing_dir(tmp_path, capsys):
@@ -53,7 +53,7 @@ def _messy(tmp_path):
 
 def test_fail_on_conflict(capsys):
     assert main(["scan", str(SKILLS_DIR), "--fail-on", "conflict"]) == 1
-    assert "--fail-on: 11 conflict" in capsys.readouterr().err
+    assert "--fail-on: 19 conflict" in capsys.readouterr().err
 
 
 def test_fail_on_condition_absent_exits_zero(capsys):

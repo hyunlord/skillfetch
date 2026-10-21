@@ -92,11 +92,14 @@ subject `request body logging`, object null).
 For a free-text subject, keep the object short and lowercase, in the skill's own words, and
 use the same wording when one skill requires a thing and another forbids it.
 
-`object_raw` is what the line regulates, in the line's own words, short and lowercase
-("swallowing errors", "a second confirmation"). Fill it whenever the line says more than the
-subject, even when `object` has to be null or one of the listed objects; null only when the line
-names nothing beyond the subject. It is kept for review and never compared, so it costs nothing
-to be specific there.
+`object_raw` holds, in the line's own words, short and lowercase, what the subject, `object`
+and scope cannot: the narrower thing a listed object could not name ("swallowing errors" for
+`error-handling`), or the situation the rule is limited to ("asking again once a plan is
+picked"). It is null when the rule covers its whole subject: restatements of the subject ("a
+recap of the edits you made" for `summary-at-end`), scope words ("in Markdown output",
+"during implementation") and conditions never go in it. The comparison reads an object-less
+rule with an `object_raw` as narrower than its subject: leaving it out of a narrowed rule
+creates a false contradiction, and filling it for a blanket rule hides a real one.
 
 For a tool slot (`package-manager`, `formatter`, `test-runner`, `build-tool`, `linter`) the
 object is the tool's name alone: `pnpm`, `ruff format`, `jest`. "Use pnpm; never run npm" is
@@ -172,7 +175,7 @@ kept. The others give these constraints:
   {"subject": "package-manager", "directive": "require", "object": "yarn", "object_raw": "yarn for all installs", "direction": null,
    "scope": {"artifact": "any", "phase": "any", "condition": null}, "strength": "must",
    "evidence": {"line_no": 12, "text": "Use yarn for all installs; never run npm install."}},
-  {"subject": "early returns", "directive": "prefer", "object": null, "object_raw": "over nested conditionals", "direction": null,
+  {"subject": "early returns", "directive": "prefer", "object": null, "object_raw": null, "direction": null,
    "scope": {"artifact": "code", "phase": "any", "condition": null}, "strength": "should",
    "evidence": {"line_no": 13, "text": "Prefer early returns over nested conditionals."}},
   {"subject": "emoji", "directive": "forbid", "object": null, "object_raw": null, "direction": null,
@@ -202,28 +205,28 @@ exact, so paraphrased objects or extra constraints hide duplicates and contradic
 
 ```json
 [
-  {"subject": "ask-before-acting", "directive": "require", "object": null, "object_raw": "before you edit anything", "direction": null,
+  {"subject": "ask-before-acting", "directive": "require", "object": null, "object_raw": null, "direction": null,
    "scope": {"artifact": "any", "phase": "any", "condition": null}, "strength": "must",
    "evidence": {"line_no": 4, "text": "Confirm with the user before you edit anything."}},
-  {"subject": "ask-before-acting", "directive": "forbid", "object": null, "object_raw": "pausing for approval", "direction": null,
+  {"subject": "ask-before-acting", "directive": "forbid", "object": null, "object_raw": null, "direction": null,
    "scope": {"artifact": "any", "phase": "implement", "condition": null}, "strength": "must",
    "evidence": {"line_no": 5, "text": "Don't pause for approval while implementing; decide and carry on."}},
-  {"subject": "summary-at-end", "directive": "require", "object": null, "object_raw": "a recap of the edits you made", "direction": null,
+  {"subject": "summary-at-end", "directive": "require", "object": null, "object_raw": null, "direction": null,
    "scope": {"artifact": "response", "phase": "any", "condition": null}, "strength": "must",
    "evidence": {"line_no": 6, "text": "Close each reply with a recap of the edits you made."}},
-  {"subject": "summary-at-end", "directive": "forbid", "object": null, "object_raw": "closing recap", "direction": null,
+  {"subject": "summary-at-end", "directive": "forbid", "object": null, "object_raw": null, "direction": null,
    "scope": {"artifact": "response", "phase": "any", "condition": null}, "strength": "must",
    "evidence": {"line_no": 7, "text": "No closing recap; stop when the work is done."}},
-  {"subject": "preamble", "directive": "forbid", "object": null, "object_raw": "warm-up sentence", "direction": null,
+  {"subject": "preamble", "directive": "forbid", "object": null, "object_raw": null, "direction": null,
    "scope": {"artifact": "response", "phase": "any", "condition": null}, "strength": "must",
    "evidence": {"line_no": 8, "text": "Get straight to the answer, no warm-up sentence."}},
-  {"subject": "preamble", "directive": "forbid", "object": null, "object_raw": "paraphrasing the request back first", "direction": null,
+  {"subject": "preamble", "directive": "forbid", "object": null, "object_raw": null, "direction": null,
    "scope": {"artifact": "response", "phase": "any", "condition": null}, "strength": "must",
    "evidence": {"line_no": 9, "text": "Do not paraphrase the request back to the user first."}},
-  {"subject": "type-hints", "directive": "require", "object": null, "object_raw": "every parameter and return value", "direction": null,
+  {"subject": "type-hints", "directive": "require", "object": null, "object_raw": null, "direction": null,
    "scope": {"artifact": "code", "phase": "any", "condition": null}, "strength": "must",
    "evidence": {"line_no": 10, "text": "Annotate every parameter and return value."}},
-  {"subject": "type-hints", "directive": "require", "object": null, "object_raw": "full type annotations", "direction": null,
+  {"subject": "type-hints", "directive": "require", "object": null, "object_raw": null, "direction": null,
    "scope": {"artifact": "code", "phase": "any", "condition": null}, "strength": "must",
    "evidence": {"line_no": 11, "text": "Each function signature carries full type annotations."}},
   {"subject": "commit-granularity", "directive": "forbid", "object": "squash", "object_raw": "squash", "direction": null,
@@ -239,4 +242,4 @@ Lines 4–5 and 6–7 contradict each other; 8–9, 10–11 and 12–13 are the 
 their constraints are identical apart from the evidence. Line 4 has no object: "before you edit
 anything" is what asking before acting means. Line 5's ban is limited to implementation, so its
 phase is narrower than line 4's. Restatements such as "the edits you made" or "full type
-annotations" are not objects.
+annotations" are not objects, nor `object_raw`.
