@@ -1,0 +1,22 @@
+# Corpus sources for `skillfetch ingest` (index-format.md §1.1).
+#
+# The snapshot stage resolves `ref` to a commit and records it; the commit, not
+# the ref, is what an index is built from.
+#
+# license: how a source licenses its skills. `per-skill` means each skill folder
+# carries its own LICENSE file; the index may only redistribute a skill's body
+# and files when that license allows it (see index-format.md §1.1).
+
+- id: anthropics-skills
+  kind: git
+  url: https://github.com/anthropics/skills
+  ref: main                 # 2026-10-21: dbd4588f9e10, 19 skills under skills/
+  root: skills/
+  publisher: anthropics
+  publisher_trust: verified
+  # Apache-2.0 for most skills; docx, pdf, pptx and xlsx are "All rights
+  # reserved"; doc-coauthoring has no LICENSE file.
+  license: per-skill
+
+# UASL corpus (named in index-format.md §1.1): not added. No public project by
+# that name could be identified; add it here once its repository is known.

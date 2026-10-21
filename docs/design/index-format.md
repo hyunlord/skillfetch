@@ -29,7 +29,18 @@ A source is a YAML entry in `sources.yaml`:
 ```
 
 v0.1 ships with: `anthropics/skills`, the UASL corpus, and a hand-picked list of
-~20 well-known publisher repos. skills.sh scraping is v0.2 (needs rate limiting
+~20 well-known publisher repos. The list lives in `sources.yaml` at the repo
+root (loaded by `ingest/sources.py`). As of 2026-10-21 it holds
+`anthropics/skills`; the UASL corpus is not added because no public project by
+that name could be identified.
+
+`license` records how a source licenses its skills: an SPDX id for the whole
+source, or `per-skill` when each skill folder has its own license file.
+`anthropics/skills` is per-skill: Apache-2.0 for most skills, "All rights
+reserved" for docx/pdf/pptx/xlsx, none for doc-coauthoring. The index
+redistributes bodies and files (§2), so ingest must check each skill's license
+and keep only metadata and a link for skills it may not redistribute; that rule
+is to be implemented with the ingest stage. skills.sh scraping is v0.2 (needs rate limiting
 and a stable listing API; do not hand-roll a crawler in v0.1).
 
 ### 1.2 Snapshot
