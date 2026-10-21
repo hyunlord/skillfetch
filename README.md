@@ -112,6 +112,29 @@ default produced none. Use it when recall matters more than precision.
   subject, or when it is a blanket rule about a subject outside the controlled
   vocabulary.
 
+### Cases we get wrong
+
+The two `conflict` findings left in the full public-corpus build (anthropics/skills
++ all 1812 UASL skills at `2a76bf42ce5c`, extraction v6, default cap) are both false.
+We record them instead of tuning the rules to them:
+
+- **caveman-review ⟷ saga**, subject `response-length`.
+  - caveman-review, SKILL.md:51: "Drop terse mode for: security findings (CVE-class
+    bugs need full explanation + reference), architectural disagreements …, and
+    onboarding contexts …"
+  - saga, SKILL.md:394: "Skip verbose explanations, focus on deliverables"
+  - Why it is wrong: both rules are situational — detail for security findings in a
+    code review, brevity in saga's autonomous (AUTORUN) mode. Extraction kept the
+    situation only in `object_raw`, which the rules do not compare, so the two read as
+    "require detailed" vs "forbid detailed".
+- **darwin ⟷ thinking-ooda**, order `observation` before / after `action`.
+  - darwin, SKILL.md:37: "**Principles:** Observe before acting · …"
+  - thinking-ooda, SKILL.md:108: "Immediately return to OBSERVE" (and :219, "Mandate
+    observe after act")
+  - Why it is wrong: OODA is a loop: observing after acting is the next cycle's
+    observing before acting. Order constraints have no notion of a cycle, so "observe
+    after act" reads as the reverse of "observe before act".
+
 ## License
 
 MIT
