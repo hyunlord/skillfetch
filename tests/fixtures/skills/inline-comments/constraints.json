@@ -3,7 +3,7 @@
     {
       "subject": "comments",
       "directive": "require",
-      "object": "inline comment on non-obvious lines",
+      "object": "on non-obvious code",
       "scope": {
         "artifact": "code",
         "phase": "any",

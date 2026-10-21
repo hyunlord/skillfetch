@@ -4,10 +4,11 @@
       "subject": "tests",
       "directive": "order",
       "object": "implementation",
+      "direction": "before",
       "scope": {
         "artifact": "any",
         "phase": "any",
-        "condition": "before"
+        "condition": null
       },
       "strength": "must",
       "evidence": {

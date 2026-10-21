@@ -1,0 +1,15 @@
+{
+  "stop_reason": "end_turn",
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"summary\": \"s\", \"keywords\": [\"k\"], \"tags\": {\"languages\": [], \"frameworks\": [], \"phase\": [], \"domain\": []}, \"synthetic_queries\": [\"q\"], \"constraints\": [{\"subject\": \"tests\", \"directive\": \"order\", \"object\": \"implementation\", \"direction\": null, \"scope\": {\"artifact\": \"any\", \"phase\": \"any\", \"condition\": null}, \"strength\": \"must\", \"evidence\": {\"line_no\": 12, \"text\": \"Write the failing test before writing any implementation code.\"}}], \"consumes\": [], \"produces\": [], \"requires_tools\": []}"
+    }
+  ],
+  "usage": {
+    "input_tokens": 1190,
+    "output_tokens": 280,
+    "cache_creation_input_tokens": 2400,
+    "cache_read_input_tokens": 0
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "stop_reason": "end_turn",
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"summary\": \"s\", \"keywords\": [\"k\"], \"tags\": {\"languages\": [], \"frameworks\": [], \"phase\": [], \"domain\": []}, \"synthetic_queries\": [\"q\"], \"constraints\": [{\"subject\": \"emoji\", \"directive\": \"forbid\", \"object\": null, \"scope\": {\"artifact\": \"markdown\", \"phase\": \"any\", \"condition\": null}, \"evidence\": {\"line_no\": 12, \"text\": \"Do not use emoji in Markdown documents.\"}, \"direction\": null, \"strength\": \"must\"}, {\"subject\": \"trailing-whitespace\", \"directive\": \"require\", \"object\": null, \"scope\": {\"artifact\": \"any\", \"phase\": \"format\", \"condition\": null}, \"evidence\": {\"line_no\": 13, \"text\": \"Strip trailing whitespace from every line.\"}, \"direction\": null, \"strength\": \"must\"}], \"consumes\": [], \"produces\": [], \"requires_tools\": []}"
+    }
+  ],
+  "usage": {
+    "input_tokens": 900,
+    "output_tokens": 300,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 2600
+  }
+}

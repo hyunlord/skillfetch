@@ -1,0 +1,15 @@
+{
+  "stop_reason": "end_turn",
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"summary\": \"Keeps history linear by squashing each feature into one commit before review.\", \"keywords\": [\"git\", \"squash\", \"commit\", \"history\", \"branch\", \"pull request\"], \"tags\": {\"languages\": [], \"frameworks\": [], \"phase\": [\"review\"], \"domain\": [\"git\"]}, \"synthetic_queries\": [\"squash my commits before I open the PR\", \"clean up git history\"], \"constraints\": [{\"subject\": \"commit-granularity\", \"directive\": \"require\", \"object\": \"squash\", \"direction\": null, \"scope\": {\"artifact\": \"commit-message\", \"phase\": \"any\", \"condition\": null}, \"strength\": \"must\", \"evidence\": {\"line_no\": 12, \"text\": \"Squash every feature into a single commit before opening a PR.\"}}, {\"subject\": \"branch-naming\", \"directive\": \"require\", \"object\": \"feature/<ticket-id>\", \"direction\": null, \"scope\": {\"artifact\": \"any\", \"phase\": \"any\", \"condition\": null}, \"strength\": \"must\", \"evidence\": {\"line_no\": 13, \"text\": \"Name branches feature/<ticket-id>.\"}}], \"consumes\": [], \"produces\": [\"squashed commit\"], \"requires_tools\": [\"Bash\"]}"
+    }
+  ],
+  "usage": {
+    "input_tokens": 1210,
+    "output_tokens": 412,
+    "cache_creation_input_tokens": 2400,
+    "cache_read_input_tokens": 0
+  }
+}

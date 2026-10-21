@@ -41,15 +41,29 @@ Fields:
   - `require`/`forbid`: hard (the skill says must / never).
   - `prefer`/`avoid`: soft (should / try to / by default).
   - `order`: a sequencing claim ("write tests before code"); `object` holds the
-    thing it must precede/follow, `scope.condition` holds `before|after`.
+    thing it must precede/follow, `direction` holds `before|after`.
 - `object` — what the directive is about, when `subject` alone is ambiguous.
   Optional.
+- `direction` — `before | after`, `order` only (null otherwise): the subject
+  comes before / after the object.
 - `scope.artifact` — what the rule applies to: `code | tests | commit-message |
   pr-description | markdown | response | plan | any`. `any` when the skill does
   not narrow it.
 - `scope.phase` — `plan | implement | test | review | format | any`.
-- `scope.condition` — free-text condition if the rule is conditional ("when
-  writing Python"), else null.
+- `scope.condition` — closed: the language, framework or file type the rule is
+  limited to (`python`, `django`, `django migrations`, `generated protobuf
+  files`), lowercase, else null. A condition is allowed when every word of it
+  (ignoring articles and prepositions) is a language, framework or file-type
+  name from `resolve/vocabulary.py`; extraction post-processing nulls anything
+  else. Situations ("when fixing a bug"), purposes ("if it reads better") and
+  the work being done ("feature work") are not conditions. Applies to every
+  directive, including `order`.
+
+  Trade-off, accepted for v0.1: a real situational condition is dropped too,
+  which makes the rule unconditional and can turn a `needs_review` pair into a
+  `conflict`. Calibration showed free-text conditions to be mostly noise
+  ("feature work", "if they make the output friendlier"), each of which hid a
+  real relation; watch the hard gate if this assumption breaks.
 - `strength` — `must | should`. Derived from directive (require/forbid → must,
   prefer/avoid → should) unless the text clearly says otherwise. `order` has no
   polarity; its strength defaults to `must` unless stated.
@@ -57,8 +71,9 @@ Fields:
   quotable line is dropped by the extractor. `line_no` is 1-based in the
   original `SKILL.md`, counting the frontmatter, so users can jump to it.
 
-For `order`, `object` and `scope.condition` (`before|after`) are required;
-"A before B" and "B after A" are the same constraint.
+For `order`, `object` and `direction` are required; "A before B" and "B after
+A" are the same constraint. (Until v0.1 the direction lived in
+`scope.condition`, which left `order` without a real condition — issue #1.)
 
 ### 1.1 Controlled subject vocabulary (v0)
 
@@ -98,20 +113,109 @@ normalized words ("pnpm workspaces" → pnpm; "npm or yarn" → no single choice
 nor is `naming-convention` (conventions differ per language and the constraint
 schema has no language field). Grow these lists from extraction output.
 
+**Subject normalization** (extraction post-processing, §2): a free-text
+subject containing every word of a vocabulary term ("test logging" ⊇
+`logging`) becomes that term when its other words already appear in the
+constraint's scope or object (artifact `tests`) and the object is allowed for
+the term. Otherwise it stays free text: "request body logging" is narrower
+than `logging`, and as `logging` it would read as a blanket ban.
+
+**Polarity and implied artifacts** (applied by extraction post-processing,
+§2):
+
+- `polarity: negative` marks a subject that rules usually remove:
+  `trailing-whitespace`, `preamble`. "Strip/remove/delete/trim/avoid X" on a
+  negative subject is a ban; an extracted `require`/`prefer` with such a verb
+  on its evidence line becomes `forbid`/`avoid`. Without the verb the
+  directive stands ("Always begin by restating the question" requires a
+  preamble).
+- `implied_artifact` is the only artifact a subject occurs in: type hints,
+  docstrings, comments, formatter → `code`; preamble, summary-at-end,
+  explain-reasoning → `response`; commit-granularity → `commit-message`; test
+  runner → `tests`; headers → `markdown`. Per object: `emoji` "in headers" →
+  `markdown` (emoji in general has none). It replaces an extracted `any`, never
+  an explicit artifact. Without it, a requirement left at `any` against a ban
+  on `markdown` reads as a scope carve-out (§3 row 12) and a real conflict
+  becomes `needs_review`.
+
 ## 2. Extraction prompt (summary; full text in `src/skillfetch/ingest/prompts/extract.md`)
 
-- Input: SKILL.md body with line numbers.
+- Input: the whole SKILL.md with line numbers (`  12| text`), counted from the
+  top of the file so `evidence.line_no` matches what users open.
+- System prompt: the template plus the controlled vocabulary of §1.1, rendered
+  from `resolve/vocabulary.py` (exclusive terms list their alternatives). It is
+  identical for every skill and sent with `cache_control`, so after the first
+  call it is a cache read.
 - Instruction: list every instruction that would change how an agent behaves
   if followed. Skip background explanation, examples, and anything not
-  actionable. One constraint per actionable instruction. Quote the line.
-- Output: JSON array matching §1, inside the larger extract object from
-  `index-format.md` §1.5.
-- Temperature 0. Validate with pydantic; on failure retry once with the
-  validation error appended; on second failure record `extract_failed`.
+  actionable. One constraint per actionable instruction. Quote the line: **no
+  quotable line, no constraint**. Conditions are, when possible, a single
+  language, framework or artifact name. Scopes are narrowed only when the line
+  names them or the subject only exists there (the §3 carve-out rules make a
+  one-sided narrowing change the relation).
+- Output: structured output (`output_config.format`, strict JSON schema in
+  `ingest/extract.py`) for the whole extract object of `index-format.md` §1.5.
+- Backends (`ingest/backends.py`, protocol `ExtractBackend` in `extract.py`):
+  `anthropic/<model>` uses the Messages API with `output_config.format`;
+  `openai/<model>` uses Chat Completions with `response_format: json_schema`
+  (`strict: true`), and `--base-url` points the same backend at any
+  OpenAI-compatible server (vLLM, Ollama). `openrouter/<vendor>/<model>` uses
+  the same backend against OpenRouter with `provider.require_parameters` (so
+  structured output is honoured), sends only parameters the model lists as
+  supported, and records OpenRouter's billed `usage.cost`. All backends return
+  one provider-neutral completion; parsing, the retry and the evidence check
+  are shared.
+- Temperature 0 is sent where the model accepts it. Anthropic current models
+  reject it (not sent); on the OpenAI backend a 400 naming `temperature` drops
+  it for that model. Reproducibility comes from the extract cache: a skill is
+  extracted once per `(extract_version, provider/model, content_hash)`.
+- Validate with pydantic; on failure retry once with the validation error
+  appended; on second failure record `extract_failed`. A refusal is not retried.
+- Evidence check after validation: a quote found on its cited line is kept; a
+  quote found on exactly one other line is kept with the line corrected (a
+  miscount, reported as `repaired`); anything else is dropped (`dropped`, with
+  the reason).
+- Vocabulary post-processing (`apply_vocabulary`, after the evidence check and
+  before the per-line merge): subject normalization and the polarity flip and
+  implied artifact of §1.1, and closed conditions (§1). Every change is recorded in the record's `adjusted` list. The hand
+  labels are a fixed point (a test checks it).
+- `EXTRACT_VERSION` must be bumped whenever the prompt, the schema or the
+  post-processing changes (it keys the cache); a test pins the prompt+schema
+  fingerprint so a prompt change cannot slip through.
 
 Calibration set: `tests/fixtures/skills/` has ≥ 15 skills with hand-labelled
-constraints. `skillfetch ingest --with-api --calibrate` prints per-field
-agreement so prompt changes can be measured, not eyeballed.
+constraints. `skillfetch ingest tests/fixtures --with-api --calibrate`
+(`ingest/calibrate.py`) extracts every fixture skill and prints:
+
+- **Field agreement.** Extracted constraints are aligned to labelled ones by
+  evidence line (per skill, best field match on the same line), then compared
+  per field: subject, directive, object, scope (artifact + phase + condition,
+  also broken out), strength, direction. Labelled constraints with no
+  extracted constraint on their line are `MISSED`; leftovers are `EXTRA`.
+- **Pair-relation accuracy** — the real metric. The §3–§4 rules run on the
+  extracted constraints for every pair of fixture skills, and each pair's
+  label (as in `expected.yaml`, `subsumes` direction included) is compared
+  with the hand label. Every mismatched pair is printed with the hand-labelled
+  evidence lines and what was extracted on those lines.
+
+**Gates.**
+
+- **Hard: conflict precision = 1.0.** Every pair the extracted constraints
+  call `conflict` must be labelled `conflict`. One false conflict fails
+  calibration (`--calibrate` exits 1). This is the §7 policy applied to the
+  extractor: a false "these skills contradict" costs more trust than any miss.
+- **Soft: informative-pair accuracy ≥ 0.85.** Informative pairs are those
+  where the hand label or the extracted relation is not `independent`. Most
+  fixture pairs are independent (786 of 820), so accuracy over all pairs is
+  ~0.96 for an extractor that extracts nothing; over informative pairs it
+  scores 0, and every false relation on an independent pair enlarges the
+  denominator. Missing the target is reported (`MISSED`) but does not fail the
+  run; it means fix the prompt before building on the extractor.
+
+Conflict precision is vacuously 1.0 when no conflict is flagged, so an
+extractor that finds nothing passes the hard gate; the soft target is what
+catches it. Accuracy over all pairs, labelled-pair recall and the number of
+false positives are printed as well.
 
 ## 3. Pairwise relation
 
@@ -135,7 +239,7 @@ Relation of the pair (a, b) — evaluated top to bottom, first match wins
 | 1 | exactly one is `order` | `independent` |
 | 2 | both `order`, ¬scopes_overlap | `independent` |
 | 3 | both `order`, same edge (A before B, after normalizing "B after A") | `redundant` |
-| 4 | both `order`, reversed edge | opposed(a, b) |
+| 4 | both `order`, reversed edge | `needs_review` if norm(conditions) differ, else opposed(a, b) |
 | 5 | both `order`, otherwise | `independent` |
 | 6 | ¬same_subject ∨ ¬scopes_overlap | `independent` |
 | 7 | same_polarity ∧ norm(objects) equal (both null counts as equal) | `redundant` |
@@ -177,12 +281,21 @@ automatically; it is shown to the user with both evidence lines.
 skills A, B, compute all constraint pairs (|A|×|B| ≤ 900, trivial). Then:
 
 - `conflict` if any pair is `conflict`.
-- else `redundant` if **B ⊆ A**: B's constraint multiset, after normalization,
-  is a sub-multiset of A's. Dropping B then loses no constraint — the
-  "lossless" criterion. B must be non-empty: a skill with no constraints is
-  never redundant (the empty set is a subset of everything, but there is no
-  evidence line to show). Partial overlap (neither side contained) is **not**
-  redundancy.
+- else `redundant` if **B ⊆ A**: every constraint of B is matched one-to-one
+  by a constraint of A that is the same rule over the same or a broader scope.
+  Dropping B then loses no constraint — the "lossless" criterion. B must be
+  non-empty: a skill with no constraints is never redundant (the empty set is a
+  subset of everything, but there is no evidence line to show). Partial overlap
+  (neither side contained) is **not** redundancy.
+
+  *Same rule* = equal core identity: `(norm(subject), directive, norm(object),
+  strength)`, or `(edge, strength)` for `order`. *Same or broader scope* =
+  per dimension, A's artifact and phase are equal to B's or `any`, and A's
+  condition is equal to B's or absent ("never type hints" contains "never
+  type hints in migrations"). Exact matches are taken before broader ones.
+  Scope containment was added after calibration: extractors often narrow the
+  scope of one of two identical rules (`phase: format` on one side only), which
+  hid duplicates.
 - else `tension` if any pair is `tension`.
 - else `needs_review` if any pair is `needs_review`.
 - else `independent`.
@@ -200,10 +313,11 @@ constraint (examples, background, scripts) is not compared; a subsumed skill
 can still carry useful examples. v0.1 accepts that: the set stays smaller and
 the superset's instructions are all present.
 
-Normalized identity of a constraint for multiset containment: `(norm(subject),
-directive, norm(object), artifact, phase, norm(condition), strength)`; for
-`order`, `(edge, artifact, phase, strength)`. Evidence is not part of identity.
-Containment is exact on identity: a `should` is not subsumed by a `must`.
+Full normalized identity of a constraint (used for exact matches and for
+"equal multisets"): `(norm(subject), directive, norm(object), artifact, phase,
+norm(condition), strength)`; for `order`, `(edge, artifact, phase,
+norm(condition), strength)`. Evidence is not part of identity. The core
+identity is never relaxed: a `should` is not subsumed by a `must`.
 
 The result carries the constraint pairs at the winning relation (all
 conflicting pairs; for `redundant`, each of B's constraints paired with its
@@ -270,6 +384,9 @@ hard rule: it is what keeps false positives from destroying trust.
 
 ## 7. Precision policy for v0.1
 
+- Extraction quality is gated separately (§2: conflict precision 1.0 hard,
+  informative-pair accuracy ≥ 0.85 soft);
+  this section is about the rules given correct constraints.
 - Measured on `tests/fixtures/skills/`: `conflict` precision must be 1.0;
   recall is reported but not gated. Because fixture constraints are
   hand-labelled, `tests/resolve/test_corpus_contract.py` additionally asserts

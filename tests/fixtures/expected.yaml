@@ -52,6 +52,9 @@ subsumes:
   # [superset, subset]: the subset's constraints are all in the superset, so the
   # subset is redundant once the superset is in the set (not the other way round)
   - [typed-python, type-hints-strict]
+  # scope containment (constraints.md §4): minimal-scripts bans type hints
+  # everywhere, which contains django-migrations' ban limited to migrations
+  - [minimal-scripts, django-migrations]
 
 tension:
   # bullet-points: soft blanket ban (any artifact) vs a narrow requirement (PR

@@ -3,7 +3,7 @@
     {
       "subject": "comments",
       "directive": "forbid",
-      "object": "that restate the code",
+      "object": "restating the code",
       "scope": {
         "artifact": "code",
         "phase": "any",

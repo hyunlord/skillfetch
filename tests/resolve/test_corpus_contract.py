@@ -9,25 +9,15 @@ from itertools import combinations, permutations
 
 from conftest import load_corpus, load_expected
 
-from skillfetch.resolve.relation import Relation, skill_relation
-
-
-def _label(a: str, b: str) -> str:
-    """Unordered label of a pair. Redundancy is directional (b ⊆ a), the rest symmetric."""
-    corpus = load_corpus()
-    forward = skill_relation(corpus[a], corpus[b]).relation
-    backward = skill_relation(corpus[b], corpus[a]).relation
-    if forward == backward:
-        return forward.value
-    if (forward, backward) == (Relation.REDUNDANT, Relation.INDEPENDENT):
-        return f"subsumes:{a}"
-    if (forward, backward) == (Relation.INDEPENDENT, Relation.REDUNDANT):
-        return f"subsumes:{b}"
-    return f"asymmetric:{forward.value}/{backward.value}"
+from skillfetch.resolve.relation import Relation, pair_label, skill_relation
 
 
 def _predicted() -> dict[frozenset[str], str]:
-    return {frozenset((a, b)): _label(a, b) for a, b in combinations(sorted(load_corpus()), 2)}
+    corpus = load_corpus()
+    return {
+        frozenset((a, b)): pair_label(corpus[a], corpus[b])
+        for a, b in combinations(sorted(corpus), 2)
+    }
 
 
 def _expected_full() -> dict[frozenset[str], str]:

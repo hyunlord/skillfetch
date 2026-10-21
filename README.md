@@ -20,6 +20,17 @@ Conflict analysis currently needs pre-extracted constraints in a
 `constraints.json` next to each `SKILL.md` (see `tests/fixtures/`); skills
 without one are linted and scanned, and listed as skipped.
 
+Constraint extraction through the Claude API (needs `pip install
+'skillfetch[ingest]'` and `ANTHROPIC_API_KEY` or `ant auth login`; results are
+cached in `~/.skillfetch/extract-cache/`, each skill is extracted once):
+
+```console
+$ uv run skillfetch ingest tests/fixtures --with-api --calibrate   # measure the extractor
+$ uv run skillfetch ingest path/to/skills --with-api               # extract + cost log
+$ uv run skillfetch ingest tests/fixtures --with-api --calibrate --model openai/<model>
+$ uv run skillfetch ingest dir --with-api --model openai/<model> --base-url http://localhost:8000/v1
+```
+
 ## The problem
 
 Skills are great until you have thirty of them. Then two of them disagree —
@@ -46,9 +57,11 @@ together, scope it to one task, or tell you afterwards whether it helped.
         and `resolve_set`, conflict precision 1.0 on fixtures
   - [x] lint, injection scan, dedup by content hash, `skillfetch scan` with
         `--json` and `--fail-on`
-  - [ ] constraint extraction through the API (`ingest --with-api`,
-        `--calibrate` against the fixtures); until then `scan` needs a
-        `constraints.json` per skill
+  - [x] constraint extraction through the API (`ingest --with-api`, extract
+        cache, cost log) and `--calibrate` against the fixtures
+  - [ ] pass calibration with a real model run (conflict precision 1.0 hard,
+        informative-pair accuracy ≥ 0.85 soft); then let `scan` use cached extractions instead of
+        `constraints.json`
   - [ ] public corpus ingest (`skillfetch ingest <source>`, `sources.yaml`,
         snapshots) and the top-N public skills scan + write-up
   - [ ] keyword-Jaccard dedup groups, tiers A/B/C, index layout and manifest

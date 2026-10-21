@@ -48,6 +48,7 @@ class Constraint(_Frozen):
     subject: str = Field(min_length=1)
     directive: Directive
     object: str | None = None
+    direction: Literal["before", "after"] | None = None  # `order` only: subject vs object
     scope: Scope = Scope()
     strength: Strength  # derived from directive when omitted (§1); `order` defaults to must
     evidence: Evidence
@@ -64,8 +65,10 @@ class Constraint(_Frozen):
         if self.directive == "order":
             if not self.object:
                 raise ValueError("order constraint needs an object (the other side of the order)")
-            if self.scope.condition not in ("before", "after"):
-                raise ValueError("order constraint needs scope.condition 'before' or 'after'")
+            if self.direction is None:
+                raise ValueError("order constraint needs direction 'before' or 'after'")
+        elif self.direction is not None:
+            raise ValueError("direction is only allowed on order constraints")
         return self
 
 

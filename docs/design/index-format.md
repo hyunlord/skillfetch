@@ -116,7 +116,8 @@ Implementation notes (`ingest/injection.py`, rules in `ingest/scan_rules.yaml`):
 
 ### 1.5 Extract (Claude API)
 
-One call per skill, structured output, temperature 0. Produces:
+One call per skill, structured output (temperature 0 where the model accepts
+it; see constraints.md §2). Produces:
 
 ```json
 {
@@ -141,7 +142,39 @@ bumps `extract_version`; records with an older version are re-extracted on the
 next run. Extraction failures (schema invalid after one retry) → `status:
 extract_failed`, excluded from `B`, can still be `C`.
 
-Cost guard: skip bodies > 12k tokens (record `status: too_large`).
+Cost guard: skip bodies > 12k tokens (record `status: too_large`). Each
+record keeps the token usage of every attempt, so cost per skill is known
+(prices in `ingest/extract.py`, list prices; cache writes 1.25x, reads 0.1x).
+
+**Extract cache and CLI** (`ingest/extract_cache.py`, `ingest/ingest.py`):
+
+- Every record is cached at
+  `~/.skillfetch/extract-cache/v<extract_version>/<provider>/<model>/<content_hash>.json`
+  (`--cache-dir` to move it). The key adds `provider/model` to `content_hash`
+  + `extract_version`, so `--model` never reuses another model's output;
+  OpenRouter is `openrouter/<vendor>/<model>`; other OpenAI-compatible
+  servers get the provider `openai-compat+<host>`. Cost per record is the
+  provider-reported charge when there is one (OpenRouter), else list prices.
+- Credentials: Anthropic via the SDK's usual sources; OpenAI via
+  `OPENAI_API_KEY`, else `OPEN_API_KEY` / `OPENAI_API_KEY` read from
+  `~/.rnd_creds.env` (`--creds-file`). Only that one variable is read from the
+  file, it is passed to the client directly (never exported to the
+  environment), and error output is redacted. A
+  skill is never extracted twice for the same key.
+- Model-output failures (`extract_failed`, `too_large`) are cached like
+  successes. API errors are not: finished skills stay cached and a rerun
+  resumes.
+- Skills failing lint or the injection scan are never sent to the API.
+- `skillfetch ingest <dir>` uses the cache only; `--with-api` calls the API for
+  cache misses (`--jobs` parallel requests). Credentials are checked before
+  the first request. Output is a cost log: per skill, status, tokens (input,
+  cache reads/writes, output), dollars, dropped/repaired evidence; then the
+  totals for this run.
+- `--calibrate` takes a fixtures dir (`skills/` + `expected.yaml`) and prints
+  the calibration of constraints.md §2; it refuses to run (exit 2) while
+  fixture skills are missing from the cache, and exits 1 below the gate.
+- Index building (§1.6–§2) is not implemented yet; extraction results live in
+  the cache.
 
 ### 1.6 Dedup (static)
 
