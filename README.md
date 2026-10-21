@@ -78,6 +78,18 @@ together, scope it to one task, or tell you afterwards whether it helped.
 - [`docs/design/index-format.md`](docs/design/index-format.md) — ingestion pipeline, tiers, index layout
 - [`docs/design/constraints.md`](docs/design/constraints.md) — constraint schema, conflict rules, `resolve_set`
 
+## Conflict cap
+
+A conflict is reported only when the rules are sure. By default
+(`--conflict-cap all`) a pair where either rule has no object ("never use
+emoji" vs "always use emoji") is `needs_review`, not `conflict`: on public
+skills such blanket rules are mostly misreadings of narrower lines, and every
+false conflict we found was one. `--conflict-cap vocabulary` (on `scan` and
+`ingest`) lets a blanket rule about a controlled-vocabulary term conflict. It
+finds 19 instead of 11 of the hand-labelled fixture conflicts, and in our
+measurements it produced one false conflict on 200 public skills, where the
+default produced none. Use it when recall matters more than precision.
+
 ## Honest limits
 
 - The injection scan is a blocklist, not a proof of safety.

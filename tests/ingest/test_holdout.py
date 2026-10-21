@@ -80,7 +80,7 @@ def test_measure_counts_true_and_false_relations(pinned):
     path = write(
         [
             {"a": "pub/commit-squash@x", "b": "pub/atomic-commits@x", "label": "conflict"},
-            {"a": "pub/plain-markdown@x", "b": "pub/emoji-headers@x", "label": "conflict"},
+            {"a": "pub/plain-markdown@x", "b": "pub/emoji-headers@x", "label": "needs_review"},
             {
                 "a": "pub/atomic-commits@x",
                 "b": "pub/plain-markdown@x",
@@ -92,7 +92,7 @@ def test_measure_counts_true_and_false_relations(pinned):
     result, client = _measure(tmp_path, source, path)
     assert len(client.requests) == 4 and result.fresh == 4
     p = result.pairs
-    assert (p.conflict_flagged, p.conflict_true_positives) == (2, 2)
+    assert (p.conflict_flagged, p.conflict_true_positives) == (1, 1)
     assert result.hard_pass
     [m] = p.mismatches
     assert (m.expected, m.got) == ("needs_review", "independent")

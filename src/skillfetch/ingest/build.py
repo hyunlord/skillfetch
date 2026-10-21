@@ -43,6 +43,7 @@ from skillfetch.ingest.skillfile import (
 )
 from skillfetch.ingest.snapshot import DEFAULT_WORK_DIR, Snapshot, snapshot
 from skillfetch.ingest.sources import Source
+from skillfetch.resolve import relation as relation_mod
 from skillfetch.resolve.models import Constraint, Skill
 from skillfetch.resolve.relation import constraint_identity, mark_fan_out
 
@@ -430,6 +431,7 @@ def build_index(
         "extract_version": EXTRACT_VERSION,
         "extract_model": model,
         "scan_rules_version": load_rules().version,
+        "conflict_cap": relation_mod.OBJECTLESS_CAP,
         "sources": [
             {**m, "skills": sum(1 for b in skills if b.record.source_id == m["id"])}
             for m in source_meta

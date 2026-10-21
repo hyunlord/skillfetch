@@ -17,6 +17,7 @@ from skillfetch.ingest.ingest import extract_dir, render_cost_log
 from skillfetch.ingest.local_scan import fail_counts, render_report, scan_dir
 from skillfetch.ingest.snapshot import DEFAULT_WORK_DIR, SnapshotError
 from skillfetch.ingest.sources import load_sources
+from skillfetch.resolve import relation
 
 FAIL_ON = ("conflict", "scan", "lint")
 
@@ -111,7 +112,17 @@ def main(argv: Sequence[str] | None = None) -> int:
     )
     ingest.add_argument("--cache-dir", type=Path, default=DEFAULT_CACHE_DIR)
     ingest.add_argument("--jobs", type=int, default=4, help="parallel API requests")
+    for p in (scan, ingest):
+        p.add_argument(
+            "--conflict-cap",
+            choices=relation.CAP_MODES,
+            default="all",
+            help="which rules without an object may conflict (constraints.md §3 row 14d): "
+            "'all' (default) reports every such pair as needs_review; 'vocabulary' lets a "
+            "blanket rule on a vocabulary term conflict (more recall, less precision)",
+        )
     args = parser.parse_args(argv)
+    relation.set_objectless_cap(args.conflict_cap)
 
     if args.command == "scan":
         if not args.dir.is_dir():

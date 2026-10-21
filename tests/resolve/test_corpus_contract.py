@@ -57,3 +57,21 @@ def test_every_finding_has_evidence_from_both_skills():
         for pair in result.pairs:
             assert pair.a.evidence.text and pair.b.evidence.text
             assert pair.a in corpus[a].constraints and pair.b in corpus[b].constraints
+
+
+def test_every_pair_matches_its_label_under_the_vocabulary_cap(monkeypatch):
+    from conftest import EXPECTED_PATH
+
+    from skillfetch.ingest.calibrate import load_labels
+    from skillfetch.resolve import relation
+
+    monkeypatch.setattr(relation, "OBJECTLESS_CAP", "vocabulary")
+    labels = load_labels(EXPECTED_PATH, cap="vocabulary")
+    predicted = _predicted()
+    wrong = {
+        tuple(sorted(p)): (labels.get(p, "independent"), got)
+        for p, got in predicted.items()
+        if labels.get(p, "independent") != got
+    }
+    assert wrong == {}
+    assert sum(v == "conflict" for v in labels.values()) == 19

@@ -40,6 +40,13 @@ def k(
     return Constraint.model_validate(data)
 
 
+@pytest.fixture
+def vocab_cap(monkeypatch):
+    import skillfetch.resolve.relation as R
+
+    monkeypatch.setattr(R, "OBJECTLESS_CAP", "vocabulary")
+
+
 def rel(a, b):
     """Relation must be symmetric; check both directions."""
     forward, backward = constraint_relation(a, b), constraint_relation(b, a)
@@ -125,7 +132,7 @@ def test_hard_opposites_conflict():
     assert rel(a, b) == Relation.CONFLICT
 
 
-def test_hard_opposites_without_an_object_conflict():
+def test_hard_opposites_without_an_object_conflict(vocab_cap):
     assert rel(k("emoji", "require"), k("emoji", "forbid")) == Relation.CONFLICT
 
 
@@ -137,7 +144,7 @@ def test_an_object_less_rule_narrowed_in_its_raw_object_needs_review():
     assert rel(k("error-handling", "require", "retries"), swallow) == Relation.NEEDS_REVIEW
 
 
-def test_a_raw_object_that_restates_the_subject_does_not_narrow():
+def test_a_raw_object_that_restates_the_subject_does_not_narrow(vocab_cap):
     restated = k("emoji", "forbid").model_copy(update={"object_raw": "Emoji"})
     assert rel(k("emoji", "require"), restated) == Relation.CONFLICT
 
@@ -228,7 +235,7 @@ def test_any_overlaps_everything():
 # --- objects ---------------------------------------------------------------------------
 
 
-def test_blanket_ban_vs_specific_requirement_conflicts():
+def test_blanket_ban_vs_specific_requirement_conflicts(vocab_cap):
     a = k("emoji", "require", "in headers")
     b = k("emoji", "forbid", None)
     assert rel(a, b) == Relation.CONFLICT
@@ -602,7 +609,7 @@ def _under(c, heading):
     return c.model_copy(update={"section_heading": heading})
 
 
-def test_object_less_conflict_needs_a_vocabulary_subject():
+def test_object_less_conflict_needs_a_vocabulary_subject(vocab_cap):
     # "Don't assume." -> forbid assumptions vs "State assumptions explicitly"
     a, b = k("assumptions", "forbid"), k("assumptions", "require", "at each level")
     assert rel(a, b) == Relation.NEEDS_REVIEW
@@ -613,10 +620,7 @@ def test_object_less_conflict_needs_a_vocabulary_subject():
     )
 
 
-def test_cap_mode_all_caps_every_object_less_pair(monkeypatch):
-    import skillfetch.resolve.relation as R
-
-    monkeypatch.setattr(R, "OBJECTLESS_CAP", "all")
+def test_default_cap_caps_every_object_less_pair():
     assert rel(k("emoji", "require"), k("emoji", "forbid")) == Relation.NEEDS_REVIEW
     assert rel(k("emoji", "require", "in headers"), k("emoji", "forbid", "in headers")) == (
         Relation.CONFLICT
@@ -649,7 +653,7 @@ def test_polarity_uncertain_constraints_never_conflict():
     assert conflict_cap(gateway, plural) == "polarity"
 
 
-def test_fan_out_caps_a_hub_constraint():
+def test_fan_out_caps_a_hub_constraint(vocab_cap):
     from skillfetch.resolve.relation import mark_fan_out
 
     hub = S("hub", k("emoji", "forbid", text="Never emoji."))
@@ -666,7 +670,7 @@ def test_fan_out_caps_a_hub_constraint():
     assert skill_relation(two[0], two[1]).relation == Relation.CONFLICT
 
 
-def test_fan_out_counts_near_duplicates_once():
+def test_fan_out_counts_near_duplicates_once(vocab_cap):
     from skillfetch.resolve.relation import mark_fan_out
 
     hub = S("hub", k("emoji", "forbid", text="Never emoji."))

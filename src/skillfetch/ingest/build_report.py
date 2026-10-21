@@ -50,7 +50,7 @@ def render_report(result: BuildResult) -> str:
         "# Index build report",
         "",
         f"Built {m['built_at']} · extraction `{m['extract_model']}` v{m['extract_version']} · "
-        f"scan rules v{m['scan_rules_version']}",
+        f"scan rules v{m['scan_rules_version']} · conflict cap `{m.get('conflict_cap', 'all')}`",
         "",
         "## Sources",
         "",

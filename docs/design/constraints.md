@@ -328,12 +328,17 @@ Row 14 caps a conflict at `needs_review` when one of these holds
 - **14c narrowed.** An object-less side whose `object_raw` names something other
   than the subject ("Don't swallow errors" → `forbid error-handling`, raw
   "swallowing errors").
-- **14d free-text subject.** An object-less hard pair on a subject outside the
-  vocabulary. A blanket rule about a vocabulary term ("never use emoji") is
-  well defined; a blanket rule about free text is usually a misread ("Don't
-  assume." → `forbid assumptions`, vs "State assumptions explicitly").
-  `relation.OBJECTLESS_CAP = "all"` caps every object-less pair instead
-  (extraction v5's rule).
+- **14d object-less.** By default (`--conflict-cap all`) every object-less
+  hard pair is capped. With `--conflict-cap vocabulary`, only pairs on a
+  subject outside the vocabulary are: a blanket rule about a vocabulary term
+  ("never use emoji") is well defined, a blanket rule about free text is
+  usually a misread ("Don't assume." → `forbid assumptions`, vs "State
+  assumptions explicitly"). The vocabulary mode finds 8 more fixture
+  conflicts (19 instead of 11; `conflict_with_vocabulary_cap` in
+  `expected.yaml`) but left one false conflict on the seed-43 build
+  (caveman-review's dropped hedging phrases → `forbid preamble` vs
+  sprite-animation's "One sentence before the artifact"), so it is not the
+  default. The build records the mode in the manifest (`conflict_cap`).
 
 History: v5 capped every object-less pair (8 real fixture conflicts lost); v6
 capped only narrowed ones (all 19 fixture conflicts kept, but 2 false

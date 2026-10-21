@@ -12,23 +12,11 @@ conflict:
   # commit-granularity: require squash vs forbid squash
   - [commit-squash, atomic-commits]
   - [commit-squash, small-commits]
-  # emoji: blanket ban vs required emoji in headers
-  - [emoji-headers, plain-markdown]
-  - [emoji-headers, no-emoji-docs]
   # emoji: same object ("in headers"), opposite directives
   - [emoji-headers, clean-headings]
   # order: tests before implementation vs implementation before tests
   - [tdd-strict, prototype-first]
   - [red-green-refactor, prototype-first]
-  # type-hints (and docstrings) required vs forbidden
-  - [type-hints-strict, minimal-scripts]
-  - [typed-python, minimal-scripts]
-  # preamble: forbidden vs "restate the question" required
-  - [concise-responses, explain-everything]
-  - [terse-mode, explain-everything]
-  # summary-at-end: forbidden vs required
-  - [concise-responses, change-summary]
-  - [terse-mode, change-summary]
   # package-manager: forbid npm vs require npm
   - [pnpm-only, npm-classic]
   - [pnpm-monorepo, npm-classic]
@@ -62,6 +50,16 @@ tension:
   - [prose-only, pr-checklist]
 
 needs_review:
+  # object-less hard pairs (constraints.md §3 row 14d): real contradictions, capped by
+  # the default conflict cap ("all"); conflicts under --conflict-cap vocabulary
+  - [emoji-headers, plain-markdown]          # emoji: blanket ban vs emoji in headers
+  - [emoji-headers, no-emoji-docs]
+  - [type-hints-strict, minimal-scripts]     # type hints: required vs forbidden
+  - [typed-python, minimal-scripts]          # type hints, docstrings
+  - [concise-responses, explain-everything]  # preamble: forbidden vs required
+  - [terse-mode, explain-everything]
+  - [concise-responses, change-summary]      # summary-at-end: forbidden vs required
+  - [terse-mode, change-summary]
   # type-hints: forbidden only under a condition
   - [type-hints-strict, django-migrations]
   - [typed-python, django-migrations]
@@ -75,6 +73,17 @@ needs_review:
   # accepted: in practice most file edits happen during implementation
   - [act-autonomously, careful-agent]
   - [verbose-logging, quiet-tests]
+
+# The pairs above that are conflicts under `--conflict-cap vocabulary`.
+conflict_with_vocabulary_cap:
+  - [emoji-headers, plain-markdown]          # emoji: blanket ban vs emoji in headers
+  - [emoji-headers, no-emoji-docs]
+  - [type-hints-strict, minimal-scripts]     # type hints: required vs forbidden
+  - [typed-python, minimal-scripts]          # type hints, docstrings
+  - [concise-responses, explain-everything]  # preamble: forbidden vs required
+  - [terse-mode, explain-everything]
+  - [concise-responses, change-summary]      # summary-at-end: forbidden vs required
+  - [terse-mode, change-summary]
 
 # Deliberate near misses that must stay `independent` (listed for readers; the
 # test derives them from "not listed above"):

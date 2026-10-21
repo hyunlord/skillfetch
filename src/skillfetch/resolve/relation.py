@@ -30,9 +30,19 @@ __all__ = [
 ]
 
 
-# Which object-less hard pairs may conflict (§3 row 14): "vocabulary" lets a blanket rule
-# about a vocabulary term conflict; "all" caps every object-less pair (extraction v5).
-OBJECTLESS_CAP = "vocabulary"
+# Which object-less hard pairs may conflict (§3 row 14d). "all" (the default) caps every
+# object-less pair; "vocabulary" lets a blanket rule about a vocabulary term conflict
+# ("never use emoji" vs "always use emoji"), which finds 8 more fixture conflicts but left
+# one false conflict on the seed-43 build. Set by `--conflict-cap`.
+CAP_MODES = ("all", "vocabulary")
+OBJECTLESS_CAP = "all"
+
+
+def set_objectless_cap(mode: str) -> None:
+    global OBJECTLESS_CAP
+    if mode not in CAP_MODES:
+        raise ValueError(f"conflict cap must be one of {CAP_MODES}, got {mode!r}")
+    OBJECTLESS_CAP = mode
 
 
 class Relation(StrEnum):
