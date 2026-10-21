@@ -1,13 +1,12 @@
-"""Section headings and "don't" lists (constraints.md §2 post-processing)."""
+"""Section headings (constraints.md §2 post-processing): recorded, never applied."""
 
 import json
 
-import pytest
 from conftest import FakeClient, write_skill
 
 from skillfetch.ingest.backends import AnthropicBackend
 from skillfetch.ingest.extract import Extractor
-from skillfetch.ingest.sections import apply_sections, negative_section, section_headings
+from skillfetch.ingest.sections import record_sections, section_headings
 from skillfetch.resolve.models import Constraint
 
 DOC = """\
@@ -43,33 +42,6 @@ def test_each_line_gets_its_heading():
     assert got["Back under the Don't heading."] == "❌ Don't"
 
 
-@pytest.mark.parametrize(
-    "heading, negative",
-    [
-        ("❌ Don't", True),
-        ("Don'ts", True),
-        ("Don’t", True),
-        ("Avoid", True),
-        ("Common Anti-Patterns", True),
-        ("Mistakes to avoid", True),
-        ("Never", True),
-        ("❌ Bad", True),
-        ("Don'ts ❌", True),
-        ("❌", True),
-        ("⛔ DO NOT start development until you read the relevant files", False),
-        ("❌ Breaking on Updates", False),
-        ("Do's and Don'ts", False),  # mixed list
-        ("✅ Do", False),
-        ("Never hardcode secrets", False),  # an instruction, with explanation below
-        ("What goes wrong", False),
-        ("Best practices", False),
-        (None, False),
-    ],
-)
-def test_negative_sections(heading, negative):
-    assert negative_section(heading) is negative
-
-
 def _k(directive, line_no, text, subject="error messages"):
     return Constraint.model_validate(
         {
@@ -80,32 +52,19 @@ def _k(directive, line_no, text, subject="error messages"):
     )
 
 
-def test_a_dont_list_is_inverted_and_noted():
+def test_headings_are_recorded_and_never_change_a_directive():
     constraints = [
-        _k("forbid", 6, "Ignore error messages"),
+        _k("require", 6, "Ignore error messages"),  # the model already read the list as bans
         _k("require", 4, "Read error messages completely"),
     ]
-    out, notes = apply_sections(constraints, lines())
-    assert [(c.directive, c.strength, c.section_heading) for c in out] == [
-        ("require", "must", "❌ Don't"),
-        ("require", "must", "✅ Do"),
-    ]
-    assert notes == [
-        'line 6: under heading "❌ Don\'t": forbid -> require (the list names what not to do)'
+    out = record_sections(constraints, lines())
+    assert [(c.directive, c.section_heading) for c in out] == [
+        ("require", "❌ Don't"),
+        ("require", "✅ Do"),
     ]
 
 
-def test_a_line_that_negates_itself_is_left_alone():
-    out, notes = apply_sections([_k("forbid", 7, "Don't skip validation", "validation")], lines())
-    assert out[0].directive == "forbid" and notes == []
-
-
-def test_soft_directives_invert_to_soft():
-    out, _ = apply_sections([_k("prefer", 13, "Deploy on Fridays", "friday deploys")], lines())
-    assert (out[0].directive, out[0].strength) == ("avoid", "should")
-
-
-def test_extractor_records_headings_and_inversions(tmp_path):
+def test_extractor_records_headings(tmp_path):
     d = write_skill(tmp_path, "n8n", body=DOC)
     offset = 4  # frontmatter lines
     result = {
@@ -137,17 +96,5 @@ def test_extractor_records_headings_and_inversions(tmp_path):
     backend = AnthropicBackend(FakeClient(response), "claude-sonnet-5")
     record = Extractor(backend).extract(d, "n8n", "0" * 64)
     [c] = record.constraints()
-    assert (c.directive, c.section_heading) == ("require", "❌ Don't")
-    assert record.adjusted == [
-        'line 10: under heading "❌ Don\'t": forbid -> require (the list names what not to do)'
-    ]
-
-
-def test_no_fixture_hand_label_is_inverted():
-    from conftest import SKILLS_DIR, load_corpus
-
-    for sid, skill in load_corpus().items():
-        text = (SKILLS_DIR / sid / "SKILL.md").read_text()
-        out, notes = apply_sections(skill.constraints, text.split("\n"))
-        assert notes == [], sid
-        assert [c.directive for c in out] == [c.directive for c in skill.constraints]
+    assert (c.directive, c.section_heading) == ("forbid", "❌ Don't")
+    assert record.adjusted == []

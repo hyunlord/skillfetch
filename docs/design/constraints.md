@@ -190,16 +190,12 @@ than `logging`, and as `logging` it would read as a blanket ban.
 - Section headings (`ingest/sections.py`, after the evidence check): every
   constraint records the markdown heading its line falls under
   (`section_heading`; a bold label line such as `**Never:**` heads the block
-  right below it). Under a heading that names what not to do — a ❌/🚫 marker
-  alone or with "wrong"/"bad",
-  or a heading that is only a label such as "Don't", "Avoid", "Anti-patterns",
-  "Common mistakes"; not "Do's and Don'ts", not "Never hardcode secrets" — the
-  directive is inverted (require ↔ forbid, prefer ↔ avoid), unless the line
-  negates on its own ("- Don't skip validation" restates the ban). The prompt
-  tells the model to extract such lines by their own words, so the inversion
-  is applied exactly once. Calibration-to-corpus gap that motivated it:
-  `### ❌ Don't` / `- Ignore error messages` was extracted as an instruction to
-  ignore error messages.
+  right below it). A field for review only: it never changes a directive.
+  Extraction v5 inverted directives under "don't" headings after telling the
+  model to extract such lines by their own words; the model read them as bans
+  anyway, and 9 of 14 sampled inversions on the seed-43 build were double
+  inversions ("Write complex backend migrations" under "Never" → `require`).
+  Since v6 the prompt says to read a line under such a heading as a ban.
 - Vocabulary post-processing (`apply_vocabulary`, after the evidence check and
   before the per-line merge): subject normalization and the polarity flip and
   implied artifact of §1.1, and closed conditions (§1). Every change is recorded in the record's `adjusted` list. The hand

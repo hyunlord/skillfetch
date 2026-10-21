@@ -19,7 +19,7 @@ from typing import Literal, Protocol
 
 from pydantic import BaseModel, ConfigDict, ValidationError
 
-from skillfetch.ingest.sections import apply_sections
+from skillfetch.ingest.sections import record_sections
 from skillfetch.ingest.skillfile import SKILL_FILE, read_text
 from skillfetch.resolve.models import Constraint
 from skillfetch.resolve.terms import normalize_term
@@ -34,8 +34,8 @@ from skillfetch.resolve.vocabulary import (
 
 # Bump EXTRACT_VERSION whenever the prompt or the response schema changes; it is part of the
 # cache key. tests/ingest/test_extract.py pins PROMPT_SHA256 so a change cannot slip through.
-EXTRACT_VERSION = 5
-PROMPT_SHA256 = "bd3b79ca1bd5c97406325b1579fe4e0163e35de4e2d3d4c51cbccfe7572fd650"
+EXTRACT_VERSION = 6
+PROMPT_SHA256 = "ea4d1b6ceb584b2e7b45de4d4e02b9605004dcc57cfb5e68d1cdcfc4e1bad079"
 
 DEFAULT_MODEL = "openrouter/openai/gpt-6-luna"  # "provider/model"; see backends.parse_model
 REQUEST_TIMEOUT_S = 120  # per HTTP request; the SDK default (600 s) let one stuck call stall a run
@@ -544,9 +544,7 @@ class Extractor:
                 continue
             lines = text.split("\n")
             result, record.dropped, record.repaired = verify_evidence(result, lines)
-            sectioned, inverted = apply_sections(result.constraints, lines)
-            adjusted, record.adjusted = apply_vocabulary(sectioned)
-            record.adjusted = inverted + record.adjusted
+            adjusted, record.adjusted = apply_vocabulary(record_sections(result.constraints, lines))
             kept, merged = merge_per_line(adjusted)
             record.result = result.model_copy(update={"constraints": kept})
             record.dropped += merged
