@@ -178,12 +178,15 @@ def system_prompt(skills: list[tuple[str, str]]) -> str:
     )
 
 
-# The runs have no tools. Without this note most runs (51 of the first 90) wrote out a tool
-# call as text ("Let me find the file") and ended there, which says nothing about the skills.
+# The runs have no tools. Without a note most runs (51 of the first 90) wrote a tool call as
+# text ("Let me find the file") and ended there. A first wording ("do the task in this one
+# reply") pushed runs away from stopping to ask, which biased every pair whose rule is "ask
+# first"; this one leaves both open.
 NO_TOOLS = (
-    "This session has no tools: no shell, no file access, no network. Everything you can use "
-    "is in the user's message. Do the task in this one reply and give the complete result "
-    "(code, text, plan or decision) directly, as you would after reading the files."
+    "This session has no tools: no shell, no file access, no network. Everything available is "
+    "in the user's message; treat any code or files it quotes as what you would have read. "
+    "Reply as you would after reading them: with your result, or with your questions if you "
+    "would stop and ask before going on."
 )
 
 
