@@ -180,9 +180,11 @@ class OpenAICompatBackend:
         cached = getattr(details, "cached_tokens", None) or 0
         written = getattr(details, "cache_write_tokens", None) or 0
         reported = getattr(u, "cost", None)  # OpenRouter: amount charged, in USD credits
+        # Some providers behind OpenRouter return no usage at all (seen on 6 of 2011 judge
+        # requests to claude-sonnet-5.5): count zero tokens and no reported cost.
         usage = Usage(
-            input_tokens=max(u.prompt_tokens - cached - written, 0),
-            output_tokens=u.completion_tokens,
+            input_tokens=max((getattr(u, "prompt_tokens", 0) or 0) - cached - written, 0),
+            output_tokens=getattr(u, "completion_tokens", 0) or 0,
             cache_read_input_tokens=cached,
             cache_creation_input_tokens=written,
             reported_cost_usd=float(reported) if reported is not None else None,

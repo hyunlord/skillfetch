@@ -277,3 +277,12 @@ def test_clients_use_a_120_second_request_timeout(tmp_path, monkeypatch):
     backends_mod.make_backend("openrouter/openai/gpt-6-luna")
     backends_mod.make_backend("anthropic/claude-sonnet-5")
     assert seen["openai"]["timeout"] == 120 and seen["anthropic"]["timeout"] == 120
+
+
+def test_a_response_without_usage_counts_zero_tokens():
+    response = rec("commit-squash.ok.json")
+    response.pop("usage", None)
+    response["usage"] = None
+    record, _ = run(response)
+    assert record.status == "ok"
+    assert record.usage == Usage() and record.usage.reported_cost_usd is None
