@@ -6,7 +6,7 @@ from skillfetch.resolve.relation import normalize_term
 from skillfetch.resolve.vocabulary import (
     VOCABULARY,
     choice_of,
-    condition_allowed,
+    condition_is_clause,
     implied_artifact,
     lookup,
 )
@@ -124,58 +124,38 @@ def test_implied_artifact(subject, obj, artifact):
     assert implied_artifact(lookup(subject), obj) == artifact
 
 
-# --- closed conditions ---------------------------------------------------------------------------
+# --- conditions ----------------------------------------------------------------------------
 
 
 @pytest.mark.parametrize(
     "condition",
     [
         "python",
-        "Django",
         "django migrations",
         "generated protobuf files",
-        "test files",
-        "TypeScript code",
-        "the CI workflow",
-        "c++",
+        "docx",
+        "latex",
+        "blazor",
+        "python-pptx",
+        "vite/rollup",
+        "feature work",  # kept since v6: not a clause, and a mismatch is only needs_review
+        "bug fixes",
     ],
 )
-def test_conditions_from_languages_frameworks_and_file_types(condition):
-    assert condition_allowed(condition)
+def test_names_and_noun_phrases_are_kept(condition):
+    assert not condition_is_clause(condition)
 
 
 @pytest.mark.parametrize(
     "condition",
-    ["feature work", "bug fixes", "they make the output friendlier", "hand edits", "unsure"],
-)
-def test_situational_conditions_are_not_conditions(condition):
-    assert not condition_allowed(condition)
-
-
-@pytest.mark.parametrize(
-    "condition, evidence",
     [
-        (
-            "xlsm",
-            "**`.xlsm` loses its macros unless you pass `keep_vba=True`** to `load_workbook`.",
-        ),
-        (".xlsm files", "Keep macros."),
-        ("*.tsx", "Use function components."),
-        ("ipynb notebooks", "Clear outputs of .ipynb files before committing."),
+        "when fixing a bug",
+        "they make the output friendlier",
+        "if it reads better",
+        "the brief is unclear",
+        "once a team is selected",
+        "the user asks for a font outside the safe list",
     ],
 )
-def test_file_extensions_are_file_types(condition, evidence):
-    assert condition_allowed(condition, evidence)
-
-
-@pytest.mark.parametrize(
-    "condition, evidence",
-    [
-        ("xlsm", "Macros are lost unless you pass keep_vba."),  # not written as an extension
-        ("exist", "Use the eXist-db REST API for every query."),
-        ("safetyculture", "Call SafetyCulture tools through the connector."),
-        ("reportlab", "Use ReportLab to create PDFs from scratch."),
-    ],
-)
-def test_other_words_still_need_the_vocabulary(condition, evidence):
-    assert not condition_allowed(condition, evidence)
+def test_clauses_are_not_conditions(condition):
+    assert condition_is_clause(condition)

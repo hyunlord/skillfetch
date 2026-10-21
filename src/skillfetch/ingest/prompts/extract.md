@@ -123,13 +123,14 @@ names them.
 
 ## condition
 
-`scope.condition` is closed: it is the language, framework or file type a rule is limited
-to, and nothing else. Set it only when the line limits the rule that way ("in Django
+`scope.condition` is the language, framework, library or file type a rule is limited to,
+and nothing else. Set it only when the line limits the rule that way ("in Django
 projects", "for migration files", "when editing generated protobuf files"), written as those
 names, lowercase and without "when": `django`, `migrations`, `generated protobuf files`.
 Situations ("when fixing a bug"), purposes ("wherever it makes the output friendlier") and the
-work being done ("for feature work") are not conditions: leave the condition null. Conditions
-outside the set of language, framework and file-type names are removed after extraction.
+work being done ("for feature work") are not conditions: leave the condition null. A condition
+that reads like a clause (when / if / once …, a pronoun, a verb such as "is" or "can") is
+removed after extraction.
 
 A condition is not what the rule is about. "Run black on every Python file" has condition
 null: Python is what gets formatted, not a situation in which the rule applies (the skill's

@@ -441,26 +441,27 @@ def _kc(condition, line=1):
     )
 
 
-def test_condition_outside_the_closed_set_is_removed_and_noted():
+def test_a_clause_condition_is_removed_and_noted():
     from skillfetch.ingest.extract import apply_vocabulary
 
-    [c], notes = apply_vocabulary([_kc("feature work", line=12)])
+    [c], notes = apply_vocabulary([_kc("when they make the output friendlier", line=12)])
     assert c.scope.condition is None
     assert notes == [
-        "line 12: condition 'feature work' -> null (not a language, framework or file type)"
+        "line 12: condition 'when they make the output friendlier' -> null (reads like a clause)"
     ]
 
 
-def test_condition_inside_the_closed_set_is_kept():
+@pytest.mark.parametrize("condition", ["django migrations", "docx", "latex", "feature work"])
+def test_other_conditions_are_kept(condition):
     from skillfetch.ingest.extract import apply_vocabulary
 
-    [c], notes = apply_vocabulary([_kc("django migrations")])
-    assert c.scope.condition == "django migrations" and notes == []
+    [c], notes = apply_vocabulary([_kc(condition)])
+    assert c.scope.condition == condition and notes == []
 
 
-def test_prompt_defines_closed_conditions():
+def test_prompt_defines_conditions():
     prompt = " ".join(system_prompt().split())
-    assert "language, framework or file type" in prompt
+    assert "language, framework, library or file type" in prompt
     assert "removed after extraction" in prompt
 
 

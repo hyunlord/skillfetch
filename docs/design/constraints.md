@@ -67,27 +67,21 @@ Fields:
   pr-description | markdown | response | plan | any`. `any` when the skill does
   not narrow it.
 - `scope.phase` — `plan | implement | test | review | format | any`.
-- `scope.condition` — closed: the language, framework or file type the rule is
-  limited to (`python`, `django`, `django migrations`, `generated protobuf
-  files`), lowercase, else null. A condition is allowed when every word of it
-  (ignoring articles and prepositions) is a language, framework or file-type
-  name from `resolve/vocabulary.py`, or a file extension written as one in the
-  condition (`.xlsm`, `*.tsx`) or on the evidence line ("`.xlsm` loses its
-  macros…" → `xlsm`); extraction post-processing nulls anything else. Situations ("when fixing a bug"), purposes ("if it reads better") and
-  the work being done ("feature work") are not conditions. Applies to every
-  directive, including `order`.
+- `scope.condition` — the language, framework, library or file type the rule is
+  limited to (`python`, `django migrations`, `docx`, `generated protobuf files`),
+  lowercase, else null. Situations ("when fixing a bug"), purposes ("if it reads
+  better") and the work being done ("feature work") are not conditions; the prompt
+  sends situations to `object_raw`. Extraction post-processing nulls a condition
+  only when it reads like a clause (`condition_is_clause` in
+  `resolve/vocabulary.py`: a subordinating word such as `when`/`if`/`once`, a
+  pronoun, an auxiliary or modal verb, or more than six words); any other phrase
+  is kept. Applies to every directive, including `order`.
 
-  A situation is still part of the rule, so the extractor must not drop it
-  (prompt section "situations: keep the clause", extraction v5): a rule that
-  holds only in a situation gets a free-text subject or object naming it
-  ("confirmation after team selection"), and `object_raw` keeps the clause.
-  Calibration showed free-text conditions to be mostly noise ("feature work",
-  "if they make the output friendlier"), which is why `condition` stays
-  closed. Until v4 the prompt only said situations are not conditions, and the
-  model dropped them from the rule altogether: deploy-to-vercel's "Once a team
-  is selected, … do not ask for separate confirmation" became a blanket
-  `forbid ask-before-acting` (its record's `adjusted` list was empty — the
-  clause never reached post-processing) and conflicted with seven skills.
+  History: until v5 conditions were closed against word lists of languages,
+  frameworks and file types, which nulled real ones the lists lacked (`docx`,
+  `latex`, `blazor`, `reportlab`, `webpack` on the seed-43 build). A kept
+  free-text condition such as "feature work" can only turn a pair into
+  `needs_review` (§3 rows 8c, 13), never into a conflict.
 - `strength` — `must | should`. Derived from directive (require/forbid → must,
   prefer/avoid → should) unless the text clearly says otherwise. `order` has no
   polarity; its strength defaults to `must` unless stated.
@@ -210,7 +204,7 @@ than `logging`, and as `logging` it would read as a blanket ban.
   Since v6 the prompt says to read a line under such a heading as a ban.
 - Vocabulary post-processing (`apply_vocabulary`, after the evidence check and
   before the per-line merge): subject normalization and the polarity flip and
-  implied artifact of §1.1, and closed conditions (§1). Every change is recorded in the record's `adjusted` list. The hand
+  implied artifact of §1.1, and clause-like conditions nulled (§1). Every change is recorded in the record's `adjusted` list. The hand
   labels are a fixed point (a test checks it).
 - `EXTRACT_VERSION` must be bumped whenever the prompt, the schema or the
   post-processing changes (it keys the cache); a test pins the prompt+schema

@@ -33,7 +33,7 @@ from skillfetch.resolve.models import Constraint
 from skillfetch.resolve.terms import normalize_term
 from skillfetch.resolve.vocabulary import (
     VOCABULARY,
-    condition_allowed,
+    condition_is_clause,
     contained_term,
     implied_artifact,
     lookup,
@@ -43,7 +43,7 @@ from skillfetch.resolve.vocabulary import (
 # Bump EXTRACT_VERSION whenever the prompt or the response schema changes; it is part of the
 # cache key. tests/ingest/test_extract.py pins PROMPT_SHA256 so a change cannot slip through.
 EXTRACT_VERSION = 6
-PROMPT_SHA256 = "c5dccd2b939b270193f15704d0a801c9acb2e87c50631481ad091a7c660e1ee4"
+PROMPT_SHA256 = "ceddd0e8e1d42afdd6496d1365ed16f134ceae04e518d3bd277a42344634cb75"
 
 DEFAULT_MODEL = "openrouter/openai/gpt-6-luna"  # "provider/model"; see backends.parse_model
 REQUEST_TIMEOUT_S = 120  # per HTTP request; the SDK default (600 s) let one stuck call stall a run
@@ -447,8 +447,8 @@ def apply_vocabulary(constraints: list[Constraint]) -> tuple[list[Constraint], l
       requires a preamble. Negations are not cues ("don't skip the preamble").
     - Artifact `any` becomes the subject's (or subject + object's) implied artifact; an
       explicit artifact is never overridden.
-    - Conditions are closed: one that is not made of language, framework and file-type
-      names ("feature work", "if they make the output friendlier") becomes null.
+    - A condition that reads like a clause ("when fixing a bug", "if they make the output
+      friendlier") becomes null; other conditions are kept.
     - A free-text subject that contains a vocabulary term becomes the term when its other
       words are already in the scope or object ("test logging" with artifact `tests` ->
       `logging`). Otherwise it stays free text: "request body logging" is narrower than
@@ -464,11 +464,8 @@ def apply_vocabulary(constraints: list[Constraint]) -> tuple[list[Constraint], l
             c = c.model_copy(update={"subject": normalized})
         term = lookup(c.subject)
         condition = c.scope.condition
-        if condition is not None and not condition_allowed(condition, c.evidence.text):
-            notes.append(
-                f"line {line}: condition {c.scope.condition!r} -> null "
-                "(not a language, framework or file type)"
-            )
+        if condition is not None and condition_is_clause(condition):
+            notes.append(f"line {line}: condition {condition!r} -> null (reads like a clause)")
             c = c.model_copy(update={"scope": c.scope.model_copy(update={"condition": None})})
         negative = term is not None and term.polarity == "negative"
         if negative and c.directive in _FLIP and (cue := _REMOVAL.search(c.evidence.text)):
