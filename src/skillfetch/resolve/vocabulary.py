@@ -192,7 +192,8 @@ def choice_of(term: Term | None, obj: str | None) -> tuple[str, str] | None:
 # A condition limits a rule to a language, a framework or a kind of file. Situations ("when
 # fixing a bug"), purposes ("if it reads better") and the work being done ("feature work") are
 # not conditions; extraction post-processing removes them. A condition is allowed when every
-# word, after normalization and ignoring the words below, is in one of these sets.
+# word, after normalization and ignoring the words below, is in one of these sets or is a file
+# extension (see condition_allowed).
 
 
 def _words(text: str) -> frozenset[str]:
@@ -221,9 +222,22 @@ _CONDITION_WORDS = frozenset(
 )
 
 
-def condition_allowed(condition: str) -> bool:
+# File extensions are file types too, without listing them all: a word counts when the
+# condition writes it as an extension (".xlsm", "*.tsx") or the evidence line does ("`.xlsm`
+# loses its macros unless ..." -> condition "xlsm").
+_EXTENSION = re.compile(r"(?<![\w.])\*?\.([a-z0-9]{1,8})(?![\w-])", re.IGNORECASE)
+
+
+def _extensions(text: str) -> set[str]:
+    return {m.lower() for m in _EXTENSION.findall(text)}
+
+
+def condition_allowed(condition: str, evidence: str = "") -> bool:
+    """Every word of the condition (ignoring filler) is a language, framework or file-type
+    name, or a file extension written as one in the condition or in the evidence line."""
     words = [w for w in _WORD.findall(normalize_term(condition)) if w not in _CONDITION_FILLER]
-    return bool(words) and all(w in _CONDITION_WORDS for w in words)
+    extensions = _extensions(condition) | _extensions(evidence)
+    return bool(words) and all(w in _CONDITION_WORDS or w in extensions for w in words)
 
 
 # --- free-text subjects that contain a term -----------------------------------------------------

@@ -377,7 +377,8 @@ def apply_vocabulary(constraints: list[Constraint]) -> tuple[list[Constraint], l
             )
             c = c.model_copy(update={"subject": normalized})
         term = lookup(c.subject)
-        if c.scope.condition is not None and not condition_allowed(c.scope.condition):
+        condition = c.scope.condition
+        if condition is not None and not condition_allowed(condition, c.evidence.text):
             notes.append(
                 f"line {line}: condition {c.scope.condition!r} -> null "
                 "(not a language, framework or file type)"

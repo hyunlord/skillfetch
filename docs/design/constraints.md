@@ -59,8 +59,9 @@ Fields:
   limited to (`python`, `django`, `django migrations`, `generated protobuf
   files`), lowercase, else null. A condition is allowed when every word of it
   (ignoring articles and prepositions) is a language, framework or file-type
-  name from `resolve/vocabulary.py`; extraction post-processing nulls anything
-  else. Situations ("when fixing a bug"), purposes ("if it reads better") and
+  name from `resolve/vocabulary.py`, or a file extension written as one in the
+  condition (`.xlsm`, `*.tsx`) or on the evidence line ("`.xlsm` loses its
+  macros…" → `xlsm`); extraction post-processing nulls anything else. Situations ("when fixing a bug"), purposes ("if it reads better") and
   the work being done ("feature work") are not conditions. Applies to every
   directive, including `order`.
 

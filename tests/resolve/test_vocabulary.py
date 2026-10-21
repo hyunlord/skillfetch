@@ -150,3 +150,32 @@ def test_conditions_from_languages_frameworks_and_file_types(condition):
 )
 def test_situational_conditions_are_not_conditions(condition):
     assert not condition_allowed(condition)
+
+
+@pytest.mark.parametrize(
+    "condition, evidence",
+    [
+        (
+            "xlsm",
+            "**`.xlsm` loses its macros unless you pass `keep_vba=True`** to `load_workbook`.",
+        ),
+        (".xlsm files", "Keep macros."),
+        ("*.tsx", "Use function components."),
+        ("ipynb notebooks", "Clear outputs of .ipynb files before committing."),
+    ],
+)
+def test_file_extensions_are_file_types(condition, evidence):
+    assert condition_allowed(condition, evidence)
+
+
+@pytest.mark.parametrize(
+    "condition, evidence",
+    [
+        ("xlsm", "Macros are lost unless you pass keep_vba."),  # not written as an extension
+        ("exist", "Use the eXist-db REST API for every query."),
+        ("safetyculture", "Call SafetyCulture tools through the connector."),
+        ("reportlab", "Use ReportLab to create PDFs from scratch."),
+    ],
+)
+def test_other_words_still_need_the_vocabulary(condition, evidence):
+    assert not condition_allowed(condition, evidence)
