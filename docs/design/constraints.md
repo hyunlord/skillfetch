@@ -113,6 +113,13 @@ normalized words ("pnpm workspaces" → pnpm; "npm or yarn" → no single choice
 nor is `naming-convention` (conventions differ per language and the constraint
 schema has no language field). Grow these lists from extraction output.
 
+**Subject normalization** (extraction post-processing, §2): a free-text
+subject containing every word of a vocabulary term ("test logging" ⊇
+`logging`) becomes that term when its other words already appear in the
+constraint's scope or object (artifact `tests`) and the object is allowed for
+the term. Otherwise it stays free text: "request body logging" is narrower
+than `logging`, and as `logging` it would read as a blanket ban.
+
 **Polarity and implied artifacts** (applied by extraction post-processing,
 §2):
 
@@ -169,8 +176,8 @@ schema has no language field). Grow these lists from extraction output.
   miscount, reported as `repaired`); anything else is dropped (`dropped`, with
   the reason).
 - Vocabulary post-processing (`apply_vocabulary`, after the evidence check and
-  before the per-line merge): closed conditions (§1), the polarity flip and the
-  implied artifact of §1.1. Every change is recorded in the record's `adjusted` list. The hand
+  before the per-line merge): subject normalization and the polarity flip and
+  implied artifact of §1.1, and closed conditions (§1). Every change is recorded in the record's `adjusted` list. The hand
   labels are a fixed point (a test checks it).
 - `EXTRACT_VERSION` must be bumped whenever the prompt, the schema or the
   post-processing changes (it keys the cache); a test pins the prompt+schema

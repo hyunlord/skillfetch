@@ -448,3 +448,50 @@ def test_prompt_reads_scope_from_the_evidence_line_only():
     prompt = " ".join(system_prompt().split())
     assert "from the evidence line only" in prompt
     assert '"wherever", "everywhere", "anywhere"' in prompt
+
+
+# --- free-text subjects containing a vocabulary term --------------------------------------------
+
+
+def _ks(subject, obj=None, artifact="any", phase="any", line=1):
+    return Constraint.model_validate(
+        {
+            "subject": subject,
+            "directive": "forbid",
+            "object": obj,
+            "scope": {"artifact": artifact, "phase": phase},
+            "evidence": {"line_no": line, "text": "t"},
+        }
+    )
+
+
+def test_subject_with_scope_words_is_normalized_to_the_term():
+    from skillfetch.ingest.extract import apply_vocabulary
+
+    [c], notes = apply_vocabulary([_ks("test logging", artifact="tests", phase="test", line=12)])
+    assert c.subject == "logging"
+    assert notes == [
+        "line 12: subject 'test logging' -> `logging` (remaining words are in the scope)"
+    ]
+
+
+def test_commit_message_words_are_covered_by_the_artifact():
+    from skillfetch.ingest.extract import apply_vocabulary
+
+    [c], _ = apply_vocabulary([_ks("commit message emoji", artifact="commit-message")])
+    assert c.subject == "emoji"
+
+
+def test_narrower_subject_keeps_its_free_text():
+    # the escape hatch: "request body logging" must not become a blanket logging ban
+    from skillfetch.ingest.extract import apply_vocabulary
+
+    [c], notes = apply_vocabulary([_ks("request body logging")])
+    assert c.subject == "request body logging" and notes == []
+
+
+def test_normalization_respects_the_term_objects():
+    from skillfetch.ingest.extract import apply_vocabulary
+
+    [c], _ = apply_vocabulary([_ks("test logging", obj="stack traces", artifact="tests")])
+    assert c.subject == "test logging"  # `logging` does not allow that object

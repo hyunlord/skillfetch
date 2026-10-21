@@ -224,3 +224,23 @@ _CONDITION_WORDS = frozenset(
 def condition_allowed(condition: str) -> bool:
     words = [w for w in _WORD.findall(normalize_term(condition)) if w not in _CONDITION_FILLER]
     return bool(words) and all(w in _CONDITION_WORDS for w in words)
+
+
+# --- free-text subjects that contain a term -----------------------------------------------------
+
+
+def term_words(text: str) -> set[str]:
+    return set(_WORD.findall(normalize_term(text)))
+
+
+def contained_term(subject: str) -> tuple[Term, set[str]] | None:
+    """The vocabulary term all of whose words occur in a free-text subject (the longest one),
+    with the subject's remaining words. None for a subject that already is a term."""
+    if lookup(subject) is not None:
+        return None
+    words = term_words(subject)
+    found = [t for t in VOCABULARY if term_words(t.name) <= words]
+    if not found:
+        return None
+    term = max(found, key=lambda t: len(term_words(t.name)))
+    return term, words - term_words(term.name)

@@ -25,8 +25,10 @@ from skillfetch.resolve.terms import normalize_term
 from skillfetch.resolve.vocabulary import (
     VOCABULARY,
     condition_allowed,
+    contained_term,
     implied_artifact,
     lookup,
+    term_words,
 )
 
 # Bump EXTRACT_VERSION whenever the prompt or the response schema changes; it is part of the
@@ -327,6 +329,27 @@ _REMOVAL = re.compile(
 _FLIP = {"require": ("forbid", "must"), "prefer": ("avoid", "should")}
 
 
+def _normalized_subject(c: Constraint) -> str | None:
+    found = contained_term(c.subject)
+    if found is None:
+        return None
+    term, rest = found
+    scope = c.scope
+    covered = set().union(
+        *(term_words(v) for v in (scope.artifact, scope.phase, scope.condition, c.object) if v)
+    )
+    if not rest <= covered:
+        return None
+    allowed = {normalize_term(o) for o in term.objects or ()}
+    if (
+        c.object is not None
+        and term.objects is not None
+        and normalize_term(c.object) not in allowed
+    ):
+        return None
+    return term.name
+
+
 def apply_vocabulary(constraints: list[Constraint]) -> tuple[list[Constraint], list[str]]:
     """Deterministic fixes from the vocabulary (resolve/vocabulary.py), with a note each.
 
@@ -337,11 +360,21 @@ def apply_vocabulary(constraints: list[Constraint]) -> tuple[list[Constraint], l
     - Artifact `any` becomes the subject's (or subject + object's) implied artifact; an
       explicit artifact is never overridden.
     - Conditions are closed: one that is not made of language, framework and file-type
-      names ("feature work", "if they make the output friendlier") becomes null."""
+      names ("feature work", "if they make the output friendlier") becomes null.
+    - A free-text subject that contains a vocabulary term becomes the term when its other
+      words are already in the scope or object ("test logging" with artifact `tests` ->
+      `logging`). Otherwise it stays free text: "request body logging" is narrower than
+      `logging`, and normalizing it would turn it into a blanket ban."""
     out, notes = [], []
     for c in constraints:
-        term = lookup(c.subject)
         line = c.evidence.line_no
+        if (normalized := _normalized_subject(c)) is not None:
+            notes.append(
+                f"line {line}: subject {c.subject!r} -> `{normalized}` "
+                "(remaining words are in the scope)"
+            )
+            c = c.model_copy(update={"subject": normalized})
+        term = lookup(c.subject)
         if c.scope.condition is not None and not condition_allowed(c.scope.condition):
             notes.append(
                 f"line {line}: condition {c.scope.condition!r} -> null "
