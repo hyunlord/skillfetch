@@ -313,8 +313,9 @@ As built (`ingest/build.py`, `skillfetch ingest --sources sources.yaml
   skill folder, `SKILL.md` included, hashed as raw bytes on disk — and
   `fetch_base`, the URL the files are fetched from (`<fetch_base>/<relpath>`):
   `https://raw.githubusercontent.com/<owner>/<repo>/<commit>/<path>` for
-  GitHub sources, `file://<abs path>` for `dir` sources, null otherwise
-  (such a skill cannot be loaded).
+  GitHub sources; for `dir` sources and other git hosts, `file://` to the
+  skill folder in the local snapshot (loadable only on the machine that built
+  the index).
 - `rejected.jsonl` holds the records that failed lint or the injection scan
   (not in the index, kept for the data write-up).
 - Extraction runs once per distinct `content_hash`.

@@ -116,7 +116,12 @@ def render_report(result: BuildResult) -> str:
         ],
     )
     redistributable = sum(b.record.redistributable for b in indexed)
-    out += ["", f"Bodies included: {redistributable} of {len(indexed)} indexed skills.", ""]
+    out += [
+        "",
+        f"Redistributable: {redistributable} of {len(indexed)} indexed skills (the index "
+        "stores no bodies; load_skills fetches them from the pinned source).",
+        "",
+    ]
     origins = Counter(b.record.license_origin for b in indexed)
     out += _counts("License taken from", origins)
     with_up = [b for b in indexed if b.record.upstream]

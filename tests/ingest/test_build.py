@@ -4,6 +4,7 @@
 import hashlib
 import json
 import shutil
+from urllib.request import urlopen
 
 import pytest
 from conftest import SKILLS_DIR, OracleClient, make_git_source, oracle
@@ -173,7 +174,7 @@ def test_duplicate_groups_and_canonicals(world):
     )
 
 
-def test_bodies_only_for_redistributable_skills(world):
+def test_index_has_file_manifests_and_no_bodies(world):
     tmp_path, sources, _ = world
     _build(tmp_path, sources, KeywordOracle())
     recs = _records(tmp_path)
@@ -181,10 +182,14 @@ def test_bodies_only_for_redistributable_skills(world):
     assert (squash["license"], squash["redistributable"]) == ("MIT", True)
     assert (emoji["license"], emoji["redistributable"]) == ("proprietary", False)
     assert recs["aggregator/small-commits"]["license"] == "unknown"
-    bodies = tmp_path / "index" / "bodies"
-    assert (bodies / f"{squash['id']}.md").is_file()
-    assert not (bodies / f"{emoji['id']}.md").exists()
+    index = tmp_path / "index"
+    assert not (index / "bodies").exists() and not (index / "assets").exists()
     assert emoji["source_url"].endswith("/skills/emoji-headers/SKILL.md")
+    # every file is listed with the sha256 of its bytes, fetchable from fetch_base
+    assert set(squash["files"]) == {"SKILL.md", "LICENSE"}
+    for rel, digest in squash["files"].items():
+        data = urlopen(f"{squash['fetch_base']}/{rel}").read()
+        assert hashlib.sha256(data).hexdigest() == digest
 
 
 def test_upstream_scripts_and_constraints(world):
