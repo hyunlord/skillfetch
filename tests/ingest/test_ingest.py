@@ -134,7 +134,9 @@ def test_calibrate_refuses_to_guess_missing_extractions(tmp_path, capsys):
 
 def test_with_api_uses_the_real_client_factory(tmp_path, capsys, monkeypatch):
     client = OracleClient()
-    monkeypatch.setattr(backends_mod, "make_backend", lambda spec: AnthropicBackend(client, SONNET))
+    monkeypatch.setattr(
+        backends_mod, "make_backend", lambda spec, **kw: AnthropicBackend(client, SONNET)
+    )
     args = ["ingest", str(FIXTURES_DIR), "--with-api", "--calibrate", "--cache-dir", str(tmp_path)]
     assert main(args) == 0
     assert len(client.requests) == N
@@ -144,7 +146,9 @@ def test_with_api_uses_the_real_client_factory(tmp_path, capsys, monkeypatch):
 
 def test_calibrate_below_gate_exits_one(tmp_path, capsys, monkeypatch):
     client = FakeClient(*[recorded("not-json.json")] * (2 * N))
-    monkeypatch.setattr(backends_mod, "make_backend", lambda spec: AnthropicBackend(client, SONNET))
+    monkeypatch.setattr(
+        backends_mod, "make_backend", lambda spec, **kw: AnthropicBackend(client, SONNET)
+    )
     args = ["ingest", str(FIXTURES_DIR), "--with-api", "--calibrate", "--cache-dir", str(tmp_path)]
     assert main(args) == 1
     assert "BELOW GATE" in capsys.readouterr().out
@@ -157,10 +161,10 @@ def test_api_errors_are_reported_not_raised(tmp_path, capsys, monkeypatch):
     def no_credentials():
         raise AuthenticationError("Could not resolve authentication method")
 
-    monkeypatch.setattr(backends_mod, "make_backend", lambda spec: no_credentials())
+    monkeypatch.setattr(backends_mod, "make_backend", lambda spec, **kw: no_credentials())
     assert main(["ingest", str(SKILLS_DIR), "--with-api", "--cache-dir", str(tmp_path)]) == 1
     err = capsys.readouterr().err
-    assert "Claude API error" in err and "ANTHROPIC_API_KEY" in err
+    assert "Anthropic API error" in err and "ANTHROPIC_API_KEY" in err
 
 
 def test_plain_ingest_reports_cache_misses(tmp_path, capsys):
@@ -169,7 +173,7 @@ def test_plain_ingest_reports_cache_misses(tmp_path, capsys):
 
 
 def test_missing_credentials_are_reported_before_any_request(tmp_path, capsys, monkeypatch):
-    def none(spec):
+    def none(spec, **kw):
         raise extract_mod.MissingCredentials("no Anthropic credentials found")
 
     monkeypatch.setattr(backends_mod, "make_backend", none)

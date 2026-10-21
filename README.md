@@ -27,6 +27,8 @@ cached in `~/.skillfetch/extract-cache/`, each skill is extracted once):
 ```console
 $ uv run skillfetch ingest tests/fixtures --with-api --calibrate   # measure the extractor
 $ uv run skillfetch ingest path/to/skills --with-api               # extract + cost log
+$ uv run skillfetch ingest tests/fixtures --with-api --calibrate --model openai/<model>
+$ uv run skillfetch ingest dir --with-api --model openai/<model> --base-url http://localhost:8000/v1
 ```
 
 ## The problem

@@ -136,3 +136,35 @@ class OracleClient(FakeClient):
     def create(self, **request):
         self.requests.append(request)
         return _ns(oracle(request))
+
+
+class FakeOpenAIClient:
+    """Replays recorded Chat Completions responses (`client.chat.completions.create`).
+
+    Entries are response dicts, exceptions to raise, or callables(request)."""
+
+    def __init__(self, *responses):
+        from types import SimpleNamespace
+
+        self._responses = list(responses)
+        self.requests: list[dict] = []
+        self.chat = SimpleNamespace(completions=self)
+
+    def create(self, **request):
+        self.requests.append(request)
+        if not self._responses:
+            raise AssertionError("FakeOpenAIClient: unexpected API call")
+        nxt = self._responses.pop(0)
+        if isinstance(nxt, Exception):
+            raise nxt
+        return _ns(nxt(request) if callable(nxt) else nxt)
+
+
+class FakeBadRequest(Exception):
+    """Shaped like openai.BadRequestError: status_code and the offending `param`."""
+
+    status_code = 400
+
+    def __init__(self, param):
+        super().__init__(f"Unsupported parameter: {param}")
+        self.param = param

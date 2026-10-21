@@ -120,11 +120,16 @@ schema has no language field). Grow these lists from extraction output.
   one-sided narrowing change the relation).
 - Output: structured output (`output_config.format`, strict JSON schema in
   `ingest/extract.py`) for the whole extract object of `index-format.md` §1.5.
-- Model `claude-sonnet-5` by default (`--model` to change). Current models
-  reject `temperature`; it is sent as 0 only to models that accept it
-  (`claude-sonnet-4-6`, `claude-haiku-4-5`). Reproducibility comes from the
-  extract cache: a skill is extracted once per `(extract_version, model,
-  content_hash)`.
+- Backends (`ingest/backends.py`, protocol `ExtractBackend` in `extract.py`):
+  `anthropic/<model>` uses the Messages API with `output_config.format`;
+  `openai/<model>` uses Chat Completions with `response_format: json_schema`
+  (`strict: true`), and `--base-url` points the same backend at any
+  OpenAI-compatible server (vLLM, Ollama). Both return one provider-neutral
+  completion; parsing, the retry and the evidence check are shared.
+- Temperature 0 is sent where the model accepts it. Anthropic current models
+  reject it (not sent); on the OpenAI backend a 400 naming `temperature` drops
+  it for that model. Reproducibility comes from the extract cache: a skill is
+  extracted once per `(extract_version, provider/model, content_hash)`.
 - Validate with pydantic; on failure retry once with the validation error
   appended; on second failure record `extract_failed`. A refusal is not retried.
 - Evidence check after validation: a quote found on its cited line is kept; a

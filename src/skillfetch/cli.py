@@ -7,7 +7,7 @@ import sys
 from collections.abc import Sequence
 from pathlib import Path
 
-from skillfetch.ingest import backends, extract
+from skillfetch.ingest import backends, credentials, extract
 from skillfetch.ingest.calibrate import calibrate, render_calibration
 from skillfetch.ingest.extract_cache import DEFAULT_CACHE_DIR, ExtractCache
 from skillfetch.ingest.ingest import extract_dir, render_cost_log
@@ -69,6 +69,15 @@ def main(argv: Sequence[str] | None = None) -> int:
         default=extract.DEFAULT_MODEL,
         help="provider/model, e.g. anthropic/claude-sonnet-5 (default: %(default)s)",
     )
+    ingest.add_argument(
+        "--base-url", help="OpenAI-compatible server for openai/<model> (vLLM, Ollama, ...)"
+    )
+    ingest.add_argument(
+        "--creds-file",
+        type=Path,
+        default=credentials.DEFAULT_CREDS_FILE,
+        help="dotenv file holding OPEN_API_KEY / OPENAI_API_KEY (default: %(default)s)",
+    )
     ingest.add_argument("--cache-dir", type=Path, default=DEFAULT_CACHE_DIR)
     ingest.add_argument("--jobs", type=int, default=4, help="parallel API requests")
     args = parser.parse_args(argv)
@@ -91,8 +100,12 @@ def main(argv: Sequence[str] | None = None) -> int:
     return 2  # unreachable: argparse rejects unknown commands
 
 
-def _api_error(exc: Exception) -> bool:
-    return type(exc).__module__.split(".")[0] == "anthropic"
+_SDK_NAMES = {"anthropic": "Anthropic", "openai": "OpenAI"}
+
+
+def _api_error(exc: Exception) -> str | None:
+    """Provider name if exc comes from a model SDK."""
+    return _SDK_NAMES.get(type(exc).__module__.split(".")[0])
 
 
 def _ingest(args: argparse.Namespace) -> int:
@@ -102,12 +115,17 @@ def _ingest(args: argparse.Namespace) -> int:
         return 2
     cache = ExtractCache(args.cache_dir)
     try:
-        key = backends.backend_key(args.model)
+        key = backends.backend_key(args.model, args.base_url)
     except ValueError as exc:
         print(f"skillfetch: {exc}", file=sys.stderr)
         return 2
     try:
-        extractor = extract.Extractor(backends.make_backend(args.model)) if args.with_api else None
+        extractor = None
+        if args.with_api:
+            backend = backends.make_backend(
+                args.model, base_url=args.base_url, creds_file=args.creds_file
+            )
+            extractor = extract.Extractor(backend)
         outcomes = extract_dir(skills_dir, cache, extractor, model=key, jobs=args.jobs)
     except ImportError:
         print("skillfetch: --with-api needs: pip install 'skillfetch[ingest]'", file=sys.stderr)
@@ -116,12 +134,18 @@ def _ingest(args: argparse.Namespace) -> int:
         print(f"skillfetch: {exc}", file=sys.stderr)
         return 2
     except Exception as exc:
-        if not _api_error(exc):
+        sdk = _api_error(exc)
+        if sdk is None:
             raise
         hint = ""
         if type(exc).__name__ in ("AuthenticationError", "AnthropicError"):
-            hint = " (set ANTHROPIC_API_KEY, or run `ant auth login`)"
-        print(f"skillfetch: Claude API error: {exc}{hint}", file=sys.stderr)
+            hint = {
+                "Anthropic": " (set ANTHROPIC_API_KEY, or run `ant auth login`)",
+                "OpenAI": f" (check OPENAI_API_KEY or OPEN_API_KEY in {args.creds_file})",
+            }[sdk]
+        # providers echo (masked) keys in auth errors: never print key material
+        message = credentials.redact(str(exc), credentials.openai_api_key(args.creds_file))
+        print(f"skillfetch: {sdk} API error: {message}{hint}", file=sys.stderr)
         print("skillfetch: finished extractions are cached; rerun to resume", file=sys.stderr)
         return 1
     print(render_cost_log(outcomes))

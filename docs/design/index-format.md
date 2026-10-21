@@ -148,9 +148,16 @@ record keeps the token usage of every attempt, so cost per skill is known
 
 **Extract cache and CLI** (`ingest/extract_cache.py`, `ingest/ingest.py`):
 
-- Every record is cached at `~/.skillfetch/extract-cache/v<extract_version>/<model>/<content_hash>.json`
-  (`--cache-dir` to move it). The key adds the model to `content_hash` +
-  `extract_version`, so `--model` never reuses another model's output. A
+- Every record is cached at
+  `~/.skillfetch/extract-cache/v<extract_version>/<provider>/<model>/<content_hash>.json`
+  (`--cache-dir` to move it). The key adds `provider/model` to `content_hash`
+  + `extract_version`, so `--model` never reuses another model's output;
+  OpenAI-compatible servers get the provider `openai-compat+<host>`.
+- Credentials: Anthropic via the SDK's usual sources; OpenAI via
+  `OPENAI_API_KEY`, else `OPEN_API_KEY` / `OPENAI_API_KEY` read from
+  `~/.rnd_creds.env` (`--creds-file`). Only that one variable is read from the
+  file, it is passed to the client directly (never exported to the
+  environment), and error output is redacted. A
   skill is never extracted twice for the same key.
 - Model-output failures (`extract_failed`, `too_large`) are cached like
   successes. API errors are not: finished skills stay cached and a rerun
