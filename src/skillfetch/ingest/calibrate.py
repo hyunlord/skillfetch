@@ -103,6 +103,9 @@ class PairReport(BaseModel):
     correct: int
     informative_total: int
     informative_correct: int
+    labelled_total: int  # pairs whose hand label is not independent
+    labelled_correct: int
+    false_positives: int  # labelled independent, extracted as anything else
     by_label: dict[str, Agreement]
     conflict_flagged: int
     conflict_true_positives: int
@@ -112,6 +115,10 @@ class PairReport(BaseModel):
     @property
     def accuracy(self) -> float:
         return self.correct / self.total if self.total else 1.0
+
+    @property
+    def recall(self) -> float:
+        return self.labelled_correct / self.labelled_total if self.labelled_total else 1.0
 
     @property
     def informative_accuracy(self) -> float:
@@ -197,6 +204,7 @@ def compare_pairs(
     by_label: dict[str, Agreement] = {}
     mismatches: list[Mismatch] = []
     correct = flagged = true_pos = expected_conflicts = informative = informative_ok = 0
+    labelled = labelled_ok = false_positives = 0
     for a, b in combinations(sorted(extracted), 2):
         want = labels.get(frozenset((a, b)), Relation.INDEPENDENT.value)
         got = pair_label(extracted[a], extracted[b])
@@ -208,6 +216,11 @@ def compare_pairs(
         if want != Relation.INDEPENDENT.value or got != Relation.INDEPENDENT.value:
             informative += 1
             informative_ok += got == want
+        if want != Relation.INDEPENDENT.value:
+            labelled += 1
+            labelled_ok += got == want
+        elif got != Relation.INDEPENDENT.value:
+            false_positives += 1
         if got == want:
             correct += 1
             bucket.matches += 1
@@ -218,6 +231,9 @@ def compare_pairs(
         correct=correct,
         informative_total=informative,
         informative_correct=informative_ok,
+        labelled_total=labelled,
+        labelled_correct=labelled_ok,
+        false_positives=false_positives,
         by_label=dict(sorted(by_label.items())),
         conflict_flagged=flagged,
         conflict_true_positives=true_pos,
@@ -315,6 +331,10 @@ def render_calibration(cal: Calibration) -> str:
     precision = p.conflict_true_positives / p.conflict_flagged if p.conflict_flagged else 1.0
     recall = p.conflict_true_positives / p.conflict_expected if p.conflict_expected else 1.0
     out.append(f"conflict precision {precision:.3f}, recall {recall:.3f}")
+    out.append(
+        f"labelled pairs: recall {p.recall:.3f} ({p.labelled_correct}/{p.labelled_total}), "
+        f"false positives {p.false_positives} (of {p.total - p.labelled_total} independent)"
+    )
     verdict = "PASS" if cal.passed else "BELOW GATE"
     out.append(f"pair-relation accuracy, all pairs: {p.accuracy:.3f} ({p.correct}/{p.total})")
     out.append(

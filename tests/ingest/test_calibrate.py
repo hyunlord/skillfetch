@@ -50,6 +50,8 @@ def test_perfect_extraction_scores_one():
     text = render_calibration(cal)
     assert f"pair-relation accuracy, all pairs: 1.000 ({PAIRS}/{PAIRS})" in text
     assert "informative pairs: 1.000 (33/33)" in text
+    assert (cal.pairs.recall, cal.pairs.false_positives) == (1.0, 0)
+    assert "recall 1.000 (33/33), false positives 0" in text
     assert "PASS" in text.splitlines()[-1]
 
 
@@ -119,6 +121,7 @@ def test_an_empty_extractor_does_not_pass_the_gate():
     cal = calibrate(FIXTURES_DIR, records)
     assert cal.pairs.accuracy > GATE
     assert cal.pairs.informative_accuracy == 0.0 and not cal.passed
+    assert (cal.pairs.recall, cal.pairs.false_positives) == (0.0, 0)
     assert "BELOW GATE" in render_calibration(cal).splitlines()[-1]
 
 
@@ -132,3 +135,4 @@ def test_false_conflicts_count_against_the_gate():
         ("inline-comments", "self-documenting", "independent", "conflict")
     ]
     assert (cal.pairs.informative_correct, cal.pairs.informative_total) == (33, 34)
+    assert (cal.pairs.recall, cal.pairs.false_positives) == (1.0, 1)
