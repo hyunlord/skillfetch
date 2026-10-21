@@ -33,8 +33,12 @@ a line is an instruction, leave it out.
 Every constraint quotes the single line that states it. `evidence.line_no` is that line's number
 and `evidence.text` is copied from that line character for character; you may drop a leading list
 marker such as `- ` or `1. `. Never paraphrase or join lines. If no single line states the
-instruction, it is not a constraint. A line that gives two instructions yields two constraints
-with the same evidence.
+instruction, it is not a constraint.
+
+Emit at most one constraint per line. When a line gives several instructions, keep the main
+one: the one about a vocabulary term if there is one, otherwise the first. Do not split a rule
+into its parts or its reasons ("Never squash; one logical change per commit" is one constraint:
+`commit-granularity`, `forbid`, `squash`).
 
 ## subject
 
@@ -83,7 +87,7 @@ use the same wording when one skill requires a thing and another forbids it.
 
 For a tool slot (`package-manager`, `formatter`, `test-runner`, `build-tool`, `linter`) the
 object is the tool's name alone: `pnpm`, `ruff format`, `jest`. "Use pnpm; never run npm" is
-two constraints: require `pnpm`, forbid `npm`.
+one constraint: require `pnpm`.
 
 ## scope
 
@@ -120,7 +124,7 @@ These lines are not from any real skill:
  14| - Commit messages must not contain emoji.
 ```
 
-Line 9 is rationale: no constraint. The others give these constraints:
+Line 9 is rationale: no constraint. Line 12 gives two instructions about one slot; the main one is kept. The others give these constraints:
 
 ```json
 [
@@ -131,9 +135,6 @@ Line 9 is rationale: no constraint. The others give these constraints:
    "scope": {"artifact": "any", "phase": "any", "condition": "bug fixes"}, "strength": "must",
    "evidence": {"line_no": 11, "text": "When fixing a bug, write a failing regression test before touching the code."}},
   {"subject": "package-manager", "directive": "require", "object": "yarn", "direction": null,
-   "scope": {"artifact": "any", "phase": "any", "condition": null}, "strength": "must",
-   "evidence": {"line_no": 12, "text": "Use yarn for all installs; never run npm install."}},
-  {"subject": "package-manager", "directive": "forbid", "object": "npm", "direction": null,
    "scope": {"artifact": "any", "phase": "any", "condition": null}, "strength": "must",
    "evidence": {"line_no": 12, "text": "Use yarn for all installs; never run npm install."}},
   {"subject": "early returns", "directive": "prefer", "object": null, "direction": null,

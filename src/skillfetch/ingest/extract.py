@@ -26,7 +26,7 @@ from skillfetch.resolve.vocabulary import VOCABULARY, lookup
 # Bump EXTRACT_VERSION whenever the prompt or the response schema changes; it is part of the
 # cache key. tests/ingest/test_extract.py pins PROMPT_SHA256 so a change cannot slip through.
 EXTRACT_VERSION = 2
-PROMPT_SHA256 = "242093a2d046d164df5a16e8dd941608a16e675d70b5e14e1370fbe5833240bd"
+PROMPT_SHA256 = "a07f6724996569b7bad8658a7d1c4d61919ed3c101b73a24587da15a36212959"
 
 DEFAULT_MODEL = "openrouter/openai/gpt-6-luna"  # "provider/model"; see backends.parse_model
 REQUEST_TIMEOUT_S = 120  # per HTTP request; the SDK default (600 s) let one stuck call stall a run
@@ -312,6 +312,34 @@ def verify_evidence(
     return result.model_copy(update={"constraints": kept}), dropped, repaired
 
 
+def merge_per_line(constraints: list[Constraint]) -> tuple[list[Constraint], list[Dropped]]:
+    """At most one constraint per evidence line. Exact duplicates collapse; otherwise the
+    constraint about a vocabulary term wins, else the first one emitted. Order is kept.
+
+    Splitting one line into several constraints breaks duplicate detection (the extra
+    constraint makes two equal skills unequal) and invents relations."""
+    by_line: dict[int, list[Constraint]] = {}
+    for c in constraints:
+        by_line.setdefault(c.evidence.line_no, []).append(c)
+    keep: dict[int, Constraint] = {}
+    for line_no, group in by_line.items():
+        keep[line_no] = next((c for c in group if lookup(c.subject) is not None), group[0])
+    kept, dropped, seen = [], [], set()
+    for c in constraints:
+        line_no = c.evidence.line_no
+        primary = keep[line_no]
+        if c is primary and line_no not in seen:
+            kept.append(c)
+            seen.add(line_no)
+        elif c.model_dump(exclude={"id"}) == primary.model_dump(exclude={"id"}):
+            reason = f"merged: duplicate of the constraint kept on line {line_no}"
+            dropped.append(Dropped(constraint=c.model_dump(mode="json"), reason=reason))
+        else:
+            reason = f"merged: one constraint per line; kept `{primary.subject}` on line {line_no}"
+            dropped.append(Dropped(constraint=c.model_dump(mode="json"), reason=reason))
+    return kept, dropped
+
+
 # --- extractor ---------------------------------------------------------------------------------
 
 
@@ -425,9 +453,10 @@ class Extractor:
                         },
                     ]
                 continue
-            record.result, record.dropped, record.repaired = verify_evidence(
-                result, text.split("\n")
-            )
+            result, record.dropped, record.repaired = verify_evidence(result, text.split("\n"))
+            kept, merged = merge_per_line(result.constraints)
+            record.result = result.model_copy(update={"constraints": kept})
+            record.dropped += merged
             record.status, record.error = "ok", None
             return record
         return record

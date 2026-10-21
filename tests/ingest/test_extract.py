@@ -229,3 +229,35 @@ def test_prompt_lists_allowed_objects():
     prompt = system_prompt()
     assert '`emoji` (objects: "in headers")' in prompt
     assert "`summary-at-end` (no object)" in prompt
+
+
+# --- one constraint per line ---------------------------------------------------------------------
+
+
+def test_extra_constraints_on_a_line_are_merged_into_the_vocabulary_one():
+    record, _ = run("atomic-commits", "atomic-commits.two-per-line.json")
+    assert record.status == "ok"
+    kept = [(c.evidence.line_no, c.subject) for c in record.constraints()]
+    assert kept == [(12, "commit-granularity"), (13, "review-before-merge")]
+    reasons = sorted(d.reason for d in record.dropped)
+    assert reasons == [
+        "merged: duplicate of the constraint kept on line 13",
+        "merged: one constraint per line; kept `commit-granularity` on line 12",
+    ]
+
+
+def test_merge_keeps_the_first_when_no_subject_is_in_the_vocabulary():
+    from skillfetch.ingest.extract import merge_per_line
+
+    def c(subject, line):
+        return Constraint.model_validate(
+            {"subject": subject, "directive": "require", "evidence": {"line_no": line, "text": "t"}}
+        )
+
+    kept, dropped = merge_per_line([c("alpha", 3), c("beta", 3), c("gamma", 4)])
+    assert [(k.subject, k.evidence.line_no) for k in kept] == [("alpha", 3), ("gamma", 4)]
+    assert [d.constraint["subject"] for d in dropped] == ["beta"]
+
+
+def test_prompt_asks_for_one_constraint_per_line():
+    assert "at most one constraint per line" in system_prompt()

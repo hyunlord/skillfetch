@@ -1,0 +1,15 @@
+{
+  "stop_reason": "end_turn",
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"summary\": \"s\", \"keywords\": [\"k\"], \"tags\": {\"languages\": [], \"frameworks\": [], \"phase\": [], \"domain\": []}, \"synthetic_queries\": [\"q\"], \"constraints\": [{\"subject\": \"logical changes\", \"directive\": \"require\", \"object\": \"one per commit\", \"direction\": null, \"scope\": {\"artifact\": \"commit-message\", \"phase\": \"any\", \"condition\": null}, \"strength\": \"must\", \"evidence\": {\"line_no\": 12, \"text\": \"Never squash; one logical change per commit, always.\"}}, {\"subject\": \"commit-granularity\", \"directive\": \"forbid\", \"object\": \"squash\", \"scope\": {\"artifact\": \"commit-message\", \"phase\": \"any\", \"condition\": null}, \"evidence\": {\"line_no\": 12, \"text\": \"Never squash; one logical change per commit, always.\"}, \"direction\": null, \"strength\": \"must\"}, {\"subject\": \"review-before-merge\", \"directive\": \"require\", \"object\": null, \"scope\": {\"artifact\": \"any\", \"phase\": \"review\", \"condition\": null}, \"evidence\": {\"line_no\": 13, \"text\": \"Every commit must be reviewed before it is merged.\"}, \"direction\": null, \"strength\": \"must\"}, {\"subject\": \"review-before-merge\", \"directive\": \"require\", \"object\": null, \"scope\": {\"artifact\": \"any\", \"phase\": \"review\", \"condition\": null}, \"evidence\": {\"line_no\": 13, \"text\": \"Every commit must be reviewed before it is merged.\"}, \"direction\": null, \"strength\": \"must\"}], \"consumes\": [], \"produces\": [], \"requires_tools\": []}"
+    }
+  ],
+  "usage": {
+    "input_tokens": 900,
+    "output_tokens": 420,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 2600
+  }
+}
