@@ -188,7 +188,12 @@ than `logging`, and as `logging` it would read as a blanket ban.
   it for that model. Reproducibility comes from the extract cache: a skill is
   extracted once per `(extract_version, provider/model, content_hash)`.
 - Validate with pydantic; on failure retry once with the validation error
-  appended; on second failure record `extract_failed`. A refusal is not retried.
+  appended. After the retry, constraints that still break a per-constraint rule
+  (subject over three words, an object outside a vocabulary term's list) are
+  dropped one by one (`dropped`, with the reason); only an answer that still
+  fails as a whole (bad JSON, schema) records `extract_failed`. A refusal is not
+  retried. A cached `extract_failed` record whose last answer passes the current
+  validation is recovered by the build without another call (`revalidate`).
 - Evidence check after validation: a quote found on its cited line is kept; a
   quote found on exactly one other line is kept with the line corrected (a
   miscount, reported as `repaired`); anything else is dropped (`dropped`, with

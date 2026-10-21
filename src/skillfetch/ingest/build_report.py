@@ -76,7 +76,7 @@ def render_report(result: BuildResult) -> str:
     per_source: dict[str, Counter] = defaultdict(Counter)
     for b in skills:
         per_source[b.record.source_id][b.record.tier or b.record.status] += 1
-    # extract_failed / too_large / not_extracted skills are tier C; see "Why tier C"
+    # extract_failed and uncached skills are tier C ("Why tier C"); too_large keeps its tier
     columns = ("A", "B", "C", "lint_failed", "scan_failed")
     out += _table(
         ("source", *columns),
@@ -95,10 +95,14 @@ def render_report(result: BuildResult) -> str:
         h["rule_id"] for b in skills if b.record.tier for h in b.record.scan.get("warnings", [])
     )
     out += _counts("Scan warnings on indexed skills (by rule)", warn_rules, "code")
-    failed = [b for b in skills if b.record.status in ("extract_failed", "too_large")]
+    failed = [b for b in skills if b.record.status in ("extract_failed", "not_extracted")]
     if failed:
-        out += ["Extraction failures:", ""]
-        out += [f"- `{b.record.id}` {b.record.status}: {b.record.extract_error}" for b in failed]
+        out += ["Not extracted (extract_failed is tier C; too_large keeps its tier):", ""]
+        out += [
+            f"- `{b.record.id}` {b.record.not_extracted_reason or b.record.status}: "
+            f"{b.record.extract_error}"
+            for b in failed
+        ]
         out.append("")
 
     indexed = [b for b in skills if b.record.tier]

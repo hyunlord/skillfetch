@@ -551,6 +551,10 @@ class MissingCredentials(RuntimeError):
 
 def constraint_vocabulary_errors(constraints: list[Constraint]) -> list[str]:
     """Objects outside a closed vocabulary term's allowed list (§1.1)."""
+    return [message for _, message in _vocabulary_violations(constraints)]
+
+
+def _vocabulary_violations(constraints: list[Constraint]) -> list[tuple[int, str]]:
     errors = []
     for i, c in enumerate(constraints):
         term = lookup(c.subject)
@@ -560,10 +564,14 @@ def constraint_vocabulary_errors(constraints: list[Constraint]) -> list[str]:
             continue
         allowed = ", ".join(f'"{o}"' for o in term.objects) or "(none)"
         errors.append(
-            f"constraints[{i}] (line {c.evidence.line_no}): object {c.object!r} is not allowed "
-            f"for subject `{term.name}`. Allowed objects: {allowed}, or null. If the rule "
-            f"targets something narrower than these, use a more specific free-text subject "
-            f"instead of `{term.name}`."
+            (
+                i,
+                f"constraints[{i}] (line {c.evidence.line_no}): object {c.object!r} is not "
+                "allowed "
+                f"for subject `{term.name}`. Allowed objects: {allowed}, or null. If the rule "
+                f"targets something narrower than these, use a more specific free-text subject "
+                f"instead of `{term.name}`.",
+            )
         )
     return errors
 
@@ -583,8 +591,21 @@ def _validate(text: str, last_attempt: bool = False) -> tuple[ExtractResult, lis
         result = ExtractResult.model_validate(data, context=context)
     except ValidationError as exc:
         raise ValueError(str(exc)) from exc
-    if errors := vocabulary_errors(result):
-        raise ValueError("\n".join(errors))
+    if violations := _vocabulary_violations(result.constraints):
+        if not last_attempt:
+            raise ValueError("\n".join(message for _, message in violations))
+        # after the retry, drop the offending constraints rather than the whole skill
+        bad = {i for i, _ in violations}
+        for i in sorted(bad):
+            c = result.constraints[i]
+            context["dropped"].append(
+                Dropped(
+                    constraint=c.model_dump(mode="json"),
+                    reason=f"object not allowed for `{lookup(c.subject).name}` after the retry",
+                )
+            )
+        kept = [c for i, c in enumerate(result.constraints) if i not in bad]
+        result = result.model_copy(update={"constraints": kept})
     return result, context["notes"], context["dropped"]
 
 
@@ -633,13 +654,40 @@ class Extractor:
                         },
                     ]
                 continue
-            lines = text.split("\n")
-            result, record.dropped, record.repaired = verify_evidence(result, lines)
-            adjusted, record.adjusted = apply_vocabulary(record_sections(result.constraints, lines))
-            record.adjusted = split + record.adjusted
-            kept, merged = merge_per_line(adjusted)
-            record.result = result.model_copy(update={"constraints": kept})
-            record.dropped = too_long + record.dropped + merged
-            record.status, record.error = "ok", None
-            return record
+            return _finish(record, result, split, too_long, text)
         return record
+
+
+def _finish(
+    record: ExtractRecord, result: ExtractResult, split: list[str], dropped: list, text: str
+) -> ExtractRecord:
+    """Evidence check and post-processing of a validated result."""
+    lines = text.split("\n")
+    result, record.dropped, record.repaired = verify_evidence(result, lines)
+    adjusted, record.adjusted = apply_vocabulary(record_sections(result.constraints, lines))
+    record.adjusted = split + record.adjusted
+    kept, merged = merge_per_line(adjusted)
+    record.result = result.model_copy(update={"constraints": kept})
+    record.dropped = dropped + record.dropped + merged
+    record.status, record.error = "ok", None
+    return record
+
+
+def revalidate(record: ExtractRecord, skill_dir: Path) -> ExtractRecord | None:
+    """A cached extract_failed record whose last answer the current validation accepts
+    (as a last attempt: over-long subjects and vocabulary violations are dropped per
+    constraint), processed without another API call. None if it still fails."""
+    if record.status != "extract_failed" or not record.attempts:
+        return None
+    last = record.attempts[-1]
+    if last.stop_reason == "refusal" or not last.text:
+        return None
+    try:
+        result, split, dropped = _validate(last.text, last_attempt=True)
+    except ValueError:
+        return None
+    text = read_text(skill_dir / SKILL_FILE)
+    out = _finish(record.model_copy(deep=True), result, split, dropped, text)
+    note = f"revalidated from the cached answer of attempt {len(record.attempts)}"
+    out.adjusted = [note, *out.adjusted]
+    return out

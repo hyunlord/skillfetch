@@ -36,6 +36,10 @@ def world(tmp_path):
     _copy("commit-squash", v / "commit-squash", extra_files={"LICENSE": MIT})
     _copy("plain-markdown", v / "plain-markdown", extra_files={"LICENSE": MIT})
     _copy("emoji-headers", v / "emoji-headers", extra_files={"LICENSE.txt": PROPRIETARY})
+    (v / "huge").mkdir()  # over the extraction cost guard: keeps its tier, no constraints
+    (v / "huge" / "SKILL.md").write_text(
+        "---\nname: huge\ndescription: A very long skill.\n---\n" + "Keep it tidy.\n" * 4000
+    )
     a = staging / "aggregator"
     _copy("plain-markdown", a / "plain-markdown", extra_files={"LICENSE": MIT})  # same content
     _copy("small-commits", a / "small-commits")
@@ -140,6 +144,7 @@ def test_tiers_statuses_and_rejections(world):
         "verified-src/commit-squash": ("A", "ok"),
         "verified-src/plain-markdown": ("A", "ok"),
         "verified-src/emoji-headers": ("A", "ok"),
+        "verified-src/huge": ("A", "not_extracted"),  # too large: tier kept
         "aggregator/plain-markdown": ("C", "ok"),  # identical to an A skill
         "aggregator/atomic-commits": ("B", "ok"),
         "aggregator/small-commits": ("B", "ok"),
@@ -205,13 +210,13 @@ def test_manifest_counts_and_file_hashes(world):
     manifest = json.loads((index / "manifest.json").read_text())
     assert manifest["schema_version"] == 1 and manifest["signature"] is None
     assert manifest["counts"] == {
-        "A": 3,
+        "A": 4,
         "B": 3,
         "C": 3,
         "lint_failed": 1,
         "scan_failed": 1,
         "extract_failed": 0,
-        "too_large": 0,
+        "too_large": 1,
         "not_extracted": 0,
     }
     src = {s["id"]: s for s in manifest["sources"]}

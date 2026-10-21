@@ -11,6 +11,7 @@ from skillfetch.ingest.extract import (
     EXTRACT_VERSION,
     PROMPT_SHA256,
     Extractor,
+    ExtractRecord,
     ExtractResult,
     Usage,
     cost_usd,
@@ -596,3 +597,35 @@ def test_stored_records_load_without_the_extraction_checks():
         "requires_tools": [],
     }
     assert ExtractResult.model_validate(data).constraints[0].subject == long["subject"]
+
+
+def test_a_vocabulary_violation_after_the_retry_drops_that_constraint_only():
+    bad = "concise-responses.disallowed-object.json"
+    record, client = run("concise-responses", bad, bad)
+    assert record.status == "ok" and len(client.requests) == 2
+    assert any("after the retry" in d.reason for d in record.dropped)
+    assert all(c.object is None for c in record.constraints() if c.subject == "summary-at-end")
+
+
+def test_revalidate_recovers_a_cached_failure_without_the_api():
+    from skillfetch.ingest.extract import revalidate
+
+    failed = ExtractRecord(
+        extract_version=EXTRACT_VERSION,
+        model="anthropic/claude-sonnet-5",
+        content_hash="0" * 64,
+        skill_id="concise-responses",
+        status="extract_failed",
+        error="object not allowed",
+        attempts=[
+            {
+                "stop_reason": "end_turn",
+                "text": recorded("concise-responses.disallowed-object.json")["content"][0]["text"],
+                "usage": {},
+            }
+        ],
+    )
+    fixed = revalidate(failed, SKILLS_DIR / "concise-responses")
+    assert fixed is not None and fixed.status == "ok" and fixed.error is None
+    assert fixed.adjusted[0] == "revalidated from the cached answer of attempt 1"
+    assert revalidate(fixed, SKILLS_DIR / "concise-responses") is None  # only failures

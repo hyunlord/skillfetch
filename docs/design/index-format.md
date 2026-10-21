@@ -228,11 +228,18 @@ index keeps all members but `search_skills` returns only canonicals unless
 
 | tier | rule | default in search |
 |---|---|---|
-| A | `publisher_trust: verified` and passed lint + scan + extract | on |
+| A | `publisher_trust: verified` and passed lint + scan + extract (or too large to extract, below) | on |
 | B | passed lint + scan + extract, no `has_scripts`, not a duplicate of an A skill | on |
 | C | anything else that is not `*_failed` (has scripts, extract failed, unknown publisher with warnings) | off |
 
 Tier is recomputed on every ingest; it is not stored in the source.
+
+A skill over the extraction cost guard (§1.5, ~12k tokens) is not sent to the
+model: it gets `status: not_extracted`, `not_extracted_reason: too_large`, no
+constraints, and keeps the tier the other rules give it (anthropics'
+claude-api is A). It can be searched and loaded but never takes part in a
+conflict or duplicate check. `extract_failed` and `not_extracted` with reason
+`no cache entry` (a build without `--with-api`) stay tier C.
 
 `network.bare-url` warnings do not count as "warnings" for the tier: skills for
 web APIs are full of documentation URLs, and in the first public build that one

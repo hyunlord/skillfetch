@@ -20,7 +20,13 @@ from typing import Literal
 
 from pydantic import BaseModel
 
-from skillfetch.ingest.extract import DEFAULT_MODEL, EXTRACT_VERSION, Extractor, ExtractRecord
+from skillfetch.ingest.extract import (
+    DEFAULT_MODEL,
+    EXTRACT_VERSION,
+    Extractor,
+    ExtractRecord,
+    revalidate,
+)
 from skillfetch.ingest.extract_cache import ExtractCache
 from skillfetch.ingest.ingest import run_extractions
 from skillfetch.ingest.injection import load_rules, scan_skill
@@ -84,6 +90,8 @@ class SkillRecord(BaseModel):
     adjusted: list[str] = []
     dropped: list[str] = []
     extract_error: str | None = None
+    # why a skill that passed lint and scan has no constraints: "too_large" keeps its tier
+    not_extracted_reason: Literal["too_large", "no cache entry"] | None = None
 
 
 @dataclass
@@ -182,7 +190,12 @@ def _apply_extraction(b: Built, extraction: ExtractRecord | None) -> None:
     r = b.record
     b.extraction = extraction
     if extraction is None:
-        r.status = "not_extracted"
+        r.status, r.not_extracted_reason = "not_extracted", "no cache entry"
+        return
+    if extraction.status == "too_large":
+        # over the extraction cost guard: searchable and loadable, no constraints to check
+        r.status, r.not_extracted_reason = "not_extracted", "too_large"
+        r.extract_error = extraction.error
         return
     if extraction.status != "ok" or extraction.result is None:
         r.status = extraction.status  # extract_failed | too_large
@@ -279,7 +292,7 @@ def assign_tiers(skills: list[Built]) -> None:
         r = b.record
         if r.status in ("lint_failed", "scan_failed"):
             r.tier = None
-        elif r.status != "ok":
+        elif r.status != "ok" and r.not_extracted_reason != "too_large":
             r.tier = "C"
         elif r.publisher_trust == "verified":
             r.tier = "A"
@@ -387,6 +400,11 @@ def build_index(
 
     ok = [b for b in skills if b.record.status == "ok"]
     cached = {b.record.content_hash: cache.get(b.record.content_hash, model) for b in ok}
+    for b in ok:  # failures the current validation accepts are recovered without the API
+        hit = cached[b.record.content_hash]
+        if hit is not None and (fixed := revalidate(hit, b.skill_dir)) is not None:
+            cache.put(fixed)
+            cached[b.record.content_hash] = fixed
     todo = [
         (b.skill_dir, b.record.id, b.record.content_hash)
         for b in ok
@@ -405,6 +423,7 @@ def build_index(
 
     counts = Counter(b.record.tier for b in skills if b.record.tier)
     statuses = Counter(b.record.status for b in skills)
+    reasons = Counter(b.record.not_extracted_reason for b in skills)
     manifest = {
         "schema_version": SCHEMA_VERSION,
         "built_at": datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -417,11 +436,10 @@ def build_index(
         ],
         "counts": {
             **{t: counts.get(t, 0) for t in ("A", "B", "C")},
-            **{
-                s: statuses.get(s, 0)
-                for s in ("lint_failed", "scan_failed", "extract_failed", "too_large")
-            },
-            "not_extracted": statuses.get("not_extracted", 0),
+            **{s: statuses.get(s, 0) for s in ("lint_failed", "scan_failed", "extract_failed")},
+            # too_large keeps its tier; "no cache entry" (a run without --with-api) is tier C
+            "too_large": reasons.get("too_large", 0),
+            "not_extracted": reasons.get("no cache entry", 0),
         },
         "licenses": dict(sorted(Counter(b.record.license for b in skills).items())),
         "redistributable": sum(b.record.redistributable for b in skills if b.record.tier),
@@ -459,8 +477,9 @@ def render_summary(result: BuildResult) -> str:
     lines.append(
         "not indexed: "
         + ", ".join(f"{k}={c[k]}" for k in ("lint_failed", "scan_failed"))
-        + " · tier C by status: "
-        + ", ".join(f"{k}={c[k]}" for k in ("extract_failed", "too_large", "not_extracted"))
+        + f" · tier C: extract_failed={c['extract_failed']}, "
+        f"not in cache={c['not_extracted']} · too large to extract (tier kept): "
+        f"{c['too_large']}"
     )
     lines.append(
         f"redistributable: {m['redistributable']} of {c['A'] + c['B'] + c['C']} indexed · "
