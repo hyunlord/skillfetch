@@ -515,3 +515,13 @@ def test_normalization_respects_the_term_objects():
 
     [c], _ = apply_vocabulary([_ks("test logging", obj="stack traces", artifact="tests")])
     assert c.subject == "test logging"  # `logging` does not allow that object
+
+
+def test_prompt_keeps_situational_clauses():
+    # v4 told the model to leave situations out of `condition`, and it dropped them from
+    # the rule altogether: "Once a team is selected, ... do not ask for separate
+    # confirmation" became a blanket `forbid ask-before-acting` (adjusted was empty: the
+    # clause never reached post-processing).
+    prompt = system_prompt()
+    assert "## situations: keep the clause" in prompt
+    assert "Only a rule that applies whenever its subject comes up is a blanket rule." in prompt

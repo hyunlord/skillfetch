@@ -135,6 +135,24 @@ a docstring", `public functions` is the object, not a condition. What a rule app
 `object` or `scope.artifact`; when it applies goes in `scope.condition`. Do not repeat
 `artifact` or `phase` in the condition.
 
+## situations: keep the clause
+
+A situation is not a condition, but it still limits the rule; never drop it. "Once the user
+has picked a plan, go ahead without asking again" does not ban asking in general: it bans a
+second confirmation after the choice. A rule without its clause reads as a blanket rule about
+the whole subject and would contradict every skill that says the opposite in some other
+situation. So, when a line limits a rule with "once …", "after …", "if …", "when …", "unless …"
+or "for …" (anything but a phase, which goes in `scope.phase`, and a language, framework or
+file type, which goes in `scope.condition`):
+
+- use a vocabulary term only if the rule holds whatever the situation; otherwise use a
+  free-text subject that names the situation ("confirmation after plan selection", forbid);
+- for a free-text subject, put the situation in `object` when the subject alone does not
+  name it, in the line's own words;
+- always copy the clause into `object_raw` ("asking again once a plan is picked").
+
+Only a rule that applies whenever its subject comes up is a blanket rule.
+
 # Example
 
 These lines are not from any real skill:
@@ -149,7 +167,8 @@ These lines are not from any real skill:
 ```
 
 Line 9 is rationale: no constraint. Line 11's "when fixing a bug" is a situation, not a
-condition. Line 12 gives two instructions about one slot; the main one is kept. The others give
+condition; it is kept in the subject, since the rule is about regression tests for bug fixes
+only. Line 12 gives two instructions about one slot; the main one is kept. The others give
 these constraints:
 
 ```json
@@ -157,7 +176,7 @@ these constraints:
   {"subject": "pr-size", "directive": "require", "object": "under 400 changed lines", "object_raw": "under 400 changed lines", "direction": null,
    "scope": {"artifact": "any", "phase": "any", "condition": null}, "strength": "must",
    "evidence": {"line_no": 10, "text": "Keep pull requests under 400 changed lines."}},
-  {"subject": "tests", "directive": "order", "object": "implementation", "object_raw": "touching the code", "direction": "before",
+  {"subject": "bug-fix regression test", "directive": "order", "object": "implementation", "object_raw": "when fixing a bug, before touching the code", "direction": "before",
    "scope": {"artifact": "any", "phase": "any", "condition": null}, "strength": "must",
    "evidence": {"line_no": 11, "text": "When fixing a bug, write a failing regression test before touching the code."}},
   {"subject": "package-manager", "directive": "require", "object": "yarn", "object_raw": "yarn for all installs", "direction": null,

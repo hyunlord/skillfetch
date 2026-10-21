@@ -64,11 +64,17 @@ Fields:
   the work being done ("feature work") are not conditions. Applies to every
   directive, including `order`.
 
-  Trade-off, accepted for v0.1: a real situational condition is dropped too,
-  which makes the rule unconditional and can turn a `needs_review` pair into a
-  `conflict`. Calibration showed free-text conditions to be mostly noise
-  ("feature work", "if they make the output friendlier"), each of which hid a
-  real relation; watch the hard gate if this assumption breaks.
+  A situation is still part of the rule, so the extractor must not drop it
+  (prompt section "situations: keep the clause", extraction v5): a rule that
+  holds only in a situation gets a free-text subject or object naming it
+  ("confirmation after team selection"), and `object_raw` keeps the clause.
+  Calibration showed free-text conditions to be mostly noise ("feature work",
+  "if they make the output friendlier"), which is why `condition` stays
+  closed. Until v4 the prompt only said situations are not conditions, and the
+  model dropped them from the rule altogether: deploy-to-vercel's "Once a team
+  is selected, … do not ask for separate confirmation" became a blanket
+  `forbid ask-before-acting` (its record's `adjusted` list was empty — the
+  clause never reached post-processing) and conflicted with seven skills.
 - `strength` — `must | should`. Derived from directive (require/forbid → must,
   prefer/avoid → should) unless the text clearly says otherwise. `order` has no
   polarity; its strength defaults to `must` unless stated.
