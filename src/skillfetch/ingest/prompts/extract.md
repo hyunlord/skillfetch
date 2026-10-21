@@ -86,6 +86,12 @@ subject `request body logging`, object null).
 For a free-text subject, keep the object short and lowercase, in the skill's own words, and
 use the same wording when one skill requires a thing and another forbids it.
 
+`object_raw` is what the line regulates, in the line's own words, short and lowercase
+("swallowing errors", "a second confirmation"). Fill it whenever the line says more than the
+subject, even when `object` has to be null or one of the listed objects; null only when the line
+names nothing beyond the subject. It is kept for review and never compared, so it costs nothing
+to be specific there.
+
 For a tool slot (`package-manager`, `formatter`, `test-runner`, `build-tool`, `linter`) the
 object is the tool's name alone: `pnpm`, `ruff format`, `jest`. "Use pnpm; never run npm" is
 one constraint: require `pnpm`.
@@ -142,19 +148,19 @@ these constraints:
 
 ```json
 [
-  {"subject": "pr-size", "directive": "require", "object": "under 400 changed lines", "direction": null,
+  {"subject": "pr-size", "directive": "require", "object": "under 400 changed lines", "object_raw": "under 400 changed lines", "direction": null,
    "scope": {"artifact": "any", "phase": "any", "condition": null}, "strength": "must",
    "evidence": {"line_no": 10, "text": "Keep pull requests under 400 changed lines."}},
-  {"subject": "tests", "directive": "order", "object": "implementation", "direction": "before",
+  {"subject": "tests", "directive": "order", "object": "implementation", "object_raw": "touching the code", "direction": "before",
    "scope": {"artifact": "any", "phase": "any", "condition": null}, "strength": "must",
    "evidence": {"line_no": 11, "text": "When fixing a bug, write a failing regression test before touching the code."}},
-  {"subject": "package-manager", "directive": "require", "object": "yarn", "direction": null,
+  {"subject": "package-manager", "directive": "require", "object": "yarn", "object_raw": "yarn for all installs", "direction": null,
    "scope": {"artifact": "any", "phase": "any", "condition": null}, "strength": "must",
    "evidence": {"line_no": 12, "text": "Use yarn for all installs; never run npm install."}},
-  {"subject": "early returns", "directive": "prefer", "object": null, "direction": null,
+  {"subject": "early returns", "directive": "prefer", "object": null, "object_raw": "over nested conditionals", "direction": null,
    "scope": {"artifact": "code", "phase": "any", "condition": null}, "strength": "should",
    "evidence": {"line_no": 13, "text": "Prefer early returns over nested conditionals."}},
-  {"subject": "emoji", "directive": "forbid", "object": null, "direction": null,
+  {"subject": "emoji", "directive": "forbid", "object": null, "object_raw": null, "direction": null,
    "scope": {"artifact": "commit-message", "phase": "any", "condition": null}, "strength": "must",
    "evidence": {"line_no": 14, "text": "Commit messages must not contain emoji."}}
 ]
@@ -181,34 +187,34 @@ exact, so paraphrased objects or extra constraints hide duplicates and contradic
 
 ```json
 [
-  {"subject": "ask-before-acting", "directive": "require", "object": null, "direction": null,
+  {"subject": "ask-before-acting", "directive": "require", "object": null, "object_raw": "before you edit anything", "direction": null,
    "scope": {"artifact": "any", "phase": "any", "condition": null}, "strength": "must",
    "evidence": {"line_no": 4, "text": "Confirm with the user before you edit anything."}},
-  {"subject": "ask-before-acting", "directive": "forbid", "object": null, "direction": null,
+  {"subject": "ask-before-acting", "directive": "forbid", "object": null, "object_raw": "pausing for approval", "direction": null,
    "scope": {"artifact": "any", "phase": "implement", "condition": null}, "strength": "must",
    "evidence": {"line_no": 5, "text": "Don't pause for approval while implementing; decide and carry on."}},
-  {"subject": "summary-at-end", "directive": "require", "object": null, "direction": null,
+  {"subject": "summary-at-end", "directive": "require", "object": null, "object_raw": "a recap of the edits you made", "direction": null,
    "scope": {"artifact": "response", "phase": "any", "condition": null}, "strength": "must",
    "evidence": {"line_no": 6, "text": "Close each reply with a recap of the edits you made."}},
-  {"subject": "summary-at-end", "directive": "forbid", "object": null, "direction": null,
+  {"subject": "summary-at-end", "directive": "forbid", "object": null, "object_raw": "closing recap", "direction": null,
    "scope": {"artifact": "response", "phase": "any", "condition": null}, "strength": "must",
    "evidence": {"line_no": 7, "text": "No closing recap; stop when the work is done."}},
-  {"subject": "preamble", "directive": "forbid", "object": null, "direction": null,
+  {"subject": "preamble", "directive": "forbid", "object": null, "object_raw": "warm-up sentence", "direction": null,
    "scope": {"artifact": "response", "phase": "any", "condition": null}, "strength": "must",
    "evidence": {"line_no": 8, "text": "Get straight to the answer, no warm-up sentence."}},
-  {"subject": "preamble", "directive": "forbid", "object": null, "direction": null,
+  {"subject": "preamble", "directive": "forbid", "object": null, "object_raw": "paraphrasing the request back first", "direction": null,
    "scope": {"artifact": "response", "phase": "any", "condition": null}, "strength": "must",
    "evidence": {"line_no": 9, "text": "Do not paraphrase the request back to the user first."}},
-  {"subject": "type-hints", "directive": "require", "object": null, "direction": null,
+  {"subject": "type-hints", "directive": "require", "object": null, "object_raw": "every parameter and return value", "direction": null,
    "scope": {"artifact": "code", "phase": "any", "condition": null}, "strength": "must",
    "evidence": {"line_no": 10, "text": "Annotate every parameter and return value."}},
-  {"subject": "type-hints", "directive": "require", "object": null, "direction": null,
+  {"subject": "type-hints", "directive": "require", "object": null, "object_raw": "full type annotations", "direction": null,
    "scope": {"artifact": "code", "phase": "any", "condition": null}, "strength": "must",
    "evidence": {"line_no": 11, "text": "Each function signature carries full type annotations."}},
-  {"subject": "commit-granularity", "directive": "forbid", "object": "squash", "direction": null,
+  {"subject": "commit-granularity", "directive": "forbid", "object": "squash", "object_raw": "squash", "direction": null,
    "scope": {"artifact": "commit-message", "phase": "any", "condition": null}, "strength": "must",
    "evidence": {"line_no": 12, "text": "Don't squash; each commit holds one self-contained change."}},
-  {"subject": "commit-granularity", "directive": "forbid", "object": "squash", "direction": null,
+  {"subject": "commit-granularity", "directive": "forbid", "object": "squash", "object_raw": "squash", "direction": null,
    "scope": {"artifact": "commit-message", "phase": "any", "condition": null}, "strength": "must",
    "evidence": {"line_no": 13, "text": "Keep every commit to a single logical change and never squash them."}}
 ]

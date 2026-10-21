@@ -48,6 +48,9 @@ class Constraint(_Frozen):
     subject: str = Field(min_length=1)
     directive: Directive
     object: str | None = None
+    # The object in the line's own words, kept even when `object` is null or a vocabulary
+    # value. For review only: never part of identity or of any relation.
+    object_raw: str | None = None
     direction: Literal["before", "after"] | None = None  # `order` only: subject vs object
     scope: Scope = Scope()
     strength: Strength  # derived from directive when omitted (§1); `order` defaults to must

@@ -111,6 +111,23 @@ def test_successful_extraction():
     assert record.result.tags.domain == ["git"]
 
 
+def test_object_raw_is_kept_and_never_compared():
+    import json
+
+    from skillfetch.resolve.relation import constraint_identity, constraint_relation
+
+    response = recorded("commit-squash.ok.json")
+    data = json.loads(response["content"][0]["text"])
+    data["constraints"][0]["object_raw"] = "every feature into a single commit"
+    response["content"][0]["text"] = json.dumps(data)
+    record, _ = run("commit-squash", response)
+    squash = record.constraints()[0]
+    assert (squash.object, squash.object_raw) == ("squash", "every feature into a single commit")
+    plain = squash.model_copy(update={"object_raw": None})
+    assert constraint_identity(squash) == constraint_identity(plain)
+    assert constraint_relation(squash, plain).value == "redundant"
+
+
 def test_miscounted_line_is_repaired_and_invented_quote_dropped():
     record, _ = run("commit-squash", "commit-squash.evidence-issues.json")
     assert record.status == "ok"

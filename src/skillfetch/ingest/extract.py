@@ -33,8 +33,8 @@ from skillfetch.resolve.vocabulary import (
 
 # Bump EXTRACT_VERSION whenever the prompt or the response schema changes; it is part of the
 # cache key. tests/ingest/test_extract.py pins PROMPT_SHA256 so a change cannot slip through.
-EXTRACT_VERSION = 4
-PROMPT_SHA256 = "4e43684d923e29a55b7be69f00bd5d6be7c79a0cf31feae1f5811de2e2087f7f"
+EXTRACT_VERSION = 5
+PROMPT_SHA256 = "88dae000bd181de844681f77676bf832184ef3fb2814bd1ec2462c156bbb313e"
 
 DEFAULT_MODEL = "openrouter/openai/gpt-6-luna"  # "provider/model"; see backends.parse_model
 REQUEST_TIMEOUT_S = 120  # per HTTP request; the SDK default (600 s) let one stuck call stall a run
@@ -132,6 +132,7 @@ def response_schema() -> dict:
                 "enum": ["require", "forbid", "prefer", "avoid", "order"],
             },
             "object": _string_or_null(),
+            "object_raw": _string_or_null(),
             "direction": {
                 "anyOf": [{"type": "string", "enum": ["before", "after"]}, {"type": "null"}]
             },

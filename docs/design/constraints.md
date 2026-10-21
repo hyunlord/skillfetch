@@ -44,6 +44,11 @@ Fields:
     thing it must precede/follow, `direction` holds `before|after`.
 - `object` — what the directive is about, when `subject` alone is ambiguous.
   Optional.
+- `object_raw` — the object in the evidence line's own words ("swallowing
+  errors"), filled by the extractor even when `object` is null or one of a
+  vocabulary term's listed objects. Review only: it is not part of identity
+  and no relation reads it. It shows the reviewer what an object-less rule
+  (§3 row 14) was narrowed from.
 - `direction` — `before | after`, `order` only (null otherwise): the subject
   comes before / after the object.
 - `scope.artifact` — what the rule applies to: `code | tests | commit-message |

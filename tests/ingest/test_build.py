@@ -337,6 +337,8 @@ def test_reports(world):
     assert "## conflict" in review
     assert "commit-squash" in review and "atomic-commits" in review
     assert '"Never squash; one logical change per commit, always."' in review
+    assert "- extracted as:" in review
+    assert "forbid commit-granularity [squash] @commit-message/any (must)" in review
     # canonicals only: the aggregator's copy of plain-markdown is not reviewed twice
     assert "aggregator/plain-markdown" not in review
 

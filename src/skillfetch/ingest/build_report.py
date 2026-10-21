@@ -8,8 +8,9 @@ from itertools import combinations
 from pathlib import Path
 
 from skillfetch.ingest.build import BuildResult, Built
+from skillfetch.ingest.calibrate import compact
 from skillfetch.ingest.local_scan import pair_finding
-from skillfetch.resolve.models import Skill
+from skillfetch.resolve.models import Constraint, Skill
 from skillfetch.resolve.report import render_finding
 
 KIND_ORDER = ("conflict", "redundant", "tension", "needs_review")
@@ -196,10 +197,32 @@ def informative_findings(result: BuildResult):
     return found
 
 
+def describe(c: Constraint) -> str:
+    """A constraint as extracted, with the fields relations ignore (raw object)."""
+    out = compact(c)
+    if c.object_raw and c.object_raw != c.object:
+        out += f' · raw object "{c.object_raw}"'
+    return out
+
+
+def _extracted_lines(finding, built: dict[str, Built]) -> list[str]:
+    seen, out = set(), []
+    for ev in finding.evidence:
+        for q in (ev.a, ev.b):
+            if (q.skill_id, q.line_no) in seen:
+                continue
+            seen.add((q.skill_id, q.line_no))
+            for c in built[q.skill_id].constraints:
+                if c.evidence.line_no == q.line_no:
+                    out.append(f"  - `{q.skill_id}:{q.line_no}` {describe(c)}")
+    return out
+
+
 def render_review(result: BuildResult) -> str:
     found = informative_findings(result)
     by_kind = Counter(f.kind for f, _, _ in found)
     recs = {b.record.id: b.record for b in result.skills}
+    built = {b.record.id: b for b in result.skills}
     out = [
         "# Informative pairs for review",
         "",
@@ -219,6 +242,8 @@ def render_review(result: BuildResult) -> str:
             "",
             f"- tiers {ra.tier} / {rb.tier} · {ra.source_url} · {rb.source_url}",
             "- [ ] correct",
+            "- extracted as:",
+            *_extracted_lines(finding, built),
             "",
             "```",
             render_finding(finding),
