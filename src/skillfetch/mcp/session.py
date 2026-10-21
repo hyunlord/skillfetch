@@ -9,17 +9,22 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from pathlib import Path
 
+from skillfetch.index.fetch import BodyCache, FetchError
 from skillfetch.index.loader import Index
 from skillfetch.index.search import DEFAULT_TIERS, Searcher
 from skillfetch.ingest.extract import DEFAULT_MODEL
 from skillfetch.ingest.extract_cache import DEFAULT_CACHE_DIR, ExtractCache
 from skillfetch.ingest.injection import scan_skill
 from skillfetch.ingest.lint import lint_skill
-from skillfetch.ingest.skillfile import content_hash
+from skillfetch.ingest.skillfile import content_hash, read_skill
 from skillfetch.resolve import resolve_set
 from skillfetch.resolve.models import Skill
 
 PATH_PREFIX = "path:"
+# constraints.md §5 step 4
+PRECEDENCE_HEADER = (
+    "Skills are listed in precedence order. If two instructions disagree, follow the earlier one."
+)
 
 
 @dataclass
@@ -38,6 +43,7 @@ class Session:
     index: Index
     extract_cache: ExtractCache = field(default_factory=lambda: ExtractCache(DEFAULT_CACHE_DIR))
     model: str = DEFAULT_MODEL
+    bodies: BodyCache = field(default_factory=BodyCache)
     searcher: Searcher | None = None
     resolutions: dict[str, dict] = field(default_factory=dict)  # set_id -> resolve_set output
     local: dict[str, LocalSkill] = field(default_factory=dict)
@@ -114,3 +120,46 @@ class Session:
         out = {**resolution, "notes": notes, "errors": errors}
         self.resolutions[resolution["set_id"]] = out
         return out
+
+    # --- load_skills ---------------------------------------------------------------------------
+
+    def _folder(self, skill_id: str) -> Path:
+        if skill_id in self.local:
+            local = self.local[skill_id]
+            if content_hash(local.dir) != local.content_hash:
+                raise FetchError("changed on disk since resolve_set; resolve again")
+            return local.dir
+        return self.bodies.materialize(self.index.records[skill_id])
+
+    def load_skills(self, set_id: str) -> dict:
+        resolution = self.resolutions.get(set_id)
+        if resolution is None:
+            return {"set_id": set_id, "error": "unknown set_id; call resolve_set first"}
+        sections, loaded, errors = [], [], []
+        for skill_id in resolution["precedence"]:
+            try:
+                folder = self._folder(skill_id)
+            except FetchError as exc:
+                errors.append({"id": skill_id, "error": str(exc)})  # refused: no body
+                continue
+            doc = read_skill(folder)
+            body = "\n".join(doc.body_lines).strip()
+            record = self.index.records.get(skill_id, {})
+            title = record.get("title") or (doc.frontmatter or {}).get("name") or skill_id
+            sections.append(f"## {len(sections) + 1}. {title} ({skill_id})\n\n{body}")
+            loaded.append(
+                {
+                    "id": skill_id,
+                    "title": title,
+                    "path": str(folder),
+                    "token_estimate": len(body) // 4,
+                }
+            )
+        content = "\n\n".join([PRECEDENCE_HEADER, *sections]) if sections else ""
+        return {
+            "set_id": set_id,
+            "precedence_header": PRECEDENCE_HEADER,
+            "skills": loaded,
+            "content": content,
+            "errors": errors,
+        }
