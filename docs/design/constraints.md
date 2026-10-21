@@ -514,8 +514,19 @@ verdicts: conflict and tension → conflict; needs_review → carve_out or
 situational; redundant and subsumes → independent. The report
 (`<index>-reports/judge.md`, `judgments.jsonl`) crosses the §3 row behind each
 pair (`relation.relation_reason`; for capped conflicts, row 14's reason) with
-the verdict and lists every `ambiguous_together` pair with its lines. The
-judge never changes an index or a `resolve_set` result.
+the verdict and lists every `ambiguous_together` pair with its lines.
+
+**Stored verdicts (stage 2).** `judge --index` also writes the verdicts into the
+index as `pairs.jsonl` (`resolve.models.PairVerdict`: both skill ids, the rules'
+relation and §3 row, verdict, reason, `ambiguous_together`, confidence, judge
+key and version, input hash; covered by the manifest). `judge --import
+<judgments.jsonl> --into <index> --model <key>` stores an earlier report the
+same way — the 2011 `openrouter/anthropic/claude-sonnet-5.5` verdicts of the
+first full build were imported, not re-run. A rebuild carries a verdict over
+while both skill ids (which pin content) are still indexed. `resolve_set`
+drops a tension / needs_review warning whose pair is judged `independent` and
+counts it in `suppressed_by_judge`. Nothing is promoted: a judge `conflict`
+never excludes a skill, and verdicts never touch conflicts or redundancy.
 
 ### 8.1 Obedience split test
 

@@ -13,7 +13,7 @@ from skillfetch.ingest.judge import VERDICTS, Item, Outcome, Side, agrees, pair_
 from skillfetch.ingest.local_scan import pair_finding
 from skillfetch.ingest.skillfile import SKILL_FILE, read_skill, read_text
 from skillfetch.resolve import relation
-from skillfetch.resolve.models import Constraint, Finding, Skill
+from skillfetch.resolve.models import Constraint, Finding, PairVerdict, Skill
 from skillfetch.resolve.relation import candidate_pairs, relation_reason
 
 
@@ -237,3 +237,57 @@ def write_judge_report(
     path = report_dir / "judge.md"
     path.write_text("\n".join(text) + "\n")
     return path
+
+
+def pair_rows(pairs: list[JudgePair], outcomes: list[Outcome]) -> list[dict]:
+    """pairs.jsonl rows (resolve.models.PairVerdict) for every judged pair."""
+    by_key = {o.key: o for o in outcomes}
+    rows = []
+    for p in pairs:
+        o = by_key.get(p.key)
+        if not o or not o.record or not o.record.judgment:
+            continue
+        j = o.record.judgment
+        a, b = p.key.split("|")
+        rows.append(
+            PairVerdict(
+                a=a,
+                b=b,
+                rules=p.kind,
+                row=p.reason,
+                verdict=j.verdict,
+                reason=j.reason,
+                ambiguous_together=j.ambiguous_together,
+                confidence=j.confidence,
+                judge=o.record.model,
+                judge_version=o.record.judge_version,
+                input_sha256=o.record.input_sha256,
+            ).model_dump(mode="json")
+        )
+    return rows
+
+
+def import_judgments(path: Path, judge: str, judge_version: int) -> list[dict]:
+    """pairs.jsonl rows from a judge report's judgments.jsonl (judgments made before the
+    index kept them, e.g. the 2011 claude-sonnet-5.5 verdicts of the first full build)."""
+    rows = []
+    for line in path.read_text().splitlines():
+        r = json.loads(line)
+        if r.get("verdict") is None:
+            continue
+        a, b = r["pair"].split("|")
+        rows.append(
+            PairVerdict(
+                a=a,
+                b=b,
+                rules=r["rules"],
+                row=r["row"],
+                verdict=r["verdict"],
+                reason=r["reason"],
+                ambiguous_together=r["ambiguous_together"],
+                confidence=r["confidence"],
+                judge=judge,
+                judge_version=judge_version,
+            ).model_dump(mode="json")
+        )
+    return rows

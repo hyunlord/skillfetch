@@ -9,7 +9,7 @@ from pathlib import Path
 
 from skillfetch.ingest import backends, credentials, extract
 from skillfetch.ingest import judge as judge_mod
-from skillfetch.ingest.build import build_index, render_summary
+from skillfetch.ingest.build import build_index, render_summary, write_pairs
 from skillfetch.ingest.build_report import write_reports
 from skillfetch.ingest.calibrate import calibrate, render_calibration
 from skillfetch.ingest.extract_cache import DEFAULT_CACHE_DIR, ExtractCache
@@ -136,6 +136,14 @@ def main(argv: Sequence[str] | None = None) -> int:
     target = judge.add_mutually_exclusive_group(required=True)
     target.add_argument("--calibrate", type=Path, metavar="FIXTURES", help="fixture dir")
     target.add_argument("--index", type=Path, help="a built index (with its -reports dir)")
+    target.add_argument(
+        "--import",
+        dest="import_from",
+        type=Path,
+        metavar="JUDGMENTS",
+        help="store an earlier judge report's judgments.jsonl as the pairs.jsonl of --into",
+    )
+    judge.add_argument("--into", type=Path, help="with --import: the index to store them in")
     judge.add_argument("--work-dir", type=Path, default=DEFAULT_WORK_DIR, help="snapshots")
     judge.add_argument("--model", default=judge_mod.DEFAULT_JUDGE_MODEL)
     judge.add_argument(
@@ -301,6 +309,16 @@ class _NoAPI:
 def _judge(args: argparse.Namespace) -> int:
     from skillfetch.ingest import judge_run
 
+    if args.import_from is not None:
+        if args.into is None:
+            print("skillfetch: --import needs --into <index>", file=sys.stderr)
+            return 2
+        rows = judge_run.import_judgments(
+            args.import_from, backends.backend_key(args.model), judge_mod.JUDGE_VERSION
+        )
+        path = write_pairs(args.into, rows)
+        print(f"{len(rows)} verdicts by {backends.backend_key(args.model)} -> {path}")
+        return 0
     if args.calibrate is not None:
         pairs = judge_run.fixture_pairs(args.calibrate)
     else:
@@ -339,6 +357,8 @@ def _judge(args: argparse.Namespace) -> int:
         return 0 if ok and not failed else 1
     report_dir = args.index.with_name(args.index.name + "-reports")
     path = judge_run.write_judge_report(pairs, outcomes, report_dir, summary)
+    stored = write_pairs(args.index, judge_run.pair_rows(pairs, outcomes))
+    print(f"verdicts: {stored}")
     print(summary)
     print(f"report: {path}")
     return 0 if not failed else 1

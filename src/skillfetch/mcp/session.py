@@ -128,7 +128,7 @@ class Session:
         errors: list[dict] = []
         pinned = [s for i in pinned_ids or [] if (s := self._skill(i, notes, errors))]
         auto = [s for i in auto_ids if (s := self._skill(i, notes, errors))]
-        resolution = resolve_set(auto, pinned).model_dump(mode="json")
+        resolution = resolve_set(auto, pinned, self.index.verdicts()).model_dump(mode="json")
         out = {**resolution, "notes": notes, "errors": errors}
         self.resolutions[resolution["set_id"]] = out
         return out

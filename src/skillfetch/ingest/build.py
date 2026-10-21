@@ -394,7 +394,47 @@ def _write_jsonl(path: Path, rows: list[dict]) -> None:
     path.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows))
 
 
-def _write_index(tmp: Path, result_skills: list[Built], groups: dict, manifest: dict) -> None:
+PAIRS_FILE = "pairs.jsonl"
+
+
+def carry_pairs(previous: Path, indexed_ids: set[str]) -> list[dict]:
+    """Judge verdicts of the previous index (constraints.md §8) whose two skills are still
+    indexed. Skill ids pin the content (`<name>@<hash12>`), so a verdict stays valid while
+    neither skill changes."""
+    path = previous / PAIRS_FILE
+    if not path.is_file():
+        return []
+    rows = [json.loads(line) for line in path.read_text().splitlines() if line.strip()]
+    return [r for r in rows if r["a"] in indexed_ids and r["b"] in indexed_ids]
+
+
+def write_manifest_files(root: Path, manifest: dict) -> None:
+    """Hash every file of the index into the manifest and write it."""
+    manifest["files"] = {
+        p.relative_to(root).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
+        for p in sorted(root.rglob("*"))
+        if p.is_file() and p.name != "manifest.json"
+    }
+    (root / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
+
+
+def write_pairs(root: Path, rows: list[dict]) -> Path:
+    """Write an index's pairs.jsonl (sorted by pair) and refresh the manifest hashes."""
+    rows = sorted(rows, key=lambda r: (r["a"], r["b"]))
+    _write_jsonl(root / PAIRS_FILE, rows)
+    manifest = json.loads((root / "manifest.json").read_text())
+    manifest["judged_pairs"] = len(rows)
+    write_manifest_files(root, manifest)
+    return root / PAIRS_FILE
+
+
+def _write_index(
+    tmp: Path,
+    result_skills: list[Built],
+    groups: dict,
+    manifest: dict,
+    previous: Path | None = None,
+) -> None:
     indexed = sorted((b for b in result_skills if b.record.tier), key=lambda b: b.record.id)
     rejected = sorted((b for b in result_skills if not b.record.tier), key=lambda b: b.record.id)
     _write_jsonl(tmp / "skills.jsonl", [b.record.model_dump(mode="json") for b in indexed])
@@ -408,13 +448,10 @@ def _write_index(tmp: Path, result_skills: list[Built], groups: dict, manifest: 
         ],
     )
     (tmp / "dupgroups.json").write_text(json.dumps(groups, indent=2, sort_keys=True) + "\n")
-    files = {
-        p.relative_to(tmp).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
-        for p in sorted(tmp.rglob("*"))
-        if p.is_file()
-    }
-    manifest["files"] = files
-    (tmp / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
+    if previous is not None and (kept := carry_pairs(previous, {b.record.id for b in indexed})):
+        _write_jsonl(tmp / PAIRS_FILE, sorted(kept, key=lambda r: (r["a"], r["b"])))
+        manifest["judged_pairs"] = len(kept)
+    write_manifest_files(tmp, manifest)
 
 
 def build_index(
@@ -534,7 +571,7 @@ def build_index(
     tmp = out_dir.with_name(out_dir.name + ".tmp")
     shutil.rmtree(tmp, ignore_errors=True)
     tmp.mkdir(parents=True)
-    _write_index(tmp, skills, groups, manifest)
+    _write_index(tmp, skills, groups, manifest, previous=out_dir if out_dir.is_dir() else None)
     old = out_dir.with_name(out_dir.name + ".old")
     shutil.rmtree(old, ignore_errors=True)
     if out_dir.exists():

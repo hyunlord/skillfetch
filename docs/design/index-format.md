@@ -307,6 +307,7 @@ index/
   constraints.jsonl       one line per constraint, keyed by skill id (denormalized for resolve/)
   dupgroups.json          {canonical_id: [member_ids]}
   rejected.jsonl          records that failed lint or the injection scan
+  pairs.jsonl             optional: judge verdicts for pairs the rules left open (constraints.md §8)
 ```
 
 No `bodies/`, `assets/` or `bm25/`: bodies are fetched at runtime (§1.8), and

@@ -7,7 +7,7 @@ import json
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from skillfetch.resolve.models import Constraint, Skill
+from skillfetch.resolve.models import Constraint, PairVerdict, Skill
 
 DEFAULT_INDEX_DIR = Path("~/.skillfetch/index").expanduser()
 REQUIRED = ("manifest.json", "skills.jsonl", "constraints.jsonl")
@@ -28,6 +28,7 @@ class Index:
     records: dict[str, dict]  # skill id -> skills.jsonl record
     constraints: dict[str, list[Constraint]] = field(default_factory=dict)
     dupgroups: dict[str, list[str]] = field(default_factory=dict)
+    pairs: dict[frozenset[str], PairVerdict] = field(default_factory=dict)  # pairs.jsonl
 
     @classmethod
     def load(cls, root: Path) -> Index:
@@ -49,7 +50,16 @@ class Index:
             constraints.setdefault(sid, []).append(Constraint.model_validate(row))
         groups_path = root / "dupgroups.json"
         dupgroups = json.loads(groups_path.read_text()) if groups_path.is_file() else {}
-        return cls(root, manifest, records, constraints, dupgroups)
+        pairs_path = root / "pairs.jsonl"
+        pairs = {}
+        if pairs_path.is_file():
+            for row in _jsonl(pairs_path):
+                verdict = PairVerdict.model_validate(row)
+                pairs[verdict.key] = verdict
+        return cls(root, manifest, records, constraints, dupgroups, pairs)
+
+    def verdicts(self) -> dict[frozenset[str], str]:
+        return {key: p.verdict for key, p in self.pairs.items()}
 
     def skill(self, skill_id: str) -> Skill:
         """The resolve/ view of an indexed skill (constraints carry their fan_out flags)."""

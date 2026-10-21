@@ -57,7 +57,7 @@ class MetaOracle(OracleClient):
 def make_index(tmp_path: Path, names=NAMES, *, trust="verified") -> Path:
     src = tmp_path / "src"
     for name in names:
-        shutil.copytree(SKILLS_DIR / name, src / "skills" / name)
+        shutil.copytree(SKILLS_DIR / name, src / "skills" / name, dirs_exist_ok=True)
         (src / "skills" / name / "LICENSE").write_text(
             "MIT License\n\nPermission is hereby granted"
         )
