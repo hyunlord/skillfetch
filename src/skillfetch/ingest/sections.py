@@ -26,6 +26,7 @@ _NEGATIVE_LABEL = re.compile(
     r"bad (?:practices?|examples?|patterns?))$",
     re.IGNORECASE,
 )
+_MARKED_LABEL = re.compile(r"^(?:|wrong|bad|incorrect|no)$", re.IGNORECASE)
 _POSITIVE = re.compile(r"✅|✔|☑|(?<![\w'])(?:do'?s|do and|dos and|do/)(?![\w'])", re.IGNORECASE)
 # A line that negates on its own restates the ban ("- Don't skip tests" under "Don'ts").
 _LINE_NEGATION = re.compile(
@@ -72,8 +73,12 @@ def negative_section(heading: str | None) -> bool:
     text = heading.replace("’", "'")
     if _POSITIVE.search(text):
         return False
-    label = re.sub(r"^[\W\d_]+|[\W\d_]+$", "", text)
-    return bool(_NEGATIVE_MARK.search(text) or _NEGATIVE_LABEL.match(label))
+    label = re.sub(r"^[\W\d_]+|[\W\d_]+$", "", _NEGATIVE_MARK.sub("", text))
+    if _NEGATIVE_LABEL.match(label):
+        return True
+    # A marker only with a label or nothing else: "⛔ DO NOT start until you read the docs"
+    # is an instruction, and the lines below it say what to do.
+    return bool(_NEGATIVE_MARK.search(text)) and bool(_MARKED_LABEL.match(label))
 
 
 def apply_sections(

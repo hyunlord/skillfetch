@@ -190,7 +190,8 @@ than `logging`, and as `logging` it would read as a blanket ban.
 - Section headings (`ingest/sections.py`, after the evidence check): every
   constraint records the markdown heading its line falls under
   (`section_heading`; a bold label line such as `**Never:**` heads the block
-  right below it). Under a heading that names what not to do — a ❌/🚫 marker,
+  right below it). Under a heading that names what not to do — a ❌/🚫 marker
+  alone or with "wrong"/"bad",
   or a heading that is only a label such as "Don't", "Avoid", "Anti-patterns",
   "Common mistakes"; not "Do's and Don'ts", not "Never hardcode secrets" — the
   directive is inverted (require ↔ forbid, prefer ↔ avoid), unless the line

@@ -54,6 +54,10 @@ def test_each_line_gets_its_heading():
         ("Mistakes to avoid", True),
         ("Never", True),
         ("❌ Bad", True),
+        ("Don'ts ❌", True),
+        ("❌", True),
+        ("⛔ DO NOT start development until you read the relevant files", False),
+        ("❌ Breaking on Updates", False),
         ("Do's and Don'ts", False),  # mixed list
         ("✅ Do", False),
         ("Never hardcode secrets", False),  # an instruction, with explanation below
