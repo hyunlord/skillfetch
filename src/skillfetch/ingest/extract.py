@@ -470,7 +470,7 @@ def apply_vocabulary(constraints: list[Constraint]) -> tuple[list[Constraint], l
             c = c.model_copy(update={"subject": normalized})
         term = lookup(c.subject)
         condition = c.scope.condition
-        if condition is not None and condition_is_clause(condition):
+        if condition is not None and condition_is_clause(condition, c.evidence.text):
             notes.append(f"line {line}: condition {condition!r} -> null (reads like a clause)")
             c = c.model_copy(update={"scope": c.scope.model_copy(update={"condition": None})})
         negative = term is not None and term.polarity == "negative"

@@ -140,6 +140,8 @@ def test_implied_artifact(subject, obj, artifact):
         "vite/rollup",
         "feature work",  # kept since v6: not a clause, and a mismatch is only needs_review
         "bug fixes",
+        "US transfers",  # data-flow-mapping: an acronym, not the pronoun "us"
+        "IT assets",
     ],
 )
 def test_names_and_noun_phrases_are_kept(condition):
@@ -154,8 +156,16 @@ def test_names_and_noun_phrases_are_kept(condition):
         "if it reads better",
         "the brief is unclear",
         "once a team is selected",
+        "if we ship to the us",  # lowercase "us" is still a pronoun
         "the user asks for a font outside the safe list",
     ],
 )
 def test_clauses_are_not_conditions(condition):
     assert condition_is_clause(condition)
+
+
+def test_an_acronym_on_the_evidence_line_is_not_a_pronoun():
+    # data-flow-mapping:87 "Is the importer DPF-certified (for US transfers)?"
+    line = "2. Check: Is the importer DPF-certified (for US transfers)?"
+    assert not condition_is_clause("us transfers", line)
+    assert condition_is_clause("us transfers")  # without the evidence: still a pronoun
