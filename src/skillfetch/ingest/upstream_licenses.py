@@ -30,6 +30,15 @@ from skillfetch.ingest.licenses import REDISTRIBUTABLE, classify_text
 DEFAULT_CACHE = Path("~/.skillfetch/upstream-licenses").expanduser()
 _LICENSE_FILE = re.compile(r"^(?:licen[cs]e|copying)(?:\.(?:md|txt|rst))?$", re.IGNORECASE)
 _GITHUB = re.compile(r"^https?://github\.com/([^/]+)/([^/#?]+?)(?:\.git)?/?$")
+# owner and repo name as GitHub allows them; they go into API paths and a cache file name
+_OWNER = re.compile(r"^[A-Za-z0-9](?:[A-Za-z0-9-]{0,38})$")
+_REPO = re.compile(r"^[A-Za-z0-9._-]{1,100}$")
+
+
+def _safe_repo(owner: str, name: str) -> bool:
+    return bool(_OWNER.match(owner) and _REPO.match(name)) and ".." not in name and name != "."
+
+
 LicenseSource = Literal["explicit", "upstream_no_license", "upstream_unknown"]
 
 
@@ -71,6 +80,8 @@ def read_repo(client: GitHubClient, repo_url: str, cache_dir: Path = DEFAULT_CAC
     if m is None:
         return RepoLicenses(repo_url, "unreachable")
     owner, name = m.groups()
+    if not _safe_repo(owner, name):  # "..", "?", "%2e", ...: never a path or a query
+        return RepoLicenses(repo_url, "unreachable")
     cached = cache_dir / f"{owner}__{name}.json"
     if cached.is_file():
         data = json.loads(cached.read_text())

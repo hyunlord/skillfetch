@@ -347,10 +347,16 @@ def _same_constraints(a: list[Constraint], b: list[Constraint]) -> bool:
     )
 
 
+def _norm_name(name: str) -> str:
+    return re.sub(r"[\s_-]+", "-", name.strip().lower())
+
+
 def dedup(skills: list[Built]) -> dict[str, list[str]]:
     """Duplicate groups (§1.6) as {canonical_id: [member ids]}; sets canonical_id on
-    every record. Identical content, or keyword Jaccard >= 0.8 with equal constraints.
-    Canonical: verified publisher first, then the newest commit, then the smallest id."""
+    every record. Identical content; keyword Jaccard >= 0.8 with equal constraints; or the
+    same normalized name from the same publisher at different commits (rule 3, the newest
+    is canonical). Canonical: verified publisher first, then the newest commit, then the
+    smallest id."""
     parent = {b.record.id: b.record.id for b in skills}
 
     def find(x: str) -> str:
@@ -361,9 +367,17 @@ def dedup(skills: list[Built]) -> dict[str, list[str]]:
 
     for a, b in combinations(skills, 2):
         ra, rb = a.record, b.record
-        same = ra.content_hash == rb.content_hash or (
-            _jaccard(ra.keywords, rb.keywords) >= KEYWORD_JACCARD
-            and _same_constraints(a.constraints, b.constraints)
+        same = (
+            ra.content_hash == rb.content_hash
+            or (
+                _jaccard(ra.keywords, rb.keywords) >= KEYWORD_JACCARD
+                and _same_constraints(a.constraints, b.constraints)
+            )
+            or (
+                ra.publisher == rb.publisher
+                and ra.commit != rb.commit
+                and _norm_name(ra.name) == _norm_name(rb.name)
+            )
         )
         if same:
             parent[find(ra.id)] = find(rb.id)

@@ -67,7 +67,7 @@ skillfetch/
     index/                      index loading, BM25 search, tag filters
     resolve/                    conflict/redundancy resolution
     mcp/                        MCP server exposing the tool surface below
-    cli.py                      `skillfetch ingest|scan|search|sync|serve`
+    cli.py                      `skillfetch scan|ingest|judge|obedience|sync|serve`
   assets/
     router-skill/SKILL.md       the one always-on skill the user installs
     runner-agent.md             the one subagent definition for isolation mode
@@ -80,27 +80,33 @@ Python 3.11+, `uv` for env, `ruff` for lint, `pytest`. Single package, no
 monorepo. Keep dependencies minimal: `mcp`, `pyyaml`, `rank-bm25` (or a tiny
 hand-rolled BM25), `anthropic` (ingest only, optional extra), `pydantic`.
 
-## MCP tool surface (v0.1)
+## MCP tool surface
+
+Built (v0.2): `profile_repo`, `search_skills`, `resolve_set`, `load_skills`.
+Planned for v0.3, not built: `prepare_set`, `report_outcome`.
 
 | tool | input | output |
 |---|---|---|
 | `profile_repo(path)` | repo root | `{languages, frameworks, package_managers, tags[]}` from manifest files only (package.json, pyproject.toml, go.mod, Cargo.toml, framework config files). Never scans source. Cached per session. |
 | `search_skills(query, profile?, k=10, tiers=["A","B"])` | task description written by the host model + optional profile | ranked candidates: `{id, title, summary, tier, tags, match_reasons[], token_estimate}` |
 | `resolve_set(auto_ids[], pinned_ids[])` | candidate ids chosen by the host model, plus user-pinned ids | `{set_id, included[], excluded[{id, reason, conflicts_with}], warnings[], precedence[]}` |
-| `load_skills(set_id)` | | bodies concatenated with a precedence header, for injection into the current context. Each body is fetched from the skill's pinned source (unless cached), verified against the index hashes, and cached under `~/.skillfetch/cache/<content_hash>/`; a mismatch is refused with a structured error. |
-| `prepare_set(set_id)` | | `{prompt_block, materialized_paths{}}` for the isolation runner; the folder is fetched and verified like `load_skills` and materialized under `~/.skillfetch/cache/<content_hash>/` |
-| `report_outcome(set_id, ok: bool, note?)` | | ack. v0.1 only appends to a local JSONL log; nothing reads it yet. |
+| `load_skills(set_id, max_tokens=8000)` | | bodies concatenated with a precedence header, for injection into the current context. Each body is fetched from the skill's pinned source (unless cached), verified against the index hashes, and cached under `~/.skillfetch/cache/<content_hash>/`; a mismatch or fetch failure refuses that skill with a structured error and the others still load. Over `max_tokens` the lowest-precedence skills are dropped (listed in `errors`). |
+| `prepare_set(set_id)` (v0.3) | | `{prompt_block, materialized_paths{}}` for the isolation runner; the folder is fetched and verified like `load_skills` and materialized under `~/.skillfetch/cache/<content_hash>/` |
+| `report_outcome(set_id, ok: bool, note?)` (v0.3) | | ack. Only appends to a local JSONL log; nothing reads it yet. |
 
 Rules:
 
 - `search_skills` does BM25 over `title + description + keywords + synthetic_queries +
-  summary` (bodies are not in the index). Profile tags are a boost/filter, never part
-  of the query string.
+  summary` (bodies are not in the index); tokens are Unicode words, CJK runs as
+  2-grams. Profile tags are a boost/filter, never part of the query string.
 - `resolve_set` follows `docs/design/constraints.md` exactly. Pinned beats auto.
   Pinned-vs-pinned conflicts are reported, never auto-resolved.
-- Pinned ids may be local paths (`path:/abs/path/to/skill`). Those are ingested
-  ad hoc (lint + scan + extract) and cached; if extraction needs the API and no
-  key is present, include them with a warning and empty constraints.
+- Pinned ids may be local paths (`path:/abs/path/to/skill`). Those are linted and
+  injection-scanned at resolve time (a failure refuses them); their constraints come
+  from the extract cache when it has them (`skillfetch ingest <dir> --with-api` puts
+  them there). The server never extracts: without a cache entry the skill is included
+  with a note and no constraints, so it is not conflict-checked.
+- `resolve_set` uses the conflict cap the index was built with (`manifest.conflict_cap`).
 - Every tool returns JSON. No prose in tool results.
 
 ## Router skill (`assets/router-skill/SKILL.md`)
@@ -109,12 +115,13 @@ The only skill a user installs. Short (< 60 lines). It tells the host model:
 
 1. Before non-trivial work, restate the task in one sentence including stack and
    target files, then call `search_skills` with that sentence.
-2. Pick 1–3 candidates by reading the summaries. If the user named a skill, pass
-   it as pinned.
-3. Call `resolve_set`, then `load_skills` (default) or `prepare_set` + delegate to
-   the `skillfetch-runner` subagent when the task is self-contained and the user
-   asked for isolation (or the project config sets `isolate: true`).
-4. After the task, call `report_outcome`.
+2. Pick 1–3 candidates by reading the summaries, weighing `token_estimate` against
+   `load_skills`' budget. If the user named a skill, find its id with
+   `search_skills` (the result whose title matches) and pass it as pinned.
+3. Call `resolve_set`, then `load_skills` (default). From v0.3: `prepare_set` +
+   delegate to the `skillfetch-runner` subagent when the task is self-contained and
+   the user asked for isolation (or the project config sets `isolate: true`).
+4. From v0.3, after the task, call `report_outcome`.
 5. Do not search for trivial edits (typos, renames, one-line fixes).
 
 ## Runner agent (`assets/runner-agent.md`)
