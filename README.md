@@ -17,14 +17,14 @@ skill to the index by content hash, so it needs no model and no API key:
 
 ```console
 $ uvx --from git+https://github.com/hyunlord/skillfetch skillfetch sync
-installed: ~/.skillfetch/index from hyunlord/skillfetch@index-2026-10-21 (skillfetch-index-20261021T164858Z.tar.gz) · 1724 skills · built 2026-10-21T16:48:58Z · extraction openrouter/openai/gpt-6-luna
+installed: ~/.skillfetch/index from hyunlord/skillfetch@index-2026-10-22 (skillfetch-index-20261022T044524Z.tar.gz) · 1724 skills · built 2026-10-22T04:45:24Z · extraction openrouter/openai/gpt-6-luna
 $ uvx --from git+https://github.com/hyunlord/skillfetch skillfetch scan .claude/skills
 skillfetch scan .claude/skills
-30 skills · lint: 30 ok, 0 failed · injection scan: 30 ok, 0 failed, 22 with warnings · scripts: 4
+30 skills · lint: 30 ok, 0 failed · injection scan: 30 ok, 0 failed, 21 with warnings · scripts: 4
 constraints: 30 analyzed (index 30), 0 skipped
 index: ~/.skillfetch/index (1724 skills, extraction openrouter/openai/gpt-6-luna)
 
-[… 2 LINT_WARNING, 22 SCAN_WARNING (bare URLs) and 4 HAS_SCRIPTS blocks …]
+[… 2 LINT_WARNING, 21 SCAN_WARNING (bare URLs) and 4 HAS_SCRIPTS blocks …]
 
 NEEDS_REVIEW  eval-harness ⟷ receiving-code-review
   subject: implementation   scope: code / implement
