@@ -348,11 +348,13 @@ def costs(out: list[str]) -> None:
     header = len(jsonl(header_path)) if header_path.is_file() else 0
     resolved_path = DATA / "obedience" / "trials-resolved.jsonl"
     named = len(jsonl(resolved_path)) if resolved_path.is_file() else 0
+    strip_path = DATA / "obedience" / "trials-strip.jsonl"
+    stripped = len(jsonl(strip_path)) if strip_path.is_file() else 0
     out += [
         "Claude Code sessions (API-price equivalent reported by Claude Code, billed to the "
         "Claude Code plan, not OpenRouter): obedience agent runs "
         f"{len(runs)} ({plain} without a precedence header, §6; {header} with one, §8; "
-        f"{named} with a resolved-conflict block, §9), "
+        f"{named} with a resolved-conflict block, §9; {stripped} with stripped lines, §10), "
         f"${session_cost(runs):.2f}; {len(discarded)} runs of two earlier "
         "batches discarded for harness problems (no note that the session has no tools; then "
         f"a note that discouraged asking), ${session_cost(discarded):.2f}; "
@@ -411,6 +413,87 @@ def resolved(out: list[str]) -> None:
     ]
 
 
+def _winner(rows: list[dict]) -> str | None:
+    dist = Counter(r["followed"] for r in rows)
+    if dist["a"] == dist["b"]:
+        return None
+    return "a" if dist["a"] > dist["b"] else "b"
+
+
+def three_conditions(out: list[str]) -> None:
+    """§10: the header (§8), block (§9) and strip runs side by side."""
+    out += ["## 10. Header, block and stripped lines (experiments A, A2, A3)", ""]
+    files = {
+        "header": DATA / "obedience" / "trials-precedence.jsonl",
+        "block": DATA / "obedience" / "trials-resolved.jsonl",
+        "strip": DATA / "obedience" / "trials-strip.jsonl",
+    }
+    if not all(f.is_file() for f in files.values()):
+        out += ["Not run yet.", ""]
+        return
+    by: dict[tuple[str, str], list[dict]] = defaultdict(list)
+    conds: dict[str, list[str]] = {}
+    for name, path in files.items():
+        rows = jsonl(path)
+        conds[name] = list(dict.fromkeys(r["precedence"] for r in rows))
+        for r in rows:
+            by[(r["precedence"], r["pair"])].append(r)
+    base: dict[str, list[dict]] = defaultdict(list)
+    for r in jsonl(DATA / "obedience" / "trials.jsonl"):
+        base[r["pair"]].append(r)
+    pairs = list(base)
+
+    def first(cond: str) -> str:
+        return cond[-1] if cond.startswith(("resolved-", "strip-")) else cond[0]
+
+    out += [
+        "Sources: `data/obedience/trials-precedence.jsonl` (§8), `trials-resolved.jsonl` (§9), "
+        "`trials-strip.jsonl`; `skillfetch obedience ... --precedence strip-a --precedence "
+        "strip-b`. Strip: no header and no block; in the losing skill's body each of the "
+        "pair's evidence lines (as in §9) is replaced, not deleted, by `<!-- overridden by "
+        '<winner>: "<line>" -->` (strip-a: A wins; strip-b: B wins); the skills load A then '
+        "B. Same pairs, tasks, harness and classification as §6, §8 and §9. Controlled: the "
+        "followed skill is the one ranked (header) or named (block, strip) first. Turned "
+        "around: a pair whose §6 winner was ranked or named second and the other skill won "
+        "the majority of that condition's 5 runs.",
+        "",
+        "| condition | runs | controlled, all runs | controlled, one-skill runs | "
+        "§6 winners turned around | §6 winners kept |",
+        "|---|---|---|---|---|---|",
+    ]
+    for name in files:
+        for cond in conds[name]:
+            rows = [r for p in pairs for r in by[(cond, p)]]
+            hit = sum(r["followed"] == first(cond) for r in rows)
+            one = sum(r["followed"] in ("a", "b") for r in rows)
+            turned = kept = 0
+            for p in pairs:
+                w = _winner(base[p])
+                if w is None or first(cond) == w:
+                    continue
+                won = _winner(by[(cond, p)])
+                turned += won == first(cond)
+                kept += won == w
+            out.append(
+                f"| {name}: `{cond}` | {len(rows)} | {hit}/{len(rows)} ({hit / len(rows):.2f}) "
+                f"| {hit}/{one} | {turned} | {kept} |"
+            )
+    out += [
+        "",
+        "Per pair (controlled runs out of 5):",
+        "",
+        "| pair (A ⟷ B) | §6 winner | " + " | ".join(c for n in files for c in conds[n]) + " |",
+        "|---|---|" + "---|" * sum(len(c) for c in conds.values()),
+    ]
+    for p in pairs:
+        a, b = (x.split("/")[1].split("@")[0] for x in p.split("|"))
+        cells = [
+            str(sum(r["followed"] == first(c) for r in by[(c, p)])) for n in files for c in conds[n]
+        ]
+        out.append(f"| {a} ⟷ {b} | {_winner(base[p]) or 'tie'} | " + " | ".join(cells) + " |")
+    out.append("")
+
+
 def main() -> None:
     out = [
         "# Numbers for the write-up",
@@ -428,6 +511,7 @@ def main() -> None:
         costs,
         precedence,
         resolved,
+        three_conditions,
     ):
         section(out)
     OUT.parent.mkdir(parents=True, exist_ok=True)
