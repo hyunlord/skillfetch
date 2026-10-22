@@ -462,9 +462,13 @@ As built (`index/sync.py`):
   `tags.*`, multiply score by 1.3. Skills whose `tags.languages` is non-empty
   and disjoint from `profile.languages` are multiplied by 0.5 (soft filter, never
   dropped — a Rust skill may still be what the user wants).
-- Return top-k canonicals with `match_reasons`: which query tokens hit which
-  field, and which profile tags boosted. This is what makes the result
-  explainable; keep it.
+- Return the top k (default 50) canonicals. By default each result is compact —
+  id, title, the summary's first sentence (≤160 chars), tier, token_estimate — so
+  50 fit in about 4k tokens and the host model reads them all and picks 1–3 (the
+  expert's pick was in the BM25 top 3 for 7 of 34 real queries, top 50 for 24).
+  `verbose=true` adds the full summary, tags and `match_reasons`: which query
+  tokens hit which field, and which profile tags boosted. This is what makes the
+  result explainable; keep it.
 
 ## 5. Local scan mode
 

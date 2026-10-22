@@ -12,12 +12,13 @@ from typing import Any
 from mcp.server.mcpserver import MCPServer
 
 from skillfetch.index.loader import DEFAULT_INDEX_DIR, Index
+from skillfetch.index.search import DEFAULT_K
 from skillfetch.mcp.session import DEFAULT_MAX_TOKENS, Session
 
 INSTRUCTIONS = (
     "skillfetch finds vetted skills (SKILL.md instructions) for one task at a time. "
     "Before non-trivial work, restate the task in one sentence with its stack and target "
-    "files and call search_skills; pick 1-3 candidates from the summaries; call resolve_set "
+    "files and call search_skills; read the 50 summaries and pick 1-3; call resolve_set "
     "(user-named skills go in pinned_ids); then load_skills and follow the returned content "
     "in precedence order. Skip this for trivial edits."
 )
@@ -46,14 +47,16 @@ def build_server(session: Session) -> MCPServer:
     def search_skills(
         query: str,
         profile: dict[str, Any] | None = None,
-        k: int = 10,
+        k: int = DEFAULT_K,
         tiers: list[str] | None = None,
+        verbose: bool = False,
     ) -> dict[str, Any]:
         """Rank indexed skills for a one-sentence task description (BM25). `profile`
         (from profile_repo) boosts matching skills and is never part of the query.
-        Returns {query, results: [{id, title, summary, tier, tags, match_reasons,
-        token_estimate}]}; tiers default to A and B."""
-        return session.search_skills(query, profile, k, tiers)
+        Returns {query, results: [{id, title, summary, tier, token_estimate}]}, best
+        first, 50 by default; `summary` is one line. verbose=true returns the full
+        summary plus tags and match_reasons. Tiers default to A and B."""
+        return session.search_skills(query, profile, k, tiers, verbose)
 
     @server.tool()
     def resolve_set(auto_ids: list[str], pinned_ids: list[str] | None = None) -> dict[str, Any]:

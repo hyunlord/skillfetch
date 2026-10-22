@@ -12,7 +12,7 @@ from pathlib import Path
 from skillfetch.index.fetch import BodyCache, FetchError
 from skillfetch.index.loader import Index
 from skillfetch.index.profile import profile_repo
-from skillfetch.index.search import DEFAULT_TIERS, Searcher
+from skillfetch.index.search import DEFAULT_K, DEFAULT_TIERS, Searcher
 from skillfetch.ingest.extract import DEFAULT_MODEL
 from skillfetch.ingest.extract_cache import DEFAULT_CACHE_DIR, ExtractCache
 from skillfetch.ingest.injection import scan_skill
@@ -72,11 +72,13 @@ class Session:
         self,
         query: str,
         profile: dict | None = None,
-        k: int = 10,
+        k: int = DEFAULT_K,
         tiers: list[str] | None = None,
+        verbose: bool = False,
     ) -> dict:
         tiers = list(tiers or DEFAULT_TIERS)
-        return {"query": query, "results": self.searcher.search(query, profile, k, tiers)}
+        results = self.searcher.search(query, profile, k, tiers, verbose=verbose)
+        return {"query": query, "results": results}
 
     # --- resolve_set ---------------------------------------------------------------------------
 

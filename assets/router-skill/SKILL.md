@@ -37,8 +37,9 @@ with no other change, or answering a question without editing files.
    says the server is connecting.
 3. Call `profile_repo` with the repository root once per session (it reads manifest files
    only) and pass the result as `profile` to `search_skills`.
-4. Call `search_skills` with that sentence. Read the summaries and pick 1–3 candidates
-   that fit this task. Each result has a `token_estimate`: when two fit equally, take the
+4. Call `search_skills` with that sentence. It returns 50 one-line summaries, best BM25
+   match first: read all 50 and pick 1–3 that fit this task — the best fit is often not
+   near the top. Each result has a `token_estimate`: when two fit equally, take the
    smaller, and keep the set's total under `load_skills`' budget (8000 tokens by default).
 5. If the user named a skill ("use the pdf skill"), call `search_skills` with that name,
    take the id of the result whose title matches, and put it in `pinned_ids`. A local
