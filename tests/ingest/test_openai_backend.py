@@ -9,7 +9,7 @@ from conftest import SKILLS_DIR, FakeBadRequest, FakeOpenAIClient, write_skill
 
 import skillfetch.ingest.backends as backends_mod
 from skillfetch.cli import main
-from skillfetch.ingest.backends import OpenAICompatBackend, backend_key, parse_model
+from skillfetch.ingest.backends import OpenAICompatBackend, backend_key, make_backend, parse_model
 from skillfetch.ingest.credentials import openai_api_key, redact
 from skillfetch.ingest.extract import Extractor, MissingCredentials, Usage
 
@@ -297,3 +297,16 @@ def test_an_empty_schema_asks_for_free_text_at_default_temperature():
     backend.complete("sys", [{"role": "user", "content": "hi"}], {})
     [req] = client.requests
     assert "response_format" not in req and "temperature" not in req
+
+
+def test_a_custom_base_url_gets_the_key_only_when_asked(tmp_path, monkeypatch):
+    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+    creds = _creds(tmp_path, f"OPENAI_API_KEY={SECRET}\n")
+    local = make_backend("openai/m", base_url="http://localhost:9/v1", creds_file=creds)
+    assert local.client.api_key == "EMPTY"
+    sent = make_backend(
+        "openai/m", base_url="http://localhost:9/v1", creds_file=creds, send_key=True
+    )
+    assert sent.client.api_key == SECRET
+    official = make_backend("openai/m", creds_file=creds)
+    assert official.client.api_key == SECRET
