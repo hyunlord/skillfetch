@@ -141,7 +141,13 @@ class Session:
             if content_hash(local.dir) != local.content_hash:
                 raise FetchError("changed on disk since resolve_set; resolve again")
             return local.dir
-        return self.bodies.materialize(self.index.records[skill_id])
+        record = self.index.records[skill_id]
+        return self.bodies.materialize(record, allow_file=self._dir_source(record))
+
+    def _dir_source(self, record: dict) -> bool:
+        """file:// fetch bases are expected only from a `dir` source (manifest.sources)."""
+        kinds = {s.get("id"): s.get("kind") for s in self.index.manifest.get("sources") or []}
+        return kinds.get(record.get("source_id")) == "dir"
 
     def load_skills(self, set_id: str) -> dict:
         resolution = self.resolutions.get(set_id)

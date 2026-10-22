@@ -2,11 +2,14 @@
 
 from __future__ import annotations
 
+import re
 from pathlib import Path
 from typing import Literal
 
 import yaml
 from pydantic import BaseModel, ConfigDict, model_validator
+
+_ID = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
 
 
 class Source(BaseModel):
@@ -24,6 +27,13 @@ class Source(BaseModel):
     license: str = "per-skill"
     # Markdown file (relative to the snapshot) listing the source's third-party upstreams.
     third_party_doc: str | None = None
+
+    @model_validator(mode="after")
+    def _safe_id(self):
+        # the id names directories (work/<id>/, index ids): no separators, no traversal
+        if not _ID.match(self.id) or ".." in self.id:
+            raise ValueError(f"source id {self.id!r}: use letters, digits, '.', '_' and '-'")
+        return self
 
     @model_validator(mode="after")
     def _ref_for_git(self):

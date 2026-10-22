@@ -56,7 +56,17 @@ file in the skill folder. Same content under two sources → two records, same
 Normalization for the hash (`ingest/skillfile.py`): UTF-8, BOM stripped, line
 endings `\n`, trailing whitespace stripped per line, leading/trailing blank
 lines dropped. "Every file" excludes hidden files and folders, `node_modules/`,
-`__pycache__/`, and a top-level `constraints.json` sidecar (§5).
+`__pycache__/`, symbolic links, and a top-level `constraints.json` sidecar (§5).
+
+Git sources (`ingest/snapshot.py`) must have an `https://` URL (other git
+transports run code paths of their own, `ext::` among them), every git call
+puts `--` before the URL, and a ref may not start with `-`. Source ids name
+directories, so they are `[A-Za-z0-9][A-Za-z0-9._-]*` without `..`. A skill
+folder that cannot be read (a broken link, a non-object `.openskills.json`)
+becomes a `lint_failed` record (`lint.unreadable`) and the build goes on.
+Extraction errors stored in `skills.jsonl` are redacted (known keys and
+anything key-shaped); a provider's AuthenticationError / PermissionDenied
+stops the build instead of failing every skill.
 
 ### 1.3 Lint (static)
 
@@ -110,9 +120,21 @@ fail only in the combinations above.
 
 Implementation notes (`ingest/injection.py`, rules in `ingest/scan_rules.yaml`):
 
-- Scanned: `SKILL.md` plus every `.md/.markdown/.mdx/.txt` file in the folder.
-  Script files are tagged, not regex-scanned (they are code, and the `scripts`
-  tier cap already applies). A leading BOM is not an invisible character.
+- Scanned: `SKILL.md` plus every other `.md` file in the folder, license texts
+  excepted (`LICENSE`, `LICENCE`, `COPYING`, `NOTICE`, `OFL` stems: fonts ship
+  the OFL). Rules v5 dropped `.markdown/.mdx/.txt`: `.txt` was mostly license
+  texts. Script files are tagged, not regex-scanned (they are code, and the
+  `scripts` tier cap already applies). A leading BOM is not an invisible
+  character.
+- Symbolic links are never followed, read, hashed or scanned, and a folder
+  whose `SKILL.md` is a link is not a skill (`skillfile.py`): a snapshot of an
+  untrusted repo must not make the build read a file outside it.
+- Lines over 2000 characters are not matched; each is reported as a
+  `scan.line-too-long` warning with its first characters as evidence (rules
+  v5). A rule may set `within`, a second regex that must match inside the
+  first match; `exfil.remote-script-untrusted-url` uses it (pipe-to-shell,
+  then the untrusted URL inside it) instead of one regex that took 42 s on a
+  20k-character line.
 - `scripts` = any file under `scripts/`, any file with a script extension
   (`.sh .py .js .ts …`), or any executable file. The list is recorded as
   evidence for the tag.
@@ -295,7 +317,11 @@ for a `dir` source a `file://` path — verifies each file's sha256 against the
 manifest, and caches the folder under `~/.skillfetch/cache/<content_hash>/`.
 A cached folder is re-verified before use. Any mismatch, missing file or fetch
 error refuses that skill with a structured error and no body; the other skills
-of the set still load. This is the only network access at runtime (CLAUDE.md
+of the set still load. The record itself is input and is checked before use:
+`content_hash` must be a sha256 hex digest (it names the cache folder that is
+replaced), `fetch_base` must start with `https://raw.githubusercontent.com/`
+(`file://` only for skills of a source whose `manifest.sources[].kind` is
+`dir`), redirects must stay on the same host, and each file is capped at 8 MB. This is the only network access at runtime (CLAUDE.md
 non-goals): no other URL is ever requested, and nothing is executed.
 
 ## 2. Index layout
@@ -372,6 +398,10 @@ As built (`index/sync.py`):
   the old one, which stays in place on any failure. Same manifest → "already
   up to date". `GITHUB_TOKEN`/`GH_TOKEN`, if set, is sent to api.github.com
   only (rate limit), never to the download host, never printed.
+- Every read is capped (read(limit + 1)): the tarball and the sum of its
+  unpacked members at 64 MB, release listings and `.sha256` files at 8 MB.
+  Members are checked from their headers as the stream is read, before their
+  data. Downloads and redirects go to GitHub hosts over https only.
 
 ## 3. Skill record (`skills.jsonl`)
 

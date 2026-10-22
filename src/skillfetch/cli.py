@@ -75,6 +75,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         f"extraction model, else {extract.DEFAULT_MODEL})",
     )
     scan.add_argument("--base-url", help="OpenAI-compatible server for openai/<model>")
+    scan.add_argument(
+        "--send-key",
+        action="store_true",
+        help="send the OpenAI key to --base-url (default: a placeholder key)",
+    )
     scan.add_argument("--creds-file", type=Path, default=credentials.DEFAULT_CREDS_FILE)
     scan.add_argument("--jobs", type=int, default=4, help="parallel extraction requests")
 
@@ -171,6 +176,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         "--base-url",
         help="OpenAI-compatible server for openai/<model> (vLLM, Ollama, ...); "
         "for OpenRouter use --model openrouter/<vendor>/<model>",
+    )
+    ingest.add_argument(
+        "--send-key",
+        action="store_true",
+        help="send the OpenAI key to --base-url (default: a placeholder key)",
     )
     ingest.add_argument(
         "--creds-file",
@@ -308,7 +318,10 @@ def _scan_lookup(args: argparse.Namespace) -> Lookup:
     extractor = None
     if args.with_api:
         backend = backends.make_backend(
-            args.model or extract.DEFAULT_MODEL, base_url=args.base_url, creds_file=args.creds_file
+            args.model or extract.DEFAULT_MODEL,
+            base_url=args.base_url,
+            creds_file=args.creds_file,
+            send_key=args.send_key,
         )
         extractor = extract.Extractor(backend)
         model = extractor.model
@@ -574,7 +587,10 @@ def _ingest(args: argparse.Namespace) -> int:
         extractor = None
         if args.with_api:
             backend = backends.make_backend(
-                args.model, base_url=args.base_url, creds_file=args.creds_file
+                args.model,
+                base_url=args.base_url,
+                creds_file=args.creds_file,
+                send_key=args.send_key,
             )
             extractor = extract.Extractor(backend)
         if args.holdout is not None:

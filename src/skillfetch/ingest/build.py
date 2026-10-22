@@ -20,6 +20,7 @@ from typing import Literal
 
 from pydantic import BaseModel
 
+from skillfetch.ingest import credentials
 from skillfetch.ingest.extract import (
     DEFAULT_MODEL,
     EXTRACT_VERSION,
@@ -199,6 +200,49 @@ def file_manifest(skill_dir: Path) -> dict[str, str]:
 
 
 def _record(snap: Snapshot, skill_dir: Path) -> Built:
+    """The skill's record; a folder that cannot be read (a broken link, metadata of the
+    wrong shape) becomes a lint_failed record instead of stopping the build."""
+    try:
+        return _read_record(snap, skill_dir)
+    except Exception as exc:  # anything a hostile folder can raise
+        return _unreadable(snap, skill_dir, exc)
+
+
+def _unreadable(snap: Snapshot, skill_dir: Path, exc: Exception) -> Built:
+    source = snap.source
+    rel = skill_dir.relative_to(snap.path).as_posix()
+    digest = hashlib.sha256(f"unreadable\0{source.id}\0{rel}".encode()).hexdigest()
+    sid = f"{source.id}/{_safe(skill_dir.name)}@{digest[:12]}"
+    message = f"skill folder cannot be read: {type(exc).__name__}: {str(exc)[:200]}"
+    record = SkillRecord(
+        id=sid,
+        canonical_id=sid,
+        name=skill_dir.name,
+        title=skill_dir.name,
+        description="",
+        source_id=source.id,
+        publisher=source.publisher,
+        publisher_trust=source.publisher_trust,
+        commit=snap.commit,
+        path=rel,
+        source_url=_source_url(snap, rel),
+        content_hash=digest,
+        status="lint_failed",
+        token_estimate=0,
+        lint={
+            "errors": [
+                {"rule": "lint.unreadable", "message": message, "file": "SKILL.md", "line_no": None}
+            ],
+            "warnings": [],
+        },
+        license="unknown",
+        redistributable=False,
+        license_origin="none",
+    )
+    return Built(record, skill_dir, snap)
+
+
+def _read_record(snap: Snapshot, skill_dir: Path) -> Built:
     source = snap.source
     rel = skill_dir.relative_to(snap.path).as_posix()
     lint = lint_skill(skill_dir)
@@ -269,11 +313,11 @@ def _apply_extraction(b: Built, extraction: ExtractRecord | None) -> None:
     if extraction.status == "too_large":
         # over the extraction cost guard: searchable and loadable, no constraints to check
         r.status, r.not_extracted_reason = "not_extracted", "too_large"
-        r.extract_error = extraction.error
+        r.extract_error = credentials.redact(extraction.error) if extraction.error else None
         return
     if extraction.status != "ok" or extraction.result is None:
         r.status = extraction.status  # extract_failed | too_large
-        r.extract_error = extraction.error
+        r.extract_error = credentials.redact(extraction.error) if extraction.error else None
         return
     res = extraction.result
     b.constraints = [
@@ -487,6 +531,7 @@ def build_index(
         source_meta.append(
             {
                 "id": source.id,
+                "kind": source.kind,
                 "url": source.url,
                 "ref": source.ref,
                 "commit": snap.commit,
@@ -530,7 +575,7 @@ def build_index(
                 "pending_answer" if api_errors[digest].startswith("PendingAnswer") else "api_error"
             )
             b.record.status, b.record.not_extracted_reason = "not_extracted", reason
-            b.record.extract_error = api_errors[digest]
+            b.record.extract_error = api_errors[digest]  # redacted by run_extractions
             continue
         _apply_extraction(b, fresh.get(digest) or cached[digest])
 

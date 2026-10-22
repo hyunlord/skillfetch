@@ -44,8 +44,8 @@ def _github(tarball, checksum, *, tag="index-1", extra=()):
     }
     seen = []
 
-    def get(url, headers):
-        seen.append((url, headers))
+    def get(url, headers, limit):
+        seen.append((url, headers, limit))
         return routes[url]
 
     get.seen = seen
@@ -76,7 +76,12 @@ def test_sync_installs_the_newest_release(packed, tmp_path):
     api_headers = get.seen[0][1]
     assert api_headers["Authorization"] == "Bearer t0ken"
     # the token goes to the API only, not to the download host
-    assert all("Authorization" not in h for url, h in get.seen if "api.github.com" not in url)
+    assert all("Authorization" not in h for url, h, _ in get.seen if "api.github.com" not in url)
+    # every read carries a cap: the tarball 64 MB, listings and checksums 8 MB
+    assert {limit for url, _, limit in get.seen if url.endswith(".tar.gz")} == {s.MAX_INDEX_BYTES}
+    assert {limit for url, _, limit in get.seen if not url.endswith(".tar.gz")} == {
+        s.MAX_META_BYTES
+    }
     again = s.sync(dest, "o/r", get=_github(tarball, checksum))
     assert not again.changed
 
@@ -144,7 +149,7 @@ def test_a_tarball_that_fails_its_manifest_is_refused(packed, tmp_path):
 
 
 def test_no_release_with_an_index(tmp_path):
-    def get(url, headers):
+    def get(url, headers, limit):
         return json.dumps(
             [{"tag_name": "v1", "assets": [{"name": "x.whl", "browser_download_url": "u"}]}]
         ).encode()
@@ -165,3 +170,39 @@ def test_cli_pack_and_install(packed, tmp_path, capsys):
     tarball.with_name(tarball.name + ".sha256").write_text("0" * 64 + "  x\n")
     assert main(["sync", "--from", str(tarball), "--index", str(dest)]) == 1
     assert "sha256 does not match" in capsys.readouterr().err
+
+
+def test_unpacked_size_is_capped(packed, tmp_path, monkeypatch):
+    _, tarball, _ = packed
+    cap = tarball.stat().st_size  # the download passes; what it unpacks to does not
+    monkeypatch.setattr(s, "MAX_INDEX_BYTES", cap)
+    with pytest.raises(s.SyncError, match=f"more than {cap} bytes unpacked"):
+        s.sync(tmp_path / "idx", tarball=tarball)
+    assert not (tmp_path / "idx").exists()
+
+
+def test_a_local_tarball_over_the_cap_is_not_read(packed, tmp_path, monkeypatch):
+    _, tarball, _ = packed
+    monkeypatch.setattr(s, "MAX_INDEX_BYTES", 10)
+    with pytest.raises(s.SyncError, match="larger than 10 bytes"):
+        s.sync(tmp_path / "idx", tarball=tarball)
+
+
+@pytest.mark.parametrize(
+    "url, ok",
+    [
+        ("https://api.github.com/repos/o/r/releases", True),
+        ("https://github.com/o/r/releases/download/t/x.tar.gz", True),
+        ("https://release-assets.githubusercontent.com/x", True),
+        ("http://github.com/o/r", False),
+        ("https://github.com.evil.example/x", False),
+        ("https://evilgithubusercontent.com/x", False),
+        ("https://169.254.169.254/latest", False),
+        ("file:///etc/passwd", False),
+    ],
+)
+def test_downloads_and_redirects_stay_on_github(url, ok):
+    assert s._github_host(url) is ok
+    if not ok:
+        with pytest.raises(s.SyncError, match="refusing"):
+            s.urllib_get(url, {}, 10)

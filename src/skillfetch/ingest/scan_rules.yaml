@@ -3,11 +3,17 @@
 # Bump `version` whenever a rule changes; it is recorded in the index manifest
 # as scan_rules_version.
 #
+# Lines longer than 2000 characters are not matched (a regex over an adversarial
+# line can take seconds); each one is reported as a `scan.line-too-long` warning
+# with its first characters as evidence.
+#
 # Rule fields:
 #   id, family, pattern   Python regex, case-insensitive unless case_sensitive: true
 #   target                line (default) | outside_links (markdown link targets,
 #                         autolinks and reference definitions removed first) |
 #                         html_comment (pattern applied to each <!-- --> body)
+#   within                optional second regex: a `pattern` match counts only if this
+#                         one is found inside the matched text
 #   effect                fail | warn, overrides the family's effect for this rule
 #   allow_negated         skip a match when a negation (not, never, n't, no, without)
 #                         appears at most two words before it: "never run sudo X"
@@ -16,7 +22,7 @@
 #                         advice that quotes the phrase to avoid ("avoid override-style
 #                         language (\"disregard the previous instruction\")") is not an
 #                         attempt. It still warns, so the quote stays visible.
-version: 4
+version: 5
 
 effects:
   override: fail
@@ -76,9 +82,13 @@ rules:
     family: exfil
     effect: warn
     pattern: '\b(?:curl|wget)\b[^\n|]*\|\s*(?:sudo\s+(?:-\w+\s+)*)?(?:ba|z|da)?sh\b|\b(?:ba|z|da)?sh\s+(?:-c\s+["'']?\$\(|<\()\s*(?:curl|wget)\b'
+  # Two stages, so no single regex has to backtrack over a long line: `pattern` finds
+  # the download piped into a shell (both forms), `within` looks for an untrusted URL
+  # inside that match only (http, raw IPv4/IPv6, URL shortener).
   - id: exfil.remote-script-untrusted-url
     family: exfil
-    pattern: '\b(?:curl|wget)\b[^\n|]*?(?:http://|(?:https?://|(?<=[\s"''=]))(?:\d{1,3}\.){3}\d{1,3}(?=[:/\s"'')]|$)|https?://\[[0-9a-f:]+\]|(?:https?://)?(?:bit\.ly|tinyurl\.com|t\.co|goo\.gl|is\.gd|ow\.ly|buff\.ly|rb\.gy|cutt\.ly|shorturl\.at|tiny\.cc)/)[^\n|]*\|\s*(?:sudo\s+(?:-\w+\s+)*)?(?:ba|z|da)?sh\b|\b(?:ba|z|da)?sh\s+(?:-c\s+["'']?\$\(|<\()\s*(?:curl|wget)\b[^\n)]*?(?:http://|(?:https?://|(?<=[\s"''=]))(?:\d{1,3}\.){3}\d{1,3}(?=[:/\s"'')]|$)|https?://\[[0-9a-f:]+\]|(?:https?://)?(?:bit\.ly|tinyurl\.com|t\.co|goo\.gl|is\.gd|ow\.ly|buff\.ly|rb\.gy|cutt\.ly|shorturl\.at|tiny\.cc)/)'
+    pattern: '\b(?:curl|wget)\b[^\n|]*\|\s*(?:sudo\s+(?:-\w+\s+)*)?(?:ba|z|da)?sh\b|\b(?:ba|z|da)?sh\s+(?:-c\s+["'']?\$\(|<\()\s*(?:curl|wget)\b[^\n)]*'
+    within: 'http://|(?:https?://|(?<=[\s"''=]))(?:\d{1,3}\.){3}\d{1,3}(?=[:/\s"'')]|$)|https?://\[[0-9a-f:]+\]|(?:https?://)?(?:bit\.ly|tinyurl\.com|t\.co|goo\.gl|is\.gd|ow\.ly|buff\.ly|rb\.gy|cutt\.ly|shorturl\.at|tiny\.cc)/'
 
   # --- privilege: escalation or disabling safety --------------------------------------
   # sudo alone is common in setup steps (apt-get install ...): warn.

@@ -245,7 +245,10 @@ def make_backend(
     *,
     base_url: str | None = None,
     creds_file: Path | None = credentials.DEFAULT_CREDS_FILE,
+    send_key: bool = False,
 ) -> ExtractBackend:
+    """`send_key`: with `base_url` (a server of your own, not OpenAI or OpenRouter), the
+    OpenAI key is sent only when asked for; by default such servers get a placeholder."""
     provider, model = parse_model(spec)
     label = _provider_label(provider, base_url)
     if provider == "claude-code":
@@ -267,7 +270,7 @@ def make_backend(
             api_key=key, base_url=OPENROUTER_BASE_URL, max_retries=4, timeout=REQUEST_TIMEOUT_S
         )
         return openrouter_backend(client, model)
-    key = credentials.openai_api_key(creds_file)
+    key = credentials.openai_api_key(creds_file) if base_url is None or send_key else None
     if key is None and base_url is None:
         raise MissingCredentials(
             "no OpenAI key found: set OPENAI_API_KEY, or OPEN_API_KEY in "
@@ -275,7 +278,8 @@ def make_backend(
         )
     import openai
 
-    # local servers (vLLM, Ollama) usually accept any key
+    # local servers (vLLM, Ollama) usually accept any key; a real one goes only to OpenAI, or
+    # to `base_url` with send_key
     client = openai.OpenAI(
         api_key=key or "EMPTY", base_url=base_url, max_retries=4, timeout=REQUEST_TIMEOUT_S
     )

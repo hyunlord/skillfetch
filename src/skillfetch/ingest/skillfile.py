@@ -60,14 +60,20 @@ def read_skill(skill_dir: Path) -> SkillDoc:
     return SkillDoc(skill_dir, lines, data, None, None, None, close + 2)
 
 
+def _regular(path: Path) -> bool:
+    """A regular file, not a symbolic link (links are skipped everywhere: a skill folder from
+    an untrusted source must not make us read, hash or fetch a file outside it)."""
+    return path.is_file() and not path.is_symlink()
+
+
 def discover_skills(root: Path) -> list[Path]:
-    """Skill folders under root (a folder with SKILL.md), sorted. Hidden folders and
-    vendored dependencies are skipped; folders inside a skill belong to that skill."""
-    if (root / SKILL_FILE).is_file():
+    """Skill folders under root (a folder with SKILL.md), sorted. Hidden folders, vendored
+    dependencies and symbolic links are skipped; folders inside a skill belong to it."""
+    if _regular(root / SKILL_FILE):
         return [root]
     found = []
-    for current, dirs, files in os.walk(root):
-        if SKILL_FILE in files and Path(current) != root:
+    for current, dirs, files in os.walk(root):  # does not follow directory links
+        if SKILL_FILE in files and Path(current) != root and _regular(Path(current) / SKILL_FILE):
             found.append(Path(current))
             dirs.clear()
             continue
@@ -81,8 +87,8 @@ def _normalized_skill_md(skill_dir: Path) -> str:
 
 
 def skill_files(skill_dir: Path) -> list[Path]:
-    """Files that make up the skill besides SKILL.md: no hidden files, no caches,
-    no constraints sidecar. Sorted by relative path."""
+    """Files that make up the skill besides SKILL.md: no hidden files, no caches, no
+    constraints sidecar, no symbolic links. Sorted by relative path."""
     out = []
     for current, dirs, files in os.walk(skill_dir):
         dirs[:] = [d for d in dirs if not d.startswith(".") and d not in _SKIP_DIRS]
@@ -90,6 +96,8 @@ def skill_files(skill_dir: Path) -> list[Path]:
             path = Path(current) / name
             rel = path.relative_to(skill_dir).as_posix()
             if name.startswith(".") or rel in (SKILL_FILE, CONSTRAINTS_FILE):
+                continue
+            if path.is_symlink() or not path.is_file():
                 continue
             out.append(path)
     return sorted(out, key=lambda p: p.relative_to(skill_dir).as_posix())
