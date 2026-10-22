@@ -41,7 +41,7 @@ def test_excerpt_marks_evidence_lines_with_context_and_heading():
 
 def test_the_judge_never_sees_extracted_constraints():
     pairs = fixture_pairs(FIXTURES)
-    assert len(pairs) == 34
+    assert len(pairs) == 44
     for p in pairs:
         assert '"directive"' not in p.item.text and "forbid" not in p.item.text.split("|")[0]
 
@@ -61,11 +61,11 @@ def test_calibration_agreement_and_cross_table(tmp_path):
     pairs = fixture_pairs(FIXTURES)
     outcomes = run_judge([p.item for p in pairs], Judge(FakeBackend("conflict"), tmp_path))
     rate, text = calibration_report(pairs, outcomes)
-    assert rate == 20 / 34  # 19 conflicts + 1 tension agree with "conflict"
-    assert "judge agreement with hand labels: 0.588 (20/34)" in text
+    assert rate == 20 / 44  # 19 conflicts + 1 tension agree with "conflict"
+    assert "judge agreement with hand labels: 0.455 (20/44)" in text
     table = cross_table(pairs, outcomes)
     assert "| tension | 15 opposed | 1 | 0 | 0 | 0 | 0 | 0 | 1 |" in table
-    assert "| **total** | | 34 | 0 | 0 | 0 | 0 | 0 | 34 |" in table
+    assert "| **total** | | 44 | 0 | 0 | 0 | 0 | 0 | 44 |" in table
 
 
 def test_agreement_mapping():

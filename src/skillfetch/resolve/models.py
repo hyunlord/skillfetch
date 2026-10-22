@@ -62,6 +62,18 @@ class Constraint(_Frozen):
     # or more distinct skills, so its conflicts are capped at needs_review. Not identity.
     fan_out: bool = False
 
+    @field_validator("subject", "object")
+    @classmethod
+    def _stripped(cls, v: str | None, info) -> str | None:
+        """Surrounding whitespace is not part of a term; a blank subject or object names
+        nothing and is refused (an absent object is null, not "")."""
+        if v is None:
+            return None
+        v = v.strip()
+        if not v:
+            raise ValueError(f"{info.field_name} is blank")
+        return v
+
     @model_validator(mode="before")
     @classmethod
     def _derive_strength(cls, data):

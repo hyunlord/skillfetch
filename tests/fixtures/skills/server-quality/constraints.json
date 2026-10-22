@@ -1,0 +1,20 @@
+{
+  "note": "constraints as extracted from anthropics-skills/mcp-builder (index-2026-10-22), quoted lines verbatim: a cap fixture keeps the extractor's reading, since the cap exists to stop that reading from becoming a conflict",
+  "constraints": [
+    {
+      "subject": "error-handling",
+      "directive": "require",
+      "object_raw": "actionable messages",
+      "scope": {
+        "artifact": "code",
+        "phase": "any",
+        "condition": null
+      },
+      "section_heading": "Implementation",
+      "evidence": {
+        "line_no": 10,
+        "text": "Proper error handling with actionable messages"
+      }
+    }
+  ]
+}

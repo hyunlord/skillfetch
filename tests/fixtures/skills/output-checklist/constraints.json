@@ -1,0 +1,20 @@
+{
+  "note": "constraints as extracted from uasl/output-skill (index-2026-10-22), quoted lines verbatim: a cap fixture keeps the extractor's reading, since the cap exists to stop that reading from becoming a conflict",
+  "constraints": [
+    {
+      "subject": "response-length",
+      "directive": "forbid",
+      "object": "short",
+      "scope": {
+        "artifact": "response",
+        "phase": "any",
+        "condition": null
+      },
+      "section_heading": "Quick Check",
+      "evidence": {
+        "line_no": 10,
+        "text": "Nothing was shortened to save space"
+      }
+    }
+  ]
+}

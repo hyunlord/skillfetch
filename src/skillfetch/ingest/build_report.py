@@ -257,7 +257,7 @@ def informative_findings(result: BuildResult):
     skills = [Skill(id=b.record.id, constraints=b.constraints) for b in canon]
     found = []
     for i, j in candidate_pairs(skills):
-        f = pair_finding(skills[i], skills[j])
+        f = pair_finding(skills[i], skills[j], result.manifest.get("conflict_cap") or "all")
         if f is not None:
             found.append((f, canon[i], canon[j]))
     found.sort(key=lambda t: (KIND_ORDER.index(t[0].kind), t[0].a, t[0].b))

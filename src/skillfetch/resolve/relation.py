@@ -34,16 +34,17 @@ __all__ = [
 # Which object-less hard pairs may conflict (§3 row 14d). "all" (the default) caps every
 # object-less pair; "vocabulary" lets a blanket rule about a vocabulary term conflict
 # ("never use emoji" vs "always use emoji"), which finds 8 more fixture conflicts but left
-# one false conflict on the seed-43 build. Set by `--conflict-cap`.
+# one false conflict on the seed-43 build. A parameter of every rule function (`cap`), set
+# from `--conflict-cap` at build time and recorded as manifest.conflict_cap, which the
+# runtime (resolve_set, scan with an index) reads back: no module state.
 CAP_MODES = ("all", "vocabulary")
-OBJECTLESS_CAP = "all"
+DEFAULT_CAP = "all"
 
 
-def set_objectless_cap(mode: str) -> None:
-    global OBJECTLESS_CAP
+def check_cap(mode: str) -> str:
     if mode not in CAP_MODES:
         raise ValueError(f"conflict cap must be one of {CAP_MODES}, got {mode!r}")
-    OBJECTLESS_CAP = mode
+    return mode
 
 
 class Relation(StrEnum):
@@ -100,16 +101,16 @@ def _exclusive_choice(a: Constraint, b: Constraint) -> tuple[Relation, str]:
     return _opposed(a, b), "8d exclusive choices"
 
 
-def constraint_relation(a: Constraint, b: Constraint) -> Relation:
+def constraint_relation(a: Constraint, b: Constraint, cap: str = DEFAULT_CAP) -> Relation:
     """Relation of two constraints from different skills. Symmetric. A conflict that
     `conflict_cap` gives a reason for is reported as needs_review (§3 row 14)."""
     relation, _ = _base_relation(a, b)
-    if relation == Relation.CONFLICT and conflict_cap(a, b) is not None:
+    if relation == Relation.CONFLICT and conflict_cap(a, b, cap) is not None:
         return Relation.NEEDS_REVIEW
     return relation
 
 
-def conflict_cap(a: Constraint, b: Constraint) -> str | None:
+def conflict_cap(a: Constraint, b: Constraint, cap: str = DEFAULT_CAP) -> str | None:
     """Why a conflict between a and b must not be reported as one, or None (§3 row 14):
 
     - `fan-out`: one side conflicts with three or more distinct skills of the corpus
@@ -129,9 +130,9 @@ def conflict_cap(a: Constraint, b: Constraint) -> str | None:
     if a.directive != "order" and (a.object is None or b.object is None):
         if _narrowed(a) or _narrowed(b):
             return "narrowed"
-        if lookup(a.subject) is None and OBJECTLESS_CAP == "vocabulary":
+        if lookup(a.subject) is None and check_cap(cap) == "vocabulary":
             return "free-text subject"
-        if OBJECTLESS_CAP == "all":
+        if check_cap(cap) == "all":
             return "object-less"
     return None
 
@@ -179,11 +180,11 @@ def _base_relation(a: Constraint, b: Constraint) -> tuple[Relation, str]:
     return _opposed(a, b), "15 opposed"
 
 
-def relation_reason(a: Constraint, b: Constraint) -> str:
+def relation_reason(a: Constraint, b: Constraint, cap: str = DEFAULT_CAP) -> str:
     """The §3 row behind constraint_relation(a, b): "14b polarity", "12 scope carve-out", ..."""
     relation, row = _base_relation(a, b)
-    if relation == Relation.CONFLICT and (cap := conflict_cap(a, b)) is not None:
-        return {"fan-out": "14a", "polarity": "14b", "narrowed": "14c"}.get(cap, "14d") + f" {cap}"
+    if relation == Relation.CONFLICT and (why := conflict_cap(a, b, cap)) is not None:
+        return {"fan-out": "14a", "polarity": "14b", "narrowed": "14c"}.get(why, "14d") + f" {why}"
     return row
 
 
@@ -274,7 +275,7 @@ def _subsumed(kept: Skill, cand: Skill) -> list[ConstraintPair] | None:
     return pairs
 
 
-def skill_relation(a: Skill, b: Skill) -> SkillRelation:
+def skill_relation(a: Skill, b: Skill, cap: str = DEFAULT_CAP) -> SkillRelation:
     """Relation of skill `b` given skill `a`, with the constraint pairs that justify it.
 
     Symmetric except for redundancy, which is directional: `redundant` means b ⊆ a
@@ -285,7 +286,7 @@ def skill_relation(a: Skill, b: Skill) -> SkillRelation:
         ConstraintPair(ca, cb, rel)
         for ca in a.constraints
         for cb in b.constraints
-        if (rel := constraint_relation(ca, cb)) != Relation.INDEPENDENT
+        if (rel := constraint_relation(ca, cb, cap)) != Relation.INDEPENDENT
     ]
     conflicts = [p for p in pairs if p.relation == Relation.CONFLICT]
     if conflicts:
@@ -300,18 +301,21 @@ def skill_relation(a: Skill, b: Skill) -> SkillRelation:
     return SkillRelation(Relation.INDEPENDENT)
 
 
-def pair_label(a: Skill, b: Skill) -> str:
+def pair_label(a: Skill, b: Skill, cap: str = DEFAULT_CAP) -> str:
     """Unordered label of a pair, in the vocabulary of tests/fixtures/expected.yaml:
     a symmetric relation's value, or `subsumes:<superset id>` when redundancy holds in one
-    direction only."""
-    forward, backward = skill_relation(a, b).relation, skill_relation(b, a).relation
+    direction only. That includes a subset whose superset also has a rule in tension (or
+    needing review) with it: skill_relation ranks redundant above both, so resolve_set
+    drops the subset as redundant, and the label says what it does."""
+    forward, backward = skill_relation(a, b, cap).relation, skill_relation(b, a, cap).relation
     if forward == backward:
         return forward.value
-    if (forward, backward) == (Relation.REDUNDANT, Relation.INDEPENDENT):
+    if forward == Relation.REDUNDANT:  # b ⊆ a
         return f"subsumes:{a.id}"
-    if (forward, backward) == (Relation.INDEPENDENT, Relation.REDUNDANT):
+    if backward == Relation.REDUNDANT:  # a ⊆ b
         return f"subsumes:{b.id}"
-    return f"asymmetric:{forward.value}/{backward.value}"
+    # unreachable: every relation but redundancy is symmetric
+    raise AssertionError(f"asymmetric {forward.value}/{backward.value}: {a.id}, {b.id}")
 
 
 def _terms(values: Iterable[str]) -> set[str]:
@@ -353,13 +357,15 @@ def candidate_pairs(skills: list[Skill]) -> list[tuple[int, int]]:
 FAN_OUT_SKILLS = 3
 
 
-def fan_out_map(skills: Mapping[str, Skill]) -> dict[str, Skill]:
+def fan_out_map(skills: Mapping[str, Skill], cap: str = DEFAULT_CAP) -> dict[str, Skill]:
     """mark_fan_out over a {skill id: skill} mapping."""
     ids = list(skills)
-    return dict(zip(ids, mark_fan_out([skills[i] for i in ids]), strict=True))
+    return dict(zip(ids, mark_fan_out([skills[i] for i in ids], cap=cap), strict=True))
 
 
-def mark_fan_out(skills: list[Skill], threshold: int = FAN_OUT_SKILLS) -> list[Skill]:
+def mark_fan_out(
+    skills: list[Skill], threshold: int = FAN_OUT_SKILLS, cap: str = DEFAULT_CAP
+) -> list[Skill]:
     """The skills with `fan_out` set on every constraint that conflicts with `threshold` or
     more distinct skills of the corpus. Skills with identical constraint multisets count
     once (duplicates, index-format §1.6); skills that merely share the conflicting rule are
@@ -375,7 +381,7 @@ def mark_fan_out(skills: list[Skill], threshold: int = FAN_OUT_SKILLS) -> list[S
     for i, j in candidate_pairs(clean):
         for ka, ca in enumerate(clean[i].constraints):
             for kb, cb in enumerate(clean[j].constraints):
-                if _keys(ca) != _keys(cb) or constraint_relation(ca, cb) != Relation.CONFLICT:
+                if _keys(ca) != _keys(cb) or constraint_relation(ca, cb, cap) != Relation.CONFLICT:
                     continue
                 hits.setdefault((i, ka), set()).add(whole[j])
                 hits.setdefault((j, kb), set()).add(whole[i])

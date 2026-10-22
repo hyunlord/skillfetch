@@ -14,9 +14,9 @@ def _pairs(report, kind):
 
 def test_fixture_corpus_reproduces_every_label():
     report = scan_dir(SKILLS_DIR)
-    assert len(report.skills) == 41
+    assert len(report.skills) == 52
     assert all(s.status == "ok" for s in report.skills)
-    assert report.skipped == [] and len(report.analyzed) == 41
+    assert report.skipped == [] and len(report.analyzed) == 52
     assert report.duplicates == []
 
     expected = load_expected()

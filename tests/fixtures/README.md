@@ -16,3 +16,10 @@ The contract for `resolve/` (see `docs/design/constraints.md` §7).
 When you add a skill, label its constraints by hand and re-check every pair it
 forms with the existing skills. Prefer adding near misses (same subject,
 compatible instructions) — they are what protect conflict precision.
+
+Cap fixtures (`output-checklist`, `brief-answers`, `caveman-terse`,
+`one-sentence-review`, `validation-donts`, `debug-before-fix`, `server-quality`,
+`error-practices`) are the exception to "hand-labelled": each carries a `note` and
+keeps the constraints as the extractor read real lines of public skills
+(index-2026-10-22), because a §3 row 14 cap exists to stop such a reading from
+becoming a conflict and only fires on it. Their quoted lines are verbatim.

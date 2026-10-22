@@ -44,7 +44,7 @@ def test_prompt_and_schema_are_pinned_to_the_extract_version():
 
 # Post-processing (validation, evidence, polarity, implied artifacts, object vocabulary,
 # condition clauses, sections, per-line merge) runs on every cached answer at build time.
-POSTPROCESS_SHA256 = "4e4c35a651a3161f05ba4a5099749a275ca5ce75fb27dc7375903cbdbc655733"
+POSTPROCESS_SHA256 = "448c53dc2dd24b32ff4104680e366cb77649a31af7662747e8a643701ab83126"
 
 
 def test_post_processing_rules_are_pinned():

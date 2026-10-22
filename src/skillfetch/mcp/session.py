@@ -20,6 +20,7 @@ from skillfetch.ingest.lint import lint_skill
 from skillfetch.ingest.skillfile import content_hash, read_skill
 from skillfetch.resolve import resolve_set
 from skillfetch.resolve.models import Skill
+from skillfetch.resolve.relation import DEFAULT_CAP
 
 PATH_PREFIX = "path:"
 # constraints.md §5 step 4
@@ -128,7 +129,8 @@ class Session:
         errors: list[dict] = []
         pinned = [s for i in pinned_ids or [] if (s := self._skill(i, notes, errors))]
         auto = [s for i in auto_ids if (s := self._skill(i, notes, errors))]
-        resolution = resolve_set(auto, pinned, self.index.verdicts()).model_dump(mode="json")
+        cap = self.index.manifest.get("conflict_cap") or DEFAULT_CAP  # as the index was built
+        resolution = resolve_set(auto, pinned, self.index.verdicts(), cap).model_dump(mode="json")
         out = {**resolution, "notes": notes, "errors": errors}
         self.resolutions[resolution["set_id"]] = out
         return out

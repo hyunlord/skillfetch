@@ -1,0 +1,18 @@
+{
+  "constraints": [
+    {
+      "subject": "links",
+      "directive": "forbid",
+      "object": "http",
+      "scope": {
+        "artifact": "any",
+        "phase": "any",
+        "condition": null
+      },
+      "evidence": {
+        "line_no": 8,
+        "text": "Never use plain http links."
+      }
+    }
+  ]
+}

@@ -44,16 +44,22 @@ def _lines(finding: Finding) -> tuple[list[int], list[int]]:
     return list(dict.fromkeys(a)), list(dict.fromkeys(b))
 
 
-def _reason(finding: Finding, skills: dict[str, Skill]) -> str:
+def _reason(finding: Finding, skills: dict[str, Skill], cap: str) -> str:
     ev = finding.evidence[0]
 
     def at(sid: str, line: int) -> Constraint:
         return next(c for c in skills[sid].constraints if c.evidence.line_no == line)
 
-    return relation_reason(at(finding.a, ev.a.line_no), at(finding.b, ev.b.line_no))
+    return relation_reason(at(finding.a, ev.a.line_no), at(finding.b, ev.b.line_no), cap)
 
 
-def _pair(finding: Finding, dirs: dict[str, Path], skills, kind: str | None = None) -> JudgePair:
+def _pair(
+    finding: Finding,
+    dirs: dict[str, Path],
+    skills,
+    kind: str | None = None,
+    cap: str = relation.DEFAULT_CAP,
+) -> JudgePair:
     lines_a, lines_b = _lines(finding)
     a = _side(finding.a, dirs[finding.a], lines_a)
     b = _side(finding.b, dirs[finding.b], lines_b)
@@ -63,7 +69,7 @@ def _pair(finding: Finding, dirs: dict[str, Path], skills, kind: str | None = No
     return JudgePair(
         key=f"{finding.a}|{finding.b}",
         kind=kind or finding.kind,
-        reason=_reason(finding, skills),
+        reason=_reason(finding, skills, cap),
         item=Item(f"{finding.a}|{finding.b}", pair_input(a, b)),
         evidence=shown,
     )
@@ -73,21 +79,16 @@ def fixture_pairs(fixtures_dir: Path) -> list[JudgePair]:
     """The labelled (non-independent) fixture pairs, with their hand labels as `kind`.
     Evidence comes from the hand-labelled constraints under the vocabulary cap, where the
     labels are the real relations."""
-    previous = relation.OBJECTLESS_CAP
-    relation.set_objectless_cap("vocabulary")
-    try:
-        skills = load_labelled(fixtures_dir / "skills")
-        labels = load_labels(fixtures_dir / "expected.yaml", cap="vocabulary")
-        dirs = {sid: fixtures_dir / "skills" / sid for sid in skills}
-        out = []
-        for pair, label in sorted(labels.items(), key=lambda kv: sorted(kv[0])):
-            a, b = sorted(pair)
-            finding = pair_finding(skills[a], skills[b])
-            assert finding is not None, (a, b)
-            out.append(_pair(finding, dirs, skills, kind=label))
-        return out
-    finally:
-        relation.set_objectless_cap(previous)
+    skills = load_labelled(fixtures_dir / "skills")
+    labels = load_labels(fixtures_dir / "expected.yaml", cap="vocabulary")
+    dirs = {sid: fixtures_dir / "skills" / sid for sid in skills}
+    out = []
+    for pair, label in sorted(labels.items(), key=lambda kv: sorted(kv[0])):
+        a, b = sorted(pair)
+        finding = pair_finding(skills[a], skills[b], "vocabulary")
+        assert finding is not None, (a, b)
+        out.append(_pair(finding, dirs, skills, kind=label, cap="vocabulary"))
+    return out
 
 
 def index_pairs(
@@ -96,6 +97,8 @@ def index_pairs(
     """needs_review and tension pairs among canonical, extracted skills of a built index
     (the pairs of its review.md); bodies are read from the snapshots in work_dir."""
     records = [json.loads(line) for line in (index_dir / "skills.jsonl").open()]
+    manifest = json.loads((index_dir / "manifest.json").read_text())
+    cap = manifest.get("conflict_cap") or relation.DEFAULT_CAP
     by_skill: dict[str, list[Constraint]] = {}
     for line in (index_dir / "constraints.jsonl").open():
         row = json.loads(line)
@@ -109,9 +112,9 @@ def index_pairs(
     ordered = [skills[r["id"]] for r in canon]
     out = []
     for i, j in candidate_pairs(ordered):
-        finding = pair_finding(ordered[i], ordered[j])
+        finding = pair_finding(ordered[i], ordered[j], cap)
         if finding is not None and finding.kind in kinds:
-            out.append(_pair(finding, dirs, skills))
+            out.append(_pair(finding, dirs, skills, cap=cap))
     return out
 
 

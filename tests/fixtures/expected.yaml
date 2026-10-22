@@ -73,6 +73,27 @@ needs_review:
   # accepted: in practice most file edits happen during implementation
   - [act-autonomously, careful-agent]
   - [verbose-logging, quiet-tests]
+  # an object that names an alternative to exclude it ("anything except npm") names no
+  # choice (vocabulary.choice_of): 8a unknown choice. Under the old rules it chose npm:
+  # a false conflict with pnpm and no relation with npm-classic.
+  - [any-but-npm, pnpm-only]
+  - [any-but-npm, pnpm-monorepo]
+  - [any-but-npm, npm-classic]
+  - [any-but-npm, uv-python]
+  - [any-but-npm, poetry-python]
+  # The caps of §3 row 14, each on a real case (constraints as extracted, see the
+  # fixtures' "note"); every one of them is a conflict without its cap.
+  # 14a fan-out: "Nothing was shortened to save space" (uasl/output-skill) against
+  # three distinct "keep it short" skills
+  - [output-checklist, brief-answers]
+  - [output-checklist, caveman-terse]
+  - [output-checklist, one-sentence-review]
+  # 14b polarity: "Ignore error messages" under "❌ Don't" (uasl/n8n-validation-expert)
+  # vs "Don't skip past errors or warnings" (uasl/systematic-debugging)
+  - [validation-donts, debug-before-fix]
+  # 14c narrowed: "Proper error handling with actionable messages" (anthropics mcp-builder)
+  # vs "Don't Swallow Errors" (uasl/error-handling-patterns), both object-less
+  - [server-quality, error-practices]
 
 # The pairs above that are conflicts under `--conflict-cap vocabulary`.
 conflict_with_vocabulary_cap:
@@ -91,6 +112,9 @@ conflict_with_vocabulary_cap:
 #   gitmoji-commits / plain-markdown     same subject, disjoint artifacts
 #   pnpm-only / pnpm-monorepo pair (require pnpm, forbid npm) differ in object
 #   pdf-reference / glossary-reference   no constraints is not redundancy
+#   https-links / no-plain-http          https is not http (terms.STOPLIST): "always
+#                                        https" and "never http" agree; a conflict
+#                                        under the old naive singular
 #   jest-tests / tdd-strict              exclusive control: test-runner, both must,
 #                                        same scope, but jest and pytest belong to
 #                                        different ecosystems

@@ -422,11 +422,13 @@ def assign_tiers(skills: list[Built]) -> None:
             r.tier = "C" if copy_of_a or r.has_scripts or warned else "B"
 
 
-def _mark_fan_out(skills: list[Built]) -> None:
+def _mark_fan_out(skills: list[Built], cap: str) -> None:
     """constraints.md §3 row 14: flag constraints that conflict with three or more distinct
     indexed skills; the flag is stored in constraints.jsonl for resolve_set."""
     indexed = [b for b in skills if b.record.tier and b.constraints]
-    marked = mark_fan_out([Skill(id=b.record.id, constraints=b.constraints) for b in indexed])
+    marked = mark_fan_out(
+        [Skill(id=b.record.id, constraints=b.constraints) for b in indexed], cap=cap
+    )
     for b, s in zip(indexed, marked, strict=True):
         b.constraints = s.constraints
 
@@ -511,6 +513,7 @@ def build_index(
     jobs: int = 4,
     github: GitHubClient | None = None,
     license_cache: Path = DEFAULT_LICENSE_CACHE,
+    cap: str = relation_mod.DEFAULT_CAP,
 ) -> BuildResult:
     model = extractor.model if extractor else (model or DEFAULT_MODEL)
     samples = samples or {}
@@ -580,7 +583,7 @@ def build_index(
     candidates = [b for b in skills if b.record.status not in ("lint_failed", "scan_failed")]
     groups = dedup(candidates)
     assign_tiers(skills)
-    _mark_fan_out(skills)
+    _mark_fan_out(skills, cap)
 
     counts = Counter(b.record.tier for b in skills if b.record.tier)
     statuses = Counter(b.record.status for b in skills)
@@ -592,7 +595,7 @@ def build_index(
         "extract_model": model,
         "postprocess": postprocess_fingerprint()[:16],
         "scan_rules_version": load_rules().version,
-        "conflict_cap": relation_mod.OBJECTLESS_CAP,
+        "conflict_cap": cap,
         "sources": [
             {**m, "skills": sum(1 for b in skills if b.record.source_id == m["id"])}
             for m in source_meta

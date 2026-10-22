@@ -162,6 +162,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         "requests for Claude Code; openrouter/anthropic/openai backends call an API (costs money)",
     )
     ingest.add_argument(
+        "--cached-only",
+        action="store_true",
+        help="with --calibrate: calibrate on the fixture skills in the extract cache and the "
+        "pairs among them (no API); the others are listed",
+    )
+    ingest.add_argument(
         "--calibrate",
         action="store_true",
         help="compare extraction with the hand labels; exit 1 if any extracted conflict is "
@@ -249,24 +255,24 @@ def main(argv: Sequence[str] | None = None) -> int:
         "load_skills precedence header on top, skills in that order); repeatable",
     )
 
-    for p in (scan, ingest, serve):
+    for p in (scan, ingest):
         p.add_argument(
             "--conflict-cap",
             choices=relation.CAP_MODES,
-            default="all",
+            default=None,
             help="which rules without an object may conflict (constraints.md §3 row 14d): "
-            "'all' (default) reports every such pair as needs_review; 'vocabulary' lets a "
-            "blanket rule on a vocabulary term conflict (more recall, less precision)",
+            "'all' reports every such pair as needs_review; 'vocabulary' lets a blanket rule "
+            "on a vocabulary term conflict (more recall, less precision). Default: 'all' "
+            "(scan: the index's manifest.conflict_cap when it reads an index)",
         )
     args = parser.parse_args(argv)
-    relation.set_objectless_cap(getattr(args, "conflict_cap", "all"))
 
     if args.command == "scan":
         if not args.dir.is_dir():
             print(f"skillfetch: not a directory: {args.dir}", file=sys.stderr)
             return 2
         try:
-            report = scan_dir(args.dir, _scan_lookup(args))
+            report = scan_dir(args.dir, _scan_lookup(args), args.conflict_cap)
         except IndexLoadError as exc:
             print(f"skillfetch: {exc}", file=sys.stderr)
             return 2
@@ -383,6 +389,7 @@ def _build(args: argparse.Namespace, key: str, extractor: extract.Extractor | No
         seed=args.seed,
         jobs=args.jobs,
         github=GhCli() if args.upstream_licenses else None,
+        cap=args.conflict_cap or relation.DEFAULT_CAP,
     )
     print(render_summary(result))
     report, review = write_reports(result, args.out.with_name(args.out.name + "-reports"))
@@ -407,6 +414,7 @@ def _holdout(args: argparse.Namespace, key: str, extractor: extract.Extractor | 
         model=key,
         work_dir=args.work_dir,
         jobs=args.jobs,
+        cap=args.conflict_cap or relation.DEFAULT_CAP,
     )
     print(render_holdout(result))
     if result.moved or (result.missing and extractor is None):
@@ -649,14 +657,21 @@ def _ingest(args: argparse.Namespace) -> int:
     if not args.calibrate:
         return 0
     missing = [o.skill_id for o in outcomes if o.record is None]
-    if missing:
+    if missing and not args.cached_only:
         print(
             f"skillfetch: cannot calibrate: {len(missing)} fixture skills are not in the "
-            "extract cache; rerun with --with-api",
+            "extract cache; rerun with --with-api, or --cached-only to calibrate the others",
             file=sys.stderr,
         )
         return 2
-    cal = calibrate(args.dir, {o.skill_id: o.record for o in outcomes})
+    if missing:
+        print(f"\nnot in the cache, left out of this calibration: {', '.join(missing)}")
+    cal = calibrate(
+        args.dir,
+        {o.skill_id: o.record for o in outcomes if o.record is not None},
+        args.conflict_cap or relation.DEFAULT_CAP,
+        cached_only=args.cached_only,
+    )
     print()
     print(render_calibration(cal))
     return 0 if cal.passed else 1
