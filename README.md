@@ -5,9 +5,10 @@ task, your agent searches a vetted, pre-indexed corpus of `SKILL.md` files,
 assembles a *conflict-free* set, uses it for that task, and moves on. Nothing
 piles up in `~/.claude/skills`.
 
-> Status: v0.1 `scan` and the public index are done (the write-up is the open
-> item); v0.2: the MCP server works end to end and the index ships as a GitHub
-> release (`skillfetch sync`). The index covers anthropics/skills and all 1812
+> Status: v0.1 is done: `scan`, the public index and the write-up
+> ([English](docs/writeup/post-en.md), [한국어](docs/writeup/post-ko.md)). v0.2:
+> the MCP server works end to end and the index ships as a GitHub release
+> (`skillfetch sync`). The index covers anthropics/skills and all 1812
 > UASL skills (1724 indexed). Numbers: [`docs/writeup/numbers.md`](docs/writeup/numbers.md).
 
 Check the skills you already have. `sync` downloads the index (metadata and
@@ -78,7 +79,7 @@ together, scope it to one task, or tell you afterwards whether it helped.
 
 ## Roadmap
 
-- [ ] **v0.1** `skillfetch scan <dir>` — conflict/duplicate report for a local
+- [x] **v0.1** `skillfetch scan <dir>` — conflict/duplicate report for a local
       skills directory, with evidence; first public corpus index.
   - [x] fixture corpus with labelled conflicts and duplicates; `resolve/` rules
         and `resolve_set`, conflict precision 1.0 on fixtures
@@ -92,7 +93,8 @@ together, scope it to one task, or tell you afterwards whether it helped.
   - [x] let `scan` use the index and cached extractions instead of `constraints.json`
   - [x] public corpus ingest (`skillfetch ingest --sources sources.yaml`,
         snapshots, licenses, upstreams): anthropics/skills + all 1812 UASL skills
-  - [ ] write-up of the public-corpus scan
+  - [x] write-up of the public-corpus scan ([`docs/writeup/post-en.md`](docs/writeup/post-en.md),
+        [`post-ko.md`](docs/writeup/post-ko.md))
   - [x] keyword-Jaccard dedup groups, tiers A/B/C, index layout and manifest
         (index-format §1.6–§2)
 - [ ] **v0.2** `skillfetch serve` — MCP server (`search_skills`, `resolve_set`,
