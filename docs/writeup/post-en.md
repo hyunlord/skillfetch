@@ -2,7 +2,7 @@
 
 *2026-10-22 · Kwan Hyeon*
 
-SKILL.md files are the new npm: you install thirty of them into your coding agent and never read one. I pulled 1,831 public skills, linted them, scanned them for prompt-injection patterns, extracted 29,880 individual instructions from them, and checked which instructions contradict each other. Then I ran 1,100 agent sessions to see what any of it changes. Four things stood out. Only one in five states a license. Outright contradictions between skills are almost nonexistent. When two skills do disagree, the agent quietly picks one, the same one every time, and no header, block or edit I tried could change which. And loading the *right* skill visibly improves a large task, while loading a *plausible* one makes it worse than loading nothing.
+SKILL.md files are the new npm: you install thirty of them into your coding agent and never read one. I pulled 1,831 public skills, linted them, scanned them for prompt-injection patterns, extracted 29,880 individual instructions from them, and checked which instructions contradict each other. Then I ran 1,160 agent sessions to see what any of it changes. Four things stood out. Only one in five states a license. Outright contradictions between skills are almost nonexistent. When two skills do disagree, the agent quietly picks one, the same one every time, and no header, block or edit I tried could change which. And skills mattered in 1 of the 5 task types I measured: on design, the expert's skill removed the template look; on tests, APIs, docs and data scripts the agent passed every check with or without one.
 
 ## What I did
 
@@ -127,24 +127,45 @@ uvx --from git+https://github.com/hyunlord/skillfetch skillfetch scan ~/.claude/
 
 The part I actually set out to build is the other half. Given that 80% of skills cannot be redistributed, that most of them are fine together, and that the ones that are not resolve by silent precedence, the thing I want is an agent that **does not install skills at all**: for each task it searches a vetted index, picks a small set, checks that set for the tensions above, fetches the bodies from their original repos with hash verification, and drops them when the task is done. An early version of that MCP server is in the repo: `search_skills`, `resolve_set`, `load_skills`, working end to end in Claude Code. The index holds metadata, constraints and hashes, never bodies.
 
-### 5. Does loading skills per task actually help? Only when it finds the right one.
+### 5. Does loading skills per task help? In one of five task types.
 
 I ran it. Three conditions in real Claude Code sessions on two repos (a FastAPI template and a Next.js starter), each task twice: **A** no skills; **B** the one skill an expert would have installed, pre-loaded; **C** skillfetch's router picking from the index. Everything was scored blind, by raters who did not know the condition.
 
 On 20 small maintenance tasks (add a 404 page, link pagination, a README table) the three conditions were indistinguishable: 110 of 110 passed the hidden checks, screenshots tied, documents tied. Skills do not change what the agent writes when the task is small. C cost 5 more turns and 59% more input tokens for nothing.
 
-On 5 larger tasks the picture split:
+On 5 larger tasks (stage 1b) the picture split. To see whether that generalises, I then ran one large task in each of four more domains (stage 2): tests for an untested 280-line module, a FastAPI bookmarks API, a README for an undocumented Next.js app, and a script that cleans a 375-row orders CSV with ten planted problems. Five runs per condition, checks frozen before the runs, every output judged blind twice. Stage 2 used only the router after the search fix described below.
 
 | | A: no skill | B: expert's skill | C: router, first version | C: router, after the search fix |
 |---|---|---|---|---|
 | Landing page, usable (1–5) | 3.50 | 4.75 | 4.50 | 4.75 |
 | Landing page, "AI-template" tells | 2.00 | 0.50 | 2.00 | 0.50 |
+| Test writing: score (1–5) · branch coverage | 4.90 · 100% | 5.00 · 100% | – | 5.00 · 100% |
+| Test writing: median turns / input tokens | 10 / 0.78M | 9 / 0.83M | – | 16 / 1.49M |
+| Backend API: score · contract calls passed | 4.20 · 27/27 | 4.20 · 27/27 | – | 4.80 · 27/27 |
+| Backend API: median turns / input tokens | 15 / 0.90M | 14 / 0.87M | – | 23 / 1.87M |
+| Documentation: score · builds, no invented scripts | 4.10 · 5/5 | 4.70 · 5/5 | – | 4.40 · 5/5 |
+| Documentation: median turns / input tokens | 10 / 0.69M | 9 / 0.73M | – | 17 / 1.33M |
+| Data script: score · output checks passed | 4.50 · 5/5 | 4.50 · 5/5 | – | 4.50 · 5/5 |
+| Data script: median turns / input tokens | 12 / 0.91M | 12 / 0.85M | – | 18 / 1.52M |
 | Plan quality (rank, 0 = best) | 0.36 | 0.00 | 0.79 | 0.71 |
-| Median turns | 19.5 | 24 | 34 | 26.5 |
+| Landing and plan tasks: median turns | 19.5 | 24 | 34 | 26.5 |
 
 The expert's skill matters: with Anthropic's `frontend-design` loaded, the landing pages lost their template look. The router's first version never found that skill (it ranked 34th in a 10-result search) and loaded design-adjacent skills instead, which made the pages *more* template-like than no skill at all. Loading the wrong skill is worse than loading none.
 
-Widening the search to 50 compact summaries and letting the agent choose from those fixed the design tasks: the router then loaded `frontend-design` in 4 of 4 runs and matched the expert condition, at 7 extra turns instead of 14. It did not fix the planning task: the expert's `writing-plans` skill describes a way of working, the task describes a feature, and no amount of keyword search bridges that. A 22M-parameter embedding model did not bridge it either (top-50 recall 0.74 vs BM25's 0.71), so it is not in the product. The honest state of the router: it finds the right skill for tasks that name their domain, misses skills about *how* to work, and costs about seven turns per task.
+Widening the search to 50 compact summaries and letting the agent choose from those solved search for tasks that name their domain:
+
+| Task type | Expert's skill | In the router's top 50 | Mean rank there | Loaded |
+|---|---|---|---|---|
+| Landing page (1b) | `frontend-design` | 4/4 | 29.2 | 4/4 |
+| Test writing | `python-testing-patterns` | 5/5 | 1.0 | 5/5 |
+| Backend API | `fastapi-templates` | 5/5 | 2.0 | 4/5 |
+| Documentation | `quill` | 5/5 | 1.8 | 5/5 |
+| Data script | `data-analyst-engine` | 5/5 | 2.0 | 5/5 |
+| All | | 24/24 | | 23/24 |
+
+Finding the skill is not the same as needing it. Design is the only domain where the expert's skill changed the result. On tests, the API, docs and the data script, all three conditions hit every objective metric (100% branch coverage, 27 of 27 contract calls, every build and output check), and the score differences between conditions (0.6 or less) are within the noise of five runs and two judging passes that agreed exactly on 8 to 14 of 15 outputs. The router costs 1.7 to 2.1 times the input tokens of no skill and 6 to 8 more turns. That is the scope of this result: tasks the base model finishes in a median 9 to 15 turns without help, one model, five runs per condition.
+
+The router still misses skills about *how* to work. The expert's `writing-plans` skill describes a way of working, the planning task describes a feature, and keyword search does not bridge that. A 22M-parameter embedding model did not bridge it either (top-50 recall 0.74 vs BM25's 0.71), so it is not in the product.
 
 If you maintain a skill: add a LICENSE file. If you maintain a registry: show it. If you have a pair of skills you suspect disagree, run the scanner on them and open an issue with the output; I want to know what it misses more than what it finds.
 
