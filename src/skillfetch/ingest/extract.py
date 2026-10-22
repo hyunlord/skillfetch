@@ -766,4 +766,5 @@ def postprocess_fingerprint() -> str:
     parts += [inspect.getsource(removal_cue)]
     parts += [str(MAX_SUBJECT_WORDS), _CLAUSE_MARKER.pattern]
     parts += [inspect.getsource(m) for m in (sections, terms, vocabulary)]
+    parts += [terms.PLURALS_FILE.read_text()]  # data behind normalize_term
     return hashlib.sha256("\0".join(parts).encode()).hexdigest()

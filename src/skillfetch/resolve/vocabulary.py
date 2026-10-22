@@ -166,6 +166,7 @@ VOCABULARY: tuple[Term, ...] = (
 )
 
 _BY_NAME = {normalize_term(t.name): t for t in VOCABULARY}
+_EXCLUDING = re.compile(r"\b(?:except|not|instead\s+of|rather\s+than|other\s+than)\b", re.I)
 _WORD = re.compile(r"[a-z0-9]+")
 
 
@@ -178,9 +179,12 @@ def choice_of(term: Term | None, obj: str | None) -> tuple[str, str] | None:
 
     Matching is on whole words of the normalized object, so "pnpm workspaces" is
     pnpm. Objects naming no known alternative, or more than one ("npm or yarn"),
-    return None.
+    return None, and so do objects that name an alternative to exclude it ("anything
+    except npm", "not yarn", "pnpm instead of npm"): the relation then needs review.
     """
     if term is None or obj is None:
+        return None
+    if _EXCLUDING.search(obj):
         return None
     words = set(_WORD.findall(normalize_term(obj)))
     found = [(eco.name, choice) for eco in term.ecosystems for choice in eco.choices & words]

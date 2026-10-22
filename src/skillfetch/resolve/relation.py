@@ -304,15 +304,18 @@ def skill_relation(a: Skill, b: Skill, cap: str = DEFAULT_CAP) -> SkillRelation:
 def pair_label(a: Skill, b: Skill, cap: str = DEFAULT_CAP) -> str:
     """Unordered label of a pair, in the vocabulary of tests/fixtures/expected.yaml:
     a symmetric relation's value, or `subsumes:<superset id>` when redundancy holds in one
-    direction only."""
+    direction only. That includes a subset whose superset also has a rule in tension (or
+    needing review) with it: skill_relation ranks redundant above both, so resolve_set
+    drops the subset as redundant, and the label says what it does."""
     forward, backward = skill_relation(a, b, cap).relation, skill_relation(b, a, cap).relation
     if forward == backward:
         return forward.value
-    if (forward, backward) == (Relation.REDUNDANT, Relation.INDEPENDENT):
+    if forward == Relation.REDUNDANT:  # b ⊆ a
         return f"subsumes:{a.id}"
-    if (forward, backward) == (Relation.INDEPENDENT, Relation.REDUNDANT):
+    if backward == Relation.REDUNDANT:  # a ⊆ b
         return f"subsumes:{b.id}"
-    return f"asymmetric:{forward.value}/{backward.value}"
+    # unreachable: every relation but redundancy is symmetric
+    raise AssertionError(f"asymmetric {forward.value}/{backward.value}: {a.id}, {b.id}")
 
 
 def _terms(values: Iterable[str]) -> set[str]:

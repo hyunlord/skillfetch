@@ -66,6 +66,10 @@ def rel(a, b, cap="all"):
         ("public   functions", "public function"),
         ("is", "is"),
         ("In Headers.", "in header"),
+        ("tests", "test"),
+        ("https", "https"),  # not http: stoplist
+        ("windows", "windows"),
+        ("zorbles", "zorbles"),  # the singular never occurs in the corpus
     ],
 )
 def test_normalize_term(raw, expected):
@@ -700,3 +704,56 @@ def test_candidate_pairs_cover_every_related_fixture_pair():
     for i, j in combinations(range(len(skills)), 2):
         if pair_label(skills[i], skills[j]) != "independent":
             assert (i, j) in candidates, (skills[i].id, skills[j].id)
+
+
+def test_https_and_http_rules_are_independent():
+    a = k("urls", "require", "https")
+    b = k("urls", "forbid", "http")
+    assert rel(a, b) == Relation.INDEPENDENT
+    assert normalize_term("tests") == normalize_term("test")
+
+
+def test_a_subset_in_tension_with_its_superset_is_labelled_subsumes():
+    from skillfetch.resolve.relation import pair_label
+
+    # b's one rule is a's first rule; a's second rule is in tension with it
+    a = S(
+        "a",
+        k("emoji", "forbid", "in headers", text="No emoji in headers."),
+        k("emoji", "prefer", text="Emoji are fine elsewhere."),
+    )
+    b = S("b", k("emoji", "forbid", "in headers", text="Never emoji in headers."))
+    forward, backward = skill_relation(a, b).relation, skill_relation(b, a).relation
+    assert forward == Relation.REDUNDANT and backward != Relation.REDUNDANT
+    assert pair_label(a, b) == "subsumes:a"
+
+
+@pytest.mark.parametrize(
+    "obj",
+    [
+        "anything except npm",
+        "not npm",
+        "pnpm instead of npm",
+        "yarn rather than npm",
+        "any other than npm",
+    ],
+)
+def test_an_excluding_object_names_no_choice(obj):
+    from skillfetch.resolve.vocabulary import choice_of, lookup
+
+    assert choice_of(lookup("package-manager"), obj) is None
+    assert choice_of(lookup("package-manager"), "pnpm workspaces") == ("javascript", "pnpm")
+
+
+@pytest.mark.parametrize("field", ["subject", "object"])
+def test_blank_subject_or_object_is_refused(field):
+    data = {
+        "subject": "emoji",
+        "directive": "require",
+        "object": "x",
+        "evidence": {"line_no": 1, "text": "t"},
+    }
+    with pytest.raises(ValidationError, match="blank"):
+        Constraint.model_validate({**data, field: "   "})
+    padded = Constraint.model_validate({**data, field: "  emoji  "})
+    assert getattr(padded, field) == "emoji"
