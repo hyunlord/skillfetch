@@ -103,7 +103,7 @@ The pipeline is tuned for precision over recall, and that cost is visible in the
 - **Six extraction prompts, one test set.** I revised the extraction schema six times against 41 hand-written skills until it scored 1.0 on them. On the first 219 real skills it then produced 24 conflicts, all false. Two independent samples later it produces 0 to 2. The lesson generalises: a perfect score on the set you tuned against means nothing until a held-out set agrees.
 - **Two false conflicts are in the shipped output** and documented in the README as such, rather than patched around.
 - **Anti-pattern tables fool the extractor.** A row in a "❌ Don't" table is read as an instruction. Open issue.
-- **Extraction is semantic, so it needs a model.** $0.0036 per skill with gpt-6-luna; cheaper models produced false conflicts, a 15x pricier one scored lower. Prompt structure mattered more than model size.
+- **Extraction is semantic, so it needs a model.** about $0.003 per skill with gpt-6-luna ($4.82 for the final run over 1,764 skills); cheaper models produced false conflicts, a 15x pricier one scored lower. Prompt structure mattered more than model size.
 
 ## Try it, and what comes next
 
