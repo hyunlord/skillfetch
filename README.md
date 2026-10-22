@@ -42,7 +42,7 @@ two instructions cannot both be followed; anything less certain is
 Skills the index does not cover are listed as skipped; `--with-api --model
 anthropic/<model>` extracts them (calls the API, cached once per skill).
 
-The router is experimental: in our own test it loaded the wrong skills more often than the right ones ([docs/writeup/numbers.md §11](docs/writeup/numbers.md#11-router-in-real-sessions-end-to-end-stages-1-and-1b)). scan and sync are unaffected.
+The router is experimental. In our own end-to-end test it loaded the skill an expert would have installed in 7 of 32 runs by exact id (18 of 22 loads covered the same ground on small tasks), and on larger generative tasks it loaded weaker skills than no skill at all ([docs/writeup/numbers.md §11](docs/writeup/numbers.md#11-router-in-real-sessions-end-to-end-stages-1-and-1b)). scan and sync are unaffected.
 
 ```console
 $ skillfetch scan path/to/skills --json                   # machine-readable
