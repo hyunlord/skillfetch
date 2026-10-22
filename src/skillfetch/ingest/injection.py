@@ -14,7 +14,10 @@ from pydantic import BaseModel, ConfigDict
 
 from skillfetch.ingest.skillfile import SKILL_FILE, read_text, skill_files
 
-TEXT_SUFFIXES = frozenset({".md", ".markdown", ".mdx", ".txt"})
+# Only Markdown is scanned: it is what an agent reads as instructions. License texts
+# (LICENSE.md, the OFL that ships with fonts) are legal boilerplate, not instructions.
+TEXT_SUFFIXES = frozenset({".md"})
+_LEGAL_STEMS = frozenset({"license", "licence", "copying", "notice", "ofl"})
 _NEGATED = re.compile(r"(?:\bnot|\bnever|n't|\bno|\bwithout)\s+(?:[\w'-]+\s+){0,2}$", re.I)
 _LINK_TARGET = re.compile(r"\]\([^)]*\)")
 _AUTOLINK = re.compile(r"<https?://[^>]*>", re.I)
@@ -23,6 +26,8 @@ _HTML_COMMENT = re.compile(r"<!--(.*?)-->", re.S)
 _QUOTED = re.compile(r'"[^"\n]*"|“[^”\n]*”')
 _INVISIBLE = re.compile(r"[\u200b-\u200f\u202a-\u202e\u2060-\u2064\u2066-\u2069\ufeff]")
 _MAX_EVIDENCE = 160
+MAX_SCAN_LINE = 2000  # longer lines are reported, not matched (ReDoS guard)
+LONG_LINE_RULE = "scan.line-too-long"
 
 
 class Rule(BaseModel):
@@ -35,10 +40,14 @@ class Rule(BaseModel):
     allow_negated: bool = False
     allow_quoted: bool = False
     case_sensitive: bool = False
+    within: str | None = None  # second stage: must match inside the `pattern` match
     effect: Literal["fail", "warn"] | None = None  # overrides the family's effect
 
     def compiled(self) -> re.Pattern[str]:
         return _compile(self.pattern, self.case_sensitive)
+
+    def compiled_within(self) -> re.Pattern[str] | None:
+        return _compile(self.within, self.case_sensitive) if self.within else None
 
 
 @cache
@@ -113,7 +122,10 @@ def _matches(rule: Rule, text: str) -> Literal["plain", "quoted"] | None:
     """How the rule matches `text`: "plain", only inside quotation marks ("quoted", for
     rules with allow_quoted), or not at all (None)."""
     quoted = False
+    within = rule.compiled_within()
     for m in rule.compiled().finditer(text):
+        if within is not None and not within.search(m.group()):
+            continue
         if rule.allow_negated and _NEGATED.search(text[: m.start()]):
             continue
         if rule.allow_quoted and _inside_quotes(text, m.start(), m.end()):
@@ -126,7 +138,18 @@ def _matches(rule: Rule, text: str) -> Literal["plain", "quoted"] | None:
 def scan_text(text: str, file: str = SKILL_FILE, rules: RuleSet | None = None) -> list[Hit]:
     rules = rules or load_rules()
     lines = text.split("\n")
-    hits: list[Hit] = []
+    hits: list[Hit] = [
+        Hit(
+            rule_id=LONG_LINE_RULE,
+            family="hidden",
+            effect="warn",
+            file=file,
+            line_no=n,
+            line=_evidence(line),
+        )
+        for n, line in enumerate(lines, 1)
+        if len(line) > MAX_SCAN_LINE
+    ]
     for rule in rules.rules:
         if rule.target == "html_comment":
             for m in _HTML_COMMENT.finditer(text):
@@ -135,6 +158,8 @@ def scan_text(text: str, file: str = SKILL_FILE, rules: RuleSet | None = None) -
                     hits.append(_hit(rule, rules, file, line_no, lines[line_no - 1], how))
             continue
         for line_no, line in enumerate(lines, 1):
+            if len(line) > MAX_SCAN_LINE:
+                continue
             target = _outside_links(line) if rule.target == "outside_links" else line
             if how := _matches(rule, target):
                 hits.append(_hit(rule, rules, file, line_no, line, how))
@@ -165,14 +190,15 @@ def _is_script(path: Path, rel: str, rules: RuleSet) -> bool:
 def scan_skill(skill_dir: Path, rules: RuleSet | None = None) -> ScanResult:
     rules = rules or load_rules()
     hits: list[Hit] = []
-    if (skill_dir / SKILL_FILE).is_file():
-        hits += scan_text(read_text(skill_dir / SKILL_FILE), SKILL_FILE, rules)
+    skill_md = skill_dir / SKILL_FILE
+    if skill_md.is_file() and not skill_md.is_symlink():
+        hits += scan_text(read_text(skill_md), SKILL_FILE, rules)
     scripts = []
     for path in skill_files(skill_dir):
         rel = path.relative_to(skill_dir).as_posix()
         if _is_script(path, rel, rules):
             scripts.append(rel)
-        elif path.suffix.lower() in TEXT_SUFFIXES:
+        elif path.suffix.lower() in TEXT_SUFFIXES and path.stem.lower() not in _LEGAL_STEMS:
             hits += scan_text(read_text(path), rel, rules)
     result = ScanResult(scripts=scripts)
     for hit in hits:
