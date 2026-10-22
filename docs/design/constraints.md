@@ -510,8 +510,10 @@ hard rule: it is what keeps false positives from destroying trust.
   hand-labelled, `tests/resolve/test_corpus_contract.py` additionally asserts
   the exact relation of every pair (labels in `tests/fixtures/expected.yaml`),
   which tests the rules in isolation from extraction quality.
-- Anything the rules are unsure about goes to `needs_review`. A reviewer (human
-  or, in v0.3, an LLM judge behind a flag) resolves it. We ship the conservative
+- Anything the rules are unsure about goes to `needs_review`. `skillfetch judge`
+  (§8, built) has a second model classify those pairs; `resolve_set` drops the
+  warnings it judged independent (`suppressed_by_judge`) and never turns a verdict
+  into a conflict or an exclusion. We ship the conservative
   rules, not the clever ones.
 - Known blind spots, documented in README: semantic conflicts without shared
   subject ("minimal design" vs "rich visual hierarchy"), script-level behaviour,
@@ -554,13 +556,23 @@ never excludes a skill, and verdicts never touch conflicts or redundancy.
 
 ### 8.1 Obedience split test
 
-`skillfetch obedience --index <dir>` takes the judge's `conflict` and
-`ambiguous_together` pairs, ranked by confidence (top 30), and has the judge
-model write one short task per pair that makes both instructions apply, with
-a one-sentence description of an output that follows A and one that follows B
-(`obedience-tasks.md`, reviewed before anything runs). The trials
-(`obedience.run_trials`) put both full skill bodies in the agent's system
-prompt, run the task ten times with the extractor model at its default
-temperature, and have the judge classify each output as following A, B, both
-or neither; a pair whose runs include both A and B is non-deterministic.
+`skillfetch obedience --index <dir>` takes the judge's pairs with verdict
+`conflict` or `ambiguous_together`, ranked by confidence (`select_pairs`,
+`--pairs`, default 30), and has a task writer (`--model`; `claude-code` queues the
+request for a Claude Code session) write one short task per pair that makes both
+instructions apply, with a one-sentence description of an output that follows A
+and one that follows B (`obedience-tasks.md`, reviewed before anything runs). The
+published run (numbers.md §6) tested 26 pairs: judge `conflict` ∧
+`ambiguous_together`, no config-file or install tasks, at most two pairs per skill,
+out of 88 candidates.
+
+`--run tasks.json` (`obedience.run_trials`) runs each task `--trials` times
+(default 5), each as an isolated Claude Code session (`claude -p --safe-mode`,
+`--agent-model`, default sonnet, no tools) with both full skill bodies in the
+system prompt. Without `--precedence`, A comes first on runs 1, 3, 5 and B on 2, 4.
+`--model` classifies each output as following A, B, both or neither against the
+task's two descriptions (`claude-code`: queued for a Claude Code session). A pair
+whose runs include both A and B is non-deterministic. `--precedence
+ab|ba|resolved-a|resolved-b|strip-a|strip-b` runs the experiments of numbers.md
+§8–§10.
 

@@ -63,7 +63,9 @@ def build_server(session: Session) -> MCPServer:
         """Build a conflict-free set from candidate ids (in preference order) plus
         user-pinned ids (always kept; `path:/abs/dir` for a local skill). Returns {set_id,
         included, excluded[{id, reason, conflicts_with, evidence}], warnings, precedence,
-        notes, errors}; every exclusion and warning quotes the source lines."""
+        suppressed_by_judge, notes, errors}; every exclusion and warning quotes the source
+        lines, and suppressed_by_judge counts the warnings dropped because the judge called
+        the pair independent."""
         return session.resolve_set(auto_ids, pinned_ids)
 
     @server.tool()

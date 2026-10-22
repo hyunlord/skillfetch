@@ -10,8 +10,8 @@ Measured: on design tasks the router matched an expert-installed skill; on proce
 > Status: v0.1 is done: `scan`, the public index and the write-up
 > ([English](docs/writeup/post-en.md), [한국어](docs/writeup/post-ko.md)). v0.2:
 > the MCP server works end to end and the index ships as a GitHub release
-> (`skillfetch sync`). The index covers anthropics/skills and all 1812
-> UASL skills (1724 indexed). Numbers: [`docs/writeup/numbers.md`](docs/writeup/numbers.md).
+> (`skillfetch sync`). The index covers anthropics/skills and UASL: 1,724 of
+> 1,831 discovered skills are indexed. Numbers: [`docs/writeup/numbers.md`](docs/writeup/numbers.md).
 
 Check the skills you already have. `sync` downloads the index (metadata and
 extracted constraints, no skill bodies; a 3 MB download); `scan` matches each installed
@@ -149,12 +149,15 @@ default produced none. Use it when recall matters more than precision.
 - Automated vetting rejects bad skills; it does not prove a skill is good.
 - Default mode injects skill text into the current context; true isolation
   requires a subagent runner, which is not built.
+- `sync` verifies the tarball against a sha256 published in the same GitHub release;
+  it trusts whoever can write this repo's releases. The index is not signed yet
+  ([#32](https://github.com/hyunlord/skillfetch/issues/32)).
 - `load_skills` no longer puts a precedence header before the skills: it had no
   effect on which skill the agent follows when two disagree (measured: 112 of 260
   runs followed the skill it ranked first; [numbers.md §8](docs/writeup/numbers.md)).
 - Embeddings (all-MiniLM-L6-v2) were evaluated against BM25 and not adopted: no
   gain (top-50 recall 0.74 with BM25 + embedding fusion, 0.71 with BM25 alone, on 34
-  router queries; [write-up §5](docs/writeup/post-en.md)).
+  router queries; [numbers.md §12](docs/writeup/numbers.md#12-embedding-retrieval-not-adopted)).
 - On four of five task types we measured, the expert skill changed nothing the
   checks could see; load a skill when the base model is weak at the domain, not by
   default.

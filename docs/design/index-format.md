@@ -28,9 +28,8 @@ A source is a YAML entry in `sources.yaml`:
   publisher_trust: verified # verified | known | unknown
 ```
 
-v0.1 ships with: `anthropics/skills`, the UASL corpus, and a hand-picked list of
-~20 well-known publisher repos. The list lives in `sources.yaml` at the repo
-root (loaded by `ingest/sources.py`): `anthropics/skills` (verified) and the
+The source list lives in `sources.yaml` at the repo root (loaded by
+`ingest/sources.py`). It has two sources: `anthropics/skills` (verified) and the
 UASL corpus, `onfire7777/universal-ai-skills-library` (1812 skills, unknown
 trust). UASL is an aggregation: 954 skills carry an `.openskills.json` naming
 their upstream repo and path, recorded per skill as `upstream`. Its
@@ -239,8 +238,6 @@ record keeps the token usage of every attempt, so cost per skill is known
 - `--calibrate` takes a fixtures dir (`skills/` + `expected.yaml`) and prints
   the calibration of constraints.md §2; it refuses to run (exit 2) while
   fixture skills are missing from the cache, and exits 1 below the gate.
-- Index building (§1.6–§2) is not implemented yet; extraction results live in
-  the cache.
 
 ### 1.6 Dedup (static)
 
@@ -255,8 +252,7 @@ Two skills are a **duplicate group** when any of:
   different commit, so two folders of one snapshot are never merged by name).
 
 Each group gets a `canonical_id` (prefer verified publisher, then newest). The
-index keeps all members but `search_skills` returns only canonicals unless
-`include_duplicates=true`.
+index keeps all members; `search_skills` returns only canonicals.
 
 ### 1.7 Tier (rules)
 
@@ -321,8 +317,7 @@ v0.2 the index mirrors none. Every skill — whatever its license — is indexed
 with metadata, extracted constraints (with their short evidence quotes), tier
 and a per-file manifest of sha256 hashes, and never with its body or files.
 
-**Runtime fetch (v0.2, the default path).** `load_skills` (and, in v0.3,
-`prepare_set`) fetches every file in a skill's manifest from its pinned source
+**Runtime fetch (v0.2, the default path).** `load_skills` fetches every file in a skill's manifest from its pinned source
 — for a GitHub source
 `https://raw.githubusercontent.com/<owner>/<repo>/<commit>/<path>/<file>`,
 for a `dir` source a `file://` path — verifies each file's sha256 against the

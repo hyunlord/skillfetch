@@ -2,7 +2,7 @@
 
 *2026-10-22 · Kwan Hyeon*
 
-SKILL.md files are the new npm: you install thirty of them into your coding agent and never read one. I pulled 1,831 public skills, linted them, scanned them for prompt-injection patterns, extracted 29,880 individual instructions from them, and checked which instructions contradict each other. Then I ran 1,160 agent sessions to see what any of it changes. Four things stood out. Only one in five states a license. Outright contradictions between skills are almost nonexistent. When two skills do disagree, the agent quietly picks one, the same one every time, and no header, block or edit I tried could change which. And skills mattered in 1 of the 5 task types I measured: on design, the expert's skill removed the template look; on tests, APIs, docs and data scripts the agent passed every check with or without one.
+SKILL.md files are the new npm: you install thirty of them into your coding agent and never read one. I pulled 1,831 public skills, linted them, scanned them for prompt-injection patterns, extracted 29,880 individual instructions from them, and checked which instructions contradict each other. Then I ran 1,160 agent sessions to see what any of it changes. Four things stood out. Only one in five states a license. Outright contradictions between skills are almost nonexistent. When two skills do disagree, the agent quietly picks one, the same one every time, and none of the three ways I tried to name the winner was a reliable control: the named skill was followed in 43–56% of runs, and the best method turned the agent's own choice around in only 8 of the 23 pairs where it had one. And skills mattered in 1 of the 5 task types I measured: on design, the expert's skill removed the template look; on tests, APIs, docs and data scripts the agent passed every check with or without one.
 
 ## What I did
 
@@ -15,7 +15,7 @@ Two sources: Anthropic's own [skills repo](https://github.com/anthropics/skills)
 5. **LLM judge** over the open pairs, using a different vendor's model than the extractor, reading the original lines rather than the extracted records.
 6. **Obedience test**: for pairs the judge called a real conflict, load both skills into an agent, give it a task that touches the disputed rule, and record which skill it obeys.
 
-External API cost for the whole analysis was **$15.75** (separately, the 1,160 agent sessions ran on a Claude Code plan: about $315 at API prices, [numbers.md](numbers.md) §7): $6.23 for extraction (gpt-6-luna, the cheapest model that kept conflict precision at 1.0 on a hand-labelled set), $9.36 for the judge (claude-sonnet-5.5), $0.16 for task generation. The obedience runs and all classification happened inside Claude Code sessions. A note on authorship: I designed the pipeline and made the calls; Claude Code wrote most of the code and ran the experiments. Where this post says "I read", a human read. Code and numbers: [hyunlord/skillfetch](https://github.com/hyunlord/skillfetch).
+External API cost for the whole analysis was **$15.75** (separately, the 1,160 agent sessions ran on a Claude Code plan: about $315 at API prices, [numbers.md](numbers.md) §7): $6.23 for extraction (gpt-6-luna, the cheapest of the four models tried on the fixtures), $9.36 for the judge (claude-sonnet-5.5), $0.16 for task generation. The obedience runs and all classification happened inside Claude Code sessions. A note on authorship: I designed the pipeline and made the calls; Claude Code wrote most of the code and ran the experiments. Where this post says "I read", a human read. Code and numbers: [hyunlord/skillfetch](https://github.com/hyunlord/skillfetch).
 
 ## 1. Only one in five skills states a license
 
@@ -57,11 +57,11 @@ This is the finding I did not expect. I built the pipeline to catch pairs like "
 
 ```
 CONFLICT  darwin ⟷ thinking-ooda
-  darwin:        "Observe before acting."
-  thinking-ooda: "Observe again after acting."
+  darwin:37          "**Principles:** Observe before acting · …"
+  thinking-ooda:108  "Immediately return to OBSERVE"
 ```
 
-That is the OODA loop, not a contradiction. The other one pairs "be detailed for security findings" with "skip verbose explanations in autorun mode": different situations. So the honest count of textual contradictions in 1,700 public skills is zero.
+That is the OODA loop, not a contradiction. The other one pairs caveman-review:51, "Drop terse mode for: security findings (CVE-class bugs need full explanation + reference) …", with saga:394, "Skip verbose explanations, focus on deliverables", which applies in saga's autorun mode: different situations. So the honest count of textual contradictions in 1,700 public skills is zero.
 
 What the rules did find was 2,011 pairs they could not settle: 137 soft tensions and 1,874 marked `needs_review`. I had a second model read the original lines for every one of them.
 
@@ -75,7 +75,7 @@ What the rules did find was 2,011 pairs they could not settle: 137 soft tensions
 
 Four in five pairs that looked suspicious to the rules are fine. Of the 90 the judge called conflicts, most are of the form "always ask before acting" against "once the team is chosen, proceed without asking": one rule carving an exception out of another. The judge over-calls these; on a hand-labelled set it marked 6 of 7 known carve-outs as conflicts, so 90 is a ceiling.
 
-The pattern across all of it: skill authors do not disagree about what to do. They disagree about **when** and **how much**. "Keep responses short" versus "be thorough on security findings". "Log every significant step" versus "never log from inside test code". These are not bugs in the skills. They are exactly the kind of thing an agent should reconcile, and the question is whether it does.
+The pattern across all of it: skill authors do not disagree about what to do. They disagree about **when** and **how much**: in paraphrase, keep responses short versus be thorough on security findings, or log every significant step versus never log from inside test code. These are not bugs in the skills. They are exactly the kind of thing an agent should reconcile, and the question is whether it does.
 
 ## 4. When two skills disagree, the agent does not flip a coin. It picks one, every time.
 
@@ -92,9 +92,9 @@ Only 4 of 26 pairs were non-deterministic. In 17, the agent followed the same on
 
 So the failure mode is not randomness. It is a stable, invisible precedence. You install `tdd` and `warden`; one of them wins on every task where they disagree, and nothing in your session tells you which or why. If you later wonder why the agent stopped writing tests first, the answer is a line in a skill you installed three weeks ago.
 
-Two caveats that matter. First, the harness wording moved results: in a discarded batch, a note saying "finish in this one reply" pushed every "stop and ask the user" rule to lose. Pairs about pausing versus proceeding are the most fragile. Second, one person classified all 130 outputs. I would want a second rater before putting a decimal on any of this.
+Two caveats that matter. First, the harness wording moved results: in a discarded batch, a note saying "finish in this one reply" pushed every "stop and ask the user" rule to lose. Pairs about pausing versus proceeding are the most fragile. Second, all 130 outputs were classified by one classifier, a Claude Code session; there was no second rater. I would want one before putting a decimal on any of this.
 
-**You cannot give skills an order.** The obvious fix is to tell the agent which skill wins. I tried three ways on the same 26 pairs: five runs with A named the winner and five with B, 260 runs per method, same harness and classification.
+**No method I tried gave skills a reliable order.** The obvious fix is to tell the agent which skill wins. I tried three ways on the same 26 pairs: five runs with A named the winner and five with B, 260 runs per method, same harness and classification.
 
 | How the winner was named | Runs that followed the named winner |
 | --- | --- |
@@ -102,15 +102,15 @@ Two caveats that matter. First, the harness wording moved results: in a discarde
 | A block naming the winner and quoting both conflicting lines | 56% (145/260) |
 | The loser's conflicting lines replaced with `<!-- overridden by <winner>: "<line>" -->` | 46% (120/260) |
 
-That is 910 runs counting the 130 above. Per-pair tables are in [numbers.md](numbers.md) §8–§10.
+None of the three is a reliable control: 43–56% of runs followed the named skill. The best, the block that names the winner, turned the agent's own choice around in 8 of the 23 pairs where it had one (the other 3 had no majority winner). That is 910 runs counting the 130 above. Per-pair tables are in [numbers.md](numbers.md) §8–§10.
 
 ## 5. Does loading skills per task help? In one of five task types.
 
-To find out, I ran real Claude Code sessions in three conditions: **A** no skills; **B** the one skill an expert would have installed, pre-loaded; **C** skillfetch's router (the MCP server described under "Try it") picking from the index. Everything was scored blind, by raters who did not know the condition.
+To find out, I ran real Claude Code sessions in three conditions: **A** no skills; **B** the one skill an expert would have installed, pre-loaded; **C** skillfetch's router (the MCP server described under "Try it") picking from the index. Everything was scored blind by model judges (Claude), with the condition hidden behind random codes: in stage 1 by the session that ran the test, in the 1b rejudge and stage 2 by fresh subagents that saw only the rubric and the outputs.
 
-On 20 small maintenance tasks on two repos (a FastAPI template and a Next.js starter; add a 404 page, link pagination, a README table), each run twice per condition (stage 1; B only on the 15 tasks with an expert skill), the three conditions were indistinguishable: 110 of 110 passed the hidden checks, screenshots tied, documents tied. Skills do not change what the agent writes when the task is small. C cost 5 more turns and 59% more input tokens for nothing.
+On 20 small maintenance tasks on two repos (a FastAPI template and a Next.js starter; add a 404 page, link pagination, a README table), each run twice per condition (stage 1; B only on the 15 tasks with an expert skill), the three conditions were indistinguishable: 110 of 110 passed the hidden checks, screenshots tied, documents tied. Skills do not change what the agent writes when the task is small. C cost 6.5 more turns than A on the 15 tasks with an expert skill (6 over all 20) and 59% more input tokens, for nothing.
 
-On 5 larger tasks on the same two repos, each run twice per condition (stage 1b), the picture split. To see whether that generalises, I then ran one large task in each of four more domains, each in its own repo (stage 2): tests for an untested 280-line module, a FastAPI bookmarks API, a README for an undocumented Next.js app, and a script that cleans a 375-row orders CSV with ten planted problems. Five runs per condition, checks frozen before the runs, every output judged blind twice. Stage 2 used only the router after the search fix described below.
+On 5 larger tasks on the same two repos, each run twice per condition (stage 1b), the picture split. To see whether that generalises, I then ran one large task in each of four more domains, each in its own repo (stage 2): tests for an untested 280-line module, a FastAPI bookmarks API, a README for an undocumented Next.js app, and a script that cleans a 375-row orders CSV with ten planted problems. Five runs per condition, checks frozen before the runs, every output judged blind twice by fresh model judges. Stage 2 used only the router after the search fix described below.
 
 | | A: no skill | B: expert's skill | C: router, first version | C: router, after the search fix |
 |---|---|---|---|---|
@@ -120,16 +120,16 @@ On 5 larger tasks on the same two repos, each run twice per condition (stage 1b)
 | Test writing: median turns / input tokens | 10 / 0.78M | 9 / 0.83M | – | 16 / 1.49M |
 | Backend API: score · contract calls passed | 4.20 · 27/27 | 4.20 · 27/27 | – | 4.80 · 27/27 |
 | Backend API: median turns / input tokens | 15 / 0.90M | 14 / 0.87M | – | 23 / 1.87M |
-| Documentation: score · builds, no invented scripts | 4.10 · 5/5 | 4.70 · 5/5 | – | 4.40 · 5/5 |
+| Documentation: score · checks passed | 4.10 · 5/5 | 4.70 · 5/5 | – | 4.40 · 5/5 |
 | Documentation: median turns / input tokens | 10 / 0.69M | 9 / 0.73M | – | 17 / 1.33M |
 | Data script: score · output checks passed | 4.50 · 5/5 | 4.50 · 5/5 | – | 4.50 · 5/5 |
 | Data script: median turns / input tokens | 12 / 0.91M | 12 / 0.85M | – | 18 / 1.52M |
 | Plan quality (rank, 0 = best) | 0.36 | 0.00 | 0.79 | 0.71 |
-| Landing and plan tasks: median turns | 19.5 | 24 | 34 | 26.5 |
+| Stage 1b, all 5 tasks: median turns | 19.5 | 24 | 34 | 26.5 |
 
 *Two notes on stage 2.* (a) Documentation: two C2 runs described the router's install files (`.mcp.json` and `.claude/`, present only in the C2 repo) in their README, and the first judging pass cited that when marking them down. That is a trace of the harness, not a weakness of the router; allowing for it, documentation is also close to no difference between conditions. (b) The harness gave the sessions no AskUserQuestion or plan-mode tools, so this experiment cannot observe whether an interactive skill the router picks (one with interview or approval steps) stalls a real session. Backend API run 1 is such a case: it loaded `fastapi-endpoint`, which says "Enter plan mode" and "Use AskUserQuestion to clarify requirements", and went ahead with "Requirements are clear enough to implement directly."
 
-The expert's skill matters: with Anthropic's `frontend-design` loaded, the landing pages lost their template look. The router's first version never found that skill (it ranked 34th in a 10-result search) and loaded design-adjacent skills instead. On the landing pages they did not reduce the template tells (2.00, the same as no skill); on the planning task they made the plan worse than no skill (rank 0.79 vs 0.36). There, loading the wrong skill was worse than loading none.
+The expert's skill matters: with Anthropic's `frontend-design` loaded, the landing pages lost their template look. The router's first version never found that skill (it ranked 13th to 41st, never in the 10 results the search returned) and loaded design-adjacent skills instead. On the landing pages they did not reduce the template tells (2.00, the same as no skill); on the planning task they made the plan worse than no skill (rank 0.79 vs 0.36). There, loading the wrong skill was worse than loading none.
 
 Widening the search to 50 compact summaries and letting the agent choose from those solved search for tasks that name their domain:
 
@@ -142,9 +142,9 @@ Widening the search to 50 compact summaries and letting the agent choose from th
 | Data script | `data-analyst-engine` | 5/5 | 2.0 | 5/5 |
 | All | | 24/24 | | 23/24 |
 
-Finding the skill is not the same as needing it. Design is the only domain where the expert's skill changed the result. On tests, the API, docs and the data script, all three conditions hit every objective metric (100% branch coverage, 27 of 27 contract calls, every build and output check), and the score differences between conditions (0.6 or less) are within the noise of five runs and two judging passes that agreed exactly on 8 to 14 of 15 outputs. The router costs 1.7 to 2.1 times the input tokens of no skill and 6 to 8 more turns. That is the scope of this result: tasks the base model finishes in a median 9 to 15 turns without help, one model, five runs per condition.
+Finding the skill is not the same as needing it. Design is the only domain where the expert's skill changed the result. On tests, the API, docs and the data script, all three conditions hit every objective metric (100% branch coverage, 27 of 27 contract calls, every check passed), and the score differences between conditions (0.6 or less) are within the noise of five runs and two judging passes that agreed exactly on 8 to 14 of 15 outputs. The router costs 1.7 to 2.1 times the input tokens of no skill and 6 to 8 more turns. That is the scope of this result: tasks the base model finishes in a median 9 to 15 turns without help, one model, five runs per condition.
 
-The router still misses skills about *how* to work. The expert's `writing-plans` skill describes a way of working, the planning task describes a feature, and keyword search does not bridge that. A 22M-parameter embedding model did not bridge it either (top-50 recall 0.74 vs BM25's 0.71), so it is not in the product.
+The router still misses skills about *how* to work. The expert's `writing-plans` skill describes a way of working, the planning task describes a feature, and keyword search does not bridge that. A 22M-parameter embedding model did not bridge it either (top-50 recall 0.74 fused with BM25 vs BM25's 0.71, [numbers.md](numbers.md) §12), so it is not in the product.
 
 ## What the tool gets wrong
 
@@ -152,10 +152,10 @@ The pipeline is tuned for precision over recall, and that cost is visible in the
 
 - **Recall is unmeasured.** Nobody has hand-labelled 1,700 public skills for conflicts, so I can say the tool rarely lies; I cannot say how much it misses. The default mode deliberately downgrades blanket rules without a named object ("never use emoji") to `needs_review`, because on real skills those were the source of every false conflict. On my hand-written test set that hides 8 of 19 real conflicts.
 - **The judge leans one way.** It called 6 of 7 known carve-outs "conflict". Its 90 is an upper bound.
-- **Six extraction prompts, one test set.** I revised the extraction schema six times against 41 hand-written skills until it scored 1.0 on them. On the first 219 real skills it then produced 24 conflicts, all false. Two independent samples later it produces 0 to 2. The lesson generalises: a perfect score on the set you tuned against means nothing until a held-out set agrees.
+- **Six extraction prompts, one test set.** I revised the extraction schema six times against the 41 hand-written fixture skills of the time until conflict precision was 1.0 and informative-pair accuracy 0.912 on them (the fixture directory now holds 52: 44 hand-written plus 8 cap fixtures that keep real public lines). On a held-out set of 26 public skills, extraction v4 then flagged 24 conflicts, all false; the final version flags 0 there and 2 in the full build. The lesson generalises: a perfect score on the set you tuned against means nothing until a held-out set agrees.
 - **Two false conflicts are in the shipped output** and documented in the README as such, rather than patched around.
 - **Anti-pattern tables fool the extractor.** A row in a "❌ Don't" table is read as an instruction. Open issue.
-- **Extraction is semantic, so it needs a model.** about $0.003 per skill with gpt-6-luna ($4.82 for the final run over 1,764 skills); cheaper models produced false conflicts, a 15x pricier one scored lower. Prompt structure mattered more than model size.
+- **Extraction is semantic, so it needs a model.** about $0.003 per skill with gpt-6-luna ($4.82 for the final run: 1,764 requests, 1,723 public skills and the 41 fixtures).
 - **Interactive skills are untested.** The end-to-end harness gave the sessions no AskUserQuestion or plan-mode tools, so whether a router-picked skill with interview or approval steps stalls a real session is not observed (§5, note b).
 
 ## Try it, and what comes next

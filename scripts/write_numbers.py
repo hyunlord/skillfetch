@@ -187,6 +187,19 @@ def calibration(out: list[str]) -> None:
         "Informative-pair accuracy 0.912 (31/34), extraction v6.",
         "- Holdout (26 public skills, 325 pairs, hand labels): 0 conflicts flagged in both "
         "cap modes; v4 had flagged 24, all false.",
+    ]
+    labels = sorted((ROOT / "tests" / "fixtures" / "skills").glob("*/constraints.json"))
+    cap = [f for f in labels if '"note"' in f.read_text()]
+    v6 = HOME / "extract-cache" / "v6"
+    v6_fixtures = sum(
+        1 for f in v6.rglob("*.json") if "/" not in json.loads(f.read_text()).get("skill_id", "/")
+    )
+    out += [
+        f"- Fixture directory today (`tests/fixtures/skills`): {len(labels)} skills, "
+        f"{len(labels) - len(cap)} hand-written and {len(cap)} cap fixtures (constraints kept as "
+        "the extractor read real public lines, each with a `note`; `tests/fixtures/README.md`). "
+        f"The calibration figures above are from the {v6_fixtures}-skill set extraction v6 ran "
+        "on (fixture entries in the v6 extract cache).",
         "",
     ]
 
@@ -325,12 +338,20 @@ def costs(out: list[str]) -> None:
         groups[key][0] += 1
         groups[key][1] += json.loads(f.read_text()).get("_cost_usd") or 0.0
     api = {k: v for k, v in groups.items() if "claude-code" not in k}
+    v6_ids = [
+        json.loads(f.read_text()).get("skill_id", "")
+        for f in (HOME / "extract-cache" / "v6").rglob("*.json")
+    ]
+    v6_public = sum(1 for s in v6_ids if "/" in s)
     total = sum(v[1] for v in api.values())
     out += table(
         ("stage · model", "requests", "USD"),
         [(k, n, f"{c:.4f}") for k, (n, c) in sorted(api.items())],
     )
     out += [
+        "",
+        f"Extraction v6 requests: {len(v6_ids)} = {v6_public} public skills + "
+        f"{len(v6_ids) - v6_public} fixture skills.",
         "",
         f"**Total external API spend: ${total:.2f}** (OpenRouter). Since the "
         '"no external API" rule, model work runs inside Claude Code and is not in this '
@@ -592,8 +613,62 @@ def router_e2e(out: list[str]) -> None:
         f"{r['top3']}, top 10 for {r['top10']}, top 50 for {r['top50']}.",
         "",
     ]
+    all1 = s1["by_condition"].get("all_tasks")
+    if all1:
+        a, c = all1["A"], all1["C"]
+        ex = s1["by_condition"]["expert_tasks"]
+        out[-1:-1] = [
+            f"- All {s1['tasks']} stage 1 tasks (A and C on all {s1['tasks']}, B on the "
+            f"{s1['expert_tasks']} with an expert skill): checks pass "
+            + ", ".join(f"{k} {v['check_pass']}/{v['sessions']}" for k, v in all1.items())
+            + "; median turns "
+            + ", ".join(f"{k} {v['median_turns']:g}" for k, v in all1.items())
+            + "; median input tokens "
+            + ", ".join(f"{k} {v['median_input_tokens']:,}" for k, v in all1.items())
+            + f". C against A: {c['median_turns'] - a['median_turns']:+g} turns, "
+            f"{c['median_input_tokens'] / a['median_input_tokens'] - 1:+.0%} input tokens over all "
+            f"tasks; {ex['C']['median_turns'] - ex['A']['median_turns']:+g} turns, "
+            f"{ex['C']['median_input_tokens'] / ex['A']['median_input_tokens'] - 1:+.0%} on the "
+            "expert tasks.",
+        ]
+    if "stage1b_rejudge" in d:
+        rejudge(out, d["stage1b_rejudge"], d["landing_expert_ranks"])
     if "stage2" in d:
-        stage2(out, d["stage2"], d["stage2_landing_from_1b"])
+        stage2(out, d["stage2"], d["stage2_landing_from_1b"], d.get("stage2_setup"), d)
+
+
+def rejudge(out: list[str], rj: dict, ranks: dict) -> None:
+    """§11, stage 1b rejudge: A / B / C (first version) / C2 judged together by fresh judges."""
+    conds = ("A", "B", "C", "C2")
+    names = {"A": "A", "B": "B", "C": "C, first version (k=10)", "C2": "C2, search k=50"}
+    out += [
+        "### Stage 1b rejudge",
+        "",
+        "Source: e2e/stage1b/report-1b-c2.md §1 and §4 (`rejudge/`). A, B and C are the 1b "
+        "sessions; C2 is the same 5 tasks × 2 runs with skillfetch e2a1b65 (search_skills k=50, "
+        "compact results). All four conditions judged together under fresh random codes by "
+        "sub-agent judges (same model) that saw only the rubric and the outputs. Landing pages: "
+        "2 tasks × 2 runs (n=4); plan: 1 task × 2 runs (n=2); median turns over all 5 tasks "
+        "(n=10).",
+        "",
+        "| condition | landing usable 1-5 | landing AI-template tells | plan normalised rank "
+        "(0 = best) | median turns |",
+        "|---|---|---|---|---|",
+    ]
+    for c in conds:
+        out.append(
+            f"| {names[c]} | {rj['usable'][c]:.2f} | {rj['ai_tells'][c]:.2f} | "
+            f"{rj['plan_norm_rank'][c]:.2f} | {rj['median_turns'][c]:g} |"
+        )
+    c_ranks, c2_ranks = ranks["c_bm25"], ranks["c2_session"]
+    out += [
+        "",
+        f"- `anthropics-skills/frontend-design` in the landing queries: C (k={ranks['c_k']}), "
+        f"re-ranked by the current BM25: {', '.join(map(str, c_ranks))} (never in the "
+        f"{ranks['c_k']} results returned); C2 (k={ranks['c2_k']}), in the results each session "
+        f"received: {', '.join(map(str, c2_ranks))}, mean {sum(c2_ranks) / len(c2_ranks):.1f}.",
+        "",
+    ]
 
 
 STAGE2_NAMES = {
@@ -604,7 +679,7 @@ STAGE2_NAMES = {
 }
 
 
-def stage2(out: list[str], s2: dict, land: dict) -> None:
+def stage2(out: list[str], s2: dict, land: dict, setup: dict | None, d: dict) -> None:
     """§11, stage 2 (domain generalisation): one task per domain, A / B / C2, 5 runs each."""
     out += [
         "### Stage 2: domain generalisation",
@@ -614,19 +689,39 @@ def stage2(out: list[str], s2: dict, land: dict) -> None:
         "task per domain, 5 runs per condition. Score: overall 1-5 from two blind judging "
         "passes (fresh codes, fresh judge), mean. Landing pages: 1b rejudge, one pass, n=4.",
         "",
+    ]
+    if setup:
+        out += [
+            "Repos (e2e/stage2/report-stage2.md §0): test writing, a package with a "
+            f"{setup['tests_module_lines']}-line rules module and no tests; backend API, an empty "
+            f"FastAPI project, checked by {setup['api_contract_calls']} contract calls; "
+            "documentation, the stage 1 Next.js repo with its README removed; data script, a "
+            f"{setup['orders_csv_rows']}-row orders CSV with {setup['orders_planted_problems']} "
+            "planted problems.",
+            "",
+        ]
+    out += [
         "| domain | condition | sessions | score (pass 1 / pass 2) | checks pass | median turns "
-        "| median input tokens | C2: expert skill in top 50 / picked / loaded |",
+        "| median input tokens | C2: expert skill in top 50 / picked / loaded (mean rank) |",
         "|---|---|---|---|---|---|---|---|",
     ]
     for c in ("A", "B", "C2"):
-        hit = f"– / – / {land['c2_loaded_expert']}/4 |" if c == "C2" else "|"
+        hit = (
+            f"{land['c2_in_top50']}/4 / {land['c2_picked']}/4 / {land['c2_loaded_expert']}/4 "
+            f"({sum(d['landing_expert_ranks']['c2_session']) / 4:.1f}) |"
+            if c == "C2"
+            else "|"
+        )
         out.append(f"| landing page (1b) | {c} | 4 | {land['usefulness'][c]:.2f} | | | | " + hit)
     for t, name in STAGE2_NAMES.items():
         for c in ("A", "B", "C2"):
             a = s2["tasks"][t][c]
             n = a["sessions"]
             hit = (
-                f"{a['b_in_top50']}/5 / {a['b_picked']}/5 / {a['b_loaded']}/5" if c == "C2" else ""
+                f"{a['b_in_top50']}/5 / {a['b_picked']}/5 / {a['b_loaded']}/5 "
+                f"({sum(a['b_ranks']) / len(a['b_ranks']):.1f})"
+                if c == "C2"
+                else ""
             )
             out.append(
                 f"| {name} | {c} | {n} | {a['score']:.2f} ({a['score_p1']:.2f} / "
@@ -642,12 +737,28 @@ def stage2(out: list[str], s2: dict, land: dict) -> None:
         f"mean |diff| {c['total_mean_abs_diff']}"
         for t, c in s2["consistency"].items()
     )
+    ABC2 = ("A", "B", "C2")
+
+    def ratio(t: str) -> str:
+        a, c2 = s2["tasks"][t]["A"], s2["tasks"][t]["C2"]
+        return (
+            f"{STAGE2_NAMES[t]} {c2['median_input_tokens'] / a['median_input_tokens']:.2f}x, "
+            f"{c2['median_turns'] - a['median_turns']:+g} turns"
+        )
+
+    ratios = "; ".join(ratio(t) for t in STAGE2_NAMES)
     out += [
         "",
         f"- C2 scored at least B in {len(repro)} of 4 domains "
         f"({', '.join(STAGE2_NAMES[t] for t in repro) or 'none'}); with landing pages "
         f"{with_landing} of 5.",
         f"- Judging consistency (pass 1 vs pass 2, overall score): {consistency}.",
+        "- C2 against A, median input tokens and turns: " + ratios + ".",
+        "- Objective metrics: test writing branch coverage (mean) "
+        + ", ".join(f"{c} {s2['tasks']['s2-tests'][c]['mean_branch_cov']:g}%" for c in ABC2)
+        + "; backend API contract calls passed (mean, of 27) "
+        + ", ".join(f"{c} {s2['tasks']['s2-api'][c]['mean_contract_pass']:g}" for c in ABC2)
+        + ".",
         "- Limitation (documentation): two C2 runs (r4, r5) described the router's install "
         "files (`.mcp.json`, `.claude/`, present only in the C2 repo) in their README, and "
         "pass 1 cited that when marking them down: a trace of the harness, not of the router.",
@@ -656,6 +767,56 @@ def stage2(out: list[str], s2: dict, land: dict) -> None:
         "real session is not observed. Backend API C2 r1 loaded `uasl/fastapi-endpoint` "
         '("Enter plan mode", "Use AskUserQuestion to clarify requirements") and answered '
         '"Requirements are clear enough to implement directly."',
+        "",
+    ]
+
+
+def embedding(out: list[str]) -> None:
+    """§12: the embedding retrieval evaluation (not adopted)."""
+    out += ["## 12. Embedding retrieval (not adopted)", ""]
+    path = DATA / "e2e" / "router-e2e.json"
+    e = json.loads(path.read_text()).get("embedding_eval") if path.is_file() else None
+    if not e:
+        out += ["Not run yet.", ""]
+        return
+    m, n = e["model"], e["queries"]
+
+    def cell(x: int) -> str:
+        return f"{x}/{n} = {x / n:.2f}"
+
+    out += [
+        "Source: `embedding_eval` in `data/e2e/router-e2e.json` "
+        "(e2e/retrieval/report-embedding.md, `emb-ranks.jsonl`, `emb-timing.json`). "
+        "Offline, no sessions, no runtime change. "
+        f"{n} queries: the queries C sent on tasks with an expert skill (stages 1 and 1b); gold = "
+        f"the expert skill id. Documents: the {m['docs']} tier A/B canonical skills, text = "
+        "title + description + summary + synthetic queries. RRF: reciprocal rank fusion of the "
+        "BM25 ranking (search_skills with the query's profile) and the embedding ranking, k=60.",
+        "",
+        "| method | gold in top 3 | top 10 | top 50 |",
+        "|---|---|---|---|",
+    ]
+    for name, key in (
+        ("BM25 (current)", "bm25"),
+        ("embedding alone", "embedding"),
+        ("BM25 + embedding RRF", "rrf"),
+    ):
+        r = e[key]
+        out.append(f"| {name} | {cell(r['top3'])} | {cell(r['top10'])} | {cell(r['top50'])} |")
+    picks = e["picks_top3"]
+    out += [
+        "",
+        f"- Picking 1-3 from the top 50 (a sub-agent without the gold labels): BM25 top 50 "
+        f"{cell(picks['bm25_top50'])}, RRF top 50 {cell(picks['rrf_top50'])}.",
+        f"- Model: `{m['model']}`, {m['params']:,} parameters, {m['dim']} dimensions, max "
+        f"{m['max_seq_length']} tokens ({m['docs_truncated']} of {m['docs']} documents truncated); "
+        f"{m['model_cache_bytes'] / 1e6:.1f} MB on disk; load {m['model_load_s']} s, indexing "
+        f"{m['index_s']} s; query latency median {m['query_latency_ms']['median']} ms. It would "
+        "add sentence-transformers and torch as runtime dependencies.",
+        "- Reproduce (in the e2e workspace, a venv with sentence-transformers): "
+        "`python retrieval/scripts/eval_embed.py && python retrieval/scripts/report_embed.py`; "
+        "BM25 ranks: `uv run python retrieval/scripts/eval_bm25.py` against skillfetch 53b81df "
+        "and index-2026-10-22.",
         "",
     ]
 
@@ -679,6 +840,7 @@ def main() -> None:
         resolved,
         three_conditions,
         router_e2e,
+        embedding,
     ):
         section(out)
     OUT.parent.mkdir(parents=True, exist_ok=True)
