@@ -2,7 +2,7 @@
 
 *2026-10-22 · Kwan Hyeon*
 
-SKILL.md files are the new npm: you install thirty of them into your coding agent and never read one. I pulled 1,831 public skills, linted them, scanned them for prompt-injection patterns, extracted 29,880 individual instructions from them, and checked which instructions contradict each other. Three things stood out. Only one in five states a license. Outright contradictions between skills are almost nonexistent. And when two skills do disagree, the agent does not flip a coin: it quietly picks one, the same one every time.
+SKILL.md files are the new npm: you install thirty of them into your coding agent and never read one. I pulled 1,831 public skills, linted them, scanned them for prompt-injection patterns, extracted 29,880 individual instructions from them, and checked which instructions contradict each other. Then I ran 1,100 agent sessions to see what any of it changes. Four things stood out. Only one in five states a license. Outright contradictions between skills are almost nonexistent. When two skills do disagree, the agent quietly picks one, the same one every time, and no header, block or edit I tried could change which. And loading the *right* skill visibly improves a large task, while loading a *plausible* one makes it worse than loading nothing.
 
 ## What I did
 
@@ -127,7 +127,24 @@ uvx --from git+https://github.com/hyunlord/skillfetch skillfetch scan ~/.claude/
 
 The part I actually set out to build is the other half. Given that 80% of skills cannot be redistributed, that most of them are fine together, and that the ones that are not resolve by silent precedence, the thing I want is an agent that **does not install skills at all**: for each task it searches a vetted index, picks a small set, checks that set for the tensions above, fetches the bodies from their original repos with hash verification, and drops them when the task is done. An early version of that MCP server is in the repo: `search_skills`, `resolve_set`, `load_skills`, working end to end in Claude Code. The index holds metadata, constraints and hashes, never bodies.
 
-<!-- stage 1 cost: turns, tokens, correctness (to be filled after the blind results) -->
+### 5. Does loading skills per task actually help? Only when it finds the right one.
+
+I ran it. Three conditions in real Claude Code sessions on two repos (a FastAPI template and a Next.js starter), each task twice: **A** no skills; **B** the one skill an expert would have installed, pre-loaded; **C** skillfetch's router picking from the index. Everything was scored blind, by raters who did not know the condition.
+
+On 20 small maintenance tasks (add a 404 page, link pagination, a README table) the three conditions were indistinguishable: 110 of 110 passed the hidden checks, screenshots tied, documents tied. Skills do not change what the agent writes when the task is small. C cost 5 more turns and 59% more input tokens for nothing.
+
+On 5 larger tasks the picture split:
+
+| | A: no skill | B: expert's skill | C: router, first version | C: router, after the search fix |
+|---|---|---|---|---|
+| Landing page, usable (1–5) | 3.50 | 4.75 | 4.50 | 4.75 |
+| Landing page, "AI-template" tells | 2.00 | 0.50 | 2.00 | 0.50 |
+| Plan quality (rank, 0 = best) | 0.36 | 0.00 | 0.79 | 0.71 |
+| Median turns | 19.5 | 24 | 34 | 26.5 |
+
+The expert's skill matters: with Anthropic's `frontend-design` loaded, the landing pages lost their template look. The router's first version never found that skill (it ranked 34th in a 10-result search) and loaded design-adjacent skills instead, which made the pages *more* template-like than no skill at all. Loading the wrong skill is worse than loading none.
+
+Widening the search to 50 compact summaries and letting the agent choose from those fixed the design tasks: the router then loaded `frontend-design` in 4 of 4 runs and matched the expert condition, at 7 extra turns instead of 14. It did not fix the planning task: the expert's `writing-plans` skill describes a way of working, the task describes a feature, and no amount of keyword search bridges that. A 22M-parameter embedding model did not bridge it either (top-50 recall 0.74 vs BM25's 0.71), so it is not in the product. The honest state of the router: it finds the right skill for tasks that name their domain, misses skills about *how* to work, and costs about seven turns per task.
 
 If you maintain a skill: add a LICENSE file. If you maintain a registry: show it. If you have a pair of skills you suspect disagree, run the scanner on them and open an issue with the output; I want to know what it misses more than what it finds.
 
