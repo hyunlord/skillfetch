@@ -17,7 +17,7 @@ skill to the index by content hash, so it needs no model and no API key:
 
 ```console
 $ uvx --from git+https://github.com/hyunlord/skillfetch skillfetch sync
-installed: ~/.skillfetch/index from hyunlord/skillfetch@index-2026-10-22 (skillfetch-index-20261022T044524Z.tar.gz) · 1724 skills · built 2026-10-22T04:45:24Z · extraction openrouter/openai/gpt-6-luna
+installed: ~/.skillfetch/index from hyunlord/skillfetch@index-2026-10-22 (skillfetch-index-20261022T061543Z.tar.gz) · 1724 skills · built 2026-10-22T06:15:43Z · extraction openrouter/openai/gpt-6-luna
 $ uvx --from git+https://github.com/hyunlord/skillfetch skillfetch scan .claude/skills
 skillfetch scan .claude/skills
 30 skills · lint: 30 ok, 0 failed · injection scan: 30 ok, 0 failed, 21 with warnings · scripts: 4
