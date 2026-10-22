@@ -326,8 +326,10 @@ def scan_dir(root: Path, lookup: Lookup | None = None) -> ScanReport:
     index = None
     if lookup is not None and lookup.index is not None:
         idx = lookup.index
+        where, home = str(idx.root.resolve()), str(Path.home())
+        where = "~" + where[len(home) :] if where.startswith(home + "/") else str(idx.root)
         index = (
-            f"{idx.root} ({len(idx.records)} skills, extraction "
+            f"{where} ({len(idx.records)} skills, extraction "
             f"{idx.manifest.get('extract_model', '?')})"
         )
     return ScanReport(

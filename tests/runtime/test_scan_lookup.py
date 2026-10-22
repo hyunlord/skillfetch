@@ -52,6 +52,7 @@ def test_constraints_come_from_the_index_by_content_hash(tmp_path):
     for f in report.findings:
         assert f.a in by_id and f.b in by_id
     text = render_report(report)
+    assert text.startswith(f"skillfetch scan {tmp_path / 'installed'}\n")
     assert "constraints: 4 analyzed (index 4), 0 skipped" in text
     assert f"index: {index_dir} (4 skills" in text
 
