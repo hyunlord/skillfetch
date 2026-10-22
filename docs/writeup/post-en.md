@@ -15,7 +15,7 @@ Two sources: Anthropic's own [skills repo](https://github.com/anthropics/skills)
 5. **LLM judge** over the open pairs, using a different vendor's model than the extractor, reading the original lines rather than the extracted records.
 6. **Obedience test**: for pairs the judge called a real conflict, load both skills into an agent, give it a task that touches the disputed rule, and record which skill it obeys.
 
-External API cost for the whole analysis was **$15.75**: $6.23 for extraction (gpt-6-luna, the cheapest model that kept conflict precision at 1.0 on a hand-labelled set), $9.36 for the judge (claude-sonnet-5.5), $0.16 for task generation. The obedience runs and all classification happened inside Claude Code sessions. A note on authorship: I designed the pipeline and made the calls; Claude Code wrote most of the code and ran the experiments. Where this post says "I read", a human read. Code and numbers: [hyunlord/skillfetch](https://github.com/hyunlord/skillfetch).
+External API cost for the whole analysis was **$15.75** (separately, the 1,160 agent sessions ran on a Claude Code plan: about $315 at API prices, [numbers.md](numbers.md) §7): $6.23 for extraction (gpt-6-luna, the cheapest model that kept conflict precision at 1.0 on a hand-labelled set), $9.36 for the judge (claude-sonnet-5.5), $0.16 for task generation. The obedience runs and all classification happened inside Claude Code sessions. A note on authorship: I designed the pipeline and made the calls; Claude Code wrote most of the code and ran the experiments. Where this post says "I read", a human read. Code and numbers: [hyunlord/skillfetch](https://github.com/hyunlord/skillfetch).
 
 ## 1. Only one in five skills states a license
 
@@ -104,36 +104,13 @@ Two caveats that matter. First, the harness wording moved results: in a discarde
 
 That is 910 runs counting the 130 above. Per-pair tables are in [numbers.md](numbers.md) §8–§10.
 
-## What the tool gets wrong
+## 5. Does loading skills per task help? In one of five task types.
 
-The pipeline is tuned for precision over recall, and that cost is visible in the numbers.
+To find out, I ran real Claude Code sessions in three conditions: **A** no skills; **B** the one skill an expert would have installed, pre-loaded; **C** skillfetch's router (the MCP server described under "Try it") picking from the index. Everything was scored blind, by raters who did not know the condition.
 
-- **Recall is unmeasured.** Nobody has hand-labelled 1,700 public skills for conflicts, so I can say the tool rarely lies; I cannot say how much it misses. The default mode deliberately downgrades blanket rules without a named object ("never use emoji") to `needs_review`, because on real skills those were the source of every false conflict. On my hand-written test set that hides 8 of 19 real conflicts.
-- **The judge leans one way.** It called 6 of 7 known carve-outs "conflict". Its 90 is an upper bound.
-- **Six extraction prompts, one test set.** I revised the extraction schema six times against 41 hand-written skills until it scored 1.0 on them. On the first 219 real skills it then produced 24 conflicts, all false. Two independent samples later it produces 0 to 2. The lesson generalises: a perfect score on the set you tuned against means nothing until a held-out set agrees.
-- **Two false conflicts are in the shipped output** and documented in the README as such, rather than patched around.
-- **Anti-pattern tables fool the extractor.** A row in a "❌ Don't" table is read as an instruction. Open issue.
-- **Extraction is semantic, so it needs a model.** about $0.003 per skill with gpt-6-luna ($4.82 for the final run over 1,764 skills); cheaper models produced false conflicts, a 15x pricier one scored lower. Prompt structure mattered more than model size.
+On 20 small maintenance tasks on two repos (a FastAPI template and a Next.js starter; add a 404 page, link pagination, a README table), each run twice per condition (stage 1; B only on the 15 tasks with an expert skill), the three conditions were indistinguishable: 110 of 110 passed the hidden checks, screenshots tied, documents tied. Skills do not change what the agent writes when the task is small. C cost 5 more turns and 59% more input tokens for nothing.
 
-## Try it, and what comes next
-
-The scanner runs on any local skills directory and prints every finding with the two source lines that caused it. Skills that are copies of public ones are analysed from the published index, no model or API key needed:
-
-```
-uvx --from git+https://github.com/hyunlord/skillfetch skillfetch sync
-uvx --from git+https://github.com/hyunlord/skillfetch skillfetch scan ~/.claude/skills
-uvx --from git+https://github.com/hyunlord/skillfetch skillfetch scan ~/.claude/skills --fail-on conflict   # for CI
-```
-
-The part I actually set out to build is the other half. Given that 80% of skills cannot be redistributed, that most of them are fine together, and that the ones that are not resolve by silent precedence, the thing I want is an agent that **does not install skills at all**: for each task it searches a vetted index, picks a small set, checks that set for the tensions above, fetches the bodies from their original repos with hash verification, and drops them when the task is done. An early version of that MCP server is in the repo: `search_skills`, `resolve_set`, `load_skills`, working end to end in Claude Code. The index holds metadata, constraints and hashes, never bodies.
-
-### 5. Does loading skills per task help? In one of five task types.
-
-I ran it. Three conditions in real Claude Code sessions on two repos (a FastAPI template and a Next.js starter), each task twice: **A** no skills; **B** the one skill an expert would have installed, pre-loaded; **C** skillfetch's router picking from the index. Everything was scored blind, by raters who did not know the condition.
-
-On 20 small maintenance tasks (add a 404 page, link pagination, a README table) the three conditions were indistinguishable: 110 of 110 passed the hidden checks, screenshots tied, documents tied. Skills do not change what the agent writes when the task is small. C cost 5 more turns and 59% more input tokens for nothing.
-
-On 5 larger tasks (stage 1b) the picture split. To see whether that generalises, I then ran one large task in each of four more domains (stage 2): tests for an untested 280-line module, a FastAPI bookmarks API, a README for an undocumented Next.js app, and a script that cleans a 375-row orders CSV with ten planted problems. Five runs per condition, checks frozen before the runs, every output judged blind twice. Stage 2 used only the router after the search fix described below.
+On 5 larger tasks on the same two repos, each run twice per condition (stage 1b), the picture split. To see whether that generalises, I then ran one large task in each of four more domains, each in its own repo (stage 2): tests for an untested 280-line module, a FastAPI bookmarks API, a README for an undocumented Next.js app, and a script that cleans a 375-row orders CSV with ten planted problems. Five runs per condition, checks frozen before the runs, every output judged blind twice. Stage 2 used only the router after the search fix described below.
 
 | | A: no skill | B: expert's skill | C: router, first version | C: router, after the search fix |
 |---|---|---|---|---|
@@ -152,7 +129,7 @@ On 5 larger tasks (stage 1b) the picture split. To see whether that generalises,
 
 *Two notes on stage 2.* (a) Documentation: two C2 runs described the router's install files (`.mcp.json` and `.claude/`, present only in the C2 repo) in their README, and the first judging pass cited that when marking them down. That is a trace of the harness, not a weakness of the router; allowing for it, documentation is also close to no difference between conditions. (b) The harness gave the sessions no AskUserQuestion or plan-mode tools, so this experiment cannot observe whether an interactive skill the router picks (one with interview or approval steps) stalls a real session. Backend API run 1 is such a case: it loaded `fastapi-endpoint`, which says "Enter plan mode" and "Use AskUserQuestion to clarify requirements", and went ahead with "Requirements are clear enough to implement directly."
 
-The expert's skill matters: with Anthropic's `frontend-design` loaded, the landing pages lost their template look. The router's first version never found that skill (it ranked 34th in a 10-result search) and loaded design-adjacent skills instead, which made the pages *more* template-like than no skill at all. Loading the wrong skill is worse than loading none.
+The expert's skill matters: with Anthropic's `frontend-design` loaded, the landing pages lost their template look. The router's first version never found that skill (it ranked 34th in a 10-result search) and loaded design-adjacent skills instead. On the landing pages they did not reduce the template tells (2.00, the same as no skill); on the planning task they made the plan worse than no skill (rank 0.79 vs 0.36). There, loading the wrong skill was worse than loading none.
 
 Widening the search to 50 compact summaries and letting the agent choose from those solved search for tasks that name their domain:
 
@@ -168,6 +145,30 @@ Widening the search to 50 compact summaries and letting the agent choose from th
 Finding the skill is not the same as needing it. Design is the only domain where the expert's skill changed the result. On tests, the API, docs and the data script, all three conditions hit every objective metric (100% branch coverage, 27 of 27 contract calls, every build and output check), and the score differences between conditions (0.6 or less) are within the noise of five runs and two judging passes that agreed exactly on 8 to 14 of 15 outputs. The router costs 1.7 to 2.1 times the input tokens of no skill and 6 to 8 more turns. That is the scope of this result: tasks the base model finishes in a median 9 to 15 turns without help, one model, five runs per condition.
 
 The router still misses skills about *how* to work. The expert's `writing-plans` skill describes a way of working, the planning task describes a feature, and keyword search does not bridge that. A 22M-parameter embedding model did not bridge it either (top-50 recall 0.74 vs BM25's 0.71), so it is not in the product.
+
+## What the tool gets wrong
+
+The pipeline is tuned for precision over recall, and that cost is visible in the numbers.
+
+- **Recall is unmeasured.** Nobody has hand-labelled 1,700 public skills for conflicts, so I can say the tool rarely lies; I cannot say how much it misses. The default mode deliberately downgrades blanket rules without a named object ("never use emoji") to `needs_review`, because on real skills those were the source of every false conflict. On my hand-written test set that hides 8 of 19 real conflicts.
+- **The judge leans one way.** It called 6 of 7 known carve-outs "conflict". Its 90 is an upper bound.
+- **Six extraction prompts, one test set.** I revised the extraction schema six times against 41 hand-written skills until it scored 1.0 on them. On the first 219 real skills it then produced 24 conflicts, all false. Two independent samples later it produces 0 to 2. The lesson generalises: a perfect score on the set you tuned against means nothing until a held-out set agrees.
+- **Two false conflicts are in the shipped output** and documented in the README as such, rather than patched around.
+- **Anti-pattern tables fool the extractor.** A row in a "❌ Don't" table is read as an instruction. Open issue.
+- **Extraction is semantic, so it needs a model.** about $0.003 per skill with gpt-6-luna ($4.82 for the final run over 1,764 skills); cheaper models produced false conflicts, a 15x pricier one scored lower. Prompt structure mattered more than model size.
+- **Interactive skills are untested.** The end-to-end harness gave the sessions no AskUserQuestion or plan-mode tools, so whether a router-picked skill with interview or approval steps stalls a real session is not observed (§5, note b).
+
+## Try it, and what comes next
+
+The scanner runs on any local skills directory and prints every finding with the two source lines that caused it. Skills that are copies of public ones are analysed from the published index, no model or API key needed:
+
+```
+uvx --from git+https://github.com/hyunlord/skillfetch skillfetch sync
+uvx --from git+https://github.com/hyunlord/skillfetch skillfetch scan ~/.claude/skills
+uvx --from git+https://github.com/hyunlord/skillfetch skillfetch scan ~/.claude/skills --fail-on conflict   # for CI
+```
+
+The part I actually set out to build is the other half. Given that 80% of skills cannot be redistributed, that most of them are fine together, and that the ones that are not resolve by silent precedence, the thing I want is an agent that **does not install skills at all**: for each task it searches a vetted index, picks a small set, checks that set for the tensions above, fetches the bodies from their original repos with hash verification, and drops them when the task is done. An early version of that MCP server is in the repo: `search_skills`, `resolve_set`, `load_skills`, working end to end in Claude Code. The index holds metadata, constraints and hashes, never bodies. Section 5 is what happened when I ran it.
 
 If you maintain a skill: add a LICENSE file. If you maintain a registry: show it. If you have a pair of skills you suspect disagree, run the scanner on them and open an issue with the output; I want to know what it misses more than what it finds.
 
