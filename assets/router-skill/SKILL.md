@@ -48,8 +48,7 @@ with no other change, or answering a question without editing files.
 6. Call `resolve_set` with your picks as `auto_ids` (in order of preference) and the
    pinned skills as `pinned_ids`. Respect `excluded`; read every warning's two quoted
    lines and decide whether they matter for this task.
-7. Call `load_skills` with the `set_id` and follow the returned instructions. When two of
-   them disagree, the earlier skill wins (the precedence header says so).
+7. Call `load_skills` with the `set_id` and follow the returned instructions.
 8. Do the work. If `load_skills` lists a skill in `errors` (hash mismatch, fetch error,
    dropped for the token budget), continue without it and say so.
 

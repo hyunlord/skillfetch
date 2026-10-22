@@ -84,7 +84,7 @@ def _task(tmp_path):
 
 
 def test_precedence_puts_the_load_skills_header_on_top_in_that_order(tmp_path):
-    from skillfetch.mcp.session import PRECEDENCE_HEADER
+    from skillfetch.ingest.obedience import PRECEDENCE_HEADER
 
     task = _task(tmp_path)
     skills = (("skill-a", "body a"), ("skill-b", "body b"))
@@ -138,8 +138,7 @@ def test_precedence_report_counts_control_and_turned_winners():
 
 
 def test_resolved_block_names_the_winner_above_a_then_b(tmp_path):
-    from skillfetch.ingest.obedience import RESOLVED_TITLE, Conflict
-    from skillfetch.mcp.session import PRECEDENCE_HEADER
+    from skillfetch.ingest.obedience import PRECEDENCE_HEADER, RESOLVED_TITLE, Conflict
 
     task = _task(tmp_path)
     skills = (("skill-a", "body a"), ("skill-b", "body b"))
@@ -193,8 +192,7 @@ def test_strip_lines_replaces_the_losers_evidence_with_a_comment():
 
 
 def test_strip_conditions_have_no_header_or_block_and_load_a_then_b(tmp_path):
-    from skillfetch.ingest.obedience import RESOLVED_TITLE, ranked_first
-    from skillfetch.mcp.session import PRECEDENCE_HEADER
+    from skillfetch.ingest.obedience import PRECEDENCE_HEADER, RESOLVED_TITLE, ranked_first
 
     task = _task(tmp_path)
     skills = (("skill-a", "body a"), ("skill-b", '<!-- overridden by skill-a: "x" -->'))

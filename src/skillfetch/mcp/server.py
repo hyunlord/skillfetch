@@ -19,8 +19,8 @@ INSTRUCTIONS = (
     "skillfetch finds vetted skills (SKILL.md instructions) for one task at a time. "
     "Before non-trivial work, restate the task in one sentence with its stack and target "
     "files and call search_skills; read the 50 summaries and pick 1-3; call resolve_set "
-    "(user-named skills go in pinned_ids); then load_skills and follow the returned content "
-    "in precedence order. Skip this for trivial edits."
+    "(user-named skills go in pinned_ids); then load_skills and follow the returned content. "
+    "Skip this for trivial edits."
 )
 
 

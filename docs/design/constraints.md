@@ -469,9 +469,9 @@ output: included, excluded[{id, reason, conflicts_with, evidence}], warnings, pr
    superset of an included skill is included (it adds constraints); the
    earlier skill stays, since resolve_set never removes what it already chose.
 4. precedence = pinned in given order, then auto in given order (included only).
-   load_skills emits a header:
-     "Skills are listed in precedence order. If two instructions disagree,
-      follow the earlier one."
+   load_skills concatenates the bodies in this order and, over its token budget,
+   drops from the end. It adds no precedence header: a header saying "follow the
+   earlier one" did not change which skill the agent followed (numbers.md §8).
 5. set_id = sha256("\n".join(sorted included ids))[:12]; cache the resolution for the session.
 ```
 
