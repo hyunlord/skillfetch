@@ -343,13 +343,42 @@ def costs(out: list[str]) -> None:
     def session_cost(files):
         return sum(json.loads(f.read_text()).get("cost_usd") or 0.0 for f in files)
 
+    plain = len(jsonl(DATA / "obedience" / "trials.jsonl"))
+    header_path = DATA / "obedience" / "trials-precedence.jsonl"
+    header = len(jsonl(header_path)) if header_path.is_file() else 0
     out += [
         "Claude Code sessions (API-price equivalent reported by Claude Code, billed to the "
         "Claude Code plan, not OpenRouter): obedience agent runs "
-        f"{len(runs)}, ${session_cost(runs):.2f}; {len(discarded)} runs of two earlier "
+        f"{len(runs)} ({plain} without a precedence header, §6; {header} with one, §8), "
+        f"${session_cost(runs):.2f}; {len(discarded)} runs of two earlier "
         "batches discarded for harness problems (no note that the session has no tools; then "
         f"a note that discouraged asking), ${session_cost(discarded):.2f}; "
         "the end-to-end MCP transcript session $0.82.",
+        "",
+    ]
+
+
+def precedence(out: list[str]) -> None:
+    path = DATA / "obedience" / "results-precedence.md"
+    out += ["## 8. Precedence header (experiment A)", ""]
+    if not path.is_file():
+        out += ["Not run yet.", ""]
+        return
+    body = path.read_text().split("\n", 2)[2].strip()  # drop the file's own title
+    body = body.replace("\n## Per pair", "\n### Per pair")
+    out += [
+        "Source: `data/obedience/trials-precedence.jsonl`, `results-precedence.md`; "
+        "`skillfetch obedience --index data/index --run data/obedience/tasks.json "
+        "--precedence ab --precedence ba`. The 26 pairs and tasks of §6, the same harness "
+        "(isolated `claude -p --safe-mode` sessions, sonnet, no tools, the neutral no-tools "
+        "note) and the same classification (Claude Code, opus-5.5, against each task's "
+        "'follows A' / 'follows B'). `ab`: load_skills' precedence header at the top of the "
+        "system prompt, then A, then B, in all 5 runs; `ba`: the header, then B, then A. The "
+        "no-header winner of a pair is the skill followed in more of its §6 runs (a tie when "
+        "equal). A run is controlled when the skill it followed is the one the header ranks "
+        "first.",
+        "",
+        body,
         "",
     ]
 
@@ -362,7 +391,15 @@ def main() -> None:
         "`~/.skillfetch/`. Each section names its source; rerun the script after a rebuild.",
         "",
     ]
-    for section in (corpus, constraints_and_pairs, calibration, judge, obedience, costs):
+    for section in (
+        corpus,
+        constraints_and_pairs,
+        calibration,
+        judge,
+        obedience,
+        costs,
+        precedence,
+    ):
         section(out)
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text("\n".join(out) + "\n")
