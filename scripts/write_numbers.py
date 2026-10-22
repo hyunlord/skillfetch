@@ -648,6 +648,14 @@ def stage2(out: list[str], s2: dict, land: dict) -> None:
         f"({', '.join(STAGE2_NAMES[t] for t in repro) or 'none'}); with landing pages "
         f"{with_landing} of 5.",
         f"- Judging consistency (pass 1 vs pass 2, overall score): {consistency}.",
+        "- Limitation (documentation): two C2 runs (r4, r5) described the router's install "
+        "files (`.mcp.json`, `.claude/`, present only in the C2 repo) in their README, and "
+        "pass 1 cited that when marking them down: a trace of the harness, not of the router.",
+        "- Limitation (interactive skills): the sessions had no AskUserQuestion or plan-mode "
+        "tools, so whether a router-picked skill with interview or approval steps stalls a "
+        "real session is not observed. Backend API C2 r1 loaded `uasl/fastapi-endpoint` "
+        '("Enter plan mode", "Use AskUserQuestion to clarify requirements") and answered '
+        '"Requirements are clear enough to implement directly."',
         "",
     ]
 

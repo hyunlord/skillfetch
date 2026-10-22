@@ -714,4 +714,6 @@ Same harness and conditions as 1b (A no skill; B the expert's skill appended to 
 
 - C2 scored at least B in 3 of 4 domains (test writing, backend API, data script); with landing pages 4 of 5.
 - Judging consistency (pass 1 vs pass 2, overall score): test writing 14/15 identical, mean |diff| 0.07; backend API 13/15 identical, mean |diff| 0.13; documentation 11/15 identical, mean |diff| 0.27; data script 8/15 identical, mean |diff| 0.47.
+- Limitation (documentation): two C2 runs (r4, r5) described the router's install files (`.mcp.json`, `.claude/`, present only in the C2 repo) in their README, and pass 1 cited that when marking them down: a trace of the harness, not of the router.
+- Limitation (interactive skills): the sessions had no AskUserQuestion or plan-mode tools, so whether a router-picked skill with interview or approval steps stalls a real session is not observed. Backend API C2 r1 loaded `uasl/fastapi-endpoint` ("Enter plan mode", "Use AskUserQuestion to clarify requirements") and answered "Requirements are clear enough to implement directly."
 
