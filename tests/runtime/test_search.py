@@ -50,3 +50,22 @@ def test_tier_filter(tmp_path):
     s = Searcher(Index.load(root))
     assert s.search("python", tiers=["A"]) == []
     assert s.search("python", tiers=["B"])[0]["id"] == skill_id(root, "typed-python")
+
+
+def test_korean_queries_match_through_cjk_bigrams(tmp_path, monkeypatch):
+    import indexkit
+
+    from skillfetch.index.bm25 import tokenize
+
+    meta = dict(indexkit.META)
+    meta["pnpm-only"] = {
+        **meta["pnpm-only"],
+        "synthetic_queries": ["React 컴포넌트 리팩토링 전에 의존성 설치"],
+    }
+    monkeypatch.setattr(indexkit, "META", meta)
+    s = _searcher(tmp_path)
+    assert tokenize("리팩토링") == ["리팩", "팩토", "토링"]
+    for query in ("React 컴포넌트 리팩토링", "컴포넌트 리팩토링"):  # the second has no Latin word
+        [top, *_] = s.search(query)
+        assert top["id"].startswith("fx/pnpm-only@"), query
+        assert any("'리팩'" in r or "'컴포'" in r for r in top["match_reasons"]), top
