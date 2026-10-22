@@ -44,7 +44,7 @@ def test_prompt_and_schema_are_pinned_to_the_extract_version():
 
 # Post-processing (validation, evidence, polarity, implied artifacts, object vocabulary,
 # condition clauses, sections, per-line merge) runs on every cached answer at build time.
-POSTPROCESS_SHA256 = "c9f6cae7a178fb7f9d9bb4fb3bf313135f5f3c43ae059dd0d493658dd8248aa5"
+POSTPROCESS_SHA256 = "4e4c35a651a3161f05ba4a5099749a275ca5ce75fb27dc7375903cbdbc655733"
 
 
 def test_post_processing_rules_are_pinned():
@@ -384,6 +384,27 @@ def test_removal_verb_on_a_negative_subject_flips_to_a_ban():
     )
     assert (c.directive, c.strength) == ("forbid", "must")
     assert notes == ["line 13: require -> forbid (`trailing-whitespace` is negative; 'strip')"]
+
+
+@pytest.mark.parametrize(
+    "subject, directive, text, want",
+    [
+        ("trailing-whitespace", "require", "Never strip trailing whitespace.", "require"),
+        ("preamble", "require", "Do not remove the preamble.", "require"),
+        ("preamble", "require", "Don't ever remove the preamble.", "require"),
+        ("trailing-whitespace", "require", "Avoid stripping trailing whitespace.", "require"),
+        ("trailing-whitespace", "prefer", "Commit without removing trailing spaces.", "prefer"),
+        ("trailing-whitespace", "require", "Strip trailing whitespace.", "forbid"),
+        ("preamble", "require", "Remove the preamble.", "forbid"),
+        # avoid is not a removal verb: the model already says `avoid` for avoid-rules
+        ("preamble", "prefer", "Avoid a preamble when the answer is short.", "prefer"),
+    ],
+)
+def test_a_negated_removal_verb_keeps_the_directive(subject, directive, text, want):
+    from skillfetch.ingest.extract import apply_vocabulary
+
+    [c], _ = apply_vocabulary([_k(subject, directive, text)])
+    assert c.directive == want
 
 
 def test_soft_positive_flips_to_avoid():

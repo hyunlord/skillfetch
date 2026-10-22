@@ -420,10 +420,28 @@ def verify_evidence(
 
 
 _REMOVAL = re.compile(
-    r"\b(strip|strips|stripped|remove|removes|removed|delete|deletes|deleted|trim|trims|"
-    r"trimmed|drop|drops|eliminate|eliminates|avoid|avoids|get rid of)\b",
+    r"\b(strip|strips|stripped|stripping|remove|removes|removed|removing|delete|deletes|"
+    r"deleted|deleting|trim|trims|trimmed|trimming|drop|drops|dropped|dropping|eliminate|"
+    r"eliminates|eliminated|eliminating|get rid of|getting rid of)\b",
     re.IGNORECASE,
 )
+# A negation up to two words before the removal verb: "Never strip trailing whitespace",
+# "Do not remove the preamble", "avoid stripping", "without removing". The line forbids
+# the removal, so it requires the thing: the model's `require` is right.
+_NEGATED_VERB = re.compile(
+    r"(?:\b(?:never|not|without|avoid|avoids|avoiding)|n['’]t)[\s,]+(?:[\w'’-]+[\s,]+){0,2}$",
+    re.IGNORECASE,
+)
+
+
+def removal_cue(text: str) -> re.Match[str] | None:
+    """The first removal verb on the line that no negation governs."""
+    return next(
+        (m for m in _REMOVAL.finditer(text) if not _NEGATED_VERB.search(text[: m.start()])),
+        None,
+    )
+
+
 _FLIP = {"require": ("forbid", "must"), "prefer": ("avoid", "should")}
 
 
@@ -454,7 +472,9 @@ def apply_vocabulary(constraints: list[Constraint]) -> tuple[list[Constraint], l
     - Negative subject + positive directive + a removal verb on the evidence line ("Strip
       trailing whitespace") is a misread ban: require -> forbid, prefer -> avoid. Without a
       removal verb the directive is kept: "Always begin by restating the question" really
-      requires a preamble. Negations are not cues ("don't skip the preamble").
+      requires a preamble. A negated removal verb is not a cue: "Never strip trailing
+      whitespace" and "Do not remove the preamble" do require the thing. `avoid` is not a
+      removal verb: an avoid-rule already arrives as the `avoid` directive.
     - Artifact `any` becomes the subject's (or subject + object's) implied artifact; an
       explicit artifact is never overridden.
     - A condition that reads like a clause ("when fixing a bug", "if they make the output
@@ -478,7 +498,7 @@ def apply_vocabulary(constraints: list[Constraint]) -> tuple[list[Constraint], l
             notes.append(f"line {line}: condition {condition!r} -> null (reads like a clause)")
             c = c.model_copy(update={"scope": c.scope.model_copy(update={"condition": None})})
         negative = term is not None and term.polarity == "negative"
-        if negative and c.directive in _FLIP and (cue := _REMOVAL.search(c.evidence.text)):
+        if negative and c.directive in _FLIP and (cue := removal_cue(c.evidence.text)):
             directive, strength = _FLIP[c.directive]
             notes.append(
                 f"line {line}: {c.directive} -> {directive} "
@@ -742,7 +762,8 @@ def postprocess_fingerprint() -> str:
     from skillfetch.resolve import models
 
     parts += [inspect.getsource(models.Constraint), inspect.getsource(models.Scope)]
-    parts += [_REMOVAL.pattern, json.dumps(_FLIP, sort_keys=True)]
+    parts += [_REMOVAL.pattern, _NEGATED_VERB.pattern, json.dumps(_FLIP, sort_keys=True)]
+    parts += [inspect.getsource(removal_cue)]
     parts += [str(MAX_SUBJECT_WORDS), _CLAUSE_MARKER.pattern]
     parts += [inspect.getsource(m) for m in (sections, terms, vocabulary)]
     return hashlib.sha256("\0".join(parts).encode()).hexdigest()
