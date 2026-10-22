@@ -667,3 +667,22 @@ Per pair (controlled runs out of 5):
 | codeql ⟷ collab-modes | b | 3 | 2 | 1 | 4 | 2 | 2 |
 | verification-loop ⟷ web-design-builder | b | 0 | 5 | 0 | 5 | 0 | 5 |
 
+## 11. Router in real sessions (end-to-end stages 1 and 1b)
+
+Source: `data/e2e/router-e2e.json` (exported from the e2e workspace: e2e/stage1/runs/_extract.json, e2e/stage1b/runs/_extract.json, e2e/stage1/report-stage1-extra.md §1, e2e/stage1/blind-ranking-results.md, e2e/stage1b/blind-ranking-results.md, e2e/retrieval/ (retrieval eval)). `claude -p` headless sessions, Claude Code plan, default model, one run per task and condition repeated twice. A: the upstream repo. B: A plus the expert-chosen skills for the task, loaded through `load_skills` and appended to the system prompt. C: A plus the router skill and the MCP server; the session decides on its own whether to search and what to load. Repos: fastapi full-stack template, Next.js with-typescript. Checks were written and frozen before the runs. Blind judging: one judge (the Claude session that ran the test), condition hidden behind random codes.
+
+| stage | tasks | condition | sessions | checks pass | median turns | median input tokens | searched | loaded |
+|---|---|---|---|---|---|---|---|---|
+| 1 | 15 with an expert skill | A | 30 | 30/30 | 14.5 | 878,867 | 0 | 0 |
+| 1 | 15 with an expert skill | B | 30 | 30/30 | 16 | 962,558 | 0 | 0 |
+| 1 | 15 with an expert skill | C | 30 | 30/30 | 21 | 1,400,246 | 24 | 22 |
+| 1b | 5 with an expert skill | A | 10 | 9/10 | 19.5 | 1,405,058 | 0 | 0 |
+| 1b | 5 with an expert skill | B | 10 | 10/10 | 24 | 1,754,409 | 0 | 0 |
+| 1b | 5 with an expert skill | C | 10 | 9/10 | 34 | 2,708,835 | 10 | 10 |
+
+- Stage 1, C on the 15 expert tasks (30 runs), what it loaded against the expert's pick: same set 3, a different set covering the same ground 15, a set that does not cover it 4, nothing loaded 8 (hand-judged). Runs whose loaded set contains an expert id: 7.
+- Stage 1b, C (10 runs): loaded an expert id in 0; none of the five expert skills was in C's search top 10.
+- Stage 1 blind: screenshots usefulness 1-5 A 4.00, B 4.25, C 4.00 (n=4 per condition); A vs C only A 3.50, C 3.83 (n=6 per condition); docs "would merge as is" 1-5 A 4.75, B 5.00, C 5.00 (n=4 per condition).
+- Stage 1b blind: landing pages usefulness 1-5 A 3.50, B 5.00, C 3.75 (n=4 per condition); generic-AI-look checklist hits A 1.75, B 0.50, C 2.00 (n=4 per condition); plans normalised rank (0 = best) A 0.30, B 0.00, C 0.80 (n=2 per condition); implementation followed the plan 1-5 A 5.00, B 5.00, C 3.00 (n=2 per condition).
+- Retrieval, the 34 queries C sent on tasks with an expert skill, re-ranked by the current BM25: the expert skill in the top 3 for 7, top 10 for 17, top 50 for 24.
+
