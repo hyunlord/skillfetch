@@ -175,3 +175,33 @@ def test_pair_conflicts_take_judged_lines_else_a_shared_subject(tmp_path):
     assert out["s/a@1|s/b@1"].subject == "emoji"
     assert out["s/a@1|s/b@1"].lines_b == ((7, "No emoji."),)
     assert out["s/a@1|s/c@1"].lines_b == ((2, "Emoji!"),)  # from constraints.jsonl
+
+
+def test_strip_lines_replaces_the_losers_evidence_with_a_comment():
+    from skillfetch.ingest.obedience import strip_lines
+
+    body = ["# Rules", "", "- Never use emoji.", "- Keep lines short."]
+    # SKILL.md line numbers: frontmatter takes lines 1-4, the body starts on line 5
+    out, done = strip_lines(body, 5, ((7, "Never use emoji."),), "emoji-skill")
+    assert done == 1
+    assert out.split("\n")[2] == '<!-- overridden by emoji-skill: "- Never use emoji." -->'
+    assert "- Keep lines short." in out  # replaced, nothing else removed
+    # a wrong line number falls back to the first body line that contains the text
+    out2, done2 = strip_lines(body, 5, ((99, "Keep lines short."),), "w")
+    assert done2 == 1 and '<!-- overridden by w: "- Keep lines short." -->' in out2
+    assert strip_lines(body, 5, ((7, "not in the body"),), "w") == ("\n".join(body).strip(), 0)
+
+
+def test_strip_conditions_have_no_header_or_block_and_load_a_then_b(tmp_path):
+    from skillfetch.ingest.obedience import RESOLVED_TITLE, ranked_first
+    from skillfetch.mcp.session import PRECEDENCE_HEADER
+
+    task = _task(tmp_path)
+    skills = (("skill-a", "body a"), ("skill-b", '<!-- overridden by skill-a: "x" -->'))
+    agent = Fake("agent-strip", ["o1"])
+    judge = Fake("judge", [{"followed": "a", "reason": "r"}])
+    [trial] = run_trials(task, skills, agent, judge, 1, tmp_path, "strip-a")
+    system = agent.calls[0][0]
+    assert PRECEDENCE_HEADER not in system and RESOLVED_TITLE not in system
+    assert system.index('<skill name="skill-a">') < system.index('<skill name="skill-b">')
+    assert trial.order == "ab" and ranked_first("strip-b") == "b"

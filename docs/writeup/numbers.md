@@ -175,7 +175,7 @@ Source: provider-reported cost (`usage.cost` from OpenRouter) in every cache rec
 
 **Total external API spend: $15.75** (OpenRouter). Since the "no external API" rule, model work runs inside Claude Code and is not in this total.
 
-Claude Code sessions (API-price equivalent reported by Claude Code, billed to the Claude Code plan, not OpenRouter): obedience agent runs 650 (130 without a precedence header, §6; 260 with one, §8; 260 with a resolved-conflict block, §9), $33.26; 171 runs of two earlier batches discarded for harness problems (no note that the session has no tools; then a note that discouraged asking), $5.41; the end-to-end MCP transcript session $0.82.
+Claude Code sessions (API-price equivalent reported by Claude Code, billed to the Claude Code plan, not OpenRouter): obedience agent runs 910 (130 without a precedence header, §6; 260 with one, §8; 260 with a resolved-conflict block, §9; 260 with stripped lines, §10), $46.71; 171 runs of two earlier batches discarded for harness problems (no note that the session has no tools; then a note that discouraged asking), $5.41; the end-to-end MCP transcript session $0.82.
 
 ## 8. Precedence header (experiment A)
 
@@ -622,4 +622,48 @@ These skills were checked against each other before this task. Where they disagr
   - verification-loop, line 111: "For long sessions, run verification every 15 minutes or after major changes:"
   - web-design-builder, line 58: "   - Continue with design generation but skip verification phase"
 ```
+
+## 10. Header, block and stripped lines (experiments A, A2, A3)
+
+Sources: `data/obedience/trials-precedence.jsonl` (§8), `trials-resolved.jsonl` (§9), `trials-strip.jsonl`; `skillfetch obedience ... --precedence strip-a --precedence strip-b`. Strip: no header and no block; in the losing skill's body each of the pair's evidence lines (as in §9) is replaced, not deleted, by `<!-- overridden by <winner>: "<line>" -->` (strip-a: A wins; strip-b: B wins); the skills load A then B. Same pairs, tasks, harness and classification as §6, §8 and §9. Controlled: the followed skill is the one ranked (header) or named (block, strip) first. Turned around: a pair whose §6 winner was ranked or named second and the other skill won the majority of that condition's 5 runs.
+
+| condition | runs | controlled, all runs | controlled, one-skill runs | §6 winners turned around | §6 winners kept |
+|---|---|---|---|---|---|
+| header: `ab` | 130 | 42/130 (0.32) | 42/107 | 2 | 13 |
+| header: `ba` | 130 | 70/130 (0.54) | 70/107 | 1 | 6 |
+| block: `resolved-a` | 130 | 60/130 (0.46) | 60/100 | 6 | 9 |
+| block: `resolved-b` | 130 | 85/130 (0.65) | 85/111 | 2 | 5 |
+| strip: `strip-a` | 130 | 51/130 (0.39) | 51/106 | 2 | 12 |
+| strip: `strip-b` | 130 | 69/130 (0.53) | 69/109 | 1 | 6 |
+
+Per pair (controlled runs out of 5):
+
+| pair (A ⟷ B) | §6 winner | ab | ba | resolved-a | resolved-b | strip-a | strip-b |
+|---|---|---|---|---|---|---|---|
+| audit-context-building ⟷ substrate-vulnerability-scanner | b | 0 | 5 | 0 | 5 | 0 | 5 |
+| coding-guidelines ⟷ task-execution-engine | a | 3 | 3 | 4 | 5 | 5 | 3 |
+| deploy-to-vercel ⟷ vercel-cli-with-tokens | a | 5 | 0 | 5 | 0 | 5 | 0 |
+| receiving-code-review ⟷ task-execution-engine | b | 3 | 0 | 4 | 5 | 4 | 0 |
+| taste-skill ⟷ ui-animation | b | 0 | 5 | 5 | 5 | 0 | 4 |
+| atlas ⟷ grill-with-docs | tie | 0 | 0 | 0 | 0 | 0 | 0 |
+| architecture-designer ⟷ grill-with-docs | tie | 1 | 0 | 1 | 0 | 0 | 0 |
+| creative-connections-engine ⟷ one-pager-prd | b | 0 | 5 | 1 | 5 | 0 | 5 |
+| image-poster ⟷ magazine-poster | b | 0 | 5 | 0 | 5 | 0 | 5 |
+| claude-native-web-artifacts-builder ⟷ develop-web-game | tie | 3 | 0 | 3 | 0 | 2 | 0 |
+| scout ⟷ systematic-debugging | b | 0 | 5 | 0 | 5 | 0 | 5 |
+| attest ⟷ tdd | b | 0 | 5 | 2 | 5 | 0 | 5 |
+| canon ⟷ it-infrastructure-sysadmin-engine | b | 0 | 5 | 0 | 5 | 0 | 5 |
+| claude-native-web-artifacts-builder ⟷ tdd-workflow | a | 5 | 0 | 5 | 0 | 5 | 0 |
+| clean-code ⟷ codenavi | b | 0 | 5 | 5 | 5 | 5 | 5 |
+| codenavi ⟷ software-architecture | a | 4 | 0 | 5 | 1 | 5 | 0 |
+| find-bugs ⟷ systematic-debugging | b | 0 | 5 | 0 | 5 | 0 | 5 |
+| impeccable-frontend-design ⟷ ios-hig-design | b | 0 | 5 | 3 | 5 | 1 | 5 |
+| kanban-board ⟷ taste-skill | a | 5 | 0 | 5 | 1 | 5 | 0 |
+| meeting-notes ⟷ wireframe-sketch | b | 0 | 5 | 1 | 5 | 0 | 5 |
+| scout ⟷ solana-vulnerability-scanner | b | 1 | 5 | 2 | 5 | 2 | 5 |
+| tdd ⟷ warden | a | 5 | 0 | 4 | 0 | 5 | 0 |
+| causal-inference-root-cause ⟷ diagnose | b | 0 | 0 | 0 | 0 | 0 | 0 |
+| stitch-skill ⟷ web-prototype-taste-soft | a | 4 | 0 | 4 | 4 | 5 | 0 |
+| codeql ⟷ collab-modes | b | 3 | 2 | 1 | 4 | 2 | 2 |
+| verification-loop ⟷ web-design-builder | b | 0 | 5 | 0 | 5 | 0 | 5 |
 
