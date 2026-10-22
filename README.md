@@ -44,7 +44,7 @@ two instructions cannot both be followed; anything less certain is
 Skills the index does not cover are listed as skipped; `--with-api --model
 anthropic/<model>` extracts them (calls the API, cached once per skill).
 
-The router, measured in real Claude Code sessions: on design tasks it loaded the skill an expert would have installed (`frontend-design`, 4 of 4 runs once `search_skills` returned 50 compact results) and matched the expert condition; on process-style tasks (planning, brevity) it does not find the skill yet; it costs about seven extra turns per task. On small maintenance tasks no condition changed the result ([write-up §5](docs/writeup/post-en.md), [numbers.md §11](docs/writeup/numbers.md#11-router-in-real-sessions-end-to-end-stages-1-and-1b)). scan and sync are unaffected.
+The router, measured in real Claude Code sessions on five task types (landing page, test writing, backend API, documentation, data script): it loaded the skill an expert would pick in 23 of 24 runs. Only the design task came out differently with that skill; on the other four, no skill, the expert's skill and the router all passed every check. The router costs 1.7–2.1 times the input tokens of no skill ([numbers.md §11](docs/writeup/numbers.md#11-router-in-real-sessions-end-to-end-stages-1-1b-and-2)). scan and sync are unaffected.
 
 ```console
 $ skillfetch scan path/to/skills --json                   # machine-readable
@@ -155,6 +155,9 @@ default produced none. Use it when recall matters more than precision.
 - Embeddings (all-MiniLM-L6-v2) were evaluated against BM25 and not adopted: no
   gain (top-50 recall 0.74 with BM25 + embedding fusion, 0.71 with BM25 alone, on 34
   router queries; [write-up §5](docs/writeup/post-en.md)).
+- On four of five task types we measured, the expert skill changed nothing the
+  checks could see; load a skill when the base model is weak at the domain, not by
+  default.
 - Semantic conflicts without a shared subject are not detected in v0.1.
 - Mutually exclusive choices ("always use npm" vs "always use pnpm") are caught
   only for the tooling slots marked exclusive (package manager, formatter, test
