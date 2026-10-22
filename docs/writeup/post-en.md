@@ -150,6 +150,8 @@ On 5 larger tasks (stage 1b) the picture split. To see whether that generalises,
 | Plan quality (rank, 0 = best) | 0.36 | 0.00 | 0.79 | 0.71 |
 | Landing and plan tasks: median turns | 19.5 | 24 | 34 | 26.5 |
 
+*Two notes on stage 2.* (a) Documentation: two C2 runs described the router's install files (`.mcp.json` and `.claude/`, present only in the C2 repo) in their README, and the first judging pass cited that when marking them down. That is a trace of the harness, not a weakness of the router; allowing for it, documentation is also close to no difference between conditions. (b) The harness gave the sessions no AskUserQuestion or plan-mode tools, so this experiment cannot observe whether an interactive skill the router picks (one with interview or approval steps) stalls a real session. Backend API run 1 is such a case: it loaded `fastapi-endpoint`, which says "Enter plan mode" and "Use AskUserQuestion to clarify requirements", and went ahead with "Requirements are clear enough to implement directly."
+
 The expert's skill matters: with Anthropic's `frontend-design` loaded, the landing pages lost their template look. The router's first version never found that skill (it ranked 34th in a 10-result search) and loaded design-adjacent skills instead, which made the pages *more* template-like than no skill at all. Loading the wrong skill is worse than loading none.
 
 Widening the search to 50 compact summaries and letting the agent choose from those solved search for tasks that name their domain:

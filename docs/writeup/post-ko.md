@@ -150,6 +150,8 @@ uvx --from git+https://github.com/hyunlord/skillfetch skillfetch scan ~/.claude/
 | 플랜 품질 (순위, 0 = 최상) | 0.36 | 0.00 | 0.79 | 0.71 |
 | 랜딩·플랜 태스크: 중앙 턴 | 19.5 | 24 | 34 | 26.5 |
 
+*2단계 각주 두 개.* (a) 문서화: C2 run 2개가 C2 레포에만 있던 라우터 설치 파일(`.mcp.json`, `.claude/`)을 README에 적었고, 첫 번째 판정이 감점 이유로 그걸 들었다. 라우터의 약점이 아니라 하네스의 흔적이다. 이를 감안하면 문서화도 조건 간 차이가 없는 쪽에 가깝다. (b) 하네스는 세션에 AskUserQuestion이나 plan mode 도구를 주지 않았다. 그래서 라우터가 대화형 스킬(인터뷰·승인 단계가 있는 것)을 골랐을 때 실제 세션에서 멈추는지는 이 실험으로 관측할 수 없다. 백엔드 API run 1이 그런 경우다. "Enter plan mode", "Use AskUserQuestion to clarify requirements"라고 적힌 `fastapi-endpoint`를 로드하고도 "Requirements are clear enough to implement directly."라며 바로 구현했다.
+
 전문가의 스킬은 효과가 있다. Anthropic의 `frontend-design`을 로드하면 랜딩 페이지에서 템플릿 티가 사라진다. 라우터 첫 버전은 그 스킬을 한 번도 못 찾았고(10개 결과 검색에서 34위), 대신 디자인 근처의 다른 스킬을 로드했는데, 그게 스킬 없을 때보다 *더* 템플릿 같은 페이지를 만들었다. 엉뚱한 스킬을 로드하는 건 안 하느니만 못하다.
 
 검색을 압축 요약 50개로 넓히고 에이전트가 거기서 고르게 하자, 도메인 이름이 있는 태스크에서는 검색 문제가 풀렸다.
