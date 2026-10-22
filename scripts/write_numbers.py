@@ -373,6 +373,7 @@ def costs(out: list[str]) -> None:
         "stage1": "stage 1",
         "stage1b": "stage 1b",
         "c2": "C2",
+        "stage2": "stage 2",
         "smoke": "smoke tests",
     }
     e2e_cost = sum(v["cost_usd"] for v in e2e.values())
@@ -527,7 +528,7 @@ def three_conditions(out: list[str]) -> None:
 
 def router_e2e(out: list[str]) -> None:
     """§11: the router in real Claude Code sessions (stage 1 and 1b of the end-to-end test)."""
-    out += ["## 11. Router in real sessions (end-to-end stages 1 and 1b)", ""]
+    out += ["## 11. Router in real sessions (end-to-end stages 1, 1b and 2)", ""]
     path = DATA / "e2e" / "router-e2e.json"
     if not path.is_file():
         out += ["Not run yet.", ""]
@@ -589,6 +590,64 @@ def router_e2e(out: list[str]) -> None:
         f"- Retrieval, the {r['queries']} queries C sent on tasks with an expert skill, "
         "re-ranked by the current BM25: the expert skill in the top 3 for "
         f"{r['top3']}, top 10 for {r['top10']}, top 50 for {r['top50']}.",
+        "",
+    ]
+    if "stage2" in d:
+        stage2(out, d["stage2"], d["stage2_landing_from_1b"])
+
+
+STAGE2_NAMES = {
+    "s2-tests": "test writing",
+    "s2-api": "backend API",
+    "s2-docs": "documentation",
+    "s2-data": "data script",
+}
+
+
+def stage2(out: list[str], s2: dict, land: dict) -> None:
+    """§11, stage 2 (domain generalisation): one task per domain, A / B / C2, 5 runs each."""
+    out += [
+        "### Stage 2: domain generalisation",
+        "",
+        "Same harness and conditions as 1b (A no skill; B the expert's skill appended to the "
+        "system prompt; C2 router + search k=50, skillfetch e2a1b65), one large generative "
+        "task per domain, 5 runs per condition. Score: overall 1-5 from two blind judging "
+        "passes (fresh codes, fresh judge), mean. Landing pages: 1b rejudge, one pass, n=4.",
+        "",
+        "| domain | condition | sessions | score (pass 1 / pass 2) | checks pass | median turns "
+        "| median input tokens | C2: expert skill in top 50 / picked / loaded |",
+        "|---|---|---|---|---|---|---|---|",
+    ]
+    for c in ("A", "B", "C2"):
+        hit = f"– / – / {land['c2_loaded_expert']}/4 |" if c == "C2" else "|"
+        out.append(f"| landing page (1b) | {c} | 4 | {land['usefulness'][c]:.2f} | | | | " + hit)
+    for t, name in STAGE2_NAMES.items():
+        for c in ("A", "B", "C2"):
+            a = s2["tasks"][t][c]
+            n = a["sessions"]
+            hit = (
+                f"{a['b_in_top50']}/5 / {a['b_picked']}/5 / {a['b_loaded']}/5" if c == "C2" else ""
+            )
+            out.append(
+                f"| {name} | {c} | {n} | {a['score']:.2f} ({a['score_p1']:.2f} / "
+                f"{a['score_p2']:.2f}) | {a['check_pass']}/{n} | {a['median_turns']:g} | "
+                f"{a['median_input_tokens']:,} | {hit} |"
+            )
+    repro = [
+        t for t in STAGE2_NAMES if s2["tasks"][t]["C2"]["score"] >= s2["tasks"][t]["B"]["score"]
+    ]
+    with_landing = len(repro) + (land["usefulness"]["C2"] >= land["usefulness"]["B"])
+    consistency = "; ".join(
+        f"{STAGE2_NAMES[t]} {c['total_exact_agree']}/{c['n']} identical, "
+        f"mean |diff| {c['total_mean_abs_diff']}"
+        for t, c in s2["consistency"].items()
+    )
+    out += [
+        "",
+        f"- C2 scored at least B in {len(repro)} of 4 domains "
+        f"({', '.join(STAGE2_NAMES[t] for t in repro) or 'none'}); with landing pages "
+        f"{with_landing} of 5.",
+        f"- Judging consistency (pass 1 vs pass 2, overall score): {consistency}.",
         "",
     ]
 

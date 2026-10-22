@@ -177,9 +177,9 @@ Source: provider-reported cost (`usage.cost` from OpenRouter) in every cache rec
 
 Claude Code sessions (API-price equivalent reported by Claude Code, billed to the Claude Code plan, not OpenRouter): obedience agent runs 910 (130 without a precedence header, §6; 260 with one, §8; 260 with a resolved-conflict block, §9; 260 with stripped lines, §10), $46.71; 171 runs of two earlier batches discarded for harness problems (no note that the session has no tools; then a note that discouraged asking), $5.41; the end-to-end MCP transcript session $0.82.
 
-End-to-end sessions (§11 and the write-up's section 5; `session_costs` in `data/e2e/router-e2e.json`, Claude Code's `total_cost_usd` per session, same billing): stage 0 20, $18.56; stage 0.5 20, $18.83; stage 1 110, $89.78; stage 1b 30, $50.35; C2 10, $16.57; smoke tests 3, $1.65.
+End-to-end sessions (§11 and the write-up's section 5; `session_costs` in `data/e2e/router-e2e.json`, Claude Code's `total_cost_usd` per session, same billing): stage 0 20, $18.56; stage 0.5 20, $18.83; stage 1 110, $89.78; stage 1b 30, $50.35; C2 10, $16.57; stage 2 60, $66.16; smoke tests 3, $1.65.
 
-**Claude Code plan equivalent, total: $248.69**: sessions run from this repo $52.95 (910 obedience runs, 171 discarded, the transcript session), end-to-end sessions $195.74. The agent sessions the write-up counts: 1,100 (910 obedience runs and 190 end-to-end; discarded runs and smoke tests not counted). The interactive Claude Code sessions that wrote the code and classified the outputs are not included.
+**Claude Code plan equivalent, total: $314.85**: sessions run from this repo $52.95 (910 obedience runs, 171 discarded, the transcript session), end-to-end sessions $261.90. The agent sessions the write-up counts: 1,160 (910 obedience runs and 250 end-to-end; discarded runs and smoke tests not counted). The interactive Claude Code sessions that wrote the code and classified the outputs are not included.
 
 ## 8. Precedence header (experiment A)
 
@@ -671,7 +671,7 @@ Per pair (controlled runs out of 5):
 | codeql ⟷ collab-modes | b | 3 | 2 | 1 | 4 | 2 | 2 |
 | verification-loop ⟷ web-design-builder | b | 0 | 5 | 0 | 5 | 0 | 5 |
 
-## 11. Router in real sessions (end-to-end stages 1 and 1b)
+## 11. Router in real sessions (end-to-end stages 1, 1b and 2)
 
 Source: `data/e2e/router-e2e.json` (exported from the e2e workspace: e2e/stage1/runs/_extract.json, e2e/stage1b/runs/_extract.json, e2e/stage1/report-stage1-extra.md §1, e2e/stage1/blind-ranking-results.md, e2e/stage1b/blind-ranking-results.md, e2e/retrieval/ (retrieval eval)). `claude -p` headless sessions, Claude Code plan, default model, one run per task and condition repeated twice. A: the upstream repo. B: A plus the expert-chosen skills for the task, loaded through `load_skills` and appended to the system prompt. C: A plus the router skill and the MCP server; the session decides on its own whether to search and what to load. Repos: fastapi full-stack template, Next.js with-typescript. Checks were written and frozen before the runs. Blind judging: one judge (the Claude session that ran the test), condition hidden behind random codes.
 
@@ -689,4 +689,29 @@ Source: `data/e2e/router-e2e.json` (exported from the e2e workspace: e2e/stage1/
 - Stage 1 blind: screenshots usefulness 1-5 A 4.00, B 4.25, C 4.00 (n=4 per condition); A vs C only A 3.50, C 3.83 (n=6 per condition); docs "would merge as is" 1-5 A 4.75, B 5.00, C 5.00 (n=4 per condition).
 - Stage 1b blind: landing pages usefulness 1-5 A 3.50, B 5.00, C 3.75 (n=4 per condition); generic-AI-look checklist hits A 1.75, B 0.50, C 2.00 (n=4 per condition); plans normalised rank (0 = best) A 0.30, B 0.00, C 0.80 (n=2 per condition); implementation followed the plan 1-5 A 5.00, B 5.00, C 3.00 (n=2 per condition).
 - Retrieval, the 34 queries C sent on tasks with an expert skill, re-ranked by the current BM25: the expert skill in the top 3 for 7, top 10 for 17, top 50 for 24.
+
+### Stage 2: domain generalisation
+
+Same harness and conditions as 1b (A no skill; B the expert's skill appended to the system prompt; C2 router + search k=50, skillfetch e2a1b65), one large generative task per domain, 5 runs per condition. Score: overall 1-5 from two blind judging passes (fresh codes, fresh judge), mean. Landing pages: 1b rejudge, one pass, n=4.
+
+| domain | condition | sessions | score (pass 1 / pass 2) | checks pass | median turns | median input tokens | C2: expert skill in top 50 / picked / loaded |
+|---|---|---|---|---|---|---|---|
+| landing page (1b) | A | 4 | 3.50 | | | | |
+| landing page (1b) | B | 4 | 4.75 | | | | |
+| landing page (1b) | C2 | 4 | 4.75 | | | | – / – / 4/4 |
+| test writing | A | 5 | 4.90 (5.00 / 4.80) | 5/5 | 10 | 783,055 |  |
+| test writing | B | 5 | 5.00 (5.00 / 5.00) | 5/5 | 9 | 833,147 |  |
+| test writing | C2 | 5 | 5.00 (5.00 / 5.00) | 5/5 | 16 | 1,493,714 | 5/5 / 5/5 / 5/5 |
+| backend API | A | 5 | 4.20 (4.20 / 4.20) | 5/5 | 15 | 899,707 |  |
+| backend API | B | 5 | 4.20 (4.40 / 4.00) | 5/5 | 14 | 871,226 |  |
+| backend API | C2 | 5 | 4.80 (4.80 / 4.80) | 5/5 | 23 | 1,870,639 | 5/5 / 4/5 / 4/5 |
+| documentation | A | 5 | 4.10 (4.00 / 4.20) | 5/5 | 10 | 687,962 |  |
+| documentation | B | 5 | 4.70 (4.80 / 4.60) | 5/5 | 9 | 733,233 |  |
+| documentation | C2 | 5 | 4.40 (4.40 / 4.40) | 5/5 | 17 | 1,332,644 | 5/5 / 5/5 / 5/5 |
+| data script | A | 5 | 4.50 (4.60 / 4.40) | 5/5 | 12 | 909,068 |  |
+| data script | B | 5 | 4.50 (5.00 / 4.00) | 5/5 | 12 | 854,603 |  |
+| data script | C2 | 5 | 4.50 (4.60 / 4.40) | 5/5 | 18 | 1,518,055 | 5/5 / 5/5 / 5/5 |
+
+- C2 scored at least B in 3 of 4 domains (test writing, backend API, data script); with landing pages 4 of 5.
+- Judging consistency (pass 1 vs pass 2, overall score): test writing 14/15 identical, mean |diff| 0.07; backend API 13/15 identical, mean |diff| 0.13; documentation 11/15 identical, mean |diff| 0.27; data script 8/15 identical, mean |diff| 0.47.
 
