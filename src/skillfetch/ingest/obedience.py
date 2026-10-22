@@ -438,6 +438,7 @@ def render_precedence(
                 held += won == base
         rows.append(f"| {a} ⟷ {b} | {base or 'tie'} | " + " | ".join(cells) + " |")
     conds = list(by_condition)
+    named = any(c.startswith("resolved-") for c in conds)
     lines += [
         f"{len(tasks)} pairs × {len(conds)} orders ({', '.join(conds)}) × "
         f"{len(next(iter(by_condition.values()))[0]) if tasks else 0} runs = {total} runs. "
@@ -445,7 +446,7 @@ def render_precedence(
             f'Each run starts with a "{RESOLVED_TITLE}" block that names the winner '
             "(resolved-a: A, resolved-b: B) with both sides' evidence lines; the skills follow "
             "in the order A, B."
-            if any(c.startswith("resolved-") for c in conds)
+            if named
             else "The header is the one load_skills sends: "
             '"Skills are listed in precedence order. If two instructions disagree, follow the '
             'earlier one."'
@@ -461,7 +462,8 @@ def render_precedence(
             for c, v in cond_tot.items()
         ),
         "",
-        "Pairs with a no-header winner whose winner the header turned around (winner ranked "
+        f"Pairs with a no-header winner whose winner the {'block' if named else 'header'} "
+        "turned around (winner ranked "
         f"second, other skill won the majority): **{flipped}**; winner kept although ranked "
         f"second: {held}; pairs without a no-header winner: "
         f"{sum(_winner(r) is None for r in baseline)}.",

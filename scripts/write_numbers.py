@@ -346,10 +346,13 @@ def costs(out: list[str]) -> None:
     plain = len(jsonl(DATA / "obedience" / "trials.jsonl"))
     header_path = DATA / "obedience" / "trials-precedence.jsonl"
     header = len(jsonl(header_path)) if header_path.is_file() else 0
+    resolved_path = DATA / "obedience" / "trials-resolved.jsonl"
+    named = len(jsonl(resolved_path)) if resolved_path.is_file() else 0
     out += [
         "Claude Code sessions (API-price equivalent reported by Claude Code, billed to the "
         "Claude Code plan, not OpenRouter): obedience agent runs "
-        f"{len(runs)} ({plain} without a precedence header, §6; {header} with one, §8), "
+        f"{len(runs)} ({plain} without a precedence header, §6; {header} with one, §8; "
+        f"{named} with a resolved-conflict block, §9), "
         f"${session_cost(runs):.2f}; {len(discarded)} runs of two earlier "
         "batches discarded for harness problems (no note that the session has no tools; then "
         f"a note that discouraged asking), ${session_cost(discarded):.2f}; "
@@ -383,6 +386,31 @@ def precedence(out: list[str]) -> None:
     ]
 
 
+def resolved(out: list[str]) -> None:
+    path = DATA / "obedience" / "results-resolved.md"
+    out += ["## 9. Resolved-conflict block (experiment A2)", ""]
+    if not path.is_file():
+        out += ["Not run yet.", ""]
+        return
+    body = path.read_text().split("\n", 2)[2].strip()  # drop the file's own title
+    body = body.replace("\n## ", "\n### ")
+    out += [
+        "Source: `data/obedience/trials-resolved.jsonl`, `results-resolved.md`; "
+        "`skillfetch obedience --index data/index --run data/obedience/tasks.json "
+        "--precedence resolved-a --precedence resolved-b`. The 26 pairs and tasks of §6, the "
+        "harness and classification of §6 and §8. Each run's system prompt starts with a "
+        '"Resolved rule conflicts" block: the two skill names, the subject, the winner '
+        "(`resolved-a`: A, `resolved-b`: B) and both sides' evidence lines (the lines in "
+        "`data/index-reports/judgments.jsonl` for the pair, else the first constraints with a "
+        "shared subject in `constraints.jsonl`); the skill bodies follow in the order A, B in "
+        "every run, with no precedence header. A run is controlled when the skill it followed "
+        "is the named winner.",
+        "",
+        body,
+        "",
+    ]
+
+
 def main() -> None:
     out = [
         "# Numbers for the write-up",
@@ -399,6 +427,7 @@ def main() -> None:
         obedience,
         costs,
         precedence,
+        resolved,
     ):
         section(out)
     OUT.parent.mkdir(parents=True, exist_ok=True)
