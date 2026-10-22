@@ -2,6 +2,9 @@
 §2). `pack` writes the tarball and its sha256 for a release; `sync` downloads the newest
 release that carries one, checks the sha256, unpacks it, verifies every file against the
 manifest (`Index.load`) and swaps it into place. Nothing is executed.
+
+Every read is capped: the tarball and its unpacked files at MAX_INDEX_BYTES, API
+listings and checksum files at MAX_META_BYTES; redirects only to GitHub hosts over https.
 """
 
 from __future__ import annotations
@@ -16,8 +19,10 @@ import tempfile
 from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path, PurePosixPath
-from urllib.request import Request, urlopen
+from urllib.parse import urlparse
+from urllib.request import HTTPRedirectHandler, Request, build_opener
 
+from skillfetch.index.fetch import FetchError, read_capped
 from skillfetch.index.loader import DEFAULT_INDEX_DIR, Index, IndexLoadError
 
 DEFAULT_REPO = "hyunlord/skillfetch"
@@ -25,19 +30,45 @@ ASSET_PREFIX = "skillfetch-index-"
 ASSET_SUFFIX = ".tar.gz"
 TOP = "index"  # every member of the tarball lives under index/
 TIMEOUT_S = 60
+MAX_INDEX_BYTES = 64 * 1024 * 1024  # the tarball, and everything unpacked from it
+MAX_META_BYTES = 8 * 1024 * 1024  # a release listing, a .sha256 file
+GITHUB_HOSTS = ("github.com", "api.github.com")
+GITHUB_HOST_SUFFIX = ".githubusercontent.com"  # release assets redirect there
 
-Getter = Callable[[str, dict[str, str]], bytes]
+Getter = Callable[[str, dict[str, str], int], bytes]
 
 
 class SyncError(RuntimeError):
     pass
 
 
-def urllib_get(url: str, headers: dict[str, str]) -> bytes:
-    if not url.startswith("https://"):
-        raise SyncError(f"refusing to download {url!r}: https only")
-    with urlopen(Request(url, headers=headers), timeout=TIMEOUT_S) as response:  # noqa: S310
-        return response.read()
+def _github_host(url: str) -> bool:
+    u = urlparse(url)
+    host = u.hostname or ""
+    return u.scheme == "https" and (host in GITHUB_HOSTS or host.endswith(GITHUB_HOST_SUFFIX))
+
+
+class _GitHubRedirect(HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        if not _github_host(newurl):
+            raise SyncError(f"refusing redirect to {urlparse(newurl).netloc or newurl!r}")
+        new = super().redirect_request(req, fp, code, msg, headers, newurl)
+        if new is not None and urlparse(newurl).hostname != urlparse(req.full_url).hostname:
+            new.remove_header("Authorization")  # a token never follows a redirect off-host
+        return new
+
+
+_OPENER = build_opener(_GitHubRedirect)
+
+
+def urllib_get(url: str, headers: dict[str, str], limit: int) -> bytes:
+    if not _github_host(url):
+        raise SyncError(f"refusing to download {url!r}: https on a GitHub host only")
+    with _OPENER.open(Request(url, headers=headers), timeout=TIMEOUT_S) as response:
+        try:
+            return read_capped(response, limit, url)
+        except FetchError as exc:
+            raise SyncError(str(exc)) from exc
 
 
 def _sha256(data: bytes) -> str:
@@ -96,9 +127,9 @@ def find_release(repo: str, tag: str | None, get: Getter, headers: dict[str, str
     api = f"https://api.github.com/repos/{repo}/releases"
     try:
         if tag:
-            releases = [json.loads(get(f"{api}/tags/{tag}", headers))]
+            releases = [json.loads(get(f"{api}/tags/{tag}", headers, MAX_META_BYTES))]
         else:
-            releases = json.loads(get(f"{api}?per_page=30", headers))
+            releases = json.loads(get(f"{api}?per_page=30", headers, MAX_META_BYTES))
     except (OSError, ValueError) as exc:
         raise SyncError(f"cannot list releases of {repo}: {exc}") from exc
     for rel in releases:
@@ -118,37 +149,44 @@ def find_release(repo: str, tag: str | None, get: Getter, headers: dict[str, str
     )
 
 
-def _members(tar: tarfile.TarFile) -> list[tarfile.TarInfo]:
-    """Regular files under index/, nothing else: no links, devices, absolute paths or ..."""
-    out = []
-    for m in tar.getmembers():
-        path = PurePosixPath(m.name)
-        if m.isdir() and path.parts == (TOP,):
-            continue
-        if not m.isfile():
-            raise SyncError(f"refusing archive member {m.name!r}: not a regular file")
-        if path.is_absolute() or ".." in path.parts or len(path.parts) < 2 or path.parts[0] != TOP:
-            raise SyncError(f"refusing archive member {m.name!r}: outside {TOP}/")
-        out.append(m)
-    return out
+def _check(m: tarfile.TarInfo, total: int) -> None:
+    """Regular files under index/ only (no links, devices, absolute paths or ..), within
+    the size cap."""
+    path = PurePosixPath(m.name)
+    if not m.isfile():
+        raise SyncError(f"refusing archive member {m.name!r}: not a regular file")
+    if path.is_absolute() or ".." in path.parts or len(path.parts) < 2 or path.parts[0] != TOP:
+        raise SyncError(f"refusing archive member {m.name!r}: outside {TOP}/")
+    if m.size > MAX_INDEX_BYTES or total + m.size > MAX_INDEX_BYTES:
+        raise SyncError(f"refusing the archive: more than {MAX_INDEX_BYTES} bytes unpacked")
 
 
 def unpack(data: bytes, into: Path) -> Path:
-    """Unpack a tarball into `into`; return the index directory (not yet verified)."""
+    """Unpack a tarball into `into`; return the index directory (not yet verified).
+    Members are checked one by one as the stream is read, before their data is."""
+    total = 0
     try:
-        with tarfile.open(fileobj=io.BytesIO(data), mode="r:gz") as tar:
-            for m in _members(tar):
+        with tarfile.open(fileobj=io.BytesIO(data), mode="r|gz") as tar:
+            for m in tar:
+                if m.isdir() and PurePosixPath(m.name).parts == (TOP,):
+                    continue
+                _check(m, total)
+                total += m.size
+                content = tar.extractfile(m).read(m.size + 1)
+                if len(content) != m.size:
+                    raise SyncError(f"archive member {m.name!r}: size does not match its header")
                 target = into.joinpath(*PurePosixPath(m.name).parts)
                 target.parent.mkdir(parents=True, exist_ok=True)
-                target.write_bytes(tar.extractfile(m).read())
+                target.write_bytes(content)
     except (tarfile.TarError, OSError, EOFError) as exc:
         raise SyncError(f"cannot unpack the index tarball: {exc}") from exc
     return into / TOP
 
 
-def install(data: bytes, dest: Path) -> Index:
-    """Verify and swap a downloaded tarball into `dest`. The old index stays in place
-    until the new one has passed `Index.load`."""
+def install(data: bytes, dest: Path) -> tuple[Index, bool]:
+    """Verify and swap a downloaded tarball into `dest`; (index, changed). The old index
+    stays in place until the new one has passed `Index.load`, and when both have the same
+    manifest nothing is replaced."""
     dest = dest.expanduser()
     dest.parent.mkdir(parents=True, exist_ok=True)
     work = Path(tempfile.mkdtemp(prefix=".sync-", dir=dest.parent))
@@ -158,6 +196,8 @@ def install(data: bytes, dest: Path) -> Index:
             Index.load(new)
         except IndexLoadError as exc:
             raise SyncError(f"downloaded index does not verify: {exc}") from exc
+        if _same(dest, new):
+            return Index.load(dest), False
         old = work / "previous"
         if dest.exists():
             os.replace(dest, old)
@@ -169,23 +209,16 @@ def install(data: bytes, dest: Path) -> Index:
             raise
     finally:
         shutil.rmtree(work, ignore_errors=True)
-    return Index.load(dest)
+    return Index.load(dest), True
 
 
-def _same(dest: Path, data: bytes) -> bool:
-    """`dest` already holds this tarball's index (same manifest bytes)."""
+def _same(dest: Path, new: Path) -> bool:
+    """`dest` already holds this index (same manifest bytes) and still verifies."""
     try:
-        with tarfile.open(fileobj=io.BytesIO(data), mode="r:gz") as tar:
-            new = tar.extractfile(f"{TOP}/manifest.json").read()
-        return (dest / "manifest.json").read_bytes() == new and _verifies(dest)
-    except (KeyError, OSError, tarfile.TarError, AttributeError):
-        return False
-
-
-def _verifies(dest: Path) -> bool:
-    try:
+        if (dest / "manifest.json").read_bytes() != (new / "manifest.json").read_bytes():
+            return False
         Index.load(dest)
-    except IndexLoadError:
+    except (OSError, IndexLoadError):
         return False
     return True
 
@@ -208,9 +241,15 @@ def sync(
     """Download (or read `tarball`), verify, install. A local tarball is checked against
     `<tarball>.sha256` when that file exists; a release tarball always is."""
     if tarball is not None:
+        if tarball.stat().st_size > MAX_INDEX_BYTES:
+            raise SyncError(f"{tarball}: larger than {MAX_INDEX_BYTES} bytes")
         data, source = tarball.read_bytes(), str(tarball)
         checksum = tarball.with_name(tarball.name + ".sha256")
-        expected = checksum.read_text().split()[0] if checksum.is_file() else None
+        expected = None
+        if checksum.is_file():
+            if checksum.stat().st_size > MAX_META_BYTES:
+                raise SyncError(f"{checksum}: larger than {MAX_META_BYTES} bytes")
+            expected = (checksum.read_text().split() or [""])[0]
     else:
         headers = {"Accept": "application/vnd.github+json", "User-Agent": "skillfetch-sync"}
         if token:
@@ -218,14 +257,12 @@ def sync(
         release = find_release(repo, tag, get, headers)
         download = {"User-Agent": "skillfetch-sync"}
         try:
-            data = get(release.tarball_url, download)
-            expected = get(release.checksum_url, download).decode().split()[0]
+            data = get(release.tarball_url, download, MAX_INDEX_BYTES)
+            expected = get(release.checksum_url, download, MAX_META_BYTES).decode().split()[0]
         except (OSError, ValueError, IndexError) as exc:
             raise SyncError(f"cannot download {release.name}: {exc}") from exc
         source = f"{repo}@{release.tag} ({release.name})"
     if expected is not None and _sha256(data) != expected:
         raise SyncError(f"{source}: sha256 does not match its .sha256 file")
-    dest = dest.expanduser()
-    if _same(dest, data):
-        return SyncResult(source, Index.load(dest), changed=False)
-    return SyncResult(source, install(data, dest), changed=True)
+    index, changed = install(data, dest)
+    return SyncResult(source, index, changed)
