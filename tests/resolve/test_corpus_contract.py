@@ -12,10 +12,10 @@ from conftest import load_corpus, load_expected
 from skillfetch.resolve.relation import Relation, pair_label, skill_relation
 
 
-def _predicted() -> dict[frozenset[str], str]:
+def _predicted(cap: str = "all") -> dict[frozenset[str], str]:
     corpus = load_corpus()
     return {
-        frozenset((a, b)): pair_label(corpus[a], corpus[b])
+        frozenset((a, b)): pair_label(corpus[a], corpus[b], cap)
         for a, b in combinations(sorted(corpus), 2)
     }
 
@@ -59,15 +59,13 @@ def test_every_finding_has_evidence_from_both_skills():
             assert pair.a in corpus[a].constraints and pair.b in corpus[b].constraints
 
 
-def test_every_pair_matches_its_label_under_the_vocabulary_cap(monkeypatch):
+def test_every_pair_matches_its_label_under_the_vocabulary_cap():
     from conftest import EXPECTED_PATH
 
     from skillfetch.ingest.calibrate import load_labels
-    from skillfetch.resolve import relation
 
-    monkeypatch.setattr(relation, "OBJECTLESS_CAP", "vocabulary")
     labels = load_labels(EXPECTED_PATH, cap="vocabulary")
-    predicted = _predicted()
+    predicted = _predicted("vocabulary")
     wrong = {
         tuple(sorted(p)): (labels.get(p, "independent"), got)
         for p, got in predicted.items()

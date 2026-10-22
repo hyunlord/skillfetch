@@ -14,7 +14,13 @@ from skillfetch.resolve.models import (
     Resolution,
     Skill,
 )
-from skillfetch.resolve.relation import ConstraintPair, Relation, SkillRelation, skill_relation
+from skillfetch.resolve.relation import (
+    DEFAULT_CAP,
+    ConstraintPair,
+    Relation,
+    SkillRelation,
+    skill_relation,
+)
 
 _WARN_ON = (Relation.TENSION, Relation.NEEDS_REVIEW)
 
@@ -56,6 +62,7 @@ def resolve_set(
     auto: Sequence[Skill],
     pinned: Sequence[Skill] = (),
     verdicts: Mapping[frozenset[str], str] | None = None,
+    cap: str = DEFAULT_CAP,
 ) -> Resolution:
     """Keep every pinned skill; add auto candidates in order unless they conflict
     with or duplicate a skill already in the set. Never re-ranks, only removes.
@@ -75,7 +82,7 @@ def resolve_set(
     warnings: list[Finding] = []
     for i, a in enumerate(included):
         for b in included[i + 1 :]:
-            rel = skill_relation(a, b)
+            rel = skill_relation(a, b, cap)
             if rel.relation == Relation.CONFLICT:
                 warnings.append(make_finding("conflict", rel, a, b))
 
@@ -84,7 +91,7 @@ def resolve_set(
         if cand.id in seen:
             continue
         seen.add(cand.id)
-        rels = [(s, skill_relation(s, cand)) for s in included]
+        rels = [(s, skill_relation(s, cand, cap)) for s in included]
         blocker = next((x for x in rels if x[1].relation == Relation.CONFLICT), None) or next(
             (x for x in rels if x[1].relation == Relation.REDUNDANT), None
         )

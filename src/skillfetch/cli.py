@@ -249,24 +249,24 @@ def main(argv: Sequence[str] | None = None) -> int:
         "load_skills precedence header on top, skills in that order); repeatable",
     )
 
-    for p in (scan, ingest, serve):
+    for p in (scan, ingest):
         p.add_argument(
             "--conflict-cap",
             choices=relation.CAP_MODES,
-            default="all",
+            default=None,
             help="which rules without an object may conflict (constraints.md §3 row 14d): "
-            "'all' (default) reports every such pair as needs_review; 'vocabulary' lets a "
-            "blanket rule on a vocabulary term conflict (more recall, less precision)",
+            "'all' reports every such pair as needs_review; 'vocabulary' lets a blanket rule "
+            "on a vocabulary term conflict (more recall, less precision). Default: 'all' "
+            "(scan: the index's manifest.conflict_cap when it reads an index)",
         )
     args = parser.parse_args(argv)
-    relation.set_objectless_cap(getattr(args, "conflict_cap", "all"))
 
     if args.command == "scan":
         if not args.dir.is_dir():
             print(f"skillfetch: not a directory: {args.dir}", file=sys.stderr)
             return 2
         try:
-            report = scan_dir(args.dir, _scan_lookup(args))
+            report = scan_dir(args.dir, _scan_lookup(args), args.conflict_cap)
         except IndexLoadError as exc:
             print(f"skillfetch: {exc}", file=sys.stderr)
             return 2
@@ -383,6 +383,7 @@ def _build(args: argparse.Namespace, key: str, extractor: extract.Extractor | No
         seed=args.seed,
         jobs=args.jobs,
         github=GhCli() if args.upstream_licenses else None,
+        cap=args.conflict_cap or relation.DEFAULT_CAP,
     )
     print(render_summary(result))
     report, review = write_reports(result, args.out.with_name(args.out.name + "-reports"))
@@ -407,6 +408,7 @@ def _holdout(args: argparse.Namespace, key: str, extractor: extract.Extractor | 
         model=key,
         work_dir=args.work_dir,
         jobs=args.jobs,
+        cap=args.conflict_cap or relation.DEFAULT_CAP,
     )
     print(render_holdout(result))
     if result.moved or (result.missing and extractor is None):
@@ -656,7 +658,11 @@ def _ingest(args: argparse.Namespace) -> int:
             file=sys.stderr,
         )
         return 2
-    cal = calibrate(args.dir, {o.skill_id: o.record for o in outcomes})
+    cal = calibrate(
+        args.dir,
+        {o.skill_id: o.record for o in outcomes},
+        args.conflict_cap or relation.DEFAULT_CAP,
+    )
     print()
     print(render_calibration(cal))
     return 0 if cal.passed else 1

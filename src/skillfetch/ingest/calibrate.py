@@ -59,12 +59,11 @@ FIELDS = (
 # --- labels ----------------------------------------------------------------------------------
 
 
-def load_labels(path: Path, cap: str | None = None) -> dict[frozenset[str], str]:
+def load_labels(path: Path, cap: str = relation.DEFAULT_CAP) -> dict[frozenset[str], str]:
     """expected.yaml → {unordered pair: label}; `subsumes` entries become
     "subsumes:<superset>". Unlisted pairs are `independent`. Labels are for the default
-    conflict cap; with cap "vocabulary" (default: the current `OBJECTLESS_CAP`) the pairs
+    conflict cap; with cap "vocabulary" the pairs
     under `conflict_with_vocabulary_cap` are conflicts instead."""
-    cap = cap or relation.OBJECTLESS_CAP
     raw = yaml.safe_load(path.read_text()) or {}
     labels: dict[frozenset[str], str] = {}
     for key in LABEL_KEYS:
@@ -162,6 +161,7 @@ class Calibration(BaseModel):
     missing: list[str]
     labelled: dict[str, Skill]
     extracted: dict[str, Skill]
+    cap: str = relation.DEFAULT_CAP
 
     @property
     def hard_pass(self) -> bool:
@@ -236,7 +236,9 @@ def compare_fields(labelled: Mapping[str, Skill], extracted: Mapping[str, Skill]
 
 
 def compare_pairs(
-    labels: Mapping[frozenset[str], str], extracted: Mapping[str, Skill]
+    labels: Mapping[frozenset[str], str],
+    extracted: Mapping[str, Skill],
+    cap: str = relation.DEFAULT_CAP,
 ) -> PairReport:
     by_label: dict[str, Agreement] = {}
     mismatches: list[Mismatch] = []
@@ -244,7 +246,7 @@ def compare_pairs(
     labelled = labelled_ok = false_positives = 0
     for a, b in combinations(sorted(extracted), 2):
         want = labels.get(frozenset((a, b)), Relation.INDEPENDENT.value)
-        got = pair_label(extracted[a], extracted[b])
+        got = pair_label(extracted[a], extracted[b], cap)
         bucket = by_label.setdefault(want.split(":", 1)[0], Agreement())
         bucket.total += 1
         flagged += got == "conflict"
@@ -279,19 +281,23 @@ def compare_pairs(
     )
 
 
-def calibrate(fixtures_dir: Path, records: Mapping[str, ExtractRecord]) -> Calibration:
+def calibrate(
+    fixtures_dir: Path, records: Mapping[str, ExtractRecord], cap: str = relation.DEFAULT_CAP
+) -> Calibration:
     """fixtures_dir holds skills/ and expected.yaml (the layout of tests/fixtures/)."""
     labelled = load_labelled(fixtures_dir / "skills")
-    labels = load_labels(fixtures_dir / "expected.yaml")
+    labels = load_labels(fixtures_dir / "expected.yaml", cap)
     extracted = fan_out_map(
         {
             sid: Skill(id=sid, constraints=records[sid].constraints() if sid in records else [])
             for sid in labelled
-        }
+        },
+        cap,
     )
     return Calibration(
+        cap=cap,
         fields=compare_fields(labelled, extracted),
-        pairs=compare_pairs(labels, extracted),
+        pairs=compare_pairs(labels, extracted, cap),
         failed=sorted(s for s in labelled if s in records and records[s].status != "ok"),
         missing=sorted(s for s in labelled if s not in records),
         labelled=labelled,
@@ -314,33 +320,33 @@ def compact(c: Constraint) -> str:
     return out + f" ({c.strength})"
 
 
-def _relation_lines(a: Skill, b: Skill) -> set[tuple[str, int]]:
+def _relation_lines(a: Skill, b: Skill, cap: str) -> set[tuple[str, int]]:
     lines = set()
     for x, y in ((a, b), (b, a)):
-        for p in skill_relation(x, y).pairs:
+        for p in skill_relation(x, y, cap).pairs:
             lines |= {(x.id, p.a.evidence.line_no), (y.id, p.b.evidence.line_no)}
     return lines
 
 
-def _expected_finding(m: Mismatch, labelled: Mapping[str, Skill]) -> list[str]:
+def _expected_finding(m: Mismatch, labelled: Mapping[str, Skill], cap: str) -> list[str]:
     a, b = labelled[m.a], labelled[m.b]
     if m.expected == "independent":
         return ["  hand labels: independent"]
     if m.expected.startswith("subsumes:"):
         sup = m.expected.split(":", 1)[1]
         a, b = (a, b) if sup == a.id else (b, a)
-        rel, kind = skill_relation(a, b), "redundant"
+        rel, kind = skill_relation(a, b, cap), "redundant"
     else:
-        rel, kind = skill_relation(a, b), m.expected
+        rel, kind = skill_relation(a, b, cap), m.expected
     finding = make_finding(kind, rel, a, b)
     return ["  hand labels:"] + ["  " + line for line in render_finding(finding).splitlines()[1:]]
 
 
 def render_mismatch(m: Mismatch, cal: Calibration) -> str:
     out = [f"MISMATCH  {m.a} ⟷ {m.b}  expected {m.expected}, got {m.got}"]
-    out += _expected_finding(m, cal.labelled)
-    lines = _relation_lines(cal.labelled[m.a], cal.labelled[m.b]) | _relation_lines(
-        cal.extracted[m.a], cal.extracted[m.b]
+    out += _expected_finding(m, cal.labelled, cal.cap)
+    lines = _relation_lines(cal.labelled[m.a], cal.labelled[m.b], cal.cap) | _relation_lines(
+        cal.extracted[m.a], cal.extracted[m.b], cal.cap
     )
     out.append("  extracted:")
     for sid, line_no in sorted(lines):

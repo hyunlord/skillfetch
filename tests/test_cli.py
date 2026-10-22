@@ -97,11 +97,10 @@ def test_fail_on_rejects_unknown_values(capsys):
 
 
 def test_conflict_cap_vocabulary_reports_blanket_vocabulary_conflicts(capsys):
-    from skillfetch.resolve import relation
-
-    try:
-        assert main(["scan", str(SKILLS_DIR), "--json", "--conflict-cap", "vocabulary"]) == 0
-        data = json.loads(capsys.readouterr().out)
-        assert sum(f["kind"] == "conflict" for f in data["findings"]) == 19
-    finally:
-        relation.set_objectless_cap("all")
+    assert main(["scan", str(SKILLS_DIR), "--json", "--conflict-cap", "vocabulary"]) == 0
+    data = json.loads(capsys.readouterr().out)
+    assert sum(f["kind"] == "conflict" for f in data["findings"]) == 19
+    # no module state left behind: the next scan uses the default cap
+    assert main(["scan", str(SKILLS_DIR), "--json"]) == 0
+    data = json.loads(capsys.readouterr().out)
+    assert sum(f["kind"] == "conflict" for f in data["findings"]) == 11

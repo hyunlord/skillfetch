@@ -32,7 +32,13 @@ from skillfetch.ingest.skillfile import (
     read_text,
 )
 from skillfetch.resolve.models import Constraint, Finding, Skill
-from skillfetch.resolve.relation import Relation, candidate_pairs, mark_fan_out, skill_relation
+from skillfetch.resolve.relation import (
+    DEFAULT_CAP,
+    Relation,
+    candidate_pairs,
+    mark_fan_out,
+    skill_relation,
+)
 from skillfetch.resolve.report import render_finding
 from skillfetch.resolve.resolver import make_finding
 
@@ -232,8 +238,8 @@ def _extract(
                 found[record.id] = checked
 
 
-def pair_finding(a: Skill, b: Skill) -> Finding | None:
-    forward, backward = skill_relation(a, b), skill_relation(b, a)
+def pair_finding(a: Skill, b: Skill, cap: str = DEFAULT_CAP) -> Finding | None:
+    forward, backward = skill_relation(a, b, cap), skill_relation(b, a, cap)
     if forward.relation == Relation.CONFLICT:
         return make_finding("conflict", forward, a, b)
     if forward.relation == Relation.REDUNDANT:  # b ⊆ a
@@ -265,7 +271,12 @@ def _judged(
     return kept, len(findings) - len(kept)
 
 
-def scan_dir(root: Path, lookup: Lookup | None = None) -> ScanReport:
+def scan_dir(root: Path, lookup: Lookup | None = None, cap: str | None = None) -> ScanReport:
+    """`cap`: the conflict cap (constraints.md §3 row 14d); default the index's
+    manifest.conflict_cap when there is an index, else DEFAULT_CAP."""
+    if cap is None:
+        index = lookup.index if lookup is not None else None
+        cap = (index.manifest.get("conflict_cap") if index else None) or DEFAULT_CAP
     records: list[SkillScan] = []
     found: dict[str, list[Constraint]] = {}
     todo: list[tuple[SkillScan, Path]] = []
@@ -312,13 +323,13 @@ def scan_dir(root: Path, lookup: Lookup | None = None) -> ScanReport:
                 ]
             }
         )
-        for s in mark_fan_out(analyzable)
+        for s in mark_fan_out(analyzable, cap=cap)
     ]
     findings = [
         f
         for i, j in candidate_pairs(analyzable)
         if frozenset((analyzable[i].id, analyzable[j].id)) not in same_content
-        and (f := pair_finding(analyzable[i], analyzable[j])) is not None
+        and (f := pair_finding(analyzable[i], analyzable[j], cap)) is not None
     ]
     findings, suppressed = _judged(findings, records, lookup)
     findings.sort(key=lambda f: (_KIND_ORDER[f.kind], f.a, f.b))

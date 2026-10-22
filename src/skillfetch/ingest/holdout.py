@@ -29,7 +29,7 @@ from skillfetch.ingest.skillfile import content_hash
 from skillfetch.ingest.snapshot import DEFAULT_WORK_DIR, snapshot
 from skillfetch.ingest.sources import Source
 from skillfetch.resolve.models import Constraint, Skill
-from skillfetch.resolve.relation import fan_out_map
+from skillfetch.resolve.relation import DEFAULT_CAP, fan_out_map
 from skillfetch.resolve.report import render_finding
 
 LABELS = (*LABEL_KEYS, "independent")
@@ -86,6 +86,7 @@ class HoldoutResult(BaseModel):
     notes: dict[str, str]  # "a|b" -> hand-label note
     api_cost_usd: float
     fresh: int
+    cap: str = DEFAULT_CAP
 
     @property
     def hard_pass(self) -> bool:
@@ -105,6 +106,7 @@ def measure_holdout(
     model: str,
     work_dir: Path = DEFAULT_WORK_DIR,
     jobs: int = 4,
+    cap: str = DEFAULT_CAP,
 ) -> HoldoutResult:
     by_id = {s.id: s for s in sources}
     unknown = sorted(set(holdout.sources) - set(by_id))
@@ -140,11 +142,13 @@ def measure_holdout(
         {
             sid: Skill(id=sid, constraints=_with_ids(records[sid], sid) if sid in records else [])
             for sid in holdout.skills
-        }
+        },
+        cap,
     )
     missing = sorted(sid for sid in dirs if sid not in records or records[sid].status != "ok")
     return HoldoutResult(
-        pairs=compare_pairs(holdout.labels(), extracted),
+        pairs=compare_pairs(holdout.labels(), extracted, cap),
+        cap=cap,
         missing=missing,
         moved=sorted(moved),
         extracted=extracted,
@@ -176,7 +180,7 @@ def render_holdout(result: HoldoutResult) -> str:
         out.append(f"MISMATCH  {m.a} ⟷ {m.b}  expected {m.expected}, got {m.got}")
         if note := _note(result.notes, m.a, m.b):
             out.append(f"  hand label: {note}")
-        finding = pair_finding(result.extracted[m.a], result.extracted[m.b])
+        finding = pair_finding(result.extracted[m.a], result.extracted[m.b], result.cap)
         if finding is None:
             out.append("  extracted: no relation")
         else:
