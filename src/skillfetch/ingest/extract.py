@@ -45,7 +45,11 @@ from skillfetch.resolve.vocabulary import (
 EXTRACT_VERSION = 6
 PROMPT_SHA256 = "ceddd0e8e1d42afdd6496d1365ed16f134ceae04e518d3bd277a42344634cb75"
 
-DEFAULT_MODEL = "openrouter/openai/gpt-6-luna"  # "provider/model"; see backends.parse_model
+# "provider/model"; see backends.parse_model. claude-code: answered inside a Claude Code
+# session, no API (the default). The API backends (openrouter/..., anthropic/..., openai/...)
+# remain available with --model; the existing index was extracted with
+# openrouter/openai/gpt-6-luna (see its manifest).
+DEFAULT_MODEL = "claude-code/opus-5.5"
 REQUEST_TIMEOUT_S = 120  # per HTTP request; the SDK default (600 s) let one stuck call stall a run
 MAX_TOKENS = 16000
 MAX_SKILL_TOKENS = 12000  # index-format §1.5 cost guard, estimated as chars / 4
@@ -470,7 +474,7 @@ def apply_vocabulary(constraints: list[Constraint]) -> tuple[list[Constraint], l
             c = c.model_copy(update={"subject": normalized})
         term = lookup(c.subject)
         condition = c.scope.condition
-        if condition is not None and condition_is_clause(condition):
+        if condition is not None and condition_is_clause(condition, c.evidence.text):
             notes.append(f"line {line}: condition {condition!r} -> null (reads like a clause)")
             c = c.model_copy(update={"scope": c.scope.model_copy(update={"condition": None})})
         negative = term is not None and term.polarity == "negative"

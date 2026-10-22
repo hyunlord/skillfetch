@@ -23,7 +23,7 @@ from skillfetch.ingest.extract import (
     Usage,
 )
 
-PROVIDERS = ("anthropic", "openai", "openrouter")
+PROVIDERS = ("claude-code", "anthropic", "openai", "openrouter")
 OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 _HOST_PROVIDERS = {"openrouter.ai": "openrouter"}  # base_url host -> cache-key provider
 
@@ -141,14 +141,17 @@ class OpenAICompatBackend:
         request: dict[str, Any] = {
             "model": self.model,
             "messages": [{"role": "system", "content": system}, *messages],
-            "response_format": {
-                "type": "json_schema",
-                "json_schema": {"name": "skill_extract", "schema": schema, "strict": True},
-            },
             self._token_param: MAX_TOKENS,
         }
-        if self._temperature:
-            request["temperature"] = 0
+        if schema:
+            request["response_format"] = {
+                "type": "json_schema",
+                "json_schema": {"name": "skill_extract", "schema": schema, "strict": True},
+            }
+            if self._temperature:
+                request["temperature"] = 0
+        # An empty schema asks for free text at the model's default temperature (the
+        # obedience test samples an agent several times; temperature 0 would hide variance).
         if self.extra_body:
             request["extra_body"] = self.extra_body
         return request
@@ -180,9 +183,11 @@ class OpenAICompatBackend:
         cached = getattr(details, "cached_tokens", None) or 0
         written = getattr(details, "cache_write_tokens", None) or 0
         reported = getattr(u, "cost", None)  # OpenRouter: amount charged, in USD credits
+        # Some providers behind OpenRouter return no usage at all (seen on 6 of 2011 judge
+        # requests to claude-sonnet-5.5): count zero tokens and no reported cost.
         usage = Usage(
-            input_tokens=max(u.prompt_tokens - cached - written, 0),
-            output_tokens=u.completion_tokens,
+            input_tokens=max((getattr(u, "prompt_tokens", 0) or 0) - cached - written, 0),
+            output_tokens=getattr(u, "completion_tokens", 0) or 0,
             cache_read_input_tokens=cached,
             cache_creation_input_tokens=written,
             reported_cost_usd=float(reported) if reported is not None else None,
@@ -243,6 +248,10 @@ def make_backend(
 ) -> ExtractBackend:
     provider, model = parse_model(spec)
     label = _provider_label(provider, base_url)
+    if provider == "claude-code":
+        from skillfetch.ingest.claude_code import ClaudeCodeBackend
+
+        return ClaudeCodeBackend(model)
     if provider == "anthropic":
         return AnthropicBackend(make_anthropic_client(), model)
     if label == "openrouter":

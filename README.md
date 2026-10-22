@@ -5,31 +5,34 @@ task, your agent searches a vetted, pre-indexed corpus of `SKILL.md` files,
 assembles a *conflict-free* set, uses it for that task, and moves on. Nothing
 piles up in `~/.claude/skills`.
 
-> Status: early v0.1. `skillfetch scan` runs on a local skills directory
-> (lint, injection scan, duplicate and conflict report). Constraint extraction
-> through the API, the public corpus and the MCP server are not built yet.
+> Status: v0.1 open items: the write-up and `scan` from cached extractions. v0.2:
+> the MCP server works end to end.
+> The public index covers anthropics/skills and all 1812 UASL skills (1724
+> indexed). `skillfetch serve` exposes `profile_repo`, `search_skills`,
+> `resolve_set` and `load_skills`; bodies are fetched from the pinned source and
+> hash-verified at load time. Model work (extraction, judge, obedience tests) runs
+> inside Claude Code by default (`--model claude-code/...`); the OpenRouter /
+> Anthropic / OpenAI backends are opt-in. Numbers for the write-up:
+> [`docs/writeup/numbers.md`](docs/writeup/numbers.md).
 
 ```console
 $ uv run skillfetch scan path/to/skills          # human-readable report
 $ uv run skillfetch scan path/to/skills --json   # machine-readable
 $ uv run skillfetch scan path/to/skills --fail-on conflict,scan   # exit 1 for CI
 $ uv run skillfetch scan tests/fixtures/skills   # the labelled fixture corpus
+$ uv run skillfetch ingest --sources sources.yaml --out data/index --upstream-licenses
+$ uv run skillfetch serve --index data/index     # MCP server over stdio
+$ claude mcp add skillfetch -- uv --directory $PWD run skillfetch serve --index $PWD/data/index
 ```
 
-Conflict analysis currently needs pre-extracted constraints in a
+Conflict analysis in `scan` still reads pre-extracted constraints from a
 `constraints.json` next to each `SKILL.md` (see `tests/fixtures/`); skills
-without one are linted and scanned, and listed as skipped.
-
-Constraint extraction through the Claude API (needs `pip install
-'skillfetch[ingest]'` and `ANTHROPIC_API_KEY` or `ant auth login`; results are
-cached in `~/.skillfetch/extract-cache/`, each skill is extracted once):
-
-```console
-$ uv run skillfetch ingest tests/fixtures --with-api --calibrate   # measure the extractor
-$ uv run skillfetch ingest path/to/skills --with-api               # extract + cost log
-$ uv run skillfetch ingest tests/fixtures --with-api --calibrate --model openai/<model>
-$ uv run skillfetch ingest dir --with-api --model openai/<model> --base-url http://localhost:8000/v1
-```
+without one are linted and scanned, and listed as skipped. `ingest` extracts
+constraints with `--with-api`: the default backend `claude-code/<model>` queues
+each request under `~/.skillfetch/claude-code-queue/` for a Claude Code session to
+answer (no API cost); `--model openrouter/<vendor>/<model>`, `anthropic/<model>` or
+`openai/<model>` call an API instead (`pip install 'skillfetch[ingest]'`). Every
+skill is extracted once and cached in `~/.skillfetch/extract-cache/`.
 
 ## The problem
 
@@ -70,6 +73,18 @@ together, scope it to one task, or tell you afterwards whether it helped.
         (index-format §1.6–§2)
 - [ ] **v0.2** `skillfetch serve` — MCP server (`search_skills`, `resolve_set`,
       `load_skills`, …) + the one router skill you install.
+  - [x] index without bodies: per-file sha256 manifest + pinned fetch base
+  - [x] index loader (manifest-verified) and BM25 `search_skills` with profile boosts
+  - [x] `resolve_set` over index constraints (pinned `path:` skills linted and scanned)
+  - [x] `load_skills`: fetch from the pinned source, verify every hash, cache under
+        `~/.skillfetch/cache/`, refuse mismatches
+  - [x] MCP server (`skillfetch serve`) with `profile_repo`, `search_skills`,
+        `resolve_set`, `load_skills`
+  - [x] router skill (`assets/router-skill/SKILL.md`; restates the task in English)
+  - [x] end-to-end run in Claude Code: search_skills → resolve_set → load_skills
+  - [x] judge verdicts stored in the index (`pairs.jsonl`); `resolve_set` drops
+        warnings judged independent (`suppressed_by_judge`)
+  - [ ] `sync` command (download a published index into `~/.skillfetch/index`)
   - [ ] surface the `complementary` hint in `resolve_set` output
 - [ ] **v0.3** isolation runner, outcome log, and an honest on/off comparison on
       a verified task set.
@@ -111,6 +126,29 @@ default produced none. Use it when recall matters more than precision.
   under a "Don't" heading, when its line names something narrower than its
   subject, or when it is a blanket rule about a subject outside the controlled
   vocabulary.
+
+### Cases we get wrong
+
+The two `conflict` findings left in the full public-corpus build (anthropics/skills
++ all 1812 UASL skills at `2a76bf42ce5c`, extraction v6, default cap) are both false.
+We record them instead of tuning the rules to them:
+
+- **caveman-review ⟷ saga**, subject `response-length`.
+  - caveman-review, SKILL.md:51: "Drop terse mode for: security findings (CVE-class
+    bugs need full explanation + reference), architectural disagreements …, and
+    onboarding contexts …"
+  - saga, SKILL.md:394: "Skip verbose explanations, focus on deliverables"
+  - Why it is wrong: both rules are situational — detail for security findings in a
+    code review, brevity in saga's autonomous (AUTORUN) mode. Extraction kept the
+    situation only in `object_raw`, which the rules do not compare, so the two read as
+    "require detailed" vs "forbid detailed".
+- **darwin ⟷ thinking-ooda**, order `observation` before / after `action`.
+  - darwin, SKILL.md:37: "**Principles:** Observe before acting · …"
+  - thinking-ooda, SKILL.md:108: "Immediately return to OBSERVE" (and :219, "Mandate
+    observe after act")
+  - Why it is wrong: OODA is a loop: observing after acting is the next cycle's
+    observing before acting. Order constraints have no notion of a cycle, so "observe
+    after act" reads as the reverse of "observe before act".
 
 ## License
 

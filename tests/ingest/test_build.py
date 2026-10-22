@@ -4,6 +4,7 @@
 import hashlib
 import json
 import shutil
+from urllib.request import urlopen
 
 import pytest
 from conftest import SKILLS_DIR, OracleClient, make_git_source, oracle
@@ -173,7 +174,7 @@ def test_duplicate_groups_and_canonicals(world):
     )
 
 
-def test_bodies_only_for_redistributable_skills(world):
+def test_index_has_file_manifests_and_no_bodies(world):
     tmp_path, sources, _ = world
     _build(tmp_path, sources, KeywordOracle())
     recs = _records(tmp_path)
@@ -181,10 +182,14 @@ def test_bodies_only_for_redistributable_skills(world):
     assert (squash["license"], squash["redistributable"]) == ("MIT", True)
     assert (emoji["license"], emoji["redistributable"]) == ("proprietary", False)
     assert recs["aggregator/small-commits"]["license"] == "unknown"
-    bodies = tmp_path / "index" / "bodies"
-    assert (bodies / f"{squash['id']}.md").is_file()
-    assert not (bodies / f"{emoji['id']}.md").exists()
+    index = tmp_path / "index"
+    assert not (index / "bodies").exists() and not (index / "assets").exists()
     assert emoji["source_url"].endswith("/skills/emoji-headers/SKILL.md")
+    # every file is listed with the sha256 of its bytes, fetchable from fetch_base
+    assert set(squash["files"]) == {"SKILL.md", "LICENSE"}
+    for rel, digest in squash["files"].items():
+        data = urlopen(f"{squash['fetch_base']}/{rel}").read()
+        assert hashlib.sha256(data).hexdigest() == digest
 
 
 def test_upstream_scripts_and_constraints(world):
@@ -217,6 +222,8 @@ def test_manifest_counts_and_file_hashes(world):
         "scan_failed": 1,
         "extract_failed": 0,
         "too_large": 1,
+        "api_errors": 0,
+        "pending_answers": 0,
         "not_extracted": 0,
     }
     src = {s["id"]: s for s in manifest["sources"]}
@@ -387,3 +394,73 @@ def test_cli_writes_reports(world, monkeypatch, capsys):
     reports = tmp_path / "idx-reports"
     assert (reports / "report.md").is_file() and (reports / "review.md").is_file()
     assert str(reports / "review.md") in capsys.readouterr().out
+
+
+def test_upstream_licenses_fill_license_source(world, tmp_path):
+    import base64
+
+    tmp_path, sources, _ = world
+
+    class OneRepo:  # tdd-strict's upstream (https://github.com/up/stream) is MIT
+        def get(self, path):
+            if path == "repos/up/stream":
+                return {"full_name": "up/stream"}
+            if path.startswith("repos/up/stream/git/trees"):
+                return {"sha": "abc", "tree": [{"path": "LICENSE", "type": "blob"}]}
+            if path.startswith("repos/up/stream/contents/LICENSE"):
+                return {"encoding": "base64", "content": base64.b64encode(MIT.encode()).decode()}
+            return None
+
+    result = _build(
+        tmp_path, sources, KeywordOracle(), github=OneRepo(), license_cache=tmp_path / "lic"
+    )
+    recs = {b.record.id.split("@")[0]: b.record for b in result.skills}
+    tdd = recs["aggregator/tdd-strict"]
+    assert (tdd.license_source, tdd.license, tdd.redistributable) == ("explicit", "MIT", True)
+    assert tdd.license_origin == "upstream:https://github.com/up/stream/LICENSE"
+    assert recs["verified-src/commit-squash"].license_source == "explicit"  # own LICENSE
+    assert recs["aggregator/small-commits"].license_source == "upstream_unknown"
+    from skillfetch.ingest.build_report import render_report
+
+    assert "## License source" in render_report(result)
+
+
+def test_an_api_error_on_one_skill_does_not_stop_the_build(world):
+    tmp_path, sources, _ = world
+
+    class Flaky(KeywordOracle):
+        def create(self, **request):
+            if "| name: atomic-commits" in request["messages"][0]["content"]:
+                raise ConnectionError("Connection error.")
+            return super().create(**request)
+
+    result = _build(tmp_path, sources, Flaky())
+    recs = {b.record.id.split("@")[0]: b.record for b in result.skills}
+    atomic = recs["aggregator/atomic-commits"]
+    assert (atomic.status, atomic.not_extracted_reason, atomic.tier) == (
+        "not_extracted",
+        "api_error",
+        "C",
+    )
+    assert "Connection error." in atomic.extract_error
+    assert recs["aggregator/small-commits"].status == "ok"  # the rest went on
+    assert result.manifest["counts"]["api_errors"] == 1
+
+    client = KeywordOracle()
+    again = _build(tmp_path, sources, client)  # the rerun retries only the failed skill
+    assert len(client.requests) == 1
+    assert {b.record.id.split("@")[0]: b.record.status for b in again.skills}[
+        "aggregator/atomic-commits"
+    ] == "ok"
+
+
+def test_report_states_what_cached_extractions_cost(world):
+    from skillfetch.ingest.build_report import render_report
+
+    tmp_path, sources, _ = world
+    _build(tmp_path, sources, KeywordOracle())
+    again = _build(tmp_path, sources, KeywordOracle())  # everything from the cache
+    cost, n, estimated = again.cached_cost()
+    assert n == 8 and estimated == 0 and cost > 0
+    report = render_report(again)
+    assert f"The 8 cached extractions cost ${cost:.4f} when earlier runs made them" in report

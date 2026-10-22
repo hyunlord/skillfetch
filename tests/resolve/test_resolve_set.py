@@ -187,5 +187,30 @@ def test_set_id_depends_only_on_included_set():
 def test_result_is_plain_json():
     res = run(auto=["emoji-headers", "friendly-tone"], pinned=["clean-headings"])
     data = json.loads(json.dumps(res.model_dump(mode="json")))
-    assert set(data) == {"set_id", "included", "excluded", "warnings", "precedence"}
+    assert set(data) == {
+        "set_id",
+        "included",
+        "excluded",
+        "warnings",
+        "precedence",
+        "suppressed_by_judge",
+    }
     assert data["excluded"][0]["evidence"][0]["a"]["line_no"] >= 1
+
+
+def test_an_independent_verdict_suppresses_the_warning_and_counts_it():
+    corpus = load_corpus()
+    pair = frozenset(("verbose-logging", "quiet-tests"))
+    auto = [corpus["verbose-logging"], corpus["quiet-tests"]]
+    res = resolve_set(auto, [], {pair: "independent"})
+    assert res.warnings == [] and res.suppressed_by_judge == 1
+    for verdict in ("conflict", "carve_out", "situational", "unclear"):
+        res = resolve_set(auto, [], {pair: verdict})  # only `independent` suppresses
+        assert len(res.warnings) == 1 and res.suppressed_by_judge == 0
+
+
+def test_a_verdict_never_changes_a_conflict_or_an_exclusion():
+    corpus = load_corpus()
+    auto = [corpus["tdd-strict"], corpus["prototype-first"]]
+    res = resolve_set(auto, [], {frozenset(("tdd-strict", "prototype-first")): "independent"})
+    assert [e.id for e in res.excluded] == ["prototype-first"]

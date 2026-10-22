@@ -24,8 +24,12 @@ The product has two halves that must stay decoupled:
   synthetic queries → assign trust tier → emit a versioned index.
 - **Runtime MCP server** (runs on the user's machine, uses **no model**): BM25
   over the index, conflict resolution over pre-extracted constraints, body
-  materialization. Claude is the reranker. Runtime latency budget: < 200 ms per
-  tool call excluding the host model.
+  fetch. The index holds metadata, constraints and content hashes only; bodies
+  are fetched by `load_skills` from each skill's source repo at the pinned
+  commit, verified against the per-file sha256 in the index, and cached under
+  `~/.skillfetch/cache/`. Claude is the reranker. Runtime latency budget:
+  < 200 ms per tool call excluding the host model (a first `load_skills` of an
+  uncached skill also waits for the fetch).
 
 ## Positioning (why this exists — keep README consistent with this)
 
@@ -45,8 +49,9 @@ The product has two halves that must stay decoupled:
   precedence, nothing more.
 - No skill self-generation from task history.
 - No GUI, no web service. CLI + MCP only.
-- No real-time fetching from the open internet at runtime. Runtime reads the
-  local mirror of the index only.
+- Runtime network access is limited to fetching skill bodies from their pinned
+  source; a hash mismatch is refused. Search and `resolve_set` read the local
+  index only.
 
 ## Repository layout (target)
 
@@ -82,14 +87,15 @@ hand-rolled BM25), `anthropic` (ingest only, optional extra), `pydantic`.
 | `profile_repo(path)` | repo root | `{languages, frameworks, package_managers, tags[]}` from manifest files only (package.json, pyproject.toml, go.mod, Cargo.toml, framework config files). Never scans source. Cached per session. |
 | `search_skills(query, profile?, k=10, tiers=["A","B"])` | task description written by the host model + optional profile | ranked candidates: `{id, title, summary, tier, tags, match_reasons[], token_estimate}` |
 | `resolve_set(auto_ids[], pinned_ids[])` | candidate ids chosen by the host model, plus user-pinned ids | `{set_id, included[], excluded[{id, reason, conflicts_with}], warnings[], precedence[]}` |
-| `load_skills(set_id)` | | bodies concatenated with a precedence header, for injection into the current context |
-| `prepare_set(set_id)` | | `{prompt_block, materialized_paths{}}` for the isolation runner; skills with scripts/references are materialized under `~/.skillfetch/cache/<id>/` |
+| `load_skills(set_id)` | | bodies concatenated with a precedence header, for injection into the current context. Each body is fetched from the skill's pinned source (unless cached), verified against the index hashes, and cached under `~/.skillfetch/cache/<content_hash>/`; a mismatch is refused with a structured error. |
+| `prepare_set(set_id)` | | `{prompt_block, materialized_paths{}}` for the isolation runner; the folder is fetched and verified like `load_skills` and materialized under `~/.skillfetch/cache/<content_hash>/` |
 | `report_outcome(set_id, ok: bool, note?)` | | ack. v0.1 only appends to a local JSONL log; nothing reads it yet. |
 
 Rules:
 
-- `search_skills` does BM25 over `title + description + keywords + synthetic_queries + body`.
-  Profile tags are a boost/filter, never part of the query string.
+- `search_skills` does BM25 over `title + description + keywords + synthetic_queries +
+  summary` (bodies are not in the index). Profile tags are a boost/filter, never part
+  of the query string.
 - `resolve_set` follows `docs/design/constraints.md` exactly. Pinned beats auto.
   Pinned-vs-pinned conflicts are reported, never auto-resolved.
 - Pinned ids may be local paths (`path:/abs/path/to/skill`). Those are ingested

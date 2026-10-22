@@ -241,11 +241,14 @@ def test_openrouter_key_from_env_or_creds_file(tmp_path, monkeypatch):
 # --- defaults ---------------------------------------------------------------------------------
 
 
-def test_default_model_is_luna_on_openrouter():
+def test_default_model_needs_no_api():
+    # "no external API" rule: Claude Code answers; the API backends stay opt-in
     from skillfetch.ingest.extract import DEFAULT_MODEL
+    from skillfetch.ingest.judge import DEFAULT_JUDGE_MODEL
 
-    assert DEFAULT_MODEL == "openrouter/openai/gpt-6-luna"
-    assert backend_key() == "openrouter/openai/gpt-6-luna"
+    assert DEFAULT_MODEL == DEFAULT_JUDGE_MODEL == "claude-code/opus-5.5"
+    assert backend_key() == "claude-code/opus-5.5"
+    assert backend_key("openrouter/openai/gpt-6-luna") == "openrouter/openai/gpt-6-luna"
 
 
 def test_clients_use_a_120_second_request_timeout(tmp_path, monkeypatch):
@@ -277,3 +280,20 @@ def test_clients_use_a_120_second_request_timeout(tmp_path, monkeypatch):
     backends_mod.make_backend("openrouter/openai/gpt-6-luna")
     backends_mod.make_backend("anthropic/claude-sonnet-5")
     assert seen["openai"]["timeout"] == 120 and seen["anthropic"]["timeout"] == 120
+
+
+def test_a_response_without_usage_counts_zero_tokens():
+    response = rec("commit-squash.ok.json")
+    response.pop("usage", None)
+    response["usage"] = None
+    record, _ = run(response)
+    assert record.status == "ok"
+    assert record.usage == Usage() and record.usage.reported_cost_usd is None
+
+
+def test_an_empty_schema_asks_for_free_text_at_default_temperature():
+    client = FakeOpenAIClient(rec("commit-squash.ok.json"))
+    backend = OpenAICompatBackend(client, "gpt-test")
+    backend.complete("sys", [{"role": "user", "content": "hi"}], {})
+    [req] = client.requests
+    assert "response_format" not in req and "temperature" not in req

@@ -137,3 +137,30 @@ class Resolution(_Frozen):
     excluded: list[Excluded]
     warnings: list[Finding]
     precedence: list[str]
+    # tension / needs_review warnings dropped because a judge read the pair as independent
+    suppressed_by_judge: int = 0
+
+
+Verdict = Literal["conflict", "carve_out", "situational", "independent", "unclear"]
+
+
+class PairVerdict(_Frozen):
+    """One line of an index's pairs.jsonl: a judge's reading of a pair the rules left open
+    (constraints.md §8). Never changes a conflict or an exclusion; an `independent` verdict
+    only removes the pair's tension / needs_review warning."""
+
+    a: str
+    b: str
+    rules: str  # relation from the rules: needs_review | tension
+    row: str  # §3 row behind it
+    verdict: Verdict
+    reason: str
+    ambiguous_together: bool
+    confidence: float
+    judge: str  # backend/model key
+    judge_version: int
+    input_sha256: str | None = None
+
+    @property
+    def key(self) -> frozenset[str]:
+        return frozenset((self.a, self.b))

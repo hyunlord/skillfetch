@@ -209,11 +209,23 @@ _CLAUSE_WORDS = _words(
 MAX_CONDITION_WORDS = 6
 
 
-def condition_is_clause(condition: str) -> bool:
+_RAW_WORD = re.compile(r"[A-Za-z0-9]+")
+
+
+def _acronyms(text: str) -> set[str]:
+    return {w.lower() for w in _RAW_WORD.findall(text) if len(w) >= 2 and w.isupper()}
+
+
+def condition_is_clause(condition: str, evidence: str = "") -> bool:
     """A condition phrased as a clause: a subordinating word, a pronoun, an auxiliary or
-    modal verb, or more than MAX_CONDITION_WORDS words."""
-    words = _WORD.findall(condition.lower())
-    return len(words) > MAX_CONDITION_WORDS or any(w in _CLAUSE_WORDS for w in words)
+    modal verb, or more than MAX_CONDITION_WORDS words. An acronym is not a clause word: an
+    all-caps word of two or more letters in the condition or, since extraction lowercases
+    conditions, on the evidence line ("for US transfers" -> condition "us transfers")."""
+    words = _RAW_WORD.findall(condition)
+    if len(words) > MAX_CONDITION_WORDS:
+        return True
+    acronyms = _acronyms(condition) | _acronyms(evidence)
+    return any(w.lower() in _CLAUSE_WORDS and w.lower() not in acronyms for w in words)
 
 
 # --- free-text subjects that contain a term -----------------------------------------------------

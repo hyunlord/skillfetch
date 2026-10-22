@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import hashlib
-from collections.abc import Sequence
+from collections.abc import Mapping, Sequence
 
 from skillfetch.resolve.models import (
     EvidencePair,
@@ -52,9 +52,19 @@ def set_id_for(ids: Sequence[str]) -> str:
     return hashlib.sha256("\n".join(sorted(ids)).encode()).hexdigest()[:12]
 
 
-def resolve_set(auto: Sequence[Skill], pinned: Sequence[Skill] = ()) -> Resolution:
+def resolve_set(
+    auto: Sequence[Skill],
+    pinned: Sequence[Skill] = (),
+    verdicts: Mapping[frozenset[str], str] | None = None,
+) -> Resolution:
     """Keep every pinned skill; add auto candidates in order unless they conflict
-    with or duplicate a skill already in the set. Never re-ranks, only removes."""
+    with or duplicate a skill already in the set. Never re-ranks, only removes.
+
+    `verdicts` (judge verdict per unordered pair, from the index's pairs.jsonl) only
+    suppresses tension / needs_review warnings read as `independent`; they are counted in
+    `suppressed_by_judge`. A judge never turns anything into a conflict or an exclusion."""
+    verdicts = verdicts or {}
+    suppressed = 0
     seen: set[str] = set()
     included: list[Skill] = []
     for skill in pinned:
@@ -90,9 +100,13 @@ def resolve_set(auto: Sequence[Skill], pinned: Sequence[Skill] = ()) -> Resoluti
             )
             continue
         included.append(cand)
-        warnings += [
-            make_finding(r.relation.value, r, s, cand) for s, r in rels if r.relation in _WARN_ON
-        ]
+        for s, r in rels:
+            if r.relation not in _WARN_ON:
+                continue
+            if verdicts.get(frozenset((s.id, cand.id))) == "independent":
+                suppressed += 1
+                continue
+            warnings.append(make_finding(r.relation.value, r, s, cand))
 
     ids = [s.id for s in included]
     return Resolution(
@@ -101,4 +115,5 @@ def resolve_set(auto: Sequence[Skill], pinned: Sequence[Skill] = ()) -> Resoluti
         excluded=excluded,
         warnings=warnings,
         precedence=list(ids),
+        suppressed_by_judge=suppressed,
     )

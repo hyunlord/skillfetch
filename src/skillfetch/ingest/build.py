@@ -43,6 +43,13 @@ from skillfetch.ingest.skillfile import (
 )
 from skillfetch.ingest.snapshot import DEFAULT_WORK_DIR, Snapshot, snapshot
 from skillfetch.ingest.sources import Source
+from skillfetch.ingest.upstream_licenses import DEFAULT_CACHE as DEFAULT_LICENSE_CACHE
+from skillfetch.ingest.upstream_licenses import (
+    GitHubClient,
+    LicenseSource,
+    license_finding,
+    read_repo,
+)
 from skillfetch.resolve import relation as relation_mod
 from skillfetch.resolve.models import Constraint, Skill
 from skillfetch.resolve.relation import constraint_identity, mark_fan_out
@@ -68,6 +75,10 @@ class SkillRecord(BaseModel):
     commit: str
     path: str  # skill folder, relative to the snapshot root
     source_url: str
+    # every file of the skill folder (SKILL.md included) -> sha256 of its raw bytes, and the
+    # base URL they are fetched from at runtime: <fetch_base>/<relpath> (index-format §1.8)
+    files: dict[str, str] = {}
+    fetch_base: str | None = None
     content_hash: str
     tier: Literal["A", "B", "C"] | None = None
     status: Status
@@ -87,12 +98,17 @@ class SkillRecord(BaseModel):
     license: str
     redistributable: bool
     license_origin: str
+    # explicit (skill folder or upstream states a license) / upstream_no_license (upstream
+    # found, states none) / upstream_unknown (no upstream, or not read): §1.8
+    license_source: LicenseSource = "upstream_unknown"
     upstream: dict | None = None
     adjusted: list[str] = []
     dropped: list[str] = []
     extract_error: str | None = None
     # why a skill that passed lint and scan has no constraints: "too_large" keeps its tier
-    not_extracted_reason: Literal["too_large", "no cache entry"] | None = None
+    not_extracted_reason: (
+        Literal["too_large", "no cache entry", "api_error", "pending_answer"] | None
+    ) = None
 
 
 @dataclass
@@ -122,6 +138,24 @@ class BuildResult:
                 total += b.extraction.cost_usd or 0.0
         return total
 
+    def cached_cost(self) -> tuple[float, int, int]:
+        """(cost, extractions, of which estimated) of the extractions reused from the cache:
+        what earlier runs paid for them, including runs that were interrupted and never
+        printed a total. Provider-reported where the record has it, else the mean of the
+        reported ones."""
+        seen, known, unknown = set(), [], 0
+        for b in self.skills:
+            e = b.extraction
+            if b.fresh or e is None or not e.attempts or b.record.content_hash in seen:
+                continue
+            seen.add(b.record.content_hash)
+            if e.cost_usd is None:
+                unknown += 1
+            else:
+                known.append(e.cost_usd)
+        mean = sum(known) / len(known) if known else 0.0
+        return sum(known) + unknown * mean, len(seen), unknown
+
 
 # --- sampling and records ---------------------------------------------------------------------
 
@@ -144,6 +178,24 @@ def _source_url(snap: Snapshot, rel: str) -> str:
     if url.startswith("https://github.com/"):
         return f"{url}/blob/{snap.commit}/{rel}/{SKILL_FILE}"
     return f"{url}/{rel}/{SKILL_FILE}"
+
+
+def _fetch_base(snap: Snapshot, skill_dir: Path, rel: str) -> str:
+    """Where load_skills fetches the files: raw GitHub at the pinned commit, else the
+    local snapshot (dir sources, other git hosts)."""
+    url = snap.source.url.removesuffix(".git").rstrip("/")
+    if url.startswith("https://github.com/"):
+        repo = url.removeprefix("https://github.com/")
+        return f"https://raw.githubusercontent.com/{repo}/{snap.commit}/{rel}"
+    return skill_dir.resolve().as_uri()
+
+
+def file_manifest(skill_dir: Path) -> dict[str, str]:
+    paths = [skill_dir / SKILL_FILE, *skill_files(skill_dir)]
+    return {
+        p.relative_to(skill_dir).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
+        for p in paths
+    }
 
 
 def _record(snap: Snapshot, skill_dir: Path) -> Built:
@@ -172,6 +224,8 @@ def _record(snap: Snapshot, skill_dir: Path) -> Built:
         commit=snap.commit,
         path=rel,
         source_url=_source_url(snap, rel),
+        files=file_manifest(skill_dir),
+        fetch_base=_fetch_base(snap, skill_dir, rel),
         content_hash=digest,
         status=status,
         has_scripts=scan.has_scripts,
@@ -185,6 +239,25 @@ def _record(snap: Snapshot, skill_dir: Path) -> Built:
         upstream=up.__dict__ if up else None,
     )
     return Built(record, skill_dir, snap)
+
+
+def _apply_upstream_licenses(
+    skills: list[Built], github: GitHubClient | None, cache_dir: Path
+) -> None:
+    """§1.8: license_source for every record; with a GitHub client, a skill without a
+    license of its own takes its upstream's (the nearest license file on its upstream path)."""
+    repos = {}
+    if github is not None:
+        for url in sorted({b.record.upstream["repo"] for b in skills if b.record.upstream}):
+            repos[url] = read_repo(github, url, cache_dir)
+    for b in skills:
+        r = b.record
+        own = r.license_origin
+        found = license_finding(r.license, own, r.upstream, repos)
+        r.license_source = found.license_source
+        if own == "none" and found.license_source == "explicit":
+            r.license, r.license_origin = found.license, found.origin
+            r.redistributable = found.redistributable
 
 
 def _apply_extraction(b: Built, extraction: ExtractRecord | None) -> None:
@@ -321,7 +394,47 @@ def _write_jsonl(path: Path, rows: list[dict]) -> None:
     path.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows))
 
 
-def _write_index(tmp: Path, result_skills: list[Built], groups: dict, manifest: dict) -> None:
+PAIRS_FILE = "pairs.jsonl"
+
+
+def carry_pairs(previous: Path, indexed_ids: set[str]) -> list[dict]:
+    """Judge verdicts of the previous index (constraints.md §8) whose two skills are still
+    indexed. Skill ids pin the content (`<name>@<hash12>`), so a verdict stays valid while
+    neither skill changes."""
+    path = previous / PAIRS_FILE
+    if not path.is_file():
+        return []
+    rows = [json.loads(line) for line in path.read_text().splitlines() if line.strip()]
+    return [r for r in rows if r["a"] in indexed_ids and r["b"] in indexed_ids]
+
+
+def write_manifest_files(root: Path, manifest: dict) -> None:
+    """Hash every file of the index into the manifest and write it."""
+    manifest["files"] = {
+        p.relative_to(root).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
+        for p in sorted(root.rglob("*"))
+        if p.is_file() and p.name != "manifest.json"
+    }
+    (root / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
+
+
+def write_pairs(root: Path, rows: list[dict]) -> Path:
+    """Write an index's pairs.jsonl (sorted by pair) and refresh the manifest hashes."""
+    rows = sorted(rows, key=lambda r: (r["a"], r["b"]))
+    _write_jsonl(root / PAIRS_FILE, rows)
+    manifest = json.loads((root / "manifest.json").read_text())
+    manifest["judged_pairs"] = len(rows)
+    write_manifest_files(root, manifest)
+    return root / PAIRS_FILE
+
+
+def _write_index(
+    tmp: Path,
+    result_skills: list[Built],
+    groups: dict,
+    manifest: dict,
+    previous: Path | None = None,
+) -> None:
     indexed = sorted((b for b in result_skills if b.record.tier), key=lambda b: b.record.id)
     rejected = sorted((b for b in result_skills if not b.record.tier), key=lambda b: b.record.id)
     _write_jsonl(tmp / "skills.jsonl", [b.record.model_dump(mode="json") for b in indexed])
@@ -335,23 +448,10 @@ def _write_index(tmp: Path, result_skills: list[Built], groups: dict, manifest: 
         ],
     )
     (tmp / "dupgroups.json").write_text(json.dumps(groups, indent=2, sort_keys=True) + "\n")
-    for b in indexed:
-        if not b.record.redistributable:
-            continue
-        body = tmp / "bodies" / f"{b.record.id}.md"
-        body.parent.mkdir(parents=True, exist_ok=True)
-        body.write_text(read_text(b.skill_dir / SKILL_FILE))
-        for path in skill_files(b.skill_dir):
-            dest = tmp / "assets" / b.record.id / path.relative_to(b.skill_dir)
-            dest.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copy2(path, dest)
-    files = {
-        p.relative_to(tmp).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
-        for p in sorted(tmp.rglob("*"))
-        if p.is_file()
-    }
-    manifest["files"] = files
-    (tmp / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
+    if previous is not None and (kept := carry_pairs(previous, {b.record.id for b in indexed})):
+        _write_jsonl(tmp / PAIRS_FILE, sorted(kept, key=lambda r: (r["a"], r["b"])))
+        manifest["judged_pairs"] = len(kept)
+    write_manifest_files(tmp, manifest)
 
 
 def build_index(
@@ -365,6 +465,8 @@ def build_index(
     samples: dict[str, int] | None = None,
     seed: int = 42,
     jobs: int = 4,
+    github: GitHubClient | None = None,
+    license_cache: Path = DEFAULT_LICENSE_CACHE,
 ) -> BuildResult:
     model = extractor.model if extractor else (model or DEFAULT_MODEL)
     samples = samples or {}
@@ -399,6 +501,8 @@ def build_index(
             }
         )
 
+    _apply_upstream_licenses(skills, github, license_cache)
+
     ok = [b for b in skills if b.record.status == "ok"]
     cached = {b.record.content_hash: cache.get(b.record.content_hash, model) for b in ok}
     for b in ok:  # failures the current validation accepts are recovered without the API
@@ -411,10 +515,23 @@ def build_index(
         for b in ok
         if cached[b.record.content_hash] is None
     ]
-    fresh = run_extractions(todo, cache, extractor, jobs) if extractor and todo else {}
+    api_errors: dict[str, str] = {}
+    fresh = (
+        run_extractions(todo, cache, extractor, jobs, errors=api_errors)
+        if extractor and todo
+        else {}
+    )
     for b in ok:
         digest = b.record.content_hash
         b.fresh = digest in fresh
+        if digest in api_errors:
+            # not cached: a rerun retries it; tier C until then
+            reason = (
+                "pending_answer" if api_errors[digest].startswith("PendingAnswer") else "api_error"
+            )
+            b.record.status, b.record.not_extracted_reason = "not_extracted", reason
+            b.record.extract_error = api_errors[digest]
+            continue
         _apply_extraction(b, fresh.get(digest) or cached[digest])
 
     candidates = [b for b in skills if b.record.status not in ("lint_failed", "scan_failed")]
@@ -442,8 +559,11 @@ def build_index(
             # too_large keeps its tier; "no cache entry" (a run without --with-api) is tier C
             "too_large": reasons.get("too_large", 0),
             "not_extracted": reasons.get("no cache entry", 0),
+            "api_errors": reasons.get("api_error", 0),
+            "pending_answers": reasons.get("pending_answer", 0),
         },
         "licenses": dict(sorted(Counter(b.record.license for b in skills).items())),
+        "license_sources": dict(sorted(Counter(b.record.license_source for b in skills).items())),
         "redistributable": sum(b.record.redistributable for b in skills if b.record.tier),
         "signature": None,
     }
@@ -451,7 +571,7 @@ def build_index(
     tmp = out_dir.with_name(out_dir.name + ".tmp")
     shutil.rmtree(tmp, ignore_errors=True)
     tmp.mkdir(parents=True)
-    _write_index(tmp, skills, groups, manifest)
+    _write_index(tmp, skills, groups, manifest, previous=out_dir if out_dir.is_dir() else None)
     old = out_dir.with_name(out_dir.name + ".old")
     shutil.rmtree(old, ignore_errors=True)
     if out_dir.exists():
@@ -480,8 +600,8 @@ def render_summary(result: BuildResult) -> str:
         "not indexed: "
         + ", ".join(f"{k}={c[k]}" for k in ("lint_failed", "scan_failed"))
         + f" · tier C: extract_failed={c['extract_failed']}, "
-        f"not in cache={c['not_extracted']} · too large to extract (tier kept): "
-        f"{c['too_large']}"
+        f"not in cache={c['not_extracted']}, API errors={c.get('api_errors', 0)} · too large "
+        f"to extract (tier kept): {c['too_large']}"
     )
     lines.append(
         f"redistributable: {m['redistributable']} of {c['A'] + c['B'] + c['C']} indexed · "

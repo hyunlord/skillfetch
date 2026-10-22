@@ -71,23 +71,32 @@ def run_extractions(
     cache: ExtractCache,
     extractor: Extractor,
     jobs: int = 4,
+    errors: dict[str, str] | None = None,
 ) -> dict[str, ExtractRecord]:
     """Extract (skill_dir, skill_id, content_hash) items in parallel, once per distinct
-    content, caching each record. API errors propagate (finished records stay cached)."""
+    content, caching each record. A request that fails (connection, provider or SDK error)
+    is not cached: its content hash and error go into `errors` and the run continues, so a
+    rerun retries only those. Without an `errors` dict the first such error propagates."""
     unique: dict[str, tuple[Path, str]] = {}
     for skill_dir, skill_id, digest in items:
         unique.setdefault(digest, (skill_dir, skill_id))
 
-    def run(digest: str) -> tuple[str, ExtractRecord]:
+    def run(digest: str) -> tuple[str, ExtractRecord | None]:
         skill_dir, skill_id = unique[digest]
-        record = extractor.extract(skill_dir, skill_id, digest)
+        try:
+            record = extractor.extract(skill_dir, skill_id, digest)
+        except Exception as exc:
+            if errors is None:
+                raise
+            errors[digest] = f"{type(exc).__name__}: {str(exc)[:300]}"
+            return digest, None
         cache.put(record)
         return digest, record
 
     if not unique:
         return {}
     with ThreadPoolExecutor(max_workers=max(1, jobs)) as pool:
-        return dict(pool.map(run, unique))  # re-raises the first API error
+        return {d: r for d, r in pool.map(run, unique) if r is not None}
 
 
 def _usd(value: float | None) -> str:

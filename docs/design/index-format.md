@@ -240,6 +240,11 @@ constraints, and keeps the tier the other rules give it (anthropics'
 claude-api is A). It can be searched and loaded but never takes part in a
 conflict or duplicate check. `extract_failed` and `not_extracted` with reason
 `no cache entry` (a build without `--with-api`) stay tier C.
+A request that fails (connection, provider or SDK error, after the SDK's own
+retries) does not stop the build: that skill gets `not_extracted_reason:
+api_error`, is tier C for this build, is not cached, and is retried by the next
+run; `ingest` exits 1 when any skill failed this way. (The first full UASL
+build was stopped by a single `Connection error.` after ~270 extractions.)
 
 `network.bare-url` warnings do not count as "warnings" for the tier: skills for
 web APIs are full of documentation URLs, and in the first public build that one
@@ -254,40 +259,60 @@ in the skill folder (`LICENSE`, `LICENSE.txt`, `LICENSE.md`, `COPYING`),
 classified by its text; the frontmatter `license:` field; the source's SPDX
 license if it has one; else `unknown`.
 
+**Upstream licenses and `license_source`.** An aggregated skill is licensed by
+its upstream author, not by the aggregator. With `ingest --upstream-licenses`
+the build reads each upstream repo named in `.openskills.json` once (GitHub git
+trees API through `gh`, cached in `~/.skillfetch/upstream-licenses/`) and looks
+for a license file on the skill's upstream path, from its folder up to the repo
+root; the nearest one applies when the skill folder has none
+(`license_origin: upstream:<repo>/<file>`). Every record carries
+`license_source`, which keeps "no license stated" apart from "not
+redistributable":
+
+- `explicit`: a license is stated, in the skill folder or upstream;
+- `upstream_no_license`: the upstream repo was read and states no license —
+  all rights reserved by default, so not redistributable, but known;
+- `upstream_unknown`: no upstream is recorded, or it could not be read.
+
+The build report tabulates `license_source` × license class (permissive,
+copyleft, proprietary, unrecognized, none).
+
 `redistributable` is true only for permissive licenses: MIT, Apache-2.0,
 BSD-2-Clause, BSD-3-Clause, ISC, MPL-2.0, CC-BY-4.0, CC0-1.0, Unlicense.
 Copyleft (GPL, AGPL), `proprietary` and `unknown` are not redistributable in
 v0.1 — conservative on purpose, like the rest of the pipeline.
 
-A non-redistributable skill is still indexed (metadata, extracted
-constraints with their short evidence quotes, tier), so it can be searched and
-checked for conflicts, but its body and files are **not** written to
-`bodies/` or `assets/`; the record keeps `source_url` (the file at the
-snapshot commit) instead.
+`redistributable` describes whether skillfetch *could* mirror the files; since
+v0.2 the index mirrors none. Every skill — whatever its license — is indexed
+with metadata, extracted constraints (with their short evidence quotes), tier
+and a per-file manifest of sha256 hashes, and never with its body or files.
 
-**Runtime fetch (design only; implementation in v0.2).** `load_skills` and
-`prepare_set` need a body. For a non-redistributable skill the MCP server
-would, only when started with `--allow-fetch`, fetch `SKILL.md` (and, for
-`prepare_set`, the folder) from `source_url` at the recorded commit, verify
-its sha256 against the record's `content_hash`, and cache it under
-`~/.skillfetch/cache/<id>/` for the user's own use. Without `--allow-fetch` such
-a skill is returned by `search_skills` with `redistributable: false` and
-`resolve_set` excludes it with reason `not_available`. Fetching contradicts the
-v0.1 non-goal "no real-time fetching" (CLAUDE.md), which is why it is v0.2,
-opt-in, and pinned to a hash.
+**Runtime fetch (v0.2, the default path).** `load_skills` (and, in v0.3,
+`prepare_set`) fetches every file in a skill's manifest from its pinned source
+— for a GitHub source
+`https://raw.githubusercontent.com/<owner>/<repo>/<commit>/<path>/<file>`,
+for a `dir` source a `file://` path — verifies each file's sha256 against the
+manifest, and caches the folder under `~/.skillfetch/cache/<content_hash>/`.
+A cached folder is re-verified before use. Any mismatch, missing file or fetch
+error refuses that skill with a structured error and no body; the other skills
+of the set still load. This is the only network access at runtime (CLAUDE.md
+non-goals): no other URL is ever requested, and nothing is executed.
 
 ## 2. Index layout
 
 ```
 index/
   manifest.json
-  skills.jsonl            one record per skill (see §3)
-  bm25/                   serialized BM25 state (tokens, idf, doc lengths)
-  bodies/<id>.md          normalized SKILL.md body
-  assets/<id>/            other files in the skill folder (only for has_scripts or references)
+  skills.jsonl            one record per skill (see §3), with its file manifest
   constraints.jsonl       one line per constraint, keyed by skill id (denormalized for resolve/)
   dupgroups.json          {canonical_id: [member_ids]}
+  rejected.jsonl          records that failed lint or the injection scan
+  pairs.jsonl             optional: judge verdicts for pairs the rules left open (constraints.md §8)
 ```
+
+No `bodies/`, `assets/` or `bm25/`: bodies are fetched at runtime (§1.8), and
+BM25 is built in memory when the server loads the index (a few thousand short
+documents; well under a second).
 
 `manifest.json`:
 
@@ -307,9 +332,14 @@ index/
 As built (`ingest/build.py`, `skillfetch ingest --sources sources.yaml
 [--only ID] [--sample ID=N] [--seed N] --out DIR`):
 
-- Ids are `<source_id>/<name>@<content_hash[:12]>`; `bodies/<id>.md` and
-  `assets/<id>/` therefore nest one directory per source. Only
-  `redistributable` skills (§1.8) get a body and assets.
+- Ids are `<source_id>/<name>@<content_hash[:12]>`.
+- Each record carries `files` — `{relpath: sha256}` for every file of the
+  skill folder, `SKILL.md` included, hashed as raw bytes on disk — and
+  `fetch_base`, the URL the files are fetched from (`<fetch_base>/<relpath>`):
+  `https://raw.githubusercontent.com/<owner>/<repo>/<commit>/<path>` for
+  GitHub sources; for `dir` sources and other git hosts, `file://` to the
+  skill folder in the local snapshot (loadable only on the machine that built
+  the index).
 - `rejected.jsonl` holds the records that failed lint or the injection scan
   (not in the index, kept for the data write-up).
 - Extraction runs once per distinct `content_hash`.
@@ -320,7 +350,6 @@ As built (`ingest/build.py`, `skillfetch ingest --sources sources.yaml
 - Sampling: the source's skill folders sorted by path, then
   `random.Random(seed).sample`; the sample is recorded, so a build is
   reproducible from the manifest.
-- `bm25/` is not built yet (search is the runtime half, v0.2).
 - The build is written next to `--out` and swapped in when complete.
 
 `signature` is reserved; v0.1 verifies file hashes only. Releases are a tarball
@@ -342,6 +371,8 @@ latest, verifies hashes, swaps `~/.skillfetch/index/` atomically.
   "publisher_trust": "verified",
   "commit": "a1b2c3d",
   "content_hash": "3f9c2a1b7e0d…",
+  "files": {"SKILL.md": "<sha256>", "scripts/fill.py": "<sha256>"},
+  "fetch_base": "https://raw.githubusercontent.com/anthropics/skills/a1b2c3d/skills/pdf",
   "tier": "A",
   "status": "ok",
   "tags": {"languages": [], "frameworks": [], "phase": ["implement"], "domain": ["documents"]},
@@ -361,7 +392,8 @@ latest, verifies hashes, swaps `~/.skillfetch/index/` atomically.
 
 ## 4. Search (runtime, `src/skillfetch/index/`)
 
-- Document text for BM25 = `title + description + keywords×2 + synthetic_queries + summary + body`.
+- Document text for BM25 = `title + description + keywords×2 + synthetic_queries + summary`
+  (no body: bodies are not in the index, §1.8).
   Keywords are repeated once to weight them; do not over-tune.
 - Query = the host model's one-sentence task restatement, lowercased, tokenized
   on non-alphanumerics, stopwords removed, no stemming in v0.1 (measure first).

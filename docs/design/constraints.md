@@ -173,6 +173,15 @@ than `logging`, and as `logging` it would read as a blanket ban.
   one-sided narrowing change the relation).
 - Output: structured output (`output_config.format`, strict JSON schema in
   `ingest/extract.py`) for the whole extract object of `index-format.md` §1.5.
+- Default backend `claude-code/<model>` (`ingest/claude_code.py`, since the
+  "no external API" rule): requests are queued under
+  `~/.skillfetch/claude-code-queue/pending/` and answered inside a Claude Code
+  session (`answers/<request sha>.json`); a rerun caches them in the usual
+  format under the key `claude-code/<model>`. An unanswered request is that
+  item's `pending_answer`, never a failed run. The API backends below stay
+  available through `--model`; the index built so far was extracted with
+  `openrouter/openai/gpt-6-luna` and judged with
+  `openrouter/anthropic/claude-sonnet-5.5`.
 - Backends (`ingest/backends.py`, protocol `ExtractBackend` in `extract.py`):
   `anthropic/<model>` uses the Messages API with `output_config.format`;
   `openai/<model>` uses Chat Completions with `response_format: json_schema`
@@ -484,3 +493,50 @@ hard rule: it is what keeps false positives from destroying trust.
   subject ("minimal design" vs "rich visual hierarchy"), script-level behaviour,
   conflicts that only manifest on a specific task. These are v0.3+ problems and
   need the outcome log, not better regexes.
+
+## 8. LLM judge over unsettled pairs (measurement, not resolution)
+
+`skillfetch judge` (`ingest/judge.py`, `ingest/judge_run.py`) sends every
+`needs_review` and `tension` pair of a built index to a second model — not the
+extractor, so its errors are not inherited (default
+`openrouter/anthropic/claude-sonnet-5.5`). The input is the original text only:
+each side's skill name and description, the section heading and the evidence
+lines marked `>` with five lines of context (at most two evidence lines per
+side); never the extracted constraints. Output (strict JSON): `verdict` ∈
+{conflict, carve_out, situational, independent, unclear}, one sentence of
+`reason`, `ambiguous_together` (would an agent given both skills be unsure
+which to follow), and `confidence`. Judgments are cached per input hash.
+
+Calibration comes first (`judge --calibrate tests/fixtures`): the 34
+labelled fixture pairs with their real relations (the `--conflict-cap
+vocabulary` labels); agreement must reach 0.8. Hand label → accepted
+verdicts: conflict and tension → conflict; needs_review → carve_out or
+situational; redundant and subsumes → independent. The report
+(`<index>-reports/judge.md`, `judgments.jsonl`) crosses the §3 row behind each
+pair (`relation.relation_reason`; for capped conflicts, row 14's reason) with
+the verdict and lists every `ambiguous_together` pair with its lines.
+
+**Stored verdicts (stage 2).** `judge --index` also writes the verdicts into the
+index as `pairs.jsonl` (`resolve.models.PairVerdict`: both skill ids, the rules'
+relation and §3 row, verdict, reason, `ambiguous_together`, confidence, judge
+key and version, input hash; covered by the manifest). `judge --import
+<judgments.jsonl> --into <index> --model <key>` stores an earlier report the
+same way — the 2011 `openrouter/anthropic/claude-sonnet-5.5` verdicts of the
+first full build were imported, not re-run. A rebuild carries a verdict over
+while both skill ids (which pin content) are still indexed. `resolve_set`
+drops a tension / needs_review warning whose pair is judged `independent` and
+counts it in `suppressed_by_judge`. Nothing is promoted: a judge `conflict`
+never excludes a skill, and verdicts never touch conflicts or redundancy.
+
+### 8.1 Obedience split test
+
+`skillfetch obedience --index <dir>` takes the judge's `conflict` and
+`ambiguous_together` pairs, ranked by confidence (top 30), and has the judge
+model write one short task per pair that makes both instructions apply, with
+a one-sentence description of an output that follows A and one that follows B
+(`obedience-tasks.md`, reviewed before anything runs). The trials
+(`obedience.run_trials`) put both full skill bodies in the agent's system
+prompt, run the task ten times with the extractor model at its default
+temperature, and have the judge classify each output as following A, B, both
+or neither; a pair whose runs include both A and B is non-deterministic.
+
