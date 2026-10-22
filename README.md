@@ -5,34 +5,59 @@ task, your agent searches a vetted, pre-indexed corpus of `SKILL.md` files,
 assembles a *conflict-free* set, uses it for that task, and moves on. Nothing
 piles up in `~/.claude/skills`.
 
-> Status: v0.1 open items: the write-up and `scan` from cached extractions. v0.2:
-> the MCP server works end to end.
-> The public index covers anthropics/skills and all 1812 UASL skills (1724
-> indexed). `skillfetch serve` exposes `profile_repo`, `search_skills`,
-> `resolve_set` and `load_skills`; bodies are fetched from the pinned source and
-> hash-verified at load time. Model work (extraction, judge, obedience tests) runs
-> inside Claude Code by default (`--model claude-code/...`); the OpenRouter /
-> Anthropic / OpenAI backends are opt-in. Numbers for the write-up:
-> [`docs/writeup/numbers.md`](docs/writeup/numbers.md).
+> Status: v0.1 is done: `scan`, the public index and the write-up
+> ([English](docs/writeup/post-en.md), [한국어](docs/writeup/post-ko.md)). v0.2:
+> the MCP server works end to end and the index ships as a GitHub release
+> (`skillfetch sync`). The index covers anthropics/skills and all 1812
+> UASL skills (1724 indexed). Numbers: [`docs/writeup/numbers.md`](docs/writeup/numbers.md).
+
+Check the skills you already have. `sync` downloads the index (metadata and
+extracted constraints, no skill bodies; a 3 MB download); `scan` matches each installed
+skill to the index by content hash, so it needs no model and no API key:
 
 ```console
-$ uv run skillfetch scan path/to/skills          # human-readable report
-$ uv run skillfetch scan path/to/skills --json   # machine-readable
-$ uv run skillfetch scan path/to/skills --fail-on conflict,scan   # exit 1 for CI
-$ uv run skillfetch scan tests/fixtures/skills   # the labelled fixture corpus
-$ uv run skillfetch ingest --sources sources.yaml --out data/index --upstream-licenses
-$ uv run skillfetch serve --index data/index     # MCP server over stdio
-$ claude mcp add skillfetch -- uv --directory $PWD run skillfetch serve --index $PWD/data/index
+$ uvx --from git+https://github.com/hyunlord/skillfetch skillfetch sync
+installed: ~/.skillfetch/index from hyunlord/skillfetch@index-2026-10-21 (skillfetch-index-20261021T164858Z.tar.gz) · 1724 skills · built 2026-10-21T16:48:58Z · extraction openrouter/openai/gpt-6-luna
+$ uvx --from git+https://github.com/hyunlord/skillfetch skillfetch scan .claude/skills
+skillfetch scan .claude/skills
+30 skills · lint: 30 ok, 0 failed · injection scan: 30 ok, 0 failed, 22 with warnings · scripts: 4
+constraints: 30 analyzed (index 30), 0 skipped
+index: ~/.skillfetch/index (1724 skills, extraction openrouter/openai/gpt-6-luna)
+
+[… 2 LINT_WARNING, 22 SCAN_WARNING (bare URLs) and 4 HAS_SCRIPTS blocks …]
+
+NEEDS_REVIEW  eval-harness ⟷ receiving-code-review
+  subject: implementation   scope: code / implement
+  eval-harness:127         "Write code to pass the defined evals."
+  receiving-code-review:44 "STOP - do not implement anything yet"
+
+summary: 0 conflict, 0 redundant, 0 tension, 1 needs_review, 0 duplicate, 0 lint_failed, 0 scan_failed
 ```
 
-Conflict analysis in `scan` still reads pre-extracted constraints from a
-`constraints.json` next to each `SKILL.md` (see `tests/fixtures/`); skills
-without one are linted and scanned, and listed as skipped. `ingest` extracts
-constraints with `--with-api`: the default backend `claude-code/<model>` queues
-each request under `~/.skillfetch/claude-code-queue/` for a Claude Code session to
-answer (no API cost); `--model openrouter/<vendor>/<model>`, `anthropic/<model>` or
-`openai/<model>` call an API instead (`pip install 'skillfetch[ingest]'`). Every
-skill is extracted once and cached in `~/.skillfetch/extract-cache/`.
+That is a real run (excerpt) over 30 public skills picked at random from UASL
+and installed as a user has them. Every finding quotes the line from each
+skill. The rules are tuned for precision: a pair is a `conflict` only when the
+two instructions cannot both be followed; anything less certain is
+`needs_review`, and pairs a judge model found independent are not shown.
+Skills the index does not cover are listed as skipped; `--with-api --model
+anthropic/<model>` extracts them (calls the API, cached once per skill).
+
+```console
+$ skillfetch scan path/to/skills --json                   # machine-readable
+$ skillfetch scan path/to/skills --fail-on conflict,scan  # exit 1 for CI
+$ skillfetch scan tests/fixtures/skills                   # the labelled fixture corpus
+$ skillfetch serve                                        # MCP server over stdio
+$ claude mcp add skillfetch -- uvx --from git+https://github.com/hyunlord/skillfetch skillfetch serve
+```
+
+Building the index yourself: `skillfetch ingest --sources sources.yaml --out
+data/index --upstream-licenses`, then `skillfetch sync --pack data/index` for a
+release tarball. Extraction (`--with-api`) defaults to the `claude-code/<model>`
+backend, which queues each request under `~/.skillfetch/claude-code-queue/` for a
+Claude Code session to answer; `--model openrouter/<vendor>/<model>`,
+`anthropic/<model>` or `openai/<model>` call an API instead (`pip install
+'skillfetch[ingest]'`). Every skill is extracted once and cached in
+`~/.skillfetch/extract-cache/`.
 
 ## The problem
 
@@ -54,7 +79,7 @@ together, scope it to one task, or tell you afterwards whether it helped.
 
 ## Roadmap
 
-- [ ] **v0.1** `skillfetch scan <dir>` — conflict/duplicate report for a local
+- [x] **v0.1** `skillfetch scan <dir>` — conflict/duplicate report for a local
       skills directory, with evidence; first public corpus index.
   - [x] fixture corpus with labelled conflicts and duplicates; `resolve/` rules
         and `resolve_set`, conflict precision 1.0 on fixtures
@@ -65,10 +90,11 @@ together, scope it to one task, or tell you afterwards whether it helped.
   - [x] pass calibration with a real model run (conflict precision 1.0 hard,
         informative-pair accuracy ≥ 0.85 soft: 0.912 with extraction v6), plus a
         hand-labelled holdout from public skills (`ingest --holdout`)
-  - [ ] let `scan` use cached extractions instead of `constraints.json`
+  - [x] let `scan` use the index and cached extractions instead of `constraints.json`
   - [x] public corpus ingest (`skillfetch ingest --sources sources.yaml`,
         snapshots, licenses, upstreams): anthropics/skills + all 1812 UASL skills
-  - [ ] write-up of the public-corpus scan
+  - [x] write-up of the public-corpus scan ([`docs/writeup/post-en.md`](docs/writeup/post-en.md),
+        [`post-ko.md`](docs/writeup/post-ko.md))
   - [x] keyword-Jaccard dedup groups, tiers A/B/C, index layout and manifest
         (index-format §1.6–§2)
 - [ ] **v0.2** `skillfetch serve` — MCP server (`search_skills`, `resolve_set`,
@@ -84,7 +110,8 @@ together, scope it to one task, or tell you afterwards whether it helped.
   - [x] end-to-end run in Claude Code: search_skills → resolve_set → load_skills
   - [x] judge verdicts stored in the index (`pairs.jsonl`); `resolve_set` drops
         warnings judged independent (`suppressed_by_judge`)
-  - [ ] `sync` command (download a published index into `~/.skillfetch/index`)
+  - [x] `sync` command: the index as a GitHub release tarball, sha256- and
+        manifest-verified into `~/.skillfetch/index`
   - [ ] surface the `complementary` hint in `resolve_set` output
 - [ ] **v0.3** isolation runner, outcome log, and an honest on/off comparison on
       a verified task set.
@@ -152,4 +179,7 @@ We record them instead of tuning the rules to them:
 
 ## License
 
-MIT
+skillfetch is MIT ([`LICENSE`](LICENSE)). The skills it indexes belong to their
+authors and keep their own licenses: the index holds their metadata, extracted
+constraints with short evidence quotes and file hashes, never their files;
+`load_skills` fetches each body from its pinned source.

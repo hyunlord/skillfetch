@@ -1,12 +1,15 @@
-"""Command line: `skillfetch scan|ingest|serve`."""
+"""Command line: `skillfetch scan|ingest|judge|obedience|sync|serve`."""
 
 from __future__ import annotations
 
 import argparse
+import os
 import sys
 from collections.abc import Sequence
 from pathlib import Path
 
+from skillfetch.index import sync as index_sync
+from skillfetch.index.loader import DEFAULT_INDEX_DIR, Index, IndexLoadError, tilde
 from skillfetch.ingest import backends, credentials, extract
 from skillfetch.ingest import judge as judge_mod
 from skillfetch.ingest.build import build_index, render_summary, write_pairs
@@ -15,7 +18,7 @@ from skillfetch.ingest.calibrate import calibrate, render_calibration
 from skillfetch.ingest.extract_cache import DEFAULT_CACHE_DIR, ExtractCache
 from skillfetch.ingest.holdout import load_holdout, measure_holdout, render_holdout
 from skillfetch.ingest.ingest import extract_dir, render_cost_log
-from skillfetch.ingest.local_scan import fail_counts, render_report, scan_dir
+from skillfetch.ingest.local_scan import Lookup, fail_counts, render_report, scan_dir
 from skillfetch.ingest.snapshot import DEFAULT_WORK_DIR, SnapshotError
 from skillfetch.ingest.sources import load_sources
 from skillfetch.ingest.upstream_licenses import GhCli
@@ -52,12 +55,61 @@ def main(argv: Sequence[str] | None = None) -> int:
         help="exit 1 if the scan finds any of these (repeatable or comma-separated): "
         "conflict findings, injection-scan failures, lint failures. Warnings never fail.",
     )
+    scan.add_argument(
+        "--index",
+        type=Path,
+        default=DEFAULT_INDEX_DIR,
+        help="index to take constraints from for skills with the same content "
+        "(default: %(default)s, from `skillfetch sync`; skipped if absent)",
+    )
+    scan.add_argument("--cache-dir", type=Path, default=DEFAULT_CACHE_DIR)
+    scan.add_argument(
+        "--with-api",
+        action="store_true",
+        help="extract skills found in neither the index nor the cache with --model "
+        "(anthropic/openai/openrouter backends call an API and cost money)",
+    )
+    scan.add_argument(
+        "--model",
+        help="extraction key for the cache lookup and --with-api (default: the index's "
+        f"extraction model, else {extract.DEFAULT_MODEL})",
+    )
+    scan.add_argument("--base-url", help="OpenAI-compatible server for openai/<model>")
+    scan.add_argument("--creds-file", type=Path, default=credentials.DEFAULT_CREDS_FILE)
+    scan.add_argument("--jobs", type=int, default=4, help="parallel extraction requests")
+
+    sync = sub.add_parser(
+        "sync",
+        help="download the published index from a GitHub release (or pack one for a release)",
+    )
+    sync.add_argument(
+        "--index",
+        type=Path,
+        default=DEFAULT_INDEX_DIR,
+        help="where the index goes (default: %(default)s)",
+    )
+    sync.add_argument("--repo", default=index_sync.DEFAULT_REPO, help="(default: %(default)s)")
+    sync.add_argument("--tag", help="a release tag (default: the newest release with an index)")
+    sync.add_argument(
+        "--from",
+        dest="tarball",
+        type=Path,
+        help="install this index tarball instead of downloading (checked against "
+        "<file>.sha256 when present)",
+    )
+    sync.add_argument(
+        "--pack",
+        type=Path,
+        metavar="INDEX_DIR",
+        help="maintainers: write INDEX_DIR as a release tarball + .sha256 into --out",
+    )
+    sync.add_argument("--out", type=Path, default=Path("dist"), help="with --pack")
 
     serve = sub.add_parser("serve", help="run the MCP server over stdio")
     serve.add_argument(
         "--index",
         type=Path,
-        default=Path("~/.skillfetch/index").expanduser(),
+        default=DEFAULT_INDEX_DIR,
         help="index directory (default: %(default)s)",
     )
 
@@ -196,7 +248,17 @@ def main(argv: Sequence[str] | None = None) -> int:
         if not args.dir.is_dir():
             print(f"skillfetch: not a directory: {args.dir}", file=sys.stderr)
             return 2
-        report = scan_dir(args.dir)
+        try:
+            report = scan_dir(args.dir, _scan_lookup(args))
+        except IndexLoadError as exc:
+            print(f"skillfetch: {exc}", file=sys.stderr)
+            return 2
+        except ImportError:
+            print("skillfetch: --with-api needs: pip install 'skillfetch[ingest]'", file=sys.stderr)
+            return 2
+        except (extract.MissingCredentials, ValueError) as exc:
+            print(f"skillfetch: {exc}", file=sys.stderr)
+            return 2
         text = report.model_dump_json(indent=2) + "\n" if args.json else render_report(report)
         sys.stdout.write(text)
         counts = fail_counts(report)
@@ -213,11 +275,47 @@ def main(argv: Sequence[str] | None = None) -> int:
         return _obedience(args)
     if args.command == "serve":
         return _serve(args)
+    if args.command == "sync":
+        return _sync(args)
     return 2  # unreachable: argparse rejects unknown commands
 
 
+def _sync(args: argparse.Namespace) -> int:
+    try:
+        if args.pack is not None:
+            tarball, checksum = index_sync.pack(args.pack, args.out)
+            print(f"{tarball} ({tarball.stat().st_size} bytes)\n{checksum}")
+            return 0
+        # a token only raises the API rate limit; it is sent to api.github.com, never printed
+        token = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
+        result = index_sync.sync(args.index, args.repo, args.tag, args.tarball, token=token)
+    except (index_sync.SyncError, IndexLoadError, OSError) as exc:
+        print(f"skillfetch: sync: {exc}", file=sys.stderr)
+        return 1
+    m = result.index.manifest
+    state = "installed" if result.changed else "already up to date"
+    print(
+        f"{state}: {tilde(result.index.root)} from {result.source} · {len(result.index.records)} "
+        f"skills · built {m.get('built_at')} · extraction {m.get('extract_model')}"
+    )
+    return 0
+
+
+def _scan_lookup(args: argparse.Namespace) -> Lookup:
+    """Index (if there is one), extract cache, and with --with-api an extractor."""
+    index = Index.load(args.index) if (args.index / "manifest.json").is_file() else None
+    model = args.model or (index and index.manifest.get("extract_model")) or extract.DEFAULT_MODEL
+    extractor = None
+    if args.with_api:
+        backend = backends.make_backend(
+            args.model or extract.DEFAULT_MODEL, base_url=args.base_url, creds_file=args.creds_file
+        )
+        extractor = extract.Extractor(backend)
+        model = extractor.model
+    return Lookup(index, ExtractCache(args.cache_dir), model, extractor, args.jobs)
+
+
 def _serve(args: argparse.Namespace) -> int:
-    from skillfetch.index.loader import IndexLoadError
     from skillfetch.mcp.server import serve
 
     try:
