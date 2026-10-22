@@ -7,6 +7,7 @@ import json
 from dataclasses import dataclass, field
 from pathlib import Path
 
+from skillfetch.index.fetch import FetchError, safe_join
 from skillfetch.resolve.models import Constraint, PairVerdict, Skill
 
 DEFAULT_INDEX_DIR = Path("~/.skillfetch/index").expanduser()
@@ -44,7 +45,10 @@ class Index:
                 raise IndexLoadError(f"{root}: missing {name}; build one with `skillfetch ingest`")
         manifest = json.loads((root / "manifest.json").read_text())
         for rel, digest in (manifest.get("files") or {}).items():
-            path = root / rel
+            try:
+                path = safe_join(root, rel)
+            except FetchError as exc:
+                raise IndexLoadError(f"{root}: manifest lists an unsafe path: {exc}") from exc
             if not path.is_file():
                 raise IndexLoadError(f"{root}: {rel} is listed in the manifest but missing")
             if hashlib.sha256(path.read_bytes()).hexdigest() != digest:

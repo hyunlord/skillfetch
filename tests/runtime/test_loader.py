@@ -35,6 +35,16 @@ def test_a_tampered_file_fails_the_manifest_check(tmp_path):
         Index.load(root)
 
 
+@pytest.mark.parametrize("rel", ["..\\..\\x", "../x", "C:x", "/etc/passwd"])
+def test_manifest_paths_must_stay_in_the_index(tmp_path, rel):
+    root = make_index(tmp_path)
+    manifest = json.loads((root / "manifest.json").read_text())
+    manifest["files"][rel] = "0" * 64
+    (root / "manifest.json").write_text(json.dumps(manifest))
+    with pytest.raises(IndexLoadError, match="unsafe path"):
+        Index.load(root)
+
+
 def test_tokenize_drops_stopwords_and_punctuation():
     assert tokenize("Refactor the React components, please!") == [
         "refactor",

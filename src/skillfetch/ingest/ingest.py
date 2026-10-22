@@ -1,7 +1,7 @@
 """`skillfetch ingest <dir>`: lint → injection scan → extract (cache first) for every skill.
 
-Index building (index-format §1.6–§2) is not implemented yet; extraction results live in
-the extract cache.
+Extraction results live in the extract cache; `skillfetch ingest --sources` builds the index
+from them (`ingest/build.py`, index-format §1.6–§2).
 """
 
 from __future__ import annotations

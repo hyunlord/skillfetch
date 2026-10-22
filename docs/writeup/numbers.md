@@ -72,6 +72,7 @@ Source: `skillfetch ingest tests/fixtures --calibrate [--conflict-cap MODE]` and
 - Fixtures: 41 hand-written skills, 55 labelled constraints, 820 pairs, 34 labelled non-independent.
 - Default cap: 11 of 11 flagged conflicts true (8 real blanket-rule conflicts are reported as needs_review by design); `--conflict-cap vocabulary`: 19 of 19. Informative-pair accuracy 0.912 (31/34), extraction v6.
 - Holdout (26 public skills, 325 pairs, hand labels): 0 conflicts flagged in both cap modes; v4 had flagged 24, all false.
+- Fixture directory today (`tests/fixtures/skills`): 52 skills, 44 hand-written and 8 cap fixtures (constraints kept as the extractor read real public lines, each with a `note`; `tests/fixtures/README.md`). The calibration figures above are from the 41-skill set extraction v6 ran on (fixture entries in the v6 extract cache).
 
 ## 5. LLM judge over the open pairs
 
@@ -173,6 +174,8 @@ Source: provider-reported cost (`usage.cost` from OpenRouter) in every cache rec
 | judge · openrouter/anthropic/claude-sonnet-5.5 | 2044 | 9.3608 |
 | obedience tasks · openrouter/anthropic/claude-sonnet-5.5 | 30 | 0.1570 |
 
+Extraction v6 requests: 1764 = 1723 public skills + 41 fixture skills.
+
 **Total external API spend: $15.75** (OpenRouter). Since the "no external API" rule, model work runs inside Claude Code and is not in this total.
 
 Claude Code sessions (API-price equivalent reported by Claude Code, billed to the Claude Code plan, not OpenRouter): obedience agent runs 910 (130 without a precedence header, §6; 260 with one, §8; 260 with a resolved-conflict block, §9; 260 with stripped lines, §10), $46.71; 171 runs of two earlier batches discarded for harness problems (no note that the session has no tools; then a note that discouraged asking), $5.41; the end-to-end MCP transcript session $0.82.
@@ -180,6 +183,20 @@ Claude Code sessions (API-price equivalent reported by Claude Code, billed to th
 End-to-end sessions (§11 and the write-up's section 5; `session_costs` in `data/e2e/router-e2e.json`, Claude Code's `total_cost_usd` per session, same billing): stage 0 20, $18.56; stage 0.5 20, $18.83; stage 1 110, $89.78; stage 1b 30, $50.35; C2 10, $16.57; stage 2 60, $66.16; smoke tests 3, $1.65.
 
 **Claude Code plan equivalent, total: $314.85**: sessions run from this repo $52.95 (910 obedience runs, 171 discarded, the transcript session), end-to-end sessions $261.90. The agent sessions the write-up counts: 1,160 (910 obedience runs and 250 end-to-end; discarded runs and smoke tests not counted). The interactive Claude Code sessions that wrote the code and classified the outputs are not included.
+
+### Runtime latency
+
+Source: `uv run python scripts/bench_runtime.py` on index-2026-10-22 (Apple M4 Max), before (e857986) and after constraint pairs are bucketed by subject and `normalize_term` is cached in `resolve/relation.py`; `data/runtime/`. resolve_set sets: the top N search_skills results for each of 5 task sentences; median (min–max) over the 5. The fixture scan (`skillfetch scan tests/fixtures/skills --json`, with and without the index) and the resolutions of 28 real-index sets are byte-identical before and after. An earlier report gave 114 ms / 0.3–1.9 s / 18 s for 3 / 10 / 50 skills, 3.8 s server start and 9–77 ms search; those runs are not in this repo, so they are not compared here.
+
+| measure | before | after |
+|---|---|---|
+| server start (fresh process: import, load index, build server) | 991.0 ms | 828.0 ms |
+| search_skills, k=50 | 3.1 ms (1.2 ms–4.8 ms) | 2.9 ms (1.0 ms–4.6 ms) |
+| resolve_set, 3 skills (Session) | 2.3 ms (1.6 ms–9.7 ms) | 0.4 ms (0.3 ms–0.5 ms) |
+| resolve_set, 10 skills (Session) | 44.4 ms (23.8 ms–132.3 ms) | 1.3 ms (1.1 ms–2.3 ms) |
+| resolve_set, 20 skills (Session) | 154.0 ms (97.1 ms–364.1 ms) | 3.5 ms (3.0 ms–5.7 ms) |
+| resolve_set, 50 skills (before: Session; after: the resolver, since the session refuses >20) | 785.4 ms (531.3 ms–1.59 s) | 16.9 ms (15.6 ms–26.9 ms) |
+| peak RSS of the benchmark process | 385 MB | 384 MB |
 
 ## 8. Precedence header (experiment A)
 
@@ -689,31 +706,63 @@ Source: `data/e2e/router-e2e.json` (exported from the e2e workspace: e2e/stage1/
 - Stage 1 blind: screenshots usefulness 1-5 A 4.00, B 4.25, C 4.00 (n=4 per condition); A vs C only A 3.50, C 3.83 (n=6 per condition); docs "would merge as is" 1-5 A 4.75, B 5.00, C 5.00 (n=4 per condition).
 - Stage 1b blind: landing pages usefulness 1-5 A 3.50, B 5.00, C 3.75 (n=4 per condition); generic-AI-look checklist hits A 1.75, B 0.50, C 2.00 (n=4 per condition); plans normalised rank (0 = best) A 0.30, B 0.00, C 0.80 (n=2 per condition); implementation followed the plan 1-5 A 5.00, B 5.00, C 3.00 (n=2 per condition).
 - Retrieval, the 34 queries C sent on tasks with an expert skill, re-ranked by the current BM25: the expert skill in the top 3 for 7, top 10 for 17, top 50 for 24.
+- All 20 stage 1 tasks (A and C on all 20, B on the 15 with an expert skill): checks pass A 40/40, B 30/30, C 40/40; median turns A 13, B 16, C 19; median input tokens A 772,719, B 962,558, C 1,227,727. C against A: +6 turns, +59% input tokens over all tasks; +6.5 turns, +59% on the expert tasks.
+
+### Stage 1b rejudge
+
+Source: e2e/stage1b/report-1b-c2.md §1 and §4 (`rejudge/`). A, B and C are the 1b sessions; C2 is the same 5 tasks × 2 runs with skillfetch e2a1b65 (search_skills k=50, compact results). All four conditions judged together under fresh random codes by sub-agent judges (same model) that saw only the rubric and the outputs. Landing pages: 2 tasks × 2 runs (n=4); plan: 1 task × 2 runs (n=2); median turns over all 5 tasks (n=10).
+
+| condition | landing usable 1-5 | landing AI-template tells | plan normalised rank (0 = best) | median turns |
+|---|---|---|---|---|
+| A | 3.50 | 2.00 | 0.36 | 19.5 |
+| B | 4.75 | 0.50 | 0.00 | 24 |
+| C, first version (k=10) | 4.50 | 2.00 | 0.79 | 34 |
+| C2, search k=50 | 4.75 | 0.50 | 0.71 | 26.5 |
+
+- `anthropics-skills/frontend-design` in the landing queries: C (k=10), re-ranked by the current BM25: 24, 13, 39, 41 (never in the 10 results returned); C2 (k=50), in the results each session received: 47, 41, 16, 13, mean 29.2.
 
 ### Stage 2: domain generalisation
 
 Same harness and conditions as 1b (A no skill; B the expert's skill appended to the system prompt; C2 router + search k=50, skillfetch e2a1b65), one large generative task per domain, 5 runs per condition. Score: overall 1-5 from two blind judging passes (fresh codes, fresh judge), mean. Landing pages: 1b rejudge, one pass, n=4.
 
-| domain | condition | sessions | score (pass 1 / pass 2) | checks pass | median turns | median input tokens | C2: expert skill in top 50 / picked / loaded |
+Repos (e2e/stage2/report-stage2.md §0): test writing, a package with a 280-line rules module and no tests; backend API, an empty FastAPI project, checked by 27 contract calls; documentation, the stage 1 Next.js repo with its README removed; data script, a 375-row orders CSV with 10 planted problems.
+
+| domain | condition | sessions | score (pass 1 / pass 2) | checks pass | median turns | median input tokens | C2: expert skill in top 50 / picked / loaded (mean rank) |
 |---|---|---|---|---|---|---|---|
 | landing page (1b) | A | 4 | 3.50 | | | | |
 | landing page (1b) | B | 4 | 4.75 | | | | |
-| landing page (1b) | C2 | 4 | 4.75 | | | | – / – / 4/4 |
+| landing page (1b) | C2 | 4 | 4.75 | | | | 4/4 / 4/4 / 4/4 (29.2) |
 | test writing | A | 5 | 4.90 (5.00 / 4.80) | 5/5 | 10 | 783,055 |  |
 | test writing | B | 5 | 5.00 (5.00 / 5.00) | 5/5 | 9 | 833,147 |  |
-| test writing | C2 | 5 | 5.00 (5.00 / 5.00) | 5/5 | 16 | 1,493,714 | 5/5 / 5/5 / 5/5 |
+| test writing | C2 | 5 | 5.00 (5.00 / 5.00) | 5/5 | 16 | 1,493,714 | 5/5 / 5/5 / 5/5 (1.0) |
 | backend API | A | 5 | 4.20 (4.20 / 4.20) | 5/5 | 15 | 899,707 |  |
 | backend API | B | 5 | 4.20 (4.40 / 4.00) | 5/5 | 14 | 871,226 |  |
-| backend API | C2 | 5 | 4.80 (4.80 / 4.80) | 5/5 | 23 | 1,870,639 | 5/5 / 4/5 / 4/5 |
+| backend API | C2 | 5 | 4.80 (4.80 / 4.80) | 5/5 | 23 | 1,870,639 | 5/5 / 4/5 / 4/5 (2.0) |
 | documentation | A | 5 | 4.10 (4.00 / 4.20) | 5/5 | 10 | 687,962 |  |
 | documentation | B | 5 | 4.70 (4.80 / 4.60) | 5/5 | 9 | 733,233 |  |
-| documentation | C2 | 5 | 4.40 (4.40 / 4.40) | 5/5 | 17 | 1,332,644 | 5/5 / 5/5 / 5/5 |
+| documentation | C2 | 5 | 4.40 (4.40 / 4.40) | 5/5 | 17 | 1,332,644 | 5/5 / 5/5 / 5/5 (1.8) |
 | data script | A | 5 | 4.50 (4.60 / 4.40) | 5/5 | 12 | 909,068 |  |
 | data script | B | 5 | 4.50 (5.00 / 4.00) | 5/5 | 12 | 854,603 |  |
-| data script | C2 | 5 | 4.50 (4.60 / 4.40) | 5/5 | 18 | 1,518,055 | 5/5 / 5/5 / 5/5 |
+| data script | C2 | 5 | 4.50 (4.60 / 4.40) | 5/5 | 18 | 1,518,055 | 5/5 / 5/5 / 5/5 (2.0) |
 
 - C2 scored at least B in 3 of 4 domains (test writing, backend API, data script); with landing pages 4 of 5.
 - Judging consistency (pass 1 vs pass 2, overall score): test writing 14/15 identical, mean |diff| 0.07; backend API 13/15 identical, mean |diff| 0.13; documentation 11/15 identical, mean |diff| 0.27; data script 8/15 identical, mean |diff| 0.47.
+- C2 against A, median input tokens and turns: test writing 1.91x, +6 turns; backend API 2.08x, +8 turns; documentation 1.94x, +7 turns; data script 1.67x, +6 turns.
+- Objective metrics: test writing branch coverage (mean) A 100%, B 100%, C2 100%; backend API contract calls passed (mean, of 27) A 27, B 27, C2 27.
 - Limitation (documentation): two C2 runs (r4, r5) described the router's install files (`.mcp.json`, `.claude/`, present only in the C2 repo) in their README, and pass 1 cited that when marking them down: a trace of the harness, not of the router.
 - Limitation (interactive skills): the sessions had no AskUserQuestion or plan-mode tools, so whether a router-picked skill with interview or approval steps stalls a real session is not observed. Backend API C2 r1 loaded `uasl/fastapi-endpoint` ("Enter plan mode", "Use AskUserQuestion to clarify requirements") and answered "Requirements are clear enough to implement directly."
+
+## 12. Embedding retrieval (not adopted)
+
+Source: `embedding_eval` in `data/e2e/router-e2e.json` (e2e/retrieval/report-embedding.md, `emb-ranks.jsonl`, `emb-timing.json`). Offline, no sessions, no runtime change. 34 queries: the queries C sent on tasks with an expert skill (stages 1 and 1b); gold = the expert skill id. Documents: the 1489 tier A/B canonical skills, text = title + description + summary + synthetic queries. RRF: reciprocal rank fusion of the BM25 ranking (search_skills with the query's profile) and the embedding ranking, k=60.
+
+| method | gold in top 3 | top 10 | top 50 |
+|---|---|---|---|
+| BM25 (current) | 7/34 = 0.21 | 17/34 = 0.50 | 24/34 = 0.71 |
+| embedding alone | 11/34 = 0.32 | 16/34 = 0.47 | 20/34 = 0.59 |
+| BM25 + embedding RRF | 9/34 = 0.26 | 16/34 = 0.47 | 25/34 = 0.74 |
+
+- Picking 1-3 from the top 50 (a sub-agent without the gold labels): BM25 top 50 18/34 = 0.53, RRF top 50 18/34 = 0.53.
+- Model: `sentence-transformers/all-MiniLM-L6-v2`, 22,713,216 parameters, 384 dimensions, max 256 tokens (208 of 1489 documents truncated); 91.6 MB on disk; load 3.68 s, indexing 5.09 s; query latency median 4.6 ms. It would add sentence-transformers and torch as runtime dependencies.
+- Reproduce (in the e2e workspace, a venv with sentence-transformers): `python retrieval/scripts/eval_embed.py && python retrieval/scripts/report_embed.py`; BM25 ranks: `uv run python retrieval/scripts/eval_bm25.py` against skillfetch 53b81df and index-2026-10-22.
 

@@ -5,8 +5,8 @@
 #
 # license: `per-skill` = every skill is licensed by its own LICENSE file or its
 # frontmatter `license:` field, and a skill with neither is `unknown`; an SPDX id
-# would apply to every skill of the source. Only skills whose license allows
-# redistribution get their body and files into the index (index-format.md §1.8).
+# would apply to every skill of the source. The index records the license and never
+# holds bodies or files; load_skills fetches them from the source (index-format.md §1.8).
 
 - id: anthropics-skills
   kind: git

@@ -11,6 +11,8 @@ import re
 import tomllib
 from pathlib import Path
 
+MAX_MANIFEST_BYTES = 1_000_000  # a larger manifest file is skipped (listed in `skipped`)
+
 # dependency name -> framework tag
 JS_FRAMEWORKS = {
     "react": "react",
@@ -82,9 +84,19 @@ def _py_names(requirements: list[str]) -> set[str]:
     return out
 
 
+def _read(path: Path) -> str:
+    """The file's text; empty when it cannot be read or is over MAX_MANIFEST_BYTES."""
+    try:
+        if path.stat().st_size > MAX_MANIFEST_BYTES:
+            return ""
+        return path.read_text(errors="replace")
+    except OSError:
+        return ""
+
+
 def _read_json(path: Path) -> dict:
     try:
-        data = json.loads(path.read_text(errors="replace"))
+        data = json.loads(_read(path) or "{}")
     except (OSError, ValueError):
         return {}
     return data if isinstance(data, dict) else {}
@@ -92,8 +104,8 @@ def _read_json(path: Path) -> dict:
 
 def _read_toml(path: Path) -> dict:
     try:
-        return tomllib.loads(path.read_text(errors="replace"))
-    except (OSError, tomllib.TOMLDecodeError):
+        return tomllib.loads(_read(path))
+    except tomllib.TOMLDecodeError:
         return {}
 
 
@@ -102,6 +114,7 @@ def profile_repo(path: Path) -> dict:
     if not root.is_dir():
         return {"path": str(root), "error": "not a directory"}
     names = {p.name for p in root.iterdir() if p.is_file()}
+    skipped = sorted(n for n in names if (root / n).stat().st_size > MAX_MANIFEST_BYTES)
     languages, frameworks, managers, seen = set(), set(), set(), []
 
     if "package.json" in names:
@@ -139,12 +152,12 @@ def profile_repo(path: Path) -> dict:
     if "requirements.txt" in names:
         seen.append("requirements.txt")
         languages.add("python")
-        found = _py_names((root / "requirements.txt").read_text(errors="replace").splitlines())
+        found = _py_names(_read(root / "requirements.txt").splitlines())
         frameworks |= {tag for dep, tag in PY_FRAMEWORKS.items() if dep in found}
     if "go.mod" in names:
         seen.append("go.mod")
         languages.add("go")
-        text = (root / "go.mod").read_text(errors="replace")
+        text = _read(root / "go.mod")
         frameworks |= {tag for mod, tag in GO_FRAMEWORKS.items() if mod in text}
     if "Cargo.toml" in names:
         seen.append("Cargo.toml")
@@ -171,4 +184,5 @@ def profile_repo(path: Path) -> dict:
         "package_managers": sorted(managers),
         "tags": tags,
         "manifests": sorted(set(seen)),
+        **({"skipped": s} if (s := [n for n in skipped if n in set(seen)]) else {}),
     }
