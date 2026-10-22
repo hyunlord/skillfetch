@@ -143,6 +143,9 @@ default produced none. Use it when recall matters more than precision.
 - Automated vetting rejects bad skills; it does not prove a skill is good.
 - Default mode injects skill text into the current context; true isolation
   requires the subagent runner (v0.3).
+- The precedence header `load_skills` puts before the skills has no effect on
+  which skill the agent follows when two disagree (measured: 112 of 260 runs
+  followed the named skill; [numbers.md §8](docs/writeup/numbers.md)).
 - Semantic conflicts without a shared subject are not detected in v0.1.
 - Mutually exclusive choices ("always use npm" vs "always use pnpm") are caught
   only for the tooling slots marked exclusive (package manager, formatter, test
