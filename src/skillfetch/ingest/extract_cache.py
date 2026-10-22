@@ -11,6 +11,7 @@ same via the model segment.
 from __future__ import annotations
 
 import os
+import re
 import tempfile
 from pathlib import Path
 
@@ -26,6 +27,7 @@ from skillfetch.ingest.extract import (
 from skillfetch.ingest.skillfile import SKILL_FILE, read_text
 
 DEFAULT_CACHE_DIR = Path("~/.skillfetch/extract-cache").expanduser()
+_DIGEST = re.compile(r"^[0-9a-f]{64}$")
 
 
 class ExtractCache:
@@ -33,7 +35,17 @@ class ExtractCache:
         self.root = root
 
     def path(self, content_hash: str, model: str) -> Path:
-        return self.root / f"v{EXTRACT_VERSION}" / model / f"{content_hash}.json"
+        """The cache file; `model` (e.g. an index's extract_model) and `content_hash` come from
+        outside, so `model` must be a safe relative path and `content_hash` a sha256 digest."""
+        from skillfetch.index.fetch import FetchError, safe_join
+
+        if not isinstance(content_hash, str) or not _DIGEST.match(content_hash):
+            raise ValueError(f"refusing content_hash {str(content_hash)[:80]!r}: not a sha256")
+        base = self.root / f"v{EXTRACT_VERSION}"
+        try:
+            return safe_join(base, model) / f"{content_hash}.json"
+        except FetchError as exc:
+            raise ValueError(f"refusing extract model {str(model)[:80]!r}: {exc}") from exc
 
     def get_raw(self, content_hash: str, model: str) -> ExtractRecord | None:
         """The cached exchange, if its own extract_version, model and content_hash match

@@ -9,6 +9,8 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from pathlib import Path
 
+from pydantic import BaseModel, ConfigDict, ValidationError
+
 from skillfetch.index.fetch import BodyCache, FetchError
 from skillfetch.index.loader import Index
 from skillfetch.index.profile import profile_repo
@@ -25,6 +27,28 @@ from skillfetch.resolve.relation import DEFAULT_CAP
 PATH_PREFIX = "path:"
 # constraints.md §5 step 4
 DEFAULT_MAX_TOKENS = 8000  # load_skills budget for the concatenated bodies
+MAX_QUERY_CHARS = 2000  # longer queries are cut (the result says truncated)
+MAX_K = 200
+
+
+class Profile(BaseModel):
+    """The `profile` argument of search_skills: profile_repo's output, or the same shape."""
+
+    model_config = ConfigDict(extra="ignore")
+    languages: list[str] = []
+    frameworks: list[str] = []
+    package_managers: list[str] = []
+    tags: list[str] = []
+
+
+def _invalid(arg: str, exc: ValidationError) -> dict:
+    return {
+        "error": f"invalid {arg}",
+        "details": [
+            {"loc": ".".join(map(str, e["loc"])), "msg": e["msg"]}
+            for e in exc.errors(include_url=False)
+        ],
+    }
 
 
 @dataclass
@@ -73,9 +97,23 @@ class Session:
         tiers: list[str] | None = None,
         verbose: bool = False,
     ) -> dict:
+        """Results only (the query is not echoed). A query over MAX_QUERY_CHARS is cut and
+        the result carries truncated: true; k is capped at MAX_K; a profile that does not
+        match `Profile` is refused with a structured error."""
+        if profile is not None:
+            try:
+                profile = Profile.model_validate(profile).model_dump()
+            except ValidationError as exc:
+                return _invalid("profile", exc)
         tiers = list(tiers or DEFAULT_TIERS)
-        results = self.searcher.search(query, profile, k, tiers, verbose=verbose)
-        return {"query": query, "results": results}
+        truncated = len(query) > MAX_QUERY_CHARS
+        results = self.searcher.search(
+            query[:MAX_QUERY_CHARS], profile, min(k, MAX_K), tiers, verbose=verbose
+        )
+        out: dict = {"results": results}
+        if truncated:
+            out["truncated"] = True
+        return out
 
     # --- resolve_set ---------------------------------------------------------------------------
 
@@ -128,7 +166,12 @@ class Session:
         notes: list[str] = []
         errors: list[dict] = []
         pinned = [s for i in pinned_ids or [] if (s := self._skill(i, notes, errors))]
-        auto = [s for i in auto_ids if (s := self._skill(i, notes, errors))]
+        auto = []
+        for i in auto_ids:
+            if i.startswith(PATH_PREFIX):  # a local skill is the user's choice: pin it
+                errors.append({"id": i, "error": "path: ids go in pinned_ids, not auto_ids"})
+            elif s := self._skill(i, notes, errors):
+                auto.append(s)
         cap = self.index.manifest.get("conflict_cap") or DEFAULT_CAP  # as the index was built
         resolution = resolve_set(auto, pinned, self.index.verdicts(), cap).model_dump(mode="json")
         out = {**resolution, "notes": notes, "errors": errors}

@@ -128,3 +128,25 @@ def test_read_capped_reads_one_byte_past_the_limit():
     with pytest.raises(FetchError):
         fetch.read_capped(r, 10, "u")
     assert r.asked == [11]
+
+
+@pytest.mark.parametrize("rel", ["..\\..\\x", "a\\b.md", "C:x", "C:/x", "refs/a:b", "../x", "/x"])
+def test_index_file_paths_with_separators_or_drives_are_refused(tmp_path, rel):
+    rec, body = _record()
+    rec["files"][rel] = rec["files"]["SKILL.md"]
+    urls = []
+    with pytest.raises(FetchError, match="refusing file path"):
+        BodyCache(tmp_path / "c", lambda url: urls.append(url) or body).materialize(rec)
+    assert not (tmp_path / "x").exists()
+
+
+def test_a_joined_path_must_stay_under_its_root(tmp_path):
+    root = tmp_path / "root"
+    root.mkdir()
+    (tmp_path / "outside").mkdir()
+    (root / "sub").symlink_to(tmp_path / "outside", target_is_directory=True)
+    assert fetch.safe_join(root, "a/b.md") == root / "a" / "b.md"
+    with pytest.raises(FetchError, match="outside"):
+        fetch.safe_join(root, "sub/x.md")
+    with pytest.raises(FetchError, match="outside"):
+        fetch.verified(root, {"sub/x.md": DIGEST})

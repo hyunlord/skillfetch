@@ -63,9 +63,28 @@ def urllib_fetch(url: str) -> bytes:
 
 
 def _safe_rel(rel: str) -> PurePosixPath:
+    """A relative POSIX path with no `..`, and no `\\` or `:` in any part (a Windows
+    separator or drive would let a part escape once joined)."""
+    if not isinstance(rel, str):
+        raise FetchError(f"refusing file path {str(rel)[:80]!r} from the index")
     path = PurePosixPath(rel)
-    if path.is_absolute() or ".." in path.parts or not path.parts:
-        raise FetchError(f"refusing file path {rel!r} from the index")
+    if (
+        path.is_absolute()
+        or not path.parts
+        or ".." in path.parts
+        or any("\\" in part or ":" in part for part in path.parts)
+    ):
+        raise FetchError(f"refusing file path {str(rel)[:80]!r} from the index")
+    return path
+
+
+def safe_join(root: Path, rel: str) -> Path:
+    """`root / rel` for an index-supplied `rel`, refused unless the real path stays under
+    the real root."""
+    path = Path(root).joinpath(*_safe_rel(rel).parts)
+    real_root = os.path.realpath(root)
+    if os.path.commonpath([real_root, os.path.realpath(path)]) != real_root:
+        raise FetchError(f"refusing file path {rel!r}: outside {root}")
     return path
 
 
@@ -76,7 +95,7 @@ def _sha256(data: bytes) -> str:
 def verified(folder: Path, files: dict[str, str]) -> bool:
     """Every listed file is present in `folder` with its sha256."""
     for rel, digest in files.items():
-        path = folder / _safe_rel(rel)
+        path = safe_join(folder, rel)
         if not path.is_file() or _sha256(path.read_bytes()) != digest:
             return False
     return True
@@ -122,8 +141,9 @@ class BodyCache:
                 got = _sha256(data)
                 if got != want:
                     raise FetchError(f"{rel}: sha256 mismatch (index {want[:12]}, got {got[:12]})")
-                (tmp / path).parent.mkdir(parents=True, exist_ok=True)
-                (tmp / path).write_bytes(data)
+                target = safe_join(tmp, rel)
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_bytes(data)
             shutil.rmtree(dest, ignore_errors=True)
             dest.parent.mkdir(parents=True, exist_ok=True)
             tmp.rename(dest)

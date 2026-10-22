@@ -128,6 +128,8 @@ def _tarball(tmp_path, members):
         ([("/abs.txt", b"x", "file")], "outside index/"),
         ([("index/link", b"", "link")], "not a regular file"),
         ([("other/manifest.json", b"{}", "file")], "outside index/"),
+        ([("index/..\\..\\x", b"x", "file")], "in a path part"),
+        ([("index/C:x", b"x", "file")], "in a path part"),
     ],
 )
 def test_unsafe_archives_are_refused(tmp_path, members, message):

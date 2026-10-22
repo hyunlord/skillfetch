@@ -157,6 +157,8 @@ def _check(m: tarfile.TarInfo, total: int) -> None:
         raise SyncError(f"refusing archive member {m.name!r}: not a regular file")
     if path.is_absolute() or ".." in path.parts or len(path.parts) < 2 or path.parts[0] != TOP:
         raise SyncError(f"refusing archive member {m.name!r}: outside {TOP}/")
+    if any("\\" in part or ":" in part for part in path.parts):
+        raise SyncError(f"refusing archive member {m.name!r}: '\\' or ':' in a path part")
     if m.size > MAX_INDEX_BYTES or total + m.size > MAX_INDEX_BYTES:
         raise SyncError(f"refusing the archive: more than {MAX_INDEX_BYTES} bytes unpacked")
 
@@ -176,6 +178,9 @@ def unpack(data: bytes, into: Path) -> Path:
                 if len(content) != m.size:
                     raise SyncError(f"archive member {m.name!r}: size does not match its header")
                 target = into.joinpath(*PurePosixPath(m.name).parts)
+                real_into = os.path.realpath(into)
+                if os.path.commonpath([real_into, os.path.realpath(target)]) != real_into:
+                    raise SyncError(f"refusing archive member {m.name!r}: outside {into}")
                 target.parent.mkdir(parents=True, exist_ok=True)
                 target.write_bytes(content)
     except (tarfile.TarError, OSError, EOFError) as exc:
