@@ -17,7 +17,7 @@ from typing import Literal
 
 from pydantic import BaseModel, ValidationError
 
-from skillfetch.index.loader import Index
+from skillfetch.index.loader import Index, tilde
 from skillfetch.ingest.extract import Extractor
 from skillfetch.ingest.extract_cache import ExtractCache
 from skillfetch.ingest.ingest import run_extractions
@@ -326,10 +326,8 @@ def scan_dir(root: Path, lookup: Lookup | None = None) -> ScanReport:
     index = None
     if lookup is not None and lookup.index is not None:
         idx = lookup.index
-        where, home = str(idx.root.resolve()), str(Path.home())
-        where = "~" + where[len(home) :] if where.startswith(home + "/") else str(idx.root)
         index = (
-            f"{where} ({len(idx.records)} skills, extraction "
+            f"{tilde(idx.root)} ({len(idx.records)} skills, extraction "
             f"{idx.manifest.get('extract_model', '?')})"
         )
     return ScanReport(

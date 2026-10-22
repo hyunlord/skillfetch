@@ -13,6 +13,12 @@ DEFAULT_INDEX_DIR = Path("~/.skillfetch/index").expanduser()
 REQUIRED = ("manifest.json", "skills.jsonl", "constraints.jsonl")
 
 
+def tilde(path: Path) -> str:
+    """A path for display: under the home directory as `~/...`."""
+    full, home = str(Path(path).resolve()), str(Path.home().resolve())
+    return "~" + full[len(home) :] if full.startswith(home + "/") else str(path)
+
+
 class IndexLoadError(RuntimeError):
     """The index is missing, incomplete, or does not match its manifest."""
 

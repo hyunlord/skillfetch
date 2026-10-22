@@ -9,7 +9,7 @@ from collections.abc import Sequence
 from pathlib import Path
 
 from skillfetch.index import sync as index_sync
-from skillfetch.index.loader import DEFAULT_INDEX_DIR, Index, IndexLoadError
+from skillfetch.index.loader import DEFAULT_INDEX_DIR, Index, IndexLoadError, tilde
 from skillfetch.ingest import backends, credentials, extract
 from skillfetch.ingest import judge as judge_mod
 from skillfetch.ingest.build import build_index, render_summary, write_pairs
@@ -295,7 +295,7 @@ def _sync(args: argparse.Namespace) -> int:
     m = result.index.manifest
     state = "installed" if result.changed else "already up to date"
     print(
-        f"{state}: {result.index.root} from {result.source} · {len(result.index.records)} "
+        f"{state}: {tilde(result.index.root)} from {result.source} · {len(result.index.records)} "
         f"skills · built {m.get('built_at')} · extraction {m.get('extract_model')}"
     )
     return 0
