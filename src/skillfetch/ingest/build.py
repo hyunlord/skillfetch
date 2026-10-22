@@ -199,6 +199,49 @@ def file_manifest(skill_dir: Path) -> dict[str, str]:
 
 
 def _record(snap: Snapshot, skill_dir: Path) -> Built:
+    """The skill's record; a folder that cannot be read (a broken link, metadata of the
+    wrong shape) becomes a lint_failed record instead of stopping the build."""
+    try:
+        return _read_record(snap, skill_dir)
+    except Exception as exc:  # anything a hostile folder can raise
+        return _unreadable(snap, skill_dir, exc)
+
+
+def _unreadable(snap: Snapshot, skill_dir: Path, exc: Exception) -> Built:
+    source = snap.source
+    rel = skill_dir.relative_to(snap.path).as_posix()
+    digest = hashlib.sha256(f"unreadable\0{source.id}\0{rel}".encode()).hexdigest()
+    sid = f"{source.id}/{_safe(skill_dir.name)}@{digest[:12]}"
+    message = f"skill folder cannot be read: {type(exc).__name__}: {str(exc)[:200]}"
+    record = SkillRecord(
+        id=sid,
+        canonical_id=sid,
+        name=skill_dir.name,
+        title=skill_dir.name,
+        description="",
+        source_id=source.id,
+        publisher=source.publisher,
+        publisher_trust=source.publisher_trust,
+        commit=snap.commit,
+        path=rel,
+        source_url=_source_url(snap, rel),
+        content_hash=digest,
+        status="lint_failed",
+        token_estimate=0,
+        lint={
+            "errors": [
+                {"rule": "lint.unreadable", "message": message, "file": "SKILL.md", "line_no": None}
+            ],
+            "warnings": [],
+        },
+        license="unknown",
+        redistributable=False,
+        license_origin="none",
+    )
+    return Built(record, skill_dir, snap)
+
+
+def _read_record(snap: Snapshot, skill_dir: Path) -> Built:
     source = snap.source
     rel = skill_dir.relative_to(snap.path).as_posix()
     lint = lint_skill(skill_dir)
