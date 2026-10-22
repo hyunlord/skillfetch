@@ -2,7 +2,7 @@
 
 *2026-10-22 · Kwan Hyeon*
 
-SKILL.md files are the new npm: you install thirty of them into your coding agent and never read one. I pulled 1,831 public skills, linted them, scanned them for prompt-injection patterns, extracted 29,880 individual instructions from them, and checked which instructions contradict each other. Then I ran 1,200 agent sessions to see what any of it changes. Four things stood out. Only one in five states a license. Outright contradictions between skills are almost nonexistent. When two skills do disagree, the agent quietly picks one, the same one every time, and no header, block or edit I tried could change which. And loading the *right* skill visibly improves a large task, while loading a *plausible* one makes it worse than loading nothing.
+SKILL.md files are the new npm: you install thirty of them into your coding agent and never read one. I pulled 1,831 public skills, linted them, scanned them for prompt-injection patterns, extracted 29,880 individual instructions from them, and checked which instructions contradict each other. Then I ran 1,100 agent sessions to see what any of it changes. Four things stood out. Only one in five states a license. Outright contradictions between skills are almost nonexistent. When two skills do disagree, the agent quietly picks one, the same one every time, and no header, block or edit I tried could change which. And loading the *right* skill visibly improves a large task, while loading a *plausible* one makes it worse than loading nothing.
 
 ## What I did
 
