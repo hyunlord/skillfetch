@@ -84,7 +84,7 @@ def _py_names(requirements: list[str]) -> set[str]:
 
 def _read_json(path: Path) -> dict:
     try:
-        data = json.loads(path.read_text())
+        data = json.loads(path.read_text(errors="replace"))
     except (OSError, ValueError):
         return {}
     return data if isinstance(data, dict) else {}
@@ -92,7 +92,7 @@ def _read_json(path: Path) -> dict:
 
 def _read_toml(path: Path) -> dict:
     try:
-        return tomllib.loads(path.read_text())
+        return tomllib.loads(path.read_text(errors="replace"))
     except (OSError, tomllib.TOMLDecodeError):
         return {}
 
@@ -139,12 +139,12 @@ def profile_repo(path: Path) -> dict:
     if "requirements.txt" in names:
         seen.append("requirements.txt")
         languages.add("python")
-        found = _py_names((root / "requirements.txt").read_text().splitlines())
+        found = _py_names((root / "requirements.txt").read_text(errors="replace").splitlines())
         frameworks |= {tag for dep, tag in PY_FRAMEWORKS.items() if dep in found}
     if "go.mod" in names:
         seen.append("go.mod")
         languages.add("go")
-        text = (root / "go.mod").read_text()
+        text = (root / "go.mod").read_text(errors="replace")
         frameworks |= {tag for mod, tag in GO_FRAMEWORKS.items() if mod in text}
     if "Cargo.toml" in names:
         seen.append("Cargo.toml")

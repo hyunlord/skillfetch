@@ -24,6 +24,7 @@ from skillfetch.resolve.relation import DEFAULT_CAP
 
 PATH_PREFIX = "path:"
 # constraints.md §5 step 4
+DEFAULT_MAX_TOKENS = 8000  # load_skills budget for the concatenated bodies
 PRECEDENCE_HEADER = (
     "Skills are listed in precedence order. If two instructions disagree, follow the earlier one."
 )
@@ -151,21 +152,40 @@ class Session:
         kinds = {s.get("id"): s.get("kind") for s in self.index.manifest.get("sources") or []}
         return kinds.get(record.get("source_id")) == "dir"
 
-    def load_skills(self, set_id: str) -> dict:
+    def load_skills(self, set_id: str, max_tokens: int = DEFAULT_MAX_TOKENS) -> dict:
+        """Bodies in precedence order. Each skill stands alone: a fetch, cache or read
+        failure refuses that skill (listed in errors) and the others still load. Over
+        `max_tokens`, skills are dropped from the end of the precedence list until the
+        rest fits; each drop is listed in errors."""
         resolution = self.resolutions.get(set_id)
         if resolution is None:
             return {"set_id": set_id, "error": "unknown set_id; call resolve_set first"}
-        sections, loaded, errors = [], [], []
+        bodies, errors = [], []
         for skill_id in resolution["precedence"]:
             try:
                 folder = self._folder(skill_id)
+                doc = read_skill(folder)
             except FetchError as exc:
                 errors.append({"id": skill_id, "error": str(exc)})  # refused: no body
                 continue
-            doc = read_skill(folder)
+            except OSError as exc:  # cache rename, read: this skill only
+                errors.append({"id": skill_id, "error": f"{type(exc).__name__}: {exc}"})
+                continue
             body = "\n".join(doc.body_lines).strip()
             record = self.index.records.get(skill_id, {})
             title = record.get("title") or (doc.frontmatter or {}).get("name") or skill_id
+            bodies.append((skill_id, title, folder, body))
+        while bodies and sum(len(b[3]) // 4 for b in bodies) > max_tokens:
+            skill_id, _, _, body = bodies.pop()  # the lowest precedence goes first
+            errors.append(
+                {
+                    "id": skill_id,
+                    "error": f"dropped: the set is over max_tokens={max_tokens} "
+                    f"(this skill ~{len(body) // 4} tokens); pass a larger max_tokens to load it",
+                }
+            )
+        sections, loaded = [], []
+        for skill_id, title, folder, body in bodies:
             sections.append(f"## {len(sections) + 1}. {title} ({skill_id})\n\n{body}")
             loaded.append(
                 {
