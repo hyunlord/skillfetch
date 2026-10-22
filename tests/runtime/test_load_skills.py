@@ -153,3 +153,34 @@ def test_http_fetch_from_a_local_file_server(tmp_path):
         assert "Squash every feature" in (folder / "SKILL.md").read_text()
     finally:
         server.shutdown()
+
+
+def test_one_failing_skill_does_not_stop_the_others(tmp_path, monkeypatch):
+    root, s, _ = _session(tmp_path)
+    typed, squash = skill_id(root, "typed-python"), skill_id(root, "commit-squash")
+    real = BodyCache.materialize
+
+    def flaky(self, record, allow_file=False):
+        if record["id"] == squash:
+            raise OSError("rename failed: cross-device link")
+        return real(self, record, allow_file)
+
+    monkeypatch.setattr(BodyCache, "materialize", flaky)
+    out = s.load_skills(s.resolve_set([typed, squash])["set_id"])
+    assert [x["id"] for x in out["skills"]] == [typed]
+    assert out["errors"] == [{"id": squash, "error": "OSError: rename failed: cross-device link"}]
+
+
+def test_over_max_tokens_drops_from_the_end_of_the_precedence(tmp_path):
+    root, s, _ = _session(tmp_path)
+    ids = [skill_id(root, n) for n in ("commit-squash", "typed-python", "pnpm-only")]
+    set_id = s.resolve_set(ids)["set_id"]
+    full = s.load_skills(set_id)
+    sizes = [x["token_estimate"] for x in full["skills"]]
+    assert full["errors"] == [] and len(sizes) == 3
+    out = s.load_skills(set_id, max_tokens=sizes[0] + sizes[1])
+    assert [x["id"] for x in out["skills"]] == [x["id"] for x in full["skills"]][:2]
+    [dropped] = out["errors"]
+    assert dropped["id"] == full["skills"][2]["id"]
+    assert "over max_tokens" in dropped["error"]
+    assert full["skills"][2]["id"] not in out["content"]

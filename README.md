@@ -50,6 +50,9 @@ $ skillfetch serve                                        # MCP server over stdi
 $ claude mcp add skillfetch -- uvx --from git+https://github.com/hyunlord/skillfetch skillfetch serve
 ```
 
+The server loads the index once, at start. After `skillfetch sync` installs a new
+index, restart the MCP server (in Claude Code: `/mcp`, or a new session) to use it.
+
 Building the index yourself: `skillfetch ingest --sources sources.yaml --out
 data/index --upstream-licenses`, then `skillfetch sync --pack data/index` for a
 release tarball. Extraction (`--with-api`) defaults to the `claude-code/<model>`

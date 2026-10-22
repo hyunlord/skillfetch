@@ -11,7 +11,11 @@ import re
 from collections import Counter
 from dataclasses import dataclass, field
 
-_TOKEN = re.compile(r"[a-z0-9]+")
+# Unicode words; "_" still separates (snake_case is two tokens, as before).
+_TOKEN = re.compile(r"[^\W_]+")
+# Han, Hiragana, Katakana and Hangul are written without spaces between words, so a run
+# of them is indexed as overlapping 2-grams ("리팩토링" -> 리팩, 팩토, 토링).
+_CJK = re.compile(r"[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uac00-\ud7af\uf900-\ufaff]+")
 
 
 def _words(text: str) -> frozenset[str]:
@@ -25,9 +29,24 @@ STOPWORDS = _words(
 )
 
 
+def _pieces(word: str) -> list[str]:
+    """A word as tokens: CJK runs as 2-grams (a lone character as itself), the rest whole."""
+    out, at = [], 0
+    for m in _CJK.finditer(word):
+        if m.start() > at:
+            out.append(word[at : m.start()])
+        run = m.group()
+        out += [run] if len(run) == 1 else [run[i : i + 2] for i in range(len(run) - 1)]
+        at = m.end()
+    if at < len(word):
+        out.append(word[at:])
+    return out
+
+
 def tokenize(text: str) -> list[str]:
-    """Lowercase, split on non-alphanumerics, drop stopwords; no stemming (index-format §4)."""
-    return [t for t in _TOKEN.findall(text.lower()) if t not in STOPWORDS]
+    """Lowercase, split into Unicode words (CJK runs into 2-grams), drop stopwords; no
+    stemming (index-format §4)."""
+    return [t for word in _TOKEN.findall(text.lower()) for t in _pieces(word) if t not in STOPWORDS]
 
 
 @dataclass

@@ -250,7 +250,9 @@ Two skills are a **duplicate group** when any of:
 - Jaccard(keywords) ≥ 0.8 **and** constraint-multiset equality after
   normalization, i.e. each is redundant with the other (constraints.md §4; a
   one-way subset is not a duplicate group, it is handled by `resolve_set`);
-- same normalized `name` from the same publisher at different refs → keep newest.
+- same normalized `name` from the same publisher at different refs → keep newest
+  (`build.dedup`: lowercased, runs of space, `_` and `-` as one `-`; at a
+  different commit, so two folders of one snapshot are never merged by name).
 
 Each group gets a `canonical_id` (prefer verified publisher, then newest). The
 index keeps all members but `search_skills` returns only canonicals unless
@@ -453,7 +455,9 @@ As built (`index/sync.py`):
   (no body: bodies are not in the index, §1.8).
   Keywords are repeated once to weight them; do not over-tune.
 - Query = the host model's one-sentence task restatement, lowercased, tokenized
-  on non-alphanumerics, stopwords removed, no stemming in v0.1 (measure first).
+  into Unicode words (`_` separates), each run of Han, Kana or Hangul as
+  overlapping 2-grams ("리팩토링" → 리팩, 팩토, 토링), stopwords removed, no
+  stemming in v0.1 (measure first). Documents are tokenized the same way.
 - Profile boost: for each tag in `profile.tags` that appears in the skill's
   `tags.*`, multiply score by 1.3. Skills whose `tags.languages` is non-empty
   and disjoint from `profile.languages` are multiplied by 0.5 (soft filter, never

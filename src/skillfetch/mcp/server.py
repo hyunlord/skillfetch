@@ -12,7 +12,7 @@ from typing import Any
 from mcp.server.mcpserver import MCPServer
 
 from skillfetch.index.loader import DEFAULT_INDEX_DIR, Index
-from skillfetch.mcp.session import Session
+from skillfetch.mcp.session import DEFAULT_MAX_TOKENS, Session
 
 INSTRUCTIONS = (
     "skillfetch finds vetted skills (SKILL.md instructions) for one task at a time. "
@@ -23,8 +23,17 @@ INSTRUCTIONS = (
 )
 
 
+def _version() -> str:
+    from importlib.metadata import PackageNotFoundError, version
+
+    try:
+        return version("skillfetch")
+    except PackageNotFoundError:  # running from a source tree without an install
+        return "0+unknown"
+
+
 def build_server(session: Session) -> MCPServer:
-    server = MCPServer("skillfetch", instructions=INSTRUCTIONS)
+    server = MCPServer("skillfetch", instructions=INSTRUCTIONS, version=_version())
 
     @server.tool()
     def profile_repo(path: str) -> dict[str, Any]:
@@ -55,11 +64,13 @@ def build_server(session: Session) -> MCPServer:
         return session.resolve_set(auto_ids, pinned_ids)
 
     @server.tool()
-    def load_skills(set_id: str) -> dict[str, Any]:
+    def load_skills(set_id: str, max_tokens: int = DEFAULT_MAX_TOKENS) -> dict[str, Any]:
         """Fetch (or reuse from cache) and verify the bodies of a resolved set and return
         them concatenated in precedence order: {set_id, content, skills, errors}. A skill
-        whose files do not match the index hashes is refused and listed in errors."""
-        return session.load_skills(set_id)
+        whose files do not match the index hashes, or cannot be fetched, is refused and
+        listed in errors; the others still load. Over max_tokens (default 8000) the
+        lowest-precedence skills are dropped and listed in errors."""
+        return session.load_skills(set_id, max_tokens)
 
     return server
 
