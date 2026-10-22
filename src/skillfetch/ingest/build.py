@@ -487,6 +487,7 @@ def build_index(
         source_meta.append(
             {
                 "id": source.id,
+                "kind": source.kind,
                 "url": source.url,
                 "ref": source.ref,
                 "commit": snap.commit,

@@ -116,7 +116,7 @@ def test_paths_from_the_index_cannot_escape_the_cache(tmp_path):
         "files": {"SKILL.md": hashlib.sha256(b"x").hexdigest(), "../../etc/x": "0" * 64},
     }
     with pytest.raises(FetchError, match="refusing file path"):
-        cache.materialize(record)
+        cache.materialize(record, allow_file=True)
 
 
 def test_unknown_set_id(tmp_path):
@@ -148,7 +148,8 @@ def test_http_fetch_from_a_local_file_server(tmp_path):
         squash = skill_id(root, "commit-squash")
         record = dict(index.records[squash])
         record["fetch_base"] = f"http://127.0.0.1:{server.server_port}/skills/commit-squash"
-        folder = BodyCache(tmp_path / "bodies", urllib_fetch).materialize(record)
+        local = (f"http://127.0.0.1:{server.server_port}/",)
+        folder = BodyCache(tmp_path / "bodies", urllib_fetch, local).materialize(record)
         assert "Squash every feature" in (folder / "SKILL.md").read_text()
     finally:
         server.shutdown()
