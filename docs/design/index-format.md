@@ -217,6 +217,16 @@ record keeps the token usage of every attempt, so cost per skill is known
   file, it is passed to the client directly (never exported to the
   environment), and error output is redacted. A
   skill is never extracted twice for the same key.
+- The cache holds the raw exchange only: `extract_version`, `model`,
+  `content_hash`, `skill_id`, `status`, `error` and the `attempts` with the
+  model's answers verbatim. Post-processing (validation, evidence check,
+  polarity, implied artifacts, object vocabulary, condition clauses,
+  sections, per-line merge) runs at every read against the skill's SKILL.md,
+  so a rule change reaches every cached answer at the next build with no API
+  call. `POSTPROCESS_FINGERPRINT` (sha256 over the source of those rules) is
+  pinned by a test and recorded in the manifest as `postprocess`. A cache
+  file whose own `extract_version`, `model` or `content_hash` disagrees with
+  its path is a miss.
 - Model-output failures (`extract_failed`, `too_large`) are cached like
   successes. API errors are not: finished skills stay cached and a rerun
   resumes.

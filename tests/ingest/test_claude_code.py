@@ -46,4 +46,4 @@ def test_extraction_through_the_queue_lands_in_the_usual_cache(tmp_path):
     done = run_extractions(items, cache, extractor, errors={})
     record = done["0" * 64]
     assert record.status == "ok" and record.model == "claude-code/opus-5.5"
-    assert cache.get("0" * 64, "claude-code/opus-5.5") is not None
+    assert cache.get("0" * 64, "claude-code/opus-5.5", SKILLS_DIR / "commit-squash") is not None

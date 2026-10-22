@@ -420,10 +420,28 @@ def verify_evidence(
 
 
 _REMOVAL = re.compile(
-    r"\b(strip|strips|stripped|remove|removes|removed|delete|deletes|deleted|trim|trims|"
-    r"trimmed|drop|drops|eliminate|eliminates|avoid|avoids|get rid of)\b",
+    r"\b(strip|strips|stripped|stripping|remove|removes|removed|removing|delete|deletes|"
+    r"deleted|deleting|trim|trims|trimmed|trimming|drop|drops|dropped|dropping|eliminate|"
+    r"eliminates|eliminated|eliminating|get rid of|getting rid of)\b",
     re.IGNORECASE,
 )
+# A negation up to two words before the removal verb: "Never strip trailing whitespace",
+# "Do not remove the preamble", "avoid stripping", "without removing". The line forbids
+# the removal, so it requires the thing: the model's `require` is right.
+_NEGATED_VERB = re.compile(
+    r"(?:\b(?:never|not|without|avoid|avoids|avoiding)|n['’]t)[\s,]+(?:[\w'’-]+[\s,]+){0,2}$",
+    re.IGNORECASE,
+)
+
+
+def removal_cue(text: str) -> re.Match[str] | None:
+    """The first removal verb on the line that no negation governs."""
+    return next(
+        (m for m in _REMOVAL.finditer(text) if not _NEGATED_VERB.search(text[: m.start()])),
+        None,
+    )
+
+
 _FLIP = {"require": ("forbid", "must"), "prefer": ("avoid", "should")}
 
 
@@ -454,7 +472,9 @@ def apply_vocabulary(constraints: list[Constraint]) -> tuple[list[Constraint], l
     - Negative subject + positive directive + a removal verb on the evidence line ("Strip
       trailing whitespace") is a misread ban: require -> forbid, prefer -> avoid. Without a
       removal verb the directive is kept: "Always begin by restating the question" really
-      requires a preamble. Negations are not cues ("don't skip the preamble").
+      requires a preamble. A negated removal verb is not a cue: "Never strip trailing
+      whitespace" and "Do not remove the preamble" do require the thing. `avoid` is not a
+      removal verb: an avoid-rule already arrives as the `avoid` directive.
     - Artifact `any` becomes the subject's (or subject + object's) implied artifact; an
       explicit artifact is never overridden.
     - A condition that reads like a clause ("when fixing a bug", "if they make the output
@@ -478,7 +498,7 @@ def apply_vocabulary(constraints: list[Constraint]) -> tuple[list[Constraint], l
             notes.append(f"line {line}: condition {condition!r} -> null (reads like a clause)")
             c = c.model_copy(update={"scope": c.scope.model_copy(update={"condition": None})})
         negative = term is not None and term.polarity == "negative"
-        if negative and c.directive in _FLIP and (cue := _REMOVAL.search(c.evidence.text)):
+        if negative and c.directive in _FLIP and (cue := removal_cue(c.evidence.text)):
             directive, strength = _FLIP[c.directive]
             notes.append(
                 f"line {line}: {c.directive} -> {directive} "
@@ -642,12 +662,12 @@ class Extractor:
             attempt = Attempt(stop_reason=reply.stop_reason, text=out, usage=reply.usage)
             record.attempts.append(attempt)
             if reply.stop_reason == "refusal":
-                attempt.error = record.error = f"refused ({reply.refusal or 'no category'})"
-                return record
+                attempt.error = f"refused ({reply.refusal or 'no category'})"
+                break
             try:
-                result, split, too_long = _validate(out, last_attempt=attempt_no == 2)
+                _validate(out, last_attempt=attempt_no == 2)
             except ValueError as exc:
-                attempt.error = record.error = str(exc)
+                attempt.error = str(exc)
                 if attempt_no == 1:
                     messages += [
                         {"role": "assistant", "content": out or "(no output)"},
@@ -658,8 +678,9 @@ class Extractor:
                         },
                     ]
                 continue
-            return _finish(record, result, split, too_long, text)
-        return record
+            break
+        # the same function a cached answer goes through, so fresh and cached agree
+        return postprocess(record, text)
 
 
 def _finish(
@@ -677,21 +698,72 @@ def _finish(
     return record
 
 
-def revalidate(record: ExtractRecord, skill_dir: Path) -> ExtractRecord | None:
-    """A cached extract_failed record whose last answer the current validation accepts
-    (as a last attempt: over-long subjects and vocabulary violations are dropped per
-    constraint), processed without another API call. None if it still fails."""
-    if record.status != "extract_failed" or not record.attempts:
-        return None
-    last = record.attempts[-1]
-    if last.stop_reason == "refusal" or not last.text:
-        return None
-    try:
-        result, split, dropped = _validate(last.text, last_attempt=True)
-    except ValueError:
-        return None
-    text = read_text(skill_dir / SKILL_FILE)
-    out = _finish(record.model_copy(deep=True), result, split, dropped, text)
-    note = f"revalidated from the cached answer of attempt {len(record.attempts)}"
-    out.adjusted = [note, *out.adjusted]
+RAW_FIELDS = ("extract_version", "model", "content_hash", "skill_id", "status", "error", "attempts")
+
+
+def raw(record: ExtractRecord) -> ExtractRecord:
+    """What the cache keeps: the exchange with the model, none of its post-processing."""
+    return ExtractRecord.model_validate(record.model_dump(include=set(RAW_FIELDS)))
+
+
+def postprocess(record: ExtractRecord, text: str) -> ExtractRecord:
+    """The processed record for a raw one, against the skill's SKILL.md `text`.
+
+    The accepted answer is the first attempt that validates (the last attempt as a last
+    attempt: over-long subjects and vocabulary violations are dropped per constraint); then
+    the evidence check, vocabulary fixes and the per-line merge. Deterministic, and run on
+    every cache read, so a change to these rules reaches cached answers at the next build
+    (POSTPROCESS_FINGERPRINT pins them)."""
+    out = raw(record)
+    if out.status == "too_large":
+        return out
+    out.status, out.error = "extract_failed", None
+    for i, attempt in enumerate(out.attempts):
+        if attempt.stop_reason == "refusal":
+            out.error = attempt.error or "refused"
+            return out
+        try:
+            result, split, too_long = _validate(
+                attempt.text, last_attempt=i == len(out.attempts) - 1
+            )
+        except ValueError as exc:
+            out.error = str(exc)
+            continue
+        return _finish(out, result, split, too_long, text)
+    out.error = out.error or "no answer"
     return out
+
+
+def postprocess_fingerprint() -> str:
+    """sha256 over the source of every post-processing rule: validation (clause split,
+    subject cap, object vocabulary), evidence check, polarity, implied artifacts,
+    condition clauses, sections and the per-line merge. A change means cached answers
+    process differently: rebuild the index."""
+    import inspect
+
+    from skillfetch.ingest import sections
+    from skillfetch.resolve import terms, vocabulary
+
+    parts = [
+        inspect.getsource(obj)
+        for obj in (
+            postprocess,
+            _validate,
+            _finish,
+            ExtractResult,
+            split_subject_clause,
+            verify_evidence,
+            apply_vocabulary,
+            _normalized_subject,
+            _vocabulary_violations,
+            merge_per_line,
+        )
+    ]
+    from skillfetch.resolve import models
+
+    parts += [inspect.getsource(models.Constraint), inspect.getsource(models.Scope)]
+    parts += [_REMOVAL.pattern, _NEGATED_VERB.pattern, json.dumps(_FLIP, sort_keys=True)]
+    parts += [inspect.getsource(removal_cue)]
+    parts += [str(MAX_SUBJECT_WORDS), _CLAUSE_MARKER.pattern]
+    parts += [inspect.getsource(m) for m in (sections, terms, vocabulary)]
+    return hashlib.sha256("\0".join(parts).encode()).hexdigest()
