@@ -20,6 +20,7 @@ from typing import Literal
 
 from pydantic import BaseModel
 
+from skillfetch.ingest import credentials
 from skillfetch.ingest.extract import (
     DEFAULT_MODEL,
     EXTRACT_VERSION,
@@ -312,11 +313,11 @@ def _apply_extraction(b: Built, extraction: ExtractRecord | None) -> None:
     if extraction.status == "too_large":
         # over the extraction cost guard: searchable and loadable, no constraints to check
         r.status, r.not_extracted_reason = "not_extracted", "too_large"
-        r.extract_error = extraction.error
+        r.extract_error = credentials.redact(extraction.error) if extraction.error else None
         return
     if extraction.status != "ok" or extraction.result is None:
         r.status = extraction.status  # extract_failed | too_large
-        r.extract_error = extraction.error
+        r.extract_error = credentials.redact(extraction.error) if extraction.error else None
         return
     res = extraction.result
     b.constraints = [
@@ -574,7 +575,7 @@ def build_index(
                 "pending_answer" if api_errors[digest].startswith("PendingAnswer") else "api_error"
             )
             b.record.status, b.record.not_extracted_reason = "not_extracted", reason
-            b.record.extract_error = api_errors[digest]
+            b.record.extract_error = api_errors[digest]  # redacted by run_extractions
             continue
         _apply_extraction(b, fresh.get(digest) or cached[digest])
 

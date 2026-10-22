@@ -44,6 +44,24 @@ def known_keys(creds_file: Path | None = DEFAULT_CREDS_FILE) -> list[str]:
     return [k for p in KEYS if (k := api_key(p, creds_file))]
 
 
+def redaction_secrets(creds_file: Path | None = DEFAULT_CREDS_FILE) -> list[str]:
+    """known_keys plus ANTHROPIC_API_KEY; without python-dotenv, the environment only."""
+    keys = [os.environ.get("ANTHROPIC_API_KEY")]
+    try:
+        keys += known_keys(creds_file)
+    except ImportError:
+        keys += [os.environ.get(env) for env, _ in KEYS.values()]
+    return [k for k in keys if k]
+
+
+AUTH_ERRORS = frozenset({"AuthenticationError", "PermissionDeniedError"})
+
+
+def is_auth_error(exc: BaseException) -> bool:
+    """A provider rejected the credentials: no request of this run can succeed."""
+    return type(exc).__name__ in AUTH_ERRORS
+
+
 def redact(text: str, *secrets: str | None) -> str:
     """Remove secret values and anything key-shaped (providers echo masked keys in errors)."""
     for secret in secrets:

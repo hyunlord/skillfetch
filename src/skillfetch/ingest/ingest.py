@@ -11,6 +11,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Literal
 
+from skillfetch.ingest import credentials
 from skillfetch.ingest.extract import DEFAULT_MODEL, Extractor, ExtractRecord
 from skillfetch.ingest.extract_cache import ExtractCache
 from skillfetch.ingest.injection import scan_skill
@@ -76,7 +77,10 @@ def run_extractions(
     """Extract (skill_dir, skill_id, content_hash) items in parallel, once per distinct
     content, caching each record. A request that fails (connection, provider or SDK error)
     is not cached: its content hash and error go into `errors` and the run continues, so a
-    rerun retries only those. Without an `errors` dict the first such error propagates."""
+    rerun retries only those. Without an `errors` dict the first such error propagates.
+    Rejected credentials are not a per-skill error: they stop the run. Error texts are
+    redacted (providers echo key material in them)."""
+    secrets = credentials.redaction_secrets()
     unique: dict[str, tuple[Path, str]] = {}
     for skill_dir, skill_id, digest in items:
         unique.setdefault(digest, (skill_dir, skill_id))
@@ -86,9 +90,9 @@ def run_extractions(
         try:
             record = extractor.extract(skill_dir, skill_id, digest)
         except Exception as exc:
-            if errors is None:
+            if errors is None or credentials.is_auth_error(exc):
                 raise
-            errors[digest] = f"{type(exc).__name__}: {str(exc)[:300]}"
+            errors[digest] = credentials.redact(f"{type(exc).__name__}: {str(exc)[:300]}", *secrets)
             return digest, None
         cache.put(record)
         return digest, record
