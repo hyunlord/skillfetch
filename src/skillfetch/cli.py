@@ -249,10 +249,18 @@ def main(argv: Sequence[str] | None = None) -> int:
     obey.add_argument("--jobs", type=int, default=6)
     obey.add_argument(
         "--precedence",
-        choices=("none", "ab", "ba"),
+        choices=("none", "ab", "ba", "resolved-a", "resolved-b"),
         action="append",
-        help="with --run: none (default; no rule, alternating order) or ab / ba (the "
-        "load_skills precedence header on top, skills in that order); repeatable",
+        help="with --run: none (default; no rule, alternating order); ab / ba (the "
+        "load_skills precedence header on top, skills in that order); resolved-a / "
+        "resolved-b (a Resolved rule conflicts block naming A or B the winner, skills "
+        "A then B); repeatable",
+    )
+    obey.add_argument(
+        "--judgments",
+        type=Path,
+        help="judgments.jsonl with each pair's evidence lines, for resolved-a/b "
+        "(default: <index>-reports/judgments.jsonl)",
     )
 
     for p in (scan, ingest):
@@ -522,15 +530,31 @@ def _obedience_run(args: argparse.Namespace) -> int:
     judge = backends.make_backend(args.model, creds_file=args.creds_file)
 
     conditions = args.precedence or ["none"]
+    resolved = [c for c in conditions if c.startswith("resolved-")]
     if "none" in conditions and len(conditions) > 1:
         print("skillfetch: run --precedence none on its own", file=sys.stderr)
         return 2
+    if resolved and len(resolved) != len(conditions):
+        print("skillfetch: run resolved-a/b apart from ab/ba", file=sys.stderr)
+        return 2
+    conflicts = {}
+    if resolved:
+        judgments = (
+            args.judgments or args.index.with_name(args.index.name + "-reports") / "judgments.jsonl"
+        )
+        conflicts = obedience.pair_conflicts(args.index, judgments, [t.pair for t in tasks])
 
     def run(cond: str) -> list[list]:
         def one(task):
             a, b = task.pair.split("|")
             return obedience.run_trials(
-                task, (skill(a), skill(b)), agent, judge, args.trials, precedence=cond
+                task,
+                (skill(a), skill(b)),
+                agent,
+                judge,
+                args.trials,
+                precedence=cond,
+                conflict=conflicts.get(task.pair),
             )
 
         with ThreadPoolExecutor(max_workers=max(1, args.jobs)) as pool:
@@ -552,13 +576,34 @@ def _obedience_run(args: argparse.Namespace) -> int:
         for t, trials in zip(tasks, results, strict=True)
         for tr in trials
     ]
-    stem = "" if conditions == ["none"] else "-precedence"
+    stem = "" if conditions == ["none"] else "-resolved" if resolved else "-precedence"
     (out_dir / f"trials{stem}.jsonl").write_text(
         "".join(_json.dumps(r, ensure_ascii=False) + "\n" for r in rows)
     )
     pending = sum(r["followed"] is None for r in rows)
     if conditions == ["none"]:
         report = obedience.render_results(tasks, by_cond["none"])
+    elif resolved:  # next to the precedence-header runs and the no-header runs (cached)
+        report = obedience.render_precedence(tasks, by_cond, run("none"))
+        report = report.replace(
+            "# Obedience split test: precedence header", "# Obedience split test: resolved block"
+        )
+        report += (
+            "\n\n## Next to the precedence header (experiment A)\n\n"
+            + obedience.render_comparison(tasks, {c: run(c) for c in ("ab", "ba")}, by_cond)
+            + "\n\n## The blocks\n\n"
+            + "\n\n".join(
+                f"`{t.pair}`\n\n```\n"
+                + obedience.resolved_block(
+                    conflicts[t.pair],
+                    records[t.pair.split("|")[0]]["name"],
+                    records[t.pair.split("|")[1]]["name"],
+                    "a",
+                )
+                + "\n```"
+                for t in tasks
+            )
+        )
     else:  # compared with the no-header runs (cached)
         report = obedience.render_precedence(tasks, by_cond, run("none"))
     (out_dir / f"results{stem}.md").write_text(report + "\n")

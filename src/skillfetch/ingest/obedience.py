@@ -158,7 +158,39 @@ def render_tasks(tasks: list[ObedienceTask]) -> str:
 # --- trials (run only after the task list is approved) -------------------------------------
 
 
-PRECEDENCE = ("none", "ab", "ba")
+PRECEDENCE = ("none", "ab", "ba", "resolved-a", "resolved-b")
+RESOLVED_TITLE = "Resolved rule conflicts"
+
+
+@dataclass(frozen=True)
+class Conflict:
+    """A pair's disagreement as the index records it: the subject and the evidence lines
+    (line number, text) on each side."""
+
+    subject: str
+    lines_a: tuple[tuple[int, str], ...]
+    lines_b: tuple[tuple[int, str], ...]
+
+
+def resolved_block(conflict: Conflict, name_a: str, name_b: str, winner: str) -> str:
+    """The block that names a pair's winner, with both sides' evidence lines."""
+    win = name_a if winner == "a" else name_b
+    out = [
+        RESOLVED_TITLE,
+        "",
+        "These skills were checked against each other before this task. Where they "
+        "disagree, follow the winner named here, whatever order the skills appear in.",
+        "",
+        f'- {conflict.subject}: "{name_a}" vs "{name_b}". Winner: "{win}".',
+    ]
+    for name, lines in ((name_a, conflict.lines_a), (name_b, conflict.lines_b)):
+        out += [f'  - {name}, line {n}: "{text}"' for n, text in lines]
+    return "\n".join(out)
+
+
+def ranked_first(precedence: str) -> str:
+    """The skill a condition tells the agent to follow: ab -> a, resolved-b -> b."""
+    return precedence[-1] if precedence.startswith("resolved-") else precedence[0]
 
 
 @dataclass
@@ -254,19 +286,30 @@ def run_trials(
     trials: int = TRIALS,
     cache_dir: Path = DEFAULT_CACHE,
     precedence: str = "none",
+    conflict: Conflict | None = None,
 ) -> list[Trial]:
     """`trials` agent runs (each cached under its run number) and their classification.
     precedence "none": even runs load A first, odd runs B first, so a position bias shows
     up, and there is no precedence rule. "ab" / "ba": every run puts the load_skills
-    precedence header on top and loads the skills in that order."""
+    precedence header on top and loads the skills in that order. "resolved-a" /
+    "resolved-b": every run puts the Resolved rule conflicts block (naming A or B the
+    winner of `conflict`) on top, and loads A then B."""
     from skillfetch.mcp.session import PRECEDENCE_HEADER
 
     if precedence not in PRECEDENCE:
         raise ValueError(f"precedence {precedence!r}: one of {', '.join(PRECEDENCE)}")
-    header = None if precedence == "none" else PRECEDENCE_HEADER
+    if precedence.startswith("resolved-"):
+        if conflict is None:
+            raise ValueError(f"precedence {precedence} needs the pair's conflict")
+        header = resolved_block(conflict, skills[0][0], skills[1][0], ranked_first(precedence))
+    else:
+        header = None if precedence == "none" else PRECEDENCE_HEADER
     out = []
     for n in range(trials):
-        order = precedence if header else ("ab" if n % 2 == 0 else "ba")
+        if precedence.startswith("resolved-"):
+            order = "ab"
+        else:
+            order = precedence if header else ("ab" if n % 2 == 0 else "ba")
         ordered = list(skills) if order == "ab" else list(skills)[::-1]
         system = system_prompt(ordered, header)
 
@@ -373,7 +416,7 @@ def render_precedence(
         cells = []
         for cond, results in by_condition.items():
             trials = results[i]
-            first = cond[0]
+            first = ranked_first(cond)
             dist = Counter(tr.followed for tr in trials)
             hit = sum(tr.followed == first for tr in trials)
             ab_runs = dist["a"] + dist["b"]
@@ -387,21 +430,30 @@ def render_precedence(
             )
         if base is not None:
             other = "b" if base == "a" else "a"
-            reversed_cond = f"{other}{base}"  # the content winner loaded second
-            if reversed_cond in by_condition:
-                won = _winner(by_condition[reversed_cond][i])
+            # the condition that ranks the content winner second
+            against = [c for c in by_condition if ranked_first(c) == other]
+            if against:
+                won = _winner(by_condition[against[0]][i])
                 flipped += won == other
                 held += won == base
         rows.append(f"| {a} ⟷ {b} | {base or 'tie'} | " + " | ".join(cells) + " |")
     conds = list(by_condition)
+    named = any(c.startswith("resolved-") for c in conds)
     lines += [
         f"{len(tasks)} pairs × {len(conds)} orders ({', '.join(conds)}) × "
         f"{len(next(iter(by_condition.values()))[0]) if tasks else 0} runs = {total} runs. "
-        "The header is the one load_skills sends: "
-        '"Skills are listed in precedence order. If two instructions disagree, follow the '
-        'earlier one."',
+        + (
+            f'Each run starts with a "{RESOLVED_TITLE}" block that names the winner '
+            "(resolved-a: A, resolved-b: B) with both sides' evidence lines; the skills follow "
+            "in the order A, B."
+            if named
+            else "The header is the one load_skills sends: "
+            '"Skills are listed in precedence order. If two instructions disagree, follow the '
+            'earlier one."'
+        ),
         "",
-        f"Control rate (followed the skill ranked first): **{controlled}/{total}** of all runs; "
+        f"Control rate (followed the skill ranked or named first): **{controlled}/{total}** of "
+        "all runs; "
         f"{controlled}/{decided} of runs that followed exactly one skill.",
         "",
         *(
@@ -410,7 +462,8 @@ def render_precedence(
             for c, v in cond_tot.items()
         ),
         "",
-        "Pairs with a no-header winner whose winner the header turned around (winner ranked "
+        f"Pairs with a no-header winner whose winner the {'block' if named else 'header'} "
+        "turned around (winner ranked "
         f"second, other skill won the majority): **{flipped}**; winner kept although ranked "
         f"second: {held}; pairs without a no-header winner: "
         f"{sum(_winner(r) is None for r in baseline)}.",
@@ -424,3 +477,78 @@ def render_precedence(
         *rows,
     ]
     return "\n".join(lines)
+
+
+def render_comparison(
+    tasks: list[ObedienceTask],
+    header: dict[str, list[list[Trial]]],
+    resolved: dict[str, list[list[Trial]]],
+) -> str:
+    """Control per pair under the precedence header (ab, ba) next to the resolved block
+    (resolved-a, resolved-b): runs that followed the skill ranked or named first."""
+    conds = [*header, *resolved]
+    cols = {**header, **resolved}
+    lines = [
+        "| pair (A ⟷ B) | " + " | ".join(conds) + " |",
+        "|---|" + "---|" * len(conds),
+    ]
+    totals = {c: [0, 0] for c in conds}
+    for i, t in enumerate(tasks):
+        a, b = (x.split("/")[1].split("@")[0] for x in t.pair.split("|"))
+        cells = []
+        for c in conds:
+            trials = cols[c][i]
+            hit = sum(tr.followed == ranked_first(c) for tr in trials)
+            totals[c][0] += hit
+            totals[c][1] += len(trials)
+            cells.append(f"{hit}/{len(trials)}")
+        lines.append(f"| {a} ⟷ {b} | " + " | ".join(cells) + " |")
+    lines.append(
+        "| **all pairs** | "
+        + " | ".join(f"**{h}/{n}** ({h / n:.2f})" if n else "0/0" for h, n in totals.values())
+        + " |"
+    )
+    return "\n".join(lines)
+
+
+def pair_conflicts(index_dir: Path, judgments: Path, pairs: list[str]) -> dict[str, Conflict]:
+    """Each pair's Conflict: the evidence lines the judge saw (judgments.jsonl) and the
+    subject of the indexed constraint on side A's first such line. A pair without judged
+    evidence takes the first two constraints with the same subject from constraints.jsonl."""
+    from skillfetch.resolve.terms import normalize_term
+
+    by_skill: dict[str, list[dict]] = {}
+    for line in (index_dir / "constraints.jsonl").open():
+        row = json.loads(line)
+        by_skill.setdefault(row["skill_id"], []).append(row)
+    evidence = {}
+    if judgments.is_file():
+        for line in judgments.open():
+            row = json.loads(line)
+            evidence[row["pair"]] = row.get("evidence") or []
+    out = {}
+    for pair in pairs:
+        a, b = pair.split("|")
+        ev = evidence.get(pair) or []
+        lines_a = tuple((n, t) for sid, n, t in ev if sid == a)[:2]
+        lines_b = tuple((n, t) for sid, n, t in ev if sid == b)[:2]
+        at = {c["evidence"]["line_no"]: c for c in by_skill.get(a, [])}
+        subject = next((at[n]["subject"] for n, _ in lines_a if n in at), None)
+        if not (lines_a and lines_b and subject):
+            match = next(
+                (
+                    (ca, cb)
+                    for ca in by_skill.get(a, [])
+                    for cb in by_skill.get(b, [])
+                    if normalize_term(ca["subject"]) == normalize_term(cb["subject"])
+                ),
+                None,
+            )
+            if match is None:
+                raise ValueError(f"{pair}: no evidence lines and no shared subject")
+            ca, cb = match
+            subject = ca["subject"]
+            lines_a = ((ca["evidence"]["line_no"], ca["evidence"]["text"]),)
+            lines_b = ((cb["evidence"]["line_no"], cb["evidence"]["text"]),)
+        out[pair] = Conflict(subject, lines_a, lines_b)
+    return out

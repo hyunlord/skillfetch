@@ -135,3 +135,43 @@ def test_precedence_report_counts_control_and_turned_winners():
     # second under ab, b still won -> kept
     assert "turned around (winner ranked second, other skill won the majority): **1**" in text
     assert "winner kept although ranked second: 1" in text
+
+
+def test_resolved_block_names_the_winner_above_a_then_b(tmp_path):
+    from skillfetch.ingest.obedience import RESOLVED_TITLE, Conflict
+    from skillfetch.mcp.session import PRECEDENCE_HEADER
+
+    task = _task(tmp_path)
+    skills = (("skill-a", "body a"), ("skill-b", "body b"))
+    conflict = Conflict("emoji", ((3, "Use emoji."),), ((7, "Never emoji."),))
+    judge = Fake("judge", [{"followed": "b", "reason": "r"}])
+    for cond, winner in (("resolved-a", "skill-a"), ("resolved-b", "skill-b")):
+        agent = Fake(f"agent-{cond}", ["o1", "o2"])
+        trials = run_trials(task, skills, agent, judge, 2, tmp_path, cond, conflict)
+        assert [t.order for t in trials] == ["ab", "ab"]
+        system = agent.calls[0][0]
+        assert system.startswith(RESOLVED_TITLE) and PRECEDENCE_HEADER not in system
+        assert f'Winner: "{winner}"' in system
+        assert 'skill-a, line 3: "Use emoji."' in system
+        assert 'skill-b, line 7: "Never emoji."' in system
+        assert system.index('<skill name="skill-a">') < system.index('<skill name="skill-b">')
+
+
+def test_pair_conflicts_take_judged_lines_else_a_shared_subject(tmp_path):
+    from skillfetch.ingest.obedience import pair_conflicts
+
+    idx = tmp_path / "index"
+    idx.mkdir()
+    rows = [
+        {"skill_id": "s/a@1", "subject": "emoji", "evidence": {"line_no": 3, "text": "Use emoji."}},
+        {"skill_id": "s/b@1", "subject": "Emoji", "evidence": {"line_no": 7, "text": "No emoji."}},
+        {"skill_id": "s/c@1", "subject": " EMOJI", "evidence": {"line_no": 2, "text": "Emoji!"}},
+    ]
+    (idx / "constraints.jsonl").write_text("".join(json.dumps(r) + "\n" for r in rows))
+    judged = tmp_path / "j.jsonl"
+    ev = [["s/a@1", 3, "Use emoji."], ["s/b@1", 7, "No emoji."]]
+    judged.write_text(json.dumps({"pair": "s/a@1|s/b@1", "evidence": ev}) + "\n")
+    out = pair_conflicts(idx, judged, ["s/a@1|s/b@1", "s/a@1|s/c@1"])
+    assert out["s/a@1|s/b@1"].subject == "emoji"
+    assert out["s/a@1|s/b@1"].lines_b == ((7, "No emoji."),)
+    assert out["s/a@1|s/c@1"].lines_b == ((2, "Emoji!"),)  # from constraints.jsonl

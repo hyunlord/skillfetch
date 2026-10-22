@@ -175,7 +175,7 @@ Source: provider-reported cost (`usage.cost` from OpenRouter) in every cache rec
 
 **Total external API spend: $15.75** (OpenRouter). Since the "no external API" rule, model work runs inside Claude Code and is not in this total.
 
-Claude Code sessions (API-price equivalent reported by Claude Code, billed to the Claude Code plan, not OpenRouter): obedience agent runs 390 (130 without a precedence header, §6; 260 with one, §8), $19.26; 171 runs of two earlier batches discarded for harness problems (no note that the session has no tools; then a note that discouraged asking), $5.41; the end-to-end MCP transcript session $0.82.
+Claude Code sessions (API-price equivalent reported by Claude Code, billed to the Claude Code plan, not OpenRouter): obedience agent runs 650 (130 without a precedence header, §6; 260 with one, §8; 260 with a resolved-conflict block, §9), $33.26; 171 runs of two earlier batches discarded for harness problems (no note that the session has no tools; then a note that discouraged asking), $5.41; the end-to-end MCP transcript session $0.82.
 
 ## 8. Precedence header (experiment A)
 
@@ -183,7 +183,7 @@ Source: `data/obedience/trials-precedence.jsonl`, `results-precedence.md`; `skil
 
 26 pairs × 2 orders (ab, ba) × 5 runs = 260 runs. The header is the one load_skills sends: "Skills are listed in precedence order. If two instructions disagree, follow the earlier one."
 
-Control rate (followed the skill ranked first): **112/260** of all runs; 112/214 of runs that followed exactly one skill.
+Control rate (followed the skill ranked or named first): **112/260** of all runs; 112/214 of runs that followed exactly one skill.
 
 - ab: 42/130 of all runs, 42/107 of one-skill runs
 - ba: 70/130 of all runs, 70/107 of one-skill runs
@@ -220,4 +220,406 @@ Pairs with a no-header winner whose winner the header turned around (winner rank
 | stitch-skill ⟷ web-prototype-taste-soft | a | 4/5 (4a 0b 1both 0neither) | 0/5 (3a 0b 2both 0neither) |
 | codeql ⟷ collab-modes | b | 3/5 (3a 2b 0both 0neither) | 2/5 (3a 2b 0both 0neither) |
 | verification-loop ⟷ web-design-builder | b | 0/5 (0a 5b 0both 0neither) | 5/5 (0a 5b 0both 0neither) |
+
+## 9. Resolved-conflict block (experiment A2)
+
+Source: `data/obedience/trials-resolved.jsonl`, `results-resolved.md`; `skillfetch obedience --index data/index --run data/obedience/tasks.json --precedence resolved-a --precedence resolved-b`. The 26 pairs and tasks of §6, the harness and classification of §6 and §8. Each run's system prompt starts with a "Resolved rule conflicts" block: the two skill names, the subject, the winner (`resolved-a`: A, `resolved-b`: B) and both sides' evidence lines (the lines in `data/index-reports/judgments.jsonl` for the pair, else the first constraints with a shared subject in `constraints.jsonl`); the skill bodies follow in the order A, B in every run, with no precedence header. A run is controlled when the skill it followed is the named winner.
+
+26 pairs × 2 orders (resolved-a, resolved-b) × 5 runs = 260 runs. Each run starts with a "Resolved rule conflicts" block that names the winner (resolved-a: A, resolved-b: B) with both sides' evidence lines; the skills follow in the order A, B.
+
+Control rate (followed the skill ranked or named first): **145/260** of all runs; 145/211 of runs that followed exactly one skill.
+
+- resolved-a: 60/130 of all runs, 60/100 of one-skill runs
+- resolved-b: 85/130 of all runs, 85/111 of one-skill runs
+
+Pairs with a no-header winner whose winner the block turned around (winner ranked second, other skill won the majority): **8**; winner kept although ranked second: 14; pairs without a no-header winner: 3.
+
+### Per pair
+
+| pair (A ⟷ B) | no-header winner | resolved-a: controlled/runs | resolved-b: controlled/runs |
+|---|---|---|---|
+| audit-context-building ⟷ substrate-vulnerability-scanner | b | 0/5 (0a 4b 0both 1neither) | 5/5 (0a 5b 0both 0neither) |
+| coding-guidelines ⟷ task-execution-engine | a | 4/5 (4a 0b 1both 0neither) | 5/5 (0a 5b 0both 0neither) |
+| deploy-to-vercel ⟷ vercel-cli-with-tokens | a | 5/5 (5a 0b 0both 0neither) | 0/5 (5a 0b 0both 0neither) |
+| receiving-code-review ⟷ task-execution-engine | b | 4/5 (4a 0b 1both 0neither) | 5/5 (0a 5b 0both 0neither) |
+| taste-skill ⟷ ui-animation | b | 5/5 (5a 0b 0both 0neither) | 5/5 (0a 5b 0both 0neither) |
+| atlas ⟷ grill-with-docs | tie | 0/5 (0a 0b 0both 5neither) | 0/5 (0a 0b 0both 5neither) |
+| architecture-designer ⟷ grill-with-docs | tie | 1/5 (1a 0b 0both 4neither) | 0/5 (0a 0b 0both 5neither) |
+| creative-connections-engine ⟷ one-pager-prd | b | 1/5 (1a 0b 4both 0neither) | 5/5 (0a 5b 0both 0neither) |
+| image-poster ⟷ magazine-poster | b | 0/5 (0a 5b 0both 0neither) | 5/5 (0a 5b 0both 0neither) |
+| claude-native-web-artifacts-builder ⟷ develop-web-game | tie | 3/5 (3a 0b 0both 2neither) | 0/5 (3a 0b 0both 2neither) |
+| scout ⟷ systematic-debugging | b | 0/5 (0a 5b 0both 0neither) | 5/5 (0a 5b 0both 0neither) |
+| attest ⟷ tdd | b | 2/5 (2a 3b 0both 0neither) | 5/5 (0a 5b 0both 0neither) |
+| canon ⟷ it-infrastructure-sysadmin-engine | b | 0/5 (0a 5b 0both 0neither) | 5/5 (0a 5b 0both 0neither) |
+| claude-native-web-artifacts-builder ⟷ tdd-workflow | a | 5/5 (5a 0b 0both 0neither) | 0/5 (5a 0b 0both 0neither) |
+| clean-code ⟷ codenavi | b | 5/5 (5a 0b 0both 0neither) | 5/5 (0a 5b 0both 0neither) |
+| codenavi ⟷ software-architecture | a | 5/5 (5a 0b 0both 0neither) | 1/5 (3a 1b 0both 1neither) |
+| find-bugs ⟷ systematic-debugging | b | 0/5 (0a 5b 0both 0neither) | 5/5 (0a 5b 0both 0neither) |
+| impeccable-frontend-design ⟷ ios-hig-design | b | 3/5 (3a 2b 0both 0neither) | 5/5 (0a 5b 0both 0neither) |
+| kanban-board ⟷ taste-skill | a | 5/5 (5a 0b 0both 0neither) | 1/5 (4a 1b 0both 0neither) |
+| meeting-notes ⟷ wireframe-sketch | b | 1/5 (1a 0b 4both 0neither) | 5/5 (0a 5b 0both 0neither) |
+| scout ⟷ solana-vulnerability-scanner | b | 2/5 (2a 3b 0both 0neither) | 5/5 (0a 5b 0both 0neither) |
+| tdd ⟷ warden | a | 4/5 (4a 0b 0both 1neither) | 0/5 (5a 0b 0both 0neither) |
+| causal-inference-root-cause ⟷ diagnose | b | 0/5 (0a 0b 5both 0neither) | 0/5 (0a 0b 5both 0neither) |
+| stitch-skill ⟷ web-prototype-taste-soft | a | 4/5 (4a 0b 1both 0neither) | 4/5 (1a 4b 0both 0neither) |
+| codeql ⟷ collab-modes | b | 1/5 (1a 3b 0both 1neither) | 4/5 (0a 4b 0both 1neither) |
+| verification-loop ⟷ web-design-builder | b | 0/5 (0a 5b 0both 0neither) | 5/5 (0a 5b 0both 0neither) |
+
+### Next to the precedence header (experiment A)
+
+| pair (A ⟷ B) | ab | ba | resolved-a | resolved-b |
+|---|---|---|---|---|
+| audit-context-building ⟷ substrate-vulnerability-scanner | 0/5 | 5/5 | 0/5 | 5/5 |
+| coding-guidelines ⟷ task-execution-engine | 3/5 | 3/5 | 4/5 | 5/5 |
+| deploy-to-vercel ⟷ vercel-cli-with-tokens | 5/5 | 0/5 | 5/5 | 0/5 |
+| receiving-code-review ⟷ task-execution-engine | 3/5 | 0/5 | 4/5 | 5/5 |
+| taste-skill ⟷ ui-animation | 0/5 | 5/5 | 5/5 | 5/5 |
+| atlas ⟷ grill-with-docs | 0/5 | 0/5 | 0/5 | 0/5 |
+| architecture-designer ⟷ grill-with-docs | 1/5 | 0/5 | 1/5 | 0/5 |
+| creative-connections-engine ⟷ one-pager-prd | 0/5 | 5/5 | 1/5 | 5/5 |
+| image-poster ⟷ magazine-poster | 0/5 | 5/5 | 0/5 | 5/5 |
+| claude-native-web-artifacts-builder ⟷ develop-web-game | 3/5 | 0/5 | 3/5 | 0/5 |
+| scout ⟷ systematic-debugging | 0/5 | 5/5 | 0/5 | 5/5 |
+| attest ⟷ tdd | 0/5 | 5/5 | 2/5 | 5/5 |
+| canon ⟷ it-infrastructure-sysadmin-engine | 0/5 | 5/5 | 0/5 | 5/5 |
+| claude-native-web-artifacts-builder ⟷ tdd-workflow | 5/5 | 0/5 | 5/5 | 0/5 |
+| clean-code ⟷ codenavi | 0/5 | 5/5 | 5/5 | 5/5 |
+| codenavi ⟷ software-architecture | 4/5 | 0/5 | 5/5 | 1/5 |
+| find-bugs ⟷ systematic-debugging | 0/5 | 5/5 | 0/5 | 5/5 |
+| impeccable-frontend-design ⟷ ios-hig-design | 0/5 | 5/5 | 3/5 | 5/5 |
+| kanban-board ⟷ taste-skill | 5/5 | 0/5 | 5/5 | 1/5 |
+| meeting-notes ⟷ wireframe-sketch | 0/5 | 5/5 | 1/5 | 5/5 |
+| scout ⟷ solana-vulnerability-scanner | 1/5 | 5/5 | 2/5 | 5/5 |
+| tdd ⟷ warden | 5/5 | 0/5 | 4/5 | 0/5 |
+| causal-inference-root-cause ⟷ diagnose | 0/5 | 0/5 | 0/5 | 0/5 |
+| stitch-skill ⟷ web-prototype-taste-soft | 4/5 | 0/5 | 4/5 | 4/5 |
+| codeql ⟷ collab-modes | 3/5 | 2/5 | 1/5 | 4/5 |
+| verification-loop ⟷ web-design-builder | 0/5 | 5/5 | 0/5 | 5/5 |
+| **all pairs** | **42/130** (0.32) | **70/130** (0.54) | **60/130** (0.46) | **85/130** (0.65) |
+
+### The blocks
+
+`uasl/audit-context-building@70a8e16e2385|uasl/substrate-vulnerability-scanner@ce70afb34d42`
+
+```
+Resolved rule conflicts
+
+These skills were checked against each other before this task. Where they disagree, follow the winner named here, whatever order the skills appear in.
+
+- fixes: "audit-context-building" vs "substrate-vulnerability-scanner". Winner: "audit-context-building".
+  - audit-context-building, line 297: "- Propose fixes"
+  - substrate-vulnerability-scanner, line 75: "4. **Provide fixes** for each identified issue"
+```
+
+`uasl/coding-guidelines@0ec7e45f92f2|uasl/task-execution-engine@66692d3e1a3a`
+
+```
+Resolved rule conflicts
+
+These skills were checked against each other before this task. Where they disagree, follow the winner named here, whatever order the skills appear in.
+
+- clarification: "coding-guidelines" vs "task-execution-engine". Winner: "coding-guidelines".
+  - coding-guidelines, line 24: "- If something is unclear, stop. Name what's confusing. Ask."
+  - task-execution-engine, line 67: "- **NO asking** for clarification"
+```
+
+`uasl/deploy-to-vercel@261a4caec244|uasl/vercel-cli-with-tokens@3f9c2805c482`
+
+```
+Resolved rule conflicts
+
+These skills were checked against each other before this task. Where they disagree, follow the winner named here, whatever order the skills appear in.
+
+- ask-before-acting: "deploy-to-vercel" vs "vercel-cli-with-tokens". Winner: "deploy-to-vercel".
+  - deploy-to-vercel, line 44: "If the project is already linked (`.vercel/project.json` or `.vercel/repo.json` exists), the `orgId` in those files determines the team — no need to ask again. If there is only one team (or just a personal account), skip the prompt and use it directly."
+  - vercel-cli-with-tokens, line 183: "1. **Ask the user before pushing.** Never push without explicit approval."
+  - vercel-cli-with-tokens, line 280: "- **Ask before pushing to git.** Never push commits without the user's approval."
+```
+
+`uasl/receiving-code-review@5c548774a9ad|uasl/task-execution-engine@66692d3e1a3a`
+
+```
+Resolved rule conflicts
+
+These skills were checked against each other before this task. Where they disagree, follow the winner named here, whatever order the skills appear in.
+
+- implementation: "receiving-code-review" vs "task-execution-engine". Winner: "receiving-code-review".
+  - receiving-code-review, line 44: "  STOP - do not implement anything yet"
+  - receiving-code-review, line 45: "  ASK for clarification on unclear items"
+  - task-execution-engine, line 58: "  3. IMPLEMENT the task"
+  - task-execution-engine, line 67: "- **NO asking** for clarification"
+```
+
+`uasl/taste-skill@57790089504e|uasl/ui-animation@8e756d76dc18`
+
+```
+Resolved rule conflicts
+
+These skills were checked against each other before this task. Where they disagree, follow the winner named here, whatever order the skills appear in.
+
+- transition: "taste-skill" vs "ui-animation". Winner: "taste-skill".
+  - taste-skill, line 89: "* **4-7 (Fluid CSS):** Use `transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1)`. Use `animation-delay` cascades for load-ins. Focus strictly on `transform` and `opacity`. Use `will-change: transform` sparingly."
+  - ui-animation, line 47: "- Disable transitions during theme switches (`[data-theme-switching] * { transition: none !important }`)."
+```
+
+`uasl/atlas@eeafabd38463|uasl/grill-with-docs@99f1bafe73fe`
+
+```
+Resolved rule conflicts
+
+These skills were checked against each other before this task. Where they disagree, follow the winner named here, whatever order the skills appear in.
+
+- ADRs: "atlas" vs "grill-with-docs". Winner: "atlas".
+  - atlas, line 69: "- Create ADRs to document choices."
+  - grill-with-docs, line 86: "If any of the three is missing, skip the ADR. Use the format in [ADR-FORMAT.md](./ADR-FORMAT.md)."
+```
+
+`uasl/architecture-designer@9a54494f5c45|uasl/grill-with-docs@99f1bafe73fe`
+
+```
+Resolved rule conflicts
+
+These skills were checked against each other before this task. Where they disagree, follow the winner named here, whatever order the skills appear in.
+
+- ADRs: "architecture-designer" vs "grill-with-docs". Winner: "architecture-designer".
+  - architecture-designer, line 38: "4. **Document** — Write ADRs for all key decisions."
+  - architecture-designer, line 56: "- Document all significant decisions with ADRs"
+  - grill-with-docs, line 86: "If any of the three is missing, skip the ADR. Use the format in [ADR-FORMAT.md](./ADR-FORMAT.md)."
+```
+
+`uasl/creative-connections-engine@647006ec3a74|uasl/one-pager-prd@3613e5b1fc98`
+
+```
+Resolved rule conflicts
+
+These skills were checked against each other before this task. Where they disagree, follow the winner named here, whatever order the skills appear in.
+
+- bullet-points: "creative-connections-engine" vs "one-pager-prd". Winner: "creative-connections-engine".
+  - creative-connections-engine, line 158: "- Present ideas as narratives, not bullet points"
+  - one-pager-prd, line 248: "- Use bullets, not paragraphs (scannable)"
+```
+
+`uasl/image-poster@57a9b39c0f2f|uasl/magazine-poster@3d9539d9af9e`
+
+```
+Resolved rule conflicts
+
+These skills were checked against each other before this task. Where they disagree, follow the winner named here, whatever order the skills appear in.
+
+- artifact tag: "image-poster" vs "magazine-poster". Winner: "image-poster".
+  - image-poster, line 94: "with `gpt-image-2` at 1:1.*). Do **not** emit an `<artifact>` tag."
+  - magazine-poster, line 79: "Emit between `<artifact>` tags:"
+```
+
+`uasl/claude-native-web-artifacts-builder@d002a13988e7|uasl/develop-web-game@c6a60b3baced`
+
+```
+Resolved rule conflicts
+
+These skills were checked against each other before this task. Where they disagree, follow the winner named here, whatever order the skills appear in.
+
+- tests: "claude-native-web-artifacts-builder" vs "develop-web-game". Winner: "claude-native-web-artifacts-builder".
+  - claude-native-web-artifacts-builder, line 68: "Note: This is a completely optional step. Only perform if necessary or requested."
+  - develop-web-game, line 10: "Build games in small steps and validate every change. Treat each iteration as: implement → act → pause → observe → adjust."
+  - develop-web-game, line 59: "Test any new features added for the request and any areas your logic changes could affect. Identify issues, fix them, and re-run the tests to confirm they’re resolved."
+```
+
+`uasl/scout@97653445d7f1|uasl/systematic-debugging@6ba907b7267e`
+
+```
+Resolved rule conflicts
+
+These skills were checked against each other before this task. Where they disagree, follow the winner named here, whatever order the skills appear in.
+
+- fixes: "scout" vs "systematic-debugging". Winner: "scout".
+  - scout, line 64: "| `Never` | Write fixes. Modify production code. Dismiss issues as user error without evidence. Investigate multiple unrelated bugs in one pass. Share sensitive data. |"
+  - systematic-debugging, line 120: "   - Fix at source, not at symptom"
+  - systematic-debugging, line 181: "2. **Implement Single Fix**"
+```
+
+`uasl/attest@3259b6f024a0|uasl/tdd@ff86dad94075`
+
+```
+Resolved rule conflicts
+
+These skills were checked against each other before this task. Where they disagree, follow the winner named here, whatever order the skills appear in.
+
+- code: "attest" vs "tdd". Winner: "attest".
+  - attest, line 65: "- Never modify code directly; hand implementation to the appropriate agent."
+  - attest, line 92: "- Modify or write code."
+  - tdd, line 85: "- Only enough code to pass current test"
+  - tdd, line 107: "[ ] Code is minimal for this test"
+```
+
+`uasl/canon@9bbebfd09bb7|uasl/it-infrastructure-sysadmin-engine@b170286527c0`
+
+```
+Resolved rule conflicts
+
+These skills were checked against each other before this task. Where they disagree, follow the winner named here, whatever order the skills appear in.
+
+- fix implementation: "canon" vs "it-infrastructure-sysadmin-engine". Winner: "canon".
+  - canon, line 90: "- Implement fixes (delegate to Builder/Sentinel/Palette)."
+  - it-infrastructure-sysadmin-engine, line 82: "5. **Implement the Fix**: Apply the change, monitor for side effects"
+```
+
+`uasl/claude-native-web-artifacts-builder@d002a13988e7|uasl/tdd-workflow@6eadb0bf0ea8`
+
+```
+Resolved rule conflicts
+
+These skills were checked against each other before this task. Where they disagree, follow the winner named here, whatever order the skills appear in.
+
+- tests: "claude-native-web-artifacts-builder" vs "tdd-workflow". Winner: "claude-native-web-artifacts-builder".
+  - claude-native-web-artifacts-builder, line 68: "Note: This is a completely optional step. Only perform if necessary or requested."
+  - tdd-workflow, line 409: "**Remember**: Tests are not optional. They are the safety net that enables confident refactoring, rapid development, and production reliability."
+```
+
+`uasl/clean-code@f135cf4e9ff5|uasl/codenavi@109490043377`
+
+```
+Resolved rule conflicts
+
+These skills were checked against each other before this task. Where they disagree, follow the winner named here, whatever order the skills appear in.
+
+- naming-convention: "clean-code" vs "codenavi". Winner: "clean-code".
+  - clean-code, line 43: "- Avoid encodings, prefixes, and type information in names (no Hungarian notation)"
+  - codenavi, line 101: "- Match existing code style, even if you'd do it differently."
+  - codenavi, line 222: "9. You always match the project's existing code style."
+```
+
+`uasl/codenavi@109490043377|uasl/software-architecture@011a6d823631`
+
+```
+Resolved rule conflicts
+
+These skills were checked against each other before this task. Where they disagree, follow the winner named here, whatever order the skills appear in.
+
+- naming-convention: "codenavi" vs "software-architecture". Winner: "codenavi".
+  - codenavi, line 101: "- Match existing code style, even if you'd do it differently."
+  - codenavi, line 222: "9. You always match the project's existing code style."
+  - software-architecture, line 43: "  - **AVOID** generic names: `utils`, `helpers`, `common`, `shared`"
+```
+
+`uasl/find-bugs@c3ff7d64ff9f|uasl/systematic-debugging@6ba907b7267e`
+
+```
+Resolved rule conflicts
+
+These skills were checked against each other before this task. Where they disagree, follow the winner named here, whatever order the skills appear in.
+
+- changes: "find-bugs" vs "systematic-debugging". Winner: "find-bugs".
+  - find-bugs, line 75: "Do not make changes - just report findings. I'll decide what to address."
+  - systematic-debugging, line 155: "   - Make the SMALLEST possible change to test hypothesis"
+```
+
+`uasl/impeccable-frontend-design@deeb3fdb9086|uasl/ios-hig-design@81a44fe68e4e`
+
+```
+Resolved rule conflicts
+
+These skills were checked against each other before this task. Where they disagree, follow the winner named here, whatever order the skills appear in.
+
+- modals: "impeccable-frontend-design" vs "ios-hig-design". Winner: "impeccable-frontend-design".
+  - impeccable-frontend-design, line 91: "**DON'T**: Use modals unless there's truly no better alternative—modals are lazy"
+  - ios-hig-design, line 138: "- Modals for focused tasks; dismiss via swipe-down or explicit close button"
+```
+
+`uasl/kanban-board@2d1da6290ea3|uasl/taste-skill@57790089504e`
+
+```
+Resolved rule conflicts
+
+These skills were checked against each other before this task. Where they disagree, follow the winner named here, whatever order the skills appear in.
+
+- cards: "kanban-board" vs "taste-skill". Winner: "kanban-board".
+  - kanban-board, line 41: "   - 3–6 cards per column. Each card: tag chip, title, assignee avatar, point estimate, progress (if applicable)."
+  - taste-skill, line 54: "* **Execution:** Use cards ONLY when elevation communicates hierarchy. When a shadow is used, tint it to the background hue."
+```
+
+`uasl/meeting-notes@da1c35784ab9|uasl/wireframe-sketch@715426b3232f`
+
+```
+Resolved rule conflicts
+
+These skills were checked against each other before this task. Where they disagree, follow the winner named here, whatever order the skills appear in.
+
+- DESIGN.md: "meeting-notes" vs "wireframe-sketch". Winner: "meeting-notes".
+  - meeting-notes, line 33: "1. Read DESIGN.md."
+  - wireframe-sketch, line 42: "1. **Skip the DESIGN.md** if it pushes for finished UI. This skill explicitly"
+```
+
+`uasl/scout@97653445d7f1|uasl/solana-vulnerability-scanner@05e33b7d1d05`
+
+```
+Resolved rule conflicts
+
+These skills were checked against each other before this task. Where they disagree, follow the winner named here, whatever order the skills appear in.
+
+- fixes: "scout" vs "solana-vulnerability-scanner". Winner: "scout".
+  - scout, line 64: "| `Never` | Write fixes. Modify production code. Dismiss issues as user error without evidence. Investigate multiple unrelated bugs in one pass. Share sensitive data. |"
+  - solana-vulnerability-scanner, line 85: "4. **Provide fixes** for each identified issue"
+```
+
+`uasl/tdd@ff86dad94075|uasl/warden@420cd481af69`
+
+```
+Resolved rule conflicts
+
+These skills were checked against each other before this task. Where they disagree, follow the winner named here, whatever order the skills appear in.
+
+- code: "tdd" vs "warden". Winner: "tdd".
+  - tdd, line 85: "- Only enough code to pass current test"
+  - tdd, line 107: "[ ] Code is minimal for this test"
+  - warden, line 69: "- Never write or modify code; hand all fixes to Palette/Builder."
+  - warden, line 111: "- Write/modify code"
+```
+
+`uasl/causal-inference-root-cause@d857d3c52e7a|uasl/diagnose@a9ee88962b5f`
+
+```
+Resolved rule conflicts
+
+These skills were checked against each other before this task. Where they disagree, follow the winner named here, whatever order the skills appear in.
+
+- hypothesis generation: "causal-inference-root-cause" vs "diagnose". Winner: "causal-inference-root-cause".
+  - causal-inference-root-cause, line 102: "List proximate causes (immediate triggers/symptoms), identify potential root causes (underlying factors), consider confounders (third factors creating spurious associations), and challenge assumptions (what if initial theory wrong?). Techniques: 5 Whys (ask "why" repeatedly), Fishbone diagram (categorize causes), Timeline analysis (what changed before effect?), Differential diagnosis (what else explains symptoms?). For simple investigations → Use `resources/template.md`. For complex problems → Study `resources/methodology.md` for advanced techniques."
+  - diagnose, line 49: "Stop and say so explicitly. List what you tried. Ask the user for: (a) access to whatever environment reproduces it, (b) a captured artifact (HAR file, log dump, core dump, screen recording with timestamps), or (c) permission to add temporary production instrumentation. Do **not** proceed to hypothesise without a loop."
+```
+
+`uasl/stitch-skill@fb65eab9580f|uasl/web-prototype-taste-soft@7734ae078ad9`
+
+```
+Resolved rule conflicts
+
+These skills were checked against each other before this task. Where they disagree, follow the winner named here, whatever order the skills appear in.
+
+- feature rows: "stitch-skill" vs "web-prototype-taste-soft". Winner: "stitch-skill".
+  - stitch-skill, line 75: "- The generic "3 equal cards horizontally" feature row is BANNED — use 2-column Zig-Zag, asymmetric grid, or horizontal scroll"
+  - web-prototype-taste-soft, line 41: "- Feature row with **z-axis cascade** or split image module."
+```
+
+`uasl/codeql@f2e86220e2ca|uasl/collab-modes@cdc15bee33c0`
+
+```
+Resolved rule conflicts
+
+These skills were checked against each other before this task. Where they disagree, follow the winner named here, whatever order the skills appear in.
+
+- ask-before-acting: "codeql" vs "collab-modes". Winner: "codeql".
+  - codeql, line 199: "| User explicitly stated intent | Skip `AskUserQuestion`, act on their instructions directly |"
+  - collab-modes, line 18: "- Wait for approval before implementing"
+```
+
+`uasl/verification-loop@39d9be23cf50|uasl/web-design-builder@61ee1c248717`
+
+```
+Resolved rule conflicts
+
+These skills were checked against each other before this task. Where they disagree, follow the winner named here, whatever order the skills appear in.
+
+- verification: "verification-loop" vs "web-design-builder". Winner: "verification-loop".
+  - verification-loop, line 111: "For long sessions, run verification every 15 minutes or after major changes:"
+  - web-design-builder, line 58: "   - Continue with design generation but skip verification phase"
+```
 
