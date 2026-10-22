@@ -184,6 +184,20 @@ End-to-end sessions (§11 and the write-up's section 5; `session_costs` in `data
 
 **Claude Code plan equivalent, total: $314.85**: sessions run from this repo $52.95 (910 obedience runs, 171 discarded, the transcript session), end-to-end sessions $261.90. The agent sessions the write-up counts: 1,160 (910 obedience runs and 250 end-to-end; discarded runs and smoke tests not counted). The interactive Claude Code sessions that wrote the code and classified the outputs are not included.
 
+### Runtime latency
+
+Source: `uv run python scripts/bench_runtime.py` on index-2026-10-22 (Apple M4 Max), before (e857986) and after constraint pairs are bucketed by subject and `normalize_term` is cached in `resolve/relation.py`; `data/runtime/`. resolve_set sets: the top N search_skills results for each of 5 task sentences; median (min–max) over the 5. The fixture scan (`skillfetch scan tests/fixtures/skills --json`, with and without the index) and the resolutions of 28 real-index sets are byte-identical before and after. An earlier report gave 114 ms / 0.3–1.9 s / 18 s for 3 / 10 / 50 skills, 3.8 s server start and 9–77 ms search; those runs are not in this repo, so they are not compared here.
+
+| measure | before | after |
+|---|---|---|
+| server start (fresh process: import, load index, build server) | 991.0 ms | 828.0 ms |
+| search_skills, k=50 | 3.1 ms (1.2 ms–4.8 ms) | 2.9 ms (1.0 ms–4.6 ms) |
+| resolve_set, 3 skills (Session) | 2.3 ms (1.6 ms–9.7 ms) | 0.4 ms (0.3 ms–0.5 ms) |
+| resolve_set, 10 skills (Session) | 44.4 ms (23.8 ms–132.3 ms) | 1.3 ms (1.1 ms–2.3 ms) |
+| resolve_set, 20 skills (Session) | 154.0 ms (97.1 ms–364.1 ms) | 3.5 ms (3.0 ms–5.7 ms) |
+| resolve_set, 50 skills (before: Session; after: the resolver, since the session refuses >20) | 785.4 ms (531.3 ms–1.59 s) | 16.9 ms (15.6 ms–26.9 ms) |
+| peak RSS of the benchmark process | 385 MB | 384 MB |
+
 ## 8. Precedence header (experiment A)
 
 Source: `data/obedience/trials-precedence.jsonl`, `results-precedence.md`; `skillfetch obedience --index data/index --run data/obedience/tasks.json --precedence ab --precedence ba`. The 26 pairs and tasks of §6, the same harness (isolated `claude -p --safe-mode` sessions, sonnet, no tools, the neutral no-tools note) and the same classification (Claude Code, opus-5.5, against each task's 'follows A' / 'follows B'). `ab`: load_skills' precedence header at the top of the system prompt, then A, then B, in all 5 runs; `ba`: the header, then B, then A. The no-header winner of a pair is the skill followed in more of its §6 runs (a tie when equal). A run is controlled when the skill it followed is the one the header ranks first.

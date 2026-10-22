@@ -8,11 +8,18 @@ from __future__ import annotations
 from collections.abc import Iterable, Mapping
 from dataclasses import dataclass, field
 from enum import StrEnum
+from functools import lru_cache
 
 from skillfetch.resolve.models import Constraint, Skill
 from skillfetch.resolve.polarity import polarity_uncertain
-from skillfetch.resolve.terms import normalize_term
+from skillfetch.resolve.terms import normalize_term as _normalize_term
 from skillfetch.resolve.vocabulary import choice_of, lookup
+
+# resolve_set compares every constraint pair of every skill pair, and each comparison
+# normalizes the same few thousand subject / object strings. Cached here rather than in
+# terms.py: terms.py's source is part of the post-processing fingerprint recorded in the
+# index manifest, and caching does not change a result.
+normalize_term = lru_cache(maxsize=65536)(_normalize_term)
 
 __all__ = [
     "ConstraintPair",
@@ -282,10 +289,16 @@ def skill_relation(a: Skill, b: Skill, cap: str = DEFAULT_CAP) -> SkillRelation:
     (b adds no constraint that a lacks). Ranking: conflict > redundant > tension >
     needs_review > independent.
     """
+    # Only constraints with the same _keys (subject, or order edge) can relate: every
+    # other pair is row 1-2, 5 or 6 independent. Buckets keep b's order, so `pairs` comes
+    # out exactly as the full a x b loop would produce it.
+    by_key: dict[tuple, list[Constraint]] = {}
+    for cb in b.constraints:
+        by_key.setdefault(_keys(cb), []).append(cb)
     pairs = [
         ConstraintPair(ca, cb, rel)
         for ca in a.constraints
-        for cb in b.constraints
+        for cb in by_key.get(_keys(ca), ())
         if (rel := constraint_relation(ca, cb, cap)) != Relation.INDEPENDENT
     ]
     conflicts = [p for p in pairs if p.relation == Relation.CONFLICT]

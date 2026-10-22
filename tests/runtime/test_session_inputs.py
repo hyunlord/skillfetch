@@ -9,7 +9,7 @@ from skillfetch.index import profile as profile_mod
 from skillfetch.index.loader import Index
 from skillfetch.index.profile import profile_repo
 from skillfetch.ingest.extract_cache import ExtractCache
-from skillfetch.mcp.session import MAX_K, MAX_QUERY_CHARS, Session
+from skillfetch.mcp.session import MAX_AUTO_IDS, MAX_K, MAX_QUERY_CHARS, Session
 
 
 def _session(tmp_path):
@@ -85,3 +85,14 @@ def test_oversized_manifests_are_skipped(tmp_path, monkeypatch):
     out = profile_repo(tmp_path)
     assert out["skipped"] == ["package.json"]
     assert "react" not in out["frameworks"] and "go" in out["languages"]
+
+
+def test_auto_ids_are_capped(tmp_path):
+    root, s = _session(tmp_path)
+    squash = skill_id(root, "commit-squash")
+    out = s.resolve_set([squash] * (MAX_AUTO_IDS + 1))
+    assert out == {
+        "error": f"auto_ids: at most {MAX_AUTO_IDS} candidates per call (got {MAX_AUTO_IDS + 1}); "
+        "pick fewer from the search results"
+    }
+    assert s.resolve_set([squash] * MAX_AUTO_IDS)["included"] == [squash]

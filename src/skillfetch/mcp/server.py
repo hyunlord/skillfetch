@@ -62,7 +62,7 @@ def build_server(session: Session) -> MCPServer:
 
     @server.tool()
     def resolve_set(auto_ids: list[str], pinned_ids: list[str] | None = None) -> dict[str, Any]:
-        """Build a conflict-free set from candidate ids (in preference order) plus
+        """Build a conflict-free set from candidate ids (in preference order, at most 20) plus
         user-pinned ids (always kept; `path:/abs/dir` for a local skill, pinned only).
         Returns {set_id, included, excluded[{id, reason, conflicts_with, evidence}],
         warnings, precedence, suppressed_by_judge, notes, errors}; every exclusion and

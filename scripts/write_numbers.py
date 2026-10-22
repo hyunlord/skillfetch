@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import json
 import re
+import statistics
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -414,6 +415,71 @@ def costs(out: list[str]) -> None:
         "sessions that wrote the code and classified the outputs are not included.",
         "",
     ]
+
+
+def runtime(out: list[str]) -> None:
+    """§7, runtime latency: scripts/bench_runtime.py before and after the resolve_set
+    bucketing (data/runtime/bench-{before,after}.json)."""
+    paths = [DATA / "runtime" / f"bench-{tag}.json" for tag in ("before", "after")]
+    if not all(p.is_file() for p in paths):
+        return
+    before, after = (json.loads(p.read_text()) for p in paths)
+
+    def fmt(seconds: float) -> str:
+        return f"{seconds * 1000:.1f} ms" if seconds < 1 else f"{seconds:.2f} s"
+
+    def span(xs: list[float]) -> str:
+        lo, mid, hi = min(xs), statistics.median(xs), max(xs)
+        return f"{fmt(mid)} ({fmt(lo)}–{fmt(hi)})"
+
+    rows = [
+        (
+            "server start (fresh process: import, load index, build server)",
+            fmt(before["server_start_s"]),
+            fmt(after["server_start_s"]),
+        ),
+        (
+            "search_skills, k=50",
+            span([x / 1000 for x in before["search_ms"]]),
+            span([x / 1000 for x in after["search_ms"]]),
+        ),
+    ]
+    for size in before["resolve_s"]:
+        how = (
+            "Session"
+            if int(size) <= 20
+            else "before: Session; after: the resolver, since the session refuses >20"
+        )
+        rows.append(
+            (
+                f"resolve_set, {size} skills ({how})",
+                span(before["resolve_s"][size]),
+                span(after["resolve_s"][size]),
+            )
+        )
+    rows.append(
+        (
+            "peak RSS of the benchmark process",
+            f"{before['max_rss_bytes'] / 1e6:.0f} MB",
+            f"{after['max_rss_bytes'] / 1e6:.0f} MB",
+        )
+    )
+    out += [
+        "### Runtime latency",
+        "",
+        "Source: `uv run python scripts/bench_runtime.py` on index-2026-10-22 (Apple M4 Max), "
+        f"before ({before['commit']}) and after constraint pairs are bucketed by subject and "
+        "`normalize_term` is cached in `resolve/relation.py`; `data/runtime/`. resolve_set sets: "
+        "the top N search_skills results for each of 5 task sentences; median (min–max) over "
+        "the 5. The fixture scan (`skillfetch scan tests/fixtures/skills --json`, with and "
+        "without the index) and the resolutions of 28 real-index sets are byte-identical "
+        "before and after. An earlier report gave 114 ms / 0.3–1.9 s / 18 s for 3 / 10 / 50 "
+        "skills, 3.8 s server start and 9–77 ms search; those runs are not in this repo, so "
+        "they are not compared here.",
+        "",
+    ]
+    out += table(("measure", "before", "after"), rows)
+    out += [""]
 
 
 def precedence(out: list[str]) -> None:
@@ -836,6 +902,7 @@ def main() -> None:
         judge,
         obedience,
         costs,
+        runtime,
         precedence,
         resolved,
         three_conditions,

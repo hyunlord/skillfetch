@@ -29,6 +29,7 @@ PATH_PREFIX = "path:"
 DEFAULT_MAX_TOKENS = 8000  # load_skills budget for the concatenated bodies
 MAX_QUERY_CHARS = 2000  # longer queries are cut (the result says truncated)
 MAX_K = 200
+MAX_AUTO_IDS = 20  # resolve_set candidates per call (pinned ids are not limited)
 
 
 class Profile(BaseModel):
@@ -163,6 +164,11 @@ class Session:
         return self.index.skill(skill_id)
 
     def resolve_set(self, auto_ids: list[str], pinned_ids: list[str] | None = None) -> dict:
+        if len(auto_ids) > MAX_AUTO_IDS:
+            return {
+                "error": f"auto_ids: at most {MAX_AUTO_IDS} candidates per call "
+                f"(got {len(auto_ids)}); pick fewer from the search results"
+            }
         notes: list[str] = []
         errors: list[dict] = []
         pinned = [s for i in pinned_ids or [] if (s := self._skill(i, notes, errors))]
