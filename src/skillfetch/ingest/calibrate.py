@@ -282,11 +282,20 @@ def compare_pairs(
 
 
 def calibrate(
-    fixtures_dir: Path, records: Mapping[str, ExtractRecord], cap: str = relation.DEFAULT_CAP
+    fixtures_dir: Path,
+    records: Mapping[str, ExtractRecord],
+    cap: str = relation.DEFAULT_CAP,
+    cached_only: bool = False,
 ) -> Calibration:
-    """fixtures_dir holds skills/ and expected.yaml (the layout of tests/fixtures/)."""
+    """fixtures_dir holds skills/ and expected.yaml (the layout of tests/fixtures/).
+    `cached_only`: calibrate on the fixture skills that have a record, and only the pairs
+    among them (the others are listed as missing), instead of scoring them as unextracted."""
     labelled = load_labelled(fixtures_dir / "skills")
     labels = load_labels(fixtures_dir / "expected.yaml", cap)
+    missing = sorted(s for s in labelled if s not in records)
+    if cached_only:
+        labelled = {sid: s for sid, s in labelled.items() if sid in records}
+        labels = {p: v for p, v in labels.items() if p <= labelled.keys()}
     extracted = fan_out_map(
         {
             sid: Skill(id=sid, constraints=records[sid].constraints() if sid in records else [])
@@ -299,7 +308,7 @@ def calibrate(
         fields=compare_fields(labelled, extracted),
         pairs=compare_pairs(labels, extracted, cap),
         failed=sorted(s for s in labelled if s in records and records[s].status != "ok"),
-        missing=sorted(s for s in labelled if s not in records),
+        missing=missing,
         labelled=labelled,
         extracted=extracted,
     )

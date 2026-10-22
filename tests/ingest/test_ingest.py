@@ -13,7 +13,7 @@ from skillfetch.ingest.extract import EXTRACT_VERSION, Extractor
 from skillfetch.ingest.extract_cache import ExtractCache
 from skillfetch.ingest.ingest import extract_dir, render_cost_log
 
-N = 41
+N = 52
 SONNET = "claude-sonnet-5"
 KEY = "anthropic/claude-sonnet-5"
 
@@ -155,7 +155,7 @@ def test_calibrate_from_cache_without_api(tmp_path, capsys):
     code = main(args + ["--cache-dir", str(cache_dir)])
     out = capsys.readouterr().out
     assert code == 0
-    assert "informative pairs: 1.000 (34/34)" in out and "PASS" in out
+    assert "informative pairs: 1.000 (44/44)" in out and "PASS" in out
 
 
 def test_calibrate_refuses_to_guess_missing_extractions(tmp_path, capsys):
@@ -173,7 +173,7 @@ def test_with_api_uses_the_real_client_factory(tmp_path, capsys, monkeypatch):
     assert main(args) == 0
     assert len(client.requests) == N
     out = capsys.readouterr().out
-    assert "API calls: 41" in out and "PASS" in out
+    assert "API calls: 52" in out and "PASS" in out
 
 
 def test_a_false_conflict_fails_the_hard_gate(tmp_path, capsys, monkeypatch):
@@ -253,3 +253,20 @@ def test_make_client_checks_credentials(monkeypatch):
 
     monkeypatch.setattr(anthropic, "Anthropic", Configured)
     assert isinstance(backends_mod.make_anthropic_client(), Configured)
+
+
+def test_calibrate_cached_only_scores_the_cached_subset(tmp_path, capsys):
+    import shutil as sh
+
+    cache_dir = tmp_path / "cache"
+    oracle = OracleClient()
+    keep = ["commit-squash", "atomic-commits", "emoji-headers"]
+    sub = tmp_path / "some" / "skills"
+    for name in keep:
+        sh.copytree(SKILLS_DIR / name, sub / name)
+    extract_dir(sub, ExtractCache(cache_dir), sonnet(oracle))  # cache three of them
+    args = ["ingest", str(FIXTURES_DIR), "--calibrate", "--cached-only"]
+    code = main([*args, "--cache-dir", str(cache_dir), "--model", KEY])
+    out = capsys.readouterr().out
+    assert code == 0 and "left out of this calibration" in out
+    assert "informative pairs: 1.000 (1/1)" in out  # commit-squash ⟷ atomic-commits

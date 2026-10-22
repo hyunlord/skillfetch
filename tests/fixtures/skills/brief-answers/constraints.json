@@ -1,0 +1,34 @@
+{
+  "note": "constraints as extracted from anthropics-skills/academy-guide (index-2026-10-22), quoted lines verbatim: a cap fixture keeps the extractor's reading, since the cap exists to stop that reading from becoming a conflict",
+  "constraints": [
+    {
+      "subject": "answer-first",
+      "directive": "require",
+      "section_heading": "Rules",
+      "scope": {
+        "artifact": "any",
+        "phase": "any",
+        "condition": null
+      },
+      "evidence": {
+        "line_no": 10,
+        "text": "**Answer the question first.** Always give the user a direct, helpful"
+      }
+    },
+    {
+      "subject": "response-length",
+      "directive": "require",
+      "object": "short",
+      "scope": {
+        "artifact": "response",
+        "phase": "any",
+        "condition": null
+      },
+      "section_heading": "Rules",
+      "evidence": {
+        "line_no": 13,
+        "text": "4. **Keep it brief and natural.** After your answer, add a short line like:"
+      }
+    }
+  ]
+}

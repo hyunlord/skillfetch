@@ -28,8 +28,12 @@ def load_fixture_skill(skill_dir: Path) -> Skill:
 
 
 @cache
-def load_corpus() -> dict[str, Skill]:
-    return {d.name: load_fixture_skill(d) for d in fixture_skill_dirs()}
+def load_corpus(cap: str = "all") -> dict[str, Skill]:
+    """The fixture skills with their fan-out flags: fan-out is a property of the corpus
+    (constraints.md §3 row 14a), so the contract is checked with it, as scan does."""
+    from skillfetch.resolve.relation import fan_out_map
+
+    return fan_out_map({d.name: load_fixture_skill(d) for d in fixture_skill_dirs()}, cap)
 
 
 def load_expected() -> dict[frozenset[str], str]:

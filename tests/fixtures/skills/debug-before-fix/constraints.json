@@ -1,0 +1,19 @@
+{
+  "note": "constraints as extracted from uasl/systematic-debugging (index-2026-10-22), quoted lines verbatim: a cap fixture keeps the extractor's reading, since the cap exists to stop that reading from becoming a conflict",
+  "constraints": [
+    {
+      "subject": "error messages",
+      "directive": "forbid",
+      "section_heading": "BEFORE attempting ANY fix",
+      "scope": {
+        "artifact": "any",
+        "phase": "any",
+        "condition": null
+      },
+      "evidence": {
+        "line_no": 10,
+        "text": "Don't skip past errors or warnings"
+      }
+    }
+  ]
+}

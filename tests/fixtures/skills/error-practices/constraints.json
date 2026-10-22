@@ -1,0 +1,20 @@
+{
+  "note": "constraints as extracted from uasl/error-handling-patterns (index-2026-10-22), quoted lines verbatim: a cap fixture keeps the extractor's reading, since the cap exists to stop that reading from becoming a conflict",
+  "constraints": [
+    {
+      "subject": "error-handling",
+      "directive": "forbid",
+      "object_raw": "swallowing errors",
+      "section_heading": "Best Practices",
+      "scope": {
+        "artifact": "any",
+        "phase": "any",
+        "condition": null
+      },
+      "evidence": {
+        "line_no": 10,
+        "text": "**Don't Swallow Errors**: Log or re-throw, don't silently ignore"
+      }
+    }
+  ]
+}

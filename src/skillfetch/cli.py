@@ -162,6 +162,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         "requests for Claude Code; openrouter/anthropic/openai backends call an API (costs money)",
     )
     ingest.add_argument(
+        "--cached-only",
+        action="store_true",
+        help="with --calibrate: calibrate on the fixture skills in the extract cache and the "
+        "pairs among them (no API); the others are listed",
+    )
+    ingest.add_argument(
         "--calibrate",
         action="store_true",
         help="compare extraction with the hand labels; exit 1 if any extracted conflict is "
@@ -651,17 +657,20 @@ def _ingest(args: argparse.Namespace) -> int:
     if not args.calibrate:
         return 0
     missing = [o.skill_id for o in outcomes if o.record is None]
-    if missing:
+    if missing and not args.cached_only:
         print(
             f"skillfetch: cannot calibrate: {len(missing)} fixture skills are not in the "
-            "extract cache; rerun with --with-api",
+            "extract cache; rerun with --with-api, or --cached-only to calibrate the others",
             file=sys.stderr,
         )
         return 2
+    if missing:
+        print(f"\nnot in the cache, left out of this calibration: {', '.join(missing)}")
     cal = calibrate(
         args.dir,
-        {o.skill_id: o.record for o in outcomes},
+        {o.skill_id: o.record for o in outcomes if o.record is not None},
         args.conflict_cap or relation.DEFAULT_CAP,
+        cached_only=args.cached_only,
     )
     print()
     print(render_calibration(cal))

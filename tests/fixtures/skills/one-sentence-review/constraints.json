@@ -1,0 +1,36 @@
+{
+  "note": "constraints as extracted from uasl/claude-native-code-review (index-2026-10-22), quoted lines verbatim: a cap fixture keeps the extractor's reading, since the cap exists to stop that reading from becoming a conflict",
+  "constraints": [
+    {
+      "subject": "fixes",
+      "directive": "require",
+      "object": "root cause",
+      "section_heading": "Rules",
+      "scope": {
+        "artifact": "any",
+        "phase": "any",
+        "condition": null
+      },
+      "evidence": {
+        "line_no": 10,
+        "text": "Recommend root cause fixes, not band-aids."
+      }
+    },
+    {
+      "subject": "response-length",
+      "directive": "require",
+      "object": "short",
+      "object_raw": "if the code is solid",
+      "scope": {
+        "artifact": "response",
+        "phase": "any",
+        "condition": null
+      },
+      "section_heading": "Rules",
+      "evidence": {
+        "line_no": 11,
+        "text": "If the code is solid, say so in one sentence and stop."
+      }
+    }
+  ]
+}

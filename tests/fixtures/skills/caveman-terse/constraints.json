@@ -1,0 +1,32 @@
+{
+  "note": "constraints as extracted from uasl/caveman (index-2026-10-22), quoted lines verbatim: a cap fixture keeps the extractor's reading, since the cap exists to stop that reading from becoming a conflict",
+  "constraints": [
+    {
+      "subject": "response-length",
+      "directive": "require",
+      "object": "short",
+      "scope": {
+        "artifact": "response",
+        "phase": "any",
+        "condition": null
+      },
+      "evidence": {
+        "line_no": 8,
+        "text": "Respond terse like smart caveman. All technical substance stay. Only fluff die."
+      }
+    },
+    {
+      "subject": "technical terms",
+      "directive": "require",
+      "scope": {
+        "artifact": "any",
+        "phase": "any",
+        "condition": null
+      },
+      "evidence": {
+        "line_no": 10,
+        "text": "Technical terms stay exact. Code blocks unchanged. Errors quoted exact."
+      }
+    }
+  ]
+}
