@@ -111,7 +111,11 @@ def find_release(repo: str, tag: str | None, get: Getter, headers: dict[str, str
                 if checksum:
                     return Release(rel["tag_name"], url, checksum, name)
     where = f"release {tag}" if tag else f"any release of {repo}"
-    raise SyncError(f"no {ASSET_PREFIX}*{ASSET_SUFFIX} with a .sha256 on {where}")
+    # unauthenticated release listings are cached for a few minutes after a release
+    raise SyncError(
+        f"no {ASSET_PREFIX}*{ASSET_SUFFIX} with a .sha256 on {where} (a release made in the "
+        "last few minutes may not be listed yet)"
+    )
 
 
 def _members(tar: tarfile.TarFile) -> list[tarfile.TarInfo]:
