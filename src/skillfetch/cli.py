@@ -241,6 +241,13 @@ def main(argv: Sequence[str] | None = None) -> int:
     obey.add_argument("--trials", type=int, default=5)
     obey.add_argument("--agent-model", default="sonnet", help="Claude Code model for the runs")
     obey.add_argument("--jobs", type=int, default=6)
+    obey.add_argument(
+        "--precedence",
+        choices=("none", "ab", "ba"),
+        action="append",
+        help="with --run: none (default; no rule, alternating order) or ab / ba (the "
+        "load_skills precedence header on top, skills in that order); repeatable",
+    )
 
     for p in (scan, ingest, serve):
         p.add_argument(
@@ -506,33 +513,49 @@ def _obedience_run(args: argparse.Namespace) -> int:
     agent = obedience.ClaudeSessionAgent(args.agent_model)
     judge = backends.make_backend(args.model, creds_file=args.creds_file)
 
-    def one(task):
-        a, b = task.pair.split("|")
-        return obedience.run_trials(task, (skill(a), skill(b)), agent, judge, args.trials)
+    conditions = args.precedence or ["none"]
+    if "none" in conditions and len(conditions) > 1:
+        print("skillfetch: run --precedence none on its own", file=sys.stderr)
+        return 2
 
-    with ThreadPoolExecutor(max_workers=max(1, args.jobs)) as pool:
-        results = list(pool.map(one, tasks))
+    def run(cond: str) -> list[list]:
+        def one(task):
+            a, b = task.pair.split("|")
+            return obedience.run_trials(
+                task, (skill(a), skill(b)), agent, judge, args.trials, precedence=cond
+            )
+
+        with ThreadPoolExecutor(max_workers=max(1, args.jobs)) as pool:
+            return list(pool.map(one, tasks))
+
+    by_cond = {cond: run(cond) for cond in conditions}
     out_dir = args.run.parent
     rows = [
         {
             "pair": t.pair,
+            "precedence": cond,
             "run": tr.run,
             "order": tr.order,
             "followed": tr.followed,
             "reason": tr.reason,
             "output": tr.output,
         }
+        for cond, results in by_cond.items()
         for t, trials in zip(tasks, results, strict=True)
         for tr in trials
     ]
-    (out_dir / "trials.jsonl").write_text(
+    stem = "" if conditions == ["none"] else "-precedence"
+    (out_dir / f"trials{stem}.jsonl").write_text(
         "".join(_json.dumps(r, ensure_ascii=False) + "\n" for r in rows)
     )
     pending = sum(r["followed"] is None for r in rows)
-    report = obedience.render_results(tasks, results)
-    (out_dir / "results.md").write_text(report + "\n")
+    if conditions == ["none"]:
+        report = obedience.render_results(tasks, by_cond["none"])
+    else:  # compared with the no-header runs (cached)
+        report = obedience.render_precedence(tasks, by_cond, run("none"))
+    (out_dir / f"results{stem}.md").write_text(report + "\n")
     print(report.split("\n## ", 1)[0])
-    print(f"{len(rows)} runs · {pending} classifications pending · {out_dir / 'results.md'}")
+    print(f"{len(rows)} runs · {pending} classifications pending · {out_dir}/results{stem}.md")
     return 0 if not pending else 3
 
 
