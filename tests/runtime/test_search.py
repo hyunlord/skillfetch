@@ -5,7 +5,7 @@ import json
 from indexkit import make_index, skill_id
 
 from skillfetch.index.loader import Index
-from skillfetch.index.search import Searcher
+from skillfetch.index.search import DEFAULT_K, ONE_LINE_CHARS, Searcher, one_line
 
 
 def _searcher(tmp_path, **kw):
@@ -14,11 +14,32 @@ def _searcher(tmp_path, **kw):
 
 def test_results_are_ranked_and_explained(tmp_path):
     s = _searcher(tmp_path)
-    [top, *_] = s.search("add type annotations to a python module")
+    [top, *_] = s.search("add type annotations to a python module", verbose=True)
     assert top["id"].startswith("fx/typed-python@")
     assert set(top) == {"id", "title", "summary", "tier", "tags", "match_reasons", "token_estimate"}
     assert any("'python' in" in r for r in top["match_reasons"])
     json.dumps(top)  # plain JSON
+
+
+def test_results_are_compact_by_default(tmp_path):
+    s = _searcher(tmp_path)
+    [top, *_] = s.search("add type annotations to a python module")
+    assert set(top) == {"id", "title", "summary", "tier", "token_estimate"}
+    full = s.search("add type annotations to a python module", verbose=True)[0]
+    assert top["id"] == full["id"]
+    assert top["summary"] == one_line(full["summary"])
+    assert DEFAULT_K == 50
+
+
+def test_one_line_keeps_the_first_sentence_within_the_limit():
+    assert one_line("Squash commits. Then push.") == "Squash commits."
+    assert one_line("  two\n lines  of text ") == "two lines of text"
+    assert one_line("") == ""
+    long = "word " * 60 + "end."
+    cut = one_line(long)
+    assert len(cut) <= ONE_LINE_CHARS and cut.endswith("…") and " wor…" not in cut
+    abbreviated = "v1.2 adds tables, e.g. pivots."
+    assert one_line(abbreviated + " Then it stops.") == abbreviated
 
 
 def test_k_limits_the_results(tmp_path):
@@ -31,14 +52,14 @@ def test_profile_is_a_boost_never_part_of_the_query(tmp_path):
     s = _searcher(tmp_path)
     # the profile alone does not create hits
     assert s.search("xyzzy", profile={"languages": ["python"]}) == []
-    boosted = s.search("install dependencies headers", profile={"tags": ["docs"]})
+    boosted = s.search("install dependencies headers", profile={"tags": ["docs"]}, verbose=True)
     assert boosted[0]["id"].startswith("fx/emoji-headers@")
     assert any("profile tag 'docs'" in r for r in boosted[0]["match_reasons"])
 
 
 def test_skills_for_other_languages_are_demoted_not_dropped(tmp_path):
     s = _searcher(tmp_path)
-    hits = s.search("python javascript", profile={"languages": ["rust"]})
+    hits = s.search("python javascript", profile={"languages": ["rust"]}, verbose=True)
     assert {h["id"].split("@")[0] for h in hits} >= {"fx/typed-python", "fx/pnpm-only"}
     for h in hits:
         if h["id"].split("@")[0] in ("fx/typed-python", "fx/pnpm-only"):
@@ -66,6 +87,6 @@ def test_korean_queries_match_through_cjk_bigrams(tmp_path, monkeypatch):
     s = _searcher(tmp_path)
     assert tokenize("리팩토링") == ["리팩", "팩토", "토링"]
     for query in ("React 컴포넌트 리팩토링", "컴포넌트 리팩토링"):  # the second has no Latin word
-        [top, *_] = s.search(query)
+        [top, *_] = s.search(query, verbose=True)
         assert top["id"].startswith("fx/pnpm-only@"), query
         assert any("'리팩'" in r or "'컴포'" in r for r in top["match_reasons"]), top

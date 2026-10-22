@@ -88,7 +88,7 @@ Planned for v0.3, not built: `prepare_set`, `report_outcome`.
 | tool | input | output |
 |---|---|---|
 | `profile_repo(path)` | repo root | `{languages, frameworks, package_managers, tags[]}` from manifest files only (package.json, pyproject.toml, go.mod, Cargo.toml, framework config files). Never scans source. Cached per session. |
-| `search_skills(query, profile?, k=10, tiers=["A","B"])` | task description written by the host model + optional profile | ranked candidates: `{id, title, summary, tier, tags, match_reasons[], token_estimate}` |
+| `search_skills(query, profile?, k=50, tiers=["A","B"], verbose=false)` | task description written by the host model + optional profile | ranked candidates, compact: `{id, title, summary (first sentence, ≤160 chars), tier, token_estimate}` (50 fit in ~4k tokens); `verbose` adds the full summary, `tags` and `match_reasons[]` |
 | `resolve_set(auto_ids[], pinned_ids[])` | candidate ids chosen by the host model, plus user-pinned ids | `{set_id, included[], excluded[{id, reason, conflicts_with}], warnings[], precedence[]}` |
 | `load_skills(set_id, max_tokens=8000)` | | bodies concatenated with a precedence header, for injection into the current context. Each body is fetched from the skill's pinned source (unless cached), verified against the index hashes, and cached under `~/.skillfetch/cache/<content_hash>/`; a mismatch or fetch failure refuses that skill with a structured error and the others still load. Over `max_tokens` the lowest-precedence skills are dropped (listed in `errors`). |
 | `prepare_set(set_id)` (v0.3) | | `{prompt_block, materialized_paths{}}` for the isolation runner; the folder is fetched and verified like `load_skills` and materialized under `~/.skillfetch/cache/<content_hash>/` |
@@ -115,7 +115,7 @@ The only skill a user installs. Short (< 60 lines). It tells the host model:
 
 1. Before non-trivial work, restate the task in one sentence including stack and
    target files, then call `search_skills` with that sentence.
-2. Pick 1–3 candidates by reading the summaries, weighing `token_estimate` against
+2. Pick 1–3 candidates by reading all 50 summaries, weighing `token_estimate` against
    `load_skills`' budget. If the user named a skill, find its id with
    `search_skills` (the result whose title matches) and pass it as pinned.
 3. Call `resolve_set`, then `load_skills` (default). From v0.3: `prepare_set` +

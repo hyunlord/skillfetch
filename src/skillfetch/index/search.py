@@ -3,10 +3,15 @@
 BM25 over title + description + keywords (×2) + synthetic_queries + summary of canonical
 skills. The repo profile never enters the query: it boosts (×1.3 per matching tag) or
 softly demotes (×0.5 when the skill names languages the repo does not use).
+
+Results are compact by default (id, title, one-line summary, tier, token_estimate) so that
+50 of them fit in about 4k tokens; `verbose=True` adds the full summary, tags and
+match_reasons.
 """
 
 from __future__ import annotations
 
+import re
 from collections.abc import Iterable
 
 from skillfetch.index.bm25 import BM25
@@ -16,12 +21,25 @@ FIELD_WEIGHTS = {"keywords": 2}
 TAG_BOOST = 1.3
 LANGUAGE_MISMATCH = 0.5
 DEFAULT_TIERS = ("A", "B")
+DEFAULT_K = 50
+ONE_LINE_CHARS = 160
+# a sentence ends at . ! ? followed by space and a capital ("e.g. tables" does not end one)
+_SENTENCE_END = re.compile(r"(?<=[.!?])\s+(?=[A-Z\"'(\[`])")
 
 
 def _text(value) -> str:
     if isinstance(value, list):
         return " ".join(map(str, value))
     return str(value or "")
+
+
+def one_line(summary: str, limit: int = ONE_LINE_CHARS) -> str:
+    """The summary's first sentence, cut at a word boundary to at most `limit` characters."""
+    text = " ".join(str(summary or "").split())
+    first = _SENTENCE_END.split(text, maxsplit=1)[0]
+    if len(first) <= limit:
+        return first
+    return first[: limit - 1].rsplit(" ", 1)[0].rstrip(",;:") + "…"
 
 
 def _skill_tags(record: dict) -> dict[str, set[str]]:
@@ -56,8 +74,9 @@ class Searcher:
         self,
         query: str,
         profile: dict | None = None,
-        k: int = 10,
+        k: int = DEFAULT_K,
         tiers: Iterable[str] = DEFAULT_TIERS,
+        verbose: bool = False,
     ) -> list[dict]:
         tiers = set(tiers)
         wanted = _profile_tags(profile or {})
@@ -85,15 +104,31 @@ class Searcher:
                 )
             ranked.append((score, record, reasons))
         ranked.sort(key=lambda x: (-x[0], x[1]["id"]))
-        return [
-            {
-                "id": record["id"],
-                "title": record.get("title") or record.get("name"),
-                "summary": record.get("summary", ""),
-                "tier": record.get("tier"),
-                "tags": record.get("tags") or {},
-                "match_reasons": reasons,
-                "token_estimate": record.get("token_estimate", 0),
-            }
-            for _, record, reasons in ranked[: max(0, k)]
-        ]
+        out = []
+        for _, record, reasons in ranked[: max(0, k)]:
+            title = record.get("title") or record.get("name")
+            summary = record.get("summary", "")
+            tokens = record.get("token_estimate", 0)
+            if verbose:
+                out.append(
+                    {
+                        "id": record["id"],
+                        "title": title,
+                        "summary": summary,
+                        "tier": record.get("tier"),
+                        "tags": record.get("tags") or {},
+                        "match_reasons": reasons,
+                        "token_estimate": tokens,
+                    }
+                )
+            else:
+                out.append(
+                    {
+                        "id": record["id"],
+                        "title": title,
+                        "summary": one_line(summary),
+                        "tier": record.get("tier"),
+                        "token_estimate": tokens,
+                    }
+                )
+        return out
