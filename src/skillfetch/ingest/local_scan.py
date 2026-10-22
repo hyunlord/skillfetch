@@ -192,7 +192,7 @@ def _lookup(lookup: Lookup, record: SkillScan, skill_dir: Path) -> list[Constrai
             return _checked(record, skill_dir, "index", constraints)
         record.constraints_note = lookup.index_note(record.index_id)
     if lookup.cache is not None and lookup.model:
-        cached = lookup.cache.get(record.content_hash, lookup.model)
+        cached = lookup.cache.get(record.content_hash, lookup.model, skill_dir)
         if cached is not None and cached.status != "ok":
             record.constraints_note = (
                 record.constraints_note or f"cached extraction: {cached.status}"

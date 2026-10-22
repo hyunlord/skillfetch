@@ -642,12 +642,12 @@ class Extractor:
             attempt = Attempt(stop_reason=reply.stop_reason, text=out, usage=reply.usage)
             record.attempts.append(attempt)
             if reply.stop_reason == "refusal":
-                attempt.error = record.error = f"refused ({reply.refusal or 'no category'})"
-                return record
+                attempt.error = f"refused ({reply.refusal or 'no category'})"
+                break
             try:
-                result, split, too_long = _validate(out, last_attempt=attempt_no == 2)
+                _validate(out, last_attempt=attempt_no == 2)
             except ValueError as exc:
-                attempt.error = record.error = str(exc)
+                attempt.error = str(exc)
                 if attempt_no == 1:
                     messages += [
                         {"role": "assistant", "content": out or "(no output)"},
@@ -658,8 +658,9 @@ class Extractor:
                         },
                     ]
                 continue
-            return _finish(record, result, split, too_long, text)
-        return record
+            break
+        # the same function a cached answer goes through, so fresh and cached agree
+        return postprocess(record, text)
 
 
 def _finish(
@@ -677,21 +678,71 @@ def _finish(
     return record
 
 
-def revalidate(record: ExtractRecord, skill_dir: Path) -> ExtractRecord | None:
-    """A cached extract_failed record whose last answer the current validation accepts
-    (as a last attempt: over-long subjects and vocabulary violations are dropped per
-    constraint), processed without another API call. None if it still fails."""
-    if record.status != "extract_failed" or not record.attempts:
-        return None
-    last = record.attempts[-1]
-    if last.stop_reason == "refusal" or not last.text:
-        return None
-    try:
-        result, split, dropped = _validate(last.text, last_attempt=True)
-    except ValueError:
-        return None
-    text = read_text(skill_dir / SKILL_FILE)
-    out = _finish(record.model_copy(deep=True), result, split, dropped, text)
-    note = f"revalidated from the cached answer of attempt {len(record.attempts)}"
-    out.adjusted = [note, *out.adjusted]
+RAW_FIELDS = ("extract_version", "model", "content_hash", "skill_id", "status", "error", "attempts")
+
+
+def raw(record: ExtractRecord) -> ExtractRecord:
+    """What the cache keeps: the exchange with the model, none of its post-processing."""
+    return ExtractRecord.model_validate(record.model_dump(include=set(RAW_FIELDS)))
+
+
+def postprocess(record: ExtractRecord, text: str) -> ExtractRecord:
+    """The processed record for a raw one, against the skill's SKILL.md `text`.
+
+    The accepted answer is the first attempt that validates (the last attempt as a last
+    attempt: over-long subjects and vocabulary violations are dropped per constraint); then
+    the evidence check, vocabulary fixes and the per-line merge. Deterministic, and run on
+    every cache read, so a change to these rules reaches cached answers at the next build
+    (POSTPROCESS_FINGERPRINT pins them)."""
+    out = raw(record)
+    if out.status == "too_large":
+        return out
+    out.status, out.error = "extract_failed", None
+    for i, attempt in enumerate(out.attempts):
+        if attempt.stop_reason == "refusal":
+            out.error = attempt.error or "refused"
+            return out
+        try:
+            result, split, too_long = _validate(
+                attempt.text, last_attempt=i == len(out.attempts) - 1
+            )
+        except ValueError as exc:
+            out.error = str(exc)
+            continue
+        return _finish(out, result, split, too_long, text)
+    out.error = out.error or "no answer"
     return out
+
+
+def postprocess_fingerprint() -> str:
+    """sha256 over the source of every post-processing rule: validation (clause split,
+    subject cap, object vocabulary), evidence check, polarity, implied artifacts,
+    condition clauses, sections and the per-line merge. A change means cached answers
+    process differently: rebuild the index."""
+    import inspect
+
+    from skillfetch.ingest import sections
+    from skillfetch.resolve import terms, vocabulary
+
+    parts = [
+        inspect.getsource(obj)
+        for obj in (
+            postprocess,
+            _validate,
+            _finish,
+            ExtractResult,
+            split_subject_clause,
+            verify_evidence,
+            apply_vocabulary,
+            _normalized_subject,
+            _vocabulary_violations,
+            merge_per_line,
+        )
+    ]
+    from skillfetch.resolve import models
+
+    parts += [inspect.getsource(models.Constraint), inspect.getsource(models.Scope)]
+    parts += [_REMOVAL.pattern, json.dumps(_FLIP, sort_keys=True)]
+    parts += [str(MAX_SUBJECT_WORDS), _CLAUSE_MARKER.pattern]
+    parts += [inspect.getsource(m) for m in (sections, terms, vocabulary)]
+    return hashlib.sha256("\0".join(parts).encode()).hexdigest()

@@ -16,6 +16,7 @@ from skillfetch.ingest.extract import (
     Usage,
     cost_usd,
     numbered,
+    postprocess_fingerprint,
     prompt_fingerprint,
     response_schema,
     system_prompt,
@@ -38,6 +39,19 @@ def test_prompt_and_schema_are_pinned_to_the_extract_version():
     assert prompt_fingerprint() == PROMPT_SHA256, (
         "the extraction prompt or schema changed: bump EXTRACT_VERSION "
         f"(now {EXTRACT_VERSION}) and set PROMPT_SHA256 = {prompt_fingerprint()!r}"
+    )
+
+
+# Post-processing (validation, evidence, polarity, implied artifacts, object vocabulary,
+# condition clauses, sections, per-line merge) runs on every cached answer at build time.
+POSTPROCESS_SHA256 = "c9f6cae7a178fb7f9d9bb4fb3bf313135f5f3c43ae059dd0d493658dd8248aa5"
+
+
+def test_post_processing_rules_are_pinned():
+    assert postprocess_fingerprint() == POSTPROCESS_SHA256, (
+        "a post-processing rule changed: cached answers will process differently, so "
+        "rebuild the index and record what moved; then set "
+        f"POSTPROCESS_SHA256 = {postprocess_fingerprint()!r}"
     )
 
 
@@ -607,8 +621,8 @@ def test_a_vocabulary_violation_after_the_retry_drops_that_constraint_only():
     assert all(c.object is None for c in record.constraints() if c.subject == "summary-at-end")
 
 
-def test_revalidate_recovers_a_cached_failure_without_the_api():
-    from skillfetch.ingest.extract import revalidate
+def test_postprocess_takes_the_last_attempt_as_a_last_attempt():
+    from skillfetch.ingest.extract import postprocess
 
     failed = ExtractRecord(
         extract_version=EXTRACT_VERSION,
@@ -625,7 +639,9 @@ def test_revalidate_recovers_a_cached_failure_without_the_api():
             }
         ],
     )
-    fixed = revalidate(failed, SKILLS_DIR / "concise-responses")
-    assert fixed is not None and fixed.status == "ok" and fixed.error is None
-    assert fixed.adjusted[0] == "revalidated from the cached answer of attempt 1"
-    assert revalidate(fixed, SKILLS_DIR / "concise-responses") is None  # only failures
+    text = (SKILLS_DIR / "concise-responses" / "SKILL.md").read_text()
+    fixed = postprocess(failed, text)
+    # one attempt, so it is the last: the disallowed object is dropped, the skill kept
+    assert fixed.status == "ok" and fixed.error is None
+    assert any("after the retry" in d.reason for d in fixed.dropped)
+    assert postprocess(fixed, text) == fixed  # deterministic, idempotent

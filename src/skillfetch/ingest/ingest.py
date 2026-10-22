@@ -54,7 +54,7 @@ def extract_dir(
             outcome.source, outcome.reason = "skipped", "lint_failed"
         elif not scan_skill(skill_dir).ok:
             outcome.source, outcome.reason = "skipped", "scan_failed"
-        elif (cached := cache.get(outcome.content_hash, model)) is not None:
+        elif (cached := cache.get(outcome.content_hash, model, skill_dir)) is not None:
             outcome.source, outcome.record = "cache", cached
         elif extractor is not None:
             todo.append((outcome, skill_dir))

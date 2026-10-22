@@ -33,9 +33,40 @@ def test_cache_round_trip_keyed_by_version_model_and_hash(tmp_path):
     cache.put(record)
     path = tmp_path / f"v{EXTRACT_VERSION}" / "anthropic" / SONNET / f"{'ab' * 32}.json"
     assert path.is_file()
-    assert cache.get("ab" * 32, KEY) == record
-    assert cache.get("ab" * 32, "anthropic/claude-sonnet-4-6") is None
-    assert cache.get("cd" * 32, KEY) is None
+    skill = SKILLS_DIR / "commit-squash"
+    assert cache.get("ab" * 32, KEY, skill) == record
+    assert cache.get("ab" * 32, "anthropic/claude-sonnet-4-6", skill) is None
+    assert cache.get("cd" * 32, KEY, skill) is None
+
+
+def test_the_cache_keeps_the_raw_answer_and_post_processes_on_read(tmp_path, monkeypatch):
+    import json
+
+    cache = ExtractCache(tmp_path)
+    skill = SKILLS_DIR / "commit-squash"
+    record = sonnet(FakeClient(recorded("commit-squash.ok.json"))).extract(skill, "c", "ab" * 32)
+    cache.put(record)
+    stored = json.loads(cache.path("ab" * 32, KEY).read_text())
+    assert set(stored) == set(extract_mod.RAW_FIELDS)
+    assert stored["attempts"][0]["text"]  # the model's answer, verbatim
+    # a post-processing rule changes: the next read applies it, with no new request
+    monkeypatch.setattr(extract_mod, "merge_per_line", lambda cs: ([], []))
+    assert cache.get("ab" * 32, KEY, skill).result.constraints == []
+
+
+def test_a_cache_file_under_the_wrong_path_is_a_miss(tmp_path):
+    cache = ExtractCache(tmp_path)
+    skill = SKILLS_DIR / "commit-squash"
+    record = sonnet(FakeClient(recorded("commit-squash.ok.json"))).extract(skill, "c", "ab" * 32)
+    cache.put(record)
+    moved = cache.path("cd" * 32, KEY)
+    moved.parent.mkdir(parents=True, exist_ok=True)
+    moved.write_text(cache.path("ab" * 32, KEY).read_text())
+    assert cache.get("cd" * 32, KEY, skill) is None  # content_hash inside says ab…
+    other = cache.path("ab" * 32, "anthropic/other")
+    other.parent.mkdir(parents=True, exist_ok=True)
+    other.write_text(cache.path("ab" * 32, KEY).read_text())
+    assert cache.get("ab" * 32, "anthropic/other", skill) is None  # model inside differs
 
 
 def test_corrupt_cache_entry_is_a_miss(tmp_path):
@@ -43,7 +74,7 @@ def test_corrupt_cache_entry_is_a_miss(tmp_path):
     path = cache.path("ab" * 32, KEY)
     path.parent.mkdir(parents=True)
     path.write_text("{not json")
-    assert cache.get("ab" * 32, KEY) is None
+    assert cache.get("ab" * 32, KEY, SKILLS_DIR / "commit-squash") is None
 
 
 # --- pipeline --------------------------------------------------------------------------------

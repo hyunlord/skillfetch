@@ -126,7 +126,7 @@ def measure_holdout(
     todo = []
     for sid, d in dirs.items():
         digest = holdout.skills[sid].content_hash
-        if (hit := cache.get(digest, model)) is not None:
+        if (hit := cache.get(digest, model, d)) is not None:
             records[sid] = hit
         else:
             todo.append((d, sid, digest))

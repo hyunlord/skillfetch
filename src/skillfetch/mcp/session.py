@@ -92,7 +92,7 @@ class Session:
             rules = ", ".join(sorted({h.rule_id for h in scan.failures}))
             return None, f"{skill_id}: fails the injection scan ({rules})"
         digest = content_hash(path)
-        record = self.extract_cache.get(digest, self.model)
+        record = self.extract_cache.get(digest, self.model, path)
         constraints = record.constraints() if record is not None else []
         note = None
         if record is None or record.status != "ok":

@@ -26,7 +26,7 @@ from skillfetch.ingest.extract import (
     EXTRACT_VERSION,
     Extractor,
     ExtractRecord,
-    revalidate,
+    postprocess_fingerprint,
 )
 from skillfetch.ingest.extract_cache import ExtractCache
 from skillfetch.ingest.ingest import run_extractions
@@ -549,12 +549,10 @@ def build_index(
     _apply_upstream_licenses(skills, github, license_cache)
 
     ok = [b for b in skills if b.record.status == "ok"]
-    cached = {b.record.content_hash: cache.get(b.record.content_hash, model) for b in ok}
-    for b in ok:  # failures the current validation accepts are recovered without the API
-        hit = cached[b.record.content_hash]
-        if hit is not None and (fixed := revalidate(hit, b.skill_dir)) is not None:
-            cache.put(fixed)
-            cached[b.record.content_hash] = fixed
+    # cached answers are post-processed now, with the current rules (extract_cache.py)
+    cached = {
+        b.record.content_hash: cache.get(b.record.content_hash, model, b.skill_dir) for b in ok
+    }
     todo = [
         (b.skill_dir, b.record.id, b.record.content_hash)
         for b in ok
@@ -592,6 +590,7 @@ def build_index(
         "built_at": datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "extract_version": EXTRACT_VERSION,
         "extract_model": model,
+        "postprocess": postprocess_fingerprint()[:16],
         "scan_rules_version": load_rules().version,
         "conflict_cap": relation_mod.OBJECTLESS_CAP,
         "sources": [
