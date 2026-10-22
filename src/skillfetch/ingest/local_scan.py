@@ -1,16 +1,26 @@
 """`skillfetch scan <dir>`: lint + injection scan + dedup-by-hash + pairwise constraint
-analysis over a local skills directory (index-format.md §5)."""
+analysis over a local skills directory (index-format.md §5).
+
+Constraints come from, in order: a `constraints.json` next to SKILL.md, the index (a skill
+with the same content hash, e.g. an installed copy of a public skill), the extract cache,
+and, with an extractor, a fresh extraction. Every evidence line is checked against the
+local SKILL.md whatever the source."""
 
 from __future__ import annotations
 
 import json
 from collections import defaultdict
+from dataclasses import dataclass, field
 from itertools import combinations
 from pathlib import Path
 from typing import Literal
 
 from pydantic import BaseModel, ValidationError
 
+from skillfetch.index.loader import Index
+from skillfetch.ingest.extract import Extractor
+from skillfetch.ingest.extract_cache import ExtractCache
+from skillfetch.ingest.ingest import run_extractions
 from skillfetch.ingest.injection import ScanResult, load_rules, scan_skill
 from skillfetch.ingest.lint import LintResult, lint_skill
 from skillfetch.ingest.skillfile import (
@@ -37,8 +47,10 @@ class SkillScan(BaseModel):
     status: Literal["ok", "lint_failed", "scan_failed"]
     lint: LintResult
     scan: ScanResult
-    constraints_source: Literal["sidecar", "none", "invalid"]
+    constraints_source: Literal["sidecar", "index", "cache", "extracted", "none", "invalid"]
     constraints_error: str | None = None
+    constraints_note: str | None = None  # why a skill has no constraints, when known
+    index_id: str | None = None  # the indexed skill with the same content
     constraint_count: int = 0
 
 
@@ -49,16 +61,30 @@ class DuplicateGroup(BaseModel):
 
 class ScanReport(BaseModel):
     root: str
+    index: str | None = None  # "<path> (<n> skills, extraction <model>)" when one was read
     scan_rules_version: int
     skills: list[SkillScan]
     duplicates: list[DuplicateGroup]
     findings: list[Finding]
     analyzed: list[str]
     skipped: list[str]
+    # tension / needs_review pairs of two indexed skills that the judge stored as
+    # independent (constraints.md §8): not shown, as in resolve_set
+    suppressed_by_judge: int = 0
 
 
 def _skill_id(root: Path, skill_dir: Path) -> str:
     return skill_dir.name if skill_dir == root else skill_dir.relative_to(root).as_posix()
+
+
+def check_evidence(skill_dir: Path, constraints: list[Constraint]) -> None:
+    """Raises ValueError unless every evidence line appears verbatim on its line of
+    SKILL.md: a quote that cannot be found is not evidence."""
+    lines = read_text(skill_dir / SKILL_FILE).split("\n")
+    for c in constraints:
+        ln = c.evidence.line_no
+        if ln > len(lines) or c.evidence.text not in lines[ln - 1]:
+            raise ValueError(f"evidence {c.evidence.text!r} not found on line {ln} of SKILL.md")
 
 
 def load_sidecar(skill_dir: Path, skill_id: str) -> list[Constraint]:
@@ -74,12 +100,41 @@ def load_sidecar(skill_dir: Path, skill_id: str) -> list[Constraint]:
         ]
     except (json.JSONDecodeError, KeyError, TypeError, ValidationError) as exc:
         raise ValueError(f"{CONSTRAINTS_FILE} is not valid: {exc}") from exc
-    lines = read_text(skill_dir / SKILL_FILE).split("\n")
-    for c in constraints:
-        ln = c.evidence.line_no
-        if ln > len(lines) or c.evidence.text not in lines[ln - 1]:
-            raise ValueError(f"evidence {c.evidence.text!r} not found on line {ln} of SKILL.md")
+    check_evidence(skill_dir, constraints)
     return constraints
+
+
+@dataclass
+class Lookup:
+    """Constraints for skills without a constraints.json: the index by content hash, then
+    the extract cache under `model`, then `extractor` (skills that pass lint and the
+    injection scan only). All optional."""
+
+    index: Index | None = None
+    cache: ExtractCache | None = None
+    model: str | None = None
+    extractor: Extractor | None = None
+    jobs: int = 4
+    _by_hash: dict[str, str] = field(default_factory=dict, init=False)
+
+    def __post_init__(self):
+        if self.index is not None:
+            # prefer a record that has constraints (a canonical copy) over one that has none
+            for rid, r in sorted(
+                self.index.records.items(), key=lambda kv: not self.index.constraints.get(kv[0])
+            ):
+                self._by_hash.setdefault(r["content_hash"], rid)
+
+    def from_index(self, digest: str, skill_id: str) -> tuple[str, list[Constraint]] | None:
+        rid = self._by_hash.get(digest)
+        if rid is None:
+            return None
+        return rid, _renumbered(skill_id, self.index.constraints.get(rid, []))
+
+    def index_note(self, rid: str) -> str:
+        r = self.index.records[rid]
+        reason = r.get("not_extracted_reason") or r.get("status")
+        return f"in the index as {rid}, not extracted: {reason}"
 
 
 def _scan_one(root: Path, skill_dir: Path) -> tuple[SkillScan, Skill | None]:
@@ -108,8 +163,73 @@ def _scan_one(root: Path, skill_dir: Path) -> tuple[SkillScan, Skill | None]:
         constraints_error=error,
         constraint_count=len(constraints or []),
     )
-    analyzable = constraints is not None and status != "lint_failed"
-    return record, Skill(id=skill_id, constraints=constraints) if analyzable else None
+    return record, constraints
+
+
+def _renumbered(skill_id: str, constraints: list[Constraint]) -> list[Constraint]:
+    return [c.model_copy(update={"id": f"{skill_id}#c{i}"}) for i, c in enumerate(constraints, 1)]
+
+
+def _checked(
+    record: SkillScan, skill_dir: Path, source: str, constraints: list[Constraint]
+) -> list[Constraint] | None:
+    """The looked-up constraints if their evidence is on the local SKILL.md lines."""
+    try:
+        check_evidence(skill_dir, constraints)
+    except ValueError as exc:
+        record.constraints_source, record.constraints_error = "invalid", str(exc)
+        return None
+    record.constraints_source, record.constraint_count = source, len(constraints)
+    return constraints
+
+
+def _lookup(lookup: Lookup, record: SkillScan, skill_dir: Path) -> list[Constraint] | None:
+    """Index, then cache. Sets the record's source and note; None if neither has it."""
+    hit = lookup.from_index(record.content_hash, record.id)
+    if hit is not None:
+        record.index_id, constraints = hit
+        if constraints:
+            return _checked(record, skill_dir, "index", constraints)
+        record.constraints_note = lookup.index_note(record.index_id)
+    if lookup.cache is not None and lookup.model:
+        cached = lookup.cache.get(record.content_hash, lookup.model)
+        if cached is not None and cached.status != "ok":
+            record.constraints_note = (
+                record.constraints_note or f"cached extraction: {cached.status}"
+            )
+        elif cached is not None:
+            constraints = _renumbered(record.id, cached.result.constraints)
+            return _checked(record, skill_dir, "cache", constraints)
+    return None
+
+
+def _extract(
+    lookup: Lookup, todo: list[tuple[SkillScan, Path]], found: dict[str, list[Constraint]]
+) -> None:
+    """Extract the skills no lookup found (lint and injection scan passed), once each."""
+    errors: dict[str, str] = {}
+    fresh = run_extractions(
+        [(d, r.id, r.content_hash) for r, d in todo],
+        lookup.cache or ExtractCache(),
+        lookup.extractor,
+        lookup.jobs,
+        errors,
+    )
+    for record, skill_dir in todo:
+        got = fresh.get(record.content_hash)
+        if got is None:
+            error = errors.get(record.content_hash, "no result")
+            record.constraints_note = (
+                "queued for Claude Code; rerun once answered"
+                if error.startswith("PendingAnswer")
+                else f"extraction failed: {error}"
+            )
+        elif got.status != "ok":
+            record.constraints_note = f"extraction: {got.status}"
+        else:
+            constraints = _renumbered(record.id, got.result.constraints)
+            if (checked := _checked(record, skill_dir, "extracted", constraints)) is not None:
+                found[record.id] = checked
 
 
 def pair_finding(a: Skill, b: Skill) -> Finding | None:
@@ -125,14 +245,55 @@ def pair_finding(a: Skill, b: Skill) -> Finding | None:
     return None
 
 
-def scan_dir(root: Path) -> ScanReport:
+def _judged(
+    findings: list[Finding], records: list[SkillScan], lookup: Lookup | None
+) -> tuple[list[Finding], int]:
+    """Drop tension / needs_review findings between two skills taken from the index whose
+    pair the judge stored as independent; return the rest and the number dropped."""
+    if lookup is None or lookup.index is None or not lookup.index.pairs:
+        return findings, 0
+    verdicts = lookup.index.verdicts()
+    indexed = {r.id: r.index_id for r in records if r.constraints_source == "index"}
+    kept = [
+        f
+        for f in findings
+        if f.kind not in ("tension", "needs_review")
+        or f.a not in indexed
+        or f.b not in indexed
+        or verdicts.get(frozenset((indexed[f.a], indexed[f.b]))) != "independent"
+    ]
+    return kept, len(findings) - len(kept)
+
+
+def scan_dir(root: Path, lookup: Lookup | None = None) -> ScanReport:
     records: list[SkillScan] = []
-    analyzable: list[Skill] = []
+    found: dict[str, list[Constraint]] = {}
+    todo: list[tuple[SkillScan, Path]] = []
     for skill_dir in discover_skills(root):
-        record, skill = _scan_one(root, skill_dir)
+        record, constraints = _scan_one(root, skill_dir)
         records.append(record)
-        if skill is not None:
-            analyzable.append(skill)
+        if constraints is None and lookup is not None and record.constraints_source == "none":
+            constraints = _lookup(lookup, record, skill_dir)
+            unresolved = constraints is None and record.constraints_source == "none"
+            if unresolved and record.status == "scan_failed" and not record.constraints_note:
+                record.constraints_note = "fails the injection scan, so it is never extracted"
+            if unresolved and lookup.extractor is not None and record.status == "ok":
+                todo.append((record, skill_dir))
+        if constraints is not None and record.status != "lint_failed":
+            found[record.id] = constraints
+    if todo:
+        _extract(lookup, todo, found)
+
+    analyzable = [Skill(id=r.id, constraints=found[r.id]) for r in records if r.id in found]
+    # fan-out flags the corpus set on index constraints stay set (constraints.md §3 row
+    # 14a): a handful of local skills cannot show that a rule fights half the corpus
+    corpus_hubs = {
+        c.id
+        for r in records
+        if r.constraints_source == "index"
+        for c in found.get(r.id, [])
+        if c.fan_out
+    }
 
     by_hash: dict[str, list[str]] = defaultdict(list)
     for r in records:
@@ -142,22 +303,42 @@ def scan_dir(root: Path) -> ScanReport:
     ]
     same_content = {frozenset(p) for g in duplicates for p in combinations(g.ids, 2)}
 
-    analyzable = mark_fan_out(analyzable)
+    analyzable = [
+        s.model_copy(
+            update={
+                "constraints": [
+                    c.model_copy(update={"fan_out": c.fan_out or c.id in corpus_hubs})
+                    for c in s.constraints
+                ]
+            }
+        )
+        for s in mark_fan_out(analyzable)
+    ]
     findings = [
         f
         for i, j in candidate_pairs(analyzable)
         if frozenset((analyzable[i].id, analyzable[j].id)) not in same_content
         and (f := pair_finding(analyzable[i], analyzable[j])) is not None
     ]
+    findings, suppressed = _judged(findings, records, lookup)
     findings.sort(key=lambda f: (_KIND_ORDER[f.kind], f.a, f.b))
     analyzed = {s.id for s in analyzable}
+    index = None
+    if lookup is not None and lookup.index is not None:
+        idx = lookup.index
+        index = (
+            f"{idx.root} ({len(idx.records)} skills, extraction "
+            f"{idx.manifest.get('extract_model', '?')})"
+        )
     return ScanReport(
         root=str(root),
+        index=index,
         scan_rules_version=load_rules().version,
         skills=records,
         duplicates=duplicates,
         findings=findings,
         analyzed=sorted(analyzed),
+        suppressed_by_judge=suppressed,
         skipped=sorted(r.id for r in records if r.status != "lint_failed" and r.id not in analyzed),
     )
 
@@ -179,6 +360,22 @@ def _plural(n: int, word: str) -> str:
     return f"{n} {word}" if n == 1 else f"{n} {word}s"
 
 
+def _sources(report: ScanReport) -> str:
+    names = {
+        "sidecar": CONSTRAINTS_FILE,
+        "index": "index",
+        "cache": "extract cache",
+        "extracted": "extracted now",
+    }
+    counts = defaultdict(int)
+    analyzed = set(report.analyzed)
+    for s in report.skills:
+        if s.id in analyzed:
+            counts[s.constraints_source] += 1
+    parts = [f"{names[k]} {n}" for k, n in counts.items() if k in names]
+    return f" ({', '.join(parts)})" if parts else ""
+
+
 def render_report(report: ScanReport) -> str:
     skills = report.skills
     # Per stage, not per status: a skill can fail both (its status is lint_failed).
@@ -192,9 +389,12 @@ def render_report(report: ScanReport) -> str:
         f"{len(lint_failed)} failed · injection scan: {len(skills) - len(scan_failed)} ok, "
         f"{len(scan_failed)} failed, {len(with_warnings)} with warnings · "
         f"scripts: {len(with_scripts)}",
-        f"constraints: {len(report.analyzed)} analyzed from {CONSTRAINTS_FILE}, "
-        f"{len(report.skipped)} skipped",
+        f"constraints: {len(report.analyzed)} analyzed"
+        + _sources(report)
+        + f", {len(report.skipped)} skipped",
     ]
+    if report.index is not None:
+        out.append(f"index: {report.index}")
     blocks: list[str] = []
 
     for s in skills:
@@ -217,9 +417,12 @@ def render_report(report: ScanReport) -> str:
         blocks.append("\n".join(lines))
     for s in skills:
         if s.constraints_source == "invalid":
-            blocks.append(
-                f"INVALID_CONSTRAINTS  {s.id}\n  {s.id}/{CONSTRAINTS_FILE}: {s.constraints_error}"
+            where = (
+                CONSTRAINTS_FILE
+                if (Path(s.path) / CONSTRAINTS_FILE).is_file()
+                else (s.index_id or s.constraints_source)
             )
+            blocks.append(f"INVALID_CONSTRAINTS  {s.id}\n  {where}: {s.constraints_error}")
     for g in report.duplicates:
         first, *rest = g.ids
         for other in rest:
@@ -228,10 +431,29 @@ def render_report(report: ScanReport) -> str:
             )
     blocks += [render_finding(f) for f in report.findings]
     if report.skipped:
+        by_id = {s.id: s for s in skills}
+        lines = [f"constraint analysis skipped for {_plural(len(report.skipped), 'skill')}:"]
+        unknown = False
+        for sid in report.skipped:
+            note = by_id[sid].constraints_note or by_id[sid].constraints_error
+            unknown |= note is None
+            lines.append(
+                f"  {sid}  ({note or f'no {CONSTRAINTS_FILE}, not in the index or the cache'})"
+            )
+        if unknown:
+            get_index = (
+                "get the public index with `skillfetch sync`; " if report.index is None else ""
+            )
+            lines.append(
+                f"  {get_index}extract the others with `--with-api --model anthropic/<model>` "
+                "(calls the API)"
+            )
+        blocks.append("\n".join(lines))
+
+    if report.suppressed_by_judge:
         blocks.append(
-            f"constraint analysis skipped for {_plural(len(report.skipped), 'skill')} without a "
-            f"valid {CONSTRAINTS_FILE} (API extraction is not implemented yet): "
-            + ", ".join(report.skipped)
+            f"{_plural(report.suppressed_by_judge, 'tension / needs_review pair')} not shown: "
+            "the index's judge verdict for the pair is `independent`"
         )
 
     counts = {k: sum(f.kind == k for f in report.findings) for k in _KIND_ORDER}

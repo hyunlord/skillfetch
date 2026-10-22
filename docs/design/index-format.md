@@ -409,21 +409,36 @@ latest, verifies hashes, swaps `~/.skillfetch/index/` atomically.
 
 `skillfetch scan <dir>` runs stages 1.3–1.6 on a local directory and then
 `resolve_set` over **all** pairs in it (N is small locally). Output is a
-human-readable report plus `--json`. Constraint extraction needs the API; without
-a key, scan still runs lint + scan + dedup-by-hash and prints
-"constraint analysis skipped (no ANTHROPIC_API_KEY)".
+human-readable report plus `--json`. Constraints come from the index first (an
+installed copy of a public skill has the same content hash as its index record),
+so no model is needed for skills the index covers; only the rest need extraction.
 
 As built (`ingest/local_scan.py`, `cli.py`):
 
 - Skills are folders containing `SKILL.md`, found recursively (hidden folders
   and `node_modules/` skipped; folders inside a skill belong to it). The id is
   the folder path relative to `<dir>`.
-- Constraints come from a `constraints.json` sidecar next to `SKILL.md` (the
-  schema of constraints.md §1; this is also the fixture format). Every
-  evidence quote must appear on its line of `SKILL.md`, or the sidecar is
-  reported as `INVALID_CONSTRAINTS` and the skill is skipped. Sidecars are a
-  local-scan input only; corpus ingest never trusts them. Until `--with-api`
-  extraction exists, skills without a sidecar are listed as skipped.
+- Constraints come from, in order:
+  1. a `constraints.json` sidecar next to `SKILL.md` (the schema of
+     constraints.md §1; this is also the fixture format). Sidecars are a
+     local-scan input only; corpus ingest never trusts them;
+  2. the index (`--index`, default `~/.skillfetch/index` from `skillfetch
+     sync`; skipped if absent, refused if it fails its manifest check): the
+     record with the same `content_hash`. Constraints keep the corpus's
+     fan-out flags (§3 row 14a), which a few local skills could not show;
+  3. the extract cache under `--model` (default: the index's
+     `extract_model`);
+  4. with `--with-api`, a fresh extraction with `--model` (cached; skills
+     that fail lint or the injection scan are never sent).
+  Whatever the source, every evidence quote must appear on its line of the
+  local `SKILL.md`, or the skill is reported as `INVALID_CONSTRAINTS` and
+  skipped. Skipped skills are listed with the reason when one is known (in
+  the index but not extracted, cached extraction failed, fails the injection
+  scan, queued for Claude Code).
+- A tension / needs_review finding between two skills whose constraints came
+  from the index is not shown when the index's judge verdict for that pair is
+  `independent` (constraints.md §8, as in `resolve_set`); the report counts
+  them (`suppressed_by_judge`). Conflicts are never hidden.
 - Skills that fail lint are not analyzed. Skills that fail the injection scan
   are still analyzed, so the user sees their conflicts too.
 - Identical `content_hash` → `DUPLICATE`; those pairs are not re-reported as

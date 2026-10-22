@@ -7,6 +7,7 @@ import sys
 from collections.abc import Sequence
 from pathlib import Path
 
+from skillfetch.index.loader import DEFAULT_INDEX_DIR, Index, IndexLoadError
 from skillfetch.ingest import backends, credentials, extract
 from skillfetch.ingest import judge as judge_mod
 from skillfetch.ingest.build import build_index, render_summary, write_pairs
@@ -15,7 +16,7 @@ from skillfetch.ingest.calibrate import calibrate, render_calibration
 from skillfetch.ingest.extract_cache import DEFAULT_CACHE_DIR, ExtractCache
 from skillfetch.ingest.holdout import load_holdout, measure_holdout, render_holdout
 from skillfetch.ingest.ingest import extract_dir, render_cost_log
-from skillfetch.ingest.local_scan import fail_counts, render_report, scan_dir
+from skillfetch.ingest.local_scan import Lookup, fail_counts, render_report, scan_dir
 from skillfetch.ingest.snapshot import DEFAULT_WORK_DIR, SnapshotError
 from skillfetch.ingest.sources import load_sources
 from skillfetch.ingest.upstream_licenses import GhCli
@@ -52,12 +53,34 @@ def main(argv: Sequence[str] | None = None) -> int:
         help="exit 1 if the scan finds any of these (repeatable or comma-separated): "
         "conflict findings, injection-scan failures, lint failures. Warnings never fail.",
     )
+    scan.add_argument(
+        "--index",
+        type=Path,
+        default=DEFAULT_INDEX_DIR,
+        help="index to take constraints from for skills with the same content "
+        "(default: %(default)s, from `skillfetch sync`; skipped if absent)",
+    )
+    scan.add_argument("--cache-dir", type=Path, default=DEFAULT_CACHE_DIR)
+    scan.add_argument(
+        "--with-api",
+        action="store_true",
+        help="extract skills found in neither the index nor the cache with --model "
+        "(anthropic/openai/openrouter backends call an API and cost money)",
+    )
+    scan.add_argument(
+        "--model",
+        help="extraction key for the cache lookup and --with-api (default: the index's "
+        f"extraction model, else {extract.DEFAULT_MODEL})",
+    )
+    scan.add_argument("--base-url", help="OpenAI-compatible server for openai/<model>")
+    scan.add_argument("--creds-file", type=Path, default=credentials.DEFAULT_CREDS_FILE)
+    scan.add_argument("--jobs", type=int, default=4, help="parallel extraction requests")
 
     serve = sub.add_parser("serve", help="run the MCP server over stdio")
     serve.add_argument(
         "--index",
         type=Path,
-        default=Path("~/.skillfetch/index").expanduser(),
+        default=DEFAULT_INDEX_DIR,
         help="index directory (default: %(default)s)",
     )
 
@@ -196,7 +219,17 @@ def main(argv: Sequence[str] | None = None) -> int:
         if not args.dir.is_dir():
             print(f"skillfetch: not a directory: {args.dir}", file=sys.stderr)
             return 2
-        report = scan_dir(args.dir)
+        try:
+            report = scan_dir(args.dir, _scan_lookup(args))
+        except IndexLoadError as exc:
+            print(f"skillfetch: {exc}", file=sys.stderr)
+            return 2
+        except ImportError:
+            print("skillfetch: --with-api needs: pip install 'skillfetch[ingest]'", file=sys.stderr)
+            return 2
+        except (extract.MissingCredentials, ValueError) as exc:
+            print(f"skillfetch: {exc}", file=sys.stderr)
+            return 2
         text = report.model_dump_json(indent=2) + "\n" if args.json else render_report(report)
         sys.stdout.write(text)
         counts = fail_counts(report)
@@ -216,8 +249,21 @@ def main(argv: Sequence[str] | None = None) -> int:
     return 2  # unreachable: argparse rejects unknown commands
 
 
+def _scan_lookup(args: argparse.Namespace) -> Lookup:
+    """Index (if there is one), extract cache, and with --with-api an extractor."""
+    index = Index.load(args.index) if (args.index / "manifest.json").is_file() else None
+    model = args.model or (index and index.manifest.get("extract_model")) or extract.DEFAULT_MODEL
+    extractor = None
+    if args.with_api:
+        backend = backends.make_backend(
+            args.model or extract.DEFAULT_MODEL, base_url=args.base_url, creds_file=args.creds_file
+        )
+        extractor = extract.Extractor(backend)
+        model = extractor.model
+    return Lookup(index, ExtractCache(args.cache_dir), model, extractor, args.jobs)
+
+
 def _serve(args: argparse.Namespace) -> int:
-    from skillfetch.index.loader import IndexLoadError
     from skillfetch.mcp.server import serve
 
     try:
