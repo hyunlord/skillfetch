@@ -12,8 +12,8 @@ server. For each task, the agent:
    curated, pre-indexed corpus of SKILL.md files,
 2. picks candidate skills, then asks `resolve_set` to drop the ones that
    contradict or duplicate each other (and always keep the ones the user pinned),
-3. loads the resulting set — into the main context (default) or into a fresh
-   subagent (isolation mode) — and does the work,
+3. loads the resulting set into the main context and does the work (isolation
+   mode, a fresh subagent per task: not built, not planned for v0.3),
 4. moves on. The next task searches again. Nothing accumulates in
    `~/.claude/skills`.
 
@@ -70,7 +70,7 @@ skillfetch/
     cli.py                      `skillfetch scan|ingest|judge|obedience|sync|serve`
   assets/
     router-skill/SKILL.md       the one always-on skill the user installs
-    runner-agent.md             the one subagent definition for isolation mode
+    runner-agent.md             the subagent definition for isolation mode (not built, not planned for v0.3)
   tests/
     fixtures/skills/            small hand-written SKILL.md corpus with known conflicts
   data/                         gitignored; local mirror lives in ~/.skillfetch/
@@ -83,7 +83,7 @@ hand-rolled BM25), `anthropic` (ingest only, optional extra), `pydantic`.
 ## MCP tool surface
 
 Built (v0.2): `profile_repo`, `search_skills`, `resolve_set`, `load_skills`.
-Planned for v0.3, not built: `prepare_set`, `report_outcome`.
+Planned for v0.3, not built: `report_outcome`. `prepare_set`: not built, not planned for v0.3.
 
 | tool | input | output |
 |---|---|---|
@@ -91,7 +91,7 @@ Planned for v0.3, not built: `prepare_set`, `report_outcome`.
 | `search_skills(query, profile?, k=50, tiers=["A","B"], verbose=false)` | task description written by the host model + optional profile | ranked candidates, compact: `{id, title, summary (first sentence, ≤160 chars), tier, token_estimate}` (50 fit in ~4k tokens); `verbose` adds the full summary, `tags` and `match_reasons[]` |
 | `resolve_set(auto_ids[], pinned_ids[])` | candidate ids chosen by the host model, plus user-pinned ids | `{set_id, included[], excluded[{id, reason, conflicts_with}], warnings[], precedence[]}` |
 | `load_skills(set_id, max_tokens=8000)` | | bodies concatenated in precedence order, with no precedence header (it did not change which skill the agent follows; numbers.md §8), for injection into the current context. Each body is fetched from the skill's pinned source (unless cached), verified against the index hashes, and cached under `~/.skillfetch/cache/<content_hash>/`; a mismatch or fetch failure refuses that skill with a structured error and the others still load. Over `max_tokens` the lowest-precedence skills are dropped (listed in `errors`). |
-| `prepare_set(set_id)` (v0.3) | | `{prompt_block, materialized_paths{}}` for the isolation runner; the folder is fetched and verified like `load_skills` and materialized under `~/.skillfetch/cache/<content_hash>/` |
+| `prepare_set(set_id)` (not built, not planned for v0.3) | | `{prompt_block, materialized_paths{}}` for the isolation runner; the folder is fetched and verified like `load_skills` and materialized under `~/.skillfetch/cache/<content_hash>/` |
 | `report_outcome(set_id, ok: bool, note?)` (v0.3) | | ack. Only appends to a local JSONL log; nothing reads it yet. |
 
 Rules:
@@ -118,14 +118,13 @@ The only skill a user installs. Short (< 60 lines). It tells the host model:
 2. Pick 1–3 candidates by reading all 50 summaries, weighing `token_estimate` against
    `load_skills`' budget. If the user named a skill, find its id with
    `search_skills` (the result whose title matches) and pass it as pinned.
-3. Call `resolve_set`, then `load_skills` (default). From v0.3: `prepare_set` +
-   delegate to the `skillfetch-runner` subagent when the task is self-contained and
-   the user asked for isolation (or the project config sets `isolate: true`).
+3. Call `resolve_set`, then `load_skills`. (`prepare_set` + delegating to the
+   `skillfetch-runner` subagent when the user asks for isolation: not built, not planned for v0.3.)
 4. From v0.3, after the task, call `report_outcome`.
 5. Skip the search only for trivial edits: a one-line edit in a single file, a rename,
    or answering a question. Bug fixes, docs and config changes are not trivial.
 
-## Runner agent (`assets/runner-agent.md`)
+## Runner agent (`assets/runner-agent.md`) — not built, not planned for v0.3
 
 One static subagent definition, installed once into `~/.claude/agents/`. No
 `skills:` field. System prompt: follow the skill instructions passed in the
@@ -149,10 +148,11 @@ this mode; default injection mode leaves skill text in the transcript.
 - MCP server with the six tools, router skill, `sync` command for the index.
 - End-to-end demo in Claude Code: search → resolve → load → work.
 
-**v0.3 — isolation + feedback** (+1 week)
-- Runner agent, `prepare_set`, outcome log, and a first on/off comparison on a
-  small verified task set. This is where we find out whether auto-loaded unknown
-  skills actually help on average. Report it honestly either way.
+**v0.3 — process-skill retrieval, shorter chain, outcome log**
+- Process-skill retrieval: a domain query and a how-to-work query, searched
+  separately (#25).
+- A shorter chain: search, resolve and load in fewer calls (#26).
+- `report_outcome`.
 
 ## Working rules for Claude Code in this repo
 

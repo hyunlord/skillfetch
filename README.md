@@ -82,7 +82,7 @@ together, scope it to one task, or tell you afterwards whether it helped.
 | **Vetted corpus** | Public skills are snapshotted, linted, scanned for prompt-injection patterns, and tiered. Ranking is by vetting, not install count. |
 | **Pre-extracted constraints** | Each skill's instructions are extracted once, offline, into typed constraints with polarity and scope — "forbid emoji in headers", not a bag of keywords. |
 | **Conflict-free sets** | `resolve_set` drops candidates that contradict or duplicate each other. Every exclusion comes with the two quoted source lines that caused it. Skills you name yourself are always kept. |
-| **Per-task, no model at runtime** | BM25 over the index; your host model is the reranker. Optional isolation mode runs the task in a fresh subagent with only the chosen skills. |
+| **Per-task, no model at runtime** | BM25 over the index; your host model is the reranker. |
 
 ## Roadmap
 
