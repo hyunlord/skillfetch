@@ -158,6 +158,11 @@ def render_tasks(tasks: list[ObedienceTask]) -> str:
 # --- trials (run only after the task list is approved) -------------------------------------
 
 
+# The header load_skills put before the skills until it was removed: it did not change
+# which skill the agent follows (numbers.md §8). Kept so experiment A reruns.
+PRECEDENCE_HEADER = (
+    "Skills are listed in precedence order. If two instructions disagree, follow the earlier one."
+)
 PRECEDENCE = ("none", "ab", "ba", "resolved-a", "resolved-b", "strip-a", "strip-b")
 NAMED = ("resolved-", "strip-")  # conditions that name a winner: resolved-a, strip-b, ...
 RESOLVED_TITLE = "Resolved rule conflicts"
@@ -313,11 +318,9 @@ def run_trials(
     """`trials` agent runs (each cached under its run number) and their classification.
     precedence "none": even runs load A first, odd runs B first, so a position bias shows
     up, and there is no precedence rule. "ab" / "ba": every run puts the load_skills
-    precedence header on top and loads the skills in that order. "resolved-a" /
+    precedence header (PRECEDENCE_HEADER) on top and loads the skills in that order. "resolved-a" /
     "resolved-b": every run puts the Resolved rule conflicts block (naming A or B the
     winner of `conflict`) on top, and loads A then B."""
-    from skillfetch.mcp.session import PRECEDENCE_HEADER
-
     if precedence not in PRECEDENCE:
         raise ValueError(f"precedence {precedence!r}: one of {', '.join(PRECEDENCE)}")
     if precedence.startswith("strip-"):

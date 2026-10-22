@@ -5,6 +5,8 @@ task, your agent searches a vetted, pre-indexed corpus of `SKILL.md` files,
 assembles a *conflict-free* set, uses it for that task, and moves on. Nothing
 piles up in `~/.claude/skills`.
 
+Measured: on design tasks the router matched an expert-installed skill; on process-style tasks (planning, brevity) it does not find the skill yet; it costs about seven extra turns per task. Details in the write-up, section 5.
+
 > Status: v0.1 is done: `scan`, the public index and the write-up
 > ([English](docs/writeup/post-en.md), [한국어](docs/writeup/post-ko.md)). v0.2:
 > the MCP server works end to end and the index ships as a GitHub release
@@ -42,7 +44,7 @@ two instructions cannot both be followed; anything less certain is
 Skills the index does not cover are listed as skipped; `--with-api --model
 anthropic/<model>` extracts them (calls the API, cached once per skill).
 
-The router is experimental. In our own end-to-end test it loaded the skill an expert would have installed in 7 of 32 runs by exact id (18 of 22 loads covered the same ground on small tasks), and on larger generative tasks it loaded weaker skills than no skill at all ([docs/writeup/numbers.md §11](docs/writeup/numbers.md#11-router-in-real-sessions-end-to-end-stages-1-and-1b)). scan and sync are unaffected.
+The router, measured in real Claude Code sessions: on design tasks it loaded the skill an expert would have installed (`frontend-design`, 4 of 4 runs once `search_skills` returned 50 compact results) and matched the expert condition; on process-style tasks (planning, brevity) it does not find the skill yet; it costs about seven extra turns per task. On small maintenance tasks no condition changed the result ([write-up §5](docs/writeup/post-en.md), [numbers.md §11](docs/writeup/numbers.md#11-router-in-real-sessions-end-to-end-stages-1-and-1b)). scan and sync are unaffected.
 
 ```console
 $ skillfetch scan path/to/skills --json                   # machine-readable
@@ -118,8 +120,10 @@ together, scope it to one task, or tell you afterwards whether it helped.
   - [x] `sync` command: the index as a GitHub release tarball, sha256- and
         manifest-verified into `~/.skillfetch/index`
   - [ ] surface the `complementary` hint in `resolve_set` output
-- [ ] **v0.3** isolation runner, outcome log, and an honest on/off comparison on
-      a verified task set.
+- [ ] **v0.3** process-skill retrieval: a domain query and a how-to-work query,
+      searched separately ([#25](https://github.com/hyunlord/skillfetch/issues/25));
+      a shorter chain: search, resolve and load in fewer calls
+      ([#26](https://github.com/hyunlord/skillfetch/issues/26)); `report_outcome`.
 
 ## Design docs
 
@@ -144,10 +148,13 @@ default produced none. Use it when recall matters more than precision.
 - The injection scan is a blocklist, not a proof of safety.
 - Automated vetting rejects bad skills; it does not prove a skill is good.
 - Default mode injects skill text into the current context; true isolation
-  requires the subagent runner (v0.3).
-- The precedence header `load_skills` puts before the skills has no effect on
-  which skill the agent follows when two disagree (measured: 112 of 260 runs
-  followed the named skill; [numbers.md §8](docs/writeup/numbers.md)).
+  requires a subagent runner, which is not built.
+- `load_skills` no longer puts a precedence header before the skills: it had no
+  effect on which skill the agent follows when two disagree (measured: 112 of 260
+  runs followed the skill it ranked first; [numbers.md §8](docs/writeup/numbers.md)).
+- Embeddings (all-MiniLM-L6-v2) were evaluated against BM25 and not adopted: no
+  gain (top-50 recall 0.74 with BM25 + embedding fusion, 0.71 with BM25 alone, on 34
+  router queries; [write-up §5](docs/writeup/post-en.md)).
 - Semantic conflicts without a shared subject are not detected in v0.1.
 - Mutually exclusive choices ("always use npm" vs "always use pnpm") are caught
   only for the tooling slots marked exclusive (package manager, formatter, test

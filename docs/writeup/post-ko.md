@@ -98,7 +98,7 @@ judge가 conflict이면서 "함께 따르기 어렵다"고 본 쌍 26개를 골�
 
 | 승자를 알린 방법 | 지정한 승자를 따른 실행 |
 | --- | --- |
-| 스킬 앞 헤더: "Skills are listed in precedence order. If two instructions disagree, follow the earlier one." (`load_skills`가 넣는 문구) | 43% (112/260) |
+| 스킬 앞 헤더: "Skills are listed in precedence order. If two instructions disagree, follow the earlier one." (`load_skills`가 넣던 문구) | 43% (112/260) |
 | 승자를 지명하고 충돌하는 두 줄을 인용한 블록 | 56% (145/260) |
 | 지는 스킬의 충돌 줄을 `<!-- overridden by <winner>: "<line>" -->`로 치환 | 46% (120/260) |
 

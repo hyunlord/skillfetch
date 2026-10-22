@@ -98,7 +98,7 @@ Two caveats that matter. First, the harness wording moved results: in a discarde
 
 | How the winner was named | Runs that followed the named winner |
 | --- | --- |
-| Header before the skills: "Skills are listed in precedence order. If two instructions disagree, follow the earlier one." (what `load_skills` emits) | 43% (112/260) |
+| Header before the skills: "Skills are listed in precedence order. If two instructions disagree, follow the earlier one." (what `load_skills` emitted) | 43% (112/260) |
 | A block naming the winner and quoting both conflicting lines | 56% (145/260) |
 | The loser's conflicting lines replaced with `<!-- overridden by <winner>: "<line>" -->` | 46% (120/260) |
 

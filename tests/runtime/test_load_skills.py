@@ -12,7 +12,7 @@ from indexkit import make_index, skill_id
 from skillfetch.index.fetch import BodyCache, FetchError
 from skillfetch.index.loader import Index
 from skillfetch.ingest.extract_cache import ExtractCache
-from skillfetch.mcp.session import PRECEDENCE_HEADER, Session
+from skillfetch.mcp.session import Session
 
 
 class Recorder:
@@ -46,7 +46,8 @@ def test_load_fetches_verifies_and_concatenates_in_precedence(tmp_path):
     assert out["errors"] == []
     assert [x["id"] for x in out["skills"]] == [squash, typed]  # pinned first
     content = out["content"]
-    assert content.startswith(PRECEDENCE_HEADER)
+    assert content.startswith("## 1. ")  # no precedence header (numbers.md §8)
+    assert "precedence order" not in content and "precedence_header" not in out
     assert content.index("Squash every feature") < content.index("## 2.")
     assert "---\nname:" not in content  # frontmatter is metadata, not instructions
     record = s.index.records[squash]

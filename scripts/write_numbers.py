@@ -361,6 +361,37 @@ def costs(out: list[str]) -> None:
         "the end-to-end MCP transcript session $0.82.",
         "",
     ]
+    transcript = 0.82
+    repo = session_cost(runs) + session_cost(discarded) + transcript
+    e2e_path = DATA / "e2e" / "router-e2e.json"
+    if not e2e_path.is_file():
+        return
+    e2e = json.loads(e2e_path.read_text())["session_costs"]
+    names = {
+        "stage0": "stage 0",
+        "stage0.5": "stage 0.5",
+        "stage1": "stage 1",
+        "stage1b": "stage 1b",
+        "c2": "C2",
+        "smoke": "smoke tests",
+    }
+    e2e_cost = sum(v["cost_usd"] for v in e2e.values())
+    counted = sum(v["sessions"] for k, v in e2e.items() if k != "smoke")
+    out += [
+        "End-to-end sessions (§11 and the write-up's section 5; `session_costs` in "
+        "`data/e2e/router-e2e.json`, Claude Code's `total_cost_usd` per session, same "
+        "billing): "
+        + "; ".join(f"{names[k]} {v['sessions']}, ${v['cost_usd']:.2f}" for k, v in e2e.items())
+        + ".",
+        "",
+        f"**Claude Code plan equivalent, total: ${repo + e2e_cost:.2f}**: sessions run from "
+        f"this repo ${repo:.2f} ({len(runs)} obedience runs, {len(discarded)} discarded, the "
+        f"transcript session), end-to-end sessions ${e2e_cost:.2f}. The agent sessions the "
+        f"write-up counts: {len(runs) + counted:,} ({len(runs)} obedience runs and {counted} "
+        "end-to-end; discarded runs and smoke tests not counted). The interactive Claude Code "
+        "sessions that wrote the code and classified the outputs are not included.",
+        "",
+    ]
 
 
 def precedence(out: list[str]) -> None:
@@ -503,48 +534,61 @@ def router_e2e(out: list[str]) -> None:
         return
     d = json.loads(path.read_text())
     s1, s1b = d["stage1"], d["stage1b"]
+    sources = ", ".join(d["sources"])
     out += [
-        f"Source: `data/e2e/router-e2e.json` (exported from the e2e workspace: {', '.join(d['sources'])}). "
-        "`claude -p` headless sessions, Claude Code plan, default model, one run per task and condition "
-        "repeated twice. A: the upstream repo. B: A plus the expert-chosen skills for the task, loaded through "
-        "`load_skills` and appended to the system prompt. C: A plus the router skill and the MCP server; the "
-        "session decides on its own whether to search and what to load. Repos: fastapi full-stack template, "
-        "Next.js with-typescript. Checks were written and frozen before the runs. Blind judging: one judge "
-        "(the Claude session that ran the test), condition hidden behind random codes.",
+        f"Source: `data/e2e/router-e2e.json` (exported from the e2e workspace: {sources}). "
+        "`claude -p` headless sessions, Claude Code plan, default model, one run per task "
+        "and condition repeated twice. A: the upstream repo. B: A plus the expert-chosen "
+        "skills for the task, loaded through `load_skills` and appended to the system "
+        "prompt. C: A plus the router skill and the MCP server; the session decides on its "
+        "own whether to search and what to load. Repos: fastapi full-stack template, "
+        "Next.js with-typescript. Checks were written and frozen before the runs. Blind "
+        "judging: one judge (the Claude session that ran the test), condition hidden "
+        "behind random codes.",
         "",
-        "| stage | tasks | condition | sessions | checks pass | median turns | median input tokens | "
-        "searched | loaded |",
+        "| stage | tasks | condition | sessions | checks pass | median turns | "
+        "median input tokens | searched | loaded |",
         "|---|---|---|---|---|---|---|---|---|",
     ]
     for name, st in (("1", s1), ("1b", s1b)):
         for cond, a in st["by_condition"]["expert_tasks"].items():
             out.append(
-                f"| {name} | {st['expert_tasks']} with an expert skill | {cond} | {a['sessions']} | "
-                f"{a['check_pass']}/{a['sessions']} | {a['median_turns']:g} | "
+                f"| {name} | {st['expert_tasks']} with an expert skill | {cond} | "
+                f"{a['sessions']} | {a['check_pass']}/{a['sessions']} | {a['median_turns']:g} | "
                 f"{a['median_input_tokens']:,} | {a['searched']} | {a['loaded']} |"
             )
     m = d["stage1_selection_match"]
     b1, b1b, r = d["stage1_blind"], d["stage1b_blind"], d["retrieval_bm25"]
 
     def conds(x: dict) -> str:
-        return ", ".join(f"{k} {v:.2f}" for k, v in x.items() if k != "n") + f" (n={x['n']} per condition)"
+        return (
+            ", ".join(f"{k} {v:.2f}" for k, v in x.items() if k != "n")
+            + f" (n={x['n']} per condition)"
+        )
 
     out += [
         "",
-        f"- Stage 1, C on the {s1['expert_tasks']} expert tasks ({s1['c_runs_on_expert_tasks']} runs), what it "
-        f"loaded against the expert's pick: same set {m['same']}, a different set covering the same ground "
-        f"{m['equivalent']}, a set that does not cover it {m['different']}, nothing loaded {m['not_loaded']} "
-        f"(hand-judged). Runs whose loaded set contains an expert id: {s1['c_loaded_an_expert_id']}.",
+        f"- Stage 1, C on the {s1['expert_tasks']} expert tasks "
+        f"({s1['c_runs_on_expert_tasks']} runs), what it loaded against the expert's pick: "
+        f"same set {m['same']}, a different set covering the same ground {m['equivalent']}, "
+        f"a set that does not cover it {m['different']}, nothing loaded {m['not_loaded']} "
+        "(hand-judged). Runs whose loaded set contains an expert id: "
+        f"{s1['c_loaded_an_expert_id']}.",
         f"- Stage 1b, C ({s1b['c_runs_on_expert_tasks']} runs): loaded an expert id in "
-        f"{s1b['c_loaded_an_expert_id']}; none of the five expert skills was in C's search top 10.",
-        f"- Stage 1 blind: screenshots usefulness 1-5 {conds(b1['screens_abc_usefulness'])}; A vs C only "
-        f"{conds(b1['screens_ac_usefulness'])}; docs \"would merge as is\" 1-5 {conds(b1['docs_merge'])}.",
-        f"- Stage 1b blind: landing pages usefulness 1-5 {conds(b1b['screens_usefulness'])}; generic-AI-look "
-        f"checklist hits {conds(b1b['screens_ai_look'])}; plans normalised rank (0 = best) "
-        f"{conds(b1b['plans_norm_rank'])}; implementation followed the plan 1-5 {conds(b1b['plan_followed'])}.",
-        f"- Retrieval, the {r['queries']} queries C sent on tasks with an expert skill, re-ranked by the "
-        f"current BM25: the expert skill in the top 3 for {r['top3']}, top 10 for {r['top10']}, top 50 for "
-        f"{r['top50']}.",
+        f"{s1b['c_loaded_an_expert_id']}; none of the five expert skills was in C's search "
+        "top 10.",
+        "- Stage 1 blind: screenshots usefulness 1-5 "
+        f"{conds(b1['screens_abc_usefulness'])}; A vs C only "
+        f'{conds(b1["screens_ac_usefulness"])}; docs "would merge as is" 1-5 '
+        f"{conds(b1['docs_merge'])}.",
+        "- Stage 1b blind: landing pages usefulness 1-5 "
+        f"{conds(b1b['screens_usefulness'])}; generic-AI-look checklist hits "
+        f"{conds(b1b['screens_ai_look'])}; plans normalised rank (0 = best) "
+        f"{conds(b1b['plans_norm_rank'])}; implementation followed the plan 1-5 "
+        f"{conds(b1b['plan_followed'])}.",
+        f"- Retrieval, the {r['queries']} queries C sent on tasks with an expert skill, "
+        "re-ranked by the current BM25: the expert skill in the top 3 for "
+        f"{r['top3']}, top 10 for {r['top10']}, top 50 for {r['top50']}.",
         "",
     ]
 

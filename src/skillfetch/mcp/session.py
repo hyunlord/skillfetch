@@ -25,9 +25,6 @@ from skillfetch.resolve.relation import DEFAULT_CAP
 PATH_PREFIX = "path:"
 # constraints.md §5 step 4
 DEFAULT_MAX_TOKENS = 8000  # load_skills budget for the concatenated bodies
-PRECEDENCE_HEADER = (
-    "Skills are listed in precedence order. If two instructions disagree, follow the earlier one."
-)
 
 
 @dataclass
@@ -197,10 +194,9 @@ class Session:
                     "token_estimate": len(body) // 4,
                 }
             )
-        content = "\n\n".join([PRECEDENCE_HEADER, *sections]) if sections else ""
+        content = "\n\n".join(sections)
         return {
             "set_id": set_id,
-            "precedence_header": PRECEDENCE_HEADER,
             "skills": loaded,
             "content": content,
             "errors": errors,

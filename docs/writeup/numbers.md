@@ -177,6 +177,10 @@ Source: provider-reported cost (`usage.cost` from OpenRouter) in every cache rec
 
 Claude Code sessions (API-price equivalent reported by Claude Code, billed to the Claude Code plan, not OpenRouter): obedience agent runs 910 (130 without a precedence header, §6; 260 with one, §8; 260 with a resolved-conflict block, §9; 260 with stripped lines, §10), $46.71; 171 runs of two earlier batches discarded for harness problems (no note that the session has no tools; then a note that discouraged asking), $5.41; the end-to-end MCP transcript session $0.82.
 
+End-to-end sessions (§11 and the write-up's section 5; `session_costs` in `data/e2e/router-e2e.json`, Claude Code's `total_cost_usd` per session, same billing): stage 0 20, $18.56; stage 0.5 20, $18.83; stage 1 110, $89.78; stage 1b 30, $50.35; C2 10, $16.57; smoke tests 3, $1.65.
+
+**Claude Code plan equivalent, total: $248.69**: sessions run from this repo $52.95 (910 obedience runs, 171 discarded, the transcript session), end-to-end sessions $195.74. The agent sessions the write-up counts: 1,100 (910 obedience runs and 190 end-to-end; discarded runs and smoke tests not counted). The interactive Claude Code sessions that wrote the code and classified the outputs are not included.
+
 ## 8. Precedence header (experiment A)
 
 Source: `data/obedience/trials-precedence.jsonl`, `results-precedence.md`; `skillfetch obedience --index data/index --run data/obedience/tasks.json --precedence ab --precedence ba`. The 26 pairs and tasks of §6, the same harness (isolated `claude -p --safe-mode` sessions, sonnet, no tools, the neutral no-tools note) and the same classification (Claude Code, opus-5.5, against each task's 'follows A' / 'follows B'). `ab`: load_skills' precedence header at the top of the system prompt, then A, then B, in all 5 runs; `ba`: the header, then B, then A. The no-header winner of a pair is the skill followed in more of its §6 runs (a tie when equal). A run is controlled when the skill it followed is the one the header ranks first.
