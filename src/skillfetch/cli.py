@@ -249,12 +249,13 @@ def main(argv: Sequence[str] | None = None) -> int:
     obey.add_argument("--jobs", type=int, default=6)
     obey.add_argument(
         "--precedence",
-        choices=("none", "ab", "ba", "resolved-a", "resolved-b"),
+        choices=("none", "ab", "ba", "resolved-a", "resolved-b", "strip-a", "strip-b"),
         action="append",
         help="with --run: none (default; no rule, alternating order); ab / ba (the "
         "load_skills precedence header on top, skills in that order); resolved-a / "
         "resolved-b (a Resolved rule conflicts block naming A or B the winner, skills "
-        "A then B); repeatable",
+        "A then B); strip-a / strip-b (no header or block; the loser's evidence lines "
+        "replaced by an 'overridden by' comment, skills A then B); repeatable",
     )
     obey.add_argument(
         "--judgments",
@@ -521,24 +522,47 @@ def _obedience_run(args: argparse.Namespace) -> int:
         r = _json.loads(line)
         records[r["id"]] = r
 
-    def skill(sid: str) -> tuple[str, str]:
+    def doc_of(sid: str):
         r = records[sid]
-        doc = read_skill(args.work_dir / r["source_id"] / r["commit"] / r["path"])
-        return r["name"], "\n".join(doc.body_lines).strip()
+        return read_skill(args.work_dir / r["source_id"] / r["commit"] / r["path"])
+
+    def skill(sid: str) -> tuple[str, str]:
+        return records[sid]["name"], "\n".join(doc_of(sid).body_lines).strip()
+
+    stripped_log: dict[tuple[str, str], int] = {}  # (pair, cond) -> lines replaced
+
+    def skills_for(task, cond: str) -> tuple[tuple[str, str], tuple[str, str]]:
+        a, b = task.pair.split("|")
+        sa, sb = skill(a), skill(b)
+        if not cond.startswith("strip-"):
+            return sa, sb
+        winner = obedience.ranked_first(cond)
+        loser_id = b if winner == "a" else a
+        doc = doc_of(loser_id)
+        c = conflicts[task.pair]
+        body, done = obedience.strip_lines(
+            doc.body_lines,
+            doc.body_start,
+            c.lines_b if winner == "a" else c.lines_a,
+            (sa if winner == "a" else sb)[0],
+        )
+        stripped_log[(task.pair, cond)] = done
+        return (sa, (sb[0], body)) if winner == "a" else ((sa[0], body), sb)
 
     agent = obedience.ClaudeSessionAgent(args.agent_model)
     judge = backends.make_backend(args.model, creds_file=args.creds_file)
 
     conditions = args.precedence or ["none"]
     resolved = [c for c in conditions if c.startswith("resolved-")]
+    strip = [c for c in conditions if c.startswith("strip-")]
     if "none" in conditions and len(conditions) > 1:
         print("skillfetch: run --precedence none on its own", file=sys.stderr)
         return 2
-    if resolved and len(resolved) != len(conditions):
-        print("skillfetch: run resolved-a/b apart from ab/ba", file=sys.stderr)
+    if (resolved and len(resolved) != len(conditions)) or (strip and len(strip) != len(conditions)):
+        print("skillfetch: run resolved-a/b and strip-a/b each on their own", file=sys.stderr)
         return 2
     conflicts = {}
-    if resolved:
+    if resolved or strip:
         judgments = (
             args.judgments or args.index.with_name(args.index.name + "-reports") / "judgments.jsonl"
         )
@@ -546,10 +570,9 @@ def _obedience_run(args: argparse.Namespace) -> int:
 
     def run(cond: str) -> list[list]:
         def one(task):
-            a, b = task.pair.split("|")
             return obedience.run_trials(
                 task,
-                (skill(a), skill(b)),
+                skills_for(task, cond),
                 agent,
                 judge,
                 args.trials,
@@ -576,7 +599,15 @@ def _obedience_run(args: argparse.Namespace) -> int:
         for t, trials in zip(tasks, results, strict=True)
         for tr in trials
     ]
-    stem = "" if conditions == ["none"] else "-resolved" if resolved else "-precedence"
+    stem = (
+        ""
+        if conditions == ["none"]
+        else "-resolved"
+        if resolved
+        else "-strip"
+        if strip
+        else "-precedence"
+    )
     (out_dir / f"trials{stem}.jsonl").write_text(
         "".join(_json.dumps(r, ensure_ascii=False) + "\n" for r in rows)
     )
@@ -601,6 +632,27 @@ def _obedience_run(args: argparse.Namespace) -> int:
                     "a",
                 )
                 + "\n```"
+                for t in tasks
+            )
+        )
+    elif strip:  # next to the header and block runs and the no-header runs (cached)
+        report = obedience.render_precedence(tasks, by_cond, run("none"))
+        report = report.replace(
+            "# Obedience split test: precedence header", "# Obedience split test: stripped lines"
+        )
+        header = {c: run(c) for c in ("ab", "ba")}
+        block = {c: run(c) for c in ("resolved-a", "resolved-b")}
+        report += (
+            "\n\n## Header, block and stripped lines\n\n"
+            + obedience.render_comparison(tasks, header, block, by_cond)
+            + "\n\n## Lines replaced\n\n| pair (A ⟷ B) | strip-a: in B | strip-b: in A |\n"
+            + "|---|---|---|\n"
+            + "\n".join(
+                "| {} ⟷ {} | {} | {} |".format(
+                    *(x.split("/")[1].split("@")[0] for x in t.pair.split("|")),
+                    stripped_log.get((t.pair, "strip-a"), "–"),
+                    stripped_log.get((t.pair, "strip-b"), "–"),
+                )
                 for t in tasks
             )
         )

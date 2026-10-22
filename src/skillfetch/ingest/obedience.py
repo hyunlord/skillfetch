@@ -158,7 +158,8 @@ def render_tasks(tasks: list[ObedienceTask]) -> str:
 # --- trials (run only after the task list is approved) -------------------------------------
 
 
-PRECEDENCE = ("none", "ab", "ba", "resolved-a", "resolved-b")
+PRECEDENCE = ("none", "ab", "ba", "resolved-a", "resolved-b", "strip-a", "strip-b")
+NAMED = ("resolved-", "strip-")  # conditions that name a winner: resolved-a, strip-b, ...
 RESOLVED_TITLE = "Resolved rule conflicts"
 
 
@@ -189,8 +190,29 @@ def resolved_block(conflict: Conflict, name_a: str, name_b: str, winner: str) ->
 
 
 def ranked_first(precedence: str) -> str:
-    """The skill a condition tells the agent to follow: ab -> a, resolved-b -> b."""
-    return precedence[-1] if precedence.startswith("resolved-") else precedence[0]
+    """The skill a condition tells the agent to follow: ab -> a, resolved-b -> b,
+    strip-a -> a."""
+    return precedence[-1] if precedence.startswith(NAMED) else precedence[0]
+
+
+def strip_lines(
+    body_lines: list[str], body_start: int, lines: tuple[tuple[int, str], ...], winner: str
+) -> tuple[str, int]:
+    """The losing skill's body with each evidence line replaced (not deleted) by
+    `<!-- overridden by <winner>: "<line>" -->`; (body, lines replaced). A line is found by
+    its SKILL.md line number, else by the first body line that contains its text."""
+    out = list(body_lines)
+    done = 0
+    for n, text in lines:
+        i = n - body_start
+        if not (0 <= i < len(out) and text in out[i]):
+            i = next((k for k, line in enumerate(out) if text in line), -1)
+        if i < 0 or out[i].startswith("<!-- overridden by "):
+            continue
+        original = out[i].strip().replace("-->", "-- >")
+        out[i] = f'<!-- overridden by {winner}: "{original}" -->'
+        done += 1
+    return "\n".join(out).strip(), done
 
 
 @dataclass
@@ -298,7 +320,9 @@ def run_trials(
 
     if precedence not in PRECEDENCE:
         raise ValueError(f"precedence {precedence!r}: one of {', '.join(PRECEDENCE)}")
-    if precedence.startswith("resolved-"):
+    if precedence.startswith("strip-"):
+        header = None  # the caller passes the loser's body already stripped
+    elif precedence.startswith("resolved-"):
         if conflict is None:
             raise ValueError(f"precedence {precedence} needs the pair's conflict")
         header = resolved_block(conflict, skills[0][0], skills[1][0], ranked_first(precedence))
@@ -306,7 +330,7 @@ def run_trials(
         header = None if precedence == "none" else PRECEDENCE_HEADER
     out = []
     for n in range(trials):
-        if precedence.startswith("resolved-"):
+        if precedence.startswith(NAMED):
             order = "ab"
         else:
             order = precedence if header else ("ab" if n % 2 == 0 else "ba")
@@ -438,12 +462,17 @@ def render_precedence(
                 held += won == base
         rows.append(f"| {a} ⟷ {b} | {base or 'tie'} | " + " | ".join(cells) + " |")
     conds = list(by_condition)
-    named = any(c.startswith("resolved-") for c in conds)
+    named = any(c.startswith(NAMED) for c in conds)
+    stripped = any(c.startswith("strip-") for c in conds)
     lines += [
         f"{len(tasks)} pairs × {len(conds)} orders ({', '.join(conds)}) × "
         f"{len(next(iter(by_condition.values()))[0]) if tasks else 0} runs = {total} runs. "
         + (
-            f'Each run starts with a "{RESOLVED_TITLE}" block that names the winner '
+            "No header and no block: in the losing skill's body each evidence line is "
+            'replaced by `<!-- overridden by <winner>: "<line>" -->` (strip-a: A wins, B\'s '
+            "lines replaced; strip-b: the reverse); the skills follow in the order A, B."
+            if stripped
+            else f'Each run starts with a "{RESOLVED_TITLE}" block that names the winner '
             "(resolved-a: A, resolved-b: B) with both sides' evidence lines; the skills follow "
             "in the order A, B."
             if named
@@ -462,7 +491,8 @@ def render_precedence(
             for c, v in cond_tot.items()
         ),
         "",
-        f"Pairs with a no-header winner whose winner the {'block' if named else 'header'} "
+        f"Pairs with a no-header winner whose winner the "
+        f"{'stripping' if stripped else 'block' if named else 'header'} "
         "turned around (winner ranked "
         f"second, other skill won the majority): **{flipped}**; winner kept although ranked "
         f"second: {held}; pairs without a no-header winner: "
@@ -479,15 +509,12 @@ def render_precedence(
     return "\n".join(lines)
 
 
-def render_comparison(
-    tasks: list[ObedienceTask],
-    header: dict[str, list[list[Trial]]],
-    resolved: dict[str, list[list[Trial]]],
-) -> str:
-    """Control per pair under the precedence header (ab, ba) next to the resolved block
-    (resolved-a, resolved-b): runs that followed the skill ranked or named first."""
-    conds = [*header, *resolved]
-    cols = {**header, **resolved}
+def render_comparison(tasks: list[ObedienceTask], *groups: dict[str, list[list[Trial]]]) -> str:
+    """Control per pair under each condition, side by side (the precedence header ab / ba,
+    the resolved block, stripped lines, ...): runs that followed the skill ranked or named
+    first."""
+    cols = {c: r for g in groups for c, r in g.items()}
+    conds = list(cols)
     lines = [
         "| pair (A ⟷ B) | " + " | ".join(conds) + " |",
         "|---|" + "---|" * len(conds),
