@@ -2,10 +2,11 @@
 
 A word ending in -s is singularized only when its singular form also occurs in the
 corpus vocabulary (constraints.md §3, norm): "tests" and "test" both occur, so they are
-one term; the closed vocabulary's words count in both forms; "https" is never "http" (stoplist), and a word whose stem never occurs keeps
-its -s. The vocabulary is every word of the constraint fields that normalize_term reads
-(subject, object, object_raw, condition, artifact) in the index and the fixture corpus,
-plus the closed vocabulary's own terms. Run after a rebuild:
+one term; the closed vocabulary's words count in both forms; "https" is never "http"
+(stoplist), and a word whose stem never occurs keeps its -s. The vocabulary is every
+word of the constraint fields that normalize_term reads (subject, object, object_raw,
+condition, artifact) in the index and the fixture corpus, plus the closed vocabulary's
+own terms. Run after a rebuild:
 
     uv run python scripts/plural_words.py [--index data/index]
 """
