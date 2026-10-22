@@ -494,6 +494,61 @@ def three_conditions(out: list[str]) -> None:
     out.append("")
 
 
+def router_e2e(out: list[str]) -> None:
+    """§11: the router in real Claude Code sessions (stage 1 and 1b of the end-to-end test)."""
+    out += ["## 11. Router in real sessions (end-to-end stages 1 and 1b)", ""]
+    path = DATA / "e2e" / "router-e2e.json"
+    if not path.is_file():
+        out += ["Not run yet.", ""]
+        return
+    d = json.loads(path.read_text())
+    s1, s1b = d["stage1"], d["stage1b"]
+    out += [
+        f"Source: `data/e2e/router-e2e.json` (exported from the e2e workspace: {', '.join(d['sources'])}). "
+        "`claude -p` headless sessions, Claude Code plan, default model, one run per task and condition "
+        "repeated twice. A: the upstream repo. B: A plus the expert-chosen skills for the task, loaded through "
+        "`load_skills` and appended to the system prompt. C: A plus the router skill and the MCP server; the "
+        "session decides on its own whether to search and what to load. Repos: fastapi full-stack template, "
+        "Next.js with-typescript. Checks were written and frozen before the runs. Blind judging: one judge "
+        "(the Claude session that ran the test), condition hidden behind random codes.",
+        "",
+        "| stage | tasks | condition | sessions | checks pass | median turns | median input tokens | "
+        "searched | loaded |",
+        "|---|---|---|---|---|---|---|---|---|",
+    ]
+    for name, st in (("1", s1), ("1b", s1b)):
+        for cond, a in st["by_condition"]["expert_tasks"].items():
+            out.append(
+                f"| {name} | {st['expert_tasks']} with an expert skill | {cond} | {a['sessions']} | "
+                f"{a['check_pass']}/{a['sessions']} | {a['median_turns']:g} | "
+                f"{a['median_input_tokens']:,} | {a['searched']} | {a['loaded']} |"
+            )
+    m = d["stage1_selection_match"]
+    b1, b1b, r = d["stage1_blind"], d["stage1b_blind"], d["retrieval_bm25"]
+
+    def conds(x: dict) -> str:
+        return ", ".join(f"{k} {v:.2f}" for k, v in x.items() if k != "n") + f" (n={x['n']} per condition)"
+
+    out += [
+        "",
+        f"- Stage 1, C on the {s1['expert_tasks']} expert tasks ({s1['c_runs_on_expert_tasks']} runs), what it "
+        f"loaded against the expert's pick: same set {m['same']}, a different set covering the same ground "
+        f"{m['equivalent']}, a set that does not cover it {m['different']}, nothing loaded {m['not_loaded']} "
+        f"(hand-judged). Runs whose loaded set contains an expert id: {s1['c_loaded_an_expert_id']}.",
+        f"- Stage 1b, C ({s1b['c_runs_on_expert_tasks']} runs): loaded an expert id in "
+        f"{s1b['c_loaded_an_expert_id']}; none of the five expert skills was in C's search top 10.",
+        f"- Stage 1 blind: screenshots usefulness 1-5 {conds(b1['screens_abc_usefulness'])}; A vs C only "
+        f"{conds(b1['screens_ac_usefulness'])}; docs \"would merge as is\" 1-5 {conds(b1['docs_merge'])}.",
+        f"- Stage 1b blind: landing pages usefulness 1-5 {conds(b1b['screens_usefulness'])}; generic-AI-look "
+        f"checklist hits {conds(b1b['screens_ai_look'])}; plans normalised rank (0 = best) "
+        f"{conds(b1b['plans_norm_rank'])}; implementation followed the plan 1-5 {conds(b1b['plan_followed'])}.",
+        f"- Retrieval, the {r['queries']} queries C sent on tasks with an expert skill, re-ranked by the "
+        f"current BM25: the expert skill in the top 3 for {r['top3']}, top 10 for {r['top10']}, top 50 for "
+        f"{r['top50']}.",
+        "",
+    ]
+
+
 def main() -> None:
     out = [
         "# Numbers for the write-up",
@@ -512,6 +567,7 @@ def main() -> None:
         precedence,
         resolved,
         three_conditions,
+        router_e2e,
     ):
         section(out)
     OUT.parent.mkdir(parents=True, exist_ok=True)
