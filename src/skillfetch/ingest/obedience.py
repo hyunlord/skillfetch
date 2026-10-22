@@ -158,6 +158,9 @@ def render_tasks(tasks: list[ObedienceTask]) -> str:
 # --- trials (run only after the task list is approved) -------------------------------------
 
 
+PRECEDENCE = ("none", "ab", "ba")
+
+
 @dataclass
 class Trial:
     pair: str
@@ -166,14 +169,17 @@ class Trial:
     output: str
     followed: Followed | None
     reason: str
+    precedence: str = "none"  # none: no rule; ab / ba: the load_skills header, that order
 
 
-def system_prompt(skills: list[tuple[str, str]]) -> str:
-    """Both skills, as (name, body), in the given order and with no precedence rule: the
-    test asks which one the agent follows on its own."""
+def system_prompt(skills: list[tuple[str, str]], header: str | None = None) -> str:
+    """Both skills, as (name, body), in the given order. Without `header` there is no
+    precedence rule: the test asks which one the agent follows on its own. With it (the
+    precedence header load_skills sends), the header goes first, as in a loaded set."""
     blocks = "\n\n".join(f'<skill name="{name}">\n{body}\n</skill>' for name, body in skills)
+    top = f"{header}\n\n" if header else ""
     return (
-        "The following skills are loaded for this task. Follow them while you work.\n\n"
+        f"{top}The following skills are loaded for this task. Follow them while you work.\n\n"
         f"{blocks}\n\n{NO_TOOLS}"
     )
 
@@ -247,13 +253,22 @@ def run_trials(
     judge: ExtractBackend,
     trials: int = TRIALS,
     cache_dir: Path = DEFAULT_CACHE,
+    precedence: str = "none",
 ) -> list[Trial]:
     """`trials` agent runs (each cached under its run number) and their classification.
-    Even runs load A first, odd runs B first, so a position bias shows up."""
+    precedence "none": even runs load A first, odd runs B first, so a position bias shows
+    up, and there is no precedence rule. "ab" / "ba": every run puts the load_skills
+    precedence header on top and loads the skills in that order."""
+    from skillfetch.mcp.session import PRECEDENCE_HEADER
+
+    if precedence not in PRECEDENCE:
+        raise ValueError(f"precedence {precedence!r}: one of {', '.join(PRECEDENCE)}")
+    header = None if precedence == "none" else PRECEDENCE_HEADER
     out = []
     for n in range(trials):
-        order = "ab" if n % 2 == 0 else "ba"
-        system = system_prompt(list(skills) if order == "ab" else list(skills)[::-1])
+        order = precedence if header else ("ab" if n % 2 == 0 else "ba")
+        ordered = list(skills) if order == "ab" else list(skills)[::-1]
+        system = system_prompt(ordered, header)
 
         def answer(system=system) -> dict:
             # empty schema: free text at the default temperature, so runs can differ
@@ -274,7 +289,17 @@ def run_trials(
             )
         except PendingAnswer:  # queued for Claude Code; a rerun picks the answer up
             verdict = {"followed": None, "reason": "pending"}
-        out.append(Trial(task.pair, n, order, text["text"], verdict["followed"], verdict["reason"]))
+        out.append(
+            Trial(
+                task.pair,
+                n,
+                order,
+                text["text"],
+                verdict["followed"],
+                verdict["reason"],
+                precedence,
+            )
+        )
     return out
 
 
@@ -317,6 +342,85 @@ def render_results(tasks: list[ObedienceTask], results: list[list[Trial]]) -> st
         "",
         "| pair (A ⟷ B) | A | B | both | neither | pending | non-deterministic |",
         "|---|---|---|---|---|---|---|",
+        *rows,
+    ]
+    return "\n".join(lines)
+
+
+def _winner(trials: list[Trial]) -> str | None:
+    """The skill followed in more runs (a or b), or None on a tie or no a/b run."""
+    dist = Counter(t.followed for t in trials)
+    if dist["a"] == dist["b"]:
+        return None
+    return "a" if dist["a"] > dist["b"] else "b"
+
+
+def render_precedence(
+    tasks: list[ObedienceTask],
+    by_condition: dict[str, list[list[Trial]]],
+    baseline: list[list[Trial]],
+) -> str:
+    """Control rate per pair and overall: a run is controlled when the skill it followed
+    is the one the header ranks first. Compared with the no-header winner of each pair:
+    how many pairs the header turned around (the content winner loaded second, and the
+    other skill won)."""
+    lines = ["# Obedience split test: precedence header", ""]
+    rows, flipped, held, total, controlled, decided = [], 0, 0, 0, 0, 0
+    cond_tot: dict[str, Counter] = {c: Counter() for c in by_condition}
+    for i, t in enumerate(tasks):
+        a, b = (x.split("/")[1].split("@")[0] for x in t.pair.split("|"))
+        base = _winner(baseline[i])
+        cells = []
+        for cond, results in by_condition.items():
+            trials = results[i]
+            first = cond[0]
+            dist = Counter(tr.followed for tr in trials)
+            hit = sum(tr.followed == first for tr in trials)
+            ab_runs = dist["a"] + dist["b"]
+            total += len(trials)
+            controlled += hit
+            decided += ab_runs
+            cond_tot[cond].update({"runs": len(trials), "controlled": hit, "ab": ab_runs})
+            cells.append(
+                f"{hit}/{len(trials)} ({dist['a']}a {dist['b']}b {dist['both']}both "
+                f"{dist['neither']}neither)"
+            )
+        if base is not None:
+            other = "b" if base == "a" else "a"
+            reversed_cond = f"{other}{base}"  # the content winner loaded second
+            if reversed_cond in by_condition:
+                won = _winner(by_condition[reversed_cond][i])
+                flipped += won == other
+                held += won == base
+        rows.append(f"| {a} ⟷ {b} | {base or 'tie'} | " + " | ".join(cells) + " |")
+    conds = list(by_condition)
+    lines += [
+        f"{len(tasks)} pairs × {len(conds)} orders ({', '.join(conds)}) × "
+        f"{len(next(iter(by_condition.values()))[0]) if tasks else 0} runs = {total} runs. "
+        "The header is the one load_skills sends: "
+        '"Skills are listed in precedence order. If two instructions disagree, follow the '
+        'earlier one."',
+        "",
+        f"Control rate (followed the skill ranked first): **{controlled}/{total}** of all runs; "
+        f"{controlled}/{decided} of runs that followed exactly one skill.",
+        "",
+        *(
+            f"- {c}: {v['controlled']}/{v['runs']} of all runs, {v['controlled']}/{v['ab']} "
+            "of one-skill runs"
+            for c, v in cond_tot.items()
+        ),
+        "",
+        "Pairs with a no-header winner whose winner the header turned around (winner ranked "
+        f"second, other skill won the majority): **{flipped}**; winner kept although ranked "
+        f"second: {held}; pairs without a no-header winner: "
+        f"{sum(_winner(r) is None for r in baseline)}.",
+        "",
+        "## Per pair",
+        "",
+        "| pair (A ⟷ B) | no-header winner | "
+        + " | ".join(f"{c}: controlled/runs" for c in conds)
+        + " |",
+        "|---|---|" + "---|" * len(conds),
         *rows,
     ]
     return "\n".join(lines)

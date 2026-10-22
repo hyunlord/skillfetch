@@ -74,3 +74,64 @@ def test_trials_count_a_and_b_and_flag_non_determinism(tmp_path):
     assert first.index("skill-a") < first.index("skill-b")  # run 0: A first
     assert second.index("skill-b") < second.index("skill-a")  # run 1: B first
     assert [t.order for t in trials] == ["ab", "ba", "ab", "ba"]
+
+
+def _task(tmp_path):
+    pair = fixture_pairs(FIXTURES)[0]
+    writer = Fake("w", [{"task": "T", "follows_a": "A", "follows_b": "B"}])
+    [task] = generate_tasks([_row(pair.key)], {pair.key: pair}, writer, tmp_path)
+    return task
+
+
+def test_precedence_puts_the_load_skills_header_on_top_in_that_order(tmp_path):
+    from skillfetch.mcp.session import PRECEDENCE_HEADER
+
+    task = _task(tmp_path)
+    skills = (("skill-a", "body a"), ("skill-b", "body b"))
+    judge = Fake("judge", [{"followed": "a", "reason": "r"}])
+    for cond, first, second in (("ab", "skill-a", "skill-b"), ("ba", "skill-b", "skill-a")):
+        agent = Fake(f"agent-{cond}", [f"out {i}" for i in range(3)])
+        trials = run_trials(task, skills, agent, judge, 3, tmp_path, precedence=cond)
+        assert [t.order for t in trials] == [cond] * 3
+        assert {t.precedence for t in trials} == {cond}
+        for system, _, _ in agent.calls:
+            assert system.startswith(PRECEDENCE_HEADER)
+            assert system.index(first) < system.index(second)
+    none = Fake("agent-none", ["x"])
+    run_trials(task, skills, none, judge, 1, tmp_path)
+    assert PRECEDENCE_HEADER not in none.calls[0][0]
+
+
+def test_precedence_report_counts_control_and_turned_winners():
+    from skillfetch.ingest.obedience import ObedienceTask, Trial, render_precedence
+
+    def runs(pair, cond, followed):
+        return [
+            Trial(pair, i, cond or "ab", "", f, "", cond or "none") for i, f in enumerate(followed)
+        ]
+
+    tasks = [
+        ObedienceTask(
+            pair=p,
+            verdict="conflict",
+            confidence=1,
+            ambiguous_together=True,
+            judge_reason="",
+            task="",
+            follows_a="",
+            follows_b="",
+        )
+        for p in ("s/x@1|s/y@1", "s/u@1|s/v@1")
+    ]
+    baseline = [runs(tasks[0].pair, None, "aaaab"), runs(tasks[1].pair, None, "bbbbb")]
+    by_cond = {
+        "ab": [runs(tasks[0].pair, "ab", "aaaaa"), runs(tasks[1].pair, "ab", "aabbb")],
+        "ba": [runs(tasks[0].pair, "ba", "bbbba"), runs(tasks[1].pair, "ba", "bbbbb")],
+    }
+    text = render_precedence(tasks, by_cond, baseline)
+    # controlled: 5 + 4 (pair 1), 2 + 5 (pair 2) = 16 of 20
+    assert "**16/20** of all runs" in text
+    # pair 1: winner a, ranked second under ba, b won -> turned; pair 2: winner b, ranked
+    # second under ab, b still won -> kept
+    assert "turned around (winner ranked second, other skill won the majority): **1**" in text
+    assert "winner kept although ranked second: 1" in text
