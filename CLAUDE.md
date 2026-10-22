@@ -122,7 +122,8 @@ The only skill a user installs. Short (< 60 lines). It tells the host model:
    delegate to the `skillfetch-runner` subagent when the task is self-contained and
    the user asked for isolation (or the project config sets `isolate: true`).
 4. From v0.3, after the task, call `report_outcome`.
-5. Do not search for trivial edits (typos, renames, one-line fixes).
+5. Skip the search only for trivial edits: a one-line edit in a single file, a rename,
+   or answering a question. Bug fixes, docs and config changes are not trivial.
 
 ## Runner agent (`assets/runner-agent.md`)
 
