@@ -133,3 +133,62 @@ def test_unreadable_skills_are_recorded_and_the_build_goes_on(tmp_path):
     built = _record(snap, odd)
     assert built.record.status == "lint_failed"
     assert built.record.lint["errors"][0]["rule"] == "lint.unreadable"
+
+
+# --- sources and git ------------------------------------------------------------------------
+
+
+@pytest.mark.parametrize("sid", ["a/b", "../x", "x/..", "..", ".hidden", "a..b", "", "-x"])
+def test_source_ids_cannot_name_other_directories(sid):
+    from skillfetch.ingest.sources import Source
+
+    with pytest.raises(ValueError, match="source id"):
+        Source(id=sid, kind="dir", url="/tmp/x", publisher="p", publisher_trust="known")
+
+
+@pytest.mark.parametrize(
+    "url, ref",
+    [
+        ("ext::sh -c touch% /tmp/pwned", "main"),
+        ("ssh://-oProxyCommand=touch%20/tmp/pwned/x", "main"),
+        ("file:///etc", "main"),
+        ("--upload-pack=touch /tmp/pwned", "main"),
+        ("http://example.com/r.git", "main"),
+        ("https://example.com/r.git", "--output=/tmp/pwned"),
+    ],
+)
+def test_git_sources_are_https_only(tmp_path, monkeypatch, url, ref):
+    from skillfetch.ingest import snapshot as snap_mod
+    from skillfetch.ingest.sources import Source
+
+    monkeypatch.setattr(snap_mod, "GIT_URL_PREFIXES", ("https://",))  # production setting
+    source = Source(id="s", kind="git", url=url, ref=ref, publisher="p", publisher_trust="known")
+    calls = []
+    monkeypatch.setattr(snap_mod, "_git", lambda *a, **k: calls.append(a) or "")
+    with pytest.raises(snap_mod.SnapshotError, match="refusing"):
+        snap_mod.snapshot(source, tmp_path)
+    assert calls == []
+
+
+def test_git_arguments_end_options_before_the_url(tmp_path, monkeypatch):
+    from skillfetch.ingest import snapshot as snap_mod
+    from skillfetch.ingest.sources import Source
+
+    sha = "a" * 40
+    calls = []
+
+    def fake(*args, cwd=None):
+        calls.append(args)
+        if args[0] == "ls-remote":
+            return f"{sha}\trefs/heads/main"
+        return sha if args[0] == "rev-parse" else ""
+
+    monkeypatch.setattr(snap_mod, "_git", fake)
+    url = "https://example.com/r.git"
+    source = Source(id="s", kind="git", url=url, ref="main", publisher="p", publisher_trust="known")
+    (tmp_path / "s").mkdir()
+    monkeypatch.setattr(snap_mod.Path, "rename", lambda self, dest: None)
+    snap_mod.snapshot(source, tmp_path)
+    for args in calls:
+        if url in args:
+            assert args[args.index(url) - 1] == "--", args

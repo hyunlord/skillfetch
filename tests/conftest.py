@@ -2,6 +2,8 @@ import json
 from functools import cache
 from pathlib import Path
 
+import pytest
+
 from skillfetch.ingest.calibrate import LABEL_KEYS, load_labels
 from skillfetch.resolve.models import Constraint, Skill
 
@@ -183,3 +185,11 @@ def make_git_source(path: Path, skills: dict[str, Path], branch: str = "main") -
     run("add", "-A")
     run("-c", "user.email=t@example.com", "-c", "user.name=t", "commit", "-q", "-m", "init")
     return run("rev-parse", "HEAD").stdout.decode().strip()
+
+
+@pytest.fixture(autouse=True)
+def _local_git_repos(monkeypatch):
+    """Fixture git sources are local repos (file://); production allows https only."""
+    from skillfetch.ingest import snapshot
+
+    monkeypatch.setattr(snapshot, "GIT_URL_PREFIXES", ("https://", "file://"))
