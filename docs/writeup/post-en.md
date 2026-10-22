@@ -94,6 +94,16 @@ So the failure mode is not randomness. It is a stable, invisible precedence. You
 
 Two caveats that matter. First, the harness wording moved results: in a discarded batch, a note saying "finish in this one reply" pushed every "stop and ask the user" rule to lose. Pairs about pausing versus proceeding are the most fragile. Second, one person classified all 130 outputs. I would want a second rater before putting a decimal on any of this.
 
+**You cannot give skills an order.** The obvious fix is to tell the agent which skill wins. I tried three ways on the same 26 pairs: five runs with A named the winner and five with B, 260 runs per method, same harness and classification.
+
+| How the winner was named | Runs that followed the named winner |
+| --- | --- |
+| Header before the skills: "Skills are listed in precedence order. If two instructions disagree, follow the earlier one." (what `load_skills` emits) | 43% (112/260) |
+| A block naming the winner and quoting both conflicting lines | 56% (145/260) |
+| The loser's conflicting lines replaced with `<!-- overridden by <winner>: "<line>" -->` | 46% (120/260) |
+
+That is 910 runs counting the 130 above. Per-pair tables are in [numbers.md](numbers.md) §8–§10.
+
 ## What the tool gets wrong
 
 The pipeline is tuned for precision over recall, and that cost is visible in the numbers.
@@ -115,7 +125,9 @@ uvx --from git+https://github.com/hyunlord/skillfetch skillfetch scan ~/.claude/
 uvx --from git+https://github.com/hyunlord/skillfetch skillfetch scan ~/.claude/skills --fail-on conflict   # for CI
 ```
 
-The part I actually set out to build is the other half. Given that 80% of skills cannot be redistributed, that most of them are fine together, and that the ones that are not resolve by silent precedence, the thing I want is an agent that **does not install skills at all**: for each task it searches a vetted index, picks a small set, checks that set for the tensions above, states the precedence explicitly, fetches the bodies from their original repos with hash verification, and drops them when the task is done. An early version of that MCP server is in the repo: `search_skills`, `resolve_set`, `load_skills`, working end to end in Claude Code. The index holds metadata, constraints and hashes, never bodies.
+The part I actually set out to build is the other half. Given that 80% of skills cannot be redistributed, that most of them are fine together, and that the ones that are not resolve by silent precedence, the thing I want is an agent that **does not install skills at all**: for each task it searches a vetted index, picks a small set, checks that set for the tensions above, fetches the bodies from their original repos with hash verification, and drops them when the task is done. An early version of that MCP server is in the repo: `search_skills`, `resolve_set`, `load_skills`, working end to end in Claude Code. The index holds metadata, constraints and hashes, never bodies.
+
+<!-- stage 1 cost: turns, tokens, correctness (to be filled after the blind results) -->
 
 If you maintain a skill: add a LICENSE file. If you maintain a registry: show it. If you have a pair of skills you suspect disagree, run the scanner on them and open an issue with the output; I want to know what it misses more than what it finds.
 
