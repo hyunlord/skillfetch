@@ -356,6 +356,23 @@ As built (`ingest/build.py`, `skillfetch ingest --sources sources.yaml
 of `index/` attached to a GitHub release; `skillfetch sync` downloads the
 latest, verifies hashes, swaps `~/.skillfetch/index/` atomically.
 
+As built (`index/sync.py`):
+
+- `skillfetch sync --pack DIR --out dist/` writes
+  `skillfetch-index-<built_at>.tar.gz` and `<name>.sha256`: manifest.json and
+  the files it lists, under `index/`, reproducible (sorted members, zero mtimes
+  and owners). Maintainers attach both to a release (`gh release create
+  index-<date> dist/*`).
+- `skillfetch sync [--repo hyunlord/skillfetch] [--tag T] [--index DIR]` takes
+  release `T`, or the newest non-draft, non-pre-release with both assets;
+  `--from FILE` installs a local tarball (checked against `FILE.sha256` when
+  present). The tarball must match its `.sha256`; only regular files under
+  `index/` are unpacked (no links, absolute paths or `..`); the unpacked index
+  must pass `Index.load` (every file against the manifest) before it replaces
+  the old one, which stays in place on any failure. Same manifest → "already
+  up to date". `GITHUB_TOKEN`/`GH_TOKEN`, if set, is sent to api.github.com
+  only (rate limit), never to the download host, never printed.
+
 ## 3. Skill record (`skills.jsonl`)
 
 ```json

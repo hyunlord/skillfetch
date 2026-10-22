@@ -1,12 +1,14 @@
-"""Command line: `skillfetch scan|ingest|serve`."""
+"""Command line: `skillfetch scan|ingest|judge|obedience|sync|serve`."""
 
 from __future__ import annotations
 
 import argparse
+import os
 import sys
 from collections.abc import Sequence
 from pathlib import Path
 
+from skillfetch.index import sync as index_sync
 from skillfetch.index.loader import DEFAULT_INDEX_DIR, Index, IndexLoadError
 from skillfetch.ingest import backends, credentials, extract
 from skillfetch.ingest import judge as judge_mod
@@ -75,6 +77,33 @@ def main(argv: Sequence[str] | None = None) -> int:
     scan.add_argument("--base-url", help="OpenAI-compatible server for openai/<model>")
     scan.add_argument("--creds-file", type=Path, default=credentials.DEFAULT_CREDS_FILE)
     scan.add_argument("--jobs", type=int, default=4, help="parallel extraction requests")
+
+    sync = sub.add_parser(
+        "sync",
+        help="download the published index from a GitHub release (or pack one for a release)",
+    )
+    sync.add_argument(
+        "--index",
+        type=Path,
+        default=DEFAULT_INDEX_DIR,
+        help="where the index goes (default: %(default)s)",
+    )
+    sync.add_argument("--repo", default=index_sync.DEFAULT_REPO, help="(default: %(default)s)")
+    sync.add_argument("--tag", help="a release tag (default: the newest release with an index)")
+    sync.add_argument(
+        "--from",
+        dest="tarball",
+        type=Path,
+        help="install this index tarball instead of downloading (checked against "
+        "<file>.sha256 when present)",
+    )
+    sync.add_argument(
+        "--pack",
+        type=Path,
+        metavar="INDEX_DIR",
+        help="maintainers: write INDEX_DIR as a release tarball + .sha256 into --out",
+    )
+    sync.add_argument("--out", type=Path, default=Path("dist"), help="with --pack")
 
     serve = sub.add_parser("serve", help="run the MCP server over stdio")
     serve.add_argument(
@@ -246,7 +275,30 @@ def main(argv: Sequence[str] | None = None) -> int:
         return _obedience(args)
     if args.command == "serve":
         return _serve(args)
+    if args.command == "sync":
+        return _sync(args)
     return 2  # unreachable: argparse rejects unknown commands
+
+
+def _sync(args: argparse.Namespace) -> int:
+    try:
+        if args.pack is not None:
+            tarball, checksum = index_sync.pack(args.pack, args.out)
+            print(f"{tarball} ({tarball.stat().st_size} bytes)\n{checksum}")
+            return 0
+        # a token only raises the API rate limit; it is sent to api.github.com, never printed
+        token = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
+        result = index_sync.sync(args.index, args.repo, args.tag, args.tarball, token=token)
+    except (index_sync.SyncError, IndexLoadError, OSError) as exc:
+        print(f"skillfetch: sync: {exc}", file=sys.stderr)
+        return 1
+    m = result.index.manifest
+    state = "installed" if result.changed else "already up to date"
+    print(
+        f"{state}: {result.index.root} from {result.source} · {len(result.index.records)} "
+        f"skills · built {m.get('built_at')} · extraction {m.get('extract_model')}"
+    )
+    return 0
 
 
 def _scan_lookup(args: argparse.Namespace) -> Lookup:
