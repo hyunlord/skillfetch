@@ -142,11 +142,16 @@ than `logging`, and as `logging` it would read as a blanket ban.
 §2):
 
 - `polarity: negative` marks a subject that rules usually remove:
-  `trailing-whitespace`, `preamble`. "Strip/remove/delete/trim/avoid X" on a
+  `trailing-whitespace`, `preamble`. "Strip/remove/delete/trim/drop X" on a
   negative subject is a ban; an extracted `require`/`prefer` with such a verb
   on its evidence line becomes `forbid`/`avoid`. Without the verb the
   directive stands ("Always begin by restating the question" requires a
-  preamble).
+  preamble), and so it does when a negation (never, not, n't, without,
+  avoid) stands up to two words before the verb: "Never strip trailing
+  whitespace" and "Do not remove the preamble" require the thing. `avoid` is
+  not a removal verb (an avoid-rule already arrives as `avoid`). In the
+  2026-10-22 build no constraint reached this rule either way: 10 constraints
+  have a negative subject and none of their lines has a removal verb.
 - `implied_artifact` is the only artifact a subject occurs in: type hints,
   docstrings, comments, formatter → `code`; preamble, summary-at-end,
   explain-reasoning → `response`; commit-granularity → `commit-message`; test
@@ -201,8 +206,9 @@ than `logging`, and as `logging` it would read as a blanket ban.
   (subject over three words, an object outside a vocabulary term's list) are
   dropped one by one (`dropped`, with the reason); only an answer that still
   fails as a whole (bad JSON, schema) records `extract_failed`. A refusal is not
-  retried. A cached `extract_failed` record whose last answer passes the current
-  validation is recovered by the build without another call (`revalidate`).
+  retried. The cache keeps the raw answers; validation and every step below
+  run again on each read (`postprocess`), the first attempt that validates
+  wins, and the last attempt is validated as a last attempt.
 - Evidence check after validation: a quote found on its cited line is kept; a
   quote found on exactly one other line is kept with the line corrected (a
   miscount, reported as `repaired`); anything else is dropped (`dropped`, with
