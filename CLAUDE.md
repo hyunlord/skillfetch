@@ -120,8 +120,10 @@ The only skill a user installs. Short (≤ 60 lines). It tells the host model:
    such as TDD, minimal diff or security first; when they did not say, the one that fits
    the task best), and the stack and target files. Add the user's request word for word
    as a fourth. Pass all four to `search_skills` as `queries`.
-2. Pick 1–3 candidates by reading all 50 summaries, weighing `token_estimate` against
-   `load_skills`' budget. If the user named a skill, find its id with
+2. Pick up to 3 candidates by reading all 50 summaries, weighing `token_estimate` against
+   `load_skills`' budget. Pick a skill only when you can say in one sentence what its
+   summary changes in this task; often none fits, and then resolve and load are skipped.
+   If the user named a skill, find its id with
    `search_skills` (the result whose title matches) and pass it as pinned.
 3. Call `resolve_set`, then `load_skills`. (`prepare_set` + delegating to the
    `skillfetch-runner` subagent when the user asks for isolation: not built, not planned for v0.3.)
