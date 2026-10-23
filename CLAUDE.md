@@ -35,7 +35,7 @@ The product has two halves that must stay decoupled:
 
 - Existing `skill-lint`-style tools check frontmatter, links, token counts.
   **They do not check whether two skills give opposite instructions.** We do.
-- Existing routers (UASL, skill-search) load one skill, or hand Claude a list.
+- Existing routers (UASL, skill-search, Skillselion) load one skill, or hand Claude a list.
   **They do not build a conflict-free *set*, scope it to one task, or record
   whether it helped.** We do.
 - Existing registries rank by install count. **We gate by automated vetting.**

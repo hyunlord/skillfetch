@@ -111,8 +111,13 @@ Skills are great until you have thirty of them. Then two of them disagree —
 one says "squash commits", another says "never squash" — and your agent quietly
 picks one. Existing skill linters check frontmatter and broken links; none of
 them check whether two skills contradict each other. Existing skill routers
-hand you one skill, or a list; none of them build a set that is safe to load
-together, scope it to one task, or tell you afterwards whether it helped.
+(UASL, skill-search) hand you one skill, or a list. Searching and loading skills
+mid-task without installing them is not unique to skillfetch:
+[Skillselion](https://skillselion.com) is an MCP server that does it, ranking skills
+by skills.sh install counts. What skillfetch adds is what admits a skill to the
+index (automated vetting: lint, injection scan, license, not install counts), a
+conflict check on the set it loads, and published measurements of whether loading
+helped.
 
 ## What skillfetch does
 
