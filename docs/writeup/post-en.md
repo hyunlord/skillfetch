@@ -2,7 +2,7 @@
 
 *2026-10-22 · Kwan Hyeon*
 
-SKILL.md files are the new npm: you install thirty of them into your coding agent and never read one. I pulled 1,831 public skills, linted them, scanned them for prompt-injection patterns, extracted 29,880 individual instructions from them, and checked which instructions contradict each other. Then I ran 1,418 agent sessions to see what any of it changes. Four things stood out. Only one in five states a license. Outright contradictions between skills are almost nonexistent. When two skills do disagree, the agent quietly picks one, the same one every time, and none of the three ways I tried to name the winner was a reliable control: the named skill was followed in 43–56% of runs, and the best method turned the agent's own choice around in only 8 of the 23 pairs where it had one. And skills mattered in 1 of the 5 task types I measured: on design, the expert's skill removed the template look; on tests, APIs, docs and data scripts the agent passed every check with or without one. On a 380-task benchmark the search finds the relevant skill (top-50 recall 0.84); what fails is the router firing at all, on 40% of non-trivial tasks in real repos.
+SKILL.md files are the new npm: you install thirty of them into your coding agent and never read one. I pulled 1,831 public skills, linted them, scanned them for prompt-injection patterns, extracted 29,880 individual instructions from them, and checked which instructions contradict each other. Then I ran 1,418 agent sessions to see what any of it changes. Four things stood out. Only one in five states a license. The rules found almost no outright contradictions: both of their two hard flags were false, and how many they miss is unmeasured. When two skills do disagree, the agent usually picks the same one on a given task, and none of the three ways I tried to name the winner was a reliable control: the named skill was followed in 43–56% of runs, and the best method turned the agent's own choice around in only 8 of the 23 pairs where it had one. And skills mattered in 1 of the 5 task types I measured: on design, the expert's skill removed the template look; on tests, APIs, docs and data scripts the agent passed every check with or without one. On a 380-task benchmark three-query search reaches top-50 recall 0.84 on the 278 tasks that have a labelled relevant skill; in real repos the router fired on 40% of non-trivial tasks.
 
 ## What I did
 
@@ -15,7 +15,7 @@ Two sources: Anthropic's own [skills repo](https://github.com/anthropics/skills)
 5. **LLM judge** over the open pairs, using a different vendor's model than the extractor, reading the original lines rather than the extracted records.
 6. **Obedience test**: for pairs the judge called a real conflict, load both skills into an agent, give it a task that touches the disputed rule, and record which skill it obeys.
 
-External API cost for the whole analysis was **$15.75** (separately, the 1,418 agent sessions and the benchmarks' batch calls ran on a Claude Code plan: about $534 at API prices, [numbers.md](numbers.md) §7): $6.23 for extraction (gpt-6-luna, the cheapest of the four models tried on the fixtures), $9.36 for the judge (claude-sonnet-5.5), $0.16 for task generation. The obedience runs and all classification happened inside Claude Code sessions. A note on authorship: I designed the pipeline and made the calls; Claude Code wrote most of the code and ran the experiments. Where this post says "I read", a human read. Code and numbers: [hyunlord/skillfetch](https://github.com/hyunlord/skillfetch).
+External API cost for the whole analysis was **$15.75** (separately, the 1,418 agent sessions and the benchmarks' batch calls ran on a Claude Code plan: about $534 at API prices for the logged sessions and calls, not counting the interactive sessions that wrote the code and classified outputs, or human time, [numbers.md](numbers.md) §7): $6.23 for extraction (gpt-6-luna, the cheapest of the four models tried on the fixtures), $9.36 for the judge (claude-sonnet-5.5), $0.16 for task generation. The obedience runs and all classification happened inside Claude Code sessions. A note on authorship: I designed the pipeline and made the calls; Claude Code wrote most of the code and ran the experiments. Where this post says "I read", a human read. Code and numbers: [hyunlord/skillfetch](https://github.com/hyunlord/skillfetch).
 
 ## 1. Only one in five skills states a license
 
@@ -29,7 +29,7 @@ External API cost for the whole analysis was **$15.75** (separately, the 1,418 a
 
 822 of the 824 "upstream found, no license" skills come from a single aggregator, `ComposioHQ/awesome-claude-skills`, which has no repo-level LICENSE. The library that re-collects them is MIT, but an MIT badge on an aggregator does not license the files it copied from somewhere else. This is not specific to either project; it is how the whole ecosystem currently works, and I doubt most maintainers have thought about it. Even Anthropic's own repo is mixed: 4 of its 19 skills (docx, pdf, pptx, xlsx) are all-rights-reserved and one has no license file.
 
-This is a count of what is stated, not a legal opinion. But it means any "skill registry" that redistributes bodies is, for about 80% of its inventory, doing so without permission. The practical consequence for my own tool was that the index can only hold metadata and content hashes; skill bodies have to be fetched from the original repo at use time.
+This is a count of what is stated, not a legal opinion. But a registry that redistributes bodies has, for about 80% of this inventory, no license we could find that grants that permission; for 630 entries we could not even check an upstream. The practical consequence for my own tool was that the index can only hold metadata and content hashes; skill bodies have to be fetched from the original repo at use time.
 
 ## 2. 107 skills fail basic hygiene; 216 ship executable scripts
 
@@ -47,7 +47,7 @@ This is a count of what is stated, not a legal opinion. But it means any "skill 
 | `override.ignore-previous` | 1 | "ignore previous instructions" |
 | `exfil.dotenv` | 1 | cat or upload of `.env` |
 
-The hits I checked by hand were not attacks. One was Anthropic's own API guide, rejected for quoting the phrase "ignore what the user said" while telling you not to write prompts like that. Another was an end-to-end testing skill passing `--no-sandbox` to headless Chrome. That is exactly the problem: a regex cannot tell a tutorial from an exploit, and neither can an agent that has just loaded the file into its context. A scan like this earns its place as a gate for "show me what to look at", not as a verdict. I have not read all 25, so I cannot say none is malicious; I can say the pattern-matching alone does not establish it.
+The hits I checked by hand were not attacks. One was Anthropic's own API guide, rejected for quoting the phrase "ignore what the user said" while telling you not to write prompts like that. Another was an end-to-end testing skill passing `--no-sandbox` to headless Chrome. That is exactly the problem: a regex cannot tell a tutorial from an exploit. Whether an agent that has just loaded the file can, I did not test. A scan like this earns its place as a gate for "show me what to look at", not as a verdict. I have not read all 25, so I cannot say none is malicious; I can say the pattern-matching alone does not establish it.
 
 Separately, 216 skills bundle shell or Python scripts the agent is expected to run. Nothing is wrong with that in itself, but it moves the trust question from "what does this text tell my agent to do" to "what does this code do when my agent runs it", which no SKILL.md linter answers.
 
@@ -61,7 +61,7 @@ CONFLICT  darwin ⟷ thinking-ooda
   thinking-ooda:108  "Immediately return to OBSERVE"
 ```
 
-That is the OODA loop, not a contradiction. The other one pairs caveman-review:51, "Drop terse mode for: security findings (CVE-class bugs need full explanation + reference) …", with saga:394, "Skip verbose explanations, focus on deliverables", which applies in saga's autorun mode: different situations. So the honest count of textual contradictions in 1,700 public skills is zero.
+That is the OODA loop, not a contradiction. The other one pairs caveman-review:51, "Drop terse mode for: security findings (CVE-class bugs need full explanation + reference) …", with saga:394, "Skip verbose explanations, focus on deliverables", which applies in saga's autorun mode: different situations. So neither of the rules' two hard flags is a real contradiction. That does not show there are none: recall is unmeasured, the default mode downgrades blanket rules on purpose, and the judge below calls 90 pairs conflicts.
 
 What the rules did find was 2,011 pairs they could not settle: 137 soft tensions and 1,874 marked `needs_review`. I had a second model read the original lines for every one of them.
 
@@ -73,11 +73,11 @@ What the rules did find was 2,011 pairs they could not settle: 137 soft tensions
 | Carve-out (one narrows the other) | 57 | 2.8% |
 | Error or unclear | 7 | 0.3% |
 
-Four in five pairs that looked suspicious to the rules are fine. Of the 90 the judge called conflicts, most are of the form "always ask before acting" against "once the team is chosen, proceed without asking": one rule carving an exception out of another. The judge over-calls these; on a hand-labelled set it marked 6 of 7 known carve-outs as conflicts, so 90 is a ceiling.
+Four in five pairs that looked suspicious to the rules are fine. Of the 90 the judge called conflicts, most are of the form "always ask before acting" against "once the team is chosen, proceed without asking": one rule carving an exception out of another. The judge over-calls these: on a hand-labelled set it marked 6 of 7 known carve-outs as conflicts, so some of the 90 are not real conflicts. The pairs it called independent were not audited, so 90 is not a ceiling on conflicts in the corpus either.
 
 The pattern across all of it: skill authors do not disagree about what to do. They disagree about **when** and **how much**: in paraphrase, keep responses short versus be thorough on security findings, or log every significant step versus never log from inside test code. These are not bugs in the skills. They are exactly the kind of thing an agent should reconcile, and the question is whether it does.
 
-## 4. When two skills disagree, the agent does not flip a coin. It picks one, every time.
+## 4. When two skills disagree, the agent rarely flips a coin. On a given task it mostly picks the same one.
 
 I took 26 pairs the judge had called both a conflict and "ambiguous to follow together", wrote one task per pair that forces the disputed rule to matter, and ran each task five times in a fresh agent session with both skill bodies loaded and no precedence hint. Order alternated: A first on odd runs, B first on even. I then classified each output as following A, following B, both, or neither.
 
@@ -88,9 +88,9 @@ I took 26 pairs the judge had called both a conflict and "ambiguous to follow to
 | Mixed: A on some runs, B on others | 4 |
 | Other mixes | 3 |
 
-Only 4 of 26 pairs were non-deterministic. In 17, the agent followed the same one skill five times out of five. Which skill was loaded first made no difference: when exactly one was obeyed, it was the first-loaded one 51 times and the second 53.
+In 17 of 26 pairs the agent followed the same one skill five times out of five; 7 had varying outcomes, 4 of them switching between A and B. Load order showed no effect in aggregate: when exactly one was obeyed, it was the first-loaded one 51 times and the second 53.
 
-So the failure mode is not randomness. It is a stable, invisible precedence. You install `tdd` and `warden`; one of them wins on every task where they disagree, and nothing in your session tells you which or why. If you later wonder why the agent stopped writing tests first, the answer is a line in a skill you installed three weeks ago.
+So on the tested tasks the failure mode was mostly not randomness but a stable, invisible preference. On the `tdd` ⟷ `warden` task the agent followed `tdd` in all five runs, and nothing in the session said why. With one task per pair, I cannot say whether such a preference holds on other tasks.
 
 Two caveats that matter. First, the harness wording moved results: in a discarded batch, a note saying "finish in this one reply" pushed every "stop and ask the user" rule to lose. Pairs about pausing versus proceeding are the most fragile. Second, all 130 outputs were classified by one classifier, a Claude Code session; there was no second rater. I would want one before putting a decimal on any of this.
 
@@ -108,7 +108,7 @@ None of the three is a reliable control: 43–56% of runs followed the named ski
 
 To find out, I ran real Claude Code sessions in three conditions: **A** no skills; **B** the one skill an expert would have installed, pre-loaded; **C** skillfetch's router (the MCP server described under "Try it") picking from the index. Everything was scored blind by model judges (Claude), with the condition hidden behind random codes: in stage 1 by the session that ran the test, in the 1b rejudge and stage 2 by fresh subagents that saw only the rubric and the outputs.
 
-On 20 small maintenance tasks on two repos (a FastAPI template and a Next.js starter; add a 404 page, link pagination, a README table), each run twice per condition (stage 1; B only on the 15 tasks with an expert skill), the three conditions were indistinguishable: 110 of 110 passed the hidden checks, screenshots tied, documents tied. Skills do not change what the agent writes when the task is small. C cost 6.5 more turns than A on the 15 tasks with an expert skill (6 over all 20) and 59% more input tokens, for nothing.
+On 20 small maintenance tasks on two repos (a FastAPI template and a Next.js starter; add a 404 page, link pagination, a README table), each run twice per condition (stage 1; B only on the 15 tasks with an expert skill), the three conditions were indistinguishable: 110 of 110 passed the hidden checks, screenshots tied, documents tied. On these small tasks the skills made no difference that the checks or the judges could see. C cost 6.5 more turns than A on the 15 tasks with an expert skill (6 over all 20) and 59% more input tokens, for nothing.
 
 On 5 larger tasks on the same two repos, each run twice per condition (stage 1b), the picture split. To see whether that generalises, I then ran one large task in each of four more domains, each in its own repo (stage 2): tests for an untested 280-line module, a FastAPI bookmarks API, a README for an undocumented Next.js app, and a script that cleans a 375-row orders CSV with ten planted problems. Five runs per condition, checks frozen before the runs, every output judged blind twice by fresh model judges. Stage 2 used only the router after the search fix described below.
 
@@ -131,7 +131,7 @@ On 5 larger tasks on the same two repos, each run twice per condition (stage 1b)
 
 The expert's skill matters: with Anthropic's `frontend-design` loaded, the landing pages lost their template look. The router's first version never found that skill (it ranked 13th to 41st, never in the 10 results the search returned) and loaded design-adjacent skills instead. On the landing pages they did not reduce the template tells (2.00, the same as no skill); on the planning task they made the plan worse than no skill (rank 0.79 vs 0.36). There, loading the wrong skill was worse than loading none.
 
-Widening the search to 50 compact summaries and letting the agent choose from those solved search for tasks that name their domain:
+Widening the search to 50 compact summaries and letting the agent choose from those put the expert's skill in the router's top 50 in every one of these domain-named tasks:
 
 | Task type | Expert's skill | In the router's top 50 | Mean rank there | Loaded |
 |---|---|---|---|---|
@@ -142,13 +142,13 @@ Widening the search to 50 compact summaries and letting the agent choose from th
 | Data script | `data-analyst-engine` | 5/5 | 2.0 | 5/5 |
 | All | | 24/24 | | 23/24 |
 
-Finding the skill is not the same as needing it. Design is the only domain where the expert's skill changed the result. On tests, the API, docs and the data script, all three conditions hit every objective metric (100% branch coverage, 27 of 27 contract calls, every check passed), and the score differences between conditions (0.6 or less) are within the noise of five runs and two judging passes that agreed exactly on 8 to 14 of 15 outputs. The router costs 1.7 to 2.1 times the input tokens of no skill and 6 to 8 more turns. That is the scope of this result: tasks the base model finishes in a median 9 to 15 turns without help, one model, five runs per condition.
+Finding the skill is not the same as needing it. Design is the only domain where I saw the expert's skill change the result. On tests, the API, docs and the data script, all three conditions hit every objective metric (100% branch coverage, 27 of 27 contract calls, every check passed), and the score differences between conditions (0.6 or less) are small next to the variation between two judging passes, which agreed exactly on 8 to 14 of 15 outputs. With one task per domain and five runs per condition, this neither shows a benefit nor establishes that there is none. The router costs 1.7 to 2.1 times the input tokens of no skill and 6 to 8 more turns. That is the scope of this result: tasks the base model finishes in a median 9 to 15 turns without help, one model, five runs per condition.
 
 The router still misses skills about *how* to work. The expert's `writing-plans` skill describes a way of working, the planning task describes a feature, and keyword search does not bridge that. A 22M-parameter embedding model did not bridge it either (top-50 recall 0.74 fused with BM25 vs BM25's 0.71, [numbers.md](numbers.md) §12), so it is not in the product.
 
 ## 6. How often does it find the right skill? A 380-task benchmark.
 
-Five task types is a small sample, so I built a larger, offline one: 380 synthetic developer requests. 300 are spread over 12 task types × 6 stacks × 5 phrasings, 40 are trivial requests that should load nothing, and 20 pairs differ only in how the user asked to work. For every task a model graded the candidate skills 0–3, and the relevant set is grade 2 or more. That model (Opus 5.5) is the one that runs the router, so the labels measure consistency, not ground truth: two grading passes agreed exactly on 94% of 500 pairs. The tasks, labels, queries and the scorer are in the repo (`evals/retrieval/`, `skillfetch eval retrieval`).
+Five task types is a small sample, so I built a larger, offline one: 380 synthetic developer requests. 300 fill 300 of the 360 combinations of 12 task types × 6 stacks × 5 phrasings, one task each, 40 are trivial requests that should load nothing, and 20 pairs differ only in how the user asked to work. For every task a model graded the candidate skills 0–3, and the relevant set is grade 2 or more. That model (Opus 5.5) is the one that runs the router, so the labels measure consistency, not ground truth: two grading passes agreed exactly on 94% of 500 pairs. The tasks, labels, queries and the scorer are in the repo (`evals/retrieval/`, `skillfetch eval retrieval`).
 
 Search first: the share of relevant skills in the top 10 and the top 50.
 
@@ -159,23 +159,23 @@ Search first: the share of relevant skills in the top 10 and the top 50.
 | Three sentences (what it builds, how to work, the stack), each searched, merged | 0.535 | 0.835 | 0.783 |
 | The one sentence, BM25 fused with MiniLM embeddings | 0.473 | 0.801 | 0.734 |
 
-Splitting the restatement into three sentences recovers most of what one sentence missed, process skills included. The router now searches this way; what that changes in real sessions is not measured yet. The embedding model added 0.026 at top 50 on the same sentence, under the 0.10 bar for adopting it, so it stays out.
+Splitting the restatement into three sentences recovers most of what one sentence missed, process skills included. The router now searches this way. Stage 4 below runs it in real sessions, but not against the one-query version, and task outcomes were not scored. The embedding model added 0.026 at top 50 on the same sentence, under the 0.10 bar for adopting it, so it stays out.
 
 Selection is where it breaks. Given the real top 50, the picker loaded at least one relevant skill in 82% of the tasks that had one (precision 0.81, recall 0.42). But in 30 of the 95 tasks where nothing in the index fits, it loaded something anyway, and it loaded a skill for 30% of the 40 trivial requests. Counted per task, the failures are: selection 55 (25 passed over a relevant skill that was in the list, 30 loaded one when none fit), restatement 20, search 7.
 
 Some tasks have nothing to find. 62 of the 340 non-trivial tasks have no relevant skill in the index, most of them in ml (11 of 29), deploy (9 of 29), feature and performance (8 each) and data and ui_design (7 each).
 
-Last, real sessions in the two real repositories (stage 4): 29 of these tasks, rewritten for the repos, three runs each in two environments, a clean one (skillfetch only) and my own (14 MCP servers, 134 skills, hooks on every tool call). On non-trivial tasks the router fired in 23 of 57 sessions in the clean environment and 22 of 57 in mine; per task the difference averaged 0.000. On trivial tasks, which it is told to skip, it fired in 0 of 30 and 1 of 30. When it loaded something, the set held a relevant skill in 8 of 14 and 10 of 17 sessions, and it loaded a skill for a task with nothing relevant in 4 of 24 sessions in each environment. An earlier run on stub repositories (stage 3) reached search in 12 of 40 sessions; with no real code to work on, that number is a limit of the stubs, not a firing rate.
+Last, real sessions in the two real repositories (stage 4): 29 of these tasks, rewritten for the repos, three runs each in two environments, a clean one (skillfetch only) and my own (14 MCP servers, 134 skills, hooks on every tool call). On non-trivial tasks the router fired in 23 of 57 sessions in the clean environment and 22 of 57 in mine; per task the difference averaged +0.018 on these 19 tasks (0.000 over all 29, trivial ones included). On trivial tasks, which it is told to skip, it fired in 0 of 30 and 1 of 30. When it loaded something, the set held a relevant skill in 8 of 14 and 10 of 17 sessions, and it loaded a skill for a task with nothing relevant in 4 of 24 sessions in each environment. An earlier run on stub repositories (stage 3) reached search in 12 of 40 sessions; with no real code to work on, that number is a limit of the stubs, not a firing rate.
 
-Search is solved by asking it three questions instead of one (top-50 recall 0.835). The bottleneck is firing: in real repositories the router runs on 40% of non-trivial tasks, and the user's configuration is not why.
+Three questions instead of one raised top-50 recall to 0.835 on the 278 tasks with a labelled relevant skill (0.764 on the catalogue-picked subset). That does not make the index complete: 62 non-trivial tasks have no labelled relevant skill. In real repositories the router fired on 40% of non-trivial tasks, and removing my configuration did not raise that rate in this sample.
 
 ## What the tool gets wrong
 
 The pipeline is tuned for precision over recall, and that cost is visible in the numbers.
 
-- **Recall is unmeasured.** Nobody has hand-labelled 1,700 public skills for conflicts, so I can say the tool rarely lies; I cannot say how much it misses. The default mode deliberately downgrades blanket rules without a named object ("never use emoji") to `needs_review`, because on real skills those were the source of every false conflict. On my hand-written test set that hides 8 of 19 real conflicts.
-- **The judge leans one way.** It called 6 of 7 known carve-outs "conflict". Its 90 is an upper bound.
-- **Six extraction prompts, one test set.** I revised the extraction schema six times against the 41 hand-written fixture skills of the time until conflict precision was 1.0 and informative-pair accuracy 0.912 on them (the fixture directory now holds 52: 44 hand-written plus 8 cap fixtures that keep real public lines). On a held-out set of 26 public skills, extraction v4 then flagged 24 conflicts, all false; the final version flags 0 there and 2 in the full build. The lesson generalises: a perfect score on the set you tuned against means nothing until a held-out set agrees.
+- **Recall is unmeasured.** Nobody has hand-labelled 1,700 public skills for conflicts, so I know conflict precision only on the fixtures (1.0). On public skills both hard flags were false, too few to estimate precision, and I cannot say how much it misses. The default mode deliberately downgrades blanket rules without a named object ("never use emoji") to `needs_review`, because on real skills those were the source of every false conflict. On my hand-written test set that hides 8 of 19 real conflicts.
+- **The judge leans one way.** It called 6 of 7 known carve-outs "conflict", so some of its 90 are not conflicts. The pairs it called independent were not audited, so 90 is not an upper bound.
+- **Six extraction prompts, one test set.** I revised the extraction schema six times against the 41 hand-written fixture skills of the time until conflict precision was 1.0 and informative-pair accuracy 0.912 on them (the fixture directory now holds 52: 44 hand-written plus 8 cap fixtures that keep real public lines). On a held-out set of 26 public skills, extraction v4 then flagged 24 conflicts, all false; the final version flags 0 there and 2 in the full build. The later versions were made after seeing those 24, so that holdout is no longer independent, and 0 flags says nothing about recall. The lesson generalises: a perfect score on the set you tuned against means nothing until a held-out set agrees.
 - **Two false conflicts are in the shipped output** and documented in the README as such, rather than patched around.
 - **Anti-pattern tables fool the extractor.** A row in a "❌ Don't" table is read as an instruction. Open issue.
 - **Extraction is semantic, so it needs a model.** about $0.003 per skill with gpt-6-luna ($4.82 for the final run: 1,764 requests, 1,723 public skills and the 41 fixtures).
@@ -191,7 +191,7 @@ uvx --from git+https://github.com/hyunlord/skillfetch skillfetch scan ~/.claude/
 uvx --from git+https://github.com/hyunlord/skillfetch skillfetch scan ~/.claude/skills --fail-on conflict   # for CI
 ```
 
-The part I actually set out to build is the other half. Given that 80% of skills cannot be redistributed, that most of them are fine together, and that the ones that are not resolve by silent precedence, the thing I want is an agent that **does not install skills at all**: for each task it searches a vetted index, picks a small set, checks that set for the tensions above, fetches the bodies from their original repos with hash verification, and drops them when the task is done. An early version of that MCP server is in the repo: `search_skills`, `resolve_set`, `load_skills`, working end to end in Claude Code. The index holds metadata, constraints and hashes, never bodies. Section 5 is what happened when I ran it.
+The part I actually set out to build is the other half. Given that for 80% of skills I found no license that allows redistribution, that most of them are fine together, and that the ones that are not resolve by silent precedence, the thing I want is an agent that **does not install skills at all**: for each task it searches a vetted index, picks a small set, checks that set for the tensions above, fetches the bodies from their original repos with hash verification, and drops them when the task is done. An early version of that MCP server is in the repo: `search_skills`, `resolve_set`, `load_skills`, working end to end in Claude Code. It loads skills into the current context and does not unload them at the next task; per-task isolation is not built, and the conflict check is best effort, not a guarantee. The index holds metadata, constraints and hashes, never bodies. Section 5 is what happened when I ran it.
 
 If you maintain a skill: add a LICENSE file. If you maintain a registry: show it. If you have a pair of skills you suspect disagree, run the scanner on them and open an issue with the output; I want to know what it misses more than what it finds.
 

@@ -780,7 +780,7 @@ tier A/B skills search_skills can return.
 
 **Setup.**
 - **Tasks:** 380 synthetic developer requests (`tasks.jsonl`).
-  - 300 are stratified over 12 task types × 6 stacks × 5 phrasings, one per cell: 25 per task type, 50 per stack, 60 per phrasing.
+  - 300 fill 300 of the 360 cells of 12 task types × 6 stacks × 5 phrasings, one task per filled cell: 25 per task type, 50 per stack, 60 per phrasing (not fully crossed).
   - 40 are trivial requests that should load nothing (`expect_none`).
   - 20 pairs differ only in a direction (40 tasks).
   - 20 tasks were rewritten after a check against the 1,707 skill titles, to keep skill names out of them.
@@ -970,5 +970,9 @@ e2e/stage4/DESIGN.md, pilot in report-p0.md).
   - reached search: mean difference 0.000; 6 / 6 / 17.
   - loaded: mean difference −0.034; 4 / 7 / 18.
   - capped: mean difference −0.046; 0 / 4 / 25.
+  - fired, the 19 non-trivial tasks only: mean difference +0.018; 6 / 6 / 7.
+- **Stage 4 tasks that refer to code not in the repo:** 62 of the 114 non-trivial sessions ended without making the change, because the code, data or config the task describes is not in the repo. That is 9 tasks in all 6 runs (t026, t027, t033, t177, t203, t211, t224, t229, t253), plus t130 in 5 runs (no CI config) and t176 in 3 (the cause the task describes is not in the code). The classification is by hand from each session's final message (e2e/stage4/missing-code.json).
+  - Firing in those sessions: 20/62 (E1 13/32, E2 7/30). In the other non-trivial sessions: 25/52 (E1 10/25, E2 15/27).
+  - The load-quality numbers above include these sessions.
 - **Cost:** sessions $66.36 (E1 + E2, 174). Batch calls for the task rewrite, oracle, queries, selection and 4-0 were $29.85 (500 calls). The pilot was $3.29 (4 sessions).
 
