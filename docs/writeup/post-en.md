@@ -204,6 +204,8 @@ uvx --from git+https://github.com/hyunlord/skillfetch skillfetch scan ~/.claude/
 
 The part I actually set out to build is the other half. Given that for 80% of skills I found no license that allows redistribution, that most of them are fine together, and that the ones that are not resolve by silent precedence, the thing I want is an agent that **does not install skills at all**: for each task it searches a vetted index, picks a small set, checks that set for the tensions above, fetches the bodies from their original repos with hash verification, and drops them when the task is done. An early version of that MCP server is in the repo: `search_skills`, `resolve_set`, `load_skills`, working end to end in Claude Code. It loads skills into the current context and does not unload them at the next task; per-task isolation is not built, and the conflict check is best effort, not a guarantee. The index holds metadata, constraints and hashes, never bodies. Section 5 is what happened when I ran it.
 
+Related work: [UASL](https://github.com/onfire7777/universal-ai-skills-library) and skill-search route a task to one skill or a list; [Skillselion](https://skillselion.com) is an MCP server that searches its catalogue and loads a skill's SKILL.md and files mid-task without installing it, ranked by skills.sh install counts. Its documentation does not mention scanning skills, checking them for conflicts or measuring whether loading them helps.
+
 If you maintain a skill: add a LICENSE file. If you maintain a registry: show it. If you have a pair of skills you suspect disagree, run the scanner on them and open an issue with the output; I want to know what it misses more than what it finds.
 
 ## Sources and data
