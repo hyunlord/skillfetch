@@ -391,6 +391,10 @@ def costs(out: list[str]) -> None:
     e2e_data = json.loads(e2e_path.read_text())
     e2e = e2e_data["session_costs"]
     prep = e2e_data.get("stage4_prep") or {"calls": 0, "cost_usd": 0.0}
+    prep3 = e2e_data.get("stage3_prep") or {}
+    prep3_cost = sum(v["cost_usd"] for v in prep3.values())
+    prep3_calls = sum(v["calls"] for v in prep3.values())
+    gen_label = [prep3[k] for k in ("generation", "labelling") if k in prep3]
     names = {
         "stage0": "stage 0",
         "stage0.5": "stage 0.5",
@@ -398,6 +402,8 @@ def costs(out: list[str]) -> None:
         "stage1b": "stage 1b",
         "c2": "C2",
         "stage2": "stage 2",
+        "stage3_run1": "stage 3 run 1 (empty repos)",
+        "stage3_run2": "stage 3 run 2 (stub repos)",
         "stage4_pilot": "stage 4 pilot",
         "stage4": "stage 4",
         "smoke": "smoke tests",
@@ -411,14 +417,30 @@ def costs(out: list[str]) -> None:
         + "; ".join(f"{names[k]} {v['sessions']}, ${v['cost_usd']:.2f}" for k, v in e2e.items())
         + ".",
         "",
+        "Stage 3 batch calls (isolated `claude -p`, no tools; `stage3_prep`, the `cost_usd` of "
+        "every cached call in e2e/stage3/gen/raw): generation and labelling "
+        f"{sum(v['calls'] for v in gen_label)} calls, ${sum(v['cost_usd'] for v in gen_label):.2f}"
+        + "".join(
+            f"; {k} {v['calls']} call{'s' if v['calls'] != 1 else ''}, ${v['cost_usd']:.2f}"
+            for k, v in prep3.items()
+            if k not in ("generation", "labelling")
+        )
+        + f"; total {prep3_calls} calls, ${prep3_cost:.2f}.",
+        "",
         f"Stage 4 batch calls (isolated `claude -p`, no tools: task rewrite, oracle 2a / 2b / "
         f"3-0, queries, offline selection, 4-0 grading; `stage4_prep`): {prep['calls']} calls, "
         f"${prep['cost_usd']:.2f}.",
         "",
-        f"**Claude Code plan equivalent, total: ${repo + e2e_cost + prep['cost_usd']:.2f}**: "
+        "Not recorded: in both stages' batch calls only successful answers are cached, so the "
+        "cost of an attempt that returned an error and was retried, if any, is not in these "
+        "sums.",
+        "",
+        f"**Claude Code plan equivalent, total: "
+        f"${repo + e2e_cost + prep3_cost + prep['cost_usd']:.2f}**: "
         f"sessions run from this repo ${repo:.2f} ({len(runs)} obedience runs, {len(discarded)} "
-        f"discarded, the transcript session), end-to-end sessions ${e2e_cost:.2f}, stage 4 "
-        f"batch calls ${prep['cost_usd']:.2f}. The agent sessions the "
+        f"discarded, the transcript session), end-to-end sessions ${e2e_cost:.2f}, stage 3 "
+        f"batch calls ${prep3_cost:.2f}, stage 4 batch calls ${prep['cost_usd']:.2f}. "
+        "The agent sessions the "
         f"write-up counts: {len(runs) + counted:,} ({len(runs)} obedience runs and {counted} "
         "end-to-end; discarded runs and smoke tests not counted). The interactive Claude Code "
         "sessions that wrote the code and classified the outputs are not included.",
