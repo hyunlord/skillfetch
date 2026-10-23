@@ -186,7 +186,7 @@ End-to-end sessions (§11 and the write-up's section 5; `session_costs` in `data
 
 ### Runtime latency
 
-Source: `uv run python scripts/bench_runtime.py` on index-2026-10-22 (Apple M4 Max), before (e857986) and after constraint pairs are bucketed by subject and `normalize_term` is cached in `resolve/relation.py`; `data/runtime/`. resolve_set sets: the top N search_skills results for each of 5 task sentences; median (min–max) over the 5. The fixture scan (`skillfetch scan tests/fixtures/skills --json`, with and without the index) and the resolutions of 28 real-index sets are byte-identical before and after. An earlier report gave 114 ms / 0.3–1.9 s / 18 s for 3 / 10 / 50 skills, 3.8 s server start and 9–77 ms search; those runs are not in this repo, so they are not compared here.
+Source: `uv run python scripts/bench_runtime.py` on index-2026-10-22 (Apple M4 Max), before (e857986) and after constraint pairs are bucketed by subject and `normalize_term` is cached in `resolve/relation.py`; `data/runtime/`. resolve_set sets: the top N search_skills results for each of 5 task sentences; median (min–max) over the 5. The fixture scan (`skillfetch scan tests/fixtures/skills --json`, with and without the index) and the resolutions of 28 real-index sets are byte-identical before and after.
 
 | measure | before | after |
 |---|---|---|

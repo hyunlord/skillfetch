@@ -473,9 +473,7 @@ def runtime(out: list[str]) -> None:
         "the top N search_skills results for each of 5 task sentences; median (min–max) over "
         "the 5. The fixture scan (`skillfetch scan tests/fixtures/skills --json`, with and "
         "without the index) and the resolutions of 28 real-index sets are byte-identical "
-        "before and after. An earlier report gave 114 ms / 0.3–1.9 s / 18 s for 3 / 10 / 50 "
-        "skills, 3.8 s server start and 9–77 ms search; those runs are not in this repo, so "
-        "they are not compared here.",
+        "before and after.",
         "",
     ]
     out += table(("measure", "before", "after"), rows)
