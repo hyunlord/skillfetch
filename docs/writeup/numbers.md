@@ -180,15 +180,17 @@ Extraction v6 requests: 1764 = 1723 public skills + 41 fixture skills.
 
 Claude Code sessions (API-price equivalent reported by Claude Code, billed to the Claude Code plan, not OpenRouter): obedience agent runs 910 (130 without a precedence header, §6; 260 with one, §8; 260 with a resolved-conflict block, §9; 260 with stripped lines, §10), $46.71; 171 runs of two earlier batches discarded for harness problems (no note that the session has no tools; then a note that discouraged asking), $5.41; the end-to-end MCP transcript session $0.82.
 
-End-to-end sessions (§11, §14 and the write-up's sections 5-6; `session_costs` in `data/e2e/router-e2e.json`, Claude Code's `total_cost_usd` per session, same billing): stage 0 20, $18.56; stage 0.5 20, $18.83; stage 1 110, $89.78; stage 1b 30, $50.35; C2 10, $16.57; stage 2 60, $66.16; stage 3 run 1 (empty repos) 40, $26.43; stage 3 run 2 (stub repos) 40, $27.36; stage 4 pilot 4, $3.29; stage 4 174, $66.36; smoke tests 3, $1.65.
+End-to-end sessions (§11, §14, §15 and the write-up's sections 5-6; `session_costs` in `data/e2e/router-e2e.json`, Claude Code's `total_cost_usd` per session, same billing): stage 0 20, $18.56; stage 0.5 20, $18.83; stage 1 110, $89.78; stage 1b 30, $50.35; C2 10, $16.57; stage 2 60, $66.16; stage 3 run 1 (empty repos) 40, $26.43; stage 3 run 2 (stub repos) 40, $27.36; stage 4 pilot 4, $3.29; stage 4 174, $66.36; stage 5 228, $100.76; stage 5 check sessions 2, $0.53; stage 5 trivial-task check 60, $8.54; stage 5 discarded (old t026 text) 4, $1.16; smoke tests 3, $1.65.
 
 Stage 3 batch calls (isolated `claude -p`, no tools; `stage3_prep`, the `cost_usd` of every cached call in e2e/stage3/gen/raw): generation and labelling 473 calls, $21.02; direction classes 1 call, $0.13; 3-0 pool correction 380 calls, $21.24; queries 72 calls, $4.72; selection 50 calls, $18.36; total 976 calls, $65.46.
 
 Stage 4 batch calls (isolated `claude -p`, no tools: task rewrite, oracle 2a / 2b / 3-0, queries, offline selection, 4-0 grading; `stage4_prep`): 500 calls, $29.85.
 
-Not recorded: in both stages' batch calls only successful answers are cached, so the cost of an attempt that returned an error and was retried, if any, is not in these sums.
+Stage 5 batch calls (isolated `claude -p`, no tools; `stage5_prep`, cached in e2e/stage4/gen/raw): task rewrite 4 calls, $2.25; oracle relabel 24 calls, $1.41; 4-0 grading 19 calls, $0.55; not in the cache, from the stage 5 report: first relabel pass (discarded) $1.24; V2 CLAUDE.md check call $0.05; total $5.50.
 
-**Claude Code plan equivalent, total: $533.59**: sessions run from this repo $52.95 (910 obedience runs, 171 discarded, the transcript session), end-to-end sessions $385.34, stage 3 batch calls $65.46, stage 4 batch calls $29.85. The agent sessions the write-up counts: 1,418 (910 obedience runs and 508 end-to-end; discarded runs and smoke tests not counted). The interactive Claude Code sessions that wrote the code and classified the outputs are not included.
+Not recorded: in these stages' batch calls only successful answers are cached, so the cost of an attempt that returned an error and was retried, if any, is not in these sums.
+
+**Claude Code plan equivalent, total: $650.08**: sessions run from this repo $52.95 (910 obedience runs, 171 discarded, the transcript session), end-to-end sessions $496.33, stage 3 batch calls $65.46, stage 4 batch calls $29.85, stage 5 batch calls $5.50. The agent sessions the write-up counts: 1,708 (910 obedience runs and 798 end-to-end; discarded runs and smoke tests not counted). The interactive Claude Code sessions that wrote the code and classified the outputs are not included.
 
 **After the post (not in the totals above).**
 - Router step-1 comparison (§13, shipped router rule): query generation 102 calls, $7.35; oracle v3 pool correction 373 calls, $7.06 (isolated `claude -p`, Claude Code plan equivalent; e2e/stage3/router-winner.md).
@@ -1078,4 +1080,156 @@ e2e/stage4/DESIGN.md, pilot in report-p0.md).
   - Firing in those sessions: 20/62 (E1 13/32, E2 7/30). In the other non-trivial sessions: 25/52 (E1 10/25, E2 15/27).
   - The load-quality numbers above include these sessions.
 - **Cost:** sessions $66.36 (E1 + E2, 174). Batch calls for the task rewrite, oracle, queries, selection and 4-0 were $29.85 (500 calls). The pilot was $3.29 (4 sessions).
+
+## 15. Stage 5: what makes the router fire
+
+Source: e2e/stage5/report-stage5.md (design in e2e/stage5/DESIGN.md, check sessions in report-check.md, inputs hashed in FROZEN.sha256; session rows in sessions.jsonl, parsed with the stage 4 parser). The trivial-task check before shipping V1 is e2e/stage5/report-trivial.md (rows in trivial.jsonl). The work itself is not scored.
+
+**Setup.**
+- **skillfetch:** `14d2020` (PR #45). The router SKILL.md is R-c (§13), byte-identical. The server runs from a local worktree: V0–V2 at `14d2020`; V3 is `14d2020` with only `INSTRUCTIONS` changed (local branch, not pushed).
+- **Environment:** stage 4's E1: `--setting-sources project --strict-mcp-config --mcp-config <skillfetch only>`, `--include-hook-events`, `--max-turns 16`, the same allowed tools (`Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*`), a fresh worktree with dependencies per session.
+- **Tasks:** the 19 non-trivial stage 4 tasks.
+  - 9 were rewritten to refer to code that is in the repo (s4-t026, t027, t033, t177, t203, t211, t224, t229, t253): the stage 4 tasks whose sessions ended because the code was not there (§14). Every function, field and behaviour a rewritten task names was checked against the repo source.
+  - 10 are unchanged.
+- **Sessions:** 4 variants × 19 tasks × 3 runs = 228 (57 per variant). Not in the 228: 2 check sessions before the run, and 4 sessions of t026's old text, discarded (the task was rewritten after they ran).
+- **Oracle:** the stage 4 v3 labels for the 10 unchanged tasks; the stage 4 pipeline (2a → 2b → 3-0) rerun for the 9 rewritten ones; then a 4-0 correction (196 skills that a session loaded or that were in a first search's top 10 but outside the pool, same 2b prompt; 16 newly relevant). Relevant pairs 29 → 45; 2 of the 19 tasks have no relevant skill.
+
+**Variants.** Each changes one thing against V0.
+- **V0:** the router as shipped at `14d2020` (R-c body, old description): "Use at the start of any coding task that adds or changes code, tests, docs or config (more than a one-line edit in one file), fixes a bug, or starts a feature — before reading the codebase. Skip only a one-line edit in a single file, a rename, or answering a question."
+- **V1:** only the router's `description`: "Run this before your first tool call — before git status, Read, Grep, Glob or ls — whenever the user asks for a code change: a feature, a bug fix, a refactor, tests, docs, config, CI or deploy work, even if it looks small. It loads the skills for the task in four quick MCP calls. Skip it only for a one-line edit in one file, a rename, or a question with no edits." **This is the shipped description.**
+- **V2:** V0 plus one line in a project `CLAUDE.md` (the template repos have none): "Before your first tool call on any coding task in this repository (anything beyond a one-line edit, a rename or a question), run the `skillfetch-router` skill and follow its steps." A 1-turn, no-tool call in the V2 checkout confirmed the line is in the context and no user-level CLAUDE.md is.
+- **V3:** V0 plus new MCP server instructions: "Call this server first, before reading or searching the repository, for every coding task that is more than a one-line edit, a rename or a question. Restate the task as three short English sentences (what it builds or fixes; the kind of work and how to do it; the stack and files), add the user's request word for word, and pass all four to search_skills as `queries`; read the 50 summaries and pick 1-3; call resolve_set; then load_skills and follow the returned content." The restatement wording also changes with it (to R-c's).
+
+**Table 1, firing, search and load per variant (57 sessions each).**
+
+| metric | V0 | V1 | V2 | V3 |
+|---|---|---|---|---|
+| fired (any skillfetch call) | 39/57 (0.68) | 55/57 (0.96) | 57/57 (1.00) | 36/57 (0.63) |
+| (a) via the router skill | 39/57 | 55/57 | 57/57 | 17/57 |
+| (b) MCP directly | 0/57 | 0/57 | 0/57 | 19/57 |
+| router invoked, no skillfetch call | 0/57 | 0/57 | 0/57 | 0/57 |
+| fired, the 9 rewritten tasks | 20/27 | 25/27 | 27/27 | 20/27 |
+| fired, the 10 unchanged tasks | 19/30 | 30/30 | 30/30 | 16/30 |
+| search_skills ≥ 1 | 39/57 | 55/57 | 57/57 | 36/57 |
+| loaded at least one skill | 35/57 (0.61) | 50/57 (0.88) | 55/57 (0.96) | 31/57 (0.54) |
+| first search, assistant turn: median [range] | 5 [5–6] | 5 [5–5] | 5 [5–6] | 4 [3–5] |
+| ended at the 16-turn cap | 13/57 | 12/57 | 16/57 | 7/57 |
+| session cost, median / mean | $0.343 / $0.396 | $0.447 / $0.455 | $0.508 / $0.533 | $0.355 / $0.384 |
+| session cost, sum | $22.56 | $25.94 | $30.36 | $21.91 |
+| input tokens, median | 427k | 493k | 527k | 361k |
+| session time, median | 54 s | 66 s | 72 s | 64 s |
+
+- **V3's firing path:** of its 36 firing sessions, 19 called the MCP tools directly (ToolSearch first) and 17 went through the router skill; in V0, V1 and V2 every firing session went through the router skill (39, 55, 57).
+- **First tool** (stage 4 attribution): router first V0 39, V1 55, V2 57, V3 36; exploring (Read, Grep, Glob, non-git Bash) 18, 2, 0, 20; another skill 0, 0, 0, 1. By name: V0 Skill(skillfetch-router) 39, Read 14, Bash 4; V1 Skill(skillfetch-router) 55, Read 2; V2 Skill(skillfetch-router) 57; V3 ToolSearch 19, Skill(skillfetch-router) 17, Read 13, Bash 7, Skill(sqlmodel) 1.
+
+**Table 2, per-task change against V0.** Per task, the number of firing runs (0–3), Vk − V0; sign test, two-sided.
+
+| comparison | tasks | mean difference (firing runs of 3) | up / down / same | p |
+|---|---|---|---|---|
+| V1 − V0 | 19 | +0.84 | 9 / 0 / 10 | 0.004 |
+| V1 − V0 | 10 unchanged | +1.10 | 6 / 0 / 4 | 0.031 |
+| V1 − V0 | 9 rewritten | +0.56 | 3 / 0 / 6 | 0.250 |
+| V2 − V0 | 19 | +0.95 | 9 / 0 / 10 | 0.004 |
+| V2 − V0 | 10 unchanged | +1.10 | 6 / 0 / 4 | 0.031 |
+| V2 − V0 | 9 rewritten | +0.78 | 3 / 0 / 6 | 0.250 |
+| V3 − V0 | 19 | −0.16 | 4 / 5 / 10 | 1.000 |
+| V3 − V0 | 10 unchanged | −0.30 | 3 / 4 / 3 | 1.000 |
+| V3 − V0 | 9 rewritten | +0.00 | 1 / 1 / 7 | 1.000 |
+
+Firing runs per task (stage 4 E1 is the same task id in stage 4; rewritten tasks had their old text there):
+
+| task | type · phrasing | rewritten | stage 4 E1 | V0 | V1 | V2 | V3 |
+|---|---|---|---|---|---|---|---|
+| s4-t001 | feature · terminal |  | 0 | 0 | 3 | 3 | 1 |
+| s4-t026 | bugfix · normal | yes | 0 | 3 | 3 | 3 | 3 |
+| s4-t027 | bugfix · spec | yes | 3 | 3 | 3 | 3 | 3 |
+| s4-t033 | bugfix · directive | yes | 0 | 0 | 1 | 3 | 0 |
+| s4-t055 | refactor · terminal |  | 2 | 3 | 3 | 3 | 3 |
+| s4-t101 | docs · normal |  | 1 | 2 | 3 | 3 | 0 |
+| s4-t130 | ci_infra · terminal |  | 3 | 3 | 3 | 3 | 3 |
+| s4-t153 | deploy · korean |  | 1 | 2 | 3 | 3 | 1 |
+| s4-t176 | data · normal |  | 2 | 3 | 3 | 3 | 2 |
+| s4-t177 | data · spec | yes | 3 | 3 | 3 | 3 | 3 |
+| s4-t182 | data · korean |  | 2 | 3 | 3 | 3 | 3 |
+| s4-t203 | ml · korean | yes | 0 | 3 | 3 | 3 | 3 |
+| s4-t211 | ml · korean | yes | 0 | 3 | 3 | 3 | 3 |
+| s4-t224 | ml · korean | yes | 3 | 3 | 3 | 3 | 3 |
+| s4-t229 | security_review · directive | yes | 0 | 1 | 3 | 3 | 0 |
+| s4-t253 | performance · korean | yes | 0 | 1 | 3 | 3 | 2 |
+| s4-t280 | ui_design · terminal |  | 0 | 0 | 3 | 3 | 1 |
+| s4-t342 | feature · directive |  | 2 | 1 | 3 | 3 | 2 |
+| s4-t354 | deploy · directive |  | 1 | 2 | 3 | 3 | 0 |
+| total | | | 23/57 | 39/57 | 55/57 | 57/57 | 36/57 |
+
+**Table 3, loads against the oracle** (sessions that loaded; relevant = grade ≥ 2).
+
+| metric | V0 | V1 | V2 | V3 |
+|---|---|---|---|---|
+| sessions that loaded | 35 | 50 | 55 | 31 |
+| skills loaded, median | 1 | 1 | 1 | 1 |
+| precision, mean | 0.700 | 0.638 | 0.617 | 0.645 |
+| recall, mean (tasks with a relevant skill) | 0.392 | 0.396 | 0.380 | 0.323 |
+| loaded at least one relevant skill | 26/32 (0.81) | 35/45 (0.78) | 37/49 (0.76) | 22/29 (0.76) |
+| loaded something on a task with nothing relevant (of the sessions that searched) | 3/3 | 5/6 | 6/6 | 2/2 |
+| wrong loads (grade < 2), mean | 0.46 | 0.56 | 0.62 | 0.45 |
+
+Classes of the sessions that searched: ok 26 / 36 / 37 / 22; select_fail 8 / 8 / 10 / 10; restate_fail 0 / 0 / 0 / 1; search_fail 2 / 6 / 4 / 1; over_load 3 / 5 / 6 / 2 (V0 / V1 / V2 / V3). Searched but no load_skills: V0 resolve-stop 1, none 3; V1 none 4, resolve-stop 1; V2 none 2; V3 none 5.
+
+**Table 4, the R-c step 1 in sessions.**
+
+| metric | V0 | V1 | V2 | V3 |
+|---|---|---|---|---|
+| router-path firing sessions with R-c's step (d) wording in context | 39/39 | 55/55 | 57/57 | 17/17 |
+| search queries per first search | 4 in 39 | 4 in 55 | 4 in 57 | 4 in 36 |
+| fourth query identical to the request | 22/39 (0.56) | 34/55 (0.62) | 38/57 (0.67) | 27/36 (0.75) |
+| top-50 Jaccard between runs of the same task, mean (pairs) | 0.712 (33) | 0.760 (54) | 0.720 (57) | 0.568 (30) |
+
+Fourth query against the request, by request length (all sessions that searched; difflib ratio, whitespace normalised):
+
+| request length (chars) | sessions | identical | ratio ≥ 0.9 | 0.5–0.9 | < 0.5 (summarised) | fourth query length, median |
+|---|---|---|---|---|---|---|
+| 0–400 | 120 | 100 | 118 | 2 | 0 | 263 |
+| 400–800 | 27 | 21 | 21 | 4 | 2 | 485 |
+| 800+ | 40 | 0 | 2 | 1 | 37 | 271 |
+
+Long requests (800+ characters) were copied word for word in 0 of 40 sessions. Offline (stage 3 batch generation, 20 tasks per call) 529 of 530 were identical (§13).
+
+**Table 5, the 10 unchanged tasks: stage 4 E1 (router R-a, `a1cbcd5`) vs stage 5 V0 (R-c, `14d2020`).** The router's step 1 and the day and session-to-session variation all differ between the two.
+
+| metric | stage 4 E1 | stage 5 V0 |
+|---|---|---|
+| fired | 14/30 | 19/30 |
+| search_skills ≥ 1 | 14/30 | 19/30 |
+| loaded ≥ 1 | 10/30 | 16/30 |
+| ended at the 16-turn cap | 1/30 | 2/30 |
+| session cost, median | $0.266 | $0.312 |
+
+**Table 6, trivial tasks before shipping V1.** The 10 trivial stage 4 tasks (text unchanged) × 3 runs × {V0, V1} = 60 sessions, same harness (E1, `--max-turns 16`, `14d2020`). Stage 4 E1 (router R-a) fired on 0 of the same 30. The ship rule was V1 firing on ≤ 3/30.
+
+| metric | V0 | V1 |
+|---|---|---|
+| fired (any skillfetch call) | 0/30 | 1/30 |
+| router skill invoked | 0/30 | 1/30 |
+| of those firing, called load_skills / loaded ≥ 1 | 0/0 | 1/1 |
+| turns, median / mean | 4 / 5.83 | 4 / 6.17 |
+| session cost, median / mean | $0.143 / $0.138 | $0.142 / $0.146 |
+| session cost, sum | $4.15 | $4.39 |
+| session time, median | 23.1 s | 23.3 s |
+| ended at the 16-turn cap | 0/30 | 0/30 |
+
+- V1 / V0 mean: cost 1.06, turns 1.06.
+- The one firing session: s4-t333 run t1 (spec phrasing: "Fix the wrong status code on the item create endpoint", a one-line change plus the test's expected code). It invoked the router first, loaded fastapi and coding-guidelines, and ran to 16 turns ($0.342). The other 9 tasks: 0 firing runs in both variants.
+
+**Task rewrites and discarded sessions.**
+- 7 tasks were first picked by keyword counts and rewritten against the full `s4` source in the prompt (t027 and t033 came out as one-line edits, which the router skips, and were rewritten again as larger tasks). Just after the main run started, the stage 4 hand classification (§14) showed 2 more (t026, t177); the queue was paused and they were rewritten the same way.
+- The 4 sessions of t026 that had already run on the old text were discarded (moved out of the results; cost below). The 4 sessions of the next block (t342, unchanged) were kept.
+- Label reproducibility: 5 of the 7 first rewrites came out with the same text in both passes, and the oracle rerun still changed the relevant set for 4 of them (t224 0 → 2, t203 1 → 2, t211 and t253 one skill swapped). The second pass's labels are used.
+
+**Cost** (API-price equivalent, Claude Code plan): sessions $100.76 (228); check sessions $0.53 (2); discarded sessions $1.16 (4); trivial-task check $8.54 (60); task rewrite $2.25 (4 calls); oracle relabel $2.65 (first pass of 7 tasks $1.24, discarded; second pass $0.56; the 2 later tasks $0.85); 4-0 correction $0.55 (19 calls); V2 CLAUDE.md check call $0.05. §7 has the totals.
+
+**Limits.**
+- One model (Opus 5.5), 3 runs. With 57 sessions per variant, the 95% margin on a difference of two rates is about ±0.18.
+- E1 only (clean environment); not run in the author's environment (stage 4 E2).
+- The oracle and the sessions are the same model; the relevant-or-not kappa against GPT labels was 0.482 (§13).
+- The work was not scored: whether the work is better after the router fires is not measured here.
 

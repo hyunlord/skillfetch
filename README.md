@@ -44,7 +44,7 @@ two instructions cannot both be followed; anything less certain is
 Skills the index does not cover are listed as skipped; `--with-api --model
 anthropic/<model>` extracts them (calls the API, cached once per skill).
 
-The router, measured in real Claude Code sessions on five task types (landing page, test writing, backend API, documentation, data script): it loaded the skill an expert would pick in 23 of 24 runs. Only the design task came out differently with that skill; on the other four, no skill, the expert's skill and the router all passed every check. The router costs 1.7–2.1 times the input tokens of no skill ([numbers.md §11](docs/writeup/numbers.md#11-router-in-real-sessions-end-to-end-stages-1-1b-and-2)). Offline, on 380 synthetic tasks, the shipped router: top-50 recall 0.81 (0.75 on labels the search could not bias), up from 0.74 before this fix ([evals/retrieval](evals/retrieval/), [numbers.md §13](docs/writeup/numbers.md#13-retrieval-benchmark-380-synthetic-tasks)). scan and sync are unaffected.
+The router, measured in real Claude Code sessions on five task types (landing page, test writing, backend API, documentation, data script): it loaded the skill an expert would pick in 23 of 24 runs. Only the design task came out differently with that skill; on the other four, no skill, the expert's skill and the router all passed every check. The router costs 1.7–2.1 times the input tokens of no skill ([numbers.md §11](docs/writeup/numbers.md#11-router-in-real-sessions-end-to-end-stages-1-1b-and-2)). Offline, on 380 synthetic tasks, the shipped router: top-50 recall 0.81 (0.75 on labels the search could not bias), up from 0.74 before this fix ([evals/retrieval](evals/retrieval/), [numbers.md §13](docs/writeup/numbers.md#13-retrieval-benchmark-380-synthetic-tasks)). With its current description it fired in 55 of 57 non-trivial sessions in a clean environment (39 of 57 with the previous one) and in 1 of 30 trivial ones ([numbers.md §15](docs/writeup/numbers.md#15-stage-5-what-makes-the-router-fire)). scan and sync are unaffected.
 
 ```console
 $ skillfetch scan path/to/skills --json                   # machine-readable
@@ -65,6 +65,17 @@ Claude Code session to answer; `--model openrouter/<vendor>/<model>`,
 `anthropic/<model>` or `openai/<model>` call an API instead (`pip install
 'skillfetch[ingest]'`). Every skill is extracted once and cached in
 `~/.skillfetch/extract-cache/`.
+
+## Always fire
+
+In a repository you control, one line in the project's `CLAUDE.md` made the router fire
+in 57 of 57 non-trivial sessions (39 of 57 without it, mean session cost $0.533 vs $0.396).
+That was measured with the router's previous description; together with the current one
+it is not measured ([numbers.md §15](docs/writeup/numbers.md#15-stage-5-what-makes-the-router-fire)).
+
+```markdown
+Before your first tool call on any coding task in this repository (anything beyond a one-line edit, a rename or a question), run the `skillfetch-router` skill and follow its steps.
+```
 
 ## Other MCP clients
 
@@ -183,12 +194,17 @@ default produced none. Use it when recall matters more than precision.
 - The router loads something in 30 of the 95 benchmark tasks where nothing in the
   index fits (32%), and in 30% of the 40 trivial requests that need no skill
   ([numbers.md §13](docs/writeup/numbers.md#13-retrieval-benchmark-380-synthetic-tasks)).
-- In real repositories the router fires on 40% of non-trivial tasks: 23 of 57
-  sessions in a clean environment, 22 of 57 with 14 MCP servers, 134 skills and
-  hooks (per-task difference +0.018 on these tasks), and on 0 of 30 and 1 of 30
-  trivial ones. When
+- In real repositories the router with its previous description fired on 40% of
+  non-trivial tasks: 23 of 57 sessions in a clean environment, 22 of 57 with 14 MCP
+  servers, 134 skills and hooks (per-task difference +0.018 on these tasks), and on 0
+  of 30 and 1 of 30 trivial ones (the current description: 55 of 57 and 1 of 30 in the
+  clean environment, §15; the author's environment not measured). When
   it loads, the set holds a relevant skill in 8 of 14 and 10 of 17 sessions
   ([numbers.md §14](docs/writeup/numbers.md#14-stage-4-router-in-real-repos-clean-vs-authors-environment)).
+- Long requests (800+ chars) are summarised, not copied, into the fourth query: 0 of
+  40 sessions copied them word for word, against 100 of 120 under 400 characters
+  ([numbers.md §15](docs/writeup/numbers.md#15-stage-5-what-makes-the-router-fire),
+  #48).
 - On four of five task types we measured, the expert skill changed nothing the
   checks could see; load a skill when the base model is weak at the domain, not by
   default.

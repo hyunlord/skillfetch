@@ -392,6 +392,12 @@ def costs(out: list[str]) -> None:
     e2e = e2e_data["session_costs"]
     prep = e2e_data.get("stage4_prep") or {"calls": 0, "cost_usd": 0.0}
     prep3 = e2e_data.get("stage3_prep") or {}
+    prep5 = e2e_data.get("stage5_prep") or {}
+    # stage 5 calls with no cache record (e2e/stage5/report-stage5.md, report-check.md): the
+    # first oracle relabel pass of the 7 rewritten tasks (discarded; the second pass overwrote its
+    # cache files) and the 1-turn, no-tool call that checked V2's CLAUDE.md is loaded
+    prep5_uncached = {"first relabel pass (discarded)": 1.24, "V2 CLAUDE.md check call": 0.05}
+    prep5_cost = sum(v["cost_usd"] for v in prep5.values()) + sum(prep5_uncached.values())
     prep3_cost = sum(v["cost_usd"] for v in prep3.values())
     prep3_calls = sum(v["calls"] for v in prep3.values())
     gen_label = [prep3[k] for k in ("generation", "labelling") if k in prep3]
@@ -406,12 +412,18 @@ def costs(out: list[str]) -> None:
         "stage3_run2": "stage 3 run 2 (stub repos)",
         "stage4_pilot": "stage 4 pilot",
         "stage4": "stage 4",
+        "stage5": "stage 5",
+        "stage5_check": "stage 5 check sessions",
+        "stage5_trivial": "stage 5 trivial-task check",
+        "stage5_discarded": "stage 5 discarded (old t026 text)",
         "smoke": "smoke tests",
     }
     e2e_cost = sum(v["cost_usd"] for v in e2e.values())
-    counted = sum(v["sessions"] for k, v in e2e.items() if k != "smoke")
+    counted = sum(
+        v["sessions"] for k, v in e2e.items() if k != "smoke" and not k.endswith("_discarded")
+    )
     out += [
-        "End-to-end sessions (§11, §14 and the write-up's sections 5-6; `session_costs` in "
+        "End-to-end sessions (§11, §14, §15 and the write-up's sections 5-6; `session_costs` in "
         "`data/e2e/router-e2e.json`, Claude Code's `total_cost_usd` per session, same "
         "billing): "
         + "; ".join(f"{names[k]} {v['sessions']}, ${v['cost_usd']:.2f}" for k, v in e2e.items())
@@ -431,15 +443,23 @@ def costs(out: list[str]) -> None:
         f"3-0, queries, offline selection, 4-0 grading; `stage4_prep`): {prep['calls']} calls, "
         f"${prep['cost_usd']:.2f}.",
         "",
-        "Not recorded: in both stages' batch calls only successful answers are cached, so the "
+        "Stage 5 batch calls (isolated `claude -p`, no tools; `stage5_prep`, cached in "
+        "e2e/stage4/gen/raw): "
+        + "; ".join(f"{k} {v['calls']} calls, ${v['cost_usd']:.2f}" for k, v in prep5.items())
+        + "; not in the cache, from the stage 5 report: "
+        + "; ".join(f"{k} ${c:.2f}" for k, c in prep5_uncached.items())
+        + f"; total ${prep5_cost:.2f}.",
+        "",
+        "Not recorded: in these stages' batch calls only successful answers are cached, so the "
         "cost of an attempt that returned an error and was retried, if any, is not in these "
         "sums.",
         "",
         f"**Claude Code plan equivalent, total: "
-        f"${repo + e2e_cost + prep3_cost + prep['cost_usd']:.2f}**: "
+        f"${repo + e2e_cost + prep3_cost + prep['cost_usd'] + prep5_cost:.2f}**: "
         f"sessions run from this repo ${repo:.2f} ({len(runs)} obedience runs, {len(discarded)} "
         f"discarded, the transcript session), end-to-end sessions ${e2e_cost:.2f}, stage 3 "
-        f"batch calls ${prep3_cost:.2f}, stage 4 batch calls ${prep['cost_usd']:.2f}. "
+        f"batch calls ${prep3_cost:.2f}, stage 4 batch calls ${prep['cost_usd']:.2f}, stage 5 "
+        f"batch calls ${prep5_cost:.2f}. "
         "The agent sessions the "
         f"write-up counts: {len(runs) + counted:,} ({len(runs)} obedience runs and {counted} "
         "end-to-end; discarded runs and smoke tests not counted). The interactive Claude Code "
@@ -963,6 +983,14 @@ def stage4(out: list[str]) -> None:
     out += [path.read_text().strip() if path.is_file() else "Not run yet.", ""]
 
 
+def stage5(out: list[str]) -> None:
+    """§15: stage 5, what makes the router fire (the stage 5 reports, transcribed in
+    data/e2e/stage5.md)."""
+    out += ["## 15. Stage 5: what makes the router fire", ""]
+    path = DATA / "e2e" / "stage5.md"
+    out += [path.read_text().strip() if path.is_file() else "Not run yet.", ""]
+
+
 def main() -> None:
     out = [
         "# Numbers for the write-up",
@@ -986,6 +1014,7 @@ def main() -> None:
         embedding,
         retrieval_benchmark,
         stage4,
+        stage5,
     ):
         section(out)
     OUT.parent.mkdir(parents=True, exist_ok=True)
