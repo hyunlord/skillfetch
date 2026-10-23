@@ -388,7 +388,9 @@ def costs(out: list[str]) -> None:
     e2e_path = DATA / "e2e" / "router-e2e.json"
     if not e2e_path.is_file():
         return
-    e2e = json.loads(e2e_path.read_text())["session_costs"]
+    e2e_data = json.loads(e2e_path.read_text())
+    e2e = e2e_data["session_costs"]
+    prep = e2e_data.get("stage4_prep") or {"calls": 0, "cost_usd": 0.0}
     names = {
         "stage0": "stage 0",
         "stage0.5": "stage 0.5",
@@ -396,20 +398,27 @@ def costs(out: list[str]) -> None:
         "stage1b": "stage 1b",
         "c2": "C2",
         "stage2": "stage 2",
+        "stage4_pilot": "stage 4 pilot",
+        "stage4": "stage 4",
         "smoke": "smoke tests",
     }
     e2e_cost = sum(v["cost_usd"] for v in e2e.values())
     counted = sum(v["sessions"] for k, v in e2e.items() if k != "smoke")
     out += [
-        "End-to-end sessions (§11 and the write-up's section 5; `session_costs` in "
+        "End-to-end sessions (§11, §14 and the write-up's sections 5-6; `session_costs` in "
         "`data/e2e/router-e2e.json`, Claude Code's `total_cost_usd` per session, same "
         "billing): "
         + "; ".join(f"{names[k]} {v['sessions']}, ${v['cost_usd']:.2f}" for k, v in e2e.items())
         + ".",
         "",
-        f"**Claude Code plan equivalent, total: ${repo + e2e_cost:.2f}**: sessions run from "
-        f"this repo ${repo:.2f} ({len(runs)} obedience runs, {len(discarded)} discarded, the "
-        f"transcript session), end-to-end sessions ${e2e_cost:.2f}. The agent sessions the "
+        f"Stage 4 batch calls (isolated `claude -p`, no tools: task rewrite, oracle 2a / 2b / "
+        f"3-0, queries, offline selection, 4-0 grading; `stage4_prep`): {prep['calls']} calls, "
+        f"${prep['cost_usd']:.2f}.",
+        "",
+        f"**Claude Code plan equivalent, total: ${repo + e2e_cost + prep['cost_usd']:.2f}**: "
+        f"sessions run from this repo ${repo:.2f} ({len(runs)} obedience runs, {len(discarded)} "
+        f"discarded, the transcript session), end-to-end sessions ${e2e_cost:.2f}, stage 4 "
+        f"batch calls ${prep['cost_usd']:.2f}. The agent sessions the "
         f"write-up counts: {len(runs) + counted:,} ({len(runs)} obedience runs and {counted} "
         "end-to-end; discarded runs and smoke tests not counted). The interactive Claude Code "
         "sessions that wrote the code and classified the outputs are not included.",
@@ -915,6 +924,14 @@ def retrieval_benchmark(out: list[str]) -> None:
     ]
 
 
+def stage4(out: list[str]) -> None:
+    """§14: stage 4, the router in real repos, clean vs the author's environment (the stage 4
+    report, transcribed in data/e2e/stage4.md)."""
+    out += ["## 14. Stage 4: router in real repos, clean vs author's environment", ""]
+    path = DATA / "e2e" / "stage4.md"
+    out += [path.read_text().strip() if path.is_file() else "Not run yet.", ""]
+
+
 def main() -> None:
     out = [
         "# Numbers for the write-up",
@@ -937,6 +954,7 @@ def main() -> None:
         router_e2e,
         embedding,
         retrieval_benchmark,
+        stage4,
     ):
         section(out)
     OUT.parent.mkdir(parents=True, exist_ok=True)
