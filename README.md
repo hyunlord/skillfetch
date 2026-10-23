@@ -194,6 +194,10 @@ default produced none. Use it when recall matters more than precision.
 - The router loads something in 30 of the 95 benchmark tasks where nothing in the
   index fits (32%), and in 30% of the 40 trivial requests that need no skill
   ([numbers.md §13](docs/writeup/numbers.md#13-retrieval-benchmark-380-synthetic-tasks)).
+- When nothing in the index fits the task, the router still loads something: 30 of 95
+  such tasks in the offline benchmark, 4 of 24 in Stage 4 sessions (in each
+  environment), and in Stage 5 every session that searched on the two such tasks
+  except one (§13, §14, §15). Choosing none is the open problem (#38).
 - In real repositories the router with its previous description fired on 40% of
   non-trivial tasks: 23 of 57 sessions in a clean environment, 22 of 57 with 14 MCP
   servers, 134 skills and hooks (per-task difference +0.018 on these tasks), and on 0
