@@ -1272,6 +1272,14 @@ default_tools_approval_mode = "approve"
 - Loaded at least one relevant skill: 7 of the 17 tasks that have one.
 - Precision, mean per session over graded loads: 0.389 (18 sessions; s4-t211 excluded).
 - Loaded something on the 2 tasks with nothing relevant (s4-t342, s4-t354): 2/2.
+- Claude Code on the same 17 tasks, same unit (stage 5 V2, the same always-loaded-instruction condition; stage5/sessions.jsonl): sessions that loaded at least one relevant skill, over all V2 sessions on those tasks including the ones that loaded nothing: 37/51. (V0 26/51, V1 35/51, V3 22/51.) Codex ran each task once, Claude Code three times.
+
+**What the Codex AGENTS.md leaves out of the router** (router at `14d2020` against e2e/codex-e2e-2-preparation/AGENTS.md, sha256 dca56403…). Both have the restatement, `profile_repo`, "read all 50 summaries and pick 1–3", the smaller `token_estimate` when two fit equally and the 8,000-token budget; neither has a "pick none" option. Left out, and bearing on what is loaded:
+- step 4's "best first" and "the best fit is often not near the top";
+- step 5: pin a skill the user named, or a project skill that fits, as `pinned_ids` (`path:`);
+- step 6: call `resolve_set` with the picks in order of preference, respect `excluded`, read the warnings; and the rule "Never load a skill that `resolve_set` excluded";
+- steps 7–8 (load and follow; continue without skills listed in `errors`).
+Codex still called `resolve_set` and `load_skills` in 19/19 sessions.
 
 **Limits.** One run per task, one model, 19 tasks. The loaded skills' effect on the work is not measured. Session cost is not recorded (subscription).
 

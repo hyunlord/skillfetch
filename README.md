@@ -99,8 +99,9 @@ and replace step 2, which names Claude Code's `ToolSearch`. With `approval_polic
 `default_tools_approval_mode = "approve"` under `[mcp_servers.skillfetch]`.
 
 Measured: in 19 of 19 Codex sessions with the router steps in AGENTS.md, the agent searched
-and loaded skills; a relevant skill was among those loaded in 7 of the 17 tasks that have
-one (Claude Code: see §15), so selection is weaker there
+and loaded skills. Codex got only router steps 1–4, which leave out "the best fit is often
+not near the top", pinning a named or project skill, and respecting `resolve_set`'s
+exclusions, so selection is not comparable yet
 ([numbers.md §16](docs/writeup/numbers.md#16-codex-after-the-post-freeze)).
 
 ## The problem
