@@ -44,7 +44,7 @@ two instructions cannot both be followed; anything less certain is
 Skills the index does not cover are listed as skipped; `--with-api --model
 anthropic/<model>` extracts them (calls the API, cached once per skill).
 
-The router, measured in real Claude Code sessions on five task types (landing page, test writing, backend API, documentation, data script): it loaded the skill an expert would pick in 23 of 24 runs. Only the design task came out differently with that skill; on the other four, no skill, the expert's skill and the router all passed every check. The router costs 1.7–2.1 times the input tokens of no skill ([numbers.md §11](docs/writeup/numbers.md#11-router-in-real-sessions-end-to-end-stages-1-1b-and-2)). Offline, on 380 synthetic tasks, the shipped router: top-50 recall 0.81 (0.75 on labels the search could not bias), up from 0.74 before this fix ([evals/retrieval](evals/retrieval/), [numbers.md §13](docs/writeup/numbers.md#13-retrieval-benchmark-380-synthetic-tasks)). With its current description it fired in 55 of 57 non-trivial sessions in a clean environment (39 of 57 with the previous one) and in 1 of 30 trivial ones ([numbers.md §15](docs/writeup/numbers.md#15-stage-5-what-makes-the-router-fire)). scan and sync are unaffected.
+The router, measured in real Claude Code sessions on five task types (landing page, test writing, backend API, documentation, data script): it loaded the skill an expert would pick in 23 of 24 runs. Only the design task came out differently with that skill; on the other four, no skill, the expert's skill and the router all passed every check. The router costs 1.7–2.1 times the input tokens of no skill ([numbers.md §11](docs/writeup/numbers.md#11-router-in-real-sessions-end-to-end-stages-1-1b-and-2)). Offline, on 380 synthetic tasks, the shipped router: top-50 recall 0.81 (0.75 on labels the search could not bias), up from 0.74 before this fix ([evals/retrieval](evals/retrieval/), [numbers.md §13](docs/writeup/numbers.md#13-retrieval-benchmark-380-synthetic-tasks)). With its current description it fired in 55 of 57 non-trivial sessions in a clean environment (39 of 57 with the previous one) and in 1 of 30 trivial ones ([numbers.md §15](docs/writeup/numbers.md#15-stage-5-what-makes-the-router-fire)). Its selection step now picks a skill only when it can say in one sentence what the skill changes in the task: offline, that raised none-accuracy on tasks no skill fits from 0.55 to 0.85 and lowered the share of tasks with a relevant pick from 0.88 to 0.80 ([numbers.md §17](docs/writeup/numbers.md#17-stage-6-choosing-none-after-the-post-freeze)). scan and sync are unaffected.
 
 ```console
 $ skillfetch scan path/to/skills --json                   # machine-readable
@@ -98,11 +98,12 @@ and replace step 2, which names Claude Code's `ToolSearch`. With `approval_polic
 "never"`, Codex refuses the MCP calls; let it run skillfetch's tools with
 `default_tools_approval_mode = "approve"` under `[mcp_servers.skillfetch]`.
 
-Measured: in 19 of 19 Codex sessions with the router steps in AGENTS.md, the agent searched
-and loaded skills. Codex got only router steps 1–4, which leave out "the best fit is often
-not near the top", pinning a named or project skill, and respecting `resolve_set`'s
-exclusions, so selection is not comparable yet
-([numbers.md §16](docs/writeup/numbers.md#16-codex-after-the-post-freeze)).
+Measured ([numbers.md §16](docs/writeup/numbers.md#16-codex-after-the-post-freeze)): in 19
+of 19 Codex sessions with router steps 1–4 in AGENTS.md, the agent searched and loaded
+skills. With the whole router in AGENTS.md, 57 of 57 sessions searched and a relevant skill
+was loaded in 26 of 51 sessions on the 17 tasks that have one (Claude Code on the same tasks
+and labels: 37 of 51). With the shipped S-b′ router, Codex loaded nothing in 4 of the 6
+sessions on the two tasks no skill fits (6 of 6 before) and a relevant skill in 22 of 51.
 
 ## The problem
 
@@ -197,11 +198,13 @@ default produced none. Use it when recall matters more than precision.
   gain (top-50 recall 0.74 with BM25 + embedding fusion, 0.71 with BM25 alone, on 34
   router queries; [numbers.md §12](docs/writeup/numbers.md#12-embedding-retrieval-not-adopted)).
   Re-evaluated on the 380-task benchmark: +0.026 recall@50 (§13).
-- When nothing in the index fits the task, the router still loads something: 30 of 95
-  such tasks in the offline benchmark (and 30% of its 40 trivial requests that need no
-  skill), 4 of 24 in Stage 4 sessions (in each environment), and in Stage 5 every
-  session that searched on the two such tasks except one (§13, §14, §15). Choosing none
-  is the open problem (#38).
+- When nothing in the index fits the task, the router can still load something. With the
+  shipped selection rule: offline none-accuracy 0.85 on the 85 such tasks (0.825 on the 40
+  trivial requests), nothing loaded in 9 of 9 Stage 6 sessions on such tasks, and
+  something loaded in 2 of 6 Codex sessions (before: 0.55 and 0.65 offline, 30 of 95
+  such tasks in the earlier benchmark, 4 of 24 Stage 4 sessions in each environment,
+  every searching Stage 5 session but one, 5 of 9 in Stage 6, 6 of 6 in Codex;
+  §13–§17). The rule also picks a relevant skill less often (hit 0.88 → 0.80 offline).
 - In real repositories the router with its previous description fired on 40% of
   non-trivial tasks: 23 of 57 sessions in a clean environment, 22 of 57 with 14 MCP
   servers, 134 skills and hooks (per-task difference +0.018 on these tasks), and on 0

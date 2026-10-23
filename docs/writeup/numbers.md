@@ -197,7 +197,9 @@ Not recorded: in these stages' batch calls only successful answers are cached, s
 **After the post (not in the totals above).**
 - Router step-1 comparison (§13, shipped router rule): query generation 102 calls, $7.35; oracle v3 pool correction 373 calls, $7.06 (isolated `claude -p`, Claude Code plan equivalent; e2e/stage3/router-winner.md).
 - Cross-model labels (§13): the GPT grades were supplied by the author; their cost is not recorded here.
-- Codex end-to-end (§16): 19 + 19 sessions and 1 smoke session on a ChatGPT Pro subscription; no per-session cost recorded.
+- Codex end-to-end (§16): 19 + 19 sessions and 1 smoke session, then 57 (full router) + 57 (S-b′) main sessions, on a ChatGPT Pro subscription; no per-session cost recorded.
+- Stage 6 batch calls (§17): 6a, 6b-A and B-0, 600 calls, $168.65; 6b preparation 13 calls, $1.72 (isolated `claude -p`).
+- Stage 6b sessions (§17): 108 main sessions $63.65; pilot 3 sessions $1.89 and 1 superseded pilot $0.43; 116 sessions ended by usage limits $1.95 (69 $0.61, 47 $1.34; not counted); judge passes not recorded.
 
 ### Runtime latency
 
@@ -1281,5 +1283,181 @@ default_tools_approval_mode = "approve"
 - steps 7–8 (load and follow; continue without skills listed in `errors`).
 Codex still called `resolve_set` and `load_skills` in 19/19 sessions.
 
-**Limits.** One run per task, one model, 19 tasks. The loaded skills' effect on the work is not measured. Session cost is not recorded (subscription).
+**Full router (E2E3) and S-b′ (E2E4), 19 tasks × 3 runs each.** Sources: e2e/codex-e2e-3.md and codex-e2e-4.md (records in e2e/codex-e2e-3-runs/, codex-e2e-4-runs/). Same Codex version, model, subscription auth (checked in 57/57 main sessions each), config (byte-identical to the rerun's, with the per-server approval line), `s5` branches and tasks.
+- **E2E3:** AGENTS.md holds the whole router at `14d2020` (When, steps 1–8, Rules; the description before V1), with steps 1–2 in the Codex wording and local skills under `.agents/skills/`.
+- **E2E4:** AGENTS.md is `stage6/select-cands/S-bp/AGENTS.md` unchanged (S-b′, §17; Codex version of the shipped router). Against E2E3 it differs in more than the selection sentence (description, steps 1–2, "search once", Rules removed), so the difference between the two runs is not the selection sentence's effect alone.
+- **Labels:** the stage 5 oracle with its 4-0 grades (no new grading); R = grade ≥ 2, N = grade < 2, U = a returned id with no grade for that task.
+- **Subagent sessions:** in each run one main session started a native subagent the config (`multi_agent = false`) did not stop: E2E3 `r1/s4-t055`, E2E4 `r2/s4-t055` (other `spawn_agent` attempts failed: 3 in E2E3, 3 in E2E4). The subagents made no MCP calls; all metrics count the 57 main sessions. E2E3's runtime audit is FAIL for this (1,228/1,229 checks); E2E4's main-session audit passes 1,293/1,293 and its no-subagent check fails.
+
+| measure | E2E3 full router (`14d2020`) | E2E4 S-b′ |
+|---|---|---|
+| sessions that called skillfetch | 57/57 | 57/57 |
+| search_skills; fourth query identical to the request | 57/57; 57/57 | 57/57; 57/57 |
+| of those, sessions on requests of 800+ characters | 12 (4 tasks) | 12 (4 tasks) |
+| MCP calls / successful | 228 / 228 | 202 / 202 |
+| resolve_set / load_skills called | 57 / 57 | 44 / 44 |
+| sessions that loaded at least one skill | 57/57 | 44/57 |
+| sessions with a relevant skill loaded, over all sessions on the 17 tasks that have one | 26/51 | 22/51 |
+| same, over the sessions that loaded on those tasks | 26/51 | 22/42 |
+| graded precision, micro (ΣR / Σ(R+N)) | 29/56 | 22/36 |
+| graded precision, macro (sessions with a graded load) | 0.491 (53) | 0.611 (36) |
+| R / N / U returned | 29 / 27 / 6 | 22 / 14 / 8 |
+| loaded something on the 2 tasks with nothing relevant | 6/6 | 2/6 |
+| distinct returned ids per session, mean | 1.088 | 0.772 |
+
+- E2E4's 13 sessions without a load: 12 stated that no skill fits (`EXPLICIT_NONE`), 1 unresolved (manual review against the raw transcripts).
+- Excluding E2E3's subagent session `r1/s4-t055` (its one load, grade 1): 26/50, micro 29/55.
+- Claude Code on the same 17 tasks, stage 5 V2 (same labels, sessions that loaded): 37/49; over all V2 sessions 37/51 (above).
+
+**Limits.** One run per task in the first two runs, three in the last two; one model, 19 tasks. The loaded skills' effect on the work is not measured. Session cost is not recorded (subscription).
+
+## 17. Stage 6: choosing none (after the post freeze)
+
+Source: e2e/stage6/report-6a.md (offline selection), report-6b-A.md (offline follow-up), DESIGN.md (6b design; §5 fixed before the run), 6b/report-6b.md and 6b/report-pilot.md (sessions); hashes in stage6/FROZEN.sha256 and stage6/6b/FROZEN.sha256. Measured after the post's numbers were frozen; not in §7's totals. The shipped router is S-b′ (`assets/router-skill/SKILL.md`, 58 lines, sha256 3efef1e0…).
+
+**6a setup (offline, no sessions).**
+- **Baseline S-0:** the router at `cc5d16c` (stage 5 V1 description, R-c step 1, 60 lines).
+- **Search:** the 380 tasks' R-c queries through skillfetch `cc5d16c` `search_skills(queries=…)` (compact 50, no profile); the top 50 equals stage 3's R-c ranking for 380/380.
+- **Selection:** isolated `claude -p`; system prompt = the candidate SKILL.md plus a neutral wrapper ("the `auto_ids` to pass to `resolve_set`, an empty list if you would not call it"); user prompt = the request, its `queries` and its search result; 10 tasks per call. Tasks that picked another task's id were rerun alone (S-0 14, S-a 22, S-b 7, S-c 9). Stage 3's wrapper said "none when no result fits"; this one does not, so S-0 is not comparable with §13 Table 2.
+- **Oracle v4:** v3 plus the 126 skills the candidates picked outside the pool (same 2b prompt; 67 newly relevant). Relevant pairs 1,015 → 1,082; tasks with nothing relevant 89 → 85 (95 in v2). Of the 40 expect_none tasks, 33 have nothing relevant in v4.
+
+**Kind labels** (`kind.jsonl`): every tier A/B canonical skill (1,489) labelled domain 345, process 251, tooling 893 (catalogue in the system prompt, 50 cards per call). Agreement of kind = process with the oracle's process flag:
+
+| basis | n | agreement | kappa |
+|---|---|---|---|
+| all graded (task, skill) pairs | 16,271 | 0.884 | 0.698 |
+| relevant pairs (grade ≥ 2) | 1,015 | 0.832 | 0.659 |
+| per skill (majority of its flags) | 1,359 | 0.931 | 0.789 |
+
+**Candidates.** All share edits outside the selection step: the Rules section removed ("Never load a skill that `resolve_set` excluded" repeats step 6's "Respect `excluded`"; "Do not search again…" moves to step 3 as "Search once per task."). Step 1 is unchanged. Step 4:
+- **S-0** (60 lines): "…read all 50 and pick 1–3 that fit this task — the best fit is often not near the top. Each result has a `token_estimate`…"
+- **S-a** (57): S-0 plus "Each result has a `kind` (domain, process or tooling) and a `token_estimate`".
+- **S-b** (59): "pick up to 3", plus "Do not pick a skill unless you can say in one sentence what its summary changes in this task; often none fits, and then you skip steps 6–7.", plus the `kind` sentence.
+- **S-c** (60): S-b plus "If the user said how to work (test first, minimal diff, plan first), include one process skill; if not, pick a process skill only when no domain skill fits."
+- **S-b′** (58, shipped): S-b without the `kind` sentence (the server's compact results have no `kind`).
+
+**6a, selection on 380 tasks** (oracle v4; v3 in parentheses).
+
+| metric | S-0 | S-a | S-b | S-c |
+|---|---|---|---|---|
+| precision (tasks with a relevant skill that picked, n = 288) | 0.850 (0.750) | 0.828 (0.725) | 0.906 (0.798) | 0.900 (0.793) |
+| recall | 0.456 (0.422) | 0.462 (0.421) | 0.350 (0.325) | 0.357 (0.336) |
+| hit (at least one relevant picked) | 0.882 (0.831) | 0.889 (0.845) | 0.792 (0.729) | 0.816 (0.750) |
+| none-accuracy, nothing relevant (v4 85 / v3 89) | 0.553 (0.528) | 0.518 (0.494) | 0.894 (0.854) | 0.800 (0.764) |
+| none-accuracy, expect_none (40) | 0.650 | 0.675 | 0.850 | 0.750 |
+| over-load tasks (nothing relevant, something picked) | 38 (42) | 41 (45) | 9 (13) | 17 (21) |
+| wrong picks (grade < 2, all 380) | 117 (169) | 133 (192) | 43 (87) | 51 (92) |
+| none on a task with a relevant skill | 15 | 12 | 46 | 33 |
+| picks per task, mean | 1.368 | 1.432 | 0.958 | 0.992 |
+| direction pairs: set changed / 20 | 16 | 14 | 16 | 13 |
+| direction pairs: changed the way the direction asks / 20 | 9 (7) | 9 (6) | 12 (8) | 10 (6) |
+| directive tasks (100) that picked a process skill (of them relevant) | 60 (47) | 61 (49) | 48 (45) | 57 (47) |
+| non-directive tasks (240) that picked a process skill | 117 | 118 | 96 | 83 |
+| kinds picked (domain / process / tooling) | 244 / 243 / 33 | 258 / 249 / 37 | 165 / 176 / 23 | 194 / 161 / 22 |
+| cost | $18.64 | $20.37 | $19.52 | $19.81 |
+
+Direction pairs: 16 of the 20 pairs have different relevant sets on the two sides (13 for the process sets), so 15/20 needs 15 of those 16.
+
+6a pass rule: none-accuracy ≥ 0.85, hit drop ≤ 0.05, direction pairs ≥ 15/20 (v4). No candidate passed all three: S-a 0.518 / 0.675 / −0.007 / 9; S-b 0.894 / 0.850 / +0.090 / 12; S-c 0.800 / 0.750 / +0.066 / 10 (none-accuracy nothing relevant / expect_none / hit drop / pairs). S-b passed none-accuracy only. Its 9 over-loads all picked only process skills of grade 1; of the 28 tasks S-0 hit and S-b missed, S-b picked nothing in 21.
+
+**6b-A, offline follow-up** (same inputs; `scripts/grade3_hit.py`, `variability.py`).
+
+Hit when only grade 3 (covers the task directly) counts as relevant, S-0 vs S-b (6a generation, v4):
+
+| relevant | tasks | S-0 hit | S-b hit | difference | only S-0 | only S-b |
+|---|---|---|---|---|---|---|
+| grade ≥ 2 | 288 | 0.882 | 0.792 | −0.090 | 28 | 2 |
+| grade 3 only | 95 | 0.884 | 0.853 | −0.031 | 4 | 1 |
+
+Of the 28 tasks S-b newly missed, the best grade S-0 picked was 2 in 26 and 3 in 2.
+
+Three independent generations each (labels v4r = v4 + 10 newly picked skills graded, 4 relevant):
+
+| metric | S-0 runs | S-0 range | S-b runs | S-b range | mean difference |
+|---|---|---|---|---|---|
+| none-accuracy, nothing relevant (85) | 0.553 / 0.576 / 0.553 | 0.553–0.576 | 0.894 / 0.847 / 0.859 | 0.847–0.894 | +0.306 |
+| none-accuracy, expect_none (40) | 0.650 / 0.675 / 0.650 | 0.650–0.675 | 0.850 / 0.850 / 0.825 | 0.825–0.850 | +0.183 |
+| hit (288) | 0.882 / 0.910 / 0.889 | 0.882–0.910 | 0.792 / 0.788 / 0.788 | 0.788–0.792 | −0.104 |
+| unnecessary picks (grade < 2, 380) | 117 / 112 / 113 | 112–117 | 43 / 48 / 46 | 43–48 | −68.3 |
+| picks per task | 1.368 / 1.382 / 1.353 | 1.353–1.382 | 0.958 / 0.942 / 0.968 | 0.942–0.968 | −0.412 |
+
+The two ranges do not overlap on any of the five.
+
+**B-0, S-b′ before the sessions** (one generation on the current compact results, no `kind`; 2 new picks graded, 1 relevant, labels v4r2): none-accuracy (85) 0.847, expect_none 0.825, hit (288) 0.795, unnecessary picks 44, picks per task 0.987. Within S-b's three-run range or better on none-accuracy, hit and unnecessary picks, so the session variant Cb is S-b′ and C0 and Cb share one server (`6b50ae6`).
+
+**6b design (sessions, E1).** Conditions: **A** no router and no MCP server (upstream branch `s6b-a`, `--mcp-config` with no servers); **C0** the router S-0; **Cb** the router S-b′; C0 and Cb differ only in the router's step 4 and the shared edits. `--setting-sources project --strict-mcp-config --include-hook-events`, the stage 5 allowed tools, `--max-turns 40`, a fresh worktree per session. Three groups × 4 tasks × 3 conditions × 3 runs = 108 sessions:
+- **(1) design**, where a skill had an effect before: d1-landing (stage 1b's landing prompt), d2-redesign, d3-dashboard (nextjs), d4-email (fastapi react-email); fixed checks (type-check, build, page 200 with 0 errors at 1280 and 375, email build and render) and the stage 1b rubric's 1–5 usefulness score from blind screenshots.
+- **(2) ceiling domains:** stage 2's s2-tests, s2-api, s2-docs, s2-data with their frozen checks and rubrics (1–5).
+- **(3) nothing fits:** the only 4 tasks with no relevant skill in v4 that port to these stacks (t004, t133, t179, t354), rewritten for the repos and relabelled with the stage 4 pipeline; frozen checks and a 1–5 rubric per task. A task that gained a relevant skill on relabelling is reported but left out of the decision.
+- **Scores:** two blind passes (p1, p2), each a fresh subagent with only the rubric and the coded set folder; session score = mean of the two; condition score = mean over sessions.
+
+The decision rule, fixed before the run (DESIGN.md §5, original):
+
+> 기호는 다음과 같다.
+> - S(c, b): 묶음 b에서 조건 c의 점수(두 판정 평균의 평균).
+> - D(b): 묶음 b의 판정 일치 범위 = max over c ∈ {A, C0, Cb} |mean_p1(c, b) − mean_p2(c, b)|. 이번 실행에서 잰 값이다.
+> - T(c, b), K(c, b): 턴 중앙값, 입력 토큰 중앙값.
+>
+> 1. **기각**: S(Cb, 1) ≤ S(C0, 1) − 0.3이면 S-b를 기각한다.
+> 2. **채택**: 기각이 아니고, b = 2와 b = 3 **모두에서** 다음 세 가지가 성립하면 채택한다.
+>    - T(Cb, b) < T(C0, b)
+>    - K(Cb, b) < K(C0, b)
+>    - S(Cb, b) ≥ S(C0, b) − D(b)(점수가 낮아도 판정 일치 범위 안이거나, 더 높음)
+> 3. **그 밖**: 채택하지 않는다("보류"). 보고서에 어느 조건이 성립하지 않았는지 적는다.
+> 4. 조건 A는 참고값이고 판정에 쓰지 않는다.
+> 5. 묶음 (3)에서 "관련 생김"으로 빠진 태스크는 판정에서 제외한다. 남은 태스크로만 계산한다.
+> 6. 파일럿 3세션, 체크 오류로 버린 세션(하네스 실패 — 세션 시작 전 실패)은 판정에서 제외하고 따로 적는다. 세션이 실행된 뒤의 체크 실패는 결과로 센다.
+
+In English: S(c, b) is condition c's score in group b, D(b) the largest difference between the two passes' condition means in group b, T and K the median turns and median input tokens. Reject if S(Cb, 1) ≤ S(C0, 1) − 0.3. Adopt if not rejected and, in both groups 2 and 3, T(Cb) < T(C0), K(Cb) < K(C0) and S(Cb) ≥ S(C0) − D. Otherwise hold. A is reference only. A group 3 task that gained a relevant skill is excluded. Pilot sessions and sessions that failed before starting are excluded and reported.
+
+**6b verdict: adopted.** t004 gained a relevant skill on relabelling and is left out of group 3.
+
+| rule | values | holds |
+|---|---|---|
+| reject: S(Cb, 1) ≤ S(C0, 1) − 0.3 | 4.250 vs 4.208 (difference +0.042) | no |
+| (2) T(Cb) < T(C0) | 15.5 vs 17.0 | yes |
+| (2) K(Cb) < K(C0) | 553,506 vs 626,666 | yes |
+| (2) S(Cb) ≥ S(C0) − D | 4.708 vs 4.417 − 0.167 = 4.250 | yes |
+| (3) T(Cb) < T(C0) | 13 vs 18 | yes |
+| (3) K(Cb) < K(C0) | 299,649 vs 422,044 | yes |
+| (3) S(Cb) ≥ S(C0) − D | 4.778 vs 4.722 − 0.444 = 4.278 | yes |
+
+**Groups × conditions** (decision tasks only).
+
+| group | condition | n | score (p1 / p2) | checks passed | turns, median (mean) | input tokens, median | cost, median | fired | loaded ≥ 1 | skills loaded, mean |
+|---|---|---|---|---|---|---|---|---|---|---|
+| (1) design | A | 12 | 3.417 (3.333 / 3.500) | 12/12 | 12.5 (12.4) | 339,550 | $0.373 | 0/12 | 0/12 | 0 |
+| (1) design | C0 | 12 | 4.208 (4.250 / 4.167) | 12/12 | 22.0 (23.2) | 819,824 | $0.734 | 12/12 | 12/12 | 2.50 |
+| (1) design | Cb | 12 | 4.250 (4.417 / 4.083) | 12/12 | 24.0 (23.8) | 809,176 | $0.684 | 12/12 | 12/12 | 2.08 |
+| (2) ceiling | A | 12 | 4.167 (4.083 / 4.250) | 12/12 | 9.0 (9.9) | 264,272 | $0.506 | 0/12 | 0/12 | 0 |
+| (2) ceiling | C0 | 12 | 4.417 (4.333 / 4.500) | 12/12 | 17.0 (17.0) | 626,666 | $0.784 | 12/12 | 12/12 | 1.92 |
+| (2) ceiling | Cb | 12 | 4.708 (4.667 / 4.750) | 12/12 | 15.5 (16.7) | 553,506 | $0.706 | 12/12 | 12/12 | 1.75 |
+| (3) nothing fits | A | 9 | 4.722 (4.556 / 4.889) | 9/9 | 9 (10.1) | 198,989 | $0.219 | 0/9 | 0/9 | 0 |
+| (3) nothing fits | C0 | 9 | 4.722 (4.556 / 4.889) | 9/9 | 18 (17.1) | 422,044 | $0.383 | 9/9 | 5/9 | 0.67 |
+| (3) nothing fits | Cb | 9 | 4.778 (4.556 / 5.000) | 9/9 | 13 (13.4) | 299,649 | $0.321 | 8/9 | 0/9 | 0 |
+
+Stage 2 read the differences between conditions in the same domains as noise; the task set and n differ here, and this table does not claim router vs no router.
+
+t004, outside the decision (3 sessions per condition):
+
+| condition | score (p1 / p2) | checks passed | turns, median | input tokens, median | loaded ≥ 1 |
+|---|---|---|---|---|---|
+| A | 4.000 (4 / 4) | 2/3 | 23 | 1,026,900 | 0/3 |
+| C0 | 4.167 (4 / 4.333) | 0/3 | 39 | 1,477,627 | 2/3 |
+| Cb | 3.667 (3.667 / 3.667) | 1/3 | 33 | 1,000,770 | 1/3 |
+
+Judge agreement (p1 vs p2): group (1) 21/36 sessions equal, mean absolute difference 0.417, D 0.334; (2) 31/36, 0.139, D 0.167; (3) 15/27, 0.444, D 0.444; largest difference 1 in each.
+
+**Run record.**
+- **Usage limits:** in the first queue, sessions from 02:03 KST ended after 1 turn with "You've hit your org's monthly spend limit" (69 sessions; 39 valid). After switching accounts, 47 of the 69 reruns ended with "You've hit your session limit · resets 3:10am" (22 valid). The third queue ran the remaining 47; 108/108 ended `success`, none with a limit message. The 116 limit sessions are harness failures before the work started and are excluded (DESIGN §5.6). The first 39 sessions and the 69 reruns ran on two different login accounts, in the original seeded queue order.
+- **Pilot leak:** in the first pilot, condition A's skill list held the old router: the repos' main checkouts were on a branch that tracks `.claude/skills/skillfetch-router`, and Claude Code reads project skills from the main checkout of a git worktree. A had no MCP server and did not fire. Fix: the main checkouts were switched to `s6b-a`; the rerun A pilot lists the 18 built-in skills only. The C0 and Cb pilots each had only their own router text in context and were not rerun.
+- **Judging:** 24 passes (12 sets × p1, p2), each a new subagent with the rubric and set folder only; the key was read after format checks.
+
+**Cost** (API-price equivalent, Claude Code plan; not in §7's totals):
+- Batch calls in e2e/stage6/gen/raw, 600 calls, $168.65: 6a selection S-0 / S-a / S-b / S-c $18.64 / $20.37 / $19.52 / $19.81, kind labels $7.30 (30), oracle v4 grading $1.08; 6b-A extra generations S-0 $15.30 + $16.29, S-b $12.49 + $19.09, v4r grading $0.10; B-0 S-b′ $18.65, v4r2 grading $0.02.
+- 6b preparation (cached in e2e/stage4/gen/raw): group 3 rewrite 2 calls $0.74, relabel 11 calls $0.98.
+- 6b sessions: 108 main $63.65 (A $15.71, C0 $24.67, Cb $23.28); pilot 3 $1.89 plus the superseded A pilot $0.43; limit-ended sessions 69 $0.61 and 47 $1.34 (as reported in their logs).
+- Judge passes ran as subagents in an interactive session; not recorded.
+
+**Limits.** One model for sessions, judge and oracle (Opus 5.5); E1 only; group 3 had exactly 4 candidate tasks and lost one; d2–d4 are new tasks; 6a selection is batched (10 tasks per call), not a session's step 4.
 
