@@ -7,6 +7,10 @@ softly demotes (×0.5 when the skill names languages the repo does not use).
 Results are compact by default (id, title, one-line summary, tier, token_estimate) so that
 50 of them fit in about 4k tokens; `verbose=True` adds the full summary, tags and
 match_reasons.
+
+`search_many` runs up to MAX_QUERIES queries (e.g. what the task builds, how to work, the
+stack) and merges their rankings with reciprocal rank fusion (`rrf`, k=60), the merge the
+retrieval benchmark measures (`skillfetch eval retrieval`, evals/retrieval/).
 """
 
 from __future__ import annotations
@@ -22,6 +26,8 @@ TAG_BOOST = 1.3
 LANGUAGE_MISMATCH = 0.5
 DEFAULT_TIERS = ("A", "B")
 DEFAULT_K = 50
+RRF_K = 60
+MAX_QUERIES = 4
 ONE_LINE_CHARS = 160
 # a sentence ends at . ! ? followed by space and a capital ("e.g. tables" does not end one)
 _SENTENCE_END = re.compile(r"(?<=[.!?])\s+(?=[A-Z\"'(\[`])")
@@ -51,6 +57,16 @@ def _profile_tags(profile: dict) -> set[str]:
     for key in ("tags", "languages", "frameworks", "package_managers"):
         out |= {str(v).lower() for v in profile.get(key) or []}
     return out
+
+
+def rrf(*rankings: list[str], k: int = RRF_K) -> list[str]:
+    """Reciprocal rank fusion: each id scores the sum of 1 / (k + rank) over the rankings it
+    appears in (rank from 1); best first, ties by id."""
+    score: dict[str, float] = {}
+    for ranking in rankings:
+        for n, sid in enumerate(ranking, 1):
+            score[sid] = score.get(sid, 0) + 1 / (k + n)
+    return sorted(score, key=lambda s: (-score[s], s))
 
 
 class Searcher:
@@ -132,3 +148,23 @@ class Searcher:
                     }
                 )
         return out
+
+    def search_many(
+        self,
+        queries: list[str],
+        profile: dict | None = None,
+        k: int = DEFAULT_K,
+        tiers: Iterable[str] = DEFAULT_TIERS,
+        verbose: bool = False,
+    ) -> list[dict]:
+        """Each query's top k, merged with `rrf` and cut to k. One query is `search` itself."""
+        tiers = tuple(tiers)
+        per = [self.search(q, profile, k, tiers, verbose=verbose) for q in queries]
+        if len(per) == 1:
+            return per[0]
+        first: dict[str, dict] = {}
+        for results in per:
+            for r in results:
+                first.setdefault(r["id"], r)
+        merged = rrf(*([r["id"] for r in results] for results in per))
+        return [first[sid] for sid in merged[: max(0, k)]]

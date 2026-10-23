@@ -96,3 +96,16 @@ def test_auto_ids_are_capped(tmp_path):
         "pick fewer from the search results"
     }
     assert s.resolve_set([squash] * MAX_AUTO_IDS)["included"] == [squash]
+
+
+def test_query_and_one_element_queries_agree(tmp_path):
+    _, s = _session(tmp_path)
+    assert s.search_skills("squash commits") == s.search_skills(queries=["squash commits"])
+    assert s.search_skills("x", queries=["squash commits"]) == s.search_skills("squash commits")
+
+
+def test_queries_are_validated(tmp_path):
+    _, s = _session(tmp_path)
+    for bad in ([], ["a"] * 5, ["ok", ""], ["ok", 3]):
+        assert s.search_skills(queries=bad)["error"].startswith("invalid queries")
+    assert s.search_skills()["error"].startswith("invalid queries")
