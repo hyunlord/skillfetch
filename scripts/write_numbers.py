@@ -454,7 +454,7 @@ def costs(out: list[str]) -> None:
         "cost of an attempt that returned an error and was retried, if any, is not in these "
         "sums.",
         "",
-        f"**Claude Code plan equivalent, total: "
+        f"**Claude Code plan, API-price equivalent, not money spent, total: "
         f"${repo + e2e_cost + prep3_cost + prep['cost_usd'] + prep5_cost:.2f}**: "
         f"sessions run from this repo ${repo:.2f} ({len(runs)} obedience runs, {len(discarded)} "
         f"discarded, the transcript session), end-to-end sessions ${e2e_cost:.2f}, stage 3 "

@@ -192,7 +192,7 @@ Stage 5 batch calls (isolated `claude -p`, no tools; `stage5_prep`, cached in e2
 
 Not recorded: in these stages' batch calls only successful answers are cached, so the cost of an attempt that returned an error and was retried, if any, is not in these sums.
 
-**Claude Code plan equivalent, total: $650.08**: sessions run from this repo $52.95 (910 obedience runs, 171 discarded, the transcript session), end-to-end sessions $496.33, stage 3 batch calls $65.46, stage 4 batch calls $29.85, stage 5 batch calls $5.50. The agent sessions the write-up counts: 1,708 (910 obedience runs and 798 end-to-end; discarded runs and smoke tests not counted). The interactive Claude Code sessions that wrote the code and classified the outputs are not included.
+**Claude Code plan, API-price equivalent, not money spent, total: $650.08**: sessions run from this repo $52.95 (910 obedience runs, 171 discarded, the transcript session), end-to-end sessions $496.33, stage 3 batch calls $65.46, stage 4 batch calls $29.85, stage 5 batch calls $5.50. The agent sessions the write-up counts: 1,708 (910 obedience runs and 798 end-to-end; discarded runs and smoke tests not counted). The interactive Claude Code sessions that wrote the code and classified the outputs are not included.
 
 **After the post (not in the totals above).**
 - Router step-1 comparison (§13, shipped router rule): query generation 102 calls, $7.35; oracle v3 pool correction 373 calls, $7.06 (isolated `claude -p`, Claude Code plan equivalent; e2e/stage3/router-winner.md).
