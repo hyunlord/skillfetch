@@ -113,8 +113,10 @@ Rules:
 
 The only skill a user installs. Short (< 60 lines). It tells the host model:
 
-1. Before non-trivial work, restate the task in one sentence including stack and
-   target files, then call `search_skills` with that sentence.
+1. Before non-trivial work, restate the task in up to three English sentences: what it
+   builds (domain nouns), how the user asked to work (TDD, minimal diff, security first;
+   omitted when they did not say), and the stack and target files. Pass them to
+   `search_skills` as `queries`.
 2. Pick 1–3 candidates by reading all 50 summaries, weighing `token_estimate` against
    `load_skills`' budget. If the user named a skill, find its id with
    `search_skills` (the result whose title matches) and pass it as pinned.
