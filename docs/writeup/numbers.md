@@ -827,11 +827,11 @@ Of the 40 `expect_none` tasks, 7 have a relevant skill after the correction (5 b
 
 Tasks scored: all 278, 2a 209, process 207.
 
-| query | method | (i) all @10 | (i) all @50 | (ii) 2a @10 | (ii) 2a @50 | process @10 | process @50 |
-|---|---|---|---|---|---|---|---|
-| q1 as typed | BM25 | 0.387 | 0.683 | 0.396 | 0.639 | 0.324 | 0.632 |
-| q2 restatement | BM25 | 0.483 | 0.775 | 0.498 | 0.732 | 0.372 | 0.727 |
-| q3 three queries, RRF | BM25 | 0.535 | 0.835 | 0.474 | 0.764 | 0.425 | 0.783 |
+| query | method | (i) all @10 | (i) all @50 | (ii) 2a @10 | (ii) 2a @50 | process @10 | process @50 | hit (i) @10 | hit (i) @50 | hit (ii) @10 | hit (ii) @50 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| q1 as typed | BM25 | 0.387 | 0.683 | 0.396 | 0.639 | 0.324 | 0.632 | 0.673 | 0.856 | 0.498 | 0.727 |
+| q2 restatement | BM25 | 0.483 | 0.775 | 0.498 | 0.732 | 0.372 | 0.727 | 0.752 | 0.903 | 0.617 | 0.813 |
+| q3 three queries, RRF | BM25 | 0.535 | 0.835 | 0.474 | 0.764 | 0.425 | 0.783 | 0.799 | 0.953 | 0.598 | 0.842 |
 
 **Table 1, MiniLM rows** (report Table 1; `skillfetch eval retrieval --minilm` reproduces every cell, run with sentence-transformers outside skillfetch's dependencies). The model is all-MiniLM-L6-v2 over title + description + summary + keywords + synthetic_queries. RRF fuses the full BM25 ranking with the full embedding ranking.
 
@@ -923,23 +923,23 @@ Bottlenecks, counted in tasks: selection 55 (select_fail 25 + over_load 30), the
 
 Tasks scored: all 284, 2a 209, process 213.
 
-| query | method | (i) all @10 | (i) all @50 | (ii) 2a @10 | (ii) 2a @50 | process @10 | process @50 |
-|---|---|---|---|---|---|---|---|
-| R-a router rule (previous) | BM25, RRF | 0.409 | 0.737 | 0.420 | 0.696 | 0.316 | 0.656 |
-| R-b router rule | BM25, RRF | 0.464 | 0.807 | 0.449 | 0.773 | 0.393 | 0.774 |
-| R-c router rule (shipped) | BM25, RRF | 0.457 | 0.808 | 0.467 | 0.746 | 0.362 | 0.770 |
-| q3 three queries, RRF | BM25 | 0.490 | 0.822 | 0.474 | 0.764 | 0.373 | 0.761 |
+| query | method | (i) all @10 | (i) all @50 | (ii) 2a @10 | (ii) 2a @50 | process @10 | process @50 | hit (i) @10 | hit (i) @50 | hit (ii) @10 | hit (ii) @50 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| R-a router rule (previous) | BM25, RRF | 0.409 | 0.737 | 0.420 | 0.696 | 0.316 | 0.656 | 0.711 | 0.891 | 0.565 | 0.780 |
+| R-b router rule | BM25, RRF | 0.464 | 0.807 | 0.449 | 0.773 | 0.393 | 0.774 | 0.743 | 0.930 | 0.565 | 0.856 |
+| R-c router rule (shipped) | BM25, RRF | 0.457 | 0.808 | 0.467 | 0.746 | 0.362 | 0.770 | 0.754 | 0.930 | 0.579 | 0.813 |
+| q3 three queries, RRF | BM25 | 0.490 | 0.822 | 0.474 | 0.764 | 0.373 | 0.761 | 0.782 | 0.954 | 0.598 | 0.842 |
 
 The same on oracle v2 (the stage 3 labels, before this pool correction). Table 1's q3 0.835 above is on oracle v2.
 
 Tasks scored: all 278, 2a 209, process 207.
 
-| query | method | (i) all @10 | (i) all @50 | (ii) 2a @10 | (ii) 2a @50 | process @10 | process @50 |
-|---|---|---|---|---|---|---|---|
-| R-a router rule (previous) | BM25, RRF | 0.403 | 0.732 | 0.420 | 0.696 | 0.303 | 0.647 |
-| R-b router rule | BM25, RRF | 0.461 | 0.802 | 0.449 | 0.773 | 0.385 | 0.766 |
-| R-c router rule (shipped) | BM25, RRF | 0.454 | 0.799 | 0.467 | 0.746 | 0.354 | 0.760 |
-| q3 three queries, RRF | BM25 | 0.535 | 0.835 | 0.474 | 0.764 | 0.425 | 0.783 |
+| query | method | (i) all @10 | (i) all @50 | (ii) 2a @10 | (ii) 2a @50 | process @10 | process @50 | hit (i) @10 | hit (i) @50 | hit (ii) @10 | hit (ii) @50 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| R-a router rule (previous) | BM25, RRF | 0.403 | 0.732 | 0.420 | 0.696 | 0.303 | 0.647 | 0.680 | 0.874 | 0.565 | 0.780 |
+| R-b router rule | BM25, RRF | 0.461 | 0.802 | 0.449 | 0.773 | 0.385 | 0.766 | 0.727 | 0.917 | 0.565 | 0.856 |
+| R-c router rule (shipped) | BM25, RRF | 0.454 | 0.799 | 0.467 | 0.746 | 0.354 | 0.760 | 0.727 | 0.906 | 0.579 | 0.813 |
+| q3 three queries, RRF | BM25 | 0.535 | 0.835 | 0.474 | 0.764 | 0.425 | 0.783 | 0.799 | 0.953 | 0.598 | 0.842 |
 
 Paired differences (oracle v3; mean of per-task recall differences, bootstrap 95% interval over 4,000 resamples, tasks better / worse):
 

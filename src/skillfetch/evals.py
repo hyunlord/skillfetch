@@ -9,6 +9,8 @@ R-a (the previous rule), R-b and R-c (the shipped rule).
 recall@10 and @50 are measured against the oracle's relevant set (grade >= 2), the subset
 the catalogue-only oracle picked (`relevant_2a`, independent of any ranking) and the process
 subset; tasks without relevant skills and expect_none tasks are skipped (recall undefined).
+hit@10 and @50 (all and 2a): the share of those tasks with at least one relevant skill in
+the top k.
 One table per oracle: v2 (`oracle.jsonl`, the stage 3 labels) and, when present, v3
 (`oracle-v3.jsonl`: v2 plus the router rules' top 10 graded).
 With `minilm=True`: all-MiniLM-L6-v2 over title + description + summary + keywords +
@@ -26,6 +28,7 @@ from skillfetch.mcp.session import Session
 
 DEFAULT_EVALS = Path(__file__).resolve().parents[2] / "evals" / "retrieval"
 SETS = {"all": "relevant", "2a": "relevant_2a", "process": "relevant_process"}
+HIT_SETS = ("all", "2a")
 LABELS = {
     "bm25_q1": ("q1 as typed", "BM25"),
     "bm25_q2": ("q2 restatement", "BM25"),
@@ -95,7 +98,8 @@ def rankings(
 
 
 def recall_table(tasks: dict, oracle: dict, rk: dict) -> tuple[dict, dict]:
-    """{method: {(set, cut): mean recall}} and {set: number of tasks}."""
+    """{method: {(set, cut): mean recall, ("hit " + set, cut): hit rate}} and
+    {set: number of tasks}."""
     scored = {
         name: [tid for tid, t in tasks.items() if not t["expect_none"] and oracle[tid][field]]
         for name, field in SETS.items()
@@ -112,6 +116,7 @@ def recall_table(tasks: dict, oracle: dict, rk: dict) -> tuple[dict, dict]:
                     for tid in scored[name]
                 ]
                 row[(name, cut)] = sum(v) / len(v)
+                row[("hit " + name, cut)] = sum(1 for x in v if x > 0) / len(v)
         table[m] = row
     return table, {name: len(ids) for name, ids in scored.items()}
 
@@ -119,18 +124,20 @@ def recall_table(tasks: dict, oracle: dict, rk: dict) -> tuple[dict, dict]:
 def render(table: dict, counts: dict, methods: list[str] | None = None) -> str:
     head = (
         "| query | method | (i) all @10 | (i) all @50 | (ii) 2a @10 | (ii) 2a @50 "
-        "| process @10 | process @50 |"
+        "| process @10 | process @50 | hit (i) @10 | hit (i) @50 | hit (ii) @10 | hit (ii) @50 |"
     )
+    columns = [(s, c) for s in SETS for c in (10, 50)]
+    columns += [("hit " + s, c) for s in HIT_SETS for c in (10, 50)]
     lines = [
         f"Tasks scored: all {counts['all']}, 2a {counts['2a']}, process {counts['process']}.",
         "",
         head,
-        "|---|---|---|---|---|---|---|---|",
+        "|---|---|" + "---|" * len(columns),
     ]
     for m in methods or table:
         row = table[m]
         query, method = LABELS.get(m, (m, ""))
-        cells = " | ".join(f"{row[(s, c)]:.3f}" for s in SETS for c in (10, 50))
+        cells = " | ".join(f"{row[col]:.3f}" for col in columns)
         lines.append(f"| {query} | {method} | {cells} |")
     return "\n".join(lines) + "\n"
 

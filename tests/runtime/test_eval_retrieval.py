@@ -63,7 +63,7 @@ def test_eval_retrieval_prints_the_recall_table(tmp_path, capsys):
     ]
     for row in rows:
         cells = [float(c) for c in row.strip("| ").split(" | ")[2:]]
-        assert len(cells) == 6 and all(0 <= c <= 1 for c in cells)
+        assert len(cells) == 10 and all(0 <= c <= 1 for c in cells)
     # the index is small: both relevant skills are in every top 50
     assert all(row.split(" | ")[3] == "1.000" for row in rows)
 
@@ -94,3 +94,22 @@ def test_eval_retrieval_needs_an_eval_set(tmp_path, capsys):
     root = make_index(tmp_path / "idx")
     assert main(["eval", "retrieval", "--index", str(root), "--evals", str(tmp_path)]) == 2
     assert "no tasks.jsonl" in capsys.readouterr().err
+
+
+def test_hit_is_the_share_of_tasks_with_one_relevant_skill_in_the_top_k():
+    from skillfetch.evals import recall_table
+
+    tasks = {"t1": {"expect_none": False}, "t2": {"expect_none": False}}
+    oracle = {
+        "t1": {"relevant": ["a", "b"], "relevant_2a": ["a"], "relevant_process": ["b"]},
+        "t2": {"relevant": ["c"], "relevant_2a": ["c"], "relevant_process": []},
+    }
+    # t1: "a" at rank 1, "b" at rank 12; t2: "c" missing from the top 50
+    t1 = ["a"] + [f"x{i}" for i in range(10)] + ["b"]
+    rk = {"t1": {"m": t1}, "t2": {"m": [f"y{i}" for i in range(50)]}}
+    table, counts = recall_table(tasks, oracle, rk)
+    row = table["m"]
+    assert counts == {"all": 2, "2a": 2, "process": 1}
+    assert row[("all", 10)] == 0.25 and row[("all", 50)] == 0.5
+    assert row[("hit all", 10)] == 0.5 and row[("hit all", 50)] == 0.5
+    assert row[("hit 2a", 50)] == 0.5
