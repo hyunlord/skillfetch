@@ -999,6 +999,14 @@ def codex(out: list[str]) -> None:
     out += [path.read_text().strip() if path.is_file() else "Not run yet.", ""]
 
 
+def stage6(out: list[str]) -> None:
+    """§17: stage 6, the selection rule and choosing none (the stage 6 reports, transcribed in
+    data/e2e/stage6.md)."""
+    out += ["## 17. Stage 6: choosing none (after the post freeze)", ""]
+    path = DATA / "e2e" / "stage6.md"
+    out += [path.read_text().strip() if path.is_file() else "Not run yet.", ""]
+
+
 def main() -> None:
     out = [
         "# Numbers for the write-up",
@@ -1026,6 +1034,7 @@ def main() -> None:
         stage4,
         stage5,
         codex,
+        stage6,
     ):
         section(out)
     OUT.parent.mkdir(parents=True, exist_ok=True)

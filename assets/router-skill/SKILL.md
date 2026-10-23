@@ -38,11 +38,13 @@ with no other change, or answering a question without editing files.
 2. If no `mcp__skillfetch__*` tool is listed yet, the server is starting: load them with
    ToolSearch (query `+skillfetch`), and search again if it says it is connecting.
 3. Call `profile_repo` with the repository root once per session (it reads manifest files
-   only) and pass the result as `profile` to `search_skills`.
-4. Call `search_skills` with (a)–(d) as `queries`. It returns 50 one-line
-   summaries, best first: read all 50 and pick 1–3 that fit this task — the best fit is
-   often not near the top. Each result has a `token_estimate`: when two fit equally, take
-   the smaller, and keep the set's total under `load_skills`' budget (8000 tokens by default).
+   only) and pass the result as `profile` to `search_skills`. Search once per task.
+4. Call `search_skills` with (a)–(d) as `queries`. It returns 50 one-line summaries, best
+   first: read all 50 and pick up to 3 that fit this task — the best fit is often not
+   near the top. Do not pick a skill unless you can say in one sentence what its summary
+   changes in this task; often none fits, and then you skip steps 6–7. Each result has a
+   `token_estimate`: when two fit equally, take the smaller, and keep the set's total
+   under `load_skills`' budget (8000 tokens by default).
 5. If the user named a skill ("use the pdf skill"), call `search_skills` with that name,
    take the id of the result whose title matches, and put it in `pinned_ids`. A local
    skill folder (one the user named, or a project skill that fits) is pinned as
@@ -54,7 +56,3 @@ with no other change, or answering a question without editing files.
 8. Do the work. If `load_skills` lists a skill in `errors` (hash mismatch, fetch error,
    dropped for the token budget), continue without it and say so.
 
-## Rules
-
-- Never load a skill that `resolve_set` excluded.
-- Do not search again mid-task unless the task changes.
