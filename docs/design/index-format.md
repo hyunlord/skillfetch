@@ -449,7 +449,13 @@ As built (`index/sync.py`):
 - Document text for BM25 = `title + description + keywords×2 + synthetic_queries + summary`
   (no body: bodies are not in the index, §1.8).
   Keywords are repeated once to weight them; do not over-tune.
-- Query = the host model's one-sentence task restatement, lowercased, tokenized
+- Queries = the host model's restatement of the task as 1–4 short sentences (what it
+  builds, how the user asked to work, the stack and files; `query` = one sentence).
+  Each is ranked on its own (top k each) and the rankings are merged by reciprocal
+  rank fusion, score Σ 1/(60 + rank), ties by id (`search.rrf`, `Searcher.search_many`).
+  One query is plain BM25. On the 380-task benchmark (`skillfetch eval retrieval`,
+  numbers.md §13) three sentences raise recall@50 from 0.775 to 0.835.
+- Each query is lowercased, tokenized
   into Unicode words (`_` separates), each run of Han, Kana or Hangul as
   overlapping 2-grams ("리팩토링" → 리팩, 팩토, 토링), stopwords removed, no
   stemming in v0.1 (measure first). Documents are tokenized the same way.

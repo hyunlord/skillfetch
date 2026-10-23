@@ -5,8 +5,7 @@ description: Use at the start of any coding task that adds or changes code, test
 
 # skillfetch router
 
-Use the skillfetch MCP tools to pick skills for the task at hand. Nothing gets installed;
-the next task searches again.
+Use the skillfetch MCP tools to pick skills for this task. Nothing gets installed.
 
 ## When
 
@@ -28,19 +27,20 @@ with no other change, or answering a question without editing files.
 
 ## Steps
 
-1. **Restate the task in one English sentence**, whatever language the user wrote in,
-   naming the stack and the target files when you know them: "Refactor the React
-   `UserCard` component in `src/components/` into smaller presentational components".
+1. **Restate the task in English**, whatever language the user wrote in, as up to three
+   short sentences: (a) what it builds or fixes, in domain nouns ("Conditional GET with
+   ETags for the product catalog API"); (b) how the user asked you to work, if they did
+   ("Test-driven: write failing tests first", "Minimal diff", "Security first"), else
+   leave it out; (c) the stack and target files ("Go net/http, `internal/catalog/`").
    Do not explore the code first; the search needs the task, not the code.
-2. If no `mcp__skillfetch__*` tool is in your tool list yet, the server is still
-   starting: load them with ToolSearch (query `+skillfetch`), and search again if it
-   says the server is connecting.
+2. If no `mcp__skillfetch__*` tool is listed yet, the server is starting: load them with
+   ToolSearch (query `+skillfetch`), and search again if it says it is connecting.
 3. Call `profile_repo` with the repository root once per session (it reads manifest files
    only) and pass the result as `profile` to `search_skills`.
-4. Call `search_skills` with that sentence. It returns 50 one-line summaries, best BM25
-   match first: read all 50 and pick 1–3 that fit this task — the best fit is often not
-   near the top. Each result has a `token_estimate`: when two fit equally, take the
-   smaller, and keep the set's total under `load_skills`' budget (8000 tokens by default).
+4. Call `search_skills` with those sentences as `queries`. It returns 50 one-line
+   summaries, best first: read all 50 and pick 1–3 that fit this task — the best fit is
+   often not near the top. Each result has a `token_estimate`: when two fit equally, take
+   the smaller, and keep the set's total under `load_skills`' budget (8000 tokens by default).
 5. If the user named a skill ("use the pdf skill"), call `search_skills` with that name,
    take the id of the result whose title matches, and put it in `pinned_ids`. A local
    skill folder (one the user named, or a project skill that fits) is pinned as

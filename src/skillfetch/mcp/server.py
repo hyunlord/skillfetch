@@ -45,20 +45,24 @@ def build_server(session: Session) -> MCPServer:
 
     @server.tool()
     def search_skills(
-        query: str,
+        query: str | None = None,
+        queries: list[str] | None = None,
         profile: dict[str, Any] | None = None,
         k: int = DEFAULT_K,
         tiers: list[str] | None = None,
         verbose: bool = False,
     ) -> dict[str, Any]:
-        """Rank indexed skills for a one-sentence task description (BM25). `profile`
-        (from profile_repo) boosts matching skills and is never part of the query.
+        """Rank indexed skills for a task (BM25). Pass `queries`: 1-4 short sentences, e.g.
+        what the task builds, how the user asked to work (if they did), and the stack and
+        files; each is searched and the rankings are merged by reciprocal rank fusion (k=60).
+        `query` (one sentence) still works; `queries` wins when both are given. `profile`
+        (from profile_repo) boosts matching skills and is never part of a query.
         Returns {results: [{id, title, summary, tier, token_estimate}]}, best first, 50 by
         default (at most 200); `summary` is one line. verbose=true returns the full summary
         plus tags and match_reasons. Tiers default to A and B. A query over 2,000 characters
         is cut and the result carries truncated: true; a malformed profile returns
         {error, details}."""
-        return session.search_skills(query, profile, k, tiers, verbose)
+        return session.search_skills(query, profile, k, tiers, verbose, queries=queries)
 
     @server.tool()
     def resolve_set(auto_ids: list[str], pinned_ids: list[str] | None = None) -> dict[str, Any]:

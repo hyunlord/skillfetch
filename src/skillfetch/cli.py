@@ -1,4 +1,4 @@
-"""Command line: `skillfetch scan|ingest|judge|obedience|sync|serve`."""
+"""Command line: `skillfetch scan|ingest|judge|obedience|sync|serve|eval`."""
 
 from __future__ import annotations
 
@@ -116,6 +116,30 @@ def main(argv: Sequence[str] | None = None) -> int:
         type=Path,
         default=DEFAULT_INDEX_DIR,
         help="index directory (default: %(default)s)",
+    )
+
+    ev = sub.add_parser("eval", help="offline benchmarks (no model calls)")
+    ev_sub = ev.add_subparsers(dest="benchmark", required=True)
+    ev_retrieval = ev_sub.add_parser(
+        "retrieval",
+        help="recall@10/@50 of search_skills on the 380-task set in evals/retrieval/",
+    )
+    ev_retrieval.add_argument(
+        "--index",
+        type=Path,
+        default=DEFAULT_INDEX_DIR,
+        help="index directory (default: %(default)s)",
+    )
+    ev_retrieval.add_argument(
+        "--evals",
+        type=Path,
+        default=None,
+        help="tasks/oracle/queries directory (default: the repo's)",
+    )
+    ev_retrieval.add_argument(
+        "--minilm",
+        action="store_true",
+        help="also all-MiniLM-L6-v2 alone and fused with BM25 (needs sentence-transformers)",
     )
 
     ingest = sub.add_parser(
@@ -309,7 +333,30 @@ def main(argv: Sequence[str] | None = None) -> int:
         return _serve(args)
     if args.command == "sync":
         return _sync(args)
+    if args.command == "eval":
+        return _eval(args)
     return 2  # unreachable: argparse rejects unknown commands
+
+
+def _eval(args: argparse.Namespace) -> int:
+    from skillfetch import evals
+    from skillfetch.mcp.session import Session
+
+    folder = args.evals or evals.DEFAULT_EVALS
+    if not (folder / "tasks.jsonl").is_file():
+        print(f"skillfetch: eval: no tasks.jsonl in {folder}; pass --evals", file=sys.stderr)
+        return 2
+    try:
+        session = Session(Index.load(args.index))
+    except IndexLoadError as exc:
+        print(f"skillfetch: eval: {exc}", file=sys.stderr)
+        return 2
+    try:
+        sys.stdout.write(evals.retrieval(session, folder, minilm=args.minilm))
+    except ImportError as exc:
+        print(f"skillfetch: eval: --minilm needs sentence-transformers ({exc})", file=sys.stderr)
+        return 2
+    return 0
 
 
 def _sync(args: argparse.Namespace) -> int:

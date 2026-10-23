@@ -44,7 +44,7 @@ two instructions cannot both be followed; anything less certain is
 Skills the index does not cover are listed as skipped; `--with-api --model
 anthropic/<model>` extracts them (calls the API, cached once per skill).
 
-The router, measured in real Claude Code sessions on five task types (landing page, test writing, backend API, documentation, data script): it loaded the skill an expert would pick in 23 of 24 runs. Only the design task came out differently with that skill; on the other four, no skill, the expert's skill and the router all passed every check. The router costs 1.7–2.1 times the input tokens of no skill ([numbers.md §11](docs/writeup/numbers.md#11-router-in-real-sessions-end-to-end-stages-1-1b-and-2)). scan and sync are unaffected.
+The router, measured in real Claude Code sessions on five task types (landing page, test writing, backend API, documentation, data script): it loaded the skill an expert would pick in 23 of 24 runs. Only the design task came out differently with that skill; on the other four, no skill, the expert's skill and the router all passed every check. The router costs 1.7–2.1 times the input tokens of no skill ([numbers.md §11](docs/writeup/numbers.md#11-router-in-real-sessions-end-to-end-stages-1-1b-and-2)). Offline, its search has top-50 recall 0.84 on 380 synthetic tasks ([evals/retrieval](evals/retrieval/), [numbers.md §13](docs/writeup/numbers.md#13-retrieval-benchmark-380-synthetic-tasks)). scan and sync are unaffected.
 
 ```console
 $ skillfetch scan path/to/skills --json                   # machine-readable
@@ -158,6 +158,12 @@ default produced none. Use it when recall matters more than precision.
 - Embeddings (all-MiniLM-L6-v2) were evaluated against BM25 and not adopted: no
   gain (top-50 recall 0.74 with BM25 + embedding fusion, 0.71 with BM25 alone, on 34
   router queries; [numbers.md §12](docs/writeup/numbers.md#12-embedding-retrieval-not-adopted)).
+  Re-evaluated on the 380-task benchmark: +0.026 recall@50 (§13).
+- The router loads something in 30 of the 95 benchmark tasks where nothing in the
+  index fits (32%), and in 30% of the 40 trivial requests that need no skill
+  ([numbers.md §13](docs/writeup/numbers.md#13-retrieval-benchmark-380-synthetic-tasks)).
+- In sessions with the author's own global rules and hooks, the router reached
+  search in 12 of 40 sessions; a clean install was not measured.
 - On four of five task types we measured, the expert skill changed nothing the
   checks could see; load a skill when the base model is weak at the domain, not by
   default.

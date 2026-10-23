@@ -2,7 +2,7 @@
 
 *2026-10-22 · Kwan Hyeon*
 
-SKILL.md files are the new npm: you install thirty of them into your coding agent and never read one. I pulled 1,831 public skills, linted them, scanned them for prompt-injection patterns, extracted 29,880 individual instructions from them, and checked which instructions contradict each other. Then I ran 1,160 agent sessions to see what any of it changes. Four things stood out. Only one in five states a license. Outright contradictions between skills are almost nonexistent. When two skills do disagree, the agent quietly picks one, the same one every time, and none of the three ways I tried to name the winner was a reliable control: the named skill was followed in 43–56% of runs, and the best method turned the agent's own choice around in only 8 of the 23 pairs where it had one. And skills mattered in 1 of the 5 task types I measured: on design, the expert's skill removed the template look; on tests, APIs, docs and data scripts the agent passed every check with or without one.
+SKILL.md files are the new npm: you install thirty of them into your coding agent and never read one. I pulled 1,831 public skills, linted them, scanned them for prompt-injection patterns, extracted 29,880 individual instructions from them, and checked which instructions contradict each other. Then I ran 1,160 agent sessions to see what any of it changes. Four things stood out. Only one in five states a license. Outright contradictions between skills are almost nonexistent. When two skills do disagree, the agent quietly picks one, the same one every time, and none of the three ways I tried to name the winner was a reliable control: the named skill was followed in 43–56% of runs, and the best method turned the agent's own choice around in only 8 of the 23 pairs where it had one. And skills mattered in 1 of the 5 task types I measured: on design, the expert's skill removed the template look; on tests, APIs, docs and data scripts the agent passed every check with or without one. On a 380-task benchmark the search finds the relevant skill (top-50 recall 0.84); choosing and firing are what fail.
 
 ## What I did
 
@@ -145,6 +145,29 @@ Widening the search to 50 compact summaries and letting the agent choose from th
 Finding the skill is not the same as needing it. Design is the only domain where the expert's skill changed the result. On tests, the API, docs and the data script, all three conditions hit every objective metric (100% branch coverage, 27 of 27 contract calls, every check passed), and the score differences between conditions (0.6 or less) are within the noise of five runs and two judging passes that agreed exactly on 8 to 14 of 15 outputs. The router costs 1.7 to 2.1 times the input tokens of no skill and 6 to 8 more turns. That is the scope of this result: tasks the base model finishes in a median 9 to 15 turns without help, one model, five runs per condition.
 
 The router still misses skills about *how* to work. The expert's `writing-plans` skill describes a way of working, the planning task describes a feature, and keyword search does not bridge that. A 22M-parameter embedding model did not bridge it either (top-50 recall 0.74 fused with BM25 vs BM25's 0.71, [numbers.md](numbers.md) §12), so it is not in the product.
+
+## 6. How often does it find the right skill? A 380-task benchmark.
+
+Five task types is a small sample, so I built a larger, offline one: 380 synthetic developer requests. 300 are spread over 12 task types × 6 stacks × 5 phrasings, 40 are trivial requests that should load nothing, and 20 pairs differ only in how the user asked to work. For every task a model graded the candidate skills 0–3, and the relevant set is grade 2 or more. That model (Opus 5.5) is the one that runs the router, so the labels measure consistency, not ground truth: two grading passes agreed exactly on 94% of 500 pairs. The tasks, labels, queries and the scorer are in the repo (`evals/retrieval/`, `skillfetch eval retrieval`).
+
+Search first: the share of relevant skills in the top 10 and the top 50.
+
+| What search_skills was given | top 10 | top 50 | process skills, top 50 |
+|---|---|---|---|
+| The request as typed | 0.387 | 0.683 | 0.632 |
+| The router's one-sentence restatement | 0.483 | 0.775 | 0.727 |
+| Three sentences (what it builds, how to work, the stack), each searched, merged | 0.535 | 0.835 | 0.783 |
+| The one sentence, BM25 fused with MiniLM embeddings | 0.473 | 0.801 | 0.734 |
+
+Splitting the restatement into three sentences recovers most of what one sentence missed, process skills included. The router now searches this way; what that changes in real sessions is not measured yet. The embedding model added 0.026 at top 50 on the same sentence, under the 0.10 bar for adopting it, so it stays out.
+
+Selection is where it breaks. Given the real top 50, the picker loaded at least one relevant skill in 82% of the tasks that had one (precision 0.81, recall 0.42). But in 30 of the 95 tasks where nothing in the index fits, it loaded something anyway, and it loaded a skill for 30% of the 40 trivial requests. Counted per task, the failures are: selection 55 (25 passed over a relevant skill that was in the list, 30 loaded one when none fit), restatement 20, search 7.
+
+Some tasks have nothing to find. 62 of the 340 non-trivial tasks have no relevant skill in the index, most of them in ml (11 of 29), deploy (9 of 29), feature and performance (8 each) and data and ui_design (7 each).
+
+Last, I ran 40 of these tasks as real Claude Code sessions, in my own environment, with my global rules, hooks and plugins loaded. The router reached `search_skills` in 12 of the 40; the rest started with Bash, Read or another plugin. The offline selection did not predict what those sessions loaded either: 11 of 40 sets were identical. A clean install was not measured.
+
+Search is solved by asking it three questions instead of one (top-50 recall 0.835). The bottlenecks are choosing (a skill loaded for 30% of requests that need none) and firing at all (12 of 40 sessions).
 
 ## What the tool gets wrong
 

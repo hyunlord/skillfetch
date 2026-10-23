@@ -14,7 +14,7 @@ from pydantic import BaseModel, ConfigDict, ValidationError
 from skillfetch.index.fetch import BodyCache, FetchError
 from skillfetch.index.loader import Index
 from skillfetch.index.profile import profile_repo
-from skillfetch.index.search import DEFAULT_K, DEFAULT_TIERS, Searcher
+from skillfetch.index.search import DEFAULT_K, DEFAULT_TIERS, MAX_QUERIES, Searcher
 from skillfetch.ingest.extract import DEFAULT_MODEL
 from skillfetch.ingest.extract_cache import DEFAULT_CACHE_DIR, ExtractCache
 from skillfetch.ingest.injection import scan_skill
@@ -92,24 +92,36 @@ class Session:
 
     def search_skills(
         self,
-        query: str,
+        query: str | None = None,
         profile: dict | None = None,
         k: int = DEFAULT_K,
         tiers: list[str] | None = None,
         verbose: bool = False,
+        queries: list[str] | None = None,
     ) -> dict:
-        """Results only (the query is not echoed). A query over MAX_QUERY_CHARS is cut and
-        the result carries truncated: true; k is capped at MAX_K; a profile that does not
-        match `Profile` is refused with a structured error."""
+        """Results only (the queries are not echoed). `queries` (1-MAX_QUERIES) wins over
+        `query`; several are each searched and RRF-merged. A query over MAX_QUERY_CHARS is
+        cut and the result carries truncated: true; k is capped at MAX_K; a profile that
+        does not match `Profile`, or bad queries, are refused with a structured error."""
+        if queries is None:
+            queries = [query] if query is not None else []
+        if not (
+            1 <= len(queries) <= MAX_QUERIES
+            and all(isinstance(q, str) and q.strip() for q in queries)
+        ):
+            return {
+                "error": f"invalid queries: pass query, or queries with 1-{MAX_QUERIES} "
+                "non-empty strings"
+            }
         if profile is not None:
             try:
                 profile = Profile.model_validate(profile).model_dump()
             except ValidationError as exc:
                 return _invalid("profile", exc)
         tiers = list(tiers or DEFAULT_TIERS)
-        truncated = len(query) > MAX_QUERY_CHARS
-        results = self.searcher.search(
-            query[:MAX_QUERY_CHARS], profile, min(k, MAX_K), tiers, verbose=verbose
+        truncated = any(len(q) > MAX_QUERY_CHARS for q in queries)
+        results = self.searcher.search_many(
+            [q[:MAX_QUERY_CHARS] for q in queries], profile, min(k, MAX_K), tiers, verbose=verbose
         )
         out: dict = {"results": results}
         if truncated:

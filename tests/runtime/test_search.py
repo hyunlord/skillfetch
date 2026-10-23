@@ -90,3 +90,31 @@ def test_korean_queries_match_through_cjk_bigrams(tmp_path, monkeypatch):
         [top, *_] = s.search(query, verbose=True)
         assert top["id"].startswith("fx/pnpm-only@"), query
         assert any("'리팩'" in r or "'컴포'" in r for r in top["match_reasons"]), top
+
+
+def test_rrf_order_is_fixed():
+    from skillfetch.index.search import rrf
+
+    # a: 1/61 + 1/62, c: 1/63 + 1/61, b: 1/62, d: 1/63 -> a > c > b > d
+    assert rrf(["a", "b", "c"], ["c", "a", "d"]) == ["a", "c", "b", "d"]
+    # equal scores break by id
+    assert rrf(["y"], ["x"]) == ["x", "y"]
+    assert rrf(["b", "a"], k=0) == ["b", "a"]
+
+
+def test_one_query_is_plain_search(tmp_path):
+    s = _searcher(tmp_path)
+    for q in ("squash commits", "python types", "emoji in markdown headers"):
+        assert s.search_many([q]) == s.search(q)
+        assert s.search_many([q], verbose=True) == s.search(q, verbose=True)
+
+
+def test_several_queries_are_rrf_merged(tmp_path):
+    from skillfetch.index.search import rrf
+
+    s = _searcher(tmp_path)
+    queries = ["squash commits", "python type hints", "emoji headers"]
+    lists = [[r["id"] for r in s.search(q, k=5)] for q in queries]
+    merged = s.search_many(queries, k=5)
+    assert [r["id"] for r in merged] == rrf(*lists)[:5]
+    assert set(merged[0]) == {"id", "title", "summary", "tier", "token_estimate"}
