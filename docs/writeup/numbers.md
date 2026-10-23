@@ -197,6 +197,7 @@ Not recorded: in these stages' batch calls only successful answers are cached, s
 **After the post (not in the totals above).**
 - Router step-1 comparison (§13, shipped router rule): query generation 102 calls, $7.35; oracle v3 pool correction 373 calls, $7.06 (isolated `claude -p`, Claude Code plan equivalent; e2e/stage3/router-winner.md).
 - Cross-model labels (§13): the GPT grades were supplied by the author; their cost is not recorded here.
+- Codex end-to-end (§16): 19 + 19 sessions and 1 smoke session on a ChatGPT Pro subscription; no per-session cost recorded.
 
 ### Runtime latency
 
@@ -1234,4 +1235,43 @@ Long requests (800+ characters) were copied word for word in 0 of 40 sessions. O
 - E1 only (clean environment); not run in the author's environment (stage 4 E2).
 - The oracle and the sessions are the same model; the relevant-or-not kappa against GPT labels was 0.482 (§13).
 - The work was not scored: whether the work is better after the router fires is not measured here.
+
+## 16. Codex (after the post freeze)
+
+Source: e2e/codex-e2e.md (first run) and e2e/codex-e2e-2.md (rerun); session records, observations and audit in e2e/codex-e2e-runs/. Measured after the post's numbers were frozen; not in §7's totals. The work itself is not scored.
+
+**Setup (both runs).**
+- **Codex:** codex-cli 0.164.0, model gpt-6-astra (reasoning medium). Auth: ChatGPT Pro subscription login (`forced_login_method = "chatgpt"`, checked per session); no API-key variables passed to the process.
+- **skillfetch:** `14d2020` from a local source extract (no remote install), stdio server, the only MCP server; `connected` checked before every prompt.
+- **Repos and tasks:** the stage 5 `s5` branches (fastapi `2b38acb`, nextjs `2a1df71`) and the 19 non-trivial stage 5 tasks (`stage5/tasks.jsonl`, same hash), each run once, a fresh worktree, thread and isolated HOME / CODEX_HOME per task. The prompt is the task text only.
+- **Router:** steps 1–4 of the router at `14d2020` in the project `AGENTS.md`, adapted for Codex (R-c's three English sentences plus the request as typed; reading instructions allowed; no ToolSearch). Steps 5–8 were not added. `AGENTS.md` is an instruction file Codex loads in every session, so this is the condition of Claude Code's V2 (a line in the project CLAUDE.md, §15), not V1 (the skill description).
+- **Limits:** 4 concurrent, 2,700 s per session, no turn cap, shell network off, `approval_policy = "never"`, `sandbox_mode = "workspace-write"`.
+
+**First run: 0 of 19 tool calls executed.** Every session asked for a skillfetch call (19/19; `profile_repo` first in all 19, `search_skills` requested in 4), and all 23 requested calls were refused before reaching the server: "MCP tool call requires approval, but approval policy is never". No search results, no loads. The cause is the harness's global `approval_policy = "never"`, which also blocks MCP tool calls that need approval.
+
+**Rerun: one line added.** `default_tools_approval_mode = "approve"` under `[mcp_servers.skillfetch]` (it applies to that server's four tools only); the config is otherwise byte-identical to the first run's, and AGENTS.md is the same. A separate smoke session before the run (not in the 19) called the four tools and loaded one skill.
+
+```toml
+[mcp_servers.skillfetch]
+default_tools_approval_mode = "approve"
+```
+
+| measure | rerun |
+|---|---|
+| sessions that called skillfetch | 19/19 |
+| sessions with successful MCP results | 19/19 (76 of 76 calls) |
+| calls per tool | profile_repo 19, search_skills 19, resolve_set 19, load_skills 19 |
+| approval refusals | 0 |
+| first call | profile_repo in 19/19 |
+| search_skills with 4 queries, the fourth identical to the request (no normalisation) | 19/19 |
+| of those, requests of 800+ characters | 4 |
+| sessions that loaded at least one skill | 19/19 (20 ids, 18 distinct) |
+| ended with a final model answer | 19/19 |
+
+**Loads against the stage 5 oracle** (stage5/oracle.jsonl with oracle-4-0.jsonl; relevant = grade ≥ 2). Computed for this section; not in the Codex reports. One loaded skill (uasl/software-architecture, task s4-t211, its only load) is outside the graded pool.
+- Loaded at least one relevant skill: 7 of the 17 tasks that have one.
+- Precision, mean per session over graded loads: 0.389 (18 sessions; s4-t211 excluded).
+- Loaded something on the 2 tasks with nothing relevant (s4-t342, s4-t354): 2/2.
+
+**Limits.** One run per task, one model, 19 tasks. The loaded skills' effect on the work is not measured. Session cost is not recorded (subscription).
 

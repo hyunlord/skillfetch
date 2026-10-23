@@ -94,9 +94,12 @@ args = ["serve", "--index", "/path/to/.skillfetch/index"]
 
 For the router, put the When, Steps and Rules of `assets/router-skill/SKILL.md` into the
 project's `AGENTS.md` as plain instructions (merged into an existing one, not over it),
-and replace step 2, which names Claude Code's `ToolSearch`.
+and replace step 2, which names Claude Code's `ToolSearch`. With `approval_policy =
+"never"`, Codex refuses the MCP calls; let it run skillfetch's tools with
+`default_tools_approval_mode = "approve"` under `[mcp_servers.skillfetch]`.
 
-Verified: one `search_skills` call from Codex; automatic firing not measured.
+Measured: in 19 of 19 Codex sessions with the router steps in AGENTS.md, the agent searched
+and loaded skills ([numbers.md §16](docs/writeup/numbers.md#16-codex-after-the-post-freeze)).
 
 ## The problem
 
