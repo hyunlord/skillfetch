@@ -44,7 +44,7 @@ two instructions cannot both be followed; anything less certain is
 Skills the index does not cover are listed as skipped; `--with-api --model
 anthropic/<model>` extracts them (calls the API, cached once per skill).
 
-The router, measured in real Claude Code sessions on five task types (landing page, test writing, backend API, documentation, data script): it loaded the skill an expert would pick in 23 of 24 runs. Only the design task came out differently with that skill; on the other four, no skill, the expert's skill and the router all passed every check. The router costs 1.7–2.1 times the input tokens of no skill ([numbers.md §11](docs/writeup/numbers.md#11-router-in-real-sessions-end-to-end-stages-1-1b-and-2)). Offline, its search has top-50 recall 0.84 on 380 synthetic tasks ([evals/retrieval](evals/retrieval/), [numbers.md §13](docs/writeup/numbers.md#13-retrieval-benchmark-380-synthetic-tasks)). scan and sync are unaffected.
+The router, measured in real Claude Code sessions on five task types (landing page, test writing, backend API, documentation, data script): it loaded the skill an expert would pick in 23 of 24 runs. Only the design task came out differently with that skill; on the other four, no skill, the expert's skill and the router all passed every check. The router costs 1.7–2.1 times the input tokens of no skill ([numbers.md §11](docs/writeup/numbers.md#11-router-in-real-sessions-end-to-end-stages-1-1b-and-2)). Offline, on 380 synthetic tasks, the shipped router: top-50 recall 0.81 (0.75 on labels the search could not bias), up from 0.74 before this fix ([numbers.md §13](docs/writeup/numbers.md#13-retrieval-benchmark-380-synthetic-tasks)). scan and sync are unaffected.
 
 ```console
 $ skillfetch scan path/to/skills --json                   # machine-readable
@@ -65,6 +65,27 @@ Claude Code session to answer; `--model openrouter/<vendor>/<model>`,
 `anthropic/<model>` or `openai/<model>` call an API instead (`pip install
 'skillfetch[ingest]'`). Every skill is extracted once and cached in
 `~/.skillfetch/extract-cache/`.
+
+## Other MCP clients
+
+`skillfetch serve` is a stdio MCP server. In Codex, register the command and its
+arguments (`codex mcp add`, or `~/.codex/config.toml`):
+
+```console
+$ codex mcp add skillfetch -- /path/to/skillfetch serve --index ~/.skillfetch/index
+```
+
+```toml
+[mcp_servers.skillfetch]
+command = "/path/to/skillfetch"
+args = ["serve", "--index", "/path/to/.skillfetch/index"]
+```
+
+For the router, put the When, Steps and Rules of `assets/router-skill/SKILL.md` into the
+project's `AGENTS.md` as plain instructions (merged into an existing one, not over it),
+and replace step 2, which names Claude Code's `ToolSearch`.
+
+Verified: one `search_skills` call from Codex; automatic firing not measured.
 
 ## The problem
 

@@ -446,6 +446,9 @@ def costs(out: list[str]) -> None:
         "sessions that wrote the code and classified the outputs are not included.",
         "",
     ]
+    after = DATA / "e2e" / "after-post-costs.md"
+    if after.is_file():
+        out += [after.read_text().strip(), ""]
 
 
 def runtime(out: list[str]) -> None:
@@ -935,7 +938,8 @@ def retrieval_benchmark(out: list[str]) -> None:
         before.rstrip(),
         "",
         "**Table 1, recall@10 / @50 of search_skills** (`skillfetch eval retrieval --index "
-        "data/index`). Mean per-task recall against (i) all relevant skills, (ii) the ones the "
+        "data/index`), on oracle v2 (the stage 3 labels in evals/retrieval/). Mean per-task "
+        "recall against (i) all relevant skills, (ii) the ones the "
         "catalogue pass picked (independent of any ranking) and the process subset. "
         "Tasks with no relevant skill are skipped, and so are expect_none tasks.",
         "",
