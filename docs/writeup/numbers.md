@@ -190,6 +190,10 @@ Not recorded: in both stages' batch calls only successful answers are cached, so
 
 **Claude Code plan equivalent, total: $533.59**: sessions run from this repo $52.95 (910 obedience runs, 171 discarded, the transcript session), end-to-end sessions $385.34, stage 3 batch calls $65.46, stage 4 batch calls $29.85. The agent sessions the write-up counts: 1,418 (910 obedience runs and 508 end-to-end; discarded runs and smoke tests not counted). The interactive Claude Code sessions that wrote the code and classified the outputs are not included.
 
+**After the post (not in the totals above).**
+- Router step-1 comparison (§13, shipped router rule): query generation 102 calls, $7.35; oracle v3 pool correction 373 calls, $7.06 (isolated `claude -p`, Claude Code plan equivalent; e2e/stage3/router-winner.md).
+- Cross-model labels (§13): the GPT grades were supplied by the author; their cost is not recorded here.
+
 ### Runtime latency
 
 Source: `uv run python scripts/bench_runtime.py` on index-2026-10-22 (Apple M4 Max), before (e857986) and after constraint pairs are bucketed by subject and `normalize_term` is cached in `resolve/relation.py`; `data/runtime/`. resolve_set sets: the top N search_skills results for each of 5 task sentences; median (min–max) over the 5. The fixture scan (`skillfetch scan tests/fixtures/skills --json`, with and without the index) and the resolutions of 28 real-index sets are byte-identical before and after.
@@ -819,7 +823,7 @@ tier A/B skills search_skills can return.
 
 Of the 40 `expect_none` tasks, 7 have a relevant skill after the correction (5 before).
 
-**Table 1, recall@10 / @50 of search_skills** (`skillfetch eval retrieval --index data/index`). Mean per-task recall against (i) all relevant skills, (ii) the ones the catalogue pass picked (independent of any ranking) and the process subset. Tasks with no relevant skill are skipped, and so are expect_none tasks.
+**Table 1, recall@10 / @50 of search_skills** (`skillfetch eval retrieval --index data/index`), on oracle v2 (the stage 3 labels in evals/retrieval/). Mean per-task recall against (i) all relevant skills, (ii) the ones the catalogue pass picked (independent of any ranking) and the process subset. Tasks with no relevant skill are skipped, and so are expect_none tasks.
 
 Tasks scored: all 278, 2a 209, process 207.
 
@@ -909,6 +913,101 @@ Bottlenecks, counted in tasks: selection 55 (select_fail 25 + over_load 30), the
 **Limits of this environment.**
 - The repositories were not real: run 1 had only the router files, so sessions looked for code, found none and stopped; run 2 had empty stub files and no manifest. 12/40 (run 2) is the rate at which the router reached search in stub repositories, not a firing rate for real ones. §14 (stage 4) measures that in real repositories, in a clean environment and in the author's own.
 - On the 40 tasks, the offline selection does not reproduce what real sessions loaded: 11/40 identical sets, 17/40 matching classes.
+
+**Shipped router rule (step 1, after the post).** Source: e2e/stage3/router-winner.md (metrics in e2e/stage3/followup/router-cands.json and router-cands-paired.json). Offline, no sessions.
+- **Candidates.** Each candidate's step-1 text was put verbatim into an isolated `claude -p` prompt (no tools, no MCP, no user settings), which wrote the `queries` for the 380 tasks, 20 tasks per call. Search: skillfetch `a1cbcd5` `search_skills(queries=…)` (RRF k=60, compact k=50, no profile).
+  - **R-a:** the rule shipped at `a1cbcd5`, the previous shipped value. (b) how to work is written only when the user said.
+  - **R-b:** always three sentences; (b) is the approach the user asked for, or the one that fits the task best when they did not say (the stage 3 q3 condition).
+  - **R-c:** R-b plus (d), the user's request word for word, as a fourth query; the rule against searching with the literal wording is removed. **This is the shipped rule** (`assets/router-skill/SKILL.md`, 60 lines).
+- **Oracle v3:** the stage 3 labels (v2) plus the 2,143 candidates in the three rules' top 10 that were outside the pool, graded with the same 2b prompt. 100 of them are relevant: relevant pairs went from 915 to 1,015. n: all 284, 2a 209, process 213.
+
+| rule | all @10 | all @50 | 2a @10 | 2a @50 | process @50 |
+|---|---|---|---|---|---|
+| R-a (previous shipped) | 0.409 | 0.737 | 0.420 | 0.696 | 0.656 |
+| R-b | 0.464 | 0.807 | 0.449 | 0.773 | 0.774 |
+| **R-c (shipped)** | 0.457 | 0.808 | 0.467 | 0.746 | 0.770 |
+| (reference) stage 3 q3 | 0.490 | 0.822 | 0.474 | 0.764 | 0.761 |
+
+The same on oracle v2 (the stage 3 labels, before this pool correction; n all 278, 2a 209, process 207). Table 1's q3 0.835 above is on oracle v2.
+
+| rule | all @10 | all @50 | 2a @10 | 2a @50 | process @50 |
+|---|---|---|---|---|---|
+| R-a (previous shipped) | 0.403 | 0.732 | 0.420 | 0.696 | 0.647 |
+| R-b | 0.461 | 0.802 | 0.449 | 0.773 | 0.766 |
+| R-c (shipped) | 0.454 | 0.799 | 0.467 | 0.746 | 0.760 |
+| (reference) stage 3 q3 | 0.535 | 0.835 | 0.474 | 0.764 | 0.783 |
+
+Paired differences (oracle v3; mean of per-task recall differences, bootstrap 95% interval over 4,000 resamples, tasks better / worse):
+
+| metric | R-b − R-a | R-c − R-a | R-c − R-b |
+|---|---|---|---|
+| all @10 | +0.055 [+0.014, +0.095] 90/56 | +0.048 [+0.005, +0.088] 88/59 | −0.007 [−0.044, +0.029] 58/68 |
+| all @50 | +0.069 [+0.035, +0.105] 68/30 | +0.071 [+0.035, +0.108] 79/38 | +0.001 [−0.028, +0.032] 45/45 |
+| 2a @10 | +0.029 [−0.014, +0.074] 28/22 | +0.046 [−0.003, +0.097] 35/20 | +0.018 [−0.025, +0.057] 22/17 |
+| 2a @50 | +0.077 [+0.033, +0.122] 32/11 | +0.050 [+0.005, +0.096] 32/18 | −0.026 [−0.072, +0.020] 19/26 |
+| process @50 | +0.118 [+0.062, +0.176] 51/22 | +0.114 [+0.059, +0.173] 57/27 | −0.004 [−0.046, +0.040] 29/30 |
+
+Three repeats on 50 tasks (5 phrasings × 10), each run generated independently:
+
+| rule | top-50 pairwise Jaccard, mean | median | min | pairs with identical queries | all @10 (v3) | all @50 (v3) | 2a @50 | process @50 (v3) |
+|---|---|---|---|---|---|---|---|---|
+| R-a | 0.569 | 0.585 | 0.279 | 0/150 | 0.444 | 0.769 | 0.743 | 0.590 |
+| R-b | 0.554 | 0.549 | 0.268 | 0/150 | 0.517 | 0.858 | 0.814 | 0.727 |
+| R-c | 0.706 | 0.705 | 0.458 | 0/150 | 0.476 | 0.865 | 0.810 | 0.771 |
+
+- **Why R-c.** The selection rule: among the candidates whose recall rises over R-a, the one whose recall does not fall (paired 95% interval includes 0 or is above it) and whose top 50 is most stable across repeats. R-b and R-c are both above R-a on all @50, 2a @50 and process @50 with intervals above 0; all five R-c − R-b intervals include 0 (recall equal); Jaccard is R-b 0.554, R-c 0.706 (+0.15).
+- **Caveats.**
+  - R-c's (d) is the request as typed, whose BM25 top 10 was in the oracle pool from the start, which favours R-c on the "all" columns.
+  - On the 2a labels, which do not depend on any search, R-c − R-b is +0.018 at @10 and −0.026 at @50; both intervals include 0.
+  - The oracle and the query writer are the same model (Opus 5.5).
+  - Queries were written in batches of 20 tasks per call, not in a real session's step 1.
+- **Queries per task (380):** R-a 1 query 1, 2 queries 198, 3 queries 181; R-b 3 queries 380; R-c 4 queries 380. R-c's (d) is identical to the request in 529 of 530 (380 + 150 repeats); the other changed one Korean verb ending.
+- **On the 120 cross-labelled tasks** (labels both models grade ≥ 2, v2 pool; next block): all @50 R-a 0.745, R-b 0.827, R-c 0.845, stage 3 q3 0.846; 2a @50 0.657 / 0.754 / 0.759 / 0.736.
+- **Cost:** query generation 102 calls, $7.35; pool correction 373 calls, $7.06 (isolated `claude -p`).
+
+**Cross-model labels (120 tasks, after the post).** Source: e2e/stage3/report-cross-label.md (`scripts/cross_label.py`, `scripts/table1_intersection.py`; data `cross-label.json`, `cross-label-table1.json`). A second model, GPT Astra, graded the 4,486 (task, candidate) rows of 120 stage 3 tasks blind (`blind-pool-120.jsonl`, same 0–3 scale and process flag); the grades (`gpt-grades-120.jsonl`) were supplied by the author and do not name the model. They are compared with the Opus labels (oracle v2: 2b + 3-0).
+
+| measure | value |
+|---|---|
+| rows returned | 4,486 of 4,486 |
+| exact agreement | 0.689 |
+| within ±1 | 0.975 |
+| grade kappa (0–3) | 0.353 |
+| relevant (≥ 2) agreement | 0.884 |
+| relevant kappa | 0.482 |
+| process agreement | 0.919 |
+| process kappa | 0.798 |
+| rows graded relevant | Opus 308, GPT 805 |
+
+Relevant kappa is below 0.6, so this is not reported as agreement between the two models.
+
+Confusion matrix (rows Opus grade, columns GPT grade):
+
+| Opus \ GPT | 0 | 1 | 2 | 3 |
+|---|---|---|---|---|
+| 0 | 2,732 | 697 | 82 | 0 |
+| 1 | 21 | 220 | 397 | 29 |
+| 2 | 0 | 11 | 93 | 157 |
+| 3 | 0 | 0 | 2 | 45 |
+
+- **Direction of the disagreement.** Of the 308 rows Opus grades relevant, GPT also does in 297 (11 Opus only). GPT alone grades 508 rows relevant; 321 of them carry GPT's process flag (293 Opus's), against 1,265 of all 4,486 rows. The most frequent skills among them are integration-testing (21 tasks), radar (17), tdd-workflow (16), documentation-lookup (15), contract-testing (11). In the 10 tasks that disagree most, every skill Opus grades relevant GPT does too.
+- **Relevant pairs** (expect_none excluded, as in Table 1): Opus 301, GPT 794, both 291.
+
+Table 1 recomputed on these 120 tasks with the stage 3 rankings, three label versions (recall; (i) all, (ii) 2a, process):
+
+| query | Opus (i) @50 | GPT (i) @50 | both (i) @10 | both (i) @50 | both (ii) @50 | both process @50 |
+|---|---|---|---|---|---|---|
+| q1 as typed, BM25 | 0.683 | 0.678 | 0.431 | 0.694 | 0.587 | 0.600 |
+| q1 MiniLM | 0.497 | 0.445 | 0.297 | 0.499 | 0.443 | 0.482 |
+| q1 BM25 + MiniLM RRF | 0.738 | 0.730 | 0.460 | 0.738 | 0.612 | 0.706 |
+| q2 restatement, BM25 | 0.750 | 0.751 | 0.495 | 0.754 | 0.687 | 0.718 |
+| q2 MiniLM | 0.494 | 0.453 | 0.312 | 0.499 | 0.470 | 0.454 |
+| q2 BM25 + MiniLM RRF | 0.784 | 0.788 | 0.460 | 0.775 | 0.701 | 0.729 |
+| q3 three sentences, BM25 | 0.840 | 0.768 | 0.584 | 0.846 | 0.736 | 0.783 |
+
+n: Opus all 91 · 2a 67 · process 65; GPT 105 · 67 · 98; both 90 · 67 · 59.
+- On the labels both grade relevant, recall@50 (i) is q1 0.694, q2 0.754, q3 0.846, and the order of the seven methods is the same as on the Opus labels in every @50 column. At @10 two near-ties move: (i) q1 RRF and q2 RRF tie at 0.460 (Opus 0.448 / 0.444); (ii) q2 BM25 0.475 is above q3 0.470 (Opus 0.465 each).
+- On GPT's labels alone, q3 BM25 (0.768) is below q2 BM25 + MiniLM RRF (0.788) at (i) @50.
 
 ## 14. Stage 4: router in real repos, clean vs author's environment
 

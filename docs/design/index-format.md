@@ -449,8 +449,9 @@ As built (`index/sync.py`):
 - Document text for BM25 = `title + description + keywords×2 + synthetic_queries + summary`
   (no body: bodies are not in the index, §1.8).
   Keywords are repeated once to weight them; do not over-tune.
-- Queries = the host model's restatement of the task as 1–4 short sentences (what it
-  builds, how the user asked to work, the stack and files; `query` = one sentence).
+- Queries = the host model's restatement of the task as 1–4 short sentences (the router
+  sends four: what it builds, how to work, the stack and files, the request word for
+  word; `query` = one sentence).
   Each is ranked on its own (top k each) and the rankings are merged by reciprocal
   rank fusion, score Σ 1/(60 + rank), ties by id (`search.rrf`, `Searcher.search_many`).
   One query is plain BM25. On the 380-task benchmark (`skillfetch eval retrieval`,
