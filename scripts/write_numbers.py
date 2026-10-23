@@ -991,6 +991,14 @@ def stage5(out: list[str]) -> None:
     out += [path.read_text().strip() if path.is_file() else "Not run yet.", ""]
 
 
+def codex(out: list[str]) -> None:
+    """§16: Codex with the router steps in AGENTS.md (the Codex reports, transcribed in
+    data/e2e/codex.md)."""
+    out += ["## 16. Codex (after the post freeze)", ""]
+    path = DATA / "e2e" / "codex.md"
+    out += [path.read_text().strip() if path.is_file() else "Not run yet.", ""]
+
+
 def main() -> None:
     out = [
         "# Numbers for the write-up",
@@ -1017,6 +1025,7 @@ def main() -> None:
         retrieval_benchmark,
         stage4,
         stage5,
+        codex,
     ):
         section(out)
     OUT.parent.mkdir(parents=True, exist_ok=True)
