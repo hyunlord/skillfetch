@@ -180,11 +180,15 @@ Extraction v6 requests: 1764 = 1723 public skills + 41 fixture skills.
 
 Claude Code sessions (API-price equivalent reported by Claude Code, billed to the Claude Code plan, not OpenRouter): obedience agent runs 910 (130 without a precedence header, §6; 260 with one, §8; 260 with a resolved-conflict block, §9; 260 with stripped lines, §10), $46.71; 171 runs of two earlier batches discarded for harness problems (no note that the session has no tools; then a note that discouraged asking), $5.41; the end-to-end MCP transcript session $0.82.
 
-End-to-end sessions (§11, §14 and the write-up's sections 5-6; `session_costs` in `data/e2e/router-e2e.json`, Claude Code's `total_cost_usd` per session, same billing): stage 0 20, $18.56; stage 0.5 20, $18.83; stage 1 110, $89.78; stage 1b 30, $50.35; C2 10, $16.57; stage 2 60, $66.16; stage 4 pilot 4, $3.29; stage 4 174, $66.36; smoke tests 3, $1.65.
+End-to-end sessions (§11, §14 and the write-up's sections 5-6; `session_costs` in `data/e2e/router-e2e.json`, Claude Code's `total_cost_usd` per session, same billing): stage 0 20, $18.56; stage 0.5 20, $18.83; stage 1 110, $89.78; stage 1b 30, $50.35; C2 10, $16.57; stage 2 60, $66.16; stage 3 run 1 (empty repos) 40, $26.43; stage 3 run 2 (stub repos) 40, $27.36; stage 4 pilot 4, $3.29; stage 4 174, $66.36; smoke tests 3, $1.65.
+
+Stage 3 batch calls (isolated `claude -p`, no tools; `stage3_prep`, the `cost_usd` of every cached call in e2e/stage3/gen/raw): generation and labelling 473 calls, $21.02; direction classes 1 call, $0.13; 3-0 pool correction 380 calls, $21.24; queries 72 calls, $4.72; selection 50 calls, $18.36; total 976 calls, $65.46.
 
 Stage 4 batch calls (isolated `claude -p`, no tools: task rewrite, oracle 2a / 2b / 3-0, queries, offline selection, 4-0 grading; `stage4_prep`): 500 calls, $29.85.
 
-**Claude Code plan equivalent, total: $414.35**: sessions run from this repo $52.95 (910 obedience runs, 171 discarded, the transcript session), end-to-end sessions $331.55, stage 4 batch calls $29.85. The agent sessions the write-up counts: 1,338 (910 obedience runs and 428 end-to-end; discarded runs and smoke tests not counted). The interactive Claude Code sessions that wrote the code and classified the outputs are not included.
+Not recorded: in both stages' batch calls only successful answers are cached, so the cost of an attempt that returned an error and was retried, if any, is not in these sums.
+
+**Claude Code plan equivalent, total: $533.59**: sessions run from this repo $52.95 (910 obedience runs, 171 discarded, the transcript session), end-to-end sessions $385.34, stage 3 batch calls $65.46, stage 4 batch calls $29.85. The agent sessions the write-up counts: 1,418 (910 obedience runs and 508 end-to-end; discarded runs and smoke tests not counted). The interactive Claude Code sessions that wrote the code and classified the outputs are not included.
 
 ### Runtime latency
 
