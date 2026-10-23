@@ -90,7 +90,7 @@ Planned for v0.3, not built: `report_outcome`. `prepare_set`: not built, not pla
 | tool | input | output |
 |---|---|---|
 | `profile_repo(path)` | repo root | `{languages, frameworks, package_managers, tags[]}` from manifest files only (package.json, pyproject.toml, go.mod, Cargo.toml, framework config files). Never scans source. Cached per session. |
-| `search_skills(queries[1–4] \| query, profile?, k=50, tiers=["A","B"], verbose=false)` | the task restated by the host model as 1–4 short sentences (what it builds, how the user asked to work, stack and files; each searched with BM25, rankings merged by RRF k=60), or one `query`; `queries` wins + optional profile | ranked candidates, compact: `{id, title, summary (first sentence, ≤160 chars), tier, token_estimate}` (50 fit in ~4k tokens); `verbose` adds the full summary, `tags` and `match_reasons[]` |
+| `search_skills(queries[1–4] \| query, profile?, k=50, tiers=["A","B"], verbose=false)` | the task restated by the host model as 1–4 short sentences (the router sends four: what it builds, how to work, stack and files, the request word for word; each searched with BM25, rankings merged by RRF k=60), or one `query`; `queries` wins + optional profile | ranked candidates, compact: `{id, title, summary (first sentence, ≤160 chars), tier, token_estimate}` (50 fit in ~4k tokens); `verbose` adds the full summary, `tags` and `match_reasons[]` |
 | `resolve_set(auto_ids[], pinned_ids[])` | candidate ids chosen by the host model (at most 20; `path:` ids only as pinned), plus user-pinned ids | `{set_id, included[], excluded[{id, reason, conflicts_with}], warnings[], precedence[], suppressed_by_judge, notes[], errors[]}`; `suppressed_by_judge` counts the tension / needs_review warnings dropped because the judge called the pair independent |
 | `load_skills(set_id, max_tokens=8000)` | | bodies concatenated in precedence order, with no precedence header (it did not change which skill the agent follows; numbers.md §8), for injection into the current context. Each body is fetched from the skill's pinned source (unless cached), verified against the index hashes, and cached under `~/.skillfetch/cache/<content_hash>/`; a mismatch or fetch failure refuses that skill with a structured error and the others still load. Over `max_tokens` the lowest-precedence skills are dropped (listed in `errors`). |
 | `prepare_set(set_id)` (not built, not planned for v0.3) | | `{prompt_block, materialized_paths{}}` for the isolation runner; the folder is fetched and verified like `load_skills` and materialized under `~/.skillfetch/cache/<content_hash>/` |
@@ -113,12 +113,13 @@ Rules:
 
 ## Router skill (`assets/router-skill/SKILL.md`)
 
-The only skill a user installs. Short (< 60 lines). It tells the host model:
+The only skill a user installs. Short (≤ 60 lines). It tells the host model:
 
-1. Before non-trivial work, restate the task in up to three English sentences: what it
-   builds (domain nouns), how the user asked to work (TDD, minimal diff, security first;
-   omitted when they did not say), and the stack and target files. Pass them to
-   `search_skills` as `queries`.
+1. Before non-trivial work, restate the task in three English sentences: what it builds
+   (domain nouns), the kind of work and how to do it (the approach the user asked for,
+   such as TDD, minimal diff or security first; when they did not say, the one that fits
+   the task best), and the stack and target files. Add the user's request word for word
+   as a fourth. Pass all four to `search_skills` as `queries`.
 2. Pick 1–3 candidates by reading all 50 summaries, weighing `token_estimate` against
    `load_skills`' budget. If the user named a skill, find its id with
    `search_skills` (the result whose title matches) and pass it as pinned.
