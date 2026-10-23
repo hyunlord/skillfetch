@@ -914,28 +914,32 @@ Bottlenecks, counted in tasks: selection 55 (select_fail 25 + over_load 30), the
 - The repositories were not real: run 1 had only the router files, so sessions looked for code, found none and stopped; run 2 had empty stub files and no manifest. 12/40 (run 2) is the rate at which the router reached search in stub repositories, not a firing rate for real ones. §14 (stage 4) measures that in real repositories, in a clean environment and in the author's own.
 - On the 40 tasks, the offline selection does not reproduce what real sessions loaded: 11/40 identical sets, 17/40 matching classes.
 
-**Shipped router rule (step 1, after the post).** Source: e2e/stage3/router-winner.md (metrics in e2e/stage3/followup/router-cands.json and router-cands-paired.json). Offline, no sessions.
+**Shipped router rule (step 1, after the post).** Source: e2e/stage3/router-winner.md (metrics in e2e/stage3/followup/router-cands.json and router-cands-paired.json). Offline, no sessions. The two recall tables are `skillfetch eval retrieval` output (`evals/retrieval/queries-R-{a,b,c}.jsonl`, `oracle-v3.jsonl`); the paired differences and repeats are transcribed from the report.
 - **Candidates.** Each candidate's step-1 text was put verbatim into an isolated `claude -p` prompt (no tools, no MCP, no user settings), which wrote the `queries` for the 380 tasks, 20 tasks per call. Search: skillfetch `a1cbcd5` `search_skills(queries=…)` (RRF k=60, compact k=50, no profile).
   - **R-a:** the rule shipped at `a1cbcd5`, the previous shipped value. (b) how to work is written only when the user said.
   - **R-b:** always three sentences; (b) is the approach the user asked for, or the one that fits the task best when they did not say (the stage 3 q3 condition).
   - **R-c:** R-b plus (d), the user's request word for word, as a fourth query; the rule against searching with the literal wording is removed. **This is the shipped rule** (`assets/router-skill/SKILL.md`, 60 lines).
 - **Oracle v3:** the stage 3 labels (v2) plus the 2,143 candidates in the three rules' top 10 that were outside the pool, graded with the same 2b prompt. 100 of them are relevant: relevant pairs went from 915 to 1,015. n: all 284, 2a 209, process 213.
 
-| rule | all @10 | all @50 | 2a @10 | 2a @50 | process @50 |
-|---|---|---|---|---|---|
-| R-a (previous shipped) | 0.409 | 0.737 | 0.420 | 0.696 | 0.656 |
-| R-b | 0.464 | 0.807 | 0.449 | 0.773 | 0.774 |
-| **R-c (shipped)** | 0.457 | 0.808 | 0.467 | 0.746 | 0.770 |
-| (reference) stage 3 q3 | 0.490 | 0.822 | 0.474 | 0.764 | 0.761 |
+Tasks scored: all 284, 2a 209, process 213.
 
-The same on oracle v2 (the stage 3 labels, before this pool correction; n all 278, 2a 209, process 207). Table 1's q3 0.835 above is on oracle v2.
+| query | method | (i) all @10 | (i) all @50 | (ii) 2a @10 | (ii) 2a @50 | process @10 | process @50 |
+|---|---|---|---|---|---|---|---|
+| R-a router rule (previous) | BM25, RRF | 0.409 | 0.737 | 0.420 | 0.696 | 0.316 | 0.656 |
+| R-b router rule | BM25, RRF | 0.464 | 0.807 | 0.449 | 0.773 | 0.393 | 0.774 |
+| R-c router rule (shipped) | BM25, RRF | 0.457 | 0.808 | 0.467 | 0.746 | 0.362 | 0.770 |
+| q3 three queries, RRF | BM25 | 0.490 | 0.822 | 0.474 | 0.764 | 0.373 | 0.761 |
 
-| rule | all @10 | all @50 | 2a @10 | 2a @50 | process @50 |
-|---|---|---|---|---|---|
-| R-a (previous shipped) | 0.403 | 0.732 | 0.420 | 0.696 | 0.647 |
-| R-b | 0.461 | 0.802 | 0.449 | 0.773 | 0.766 |
-| R-c (shipped) | 0.454 | 0.799 | 0.467 | 0.746 | 0.760 |
-| (reference) stage 3 q3 | 0.535 | 0.835 | 0.474 | 0.764 | 0.783 |
+The same on oracle v2 (the stage 3 labels, before this pool correction). Table 1's q3 0.835 above is on oracle v2.
+
+Tasks scored: all 278, 2a 209, process 207.
+
+| query | method | (i) all @10 | (i) all @50 | (ii) 2a @10 | (ii) 2a @50 | process @10 | process @50 |
+|---|---|---|---|---|---|---|---|
+| R-a router rule (previous) | BM25, RRF | 0.403 | 0.732 | 0.420 | 0.696 | 0.303 | 0.647 |
+| R-b router rule | BM25, RRF | 0.461 | 0.802 | 0.449 | 0.773 | 0.385 | 0.766 |
+| R-c router rule (shipped) | BM25, RRF | 0.454 | 0.799 | 0.467 | 0.746 | 0.354 | 0.760 |
+| q3 three queries, RRF | BM25 | 0.535 | 0.835 | 0.474 | 0.764 | 0.425 | 0.783 |
 
 Paired differences (oracle v3; mean of per-task recall differences, bootstrap 95% interval over 4,000 resamples, tasks better / worse):
 

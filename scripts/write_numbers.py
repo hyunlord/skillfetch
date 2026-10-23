@@ -920,9 +920,9 @@ def embedding(out: list[str]) -> None:
 
 
 def retrieval_benchmark(out: list[str]) -> None:
-    """§13: the 380-task retrieval benchmark. Table 1's BM25 rows are computed here by
-    `skillfetch eval retrieval` (evals/retrieval/, data/index); the rest is the stage 3
-    report, transcribed in data/e2e/stage3.md."""
+    """§13: the 380-task retrieval benchmark. Table 1's BM25 rows and the router-rule recall
+    tables are computed here by `skillfetch eval retrieval` (evals/retrieval/, data/index);
+    the rest is the stage 3 report, transcribed in data/e2e/stage3.md."""
     out += ["## 13. Retrieval benchmark (380 synthetic tasks)", ""]
     text_path = DATA / "e2e" / "stage3.md"
     if not text_path.is_file():
@@ -933,7 +933,12 @@ def retrieval_benchmark(out: list[str]) -> None:
     from skillfetch.mcp.session import Session
 
     before, _, after = text_path.read_text().partition("<!-- table 1 -->")
-    table1 = evals.retrieval(Session(Index.load(DATA / "index")))
+    results = evals.tables(Session(Index.load(DATA / "index")))
+    router = ["router_R-a", "router_R-b", "router_R-c", "bm25_q3"]
+    for version in ("v3", "v2"):
+        after = after.replace(
+            f"<!-- router {version} -->", evals.render(*results[version], router).rstrip()
+        )
     out += [
         before.rstrip(),
         "",
@@ -943,7 +948,7 @@ def retrieval_benchmark(out: list[str]) -> None:
         "catalogue pass picked (independent of any ranking) and the process subset. "
         "Tasks with no relevant skill are skipped, and so are expect_none tasks.",
         "",
-        table1.rstrip(),
+        evals.render(*results["v2"], ["bm25_q1", "bm25_q2", "bm25_q3"]).rstrip(),
         "",
         after.strip(),
         "",
