@@ -162,8 +162,11 @@ default produced none. Use it when recall matters more than precision.
 - The router loads something in 30 of the 95 benchmark tasks where nothing in the
   index fits (32%), and in 30% of the 40 trivial requests that need no skill
   ([numbers.md §13](docs/writeup/numbers.md#13-retrieval-benchmark-380-synthetic-tasks)).
-- In sessions with the author's own global rules and hooks, the router reached
-  search in 12 of 40 sessions; a clean install was not measured.
+- In real repositories the router fires on 40% of non-trivial tasks: 23 of 57
+  sessions in a clean environment, 22 of 57 with 14 MCP servers, 134 skills and
+  hooks (per-task difference 0.000), and on 0 of 30 and 1 of 30 trivial ones. When
+  it loads, the set holds a relevant skill in 8 of 14 and 10 of 17 sessions
+  ([numbers.md §14](docs/writeup/numbers.md#14-stage-4-router-in-real-repos-clean-vs-authors-environment)).
 - On four of five task types we measured, the expert skill changed nothing the
   checks could see; load a skill when the base model is weak at the domain, not by
   default.

@@ -180,9 +180,11 @@ Extraction v6 requests: 1764 = 1723 public skills + 41 fixture skills.
 
 Claude Code sessions (API-price equivalent reported by Claude Code, billed to the Claude Code plan, not OpenRouter): obedience agent runs 910 (130 without a precedence header, §6; 260 with one, §8; 260 with a resolved-conflict block, §9; 260 with stripped lines, §10), $46.71; 171 runs of two earlier batches discarded for harness problems (no note that the session has no tools; then a note that discouraged asking), $5.41; the end-to-end MCP transcript session $0.82.
 
-End-to-end sessions (§11 and the write-up's section 5; `session_costs` in `data/e2e/router-e2e.json`, Claude Code's `total_cost_usd` per session, same billing): stage 0 20, $18.56; stage 0.5 20, $18.83; stage 1 110, $89.78; stage 1b 30, $50.35; C2 10, $16.57; stage 2 60, $66.16; smoke tests 3, $1.65.
+End-to-end sessions (§11, §14 and the write-up's sections 5-6; `session_costs` in `data/e2e/router-e2e.json`, Claude Code's `total_cost_usd` per session, same billing): stage 0 20, $18.56; stage 0.5 20, $18.83; stage 1 110, $89.78; stage 1b 30, $50.35; C2 10, $16.57; stage 2 60, $66.16; stage 4 pilot 4, $3.29; stage 4 174, $66.36; smoke tests 3, $1.65.
 
-**Claude Code plan equivalent, total: $314.85**: sessions run from this repo $52.95 (910 obedience runs, 171 discarded, the transcript session), end-to-end sessions $261.90. The agent sessions the write-up counts: 1,160 (910 obedience runs and 250 end-to-end; discarded runs and smoke tests not counted). The interactive Claude Code sessions that wrote the code and classified the outputs are not included.
+Stage 4 batch calls (isolated `claude -p`, no tools: task rewrite, oracle 2a / 2b / 3-0, queries, offline selection, 4-0 grading; `stage4_prep`): 500 calls, $29.85.
+
+**Claude Code plan equivalent, total: $414.35**: sessions run from this repo $52.95 (910 obedience runs, 171 discarded, the transcript session), end-to-end sessions $331.55, stage 4 batch calls $29.85. The agent sessions the write-up counts: 1,338 (910 obedience runs and 428 end-to-end; discarded runs and smoke tests not counted). The interactive Claude Code sessions that wrote the code and classified the outputs are not included.
 
 ### Runtime latency
 
@@ -901,8 +903,68 @@ Bottlenecks, counted in tasks: selection 55 (select_fail 25 + over_load 30), the
 | first tool of sessions that did not search | Bash 23, Read 5, Grep 3, Skill(skillfetch-router) 2, Skill(oh-my-claudecode:autopilot) 1, Glob 1 | Bash 17, Read 3, Glob 3, Grep 3, Skill(oh-my-claudecode:autopilot) 1, Skill(skillfetch-router) 1 |
 
 **Limits of this environment.**
-- The sessions inherited the author's own global Claude Code configuration (`~/.claude`): rules files, hooks and plugins (oh-my-claudecode among them), which compete with the router for the first move.
-- In run 1, sessions followed a global rule to look at the repository first ("git status" first), found no code and stopped. Run 2 added stub files for that reason.
-- So 12/40 is the rate at which the router reached search in a heavily configured user environment. It is not a rate for a clean install, which was not measured.
+- The repositories were not real: run 1 had only the router files, so sessions looked for code, found none and stopped; run 2 had empty stub files and no manifest. 12/40 (run 2) is the rate at which the router reached search in stub repositories, not a firing rate for real ones. §14 (stage 4) measures that in real repositories, in a clean environment and in the author's own.
 - On the 40 tasks, the offline selection does not reproduce what real sessions loaded: 11/40 identical sets, 17/40 matching classes.
+
+## 14. Stage 4: router in real repos, clean vs author's environment
+
+Source: e2e/stage4/report-stage4.md (inputs and outputs hashed in e2e/stage4/FROZEN.sha256; design in
+e2e/stage4/DESIGN.md, pilot in report-p0.md).
+
+**Setup.**
+- **skillfetch:** `a1cbcd5`, pinned for both the server (`git+…@a1cbcd5`) and the router skill. It has multi-query search and the router's three-sentence restatement. Index-2026-10-22.
+- **Repos:** the stage 1 repos (fastapi full-stack template, Next.js with-typescript) at branch `s4`, which adds the router and `.mcp.json`. Every session gets a fresh worktree with dependencies installed (fastapi: uv sync, a database, alembic, bun when the task touches the frontend; nextjs: npm ci).
+- **Sessions:** `claude -p` stream-json with `--include-hook-events`, `--max-turns 16`, the stage 1–3 allowed tools, 4 at a time, in a seeded order. Each task runs 3 times in each environment, 174 sessions in all. The work itself is not scored.
+- **E1, clean:** `--setting-sources project --strict-mcp-config --mcp-config <skillfetch only>`. The pilot confirmed it: skillfetch is the only MCP server, only the built-in plugins load, there are no hook events, and the user's `CLAUDE.md` does not load.
+- **E2, the author's environment:** the global `~/.claude` as it is (table below).
+- **Tasks:** 29. The target was 10 per offline failure class, and the shortfall is recorded: select_fail 10, restate_fail 2 (8 short), search_fail 7 (3 short), over_load 10. 10 of the 29 are trivial requests that the router is told to skip.
+- **Task construction:**
+  - Candidates are 156 stage 3 tasks (the python / ts_react_next ones plus the other stacks' expect_none). A second round added 40 more: the other stacks' stage 3 select / restate / search failures.
+  - All were rewritten for these two repos, with title-token leaks checked: 0.
+  - The oracle was rebuilt with the stage 3 pipeline (2a → 2b → 3-0, same prompts), searching with each repo's `profile_repo` result.
+  - The offline classes are relative to the router's own query: its step-1 sentences sent as `queries`, with the profile.
+- **4-0 label correction (after the runs):** 35 skills that a session loaded or the offline selection picked were outside the oracle pool. They were graded with the same 2b prompt and 13 of them are relevant (grade ≥ 2). The metrics below use these labels. The strata keep their pick-time classes; regraded, 8 of the 29 tasks would change class.
+- **Not graded:** 1 session pinned the repo's own `.claude/skills/sqlmodel` as `path:`. It is excluded from precision and wrong loads.
+
+**Environments (init event of every session).**
+
+| environment | MCP servers | plugins | skills | agents | tools | hook events (sessions) |
+|---|---|---|---|---|---|---|
+| E1 clean | 1 (skillfetch) | 0 user + 2 built-in | 19–22 | 5 | 34 | none |
+| E2 author's | 14 (skillfetch, github, graft, firecrawl, agentmemory, oh-my-claudecode ×2, vercel, godot-rust-harness, 5 claude.ai connectors) | 12 user (oh-my-claudecode, superpowers, vercel, frontend-design, ui-ux-pro-max, taste-skill, understand-anything, ralph-loop, Notion, cli-anything, rust-analyzer-lsp, godot-rust-harness) + 2 built-in | 134–137 | 54 | 119–151 | PreToolUse, PostToolUse, SessionStart, UserPromptSubmit (87/87), Stop (82/87), PostToolUseFailure (11/87) |
+
+**Main metrics (87 sessions per environment).**
+
+| metric | E1 clean | E2 author's |
+|---|---|---|
+| fired (any skillfetch call) | 23/87 | 23/87 |
+| via the router skill / MCP directly | 23 / 0 | 23 / 0 |
+| router invoked, no skillfetch call | 0 | 1 |
+| reached search_skills | 22/87 | 22/87 |
+| called resolve_set | 16/87 | 19/87 |
+| loaded at least one skill | 14/87 | 17/87 |
+| ended at the 16-turn cap | 1/87 | 5/87 |
+| first search, assistant turn: median (range) | 5 (5–7) | 5 (5–10) |
+| first search, seconds after start (median) | 15.4 | 16.9 |
+| MCP server ready, seconds (median) | 1.6 | 2.9 |
+| trivial tasks (30 sessions): fired | 0/30 | 1/30 |
+| non-trivial tasks (57 sessions): fired / searched / loaded | 23 / 22 / 14 | 22 / 21 / 16 |
+| searched, no load_skills: total (16-turn cap / stopped after resolve_set / none at selection) | 8 (0 / 2 / 6) | 5 (0 / 2 / 3) |
+| first tool: router first / exploring (Read, Grep, Glob, non-git Bash) / `git status`-type Bash / other skill / OMC hook | 23 / 64 / 0 / 0 / 0 | 23 / 52 / 12 / 0 / 0 |
+| sessions that loaded: at least one relevant skill | 8/14 | 10/17 |
+| precision of the loaded sets | 0.50 | 0.50 |
+| loaded something on a task with nothing relevant | 4/24 | 4/24 |
+| loaded set identical to the offline selection | 18/87 | 18/87 |
+| session class equal to the offline class | 9/87 | 10/87 |
+| first-search top 50 across repeats, Jaccard mean (pairs) | 0.618 (14) | 0.688 (7) |
+| session top 50 vs offline top 50, Jaccard mean | 0.439 | 0.464 |
+| cost, sum (median per session) | $17.27 ($0.16) | $49.08 ($0.57) |
+| input tokens, median per session | 163,529 | 586,997 |
+
+- **Environment effect** (per task, the mean over its 3 runs, E1 − E2, 29 tasks). For each metric, the counts are tasks where E1 was higher / lower / the same.
+  - fired: mean difference 0.000; 6 / 7 / 16.
+  - reached search: mean difference 0.000; 6 / 6 / 17.
+  - loaded: mean difference −0.034; 4 / 7 / 18.
+  - capped: mean difference −0.046; 0 / 4 / 25.
+- **Cost:** sessions $66.36 (E1 + E2, 174). Batch calls for the task rewrite, oracle, queries, selection and 4-0 were $29.85 (500 calls). The pilot was $3.29 (4 sessions).
 
