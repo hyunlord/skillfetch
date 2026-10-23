@@ -885,6 +885,36 @@ def embedding(out: list[str]) -> None:
     ]
 
 
+def retrieval_benchmark(out: list[str]) -> None:
+    """§13: the 380-task retrieval benchmark. Table 1's BM25 rows are computed here by
+    `skillfetch eval retrieval` (evals/retrieval/, data/index); the rest is the stage 3
+    report, transcribed in data/e2e/stage3.md."""
+    out += ["## 13. Retrieval benchmark (380 synthetic tasks)", ""]
+    text_path = DATA / "e2e" / "stage3.md"
+    if not text_path.is_file():
+        out += ["Not run yet.", ""]
+        return
+    from skillfetch import evals
+    from skillfetch.index.loader import Index
+    from skillfetch.mcp.session import Session
+
+    before, _, after = text_path.read_text().partition("<!-- table 1 -->")
+    table1 = evals.retrieval(Session(Index.load(DATA / "index")))
+    out += [
+        before.rstrip(),
+        "",
+        "**Table 1, recall@10 / @50 of search_skills** (`skillfetch eval retrieval --index "
+        "data/index`). Mean per-task recall against (i) all relevant skills, (ii) the ones the "
+        "catalogue pass picked (independent of any ranking) and the process subset. "
+        "Tasks with no relevant skill are skipped, and so are expect_none tasks.",
+        "",
+        table1.rstrip(),
+        "",
+        after.strip(),
+        "",
+    ]
+
+
 def main() -> None:
     out = [
         "# Numbers for the write-up",
@@ -906,6 +936,7 @@ def main() -> None:
         three_conditions,
         router_e2e,
         embedding,
+        retrieval_benchmark,
     ):
         section(out)
     OUT.parent.mkdir(parents=True, exist_ok=True)

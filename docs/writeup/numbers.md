@@ -766,3 +766,143 @@ Source: `embedding_eval` in `data/e2e/router-e2e.json` (e2e/retrieval/report-emb
 - Model: `sentence-transformers/all-MiniLM-L6-v2`, 22,713,216 parameters, 384 dimensions, max 256 tokens (208 of 1489 documents truncated); 91.6 MB on disk; load 3.68 s, indexing 5.09 s; query latency median 4.6 ms. It would add sentence-transformers and torch as runtime dependencies.
 - Reproduce (in the e2e workspace, a venv with sentence-transformers): `python retrieval/scripts/eval_embed.py && python retrieval/scripts/report_embed.py`; BM25 ranks: `uv run python retrieval/scripts/eval_bm25.py` against skillfetch 53b81df and index-2026-10-22.
 
+## 13. Retrieval benchmark (380 synthetic tasks)
+
+Source: e2e/stage3/report-stage3.md (frozen inputs and hashes: e2e/stage3/FROZEN.sha256); the
+task set, oracle and queries are in `evals/retrieval/`. Index-2026-10-22: the 1,489 canonical
+tier A/B skills search_skills can return.
+
+**Setup.**
+- **Tasks:** 380 synthetic developer requests (`tasks.jsonl`).
+  - 300 are stratified over 12 task types × 6 stacks × 5 phrasings, one per cell: 25 per task type, 50 per stack, 60 per phrasing.
+  - 40 are trivial requests that should load nothing (`expect_none`).
+  - 20 pairs differ only in a direction (40 tasks).
+  - 20 tasks were rewritten after a check against the 1,707 skill titles, to keep skill names out of them.
+- **Oracle:** each task's candidate pool is graded 0–3; relevant means grade ≥ 2. The pool is built in two steps:
+  - (a) a catalogue pass over id, title and a 10-word summary of every skill;
+  - (b) a pool of (a) ∪ BM25 top 10 for the request ∪ 2 random skills, graded per skill with a process flag.
+- **Pool correction (3-0):** the top 10 of q2, q3, MiniLM and RRF were added to the pool and only the new candidates were graded, with the earlier labels left unchanged.
+  - 9,332 candidates were newly graded (grades 0/1/2/3: 7,768 / 1,210 / 332 / 22).
+  - 354 of them are relevant: relevant pairs went from 561 to 915 (+63%), and 30 tasks got their first relevant skill.
+  - The original pool leaned toward the BM25 ranking of the request as typed.
+- **Label agreement (2c, 40 tasks, 500 pairs):** exact 94.2%, within ±1 100.0%, relevant-or-not kappa 0.883 (grade kappa 0.873).
+  - The oracle was written by the same model as the router (Opus 5.5), so this is consistency within one model, not correctness.
+- **Queries:**
+  - q1: the request as typed;
+  - q2: the router's one-sentence restatement, written by its step-1 rule as it was at 64f4bd8;
+  - q3: q2 split into domain / method / stack, each searched and merged by RRF (k=60).
+  - No profile in any of them (offline).
+
+**Coverage: tasks with a relevant skill (grade ≥ 2) in the index.** Of the 340 non-trivial tasks, 62 have none after the pool correction (90 before). They are excluded from recall and from selection precision and recall. Selection over-load and none accuracy still count them.
+
+| task type | tasks | no relevant skill (before correction) | no relevant skill (after) | relevant skills per task (after) | tasks with a relevant process skill (after) |
+|---|---|---|---|---|---|
+| feature | 29 | 10 | 8 | 2.72 | 15 |
+| bugfix | 29 | 9 | 4 | 2.66 | 20 |
+| refactor | 27 | 1 | 0 | 3.85 | 27 |
+| tests | 29 | 4 | 1 | 3.21 | 27 |
+| docs | 27 | 7 | 4 | 1.96 | 22 |
+| ci_infra | 29 | 2 | 2 | 2.72 | 6 |
+| deploy | 29 | 13 | 9 | 1.86 | 15 |
+| data | 27 | 11 | 7 | 1.52 | 10 |
+| ml | 29 | 13 | 11 | 1.41 | 12 |
+| security_review | 27 | 2 | 1 | 4.52 | 21 |
+| performance | 29 | 10 | 8 | 2.31 | 18 |
+| ui_design | 29 | 8 | 7 | 3.21 | 14 |
+| **all non-trivial** | 340 | 90 | 62 | 2.66 | 207 |
+
+Of the 40 `expect_none` tasks, 7 have a relevant skill after the correction (5 before).
+
+**Table 1, recall@10 / @50 of search_skills** (`skillfetch eval retrieval --index data/index`). Mean per-task recall against (i) all relevant skills, (ii) the ones the catalogue pass picked (independent of any ranking) and the process subset. Tasks with no relevant skill are skipped, and so are expect_none tasks.
+
+Tasks scored: all 278, 2a 209, process 207.
+
+| query | method | (i) all @10 | (i) all @50 | (ii) 2a @10 | (ii) 2a @50 | process @10 | process @50 |
+|---|---|---|---|---|---|---|---|
+| q1 as typed | BM25 | 0.387 | 0.683 | 0.396 | 0.639 | 0.324 | 0.632 |
+| q2 restatement | BM25 | 0.483 | 0.775 | 0.498 | 0.732 | 0.372 | 0.727 |
+| q3 three queries, RRF | BM25 | 0.535 | 0.835 | 0.474 | 0.764 | 0.425 | 0.783 |
+
+**Table 1, MiniLM rows** (report Table 1; `skillfetch eval retrieval --minilm` reproduces every cell, run with sentence-transformers outside skillfetch's dependencies). The model is all-MiniLM-L6-v2 over title + description + summary + keywords + synthetic_queries. RRF fuses the full BM25 ranking with the full embedding ranking.
+
+| query | method | (i) all @10 | (i) all @50 | (ii) 2a @10 | (ii) 2a @50 | process @10 | process @50 |
+|---|---|---|---|---|---|---|---|
+| q1 as typed | MiniLM | 0.305 | 0.514 | 0.283 | 0.489 | 0.267 | 0.465 |
+| q1 as typed | BM25 + MiniLM RRF | 0.424 | 0.740 | 0.406 | 0.673 | 0.357 | 0.677 |
+| q2 restatement | MiniLM | 0.317 | 0.531 | 0.351 | 0.494 | 0.234 | 0.449 |
+| q2 restatement | BM25 + MiniLM RRF | 0.473 | 0.801 | 0.435 | 0.745 | 0.374 | 0.734 |
+
+- **MiniLM gain** (BM25 + MiniLM RRF − BM25), recall@50 (i): q2 +0.026, q1 +0.057, process subset (q2) +0.007. That is below the +0.10 adoption bar, so the decision not to adopt it is final.
+- **Multi-query gain** (q3 − q2), recall@50: +0.060, and +0.056 on the process subset.
+- **MiniLM cost:** 91.6 MB model, 7.59 s to embed the 1,489 skills on CPU, 2.29 MB of float32 embeddings, 6.44 s model load, 6.1 ms per query (median; BM25 7.6 ms), and 357 documents truncated at 256 tokens.
+
+**Table 2, selection.** The input is the real compact search_skills output for q2 (top 50). The picker gets the router's "When" section, step 4 verbatim and "1–3 or none", 20 tasks per prompt. 31 tasks that picked an id from another task's list were rerun alone.
+
+| measure | value |
+|---|---|
+| precision (picked skills with grade ≥ 2) | 0.807 (n=256) |
+| recall (relevant skills that were picked) | 0.423 (n=278) |
+| hit (at least one relevant skill picked) | 0.824 (n=278) |
+| skills loaded per task | 1.142 |
+| wrong loads (grade < 2) | 113 skills in 104 tasks |
+| over-load (nothing relevant, but something loaded) | 30 tasks |
+| none accuracy, oracle (95 tasks without a relevant skill) | 0.684 |
+| none accuracy, expect_none (40 tasks) | 0.700 |
+| direction pairs: set changed | 16/20 (the oracle sets differ in 16) |
+| direction pairs: changed the way the direction asks | 10/20 |
+
+**Table 3, failure classes.**
+- ok: either nothing is relevant and nothing was picked, or at least one relevant skill was picked.
+- select_fail: a relevant skill was in the q2 top 50 but was not picked.
+- restate_fail: no relevant skill in the q2 top 50, but one in the q1 or q3 top 50.
+- search_fail: no relevant skill in the top 50 of any query.
+- over_load: nothing relevant, but something was loaded.
+
+| group | n | ok | select_fail | restate_fail | search_fail | over_load |
+|---|---|---|---|---|---|---|
+| all | 380 | 298 | 25 | 20 | 7 | 30 |
+| bugfix | 29 | 19 | 2 | 2 | 2 | 4 |
+| ci_infra | 29 | 27 | 2 | 0 | 0 | 0 |
+| data | 27 | 21 | 1 | 3 | 0 | 2 |
+| deploy | 29 | 24 | 0 | 4 | 1 | 0 |
+| docs | 27 | 22 | 1 | 1 | 0 | 3 |
+| feature | 29 | 24 | 2 | 1 | 0 | 2 |
+| ml | 29 | 19 | 4 | 3 | 0 | 3 |
+| performance | 29 | 20 | 0 | 3 | 1 | 5 |
+| refactor | 27 | 25 | 1 | 0 | 1 | 0 |
+| security_review | 27 | 21 | 3 | 1 | 2 | 0 |
+| tests | 29 | 25 | 3 | 0 | 0 | 1 |
+| trivial (expect_none) | 40 | 29 | 3 | 0 | 0 | 8 |
+| ui_design | 29 | 22 | 3 | 2 | 0 | 2 |
+
+Bottlenecks, counted in tasks: selection 55 (select_fail 25 + over_load 30), then restatement 20, then search 7.
+
+**Table 4, 40 end-to-end sessions against the offline selection.**
+- **Sample:** 40 tasks stratified by failure class: over_load 10, select_fail 10, restate_fail 10, search_fail 7 (all there are), ok 3.
+- **Harness:** the same as stages 1–2: `claude -p`, stream-json, the same allowed tools, the user's global `~/.claude` inherited, `--max-turns 12`, with the router and `.mcp.json` at skillfetch 64f4bd8.
+- **Repos:** run 1 has only the router files. Run 2 adds empty stubs for the files and directories the task names, plus one source file per stack. Neither run has a manifest or lockfile, so the profile is empty, as offline.
+- **Scoring:** a session that never searched counts as an empty set. The work itself was not scored.
+
+| measure | run 1: empty repo | run 2: stub repo |
+|---|---|---|
+| router fired | 7/40 | 12/40 |
+| search_skills called | 5/40 | 12/40 |
+| loaded at least one skill | 3/40 | 9/40 |
+| loaded set identical to offline (of 40) | 13/40 | 11/40 |
+| mean Jaccard (of 40) | 0.35 | 0.296 |
+| none-or-load agrees | 15/40 | 15/40 |
+| relevant hit agrees | 38/40 | 33/40 |
+| failure class agrees | 18/40 | 17/40 |
+| sessions that searched | 5 | 12 |
+| of those, set identical | 2/5 | 2/12 |
+| of those, mean Jaccard | 0.6 | 0.236 |
+| of those, class agrees | 3/5 | 4/12 |
+| of those, session top 50 vs offline q2 top 50 (Jaccard) | 0.426 | 0.448 |
+| first tool of sessions that did not search | Bash 23, Read 5, Grep 3, Skill(skillfetch-router) 2, Skill(oh-my-claudecode:autopilot) 1, Glob 1 | Bash 17, Read 3, Glob 3, Grep 3, Skill(oh-my-claudecode:autopilot) 1, Skill(skillfetch-router) 1 |
+
+**Limits of this environment.**
+- The sessions inherited the author's own global Claude Code configuration (`~/.claude`): rules files, hooks and plugins (oh-my-claudecode among them), which compete with the router for the first move.
+- In run 1, sessions followed a global rule to look at the repository first ("git status" first), found no code and stopped. Run 2 added stub files for that reason.
+- So 12/40 is the rate at which the router reached search in a heavily configured user environment. It is not a rate for a clean install, which was not measured.
+- On the 40 tasks, the offline selection does not reproduce what real sessions loaded: 11/40 identical sets, 17/40 matching classes.
+

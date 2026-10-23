@@ -43,7 +43,7 @@ The product has two halves that must stay decoupled:
 
 ## Non-goals for v0.1 (do not build these, even if they seem small)
 
-- No embedding model, no vector DB, no local LLM at runtime.
+- No embedding model, no vector DB, no local LLM at runtime (all-MiniLM-L6-v2 re-evaluated on 380 tasks: +0.026 recall@50, not adopted).
 - No automatic UserPromptSubmit hook. Routing is model-initiated via MCP tools.
 - No skill "fusion" (merging two SKILL.md into one). Sets are concatenations with
   precedence, nothing more.
@@ -67,10 +67,12 @@ skillfetch/
     index/                      index loading, BM25 search, tag filters
     resolve/                    conflict/redundancy resolution
     mcp/                        MCP server exposing the tool surface below
-    cli.py                      `skillfetch scan|ingest|judge|obedience|sync|serve`
+    cli.py                      `skillfetch scan|ingest|judge|obedience|sync|serve|eval`
+    evals.py                    `skillfetch eval retrieval` over evals/retrieval/
   assets/
     router-skill/SKILL.md       the one always-on skill the user installs
     runner-agent.md             the subagent definition for isolation mode (not built, not planned for v0.3)
+  evals/retrieval/              380 synthetic tasks, oracle labels, frozen queries
   tests/
     fixtures/skills/            small hand-written SKILL.md corpus with known conflicts
   data/                         gitignored; local mirror lives in ~/.skillfetch/
