@@ -1436,7 +1436,7 @@ In English: S(c, b) is condition c's score in group b, D(b) the largest differen
 | (3) nothing fits | C0 | 9 | 4.722 (4.556 / 4.889) | 9/9 | 18 (17.1) | 422,044 | $0.383 | 9/9 | 5/9 | 0.67 |
 | (3) nothing fits | Cb | 9 | 4.778 (4.556 / 5.000) | 9/9 | 13 (13.4) | 299,649 | $0.321 | 8/9 | 0/9 | 0 |
 
-Stage 2 read the differences between conditions in the same domains as noise; the task set and n differ here, and this table does not claim router vs no router.
+Stage 2 read the differences between conditions in the same domains as noise; the task set and n differ here, and a second judge (GPT) did not reproduce the gap: A 4.25 / C0 4.42 / Cb 4.33 on the Stage 2 domains (below).
 
 t004, outside the decision (3 sessions per condition):
 
@@ -1447,6 +1447,33 @@ t004, outside the decision (3 sessions per condition):
 | Cb | 3.667 (3.667 / 3.667) | 1/3 | 33 | 1,000,770 | 1/3 |
 
 Judge agreement (p1 vs p2): group (1) 21/36 sessions equal, mean absolute difference 0.417, D 0.334; (2) 31/36, 0.139, D 0.167; (3) 15/27, 0.444, D 0.444; largest difference 1 in each.
+
+**Third judge (GPT), after the verdict.** Source: e2e/codex-judge-6b.md (scores frozen before unblinding in codex-judge-6b-blind-freeze.json; metrics in codex-judge-6b-metrics.json; verification PASS: 108 candidates, 276 input files unchanged). One pass over the same 108 coded outputs (stage6/6b/blind-p1/, the same rubrics; design from the 72 screenshots), by a Codex session and 5 native review subagents of the same model, one per task family. No new sessions or test runs.
+
+| group | condition | n | p1 | p2 | p1 + p2 mean | GPT |
+|---|---|---|---|---|---|---|
+| (1) design | A | 12 | 3.333 | 3.500 | 3.417 | 3.917 |
+| (1) design | C0 | 12 | 4.250 | 4.167 | 4.208 | 4.500 |
+| (1) design | Cb | 12 | 4.417 | 4.083 | 4.250 | 4.417 |
+| (2) ceiling | A | 12 | 4.083 | 4.250 | 4.167 | 4.250 |
+| (2) ceiling | C0 | 12 | 4.333 | 4.500 | 4.417 | 4.417 |
+| (2) ceiling | Cb | 12 | 4.667 | 4.750 | 4.708 | 4.333 |
+| (3) nothing fits, t004 excluded | A | 9 | 4.556 | 4.889 | 4.722 | 5.000 |
+| (3) nothing fits, t004 excluded | C0 | 9 | 4.556 | 4.889 | 4.722 | 5.000 |
+| (3) nothing fits, t004 excluded | Cb | 9 | 4.556 | 5.000 | 4.778 | 5.000 |
+| t004 | A / C0 / Cb | 3 each | 4.000 / 4.000 / 3.667 | 4.000 / 4.333 / 3.667 | 4.000 / 4.167 / 3.667 | 3.333 / 3.667 / 3.667 |
+
+Design AI-look checklist count, mean (lower is fewer): A 1.667 / 1.917 / 0.750, C0 0.333 / 0.583 / 0.167, Cb 0.417 / 0.667 / 0.250 (p1 / p2 / GPT).
+
+Group (2) agreement between passes on the same 36 outputs: p1 ↔ p2 31/36 equal, mean absolute difference 0.139, D 0.167; GPT ↔ p1 23/36, 0.417, D 0.333; GPT ↔ p2 24/36, 0.389, D 0.417.
+
+| blinding leak | handling | GPT A / C0 / Cb (n) | Cb − A |
+|---|---|---|---|
+| one output, s2-data A r3, kept a source path (`s6b-A-s2-data-r3`) in `out/summary.md` line 3, so its judge knew the condition before scoring | scores kept as given; both exclusions shown | all: 4.250 / 4.417 / 4.333 (12 / 12 / 12) | +0.083 |
+| | that output excluded | 4.273 / 4.417 / 4.333 (11 / 12 / 12) | +0.061 |
+| | the whole s2-data task excluded | 4.333 / 4.444 / 4.556 (9 / 9 / 9) | +0.222 |
+
+The 6b decision rule applied to the GPT scores (turns and tokens unchanged): reject (1) S(Cb) ≤ S(C0) − 0.3: 4.417 vs 4.500, no; (2) S(Cb) ≥ S(C0) − D: 4.333 vs 4.417 − 0.167 = 4.250, holds; (3) 5.000 vs 5.000 − 0.444, holds. Nothing flips.
 
 **Run record.**
 - **Usage limits:** in the first queue, sessions from 02:03 KST ended after 1 turn with "You've hit your org's monthly spend limit" (69 sessions; 39 valid). After switching accounts, 47 of the 69 reruns ended with "You've hit your session limit · resets 3:10am" (22 valid). The third queue ran the remaining 47; 108/108 ended `success`, none with a limit message. The 116 limit sessions are harness failures before the work started and are excluded (DESIGN §5.6). The first 39 sessions and the 69 reruns ran on two different login accounts, in the original seeded queue order.
