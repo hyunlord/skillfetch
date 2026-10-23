@@ -178,7 +178,7 @@ One more run, on what makes the router fire (stage 5): the 19 non-trivial tasks 
 | V2: V0 plus one line in the project's CLAUDE.md | 57/57 | 55/57 | $0.533 |
 | V3: V0 plus sharper MCP server instructions | 36/57 | 31/57 | $0.384 |
 
-V1 and V2 each raised firing on 9 of the 19 tasks and lowered it on none (sign test p 0.004). MCP server instructions did not help: V3 fired in 36 sessions, 19 of them by calling the tools directly instead of through the router. V1 is now the router's description; on the 10 trivial tasks it fired in 1 of 30 runs (V0: 0 of 30). V2 is an option for a repository you control, measured with the old description only. When the router loaded a set on a task that has a relevant skill, the set held one in 26 of 32 sessions with V0 and 35 of 45 with V1; whether the work itself got better is not measured.
+V1 and V2 each raised firing on 9 of the 19 tasks and lowered it on none (sign test p 0.004). MCP server instructions did not help: V3 fired in 36 sessions, 19 of them by calling the tools directly instead of through the router. V1 is now the router's description; on the 10 trivial tasks it fired in 1 of 30 runs (V0: 0 of 30). V2 is an option for a repository you control, measured with the old description only. When the router loaded a set on a task that has a relevant skill, the set held one in 26 of 32 sessions with V0 and 35 of 45 with V1; whether the work itself got better is not measured. When nothing in the index fits, the router still loads something: 30 of the 95 such tasks offline, 4 of 24 sessions in each environment in stage 4, and in stage 5 every session that searched on the two such tasks except one. Choosing none is the open problem.
 
 ## What the tool gets wrong
 
