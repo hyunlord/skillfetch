@@ -35,6 +35,10 @@ class Source(BaseModel):
     # Record the snapshot's root license file (classified) on every skill as repo_license,
     # next to the per-skill `license`, which it does not change.
     record_repo_license: bool = False
+    # Records of this source with the same normalized name are one duplicate group (a
+    # repository that ships translated or packaged copies of each skill); the canonical is
+    # the copy without a locale folder, then the shallower path (index-format.md §1.6).
+    collapse_same_name: bool = False
     # Markdown file (relative to the snapshot) listing the source's third-party upstreams.
     third_party_doc: str | None = None
 

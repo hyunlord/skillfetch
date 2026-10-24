@@ -40,6 +40,8 @@ repositories that keep skills in more than one place or ship skeletons:
 ```
 
 Both default to empty, so a source without them is discovered exactly as before.
+`collapse_same_name: true` (default false) makes same-name skills of the source
+one duplicate group (§1.6).
 
 The source list lives in `sources.yaml` at the repo root (loaded by
 `ingest/sources.py`). It has two sources: `anthropics/skills` (verified) and the
@@ -262,10 +264,21 @@ Two skills are a **duplicate group** when any of:
   one-way subset is not a duplicate group, it is handled by `resolve_set`);
 - same normalized `name` from the same publisher at different refs → keep newest
   (`build.dedup`: lowercased, runs of space, `_` and `-` as one `-`; at a
-  different commit, so two folders of one snapshot are never merged by name).
+  different commit, so two folders of one snapshot are never merged by name);
+- same normalized `name` in one source that sets `collapse_same_name: true`
+  (default false), wherever the folders are. For repositories that ship each
+  skill again as translations (`docs/ja-JP/skills/…`) or packaged copies
+  (`pi/core/skills/…`): in the first staging build, affaan-m/ECC's 800 folders had
+  299 distinct names.
 
-Each group gets a `canonical_id` (prefer verified publisher, then newest). The
-index keeps all members; `search_skills` returns only canonicals.
+Each group gets a `canonical_id`: verified publisher first, then newest commit;
+within a `collapse_same_name` source, then a path with no locale segment, then
+the shallower path, then the smaller path; last, the smallest id. A locale
+segment is a BCP-47 tag with a script or region subtag (`ja-JP`, `zh-TW`,
+`zh-Hant`), or a bare 2–3 letter language code (`es`, `tr`) in a folder that
+also holds a tagged one; a bare two-letter folder without such a sibling
+(ECC's `pi/`) is not a locale. The index keeps all members; `search_skills`
+returns only canonicals.
 
 ### 1.7 Tier (rules)
 
