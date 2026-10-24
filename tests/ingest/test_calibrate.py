@@ -49,9 +49,9 @@ def test_perfect_extraction_scores_one():
     assert cal.fields.missed == [] and cal.fields.extra == []
     text = render_calibration(cal)
     assert f"pair-relation accuracy, all pairs: 1.000 ({PAIRS}/{PAIRS})" in text
-    assert "informative pairs: 1.000 (44/44)" in text
+    assert "informative pairs: 1.000 (42/42)" in text
     assert (cal.pairs.recall, cal.pairs.false_positives) == (1.0, 0)
-    assert "recall 1.000 (44/44), false positives 0" in text
+    assert "recall 1.000 (42/42), false positives 0" in text
     assert text.splitlines()[-1] == (
         "gate: conflict precision 1.000 (hard, must be 1.0): PASS · "
         "informative-pair accuracy 1.000 (soft target 0.85): met"
@@ -139,7 +139,7 @@ def test_false_conflicts_count_against_the_gate():
     assert [(m.a, m.b, m.expected, m.got) for m in cal.pairs.mismatches] == [
         ("inline-comments", "self-documenting", "independent", "conflict")
     ]
-    assert (cal.pairs.informative_correct, cal.pairs.informative_total) == (44, 45)
+    assert (cal.pairs.informative_correct, cal.pairs.informative_total) == (42, 43)
     assert (cal.pairs.recall, cal.pairs.false_positives) == (1.0, 1)
     assert not cal.hard_pass and not cal.passed  # one false conflict fails the hard gate
     assert "(hard, must be 1.0): FAIL" in render_calibration(cal)

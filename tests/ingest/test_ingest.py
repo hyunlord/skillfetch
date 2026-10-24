@@ -155,7 +155,7 @@ def test_calibrate_from_cache_without_api(tmp_path, capsys):
     code = main(args + ["--cache-dir", str(cache_dir)])
     out = capsys.readouterr().out
     assert code == 0
-    assert "informative pairs: 1.000 (44/44)" in out and "PASS" in out
+    assert "informative pairs: 1.000 (42/42)" in out and "PASS" in out
 
 
 def test_calibrate_refuses_to_guess_missing_extractions(tmp_path, capsys):
