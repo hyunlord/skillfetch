@@ -202,6 +202,7 @@ Not recorded: in these stages' batch calls only successful answers are cached, s
 - Stage 6b sessions (§17): 108 main sessions $63.65; pilot 3 sessions $1.89 and 1 superseded pilot $0.43; 116 sessions ended by usage limits $1.95 (69 $0.61, 47 $1.34; not counted); judge passes not recorded.
 - Stage 7a batch calls (§18): direction-match judgements $0.41, baseline runs $24.45, grading $0.03 + $3.58 + $6.31 (isolated `claude -p`); GPT labels not recorded.
 - Stage 8 batch calls (§19): keyword queries $1.80, grading $18.41 + $29.37 (isolated `claude -p`); Skillselion calls free; GPT labels not recorded.
+- Stage 9 (§20): S-b′ selections $19.79 + $19.67 + $19.73, grading $14.85 + $5.71, batch-effect regrading $1.10; staging extraction 1,306 calls $105.63 and 161 calls $17.03; judge fixture calibration 42 calls $0.44 (isolated `claude -p`); GPT labels not recorded.
 
 ### Runtime latency
 
@@ -1660,4 +1661,87 @@ hit@10 on the 52: SF 0.404 / 0.385 / 0.750, SS-kw 0.808 / 0.808 / 0.827 (Opus / 
 - **Copies:** the outside-index counts are per SS id; a repository listed under an old and a new name counts twice (e.g. `rust-testing` under affaan-m/ecc and affaan-m/everything-claude-code). Not deduplicated by body hash.
 - **Snapshot:** SS's catalogue and ranking change over time; these are one afternoon's answers. The SF index is fixed.
 - **Scan rules** (version 5) were made for our own ingestion and do not read context.
+
+## 20. Stage 9: index expansion (after the post freeze)
+
+Source: e2e/stage9/report-9.md (run 1), report-9b.md (run-b), report-9b-followup.md (batch-effect check, GPT cross-labels, run-c estimate), report-9c.md (run-c); rules fixed before each run in e2e/stage9/DESIGN.md (§2, §3, §9, §11–§13). Staging builds: `data/index-staging*-reports/report.md` (the build reports) and issue #60. Measured after the post's numbers were frozen; not in §7's totals. No release was made from any of these builds.
+
+**What was evaluated.** Repositories from the Stage 8 source candidates (§19), added to a copy of the released index (1,724 records) as staging indexes, extracted with `claude-code/opus-5.5` (records carry `extract_model`; the 1,724 release records come from the gpt-6-luna cache). Each staging index was searched with the shipped router (R-c, four queries, k=50, default tiers) and selected from with S-b′ (one offline run, the stage 6b wrapper); the release index is the baseline (S-b′ three runs).
+
+| build | path | sources added | new records (indexed) | of them non-canonical | verdict |
+|---|---|---|---:|---:|---|
+| run 1 | index-staging | ECC, dpearson2699, ahmed3elshaer, actionbook, rshankras | 989 | 4 | rejected (§2) |
+| run-b | index-staging-2 | same five; `collapse_same_name`, rshankras nested skills | 1,147 | 503 | rejected (§2) |
+| run-c | index-staging-3 | run-b without dpearson2699 | 1,061 | 503 | **passed (§11)** |
+
+- Precondition in every run (§9): all 1,724 release records and 107 rejected records byte-identical; the release's 29,880 constraint lines identical except 8 whose `fan_out` turns false → true (each line equals its release line with that one value changed). Staging indexes have no pairs.jsonl (release: 2,005 pairs); search and selection do not read it.
+
+**Run 1 — rejected.** affaan-m/ECC's 800 records had 299 distinct names: translated copies (`docs/ja-JP` 220, `zh-CN` 177, `es` 38, `tr` 38, `zh-TW` 16, `ko-KR` 14) and `pi/core` copies (128) each had their own body hash and were each canonical. New records took 36.0 of each task's top-50 slots on average (top 10: 7.8); ECC 10,634 of the 13,696 new-record slots.
+
+| labels (fixed, §2) | n | hit@50 release → run 1 | recall@50 release → run 1 |
+|---|---:|---|---|
+| oracle v3 | 284 | 0.930 → 0.813 | 0.808 → 0.520 |
+| v5-ss-b (index) | 270 | 0.941 → 0.730 | 0.822 → 0.409 |
+
+**Run-b — rejected.** Fix: source option `collapse_same_name` (same normalized name in one source → one duplicate group; canonical is the copy without a locale folder, then the shallower path). ECC: 299 canonical (`skills/` 169, `pi/core` 128, `docs/ja-JP` 2). rshankras' nested skills (`skills/<area>/<name>/`) were added through `roots`. New records took 28.3 slots per task (top 10: 6.5).
+
+| labels (fixed, §2) | n | hit@50 release → run-b | recall@50 release → run-b |
+|---|---:|---|---|
+| oracle v3 | 284 | 0.930 → 0.859 | 0.808 → 0.643 |
+| v5-ss-b (index) | 270 | 0.941 → 0.819 | 0.822 → 0.540 |
+
+- Grading the new records in the run-b top 50 and selections (10,662 rows, 2b prompt, Opus) gave, per repository, the share of its top-50 slots graded ≥ 2: ECC 0.093, actionbook 0.085, rshankras 0.072, ahmed3elshaer 0.048, **dpearson2699 0.020**; all new records 0.077. The release records these slots pushed out of the top 50 (10,901) were 0.027 graded ≥ 2. dpearson2699 is the only repository below 0.027, so it was dropped for run-c.
+
+**Rule fixed before run-c (§11, recorded before run-b's grading).** Pass = (A) or ((B) and (C)):
+- (A) §2 as before: none of R-c hit@50 / recall@50 × {v3, v5-ss-b} on fixed labels and fixed denominators drops by more than 0.01.
+- (B) R-c hit@50 on full labels (release relevant ∪ new records graded ≥ 2), release denominators (v3 284, v5-ss-b 270), drops by no more than 0.01 against 0.930 / 0.941.
+- (C) S-b′ unneeded-load rate (tasks with nothing relevant on full labels, loaded ≥ 1) ≤ 0.300, the top of the release range 0.264–0.300.
+
+**Run-c — passed ((B) and (C); (A) failed).**
+
+| check | release | run-c | |
+|---|---|---|---|
+| (A) v3 hit@50 / recall@50, fixed labels | 0.930 / 0.808 | 0.845 / 0.624 | fail |
+| (A) v5-ss-b hit@50 / recall@50, fixed labels | 0.941 / 0.822 | 0.789 / 0.517 | fail |
+| (B) v3 full labels hit@10 / hit@50 (n 284) | 0.754 / 0.930 | 0.852 / **0.989** | +0.060 |
+| (B) v5-ss-b full labels hit@10 / hit@50 (n 270) | 0.556 / 0.941 | 0.819 / **0.978** | +0.037 |
+| (C) S-b′ unneeded loads | 0.264–0.300 (n 110) | **0.135** (n 52) | pass |
+
+- (B) has no ungraded rows in the top 50 or the selections (new-record grades: 93 migrated, 9,205 carried from run-b with the same id and card, 2,656 graded for run-c).
+- Final metrics (run-c, full labels):
+
+| | release | run-c |
+|---|---:|---:|
+| tasks with a relevant skill (not expect_none) | 331 | 337 |
+| of them, an index skill relevant | 270 | 328 (all searchable) |
+| gap tasks (56) with an index skill relevant | 17 | 49 |
+| S-b′ relevant-load rate | 0.630–0.637 (n 270) | 0.811 (n 328) |
+| S-b′ precision, tasks / skills | 0.742–0.758 / 0.680–0.698 | 0.917 / 0.858 |
+| relevant tasks that loaded only grade ≤ 1 | 55–59 | 24 |
+| tasks that loaded none | 117–122 | 83 |
+| loads on expect_none (40) | 6–8 | 4 |
+| loads on the same 52 tasks with nothing relevant | 9–12 | 7 |
+
+- Selections: 471, of them new records 287, graded ≥ 2 270.
+- Top-50 slots of new records graded ≥ 2: ECC 605/6,308 (0.096), actionbook 97/1,131 (0.086), ahmed3elshaer 59/1,195 (0.049), rshankras 124/2,646 (0.047); all 885/11,280 (0.078). All slots of the release ranking: 0.046.
+- Removing dpearson2699 (offline estimate before run-c, the same as run-c's search): its top-50 slots were filled by other new records (10,750 → 11,280).
+
+**Batch-effect check** (rule fixed before results, §12-1): 60 tasks × (5 new-record rows + 5 release rows) regraded together in one list with the same prompt (600 rows). Mean grade, regraded − original: new records +0.043 (exact 0.910, κ 0.885), release rows +0.057 (exact 0.917, κ 0.830); difference −0.013, row bootstrap 95% [−0.06, 0.03]. The rule (a batch effect = only the new-record side goes down) is not met.
+
+**GPT cross-labels** (60 tasks, 724 blind rows from the run-b top 10: 362 new-record rows, 362 release rows; GPT grades supplied by the author):
+- Agreement with Opus, relevant-or-not κ: all 0.655, new records 0.718, release rows 0.586; process κ 0.645.
+- Direction: GPT − Opus mean grade +0.116 on new records, +0.304 on release rows (difference −0.188, 95% [−0.265, −0.108]). Of the new records Opus graded ≥ 2, GPT put 13/70 below 2; of the release rows, 2/43. Relative to the release rows, Opus graded the new records higher than GPT did.
+- Intersection labels (relevant = Opus ≥ 2 and GPT ≥ 2 where GPT graded; run-b rankings): R-c hit@10 gain, staging − release on the release denominator, +0.143 with Opus labels and +0.143 with intersection labels; S-b′ relevant loads 0.889 → 0.887 (release 0.714–0.762 on both).
+- On run-c's rankings (54 tasks not expect_none; rows GPT did not grade counted as ungraded): R-c hit@10 confirmed hits 37 (range 0.685–1.000) vs release 26 (0.481–1.000); S-b′ relevant loads 35 (0.648–0.870) vs release r1–r3 20–23 (lower bounds 0.370–0.426, upper 0.741–0.778). The ranges overlap.
+
+**In-place rebuild.** index-staging-2 was rebuilt in the same directory during run-b (12:13:33Z build replaced by 12:27:18Z, after rshankras' nested skills were extracted: tier B 23 / C 157 → B 175 / C 5). run-b's precheck, search, migration and selection read the first build; its grading cards and metrics files were made after the replacement. The first build no longer exists. Rule since then (CLAUDE.md): a staging index directory is written once; a rebuild goes to a new path.
+
+**Cost** (API-price equivalent, Claude Code plan; isolated `claude -p`): S-b′ selections $19.79 (run 1), $19.67 (run-b), $19.73 (run-c); grading new candidates $14.85 (run-b), $5.71 (run-c); batch-effect regrading $1.10. Staging extraction: run 1 1,306 answer calls $105.63 (including fixture calibration $1.33; one probe call not logged), run-b's rshankras nested skills 161 calls $17.03. GPT labels not recorded.
+
+**Limits.**
+- S-b′ on each staging index is one run; the release range is three runs.
+- New records were graded in batches of new candidates only; the batch-effect check found no difference on 600 rows.
+- One labeller for the metrics (Opus); the GPT cross-labels cover 60 tasks of run-b's rankings, not all of run-c's.
+- (C)'s denominator differs (release 110 tasks, run-c 52) because tasks that gained a relevant new record leave it; the same-52-task comparison is given.
+- run-b's results belong to a build that was replaced; run-b and run-c are not under the same condition for rshankras.
 

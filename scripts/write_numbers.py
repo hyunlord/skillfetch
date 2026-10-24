@@ -172,6 +172,13 @@ def constraints_and_pairs(out: list[str]) -> None:
     ]
 
 
+def _api_v6() -> list[Path]:
+    """Extraction v6 cache records answered by an API model; claude-code answers (staging
+    builds after the post, §20) are not counted, as in §7's table."""
+    v6 = HOME / "extract-cache" / "v6"
+    return [f for f in v6.rglob("*.json") if f.relative_to(v6).parts[0] != "claude-code"]
+
+
 def calibration(out: list[str]) -> None:
     out += [
         "## 4. Calibration and holdout",
@@ -191,9 +198,8 @@ def calibration(out: list[str]) -> None:
     ]
     labels = sorted((ROOT / "tests" / "fixtures" / "skills").glob("*/constraints.json"))
     cap = [f for f in labels if '"note"' in f.read_text()]
-    v6 = HOME / "extract-cache" / "v6"
     v6_fixtures = sum(
-        1 for f in v6.rglob("*.json") if "/" not in json.loads(f.read_text()).get("skill_id", "/")
+        1 for f in _api_v6() if "/" not in json.loads(f.read_text()).get("skill_id", "/")
     )
     out += [
         f"- Fixture directory today (`tests/fixtures/skills`): {len(labels)} skills, "
@@ -339,10 +345,7 @@ def costs(out: list[str]) -> None:
         groups[key][0] += 1
         groups[key][1] += json.loads(f.read_text()).get("_cost_usd") or 0.0
     api = {k: v for k, v in groups.items() if "claude-code" not in k}
-    v6_ids = [
-        json.loads(f.read_text()).get("skill_id", "")
-        for f in (HOME / "extract-cache" / "v6").rglob("*.json")
-    ]
+    v6_ids = [json.loads(f.read_text()).get("skill_id", "") for f in _api_v6()]
     v6_public = sum(1 for s in v6_ids if "/" in s)
     total = sum(v[1] for v in api.values())
     out += table(
@@ -1023,6 +1026,13 @@ def stage8(out: list[str]) -> None:
     out += [path.read_text().strip() if path.is_file() else "Not run yet.", ""]
 
 
+def stage9(out: list[str]) -> None:
+    """§20: stage 9, index expansion (the stage 9 reports, transcribed in data/e2e/stage9.md)."""
+    out += ["## 20. Stage 9: index expansion (after the post freeze)", ""]
+    path = DATA / "e2e" / "stage9.md"
+    out += [path.read_text().strip() if path.is_file() else "Not run yet.", ""]
+
+
 def main() -> None:
     out = [
         "# Numbers for the write-up",
@@ -1053,6 +1063,7 @@ def main() -> None:
         stage6,
         stage7a,
         stage8,
+        stage9,
     ):
         section(out)
     OUT.parent.mkdir(parents=True, exist_ok=True)
