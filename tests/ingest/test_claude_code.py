@@ -47,3 +47,19 @@ def test_extraction_through_the_queue_lands_in_the_usual_cache(tmp_path):
     record = done["0" * 64]
     assert record.status == "ok" and record.model == "claude-code/opus-5.5"
     assert cache.get("0" * 64, "claude-code/opus-5.5", SKILLS_DIR / "commit-squash") is not None
+
+
+def test_extract_dir_queues_every_skill_then_resumes(tmp_path):
+    from skillfetch.ingest.ingest import extract_dir
+
+    queue, cache = tmp_path / "q", ExtractCache(tmp_path / "cache")
+    skills = tmp_path / "skills"
+    for name in ("commit-squash", "small-commits"):
+        (skills / name).mkdir(parents=True)
+        for f in (SKILLS_DIR / name).iterdir():
+            (skills / name / f.name).write_bytes(f.read_bytes())
+    extractor = Extractor(ClaudeCodeBackend("opus-5.5", queue))
+    # every request is queued in one run; nothing raises
+    outcomes = extract_dir(skills, cache, extractor)
+    assert [(o.source, o.reason) for o in outcomes] == [("missing", "pending_answer")] * 2
+    assert len(list((queue / "pending").glob("*.json"))) == 2
