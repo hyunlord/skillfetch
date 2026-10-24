@@ -582,7 +582,12 @@ def build_index(
     github: GitHubClient | None = None,
     license_cache: Path = DEFAULT_LICENSE_CACHE,
     cap: str = relation_mod.DEFAULT_CAP,
+    carry_verdicts: Path | None = None,
 ) -> BuildResult:
+    """`carry_verdicts`: an index whose judge verdicts (pairs.jsonl) the new index keeps
+    while both skill ids are indexed; without it, a rebuild in place keeps out_dir's own."""
+    if carry_verdicts is not None and not (carry_verdicts / PAIRS_FILE).is_file():
+        raise FileNotFoundError(f"{carry_verdicts / PAIRS_FILE}: no judge verdicts to carry")
     model = extractor.model if extractor else (model or DEFAULT_MODEL)
     samples = samples or {}
     skills: list[Built] = []
@@ -709,7 +714,8 @@ def build_index(
     tmp = out_dir.with_name(out_dir.name + ".tmp")
     shutil.rmtree(tmp, ignore_errors=True)
     tmp.mkdir(parents=True)
-    _write_index(tmp, skills, groups, manifest, previous=out_dir if out_dir.is_dir() else None)
+    previous = carry_verdicts or (out_dir if out_dir.is_dir() else None)
+    _write_index(tmp, skills, groups, manifest, previous=previous)
     old = out_dir.with_name(out_dir.name + ".old")
     shutil.rmtree(old, ignore_errors=True)
     if out_dir.exists():
@@ -745,6 +751,8 @@ def render_summary(result: BuildResult) -> str:
         f"redistributable: {m['redistributable']} of {c['A'] + c['B'] + c['C']} indexed · "
         f"duplicate groups: {len(result.groups)}"
     )
+    if "judged_pairs" in m:
+        lines.append(f"judge verdicts carried: {m['judged_pairs']}")
     lines.append(
         f"API cost this run: ${result.api_cost_usd:.4f} ({len(extracted)} extracted, "
         f"{len(cached)} from cache)"
