@@ -262,3 +262,29 @@ class Session:
             "content": content,
             "errors": errors,
         }
+
+    # --- resolve_and_load ----------------------------------------------------------------------
+
+    def resolve_and_load(
+        self,
+        auto_ids: list[str],
+        pinned_ids: list[str] | None = None,
+        max_tokens: int = DEFAULT_MAX_TOKENS,
+    ) -> dict:
+        """resolve_set then load_skills in one call: the resolution's set_id, included,
+        excluded, warnings and notes, the loaded content, and both steps' errors (resolve's
+        first). Excluded skills are never loaded. An input error of resolve_set is returned
+        as is."""
+        resolution = self.resolve_set(auto_ids, pinned_ids)
+        if "error" in resolution:
+            return resolution
+        loaded = self.load_skills(resolution["set_id"], max_tokens)
+        return {
+            "set_id": resolution["set_id"],
+            "included": resolution["included"],
+            "excluded": resolution["excluded"],
+            "warnings": resolution["warnings"],
+            "notes": resolution["notes"],
+            "content": loaded["content"],
+            "errors": resolution["errors"] + loaded["errors"],
+        }

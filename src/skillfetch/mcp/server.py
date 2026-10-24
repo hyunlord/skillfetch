@@ -83,6 +83,21 @@ def build_server(session: Session) -> MCPServer:
         lowest-precedence skills are dropped and listed in errors."""
         return session.load_skills(set_id, max_tokens)
 
+    @server.tool()
+    def resolve_and_load(
+        auto_ids: list[str],
+        pinned_ids: list[str] | None = None,
+        max_tokens: int = DEFAULT_MAX_TOKENS,
+    ) -> dict[str, Any]:
+        """resolve_set and load_skills in one call, with the same inputs and rules: candidate
+        ids (in preference order, at most 20) plus user-pinned ids (always kept; `path:` ids
+        pinned only), then the included skills' verified bodies in precedence order.
+        Returns {set_id, included, excluded[{id, reason, conflicts_with, evidence}],
+        warnings, notes, content, errors}; excluded skills are not loaded, and errors lists
+        both resolve and load problems. Over max_tokens (default 8000) the lowest-precedence
+        skills are dropped and listed in errors."""
+        return session.resolve_and_load(auto_ids, pinned_ids, max_tokens)
+
     return server
 
 

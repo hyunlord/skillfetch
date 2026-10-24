@@ -84,7 +84,8 @@ hand-rolled BM25), `anthropic` (ingest only, optional extra), `pydantic`.
 
 ## MCP tool surface
 
-Built (v0.2): `profile_repo`, `search_skills`, `resolve_set`, `load_skills`.
+Built (v0.2): `profile_repo`, `search_skills`, `resolve_set`, `load_skills`. Built after v0.2
+(#26): `resolve_and_load`, both steps in one call; the router skill does not use it yet.
 Planned for v0.3, not built: `report_outcome`. `prepare_set`: not built, not planned for v0.3.
 
 | tool | input | output |
@@ -93,6 +94,7 @@ Planned for v0.3, not built: `report_outcome`. `prepare_set`: not built, not pla
 | `search_skills(queries[1–4] \| query, profile?, k=50, tiers=["A","B"], verbose=false)` | the task restated by the host model as 1–4 short sentences (the router sends four: what it builds, how to work, stack and files, the request word for word; each searched with BM25, rankings merged by RRF k=60), or one `query`; `queries` wins + optional profile | ranked candidates, compact: `{id, title, summary (first sentence, ≤160 chars), tier, token_estimate}` (50 fit in ~4k tokens); `verbose` adds the full summary, `tags` and `match_reasons[]` |
 | `resolve_set(auto_ids[], pinned_ids[])` | candidate ids chosen by the host model (at most 20; `path:` ids only as pinned), plus user-pinned ids | `{set_id, included[], excluded[{id, reason, conflicts_with}], warnings[], precedence[], suppressed_by_judge, notes[], errors[]}`; `suppressed_by_judge` counts the tension / needs_review warnings dropped because the judge called the pair independent |
 | `load_skills(set_id, max_tokens=8000)` | | bodies concatenated in precedence order, with no precedence header (it did not change which skill the agent follows; numbers.md §8), for injection into the current context. Each body is fetched from the skill's pinned source (unless cached), verified against the index hashes, and cached under `~/.skillfetch/cache/<content_hash>/`; a mismatch or fetch failure refuses that skill with a structured error and the others still load. Over `max_tokens` the lowest-precedence skills are dropped (listed in `errors`). |
+| `resolve_and_load(auto_ids[], pinned_ids[], max_tokens=8000)` | as `resolve_set`, plus `load_skills`' budget | `resolve_set` then `load_skills` in one call, same rules (constraints.md §5): `{set_id, included[], excluded[], warnings[], notes[], content, errors[]}`; excluded skills are not loaded; `errors` lists resolve's then load's. `resolve_set` and `load_skills` stay as they are |
 | `prepare_set(set_id)` (not built, not planned for v0.3) | | `{prompt_block, materialized_paths{}}` for the isolation runner; the folder is fetched and verified like `load_skills` and materialized under `~/.skillfetch/cache/<content_hash>/` |
 | `report_outcome(set_id, ok: bool, note?)` (v0.3) | | ack. Only appends to a local JSONL log; nothing reads it yet. |
 
