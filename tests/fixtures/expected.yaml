@@ -27,6 +27,11 @@ conflict:
   - [uv-python, poetry-python]          # package-manager, python
   - [jest-tests, vitest-tests]          # test-runner, javascript
   - [vite-build, webpack-build]         # build-tool, javascript
+  # "Use any package manager except npm" vs "Always install dependencies with npm": the
+  # old extraction read the "except" object as a choice and 8a held it back; it means
+  # forbid npm, and the two cannot both be followed, so it is a conflict by definition.
+  # Against pnpm it is subsumed, against uv or poetry independent (below).
+  - [any-but-npm, npm-classic]
 
 redundant:
   # equal constraint multisets, different wording: redundant in both directions
@@ -43,6 +48,11 @@ subsumes:
   # scope containment (constraints.md §4): minimal-scripts bans type hints
   # everywhere, which contains django-migrations' ban limited to migrations
   - [minimal-scripts, django-migrations]
+  # pnpm-only and pnpm-monorepo forbid npm themselves, so any-but-npm's one constraint
+  # ("Use any package manager except npm" = forbid npm) is in both: subsumed, and both
+  # can be followed. Against uv or poetry the ban is independent.
+  - [pnpm-only, any-but-npm]
+  - [pnpm-monorepo, any-but-npm]
 
 tension:
   # bullet-points: soft blanket ban (any artifact) vs a narrow requirement (PR
@@ -73,14 +83,6 @@ needs_review:
   # accepted: in practice most file edits happen during implementation
   - [act-autonomously, careful-agent]
   - [verbose-logging, quiet-tests]
-  # an object that names an alternative to exclude it ("anything except npm") names no
-  # choice (vocabulary.choice_of): 8a unknown choice. Under the old rules it chose npm:
-  # a false conflict with pnpm and no relation with npm-classic.
-  - [any-but-npm, pnpm-only]
-  - [any-but-npm, pnpm-monorepo]
-  - [any-but-npm, npm-classic]
-  - [any-but-npm, uv-python]
-  - [any-but-npm, poetry-python]
   # The caps of §3 row 14, each on a real case (constraints as extracted, see the
   # fixtures' "note"); every one of them is a conflict without its cap.
   # 14a fan-out: "Nothing was shortened to save space" (uasl/output-skill) against

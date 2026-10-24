@@ -72,4 +72,4 @@ def test_every_pair_matches_its_label_under_the_vocabulary_cap():
         if labels.get(p, "independent") != got
     }
     assert wrong == {}
-    assert sum(v == "conflict" for v in labels.values()) == 19
+    assert sum(v == "conflict" for v in labels.values()) == 20

@@ -2,8 +2,8 @@
   "constraints": [
     {
       "subject": "package-manager",
-      "directive": "require",
-      "object": "anything except npm",
+      "directive": "forbid",
+      "object": "npm",
       "scope": {
         "artifact": "any",
         "phase": "any",
