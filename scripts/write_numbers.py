@@ -1015,6 +1015,14 @@ def stage7a(out: list[str]) -> None:
     out += [path.read_text().strip() if path.is_file() else "Not run yet.", ""]
 
 
+def stage8(out: list[str]) -> None:
+    """§19: stage 8, the Skillselion comparison (the stage 8 reports, transcribed in
+    data/e2e/stage8.md)."""
+    out += ["## 19. Stage 8: Skillselion comparison (after the post freeze)", ""]
+    path = DATA / "e2e" / "stage8.md"
+    out += [path.read_text().strip() if path.is_file() else "Not run yet.", ""]
+
+
 def main() -> None:
     out = [
         "# Numbers for the write-up",
@@ -1044,6 +1052,7 @@ def main() -> None:
         codex,
         stage6,
         stage7a,
+        stage8,
     ):
         section(out)
     OUT.parent.mkdir(parents=True, exist_ok=True)
