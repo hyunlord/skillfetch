@@ -10,7 +10,7 @@ import pytest
 from conftest import SKILLS_DIR, OracleClient, make_git_source, oracle
 
 from skillfetch.ingest.backends import AnthropicBackend
-from skillfetch.ingest.build import build_index, sample_dirs
+from skillfetch.ingest.build import build_index, render_summary, sample_dirs
 from skillfetch.ingest.extract import Extractor
 from skillfetch.ingest.extract_cache import ExtractCache
 from skillfetch.ingest.sources import Source
@@ -521,3 +521,42 @@ def test_repo_license_is_recorded_beside_the_per_skill_license(tmp_path):
     assert row["repo_license"] == "MIT"
     assert row["license"] == "unknown"  # per-skill: the root license is not inherited
     assert result.manifest["sources"][0]["repo_license"] == "MIT"
+
+
+def _verdict(a, b, verdict="independent"):
+    return {
+        "a": a, "b": b, "rules": "needs_review", "row": "14b polarity", "verdict": verdict,
+        "reason": "r", "ambiguous_together": False, "confidence": 0.9,
+        "judge": "openrouter/test/judge", "judge_version": 1, "input_sha256": None,
+    }  # fmt: skip
+
+
+def test_carry_verdicts_keeps_those_whose_two_skills_are_indexed(world):
+    tmp_path, sources, _ = world
+    _build(tmp_path, sources, KeywordOracle())
+    ids = sorted(_records(tmp_path)[n]["id"] for n in ("aggregator/small-commits",
+                                                      "aggregator/atomic-commits",
+                                                      "aggregator/careful-agent"))  # fmt: skip
+    release = tmp_path / "release"
+    release.mkdir()
+    kept, gone = _verdict(ids[0], ids[1]), _verdict(ids[2], "gone/skill@000000000000")
+    (release / "pairs.jsonl").write_text(json.dumps(kept) + "\n" + json.dumps(gone) + "\n")
+
+    result = _build(tmp_path, sources, KeywordOracle(), carry_verdicts=release)
+    rows = [json.loads(x) for x in (tmp_path / "index" / "pairs.jsonl").read_text().splitlines()]
+    assert rows == [kept]
+    manifest = json.loads((tmp_path / "index" / "manifest.json").read_text())
+    assert manifest["judged_pairs"] == 1 and "pairs.jsonl" in manifest["files"]
+    assert "judge verdicts carried: 1" in render_summary(result)
+
+
+def test_without_carry_verdicts_a_new_path_has_no_verdicts(world):
+    tmp_path, sources, _ = world
+    _build(tmp_path, sources, KeywordOracle())
+    assert not (tmp_path / "index" / "pairs.jsonl").exists()
+
+
+def test_carry_verdicts_from_an_index_without_pairs_is_refused(world):
+    tmp_path, sources, _ = world
+    with pytest.raises(FileNotFoundError, match="no judge verdicts to carry"):
+        _build(tmp_path, sources, KeywordOracle(), carry_verdicts=tmp_path / "nowhere")

@@ -549,7 +549,10 @@ key and version, input hash; covered by the manifest). `judge --import
 <judgments.jsonl> --into <index> --model <key>` stores an earlier report the
 same way — the 2011 `openrouter/anthropic/claude-sonnet-5.5` verdicts of the
 first full build were imported, not re-run. A rebuild carries a verdict over
-while both skill ids (which pin content) are still indexed. `resolve_set`
+while both skill ids (which pin content) are still indexed: in place from the
+index it replaces, or into a new directory with `ingest --sources …
+--carry-verdicts <index>`. A pair without a verdict keeps its warning; no
+build asks the judge. `resolve_set`
 drops a tension / needs_review warning whose pair is judged `independent` and
 counts it in `suppressed_by_judge`. Nothing is promoted: a judge `conflict`
 never excludes a skill, and verdicts never touch conflicts or redundancy.

@@ -180,6 +180,13 @@ def main(argv: Sequence[str] | None = None) -> int:
     ingest.add_argument("--out", type=Path, default=Path("data/index"), help="index directory")
     ingest.add_argument("--work-dir", type=Path, default=DEFAULT_WORK_DIR, help="snapshots")
     ingest.add_argument(
+        "--carry-verdicts",
+        type=Path,
+        metavar="INDEX",
+        help="with --sources: keep this index's judge verdicts (pairs.jsonl) whose two skill "
+        "ids are both in the new index; pairs without a verdict keep their warnings",
+    )
+    ingest.add_argument(
         "--with-api",
         action="store_true",
         help="extract skills not in the cache with --model: claude-code (default) queues the "
@@ -446,6 +453,7 @@ def _build(args: argparse.Namespace, key: str, extractor: extract.Extractor | No
         jobs=args.jobs,
         github=GhCli() if args.upstream_licenses else None,
         cap=args.conflict_cap or relation.DEFAULT_CAP,
+        carry_verdicts=args.carry_verdicts,
     )
     print(render_summary(result))
     report, review = write_reports(result, args.out.with_name(args.out.name + "-reports"))
