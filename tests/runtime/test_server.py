@@ -15,7 +15,7 @@ from skillfetch.ingest.extract_cache import ExtractCache
 from skillfetch.mcp.server import build_server
 from skillfetch.mcp.session import Session
 
-TOOLS = {"profile_repo", "search_skills", "resolve_set", "load_skills"}
+TOOLS = {"profile_repo", "search_skills", "resolve_set", "load_skills", "resolve_and_load"}
 
 
 def _payload(result) -> dict:
@@ -54,6 +54,19 @@ def test_search_resolve_load_through_mcp(tmp_path):
             loaded = _payload(await client.call_tool("load_skills", {"set_id": resolved["set_id"]}))
             assert "Squash every feature" in loaded["content"]
             assert loaded["errors"] == []
+            both = _payload(
+                await client.call_tool(
+                    "resolve_and_load",
+                    {
+                        "auto_ids": [
+                            skill_id(root, "commit-squash"),
+                            skill_id(root, "atomic-commits"),
+                        ]
+                    },
+                )
+            )
+            assert both["excluded"] == resolved["excluded"]
+            assert both["content"] == loaded["content"] and both["errors"] == []
 
     asyncio.run(run())
 

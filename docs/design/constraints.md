@@ -482,6 +482,18 @@ winner) and `b` the later one. Warnings and exclusions are structured JSON
 Rationale for step 3 ordering: the host model ranked `auto`; earlier picks
 win ties. We do not re-rank. We only remove.
 
+**`resolve_and_load(auto_ids, pinned_ids, max_tokens=8000)`** runs this
+procedure and then `load_skills` on the resulting set, in one tool call (#26).
+Inputs and rules are the same as the two tools': at most 20 auto ids,
+`path:` ids pinned only, pinned beats auto, excluded skills are never loaded,
+and over `max_tokens` the lowest-precedence skills are dropped. Output:
+`{set_id, included, excluded, warnings, notes, content, errors}`, the
+resolution's fields plus `load_skills`' content, with resolve's errors
+followed by load's. An input error (more than 20 auto ids) is returned as
+`resolve_set` returns it. The set is cached as by `resolve_set`, so
+`load_skills(set_id)` can reload it with another budget. `resolve_set` and
+`load_skills` stay for hosts that want to inspect each step.
+
 ## 6. Report format (`scan` and `resolve_set` excluded entries)
 
 Every exclusion and warning must render like this, no exceptions:
