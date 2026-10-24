@@ -200,6 +200,7 @@ Not recorded: in these stages' batch calls only successful answers are cached, s
 - Codex end-to-end (§16): 19 + 19 sessions and 1 smoke session, then 57 (full router) + 57 (S-b′) main sessions, on a ChatGPT Pro subscription; no per-session cost recorded.
 - Stage 6 batch calls (§17): 6a, 6b-A and B-0, 600 calls, $168.65; 6b preparation 13 calls, $1.72 (isolated `claude -p`).
 - Stage 6b sessions (§17): 108 main sessions $63.65; pilot 3 sessions $1.89 and 1 superseded pilot $0.43; 116 sessions ended by usage limits $1.95 (69 $0.61, 47 $1.34; not counted); judge passes not recorded.
+- Stage 7a batch calls (§18): direction-match judgements $0.41, baseline runs $24.45, grading $0.03 + $3.58 + $6.31 (isolated `claude -p`); GPT labels not recorded.
 
 ### Runtime latency
 
@@ -1487,4 +1488,71 @@ The 6b decision rule applied to the GPT scores (turns and tokens unchanged): rej
 - Judge passes ran as subagents in an interactive session; not recorded.
 
 **Limits.** One model for sessions, judge and oracle (Opus 5.5); E1 only; group 3 had exactly 4 candidate tasks and lost one; d2–d4 are new tasks; 6a selection is batched (10 tasks per call), not a session's step 4.
+
+## 18. Stage 7a: following the user's working direction (after the post freeze)
+
+Source: e2e/stage7/report-7a.md; design and the rules fixed before each step in e2e/stage7/DESIGN.md (§3, "7a-relabel", "7a-pool"); hashes in stage7/FROZEN.sha256. Offline, isolated `claude -p`, no sessions. Measured after the post's numbers were frozen; not in §7's totals. The router measured is the shipped S-b′ (`38dcb69`).
+
+**The question (#59).** 20 pairs of the 380 tasks differ only in the working direction the user states (test-first vs minimal diff, plan first vs just do it, security first vs performance first, accessibility first vs visual polish first, no new dependencies vs use a well-known library, backward compatible vs breaking change allowed). A pair counts as followed when the two sides' selected sets differ and each side's added skill is relevant only on that side (stage 3 `eval_selection.py`). §17 (6a) had 9–12 of 20.
+
+**First diagnosis (6a S-b, 3 generations, the 16 pairs whose relevant sets differ):** 34 of 48 pair-runs followed the direction; of the other 14, 11 were label problems (the labels did not carry the direction), 3 selection, 0 search. Five pairs (03, 04, 06, 09, 10) never followed in any run; with them wrong, 13/16 was out of reach.
+
+**Direction rubric and blind regrade.** The stage 3 step-2b prompt plus one paragraph: "When the task tells you how to work (a working direction such as test-first, minimal diff, no new dependencies, accessibility first), a skill that fits the task but pulls against that way of working gets at most 1, and a skill that directly handles that way of working can get 2 or more even if it fits the task's subject less well." The 40 direction-pair tasks were regraded blind (task text and cards only): 1,611 rows, 136 grades changed, relevant pairs 164 → 128 (labels `oracle-v5-direction.jsonl`). With these labels S-b′ followed 13 / 12 / 12 of 17 pairs.
+
+**Pool completion** (rule fixed before the results). For all 20 pairs, each side's direction sentence was searched on its own (`search_skills(query=<direction>)`, BM25, no profile, k = 50) and the top 50 of both sentences added to both tasks' pools; only new candidates were graded, blind, with the direction rubric. 12 direction sentences: 10 returned 50 results, "backward compatible" 11, "minimal diff" 18. 2,976 new candidates graded, 49 of them grade ≥ 2 (labels `oracle-v5-direction-b.jsonl`).
+
+**Denominator rule** (DESIGN "7a-pool", fixed before the results; the 13/16 ratio of §3 unchanged):
+- A side is *direction-covered* when at least one of its grade ≥ 2 skills handles that side's direction (an isolated judgement over all its grade ≥ 2 skills).
+- The *router denominator* = pairs whose two relevant sets differ and whose two sides are both direction-covered.
+- Pairs with a side not covered are left out of the router metric and counted as *direction-coverage gaps*.
+- The decision uses the router denominator (followed ≥ 13/16 as a ratio, none-accuracy and hit drops ≤ 0.03); the figure over all pairs whose relevant sets differ is always reported with it.
+
+**Result: S-b′, 3 runs.**
+
+| labels | router denominator (both sides covered) | followed per run | ratio (router denominator) | pairs with different relevant sets | ratio (all of them) | coverage gaps | none-accuracy (85) | hit (288) |
+|---|---|---|---|---|---|---|---|---|
+| Opus (v5-direction-b) | 6 (pairs 03, 05, 08, 11, 17, 20) | 6 / 6 / 6 | 1.0 | 19 | 12.333 / 19 = 0.649 | 13 | 0.841 | 0.788 |
+| both Opus and GPT ≥ 2 | 3 (03, 08, 20) | 3 / 3 / 3 | 1.0 | 16 | 12.333 / 16 = 0.771 | 13 | 0.843 | 0.787 |
+
+- The bar was 13/16 = 0.8125 on the router denominator; S-b′ meets it, so no new candidate rule was made. Over all pairs with different relevant sets the ratio is below it (0.649, 0.771).
+- Inside the router denominator every pair-run followed (18/18 Opus, 9/9 both). 6a S-b: 5.67/6 (one selection miss).
+- The intersection labels treat the pool-completion candidates (graded by Opus only) as unconfirmed, so the coverage they add drops out and the denominator is 3.
+- Where the labels have a skill for each side's direction, the router followed the direction in every run; for 13 of the 20 pairs at least one side's direction has no such skill in the completed pool.
+
+**Coverage gaps (Opus labels, 13 pairs):** a side whose direction no grade ≥ 2 skill handles, after pool completion.
+
+| pair | direction a | skills covering a | direction b | skills covering b |
+|---|---|---|---|---|
+| pair01 | test-first (TDD) | tdd-workflow, tdd, test-driven-development | minimal diff | none |
+| pair02 | security first | code-security, pipe | performance first | none |
+| pair04 | no new dependencies | none | use a well-known library | none |
+| pair06 | backward compatible | none | breaking change allowed | none |
+| pair07 | test-first (TDD) | tdd-workflow, tdd, test-driven-development | minimal diff | none |
+| pair09 | accessibility first | accessibility-compliance | visual polish first | none |
+| pair10 | no new dependencies | none | use a well-known library | none |
+| pair12 | backward compatible | none | breaking change allowed | none |
+| pair13 | test-first (TDD) | tdd-workflow, tdd, test-driven-development | minimal diff | none |
+| pair14 | security first | code-security, pipe | performance first | none |
+| pair15 | accessibility first | accessibility-compliance, ui-audit | visual polish first | none |
+| pair16 | no new dependencies | none | use a well-known library | none |
+| pair19 | test-first (TDD) | tdd-workflow, tdd, test-driven-development | minimal diff | none |
+
+Directions with no covering skill in any of their pairs: minimal diff (pairs 01, 07, 13, 19), no new dependencies and use a well-known library (04, 10, 16), backward compatible and breaking change allowed (06, 12). Covered in some pairs only: performance first (not in 02, 14; covered in 08, 20) and visual polish first (not in 09, 15; covered in 03). The pools come from stage 3 pooling, every 6a and 7a selection and the direction-sentence top 50; index skills outside them were not checked.
+
+**GPT cross-labels** (`gpt-direction-40.jsonl`, the 1,611 rows before pool completion, against the Opus regrade):
+
+| measure | value |
+|---|---|
+| exact agreement | 0.68 |
+| within ±1 | 0.98 |
+| grade kappa | 0.388 |
+| relevant-or-not kappa | 0.538 |
+| process kappa | 0.723 |
+| rows graded relevant | Opus 128, GPT 303, both 127 |
+
+Relevant kappa is below 0.6, so the intersection labels are reported alongside. GPT marked 127 of Opus's 128 relevant rows relevant, and raised most of Opus's grade-1 rows (1 → 2: 143, 1 → 3: 13).
+
+**Cost** (API-price equivalent, Claude Code plan): direction-match judgements $0.22 + $0.19; baseline runs 2–3 $24.45; v5 grading $0.03; direction regrade $3.58; pool completion grading $6.31. GPT labels supplied by the author, cost not recorded.
+
+**Limits.** The router denominator is small (6 pairs, 3 on the intersection). Whether the router follows a direction for which the index has no skill is not measured here. One model writes the queries, selects and labels (Opus 5.5).
 
