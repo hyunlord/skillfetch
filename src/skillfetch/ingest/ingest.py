@@ -12,6 +12,7 @@ from pathlib import Path
 from typing import Literal
 
 from skillfetch.ingest import credentials
+from skillfetch.ingest.claude_code import PendingAnswer
 from skillfetch.ingest.extract import DEFAULT_MODEL, Extractor, ExtractRecord
 from skillfetch.ingest.extract_cache import ExtractCache
 from skillfetch.ingest.injection import scan_skill
@@ -59,10 +60,18 @@ def extract_dir(
         elif extractor is not None:
             todo.append((outcome, skill_dir))
 
+    pending: set[str] = set()
     fresh = run_extractions(
-        [(skill_dir, o.skill_id, o.content_hash) for o, skill_dir in todo], cache, extractor, jobs
+        [(skill_dir, o.skill_id, o.content_hash) for o, skill_dir in todo],
+        cache,
+        extractor,
+        jobs,
+        pending=pending,
     )
     for outcome, _ in todo:
+        if outcome.content_hash in pending:  # queued for Claude Code; a rerun picks it up
+            outcome.reason = "pending_answer"
+            continue
         outcome.source, outcome.record = "api", fresh[outcome.content_hash]
     return outcomes
 
@@ -73,13 +82,15 @@ def run_extractions(
     extractor: Extractor,
     jobs: int = 4,
     errors: dict[str, str] | None = None,
+    pending: set[str] | None = None,
 ) -> dict[str, ExtractRecord]:
     """Extract (skill_dir, skill_id, content_hash) items in parallel, once per distinct
     content, caching each record. A request that fails (connection, provider or SDK error)
     is not cached: its content hash and error go into `errors` and the run continues, so a
     rerun retries only those. Without an `errors` dict the first such error propagates.
     Rejected credentials are not a per-skill error: they stop the run. Error texts are
-    redacted (providers echo key material in them)."""
+    redacted (providers echo key material in them). With a `pending` set, a request queued
+    for Claude Code (PendingAnswer) adds its content hash there instead of stopping the run."""
     secrets = credentials.redaction_secrets()
     unique: dict[str, tuple[Path, str]] = {}
     for skill_dir, skill_id, digest in items:
@@ -90,6 +101,9 @@ def run_extractions(
         try:
             record = extractor.extract(skill_dir, skill_id, digest)
         except Exception as exc:
+            if pending is not None and isinstance(exc, PendingAnswer):
+                pending.add(digest)
+                return digest, None
             if errors is None or credentials.is_auth_error(exc):
                 raise
             errors[digest] = credentials.redact(f"{type(exc).__name__}: {str(exc)[:300]}", *secrets)
