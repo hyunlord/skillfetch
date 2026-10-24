@@ -114,7 +114,8 @@ them check whether two skills contradict each other. Existing skill routers
 (UASL, skill-search) hand you one skill, or a list. Searching and loading skills
 mid-task without installing them is not unique to skillfetch:
 [Skillselion](https://skillselion.com) is an MCP server that does it, ranking skills
-by skills.sh install counts. What skillfetch adds is what admits a skill to the
+by skills.sh install counts (a measured comparison is in
+[numbers.md §19](docs/writeup/numbers.md#19-stage-8-skillselion-comparison-after-the-post-freeze)). What skillfetch adds is what admits a skill to the
 index (automated vetting: lint, injection scan, license, not install counts), a
 conflict check on the set it loads, and published measurements of whether loading
 helped.
@@ -189,6 +190,10 @@ default produced none. Use it when recall matters more than precision.
 
 ## Honest limits
 
+- The index is small. On our 380-task benchmark, 129 of the 323 tasks that have a
+  relevant skill had one only outside the index, measured against Skillselion's
+  catalog; 61 of 331 once our own top 50 was graded too
+  ([numbers.md §19](docs/writeup/numbers.md#19-stage-8-skillselion-comparison-after-the-post-freeze)).
 - The injection scan is a blocklist, not a proof of safety.
 - Automated vetting rejects bad skills; it does not prove a skill is good.
 - Default mode injects skill text into the current context; true isolation

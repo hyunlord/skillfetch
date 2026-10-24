@@ -201,6 +201,7 @@ Not recorded: in these stages' batch calls only successful answers are cached, s
 - Stage 6 batch calls (§17): 6a, 6b-A and B-0, 600 calls, $168.65; 6b preparation 13 calls, $1.72 (isolated `claude -p`).
 - Stage 6b sessions (§17): 108 main sessions $63.65; pilot 3 sessions $1.89 and 1 superseded pilot $0.43; 116 sessions ended by usage limits $1.95 (69 $0.61, 47 $1.34; not counted); judge passes not recorded.
 - Stage 7a batch calls (§18): direction-match judgements $0.41, baseline runs $24.45, grading $0.03 + $3.58 + $6.31 (isolated `claude -p`); GPT labels not recorded.
+- Stage 8 batch calls (§19): keyword queries $1.80, grading $18.41 + $29.37 (isolated `claude -p`); Skillselion calls free; GPT labels not recorded.
 
 ### Runtime latency
 
@@ -1555,4 +1556,108 @@ Relevant kappa is below 0.6, so the intersection labels are reported alongside. 
 **Cost** (API-price equivalent, Claude Code plan): direction-match judgements $0.22 + $0.19; baseline runs 2–3 $24.45; v5 grading $0.03; direction regrade $3.58; pool completion grading $6.31. GPT labels supplied by the author, cost not recorded.
 
 **Limits.** The router denominator is small (6 pairs, 3 on the intersection). Whether the router follows a direction for which the index has no skill is not measured here. One model writes the queries, selects and labels (Opus 5.5).
+
+## 19. Stage 8: Skillselion comparison (after the post freeze)
+
+Source: e2e/stage8/report-8.md (main run), report-8-followup.md (label extension, short queries, source candidates), gpt-kappa-8.md (second judge); design and rules fixed before each step in e2e/stage8/DESIGN.md (§0–2, §2-addendum, §4); hashes in stage8/FROZEN.sha256. Measured after the post's numbers were frozen; not in §7's totals.
+
+The benchmark (380 tasks), the labelling procedure (the 2b grading prompt) and the router wording (R-c queries, S-b′ selection) were all built for skillfetch; Skillselion was never tuned to them. The numbers below are per measure, with their limits; this section does not say which is better.
+
+**Design.**
+- **Skillselion (SS):** npm `skillselion-mcp@0.9.11` (server reports 0.9.10), called over MCP from an empty working directory (so the client's repo-based ranking sees no repo), sequentially with ≥ 1 s between calls, demand signals off (`DO_NOT_TRACK=1`, `SK_NO_DEMAND=1`). Terms checked before the run (browse, search and use for research allowed; no clause against automated queries). 380 tasks × 5 conditions = 1,900 calls, 0 errors, 2026-10-24 13:46–15:02 KST.
+  - SS-q1: `search_skillselion(query=<request as typed>, type=skill, limit=25)`.
+  - SS-q3: the same with R-c's first query.
+  - SS-kw: the same with a short keyword query.
+  - SS-load-kw (main): `load_skill(query=<keyword query>, context=<request>)`.
+  - SS-load-full: `load_skill(query=<request>, context=<request>)`.
+- **Keyword queries:** one isolated `claude -p` per task whose system prompt is SS's own `load_skill` description and its `query` / `context` argument descriptions verbatim (from `tools/list`), plus one output-format line; user prompt = the request. Frozen before any SS call. Words: 2 in 9, 3 in 182, 4 in 180, 5 in 5, 20+ in 4 (the 4 are refusals on trivial tasks, passed through unchanged).
+- **skillfetch (SF):** `38dcb69`; R-c top 50 and three offline S-b′ selections (§17).
+- **Blind labels, same card format (oracle v5-ss):** per task, the union of SS-q1, SS-q3 and SS-kw results, both SS loads, SF's R-c top 10 and SF's three selections, shuffled, ids opaque, graded with the 2b prompt in one isolated call. Every card is a name plus a 220-character description: SS's own description for SS results, the frontmatter `description` cut the same way for index skills; no tags, no source. An SS result in the same repository and path with the same SKILL.md hash is merged into our id (14 times). Candidates per task 10–67 (mean 36.8), 14,002 graded.
+- **v5-ss-b (follow-up):** the 25,020 index skills in SF's R-c top 50, the keyword query's top 50 and R-c + keywords top 50 that v5-ss had not graded, graded with the same cards and prompt (696 grade ≥ 2).
+
+**Table 1, hit@k** (at least one grade ≥ 2 skill in the top k).
+
+| labels | tasks | SF @1 / @5 / @10 / @25 / @50 | SS-q1 @1 / @5 / @10 / @25 | SS-q3 | SS-kw |
+|---|---|---|---|---|---|
+| v5-ss, tasks with a relevant skill | 323 | 0.201 / 0.381 / 0.464 / 0.536 / 0.601 | 0.235 / 0.409 / 0.433 / – | 0.303 / 0.508 / 0.554 / – | 0.638 / 0.814 / 0.848 / 0.858 |
+| v5-ss-b, tasks with a relevant skill | 331 | – / – / 0.453 / 0.656 / 0.767 | – / – / 0.423 / 0.444 | – / – / 0.541 / 0.559 | – / – / 0.828 / 0.837 |
+| v5-ss-b, tasks where an index skill is relevant | 270 | – / – / 0.556 / 0.804 / 0.941 | – / – / 0.400 / 0.426 | – / – / 0.522 / 0.544 | – / – / 0.837 / 0.844 |
+
+- SF returns 50 results; SS returns at most 25 that pass its relevance floor (median 9–10). In v5-ss, SF @25 / @50 are lower bounds (only SF's top 10 was graded).
+- v5-ss slices: where an index skill is relevant (194 tasks) SF @1 / @5 / @10 0.335 / 0.634 / 0.773, SS-kw 0.660 / 0.814 / 0.845; where the relevant skills are only on the SS side (129) SF 0 / 0 / 0, SS-kw 0.605 / 0.814 / 0.853.
+- Grade ≥ 2 skills in the top 10, mean over 380 tasks: SF 0.703, SS-q1 1.055, SS-q3 1.334, SS-kw 3.061 (v5-ss).
+- Candidate-balance check (v5-ss, SS search candidates cut to each condition's top 10, not regraded): SF 0.203 / 0.384 / 0.469, SS-kw 0.644 / 0.822 / 0.856 (@1 / @5 / @10).
+
+**Final loads.** SF loads the S-b′ set (up to 3, or none); SS loads one skill per `load_skill` call, or none when it answers that nothing matches (41 of 380 in each load condition).
+
+| labels / tasks | condition | relevant skill loaded / tasks | precision (tasks that loaded) | precision (skills) |
+|---|---|---|---|---|
+| v5-ss-b, index skill relevant, 270 | SF S-b′, mean of 3 | 0.635 (171.3) | 0.749 | 0.688 |
+| | SS-load-kw | 0.615 (166) | 0.680 | 0.680 |
+| | SS-load-full | 0.207 (56) | 0.229 | 0.229 |
+| v5-ss, index skill relevant, 194 (SF's own candidates) | SF S-b′, mean of 3 | 0.883 | 0.926 | 0.813 |
+| | SS-load-kw | 0.634 (123) | 0.703 | 0.703 |
+| | SS-load-full | 0.216 (42) | 0.236 | 0.236 |
+| v5-ss, all with a relevant skill, 323 | SF S-b′, mean of 3 | 0.531 | – | – |
+| | SS-load-kw | 0.616 (199) | – | – |
+| | SS-load-full | 0.226 (73) | – | – |
+
+- Grades of SS loads (0 / 1 / 2 / 3): SS-load-kw 56 / 75 / 103 / 105, SS-load-full 197 / 65 / 37 / 40.
+- Where only SS-side skills are relevant (v5-ss, 129): SF 0, SS-load-kw 0.589, SS-load-full 0.240.
+
+**Loads when nothing fits** (v5-ss, 57 tasks with nothing relevant, 40 of them expect_none):
+
+| condition | loaded something | of them on expect_none |
+|---|---|---|
+| SF S-b′ r1 / r2 / r3 | 12 / 13 / 11 (mean 0.211) | 7 / 8 / 6 |
+| SS-load-kw | 45 (0.789) | 37 |
+| SS-load-full | 43 (0.754) | 31 |
+
+**Second judge (GPT), 60 tasks** (seed `s8-gpt60`, stratified; 2,270 blind rows): exact 0.723, within ±1 0.993, relevant-or-not κ 0.692, process κ 0.640. Both labels give 52 tasks with a relevant skill and 8 without.
+
+| candidate source | candidates | Opus relevant | GPT relevant | GPT only | Opus only | net (GPT − Opus) | relevant κ |
+|---|---|---|---|---|---|---|---|
+| SF only | 635 | 56 | 127 | 73 | 2 | +11.18 pp | 0.533 |
+| SS only | 1,635 | 299 | 366 | 103 | 36 | +4.10 pp | 0.738 |
+
+Final loads on the 52 tasks, by judge:
+
+| condition | Opus | both ≥ 2 | GPT |
+|---|---|---|---|
+| SF S-b′, 3 runs pooled | 0.481 (75/156) | 0.468 (73/156) | 0.654 (102/156) |
+| SS-load-kw | 0.577 (30/52) | 0.538 (28/52) | 0.596 (31/52) |
+| SS-load-full | 0.269 (14/52) | 0.269 (14/52) | 0.308 (16/52) |
+
+hit@10 on the 52: SF 0.404 / 0.385 / 0.750, SS-kw 0.808 / 0.808 / 0.827 (Opus / both / GPT). The SS-load-kw − SF difference in final loads is +9.62 pp (Opus), +7.05 pp (both) and −5.77 pp (GPT): its sign depends on the judge.
+
+**Coverage.**
+- v5-ss: of the 323 tasks with a relevant skill, 129 had relevant skills only outside the index (SS side), 194 had at least one index skill relevant. After v5-ss-b graded our own top 50 as well: 331 and 270, so 61 have relevant skills only outside the index.
+- Distinct SS-side skills graded relevant: 1,284; outside the index 1,241 (no repository-and-name match, and a different SKILL.md hash from any same-name index skill), undecided 43. Tasks with a relevant skill outside the index: 310 of 323.
+- The 56 gap tasks (nothing relevant in oracle v3, not trivial): 45/56 have a relevant skill outside the index (179 distinct skills); deploy 9, ml 8, feature 6, performance 6, data 5, docs 3, ci_infra 2, ui_design 2, bugfix 2, tests 1, security_review 1.
+- The 1,241 skills come from 353 current GitHub repositories; the top 30 by relevant skills cover 36/56 gap tasks, all 353 cover 45/56. Root licenses of the 353: not fetched 211, MIT 79, no root LICENSE 32, Apache-2.0 20, unknown 3, BSD-3-Clause 2, proprietary 2, GPL-3.0 2, Unlicense 1, AGPL-3.0 1. 43 repositories appear under an old and a new name.
+
+**Scan of the loaded bodies** (skillfetch `38dcb69` lint, injection scan, scripts, license; SKILL.md and bundled files):
+
+| scope | loaded | lint errors | scan failures | scan warnings | ships scripts | bundled files | redistributable license | license unknown |
+|---|---|---|---|---|---|---|---|---|
+| SS-load-kw | 339 | 25 | 8 | 165 | 44 | 198 | 274 | 59 |
+| SS-load-full | 339 | 26 | 10 | 164 | 57 | 178 | 275 | 63 |
+| distinct bodies | 518 | 38 | 13 | 246 | 74 | 284 | 422 | 90 |
+
+- Scan failure rules (distinct): exfil.secret-env 11, hidden.invisible-chars 9, privilege.run-as-root 2, privilege.dangerous-flag 2, exfil.ssh-keys 1. Lint error rules: link-outside-skill 96, broken-link 18, frontmatter-invalid 2, frontmatter-missing 1.
+- Three of the quoted scan failures are prohibitions or warnings ("NEVER add `echo $TEST_TOKEN` …", "Chromium sandbox stays ON. `--no-sandbox` is not passed by default.", "Run as root in production" under "Anti-Patterns to Avoid"); the rules do not read context.
+- Licenses of the 518: MIT 343, Apache-2.0 67, Unlicense 5, BSD-3-Clause 5, MPL-2.0 1, CC0-1.0 1, proprietary 4, AGPL-3.0 1, GPL-3.0 1, unknown 90.
+
+**Latency** (client-side tool call, seconds, median / p95): SS-q1 1.133 / 1.971, SS-q3 1.224 / 1.951, SS-kw 1.107 / 1.687, SS-load-kw 1.507 / 2.255, SS-load-full 1.498 / 2.367. SF was not timed here (BM25, local, 7.6 ms per query in stage 3).
+
+**Cost** (API-price equivalent, Claude Code plan): keyword queries $1.80, v5-ss grading $18.41, v5-ss-b grading $29.37. GPT labels supplied by the author, cost not recorded. SS calls are free.
+
+**Limits.**
+- **Candidate balance:** each task's SS candidates are up to 25 results from each of three searches plus two loads; SF's are its top 10 and selections (v5-ss). v5-ss's relevant pairs lean to SS (1,832 vs 380), and the 129 SS-only tasks come from SS-side candidates only. v5-ss-b grades SF's top 50, but index skills only where SF's searches found them.
+- **Card text:** SS descriptions are written by Skillselion; SF's are the skills' own frontmatter. Same format, different authors. The 2b prompt says it sees tags and a full summary; these cards have neither.
+- **One labeller:** Opus, one isolated call per task; the 60-task GPT cross-label gives κ 0.692 and a judge-dependent sign for the final-load difference (above).
+- **SF selection is offline** (batched, the 6b wrapper), not a session's router; SS's loads are real MCP tool output.
+- **Copies:** the outside-index counts are per SS id; a repository listed under an old and a new name counts twice (e.g. `rust-testing` under affaan-m/ecc and affaan-m/everything-claude-code). Not deduplicated by body hash.
+- **Snapshot:** SS's catalogue and ranking change over time; these are one afternoon's answers. The SF index is fixed.
+- **Scan rules** (version 5) were made for our own ingestion and do not read context.
 
