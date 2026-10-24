@@ -33,6 +33,20 @@ _DIGEST = re.compile(r"^[0-9a-f]{64}$")
 class ExtractCache:
     def __init__(self, root: Path = DEFAULT_CACHE_DIR):
         self.root = root
+        self._models: list[str] | None = None
+
+    def models(self) -> list[str]:
+        """The models with cache entries for this extract version, sorted (a model is the
+        relative path of a folder holding cache files, e.g. openrouter/openai/gpt-6-luna)."""
+        if self._models is None:
+            base = self.root / f"v{EXTRACT_VERSION}"
+            found = set()
+            if base.is_dir():
+                for current, _dirs, files in os.walk(base):
+                    if any(f.endswith(".json") for f in files) and Path(current) != base:
+                        found.add(Path(current).relative_to(base).as_posix())
+            self._models = sorted(found)
+        return self._models
 
     def path(self, content_hash: str, model: str) -> Path:
         """The cache file; `model` (e.g. an index's extract_model) and `content_hash` come from
@@ -70,6 +84,18 @@ class ExtractCache:
             return None
         return postprocess(record, read_text(skill_dir / SKILL_FILE))
 
+    def get_any(
+        self, content_hash: str, model: str, skill_dir: Path
+    ) -> tuple[ExtractRecord, str] | None:
+        """`get` under `model`, else under any other model with an entry for the same
+        content_hash (sorted): the same SKILL.md and prompt version, answered by another
+        model. Returns the record and the model that answered."""
+        for m in [model, *(x for x in self.models() if x != model)]:
+            record = self.get(content_hash, m, skill_dir)
+            if record is not None:
+                return record, m
+        return None
+
     def put(self, record: ExtractRecord) -> None:
         path = self.path(record.content_hash, record.model)
         path.parent.mkdir(parents=True, exist_ok=True)
@@ -77,3 +103,5 @@ class ExtractCache:
         with os.fdopen(fd, "w") as f:
             f.write(record.model_dump_json(include=set(RAW_FIELDS), indent=2))
         os.replace(tmp, path)
+        if self._models is not None and record.model not in self._models:
+            self._models = sorted([*self._models, record.model])

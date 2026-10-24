@@ -32,6 +32,9 @@ class Source(BaseModel):
     # "per-skill": each skill is licensed by its own LICENSE file or frontmatter, else
     # unknown; otherwise an SPDX id that applies to every skill of the source.
     license: str = "per-skill"
+    # Record the snapshot's root license file (classified) on every skill as repo_license,
+    # next to the per-skill `license`, which it does not change.
+    record_repo_license: bool = False
     # Markdown file (relative to the snapshot) listing the source's third-party upstreams.
     third_party_doc: str | None = None
 

@@ -483,3 +483,41 @@ def test_roots_and_exclude_choose_where_skills_are_found(tmp_path):
     assert found == {"whole": 2, "two-roots": 2}
     paths = sorted({r["path"] for r in _records(tmp_path).values()})
     assert paths == ["plugins/git/skills/small-commits", "skills/commit-squash"]
+
+
+def test_cache_hits_under_another_model_are_reused_and_recorded(world):
+    tmp_path, sources, _ = world
+    first = _build(tmp_path, sources, KeywordOracle())
+    model_a = first.model
+    rows = [json.loads(line) for line in (tmp_path / "index" / "skills.jsonl").open()]
+    # one model, no opt-in: neither optional key is written
+    assert all("extract_model" not in r and "repo_license" not in r for r in rows)
+    digest = next(r["content_hash"] for r in rows if r["name"] == "commit-squash")
+    ExtractCache(tmp_path / "cache").path(digest, model_a).unlink()
+    client = KeywordOracle()
+    second = build_index(
+        sources,
+        out_dir=tmp_path / "index",
+        work_dir=tmp_path / "work",
+        cache=ExtractCache(tmp_path / "cache"),
+        extractor=Extractor(AnthropicBackend(client, "claude-sonnet-6")),
+    )
+    # only the missing skill is asked; the others are answered from model A's cache
+    assert len(client.requests) == 1 and second.model != model_a
+    assert second.manifest["extract_model"] == model_a  # the model that answered most
+    rows = [json.loads(line) for line in (tmp_path / "index" / "skills.jsonl").open()]
+    tagged = {r["content_hash"]: r["extract_model"] for r in rows if "extract_model" in r}
+    assert tagged == {digest: second.model}
+
+
+def test_repo_license_is_recorded_beside_the_per_skill_license(tmp_path):
+    repo = tmp_path / "repo"
+    _copy("commit-squash", repo / "skills" / "commit-squash")
+    (repo / "LICENSE").write_text(MIT)
+    common = dict(kind="dir", url=str(repo), publisher="p", publisher_trust="unknown")
+    sources = [Source(id="r", root="skills/", record_repo_license=True, **common)]
+    result = _build(tmp_path, sources, OracleClient())
+    (row,) = [json.loads(line) for line in (tmp_path / "index" / "skills.jsonl").open()]
+    assert row["repo_license"] == "MIT"
+    assert row["license"] == "unknown"  # per-skill: the root license is not inherited
+    assert result.manifest["sources"][0]["repo_license"] == "MIT"

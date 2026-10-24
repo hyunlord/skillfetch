@@ -103,3 +103,14 @@ def skill_license(skill_dir: Path, frontmatter: dict | None, source_license: str
     if source_license != "per-skill":
         return _make(source_license, "source")
     return SkillLicense("unknown", False, "none")
+
+
+def root_license(snapshot: Path) -> str:
+    """The license of a snapshot's root license file: an SPDX id, "unrecognised" when the
+    file matches no rule, "none" without one. Recorded as repo_license; it never decides a
+    skill's own `license` (per-skill sources do not inherit it)."""
+    for name in LICENSE_FILES:
+        path = snapshot / name
+        if path.is_file() and not path.is_symlink():
+            return classify_text(path.read_text(errors="replace")) or "unrecognised"
+    return "none"
