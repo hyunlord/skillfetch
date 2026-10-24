@@ -28,6 +28,19 @@ A source is a YAML entry in `sources.yaml`:
   publisher_trust: verified # verified | known | unknown
 ```
 
+Discovery walks the root recursively: any folder with a SKILL.md is a skill, and
+folders inside a skill belong to it. Hidden folders (`.claude/`, `.agents/`, …),
+`node_modules` and `__pycache__` are never entered. Two optional fields cover
+repositories that keep skills in more than one place or ship skeletons:
+
+```yaml
+  roots: [skills/, plugins/git/skills/]   # instead of root
+  exclude: [template, tests/fixtures]     # fnmatch on a folder name, or on the
+                                          # snapshot-relative path when it has a "/"
+```
+
+Both default to empty, so a source without them is discovered exactly as before.
+
 The source list lives in `sources.yaml` at the repo root (loaded by
 `ingest/sources.py`). It has two sources: `anthropics/skills` (verified) and the
 UASL corpus, `onfire7777/universal-ai-skills-library` (1812 skills, unknown

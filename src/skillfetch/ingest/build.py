@@ -535,7 +535,12 @@ def build_index(
     source_meta = []
     for source in sources:
         snap = snapshot(source, work_dir)
-        found = discover_skills(snap.skills_root) if snap.skills_root.is_dir() else []
+        found: list[Path] = []
+        for root in snap.skills_roots:  # one root: the same list as before
+            if root.is_dir():
+                seen = set(found)
+                dirs = discover_skills(root, source.exclude, base=snap.path)
+                found += [d for d in dirs if d not in seen]
         chosen = sample_dirs(found, samples.get(source.id), seed)
         seen_ids: set[str] = set()
         for skill_dir in chosen:
