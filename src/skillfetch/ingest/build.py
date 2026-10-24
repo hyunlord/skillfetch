@@ -367,12 +367,44 @@ def _norm_name(name: str) -> str:
     return re.sub(r"[\s_-]+", "-", name.strip().lower())
 
 
-def dedup(skills: list[Built]) -> dict[str, list[str]]:
+# A path segment that names a locale (for collapse_same_name canonicals): a
+# BCP-47 tag with a script or region subtag (ja-JP, zh-Hant, zh-TW), or a bare language
+# code (es, tr) in a folder that also holds a tagged one. A bare two-letter folder with no
+# tagged sibling (ECC's pi/) is not a locale.
+_LOCALE_TAGGED = re.compile(r"[a-z]{2,3}(?:-[A-Z][a-z]{3})?(?:-(?:[A-Z]{2}|\d{3}))?")
+_LOCALE_BARE = re.compile(r"[a-z]{2,3}")
+
+
+def _locale_paths(paths: list[str]) -> set[str]:
+    """The paths among `paths` that have a locale segment (see _LOCALE_TAGGED)."""
+    tagged_parents = set()
+    for path in paths:
+        parts = path.split("/")
+        for i, seg in enumerate(parts):
+            if _LOCALE_TAGGED.fullmatch(seg) and not _LOCALE_BARE.fullmatch(seg):
+                tagged_parents.add("/".join(parts[:i]))
+
+    def is_locale(parts: list[str], i: int) -> bool:
+        seg = parts[i]
+        if _LOCALE_BARE.fullmatch(seg):
+            return "/".join(parts[:i]) in tagged_parents
+        return bool(_LOCALE_TAGGED.fullmatch(seg))
+
+    return {
+        path
+        for path in paths
+        if any(is_locale(parts, i) for parts in [path.split("/")] for i in range(len(parts)))
+    }
+
+
+def dedup(skills: list[Built], collapse: frozenset[str] = frozenset()) -> dict[str, list[str]]:
     """Duplicate groups (§1.6) as {canonical_id: [member ids]}; sets canonical_id on
-    every record. Identical content; keyword Jaccard >= 0.8 with equal constraints; or the
+    every record. Identical content; keyword Jaccard >= 0.8 with equal constraints; the
     same normalized name from the same publisher at different commits (rule 3, the newest
-    is canonical). Canonical: verified publisher first, then the newest commit, then the
-    smallest id."""
+    is canonical); or, in a source listed in `collapse` (collapse_same_name), the same
+    normalized name anywhere in the snapshot (rule 4). Canonical: verified publisher first,
+    then the newest commit, then (rule 4 sources only) a path without a locale segment,
+    the shallower path and the smaller path, then the smallest id."""
     parent = {b.record.id: b.record.id for b in skills}
 
     def find(x: str) -> str:
@@ -383,20 +415,25 @@ def dedup(skills: list[Built]) -> dict[str, list[str]]:
 
     for a, b in combinations(skills, 2):
         ra, rb = a.record, b.record
+        same_name = _norm_name(ra.name) == _norm_name(rb.name)
         same = (
             ra.content_hash == rb.content_hash
             or (
                 _jaccard(ra.keywords, rb.keywords) >= KEYWORD_JACCARD
                 and _same_constraints(a.constraints, b.constraints)
             )
-            or (
-                ra.publisher == rb.publisher
-                and ra.commit != rb.commit
-                and _norm_name(ra.name) == _norm_name(rb.name)
-            )
+            or (ra.publisher == rb.publisher and ra.commit != rb.commit and same_name)
+            or (ra.source_id == rb.source_id and ra.source_id in collapse and same_name)
         )
         if same:
             parent[find(ra.id)] = find(rb.id)
+
+    localized = _locale_paths([b.record.path for b in skills if b.record.source_id in collapse])
+
+    def path_rank(r: SkillRecord) -> tuple:
+        if r.source_id not in collapse:
+            return (False, 0, "")
+        return (r.path in localized, len(r.path.split("/")), r.path)
 
     members: dict[str, list[Built]] = {}
     for b in skills:
@@ -404,12 +441,13 @@ def dedup(skills: list[Built]) -> dict[str, list[str]]:
     groups = {}
     for group in members.values():
         group.sort(key=lambda b: b.record.id)
-        newest_first = sorted(group, key=lambda b: b.snap.commit_date or "", reverse=True)
+        dates = sorted({b.snap.commit_date or "" for b in group}, reverse=True)
         canon = min(
             group,
             key=lambda b: (
                 _TRUST_RANK[b.record.publisher_trust],
-                newest_first.index(b),
+                dates.index(b.snap.commit_date or ""),
+                path_rank(b.record),
                 b.record.id,
             ),
         )
@@ -634,7 +672,7 @@ def build_index(
             b.record.extract_model = None
 
     candidates = [b for b in skills if b.record.status not in ("lint_failed", "scan_failed")]
-    groups = dedup(candidates)
+    groups = dedup(candidates, frozenset(s.id for s in sources if s.collapse_same_name))
     assign_tiers(skills)
     _mark_fan_out(skills, cap)
 
