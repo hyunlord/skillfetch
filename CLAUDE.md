@@ -157,8 +157,9 @@ this mode; default injection mode leaves skill text in the transcript.
 
 **v0.3 — process-skill retrieval, shorter chain, outcome log**
 - Process-skill retrieval: a domain query and a how-to-work query, searched
-  separately (#25).
-- A shorter chain: search, resolve and load in fewer calls (#26).
+  separately (#25); ships with the on/off numbers.
+- A shorter chain: search, resolve and load in fewer calls (#26); ships with the
+  on/off numbers.
 - `report_outcome`.
 
 ## Working rules for Claude Code in this repo
@@ -176,3 +177,6 @@ this mode; default injection mode leaves skill text in the transcript.
 - Commit small. One feature per commit. Conventional commit prefixes
   (`feat:`, `fix:`, `docs:`, `test:`, `chore:`).
 - When you finish a roadmap item, update the checklist in README.
+- Every router change is measured on/off against an expert-installed skill on
+  verified tasks before it is claimed in README or the write-up, and the result
+  is reported either way (e2e harness, docs/writeup/numbers.md §11).
