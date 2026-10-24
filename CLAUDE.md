@@ -176,3 +176,6 @@ this mode; default injection mode leaves skill text in the transcript.
 - Commit small. One feature per commit. Conventional commit prefixes
   (`feat:`, `fix:`, `docs:`, `test:`, `chore:`).
 - When you finish a roadmap item, update the checklist in README.
+- A staging index directory is written once: a rebuild always goes to a new path
+  (`data/index-staging-N`), never over an existing one; Stage 9's run-b read
+  `index-staging-2` after it had been rebuilt in place.
