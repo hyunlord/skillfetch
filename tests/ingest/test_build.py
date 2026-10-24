@@ -464,3 +464,22 @@ def test_report_states_what_cached_extractions_cost(world):
     assert n == 8 and estimated == 0 and cost > 0
     report = render_report(again)
     assert f"The 8 cached extractions cost ${cost:.4f} when earlier runs made them" in report
+
+
+def test_roots_and_exclude_choose_where_skills_are_found(tmp_path):
+    repo = tmp_path / "repo"
+    _copy("commit-squash", repo / "skills" / "commit-squash")
+    _copy("small-commits", repo / "plugins" / "git" / "skills" / "small-commits")
+    _copy("atomic-commits", repo / "template")  # a skeleton at the repo root
+    _copy("plain-markdown", repo / "tests" / "fixtures" / "plain-markdown")
+    _copy("tdd-strict", repo / ".claude" / "skills" / "tdd-strict")  # hidden: always skipped
+    common = dict(kind="dir", url=str(repo), publisher="p", publisher_trust="unknown")
+    sources = [
+        Source(id="whole", exclude=["template", "tests/fixtures"], **common),
+        Source(id="two-roots", roots=["skills/", "plugins/git/skills/"], **common),
+    ]
+    result = _build(tmp_path, sources, OracleClient())
+    found = {m["id"]: m["discovered"] for m in result.manifest["sources"]}
+    assert found == {"whole": 2, "two-roots": 2}
+    paths = sorted({r["path"] for r in _records(tmp_path).values()})
+    assert paths == ["plugins/git/skills/small-commits", "skills/commit-squash"]

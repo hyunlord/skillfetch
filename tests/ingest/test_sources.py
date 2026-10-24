@@ -36,3 +36,15 @@ def test_duplicate_ids_rejected(tmp_path):
     path.write_text(entry * 2)
     with pytest.raises(ValueError, match="duplicate"):
         load_sources(path)
+
+
+def test_roots_and_exclude_stay_inside_the_snapshot():
+    base = dict(id="x", kind="dir", url="/tmp/x", publisher="p", publisher_trust="unknown")
+    assert Source(roots=["skills/", "plugins/a/skills/"], exclude=["template"], **base).roots
+    with pytest.raises(ValidationError, match="not both"):
+        Source(root="skills/", roots=["plugins/"], **base)
+    for bad in (["../up"], ["/abs"]):
+        with pytest.raises(ValidationError, match="inside the snapshot"):
+            Source(roots=bad, **base)
+    with pytest.raises(ValidationError, match="inside the snapshot"):
+        Source(exclude=["a/../.."], **base)

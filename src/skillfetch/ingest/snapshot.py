@@ -36,6 +36,11 @@ class Snapshot:
     def skills_root(self) -> Path:
         return self.path / self.source.root
 
+    @property
+    def skills_roots(self) -> list[Path]:
+        """The directories discovery starts from: `roots` when given, else `root`."""
+        return [self.path / r for r in self.source.roots] or [self.skills_root]
+
 
 def _git(*args: str, cwd: Path | None = None) -> str:
     proc = subprocess.run(["git", *args], cwd=cwd, capture_output=True, text=True)

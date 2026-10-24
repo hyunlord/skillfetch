@@ -71,3 +71,18 @@ def test_content_hash_covers_other_files(tmp_path):
     (b / "SKILL.md").write_text((a / "SKILL.md").read_text())
     (c / "SKILL.md").write_text((a / "SKILL.md").read_text())
     assert len({content_hash(a), content_hash(b), content_hash(c)}) == 3
+
+
+def test_discover_skips_excluded_folders_by_name_or_path(tmp_path):
+    write_skill(tmp_path / "skills", "a")
+    write_skill(tmp_path / "template", "t")
+    write_skill(tmp_path / "pkg" / "template", "t2")
+    write_skill(tmp_path / "tests" / "fixtures", "f")
+    write_skill(tmp_path / "pkg" / "tests" / "fixtures", "f2")  # path pattern: root-relative
+    found = discover_skills(tmp_path, exclude=["template", "tests/fixtures"])
+    assert [p.relative_to(tmp_path).as_posix() for p in found] == [
+        "pkg/tests/fixtures/f2",
+        "skills/a",
+    ]
+    # the default keeps every folder that is not hidden or vendored
+    assert len(discover_skills(tmp_path)) == 5

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import fnmatch
 import hashlib
 import os
 from dataclasses import dataclass
@@ -66,18 +67,35 @@ def _regular(path: Path) -> bool:
     return path.is_file() and not path.is_symlink()
 
 
-def discover_skills(root: Path) -> list[Path]:
+def discover_skills(
+    root: Path, exclude: tuple[str, ...] | list[str] = (), base: Path | None = None
+) -> list[Path]:
     """Skill folders under root (a folder with SKILL.md), sorted. Hidden folders, vendored
-    dependencies and symbolic links are skipped; folders inside a skill belong to it."""
+    dependencies and symbolic links are skipped; folders inside a skill belong to it.
+    `exclude` adds folders not to enter: an fnmatch pattern on the folder name, or, when it
+    has a "/", on its path relative to `base` (default: root)."""
     if _regular(root / SKILL_FILE):
         return [root]
+    base = base or root
+
+    def skipped(folder: Path) -> bool:
+        rel = folder.relative_to(base).as_posix()
+        return any(
+            fnmatch.fnmatch(rel if "/" in pattern else folder.name, pattern.rstrip("/"))
+            for pattern in exclude
+        )
+
     found = []
     for current, dirs, files in os.walk(root):  # does not follow directory links
         if SKILL_FILE in files and Path(current) != root and _regular(Path(current) / SKILL_FILE):
             found.append(Path(current))
             dirs.clear()
             continue
-        dirs[:] = [d for d in dirs if not d.startswith(".") and d not in _SKIP_DIRS]
+        dirs[:] = [
+            d
+            for d in dirs
+            if not d.startswith(".") and d not in _SKIP_DIRS and not skipped(Path(current) / d)
+        ]
     return sorted(found, key=lambda p: p.relative_to(root).as_posix())
 
 
