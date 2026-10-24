@@ -388,7 +388,18 @@ As built (`ingest/build.py`, `skillfetch ingest --sources sources.yaml
   the index).
 - `rejected.jsonl` holds the records that failed lint or the injection scan
   (not in the index, kept for the data write-up).
-- Extraction runs once per distinct `content_hash`.
+- Extraction runs once per distinct `content_hash`. A skill missing from the
+  cache under the build's model is looked up under every other model cached for
+  the same extract version (same `content_hash`, same prompt) before it is sent:
+  the build model first, then the others sorted.
+- The manifest's `extract_model` is the model that answered the most skills
+  (ties: the build's model). A record answered by another model carries its own
+  `extract_model`; other records have no such key, so an index built from one
+  model has none.
+- `repo_license` (only for sources with `record_repo_license: true`): the
+  snapshot's root license file, classified (SPDX id, `unrecognised`, or `none`).
+  It is recorded beside the per-skill `license` and does not change it; the
+  source's manifest entry has it too.
 - Manifest additions: `extract_model`, per source `url`, `ref`,
   `commit_date`, `discovered`, `sampled`, `sample_seed`,
   `third_party_upstreams`; `licenses` (count per license) and

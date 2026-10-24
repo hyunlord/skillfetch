@@ -31,7 +31,7 @@ from skillfetch.ingest.extract import (
 from skillfetch.ingest.extract_cache import ExtractCache
 from skillfetch.ingest.ingest import run_extractions
 from skillfetch.ingest.injection import load_rules, scan_skill
-from skillfetch.ingest.licenses import skill_license
+from skillfetch.ingest.licenses import root_license, skill_license
 from skillfetch.ingest.lint import lint_skill
 from skillfetch.ingest.provenance import openskills_upstream, parse_third_party_doc
 from skillfetch.ingest.skillfile import (
@@ -110,6 +110,22 @@ class SkillRecord(BaseModel):
     not_extracted_reason: (
         Literal["too_large", "no cache entry", "api_error", "pending_answer"] | None
     ) = None
+    # The two fields below are written only when set (_dump): extract_model when another
+    # model than the manifest's extract_model answered (a cache hit under another model);
+    # repo_license, the snapshot's root license, for sources with record_repo_license.
+    extract_model: str | None = None
+    repo_license: str | None = None
+
+
+_OPTIONAL = ("extract_model", "repo_license")
+
+
+def _dump(record: SkillRecord) -> dict:
+    row = record.model_dump(mode="json")
+    for key in _OPTIONAL:
+        if row[key] is None:
+            del row[key]
+    return row
 
 
 @dataclass
@@ -497,8 +513,8 @@ def _write_index(
 ) -> None:
     indexed = sorted((b for b in result_skills if b.record.tier), key=lambda b: b.record.id)
     rejected = sorted((b for b in result_skills if not b.record.tier), key=lambda b: b.record.id)
-    _write_jsonl(tmp / "skills.jsonl", [b.record.model_dump(mode="json") for b in indexed])
-    _write_jsonl(tmp / "rejected.jsonl", [b.record.model_dump(mode="json") for b in rejected])
+    _write_jsonl(tmp / "skills.jsonl", [_dump(b.record) for b in indexed])
+    _write_jsonl(tmp / "rejected.jsonl", [_dump(b.record) for b in rejected])
     _write_jsonl(
         tmp / "constraints.jsonl",
         [
@@ -542,12 +558,14 @@ def build_index(
                 dirs = discover_skills(root, source.exclude, base=snap.path)
                 found += [d for d in dirs if d not in seen]
         chosen = sample_dirs(found, samples.get(source.id), seed)
+        repo_license = root_license(snap.path) if source.record_repo_license else None
         seen_ids: set[str] = set()
         for skill_dir in chosen:
             built = _record(snap, skill_dir)
             if built.record.id in seen_ids:  # same name and content twice in one source
                 continue
             seen_ids.add(built.record.id)
+            built.record.repo_license = repo_license
             skills.append(built)
         doc = snap.path / source.third_party_doc if source.third_party_doc else None
         source_meta.append(
@@ -565,6 +583,7 @@ def build_index(
                 "third_party_upstreams": parse_third_party_doc(read_text(doc))
                 if doc and doc.is_file()
                 else [],
+                **({"repo_license": repo_license} if repo_license else {}),
             }
         )
 
@@ -572,9 +591,12 @@ def build_index(
 
     ok = [b for b in skills if b.record.status == "ok"]
     # cached answers are post-processed now, with the current rules (extract_cache.py)
-    cached = {
-        b.record.content_hash: cache.get(b.record.content_hash, model, b.skill_dir) for b in ok
+    # and a skill another model already answered (same content_hash) is not asked again
+    hits = {
+        b.record.content_hash: cache.get_any(b.record.content_hash, model, b.skill_dir) for b in ok
     }
+    cached = {digest: hit[0] if hit else None for digest, hit in hits.items()}
+    answered_by = {digest: hit[1] for digest, hit in hits.items() if hit}
     todo = [
         (b.skill_dir, b.record.id, b.record.content_hash)
         for b in ok
@@ -598,6 +620,18 @@ def build_index(
             b.record.extract_error = api_errors[digest]  # redacted by run_extractions
             continue
         _apply_extraction(b, fresh.get(digest) or cached[digest])
+        if b.extraction is not None:
+            b.record.extract_model = model if digest in fresh else answered_by[digest]
+
+    # the manifest names the model that answered most skills (ties: this build's model); a
+    # record keeps extract_model only when its model is another one
+    by_model = Counter(b.record.extract_model for b in skills if b.record.extract_model)
+    manifest_model = (
+        min(by_model, key=lambda m: (-by_model[m], m != model, m)) if by_model else model
+    )
+    for b in skills:
+        if b.record.extract_model == manifest_model:
+            b.record.extract_model = None
 
     candidates = [b for b in skills if b.record.status not in ("lint_failed", "scan_failed")]
     groups = dedup(candidates)
@@ -611,7 +645,7 @@ def build_index(
         "schema_version": SCHEMA_VERSION,
         "built_at": datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "extract_version": EXTRACT_VERSION,
-        "extract_model": model,
+        "extract_model": manifest_model,
         "postprocess": postprocess_fingerprint()[:16],
         "scan_rules_version": load_rules().version,
         "conflict_cap": cap,
