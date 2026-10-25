@@ -710,7 +710,7 @@ Per pair (controlled runs out of 5):
 
 ## 11. Router in real sessions (end-to-end stages 1, 1b and 2)
 
-Source: `data/e2e/router-e2e.json` (exported from the e2e workspace: e2e/stage1/runs/_extract.json, e2e/stage1b/runs/_extract.json, e2e/stage1/report-stage1-extra.md §1, e2e/stage1/blind-ranking-results.md, e2e/stage1b/blind-ranking-results.md, e2e/retrieval/ (retrieval eval)). `claude -p` headless sessions, Claude Code plan, default model, one run per task and condition repeated twice. A: the upstream repo. B: A plus the expert-chosen skills for the task, loaded through `load_skills` and appended to the system prompt. C: A plus the router skill and the MCP server; the session decides on its own whether to search and what to load. Repos: fastapi full-stack template, Next.js with-typescript. Checks were written and frozen before the runs. Blind judging: one judge (the Claude session that ran the test), condition hidden behind random codes.
+Source: `evals/e2e/router-e2e.json` (exported from the e2e workspace: evals/e2e/stage1/derived/sessions.jsonl, evals/e2e/stage1b/derived/sessions.jsonl, evals/e2e/stage1/report-stage1-extra.md §1, evals/e2e/stage1/blind-ranking-results.md, evals/e2e/stage1b/blind-ranking-results.md, evals/e2e/retrieval/ (retrieval eval)). `claude -p` headless sessions, Claude Code plan, default model, one run per task and condition repeated twice. A: the upstream repo. B: A plus the expert-chosen skills for the task, loaded through `load_skills` and appended to the system prompt. C: A plus the router skill and the MCP server; the session decides on its own whether to search and what to load. Repos: fastapi full-stack template, Next.js with-typescript. Checks were written and frozen before the runs. Blind judging: one judge (the Claude session that ran the test), condition hidden behind random codes.
 
 | stage | tasks | condition | sessions | checks pass | median turns | median input tokens | searched | loaded |
 |---|---|---|---|---|---|---|---|---|
@@ -730,7 +730,7 @@ Source: `data/e2e/router-e2e.json` (exported from the e2e workspace: e2e/stage1/
 
 ### Stage 1b rejudge
 
-Source: e2e/stage1b/report-1b-c2.md §1 and §4 (`rejudge/`). A, B and C are the 1b sessions; C2 is the same 5 tasks × 2 runs with skillfetch e2a1b65 (search_skills k=50, compact results). All four conditions judged together under fresh random codes by sub-agent judges (same model) that saw only the rubric and the outputs. Landing pages: 2 tasks × 2 runs (n=4); plan: 1 task × 2 runs (n=2); median turns over all 5 tasks (n=10).
+Source: evals/e2e/stage1b/report-1b-c2.md §1 and §4 (`rejudge/`). A, B and C are the 1b sessions; C2 is the same 5 tasks × 2 runs with skillfetch e2a1b65 (search_skills k=50, compact results). All four conditions judged together under fresh random codes by sub-agent judges (same model) that saw only the rubric and the outputs. Landing pages: 2 tasks × 2 runs (n=4); plan: 1 task × 2 runs (n=2); median turns over all 5 tasks (n=10).
 
 | condition | landing usable 1-5 | landing AI-template tells | plan normalised rank (0 = best) | median turns |
 |---|---|---|---|---|
@@ -774,7 +774,7 @@ Repos (e2e/stage2/report-stage2.md §0): test writing, a package with a 280-line
 
 ## 12. Embedding retrieval (not adopted)
 
-Source: `embedding_eval` in `data/e2e/router-e2e.json` (e2e/retrieval/report-embedding.md, `emb-ranks.jsonl`, `emb-timing.json`). Offline, no sessions, no runtime change. 34 queries: the queries C sent on tasks with an expert skill (stages 1 and 1b); gold = the expert skill id. Documents: the 1489 tier A/B canonical skills, text = title + description + summary + synthetic queries. RRF: reciprocal rank fusion of the BM25 ranking (search_skills with the query's profile) and the embedding ranking, k=60.
+Source: `embedding_eval` in `evals/e2e/router-e2e.json` (evals/e2e/retrieval/report-embedding.md, `emb-ranks.jsonl`, `emb-timing.json`). Offline, no sessions, no runtime change. 34 queries: the queries C sent on tasks with an expert skill (stages 1 and 1b); gold = the expert skill id. Documents: the 1489 tier A/B canonical skills, text = title + description + summary + synthetic queries. RRF: reciprocal rank fusion of the BM25 ranking (search_skills with the query's profile) and the embedding ranking, k=60.
 
 | method | gold in top 3 | top 10 | top 50 |
 |---|---|---|---|
@@ -788,7 +788,7 @@ Source: `embedding_eval` in `data/e2e/router-e2e.json` (e2e/retrieval/report-emb
 
 ## 13. Retrieval benchmark (380 synthetic tasks)
 
-Source: e2e/stage3/report-stage3.md (frozen inputs and hashes: e2e/stage3/FROZEN.sha256); the
+Source: evals/e2e/stage3/report-stage3.md (frozen inputs and hashes: evals/e2e/stage3/FROZEN.sha256); the
 task set, oracle and queries are in `evals/retrieval/`. Index-2026-10-22: the 1,489 canonical
 tier A/B skills search_skills can return.
 
@@ -924,7 +924,7 @@ Bottlenecks, counted in tasks: selection 55 (select_fail 25 + over_load 30), the
 - The repositories were not real: run 1 had only the router files, so sessions looked for code, found none and stopped; run 2 had empty stub files and no manifest. 12/40 (run 2) is the rate at which the router reached search in stub repositories, not a firing rate for real ones. §14 (stage 4) measures that in real repositories, in a clean environment and in the author's own.
 - On the 40 tasks, the offline selection does not reproduce what real sessions loaded: 11/40 identical sets, 17/40 matching classes.
 
-**Shipped router rule (step 1, after the post).** Source: e2e/stage3/router-winner.md (metrics in e2e/stage3/followup/router-cands.json and router-cands-paired.json). Offline, no sessions. The two recall tables are `skillfetch eval retrieval` output (`evals/retrieval/queries-R-{a,b,c}.jsonl`, `oracle-v3.jsonl`); the paired differences and repeats are transcribed from the report.
+**Shipped router rule (step 1, after the post).** Source: evals/e2e/stage3/router-winner.md (metrics in evals/e2e/stage3/followup/router-cands.json and router-cands-paired.json). Offline, no sessions. The two recall tables are `skillfetch eval retrieval` output (`evals/retrieval/queries-R-{a,b,c}.jsonl`, `oracle-v3.jsonl`); the paired differences and repeats are transcribed from the report.
 - **Candidates.** Each candidate's step-1 text was put verbatim into an isolated `claude -p` prompt (no tools, no MCP, no user settings), which wrote the `queries` for the 380 tasks, 20 tasks per call. Search: skillfetch `a1cbcd5` `search_skills(queries=…)` (RRF k=60, compact k=50, no profile).
   - **R-a:** the rule shipped at `a1cbcd5`, the previous shipped value. (b) how to work is written only when the user said.
   - **R-b:** always three sentences; (b) is the approach the user asked for, or the one that fits the task best when they did not say (the stage 3 q3 condition).
@@ -979,7 +979,7 @@ Three repeats on 50 tasks (5 phrasings × 10), each run generated independently:
 - **On the 120 cross-labelled tasks** (labels both models grade ≥ 2, v2 pool; next block): all @50 R-a 0.745, R-b 0.827, R-c 0.845, stage 3 q3 0.846; 2a @50 0.657 / 0.754 / 0.759 / 0.736.
 - **Cost:** query generation 102 calls, $7.35; pool correction 373 calls, $7.06 (isolated `claude -p`).
 
-**Cross-model labels (120 tasks, after the post).** Source: e2e/stage3/report-cross-label.md (`scripts/cross_label.py`, `scripts/table1_intersection.py`; data `cross-label.json`, `cross-label-table1.json`). A second model, GPT Astra, graded the 4,486 (task, candidate) rows of 120 stage 3 tasks blind (`blind-pool-120.jsonl`, same 0–3 scale and process flag); the grades (`gpt-grades-120.jsonl`) were supplied by the author and do not name the model. They are compared with the Opus labels (oracle v2: 2b + 3-0).
+**Cross-model labels (120 tasks, after the post).** Source: evals/e2e/stage3/report-cross-label.md (`scripts/cross_label.py`, `scripts/table1_intersection.py`; data `cross-label.json`, `cross-label-table1.json`). A second model, GPT Astra, graded the 4,486 (task, candidate) rows of 120 stage 3 tasks blind (`blind-pool-120.jsonl`, same 0–3 scale and process flag); the grades (`gpt-grades-120.jsonl`) were supplied by the author and do not name the model. They are compared with the Opus labels (oracle v2: 2b + 3-0).
 
 | measure | value |
 |---|---|
@@ -1025,7 +1025,7 @@ n: Opus all 91 · 2a 67 · process 65; GPT 105 · 67 · 98; both 90 · 67 · 59.
 
 ## 14. Stage 4: router in real repos, clean vs author's environment
 
-Source: e2e/stage4/report-stage4.md (inputs and outputs hashed in e2e/stage4/FROZEN.sha256; design in
+Source: evals/e2e/stage4/report-stage4.md (inputs and outputs hashed in evals/e2e/stage4/FROZEN.sha256; design in
 e2e/stage4/DESIGN.md, pilot in report-p0.md).
 
 **Setup.**
@@ -1091,7 +1091,7 @@ e2e/stage4/DESIGN.md, pilot in report-p0.md).
 
 ## 15. Stage 5: what makes the router fire
 
-Source: e2e/stage5/report-stage5.md (design in e2e/stage5/DESIGN.md, check sessions in report-check.md, inputs hashed in FROZEN.sha256; session rows in sessions.jsonl, parsed with the stage 4 parser). The trivial-task check before shipping V1 is e2e/stage5/report-trivial.md (rows in trivial.jsonl). The work itself is not scored.
+Source: evals/e2e/stage5/report-stage5.md (design in evals/e2e/stage5/DESIGN.md, check sessions in report-check.md, inputs hashed in FROZEN.sha256; session rows in sessions.jsonl, parsed with the stage 4 parser). The trivial-task check before shipping V1 is evals/e2e/stage5/report-trivial.md (rows in trivial.jsonl). The work itself is not scored.
 
 **Setup.**
 - **skillfetch:** `14d2020` (PR #45). The router SKILL.md is R-c (§13), byte-identical. The server runs from a local worktree: V0–V2 at `14d2020`; V3 is `14d2020` with only `INSTRUCTIONS` changed (local branch, not pushed).
@@ -1243,7 +1243,7 @@ Long requests (800+ characters) were copied word for word in 0 of 40 sessions. O
 
 ## 16. Codex (after the post freeze)
 
-Source: e2e/codex-e2e.md (first run) and e2e/codex-e2e-2.md (rerun); session records, observations and audit in e2e/codex-e2e-runs/. Measured after the post's numbers were frozen; not in §7's totals. The work itself is not scored.
+Source: evals/e2e/codex/codex-e2e.md (first run) and evals/e2e/codex/codex-e2e-2.md (rerun); session records, observations and audit in evals/e2e/codex/codex-e2e-runs/. Measured after the post's numbers were frozen; not in §7's totals. The work itself is not scored.
 
 **Setup (both runs).**
 - **Codex:** codex-cli 0.164.0, model gpt-6-astra (reasoning medium). Auth: ChatGPT Pro subscription login (`forced_login_method = "chatgpt"`, checked per session); no API-key variables passed to the process.
@@ -1286,7 +1286,7 @@ default_tools_approval_mode = "approve"
 - steps 7–8 (load and follow; continue without skills listed in `errors`).
 Codex still called `resolve_set` and `load_skills` in 19/19 sessions.
 
-**Full router (E2E3) and S-b′ (E2E4), 19 tasks × 3 runs each.** Sources: e2e/codex-e2e-3.md and codex-e2e-4.md (records in e2e/codex-e2e-3-runs/, codex-e2e-4-runs/). Same Codex version, model, subscription auth (checked in 57/57 main sessions each), config (byte-identical to the rerun's, with the per-server approval line), `s5` branches and tasks.
+**Full router (E2E3) and S-b′ (E2E4), 19 tasks × 3 runs each.** Sources: evals/e2e/codex/codex-e2e-3.md and codex-e2e-4.md (records in evals/e2e/codex/codex-e2e-3-runs/, codex-e2e-4-runs/). Same Codex version, model, subscription auth (checked in 57/57 main sessions each), config (byte-identical to the rerun's, with the per-server approval line), `s5` branches and tasks.
 - **E2E3:** AGENTS.md holds the whole router at `14d2020` (When, steps 1–8, Rules; the description before V1), with steps 1–2 in the Codex wording and local skills under `.agents/skills/`.
 - **E2E4:** AGENTS.md is `stage6/select-cands/S-bp/AGENTS.md` unchanged (S-b′, §17; Codex version of the shipped router). Against E2E3 it differs in more than the selection sentence (description, steps 1–2, "search once", Rules removed), so the difference between the two runs is not the selection sentence's effect alone.
 - **Labels:** the stage 5 oracle with its 4-0 grades (no new grading); R = grade ≥ 2, N = grade < 2, U = a returned id with no grade for that task.
@@ -1316,7 +1316,7 @@ Codex still called `resolve_set` and `load_skills` in 19/19 sessions.
 
 ## 17. Stage 6: choosing none (after the post freeze)
 
-Source: e2e/stage6/report-6a.md (offline selection), report-6b-A.md (offline follow-up), DESIGN.md (6b design; §5 fixed before the run), 6b/report-6b.md and 6b/report-pilot.md (sessions); hashes in stage6/FROZEN.sha256 and stage6/6b/FROZEN.sha256. Measured after the post's numbers were frozen; not in §7's totals. The shipped router is S-b′ (`assets/router-skill/SKILL.md`, 58 lines, sha256 3efef1e0…).
+Source: evals/e2e/stage6/report-6a.md (offline selection), report-6b-A.md (offline follow-up), DESIGN.md (6b design; §5 fixed before the run), 6b/report-6b.md and 6b/report-pilot.md (sessions); hashes in stage6/FROZEN.sha256 and stage6/6b/FROZEN.sha256. Measured after the post's numbers were frozen; not in §7's totals. The shipped router is S-b′ (`assets/router-skill/SKILL.md`, 58 lines, sha256 3efef1e0…).
 
 **6a setup (offline, no sessions).**
 - **Baseline S-0:** the router at `cc5d16c` (stage 5 V1 description, R-c step 1, 60 lines).
@@ -1451,7 +1451,7 @@ t004, outside the decision (3 sessions per condition):
 
 Judge agreement (p1 vs p2): group (1) 21/36 sessions equal, mean absolute difference 0.417, D 0.334; (2) 31/36, 0.139, D 0.167; (3) 15/27, 0.444, D 0.444; largest difference 1 in each.
 
-**Third judge (GPT), after the verdict.** Source: e2e/codex-judge-6b.md (scores frozen before unblinding in codex-judge-6b-blind-freeze.json; metrics in codex-judge-6b-metrics.json; verification PASS: 108 candidates, 276 input files unchanged). One pass over the same 108 coded outputs (stage6/6b/blind-p1/, the same rubrics; design from the 72 screenshots), by a Codex session and 5 native review subagents of the same model, one per task family. No new sessions or test runs.
+**Third judge (GPT), after the verdict.** Source: evals/e2e/codex/codex-judge-6b.md (scores frozen before unblinding in codex-judge-6b-blind-freeze.json; metrics in codex-judge-6b-metrics.json; verification PASS: 108 candidates, 276 input files unchanged). One pass over the same 108 coded outputs (stage6/6b/blind-p1/, the same rubrics; design from the 72 screenshots), by a Codex session and 5 native review subagents of the same model, one per task family. No new sessions or test runs.
 
 | group | condition | n | p1 | p2 | p1 + p2 mean | GPT |
 |---|---|---|---|---|---|---|
@@ -1493,7 +1493,7 @@ The 6b decision rule applied to the GPT scores (turns and tokens unchanged): rej
 
 ## 18. Stage 7a: following the user's working direction (after the post freeze)
 
-Source: e2e/stage7/report-7a.md; design and the rules fixed before each step in e2e/stage7/DESIGN.md (§3, "7a-relabel", "7a-pool"); hashes in stage7/FROZEN.sha256. Offline, isolated `claude -p`, no sessions. Measured after the post's numbers were frozen; not in §7's totals. The router measured is the shipped S-b′ (`38dcb69`).
+Source: evals/e2e/stage7/report-7a.md; design and the rules fixed before each step in evals/e2e/stage7/DESIGN.md (§3, "7a-relabel", "7a-pool"); hashes in stage7/FROZEN.sha256. Offline, isolated `claude -p`, no sessions. Measured after the post's numbers were frozen; not in §7's totals. The router measured is the shipped S-b′ (`38dcb69`).
 
 **The question (#59).** 20 pairs of the 380 tasks differ only in the working direction the user states (test-first vs minimal diff, plan first vs just do it, security first vs performance first, accessibility first vs visual polish first, no new dependencies vs use a well-known library, backward compatible vs breaking change allowed). A pair counts as followed when the two sides' selected sets differ and each side's added skill is relevant only on that side (stage 3 `eval_selection.py`). §17 (6a) had 9–12 of 20.
 
@@ -1560,7 +1560,7 @@ Relevant kappa is below 0.6, so the intersection labels are reported alongside. 
 
 ## 19. Stage 8: Skillselion comparison (after the post freeze)
 
-Source: e2e/stage8/report-8.md (main run), report-8-followup.md (label extension, short queries, source candidates), gpt-kappa-8.md (second judge); design and rules fixed before each step in e2e/stage8/DESIGN.md (§0–2, §2-addendum, §4); hashes in stage8/FROZEN.sha256. Measured after the post's numbers were frozen; not in §7's totals.
+Source: evals/e2e/stage8/report-8.md (main run), report-8-followup.md (label extension, short queries, source candidates), gpt-kappa-8.md (second judge); design and rules fixed before each step in evals/e2e/stage8/DESIGN.md (§0–2, §2-addendum, §4); hashes in stage8/FROZEN.sha256. Measured after the post's numbers were frozen; not in §7's totals.
 
 The benchmark (380 tasks), the labelling procedure (the 2b grading prompt) and the router wording (R-c queries, S-b′ selection) were all built for skillfetch; Skillselion was never tuned to them. The numbers below are per measure, with their limits; this section does not say which is better.
 
@@ -1664,7 +1664,7 @@ hit@10 on the 52: SF 0.404 / 0.385 / 0.750, SS-kw 0.808 / 0.808 / 0.827 (Opus / 
 
 ## 20. Stage 9: index expansion (after the post freeze)
 
-Source: e2e/stage9/report-9.md (run 1), report-9b.md (run-b), report-9b-followup.md (batch-effect check, GPT cross-labels, run-c estimate), report-9c.md (run-c); rules fixed before each run in e2e/stage9/DESIGN.md (§2, §3, §9, §11–§13). Staging builds: `data/index-staging*-reports/report.md` (the build reports) and issue #60. Measured after the post's numbers were frozen; not in §7's totals. No release was made from any of these builds.
+Source: evals/e2e/stage9/report-9.md (run 1), report-9b.md (run-b), report-9b-followup.md (batch-effect check, GPT cross-labels, run-c estimate), report-9c.md (run-c); rules fixed before each run in evals/e2e/stage9/DESIGN.md (§2, §3, §9, §11–§13). Staging builds: `data/index-staging*-reports/report.md` (the build reports) and issue #60. Measured after the post's numbers were frozen; not in §7's totals. No release was made from any of these builds.
 
 **What was evaluated.** Repositories from the Stage 8 source candidates (§19), added to a copy of the released index (1,724 records) as staging indexes, extracted with `claude-code/opus-5.5` (records carry `extract_model`; the 1,724 release records come from the gpt-6-luna cache). Each staging index was searched with the shipped router (R-c, four queries, k=50, default tiers) and selected from with S-b′ (one offline run, the stage 6b wrapper); the release index is the baseline (S-b′ three runs).
 
