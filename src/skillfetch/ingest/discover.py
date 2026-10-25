@@ -27,7 +27,7 @@ import time
 from collections import Counter
 from collections.abc import Callable, Iterable
 from dataclasses import asdict, dataclass, field
-from datetime import date
+from datetime import date, datetime
 from pathlib import Path
 from typing import Protocol
 from urllib.error import HTTPError
@@ -74,7 +74,7 @@ class CodeSearch(BaseModel):
     size_max: int = 20_000  # the last range is "size >= size_max"
     shards_per_run: int = 12
     pages_per_shard: int = 3
-    pause: float = 6.5  # seconds between code search requests (10 a minute)
+    pause: float = 12.0  # seconds between code search requests (its limit is 10 a minute)
 
 
 class ListSource(BaseModel):
@@ -153,16 +153,18 @@ RATE_WAIT_MAX = 900.0  # seconds; a longer wait skips the request ("rate-limited
 RATE_SKIPPED = "rate-limited, skipped"
 RATE_BUDGET = 1800.0  # seconds of rate-limit waiting per run, all requests together
 BUDGET_SKIPPED = "budget exhausted, skipped"
-_TRY_AGAIN = re.compile(r"try again in ([0-9.]+)\s*s", re.I)
+_TRY_AGAIN = re.compile(r"try again in ([0-9.]+)\s*(ms|s)\b", re.I)
+RATE_RETRIES = 2  # the second retry waits twice as long
 _STATUS = re.compile(r"^HTTP/\S+\s+(\d{3})")
 
 
 def retry_wait(
-    status: int | None, headers: dict[str, str], message: str, now: float
-) -> float | None:
-    """Seconds GitHub asks for before a retry, when the failure is a rate limit (429, or 403
-    with a rate-limit sign); None for any other failure. Order: the retry-after header, the
-    message's "try again in N s", x-ratelimit-reset when no requests remain, else 60 s."""
+    status: int | None, headers: dict[str, str], message: str
+) -> tuple[float, str] | None:
+    """(seconds, where the value came from) GitHub asks for before a retry, when the failure
+    is a rate limit (429, or 403 with a rate-limit sign); None for any other failure. The
+    retry-after header ("header"), else the message's "try again in N s" or "N ms"
+    ("message"), else 60 s ("default")."""
     exhausted = headers.get("x-ratelimit-remaining") == "0"
     limited = status == 429 or (
         status == 403 and ("retry-after" in headers or exhausted or "rate limit" in message.lower())
@@ -170,12 +172,11 @@ def retry_wait(
     if not limited:
         return None
     if (after := headers.get("retry-after", "").strip()).isdigit():
-        return float(after)
+        return float(after), "header"
     if m := _TRY_AGAIN.search(message):
-        return float(m.group(1))
-    if exhausted and (reset := headers.get("x-ratelimit-reset", "").strip()).isdigit():
-        return max(0.0, float(reset) - now)
-    return 60.0
+        value = float(m.group(1))
+        return (value / 1000 if m.group(2).lower() == "ms" else value), "message"
+    return 60.0, "default"
 
 
 def _split_include(stdout: str) -> tuple[int | None, dict[str, str], str]:
@@ -197,10 +198,11 @@ def _split_include(stdout: str) -> tuple[int | None, dict[str, str], str]:
 class GhApi:
     """GitHubClient over `gh api` (its token: GH_TOKEN in CI). None on failure, with the
     reason in `last_error` (gh's message, which carries the HTTP status). A rate-limited
-    request waits as long as GitHub asks and is retried once; a wait over `max_wait` skips it,
-    and so does a wait that would take the run's total past `budget` (after which
-    `budget_exhausted` is set). `retries`, `waited` (seconds) and `skipped` count what
-    happened."""
+    request waits as long as GitHub asks and is retried, at most `max_retries` times, the
+    second wait twice as long as asked. A wait over `max_wait` skips the request, and so does
+    a wait that would take the run's total past `budget` (after which `budget_exhausted` is
+    set). `retries`, `waited` (seconds), `skipped` and `wait_sources` (header / message /
+    default: [count, seconds]) count what happened."""
 
     def __init__(
         self,
@@ -209,9 +211,11 @@ class GhApi:
         clock=time.time,
         max_wait=RATE_WAIT_MAX,
         budget=RATE_BUDGET,
+        max_retries=RATE_RETRIES,
     ):
         self._run, self._sleep, self._clock = run, sleep, clock
-        self.max_wait, self.budget = max_wait, budget
+        self.max_wait, self.budget, self.max_retries = max_wait, budget, max_retries
+        self.wait_sources: dict[str, list[float]] = {}
         self.last_error: str | None = None
         self.retries = 0
         self.waited = 0.0
@@ -225,34 +229,37 @@ class GhApi:
             return json.loads(body), None, None
         lines = [ln.strip() for ln in (proc.stderr or "").splitlines() if ln.strip()]
         message = lines[-1] if lines else f"exit {proc.returncode}"
-        return None, message[:200], retry_wait(status, headers, message, self._clock())
+        return None, message[:200], retry_wait(status, headers, message)
 
     def get(self, path: str) -> dict | None:
         self.last_error = None
         data, message, wait = self._once(path)
-        if message is None:
-            return data
-        if wait is not None:
-            if wait > self.max_wait:
+        tries = 0
+        while message is not None and wait is not None and tries < self.max_retries:
+            seconds, source = wait[0] * 2**tries, wait[1]
+            if seconds > self.max_wait:
                 self.skipped += 1
-                self.last_error = f"{RATE_SKIPPED} (asked to wait {wait:.0f} s)"
+                self.last_error = f"{RATE_SKIPPED} (asked to wait {seconds:.0f} s, {source})"
                 return None
-            if self.waited + wait > self.budget:
+            if self.waited + seconds > self.budget:
                 self.skipped += 1
                 self.budget_exhausted = True
                 self.last_error = (
-                    f"{BUDGET_SKIPPED} (asked to wait {wait:.0f} s, {self.waited:.0f} s of "
+                    f"{BUDGET_SKIPPED} (asked to wait {seconds:.0f} s, {self.waited:.0f} s of "
                     f"{self.budget:.0f} s used)"
                 )
                 return None
-            self._sleep(wait)
+            self._sleep(seconds)
             self.retries += 1
-            self.waited += wait
-            data, message, _ = self._once(path)
-            if message is None:
-                return data
-            message = f"after one retry: {message}"
-        self.last_error = message
+            self.waited += seconds
+            used = self.wait_sources.setdefault(source, [0, 0.0])
+            used[0] += 1
+            used[1] += seconds
+            tries += 1
+            data, message, wait = self._once(path)
+        if message is None:
+            return data
+        self.last_error = f"after {tries} retries: {message}" if tries else message
         return None
 
 
@@ -284,12 +291,34 @@ def known_repos(sources: Iterable[Source], seen_path: Path) -> set[str]:
 class Candidate:
     repo: str  # owner/name as first seen
     channels: Counter = field(default_factory=Counter)  # "code", "topic:<t>", "list:<id>"
-    skill_md_seen: int = 0  # SKILL.md paths seen in code search results
+    skill_md_seen: int = 0  # SKILL.md hits in code search results
+    skill_paths: set[str] = field(default_factory=set)  # their paths, distinct
     meta: dict | None = None  # GitHub repository object
 
-    def rank(self) -> tuple:
-        stars = (self.meta or {}).get("stargazers_count") or 0
-        return (-len(self.channels), -self.skill_md_seen, -stars, self.repo.lower())
+    def new_skills(self, index_names: set[str] | None) -> int:
+        """SKILL.md files seen in code search whose skill name is not in the index. The name
+        is the SKILL.md's folder, or the repository name for a root SKILL.md."""
+        repo_name = self.repo.split("/", 1)[-1]
+        names = [
+            _norm_name(p.rsplit("/", 2)[-2] if "/" in p else repo_name) for p in self.skill_paths
+        ]
+        return sum(1 for n in names if not index_names or n not in index_names)
+
+    def rank(self, index_names: set[str] | None = None) -> tuple:
+        """Pre-check order (index-format.md §6): repositories with one SKILL.md (or none) that
+        only code search found go last; then more new skills first; then the latest push."""
+        elsewhere = any(not ch.startswith("code") for ch in self.channels)
+        lone = len(self.skill_paths) <= 1 and not elsewhere
+        return (lone, -self.new_skills(index_names), -_pushed(self.meta), self.repo.lower())
+
+
+def _pushed(meta: dict | None) -> float:
+    """pushed_at as a timestamp; 0 when unknown (sorts last)."""
+    value = (meta or {}).get("pushed_at")
+    try:
+        return datetime.fromisoformat(value.replace("Z", "+00:00")).timestamp() if value else 0.0
+    except ValueError:
+        return 0.0
 
 
 @dataclass
@@ -358,7 +387,10 @@ def search_code(client: GitHubClient, cfg: CodeSearch, week: int, found: Found) 
             for item in items:
                 owner, _, name = item.get("repository", {}).get("full_name", "").partition("/")
                 if owner and name:
-                    found.add(owner, name, "code").skill_md_seen += 1
+                    cand = found.add(owner, name, "code")
+                    cand.skill_md_seen += 1
+                    if item.get("path"):
+                        cand.skill_paths.add(item["path"])
             fetched += len(items)
             if len(items) < PER_PAGE or fetched >= min(total, SEARCH_CAP):
                 break
@@ -402,11 +434,20 @@ def read_lists(fetch: Fetch, lists: list[ListSource], found: Found) -> None:
                 break
 
 
+META_PREFETCH = 3  # metadata (for the latest push) is read for 3 × max_checks candidates
+
+
 def select(
-    found: Found, known: set[str], client: GitHubClient, cfg: DiscoverConfig
+    found: Found,
+    known: set[str],
+    client: GitHubClient,
+    cfg: DiscoverConfig,
+    index_names: set[str] | None = None,
 ) -> tuple[list[Candidate], dict[str, int]]:
     """Drop known repositories, forks and archived ones; return the candidates in rank order
-    with metadata for the first max_checks, and how many were dropped for each reason."""
+    (Candidate.rank) with metadata for the first max_checks, and how many were dropped for
+    each reason. Metadata, which gives the latest push, is read for the first
+    META_PREFETCH × max_checks candidates before the final sort."""
     dropped: Counter = Counter()
     pool = []
     for key, cand in found.candidates.items():
@@ -414,7 +455,14 @@ def select(
             dropped["in sources.yaml or seen.jsonl"] += 1
         else:
             pool.append(cand)
-    pool.sort(key=Candidate.rank)
+    pool.sort(key=lambda c: c.rank(index_names))
+    for cand in pool[: META_PREFETCH * cfg.max_checks]:
+        if cand.meta is None:
+            cand.meta = client.get(f"repos/{cand.repo}")
+            if cand.meta is None:
+                found.failed.append((f"repos/{cand.repo}", _why(client)))
+                cand.meta = {}  # asked once; not asked again below
+    pool.sort(key=lambda c: c.rank(index_names))
     out: list[Candidate] = []
     with_meta = 0
     for cand in pool:
@@ -626,6 +674,7 @@ def check_candidates(
             "url": f"https://github.com/{meta.get('full_name') or cand.repo}",
             "channels": dict(sorted(cand.channels.items())),
             "skill_md_seen": cand.skill_md_seen,
+            "new_skills_seen": cand.new_skills(index.names if index else None),
             "stars": meta.get("stargazers_count"),
             "pushed_at": meta.get("pushed_at"),
             "repo_license": (meta.get("license") or {}).get("spdx_id"),
@@ -710,14 +759,16 @@ def discover(
     phase("code search", lambda: search_code(client, cfg.code_search, week, found))
     phase("topic search", lambda: search_topics(client, cfg.repo_topics, cfg.topic_pages, found))
     phase("list sources", lambda: read_lists(fetch, cfg.lists, found))
-    picked = phase("selection", lambda: select(found, known, client, cfg))
+    names = index.names if index else None
+    picked = phase("selection", lambda: select(found, known, client, cfg, names))
     if picked is None:  # fall back to the raw ranking, nothing cloned
         pool = [c for k, c in found.candidates.items() if k not in known]
-        picked = (sorted(pool, key=Candidate.rank), {})
+        picked = (sorted(pool, key=lambda c: c.rank(names)), {})
         cfg = cfg.model_copy(update={"max_checks": 0})
     cands, dropped = picked
     rows = phase("pre-check", lambda: check_candidates(cands, cfg, checkout, index)) or []
     rate = {k: getattr(client, k, 0) for k in ("retries", "waited", "skipped")}
+    rate["sources"] = dict(getattr(client, "wait_sources", {}))
     rate["budget_exhausted"] = getattr(client, "budget_exhausted", False)
     return Run(
         today.isoformat(), week, rows, found, dropped, len(known), index is not None, rate, partial
@@ -797,6 +848,15 @@ def _failure_kind(request: str) -> str:
     return "repos" if path.startswith("repos/") else path
 
 
+def _wait_sources(sources: dict[str, list[float]]) -> str:
+    parts = [
+        f"{k} {sources[k][0]} ({sources[k][1]:.0f} s)"
+        for k in ("header", "message", "default")
+        if k in sources
+    ]
+    return ", ".join(parts) or "none"
+
+
 def channel_lines(run: Run) -> list[str]:
     """Candidates per channel (code search, each topic, each list source) and the failed
     requests with their reasons: the top of the report."""
@@ -821,7 +881,8 @@ def channel_lines(run: Run) -> list[str]:
         f"- Failed requests: {len(f.failed)}" + (f": {fail_text}." if fail_text else "."),
         f"- Rate limits: {run.rate.get('retries', 0)} retries after waiting "
         f"{run.rate.get('waited', 0):.0f} s in total (budget {RATE_BUDGET:.0f} s"
-        f"{', exhausted' if run.rate.get('budget_exhausted') else ''}); "
+        f"{', exhausted' if run.rate.get('budget_exhausted') else ''}; waits from "
+        f"{_wait_sources(run.rate.get('sources') or {})}); "
         f"{run.rate.get('skipped', 0)} requests skipped (a wait over {RATE_WAIT_MAX:.0f} s, "
         "or past the budget).",
     ]

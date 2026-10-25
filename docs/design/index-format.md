@@ -576,12 +576,13 @@ As built (`ingest/discover.py`, `cli.py`, `.github/workflows/discover.yml`):
     stopped: the starting range is `ISO week × shards_per_run` (mod the number
     of ranges). This channel samples. It is not a census; the report prints
     each range's results read against GitHub's total.
-  - *Rate limits.* A GitHub request answered with 429 (or a 403 that signals a
-    rate limit) waits as long as GitHub asks, from the `retry-after` header, else
-    the message's "try again in N s", else `x-ratelimit-reset` when no requests
-    remain, else 60 s. Then it is retried once. When the wait would exceed 900 s,
-    the request is skipped; a size range lost that way reads "rate-limited,
-    skipped". A run waits at most 1,800 s in total: a wait that would pass that
+  - *Rate limits.* Code search requests are 12 s apart. A GitHub request
+    answered with 429 (or a 403 that signals a rate limit) waits as long as GitHub
+    asks: the `retry-after` header ("header"), else the message's "try again in N s"
+    or "N ms" ("message"), else 60 s ("default"). It is retried at most twice; the
+    second wait is twice what GitHub asked. When a wait would exceed 900 s, the
+    request is skipped; a size range lost that way reads "rate-limited, skipped".
+    The report counts the waits by where their value came from. A run waits at most 1,800 s in total: a wait that would pass that
     budget is not taken, the request is skipped, and the code search ranges not yet
     requested are not requested at all ("budget exhausted, skipped"). Topic search,
     the list sources, the pre-check and the issue update still run. The top of the
@@ -600,9 +601,20 @@ As built (`ingest/discover.py`, `cli.py`, `.github/workflows/discover.yml`):
   of `data/` is not). A candidate whose repository metadata names a renamed
   repository already listed is left out too, as are forks and archived
   repositories (`exclude_forks`, `exclude_archived`).
-- **Order.** Number of channels, then SKILL.md paths seen in code search, then
-  stars. The first `max_checks` candidates are pre-checked; the next 50 are
-  listed by name.
+- **Order** (which candidates are pre-checked first):
+  1. a repository with at most one SKILL.md that only code search found goes
+     last; one that a topic or a list source also found keeps its place;
+  2. more *new skills* first: the distinct SKILL.md paths code search returned for
+     the repository (this run's ranges only, so a sample), minus those whose skill
+     name, the SKILL.md's folder (the repository name for a root SKILL.md),
+     normalized as in §1.6, is already an index record's name;
+  3. the latest push first (`pushed_at`; repository metadata is read for the
+     first 3 × `max_checks` candidates of the order by 1 and 2, the rest count as
+     unknown and go after);
+  4. the repository name.
+  The first `max_checks` candidates (forks, archived and renamed-known ones
+  dropped) are pre-checked; the next 50 are listed by name. Each row keeps
+  `skill_md_seen` and `new_skills_seen`.
 - **Pre-check** (no model). Each candidate is shallow-cloned through the snapshot
   stage (§1.2: https only, cached per commit) unless GitHub reports it larger
   than `max_repo_kb`. Then, over its SKILL.md folders (§1.2 discovery):
