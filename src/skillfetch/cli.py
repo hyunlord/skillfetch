@@ -431,7 +431,7 @@ def _discover(args: argparse.Namespace) -> int:
         cfg.max_checks = args.max_checks
     run = discover_mod.discover(
         cfg,
-        GhCli(),
+        discover_mod.GhApi(),
         discover_mod.http_fetch,
         known,
         discover_mod.git_checkout(args.work_dir),

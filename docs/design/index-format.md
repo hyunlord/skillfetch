@@ -610,9 +610,13 @@ As built (`ingest/discover.py`, `cli.py`, `.github/workflows/discover.yml`):
     repository license GitHub reports.
   Status per candidate: `checked`, `no_skills`, `too_large`, `clone_failed`,
   `unreachable`, `not_checked`.
-- **Output** (`--out`, default `data/discover/`): `discover-report.md` (summary,
-  table, next candidates) and `discover.jsonl` (a `run` line with the week and
-  per-range counts, then one row per candidate).
+- **Output** (`--out`, default `data/discover/`): `discover-report.md` and
+  `discover.jsonl`. The report opens with the candidates per channel (code search;
+  each topic; each list source; distinct repositories per channel kind) and the
+  failed requests with their reason (gh's message, which carries the HTTP status, or
+  the list page's HTTP status); then the summary, the table and the next candidates.
+  `discover.jsonl` has a `run` line (week, per-range counts, failed requests), then
+  one row per candidate.
 - **Weekly run.** `.github/workflows/discover.yml`: Mondays 03:00 UTC and on
   demand. It runs `skillfetch sync` for the overlap columns, then `skillfetch
   discover --issue 60` with the workflow's `GITHUB_TOKEN`. The report replaces

@@ -22,6 +22,7 @@ from __future__ import annotations
 
 import json
 import re
+import subprocess
 import time
 from collections import Counter
 from collections.abc import Callable, Iterable
@@ -29,6 +30,7 @@ from dataclasses import asdict, dataclass, field
 from datetime import date
 from pathlib import Path
 from typing import Protocol
+from urllib.error import HTTPError
 from urllib.parse import quote_plus
 from urllib.request import Request, urlopen
 
@@ -116,15 +118,48 @@ class Fetch(Protocol):
     def __call__(self, url: str) -> str | None: ...
 
 
-def http_fetch(url: str) -> str | None:
-    """GET an https URL as text; None on any failure."""
-    if not url.startswith("https://"):
+class HttpFetch:
+    """GET an https URL as text; None on any failure, with the reason in `last_error`."""
+
+    last_error: str | None = None
+
+    def __call__(self, url: str) -> str | None:
+        self.last_error = None
+        if not url.startswith("https://"):
+            self.last_error = "not https"
+            return None
+        try:
+            req = Request(url, headers={"User-Agent": "skillfetch-discover"})
+            with urlopen(req, timeout=30) as r:
+                return r.read(5_000_000).decode("utf-8", "replace")
+        except HTTPError as exc:
+            self.last_error = f"HTTP {exc.code}"
+        except (OSError, ValueError) as exc:
+            self.last_error = type(exc).__name__
         return None
-    try:
-        with urlopen(Request(url, headers={"User-Agent": "skillfetch-discover"}), timeout=30) as r:
-            return r.read(5_000_000).decode("utf-8", "replace")
-    except (OSError, ValueError):
-        return None
+
+
+http_fetch = HttpFetch()
+
+
+class GhApi:
+    """GitHubClient over `gh api` (its token: GH_TOKEN in CI). Like GhCli, None on failure,
+    but the reason is kept in `last_error` (gh's message, which carries the HTTP status)."""
+
+    last_error: str | None = None
+
+    def get(self, path: str) -> dict | None:
+        self.last_error = None
+        proc = subprocess.run(["gh", "api", path], capture_output=True, text=True)
+        if proc.returncode != 0:
+            lines = [ln.strip() for ln in proc.stderr.splitlines() if ln.strip()]
+            self.last_error = (lines[-1] if lines else f"exit {proc.returncode}")[:200]
+            return None
+        return json.loads(proc.stdout)
+
+
+def _why(client) -> str:
+    return getattr(client, "last_error", None) or "no response"
 
 
 def repo_key(owner: str, name: str) -> str | None:
@@ -172,7 +207,7 @@ class Found:
     candidates: dict[str, Candidate] = field(default_factory=dict)
     shards: list[ShardStat] = field(default_factory=list)
     shard_count: int = 0
-    failed: list[str] = field(default_factory=list)  # requests that returned nothing
+    failed: list[tuple[str, str]] = field(default_factory=list)  # (request, reason)
 
     def add(self, owner: str, name: str, channel: str, meta: dict | None = None) -> Candidate:
         key = repo_key(owner, name)
@@ -213,7 +248,7 @@ def search_code(client: GitHubClient, cfg: CodeSearch, week: int, found: Found) 
             path = f"search/code?q={q}&per_page={PER_PAGE}&page={page}"
             data = client.get(path)
             if not data:
-                found.failed.append(path)
+                found.failed.append((path, _why(client)))
                 break
             total = data.get("total_count", 0)
             items = data.get("items", [])
@@ -237,7 +272,7 @@ def search_topics(client: GitHubClient, topics: list[str], pages: int, found: Fo
             )
             data = client.get(path)
             if not data:
-                found.failed.append(path)
+                found.failed.append((path, _why(client)))
                 break
             items = data.get("items", [])
             for repo in items:
@@ -255,7 +290,7 @@ def read_lists(fetch: Fetch, lists: list[ListSource], found: Found) -> None:
             url = src.url.format(page=i + 1, offset=i * src.step)
             text = fetch(url)
             if text is None:
-                found.failed.append(url)
+                found.failed.append((url, _why(fetch)))
                 break
             hits = {(m["owner"], m["repo"]) for m in pattern.finditer(text)}
             for owner, name in sorted(hits):
@@ -284,7 +319,7 @@ def select(
             if cand.meta is None:
                 cand.meta = client.get(f"repos/{cand.repo}")
                 if cand.meta is None:
-                    found.failed.append(f"repos/{cand.repo}")
+                    found.failed.append((f"repos/{cand.repo}", _why(client)))
             meta = cand.meta or {}
             full = meta.get("full_name")
             renamed = repo_key(*full.split("/", 1)) if full and "/" in full else None
@@ -492,9 +527,41 @@ def render_table(rows: list[dict]) -> str:
     return "\n".join(lines)
 
 
+def _failure_kind(request: str) -> str:
+    """search/code, search/repositories, repos (metadata) or the list page's host."""
+    if request.startswith("https://"):
+        return "list " + request.split("/")[2]
+    path = request.split("?")[0]
+    return "repos" if path.startswith("repos/") else path
+
+
+def channel_lines(run: Run) -> list[str]:
+    """Candidates per channel (code search, each topic, each list source) and the failed
+    requests with their reasons: the top of the report."""
+    f = run.found
+    per = Counter(ch for c in f.candidates.values() for ch in c.channels)
+    # distinct repositories per kind; a repository on two lists counts once under lists
+    by_kind = Counter(
+        k for c in f.candidates.values() for k in {ch.split(":")[0] for ch in c.channels}
+    )
+    results = sum(s.fetched for s in f.shards)
+    topics = ", ".join(f"{k[6:]} {v}" for k, v in sorted(per.items()) if k.startswith("topic:"))
+    lists = ", ".join(f"{k[5:]} {v}" for k, v in sorted(per.items()) if k.startswith("list:"))
+    fails = Counter((_failure_kind(req), why) for req, why in f.failed)
+    fail_text = "; ".join(f"{kind} {n}× ({why})" for (kind, why), n in sorted(fails.items()))
+    return [
+        f"- Code search (`filename:SKILL.md`): {by_kind['code']} repositories from {results} "
+        "results.",
+        f"- Topics: {by_kind['topic']} distinct ({topics or 'none'}).",
+        f"- List sources: {by_kind['list']} distinct ({lists or 'none'}).",
+        f"- All channels: {len(f.candidates)} distinct repositories (a repository can come "
+        "from several channels).",
+        f"- Failed requests: {len(f.failed)}" + (f": {fail_text}." if fail_text else "."),
+    ]
+
+
 def render_report(run: Run) -> str:
     f = run.found
-    channels = Counter(ch.split(":")[0] for c in f.candidates.values() for ch in c.channels)
     checked = sum(r["status"] != "not_checked" for r in run.rows)
     covered = ", ".join(
         f"{s.size} ({'failed' if s.total is None else f'{s.fetched}/{s.total}'})" for s in f.shards
@@ -502,18 +569,17 @@ def render_report(run: Run) -> str:
     lines = [
         f"# skillfetch discover, {run.day}",
         "",
+        *channel_lines(run),
+        "",
         "Model-free pre-check of candidate source repositories (index-format.md §6). Nothing "
         "here is admitted: sources.yaml and the index are unchanged.",
         "",
-        f"- Candidates found: {len(f.candidates)} (code search {channels['code']}, topics "
-        f"{channels['topic']}, lists {channels['list']}; a repository can come from several).",
         f"- Left out: {', '.join(f'{k} {v}' for k, v in sorted(run.dropped.items())) or 'none'} "
         f"({run.known} repositories in sources.yaml or seen.jsonl).",
         f"- Pre-checked: {checked}; not checked this run: {len(run.rows) - checked}.",
         f"- Code search, week {run.week}: {len(f.shards)} of {f.shard_count} size ranges "
         f"(results read/total): {covered or 'none'}. Ranges marked with fewer read than total "
         "were cut by GitHub's 1,000-result cap or the page limit.",
-        f"- Requests that returned nothing: {len(f.failed)}.",
         f"- Index for overlap: {'loaded' if run.index else 'not found (overlap columns empty)'}.",
         "",
         "Columns: shares are of the repository's SKILL.md folders. redistributable = the "
@@ -535,7 +601,12 @@ def write_outputs(run: Run, out: Path) -> tuple[Path, Path]:
     out.mkdir(parents=True, exist_ok=True)
     report, rows = out / REPORT_FILE, out / ROWS_FILE
     report.write_text(render_report(run))
-    meta = {"day": run.day, "week": run.week, "shards": [asdict(s) for s in run.found.shards]}
+    meta = {
+        "day": run.day,
+        "week": run.week,
+        "shards": [asdict(s) for s in run.found.shards],
+        "failed": [{"request": r, "reason": why} for r, why in run.found.failed],
+    }
     rows.write_text(
         "\n".join(json.dumps(r, ensure_ascii=False) for r in [{"run": meta}, *run.rows]) + "\n"
     )

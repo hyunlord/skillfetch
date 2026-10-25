@@ -97,7 +97,20 @@ def test_failed_search_is_recorded_not_raised():
     found = d.Found()
     d.search_code(FakeGitHub(), NO_PAUSE, week=0, found=found)
     assert all(s.total is None and s.truncated for s in found.shards)
-    assert len(found.failed) == 2
+    assert [why for _, why in found.failed] == ["no response", "no response"]
+
+
+def test_failure_reason_comes_from_the_client():
+    class Refusing(FakeGitHub):
+        last_error = None
+
+        def get(self, path):
+            self.last_error = "Requires authentication (HTTP 401)"
+            return None
+
+    found = d.Found()
+    d.search_code(Refusing(), NO_PAUSE, week=0, found=found)
+    assert found.failed[0][1] == "Requires authentication (HTTP 401)"
 
 
 def test_topics_and_lists_add_channels_and_metadata():
@@ -244,6 +257,12 @@ def test_discover_end_to_end(tmp_path):
 
     report, rows = d.write_outputs(run, tmp_path / "out")
     text = report.read_text()
+    top = text.split("\n\n")[1]  # the channel counts come right after the title
+    assert "- Code search (`filename:SKILL.md`): 3 repositories from 3 results." in top
+    assert "- Topics: 1 distinct (agent-skills 1)." in top
+    assert "- List sources: 0 distinct (none)." in top
+    assert "- All channels: 4 distinct repositories" in top
+    assert "- Failed requests: 0." in top
     assert "| [good/one](https://github.com/good/one) | checked | 1 |" in text
     assert "Index for overlap: not found" in text
     lines = rows.read_text().splitlines()
