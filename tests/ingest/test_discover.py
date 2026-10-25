@@ -431,4 +431,75 @@ def test_skipped_range_and_rate_line_in_the_report(tmp_path):
     run = d.discover(cfg, gh, lambda u: None, set(), None, None, date(2026, 1, 5))
     text = d.render_report(run)
     assert "1000..1999 (rate-limited, skipped)" in text
-    assert "- Rate limits: 2 retries after waiting 9 s in total; 1 requests skipped" in text
+    assert "- Rate limits: 2 retries after waiting 9 s in total (budget 1800 s); 1 requests" in text
+
+
+def test_wait_budget_skips_the_rest_of_code_search_but_not_other_channels():
+    calls = []
+
+    def run(cmd, **kw):
+        path = cmd[-1]
+        calls.append(path)
+        if path.startswith("search/code"):
+            return Proc(1, "HTTP/2.0 429 Too Many Requests\r\n\r\n{}", "gh: try again in 700s")
+        body = json.dumps({"total_count": 1, "items": [repo_meta("t/one")]})
+        return ok(body)
+
+    slept = []
+    api = d.GhApi(run=run, sleep=slept.append, clock=lambda: 0)
+    cfg = d.DiscoverConfig(
+        code_search=d.CodeSearch(
+            size_step=1000, size_max=5000, shards_per_run=4, pages_per_shard=1, pause=0
+        ),
+        repo_topics=["agent-skills"],
+        max_checks=0,
+    )
+    run_ = d.discover(cfg, api, lambda u: None, set(), None, None, date(2026, 1, 5))
+    # 700 s, retried and limited again; 700 s more; the third wait (2,100 s) is over budget
+    assert slept == [700.0, 700.0]
+    assert api.budget_exhausted and run_.rate["budget_exhausted"] is True
+    shards = run_.found.shards
+    assert [s.error.split(" (")[0] for s in shards[2:]] == ["budget exhausted, skipped"] * 2
+    assert sum(p.startswith("search/code") for p in calls) == 5  # nothing for shards 3 and 4
+    assert "t/one" in run_.found.candidates  # topic search still ran
+    text = d.render_report(run_)
+    assert "(budget exhausted, skipped)" in text and "budget 1800 s, exhausted" in text
+
+
+def test_a_failing_phase_still_reports_what_was_gathered(tmp_path, monkeypatch):
+    def broken_fetch(url):
+        raise RuntimeError("list page parser crashed")
+
+    gh = FakeGitHub(code={"0..999": (1, ["a/b"])}, repos={"a/b": repo_meta("a/b")})
+    cfg = d.DiscoverConfig(
+        code_search=NO_PAUSE, lists=[d.ListSource(id="x", url="https://e.org/")], max_checks=1
+    )
+
+    def checkout(repo, ref):
+        return tmp_path, None
+
+    def explode(*a, **k):
+        raise ValueError("bad skill")
+
+    monkeypatch.setattr(d, "precheck", explode)
+    run = d.discover(cfg, gh, broken_fetch, set(), checkout, None, date(2026, 1, 5))
+    assert run.partial == ["list sources: RuntimeError: list page parser crashed"]
+    assert run.rows[0]["status"] == "check_failed" and "bad skill" in run.rows[0]["error"]
+    report, rows = d.write_outputs(run, tmp_path / "out")
+    text = report.read_text()
+    assert text.split("\n")[2].startswith("**Partial result:** list sources: RuntimeError")
+    assert json.loads(rows.read_text().splitlines()[0])["run"]["partial"] == run.partial
+
+
+def test_selection_failure_falls_back_to_the_raw_ranking():
+    class NoMeta(FakeGitHub):
+        def get(self, path):
+            if path.startswith("repos/"):
+                raise OSError("gh not installed")
+            return super().get(path)
+
+    gh = NoMeta(code={"0..999": (2, ["a/b", "c/d"])})
+    cfg = d.DiscoverConfig(code_search=NO_PAUSE, max_checks=5)
+    run = d.discover(cfg, gh, lambda u: None, {"c/d"}, None, None, date(2026, 1, 5))
+    assert run.partial[0].startswith("selection: OSError")
+    assert [r["repo"] for r in run.rows] == ["a/b"] and run.rows[0]["status"] == "not_checked"

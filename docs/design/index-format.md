@@ -581,7 +581,11 @@ As built (`ingest/discover.py`, `cli.py`, `.github/workflows/discover.yml`):
     the message's "try again in N s", else `x-ratelimit-reset` when no requests
     remain, else 60 s. Then it is retried once. When the wait would exceed 900 s,
     the request is skipped; a size range lost that way reads "rate-limited,
-    skipped". The top of the report gives the retries, the total wait and the
+    skipped". A run waits at most 1,800 s in total: a wait that would pass that
+    budget is not taken, the request is skipped, and the code search ranges not yet
+    requested are not requested at all ("budget exhausted, skipped"). Topic search,
+    the list sources, the pre-check and the issue update still run. The top of the
+    report gives the retries, the total wait, whether the budget ran out and the
     skipped requests.
   - *Repository search* by topic (`repo_topics`, most recently updated first).
   - *List sources* (`lists`): an https page or API whose text names GitHub
@@ -631,7 +635,14 @@ As built (`ingest/discover.py`, `cli.py`, `.github/workflows/discover.yml`):
   - last commit (the clone's committer date), stars, `pushed_at` and the
     repository license GitHub reports.
   Status per candidate: `checked`, `no_skills`, `too_large`, `clone_failed`,
-  `unreachable`, `not_checked`.
+  `check_failed` (the pre-check raised; the error is kept), `unreachable`,
+  `not_checked`.
+- **Partial results.** Each phase (code search, topic search, list sources,
+  selection, pre-check) runs even when an earlier one stopped with an error. Such a
+  phase is named in a "Partial result" line at the very top of the report, and the
+  report and the issue update still go out with what was gathered. When selection
+  fails, the candidates are listed in their raw rank order and none is cloned. The
+  command then exits 1, so the workflow run shows the failure.
 - **Output** (`--out`, default `data/discover/`): `discover-report.md` and
   `discover.jsonl`. The report opens with the candidates per channel (code search;
   each topic; each list source; distinct repositories per channel kind) and the
