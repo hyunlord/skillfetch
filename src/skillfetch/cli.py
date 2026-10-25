@@ -1,9 +1,10 @@
-"""Command line: `skillfetch scan|ingest|judge|obedience|sync|serve|eval`."""
+"""Command line: `skillfetch scan|ingest|judge|obedience|sync|serve|eval|discover`."""
 
 from __future__ import annotations
 
 import argparse
 import os
+import subprocess
 import sys
 from collections.abc import Sequence
 from pathlib import Path
@@ -11,6 +12,7 @@ from pathlib import Path
 from skillfetch.index import sync as index_sync
 from skillfetch.index.loader import DEFAULT_INDEX_DIR, Index, IndexLoadError, tilde
 from skillfetch.ingest import backends, credentials, extract
+from skillfetch.ingest import discover as discover_mod
 from skillfetch.ingest import judge as judge_mod
 from skillfetch.ingest.build import build_index, render_summary, write_pairs
 from skillfetch.ingest.build_report import write_reports
@@ -109,6 +111,54 @@ def main(argv: Sequence[str] | None = None) -> int:
         help="maintainers: write INDEX_DIR as a release tarball + .sha256 into --out",
     )
     sync.add_argument("--out", type=Path, default=Path("dist"), help="with --pack")
+
+    disc = sub.add_parser(
+        "discover",
+        help="find candidate source repositories and pre-check them (no model; writes a "
+        "report, never sources.yaml or an index)",
+    )
+    disc.add_argument(
+        "--config", type=Path, default=discover_mod.DEFAULT_CONFIG, help="(default: %(default)s)"
+    )
+    disc.add_argument(
+        "--sources",
+        type=Path,
+        default=Path("sources.yaml"),
+        help="repositories listed here are left out (default: %(default)s)",
+    )
+    disc.add_argument(
+        "--seen",
+        type=Path,
+        default=discover_mod.DEFAULT_OUT / discover_mod.SEEN_FILE,
+        help="repositories evaluated before, one JSON object per line with `repo`; left out "
+        "(default: %(default)s)",
+    )
+    disc.add_argument(
+        "--index",
+        type=Path,
+        default=DEFAULT_INDEX_DIR,
+        help="index to measure name and hash overlap against (default: %(default)s)",
+    )
+    disc.add_argument(
+        "--out",
+        type=Path,
+        default=discover_mod.DEFAULT_OUT,
+        help=f"writes {discover_mod.REPORT_FILE} and {discover_mod.ROWS_FILE} "
+        "(default: %(default)s)",
+    )
+    disc.add_argument(
+        "--work-dir",
+        type=Path,
+        default=DEFAULT_WORK_DIR,
+        help="shallow clones of the checked candidates (default: %(default)s)",
+    )
+    disc.add_argument("--max-checks", type=int, help="override the config's max_checks")
+    disc.add_argument(
+        "--issue",
+        type=int,
+        help="also put the report on this GitHub issue (between the discover markers in its "
+        "body if present, else as a comment), with the gh CLI",
+    )
 
     serve = sub.add_parser("serve", help="run the MCP server over stdio")
     serve.add_argument(
@@ -342,6 +392,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         return _sync(args)
     if args.command == "eval":
         return _eval(args)
+    if args.command == "discover":
+        return _discover(args)
     return 2  # unreachable: argparse rejects unknown commands
 
 
@@ -363,6 +415,57 @@ def _eval(args: argparse.Namespace) -> int:
     except ImportError as exc:
         print(f"skillfetch: eval: --minilm needs sentence-transformers ({exc})", file=sys.stderr)
         return 2
+    return 0
+
+
+def _discover(args: argparse.Namespace) -> int:
+    from datetime import date
+
+    try:
+        cfg = discover_mod.load_config(args.config)
+        known = discover_mod.known_repos(load_sources(args.sources), args.seen)
+    except (OSError, ValueError) as exc:
+        print(f"skillfetch: discover: {exc}", file=sys.stderr)
+        return 2
+    if args.max_checks is not None:
+        cfg.max_checks = args.max_checks
+    run = discover_mod.discover(
+        cfg,
+        GhCli(),
+        discover_mod.http_fetch,
+        known,
+        discover_mod.git_checkout(args.work_dir),
+        discover_mod.IndexView.load(args.index),
+        date.today(),
+    )
+    report, rows = discover_mod.write_outputs(run, args.out)
+    checked = sum(r["status"] != "not_checked" for r in run.rows)
+    print(f"{len(run.rows)} candidates, {checked} pre-checked: {report}, {rows}")
+    if args.issue is not None:
+        return _post_issue(args.issue, report.read_text())
+    return 0
+
+
+def _post_issue(number: int, report: str) -> int:
+    def gh(*cmd: str, stdin: str | None = None) -> str:
+        proc = subprocess.run(["gh", *cmd], input=stdin, capture_output=True, text=True)
+        if proc.returncode != 0:
+            raise RuntimeError(proc.stderr.strip())
+        return proc.stdout
+
+    text = discover_mod.fit_issue(report)
+    try:
+        body = gh("issue", "view", str(number), "--json", "body", "-q", ".body")
+        new = discover_mod.issue_body(body, text)
+        if new is None:
+            gh("issue", "comment", str(number), "--body-file", "-", stdin=text)
+            print(f"commented on issue #{number}")
+        else:
+            gh("issue", "edit", str(number), "--body-file", "-", stdin=new)
+            print(f"updated the report in issue #{number}")
+    except (OSError, RuntimeError) as exc:
+        print(f"skillfetch: discover: issue #{number}: {exc}", file=sys.stderr)
+        return 1
     return 0
 
 

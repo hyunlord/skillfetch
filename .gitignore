@@ -1,4 +1,10 @@
 data/
+# data/discover/seen.jsonl (repositories already evaluated) is tracked; the rest of data/ is not
+!/data/
+/data/*
+!/data/discover/
+/data/discover/*
+!/data/discover/seen.jsonl
 .venv/
 __pycache__/
 *.pyc

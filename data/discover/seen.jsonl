@@ -1,0 +1,5 @@
+{"repo": "affaan-m/ECC", "date": "2026-10-24", "decision": "in index-staging-4 (release candidate)", "note": "stage 9 run-c, numbers.md §20; collapse_same_name"}
+{"repo": "ahmed3elshaer/everything-claude-code-mobile", "date": "2026-10-24", "decision": "in index-staging-4 (release candidate)", "note": "stage 9 run-c, numbers.md §20"}
+{"repo": "rshankras/claude-code-apple-skills", "date": "2026-10-24", "decision": "in index-staging-4 (release candidate)", "note": "stage 9 run-c, numbers.md §20; nested skills through roots"}
+{"repo": "actionbook/rust-skills", "date": "2026-10-24", "decision": "in index-staging-4 (release candidate)", "note": "stage 9 run-c, numbers.md §20"}
+{"repo": "dpearson2699/swift-ios-skills", "date": "2026-10-24", "decision": "excluded", "note": "dropped from index-staging-3: its top-50 relevant share (0.020) was below the share of the slots it pushed out (0.027); issue #60"}
