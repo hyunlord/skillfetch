@@ -170,6 +170,102 @@ helped.
       a shorter chain: search, resolve and load in fewer calls
       ([#26](https://github.com/hyunlord/skillfetch/issues/26)); `report_outcome`.
 
+## Experiment artifacts (`evals/e2e/`)
+
+The end-to-end experiments behind [numbers.md](docs/writeup/numbers.md) §11–§20, stages 0–9
+(Stage 10 follows when its judging is done). Each stage folder holds what was fixed before the
+run and what came out of it:
+
+- **Before the run:** `DESIGN.md`, `FROZEN*.sha256`, task definitions (`tasks*.jsonl`,
+  `tasks*.yaml`) and rubrics.
+- **Results:** `report*.md`, `metrics*.json`, unblinded scores and keys, and label files (`oracle*`,
+  `gpt-*`).
+- **Scripts:** `scripts/`.
+- **Sessions:** `derived/sessions.jsonl`, one row per session.
+
+| folder | what | numbers.md |
+|---|---|---|
+| `stage0`, `stage0.5` | first end-to-end runs | – |
+| `stage1`, `stage1b`, `stage2` | router in real Claude Code sessions | §11 |
+| `retrieval` | embedding check, retrieval set-up | §12, §13 |
+| `stage3` | retrieval benchmark (380 tasks), shipped router rule, cross-model labels | §13 |
+| `stage4`, `stage5` | clean vs author's environment; what makes the router fire | §14, §15 |
+| `codex` | Codex sessions, Codex as third judge for stage 6b | §16, §17 |
+| `stage6`, `stage7`, `stage8` | choosing none; working direction; Skillselion comparison | §17–§19 |
+| `stage9`, `staging` | index expansion | §20 |
+| `router-e2e.json` | the export numbers.md §11–§12 read | §11, §12 |
+
+**Not here, and why.**
+
+- **Third-party skill bodies.** The index does not redistribute skill bodies; `load_skills`
+  fetches them from each skill's source. Session transcripts, judge packages, raw MCP
+  results and Codex observation files contain the loaded `SKILL.md` text, so they are not
+  published. Each session is a row in `derived/sessions.jsonl` instead, with:
+  - model and Claude Code version, turns, cost and tokens;
+  - how many tools, MCP servers, plugins and skills the environment had;
+  - the sequence of tool calls (tools other than built-ins and skillfetch are generalised);
+  - the skillfetch queries and the skill ids that were resolved and loaded.
+- **Transcript text.** For the same reason, and because transcripts carry the environment below.
+- **The author's environment.** Some sessions ran in the author's own Claude Code setup ("E2").
+  Its MCP servers, plugins, connectors, hook output, file paths and account details are not
+  published:
+  - name lists became counts or `<E2 plugin>` / `<E2 MCP server>` / `<E2 hook text>`;
+  - paths became `<e2e>`, `<home>`, `<worktrees>`, `<tmp>`;
+  - the credentials file became `<credentials file>`.
+
+  `evals/e2e/sanitized.tsv` lists each changed file with its original and published sha256 and
+  what changed. The scripts' code that skips `.omc/` and `graft/` folders is kept as written.
+- Also left out: session workspaces, logs, screenshots, raw model replies and the task repositories.
+
+Before publishing, every file was scanned:
+- credential-shaped strings: none;
+- the author's paths, user name and environment names in documents and scripts: none;
+- body text of the 28,856 `SKILL.md` files seen in the experiments: no file with three or
+  more prose lines.
+
+**Release asset.** Label and result files over 1 MB and the judge-package diffs (316 files)
+are in the release asset `e2e-artifacts-2026-10-25`. `evals/e2e/ASSETS.tsv` lists each one
+with its sha256. For a diff it also names the repository it was made in and that repository's
+license:
+- `fastapi/full-stack-fastapi-template`, MIT;
+- `vercel/next.js` `examples/with-typescript`, MIT;
+- the stage 2 repositories written for this experiment, MIT as this repository.
+
+`scripts/fetch_e2e_assets.sh` downloads the tarball, checks its sha256 and each file's, and
+unpacks the files in place (`evals/e2e/.gitignore` keeps them out of git).
+
+**Checking the frozen hashes.** Each `FROZEN*.sha256` was written over the original files
+before a run. `uv run python scripts/verify_e2e_frozen.py` compares them:
+- a published file matches its frozen hash, or, if it was changed before publishing, its
+  original hash in `sanitized.tsv`;
+- files edited in the workspace after freezing are reported as superseded when a later
+  `FROZEN` file of the stage lists them (stage 2's `FROZEN.after-fix`, stage 9's run-1 list).
+
+With the asset unpacked: 410 ok, 17 ok through `sanitized.tsv`, 9 superseded, 51 not
+published (logs, screenshots), 0 mismatches.
+
+**Reproducing.**
+- The scripts ran from the stage folder in the experiment workspace. In the published copy,
+  `<e2e>` stands for `evals/e2e/` and `<worktrees>` for the folder of per-session git
+  worktrees.
+- Sessions need:
+  - the Claude Code CLI (its version is in each `derived/sessions.jsonl` row);
+  - for the `codex` stages, the Codex CLI;
+  - `uv` and Node;
+  - Postgres for the fastapi tasks;
+  - the task repositories at the commits named in each stage's report.
+- Model calls are isolated `claude -p` runs on a Claude Code plan; numbers.md §7 gives their
+  API-price equivalent.
+
+| variable | read by | purpose |
+|---|---|---|
+| `GITHUB_TOKEN` | `stage8/scripts/ss_client_env.py` | read-only fine-grained token, passed only to the Skillselion MCP server's process (the frozen `ss_client.py` read it from a local file) |
+| `PGBIN` | `stage1/checks/run_check.py`, `stage1/scripts/screenshot.py` | Postgres binaries for the fastapi task databases |
+| `BOOKMARKS_DB` | `stage2/reference/api/app/main.py` | SQLite file of the stage 2 API reference |
+| `S4_ROUND`, `READAPT_PASS` | `stage4/scripts/adapt_tasks.py`, `prep_oracle.py`, `readapt_missing.py` | which preparation round or pass to run |
+| `REP` | `stage6/scripts/select_cands.py` | repetition number of an offline selection run |
+| `S9_RUN` | `stage9/scripts/s9_common.py` | output folder: `""` (run 1), `run-b`, `run-c` |
+
 ## Design docs
 
 - [`CLAUDE.md`](CLAUDE.md) — scope, tool surface, non-goals, working rules
