@@ -105,5 +105,544 @@
   "harness-fail/E2/R1/s2-api-m3": [
    "git branch"
   ]
- }
+ },
+ "criterion_output_names": {
+  "definition": "tool output (any command) shows another session's branch name or worktree directory name; the session's own created branches and own directory excluded; repo branch list incl. the 18 deleted session branches; names 'main'/'master' and <5-char names without '-' excluded",
+  "E1": {
+   "sessions": 0,
+   "note": "E1/R0/s2-tests-m2 (the old 'E1 R0 1/45'): `git log --stat -3 | head -40` printed the subject of its own start commit 'stage10: router skill (main 57acc45 = 3fef3f8 assets/router-skill/SKILL.md)'; no branch name (piped, no decoration), no condition token, router words from its own history"
+  },
+  "E2": {
+   "sessions": 33,
+   "by_cond": {
+    "A": 21,
+    "R1": 12
+   },
+   "with_condition_names": 14,
+   "router_branch_names_only": 18,
+   "neither": 1
+  },
+  "sessions": [
+   {
+    "session": "E2/A/d1-landing-m1",
+    "env": "E2",
+    "cond": "A",
+    "n_names": 41,
+    "condition_names": [
+     "e2e-r1",
+     "feature/landing-page-c-r1",
+     "fix/html-lang-en-s1-nx-09-A-r1",
+     "refactor/lib-users-s1-nx-06-B-r1",
+     "test/users-id-static-data-s1-nx-08-A-r1",
+     "test/users-id-static-data-s1-nx-08-C-r1"
+    ],
+    "router_names": [
+     "feature/users-app-router",
+     "s10-r",
+     "s10-rs"
+    ],
+    "dirs": []
+   },
+   {
+    "session": "E2/A/d1-landing-m2",
+    "env": "E2",
+    "cond": "A",
+    "n_names": 42,
+    "condition_names": [
+     "e2e-r1",
+     "feature/landing-page-c-r1",
+     "feature/landing-s10-e2a-d1",
+     "fix/html-lang-en-s1-nx-09-A-r1",
+     "refactor/lib-users-s1-nx-06-B-r1",
+     "test/users-id-static-data-s1-nx-08-A-r1"
+    ],
+    "router_names": [
+     "feature/users-app-router",
+     "s10-r",
+     "s10-rs"
+    ],
+    "dirs": []
+   },
+   {
+    "session": "E2/A/d1-landing-m3",
+    "env": "E2",
+    "cond": "A",
+    "n_names": 45,
+    "condition_names": [
+     "e2e-r1",
+     "feature/landing-page-c-r1",
+     "feature/landing-s10-e2a-d1",
+     "fix/html-lang-en-s1-nx-09-A-r1",
+     "refactor/lib-users-s1-nx-06-B-r1",
+     "test/users-id-static-data-s1-nx-08-A-r1"
+    ],
+    "router_names": [
+     "feature/users-app-router",
+     "s10-r",
+     "s10-rs"
+    ],
+    "dirs": []
+   },
+   {
+    "session": "E2/A/s10-t016-m1",
+    "env": "E2",
+    "cond": "A",
+    "n_names": 4,
+    "condition_names": [],
+    "router_names": [
+     "s10-r",
+     "s10-rs"
+    ],
+    "dirs": []
+   },
+   {
+    "session": "E2/A/s10-t016-m2",
+    "env": "E2",
+    "cond": "A",
+    "n_names": 4,
+    "condition_names": [],
+    "router_names": [
+     "s10-r",
+     "s10-rs"
+    ],
+    "dirs": []
+   },
+   {
+    "session": "E2/A/s10-t016-m3",
+    "env": "E2",
+    "cond": "A",
+    "n_names": 4,
+    "condition_names": [],
+    "router_names": [
+     "s10-r",
+     "s10-rs"
+    ],
+    "dirs": []
+   },
+   {
+    "session": "E2/A/s10-t016-p0",
+    "env": "E2",
+    "cond": "A",
+    "n_names": 2,
+    "condition_names": [],
+    "router_names": [
+     "s10-r"
+    ],
+    "dirs": []
+   },
+   {
+    "session": "E2/A/s10-t115-m3",
+    "env": "E2",
+    "cond": "A",
+    "n_names": 3,
+    "condition_names": [],
+    "router_names": [
+     "s10-r",
+     "s10-rs"
+    ],
+    "dirs": []
+   },
+   {
+    "session": "E2/A/s10-t198-m2",
+    "env": "E2",
+    "cond": "A",
+    "n_names": 3,
+    "condition_names": [],
+    "router_names": [
+     "s10-r",
+     "s10-rs"
+    ],
+    "dirs": []
+   },
+   {
+    "session": "E2/A/s10-t263-m2",
+    "env": "E2",
+    "cond": "A",
+    "n_names": 4,
+    "condition_names": [],
+    "router_names": [
+     "s10-r",
+     "s10-rs"
+    ],
+    "dirs": []
+   },
+   {
+    "session": "E2/A/s10-t263-m3",
+    "env": "E2",
+    "cond": "A",
+    "n_names": 4,
+    "condition_names": [],
+    "router_names": [
+     "s10-r",
+     "s10-rs"
+    ],
+    "dirs": []
+   },
+   {
+    "session": "E2/A/s2-api-m1",
+    "env": "E2",
+    "cond": "A",
+    "n_names": 20,
+    "condition_names": [
+     "feature/bookmarks-api-a-r1",
+     "feature/bookmarks-api-b-r1"
+    ],
+    "router_names": [
+     "s10-r",
+     "s10-rs"
+    ],
+    "dirs": []
+   },
+   {
+    "session": "E2/A/s2-api-m2",
+    "env": "E2",
+    "cond": "A",
+    "n_names": 23,
+    "condition_names": [
+     "feature/bookmarks-api-a-r1",
+     "feature/bookmarks-api-b-r1",
+     "feature/bookmarks-api-s10-e2-r1",
+     "feature/bookmarks-api-s10-e2-r1-m2"
+    ],
+    "router_names": [
+     "s10-r",
+     "s10-rs"
+    ],
+    "dirs": []
+   },
+   {
+    "session": "E2/A/s2-api-m3",
+    "env": "E2",
+    "cond": "A",
+    "n_names": 24,
+    "condition_names": [
+     "feature/bookmarks-api-a-r1",
+     "feature/bookmarks-api-b-r1",
+     "feature/bookmarks-api-s10-e2-a-m2",
+     "feature/bookmarks-api-s10-e2-r1",
+     "feature/bookmarks-api-s10-e2-r1-m2"
+    ],
+    "router_names": [
+     "s10-r",
+     "s10-rs"
+    ],
+    "dirs": []
+   },
+   {
+    "session": "E2/A/s2-data-m1",
+    "env": "E2",
+    "cond": "A",
+    "n_names": 8,
+    "condition_names": [],
+    "router_names": [
+     "s10-r",
+     "s10-rs"
+    ],
+    "dirs": []
+   },
+   {
+    "session": "E2/A/s2-data-m3",
+    "env": "E2",
+    "cond": "A",
+    "n_names": 8,
+    "condition_names": [],
+    "router_names": [
+     "s10-r",
+     "s10-rs"
+    ],
+    "dirs": []
+   },
+   {
+    "session": "E2/A/s2-tests-m1",
+    "env": "E2",
+    "cond": "A",
+    "n_names": 12,
+    "condition_names": [],
+    "router_names": [
+     "s10-r",
+     "s10-rs"
+    ],
+    "dirs": []
+   },
+   {
+    "session": "E2/A/s2-tests-m3",
+    "env": "E2",
+    "cond": "A",
+    "n_names": 13,
+    "condition_names": [],
+    "router_names": [
+     "s10-r",
+     "s10-rs"
+    ],
+    "dirs": []
+   },
+   {
+    "session": "E2/A/s6b-t133-m1",
+    "env": "E2",
+    "cond": "A",
+    "n_names": 41,
+    "condition_names": [
+     "e2e-r1",
+     "feature/landing-page-c-r1",
+     "fix/html-lang-en-s1-nx-09-A-r1",
+     "refactor/lib-users-s1-nx-06-B-r1",
+     "test/users-id-static-data-s1-nx-08-A-r1",
+     "test/users-id-static-data-s1-nx-08-C-r1"
+    ],
+    "router_names": [
+     "feature/users-app-router",
+     "s10-r",
+     "s10-rs"
+    ],
+    "dirs": []
+   },
+   {
+    "session": "E2/A/s6b-t133-m3",
+    "env": "E2",
+    "cond": "A",
+    "n_names": 44,
+    "condition_names": [
+     "e2e-r1",
+     "feature/landing-page-c-r1",
+     "feature/landing-s10-e2a-d1",
+     "fix/html-lang-en-s1-nx-09-A-r1",
+     "refactor/lib-users-s1-nx-06-B-r1",
+     "test/users-id-static-data-s1-nx-08-A-r1"
+    ],
+    "router_names": [
+     "feature/users-app-router",
+     "s10-r",
+     "s10-rs"
+    ],
+    "dirs": []
+   },
+   {
+    "session": "E2/R1/d1-landing-m1",
+    "env": "E2",
+    "cond": "R1",
+    "n_names": 42,
+    "condition_names": [
+     "e2e-r1",
+     "feature/landing-page-c-r1",
+     "fix/html-lang-en-s1-nx-09-A-r1",
+     "refactor/lib-users-s1-nx-06-B-r1",
+     "s10-E2-R1-s2-docs-m1",
+     "test/users-id-static-data-s1-nx-08-A-r1"
+    ],
+    "router_names": [
+     "feature/users-app-router",
+     "s10-r",
+     "s10-rs"
+    ],
+    "dirs": [
+     "s10-E2-R1-s2-docs-m1"
+    ]
+   },
+   {
+    "session": "E2/R1/d1-landing-m3",
+    "env": "E2",
+    "cond": "R1",
+    "n_names": 47,
+    "condition_names": [
+     "e2e-r1",
+     "feature/landing-page-c-r1",
+     "feature/landing-s10-e2a-d1",
+     "feature/landing-s10-e2a-d1-m3",
+     "fix/html-lang-en-s1-nx-09-A-r1",
+     "refactor/lib-users-s1-nx-06-B-r1"
+    ],
+    "router_names": [
+     "feature/users-app-router",
+     "s10-r",
+     "s10-rs"
+    ],
+    "dirs": []
+   },
+   {
+    "session": "E2/R1/s10-t016-m1",
+    "env": "E2",
+    "cond": "R1",
+    "n_names": 4,
+    "condition_names": [],
+    "router_names": [
+     "s10-r",
+     "s10-rs"
+    ],
+    "dirs": []
+   },
+   {
+    "session": "E2/R1/s10-t016-m2",
+    "env": "E2",
+    "cond": "R1",
+    "n_names": 4,
+    "condition_names": [],
+    "router_names": [
+     "s10-r",
+     "s10-rs"
+    ],
+    "dirs": []
+   },
+   {
+    "session": "E2/R1/s10-t016-m3",
+    "env": "E2",
+    "cond": "R1",
+    "n_names": 4,
+    "condition_names": [],
+    "router_names": [
+     "s10-r",
+     "s10-rs"
+    ],
+    "dirs": []
+   },
+   {
+    "session": "E2/R1/s10-t016-p0",
+    "env": "E2",
+    "cond": "R1",
+    "n_names": 2,
+    "condition_names": [],
+    "router_names": [
+     "s10-r"
+    ],
+    "dirs": []
+   },
+   {
+    "session": "E2/R1/s2-api-m1",
+    "env": "E2",
+    "cond": "R1",
+    "n_names": 21,
+    "condition_names": [
+     "feature/bookmarks-api-a-r1",
+     "feature/bookmarks-api-b-r1"
+    ],
+    "router_names": [
+     "s10-r",
+     "s10-rs"
+    ],
+    "dirs": []
+   },
+   {
+    "session": "E2/R1/s2-api-m2",
+    "env": "E2",
+    "cond": "R1",
+    "n_names": 22,
+    "condition_names": [
+     "feature/bookmarks-api-a-r1",
+     "feature/bookmarks-api-b-r1",
+     "feature/bookmarks-api-s10-e2-r1"
+    ],
+    "router_names": [
+     "s10-r",
+     "s10-rs"
+    ],
+    "dirs": []
+   },
+   {
+    "session": "E2/R1/s2-api-m3",
+    "env": "E2",
+    "cond": "R1",
+    "n_names": 26,
+    "condition_names": [
+     "feature/bookmarks-api-a-r1",
+     "feature/bookmarks-api-b-r1",
+     "feature/bookmarks-api-s10-e2-a-m2",
+     "feature/bookmarks-api-s10-e2-a-m3",
+     "feature/bookmarks-api-s10-e2-r1",
+     "feature/bookmarks-api-s10-e2-r1-m2"
+    ],
+    "router_names": [
+     "s10-r",
+     "s10-rs"
+    ],
+    "dirs": []
+   },
+   {
+    "session": "E2/R1/s2-data-m1",
+    "env": "E2",
+    "cond": "R1",
+    "n_names": 8,
+    "condition_names": [],
+    "router_names": [
+     "s10-r",
+     "s10-rs"
+    ],
+    "dirs": []
+   },
+   {
+    "session": "E2/R1/s2-data-m2",
+    "env": "E2",
+    "cond": "R1",
+    "n_names": 8,
+    "condition_names": [],
+    "router_names": [
+     "s10-r",
+     "s10-rs"
+    ],
+    "dirs": []
+   },
+   {
+    "session": "harness-fail/E2/R1/s2-api-m3",
+    "env": "E2",
+    "cond": "R1",
+    "n_names": 25,
+    "condition_names": [
+     "feature/bookmarks-api-a-r1",
+     "feature/bookmarks-api-b-r1",
+     "feature/bookmarks-api-s10-e2-a-m2",
+     "feature/bookmarks-api-s10-e2-a-m3",
+     "feature/bookmarks-api-s10-e2-r1",
+     "feature/bookmarks-api-s10-e2-r1-m2"
+    ],
+    "router_names": [
+     "s10-r",
+     "s10-rs"
+    ],
+    "dirs": []
+   },
+   {
+    "session": "E2/A/d3-dashboard-m3",
+    "env": "E2",
+    "cond": "A",
+    "n_names": 1,
+    "condition_names": [],
+    "router_names": [],
+    "dirs": []
+   }
+  ],
+  "old_count_reconciliation": "report §8 'E2 A 25/45, E2 R1 12/45, E1 R0 1/45' also counted a session's own created branch names and the 'stage10: router' subject of its own start commit; this criterion excludes both",
+  "other_session_dirs": [
+   {
+    "session": "E2/A/d1-landing-m2",
+    "channel": "git worktree list",
+    "dirs": "earlier-stage worktrees nx-01, nx-01-R1, nx-01-R1R2, nx-02, nx-02-R1, nx-02-R1R2, nx-03, nx-04, …"
+   },
+   {
+    "session": "E2/R1/d1-landing-m1",
+    "channel": "lsof (cwd of a process)",
+    "dirs": "s10/s10-E2-R1-s2-docs-m1 (concurrent Stage 10 session)"
+   },
+   {
+    "session": "E2/A/s2-api-m1",
+    "channel": "lsof/ps (server on port 8765)",
+    "dirs": "s6b/s6b-A-s2-api-r1 (server process left from Stage 6b)"
+   }
+  ],
+  "router_commit_subject_seen_by_E2_A": [
+   "E2/A/d1-landing-m2 (git branch -a -v: stage10/stage4/stage5 router skill subjects)",
+   "E2/A/s10-t016-m1",
+   "E2/A/s10-t016-m3",
+   "E2/A/s10-t263-m2",
+   "E2/A/s10-t263-m3"
+  ]
+ },
+ "criterion_commands": {
+  "definition": "commands that read refs/objects outside the session's own history, or list/switch branches or worktrees",
+  "E1": 0,
+  "E2": 32,
+  "E2_read_or_switch": 10,
+  "E2_list_only": 22
+ },
+ "corrections_2026_10_25": [
+  "router commit subject seen by A-condition sessions: 5, not 4 (d1-landing-m2 via branch -a -v)",
+  "`git worktree list` in E2/A/s10-t016-m1 and E2/R1/s10-t016-m2 showed only the main checkout and the session's own directory; only E2/A/d1-landing-m2 saw other (earlier-stage) worktree names. Other-session directory names were seen by 3 sessions via 3 channels (worktree list 1, lsof 2)"
+ ]
 }
