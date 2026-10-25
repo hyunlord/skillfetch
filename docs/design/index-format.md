@@ -555,3 +555,72 @@ As built (`ingest/local_scan.py`, `cli.py`):
   reason goes to stderr so `--json` output stays parseable. Warnings,
   `tension`, `needs_review` and `redundant` never fail the run. Stage counts
   are per stage: a skill failing both lint and the scan counts for both.
+
+## 6. Discover (candidate sources, issue #60)
+
+`skillfetch discover` finds repositories that could become corpus sources and
+pre-checks them. It is the first half of #60's admission pipeline: it reports, and
+admits nothing. It never writes `sources.yaml`, an index or a release, and it calls
+no model and no paid API: GitHub's REST API (through the `gh` CLI and its token)
+and plain https GETs of public pages. Configuration: `discover.yaml`.
+
+As built (`ingest/discover.py`, `cli.py`, `.github/workflows/discover.yml`):
+
+- **Channels.** A repository can be found by more than one; the report lists which.
+  - *Code search* for `filename:SKILL.md`. One query returns at most 1,000
+    results, so the search is split by file size into ranges (`size:0..99`,
+    `100..199`, …, `>=20000`). GitHub reports far more SKILL.md files than one
+    run can read (a single 100-byte range held 47,744 on 2026-10-26), and code
+    search allows 10 requests a minute, so each run reads `shards_per_run`
+    ranges × `pages_per_shard` pages and the next run continues where it
+    stopped: the starting range is `ISO week × shards_per_run` (mod the number
+    of ranges). This channel samples. It is not a census; the report prints
+    each range's results read against GitHub's total.
+  - *Repository search* by topic (`repo_topics`, most recently updated first).
+  - *List sources* (`lists`): an https page or API whose text names GitHub
+    repositories, read with a regular expression whose groups are `owner` and
+    `repo` (default: `github.com/<owner>/<repo>` links). `url` may page with
+    `{page}` and `{offset}`. Configured: three awesome lists, the skills.sh
+    leaderboard (`/<owner>/<repo>/<skill>` links) and Skillselion's listings
+    API (`skill:<owner>/<repo>#<skill>` ids, most-installed first).
+- **Left out.** Repositories in `sources.yaml` and in `data/discover/seen.jsonl`
+  (one JSON object per line: `repo`, `date`, `decision`, `note`; maintainers
+  add a row when they decide on a candidate; the file is tracked in git, the rest
+  of `data/` is not). A candidate whose repository metadata names a renamed
+  repository already listed is left out too, as are forks and archived
+  repositories (`exclude_forks`, `exclude_archived`).
+- **Order.** Number of channels, then SKILL.md paths seen in code search, then
+  stars. The first `max_checks` candidates are pre-checked; the next 50 are
+  listed by name.
+- **Pre-check** (no model). Each candidate is shallow-cloned through the snapshot
+  stage (§1.2: https only, cached per commit) unless GitHub reports it larger
+  than `max_repo_kb`. Then, over its SKILL.md folders (§1.2 discovery):
+  - count; lint pass rate (§1.3); injection-scan pass rate (§1.4, the same
+    rules);
+  - licenses: each skill's own (§1.8 `skill_license` with `per-skill`, so the
+    root license is not inherited), the share that is redistributable, and the
+    root license file (`root_license`) separately;
+  - overlap with the current index (`--index`, default `~/.skillfetch/index`):
+    the share of skills whose normalized name (§1.6) and whose `content_hash`
+    (§1.2) match an index record;
+  - locale copies: the share of folders under a locale segment (§1.6
+    `collapse_same_name` rule) that share their name with another folder of the
+    repository;
+  - last commit (the clone's committer date), stars, `pushed_at` and the
+    repository license GitHub reports.
+  Status per candidate: `checked`, `no_skills`, `too_large`, `clone_failed`,
+  `unreachable`, `not_checked`.
+- **Output** (`--out`, default `data/discover/`): `discover-report.md` (summary,
+  table, next candidates) and `discover.jsonl` (a `run` line with the week and
+  per-range counts, then one row per candidate).
+- **Weekly run.** `.github/workflows/discover.yml`: Mondays 03:00 UTC and on
+  demand. It runs `skillfetch sync` for the overlap columns, then `skillfetch
+  discover --issue 60` with the workflow's `GITHUB_TOKEN`. The report replaces
+  the text between `<!-- skillfetch-discover:start -->` and
+  `<!-- skillfetch-discover:end -->` in the issue body when both markers are
+  there, and is posted as a comment otherwise (cut at 60,000 characters). The
+  full output is the run's artifact. Permissions: `contents: read`,
+  `issues: write`.
+- Not here yet (#60): re-snapshotting existing sources, dedup across candidates,
+  the `eval retrieval` regression check and approval. Admission still goes
+  through a hand-written `sources.yaml` entry and a new staging index.
