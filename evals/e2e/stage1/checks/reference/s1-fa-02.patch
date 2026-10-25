@@ -1,0 +1,50 @@
+diff --git a/backend/app/alembic/versions/3b1f2c9d8e7a_add_is_done_to_item.py b/backend/app/alembic/versions/3b1f2c9d8e7a_add_is_done_to_item.py
+new file mode 100644
+index 0000000..6ea0628
+--- /dev/null
++++ b/backend/app/alembic/versions/3b1f2c9d8e7a_add_is_done_to_item.py
+@@ -0,0 +1,24 @@
++"""Add is_done to Item
++
++Revision ID: 3b1f2c9d8e7a
++Revises: fe56fa70289e
++Create Date: 2026-10-22 00:00:00
++
++"""
++from alembic import op
++import sqlalchemy as sa
++
++
++# revision identifiers, used by Alembic.
++revision = '3b1f2c9d8e7a'
++down_revision = 'fe56fa70289e'
++branch_labels = None
++depends_on = None
++
++
++def upgrade():
++    op.add_column('item', sa.Column('is_done', sa.Boolean(), nullable=False, server_default=sa.false()))
++
++
++def downgrade():
++    op.drop_column('item', 'is_done')
+diff --git a/backend/app/models.py b/backend/app/models.py
+index 181acf2..7016be5 100644
+--- a/backend/app/models.py
++++ b/backend/app/models.py
+@@ -70,6 +70,7 @@ class UsersPublic(SQLModel):
+ class ItemBase(SQLModel):
+     title: str = Field(min_length=1, max_length=255)
+     description: str | None = Field(default=None, max_length=255)
++    is_done: bool = False
+ 
+ 
+ # Properties to receive on item creation
+@@ -81,6 +82,7 @@ class ItemCreate(ItemBase):
+ class ItemUpdate(SQLModel):
+     title: str | None = Field(default=None, min_length=1, max_length=255)
+     description: str | None = Field(default=None, max_length=255)
++    is_done: bool | None = None
+ 
+ 
+ # Database model, database table inferred from class name

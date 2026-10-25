@@ -1,0 +1,51 @@
+{
+  "id": 4,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"results\": [\n    {\n      \"id\": \"uasl/accessibility-compliance@696d2b4119ed\",\n      \"title\": \"accessibility-compliance\",\n      \"summary\": \"Guides implementation and auditing of accessible interfaces, with emphasis on semantic HTML, keyboard access, screen-reader support, and inclusive user…\",\n      \"tier\": \"B\",\n      \"token_estimate\": 2962\n    },\n    {\n      \"id\": \"uasl/artisan@1e09f38ffcab\",\n      \"title\": \"artisan\",\n      \"summary\": \"Guides frontend work toward production-quality React, Vue, and Svelte components with TypeScript, accessibility, and explicit state handling.\",\n      \"tier\": \"B\",\n      \"token_estimate\": 2908\n    },\n    {\n      \"id\": \"anthropics-skills/web-artifacts-builder@9c350d2f5f13\",\n      \"title\": \"web-artifacts-builder\",\n      \"summary\": \"Guides the agent to initialize a React frontend project, develop a multi-component web artifact, bundle it into a single HTML file, and share it with the user.\",\n      \"tier\": \"A\",\n      \"token_estimate\": 768\n    },\n    {\n      \"id\": \"uasl/frontend-patterns@8f659ce2a0bd\",\n      \"title\": \"frontend-patterns\",\n      \"summary\": \"Use React and Next.js frontend patterns for components, state, data fetching, performance, forms, animation, and accessibility.\",\n      \"tier\": \"B\",\n      \"token_estimate\": 3849\n    },\n    {\n      \"id\": \"uasl/next-upgrade@df465f7770a5\",\n      \"title\": \"next-upgrade\",\n      \"summary\": \"Upgrade a project to the latest Next.js version using the official migration guides and codemods.\",\n      \"tier\": \"B\",\n      \"token_estimate\": 509\n    }\n  ]\n}"
+      }
+    ],
+    "structuredContent": {
+      "results": [
+        {
+          "id": "uasl/accessibility-compliance@696d2b4119ed",
+          "title": "accessibility-compliance",
+          "summary": "Guides implementation and auditing of accessible interfaces, with emphasis on semantic HTML, keyboard access, screen-reader support, and inclusive user…",
+          "tier": "B",
+          "token_estimate": 2962
+        },
+        {
+          "id": "uasl/artisan@1e09f38ffcab",
+          "title": "artisan",
+          "summary": "Guides frontend work toward production-quality React, Vue, and Svelte components with TypeScript, accessibility, and explicit state handling.",
+          "tier": "B",
+          "token_estimate": 2908
+        },
+        {
+          "id": "anthropics-skills/web-artifacts-builder@9c350d2f5f13",
+          "title": "web-artifacts-builder",
+          "summary": "Guides the agent to initialize a React frontend project, develop a multi-component web artifact, bundle it into a single HTML file, and share it with the user.",
+          "tier": "A",
+          "token_estimate": 768
+        },
+        {
+          "id": "uasl/frontend-patterns@8f659ce2a0bd",
+          "title": "frontend-patterns",
+          "summary": "Use React and Next.js frontend patterns for components, state, data fetching, performance, forms, animation, and accessibility.",
+          "tier": "B",
+          "token_estimate": 3849
+        },
+        {
+          "id": "uasl/next-upgrade@df465f7770a5",
+          "title": "next-upgrade",
+          "summary": "Upgrade a project to the latest Next.js version using the official migration guides and codemods.",
+          "tier": "B",
+          "token_estimate": 509
+        }
+      ]
+    },
+    "isError": false
+  }
+}

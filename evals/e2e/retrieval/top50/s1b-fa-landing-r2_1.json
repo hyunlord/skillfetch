@@ -1,0 +1,252 @@
+[
+ {
+  "id": "uasl/gpt-tasteskill@134558e228c5",
+  "title": "gpt-tasteskill",
+  "summary": "Requires a randomized, AIDA-structured frontend design with wide hero typography, gapless bento grids, and GSAP motion. It also mandates a preflight design plan before UI code and bans emoji and specified meta-labels."
+ },
+ {
+  "id": "uasl/landing-page@455a3c3ba6f7",
+  "title": "landing-page",
+  "summary": "Generate a complete, deployable landing page as a single HTML file using Tailwind CSS via CDN. Gather a brief, build a responsive and accessible page with suitable sections and interactions, then provide preview and deployment guidance."
+ },
+ {
+  "id": "uasl/imagegen-frontend-web@3c09b1b364ef",
+  "title": "imagegen-frontend-web",
+  "summary": "Directs the agent to create premium, implementation-friendly frontend design references with deliberate visual variety, consistent branding, and conversion-aware section design. Requires a separate horizontal image for each section and specifies how to plan, label, and deliver the image set."
+ },
+ {
+  "id": "uasl/image-to-code-skill@4f1a4537825d",
+  "title": "image-to-code-skill",
+  "summary": "For visually important website work, generate design reference images first, analyze them closely, and then implement a frontend that stays faithful to those references. Prefer clear, section-specific images and clean, readable layouts over compressed references, generic designs, and unnecessary UI clutter."
+ },
+ {
+  "id": "uasl/taste-skill@57790089504e",
+  "title": "taste-skill",
+  "summary": "The skill directs the agent to build distinctive, responsive React or Next.js interfaces using specified design defaults, component conventions, and motion and performance rules. It also prescribes visual patterns and interaction states, and requires a preflight review of generated UI code."
+ },
+ {
+  "id": "uasl/storybrand-messaging@b5d59f437b2f",
+  "title": "storybrand-messaging",
+  "summary": "Apply the StoryBrand SB7 framework to create and review customer-centered brand messaging, emphasizing clear desires, problems, guidance, plans, calls to action, stakes, and success. Score marketing copy against the framework and favor honest, specific claims over fabricated desires, exaggerated problems, or unsupported promises."
+ },
+ {
+  "id": "uasl/copywriting@67282b309ff8",
+  "title": "copywriting",
+  "summary": "Guides the agent in gathering context and writing conversion-focused marketing copy for web pages. It emphasizes clear, specific, customer-centered messaging and gives page-structure, CTA, and output-format guidance."
+ },
+ {
+  "id": "uasl/product-showcase@47ddb0e168e1",
+  "title": "product-showcase",
+  "summary": "Generate a deployable, multi-page marketing showcase that explains a web app through real screenshots, workflow walkthroughs, and benefit-focused copy. Explore the app, capture its key features, then build and deploy a polished site with useful navigation, forms, and SEO basics."
+ },
+ {
+  "id": "uasl/web-prototype-taste-editorial@ea4a250e3329",
+  "title": "web-prototype-taste-editorial",
+  "summary": "Shapes single-page web prototypes into editorial-minimalist, premium marketing or documentation surfaces. It prescribes a warm monochrome palette, serif-and-grotesque typography, restrained components, and subtle motion."
+ },
+ {
+  "id": "uasl/frontend-design@5da82907743d",
+  "title": "frontend-design",
+  "summary": "Build distinctive, production-grade frontend interfaces by choosing a clear aesthetic direction and carrying it through implementation. Avoid generic visual choices and tailor the design and implementation complexity to the intended aesthetic."
+ },
+ {
+  "id": "uasl/setup-pre-commit@95f6657588a0",
+  "title": "setup-pre-commit",
+  "summary": "Guides the agent through configuring Husky pre-commit hooks with lint-staged, Prettier, type checking, and tests. It also covers package-manager detection, conditional setup, verification, and committing the resulting changes."
+ },
+ {
+  "id": "uasl/frontend-design-principles@e9b2a10a43d1",
+  "title": "frontend-design-principles",
+  "summary": "Guide the agent to plan distinctive frontend interfaces before coding, then review the result against its design intent and craft standards. Avoid generic defaults and use context-specific guidance for the kind of interface being built."
+ },
+ {
+  "id": "anthropics-skills/frontend-design@0a5ff23f1022",
+  "title": "frontend-design",
+  "summary": "Plan and build distinctive interfaces by grounding visual choices in the brief, reviewing the plan for generic defaults, and refining the result through critique. Apply the same intentionality to interface copy, accessibility, and motion."
+ },
+ {
+  "id": "uasl/web-design-builder@61ee1c248717",
+  "title": "web-design-builder",
+  "summary": "Guides the agent to gather web-design requirements, create responsive and accessible HTML/CSS/JavaScript designs, and verify them with Playwright MCP when available. It also specifies what files, verification results, and guidance to deliver to the user."
+ },
+ {
+  "id": "uasl/3d-web-experience@e1485751556b",
+  "title": "3d-web-experience",
+  "summary": "Guides agents in choosing and building interactive 3D web experiences, including model integration, scrolling effects, and mobile-aware usability. Emphasizes purposeful 3D, mobile testing, fallbacks, and optimized loading."
+ },
+ {
+  "id": "uasl/scroll-experience@f1aa0edee6ad",
+  "title": "scroll-experience",
+  "summary": "Guides agents in creating immersive scroll-driven web experiences with animation, parallax, sticky sections, and narrative structure. Emphasizes natural scroll behavior, restrained animation, and mobile-friendly design."
+ },
+ {
+  "id": "uasl/scorecard-marketing@2d025421dbdc",
+  "title": "scorecard-marketing",
+  "summary": "Use a four-step scorecard marketing method to design and improve assessment funnels, from landing page and questionnaire through personalized results and follow-up. When reviewing or creating a funnel, score it against the guidelines and identify improvements."
+ },
+ {
+  "id": "uasl/gsap-scrolltrigger@dd7bfe79efb2",
+  "title": "gsap-scrolltrigger",
+  "summary": "Guides agents in implementing GSAP ScrollTrigger features, including triggers, scrubbing, pinning, batching, and horizontal scroll. It also specifies configuration, refresh, ordering, and cleanup practices."
+ },
+ {
+  "id": "uasl/soft-skill@4dd04c5022d2",
+  "title": "soft-skill",
+  "summary": "For UI work, create polished, premium-feeling interfaces with distinctive layouts, nested component styling, fluid motion, and responsive behavior. Avoid generic visual defaults and check the generated code against the skill’s design and performance rules."
+ },
+ {
+  "id": "uasl/forge@a8efdfdbe817",
+  "title": "forge",
+  "summary": "Use Forge to build small, runnable prototypes that validate ideas, relying on mocks where useful and keeping work ready for handoff. Prioritize learning and working demos over production polish, and report the prototype’s status, findings, debt, and next decision."
+ },
+ {
+  "id": "uasl/cro-methodology@898a4d958df2",
+  "title": "cro-methodology",
+  "summary": "Apply an evidence-based CRO methodology to audit landing pages and conversion flows, research visitor objections, and design rigorous experiments. Provide conversion scores and actionable improvements while prioritizing customer evidence, genuine proof, and ethical testing."
+ },
+ {
+  "id": "uasl/frontend-slides@8d62c2eeef30",
+  "title": "frontend-slides",
+  "summary": "Create and validate zero-dependency, animation-rich HTML presentations, including converting PowerPoint files and improving existing decks. Guide users through visual style exploration when needed, and ensure slides are accessible, responsive, and fit within the viewport."
+ },
+ {
+  "id": "uasl/everything-claude-code@dad489339e1e",
+  "title": "everything-claude-code",
+  "summary": "Apply the repository’s JavaScript conventions for code, tests, and commit messages. Prefer existing project patterns, conventional commits, and the documented workflow conventions when making changes."
+ },
+ {
+  "id": "uasl/fastapi-endpoint@2a93d50c4970",
+  "title": "fastapi-endpoint",
+  "summary": "Guides the agent through exploring an existing FastAPI project, asking clarifying questions, planning an endpoint implementation for approval, and then building the endpoint and tests. It emphasizes async SQLAlchemy, Pydantic schemas, dependency-injected authentication, and API test coverage."
+ },
+ {
+  "id": "uasl/claude-native-theme-factory@4ef38be1dfbf",
+  "title": "claude-native-theme-factory",
+  "summary": "Guide the agent to show the available theme showcase, get the user's theme selection, and apply the chosen theme consistently to an artifact. When no existing theme fits, create a custom theme."
+ },
+ {
+  "id": "uasl/web-perf@9063b7e5eacf",
+  "title": "web-perf",
+  "summary": "Audits web performance using Chrome DevTools MCP, including Core Web Vitals, network behavior, accessibility, and—when applicable—codebase optimizations. Prefers retrieval from current documentation for specific performance numbers and recommendations."
+ },
+ {
+  "id": "uasl/replit-deck@84797e95ef8f",
+  "title": "replit-deck",
+  "summary": "Create a single-file, horizontal-swipe HTML deck using one of eight Replit Slides themes. Follow the required theme-selection, slide-planning, template, and self-review workflow, and emit the finished deck as an HTML artifact."
+ },
+ {
+  "id": "uasl/web-prototype@9fcfd712fe7c",
+  "title": "web-prototype",
+  "summary": "Create a single-file desktop web prototype by composing the provided HTML seed and layout library rather than building the styling from scratch. Follow the specified planning, design-token, self-review, and artifact-output workflow."
+ },
+ {
+  "id": "uasl/one-page-marketing@d68a7fc03f08",
+  "title": "one-page-marketing",
+  "summary": "Guides the agent to build a specific, actionable marketing plan using a nine-square customer-journey framework: target market, message, and media; lead capture, nurture, and conversion; customer experience, lifetime value, and referrals. Emphasizes measurable direct-response marketing, ethical claims, and systematic follow-up."
+ },
+ {
+  "id": "anthropics-skills/theme-factory@b505b234a3cd",
+  "title": "theme-factory",
+  "summary": "Guide the agent through selecting and applying a theme to a deck or other artifact, or creating a custom theme when the available options do not fit. The agent should show the theme showcase, get the user's selection, and apply the theme consistently and readably."
+ },
+ {
+  "id": "uasl/banner-design@0e161f38cea1",
+  "title": "banner-design",
+  "summary": "Guides the agent through gathering banner requirements, researching art direction, generating visual assets, composing banners, and exporting PNGs for requested platforms. It also specifies design, file-naming, presentation, and security rules."
+ },
+ {
+  "id": "uasl/static-analysis@88c6f201cae0",
+  "title": "static-analysis",
+  "summary": "Guides agents in configuring and integrating static-analysis tools for type checking, linting, security scanning, and formatting across several languages. Recommends strict, layered checks and running them in development, pre-commit, and CI workflows."
+ },
+ {
+  "id": "uasl/design-to-code@fae28f73cda0",
+  "title": "design-to-code",
+  "summary": "Guides the agent in translating design mockups into frontend code, prioritizing alignment with the design and the existing project. It also calls for responsive behavior, clear interaction states, reusable components, and noting necessary deviations."
+ },
+ {
+  "id": "uasl/next-best-practices@ee058f89acea",
+  "title": "next-best-practices",
+  "summary": "Apply Next.js best practices when writing or reviewing Next.js code, including using the optimized image component instead of plain HTML image tags. The skill covers routing, server components, data patterns, rendering, and performance optimization."
+ },
+ {
+  "id": "anthropics-skills/webapp-testing@a4b4ce82b644",
+  "title": "webapp-testing",
+  "summary": "Use native Python Playwright scripts to test local web applications, choosing an approach based on whether the app is static or dynamic. For dynamic apps, inspect the rendered state before acting, and use bundled helper scripts to manage servers when appropriate."
+ },
+ {
+  "id": "uasl/vercel-cli-with-tokens@3f9c2805c482",
+  "title": "vercel-cli-with-tokens",
+  "summary": "Guides the agent through token-based Vercel CLI setup, deployment, and project management without interactive login. It prioritizes preview deployments, protects tokens, and requires approval before git pushes."
+ },
+ {
+  "id": "uasl/made-to-stick@8667d5f2a5ae",
+  "title": "made-to-stick",
+  "summary": "Use the SUCCESs framework to craft or review messaging for clarity, memorability, and action. Favor a clear core, concrete details, credibility, emotional connection, and stories, and score messaging against the framework."
+ },
+ {
+  "id": "uasl/responsive-design@2cf7927ef938",
+  "title": "responsive-design",
+  "summary": "Guides the agent to build responsive interfaces with mobile-first styling, content-based breakpoints, fluid sizing, and container queries. It also emphasizes real-device testing, image optimization, suitable touch targets, and logical CSS properties."
+ },
+ {
+  "id": "uasl/executive-onboarding-playbook@dc89777e55ba",
+  "title": "executive-onboarding-playbook",
+  "summary": "Guides a new VP or CPO through a diagnostic first 90 days: gather and validate evidence before making organizational changes, then act on supported conclusions. It also provides pre-acceptance questions and approaches for assessing people and building executive alignment."
+ },
+ {
+  "id": "uasl/design-optimize@cbb1632043ec",
+  "title": "design-optimize",
+  "summary": "Measure interface performance, identify bottlenecks, and apply targeted optimizations across loading, rendering, animation, network use, and Core Web Vitals. Verify improvements across real devices and network conditions without sacrificing accessibility or functionality."
+ },
+ {
+  "id": "uasl/minimalist-skill@6bec0a57af30",
+  "title": "minimalist-skill",
+  "summary": "Build frontend interfaces with a warm, editorial minimalist aesthetic, using restrained colors, strong typography, generous whitespace, and flat component styling. Avoid generic design defaults and add subtle, performance-conscious motion and visual depth."
+ },
+ {
+  "id": "uasl/coding-standards@f854e26a9529",
+  "title": "coding-standards",
+  "summary": "Applies cross-project conventions for readable, maintainable code, including simplicity, reuse, and avoiding unnecessary complexity. It is a baseline rather than a source of framework-specific patterns."
+ },
+ {
+  "id": "uasl/thinking-model-router@5d0c1ebb8223",
+  "title": "thinking-model-router",
+  "summary": "Route a problem to a suitable mental model by identifying its domain and problem type. Use the listed default models as starting points for common domains."
+ },
+ {
+  "id": "uasl/vibe-security@6b07d0f651a7",
+  "title": "vibe-security",
+  "summary": "Apply secure-by-default practices when building or reviewing web applications, protecting access, user data, inputs, outputs, and common application attack surfaces. Choose restrictive security options while preserving functionality."
+ },
+ {
+  "id": "uasl/arc-design-review@8489bd47116c",
+  "title": "arc-design-review",
+  "summary": "Follow a multi-stage architecture design review: research and draft a design, refine it, critique it, then discuss the findings with the user and synthesize an ADR. Ground decisions in named principles and leave architecture choices to the user."
+ },
+ {
+  "id": "uasl/multi-repo-git-ops@d1a9b3bcdc7d",
+  "title": "multi-repo-git-ops",
+  "summary": "Discovers submodules and their branch conventions before operating across a parent repository and its service repositories. Guides branch creation, commits, pushes, pull requests, and BMAD story workflows, with safety and commit-message rules for multi-repo work."
+ },
+ {
+  "id": "uasl/web-prototype-taste-soft@7734ae078ad9",
+  "title": "web-prototype-taste-soft",
+  "summary": "Build soft-premium web prototypes with a silver or cream canvas, nested card architecture, pill-shaped CTAs, and restrained ambient motion. Follow the specified typography, components, responsive behavior, and banned styling patterns."
+ },
+ {
+  "id": "uasl/claude-native-claude-api@24c958899f03",
+  "title": "claude-native-claude-api",
+  "summary": "Guide the agent in building, debugging, and migrating Claude API applications using Anthropic SDKs and documented API patterns. Apply the skill’s defaults for model choice, thinking, streaming, and prompt caching, and consult the relevant language-specific and shared documentation."
+ },
+ {
+  "id": "uasl/perf-web-optimization@0e20e7b8cc98",
+  "title": "perf-web-optimization",
+  "summary": "Apply practical web-performance optimizations to images, CSS, and related page assets. Route audit work, report reading, and budget setting to the perf-lighthouse skill."
+ },
+ {
+  "id": "uasl/sweep@6fda55315322",
+  "title": "sweep",
+  "summary": "Sweep guides repository cleanup by finding and analyzing dead code, orphaned files, unused dependencies, and stale configuration. It requires evidence-based, risk-aware recommendations and safeguards around deletion, verification, and handoffs."
+ }
+]

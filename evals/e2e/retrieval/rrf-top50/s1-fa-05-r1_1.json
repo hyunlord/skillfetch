@@ -1,0 +1,252 @@
+[
+ {
+  "id": "uasl/fastapi-endpoint@2a93d50c4970",
+  "title": "fastapi-endpoint",
+  "summary": "Guides the agent through exploring an existing FastAPI project, asking clarifying questions, planning an endpoint implementation for approval, and then building the endpoint and tests. It emphasizes async SQLAlchemy, Pydantic schemas, dependency-injected authentication, and API test coverage."
+ },
+ {
+  "id": "uasl/fastapi-templates@effcd0de0b4c",
+  "title": "fastapi-templates",
+  "summary": "Guides creation of structured FastAPI backend projects using async patterns, dependency injection, repository and service layers, authentication, and testing examples. Includes templates for API endpoints, database access, and user management."
+ },
+ {
+  "id": "uasl/api-design@bba608f8c974",
+  "title": "api-design",
+  "summary": "Guides the agent in designing and reviewing REST API contracts, covering resource URLs, HTTP behavior, response formats, pagination, security, rate limits, and versioning. It also provides implementation patterns and a checklist for endpoint readiness."
+ },
+ {
+  "id": "uasl/n8n-code-python@ba1cd974d317",
+  "title": "n8n-code-python",
+  "summary": "Guides agents writing Python for n8n Code nodes, including n8n data access and return formats, execution modes, and Python’s standard-library limitations. It recommends considering JavaScript first and using Python (Beta) for better n8n integration."
+ },
+ {
+  "id": "uasl/kaggle-automation@8aa02e6647cc",
+  "title": "kaggle-automation",
+  "summary": "Automate Kaggle operations through Rube MCP by discovering current tool schemas, checking the Kaggle connection, and executing schema-compliant workflows. Follow the skill’s guidance for session reuse, memory parameters, and paginated results."
+ },
+ {
+  "id": "uasl/userlist-automation@6e87b6855534",
+  "title": "userlist-automation",
+  "summary": "Use Rube MCP to discover current Userlist tool schemas, verify the Userlist connection, and execute Userlist operations with schema-compliant arguments. Reuse workflow sessions, include the required memory parameter, and follow pagination until results are complete."
+ },
+ {
+  "id": "uasl/icypeas-automation@fb93daa62c17",
+  "title": "icypeas-automation",
+  "summary": "Automate Icypeas operations through Rube MCP by discovering current tool schemas, checking the Icypeas connection, and executing schema-compliant workflows. The skill also specifies session reuse, memory parameters, and pagination handling."
+ },
+ {
+  "id": "uasl/python-design-patterns@5c0fbe0d4633",
+  "title": "python-design-patterns",
+  "summary": "Guides the agent to design and refactor Python code using simple, focused components, clear separation of concerns, composition, and dependency injection. It also recommends delaying abstractions, keeping functions focused, and testing layers in isolation."
+ },
+ {
+  "id": "uasl/short-io-automation@75ba538e79f4",
+  "title": "short-io-automation",
+  "summary": "Use Rube MCP to discover current Short IO tool schemas, verify the Short IO connection, and execute workflows with schema-compliant arguments. Follow the skill’s session, memory, and pagination guidance when using the tools."
+ },
+ {
+  "id": "uasl/openapi-spec-generation@2d2c7a93b8f2",
+  "title": "openapi-spec-generation",
+  "summary": "Guides agents in creating and maintaining OpenAPI 3.1 specifications from design or code, validating API contracts, and generating SDKs and documentation. Includes patterns for reusable schemas, API descriptions, security, versioning, and validation tools."
+ },
+ {
+  "id": "uasl/claude-native-claude-api@24c958899f03",
+  "title": "claude-native-claude-api",
+  "summary": "Guide the agent in building, debugging, and migrating Claude API applications using Anthropic SDKs and documented API patterns. Apply the skill’s defaults for model choice, thinking, streaming, and prompt caching, and consult the relevant language-specific and shared documentation."
+ },
+ {
+  "id": "uasl/teamcamp-automation@aa48c88a793d",
+  "title": "teamcamp-automation",
+  "summary": "Use Rube MCP to automate Teamcamp tasks. Discover current tool schemas, verify the Teamcamp connection, then execute schema-compliant operations and handle sessions and pagination as instructed."
+ },
+ {
+  "id": "uasl/composio-automation@5690d4ffe77f",
+  "title": "composio-automation",
+  "summary": "Use Rube MCP to discover current Composio tool schemas, verify the Composio connection, and execute workflows with schema-compliant inputs. Follow the skill’s requirements for session reuse, memory parameters, and pagination."
+ },
+ {
+  "id": "uasl/keen-io-automation@42a55be32d83",
+  "title": "keen-io-automation",
+  "summary": "Guides the agent through Keen IO operations using Rube MCP and Composio. It requires discovering current tool schemas, checking the Keen IO connection, and following the discovered schemas when executing tools."
+ },
+ {
+  "id": "uasl/listclean-automation@1c47934d0e09",
+  "title": "listclean-automation",
+  "summary": "Automate Listclean workflows through Rube MCP by discovering current tool schemas, checking the Listclean connection, and executing schema-compliant tools. Handle session reuse and pagination as part of the workflow."
+ },
+ {
+  "id": "uasl/prerender-automation@de4732227359",
+  "title": "prerender-automation",
+  "summary": "Automate Prerender tasks through Rube MCP, discovering current tool schemas and checking the Prerender connection before execution. Follow the returned schemas, include required execution parameters, and handle sessions and pagination as directed."
+ },
+ {
+  "id": "uasl/async-python-patterns@957ebfe54aa7",
+  "title": "async-python-patterns",
+  "summary": "Guides implementation of asynchronous Python applications using asyncio, concurrency patterns, and async I/O. It emphasizes keeping call paths consistently synchronous or asynchronous, avoiding event-loop blocking, and offloading synchronous library calls when needed."
+ },
+ {
+  "id": "uasl/dialpad-automation@d892d76cc098",
+  "title": "dialpad-automation",
+  "summary": "Use Rube MCP to automate Dialpad operations by discovering current tool schemas, checking the Dialpad connection, and executing schema-compliant tools. Reuse workflow sessions, include the required memory parameter, and handle pagination until results are complete."
+ },
+ {
+  "id": "uasl/sidetracker-automation@54e8a1f15fdb",
+  "title": "sidetracker-automation",
+  "summary": "Automate Sidetracker operations through Rube MCP by discovering current tool schemas, checking the Sidetracker connection, and executing schema-compliant tools. Follow the skill’s session, memory, and pagination practices during workflows."
+ },
+ {
+  "id": "uasl/vibe-security@6b07d0f651a7",
+  "title": "vibe-security",
+  "summary": "Apply secure-by-default practices when building or reviewing web applications, protecting access, user data, inputs, outputs, and common application attack surfaces. Choose restrictive security options while preserving functionality."
+ },
+ {
+  "id": "uasl/owasp-security@9847d3666f75",
+  "title": "owasp-security",
+  "summary": "Apply OWASP security practices when implementing or reviewing application and agent code. Check for common vulnerabilities and favor secure handling of input, authentication, authorization, data, errors, and dependencies."
+ },
+ {
+  "id": "uasl/evenium-automation@bceb3bb6819e",
+  "title": "evenium-automation",
+  "summary": "Automate Evenium operations through Rube MCP by discovering current tool schemas, checking the Evenium connection, and executing schema-compliant workflows. Follow the skill’s connection, session, memory, and pagination requirements."
+ },
+ {
+  "id": "uasl/turso-automation@e66d4f8950c0",
+  "title": "turso-automation",
+  "summary": "Automate Turso operations through Rube MCP by discovering current tool schemas, checking the Turso connection, and executing schema-compliant tools. Follow the skill’s connection, session, memory, and pagination guidance during workflows."
+ },
+ {
+  "id": "uasl/tripadvisor-content-api-automation@3ab8b1ec4df3",
+  "title": "tripadvisor-content-api-automation",
+  "summary": "Automate TripAdvisor content API tasks through Rube MCP and Composio. Discover current tool schemas, verify the TripAdvisor connection, and follow the skill’s execution, session, and pagination guidance."
+ },
+ {
+  "id": "uasl/ln-020-codegraph@4b3c5fef9457",
+  "title": "ln-020-codegraph",
+  "summary": "Use the code knowledge graph to index and query a project for symbols, dependencies, call flows, implementations, and architecture. Present query results directly and suggest relevant follow-up queries."
+ },
+ {
+  "id": "uasl/n8n-code-javascript@203459f10f1d",
+  "title": "n8n-code-javascript",
+  "summary": "Guides the agent in writing and troubleshooting JavaScript for n8n Code nodes. It covers execution modes, input and webhook data access, return formats, and common implementation practices."
+ },
+ {
+  "id": "uasl/zoho-inventory-automation@2f2863777368",
+  "title": "zoho-inventory-automation",
+  "summary": "Use Rube MCP to discover current Zoho Inventory tool schemas, verify the connection, and execute inventory workflows. Follow the skill’s guidance for sequencing, pagination, bulk operations, and error handling."
+ },
+ {
+  "id": "uasl/givebutter-automation@6992aeaac6c4",
+  "title": "givebutter-automation",
+  "summary": "Use Rube MCP to discover current Givebutter tool schemas, verify the Givebutter connection, and execute automation workflows. Follow the returned schemas, preserve workflow sessions, and fetch paginated results until complete."
+ },
+ {
+  "id": "uasl/netsuite-automation@b615a37449c9",
+  "title": "netsuite-automation",
+  "summary": "Use the NetSuite toolkit to query and manage ERP records, including customers and sales orders. Check schemas, required fields, record references, and connection status when performing operations."
+ },
+ {
+  "id": "uasl/zenrows-automation@81a66864d644",
+  "title": "zenrows-automation",
+  "summary": "Use Rube MCP to discover current Zenrows tool schemas, verify the Zenrows connection, and execute operations using schema-compliant arguments. Reuse session IDs within workflows and fetch paginated results until complete."
+ },
+ {
+  "id": "uasl/apify-automation@34a14f015224",
+  "title": "apify-automation",
+  "summary": "Use the Composio Apify integration to run Actors, retrieve and manage datasets, create reusable tasks, and inspect runs and logs. Check Actor-specific input requirements and use pagination or asynchronous runs when appropriate."
+ },
+ {
+  "id": "uasl/cutt-ly-automation@134f9385d66d",
+  "title": "cutt-ly-automation",
+  "summary": "Automates Cutt Ly operations through Rube MCP. The agent discovers current tool schemas, checks the connection, and follows the tool-specific execution requirements."
+ },
+ {
+  "id": "uasl/web-design-builder@61ee1c248717",
+  "title": "web-design-builder",
+  "summary": "Guides the agent to gather web-design requirements, create responsive and accessible HTML/CSS/JavaScript designs, and verify them with Playwright MCP when available. It also specifies what files, verification results, and guidance to deliver to the user."
+ },
+ {
+  "id": "uasl/shortpixel-automation@11fe5cac97f5",
+  "title": "shortpixel-automation",
+  "summary": "Automate Shortpixel workflows through Rube MCP by discovering current tool schemas, checking the Shortpixel connection, and executing schema-compliant tools. Reuse workflow sessions and fetch paginated results until complete."
+ },
+ {
+  "id": "uasl/go-to-webinar-automation@dae3d2a380ea",
+  "title": "go-to-webinar-automation",
+  "summary": "Use Rube MCP to automate GoToWebinar tasks, discovering current tool schemas and verifying the connection before executing workflows. Follow the returned schemas, include required execution parameters, and handle sessions and pagination as specified."
+ },
+ {
+  "id": "uasl/eodhd-apis-automation@da15380b8b64",
+  "title": "eodhd-apis-automation",
+  "summary": "Automate EODHD API tasks through Rube MCP by discovering current tool schemas, checking the connection, and executing schema-compliant calls. Reuse sessions within workflows and continue paginated requests until results are complete."
+ },
+ {
+  "id": "uasl/leiga-automation@b1e5db446913",
+  "title": "leiga-automation",
+  "summary": "Use Rube MCP to automate Leiga operations. Discover current tool schemas first, confirm the Leiga connection is active, and follow the returned schemas and workflow guidance when executing tools."
+ },
+ {
+  "id": "uasl/nasdaq-automation@e43958c08c4f",
+  "title": "nasdaq-automation",
+  "summary": "Use Rube MCP to discover current Nasdaq tool schemas, check the Nasdaq connection, and execute Nasdaq workflows. Follow the skill’s connection, schema, session, and pagination requirements while working."
+ },
+ {
+  "id": "uasl/frontend-slides@8d62c2eeef30",
+  "title": "frontend-slides",
+  "summary": "Create and validate zero-dependency, animation-rich HTML presentations, including converting PowerPoint files and improving existing decks. Guide users through visual style exploration when needed, and ensure slides are accessible, responsive, and fit within the viewport."
+ },
+ {
+  "id": "uasl/anchor-browser-automation@bdede4a536e2",
+  "title": "anchor-browser-automation",
+  "summary": "Use Rube MCP to discover current Anchor Browser tool schemas, verify the Anchor Browser connection, and execute workflows with schema-compliant arguments. Follow the skill’s connection, session, memory, and pagination guidance."
+ },
+ {
+  "id": "uasl/ramp-automation@25b168650188",
+  "title": "ramp-automation",
+  "summary": "Use the Ramp toolkit through an active Rube MCP connection to retrieve and search transactions, manage reimbursements, view users and card details, and support expense and accounting workflows. Follow the skill’s pagination, date-format, currency, transaction-state, and page-size guidance when making requests."
+ },
+ {
+  "id": "anthropics-skills/claude-api@e30e2c97f747",
+  "title": "claude-api",
+  "summary": ""
+ },
+ {
+  "id": "uasl/moonclerk-automation@82572288ed32",
+  "title": "moonclerk-automation",
+  "summary": "Automates Moonclerk operations through Rube MCP by discovering current tool schemas, checking the Moonclerk connection, and executing schema-compliant tools. It also prescribes session reuse, memory parameters, and complete pagination handling."
+ },
+ {
+  "id": "uasl/lemon-squeezy-automation@78ae0198fdfd",
+  "title": "lemon-squeezy-automation",
+  "summary": "Use the Rube MCP integration to manage Lemon Squeezy stores and retrieve products, orders, subscriptions, customers, discounts, redemptions, and checkouts. Discover store IDs before filtering resources, and handle pagination and filter parameter names carefully."
+ },
+ {
+  "id": "uasl/everhour-automation@a663f548c590",
+  "title": "everhour-automation",
+  "summary": "Automate Everhour workflows through Rube MCP by discovering current tool schemas, checking the Everhour connection, and executing schema-compliant tools. Follow the skill’s connection, session, memory, and pagination requirements."
+ },
+ {
+  "id": "uasl/plisio-automation@343216c5fc03",
+  "title": "plisio-automation",
+  "summary": "Automate Plisio operations through Rube MCP by discovering current tool schemas, checking the Plisio connection, and executing schema-compliant tools. Reuse sessions within workflows and handle pagination until results are complete."
+ },
+ {
+  "id": "uasl/user-story-splitting@2d9d6a6fd3e3",
+  "title": "user-story-splitting",
+  "summary": "Break down large user stories, epics, or features into smaller deliverable stories by applying the splitting patterns in sequence. Write and validate the resulting stories so each delivers user value and can be developed independently."
+ },
+ {
+  "id": "uasl/secure-coding-practices@cc37fcd8687e",
+  "title": "secure-coding-practices",
+  "summary": "Apply defensive security practices when designing, implementing, and reviewing applications. Validate inputs, protect sensitive data, use secure authentication and cryptography, and check dependencies and error-handling paths."
+ },
+ {
+  "id": "uasl/ragic-automation@139d7159048a",
+  "title": "ragic-automation",
+  "summary": "Automate Ragic operations through Rube MCP by discovering current tool schemas, verifying an active Ragic connection, and executing schema-compliant tools. Reuse sessions within workflows, include the required memory parameter, and fetch paginated results until complete."
+ },
+ {
+  "id": "uasl/output-skill@8da7a8f7c7fc",
+  "title": "output-skill",
+  "summary": "Requires complete, unabridged outputs and checks that requested deliverables are present. For long responses, it favors full-quality output up to a clean breakpoint and specifies how to continue."
+ }
+]

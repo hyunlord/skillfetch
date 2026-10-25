@@ -1,0 +1,252 @@
+[
+ {
+  "id": "uasl/fastapi-templates@effcd0de0b4c",
+  "title": "fastapi-templates",
+  "summary": "Guides creation of structured FastAPI backend projects using async patterns, dependency injection, repository and service layers, authentication, and testing examples. Includes templates for API endpoints, database access, and user management."
+ },
+ {
+  "id": "uasl/fastapi-endpoint@2a93d50c4970",
+  "title": "fastapi-endpoint",
+  "summary": "Guides the agent through exploring an existing FastAPI project, asking clarifying questions, planning an endpoint implementation for approval, and then building the endpoint and tests. It emphasizes async SQLAlchemy, Pydantic schemas, dependency-injected authentication, and API test coverage."
+ },
+ {
+  "id": "uasl/unit-testing@6c5fbb821103",
+  "title": "unit-testing",
+  "summary": "Guides the agent to write and improve isolated unit tests using common testing patterns, test doubles, naming conventions, and language-specific frameworks. Emphasizes focused, deterministic tests and meaningful coverage."
+ },
+ {
+  "id": "uasl/python-testing-patterns@e62d0f1ca316",
+  "title": "python-testing-patterns",
+  "summary": "Guides the agent in designing and implementing Python tests using pytest patterns, fixtures, mocks, and specialized testing techniques. It emphasizes focused, isolated tests and meaningful coverage of failure behavior."
+ },
+ {
+  "id": "uasl/integration-testing@62b51275be50",
+  "title": "integration-testing",
+  "summary": "Guides agents to write integration tests that exercise multiple components together, using real dependencies and suitable test frameworks. Covers test isolation, API testing patterns, database cleanup, and CI configuration for Testcontainers."
+ },
+ {
+  "id": "uasl/radar@a47ea6fd5f95",
+  "title": "radar",
+  "summary": "Add and refine tests, diagnose flaky behavior, and improve coverage while preserving product behavior. Follow the project’s existing testing conventions and verify changes with tests and relevant references."
+ },
+ {
+  "id": "uasl/acceptance-testing@7f713f1566e8",
+  "title": "acceptance-testing",
+  "summary": "Use BDD acceptance-testing practices to turn business requirements into executable specifications, step definitions, and CI-validated tests. Apply the guidance across Gherkin- and Gauge-based frameworks and keep specifications useful as living documentation."
+ },
+ {
+  "id": "uasl/wycheproof@8924e1e4bfb6",
+  "title": "wycheproof",
+  "summary": "Use Wycheproof test vectors to validate cryptographic implementations against known attacks and edge cases. Integrate the vectors into test harnesses and CI to check valid, invalid, and acceptable cases."
+ },
+ {
+  "id": "uasl/backend-patterns@3d87ff489f3e",
+  "title": "backend-patterns",
+  "summary": "Provides TypeScript-oriented backend patterns for API design, data access, query optimization, caching, error handling, authentication, rate limiting, background jobs, and logging. Recommends choosing patterns suited to the complexity level."
+ },
+ {
+  "id": "uasl/claude-native-claude-api@24c958899f03",
+  "title": "claude-native-claude-api",
+  "summary": "Guide the agent in building, debugging, and migrating Claude API applications using Anthropic SDKs and documented API patterns. Apply the skill’s defaults for model choice, thinking, streaming, and prompt caching, and consult the relevant language-specific and shared documentation."
+ },
+ {
+  "id": "uasl/tdd-workflow@6eadb0bf0ea8",
+  "title": "tdd-workflow",
+  "summary": "Follow a test-driven workflow by writing tests before implementation, running tests through development, and refactoring while keeping them green. Aim for at least 80% coverage across unit, integration, and E2E tests, with attention to edge cases and errors."
+ },
+ {
+  "id": "uasl/vibe-security@6b07d0f651a7",
+  "title": "vibe-security",
+  "summary": "Apply secure-by-default practices when building or reviewing web applications, protecting access, user data, inputs, outputs, and common application attack surfaces. Choose restrictive security options while preserving functionality."
+ },
+ {
+  "id": "uasl/contract-testing@b0f4c29940a9",
+  "title": "contract-testing",
+  "summary": "Guides agents in choosing and implementing contract-testing approaches to verify API compatibility between services. Covers Pact workflows, provider verification, Pact Broker and deployment checks, PactFlow, and Spring Cloud Contract."
+ },
+ {
+  "id": "uasl/api-testing@4ada9a2fac88",
+  "title": "api-testing",
+  "summary": "Guides the agent in creating and running direct HTTP API tests with tools such as .http files, Bruno, Postman/Newman, and k6. Covers assertions, environment configuration, secret handling, and CI integration."
+ },
+ {
+  "id": "uasl/tdd@ff86dad94075",
+  "title": "tdd",
+  "summary": "Follow a red-green-refactor workflow by writing focused behavior tests and implementing only enough code to pass each test. Plan around public interfaces and user-prioritized behavior, then refactor after tests pass."
+ },
+ {
+  "id": "uasl/openapi-spec-generation@2d2c7a93b8f2",
+  "title": "openapi-spec-generation",
+  "summary": "Guides agents in creating and maintaining OpenAPI 3.1 specifications from design or code, validating API contracts, and generating SDKs and documentation. Includes patterns for reusable schemas, API descriptions, security, versioning, and validation tools."
+ },
+ {
+  "id": "uasl/using-git-worktrees@b0857168cfee",
+  "title": "using-git-worktrees",
+  "summary": "Set up an isolated Git worktree by selecting a location according to repository conventions, verifying project-local locations are ignored, and creating a branch-specific worktree. Install dependencies and run a clean test baseline before reporting that the workspace is ready."
+ },
+ {
+  "id": "uasl/systematic-debug@6b158e105823",
+  "title": "systematic-debug",
+  "summary": "Use test bombs to narrow an unclear bug to a likely component, and layered tests to isolate the failing stage in a pipeline. Keep the resulting tests as regression coverage and use the identified failure to guide the fix."
+ },
+ {
+  "id": "uasl/async-python-patterns@957ebfe54aa7",
+  "title": "async-python-patterns",
+  "summary": "Guides implementation of asynchronous Python applications using asyncio, concurrency patterns, and async I/O. It emphasizes keeping call paths consistently synchronous or asynchronous, avoiding event-loop blocking, and offloading synchronous library calls when needed."
+ },
+ {
+  "id": "anthropics-skills/webapp-testing@a4b4ce82b644",
+  "title": "webapp-testing",
+  "summary": "Use native Python Playwright scripts to test local web applications, choosing an approach based on whether the app is static or dynamic. For dynamic apps, inspect the rendered state before acting, and use bundled helper scripts to manage servers when appropriate."
+ },
+ {
+  "id": "uasl/forge@a8efdfdbe817",
+  "title": "forge",
+  "summary": "Use Forge to build small, runnable prototypes that validate ideas, relying on mocks where useful and keeping work ready for handoff. Prioritize learning and working demos over production polish, and report the prototype’s status, findings, debt, and next decision."
+ },
+ {
+  "id": "uasl/security-review@fcc354bc486e",
+  "title": "security-review",
+  "summary": "Apply a security checklist when reviewing or implementing application features, with emphasis on secrets, input handling, authentication, data exposure, API protections, and deployment readiness. Validate security-sensitive behavior and tests across web, database, and blockchain code."
+ },
+ {
+  "id": "uasl/everything-claude-code@dad489339e1e",
+  "title": "everything-claude-code",
+  "summary": "Apply the repository’s JavaScript conventions for code, tests, and commit messages. Prefer existing project patterns, conventional commits, and the documented workflow conventions when making changes."
+ },
+ {
+  "id": "uasl/builder@8d7f0953ade3",
+  "title": "builder",
+  "summary": "Guides the agent to implement production-ready, type-safe business logic, API integrations, and data models, with validation, error handling, and test handoffs. It emphasizes TypeScript strictness, domain-appropriate patterns, and Japanese final outputs."
+ },
+ {
+  "id": "uasl/design-integration@03e2661a4d5f",
+  "title": "design-integration",
+  "summary": "Delegate Uniswap integration architecture design to the integration-architect agent and present a project-specific blueprint. The blueprint covers the recommended integration method, architecture, dependencies, security considerations, and an ordered implementation plan."
+ },
+ {
+  "id": "uasl/architecture-patterns@d184d1c3a346",
+  "title": "architecture-patterns",
+  "summary": "Guides the agent in designing or refactoring backend systems with Clean Architecture, Hexagonal Architecture, and Domain-Driven Design. It emphasizes inward dependencies, framework-independent business logic, and testability without external infrastructure."
+ },
+ {
+  "id": "uasl/n8n-code-python@ba1cd974d317",
+  "title": "n8n-code-python",
+  "summary": "Guides agents writing Python for n8n Code nodes, including n8n data access and return formats, execution modes, and Python’s standard-library limitations. It recommends considering JavaScript first and using Python (Beta) for better n8n integration."
+ },
+ {
+  "id": "uasl/api-design@bba608f8c974",
+  "title": "api-design",
+  "summary": "Guides the agent in designing and reviewing REST API contracts, covering resource URLs, HTTP behavior, response formats, pagination, security, rate limits, and versioning. It also provides implementation patterns and a checklist for endpoint readiness."
+ },
+ {
+  "id": "uasl/judge@6ea2e485149e",
+  "title": "judge",
+  "summary": "Use the Codex review CLI to review PRs, pre-commit changes, and commits, then assess findings for correctness, security, intent alignment, consistency, and test quality. Produce evidence-based reports with severity classifications and recommended remediation routes, without modifying code."
+ },
+ {
+  "id": "uasl/setup-pre-commit@95f6657588a0",
+  "title": "setup-pre-commit",
+  "summary": "Guides the agent through configuring Husky pre-commit hooks with lint-staged, Prettier, type checking, and tests. It also covers package-manager detection, conditional setup, verification, and committing the resulting changes."
+ },
+ {
+  "id": "uasl/tweaks@800b9d426375",
+  "title": "tweaks",
+  "summary": "Wrap an existing HTML artifact in a self-contained live-tuning panel that updates selected design parameters and persists user choices. Test the controls and persistence, and follow the skill’s output format."
+ },
+ {
+  "id": "uasl/statsmodels@49021b731076",
+  "title": "statsmodels",
+  "summary": "Use statsmodels to fit statistical and econometric models, evaluate assumptions, and produce inference, diagnostics, comparisons, and forecasts. Apply the skill’s guidance on model choice, validation, and reporting."
+ },
+ {
+  "id": "uasl/browser-automation@49c3aed21e27",
+  "title": "browser-automation",
+  "summary": "Guides browser automation for testing, scraping, and agentic control, emphasizing reliable selectors, waits, test isolation, and browser-context practices. Covers Playwright and Puppeteer."
+ },
+ {
+  "id": "uasl/verification-loop@39d9be23cf50",
+  "title": "verification-loop",
+  "summary": "Guides the agent through build, type, lint, test, security, and diff verification. It also specifies how to handle verification failures and report results."
+ },
+ {
+  "id": "uasl/x-api@f7be0ce6f0ec",
+  "title": "x-api",
+  "summary": "Guides agents through X API authentication, posting, reading, search, and engagement tracking. It also gives a content workflow for drafting and approving X-native posts before publishing."
+ },
+ {
+  "id": "uasl/clay@6c9572941894",
+  "title": "clay",
+  "summary": "Produces reproducible code and operating guidance for AI 3D generation, modeling, game-asset pipelines, and quality validation. It requires safe credential handling and cost awareness, and does not execute API calls or deliver raw 3D model files."
+ },
+ {
+  "id": "uasl/meta-thinking-engine@b1ddd6d704ab",
+  "title": "meta-thinking-engine",
+  "summary": "Use metacognitive checks to monitor reasoning, calibrate confidence, detect bias, and correct flawed thinking. For planning, apply checks for estimates, scenarios, assumptions, dependencies, and failure modes."
+ },
+ {
+  "id": "uasl/test-driven-development@0eebe2fe0e28",
+  "title": "test-driven-development",
+  "summary": "Follow a test-first development cycle: write a failing test, verify the failure, implement the minimum code to pass, then refactor while keeping tests green. Apply this approach to features, bug fixes, and integration debugging."
+ },
+ {
+  "id": "uasl/bolt@c4895c710162",
+  "title": "bolt",
+  "summary": "Bolt directs the agent to identify measurable performance improvements, follow a profiling-to-presentation workflow, and document their impact. It also sets limits on implementation, optimization scope, and when to ask for confirmation or hand off work."
+ },
+ {
+  "id": "uasl/writing-revision@0a53ecc70a84",
+  "title": "writing-revision",
+  "summary": "Revise an existing draft through three focused passes: cut clutter, reduce cognitive load, and improve rhythm. Preserve the author's intended meaning, analyze the whole draft before editing, and track the Pass 1 word-count reduction."
+ },
+ {
+  "id": "uasl/bright-data-best-practices@15cfe1bca9b8",
+  "title": "bright-data-best-practices",
+  "summary": "Guides developers in choosing and integrating Bright Data APIs for scraping, search, structured extraction, and browser automation. Provides practical authentication, request, polling, and session guidance for Web Unlocker, SERP, Web Scraper, and Browser APIs."
+ },
+ {
+  "id": "uasl/testrunner@68216aa52709",
+  "title": "testrunner",
+  "summary": "Use Asynkron.TestRunner to diagnose unstable .NET test suites when standard testing is insufficient. Follow the skill’s guidance for timeouts, isolation, regression tracking, and parallel runs."
+ },
+ {
+  "id": "uasl/monorepo-management@4078df072127",
+  "title": "monorepo-management",
+  "summary": "Guides agents in setting up and managing JavaScript/TypeScript monorepos with workspace package managers and build systems. Covers shared configuration and code, build optimization, CI/CD, dependency management, and package publishing."
+ },
+ {
+  "id": "anthropics-skills/mcp-builder@7e8426a435cb",
+  "title": "mcp-builder",
+  "summary": "Guides agents through researching, planning, implementing, testing, and evaluating MCP servers that connect LLMs to external services. It emphasizes discoverable tools, comprehensive API coverage, structured schemas and responses, and realistic evaluations."
+ },
+ {
+  "id": "uasl/python-error-handling@8dc34883a143",
+  "title": "python-error-handling",
+  "summary": "Guides agents to implement Python validation and error handling with meaningful exceptions, exception chaining, and resilient batch processing. It also recommends practices for domain-type conversion, progress reporting, logging, and testing error paths."
+ },
+ {
+  "id": "uasl/tripadvisor-content-api-automation@3ab8b1ec4df3",
+  "title": "tripadvisor-content-api-automation",
+  "summary": "Automate TripAdvisor content API tasks through Rube MCP and Composio. Discover current tool schemas, verify the TripAdvisor connection, and follow the skill’s execution, session, and pagination guidance."
+ },
+ {
+  "id": "uasl/n8n-code-javascript@203459f10f1d",
+  "title": "n8n-code-javascript",
+  "summary": "Guides the agent in writing and troubleshooting JavaScript for n8n Code nodes. It covers execution modes, input and webhook data access, return formats, and common implementation practices."
+ },
+ {
+  "id": "uasl/specter@eeba33cf9245",
+  "title": "specter",
+  "summary": "Specter analyzes concurrency, asynchronous, memory, and resource-management issues, scores and reports findings, and suggests tests. It must not modify code; fixes are handed off to Builder."
+ },
+ {
+  "id": "uasl/claude-api@f952c765f5b0",
+  "title": "claude-api",
+  "summary": "Guides agents building Claude API and Anthropic SDK integrations: choose the appropriate API or Agent SDK surface, identify the project language, and consult the relevant documentation. Sets defaults and implementation guidance for model selection, thinking, streaming, tools, and API features."
+ },
+ {
+  "id": "uasl/titan@39c6080f3dfc",
+  "title": "titan",
+  "summary": "Titan directs delivery through the smallest justified agent chain, adapting its workflow to project scope and prioritizing implementation over planning. It tracks state and forward progress, routes implementation through Nexus, and applies validation and recovery rules."
+ }
+]

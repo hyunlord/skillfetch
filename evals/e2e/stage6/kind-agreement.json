@@ -1,0 +1,36 @@
+{
+ "kinds": {
+  "domain": 345,
+  "process": 251,
+  "tooling": 893
+ },
+ "graded_pairs": {
+  "n": 16271,
+  "agree": 0.884,
+  "kappa": 0.698,
+  "kind_process&flag": 3262,
+  "kind_process&no_flag": 501,
+  "kind_other&flag": 1388,
+  "kind_other&no_flag": 11120
+ },
+ "relevant_pairs": {
+  "n": 1015,
+  "agree": 0.832,
+  "kappa": 0.659,
+  "kind_process&flag": 362,
+  "kind_process&no_flag": 57,
+  "kind_other&flag": 114,
+  "kind_other&no_flag": 482
+ },
+ "skills_majority_flag": {
+  "n": 1359,
+  "agree": 0.931,
+  "kappa": 0.789,
+  "kind_process&flag": 233,
+  "kind_process&no_flag": 16,
+  "kind_other&flag": 78,
+  "kind_other&no_flag": 1032
+ },
+ "missing_first_pass": 0,
+ "cost_usd": 7.3
+}

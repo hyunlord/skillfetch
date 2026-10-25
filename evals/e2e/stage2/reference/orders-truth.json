@@ -1,0 +1,109 @@
+{
+ "rows_written": 375,
+ "exact_duplicate_rows": 12,
+ "conflicting_duplicate_ids": [
+  "ORD-00276",
+  "ORD-00147",
+  "ORD-00027"
+ ],
+ "date_formats": {
+  "long": 30,
+  "iso": 214,
+  "dmy": 53,
+  "slash": 44,
+  "blank": 19
+ },
+ "price_formats": {
+  "plain": 197,
+  "comma": 42,
+  "dollar": 70,
+  "blank": 21,
+  "usd": 30
+ },
+ "blank_dates": 19,
+ "blank_prices": 21,
+ "blank_quantity": 15,
+ "quantity_with_units": 12,
+ "negative_quantity": 13,
+ "zero_quantity": 9,
+ "invalid_emails": 9,
+ "blank_emails": 19,
+ "uppercase_emails": 18,
+ "discount_formats": {
+  "blank": 187,
+  "frac": 65,
+  "zero": 38,
+  "pct": 70
+ },
+ "category_variants": {
+  "Electronics": [
+   "Electronics",
+   " electronics",
+   "ELECTRONICS",
+   "Elec."
+  ],
+  "Furniture": [
+   "Furniture",
+   "furniture ",
+   "FURNITURE"
+  ],
+  "Stationery": [
+   "Stationery",
+   "stationary",
+   "STATIONERY"
+  ],
+  "Grocery": [
+   "Grocery",
+   "groceries",
+   " Grocery"
+  ]
+ },
+ "country_variants": {
+  "US": [
+   "US",
+   "USA",
+   "United States",
+   "u.s."
+  ],
+  "DE": [
+   "DE",
+   "Germany",
+   "germany"
+  ],
+  "KR": [
+   "KR",
+   "South Korea",
+   "Korea, Republic of"
+  ],
+  "GB": [
+   "GB",
+   "UK",
+   "United Kingdom"
+  ]
+ },
+ "status_variants": {
+  "shipped": [
+   "shipped",
+   "Shipped ",
+   "SHIPPED"
+  ],
+  "cancelled": [
+   "cancelled",
+   "canceled",
+   "Cancelled"
+  ],
+  "pending": [
+   "pending",
+   "Pending",
+   " pending"
+  ],
+  "returned": [
+   "returned",
+   "RETURNED"
+  ]
+ },
+ "future_dates": 4,
+ "outlier_prices": 3,
+ "trailing_space_emails": 5,
+ "email_stats_note": "counted from the written CSV (regex ^[a-z0-9._-]+@[a-z0-9-]+\\.[a-z]{2,}$ after strip+lower)"
+}

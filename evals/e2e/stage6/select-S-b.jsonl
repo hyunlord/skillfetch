@@ -1,0 +1,380 @@
+{"id": "t001", "skills": ["uasl/anvil@3a36e8410205"], "redone_alone": false}
+{"id": "t002", "skills": [], "redone_alone": false}
+{"id": "t003", "skills": ["uasl/fastapi-endpoint@2a93d50c4970", "uasl/tdd@ff86dad94075"], "redone_alone": false}
+{"id": "t004", "skills": [], "redone_alone": false}
+{"id": "t005", "skills": ["uasl/tdd@ff86dad94075", "uasl/python-testing-patterns@e62d0f1ca316"], "redone_alone": false}
+{"id": "t006", "skills": ["uasl/next-best-practices@ee058f89acea", "uasl/frontend-patterns@8f659ce2a0bd"], "redone_alone": false}
+{"id": "t007", "skills": ["uasl/next-best-practices@ee058f89acea", "uasl/frontend-patterns@8f659ce2a0bd", "uasl/browser-automation@49c3aed21e27"], "redone_alone": false}
+{"id": "t008", "skills": ["uasl/frontend-patterns@8f659ce2a0bd"], "redone_alone": false}
+{"id": "t009", "skills": ["uasl/accessibility-compliance@696d2b4119ed"], "redone_alone": false}
+{"id": "t010", "skills": [], "redone_alone": false}
+{"id": "t011", "skills": ["uasl/relay@7794e4cab2a2", "uasl/verification-before-completion@134bf517af69"], "redone_alone": false}
+{"id": "t012", "skills": [], "redone_alone": false}
+{"id": "t013", "skills": [], "redone_alone": false}
+{"id": "t014", "skills": ["uasl/anvil@3a36e8410205"], "redone_alone": false}
+{"id": "t015", "skills": ["uasl/error-handling-patterns@4c19ee7d7821", "uasl/api-design@bba608f8c974"], "redone_alone": false}
+{"id": "t016", "skills": [], "redone_alone": false}
+{"id": "t017", "skills": [], "redone_alone": false}
+{"id": "t018", "skills": [], "redone_alone": false}
+{"id": "t019", "skills": [], "redone_alone": false}
+{"id": "t020", "skills": ["uasl/schema@e6f260ce62e0", "uasl/api-design@bba608f8c974", "uasl/verification-before-completion@134bf517af69"], "redone_alone": false}
+{"id": "t021", "skills": ["uasl/karpathy-guidelines@da897c8c3bab"], "redone_alone": false}
+{"id": "t022", "skills": [], "redone_alone": false}
+{"id": "t023", "skills": [], "redone_alone": false}
+{"id": "t024", "skills": [], "redone_alone": false}
+{"id": "t025", "skills": [], "redone_alone": false}
+{"id": "t026", "skills": ["uasl/debug-root-cause@1d7ea4a832dc"], "redone_alone": false}
+{"id": "t027", "skills": ["uasl/debug-root-cause@1d7ea4a832dc"], "redone_alone": false}
+{"id": "t028", "skills": ["uasl/debug-root-cause@1d7ea4a832dc"], "redone_alone": false}
+{"id": "t029", "skills": ["uasl/tdd@ff86dad94075"], "redone_alone": false}
+{"id": "t030", "skills": ["uasl/debug-root-cause@1d7ea4a832dc"], "redone_alone": false}
+{"id": "t031", "skills": ["uasl/backend-patterns@3d87ff489f3e", "uasl/browser-automation@49c3aed21e27", "uasl/stripe-best-practices@795a33f68129"], "redone_alone": false}
+{"id": "t032", "skills": ["uasl/frontend-patterns@8f659ce2a0bd"], "redone_alone": false}
+{"id": "t033", "skills": [], "redone_alone": false}
+{"id": "t034", "skills": ["uasl/debugging-strategies@c55dad9c9654"], "redone_alone": false}
+{"id": "t035", "skills": ["uasl/specter@eeba33cf9245", "uasl/debug-root-cause@1d7ea4a832dc"], "redone_alone": false}
+{"id": "t036", "skills": ["uasl/release-it@e3e5b4710eea", "uasl/debug-root-cause@1d7ea4a832dc"], "redone_alone": false}
+{"id": "t037", "skills": ["uasl/unit-testing@6c5fbb821103"], "redone_alone": false}
+{"id": "t038", "skills": ["uasl/coding-guidelines@0ec7e45f92f2", "uasl/debug-root-cause@1d7ea4a832dc"], "redone_alone": false}
+{"id": "t039", "skills": ["uasl/debug-root-cause@1d7ea4a832dc", "uasl/property-based-testing@a168f6739085"], "redone_alone": false}
+{"id": "t040", "skills": ["uasl/specter@eeba33cf9245"], "redone_alone": false}
+{"id": "t041", "skills": ["uasl/debug-root-cause@1d7ea4a832dc"], "redone_alone": false}
+{"id": "t042", "skills": ["uasl/specter@eeba33cf9245", "uasl/debugging-strategies@c55dad9c9654"], "redone_alone": false}
+{"id": "t043", "skills": ["uasl/debug-root-cause@1d7ea4a832dc", "uasl/documentation-lookup@dee6d7478eab"], "redone_alone": false}
+{"id": "t044", "skills": ["uasl/tdd@ff86dad94075"], "redone_alone": false}
+{"id": "t045", "skills": ["uasl/debug-root-cause@1d7ea4a832dc", "uasl/tdd@ff86dad94075"], "redone_alone": false}
+{"id": "t046", "skills": ["uasl/security-review@fcc354bc486e"], "redone_alone": false}
+{"id": "t047", "skills": ["uasl/debug-root-cause@1d7ea4a832dc"], "redone_alone": false}
+{"id": "t048", "skills": ["uasl/debug-root-cause@1d7ea4a832dc"], "redone_alone": false}
+{"id": "t049", "skills": ["uasl/debug-root-cause@1d7ea4a832dc", "uasl/verification-before-completion@134bf517af69"], "redone_alone": false}
+{"id": "t050", "skills": ["uasl/vercel-react-native-skills@6e314641b44a"], "redone_alone": false}
+{"id": "t051", "skills": ["uasl/python-type-safety@60be75b4816f", "uasl/zen@f72229d0a781"], "redone_alone": false}
+{"id": "t052", "skills": ["uasl/python-design-patterns@5c0fbe0d4633", "uasl/zen@f72229d0a781"], "redone_alone": false}
+{"id": "t053", "skills": ["uasl/python-design-patterns@5c0fbe0d4633"], "redone_alone": false}
+{"id": "t054", "skills": ["uasl/verification-before-completion@134bf517af69"], "redone_alone": false}
+{"id": "t055", "skills": ["uasl/zen@f72229d0a781"], "redone_alone": false}
+{"id": "t056", "skills": ["uasl/error-handling-patterns@4c19ee7d7821", "uasl/zen@f72229d0a781"], "redone_alone": false}
+{"id": "t057", "skills": ["uasl/frontend-patterns@8f659ce2a0bd", "uasl/zen@f72229d0a781"], "redone_alone": false}
+{"id": "t058", "skills": ["uasl/karpathy-guidelines@da897c8c3bab"], "redone_alone": false}
+{"id": "t059", "skills": ["uasl/refactoring-patterns@7283bad3e86e"], "redone_alone": false}
+{"id": "t060", "skills": ["uasl/ripple@620dca56eca0", "uasl/clean-architecture@acaac6e9e2a3"], "redone_alone": true}
+{"id": "t061", "skills": ["uasl/error-handling-patterns@4c19ee7d7821"], "redone_alone": false}
+{"id": "t062", "skills": ["uasl/tdd@ff86dad94075", "uasl/verification-before-completion@134bf517af69"], "redone_alone": true}
+{"id": "t063", "skills": ["uasl/error-handling-patterns@4c19ee7d7821"], "redone_alone": false}
+{"id": "t064", "skills": ["uasl/refactoring-patterns@7283bad3e86e"], "redone_alone": false}
+{"id": "t065", "skills": ["uasl/verification-loop@39d9be23cf50"], "redone_alone": false}
+{"id": "t066", "skills": [], "redone_alone": false}
+{"id": "t067", "skills": [], "redone_alone": false}
+{"id": "t068", "skills": ["uasl/refactoring-patterns@7283bad3e86e"], "redone_alone": false}
+{"id": "t069", "skills": ["uasl/domain-driven-design@0d649fab3ce3"], "redone_alone": false}
+{"id": "t070", "skills": ["uasl/refactoring-patterns@7283bad3e86e"], "redone_alone": false}
+{"id": "t071", "skills": ["uasl/request-refactor-plan@49b853892f06"], "redone_alone": false}
+{"id": "t072", "skills": ["uasl/zen@f72229d0a781"], "redone_alone": false}
+{"id": "t073", "skills": [], "redone_alone": false}
+{"id": "t074", "skills": ["uasl/refactoring-patterns@7283bad3e86e"], "redone_alone": false}
+{"id": "t075", "skills": ["uasl/refactoring-patterns@7283bad3e86e", "uasl/react-patterns@73d1ecc06997"], "redone_alone": false}
+{"id": "t076", "skills": ["uasl/python-testing-patterns@e62d0f1ca316"], "redone_alone": false}
+{"id": "t077", "skills": ["uasl/python-testing-patterns@e62d0f1ca316", "uasl/tdd@ff86dad94075"], "redone_alone": false}
+{"id": "t078", "skills": ["uasl/python-testing-patterns@e62d0f1ca316"], "redone_alone": false}
+{"id": "t079", "skills": ["uasl/python-testing-patterns@e62d0f1ca316"], "redone_alone": false}
+{"id": "t080", "skills": ["uasl/python-testing-patterns@e62d0f1ca316"], "redone_alone": false}
+{"id": "t081", "skills": ["uasl/radar@a47ea6fd5f95", "uasl/property-based-testing@a168f6739085"], "redone_alone": false}
+{"id": "t082", "skills": ["uasl/typescript-unit-testing@6fb3561edcb3", "uasl/radar@a47ea6fd5f95"], "redone_alone": false}
+{"id": "t083", "skills": ["uasl/e2e-testing-patterns@8b25fb0b2da6", "uasl/stripe-best-practices@795a33f68129"], "redone_alone": false}
+{"id": "t084", "skills": ["uasl/test-driven-development@0eebe2fe0e28", "uasl/typescript-unit-testing@6fb3561edcb3"], "redone_alone": false}
+{"id": "t085", "skills": ["uasl/radar@a47ea6fd5f95"], "redone_alone": false}
+{"id": "t086", "skills": ["uasl/radar@a47ea6fd5f95"], "redone_alone": false}
+{"id": "t087", "skills": ["uasl/radar@a47ea6fd5f95"], "redone_alone": false}
+{"id": "t088", "skills": ["uasl/radar@a47ea6fd5f95"], "redone_alone": false}
+{"id": "t089", "skills": ["uasl/property-based-testing@a168f6739085"], "redone_alone": false}
+{"id": "t090", "skills": ["uasl/radar@a47ea6fd5f95"], "redone_alone": false}
+{"id": "t091", "skills": ["uasl/radar@a47ea6fd5f95"], "redone_alone": false}
+{"id": "t092", "skills": ["uasl/integration-testing@62b51275be50"], "redone_alone": false}
+{"id": "t093", "skills": ["uasl/unit-testing@6c5fbb821103"], "redone_alone": false}
+{"id": "t094", "skills": ["uasl/integration-testing@62b51275be50", "uasl/debug-root-cause@1d7ea4a832dc"], "redone_alone": false}
+{"id": "t095", "skills": ["uasl/unit-testing@6c5fbb821103"], "redone_alone": false}
+{"id": "t096", "skills": ["uasl/unit-testing@6c5fbb821103"], "redone_alone": false}
+{"id": "t097", "skills": ["uasl/unit-testing@6c5fbb821103"], "redone_alone": false}
+{"id": "t098", "skills": [], "redone_alone": false}
+{"id": "t099", "skills": ["uasl/unit-testing@6c5fbb821103"], "redone_alone": false}
+{"id": "t100", "skills": ["uasl/unit-testing@6c5fbb821103"], "redone_alone": false}
+{"id": "t101", "skills": ["uasl/quill@336ba74b0e79"], "redone_alone": false}
+{"id": "t102", "skills": ["uasl/quill@336ba74b0e79"], "redone_alone": false}
+{"id": "t103", "skills": ["uasl/quill@336ba74b0e79", "uasl/spec-miner@cebd849612b0"], "redone_alone": false}
+{"id": "t104", "skills": ["uasl/quill@336ba74b0e79", "uasl/coding-guidelines@0ec7e45f92f2"], "redone_alone": false}
+{"id": "t105", "skills": ["uasl/quill@336ba74b0e79"], "redone_alone": false}
+{"id": "t106", "skills": ["uasl/quill@336ba74b0e79"], "redone_alone": false}
+{"id": "t107", "skills": ["uasl/quill@336ba74b0e79"], "redone_alone": false}
+{"id": "t108", "skills": ["uasl/verification-before-completion@134bf517af69", "uasl/quill@336ba74b0e79"], "redone_alone": false}
+{"id": "t109", "skills": ["uasl/quill@336ba74b0e79"], "redone_alone": false}
+{"id": "t110", "skills": ["uasl/quill@336ba74b0e79"], "redone_alone": false}
+{"id": "t111", "skills": ["uasl/quill@336ba74b0e79", "uasl/spec-miner@cebd849612b0"], "redone_alone": false}
+{"id": "t112", "skills": ["uasl/spec-miner@cebd849612b0", "uasl/quill@336ba74b0e79"], "redone_alone": false}
+{"id": "t113", "skills": ["uasl/verification-before-completion@134bf517af69", "uasl/quill@336ba74b0e79"], "redone_alone": false}
+{"id": "t114", "skills": ["uasl/spec-miner@cebd849612b0", "uasl/quill@336ba74b0e79"], "redone_alone": false}
+{"id": "t115", "skills": ["uasl/quill@336ba74b0e79"], "redone_alone": false}
+{"id": "t116", "skills": ["uasl/quill@336ba74b0e79", "uasl/spec-miner@cebd849612b0"], "redone_alone": false}
+{"id": "t117", "skills": ["uasl/quill@336ba74b0e79", "uasl/verification-before-completion@134bf517af69"], "redone_alone": false}
+{"id": "t118", "skills": ["uasl/receiving-code-review@5c548774a9ad", "uasl/quill@336ba74b0e79"], "redone_alone": false}
+{"id": "t119", "skills": ["uasl/adr-architecture@2794198a12ff", "uasl/spec-miner@cebd849612b0"], "redone_alone": false}
+{"id": "t120", "skills": ["uasl/quill@336ba74b0e79", "uasl/coding-guidelines@0ec7e45f92f2"], "redone_alone": false}
+{"id": "t121", "skills": ["uasl/quill@336ba74b0e79", "uasl/mermaid-diagrams@a50e01188b8f"], "redone_alone": false}
+{"id": "t122", "skills": [], "redone_alone": true}
+{"id": "t123", "skills": ["uasl/lens@6fbc66f7a7bb", "uasl/mermaid-diagrams@a50e01188b8f"], "redone_alone": false}
+{"id": "t124", "skills": ["uasl/quill@336ba74b0e79"], "redone_alone": false}
+{"id": "t125", "skills": ["uasl/launch@117c5509679d"], "redone_alone": false}
+{"id": "t126", "skills": ["uasl/pipe@0f029a41f006"], "redone_alone": false}
+{"id": "t127", "skills": ["uasl/scaffold@443673063eb0"], "redone_alone": false}
+{"id": "t128", "skills": [], "redone_alone": false}
+{"id": "t129", "skills": ["uasl/static-analysis@88c6f201cae0"], "redone_alone": false}
+{"id": "t130", "skills": ["uasl/monorepo-management@4078df072127", "uasl/debug-root-cause@1d7ea4a832dc"], "redone_alone": false}
+{"id": "t131", "skills": ["uasl/pipe@0f029a41f006", "uasl/e2e-testing-patterns@8b25fb0b2da6"], "redone_alone": false}
+{"id": "t132", "skills": ["uasl/pipe@0f029a41f006", "uasl/monorepo-management@4078df072127"], "redone_alone": false}
+{"id": "t133", "skills": [], "redone_alone": false}
+{"id": "t134", "skills": ["uasl/static-analysis@88c6f201cae0"], "redone_alone": false}
+{"id": "t135", "skills": ["uasl/github-actions-templates@ce03df93ccdf"], "redone_alone": false}
+{"id": "t136", "skills": ["uasl/integration-testing@62b51275be50"], "redone_alone": false}
+{"id": "t137", "skills": ["uasl/terraform-module-library@d02b1cc84d22"], "redone_alone": false}
+{"id": "t138", "skills": ["uasl/pipe@0f029a41f006"], "redone_alone": false}
+{"id": "t139", "skills": ["uasl/github-actions-templates@ce03df93ccdf", "uasl/static-analysis@88c6f201cae0"], "redone_alone": false}
+{"id": "t140", "skills": ["uasl/github-actions-templates@ce03df93ccdf"], "redone_alone": false}
+{"id": "t141", "skills": ["uasl/github-actions-templates@ce03df93ccdf", "uasl/deployment-pipeline-design@2a89fc6f32ff"], "redone_alone": false}
+{"id": "t142", "skills": [], "redone_alone": false}
+{"id": "t143", "skills": ["uasl/github-actions-templates@ce03df93ccdf", "uasl/pipe@0f029a41f006"], "redone_alone": false}
+{"id": "t144", "skills": ["uasl/static-analysis@88c6f201cae0"], "redone_alone": false}
+{"id": "t145", "skills": ["uasl/debug-root-cause@1d7ea4a832dc"], "redone_alone": false}
+{"id": "t146", "skills": ["uasl/github-actions-templates@ce03df93ccdf", "uasl/static-analysis@88c6f201cae0"], "redone_alone": false}
+{"id": "t147", "skills": [], "redone_alone": false}
+{"id": "t148", "skills": ["uasl/github-actions-templates@ce03df93ccdf", "uasl/pipe@0f029a41f006"], "redone_alone": false}
+{"id": "t149", "skills": ["uasl/github-actions-templates@ce03df93ccdf", "uasl/pipe@0f029a41f006"], "redone_alone": false}
+{"id": "t150", "skills": ["uasl/github-actions-templates@ce03df93ccdf"], "redone_alone": false}
+{"id": "t151", "skills": [], "redone_alone": false}
+{"id": "t152", "skills": ["uasl/deployment-pipeline-design@2a89fc6f32ff"], "redone_alone": false}
+{"id": "t153", "skills": [], "redone_alone": false}
+{"id": "t154", "skills": [], "redone_alone": false}
+{"id": "t155", "skills": ["uasl/vercel-cli-with-tokens@3f9c2805c482"], "redone_alone": false}
+{"id": "t156", "skills": [], "redone_alone": false}
+{"id": "t157", "skills": ["uasl/deployment-pipeline-design@2a89fc6f32ff", "uasl/github-actions-templates@ce03df93ccdf"], "redone_alone": false}
+{"id": "t158", "skills": ["uasl/monorepo-management@4078df072127"], "redone_alone": false}
+{"id": "t159", "skills": [], "redone_alone": false}
+{"id": "t160", "skills": [], "redone_alone": false}
+{"id": "t161", "skills": ["uasl/release-it@e3e5b4710eea"], "redone_alone": false}
+{"id": "t162", "skills": [], "redone_alone": false}
+{"id": "t163", "skills": ["uasl/writing-plans@219901eb119f", "uasl/launch@117c5509679d"], "redone_alone": false}
+{"id": "t164", "skills": [], "redone_alone": false}
+{"id": "t165", "skills": ["uasl/github-actions-templates@ce03df93ccdf"], "redone_alone": false}
+{"id": "t166", "skills": [], "redone_alone": false}
+{"id": "t167", "skills": ["uasl/security-review@fcc354bc486e"], "redone_alone": false}
+{"id": "t168", "skills": [], "redone_alone": false}
+{"id": "t169", "skills": [], "redone_alone": false}
+{"id": "t170", "skills": ["uasl/legacy-modernizer@519b6311409d", "uasl/release-it@e3e5b4710eea"], "redone_alone": false}
+{"id": "t171", "skills": [], "redone_alone": false}
+{"id": "t172", "skills": [], "redone_alone": false}
+{"id": "t173", "skills": [], "redone_alone": false}
+{"id": "t174", "skills": ["uasl/deployment-pipeline-design@2a89fc6f32ff", "uasl/github-actions-templates@ce03df93ccdf"], "redone_alone": false}
+{"id": "t175", "skills": [], "redone_alone": false}
+{"id": "t176", "skills": ["uasl/debug-root-cause@1d7ea4a832dc"], "redone_alone": false}
+{"id": "t177", "skills": ["uasl/stream@94a72913c590"], "redone_alone": false}
+{"id": "t178", "skills": [], "redone_alone": false}
+{"id": "t179", "skills": [], "redone_alone": false}
+{"id": "t180", "skills": [], "redone_alone": false}
+{"id": "t181", "skills": ["uasl/schema@e6f260ce62e0", "uasl/postgresql-table-design@59d09e948243"], "redone_alone": false}
+{"id": "t182", "skills": ["uasl/schema@e6f260ce62e0"], "redone_alone": false}
+{"id": "t183", "skills": ["uasl/builder@8d7f0953ade3"], "redone_alone": false}
+{"id": "t184", "skills": [], "redone_alone": false}
+{"id": "t185", "skills": ["uasl/schema@e6f260ce62e0"], "redone_alone": false}
+{"id": "t186", "skills": ["uasl/tdd@ff86dad94075"], "redone_alone": false}
+{"id": "t187", "skills": [], "redone_alone": false}
+{"id": "t188", "skills": [], "redone_alone": false}
+{"id": "t189", "skills": ["uasl/anvil@3a36e8410205"], "redone_alone": false}
+{"id": "t190", "skills": [], "redone_alone": false}
+{"id": "t191", "skills": ["uasl/tdd@ff86dad94075", "uasl/property-based-testing@a168f6739085"], "redone_alone": false}
+{"id": "t192", "skills": ["uasl/tdd@ff86dad94075"], "redone_alone": false}
+{"id": "t193", "skills": ["uasl/schema@e6f260ce62e0"], "redone_alone": false}
+{"id": "t194", "skills": ["uasl/debug-root-cause@1d7ea4a832dc"], "redone_alone": false}
+{"id": "t195", "skills": ["uasl/sql-optimization-patterns@389f90da7b56"], "redone_alone": false}
+{"id": "t196", "skills": [], "redone_alone": false}
+{"id": "t197", "skills": ["uasl/schema@e6f260ce62e0"], "redone_alone": false}
+{"id": "t198", "skills": [], "redone_alone": false}
+{"id": "t199", "skills": [], "redone_alone": false}
+{"id": "t200", "skills": [], "redone_alone": false}
+{"id": "t201", "skills": ["uasl/data-analyst-engine@79799e01e2dd"], "redone_alone": false}
+{"id": "t202", "skills": ["uasl/data-analyst-engine@79799e01e2dd", "uasl/eval-harness@2a2fcc11c03a"], "redone_alone": false}
+{"id": "t203", "skills": [], "redone_alone": false}
+{"id": "t204", "skills": ["uasl/tdd@ff86dad94075"], "redone_alone": false}
+{"id": "t205", "skills": [], "redone_alone": false}
+{"id": "t206", "skills": ["uasl/perf-lighthouse@ccafe273f7d2", "uasl/vercel-react-best-practices@70f3b5aaf775"], "redone_alone": false}
+{"id": "t207", "skills": ["uasl/error-handling-patterns@4c19ee7d7821"], "redone_alone": false}
+{"id": "t208", "skills": ["uasl/writing-plans@219901eb119f", "uasl/eval-harness@2a2fcc11c03a"], "redone_alone": false}
+{"id": "t209", "skills": [], "redone_alone": false}
+{"id": "t210", "skills": [], "redone_alone": false}
+{"id": "t211", "skills": ["uasl/debug-root-cause@1d7ea4a832dc"], "redone_alone": false}
+{"id": "t212", "skills": [], "redone_alone": false}
+{"id": "t213", "skills": [], "redone_alone": false}
+{"id": "t214", "skills": ["uasl/debug-root-cause@1d7ea4a832dc"], "redone_alone": false}
+{"id": "t215", "skills": ["uasl/tdd@ff86dad94075"], "redone_alone": false}
+{"id": "t216", "skills": ["uasl/karpathy-guidelines@da897c8c3bab"], "redone_alone": false}
+{"id": "t217", "skills": [], "redone_alone": false}
+{"id": "t218", "skills": [], "redone_alone": false}
+{"id": "t219", "skills": ["uasl/tdd@ff86dad94075"], "redone_alone": false}
+{"id": "t220", "skills": [], "redone_alone": false}
+{"id": "t221", "skills": [], "redone_alone": false}
+{"id": "t222", "skills": [], "redone_alone": false}
+{"id": "t223", "skills": ["uasl/tdd@ff86dad94075"], "redone_alone": false}
+{"id": "t224", "skills": ["uasl/debugging-strategies@c55dad9c9654"], "redone_alone": false}
+{"id": "t225", "skills": [], "redone_alone": false}
+{"id": "t226", "skills": ["uasl/variant-analysis@4e25478feb58", "uasl/security-review@fcc354bc486e"], "redone_alone": false}
+{"id": "t227", "skills": ["uasl/security-review@fcc354bc486e"], "redone_alone": false}
+{"id": "t228", "skills": ["uasl/fp-check@36809c5d2431", "uasl/code-security@e20eb3467925"], "redone_alone": false}
+{"id": "t229", "skills": [], "redone_alone": false}
+{"id": "t230", "skills": ["uasl/stripe-best-practices@795a33f68129"], "redone_alone": false}
+{"id": "t231", "skills": ["uasl/security-review@fcc354bc486e", "uasl/code-security@e20eb3467925"], "redone_alone": false}
+{"id": "t232", "skills": ["uasl/auth-implementation-patterns@7a99b395d548", "uasl/e2e-testing-patterns@8b25fb0b2da6"], "redone_alone": false}
+{"id": "t233", "skills": ["uasl/security-review@fcc354bc486e"], "redone_alone": false}
+{"id": "t234", "skills": ["uasl/tdd@ff86dad94075", "uasl/code-security@e20eb3467925", "uasl/typescript-unit-testing@6fb3561edcb3"], "redone_alone": false}
+{"id": "t235", "skills": ["uasl/code-security@e20eb3467925", "uasl/owasp-security@9847d3666f75"], "redone_alone": false}
+{"id": "t236", "skills": ["uasl/auth-implementation-patterns@7a99b395d548", "uasl/verification-before-completion@134bf517af69", "uasl/code-security@e20eb3467925"], "redone_alone": false}
+{"id": "t237", "skills": ["uasl/code-security@e20eb3467925"], "redone_alone": false}
+{"id": "t238", "skills": ["uasl/variant-analysis@4e25478feb58", "uasl/constant-time-testing@6bbb97cc6cc1"], "redone_alone": true}
+{"id": "t239", "skills": ["uasl/debug-root-cause@1d7ea4a832dc"], "redone_alone": false}
+{"id": "t240", "skills": ["uasl/secure-coding-practices@cc37fcd8687e", "uasl/security-review@fcc354bc486e"], "redone_alone": false}
+{"id": "t241", "skills": ["uasl/security-review@fcc354bc486e"], "redone_alone": false}
+{"id": "t242", "skills": ["uasl/release-it@e3e5b4710eea"], "redone_alone": false}
+{"id": "t243", "skills": [], "redone_alone": false}
+{"id": "t244", "skills": ["uasl/fp-check@36809c5d2431"], "redone_alone": false}
+{"id": "t245", "skills": ["uasl/insecure-defaults@a0e826721018", "uasl/security-review@fcc354bc486e"], "redone_alone": false}
+{"id": "t246", "skills": ["uasl/ripple@620dca56eca0"], "redone_alone": false}
+{"id": "t247", "skills": [], "redone_alone": false}
+{"id": "t248", "skills": ["uasl/insecure-defaults@a0e826721018"], "redone_alone": false}
+{"id": "t249", "skills": ["uasl/insecure-defaults@a0e826721018", "uasl/security-audit@0b0f681978a4", "uasl/top-100-web-vulnerabilities-reference@21b2293939a2"], "redone_alone": true}
+{"id": "t250", "skills": ["uasl/security-review@fcc354bc486e"], "redone_alone": false}
+{"id": "t251", "skills": ["uasl/python-performance-optimization@bf455fd100bf"], "redone_alone": false}
+{"id": "t252", "skills": ["uasl/python-performance-optimization@bf455fd100bf"], "redone_alone": false}
+{"id": "t253", "skills": ["uasl/python-performance-optimization@bf455fd100bf"], "redone_alone": false}
+{"id": "t254", "skills": ["uasl/debugging-strategies@c55dad9c9654"], "redone_alone": false}
+{"id": "t255", "skills": ["uasl/vercel-react-best-practices@70f3b5aaf775"], "redone_alone": false}
+{"id": "t256", "skills": ["uasl/vercel-react-best-practices@70f3b5aaf775", "uasl/react-patterns@73d1ecc06997"], "redone_alone": false}
+{"id": "t257", "skills": ["uasl/vercel-react-best-practices@70f3b5aaf775", "uasl/next-best-practices@ee058f89acea"], "redone_alone": false}
+{"id": "t258", "skills": ["uasl/backend-patterns@3d87ff489f3e"], "redone_alone": false}
+{"id": "t259", "skills": [], "redone_alone": false}
+{"id": "t260", "skills": [], "redone_alone": false}
+{"id": "t261", "skills": ["uasl/debugging-strategies@c55dad9c9654"], "redone_alone": false}
+{"id": "t262", "skills": ["uasl/bolt@c4895c710162"], "redone_alone": false}
+{"id": "t263", "skills": ["uasl/refactoring-patterns@7283bad3e86e"], "redone_alone": false}
+{"id": "t264", "skills": ["uasl/bolt@c4895c710162"], "redone_alone": false}
+{"id": "t265", "skills": ["uasl/bolt@c4895c710162"], "redone_alone": false}
+{"id": "t266", "skills": [], "redone_alone": false}
+{"id": "t267", "skills": ["uasl/verification-loop@39d9be23cf50"], "redone_alone": true}
+{"id": "t268", "skills": [], "redone_alone": false}
+{"id": "t269", "skills": ["uasl/bolt@c4895c710162"], "redone_alone": false}
+{"id": "t270", "skills": ["uasl/verification-before-completion@134bf517af69", "uasl/sql-optimization-patterns@389f90da7b56"], "redone_alone": false}
+{"id": "t271", "skills": ["uasl/sql-optimization-patterns@389f90da7b56"], "redone_alone": false}
+{"id": "t272", "skills": [], "redone_alone": false}
+{"id": "t273", "skills": [], "redone_alone": false}
+{"id": "t274", "skills": ["uasl/vercel-react-native-skills@6e314641b44a"], "redone_alone": false}
+{"id": "t275", "skills": [], "redone_alone": false}
+{"id": "t276", "skills": ["uasl/anvil@3a36e8410205"], "redone_alone": false}
+{"id": "t277", "skills": ["uasl/redesign-skill@2e4f7f16e367"], "redone_alone": false}
+{"id": "t278", "skills": ["uasl/accessibility-compliance@696d2b4119ed", "uasl/responsive-design@2cf7927ef938"], "redone_alone": false}
+{"id": "t279", "skills": ["uasl/accessibility-compliance@696d2b4119ed", "uasl/redesign-skill@2e4f7f16e367"], "redone_alone": false}
+{"id": "t280", "skills": ["uasl/next-best-practices@ee058f89acea"], "redone_alone": false}
+{"id": "t281", "skills": ["uasl/figma-implement-design@6f82bf7fa5ca", "uasl/accessibility-compliance@696d2b4119ed", "uasl/next-best-practices@ee058f89acea"], "redone_alone": false}
+{"id": "t282", "skills": [], "redone_alone": false}
+{"id": "t283", "skills": [], "redone_alone": false}
+{"id": "t284", "skills": [], "redone_alone": false}
+{"id": "t285", "skills": ["uasl/web-design@b19d7c3f962e"], "redone_alone": false}
+{"id": "t286", "skills": [], "redone_alone": false}
+{"id": "t287", "skills": ["uasl/redesign-skill@2e4f7f16e367"], "redone_alone": false}
+{"id": "t288", "skills": [], "redone_alone": false}
+{"id": "t289", "skills": [], "redone_alone": false}
+{"id": "t290", "skills": ["uasl/accessibility-compliance@696d2b4119ed", "uasl/web-design@b19d7c3f962e"], "redone_alone": false}
+{"id": "t291", "skills": ["uasl/writing-plans@219901eb119f"], "redone_alone": false}
+{"id": "t292", "skills": [], "redone_alone": false}
+{"id": "t293", "skills": [], "redone_alone": false}
+{"id": "t294", "skills": [], "redone_alone": false}
+{"id": "t295", "skills": [], "redone_alone": false}
+{"id": "t296", "skills": [], "redone_alone": false}
+{"id": "t297", "skills": [], "redone_alone": false}
+{"id": "t298", "skills": ["uasl/design-harden@7850aacd7d45"], "redone_alone": false}
+{"id": "t299", "skills": [], "redone_alone": false}
+{"id": "t300", "skills": ["uasl/ios-hig-design@81a44fe68e4e"], "redone_alone": false}
+{"id": "t301", "skills": ["uasl/debug-root-cause@1d7ea4a832dc"], "redone_alone": false}
+{"id": "t302", "skills": [], "redone_alone": false}
+{"id": "t303", "skills": [], "redone_alone": false}
+{"id": "t304", "skills": [], "redone_alone": false}
+{"id": "t305", "skills": [], "redone_alone": false}
+{"id": "t306", "skills": [], "redone_alone": false}
+{"id": "t307", "skills": [], "redone_alone": false}
+{"id": "t308", "skills": ["uasl/verification-loop@39d9be23cf50"], "redone_alone": false}
+{"id": "t309", "skills": [], "redone_alone": false}
+{"id": "t310", "skills": [], "redone_alone": false}
+{"id": "t311", "skills": [], "redone_alone": false}
+{"id": "t312", "skills": [], "redone_alone": false}
+{"id": "t313", "skills": [], "redone_alone": true}
+{"id": "t314", "skills": ["uasl/next-best-practices@ee058f89acea"], "redone_alone": false}
+{"id": "t315", "skills": [], "redone_alone": false}
+{"id": "t316", "skills": [], "redone_alone": false}
+{"id": "t317", "skills": [], "redone_alone": false}
+{"id": "t318", "skills": [], "redone_alone": false}
+{"id": "t319", "skills": [], "redone_alone": false}
+{"id": "t320", "skills": [], "redone_alone": false}
+{"id": "t321", "skills": [], "redone_alone": false}
+{"id": "t322", "skills": [], "redone_alone": false}
+{"id": "t323", "skills": ["uasl/coding-guidelines@0ec7e45f92f2", "uasl/verification-before-completion@134bf517af69"], "redone_alone": false}
+{"id": "t324", "skills": [], "redone_alone": false}
+{"id": "t325", "skills": [], "redone_alone": false}
+{"id": "t326", "skills": [], "redone_alone": false}
+{"id": "t327", "skills": [], "redone_alone": false}
+{"id": "t328", "skills": [], "redone_alone": false}
+{"id": "t329", "skills": [], "redone_alone": false}
+{"id": "t330", "skills": [], "redone_alone": false}
+{"id": "t331", "skills": [], "redone_alone": false}
+{"id": "t332", "skills": [], "redone_alone": false}
+{"id": "t333", "skills": ["uasl/coding-guidelines@0ec7e45f92f2", "uasl/verification-before-completion@134bf517af69"], "redone_alone": false}
+{"id": "t334", "skills": [], "redone_alone": false}
+{"id": "t335", "skills": ["uasl/coding-guidelines@0ec7e45f92f2"], "redone_alone": false}
+{"id": "t336", "skills": [], "redone_alone": false}
+{"id": "t337", "skills": [], "redone_alone": false}
+{"id": "t338", "skills": [], "redone_alone": false}
+{"id": "t339", "skills": [], "redone_alone": false}
+{"id": "t340", "skills": [], "redone_alone": false}
+{"id": "t341", "skills": ["uasl/tdd@ff86dad94075", "uasl/python-testing-patterns@e62d0f1ca316"], "redone_alone": false}
+{"id": "t342", "skills": [], "redone_alone": false}
+{"id": "t343", "skills": ["uasl/pipe@0f029a41f006", "uasl/vercel-cli-with-tokens@3f9c2805c482", "uasl/github-actions-templates@ce03df93ccdf"], "redone_alone": false}
+{"id": "t344", "skills": ["uasl/pipe@0f029a41f006", "uasl/vercel-cli-with-tokens@3f9c2805c482", "uasl/github-actions-templates@ce03df93ccdf"], "redone_alone": false}
+{"id": "t345", "skills": ["uasl/sql-optimization-patterns@389f90da7b56", "uasl/accessibility-compliance@696d2b4119ed"], "redone_alone": false}
+{"id": "t346", "skills": ["uasl/sql-optimization-patterns@389f90da7b56", "uasl/web-design@b19d7c3f962e"], "redone_alone": false}
+{"id": "t347", "skills": ["uasl/property-based-testing@a168f6739085"], "redone_alone": false}
+{"id": "t348", "skills": ["uasl/property-based-testing@a168f6739085"], "redone_alone": false}
+{"id": "t349", "skills": ["uasl/writing-plans@219901eb119f"], "redone_alone": false}
+{"id": "t350", "skills": [], "redone_alone": false}
+{"id": "t351", "skills": ["uasl/debug-root-cause@1d7ea4a832dc", "uasl/coding-guidelines@0ec7e45f92f2"], "redone_alone": false}
+{"id": "t352", "skills": ["uasl/ripple@620dca56eca0", "uasl/verification-loop@39d9be23cf50"], "redone_alone": false}
+{"id": "t353", "skills": ["uasl/tdd@ff86dad94075", "uasl/python-testing-patterns@e62d0f1ca316"], "redone_alone": false}
+{"id": "t354", "skills": [], "redone_alone": false}
+{"id": "t355", "skills": ["uasl/security-review@fcc354bc486e", "uasl/artisan@1e09f38ffcab"], "redone_alone": false}
+{"id": "t356", "skills": ["uasl/vercel-react-best-practices@70f3b5aaf775", "uasl/artisan@1e09f38ffcab"], "redone_alone": false}
+{"id": "t357", "skills": ["uasl/quill@336ba74b0e79", "uasl/accessibility-compliance@696d2b4119ed"], "redone_alone": false}
+{"id": "t358", "skills": ["uasl/quill@336ba74b0e79"], "redone_alone": false}
+{"id": "t359", "skills": ["uasl/security-review@fcc354bc486e", "uasl/auth-implementation-patterns@7a99b395d548"], "redone_alone": false}
+{"id": "t360", "skills": ["uasl/auth-implementation-patterns@7a99b395d548", "uasl/secure-coding-practices@cc37fcd8687e"], "redone_alone": false}
+{"id": "t361", "skills": ["uasl/request-refactor-plan@49b853892f06", "uasl/refactoring-patterns@7283bad3e86e"], "redone_alone": false}
+{"id": "t362", "skills": ["uasl/refactoring-patterns@7283bad3e86e"], "redone_alone": false}
+{"id": "t363", "skills": ["uasl/schema@e6f260ce62e0"], "redone_alone": false}
+{"id": "t364", "skills": ["uasl/schema@e6f260ce62e0", "uasl/gateway@8350be122608"], "redone_alone": false}
+{"id": "t365", "skills": ["uasl/tdd@ff86dad94075", "uasl/python-testing-patterns@e62d0f1ca316"], "redone_alone": false}
+{"id": "t366", "skills": [], "redone_alone": false}
+{"id": "t367", "skills": ["uasl/github-actions-templates@ce03df93ccdf", "uasl/pipe@0f029a41f006"], "redone_alone": false}
+{"id": "t368", "skills": ["uasl/github-actions-templates@ce03df93ccdf"], "redone_alone": false}
+{"id": "t369", "skills": ["uasl/accessibility-compliance@696d2b4119ed"], "redone_alone": false}
+{"id": "t370", "skills": [], "redone_alone": false}
+{"id": "t371", "skills": ["uasl/integration-testing@62b51275be50"], "redone_alone": false}
+{"id": "t372", "skills": ["uasl/integration-testing@62b51275be50"], "redone_alone": false}
+{"id": "t373", "skills": ["uasl/writing-plans@219901eb119f"], "redone_alone": false}
+{"id": "t374", "skills": [], "redone_alone": false}
+{"id": "t375", "skills": [], "redone_alone": false}
+{"id": "t376", "skills": [], "redone_alone": false}
+{"id": "t377", "skills": ["uasl/tdd@ff86dad94075", "uasl/python-testing-patterns@e62d0f1ca316"], "redone_alone": false}
+{"id": "t378", "skills": ["uasl/deployment-pipeline-design@2a89fc6f32ff"], "redone_alone": false}
+{"id": "t379", "skills": ["uasl/vibe-security@6b07d0f651a7", "uasl/next-best-practices@ee058f89acea"], "redone_alone": false}
+{"id": "t380", "skills": ["uasl/vercel-react-best-practices@70f3b5aaf775", "uasl/next-best-practices@ee058f89acea"], "redone_alone": false}

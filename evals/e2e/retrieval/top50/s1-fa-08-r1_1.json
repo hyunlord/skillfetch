@@ -1,0 +1,252 @@
+[
+ {
+  "id": "uasl/fastapi-endpoint@2a93d50c4970",
+  "title": "fastapi-endpoint",
+  "summary": "Guides the agent through exploring an existing FastAPI project, asking clarifying questions, planning an endpoint implementation for approval, and then building the endpoint and tests. It emphasizes async SQLAlchemy, Pydantic schemas, dependency-injected authentication, and API test coverage."
+ },
+ {
+  "id": "uasl/n8n-workflow-patterns@c9641aab7a0b",
+  "title": "n8n-workflow-patterns",
+  "summary": "Guides agents in selecting, planning, building, validating, and deploying n8n workflows using common workflow patterns and a creation checklist. It also provides practical guidance for common workflow components, data handling, authentication, and error handling."
+ },
+ {
+  "id": "uasl/fastapi-templates@effcd0de0b4c",
+  "title": "fastapi-templates",
+  "summary": "Guides creation of structured FastAPI backend projects using async patterns, dependency injection, repository and service layers, authentication, and testing examples. Includes templates for API endpoints, database access, and user management."
+ },
+ {
+  "id": "uasl/n8n-code-javascript@203459f10f1d",
+  "title": "n8n-code-javascript",
+  "summary": "Guides the agent in writing and troubleshooting JavaScript for n8n Code nodes. It covers execution modes, input and webhook data access, return formats, and common implementation practices."
+ },
+ {
+  "id": "uasl/api-design@bba608f8c974",
+  "title": "api-design",
+  "summary": "Guides the agent in designing and reviewing REST API contracts, covering resource URLs, HTTP behavior, response formats, pagination, security, rate limits, and versioning. It also provides implementation patterns and a checklist for endpoint readiness."
+ },
+ {
+  "id": "uasl/openapi-spec-generation@2d2c7a93b8f2",
+  "title": "openapi-spec-generation",
+  "summary": "Guides agents in creating and maintaining OpenAPI 3.1 specifications from design or code, validating API contracts, and generating SDKs and documentation. Includes patterns for reusable schemas, API descriptions, security, versioning, and validation tools."
+ },
+ {
+  "id": "uasl/owasp-security@9847d3666f75",
+  "title": "owasp-security",
+  "summary": "Apply OWASP security practices when implementing or reviewing application and agent code. Check for common vulnerabilities and favor secure handling of input, authentication, authorization, data, errors, and dependencies."
+ },
+ {
+  "id": "uasl/python-error-handling@8dc34883a143",
+  "title": "python-error-handling",
+  "summary": "Guides agents to implement Python validation and error handling with meaningful exceptions, exception chaining, and resilient batch processing. It also recommends practices for domain-type conversion, progress reporting, logging, and testing error paths."
+ },
+ {
+  "id": "uasl/error-handling-patterns@4c19ee7d7821",
+  "title": "error-handling-patterns",
+  "summary": "Guides agents in handling errors across Python, JavaScript/TypeScript, Rust, and Go, including validation, cleanup, logging, and typed errors. Emphasizes preserving useful error context and handling errors at an appropriate level."
+ },
+ {
+  "id": "uasl/builder@8d7f0953ade3",
+  "title": "builder",
+  "summary": "Guides the agent to implement production-ready, type-safe business logic, API integrations, and data models, with validation, error handling, and test handoffs. It emphasizes TypeScript strictness, domain-appropriate patterns, and Japanese final outputs."
+ },
+ {
+  "id": "anthropics-skills/pptx@4eb5e13af97f",
+  "title": "pptx",
+  "summary": "For PowerPoint tasks, choose the appropriate creation, editing, or reading workflow and follow the skill’s implementation and design guidance. Validate the deck and inspect its content and rendered slides before considering the work complete."
+ },
+ {
+  "id": "uasl/googlephotos-automation@0b2d3403ccba",
+  "title": "googlephotos-automation",
+  "summary": "Use Rube MCP to carry out Google Photos tasks such as uploading and searching media and managing albums. Check current tool schemas first and ensure the Google Photos connection is active before running workflows."
+ },
+ {
+  "id": "uasl/n8n-validation-expert@9fd2d7e332b0",
+  "title": "n8n-validation-expert",
+  "summary": "Guides the agent to interpret n8n validation results, choose validation profiles, and iteratively resolve configuration and workflow issues. It also explains when warnings may be acceptable and how to use n8n’s sanitization and recovery tools."
+ },
+ {
+  "id": "uasl/backend-patterns@3d87ff489f3e",
+  "title": "backend-patterns",
+  "summary": "Provides TypeScript-oriented backend patterns for API design, data access, query optimization, caching, error handling, authentication, rate limiting, background jobs, and logging. Recommends choosing patterns suited to the complexity level."
+ },
+ {
+  "id": "uasl/n8n-code-python@ba1cd974d317",
+  "title": "n8n-code-python",
+  "summary": "Guides agents writing Python for n8n Code nodes, including n8n data access and return formats, execution modes, and Python’s standard-library limitations. It recommends considering JavaScript first and using Python (Beta) for better n8n integration."
+ },
+ {
+  "id": "uasl/n8n-expression-syntax@f1845451eb4d",
+  "title": "n8n-expression-syntax",
+  "summary": "Guides the agent to write and troubleshoot n8n expressions, including variable access, webhook data paths, and syntax rules. It also distinguishes expression syntax from direct JavaScript access in Code nodes and identifies places where expressions should not be used."
+ },
+ {
+  "id": "uasl/netsuite-automation@b615a37449c9",
+  "title": "netsuite-automation",
+  "summary": "Use the NetSuite toolkit to query and manage ERP records, including customers and sales orders. Check schemas, required fields, record references, and connection status when performing operations."
+ },
+ {
+  "id": "uasl/capsule-crm-automation@97113fa8404d",
+  "title": "capsule-crm-automation",
+  "summary": "Use the Composio MCP integration to carry out Capsule CRM operations, including managing contacts, querying records, and tracking tasks, projects, and activity. Follow the documented API field syntax and pagination requirements when retrieving or updating CRM data."
+ },
+ {
+  "id": "uasl/code-security@e20eb3467925",
+  "title": "code-security",
+  "summary": "Proactively check code for relevant security vulnerabilities and consult the applicable rules. Apply secure patterns when writing code, and flag vulnerable patterns during reviews."
+ },
+ {
+  "id": "uasl/tdd-workflow@6eadb0bf0ea8",
+  "title": "tdd-workflow",
+  "summary": "Follow a test-driven workflow by writing tests before implementation, running tests through development, and refactoring while keeping them green. Aim for at least 80% coverage across unit, integration, and E2E tests, with attention to edge cases and errors."
+ },
+ {
+  "id": "uasl/secure-coding-practices@cc37fcd8687e",
+  "title": "secure-coding-practices",
+  "summary": "Apply defensive security practices when designing, implementing, and reviewing applications. Validate inputs, protect sensitive data, use secure authentication and cryptography, and check dependencies and error-handling paths."
+ },
+ {
+  "id": "uasl/security-review@fcc354bc486e",
+  "title": "security-review",
+  "summary": "Apply a security checklist when reviewing or implementing application features, with emphasis on secrets, input handling, authentication, data exposure, API protections, and deployment readiness. Validate security-sensitive behavior and tests across web, database, and blockchain code."
+ },
+ {
+  "id": "uasl/api-testing@4ada9a2fac88",
+  "title": "api-testing",
+  "summary": "Guides the agent in creating and running direct HTTP API tests with tools such as .http files, Bruno, Postman/Newman, and k6. Covers assertions, environment configuration, secret handling, and CI integration."
+ },
+ {
+  "id": "uasl/software-architecture@011a6d823631",
+  "title": "software-architecture",
+  "summary": "Apply Clean Architecture and domain-driven design principles when designing or analyzing software, and favor readable, modular code. Prefer established libraries and domain-specific naming over unnecessary custom implementations and generic modules."
+ },
+ {
+  "id": "uasl/googledocs-automation@205a55e5ad22",
+  "title": "googledocs-automation",
+  "summary": "Use Rube MCP to create, find, edit, copy, and export Google Docs. Search for current tool schemas first, confirm the Google Docs connection is active, and follow the documented workflows for document operations."
+ },
+ {
+  "id": "uasl/contract-testing@b0f4c29940a9",
+  "title": "contract-testing",
+  "summary": "Guides agents in choosing and implementing contract-testing approaches to verify API compatibility between services. Covers Pact workflows, provider verification, Pact Broker and deployment checks, PactFlow, and Spring Cloud Contract."
+ },
+ {
+  "id": "uasl/zoho-inventory-automation@2f2863777368",
+  "title": "zoho-inventory-automation",
+  "summary": "Use Rube MCP to discover current Zoho Inventory tool schemas, verify the connection, and execute inventory workflows. Follow the skill’s guidance for sequencing, pagination, bulk operations, and error handling."
+ },
+ {
+  "id": "uasl/clay@6c9572941894",
+  "title": "clay",
+  "summary": "Produces reproducible code and operating guidance for AI 3D generation, modeling, game-asset pipelines, and quality validation. It requires safe credential handling and cost awareness, and does not execute API calls or deliver raw 3D model files."
+ },
+ {
+  "id": "uasl/algorand-vulnerability-scanner@b4ef2e1b7b33",
+  "title": "algorand-vulnerability-scanner",
+  "summary": "Guides security audits of Algorand smart contracts by identifying platform-specific vulnerabilities in TEAL and PyTeal, checking transaction validation and access controls, and using Tealer where available. It also recommends exploit-based tests and reports findings with severity and remediation guidance."
+ },
+ {
+  "id": "uasl/quickbooks-automation@bbe37470a32c",
+  "title": "quickbooks-automation",
+  "summary": "Guides the agent through QuickBooks Online workflows for managing customers, accounts, and invoices using the QuickBooks toolkit. Requires checking the toolkit connection and resolving relevant records before invoice creation."
+ },
+ {
+  "id": "uasl/design-harden@7850aacd7d45",
+  "title": "design-harden",
+  "summary": "Harden interfaces against unusual inputs, errors, internationalization issues, accessibility needs, and performance problems. Apply the guidance during implementation and verify resilience with manual and automated tests."
+ },
+ {
+  "id": "uasl/mcp-server-patterns@63e29e48e956",
+  "title": "mcp-server-patterns",
+  "summary": "For MCP server work, verify current SDK APIs against official documentation or Context7 and keep server logic independent of its transport. Define and validate tool schemas, use Streamable HTTP for remote clients, and follow the listed error-handling and versioning practices."
+ },
+ {
+  "id": "uasl/workflow-security-audit@84cc84849968",
+  "title": "workflow-security-audit",
+  "summary": "Guides a security audit through threat assessment, automated scanning, code review, penetration testing, remediation planning, and validation. It also specifies expected audit deliverables and success criteria."
+ },
+ {
+  "id": "uasl/provider-api@4da7bed47117",
+  "title": "provider-api",
+  "summary": "Use the neutral `skill-router provider-api` CLI for hosted-provider APIs, explicitly configuring the endpoint and key before making calls. Load the platform’s provider-specific documentation when exact schemas, authentication, rate limits, or provider-only behavior are needed."
+ },
+ {
+  "id": "uasl/bolt@c4895c710162",
+  "title": "bolt",
+  "summary": "Bolt directs the agent to identify measurable performance improvements, follow a profiling-to-presentation workflow, and document their impact. It also sets limits on implementation, optimization scope, and when to ask for confirmation or hand off work."
+ },
+ {
+  "id": "uasl/claude-native-claude-api@24c958899f03",
+  "title": "claude-native-claude-api",
+  "summary": "Guide the agent in building, debugging, and migrating Claude API applications using Anthropic SDKs and documented API patterns. Apply the skill’s defaults for model choice, thinking, streaming, and prompt caching, and consult the relevant language-specific and shared documentation."
+ },
+ {
+  "id": "uasl/gateway@8350be122608",
+  "title": "gateway",
+  "summary": "Designs and reviews API contracts, producing OpenAPI specifications or GraphQL SDL along with examples, error formats, versioning recommendations, and security considerations. Favors backward compatibility, routes implementation work elsewhere, and records API design decisions in project files."
+ },
+ {
+  "id": "uasl/leiga-automation@b1e5db446913",
+  "title": "leiga-automation",
+  "summary": "Use Rube MCP to automate Leiga operations. Discover current tool schemas first, confirm the Leiga connection is active, and follow the returned schemas and workflow guidance when executing tools."
+ },
+ {
+  "id": "uasl/obsidian-vault@9a9463853d6f",
+  "title": "obsidian-vault",
+  "summary": "Guides searching and organizing an Obsidian vault, and creating notes and index notes that follow its naming and linking conventions. It also specifies how to find backlinks and handle notes in numbered sequences."
+ },
+ {
+  "id": "uasl/sentinel@68f8e2afebcc",
+  "title": "sentinel",
+  "summary": "The skill directs the agent to identify and remediate one security issue or add one security enhancement per invocation, following a severity-focused scan, fix, and verification workflow. It also specifies reporting, routing, logging, and special handling for multi-engine and Nexus workflows."
+ },
+ {
+  "id": "anthropics-skills/xlsx@5350d36b768c",
+  "title": "xlsx",
+  "summary": "Guides agents through creating, editing, and analyzing spreadsheet files, with rules for formulas, recalculation, formatting, and preserving existing workbook conventions. It also gives specific safeguards for financial models and common openpyxl pitfalls."
+ },
+ {
+  "id": "uasl/googleads-automation@13c0cd459708",
+  "title": "googleads-automation",
+  "summary": "Use Rube MCP to discover current tool schemas, establish a Google Analytics connection, and access GA4 data linked to Google Ads. Follow the report constraints for field compatibility, identifiers, filters, and request limits."
+ },
+ {
+  "id": "uasl/anvil@3a36e8410205",
+  "title": "anvil",
+  "summary": "Guides the agent in designing and implementing CLI and TUI experiences, including command contracts, terminal behavior, tool integration, and cross-platform concerns. It emphasizes self-documenting commands, reliable machine-readable output, and safe behavior in CI and non-TTY environments."
+ },
+ {
+  "id": "uasl/sidetracker-automation@54e8a1f15fdb",
+  "title": "sidetracker-automation",
+  "summary": "Automate Sidetracker operations through Rube MCP by discovering current tool schemas, checking the Sidetracker connection, and executing schema-compliant tools. Follow the skill’s session, memory, and pagination practices during workflows."
+ },
+ {
+  "id": "uasl/short-menu-automation@35d24e0fbeb9",
+  "title": "short-menu-automation",
+  "summary": "Use Rube MCP to automate Short Menu tasks. Discover current tool schemas, verify the Short Menu connection, and execute tools with schema-compliant arguments."
+ },
+ {
+  "id": "uasl/forge@a8efdfdbe817",
+  "title": "forge",
+  "summary": "Use Forge to build small, runnable prototypes that validate ideas, relying on mocks where useful and keeping work ready for handoff. Prioritize learning and working demos over production polish, and report the prototype’s status, findings, debt, and next decision."
+ },
+ {
+  "id": "uasl/googlemeet-automation@d25b5982718c",
+  "title": "googlemeet-automation",
+  "summary": "Use Rube MCP to create Google Meet spaces, schedule and update meetings, and check availability. Look up current tool schemas first, connect the required toolkits, and follow the specified meeting time, attendee, and event ID requirements."
+ },
+ {
+  "id": "uasl/specter@eeba33cf9245",
+  "title": "specter",
+  "summary": "Specter analyzes concurrency, asynchronous, memory, and resource-management issues, scores and reports findings, and suggests tests. It must not modify code; fixes are handed off to Builder."
+ },
+ {
+  "id": "uasl/n8n-node-configuration@11407cd84493",
+  "title": "n8n-node-configuration",
+  "summary": "Guides agents to configure n8n nodes according to their operation and property dependencies, starting with essential fields and using discovery tools as needed. It emphasizes iterative validation before deployment and relying on auto-sanitization for operator structure."
+ },
+ {
+  "id": "uasl/cats-automation@bc5c5b627e57",
+  "title": "cats-automation",
+  "summary": "Use Rube MCP to automate Cats operations, discovering current tool schemas and checking the Cats connection before executing workflows. Follow the returned schemas, manage sessions and memory parameters, and fetch paginated results to completion."
+ }
+]

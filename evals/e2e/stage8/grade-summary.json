@@ -1,0 +1,24 @@
+{
+ "tasks": 380,
+ "graded": 14002,
+ "grade_ge2": 2212,
+ "problems": [],
+ "cost_usd": 18.41,
+ "gpt60_tasks": 60,
+ "gpt60_rows": 2270,
+ "gpt60_alloc": {
+  "feature": 5,
+  "bugfix": 5,
+  "refactor": 4,
+  "tests": 4,
+  "docs": 4,
+  "ci_infra": 5,
+  "deploy": 5,
+  "data": 4,
+  "ml": 5,
+  "security_review": 4,
+  "performance": 5,
+  "ui_design": 4,
+  "trivial": 6
+ }
+}

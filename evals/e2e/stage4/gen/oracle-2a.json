@@ -1,0 +1,895 @@
+{
+ "s4-t001": {
+  "skills": [],
+  "reason": "Small routine CLI flag addition to a script; no skill adds value."
+ },
+ "s4-t002": {
+  "skills": [
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/python-testing-patterns@e62d0f1ca316"
+  ],
+  "reason": "Extends a FastAPI create route with recurrence and date-conflict logic that benefits from endpoint conventions and tests."
+ },
+ "s4-t003": {
+  "skills": [
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/python-testing-patterns@e62d0f1ca316",
+   "uasl/schema@e6f260ce62e0"
+  ],
+  "reason": "New SQLModel table plus Alembic migration, CRUD routes, and pytest acceptance cases covering trigger, no-trigger and cooldown."
+ },
+ "s4-t004": {
+  "skills": [
+   "uasl/workflow-automation@8036a9d484a3",
+   "uasl/python-error-handling@8dc34883a143"
+  ],
+  "reason": "Periodic reminder job that needs idempotent sending and safe failure handling."
+ },
+ "s4-t005": {
+  "skills": [
+   "uasl/test-driven-development@0eebe2fe0e28",
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/python-testing-patterns@e62d0f1ca316"
+  ],
+  "reason": "Explicitly test-first work on a new FastAPI export route with pytest."
+ },
+ "s4-t006": {
+  "skills": [
+   "uasl/next-best-practices@ee058f89acea",
+   "uasl/frontend-patterns@8f659ce2a0bd"
+  ],
+  "reason": "Next.js page state plus a new pages API route for persisting saved filters."
+ },
+ "s4-t007": {
+  "skills": [
+   "uasl/e2e-testing-patterns@8b25fb0b2da6",
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/frontend-patterns@8f659ce2a0bd"
+  ],
+  "reason": "Cursor pagination in FastAPI, a TanStack-based React view, and a Playwright paging test."
+ },
+ "s4-t008": {
+  "skills": [
+   "uasl/frontend-patterns@8f659ce2a0bd",
+   "uasl/react-patterns@73d1ecc06997"
+  ],
+  "reason": "Debounced autosave with save-status UI in a React dialog."
+ },
+ "s4-t009": {
+  "skills": [
+   "uasl/accessibility-compliance@696d2b4119ed",
+   "uasl/web-component-design@af6d16dc78dc"
+  ],
+  "reason": "An accessible ARIA grid with keyboard navigation and screen-reader labels is the core of the task."
+ },
+ "s4-t026": {
+  "skills": [
+   "uasl/python-testing-patterns@e62d0f1ca316"
+  ],
+  "reason": "Focused timezone-aware datetime fix; tests around the DST boundary help confirm it."
+ },
+ "s4-t027": {
+  "skills": [],
+  "reason": "Focused Decimal rounding fix with clear spec; routine for a capable engineer."
+ },
+ "s4-t028": {
+  "skills": [
+   "uasl/error-handling-patterns@4c19ee7d7821"
+  ],
+  "reason": "Retry/backoff with server-provided wait handling benefits from error-handling and retry patterns."
+ },
+ "s4-t029": {
+  "skills": [
+   "uasl/test-driven-development@0eebe2fe0e28",
+   "uasl/python-testing-patterns@e62d0f1ca316"
+  ],
+  "reason": "Explicitly test-first bug fix with pytest cases."
+ },
+ "s4-t030": {
+  "skills": [],
+  "reason": "Small, well-known hydration fix; no skill needed."
+ },
+ "s4-t031": {
+  "skills": [
+   "uasl/e2e-testing-patterns@8b25fb0b2da6",
+   "uasl/api-design@bba608f8c974",
+   "uasl/fastapi-templates@effcd0de0b4c"
+  ],
+  "reason": "Idempotency-key API design plus Playwright double-click test and FastAPI/SQLModel changes."
+ },
+ "s4-t032": {
+  "skills": [],
+  "reason": "Routine React Query key unification and invalidation fix."
+ },
+ "s4-t033": {
+  "skills": [
+   "uasl/karpathy-guidelines@da897c8c3bab"
+  ],
+  "reason": "Minimal-diff, scope-limited change is the explicit constraint."
+ },
+ "s4-t051": {
+  "skills": [
+   "uasl/refactoring-patterns@7283bad3e86e",
+   "uasl/python-design-patterns@5c0fbe0d4633"
+  ],
+  "reason": "Behavior-preserving refactor into per-type classes behind a Protocol."
+ },
+ "s4-t052": {
+  "skills": [
+   "uasl/refactoring-patterns@7283bad3e86e",
+   "uasl/architecture-patterns@d184d1c3a346"
+  ],
+  "reason": "Extract pure service layer from routes while preserving behavior."
+ },
+ "s4-t053": {
+  "skills": [
+   "uasl/refactoring-patterns@7283bad3e86e",
+   "uasl/python-design-patterns@5c0fbe0d4633"
+  ],
+  "reason": "Dependency-injection refactor of settings for testability across callers."
+ },
+ "s4-t054": {
+  "skills": [
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/refactoring-patterns@7283bad3e86e",
+   "uasl/python-type-safety@60be75b4816f"
+  ],
+  "reason": "FastAPI/SQLModel model refactor that must keep behavior identical, with Pydantic v2 typing"
+ },
+ "s4-t055": {
+  "skills": [],
+  "reason": "Small, routine extraction of a hook"
+ },
+ "s4-t056": {
+  "skills": [
+   "uasl/refactoring-patterns@7283bad3e86e",
+   "uasl/error-handling-patterns@4c19ee7d7821",
+   "uasl/frontend-patterns@8f659ce2a0bd"
+  ],
+  "reason": "Multi-file consolidation of the frontend API layer with typed errors, preserving behavior"
+ },
+ "s4-t057": {
+  "skills": [
+   "uasl/refactoring-patterns@7283bad3e86e",
+   "uasl/frontend-patterns@8f659ce2a0bd"
+  ],
+  "reason": "Splitting a large React route into a hook and a permissions module without behavior change"
+ },
+ "s4-t058": {
+  "skills": [],
+  "reason": "Routine strict-mode type fixes with a minimal diff"
+ },
+ "s4-t076": {
+  "skills": [
+   "uasl/python-testing-patterns@e62d0f1ca316"
+  ],
+  "reason": "Pytest edge-case tests for token verification"
+ },
+ "s4-t077": {
+  "skills": [
+   "uasl/python-testing-patterns@e62d0f1ca316"
+  ],
+  "reason": "Write a failing regression test before the fix"
+ },
+ "s4-t078": {
+  "skills": [
+   "uasl/python-testing-patterns@e62d0f1ca316",
+   "uasl/integration-testing@62b51275be50",
+   "uasl/api-testing@4ada9a2fac88"
+  ],
+  "reason": "FastAPI endpoint tests with mocking, concurrency handling and coverage targets"
+ },
+ "s4-t079": {
+  "skills": [
+   "uasl/python-testing-patterns@e62d0f1ca316",
+   "uasl/api-testing@4ada9a2fac88"
+  ],
+  "reason": "FastAPI TestClient route tests using existing fixtures"
+ },
+ "s4-t080": {
+  "skills": [
+   "uasl/python-testing-patterns@e62d0f1ca316",
+   "uasl/unit-testing@6c5fbb821103"
+  ],
+  "reason": "Parametrized pytest/mock unit tests for utility functions"
+ },
+ "s4-t081": {
+  "skills": [
+   "uasl/unit-testing@6c5fbb821103",
+   "uasl/debug-root-cause@1d7ea4a832dc"
+  ],
+  "reason": "Vitest/RTL hook tests covering partial-failure paths, plus tracing why the token lingers in localStorage."
+ },
+ "s4-t082": {
+  "skills": [],
+  "reason": "Routine Jest tests for an API route with jest.mock; a capable engineer needs no extra guidance."
+ },
+ "s4-t083": {
+  "skills": [
+   "uasl/e2e-testing-patterns@8b25fb0b2da6"
+  ],
+  "reason": "Playwright e2e test with page.route mocking, failure toast and retry flow."
+ },
+ "s4-t084": {
+  "skills": [
+   "uasl/tdd@ff86dad94075",
+   "uasl/test-driven-development@0eebe2fe0e28"
+  ],
+  "reason": "Explicit red-green test-first workflow for a zod validator."
+ },
+ "s4-t101": {
+  "skills": [],
+  "reason": "Writing docstrings for a few utility functions is routine."
+ },
+ "s4-t102": {
+  "skills": [
+   "uasl/openapi-spec-generation@2d2c7a93b8f2",
+   "uasl/api-design@bba608f8c974"
+  ],
+  "reason": "Enriching FastAPI OpenAPI metadata, documenting error codes and the endpoint lifecycle."
+ },
+ "s4-t103": {
+  "skills": [
+   "uasl/eng-runbook@0895fb3557f4"
+  ],
+  "reason": "Migration docs with on-call recovery steps for failed upgrades are runbook-style operational content."
+ },
+ "s4-t104": {
+  "skills": [],
+  "reason": "Docstring-only edits to a settings class; trivial and tightly scoped."
+ },
+ "s4-t105": {
+  "skills": [],
+  "reason": "Adding JSDoc to a single hook is small and routine."
+ },
+ "s4-t106": {
+  "skills": [
+   "uasl/mermaid-diagrams@a50e01188b8f"
+  ],
+  "reason": "Data-pipeline doc with removal and edit sequences benefits from sequence diagrams; the rest is routine docs."
+ },
+ "s4-t107": {
+  "skills": [
+   "uasl/quill@336ba74b0e79"
+  ],
+  "reason": "Adding TSDoc that explains the auth hook and the route guard behavior is codebase documentation work."
+ },
+ "s4-t108": {
+  "skills": [
+   "uasl/verification-before-completion@134bf517af69"
+  ],
+  "reason": "Every documented command must be run and verified first, and failures must be reported honestly."
+ },
+ "s4-t126": {
+  "skills": [
+   "uasl/github-actions-templates@ce03df93ccdf",
+   "uasl/pipe@0f029a41f006"
+  ],
+  "reason": "New GitHub Actions workflow with uv dependency caching keyed on the lockfile and pytest split into two jobs."
+ },
+ "s4-t127": {
+  "skills": [
+   "uasl/scaffold@443673063eb0",
+   "uasl/verification-before-completion@134bf517af69"
+  ],
+  "reason": "Container and compose infrastructure setup with concrete acceptance checks (health endpoint, image size) to verify."
+ },
+ "s4-t128": {
+  "skills": [],
+  "reason": "A tox matrix plus GitLab CI parallel jobs is routine, and no catalog skill covers GitLab CI or tox."
+ },
+ "s4-t129": {
+  "skills": [
+   "uasl/static-analysis@88c6f201cae0",
+   "uasl/github-actions-templates@ce03df93ccdf"
+  ],
+  "reason": "Configuring ruff and mypy in pre-commit plus a CI lint workflow that runs the same hooks."
+ },
+ "s4-t130": {
+  "skills": [
+   "uasl/github-actions-templates@ce03df93ccdf"
+  ],
+  "reason": "Focused fix to the CI cache step's key and restore paths."
+ },
+ "s4-t131": {
+  "skills": [
+   "uasl/github-actions-templates@ce03df93ccdf",
+   "uasl/pipe@0f029a41f006",
+   "uasl/e2e-testing-patterns@8b25fb0b2da6"
+  ],
+  "reason": "PR preview deploy workflow with path filters, a sticky PR comment, and a Playwright smoke test against the preview URL."
+ },
+ "s4-t132": {
+  "skills": [
+   "uasl/github-actions-templates@ce03df93ccdf"
+  ],
+  "reason": "Adding path-based conditions to CI jobs."
+ },
+ "s4-t133": {
+  "skills": [],
+  "reason": "Reordering Dockerfile layers and adding a BuildKit cache mount is routine, and no catalog skill specifically covers Docker."
+ },
+ "s4-t151": {
+  "skills": [],
+  "reason": "A fly.toml with release_command is a small, well-known config task, so no skill is needed."
+ },
+ "s4-t152": {
+  "skills": [
+   "uasl/deployment-pipeline-design@2a89fc6f32ff",
+   "uasl/release-it@e3e5b4710eea"
+  ],
+  "reason": "Blue/green canary with automatic rollback benefits from pipeline-strategy and operational-resilience guidance."
+ },
+ "s4-t153": {
+  "skills": [],
+  "reason": "Routine compose and env tweaks for staging."
+ },
+ "s4-t154": {
+  "skills": [
+   "uasl/fastapi-endpoint@2a93d50c4970"
+  ],
+  "reason": "Changing an existing FastAPI route behind a setting benefits from guidance on exploring the project first."
+ },
+ "s4-t155": {
+  "skills": [],
+  "reason": "A small env var configuration fix."
+ },
+ "s4-t156": {
+  "skills": [
+   "uasl/next-best-practices@ee058f89acea"
+  ],
+  "reason": "The standalone output and ISR cache handling across replicas are Next.js-specific."
+ },
+ "s4-t157": {
+  "skills": [
+   "uasl/github-actions-templates@ce03df93ccdf",
+   "uasl/deployment-pipeline-design@2a89fc6f32ff",
+   "uasl/pipe@0f029a41f006"
+  ],
+  "reason": "A multi-environment CI release pipeline with build-once promotion fits these skills."
+ },
+ "s4-t158": {
+  "skills": [
+   "uasl/monorepo-management@4078df072127"
+  ],
+  "reason": "Building only frontend/ from the root workspace is a monorepo configuration concern."
+ },
+ "s4-t159": {
+  "skills": [
+   "uasl/next-best-practices@ee058f89acea"
+  ],
+  "reason": "Percentage routing in Next.js middleware with Edge Config is framework-specific."
+ },
+ "s4-t176": {
+  "skills": [
+   "uasl/sql-optimization-patterns@389f90da7b56"
+  ],
+  "reason": "Latest-row-per-group dedup aggregation benefits from SQL query patterns."
+ },
+ "s4-t177": {
+  "skills": [
+   "uasl/stream@94a72913c590",
+   "uasl/verification-before-completion@134bf517af69"
+  ],
+  "reason": "A multi-source batch load needs an idempotent replace-by-date design and has acceptance checks against manifest counts to verify."
+ },
+ "s4-t178": {
+  "skills": [],
+  "reason": "A simple pandas dedupe-and-aggregate script that a capable engineer can write directly."
+ },
+ "s4-t179": {
+  "skills": [],
+  "reason": "A straightforward SQLModel dedupe job with per-day counts, needing no specialized guidance."
+ },
+ "s4-t180": {
+  "skills": [],
+  "reason": "Trivial expansion of sample data."
+ },
+ "s4-t181": {
+  "skills": [
+   "uasl/schema@e6f260ce62e0",
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/python-error-handling@8dc34883a143"
+  ],
+  "reason": "Covers the new table, Alembic migration and batched backfill, a new FastAPI route, and logging bad blobs without aborting the run."
+ },
+ "s4-t182": {
+  "skills": [],
+  "reason": "A focused backfill script with a single join; no skill adds much."
+ },
+ "s4-t183": {
+  "skills": [
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/python-error-handling@8dc34883a143"
+  ],
+  "reason": "A new FastAPI import endpoint with per-row validation errors, a dry-run summary and an upsert."
+ },
+ "s4-t201": {
+  "skills": [
+   "uasl/data-analyst-engine@79799e01e2dd"
+  ],
+  "reason": "Fixing ML split leakage with a time-based split, then retraining and reporting honest metrics."
+ },
+ "s4-t202": {
+  "skills": [
+   "uasl/data-analyst-engine@79799e01e2dd"
+  ],
+  "reason": "Time-series feature engineering, LightGBM training and WAPE evaluation against a baseline."
+ },
+ "s4-t203": {
+  "skills": [
+   "uasl/data-analyst-engine@79799e01e2dd"
+  ],
+  "reason": "Handling class imbalance with class weights or focal loss and comparing per-class F1."
+ },
+ "s4-t204": {
+  "skills": [
+   "uasl/test-driven-development@0eebe2fe0e28",
+   "uasl/python-testing-patterns@e62d0f1ca316"
+  ],
+  "reason": "Test-first implementation of early stopping in a Python training loop."
+ },
+ "s4-t205": {
+  "skills": [],
+  "reason": "Wiring an ONNX model into Next.js API routes is routine integration; no catalog skill covers onnxruntime specifically."
+ },
+ "s4-t206": {
+  "skills": [
+   "uasl/web-performance-optimization@b2b38275ed40",
+   "uasl/perf-lighthouse@ccafe273f7d2"
+  ],
+  "reason": "Lazy model loading in a worker with a Lighthouse TBT acceptance target benefits from perf measurement guidance."
+ },
+ "s4-t207": {
+  "skills": [
+   "uasl/defense-in-depth@e9a7d1415325",
+   "uasl/error-handling-patterns@4c19ee7d7821"
+  ],
+  "reason": "Validating the upstream model response and falling back gracefully when it returns NaN."
+ },
+ "s4-t208": {
+  "skills": [
+   "uasl/writing-plans@219901eb119f",
+   "uasl/eval-harness@2a2fcc11c03a"
+  ],
+  "reason": "The user wants a plan before any code for a reusable offline classifier eval."
+ },
+ "s4-t226": {
+  "skills": [
+   "uasl/security-review@fcc354bc486e",
+   "uasl/owasp-security@9847d3666f75"
+  ],
+  "reason": "Reviewing the item endpoints for IDOR / broken access control."
+ },
+ "s4-t227": {
+  "skills": [
+   "uasl/security-audit@0b0f681978a4",
+   "uasl/secure-coding-practices@cc37fcd8687e",
+   "uasl/owasp-security@9847d3666f75"
+  ],
+  "reason": "Security audit of the upload endpoint with severity-ranked findings and fixes."
+ },
+ "s4-t228": {
+  "skills": [
+   "uasl/security-review@fcc354bc486e",
+   "uasl/secure-coding-practices@cc37fcd8687e"
+  ],
+  "reason": "Reviewing unsafe yaml.load and subprocess shell=True command injection."
+ },
+ "s4-t229": {
+  "skills": [
+   "uasl/secure-coding-practices@cc37fcd8687e"
+  ],
+  "reason": "Removing pickle deserialization risk from Celery tasks on a shared broker."
+ },
+ "s4-t230": {
+  "skills": [
+   "uasl/stripe-best-practices@795a33f68129"
+  ],
+  "reason": "Checking Stripe webhook signature verification and raw-body handling."
+ },
+ "s4-t231": {
+  "skills": [
+   "uasl/code-security@e20eb3467925",
+   "uasl/owasp-security@9847d3666f75",
+   "uasl/security-review@fcc354bc486e"
+  ],
+  "reason": "Stored XSS review across the backend save path and the dangerouslySetInnerHTML render path, plus whether backend sanitization covers it."
+ },
+ "s4-t232": {
+  "skills": [
+   "uasl/auth-implementation-patterns@7a99b395d548",
+   "uasl/security-review@fcc354bc486e",
+   "uasl/e2e-testing-patterns@8b25fb0b2da6"
+  ],
+  "reason": "Server-side authorization audit with a shared FastAPI dependency fix and a Playwright 403 test."
+ },
+ "s4-t233": {
+  "skills": [
+   "uasl/insecure-defaults@a0e826721018",
+   "uasl/code-security@e20eb3467925"
+  ],
+  "reason": "Backend secrets leaking into the frontend bundle through VITE_ env vars, plus config loading review."
+ },
+ "s4-t234": {
+  "skills": [
+   "uasl/test-driven-development@0eebe2fe0e28",
+   "uasl/python-testing-patterns@e62d0f1ca316",
+   "uasl/secure-coding-practices@cc37fcd8687e"
+  ],
+  "reason": "Test-first SQL injection fix with pytest, moving to SQLModel bound parameters and a sort_by whitelist."
+ },
+ "s4-t251": {
+  "skills": [],
+  "reason": "Routine N+1 fix with selectinload, already fully diagnosed."
+ },
+ "s4-t252": {
+  "skills": [
+   "uasl/python-performance-optimization@bf455fd100bf",
+   "uasl/data-analyst-engine@79799e01e2dd"
+  ],
+  "reason": "Optimizing a large pandas job: vectorized aggregations or polars, chunked parquet reads, dtype downcasting, memory limits."
+ },
+ "s4-t253": {
+  "skills": [],
+  "reason": "Simple N+1 query fix in a loop; a capable engineer needs no extra guidance."
+ },
+ "s4-t254": {
+  "skills": [
+   "uasl/python-performance-optimization@bf455fd100bf",
+   "uasl/debugging-strategies@c55dad9c9654"
+  ],
+  "reason": "Measuring the memory leak with tracemalloc and finding the root cause in Jinja template caching."
+ },
+ "s4-t255": {
+  "skills": [
+   "uasl/next-best-practices@ee058f89acea",
+   "uasl/vercel-react-best-practices@70f3b5aaf775"
+  ],
+  "reason": "Reducing a Next.js bundle by lazy-loading with next/dynamic."
+ },
+ "s4-t256": {
+  "skills": [
+   "uasl/vercel-react-best-practices@70f3b5aaf775",
+   "uasl/react-patterns@73d1ecc06997",
+   "uasl/web-perf@9063b7e5eacf"
+  ],
+  "reason": "React list virtualization, memoization and debouncing, verified against an INP target in Chrome."
+ },
+ "s4-t257": {
+  "skills": [
+   "uasl/next-best-practices@ee058f89acea",
+   "uasl/web-performance-optimization@b2b38275ed40"
+  ],
+  "reason": "Moving from getServerSideProps to ISR with revalidate, plus parallelizing the fetches, is Next.js data-fetching performance work."
+ },
+ "s4-t258": {
+  "skills": [
+   "uasl/async-python-patterns@957ebfe54aa7",
+   "uasl/fastapi-templates@effcd0de0b4c"
+  ],
+  "reason": "Running the count and page queries concurrently with a stdlib TTL/LRU cache inside a FastAPI route is async Python work."
+ },
+ "s4-t276": {
+  "skills": [
+   "uasl/responsive-design@2cf7927ef938"
+  ],
+  "reason": "Reworking table columns for narrow screens and adding a collapsible panel is a responsive layout change."
+ },
+ "s4-t277": {
+  "skills": [
+   "uasl/responsive-design@2cf7927ef938",
+   "uasl/frontend-patterns@8f659ce2a0bd",
+   "uasl/tailwind-design-system@7db0651a06b1"
+  ],
+  "reason": "A responsive card grid built with React and theme tokens, while keeping the existing pagination."
+ },
+ "s4-t278": {
+  "skills": [
+   "uasl/accessibility-compliance@696d2b4119ed",
+   "uasl/responsive-design@2cf7927ef938"
+  ],
+  "reason": "44px touch targets and grouping the mobile menu are accessibility and responsive concerns."
+ },
+ "s4-t279": {
+  "skills": [
+   "uasl/accessibility-compliance@696d2b4119ed",
+   "uasl/ui-design@812122996fbd"
+  ],
+  "reason": "An accessibility-first visual refresh: heading order, focus states, contrast and keyboard use."
+ },
+ "s4-t280": {
+  "skills": [],
+  "reason": "Adding a skeleton loader to one component is a small, routine fix."
+ },
+ "s4-t281": {
+  "skills": [
+   "uasl/responsive-design@2cf7927ef938",
+   "uasl/accessibility-compliance@696d2b4119ed",
+   "uasl/figma-implement-design@6f82bf7fa5ca"
+  ],
+  "reason": "A sticky/collapsible responsive sidebar that must match Figma spacing, pass axe, and avoid layout shift."
+ },
+ "s4-t282": {
+  "skills": [
+   "uasl/responsive-design@2cf7927ef938"
+  ],
+  "reason": "Fixing overlapping badges on narrow screens and adding a role color stripe is responsive layout work."
+ },
+ "s4-t283": {
+  "skills": [],
+  "reason": "A minimal dark mode with CSS variables and a data-theme toggle is a straightforward change."
+ },
+ "s4-t301": {
+  "skills": [],
+  "reason": "Small, targeted off-by-one fix in skip/limit pagination; routine for a capable engineer."
+ },
+ "s4-t302": {
+  "skills": [],
+  "reason": "Mechanical hook and file rename with import updates; no skill adds value."
+ },
+ "s4-t303": {
+  "skills": [],
+  "reason": "Trivial typo fix in two strings plus a single pytest run."
+ },
+ "s4-t304": {
+  "skills": [],
+  "reason": "Short read-only explanation of sync vs async session choice; reading the code is enough."
+ },
+ "s4-t305": {
+  "skills": [],
+  "reason": "One-line config constant change with a quick test grep."
+ },
+ "s4-t306": {
+  "skills": [],
+  "reason": "Adding a missing import to fix the build is trivial."
+ },
+ "s4-t307": {
+  "skills": [],
+  "reason": "Comment-only correction to match actual behavior."
+ },
+ "s4-t308": {
+  "skills": [],
+  "reason": "Pinned patch-level Next.js bump with npm lockfile regen; not a major upgrade needing codemod guidance."
+ },
+ "s4-t309": {
+  "skills": [],
+  "reason": "Reordering two guard checks to avoid a None access is a trivial fix."
+ },
+ "s4-t310": {
+  "skills": [],
+  "reason": "Small Pydantic field rename with a given AliasChoices approach; routine."
+ },
+ "s4-t311": {
+  "skills": [],
+  "reason": "Trivial typo fix in a log message."
+ },
+ "s4-t312": {
+  "skills": [],
+  "reason": "Short code-reading question about a React effect; no skill adds value."
+ },
+ "s4-t313": {
+  "skills": [],
+  "reason": "Routine config value and doc line change with a given test command."
+ },
+ "s4-t314": {
+  "skills": [],
+  "reason": "Trivial import-type change."
+ },
+ "s4-t315": {
+  "skills": [],
+  "reason": "Docstring-only update; routine."
+ },
+ "s4-t316": {
+  "skills": [],
+  "reason": "Simple dependency version bump."
+ },
+ "s4-t317": {
+  "skills": [],
+  "reason": "One-character, well-specified bug fix."
+ },
+ "s4-t318": {
+  "skills": [],
+  "reason": "Routine component and file rename with a build check."
+ },
+ "s4-t319": {
+  "skills": [],
+  "reason": "Trivial typo fix in a template."
+ },
+ "s4-t320": {
+  "skills": [
+   "uasl/next-best-practices@ee058f89acea"
+  ],
+  "reason": "Explaining Next.js getStaticProps/getStaticPaths fallback behavior benefits from Next.js guidance."
+ },
+ "s4-t321": {
+  "skills": [],
+  "reason": "Changing one default parameter value is trivial."
+ },
+ "s4-t322": {
+  "skills": [],
+  "reason": "Adding a missing import is trivial."
+ },
+ "s4-t323": {
+  "skills": [],
+  "reason": "A docstring-only edit needs no special guidance."
+ },
+ "s4-t324": {
+  "skills": [],
+  "reason": "Only the version string in package.json changes; the user runs install themselves."
+ },
+ "s4-t325": {
+  "skills": [],
+  "reason": "A single-line timezone fix is trivial."
+ },
+ "s4-t326": {
+  "skills": [],
+  "reason": "Renaming a prop in one component is routine."
+ },
+ "s4-t327": {
+  "skills": [],
+  "reason": "Fixing a text typo is trivial."
+ },
+ "s4-t328": {
+  "skills": [],
+  "reason": "A short mypy inference question that a capable engineer can answer directly."
+ },
+ "s4-t329": {
+  "skills": [],
+  "reason": "Changing one config parameter is trivial."
+ },
+ "s4-t330": {
+  "skills": [],
+  "reason": "Adding one import is trivial."
+ },
+ "s4-t331": {
+  "skills": [],
+  "reason": "Trivial comment removal; no skill needed."
+ },
+ "s4-t332": {
+  "skills": [],
+  "reason": "Routine dependency bump and lockfile regeneration with bun."
+ },
+ "s4-t333": {
+  "skills": [],
+  "reason": "One-line status code fix plus a test update; routine."
+ },
+ "s4-t334": {
+  "skills": [],
+  "reason": "Simple function rename with call-site updates."
+ },
+ "s4-t335": {
+  "skills": [],
+  "reason": "Typo fix in a message and a test assertion; trivial."
+ },
+ "s4-t336": {
+  "skills": [],
+  "reason": "Quick code-reading question about one function."
+ },
+ "s4-t337": {
+  "skills": [],
+  "reason": "Single config value change."
+ },
+ "s4-t338": {
+  "skills": [],
+  "reason": "One import path fix verified with tsc; trivial."
+ },
+ "s4-t339": {
+  "skills": [],
+  "reason": "Comment-only correction."
+ },
+ "s4-t340": {
+  "skills": [],
+  "reason": "Targeted dependency bump with a scoped uv lock; routine."
+ },
+ "s4-t341": {
+  "skills": [
+   "uasl/tdd@ff86dad94075",
+   "uasl/python-testing-patterns@e62d0f1ca316"
+  ],
+  "reason": "Test-first CLI flag for a Python script; red-green workflow plus pytest patterns."
+ },
+ "s4-t342": {
+  "skills": [],
+  "reason": "Small, scoped flag threading through existing functions; routine change."
+ },
+ "s4-t343": {
+  "skills": [
+   "uasl/pipe@0f029a41f006",
+   "uasl/github-actions-templates@ce03df93ccdf"
+  ],
+  "reason": "GitHub Actions workflow with SHA pinning, least-privilege permissions and fork secret safety."
+ },
+ "s4-t344": {
+  "skills": [
+   "uasl/github-actions-templates@ce03df93ccdf",
+   "uasl/pipe@0f029a41f006"
+  ],
+  "reason": "GitHub Actions workflow design with caching and performance optimization."
+ },
+ "s4-t353": {
+  "skills": [
+   "uasl/tdd@ff86dad94075",
+   "uasl/python-testing-patterns@e62d0f1ca316"
+  ],
+  "reason": "Test-first Python script with mocked DB connection in pytest."
+ },
+ "s4-t354": {
+  "skills": [],
+  "reason": "Minimal one-function addition plus one call; routine."
+ },
+ "s4-t355": {
+  "skills": [
+   "uasl/secure-coding-practices@cc37fcd8687e",
+   "uasl/frontend-patterns@8f659ce2a0bd"
+  ],
+  "reason": "React multi-step dialog with XSS-safe error rendering and sensitive state handling."
+ },
+ "s4-t356": {
+  "skills": [
+   "uasl/react-patterns@73d1ecc06997",
+   "uasl/frontend-patterns@8f659ce2a0bd"
+  ],
+  "reason": "React component split with lazy-loaded chunk for performance."
+ },
+ "s4-t365": {
+  "skills": [
+   "uasl/tdd@ff86dad94075",
+   "uasl/python-testing-patterns@e62d0f1ca316",
+   "uasl/fastapi-endpoint@2a93d50c4970"
+  ],
+  "reason": "Test-first rate limiting on a FastAPI route using TestClient."
+ },
+ "s4-t366": {
+  "skills": [
+   "uasl/fastapi-endpoint@2a93d50c4970"
+  ],
+  "reason": "FastAPI dependency-based rate limiter on an existing route."
+ },
+ "s4-t367": {
+  "skills": [
+   "uasl/pipe@0f029a41f006",
+   "uasl/github-actions-templates@ce03df93ccdf",
+   "uasl/secure-coding-practices@cc37fcd8687e"
+  ],
+  "reason": "Secure GitHub Actions workflow with a Trivy gate, plus security hardening for the Docker image."
+ },
+ "s4-t368": {
+  "skills": [
+   "uasl/github-actions-templates@ce03df93ccdf",
+   "uasl/deployment-pipeline-design@2a89fc6f32ff"
+  ],
+  "reason": "CI workflow for the Docker build plus pipeline/build-caching design; Next.js standalone setup is routine."
+ },
+ "s4-t377": {
+  "skills": [
+   "uasl/test-driven-development@0eebe2fe0e28",
+   "uasl/python-testing-patterns@e62d0f1ca316",
+   "uasl/deployment-pipeline-design@2a89fc6f32ff"
+  ],
+  "reason": "Test-first pytest with a stubbed Prometheus client, plus canary deployment strategy guidance."
+ },
+ "s4-t378": {
+  "skills": [
+   "uasl/deployment-pipeline-design@2a89fc6f32ff",
+   "uasl/karpathy-guidelines@da897c8c3bab"
+  ],
+  "reason": "Canary rollout strategy, kept as a minimal, focused diff on the existing setup."
+ },
+ "s4-t379": {
+  "skills": [
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/auth-implementation-patterns@7a99b395d548",
+   "uasl/owasp-security@9847d3666f75"
+  ],
+  "reason": "New FastAPI endpoint scoped to the current user, with authorization and broken-access-control guidance."
+ },
+ "s4-t380": {
+  "skills": [
+   "uasl/next-best-practices@ee058f89acea",
+   "uasl/vercel-react-best-practices@70f3b5aaf775",
+   "uasl/web-performance-optimization@b2b38275ed40"
+  ],
+  "reason": "Next.js static rendering, dynamic imports and keeping the route's JS bundle small."
+ }
+}

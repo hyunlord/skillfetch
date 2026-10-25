@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "report_sha256": "0ffe54f10717641fdb11ddcdf7b45f8e16ad03dd4acf9356012631cf57d6ab1d",
+  "report_matches_renderer": true,
+  "session_rows": 57,
+  "query_records": 57,
+  "local_links_checked": 228,
+  "old_reports_and_supplied_router_unchanged": true,
+  "primary_audit": "PASS",
+  "no_child_isolation": "FAIL",
+  "child_session": "r2/s4-t055"
+}

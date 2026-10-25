@@ -1,0 +1,380 @@
+{"id": "t001", "skills": [], "redone_alone": false}
+{"id": "t002", "skills": [], "redone_alone": false}
+{"id": "t003", "skills": ["affaan-m-ecc/fastapi-patterns@419da9966f07", "affaan-m-ecc/latency-critical-systems@ed19fb1b5f10"], "redone_alone": false}
+{"id": "t004", "skills": ["affaan-m-ecc/django-celery@30de29f8fd35"], "redone_alone": false}
+{"id": "t005", "skills": ["affaan-m-ecc/python-testing@b62ce0637eb1"], "redone_alone": false}
+{"id": "t006", "skills": ["uasl/frontend-patterns@8f659ce2a0bd"], "redone_alone": false}
+{"id": "t007", "skills": ["affaan-m-ecc/e2e-testing@7070d6d2a0cc", "uasl/frontend-patterns@8f659ce2a0bd"], "redone_alone": false}
+{"id": "t008", "skills": ["uasl/frontend-patterns@8f659ce2a0bd"], "redone_alone": false}
+{"id": "t009", "skills": ["affaan-m-ecc/frontend-a11y@635c71ee05ce"], "redone_alone": false}
+{"id": "t010", "skills": ["affaan-m-ecc/golang-patterns@57517385906f"], "redone_alone": false}
+{"id": "t011", "skills": ["affaan-m-ecc/golang-testing@37756125e539"], "redone_alone": false}
+{"id": "t012", "skills": ["affaan-m-ecc/golang-patterns@57517385906f"], "redone_alone": false}
+{"id": "t013", "skills": ["affaan-m-ecc/golang-patterns@57517385906f"], "redone_alone": false}
+{"id": "t014", "skills": ["actionbook-rust-skills/domain-cli@299b233ce67e"], "redone_alone": false}
+{"id": "t015", "skills": ["actionbook-rust-skills/domain-web@e85236f514d2"], "redone_alone": false}
+{"id": "t016", "skills": ["actionbook-rust-skills/m07-concurrency@0686c877c8a6"], "redone_alone": false}
+{"id": "t017", "skills": ["actionbook-rust-skills/domain-iot@91e3a350989f"], "redone_alone": false}
+{"id": "t018", "skills": ["affaan-m-ecc/jpa-patterns@f2814de65ae0"], "redone_alone": false}
+{"id": "t019", "skills": ["affaan-m-ecc/jpa-patterns@f2814de65ae0", "affaan-m-ecc/springboot-patterns@5c01aceada30"], "redone_alone": false}
+{"id": "t020", "skills": ["affaan-m-ecc/database-migrations@60a7f8fbfa22", "affaan-m-ecc/jpa-patterns@f2814de65ae0", "affaan-m-ecc/springboot-patterns@5c01aceada30"], "redone_alone": false}
+{"id": "t021", "skills": ["affaan-m-ecc/kotlin-ktor-patterns@89a0ba343deb"], "redone_alone": false}
+{"id": "t022", "skills": [], "redone_alone": false}
+{"id": "t023", "skills": ["ahmed3elshaer-everything-claude-code-mobile/offline-first@3bd014c19120", "affaan-m-ecc/dart-flutter-patterns@2c84304f91d5"], "redone_alone": false}
+{"id": "t024", "skills": ["ahmed3elshaer-everything-claude-code-mobile/push-notifications@cc0cefa6d417", "ahmed3elshaer-everything-claude-code-mobile/navigation-compose@e3489f923298", "ahmed3elshaer-everything-claude-code-mobile/deep-linking@ad1057880075"], "redone_alone": false}
+{"id": "t025", "skills": [], "redone_alone": false}
+{"id": "t026", "skills": ["uasl/debug-root-cause@1d7ea4a832dc"], "redone_alone": false}
+{"id": "t027", "skills": [], "redone_alone": false}
+{"id": "t028", "skills": ["affaan-m-ecc/django-celery@30de29f8fd35"], "redone_alone": false}
+{"id": "t029", "skills": ["affaan-m-ecc/python-testing@b62ce0637eb1"], "redone_alone": false}
+{"id": "t030", "skills": ["uasl/debug-root-cause@1d7ea4a832dc"], "redone_alone": false}
+{"id": "t031", "skills": ["affaan-m-ecc/prisma-patterns@1bbed229cb37", "uasl/browser-automation@49c3aed21e27"], "redone_alone": false}
+{"id": "t032", "skills": [], "redone_alone": false}
+{"id": "t033", "skills": [], "redone_alone": false}
+{"id": "t034", "skills": ["uasl/debug-root-cause@1d7ea4a832dc", "affaan-m-ecc/golang-patterns@57517385906f"], "redone_alone": false}
+{"id": "t035", "skills": ["affaan-m-ecc/golang-testing@37756125e539"], "redone_alone": false}
+{"id": "t036", "skills": ["affaan-m-ecc/golang-patterns@57517385906f", "affaan-m-ecc/redis-patterns@3e02a884352b"], "redone_alone": false}
+{"id": "t037", "skills": ["affaan-m-ecc/golang-testing@37756125e539"], "redone_alone": false}
+{"id": "t038", "skills": ["affaan-m-ecc/golang-patterns@57517385906f"], "redone_alone": false}
+{"id": "t039", "skills": ["uasl/debug-root-cause@1d7ea4a832dc"], "redone_alone": false}
+{"id": "t040", "skills": ["actionbook-rust-skills/m07-concurrency@0686c877c8a6"], "redone_alone": false}
+{"id": "t041", "skills": ["uasl/debug-root-cause@1d7ea4a832dc"], "redone_alone": false}
+{"id": "t042", "skills": ["actionbook-rust-skills/m02-resource@5ebf32356b6f", "actionbook-rust-skills/m07-concurrency@0686c877c8a6", "uasl/debugging-strategies@c55dad9c9654"], "redone_alone": true}
+{"id": "t043", "skills": ["affaan-m-ecc/jpa-patterns@f2814de65ae0", "uasl/debug-root-cause@1d7ea4a832dc"], "redone_alone": false}
+{"id": "t044", "skills": ["affaan-m-ecc/springboot-tdd@5ff62a01f15c"], "redone_alone": false}
+{"id": "t045", "skills": ["affaan-m-ecc/springboot-tdd@5ff62a01f15c"], "redone_alone": false}
+{"id": "t046", "skills": ["affaan-m-ecc/springboot-security@ac703b9cdb44", "uasl/security-review@fcc354bc486e"], "redone_alone": false}
+{"id": "t047", "skills": ["ahmed3elshaer-everything-claude-code-mobile/jetpack-compose@4c3931b3c56f", "uasl/debug-root-cause@1d7ea4a832dc"], "redone_alone": false}
+{"id": "t048", "skills": ["affaan-m-ecc/dart-flutter-patterns@2c84304f91d5"], "redone_alone": false}
+{"id": "t049", "skills": ["rshankras-claude-code-apple-skills/concurrency-patterns@1739fd5742ea", "rshankras-claude-code-apple-skills/coding-best-practices@c3a0f4e9021e"], "redone_alone": false}
+{"id": "t050", "skills": ["ahmed3elshaer-everything-claude-code-mobile/push-notifications@cc0cefa6d417", "ahmed3elshaer-everything-claude-code-mobile/deep-linking@ad1057880075"], "redone_alone": false}
+{"id": "t051", "skills": ["uasl/python-type-safety@60be75b4816f", "uasl/zen@f72229d0a781"], "redone_alone": false}
+{"id": "t052", "skills": ["uasl/python-design-patterns@5c0fbe0d4633", "uasl/zen@f72229d0a781"], "redone_alone": false}
+{"id": "t053", "skills": ["uasl/python-design-patterns@5c0fbe0d4633"], "redone_alone": false}
+{"id": "t054", "skills": ["affaan-m-ecc/fastapi-patterns@419da9966f07"], "redone_alone": false}
+{"id": "t055", "skills": [], "redone_alone": false}
+{"id": "t056", "skills": ["affaan-m-ecc/error-handling@f630539a5890", "uasl/zen@f72229d0a781"], "redone_alone": false}
+{"id": "t057", "skills": ["affaan-m-ecc/frontend-patterns@4f7ece8fd5c6", "uasl/zen@f72229d0a781"], "redone_alone": false}
+{"id": "t058", "skills": ["uasl/karpathy-guidelines@da897c8c3bab"], "redone_alone": false}
+{"id": "t059", "skills": ["affaan-m-ecc/golang-patterns@57517385906f"], "redone_alone": false}
+{"id": "t060", "skills": ["affaan-m-ecc/golang-patterns@57517385906f"], "redone_alone": false}
+{"id": "t061", "skills": ["affaan-m-ecc/golang-patterns@57517385906f"], "redone_alone": false}
+{"id": "t062", "skills": ["affaan-m-ecc/golang-testing@37756125e539"], "redone_alone": false}
+{"id": "t063", "skills": ["actionbook-rust-skills/m06-error-handling@76545e391a67", "actionbook-rust-skills/m13-domain-error@a22462038089"], "redone_alone": false}
+{"id": "t064", "skills": ["actionbook-rust-skills/m11-ecosystem@ec78464294e9"], "redone_alone": false}
+{"id": "t065", "skills": ["actionbook-rust-skills/m11-ecosystem@ec78464294e9", "affaan-m-ecc/benchmark@b2b095f036a2"], "redone_alone": false}
+{"id": "t066", "skills": ["actionbook-rust-skills/m04-zero-cost@26d5f360fa26", "actionbook-rust-skills/m10-performance@c46289fecbad"], "redone_alone": false}
+{"id": "t067", "skills": ["affaan-m-ecc/java-coding-standards@f726fc11b7e1"], "redone_alone": false}
+{"id": "t068", "skills": ["affaan-m-ecc/springboot-patterns@5c01aceada30", "affaan-m-ecc/java-coding-standards@f726fc11b7e1"], "redone_alone": false}
+{"id": "t069", "skills": ["affaan-m-ecc/kotlin-patterns@94da25eaf618", "affaan-m-ecc/jpa-patterns@f2814de65ae0"], "redone_alone": false}
+{"id": "t070", "skills": ["affaan-m-ecc/springboot-patterns@5c01aceada30", "affaan-m-ecc/java-coding-standards@f726fc11b7e1"], "redone_alone": false}
+{"id": "t071", "skills": ["affaan-m-ecc/springboot-patterns@5c01aceada30", "affaan-m-ecc/springboot-security@ac703b9cdb44"], "redone_alone": false}
+{"id": "t072", "skills": ["affaan-m-ecc/swiftui-patterns@ea4b3d0fc833", "uasl/zen@f72229d0a781"], "redone_alone": false}
+{"id": "t073", "skills": ["affaan-m-ecc/android-clean-architecture@e7e455dec364", "ahmed3elshaer-everything-claude-code-mobile/android-patterns@be5a5e06ea8a"], "redone_alone": false}
+{"id": "t074", "skills": ["affaan-m-ecc/dart-flutter-patterns@2c84304f91d5"], "redone_alone": false}
+{"id": "t075", "skills": ["affaan-m-ecc/frontend-patterns@4f7ece8fd5c6", "uasl/zen@f72229d0a781"], "redone_alone": false}
+{"id": "t076", "skills": ["affaan-m-ecc/python-testing@b62ce0637eb1"], "redone_alone": false}
+{"id": "t077", "skills": ["affaan-m-ecc/python-testing@b62ce0637eb1", "uasl/test-driven-development@0eebe2fe0e28"], "redone_alone": false}
+{"id": "t078", "skills": ["affaan-m-ecc/django-tdd@b6ebe260d6ff"], "redone_alone": false}
+{"id": "t079", "skills": ["affaan-m-ecc/python-testing@b62ce0637eb1"], "redone_alone": false}
+{"id": "t080", "skills": ["affaan-m-ecc/python-testing@b62ce0637eb1"], "redone_alone": false}
+{"id": "t081", "skills": ["uasl/unit-testing@6c5fbb821103", "uasl/property-based-testing@a168f6739085"], "redone_alone": false}
+{"id": "t082", "skills": ["uasl/typescript-unit-testing@6fb3561edcb3"], "redone_alone": false}
+{"id": "t083", "skills": ["affaan-m-ecc/e2e-testing@7070d6d2a0cc", "uasl/e2e-testing-patterns@8b25fb0b2da6"], "redone_alone": false}
+{"id": "t084", "skills": ["uasl/test-driven-development@0eebe2fe0e28", "uasl/typescript-unit-testing@6fb3561edcb3"], "redone_alone": false}
+{"id": "t085", "skills": ["affaan-m-ecc/golang-testing@37756125e539"], "redone_alone": false}
+{"id": "t086", "skills": ["affaan-m-ecc/golang-testing@37756125e539"], "redone_alone": false}
+{"id": "t087", "skills": ["affaan-m-ecc/golang-testing@37756125e539"], "redone_alone": false}
+{"id": "t088", "skills": ["affaan-m-ecc/golang-testing@37756125e539"], "redone_alone": false}
+{"id": "t089", "skills": ["uasl/property-based-testing@a168f6739085", "affaan-m-ecc/rust-testing@68e797f602f9"], "redone_alone": false}
+{"id": "t090", "skills": ["affaan-m-ecc/rust-testing@68e797f602f9", "actionbook-rust-skills/domain-fintech@5ecaa13b47d8"], "redone_alone": false}
+{"id": "t091", "skills": ["affaan-m-ecc/rust-testing@68e797f602f9"], "redone_alone": false}
+{"id": "t092", "skills": ["affaan-m-ecc/rust-testing@68e797f602f9"], "redone_alone": false}
+{"id": "t093", "skills": ["uasl/unit-testing@6c5fbb821103"], "redone_alone": false}
+{"id": "t094", "skills": ["affaan-m-ecc/springboot-tdd@5ff62a01f15c", "affaan-m-ecc/jpa-patterns@f2814de65ae0", "uasl/debug-root-cause@1d7ea4a832dc"], "redone_alone": false}
+{"id": "t095", "skills": ["affaan-m-ecc/kotlin-testing@4c6774641076"], "redone_alone": false}
+{"id": "t096", "skills": ["affaan-m-ecc/springboot-tdd@5ff62a01f15c"], "redone_alone": false}
+{"id": "t097", "skills": ["ahmed3elshaer-everything-claude-code-mobile/ios-testing@fdec9c2c0ff8", "affaan-m-ecc/swift-protocol-di-testing@8452633f0111"], "redone_alone": false}
+{"id": "t098", "skills": ["ahmed3elshaer-everything-claude-code-mobile/mobile-testing@628084187f00", "ahmed3elshaer-everything-claude-code-mobile/accessibility-patterns@eb127d28916a"], "redone_alone": false}
+{"id": "t099", "skills": [], "redone_alone": false}
+{"id": "t100", "skills": [], "redone_alone": false}
+{"id": "t101", "skills": ["uasl/quill@336ba74b0e79"], "redone_alone": false}
+{"id": "t102", "skills": ["uasl/quill@336ba74b0e79", "affaan-m-ecc/fastapi-patterns@419da9966f07"], "redone_alone": false}
+{"id": "t103", "skills": ["uasl/quill@336ba74b0e79"], "redone_alone": false}
+{"id": "t104", "skills": ["uasl/quill@336ba74b0e79"], "redone_alone": false}
+{"id": "t105", "skills": ["uasl/quill@336ba74b0e79"], "redone_alone": false}
+{"id": "t106", "skills": ["uasl/quill@336ba74b0e79", "uasl/next-cache-components@b22f6e134147"], "redone_alone": false}
+{"id": "t107", "skills": ["uasl/quill@336ba74b0e79"], "redone_alone": false}
+{"id": "t108", "skills": ["uasl/quill@336ba74b0e79", "uasl/verification-before-completion@134bf517af69"], "redone_alone": false}
+{"id": "t109", "skills": ["uasl/quill@336ba74b0e79"], "redone_alone": false}
+{"id": "t110", "skills": ["uasl/quill@336ba74b0e79"], "redone_alone": false}
+{"id": "t111", "skills": ["uasl/spec-miner@cebd849612b0", "uasl/quill@336ba74b0e79"], "redone_alone": false}
+{"id": "t112", "skills": [], "redone_alone": false}
+{"id": "t113", "skills": ["uasl/verification-before-completion@134bf517af69"], "redone_alone": false}
+{"id": "t114", "skills": ["uasl/spec-miner@cebd849612b0"], "redone_alone": false}
+{"id": "t115", "skills": ["actionbook-rust-skills/unsafe-checker@6544b8069b76", "actionbook-rust-skills/domain-embedded@30ab1d9f66a4"], "redone_alone": false}
+{"id": "t116", "skills": ["uasl/spec-miner@cebd849612b0", "uasl/quill@336ba74b0e79"], "redone_alone": false}
+{"id": "t117", "skills": ["affaan-m-ecc/verification-loop@177cbc7338f5"], "redone_alone": false}
+{"id": "t118", "skills": ["uasl/receiving-code-review@5c548774a9ad"], "redone_alone": false}
+{"id": "t119", "skills": ["affaan-m-ecc/architecture-decision-records@233b5a169011"], "redone_alone": false}
+{"id": "t120", "skills": ["uasl/quill@336ba74b0e79", "affaan-m-ecc/springboot-verification@8667ba45dc39"], "redone_alone": false}
+{"id": "t121", "skills": ["uasl/quill@336ba74b0e79"], "redone_alone": false}
+{"id": "t122", "skills": [], "redone_alone": false}
+{"id": "t123", "skills": ["uasl/lens@6fbc66f7a7bb", "affaan-m-ecc/dart-flutter-patterns@2c84304f91d5"], "redone_alone": false}
+{"id": "t124", "skills": ["uasl/quill@336ba74b0e79", "ahmed3elshaer-everything-claude-code-mobile/accessibility-patterns@eb127d28916a", "ahmed3elshaer-everything-claude-code-mobile/jetpack-compose@4c3931b3c56f"], "redone_alone": false}
+{"id": "t125", "skills": ["uasl/launch@117c5509679d"], "redone_alone": false}
+{"id": "t126", "skills": ["uasl/pipe@0f029a41f006"], "redone_alone": false}
+{"id": "t127", "skills": ["affaan-m-ecc/docker-patterns@39f84b55bca5", "affaan-m-ecc/deployment-patterns@eb1f7daa4ca4"], "redone_alone": false}
+{"id": "t128", "skills": [], "redone_alone": false}
+{"id": "t129", "skills": ["uasl/static-analysis@88c6f201cae0"], "redone_alone": false}
+{"id": "t130", "skills": ["uasl/monorepo-management@4078df072127", "uasl/debug-root-cause@1d7ea4a832dc"], "redone_alone": false}
+{"id": "t131", "skills": ["uasl/github-actions-templates@ce03df93ccdf", "affaan-m-ecc/e2e-testing@7070d6d2a0cc"], "redone_alone": false}
+{"id": "t132", "skills": ["uasl/pipe@0f029a41f006", "uasl/monorepo-management@4078df072127"], "redone_alone": false}
+{"id": "t133", "skills": ["affaan-m-ecc/docker-patterns@39f84b55bca5"], "redone_alone": false}
+{"id": "t134", "skills": ["uasl/static-analysis@88c6f201cae0"], "redone_alone": false}
+{"id": "t135", "skills": ["uasl/github-actions-templates@ce03df93ccdf"], "redone_alone": false}
+{"id": "t136", "skills": ["uasl/integration-testing@62b51275be50", "uasl/github-actions-templates@ce03df93ccdf"], "redone_alone": false}
+{"id": "t137", "skills": ["uasl/terraform-module-library@d02b1cc84d22"], "redone_alone": false}
+{"id": "t138", "skills": ["uasl/pipe@0f029a41f006"], "redone_alone": false}
+{"id": "t139", "skills": ["uasl/github-actions-templates@ce03df93ccdf", "uasl/static-analysis@88c6f201cae0"], "redone_alone": false}
+{"id": "t140", "skills": ["uasl/github-actions-templates@ce03df93ccdf", "actionbook-rust-skills/m11-ecosystem@ec78464294e9"], "redone_alone": false}
+{"id": "t141", "skills": ["affaan-m-ecc/docker-patterns@39f84b55bca5", "uasl/github-actions-templates@ce03df93ccdf"], "redone_alone": false}
+{"id": "t142", "skills": ["ahmed3elshaer-everything-claude-code-mobile/gradle-patterns@16795bbadcc9"], "redone_alone": false}
+{"id": "t143", "skills": ["uasl/github-actions-templates@ce03df93ccdf", "uasl/pipe@0f029a41f006"], "redone_alone": false}
+{"id": "t144", "skills": ["ahmed3elshaer-everything-claude-code-mobile/gradle-patterns@16795bbadcc9", "uasl/static-analysis@88c6f201cae0"], "redone_alone": false}
+{"id": "t145", "skills": ["affaan-m-ecc/kubernetes-patterns@f82e5e548631"], "redone_alone": false}
+{"id": "t146", "skills": ["uasl/github-actions-templates@ce03df93ccdf", "uasl/static-analysis@88c6f201cae0"], "redone_alone": true}
+{"id": "t147", "skills": [], "redone_alone": false}
+{"id": "t148", "skills": ["uasl/github-actions-templates@ce03df93ccdf", "uasl/pipe@0f029a41f006"], "redone_alone": false}
+{"id": "t149", "skills": ["uasl/github-actions-templates@ce03df93ccdf", "ahmed3elshaer-everything-claude-code-mobile/gradle-patterns@16795bbadcc9"], "redone_alone": true}
+{"id": "t150", "skills": ["uasl/github-actions-templates@ce03df93ccdf", "uasl/pipe@0f029a41f006"], "redone_alone": false}
+{"id": "t151", "skills": ["affaan-m-ecc/deployment-patterns@eb1f7daa4ca4"], "redone_alone": false}
+{"id": "t152", "skills": ["affaan-m-ecc/deployment-patterns@eb1f7daa4ca4", "uasl/deployment-pipeline-design@2a89fc6f32ff"], "redone_alone": false}
+{"id": "t153", "skills": [], "redone_alone": false}
+{"id": "t154", "skills": [], "redone_alone": false}
+{"id": "t155", "skills": ["uasl/vercel-cli-with-tokens@3f9c2805c482", "uasl/debug-root-cause@1d7ea4a832dc"], "redone_alone": false}
+{"id": "t156", "skills": ["affaan-m-ecc/docker-patterns@39f84b55bca5"], "redone_alone": false}
+{"id": "t157", "skills": ["uasl/deployment-pipeline-design@2a89fc6f32ff", "uasl/github-actions-templates@ce03df93ccdf"], "redone_alone": false}
+{"id": "t158", "skills": ["uasl/monorepo-management@4078df072127", "uasl/vercel-cli-with-tokens@3f9c2805c482"], "redone_alone": false}
+{"id": "t159", "skills": [], "redone_alone": false}
+{"id": "t160", "skills": [], "redone_alone": false}
+{"id": "t161", "skills": ["affaan-m-ecc/kubernetes-patterns@f82e5e548631", "affaan-m-ecc/deployment-patterns@eb1f7daa4ca4"], "redone_alone": false}
+{"id": "t162", "skills": [], "redone_alone": false}
+{"id": "t163", "skills": ["uasl/writing-plans@219901eb119f"], "redone_alone": false}
+{"id": "t164", "skills": [], "redone_alone": false}
+{"id": "t165", "skills": ["uasl/github-actions-templates@ce03df93ccdf", "affaan-m-ecc/docker-patterns@39f84b55bca5"], "redone_alone": false}
+{"id": "t166", "skills": [], "redone_alone": false}
+{"id": "t167", "skills": [], "redone_alone": false}
+{"id": "t168", "skills": ["affaan-m-ecc/springboot-verification@8667ba45dc39"], "redone_alone": false}
+{"id": "t169", "skills": ["affaan-m-ecc/deployment-patterns@eb1f7daa4ca4"], "redone_alone": false}
+{"id": "t170", "skills": ["affaan-m-ecc/kubernetes-patterns@f82e5e548631", "affaan-m-ecc/springboot-verification@8667ba45dc39"], "redone_alone": false}
+{"id": "t171", "skills": [], "redone_alone": false}
+{"id": "t172", "skills": [], "redone_alone": false}
+{"id": "t173", "skills": ["ahmed3elshaer-everything-claude-code-mobile/gradle-patterns@16795bbadcc9"], "redone_alone": false}
+{"id": "t174", "skills": ["uasl/github-actions-templates@ce03df93ccdf", "uasl/deployment-pipeline-design@2a89fc6f32ff"], "redone_alone": false}
+{"id": "t175", "skills": ["rshankras-claude-code-apple-skills/rejection-handler@44ecb57f7477"], "redone_alone": false}
+{"id": "t176", "skills": ["uasl/debug-root-cause@1d7ea4a832dc"], "redone_alone": false}
+{"id": "t177", "skills": ["uasl/stream@94a72913c590"], "redone_alone": false}
+{"id": "t178", "skills": [], "redone_alone": false}
+{"id": "t179", "skills": [], "redone_alone": false}
+{"id": "t180", "skills": ["affaan-m-ecc/prisma-patterns@1bbed229cb37"], "redone_alone": false}
+{"id": "t181", "skills": ["affaan-m-ecc/database-migrations@60a7f8fbfa22", "affaan-m-ecc/postgres-patterns@58fe04211979"], "redone_alone": false}
+{"id": "t182", "skills": ["affaan-m-ecc/database-migrations@60a7f8fbfa22"], "redone_alone": false}
+{"id": "t183", "skills": ["affaan-m-ecc/backend-patterns@59af753c1b38", "affaan-m-ecc/postgres-patterns@58fe04211979"], "redone_alone": false}
+{"id": "t184", "skills": [], "redone_alone": false}
+{"id": "t185", "skills": ["affaan-m-ecc/database-migrations@60a7f8fbfa22"], "redone_alone": false}
+{"id": "t186", "skills": ["affaan-m-ecc/golang-testing@37756125e539", "affaan-m-ecc/golang-patterns@57517385906f"], "redone_alone": false}
+{"id": "t187", "skills": [], "redone_alone": false}
+{"id": "t188", "skills": [], "redone_alone": false}
+{"id": "t189", "skills": ["actionbook-rust-skills/domain-cli@299b233ce67e"], "redone_alone": false}
+{"id": "t190", "skills": ["affaan-m-ecc/clickhouse-io@49af693bbd4e"], "redone_alone": false}
+{"id": "t191", "skills": ["affaan-m-ecc/rust-testing@68e797f602f9"], "redone_alone": false}
+{"id": "t192", "skills": ["affaan-m-ecc/rust-testing@68e797f602f9"], "redone_alone": false}
+{"id": "t193", "skills": ["affaan-m-ecc/database-migrations@60a7f8fbfa22"], "redone_alone": false}
+{"id": "t194", "skills": ["uasl/debug-root-cause@1d7ea4a832dc", "affaan-m-ecc/springboot-tdd@5ff62a01f15c"], "redone_alone": false}
+{"id": "t195", "skills": ["affaan-m-ecc/springboot-patterns@5c01aceada30", "affaan-m-ecc/postgres-patterns@58fe04211979"], "redone_alone": false}
+{"id": "t196", "skills": ["affaan-m-ecc/kotlin-testing@4c6774641076", "uasl/differential-review@b9d1a5a99f5e"], "redone_alone": true}
+{"id": "t197", "skills": ["ahmed3elshaer-everything-claude-code-mobile/room-patterns@84f8b0841b0a", "affaan-m-ecc/database-migrations@60a7f8fbfa22"], "redone_alone": false}
+{"id": "t198", "skills": ["rshankras-claude-code-apple-skills/migration-patterns@e984f66553cd", "ahmed3elshaer-everything-claude-code-mobile/core-data@5af9586b2607", "rshankras-claude-code-apple-skills/swiftdata-architecture@26d1d4982b33"], "redone_alone": false}
+{"id": "t199", "skills": ["ahmed3elshaer-everything-claude-code-mobile/offline-first@3bd014c19120", "affaan-m-ecc/dart-flutter-patterns@2c84304f91d5"], "redone_alone": false}
+{"id": "t200", "skills": [], "redone_alone": false}
+{"id": "t201", "skills": ["affaan-m-ecc/mle-workflow@5fb9b6889d3a", "uasl/debug-root-cause@1d7ea4a832dc"], "redone_alone": false}
+{"id": "t202", "skills": ["affaan-m-ecc/mle-workflow@5fb9b6889d3a"], "redone_alone": false}
+{"id": "t203", "skills": ["affaan-m-ecc/mle-workflow@5fb9b6889d3a"], "redone_alone": false}
+{"id": "t204", "skills": ["affaan-m-ecc/pytorch-patterns@4f5215ec5a57", "affaan-m-ecc/python-testing@b62ce0637eb1"], "redone_alone": false}
+{"id": "t205", "skills": ["affaan-m-ecc/backend-patterns@59af753c1b38"], "redone_alone": false}
+{"id": "t206", "skills": ["uasl/next-best-practices@ee058f89acea", "uasl/vercel-react-best-practices@70f3b5aaf775", "uasl/perf-lighthouse@ccafe273f7d2"], "redone_alone": false}
+{"id": "t207", "skills": ["affaan-m-ecc/error-handling@f630539a5890"], "redone_alone": false}
+{"id": "t208", "skills": ["uasl/writing-plans@219901eb119f"], "redone_alone": false}
+{"id": "t209", "skills": [], "redone_alone": false}
+{"id": "t210", "skills": ["affaan-m-ecc/golang-patterns@57517385906f"], "redone_alone": false}
+{"id": "t211", "skills": ["affaan-m-ecc/mle-workflow@5fb9b6889d3a", "rshankras-claude-code-apple-skills/tdd-bug-fix@89509b5ed365"], "redone_alone": false}
+{"id": "t212", "skills": ["affaan-m-ecc/latency-critical-systems@ed19fb1b5f10", "affaan-m-ecc/benchmark@b2b095f036a2"], "redone_alone": false}
+{"id": "t213", "skills": ["actionbook-rust-skills/domain-ml@272bdcdb41c6", "actionbook-rust-skills/m11-ecosystem@ec78464294e9"], "redone_alone": false}
+{"id": "t214", "skills": ["actionbook-rust-skills/domain-ml@272bdcdb41c6", "uasl/debug-root-cause@1d7ea4a832dc"], "redone_alone": false}
+{"id": "t215", "skills": ["actionbook-rust-skills/domain-ml@272bdcdb41c6", "affaan-m-ecc/rust-testing@68e797f602f9", "actionbook-rust-skills/domain-iot@91e3a350989f"], "redone_alone": false}
+{"id": "t216", "skills": ["actionbook-rust-skills/domain-ml@272bdcdb41c6", "uasl/karpathy-guidelines@da897c8c3bab"], "redone_alone": false}
+{"id": "t217", "skills": ["affaan-m-ecc/ml-adoption-playbook@17ecbc5e4d8d", "affaan-m-ecc/java-coding-standards@f726fc11b7e1"], "redone_alone": false}
+{"id": "t218", "skills": ["affaan-m-ecc/mle-workflow@5fb9b6889d3a"], "redone_alone": false}
+{"id": "t219", "skills": ["affaan-m-ecc/kotlin-testing@4c6774641076", "affaan-m-ecc/latency-critical-systems@ed19fb1b5f10", "affaan-m-ecc/benchmark@b2b095f036a2"], "redone_alone": false}
+{"id": "t220", "skills": ["affaan-m-ecc/kotlin-patterns@94da25eaf618"], "redone_alone": true}
+{"id": "t221", "skills": ["rshankras-claude-code-apple-skills/core-ml@7f845a30f6cd", "affaan-m-ecc/swiftui-patterns@ea4b3d0fc833"], "redone_alone": false}
+{"id": "t222", "skills": [], "redone_alone": false}
+{"id": "t223", "skills": ["affaan-m-ecc/dart-flutter-patterns@2c84304f91d5", "affaan-m-ecc/regex-vs-llm-structured-text@049120d0690d"], "redone_alone": false}
+{"id": "t224", "skills": ["uasl/debug-root-cause@1d7ea4a832dc"], "redone_alone": false}
+{"id": "t225", "skills": ["rshankras-claude-code-apple-skills/core-ml@7f845a30f6cd"], "redone_alone": false}
+{"id": "t226", "skills": ["affaan-m-ecc/django-security@50764d9fce81", "affaan-m-ecc/security-review@2445fff84d05"], "redone_alone": false}
+{"id": "t227", "skills": ["uasl/security-review@fcc354bc486e", "affaan-m-ecc/fastapi-patterns@419da9966f07"], "redone_alone": false}
+{"id": "t228", "skills": ["affaan-m-ecc/security-review@2445fff84d05", "uasl/fp-check@36809c5d2431"], "redone_alone": false}
+{"id": "t229", "skills": ["affaan-m-ecc/django-celery@30de29f8fd35"], "redone_alone": false}
+{"id": "t230", "skills": ["uasl/stripe-best-practices@795a33f68129", "affaan-m-ecc/security-review@2445fff84d05"], "redone_alone": false}
+{"id": "t231", "skills": ["uasl/security-review@fcc354bc486e"], "redone_alone": false}
+{"id": "t232", "skills": ["uasl/auth-implementation-patterns@7a99b395d548", "affaan-m-ecc/e2e-testing@7070d6d2a0cc"], "redone_alone": false}
+{"id": "t233", "skills": ["affaan-m-ecc/security-review@2445fff84d05"], "redone_alone": false}
+{"id": "t234", "skills": ["uasl/tdd@ff86dad94075", "uasl/security-review@fcc354bc486e"], "redone_alone": false}
+{"id": "t235", "skills": ["uasl/vibe-security@6b07d0f651a7"], "redone_alone": false}
+{"id": "t236", "skills": ["affaan-m-ecc/golang-testing@37756125e539", "affaan-m-ecc/security-review@2445fff84d05"], "redone_alone": false}
+{"id": "t237", "skills": ["uasl/code-security@e20eb3467925"], "redone_alone": false}
+{"id": "t238", "skills": [], "redone_alone": false}
+{"id": "t239", "skills": ["actionbook-rust-skills/unsafe-checker@6544b8069b76", "uasl/debug-root-cause@1d7ea4a832dc"], "redone_alone": false}
+{"id": "t240", "skills": ["uasl/security-review@fcc354bc486e", "actionbook-rust-skills/m12-lifecycle@0f3619840e07"], "redone_alone": false}
+{"id": "t241", "skills": ["uasl/vibe-security@6b07d0f651a7", "actionbook-rust-skills/m11-ecosystem@ec78464294e9"], "redone_alone": false}
+{"id": "t242", "skills": ["uasl/release-it@e3e5b4710eea"], "redone_alone": false}
+{"id": "t243", "skills": [], "redone_alone": false}
+{"id": "t244", "skills": ["uasl/fp-check@36809c5d2431", "affaan-m-ecc/springboot-security@ac703b9cdb44"], "redone_alone": false}
+{"id": "t245", "skills": ["affaan-m-ecc/springboot-security@ac703b9cdb44", "uasl/insecure-defaults@a0e826721018", "affaan-m-ecc/springboot-tdd@5ff62a01f15c"], "redone_alone": false}
+{"id": "t246", "skills": ["affaan-m-ecc/change-impact@a1bf7ff09329"], "redone_alone": false}
+{"id": "t247", "skills": [], "redone_alone": false}
+{"id": "t248", "skills": ["rshankras-claude-code-apple-skills/auth-flow@e5cd1103f31c", "uasl/insecure-defaults@a0e826721018"], "redone_alone": false}
+{"id": "t249", "skills": ["ahmed3elshaer-everything-claude-code-mobile/mobile-security@dc1c2f98167b", "ahmed3elshaer-everything-claude-code-mobile/deep-linking@ad1057880075", "affaan-m-ecc/security-review@2445fff84d05"], "redone_alone": false}
+{"id": "t250", "skills": [], "redone_alone": false}
+{"id": "t251", "skills": ["affaan-m-ecc/django-patterns@70caae5b2bdb"], "redone_alone": false}
+{"id": "t252", "skills": ["affaan-m-ecc/data-throughput-accelerator@dd10866718ea", "uasl/python-performance-optimization@bf455fd100bf"], "redone_alone": false}
+{"id": "t253", "skills": ["uasl/python-performance-optimization@bf455fd100bf"], "redone_alone": false}
+{"id": "t254", "skills": ["uasl/debugging-strategies@c55dad9c9654"], "redone_alone": true}
+{"id": "t255", "skills": ["uasl/vercel-react-best-practices@70f3b5aaf775"], "redone_alone": false}
+{"id": "t256", "skills": ["uasl/vercel-react-best-practices@70f3b5aaf775", "uasl/react-patterns@73d1ecc06997"], "redone_alone": false}
+{"id": "t257", "skills": ["uasl/vercel-react-best-practices@70f3b5aaf775", "uasl/next-best-practices@ee058f89acea"], "redone_alone": false}
+{"id": "t258", "skills": ["affaan-m-ecc/latency-critical-systems@ed19fb1b5f10", "affaan-m-ecc/backend-patterns@59af753c1b38"], "redone_alone": false}
+{"id": "t259", "skills": ["affaan-m-ecc/golang-patterns@57517385906f"], "redone_alone": true}
+{"id": "t260", "skills": ["affaan-m-ecc/golang-patterns@57517385906f", "affaan-m-ecc/benchmark-optimization-loop@1212005fae1e"], "redone_alone": false}
+{"id": "t261", "skills": ["affaan-m-ecc/latency-critical-systems@ed19fb1b5f10", "affaan-m-ecc/golang-patterns@57517385906f"], "redone_alone": false}
+{"id": "t262", "skills": ["affaan-m-ecc/benchmark-optimization-loop@1212005fae1e", "affaan-m-ecc/golang-testing@37756125e539"], "redone_alone": false}
+{"id": "t263", "skills": ["actionbook-rust-skills/m01-ownership@5035878a4032", "actionbook-rust-skills/m10-performance@c46289fecbad"], "redone_alone": false}
+{"id": "t264", "skills": ["actionbook-rust-skills/m10-performance@c46289fecbad"], "redone_alone": false}
+{"id": "t265", "skills": ["actionbook-rust-skills/m10-performance@c46289fecbad", "affaan-m-ecc/benchmark-optimization-loop@1212005fae1e"], "redone_alone": false}
+{"id": "t266", "skills": ["actionbook-rust-skills/domain-web@e85236f514d2", "actionbook-rust-skills/m07-concurrency@0686c877c8a6"], "redone_alone": false}
+{"id": "t267", "skills": ["actionbook-rust-skills/m10-performance@c46289fecbad", "affaan-m-ecc/benchmark-optimization-loop@1212005fae1e"], "redone_alone": false}
+{"id": "t268", "skills": ["affaan-m-ecc/jpa-patterns@f2814de65ae0"], "redone_alone": false}
+{"id": "t269", "skills": ["uasl/bolt@c4895c710162"], "redone_alone": false}
+{"id": "t270", "skills": ["affaan-m-ecc/springboot-verification@8667ba45dc39", "affaan-m-ecc/benchmark-optimization-loop@1212005fae1e"], "redone_alone": false}
+{"id": "t271", "skills": ["affaan-m-ecc/jpa-patterns@f2814de65ae0", "affaan-m-ecc/latency-critical-systems@ed19fb1b5f10", "affaan-m-ecc/springboot-patterns@5c01aceada30"], "redone_alone": false}
+{"id": "t272", "skills": ["rshankras-claude-code-apple-skills/image-loading@3ae1f4ec9ac6", "rshankras-claude-code-apple-skills/performance-profiling@3f79655fd98c", "affaan-m-ecc/swift-concurrency-6-2@b5a384f57738"], "redone_alone": false}
+{"id": "t273", "skills": ["ahmed3elshaer-everything-claude-code-mobile/jetpack-compose@4c3931b3c56f", "affaan-m-ecc/compose-multiplatform-patterns@29c993eec209"], "redone_alone": false}
+{"id": "t274", "skills": ["uasl/vercel-react-native-skills@6e314641b44a", "affaan-m-ecc/benchmark@b2b095f036a2"], "redone_alone": false}
+{"id": "t275", "skills": ["affaan-m-ecc/dart-flutter-patterns@2c84304f91d5"], "redone_alone": false}
+{"id": "t276", "skills": ["uasl/anvil@3a36e8410205"], "redone_alone": false}
+{"id": "t277", "skills": ["uasl/redesign-skill@2e4f7f16e367"], "redone_alone": false}
+{"id": "t278", "skills": ["uasl/responsive-design@2cf7927ef938", "uasl/ui-audit@be637d5e2baf"], "redone_alone": true}
+{"id": "t279", "skills": ["uasl/accessibility-compliance@696d2b4119ed", "affaan-m-ecc/accessibility@64025eb683c5"], "redone_alone": false}
+{"id": "t280", "skills": ["uasl/debug-root-cause@1d7ea4a832dc", "uasl/vercel-react-best-practices@70f3b5aaf775"], "redone_alone": false}
+{"id": "t281", "skills": ["uasl/figma-implement-design@6f82bf7fa5ca", "affaan-m-ecc/frontend-a11y@635c71ee05ce"], "redone_alone": false}
+{"id": "t282", "skills": [], "redone_alone": false}
+{"id": "t283", "skills": ["uasl/design-system-patterns@cd952cab0879"], "redone_alone": false}
+{"id": "t284", "skills": [], "redone_alone": false}
+{"id": "t285", "skills": ["uasl/responsive-design@2cf7927ef938"], "redone_alone": false}
+{"id": "t286", "skills": [], "redone_alone": false}
+{"id": "t287", "skills": ["uasl/redesign-skill@2e4f7f16e367"], "redone_alone": false}
+{"id": "t288", "skills": [], "redone_alone": false}
+{"id": "t289", "skills": [], "redone_alone": false}
+{"id": "t290", "skills": ["affaan-m-ecc/make-interfaces-feel-better@c3b21c001384", "uasl/accessibility-compliance@696d2b4119ed"], "redone_alone": false}
+{"id": "t291", "skills": ["affaan-m-ecc/rust-patterns@f0961b5637b0", "uasl/karpathy-guidelines@da897c8c3bab"], "redone_alone": false}
+{"id": "t292", "skills": [], "redone_alone": false}
+{"id": "t293", "skills": ["affaan-m-ecc/compose-multiplatform-patterns@29c993eec209"], "redone_alone": false}
+{"id": "t294", "skills": [], "redone_alone": false}
+{"id": "t295", "skills": ["affaan-m-ecc/springboot-patterns@5c01aceada30"], "redone_alone": false}
+{"id": "t296", "skills": ["ahmed3elshaer-everything-claude-code-mobile/swiftui-patterns@d91b337199dc"], "redone_alone": false}
+{"id": "t297", "skills": ["ahmed3elshaer-everything-claude-code-mobile/jetpack-compose@4c3931b3c56f", "ahmed3elshaer-everything-claude-code-mobile/image-loading@44ed04c73779", "ahmed3elshaer-everything-claude-code-mobile/accessibility-patterns@eb127d28916a"], "redone_alone": false}
+{"id": "t298", "skills": ["affaan-m-ecc/dart-flutter-patterns@2c84304f91d5", "uasl/design-harden@7850aacd7d45"], "redone_alone": false}
+{"id": "t299", "skills": ["uasl/vercel-react-native-skills@6e314641b44a", "uasl/refactoring-ui@a0c00159d43d"], "redone_alone": false}
+{"id": "t300", "skills": ["rshankras-claude-code-apple-skills/accessibility-generator@87376187cc31", "rshankras-claude-code-apple-skills/ui-review@fe820f013096"], "redone_alone": false}
+{"id": "t301", "skills": ["uasl/debug-root-cause@1d7ea4a832dc"], "redone_alone": false}
+{"id": "t302", "skills": [], "redone_alone": false}
+{"id": "t303", "skills": [], "redone_alone": false}
+{"id": "t304", "skills": [], "redone_alone": false}
+{"id": "t305", "skills": ["uasl/coding-guidelines@0ec7e45f92f2"], "redone_alone": false}
+{"id": "t306", "skills": [], "redone_alone": false}
+{"id": "t307", "skills": [], "redone_alone": false}
+{"id": "t308", "skills": [], "redone_alone": false}
+{"id": "t309", "skills": [], "redone_alone": false}
+{"id": "t310", "skills": [], "redone_alone": false}
+{"id": "t311", "skills": [], "redone_alone": false}
+{"id": "t312", "skills": [], "redone_alone": false}
+{"id": "t313", "skills": [], "redone_alone": false}
+{"id": "t314", "skills": ["uasl/next-upgrade@df465f7770a5"], "redone_alone": false}
+{"id": "t315", "skills": [], "redone_alone": false}
+{"id": "t316", "skills": [], "redone_alone": false}
+{"id": "t317", "skills": [], "redone_alone": false}
+{"id": "t318", "skills": [], "redone_alone": false}
+{"id": "t319", "skills": [], "redone_alone": false}
+{"id": "t320", "skills": [], "redone_alone": false}
+{"id": "t321", "skills": [], "redone_alone": false}
+{"id": "t322", "skills": [], "redone_alone": false}
+{"id": "t323", "skills": [], "redone_alone": false}
+{"id": "t324", "skills": [], "redone_alone": false}
+{"id": "t325", "skills": [], "redone_alone": false}
+{"id": "t326", "skills": [], "redone_alone": false}
+{"id": "t327", "skills": [], "redone_alone": false}
+{"id": "t328", "skills": [], "redone_alone": false}
+{"id": "t329", "skills": [], "redone_alone": false}
+{"id": "t330", "skills": [], "redone_alone": false}
+{"id": "t331", "skills": [], "redone_alone": false}
+{"id": "t332", "skills": [], "redone_alone": false}
+{"id": "t333", "skills": ["affaan-m-ecc/golang-testing@37756125e539"], "redone_alone": false}
+{"id": "t334", "skills": [], "redone_alone": false}
+{"id": "t335", "skills": [], "redone_alone": false}
+{"id": "t336", "skills": [], "redone_alone": false}
+{"id": "t337", "skills": [], "redone_alone": false}
+{"id": "t338", "skills": [], "redone_alone": false}
+{"id": "t339", "skills": [], "redone_alone": false}
+{"id": "t340", "skills": [], "redone_alone": false}
+{"id": "t341", "skills": ["affaan-m-ecc/django-tdd@b6ebe260d6ff"], "redone_alone": false}
+{"id": "t342", "skills": [], "redone_alone": false}
+{"id": "t343", "skills": ["uasl/pipe@0f029a41f006", "uasl/vercel-cli-with-tokens@3f9c2805c482", "uasl/github-actions-templates@ce03df93ccdf"], "redone_alone": false}
+{"id": "t344", "skills": ["uasl/pipe@0f029a41f006", "uasl/vercel-cli-with-tokens@3f9c2805c482", "uasl/github-actions-templates@ce03df93ccdf"], "redone_alone": false}
+{"id": "t345", "skills": ["uasl/sql-optimization-patterns@389f90da7b56", "uasl/accessibility-compliance@696d2b4119ed", "affaan-m-ecc/latency-critical-systems@ed19fb1b5f10"], "redone_alone": false}
+{"id": "t346", "skills": ["uasl/sql-optimization-patterns@389f90da7b56", "uasl/web-design@b19d7c3f962e", "affaan-m-ecc/latency-critical-systems@ed19fb1b5f10"], "redone_alone": false}
+{"id": "t347", "skills": ["affaan-m-ecc/rust-testing@68e797f602f9"], "redone_alone": false}
+{"id": "t348", "skills": ["uasl/property-based-testing@a168f6739085", "affaan-m-ecc/rust-testing@68e797f602f9"], "redone_alone": false}
+{"id": "t349", "skills": ["affaan-m-ecc/mle-workflow@5fb9b6889d3a", "uasl/writing-plans@219901eb119f"], "redone_alone": false}
+{"id": "t350", "skills": [], "redone_alone": false}
+{"id": "t351", "skills": ["uasl/debug-root-cause@1d7ea4a832dc"], "redone_alone": false}
+{"id": "t352", "skills": ["rshankras-claude-code-apple-skills/concurrency-patterns@1739fd5742ea", "uasl/ripple@620dca56eca0"], "redone_alone": false}
+{"id": "t353", "skills": ["affaan-m-ecc/python-testing@b62ce0637eb1"], "redone_alone": false}
+{"id": "t354", "skills": [], "redone_alone": false}
+{"id": "t355", "skills": ["affaan-m-ecc/security-review@2445fff84d05", "uasl/stripe-best-practices@795a33f68129"], "redone_alone": false}
+{"id": "t356", "skills": ["uasl/vercel-react-best-practices@70f3b5aaf775", "uasl/stripe-best-practices@795a33f68129"], "redone_alone": false}
+{"id": "t357", "skills": ["uasl/quill@336ba74b0e79", "affaan-m-ecc/accessibility@64025eb683c5"], "redone_alone": false}
+{"id": "t358", "skills": [], "redone_alone": true}
+{"id": "t359", "skills": ["uasl/secure-coding-practices@cc37fcd8687e", "actionbook-rust-skills/domain-web@e85236f514d2"], "redone_alone": false}
+{"id": "t360", "skills": ["uasl/secure-coding-practices@cc37fcd8687e", "actionbook-rust-skills/m11-ecosystem@ec78464294e9", "actionbook-rust-skills/domain-web@e85236f514d2"], "redone_alone": false}
+{"id": "t361", "skills": ["uasl/refactoring-patterns@7283bad3e86e", "uasl/karpathy-guidelines@da897c8c3bab"], "redone_alone": false}
+{"id": "t362", "skills": ["uasl/refactoring-patterns@7283bad3e86e"], "redone_alone": false}
+{"id": "t363", "skills": ["ahmed3elshaer-everything-claude-code-mobile/room-patterns@84f8b0841b0a", "affaan-m-ecc/database-migrations@60a7f8fbfa22"], "redone_alone": false}
+{"id": "t364", "skills": ["ahmed3elshaer-everything-claude-code-mobile/room-patterns@84f8b0841b0a", "affaan-m-ecc/database-migrations@60a7f8fbfa22"], "redone_alone": false}
+{"id": "t365", "skills": ["affaan-m-ecc/fastapi-patterns@419da9966f07", "uasl/test-driven-development@0eebe2fe0e28"], "redone_alone": false}
+{"id": "t366", "skills": ["affaan-m-ecc/fastapi-patterns@419da9966f07"], "redone_alone": false}
+{"id": "t367", "skills": ["affaan-m-ecc/docker-patterns@39f84b55bca5", "uasl/github-actions-templates@ce03df93ccdf"], "redone_alone": false}
+{"id": "t368", "skills": ["affaan-m-ecc/docker-patterns@39f84b55bca5", "uasl/github-actions-templates@ce03df93ccdf"], "redone_alone": false}
+{"id": "t369", "skills": ["affaan-m-ecc/golang-patterns@57517385906f", "uasl/accessibility-compliance@696d2b4119ed"], "redone_alone": false}
+{"id": "t370", "skills": ["affaan-m-ecc/golang-testing@37756125e539"], "redone_alone": true}
+{"id": "t371", "skills": ["affaan-m-ecc/rust-testing@68e797f602f9"], "redone_alone": false}
+{"id": "t372", "skills": ["affaan-m-ecc/rust-testing@68e797f602f9"], "redone_alone": false}
+{"id": "t373", "skills": ["affaan-m-ecc/kotlin-ktor-patterns@89a0ba343deb", "affaan-m-ecc/latency-critical-systems@ed19fb1b5f10", "uasl/writing-plans@219901eb119f"], "redone_alone": false}
+{"id": "t374", "skills": ["affaan-m-ecc/kotlin-ktor-patterns@89a0ba343deb"], "redone_alone": false}
+{"id": "t375", "skills": ["affaan-m-ecc/dart-flutter-patterns@2c84304f91d5"], "redone_alone": false}
+{"id": "t376", "skills": ["affaan-m-ecc/dart-flutter-patterns@2c84304f91d5"], "redone_alone": false}
+{"id": "t377", "skills": ["affaan-m-ecc/python-testing@b62ce0637eb1", "affaan-m-ecc/deployment-patterns@eb1f7daa4ca4"], "redone_alone": false}
+{"id": "t378", "skills": ["affaan-m-ecc/deployment-patterns@eb1f7daa4ca4"], "redone_alone": false}
+{"id": "t379", "skills": ["uasl/auth-implementation-patterns@7a99b395d548", "uasl/next-best-practices@ee058f89acea"], "redone_alone": true}
+{"id": "t380", "skills": ["uasl/vercel-react-best-practices@70f3b5aaf775", "uasl/next-best-practices@ee058f89acea"], "redone_alone": false}

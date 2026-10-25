@@ -1,0 +1,13 @@
+{
+  "checked_at": "2026-10-23T15:56:55.132Z",
+  "<skillfetch>": {
+    "head_unchanged": false,
+    "status_unchanged": false
+  },
+  "<workspace>/blobfish": {
+    "head_unchanged": true,
+    "status_unchanged": true
+  },
+  "old_report_sha256": "db5b22600f4d20048f5669a39221335d8b5f7106cd1824d4b2deb57848d139c5",
+  "old_report_unchanged": true
+}

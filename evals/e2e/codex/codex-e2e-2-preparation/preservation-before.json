@@ -1,0 +1,12 @@
+{
+  "checked_at": "2026-10-23T15:40:15.531Z",
+  "<skillfetch>": {
+    "head": "26f1ce646596d54cf9c4f17fc4357a4459911598",
+    "status": " M scripts/write_numbers.py\n?? .ignore\n"
+  },
+  "<workspace>/blobfish": {
+    "head": "a1cbcd5b578b98a1a196b12915b94c0a99d9b824",
+    "status": "?? .codegraph\n?? .ignore\n?? .omx/logs/tmux-hook-2026-10-23.jsonl\n?? .omx/logs/turns-2026-10-23.jsonl\n?? .omx/metrics.json\n?? .omx/state/current-task-baseline.json\n?? .omx/state/hud-state.json\n?? .omx/state/notify-hook-state.json\n?? .omx/state/team-leader-nudge.json\n?? .omx/state/tmux-hook-state.json\n"
+  },
+  "old_report_sha256": "db5b22600f4d20048f5669a39221335d8b5f7106cd1824d4b2deb57848d139c5"
+}

@@ -1,0 +1,126 @@
+{
+ "unlabeled_left (top-50 + picks)": 0,
+ "verdict_rule_11": {
+  "A_fixed_label_pass": false,
+  "B_full_label_hit50_pass": true,
+  "C_unneeded_load_pass": true,
+  "pass": true
+ },
+ "B": {
+  "v3": {
+   "n": 284,
+   "baseline_hit@50": 0.9296,
+   "staging_hit@50_full": 0.9894,
+   "delta": 0.0598,
+   "baseline_hit@10": 0.7535,
+   "staging_hit@10_full": 0.8732,
+   "staging_recall@50_full": 0.7944
+  },
+  "v5-ss-b": {
+   "n": 270,
+   "baseline_hit@50": 0.9407,
+   "staging_hit@50_full": 0.9741,
+   "delta": 0.0334,
+   "baseline_hit@10": 0.5556,
+   "staging_hit@10_full": 0.8259,
+   "staging_recall@50_full": 0.7203
+  }
+ },
+ "full_label_own_denominator": {
+  "n": 328,
+  "hit@10": 0.811,
+  "hit@50": 0.9787,
+  "recall@50": 0.7644
+ },
+ "index_relevant_tasks": {
+  "relevant_tasks_all": 337,
+  "baseline": 270,
+  "staging": 328,
+  "staging_searchable": 328
+ },
+ "gap56": {
+  "baseline": 17,
+  "staging": 49,
+  "recovered": 32
+ },
+ "sbp": {
+  "rel_load": 0.8079,
+  "precision_task": 0.9138,
+  "precision_skill": 0.8544,
+  "unneeded_load_rate": 0.0962,
+  "nomatch_n": 52,
+  "unneeded_expect_none": "3/40",
+  "unneeded_other": "2/12",
+  "picks": 480,
+  "picks_new_records": 290,
+  "picks_new_records_grade_ge2": 273
+ },
+ "new_record_slots_by_repo": {
+  "affaan-m-ecc": {
+   "top50": 6632,
+   "top50_ge2": 619,
+   "top10": 1547,
+   "top10_ge2": 299,
+   "top50_g3": 118,
+   "top50_ge2_rate": 0.0933,
+   "top10_ge2_rate": 0.1933
+  },
+  "dpearson2699-swift-ios-skills": {
+   "top50": 1483,
+   "top50_ge2": 30,
+   "top10": 323,
+   "top10_ge2": 22,
+   "top50_g3": 8,
+   "top50_ge2_rate": 0.0202,
+   "top10_ge2_rate": 0.0681
+  },
+  "ahmed3elshaer-everything-claude-code-mobile": {
+   "top50": 1262,
+   "top50_ge2": 60,
+   "top10": 259,
+   "top10_ge2": 40,
+   "top50_g3": 19,
+   "top50_ge2_rate": 0.0475,
+   "top10_ge2_rate": 0.1544
+  },
+  "actionbook-rust-skills": {
+   "top50": 1152,
+   "top50_ge2": 98,
+   "top10": 301,
+   "top10_ge2": 49,
+   "top50_g3": 25,
+   "top50_ge2_rate": 0.0851,
+   "top10_ge2_rate": 0.1628
+  },
+  "rshankras-claude-code-apple-skills": {
+   "top50": 221,
+   "top50_ge2": 16,
+   "top10": 40,
+   "top10_ge2": 12,
+   "top50_g3": 4,
+   "top50_ge2_rate": 0.0724,
+   "top10_ge2_rate": 0.3
+  }
+ },
+ "new_record_slots_total": {
+  "top50": 10750,
+  "top50_ge2": 823,
+  "top10": 2470,
+  "top10_ge2": 422,
+  "top50_g3": 174,
+  "top50_ge2_rate": 0.0766,
+  "top10_ge2_rate": 0.1709
+ },
+ "baseline_record_slots": {
+  "staging_ranking": {
+   "n": 8250,
+   "labeled": 8250,
+   "ge2": 585
+  },
+  "baseline_ranking": {
+   "n": 19000,
+   "labeled": 19000,
+   "ge2": 869
+  }
+ }
+}

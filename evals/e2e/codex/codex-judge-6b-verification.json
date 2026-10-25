@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "report_sha256": "3a96b9603142a147f1aedc9f17a1d901397dc3e32eaccfc36b00b2b7ac5a54ac",
+  "candidates": 108,
+  "tasks": 12,
+  "frozen_scores_unchanged": true,
+  "input_files_unchanged": 276,
+  "p1_p2_corresponding_deliverables_hash_equal": 108,
+  "aggregate_rows_independently_recomputed": 15,
+  "local_links_checked": 129,
+  "bundle2_gpt_gap_exact": "1/12",
+  "bundle2_original_D_exact": "1/6",
+  "bundle2_three_pass_D_exact": "5/12",
+  "blindness": "LIMITED: one candidate exposed condition in supplied output before score freeze",
+  "new_experiment_sessions": 0,
+  "new_product_test_executions": 0
+}

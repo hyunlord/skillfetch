@@ -1,0 +1,413 @@
+{"task_id": "t130", "candidate_id": "c01", "grade": 1, "process": false, "reason": "모노레포 최적화는 관련되나 환경변수 수정 지침은 없다."}
+{"task_id": "t130", "candidate_id": "c02", "grade": 2, "process": false, "reason": "Turbo 캐시 설정 지식이 원격 캐시 변수 수정에 도움된다."}
+{"task_id": "t130", "candidate_id": "c03", "grade": 2, "process": false, "reason": "캐시 미스 진단을 다뤄 이번 증상 확인에 도움된다."}
+{"task_id": "t130", "candidate_id": "c04", "grade": 1, "process": false, "reason": "CI 설정과 관련되나 사용 중인 제공자는 명시되지 않았다."}
+{"task_id": "t130", "candidate_id": "c05", "grade": 2, "process": false, "reason": "Turbo 원격 캐시 구성이 이번 수정에 직접 도움된다."}
+{"task_id": "t130", "candidate_id": "c06", "grade": 0, "process": false, "reason": "컨테이너 레이어 캐시는 Turbo 작업 캐시와 다르다."}
+{"task_id": "t130", "candidate_id": "c07", "grade": 0, "process": false, "reason": "LLM 캐시 압축은 빌드 캐시와 무관하다."}
+{"task_id": "t130", "candidate_id": "c08", "grade": 1, "process": true, "reason": "파이프라인 설계는 단순 변수 수정에 과하다."}
+{"task_id": "t130", "candidate_id": "c09", "grade": 1, "process": false, "reason": "Vercel 인증 지식은 인접하지만 Turbo 변수 지침은 아니다."}
+{"task_id": "t130", "candidate_id": "c10", "grade": 1, "process": false, "reason": "일반 모노레포 설계는 이번 작은 수정에 제한적이다."}
+{"task_id": "t130", "candidate_id": "c11", "grade": 0, "process": false, "reason": "원격 데스크톱 장애와 무관하다."}
+{"task_id": "t130", "candidate_id": "c12", "grade": 1, "process": false, "reason": "Turbo 일반 작업 구성 지식만 제공된다."}
+{"task_id": "t130", "candidate_id": "c13", "grade": 0, "process": false, "reason": "Remote Retrieval 자동화는 관련 없다."}
+{"task_id": "t130", "candidate_id": "c14", "grade": 0, "process": false, "reason": "Bazel은 요청된 빌드 도구와 다르다."}
+{"task_id": "t130", "candidate_id": "c15", "grade": 0, "process": false, "reason": "Docker 빌드 캐시는 Turbo 원격 캐시가 아니다."}
+{"task_id": "t130", "candidate_id": "c16", "grade": 1, "process": false, "reason": "Turbo 기본 설정은 관련되나 원격 변수 설명은 없다."}
+{"task_id": "t130", "candidate_id": "c17", "grade": 0, "process": false, "reason": "Next 런타임 캐시는 CI 빌드 캐시와 다르다."}
+{"task_id": "t130", "candidate_id": "c18", "grade": 1, "process": false, "reason": "Turbo 작업 캐시 일반 설명은 제한적으로 도움된다."}
+{"task_id": "t130", "candidate_id": "c19", "grade": 2, "process": false, "reason": "Turbo 로컬 및 원격 캐시 설정이 수정에 도움된다."}
+{"task_id": "t130", "candidate_id": "c20", "grade": 0, "process": false, "reason": "상품 페이지 캐싱은 빌드 캐시와 무관하다."}
+{"task_id": "t130", "candidate_id": "c21", "grade": 1, "process": true, "reason": "CI 장애 조사 절차는 관련되나 특정 팀용이다."}
+{"task_id": "t130", "candidate_id": "c22", "grade": 0, "process": false, "reason": "Turbopack 번들러는 Turbo 원격 캐시와 다르다."}
+{"task_id": "t130", "candidate_id": "c23", "grade": 0, "process": false, "reason": "원격 브라우저 제어와 무관하다."}
+{"task_id": "t130", "candidate_id": "c24", "grade": 0, "process": false, "reason": "실행기 통합 테스트와 무관하다."}
+{"task_id": "t130", "candidate_id": "c25", "grade": 0, "process": false, "reason": "VTEX 콘텐츠 캐싱은 다른 계층이다."}
+{"task_id": "t130", "candidate_id": "c26", "grade": 0, "process": false, "reason": "GPU 보조자 배포와 무관하다."}
+{"task_id": "t130", "candidate_id": "c27", "grade": 1, "process": true, "reason": "원인 분석 절차는 이미 좁혀진 변수 수정에 제한적이다."}
+{"task_id": "t130", "candidate_id": "c28", "grade": 0, "process": false, "reason": "모델 해석 도구와 무관하다."}
+{"task_id": "t130", "candidate_id": "c29", "grade": 0, "process": false, "reason": "HTTP API 테스트 요청이 아니다."}
+{"task_id": "t130", "candidate_id": "c30", "grade": 2, "process": false, "reason": "Turbo 원격 캐시 구성에 정확히 관련되지만 작은 수정이다."}
+{"task_id": "t130", "candidate_id": "c31", "grade": 0, "process": true, "reason": "특정 저장소 전체 재빌드는 원격 변수 원인을 해결하지 않는다."}
+{"task_id": "t130", "candidate_id": "c32", "grade": 0, "process": false, "reason": "Next 앱 부트스트랩은 요청 범위가 아니다."}
+{"task_id": "t130", "candidate_id": "c33", "grade": 0, "process": false, "reason": "Claude API 프롬프트 캐시는 다른 문제다."}
+{"task_id": "t130", "candidate_id": "c34", "grade": 1, "process": false, "reason": "모노레포 빌드 최적화는 넓게 관련된다."}
+{"task_id": "t130", "candidate_id": "c35", "grade": 0, "process": false, "reason": "Next 컴포넌트 캐싱은 다른 계층이다."}
+{"task_id": "t130", "candidate_id": "c36", "grade": 1, "process": false, "reason": "환경변수 설정은 인접하나 인프라 프로비저닝은 필요 없다."}
+{"task_id": "t136", "candidate_id": "c01", "grade": 0, "process": true, "reason": "브라우저 자동화 학습은 Go DB 테스트와 무관하다."}
+{"task_id": "t136", "candidate_id": "c02", "grade": 1, "process": true, "reason": "통합 테스트 구성은 관련되나 모킹 중심이라 실제 컨테이너 요구와 다르다."}
+{"task_id": "t136", "candidate_id": "c03", "grade": 0, "process": true, "reason": "gstack 업그레이드는 대상이 아니다."}
+{"task_id": "t136", "candidate_id": "c04", "grade": 0, "process": false, "reason": ".NET 테스트 지침은 Go 스택과 다르다."}
+{"task_id": "t136", "candidate_id": "c05", "grade": 0, "process": false, "reason": "HTML 다이어그램 생성은 필요 없다."}
+{"task_id": "t136", "candidate_id": "c06", "grade": 0, "process": true, "reason": "모션 감사는 요청과 무관하다."}
+{"task_id": "t136", "candidate_id": "c07", "grade": 0, "process": false, "reason": "Bun은 Go 테스트 런타임이 아니다."}
+{"task_id": "t136", "candidate_id": "c08", "grade": 0, "process": false, "reason": "Spring JVM 테스트는 Go와 다르다."}
+{"task_id": "t136", "candidate_id": "c09", "grade": 2, "process": false, "reason": "Go CI 구성과 테스트 연결에 도움된다."}
+{"task_id": "t136", "candidate_id": "c10", "grade": 1, "process": true, "reason": "CI Docker 실패 조사는 관련되나 특정 팀에 한정된다."}
+{"task_id": "t136", "candidate_id": "c11", "grade": 2, "process": true, "reason": "실제 의존성 통합 테스트와 Testcontainers 설계에 도움된다."}
+{"task_id": "t136", "candidate_id": "c12", "grade": 0, "process": false, "reason": "CLI UI 개발은 요청이 아니다."}
+{"task_id": "t136", "candidate_id": "c13", "grade": 0, "process": true, "reason": "Model Studio 회귀 테스트와 무관하다."}
+{"task_id": "t136", "candidate_id": "c14", "grade": 0, "process": true, "reason": "디자인 비평은 DB 테스트와 무관하다."}
+{"task_id": "t136", "candidate_id": "c15", "grade": 2, "process": true, "reason": "불안정한 Go 테스트의 신뢰성 개선에 도움된다."}
+{"task_id": "t136", "candidate_id": "c16", "grade": 3, "process": false, "reason": "Go Testcontainers 통합 테스트를 직접 다룬다."}
+{"task_id": "t136", "candidate_id": "c17", "grade": 2, "process": true, "reason": "실제 DB 통합 테스트 구성에 도움된다."}
+{"task_id": "t136", "candidate_id": "c18", "grade": 0, "process": false, "reason": "Salesforce 릴리스와 무관하다."}
+{"task_id": "t136", "candidate_id": "c19", "grade": 0, "process": false, "reason": ".NET Testcontainers는 Go 구현 지침이 아니다."}
+{"task_id": "t136", "candidate_id": "c20", "grade": 0, "process": false, "reason": "HTML 계획 산출물은 필요 없다."}
+{"task_id": "t136", "candidate_id": "c21", "grade": 1, "process": false, "reason": "HTTP 테스트는 저장소 DB 테스트와 간접적이다."}
+{"task_id": "t136", "candidate_id": "c22", "grade": 0, "process": false, "reason": "구독 결제 통합은 요청과 무관하다."}
+{"task_id": "t136", "candidate_id": "c23", "grade": 1, "process": false, "reason": "컨테이너 DB 원리는 관련되나 Java와 Python 전용이다."}
+{"task_id": "t136", "candidate_id": "c24", "grade": 2, "process": false, "reason": "GitHub CI를 쓴다면 Docker 테스트 작업 구성에 도움된다."}
+{"task_id": "t136", "candidate_id": "c25", "grade": 1, "process": false, "reason": "Go Docker 제목은 관련되나 구체적 지원 내용이 없다."}
+{"task_id": "t136", "candidate_id": "c26", "grade": 0, "process": false, "reason": "DBHub 전용 테스트 명령은 대상 저장소와 다르다."}
+{"task_id": "t136", "candidate_id": "c27", "grade": 2, "process": false, "reason": "Go 실제 컨테이너 DB 테스트 패턴은 유용하지만 itestkit 기반이다."}
+{"task_id": "t136", "candidate_id": "c28", "grade": 0, "process": false, "reason": "Spring Boot 테스트는 다른 스택이다."}
+{"task_id": "t136", "candidate_id": "c29", "grade": 0, "process": false, "reason": "Python Ruff는 Go 테스트와 무관하다."}
+{"task_id": "t136", "candidate_id": "c30", "grade": 0, "process": false, "reason": "Capacitor 테스트는 다른 플랫폼이다."}
+{"task_id": "t136", "candidate_id": "c31", "grade": 1, "process": true, "reason": "테스트 결함 감사는 관련되나 이미 정해진 구현에는 제한적이다."}
+{"task_id": "t136", "candidate_id": "c32", "grade": 0, "process": false, "reason": "Kubernetes 클러스터 관리는 필요 없다."}
+{"task_id": "t136", "candidate_id": "c33", "grade": 0, "process": false, "reason": "CopilotKit 에이전트 통합은 요청과 무관하다."}
+{"task_id": "t136", "candidate_id": "c34", "grade": 1, "process": false, "reason": "Docker 환경 구성은 인접하나 CI 테스트 전환에 특화되지 않았다."}
+{"task_id": "t136", "candidate_id": "c35", "grade": 0, "process": false, "reason": "이벤트 저장소 설계는 필요 없다."}
+{"task_id": "t136", "candidate_id": "c36", "grade": 0, "process": false, "reason": "HTML 산출물 생성과 무관하다."}
+{"task_id": "t136", "candidate_id": "c37", "grade": 1, "process": false, "reason": "Testcontainers 개념은 유용하나 Java 전용이다."}
+{"task_id": "t136", "candidate_id": "c38", "grade": 0, "process": false, "reason": "pytest 픽스처는 Go 테스트와 맞지 않는다."}
+{"task_id": "t136", "candidate_id": "c39", "grade": 2, "process": true, "reason": "회귀 동작을 먼저 확인하며 테스트 인프라를 바꾸는 데 도움된다."}
+{"task_id": "t148", "candidate_id": "c01", "grade": 0, "process": true, "reason": "진행 중 스프린트 방향 수정 요청이 아니다."}
+{"task_id": "t148", "candidate_id": "c02", "grade": 0, "process": false, "reason": "Flutter 본체 LUCI PR 점검은 앱 CI 신설과 다르다."}
+{"task_id": "t148", "candidate_id": "c03", "grade": 0, "process": false, "reason": "Adobe App Builder는 다른 스택이다."}
+{"task_id": "t148", "candidate_id": "c04", "grade": 3, "process": true, "reason": "테스트 게이트와 캐시를 포함한 CI 설계가 작업을 직접 이끈다."}
+{"task_id": "t148", "candidate_id": "c05", "grade": 1, "process": false, "reason": "앱 크기 축소는 빌드 자동화와 인접할 뿐이다."}
+{"task_id": "t148", "candidate_id": "c06", "grade": 0, "process": false, "reason": "Azure 상태 진단은 무관하다."}
+{"task_id": "t148", "candidate_id": "c07", "grade": 0, "process": false, "reason": "모바일 화면 목업은 요청이 아니다."}
+{"task_id": "t148", "candidate_id": "c08", "grade": 3, "process": false, "reason": "GitHub Actions 빌드와 테스트 작업 신설을 직접 지원한다."}
+{"task_id": "t148", "candidate_id": "c09", "grade": 0, "process": false, "reason": "딥링크 공급자 마이그레이션과 무관하다."}
+{"task_id": "t148", "candidate_id": "c10", "grade": 1, "process": false, "reason": "Flutter 일반 개발 설명은 CI 구현에 제한적이다."}
+{"task_id": "t148", "candidate_id": "c11", "grade": 0, "process": false, "reason": "영화 데이터 스트리밍은 무관하다."}
+{"task_id": "t148", "candidate_id": "c12", "grade": 1, "process": false, "reason": "모바일 GHA 빌드는 인접하지만 React Native 전용이다."}
+{"task_id": "t148", "candidate_id": "c13", "grade": 3, "process": true, "reason": "CI 품질 게이트와 테스트 실행기 설정이 정확한 작업이다."}
+{"task_id": "t148", "candidate_id": "c14", "grade": 0, "process": false, "reason": "Azure 아키텍처 시각화는 무관하다."}
+{"task_id": "t148", "candidate_id": "c15", "grade": 3, "process": true, "reason": "린트 테스트 아티팩트 캐시 파이프라인 설계가 직접 맞는다."}
+{"task_id": "t148", "candidate_id": "c16", "grade": 0, "process": false, "reason": "Python 자원 관리는 무관하다."}
+{"task_id": "t148", "candidate_id": "c17", "grade": 1, "process": true, "reason": "Flutter 리뷰는 CI 자동화 자체를 다루지 않는다."}
+{"task_id": "t148", "candidate_id": "c18", "grade": 0, "process": false, "reason": "Classroom 강좌 생성과 무관하다."}
+{"task_id": "t148", "candidate_id": "c19", "grade": 0, "process": false, "reason": "CometChat UI 커스터마이징은 무관하다."}
+{"task_id": "t148", "candidate_id": "c20", "grade": 3, "process": false, "reason": "GHA 트리거와 성능 최적화가 이번 작업을 직접 지원한다."}
+{"task_id": "t148", "candidate_id": "c21", "grade": 0, "process": true, "reason": "코드 투어 문서 생성은 요청이 아니다."}
+{"task_id": "t148", "candidate_id": "c22", "grade": 0, "process": false, "reason": "Node 전용 생성기는 Flutter 파이프라인과 맞지 않는다."}
+{"task_id": "t148", "candidate_id": "c23", "grade": 1, "process": true, "reason": "정적 분석 일반론은 analyze 실행 설정에 제한적이다."}
+{"task_id": "t148", "candidate_id": "c24", "grade": 1, "process": false, "reason": "Flutter 일반 지식은 관련되나 CI 내용은 없다."}
+{"task_id": "t148", "candidate_id": "c25", "grade": 1, "process": false, "reason": "Flutter 구현 패턴은 파이프라인 신설에 제한적이다."}
+{"task_id": "t148", "candidate_id": "c26", "grade": 0, "process": false, "reason": "채팅 SDK 라우팅은 무관하다."}
+{"task_id": "t148", "candidate_id": "c27", "grade": 0, "process": false, "reason": "JS 모노레포 관리는 해당 스택과 다르다."}
+{"task_id": "t148", "candidate_id": "c28", "grade": 2, "process": false, "reason": "저장소 감지와 CI 생성 도구는 구성에 도움된다."}
+{"task_id": "t148", "candidate_id": "c29", "grade": 1, "process": false, "reason": "광범위 Flutter 도구 모음은 CI 지원 여부가 불명확하다."}
+{"task_id": "t148", "candidate_id": "c30", "grade": 0, "process": false, "reason": "채팅 UI 커스터마이징은 무관하다."}
+{"task_id": "t148", "candidate_id": "c31", "grade": 1, "process": false, "reason": "통합 테스트 작성은 기존 테스트 실행과 다르다."}
+{"task_id": "t148", "candidate_id": "c32", "grade": 1, "process": false, "reason": "플랫폼 환경 설정은 빌드에 인접하지만 필수 요구는 아니다."}
+{"task_id": "t148", "candidate_id": "c33", "grade": 2, "process": false, "reason": "iOS GitHub Actions 자동 빌드 구성에 도움된다."}
+{"task_id": "t148", "candidate_id": "c34", "grade": 1, "process": true, "reason": "CI 장애 디버깅은 신설 단계에서 제한적이다."}
+{"task_id": "t148", "candidate_id": "c35", "grade": 3, "process": false, "reason": "GitHub 빌드 테스트 워크플로 구성을 직접 다룬다."}
+{"task_id": "t148", "candidate_id": "c36", "grade": 0, "process": false, "reason": "GitLab 파이프라인은 지정 제공자와 다르다."}
+{"task_id": "t148", "candidate_id": "c37", "grade": 2, "process": false, "reason": "PR 검사 파이프라인 구성에 도움되나 모바일 빌드는 별도다."}
+{"task_id": "t148", "candidate_id": "c38", "grade": 0, "process": false, "reason": "Azure 자원 조회는 무관하다."}
+{"task_id": "t148", "candidate_id": "c39", "grade": 2, "process": false, "reason": "GitHub Actions 자동화 구성에 도움된다."}
+{"task_id": "t148", "candidate_id": "c40", "grade": 2, "process": false, "reason": "작성한 워크플로의 스키마와 러너 오류 검증에 도움된다."}
+{"task_id": "t148", "candidate_id": "c41", "grade": 0, "process": false, "reason": "Firebase APK 취약점 스캔은 요청이 아니다."}
+{"task_id": "t148", "candidate_id": "c42", "grade": 1, "process": false, "reason": "Flutter 테스트 지식은 실행 단계 이해에 제한적이다."}
+{"task_id": "t148", "candidate_id": "c43", "grade": 3, "process": false, "reason": "Flutter 분석 테스트 APK IPA 캐시 파이프라인이 정확히 맞는다."}
+{"task_id": "t148", "candidate_id": "c44", "grade": 0, "process": false, "reason": "웹 Lighthouse 성능 검사는 무관하다."}
+{"task_id": "t148", "candidate_id": "c45", "grade": 3, "process": false, "reason": "Android iOS 빌드 검사 아티팩트용 GHA 패턴이 직접 맞는다."}
+{"task_id": "t148", "candidate_id": "c46", "grade": 0, "process": false, "reason": "Capacitor Node 파이프라인은 Flutter와 다르다."}
+{"task_id": "t148", "candidate_id": "c47", "grade": 3, "process": false, "reason": "GitHub Actions 빌드 테스트 작업 구성을 직접 다룬다."}
+{"task_id": "t148", "candidate_id": "c48", "grade": 2, "process": true, "reason": "CI 단계 설계에 도움되나 배포 승인까지는 필요 없다."}
+{"task_id": "t148", "candidate_id": "c49", "grade": 2, "process": false, "reason": "GitHub 검사 작업 부트스트랩이 초기 CI 구성에 도움된다."}
+{"task_id": "t148", "candidate_id": "c50", "grade": 3, "process": false, "reason": "GHA YAML과 빌드 테스트 작업 작성이 직접 맞는다."}
+{"task_id": "t148", "candidate_id": "c51", "grade": 1, "process": true, "reason": "실패한 PR 반복 수정은 CI 신설 자체와 다르다."}
+{"task_id": "t148", "candidate_id": "c52", "grade": 1, "process": false, "reason": "Flutter 테스트 작성은 기존 테스트 실행 설정과 다르다."}
+{"task_id": "t148", "candidate_id": "c53", "grade": 1, "process": true, "reason": "기존 실패 CI 복구는 새 파이프라인 작성과 다르다."}
+{"task_id": "t148", "candidate_id": "c54", "grade": 1, "process": true, "reason": "테스트 전략은 단순 실행 자동화에 제한적이다."}
+{"task_id": "t148", "candidate_id": "c55", "grade": 0, "process": false, "reason": "컨테이너 이미지 게시 파이프라인은 모바일 빌드와 다르다."}
+{"task_id": "t148", "candidate_id": "c56", "grade": 0, "process": false, "reason": "브라우저 지문 게이트는 요청이 아니다."}
+{"task_id": "t148", "candidate_id": "c57", "grade": 0, "process": false, "reason": "MSW 행동 트리 파일은 무관하다."}
+{"task_id": "t148", "candidate_id": "c58", "grade": 0, "process": false, "reason": "Azure 자원 문서화는 무관하다."}
+{"task_id": "t148", "candidate_id": "c59", "grade": 3, "process": false, "reason": "캐시와 검사 작업을 갖춘 GHA 생성이 직접 맞는다."}
+{"task_id": "t148", "candidate_id": "c60", "grade": 2, "process": true, "reason": "Flutter와 GHA 공식 문서 기반 설정 검증에 도움된다."}
+{"task_id": "t149", "candidate_id": "c01", "grade": 0, "process": false, "reason": "AgentOps 목표 파일 관리는 Android 릴리스와 무관하다."}
+{"task_id": "t149", "candidate_id": "c02", "grade": 0, "process": false, "reason": "외부 앱 연결 자동화는 Gradle 배포 작업이 아니다."}
+{"task_id": "t149", "candidate_id": "c03", "grade": 1, "process": true, "reason": "일반 검증 체계는 인접하지만 구체적 내용이 없다."}
+{"task_id": "t149", "candidate_id": "c04", "grade": 0, "process": false, "reason": "Capacitor 배포는 Kotlin 네이티브 스택과 다르다."}
+{"task_id": "t149", "candidate_id": "c05", "grade": 2, "process": true, "reason": "Play 내부 트랙 릴리스 절차에 도움되나 Gradle 플러그인과 다르다."}
+{"task_id": "t149", "candidate_id": "c06", "grade": 3, "process": false, "reason": "모바일 GHA 빌드와 릴리스 패턴이 직접 맞는다."}
+{"task_id": "t149", "candidate_id": "c07", "grade": 1, "process": true, "reason": "목표 계획은 이미 명확한 승인 조건에서 제한적이다."}
+{"task_id": "t149", "candidate_id": "c08", "grade": 0, "process": true, "reason": "콘텐츠 마케팅 계획은 무관하다."}
+{"task_id": "t149", "candidate_id": "c09", "grade": 2, "process": false, "reason": "GHA 작업 구성에 도움되나 Android 서명 지침은 없다."}
+{"task_id": "t149", "candidate_id": "c10", "grade": 2, "process": false, "reason": "비밀값과 릴리스 게이트 구성에 도움된다."}
+{"task_id": "t149", "candidate_id": "c11", "grade": 0, "process": true, "reason": "OKR 수립 요청이 아니다."}
+{"task_id": "t149", "candidate_id": "c12", "grade": 2, "process": false, "reason": "GHA 테스트 빌드 배포 구성을 지원한다."}
+{"task_id": "t149", "candidate_id": "c13", "grade": 2, "process": false, "reason": "최신 GHA YAML 작성과 검토에 도움된다."}
+{"task_id": "t149", "candidate_id": "c14", "grade": 0, "process": true, "reason": "불명확한 제품 목표 구체화는 필요 없다."}
+{"task_id": "t149", "candidate_id": "c15", "grade": 1, "process": false, "reason": "GitHub 운영 자동화는 배포 구현에 제한적이다."}
+{"task_id": "t149", "candidate_id": "c16", "grade": 0, "process": false, "reason": "Flutter 전용 파이프라인은 Kotlin 프로젝트와 다르다."}
+{"task_id": "t149", "candidate_id": "c17", "grade": 1, "process": true, "reason": "CI 반복 복구는 새 릴리스 구현과 간접적이다."}
+{"task_id": "t149", "candidate_id": "c18", "grade": 2, "process": false, "reason": "태그 트리거와 보안 강화 설정에 도움된다."}
+{"task_id": "t149", "candidate_id": "c19", "grade": 2, "process": true, "reason": "비밀값 처리와 워크플로 권한 검토가 수용 조건에 도움된다."}
+{"task_id": "t149", "candidate_id": "c20", "grade": 0, "process": false, "reason": "화면 목업은 요청이 아니다."}
+{"task_id": "t149", "candidate_id": "c21", "grade": 1, "process": true, "reason": "에이전트 목표 분해는 이미 구체적인 작업에 제한적이다."}
+{"task_id": "t149", "candidate_id": "c22", "grade": 3, "process": false, "reason": "Android 버전 코드 서명과 릴리스 Gradle 명령을 직접 다룬다."}
+{"task_id": "t149", "candidate_id": "c23", "grade": 2, "process": false, "reason": "GHA 빌드 배포 템플릿이 구성에 도움된다."}
+{"task_id": "t149", "candidate_id": "c24", "grade": 1, "process": true, "reason": "목표 패키지 작성은 이미 명확한 요구에 제한적이다."}
+{"task_id": "t149", "candidate_id": "c25", "grade": 1, "process": true, "reason": "일반 Git 배달 절차는 Android 자동 릴리스와 간접적이다."}
+{"task_id": "t149", "candidate_id": "c26", "grade": 2, "process": false, "reason": "테스트 빌드 배포 GHA 패턴이 유용하다."}
+{"task_id": "t149", "candidate_id": "c27", "grade": 0, "process": true, "reason": "조사 브리프 작성은 요청이 아니다."}
+{"task_id": "t149", "candidate_id": "c28", "grade": 1, "process": false, "reason": "Play CLI 운영은 관련되나 요구된 Gradle 게시 도구와 다르다."}
+{"task_id": "t149", "candidate_id": "c29", "grade": 1, "process": true, "reason": "변경 기록 생성은 릴리스에 인접하지만 요구되지 않았다."}
+{"task_id": "t149", "candidate_id": "c30", "grade": 2, "process": false, "reason": "GHA 러너와 보안 설정에 도움된다."}
+{"task_id": "t149", "candidate_id": "c31", "grade": 1, "process": true, "reason": "목표 분해는 이미 주어진 수용 조건에서 제한적이다."}
+{"task_id": "t149", "candidate_id": "c32", "grade": 1, "process": true, "reason": "CI 실패 조사는 신설 작업의 주 내용이 아니다."}
+{"task_id": "t149", "candidate_id": "c33", "grade": 0, "process": false, "reason": "NHL 경기 데이터는 무관하다."}
+{"task_id": "t149", "candidate_id": "c34", "grade": 3, "process": true, "reason": "모바일 서명 버전과 CI 릴리스 절차가 작업에 직접 맞는다."}
+{"task_id": "t149", "candidate_id": "c35", "grade": 2, "process": false, "reason": "Gradle AAB 빌드 지식이 구현에 도움된다."}
+{"task_id": "t149", "candidate_id": "c36", "grade": 2, "process": false, "reason": "GitHub Actions 자동화 설정에 도움된다."}
+{"task_id": "t149", "candidate_id": "c37", "grade": 0, "process": false, "reason": "JS 모노레포 관리와 무관하다."}
+{"task_id": "t149", "candidate_id": "c38", "grade": 1, "process": true, "reason": "목표 정의는 이미 완료된 요구 정리에 제한적이다."}
+{"task_id": "t149", "candidate_id": "c39", "grade": 3, "process": false, "reason": "Gradle 변형 AAB 서명과 Play 업로드를 직접 다룬다."}
+{"task_id": "t149", "candidate_id": "c40", "grade": 0, "process": false, "reason": "React Native 클라우드 빌드는 Kotlin 스택과 다르다."}
+{"task_id": "t149", "candidate_id": "c41", "grade": 1, "process": false, "reason": "Play CLI는 게시 개념에 관련되나 Gradle 플러그인 지침이 아니다."}
+{"task_id": "t157", "candidate_id": "c01", "grade": 1, "process": true, "reason": "긴급 핫픽스 절차는 정규 단계별 릴리스와 다르다."}
+{"task_id": "t157", "candidate_id": "c02", "grade": 2, "process": true, "reason": "릴리스 버전과 롤백 관리에 도움된다."}
+{"task_id": "t157", "candidate_id": "c03", "grade": 3, "process": true, "reason": "다단계 배포와 동일 아티팩트 승격 설계에 직접 맞는다."}
+{"task_id": "t157", "candidate_id": "c04", "grade": 0, "process": false, "reason": "Next 16 Turbopack은 지정된 Next 15 배포 과제와 다르다."}
+{"task_id": "t157", "candidate_id": "c05", "grade": 0, "process": true, "reason": "홈 네트워크 계획은 무관하다."}
+{"task_id": "t157", "candidate_id": "c06", "grade": 0, "process": false, "reason": "커밋 훅 설정은 릴리스 빌드 게이트와 다르다."}
+{"task_id": "t157", "candidate_id": "c07", "grade": 0, "process": false, "reason": "웹 크롤링 API는 배포와 무관하다."}
+{"task_id": "t157", "candidate_id": "c08", "grade": 0, "process": false, "reason": "Contentstack 초기 앱 구성은 요청이 아니다."}
+{"task_id": "t157", "candidate_id": "c09", "grade": 2, "process": true, "reason": "단계적 출시와 롤백 절차 준비에 도움된다."}
+{"task_id": "t157", "candidate_id": "c10", "grade": 0, "process": true, "reason": "스테이징된 Git 파일 커밋은 배포 환경과 무관하다."}
+{"task_id": "t157", "candidate_id": "c11", "grade": 0, "process": false, "reason": "Next 버전 업그레이드는 요청이 아니다."}
+{"task_id": "t157", "candidate_id": "c12", "grade": 3, "process": false, "reason": "OpenNext 기반 Next Cloudflare 배포를 직접 다룬다."}
+{"task_id": "t157", "candidate_id": "c13", "grade": 0, "process": false, "reason": "웹 프로토타입 생성은 무관하다."}
+{"task_id": "t157", "candidate_id": "c14", "grade": 0, "process": false, "reason": "커밋 훅은 릴리스 파이프라인의 대안이 아니다."}
+{"task_id": "t157", "candidate_id": "c15", "grade": 0, "process": false, "reason": "Cloudflare Sandbox SDK는 OpenNext 배포와 다르다."}
+{"task_id": "t157", "candidate_id": "c16", "grade": 1, "process": false, "reason": "배포 제목은 관련되나 실제 지침이 드러나지 않는다."}
+{"task_id": "t157", "candidate_id": "c17", "grade": 0, "process": false, "reason": "Vercel은 지정된 Cloudflare 호스팅과 다르다."}
+{"task_id": "t157", "candidate_id": "c18", "grade": 0, "process": false, "reason": "브라우저 자원 로딩 최적화는 무관하다."}
+{"task_id": "t157", "candidate_id": "c19", "grade": 0, "process": true, "reason": "홈 네트워크 설계는 무관하다."}
+{"task_id": "t157", "candidate_id": "c20", "grade": 2, "process": false, "reason": "Cloudflare Workers 배포 기본 지식이 도움된다."}
+{"task_id": "t157", "candidate_id": "c21", "grade": 1, "process": false, "reason": "자동 업데이트 설계는 단계적 출시와 간접 관련이다."}
+{"task_id": "t157", "candidate_id": "c22", "grade": 0, "process": false, "reason": "Vercel 환경 분리는 다른 배포 도구다."}
+{"task_id": "t157", "candidate_id": "c23", "grade": 0, "process": false, "reason": "Capacitor OTA 채널은 웹 Workers 배포와 다르다."}
+{"task_id": "t157", "candidate_id": "c24", "grade": 1, "process": false, "reason": "Cloudflare 배포 제목 외 구체적 근거가 부족하다."}
+{"task_id": "t157", "candidate_id": "c25", "grade": 3, "process": false, "reason": "OpenNext wrangler 환경변수 배포 설정이 정확히 맞는다."}
+{"task_id": "t157", "candidate_id": "c26", "grade": 3, "process": true, "reason": "단계별 CI 작업과 빌드 게이트 설계를 직접 지원한다."}
+{"task_id": "t157", "candidate_id": "c27", "grade": 0, "process": true, "reason": "마케팅 캠페인 자동화는 무관하다."}
+{"task_id": "t157", "candidate_id": "c28", "grade": 1, "process": false, "reason": "Next 일반 모범 사례는 배포 구성에 제한적이다."}
+{"task_id": "t157", "candidate_id": "c29", "grade": 2, "process": true, "reason": "Next 빌드 검증과 환경별 출시 절차에 도움된다."}
+{"task_id": "t157", "candidate_id": "c30", "grade": 0, "process": false, "reason": "Jetson BSP 이미지 승격은 다른 플랫폼이다."}
+{"task_id": "t157", "candidate_id": "c31", "grade": 0, "process": false, "reason": "Vercel CLI는 지정된 도구가 아니다."}
+{"task_id": "t157", "candidate_id": "c32", "grade": 2, "process": false, "reason": "Next 환경변수 구분은 동일 빌드의 환경별 배포에 도움된다."}
+{"task_id": "t157", "candidate_id": "c33", "grade": 2, "process": false, "reason": "PR 태그 기반 CI 구성에 도움된다."}
+{"task_id": "t157", "candidate_id": "c34", "grade": 0, "process": false, "reason": "새 Vercel 모노레포 생성은 요청과 다르다."}
+{"task_id": "t157", "candidate_id": "c35", "grade": 0, "process": false, "reason": "문서 페이지 UI는 releasing.md 작성과 다르다."}
+{"task_id": "t157", "candidate_id": "c36", "grade": 2, "process": false, "reason": "Workers와 KV 지식이 환경별 세션 구성에 도움된다."}
+{"task_id": "t157", "candidate_id": "c37", "grade": 2, "process": false, "reason": "Cloudflare 서비스 배포 지침이 구현에 도움된다."}
+{"task_id": "t168", "candidate_id": "c01", "grade": 1, "process": false, "reason": "Spring 코드 패턴은 버전 변경에 제한적이다."}
+{"task_id": "t168", "candidate_id": "c02", "grade": 0, "process": true, "reason": "Vercel 배포는 Jib와 다르다."}
+{"task_id": "t168", "candidate_id": "c03", "grade": 1, "process": false, "reason": "Spring 아키텍처는 단순 의존성 갱신과 간접적이다."}
+{"task_id": "t168", "candidate_id": "c04", "grade": 2, "process": true, "reason": "갱신 후 빌드와 테스트 검증 절차에 도움된다."}
+{"task_id": "t168", "candidate_id": "c05", "grade": 0, "process": false, "reason": "웹 목업 디자인은 무관하다."}
+{"task_id": "t168", "candidate_id": "c06", "grade": 1, "process": true, "reason": "통합 테스트 전략은 작은 버전 변경에 제한적이다."}
+{"task_id": "t168", "candidate_id": "c07", "grade": 2, "process": true, "reason": "Spring 의존성 호환성 점검은 버전 갱신에 도움된다."}
+{"task_id": "t168", "candidate_id": "c08", "grade": 0, "process": false, "reason": "Jig는 요청된 Jib와 다른 도구다."}
+{"task_id": "t168", "candidate_id": "c09", "grade": 0, "process": false, "reason": "새 프로젝트 생성은 요청이 아니다."}
+{"task_id": "t168", "candidate_id": "c10", "grade": 1, "process": false, "reason": "JVM 배포 일반 지식은 관련되나 Jib 설명은 없다."}
+{"task_id": "t168", "candidate_id": "c11", "grade": 1, "process": false, "reason": "Kubernetes 배포는 가능성이 있으나 대상이 명시되지 않았다."}
+{"task_id": "t168", "candidate_id": "c12", "grade": 0, "process": false, "reason": "새 Spring 프로젝트 생성은 범위 밖이다."}
+{"task_id": "t168", "candidate_id": "c13", "grade": 0, "process": false, "reason": "Java 프로젝트 스캐폴딩은 필요 없다."}
+{"task_id": "t168", "candidate_id": "c14", "grade": 0, "process": false, "reason": "Jig 배포는 Jib 이미지 빌드와 다르다."}
+{"task_id": "t168", "candidate_id": "c15", "grade": 1, "process": false, "reason": "Spring 3 관행은 버전 변경에 제한적이다."}
+{"task_id": "t168", "candidate_id": "c16", "grade": 1, "process": true, "reason": "다단계 기능 계획은 작은 갱신 작업에 과하다."}
+{"task_id": "t168", "candidate_id": "c17", "grade": 1, "process": true, "reason": "새 파이프라인 설계는 기존 staging 재배포와 다르다."}
+{"task_id": "t168", "candidate_id": "c18", "grade": 1, "process": false, "reason": "Spring 아키텍처 패턴은 버전 갱신과 간접적이다."}
+{"task_id": "t168", "candidate_id": "c19", "grade": 0, "process": false, "reason": "Brex Staging은 배포 환경 staging과 무관하다."}
+{"task_id": "t168", "candidate_id": "c20", "grade": 1, "process": false, "reason": "Spring 애플리케이션 지식은 갱신에 제한적이다."}
+{"task_id": "t168", "candidate_id": "c21", "grade": 1, "process": false, "reason": "보안 설정은 관련될 수 있으나 변경 요구가 없다."}
+{"task_id": "t168", "candidate_id": "c22", "grade": 1, "process": true, "reason": "계약 테스트 구성은 이번 작은 갱신의 주 작업이 아니다."}
+{"task_id": "t168", "candidate_id": "c23", "grade": 1, "process": false, "reason": "환경 프로비저닝은 재배포와 간접적이다."}
+{"task_id": "t168", "candidate_id": "c24", "grade": 0, "process": false, "reason": "FastAPI는 다른 프레임워크다."}
+{"task_id": "t168", "candidate_id": "c25", "grade": 1, "process": false, "reason": "의존성 검증은 관련되나 Spring 4 전환 중심이다."}
+{"task_id": "t168", "candidate_id": "c26", "grade": 1, "process": true, "reason": "Spring TDD 확대는 버전 변경에 제한적이다."}
+{"task_id": "t168", "candidate_id": "c27", "grade": 0, "process": true, "reason": "전체 커밋 PR 흐름은 요청되지 않았다."}
+{"task_id": "t168", "candidate_id": "c28", "grade": 1, "process": false, "reason": "컨테이너 빌드는 인접하나 Dockerfile 방식은 Jib와 다르다."}
+{"task_id": "t168", "candidate_id": "c29", "grade": 1, "process": false, "reason": "Kotlin Spring 지식은 언어 미지정 갱신에 제한적이다."}
+{"task_id": "t168", "candidate_id": "c30", "grade": 1, "process": false, "reason": "Spring 운영 지식은 관련되나 Jib 구현은 없다."}
+{"task_id": "t168", "candidate_id": "c31", "grade": 0, "process": true, "reason": "레거시 시스템 재설계는 범위를 벗어난다."}
+{"task_id": "t168", "candidate_id": "c32", "grade": 1, "process": false, "reason": "Spring 설정 지식은 간접적으로만 도움된다."}
+{"task_id": "t168", "candidate_id": "c33", "grade": 1, "process": false, "reason": "Spring 기업 앱 패턴은 작은 버전 갱신에 제한적이다."}
+{"task_id": "t169", "candidate_id": "c01", "grade": 0, "process": false, "reason": "AI 에이전트용 설명은 JVM 콜드 스타트와 연결되지 않는다."}
+{"task_id": "t169", "candidate_id": "c02", "grade": 3, "process": false, "reason": "startup 프로브와 readiness 구분이 첫 헬스 체크 실패 수정에 직접 맞는다."}
+{"task_id": "t169", "candidate_id": "c03", "grade": 1, "process": false, "reason": "단순 가용성 확인은 시작 지연 해결에 제한적이다."}
+{"task_id": "t169", "candidate_id": "c04", "grade": 0, "process": false, "reason": "Azure 자원 도식화는 무관하다."}
+{"task_id": "t169", "candidate_id": "c05", "grade": 0, "process": true, "reason": "스프린트 방향 수정은 요청이 아니다."}
+{"task_id": "t169", "candidate_id": "c06", "grade": 0, "process": false, "reason": "AWS Lambda 최적화는 Cloud Run과 다르다."}
+{"task_id": "t169", "candidate_id": "c07", "grade": 0, "process": false, "reason": "Tencent CloudBase는 Google Cloud Run이 아니다."}
+{"task_id": "t169", "candidate_id": "c08", "grade": 1, "process": false, "reason": "가동 시간 모니터링은 초기 프로브 설정과 간접적이다."}
+{"task_id": "t169", "candidate_id": "c09", "grade": 0, "process": false, "reason": "Spring Security는 Ktor 시작 성능과 무관하다."}
+{"task_id": "t169", "candidate_id": "c10", "grade": 0, "process": true, "reason": "사업 스타트업 전략은 JVM 시작과 다르다."}
+{"task_id": "t169", "candidate_id": "c11", "grade": 0, "process": false, "reason": "KMP 저장소 패턴은 시작 지연과 무관하다."}
+{"task_id": "t169", "candidate_id": "c12", "grade": 0, "process": false, "reason": "Vercel 런타임은 다른 플랫폼이다."}
+{"task_id": "t169", "candidate_id": "c13", "grade": 0, "process": false, "reason": "Azure 진단은 다른 클라우드다."}
+{"task_id": "t169", "candidate_id": "c14", "grade": 0, "process": false, "reason": "Azure Functions는 Cloud Run과 다르다."}
+{"task_id": "t169", "candidate_id": "c15", "grade": 2, "process": false, "reason": "헬스 엔드포인트와 라우팅 신호 구성에 도움된다."}
+{"task_id": "t169", "candidate_id": "c16", "grade": 2, "process": false, "reason": "Cloud Run 컨테이너 운영 구조 이해에 도움된다."}
+{"task_id": "t169", "candidate_id": "c17", "grade": 0, "process": false, "reason": "TypeScript Lambda는 JVM Cloud Run과 다르다."}
+{"task_id": "t169", "candidate_id": "c18", "grade": 0, "process": false, "reason": "Workers 런타임은 지정 플랫폼이 아니다."}
+{"task_id": "t169", "candidate_id": "c19", "grade": 0, "process": false, "reason": "InfluxDB 자동화는 무관하다."}
+{"task_id": "t169", "candidate_id": "c20", "grade": 1, "process": false, "reason": "깊은 의존성 검사는 시작 프로브 지연 해결과 간접적이다."}
+{"task_id": "t169", "candidate_id": "c21", "grade": 0, "process": true, "reason": "사업 MVP 실험은 JVM 시작과 무관하다."}
+{"task_id": "t169", "candidate_id": "c22", "grade": 0, "process": false, "reason": "Salesforce 마케팅 자동화는 무관하다."}
+{"task_id": "t169", "candidate_id": "c23", "grade": 0, "process": true, "reason": "고객 확보 전략은 기술 콜드 스타트와 다르다."}
+{"task_id": "t169", "candidate_id": "c24", "grade": 1, "process": false, "reason": "Cloud Run 관리 제목은 관련되나 구체적 지침이 없다."}
+{"task_id": "t169", "candidate_id": "c25", "grade": 0, "process": true, "reason": "에이전트 지식 가져오기 초기화는 무관하다."}
+{"task_id": "t169", "candidate_id": "c26", "grade": 2, "process": false, "reason": "Cloud Run 서비스 설정 관리에 도움된다."}
+{"task_id": "t169", "candidate_id": "c27", "grade": 0, "process": false, "reason": "Java에서 Kotlin으로 전환하는 작업이 아니다."}
+{"task_id": "t169", "candidate_id": "c28", "grade": 0, "process": false, "reason": "TypeScript 단위 테스트는 다른 스택이다."}
+{"task_id": "t169", "candidate_id": "c29", "grade": 3, "process": false, "reason": "Cloud Run startup CPU boost와 콜드 스타트 완화를 직접 다룬다."}
+{"task_id": "t169", "candidate_id": "c30", "grade": 1, "process": true, "reason": "Kotlin 로그 추적은 인접하나 알려진 시작 지연과 다르다."}
+{"task_id": "t169", "candidate_id": "c31", "grade": 2, "process": false, "reason": "프로브 구분과 Docker 헬스 체크 설계에 도움된다."}
+{"task_id": "t169", "candidate_id": "c32", "grade": 0, "process": false, "reason": "CloudBase Run은 다른 공급자다."}
+{"task_id": "t169", "candidate_id": "c33", "grade": 0, "process": true, "reason": "서비스 계약 검증은 시작 성능과 무관하다."}
+{"task_id": "t169", "candidate_id": "c34", "grade": 0, "process": true, "reason": "코드 투어 생성은 요청이 아니다."}
+{"task_id": "t169", "candidate_id": "c35", "grade": 1, "process": false, "reason": "JVM 시작 최적화는 인접하나 Lambda 전용이다."}
+{"task_id": "t169", "candidate_id": "c36", "grade": 0, "process": true, "reason": "Azure 마이그레이션은 요청이 아니다."}
+{"task_id": "t169", "candidate_id": "c37", "grade": 0, "process": false, "reason": "Azure 자원 목록은 무관하다."}
+{"task_id": "t169", "candidate_id": "c38", "grade": 0, "process": false, "reason": "Next와 FastAPI 전용 프로브는 Ktor 스택과 다르다."}
+{"task_id": "t169", "candidate_id": "c39", "grade": 2, "process": false, "reason": "GCP Cloud Run 컨테이너 운영 지식이 설정에 도움된다."}
+{"task_id": "t169", "candidate_id": "c40", "grade": 0, "process": true, "reason": "AWS 계정 점검은 무관하다."}
+{"task_id": "t169", "candidate_id": "c41", "grade": 0, "process": false, "reason": "Alibaba AgentRun 검증은 다른 플랫폼이다."}
+{"task_id": "t169", "candidate_id": "c42", "grade": 1, "process": true, "reason": "리소스 조절은 관련되나 비용 절감이 목표는 아니다."}
+{"task_id": "t169", "candidate_id": "c43", "grade": 0, "process": false, "reason": "Big Data Cloud 자동화는 무관하다."}
+{"task_id": "t169", "candidate_id": "c44", "grade": 0, "process": false, "reason": "MSW 행동 트리 작성은 무관하다."}
+{"task_id": "t169", "candidate_id": "c45", "grade": 0, "process": false, "reason": "Salesforce 서비스 자동화는 무관하다."}
+{"task_id": "t169", "candidate_id": "c46", "grade": 3, "process": false, "reason": "프로브 실패와 시작 지연용 헬스 체크 설정을 직접 다룬다."}
+{"task_id": "t169", "candidate_id": "c47", "grade": 0, "process": false, "reason": "Alibaba 함수 실행은 다른 플랫폼이다."}
+{"task_id": "t169", "candidate_id": "c48", "grade": 0, "process": false, "reason": "Next 개발 번들러 시작 시간은 JVM 서버와 다르다."}
+{"task_id": "t169", "candidate_id": "c49", "grade": 0, "process": false, "reason": "제목 외 JVM 문제에 유용한 정보가 없다."}
+{"task_id": "t169", "candidate_id": "c50", "grade": 0, "process": false, "reason": "Vision API 자동화는 무관하다."}
+{"task_id": "t169", "candidate_id": "c51", "grade": 0, "process": false, "reason": "Azure 관계 다이어그램은 무관하다."}
+{"task_id": "t169", "candidate_id": "c52", "grade": 2, "process": true, "reason": "Cloud Run과 JVM 설정을 공식 문서로 확인하는 절차가 도움된다."}
+{"task_id": "t175", "candidate_id": "c01", "grade": 3, "process": true, "reason": "App Store 심사 거절 대응과 제출 준비가 직접 맞는다."}
+{"task_id": "t175", "candidate_id": "c02", "grade": 0, "process": false, "reason": "Expo EAS는 Flutter Codemagic과 다른 도구다."}
+{"task_id": "t175", "candidate_id": "c03", "grade": 0, "process": false, "reason": "모바일 화면 목업은 요청이 아니다."}
+{"task_id": "t175", "candidate_id": "c04", "grade": 0, "process": true, "reason": "SSL 고정 우회는 권한 설명과 무관하다."}
+{"task_id": "t175", "candidate_id": "c05", "grade": 3, "process": true, "reason": "심사 거절 원인을 프로젝트에서 감사하는 절차가 직접 맞는다."}
+{"task_id": "t175", "candidate_id": "c06", "grade": 2, "process": false, "reason": "iOS TestFlight 업로드 지식은 도움되나 Codemagic 특화가 아니다."}
+{"task_id": "t175", "candidate_id": "c07", "grade": 0, "process": false, "reason": "Shopify API는 무관하다."}
+{"task_id": "t175", "candidate_id": "c08", "grade": 0, "process": false, "reason": "터미널 UI는 요청이 아니다."}
+{"task_id": "t175", "candidate_id": "c09", "grade": 1, "process": false, "reason": "범용 모바일 개발 지식은 구체적 수정에 제한적이다."}
+{"task_id": "t175", "candidate_id": "c10", "grade": 0, "process": false, "reason": "Scandit 바코드 기능 추가는 요청이 아니다."}
+{"task_id": "t175", "candidate_id": "c11", "grade": 0, "process": false, "reason": "CometChat 접근성은 무관하다."}
+{"task_id": "t175", "candidate_id": "c12", "grade": 0, "process": false, "reason": "채팅 SDK 통합은 무관하다."}
+{"task_id": "t175", "candidate_id": "c13", "grade": 0, "process": true, "reason": "추첨 워크플로는 무관하다."}
+{"task_id": "t175", "candidate_id": "c14", "grade": 1, "process": false, "reason": "Flutter macOS 도구 설정은 배포에 인접할 뿐이다."}
+{"task_id": "t175", "candidate_id": "c15", "grade": 0, "process": false, "reason": "반응형 레이아웃은 요청이 아니다."}
+{"task_id": "t175", "candidate_id": "c16", "grade": 0, "process": false, "reason": "딥링크 도구 전환은 무관하다."}
+{"task_id": "t175", "candidate_id": "c17", "grade": 0, "process": false, "reason": "n8n 노드 설정은 무관하다."}
+{"task_id": "t175", "candidate_id": "c18", "grade": 0, "process": false, "reason": "골든 테스트는 권한 설명과 배포 설정에 맞지 않는다."}
+{"task_id": "t175", "candidate_id": "c19", "grade": 2, "process": false, "reason": "Flutter 네이티브 API 연동 지식은 iOS 권한 설정에 도움된다."}
+{"task_id": "t175", "candidate_id": "c20", "grade": 2, "process": false, "reason": "App Store Connect와 TestFlight 작업 이해에 도움된다."}
+{"task_id": "t175", "candidate_id": "c21", "grade": 3, "process": true, "reason": "심사 개인정보 및 소프트웨어 요건 검토가 거절 수정에 직접 맞는다."}
+{"task_id": "t175", "candidate_id": "c22", "grade": 1, "process": false, "reason": "일반 Flutter 소개는 이번 설정 수정에 제한적이다."}
+{"task_id": "t175", "candidate_id": "c23", "grade": 0, "process": false, "reason": "iOS 화면 디자인은 권한 목적 문자열 문제와 다르다."}
+{"task_id": "t175", "candidate_id": "c24", "grade": 0, "process": false, "reason": "GitHub Actions는 지정된 Codemagic과 다르다."}
+{"task_id": "t175", "candidate_id": "c25", "grade": 1, "process": false, "reason": "앱 회귀 확인은 관련되나 배포 설정 지침이 아니다."}
+{"task_id": "t175", "candidate_id": "c26", "grade": 0, "process": false, "reason": "웹 파비콘 생성은 무관하다."}
+{"task_id": "t175", "candidate_id": "c27", "grade": 2, "process": true, "reason": "심사 거절 이유를 코드에서 확인하는 데 도움된다."}
+{"task_id": "t175", "candidate_id": "c28", "grade": 1, "process": true, "reason": "Flutter 테스트 전략은 설정 수정에 제한적이다."}
+{"task_id": "t175", "candidate_id": "c29", "grade": 2, "process": true, "reason": "재제출 점검과 리뷰 노트 준비에 도움된다."}
+{"task_id": "t175", "candidate_id": "c30", "grade": 0, "process": false, "reason": "바코드 AR 기능 구현은 무관하다."}
+{"task_id": "t175", "candidate_id": "c31", "grade": 0, "process": false, "reason": "네이티브 뷰 임베딩은 권한 문자열 수정과 다르다."}
+{"task_id": "t175", "candidate_id": "c32", "grade": 0, "process": false, "reason": "스토어 스크린샷 편집기 구축은 무관하다."}
+{"task_id": "t175", "candidate_id": "c33", "grade": 1, "process": false, "reason": "테스트 작성은 배포 검증에 간접적이다."}
+{"task_id": "t175", "candidate_id": "c34", "grade": 0, "process": true, "reason": "제품 동기 부여는 purpose string과 무관하다."}
+{"task_id": "t175", "candidate_id": "c35", "grade": 0, "process": true, "reason": "침투 테스트는 요청 범위가 아니다."}
+{"task_id": "t175", "candidate_id": "c36", "grade": 2, "process": true, "reason": "개인정보와 흔한 거절 원인 점검이 도움된다."}
+{"task_id": "t175", "candidate_id": "c37", "grade": 3, "process": true, "reason": "스토어 거절 진단과 복구 절차가 이번 문제에 직접 맞는다."}
+{"task_id": "t175", "candidate_id": "c38", "grade": 0, "process": false, "reason": "Bun 런타임은 Flutter iOS 배포와 무관하다."}
+{"task_id": "t175", "candidate_id": "c39", "grade": 0, "process": false, "reason": "화면 이미지 생성은 요청이 아니다."}
+{"task_id": "t176", "candidate_id": "c01", "grade": 0, "process": true, "reason": "팀 회고는 진료 데이터 집계 수정과 다르다."}
+{"task_id": "t176", "candidate_id": "c02", "grade": 0, "process": false, "reason": "SaaS 추천 지표는 병원 예약 집계와 무관하다."}
+{"task_id": "t176", "candidate_id": "c03", "grade": 0, "process": true, "reason": "PMF 설문은 요청이 아니다."}
+{"task_id": "t176", "candidate_id": "c04", "grade": 0, "process": false, "reason": "WeChat 대화 요약은 무관하다."}
+{"task_id": "t176", "candidate_id": "c05", "grade": 3, "process": true, "reason": "SQL 검증과 업무 질문 기반 분석이 중복 집계 수정 및 재산출에 직접 맞는다."}
+{"task_id": "t176", "candidate_id": "c06", "grade": 0, "process": false, "reason": "주간 팀 발표 덱은 데이터 보고서 코드와 다르다."}
+{"task_id": "t176", "candidate_id": "c07", "grade": 1, "process": true, "reason": "오답 회고는 인접하나 예약 중복 제거 구현 지침은 아니다."}
+{"task_id": "t176", "candidate_id": "c08", "grade": 0, "process": false, "reason": "학술지 조회는 무관하다."}
+{"task_id": "t176", "candidate_id": "c09", "grade": 2, "process": true, "reason": "재현과 원인 검증을 통해 집계 오류를 고치는 데 도움된다."}
+{"task_id": "t176", "candidate_id": "c10", "grade": 0, "process": false, "reason": "GitHub 활동 요약은 병원 지표가 아니다."}
+{"task_id": "t176", "candidate_id": "c11", "grade": 0, "process": false, "reason": "웹 성능 검사는 무관하다."}
+{"task_id": "t176", "candidate_id": "c12", "grade": 1, "process": true, "reason": "비교 결과 전달에는 인접하나 집계 수정에는 도움 적다."}
+{"task_id": "t176", "candidate_id": "c13", "grade": 0, "process": false, "reason": "개인 일정 자동 편성은 예약 테이블 중복 제거와 다르다."}
+{"task_id": "t176", "candidate_id": "c14", "grade": 1, "process": true, "reason": "내부 전달 형식은 결과 공유에만 제한적이다."}
+{"task_id": "t176", "candidate_id": "c15", "grade": 1, "process": true, "reason": "내부 보고 문장 작성은 데이터 수정에 간접적이다."}
+{"task_id": "t176", "candidate_id": "c16", "grade": 0, "process": true, "reason": "업무 진행 상황 보고는 예약 결석률 산출과 다르다."}
+{"task_id": "t176", "candidate_id": "c17", "grade": 2, "process": true, "reason": "수정 전후 수치를 비교하고 설명하는 데 도움된다."}
+{"task_id": "t176", "candidate_id": "c18", "grade": 0, "process": false, "reason": "Timekit 외부 자동화는 로컬 보고서 수정과 다르다."}
+{"task_id": "t176", "candidate_id": "c19", "grade": 0, "process": false, "reason": "뉴스레터 운영은 무관하다."}
+{"task_id": "t176", "candidate_id": "c20", "grade": 0, "process": true, "reason": "Git 기록 회고는 병원 보고서가 아니다."}
+{"task_id": "t176", "candidate_id": "c21", "grade": 0, "process": true, "reason": "에이전트 작업 세션 요약은 무관하다."}
+{"task_id": "t176", "candidate_id": "c22", "grade": 0, "process": false, "reason": "IEEE 학술지 조회는 무관하다."}
+{"task_id": "t176", "candidate_id": "c23", "grade": 0, "process": true, "reason": "퍼징 커버리지는 집계 수정과 무관하다."}
+{"task_id": "t176", "candidate_id": "c24", "grade": 0, "process": false, "reason": "커뮤니티 인기 글 조회는 무관하다."}
+{"task_id": "t176", "candidate_id": "c25", "grade": 0, "process": true, "reason": "소기업 도구 온보딩은 요청이 아니다."}
+{"task_id": "t176", "candidate_id": "c26", "grade": 0, "process": true, "reason": "개발 생산성 회고는 예약 데이터 분석과 다르다."}
+{"task_id": "t176", "candidate_id": "c27", "grade": 0, "process": false, "reason": "커뮤니티 CLI 관리는 무관하다."}
+{"task_id": "t176", "candidate_id": "c28", "grade": 0, "process": true, "reason": "에이전트 메모리 주간 요약은 무관하다."}
+{"task_id": "t176", "candidate_id": "c29", "grade": 0, "process": true, "reason": "영업 거래 파이프라인 분석은 병원 예약과 다르다."}
+{"task_id": "t176", "candidate_id": "c30", "grade": 0, "process": false, "reason": "Workspace 일정 요약은 원본 예약 테이블 수정이 아니다."}
+{"task_id": "t176", "candidate_id": "c31", "grade": 0, "process": true, "reason": "SEO 운영 절차는 무관하다."}
+{"task_id": "t176", "candidate_id": "c32", "grade": 0, "process": false, "reason": "지진 데이터 피드는 무관하다."}
+{"task_id": "t176", "candidate_id": "c33", "grade": 0, "process": false, "reason": "Google 광고 분석은 무관하다."}
+{"task_id": "t176", "candidate_id": "c34", "grade": 0, "process": true, "reason": "Claude 활동 보고 집계는 진료 예약 집계가 아니다."}
+{"task_id": "t176", "candidate_id": "c35", "grade": 0, "process": true, "reason": "업무 성과 주간 보고는 데이터 오류 수정과 다르다."}
+{"task_id": "t180", "candidate_id": "c01", "grade": 1, "process": true, "reason": "DB 무결성 검증은 시드 작성에 보조적으로 관련된다."}
+{"task_id": "t180", "candidate_id": "c02", "grade": 2, "process": false, "reason": "시드 작성 제목은 정확하지만 구현 정보가 빈약하다."}
+{"task_id": "t180", "candidate_id": "c03", "grade": 3, "process": false, "reason": "Prisma 시드 스크립트 연결과 실행 방식을 직접 다룬다."}
+{"task_id": "t180", "candidate_id": "c04", "grade": 1, "process": false, "reason": "Prisma 초기화는 기존 CMS 시드 작성과 다르다."}
+{"task_id": "t180", "candidate_id": "c05", "grade": 1, "process": false, "reason": "관계 모델링은 관련되나 스키마 설계 요청은 아니다."}
+{"task_id": "t180", "candidate_id": "c06", "grade": 0, "process": false, "reason": "AI 영상 생성은 데이터 시드와 무관하다."}
+{"task_id": "t180", "candidate_id": "c07", "grade": 2, "process": true, "reason": "Prisma API 문서를 확인하는 절차가 시드 구현에 도움된다."}
+{"task_id": "t180", "candidate_id": "c08", "grade": 2, "process": false, "reason": "Prisma 타입과 개발 관행이 시드 작성에 도움된다."}
+{"task_id": "t180", "candidate_id": "c09", "grade": 0, "process": false, "reason": "Bun 선택이나 이전은 요청이 아니다."}
+{"task_id": "t180", "candidate_id": "c10", "grade": 0, "process": false, "reason": "Contentful은 Prisma CMS와 다른 도구다."}
+{"task_id": "t180", "candidate_id": "c11", "grade": 0, "process": false, "reason": "Neon 서버 설정은 지정되지 않았다."}
+{"task_id": "t180", "candidate_id": "c12", "grade": 0, "process": false, "reason": "Go SQL 접근은 Prisma 스택과 다르다."}
+{"task_id": "t180", "candidate_id": "c13", "grade": 0, "process": false, "reason": "HTML 템플릿 시드는 DB 시드가 아니다."}
+{"task_id": "t180", "candidate_id": "c14", "grade": 1, "process": false, "reason": "Prisma 버전 차이는 인접하나 업그레이드 요청은 아니다."}
+{"task_id": "t180", "candidate_id": "c15", "grade": 0, "process": false, "reason": "DB 드라이버 어댑터 구현은 필요 없다."}
+{"task_id": "t180", "candidate_id": "c16", "grade": 0, "process": false, "reason": "SEO 분석은 무관하다."}
+{"task_id": "t180", "candidate_id": "c17", "grade": 0, "process": false, "reason": "Rust 퍼징은 무관하다."}
+{"task_id": "t180", "candidate_id": "c18", "grade": 0, "process": false, "reason": "Contentstack 모델링은 Prisma 모델과 다른 도구다."}
+{"task_id": "t180", "candidate_id": "c19", "grade": 0, "process": true, "reason": "앱 사용자 온보딩 감사는 요청이 아니다."}
+{"task_id": "t180", "candidate_id": "c20", "grade": 0, "process": false, "reason": "Neon 플랫폼 구성은 무관하다."}
+{"task_id": "t180", "candidate_id": "c21", "grade": 0, "process": false, "reason": "MCP 서버 구축은 요청이 아니다."}
+{"task_id": "t180", "candidate_id": "c22", "grade": 1, "process": true, "reason": "테스트용 데이터 시드는 관련되나 E2E 인프라는 필요 없다."}
+{"task_id": "t180", "candidate_id": "c23", "grade": 2, "process": false, "reason": "Prisma DB 명령 참조가 시드 실행에 도움된다."}
+{"task_id": "t180", "candidate_id": "c24", "grade": 3, "process": false, "reason": "CRUD 관계와 트랜잭션 API가 연결된 시드 데이터 작성에 직접 맞는다."}
+{"task_id": "t180", "candidate_id": "c25", "grade": 1, "process": false, "reason": "Prisma 관련 제목이지만 데이터 계약 외 구체적 지침이 없다."}
+{"task_id": "t180", "candidate_id": "c26", "grade": 3, "process": false, "reason": "Prisma 생성 변경 관계 패턴이 기사 저자 태그 시드에 직접 맞는다."}
+{"task_id": "t180", "candidate_id": "c27", "grade": 0, "process": false, "reason": "외부 미디어 게시 자동화는 DB 샘플 생성이 아니다."}
+{"task_id": "t180", "candidate_id": "c28", "grade": 0, "process": false, "reason": "Neon 브랜치 생성은 필요 없다."}
+{"task_id": "t180", "candidate_id": "c29", "grade": 0, "process": false, "reason": ".NET Oracle 이전 테스트는 다른 작업이다."}
+{"task_id": "t180", "candidate_id": "c30", "grade": 1, "process": false, "reason": "Prisma DB 연결은 인접하나 신규 DB 생성 요청은 아니다."}
+{"task_id": "t180", "candidate_id": "c31", "grade": 1, "process": false, "reason": "Prisma 연결 설정은 시드 구현에 제한적이다."}
+{"task_id": "t180", "candidate_id": "c32", "grade": 0, "process": false, "reason": "Symfony Doctrine 픽스처는 Prisma와 다른 스택이다."}
+{"task_id": "t180", "candidate_id": "c33", "grade": 0, "process": false, "reason": "HTML 발표 템플릿은 DB 시드와 무관하다."}
+{"task_id": "t180", "candidate_id": "c34", "grade": 1, "process": false, "reason": "Prisma Postgres 프로비저닝은 시드 작업과 간접적이다."}
+{"task_id": "t180", "candidate_id": "c35", "grade": 3, "process": false, "reason": "Prisma 관계와 시드 스크립트를 명시적으로 다룬다."}
+{"task_id": "t180", "candidate_id": "c36", "grade": 1, "process": false, "reason": "Client 설치는 기존 CMS 시드 구현에 제한적이다."}
+{"task_id": "t180", "candidate_id": "c37", "grade": 0, "process": false, "reason": "DB 전체 초기화는 샘플 데이터 추가 요구에 부적절하다."}
+{"task_id": "t180", "candidate_id": "c38", "grade": 0, "process": false, "reason": "MongoDB 버전 이전은 요청이 아니다."}
+{"task_id": "t180", "candidate_id": "c39", "grade": 1, "process": false, "reason": "현실적 데이터 생성은 관련되나 Drizzle SQL 입력 전용이다."}
+{"task_id": "t180", "candidate_id": "c40", "grade": 0, "process": false, "reason": "플러그인 마켓 소개는 시드 작업 지침이 아니다."}
+{"task_id": "t180", "candidate_id": "c41", "grade": 0, "process": false, "reason": "Prisma Compute 앱 배포는 시드 생성과 다르다."}

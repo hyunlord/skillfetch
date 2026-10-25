@@ -1,0 +1,71 @@
+{
+ "class_counts": {
+  "over_load": 14,
+  "ok": 158,
+  "search_fail": 7,
+  "select_fail": 15,
+  "restate_fail": 2
+ },
+ "picked": {
+  "select_fail": [
+   "s4-t027",
+   "s4-t176",
+   "s4-t153",
+   "s4-t253",
+   "s4-t328",
+   "s4-t182",
+   "s4-t310",
+   "s4-t304",
+   "s4-t301",
+   "s4-t320"
+  ],
+  "restate_fail": [
+   "s4-t203",
+   "s4-t055"
+  ],
+  "search_fail": [
+   "s4-t033",
+   "s4-t130",
+   "s4-t177",
+   "s4-t229",
+   "s4-t026",
+   "s4-t224",
+   "s4-t211"
+  ],
+  "over_load": [
+   "s4-t354",
+   "s4-t101",
+   "s4-t342",
+   "s4-t333",
+   "s4-t280",
+   "s4-t001",
+   "s4-t313",
+   "s4-t309",
+   "s4-t335",
+   "s4-t315"
+  ]
+ },
+ "shortfall": {
+  "restate_fail": 8,
+  "search_fail": 3
+ },
+ "redone_alone": [
+  "s4-t007",
+  "s4-t027",
+  "s4-t031",
+  "s4-t033",
+  "s4-t054",
+  "s4-t057",
+  "s4-t083",
+  "s4-t101",
+  "s4-t167",
+  "s4-t219",
+  "s4-t225",
+  "s4-t265",
+  "s4-t309",
+  "s4-t315",
+  "s4-t349",
+  "s4-t367"
+ ],
+ "cost_usd": 9.51
+}

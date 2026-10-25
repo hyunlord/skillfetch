@@ -1,0 +1,4871 @@
+{
+ "summary": {
+  "rows": 592,
+  "matched": 93,
+  "by_step": {
+   "name": 74,
+   "hash": 19
+  },
+  "unmatched_by_reason": {
+   "rejected": 6,
+   "repo_not_ingested": 493
+  },
+  "distinct_new_ids": 70,
+  "rows_sharing_a_new_id": 46,
+  "unmatched_by_repo": {
+   "claude-dev-suite/claude-dev-suite": 40,
+   "bobmatnyc/claude-mpm-skills": 38,
+   "secondsky/claude-skills": 33,
+   "aj-geddes/useful-ai-prompts": 29,
+   "giuseppe-trisciuoglio/developer-kit": 26,
+   "sickn33/agentic-awesome-skills": 26,
+   "CharlesWiltgen/Axiom": 23,
+   "Mindrally/skills": 22,
+   "wshobson/agents": 22,
+   "davidcastagnetoa/skills": 20,
+   "alphaonedev/openclaw-graph": 17,
+   "dpearson2699/swift-ios-skills": 16,
+   "davila7/claude-code-templates": 15,
+   "jeremylongshore/tons-of-skills-marketplace": 15,
+   "mukul975/Anthropic-Cybersecurity-Skills": 15,
+   "agents-inc/skills": 14,
+   "github/awesome-copilot": 14,
+   "TheBushidoCollective/han": 14,
+   "BagelHole/DevOps-Security-Agent-Skills": 13,
+   "mohitmishra786/low-level-dev-skills": 13,
+   "flutter/agent-plugins": 12,
+   "manutej/luxor-claude-marketplace": 12,
+   "yaklang/hack-skills": 12,
+   "JetBrains/skills": 11,
+   "pproenca/dot-skills": 11,
+   "curiositech/some_claude_skills": 10,
+   "affaan-m/ECC": 3,
+   "actionbook/rust-skills": 2,
+   "rshankras/claude-code-apple-skills": 1
+  }
+ },
+ "rows": [
+  {
+   "oracle_key": "ss:skill:zhanghandong/rust-skills#domain-cli",
+   "repo": "actionbook/rust-skills",
+   "name": "domain-cli",
+   "new_id": "actionbook-rust-skills/domain-cli@299b233ce67e",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:zhanghandong/rust-skills#domain-embedded",
+   "repo": "actionbook/rust-skills",
+   "name": "domain-embedded",
+   "new_id": "actionbook-rust-skills/domain-embedded@30ab1d9f66a4",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:zhanghandong/rust-skills#domain-ml",
+   "repo": "actionbook/rust-skills",
+   "name": "domain-ml",
+   "new_id": "actionbook-rust-skills/domain-ml@272bdcdb41c6",
+   "step": "hash",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:zhanghandong/rust-skills#m04-zero-cost",
+   "repo": "actionbook/rust-skills",
+   "name": "m04-zero-cost",
+   "new_id": "actionbook-rust-skills/m04-zero-cost@26d5f360fa26",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:actionbook/rust-skills#m06-error-handling",
+   "repo": "actionbook/rust-skills",
+   "name": "m06-error-handling",
+   "new_id": "actionbook-rust-skills/m06-error-handling@76545e391a67",
+   "step": "hash",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:zhanghandong/rust-skills#m06-error-handling",
+   "repo": "actionbook/rust-skills",
+   "name": "m06-error-handling",
+   "new_id": "actionbook-rust-skills/m06-error-handling@76545e391a67",
+   "step": "hash",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:zhanghandong/rust-skills#m07-concurrency",
+   "repo": "actionbook/rust-skills",
+   "name": "m07-concurrency",
+   "new_id": "actionbook-rust-skills/m07-concurrency@0686c877c8a6",
+   "step": "hash",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:actionbook/rust-skills#m10-performance",
+   "repo": "actionbook/rust-skills",
+   "name": "m10-performance",
+   "new_id": "actionbook-rust-skills/m10-performance@c46289fecbad",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:zhanghandong/rust-skills#m10-performance",
+   "repo": "actionbook/rust-skills",
+   "name": "m10-performance",
+   "new_id": "actionbook-rust-skills/m10-performance@c46289fecbad",
+   "step": "hash",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:actionbook/rust-skills#m15-anti-pattern",
+   "repo": "actionbook/rust-skills",
+   "name": "m15-anti-pattern",
+   "new_id": "actionbook-rust-skills/m15-anti-pattern@612551f1644b",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:actionbook/rust-skills#rust-refactor-helper",
+   "repo": "actionbook/rust-skills",
+   "name": "rust-refactor-helper",
+   "new_id": null,
+   "step": null,
+   "reason": "rejected",
+   "rejected_id": "actionbook-rust-skills/rust-refactor-helper@6efc7a5ae577",
+   "rejected_status": "scan_failed",
+   "rejected_detail": {
+    "lint_errors": [],
+    "scan_failures": [
+     "hidden.invisible-chars",
+     "hidden.invisible-chars",
+     "hidden.invisible-chars",
+     "hidden.invisible-chars",
+     "hidden.invisible-chars",
+     "hidden.invisible-chars",
+     "hidden.invisible-chars",
+     "hidden.invisible-chars"
+    ],
+    "license": "unknown",
+    "not_extracted_reason": null
+   }
+  },
+  {
+   "oracle_key": "ss:skill:zhanghandong/rust-skills#rust-refactor-helper",
+   "repo": "actionbook/rust-skills",
+   "name": "rust-refactor-helper",
+   "new_id": null,
+   "step": null,
+   "reason": "rejected",
+   "rejected_id": "actionbook-rust-skills/rust-refactor-helper@6efc7a5ae577",
+   "rejected_status": "scan_failed",
+   "rejected_detail": {
+    "lint_errors": [],
+    "scan_failures": [
+     "hidden.invisible-chars",
+     "hidden.invisible-chars",
+     "hidden.invisible-chars",
+     "hidden.invisible-chars",
+     "hidden.invisible-chars",
+     "hidden.invisible-chars",
+     "hidden.invisible-chars",
+     "hidden.invisible-chars"
+    ],
+    "license": "unknown",
+    "not_extracted_reason": null
+   }
+  },
+  {
+   "oracle_key": "ss:skill:actionbook/rust-skills#unsafe-checker",
+   "repo": "actionbook/rust-skills",
+   "name": "unsafe-checker",
+   "new_id": "actionbook-rust-skills/unsafe-checker@6544b8069b76",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:zhanghandong/rust-skills#unsafe-checker",
+   "repo": "actionbook/rust-skills",
+   "name": "unsafe-checker",
+   "new_id": "actionbook-rust-skills/unsafe-checker@6544b8069b76",
+   "step": "hash",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/ecc#accessibility",
+   "repo": "affaan-m/ECC",
+   "name": "accessibility",
+   "new_id": "affaan-m-ecc/accessibility@64025eb683c5",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/everything-claude-code#accessibility",
+   "repo": "affaan-m/ECC",
+   "name": "accessibility",
+   "new_id": "affaan-m-ecc/accessibility@64025eb683c5",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/ecc#android-clean-architecture",
+   "repo": "affaan-m/ECC",
+   "name": "android-clean-architecture",
+   "new_id": "affaan-m-ecc/android-clean-architecture@a43a56c056b4",
+   "step": "hash",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/everything-claude-code#android-clean-architecture",
+   "repo": "affaan-m/ECC",
+   "name": "android-clean-architecture",
+   "new_id": "affaan-m-ecc/android-clean-architecture@a43a56c056b4",
+   "step": "hash",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/ecc#architecture-decision-records",
+   "repo": "affaan-m/ECC",
+   "name": "architecture-decision-records",
+   "new_id": "affaan-m-ecc/architecture-decision-records@233b5a169011",
+   "step": "hash",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/everything-claude-code#architecture-decision-records",
+   "repo": "affaan-m/ECC",
+   "name": "architecture-decision-records",
+   "new_id": "affaan-m-ecc/architecture-decision-records@233b5a169011",
+   "step": "hash",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/ecc#clickhouse-io",
+   "repo": "affaan-m/ECC",
+   "name": "clickhouse-io",
+   "new_id": "affaan-m-ecc/clickhouse-io@49af693bbd4e",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/ecc#compose-multiplatform-patterns",
+   "repo": "affaan-m/ECC",
+   "name": "compose-multiplatform-patterns",
+   "new_id": "affaan-m-ecc/compose-multiplatform-patterns@29c993eec209",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/everything-claude-code#compose-multiplatform-patterns",
+   "repo": "affaan-m/ECC",
+   "name": "compose-multiplatform-patterns",
+   "new_id": "affaan-m-ecc/compose-multiplatform-patterns@c53dd9cf86d3",
+   "step": "hash",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/ecc#data-throughput-accelerator",
+   "repo": "affaan-m/ECC",
+   "name": "data-throughput-accelerator",
+   "new_id": "affaan-m-ecc/data-throughput-accelerator@dd10866718ea",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/everything-claude-code#data-throughput-accelerator",
+   "repo": "affaan-m/ECC",
+   "name": "data-throughput-accelerator",
+   "new_id": "affaan-m-ecc/data-throughput-accelerator@dd10866718ea",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/ecc#database-migrations",
+   "repo": "affaan-m/ECC",
+   "name": "database-migrations",
+   "new_id": "affaan-m-ecc/database-migrations@60a7f8fbfa22",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/everything-claude-code#database-migrations",
+   "repo": "affaan-m/ECC",
+   "name": "database-migrations",
+   "new_id": "affaan-m-ecc/database-migrations@60a7f8fbfa22",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/ecc#deployment-patterns",
+   "repo": "affaan-m/ECC",
+   "name": "deployment-patterns",
+   "new_id": "affaan-m-ecc/deployment-patterns@eb1f7daa4ca4",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/everything-claude-code#deployment-patterns",
+   "repo": "affaan-m/ECC",
+   "name": "deployment-patterns",
+   "new_id": "affaan-m-ecc/deployment-patterns@eb1f7daa4ca4",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/ecc#django-celery",
+   "repo": "affaan-m/ECC",
+   "name": "django-celery",
+   "new_id": "affaan-m-ecc/django-celery@30de29f8fd35",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/everything-claude-code#django-celery",
+   "repo": "affaan-m/ECC",
+   "name": "django-celery",
+   "new_id": "affaan-m-ecc/django-celery@ca8c6a7ec902",
+   "step": "hash",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/ecc#django-patterns",
+   "repo": "affaan-m/ECC",
+   "name": "django-patterns",
+   "new_id": "affaan-m-ecc/django-patterns@70caae5b2bdb",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/everything-claude-code#django-patterns",
+   "repo": "affaan-m/ECC",
+   "name": "django-patterns",
+   "new_id": "affaan-m-ecc/django-patterns@70caae5b2bdb",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/ecc#django-security",
+   "repo": "affaan-m/ECC",
+   "name": "django-security",
+   "new_id": "affaan-m-ecc/django-security@50764d9fce81",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/everything-claude-code#django-security",
+   "repo": "affaan-m/ECC",
+   "name": "django-security",
+   "new_id": "affaan-m-ecc/django-security@50764d9fce81",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/ecc#django-tdd",
+   "repo": "affaan-m/ECC",
+   "name": "django-tdd",
+   "new_id": "affaan-m-ecc/django-tdd@b6ebe260d6ff",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/everything-claude-code#django-tdd",
+   "repo": "affaan-m/ECC",
+   "name": "django-tdd",
+   "new_id": "affaan-m-ecc/django-tdd@3ca7cae52bbb",
+   "step": "hash",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/ecc#e2e-testing",
+   "repo": "affaan-m/ECC",
+   "name": "e2e-testing",
+   "new_id": "affaan-m-ecc/e2e-testing@7070d6d2a0cc",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/everything-claude-code#e2e-testing",
+   "repo": "affaan-m/ECC",
+   "name": "e2e-testing",
+   "new_id": "affaan-m-ecc/e2e-testing@7070d6d2a0cc",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/ecc#fastapi-patterns",
+   "repo": "affaan-m/ECC",
+   "name": "fastapi-patterns",
+   "new_id": "affaan-m-ecc/fastapi-patterns@419da9966f07",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/everything-claude-code#fastapi-patterns",
+   "repo": "affaan-m/ECC",
+   "name": "fastapi-patterns",
+   "new_id": "affaan-m-ecc/fastapi-patterns@419da9966f07",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/everything-claude-code#flutter-dart-code-review",
+   "repo": "affaan-m/ECC",
+   "name": "flutter-dart-code-review",
+   "new_id": "affaan-m-ecc/flutter-dart-code-review@97d30835f4f3",
+   "step": "hash",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/ecc#golang-testing",
+   "repo": "affaan-m/ECC",
+   "name": "golang-testing",
+   "new_id": "affaan-m-ecc/golang-testing@37756125e539",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/ecc#inventory-demand-planning",
+   "repo": "affaan-m/ECC",
+   "name": "inventory-demand-planning",
+   "new_id": "affaan-m-ecc/inventory-demand-planning@2281c0d7da64",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/everything-claude-code#inventory-demand-planning",
+   "repo": "affaan-m/ECC",
+   "name": "inventory-demand-planning",
+   "new_id": "affaan-m-ecc/inventory-demand-planning@2281c0d7da64",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/ecc#jpa-patterns",
+   "repo": "affaan-m/ECC",
+   "name": "jpa-patterns",
+   "new_id": "affaan-m-ecc/jpa-patterns@f2814de65ae0",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/everything-claude-code#jpa-patterns",
+   "repo": "affaan-m/ECC",
+   "name": "jpa-patterns",
+   "new_id": "affaan-m-ecc/jpa-patterns@f2814de65ae0",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/ecc#kotlin-coroutines-flows",
+   "repo": "affaan-m/ECC",
+   "name": "kotlin-coroutines-flows",
+   "new_id": "affaan-m-ecc/kotlin-coroutines-flows@0bd8114ead03",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/everything-claude-code#kotlin-coroutines-flows",
+   "repo": "affaan-m/ECC",
+   "name": "kotlin-coroutines-flows",
+   "new_id": "affaan-m-ecc/kotlin-coroutines-flows@0bd8114ead03",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/ecc#kotlin-testing",
+   "repo": "affaan-m/ECC",
+   "name": "kotlin-testing",
+   "new_id": "affaan-m-ecc/kotlin-testing@4c6774641076",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/everything-claude-code#kotlin-testing",
+   "repo": "affaan-m/ECC",
+   "name": "kotlin-testing",
+   "new_id": "affaan-m-ecc/kotlin-testing@4c6774641076",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/ecc#kubernetes-patterns",
+   "repo": "affaan-m/ECC",
+   "name": "kubernetes-patterns",
+   "new_id": "affaan-m-ecc/kubernetes-patterns@f82e5e548631",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/everything-claude-code#mle-workflow",
+   "repo": "affaan-m/ECC",
+   "name": "mle-workflow",
+   "new_id": "affaan-m-ecc/mle-workflow@5fb9b6889d3a",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/ecc#orch-add-feature",
+   "repo": "affaan-m/ECC",
+   "name": "orch-add-feature",
+   "new_id": null,
+   "step": null,
+   "reason": "rejected",
+   "rejected_id": "affaan-m-ecc/orch-add-feature@d454936b85e7",
+   "rejected_status": "lint_failed",
+   "rejected_detail": {
+    "lint_errors": [
+     "lint.link-outside-skill"
+    ],
+    "scan_failures": [],
+    "license": "unknown",
+    "not_extracted_reason": null
+   }
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/ecc#react-testing",
+   "repo": "affaan-m/ECC",
+   "name": "react-testing",
+   "new_id": null,
+   "step": null,
+   "reason": "rejected",
+   "rejected_id": "affaan-m-ecc/react-testing@e60076468885",
+   "rejected_status": "lint_failed",
+   "rejected_detail": {
+    "lint_errors": [
+     "lint.link-outside-skill",
+     "lint.link-outside-skill",
+     "lint.link-outside-skill",
+     "lint.link-outside-skill",
+     "lint.link-outside-skill",
+     "lint.link-outside-skill",
+     "lint.link-outside-skill"
+    ],
+    "scan_failures": [],
+    "license": "unknown",
+    "not_extracted_reason": null
+   }
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/everything-claude-code#react-testing",
+   "repo": "affaan-m/ECC",
+   "name": "react-testing",
+   "new_id": null,
+   "step": null,
+   "reason": "rejected",
+   "rejected_id": "affaan-m-ecc/react-testing@e60076468885",
+   "rejected_status": "lint_failed",
+   "rejected_detail": {
+    "lint_errors": [
+     "lint.link-outside-skill",
+     "lint.link-outside-skill",
+     "lint.link-outside-skill",
+     "lint.link-outside-skill",
+     "lint.link-outside-skill",
+     "lint.link-outside-skill",
+     "lint.link-outside-skill"
+    ],
+    "scan_failures": [],
+    "license": "unknown",
+    "not_extracted_reason": null
+   }
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/ecc#rust-patterns",
+   "repo": "affaan-m/ECC",
+   "name": "rust-patterns",
+   "new_id": "affaan-m-ecc/rust-patterns@f0961b5637b0",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/everything-claude-code#rust-patterns",
+   "repo": "affaan-m/ECC",
+   "name": "rust-patterns",
+   "new_id": "affaan-m-ecc/rust-patterns@f0961b5637b0",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/ecc#rust-testing",
+   "repo": "affaan-m/ECC",
+   "name": "rust-testing",
+   "new_id": "affaan-m-ecc/rust-testing@68e797f602f9",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/everything-claude-code#rust-testing",
+   "repo": "affaan-m/ECC",
+   "name": "rust-testing",
+   "new_id": "affaan-m-ecc/rust-testing@68e797f602f9",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/ecc#security-review",
+   "repo": "affaan-m/ECC",
+   "name": "security-review",
+   "new_id": "affaan-m-ecc/security-review@2445fff84d05",
+   "step": "hash",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/everything-claude-code#security-review",
+   "repo": "affaan-m/ECC",
+   "name": "security-review",
+   "new_id": "affaan-m-ecc/security-review@2445fff84d05",
+   "step": "hash",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/ecc#springboot-patterns",
+   "repo": "affaan-m/ECC",
+   "name": "springboot-patterns",
+   "new_id": "affaan-m-ecc/springboot-patterns@5c01aceada30",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/everything-claude-code#springboot-patterns",
+   "repo": "affaan-m/ECC",
+   "name": "springboot-patterns",
+   "new_id": "affaan-m-ecc/springboot-patterns@5c01aceada30",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/ecc#springboot-security",
+   "repo": "affaan-m/ECC",
+   "name": "springboot-security",
+   "new_id": "affaan-m-ecc/springboot-security@ac703b9cdb44",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/everything-claude-code#springboot-security",
+   "repo": "affaan-m/ECC",
+   "name": "springboot-security",
+   "new_id": "affaan-m-ecc/springboot-security@ac703b9cdb44",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/ecc#springboot-tdd",
+   "repo": "affaan-m/ECC",
+   "name": "springboot-tdd",
+   "new_id": "affaan-m-ecc/springboot-tdd@5ff62a01f15c",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/ecc#springboot-verification",
+   "repo": "affaan-m/ECC",
+   "name": "springboot-verification",
+   "new_id": "affaan-m-ecc/springboot-verification@897295284681",
+   "step": "hash",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/ecc#swift-actor-persistence",
+   "repo": "affaan-m/ECC",
+   "name": "swift-actor-persistence",
+   "new_id": "affaan-m-ecc/swift-actor-persistence@95ef1f8acdf7",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/everything-claude-code#swift-concurrency-6-2",
+   "repo": "affaan-m/ECC",
+   "name": "swift-concurrency-6-2",
+   "new_id": "affaan-m-ecc/swift-concurrency-6-2@b5a384f57738",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/ecc#swiftui-patterns",
+   "repo": "affaan-m/ECC",
+   "name": "swiftui-patterns",
+   "new_id": "affaan-m-ecc/swiftui-patterns@ea4b3d0fc833",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/everything-claude-code#swiftui-patterns",
+   "repo": "affaan-m/ECC",
+   "name": "swiftui-patterns",
+   "new_id": "affaan-m-ecc/swiftui-patterns@ea4b3d0fc833",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:affaan-m/everything-claude-code#tdd-workflow",
+   "repo": "affaan-m/ECC",
+   "name": "tdd-workflow",
+   "new_id": "affaan-m-ecc/tdd-workflow@b3bd0675873c",
+   "step": "hash",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:agents-inc/skills#api-auth-nextauth",
+   "repo": "agents-inc/skills",
+   "name": "api-auth-nextauth",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:agents-inc/skills#api-commerce-stripe",
+   "repo": "agents-inc/skills",
+   "name": "api-commerce-stripe",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:agents-inc/skills#api-database-drizzle",
+   "repo": "agents-inc/skills",
+   "name": "api-database-drizzle",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:agents-inc/skills#infra-ci-cd-docker",
+   "repo": "agents-inc/skills",
+   "name": "infra-ci-cd-docker",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:agents-inc/skills#infra-ci-cd-github-actions",
+   "repo": "agents-inc/skills",
+   "name": "infra-ci-cd-github-actions",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:agents-inc/skills#mobile-framework-expo",
+   "repo": "agents-inc/skills",
+   "name": "mobile-framework-expo",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:agents-inc/skills#shared-monorepo-turborepo",
+   "repo": "agents-inc/skills",
+   "name": "shared-monorepo-turborepo",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:agents-inc/skills#web-accessibility-web-accessibility",
+   "repo": "agents-inc/skills",
+   "name": "web-accessibility-web-accessibility",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:agents-inc/skills#web-data-fetching-trpc",
+   "repo": "agents-inc/skills",
+   "name": "web-data-fetching-trpc",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:agents-inc/skills#web-files-image-handling",
+   "repo": "agents-inc/skills",
+   "name": "web-files-image-handling",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:agents-inc/skills#web-forms-zod-validation",
+   "repo": "agents-inc/skills",
+   "name": "web-forms-zod-validation",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:agents-inc/skills#web-mocks-msw",
+   "repo": "agents-inc/skills",
+   "name": "web-mocks-msw",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:agents-inc/skills#web-realtime-socket-io",
+   "repo": "agents-inc/skills",
+   "name": "web-realtime-socket-io",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:agents-inc/skills#web-testing-playwright-e2e",
+   "repo": "agents-inc/skills",
+   "name": "web-testing-playwright-e2e",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:ahmed3elshaer/everything-claude-code-mobile#ci-cd-patterns",
+   "repo": "ahmed3elshaer/everything-claude-code-mobile",
+   "name": "ci-cd-patterns",
+   "new_id": "ahmed3elshaer-everything-claude-code-mobile/ci-cd-patterns@c095ca1dd50c",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:ahmed3elshaer/everything-claude-code-mobile#core-data",
+   "repo": "ahmed3elshaer/everything-claude-code-mobile",
+   "name": "core-data",
+   "new_id": "ahmed3elshaer-everything-claude-code-mobile/core-data@5af9586b2607",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:ahmed3elshaer/everything-claude-code-mobile#deep-linking",
+   "repo": "ahmed3elshaer/everything-claude-code-mobile",
+   "name": "deep-linking",
+   "new_id": "ahmed3elshaer-everything-claude-code-mobile/deep-linking@ad1057880075",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:ahmed3elshaer/everything-claude-code-mobile#gradle-patterns",
+   "repo": "ahmed3elshaer/everything-claude-code-mobile",
+   "name": "gradle-patterns",
+   "new_id": "ahmed3elshaer-everything-claude-code-mobile/gradle-patterns@16795bbadcc9",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:ahmed3elshaer/everything-claude-code-mobile#ios-testing",
+   "repo": "ahmed3elshaer/everything-claude-code-mobile",
+   "name": "ios-testing",
+   "new_id": "ahmed3elshaer-everything-claude-code-mobile/ios-testing@fdec9c2c0ff8",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:ahmed3elshaer/everything-claude-code-mobile#jetpack-compose",
+   "repo": "ahmed3elshaer/everything-claude-code-mobile",
+   "name": "jetpack-compose",
+   "new_id": "ahmed3elshaer-everything-claude-code-mobile/jetpack-compose@4c3931b3c56f",
+   "step": "hash",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:ahmed3elshaer/everything-claude-code-mobile#mobile-security",
+   "repo": "ahmed3elshaer/everything-claude-code-mobile",
+   "name": "mobile-security",
+   "new_id": "ahmed3elshaer-everything-claude-code-mobile/mobile-security@dc1c2f98167b",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:ahmed3elshaer/everything-claude-code-mobile#mobile-testing",
+   "repo": "ahmed3elshaer/everything-claude-code-mobile",
+   "name": "mobile-testing",
+   "new_id": "ahmed3elshaer-everything-claude-code-mobile/mobile-testing@628084187f00",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:ahmed3elshaer/everything-claude-code-mobile#offline-first",
+   "repo": "ahmed3elshaer/everything-claude-code-mobile",
+   "name": "offline-first",
+   "new_id": "ahmed3elshaer-everything-claude-code-mobile/offline-first@3bd014c19120",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:ahmed3elshaer/everything-claude-code-mobile#push-notifications",
+   "repo": "ahmed3elshaer/everything-claude-code-mobile",
+   "name": "push-notifications",
+   "new_id": "ahmed3elshaer-everything-claude-code-mobile/push-notifications@cc0cefa6d417",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:ahmed3elshaer/everything-claude-code-mobile#room-patterns",
+   "repo": "ahmed3elshaer/everything-claude-code-mobile",
+   "name": "room-patterns",
+   "new_id": "ahmed3elshaer-everything-claude-code-mobile/room-patterns@84f8b0841b0a",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:ahmed3elshaer/everything-claude-code-mobile#swiftui-patterns",
+   "repo": "ahmed3elshaer/everything-claude-code-mobile",
+   "name": "swiftui-patterns",
+   "new_id": "ahmed3elshaer-everything-claude-code-mobile/swiftui-patterns@d91b337199dc",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:aj-geddes/useful-ai-prompts#anomaly-detection",
+   "repo": "aj-geddes/useful-ai-prompts",
+   "name": "anomaly detection",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:aj-geddes/useful-ai-prompts#api-pagination",
+   "repo": "aj-geddes/useful-ai-prompts",
+   "name": "api-pagination",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:aj-geddes/useful-ai-prompts#api-rate-limiting",
+   "repo": "aj-geddes/useful-ai-prompts",
+   "name": "api-rate-limiting",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:aj-geddes/useful-ai-prompts#api-reference-documentation",
+   "repo": "aj-geddes/useful-ai-prompts",
+   "name": "api-reference-documentation",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:aj-geddes/useful-ai-prompts#app-store-deployment",
+   "repo": "aj-geddes/useful-ai-prompts",
+   "name": "app-store-deployment",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:aj-geddes/useful-ai-prompts#bundle-size-optimization",
+   "repo": "aj-geddes/useful-ai-prompts",
+   "name": "bundle-size-optimization",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:aj-geddes/useful-ai-prompts#cicd-pipeline-setup",
+   "repo": "aj-geddes/useful-ai-prompts",
+   "name": "cicd-pipeline-setup",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:aj-geddes/useful-ai-prompts#code-documentation",
+   "repo": "aj-geddes/useful-ai-prompts",
+   "name": "code-documentation",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:aj-geddes/useful-ai-prompts#database-performance-debugging",
+   "repo": "aj-geddes/useful-ai-prompts",
+   "name": "database-performance-debugging",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:aj-geddes/useful-ai-prompts#docker-containerization",
+   "repo": "aj-geddes/useful-ai-prompts",
+   "name": "docker-containerization",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:aj-geddes/useful-ai-prompts#file-upload-handling",
+   "repo": "aj-geddes/useful-ai-prompts",
+   "name": "file-upload-handling",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:aj-geddes/useful-ai-prompts#flask-api-development",
+   "repo": "aj-geddes/useful-ai-prompts",
+   "name": "flask-api-development",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:aj-geddes/useful-ai-prompts#git-hooks-setup",
+   "repo": "aj-geddes/useful-ai-prompts",
+   "name": "git-hooks-setup",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:aj-geddes/useful-ai-prompts#github-actions-workflow",
+   "repo": "aj-geddes/useful-ai-prompts",
+   "name": "github-actions-workflow",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:aj-geddes/useful-ai-prompts#gitlab-cicd-pipeline",
+   "repo": "aj-geddes/useful-ai-prompts",
+   "name": "gitlab-cicd-pipeline",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:aj-geddes/useful-ai-prompts#health-check-endpoints",
+   "repo": "aj-geddes/useful-ai-prompts",
+   "name": "health-check-endpoints",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:aj-geddes/useful-ai-prompts#idempotency-handling",
+   "repo": "aj-geddes/useful-ai-prompts",
+   "name": "idempotency-handling",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:aj-geddes/useful-ai-prompts#jenkins-pipeline",
+   "repo": "aj-geddes/useful-ai-prompts",
+   "name": "jenkins-pipeline",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:aj-geddes/useful-ai-prompts#memory-leak-detection",
+   "repo": "aj-geddes/useful-ai-prompts",
+   "name": "memory-leak-detection",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:aj-geddes/useful-ai-prompts#mobile-offline-support",
+   "repo": "aj-geddes/useful-ai-prompts",
+   "name": "mobile-offline-support",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:aj-geddes/useful-ai-prompts#push-notification-setup",
+   "repo": "aj-geddes/useful-ai-prompts",
+   "name": "push-notification-setup",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:aj-geddes/useful-ai-prompts#rate-limiting-implementation",
+   "repo": "aj-geddes/useful-ai-prompts",
+   "name": "rate-limiting-implementation",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:aj-geddes/useful-ai-prompts#sentiment-analysis",
+   "repo": "aj-geddes/useful-ai-prompts",
+   "name": "sentiment analysis",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:aj-geddes/useful-ai-prompts#session-management",
+   "repo": "aj-geddes/useful-ai-prompts",
+   "name": "session-management",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:aj-geddes/useful-ai-prompts#spring-boot-application",
+   "repo": "aj-geddes/useful-ai-prompts",
+   "name": "spring-boot-application",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:aj-geddes/useful-ai-prompts#sql-injection-prevention",
+   "repo": "aj-geddes/useful-ai-prompts",
+   "name": "sql-injection-prevention",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:aj-geddes/useful-ai-prompts#webhook-development",
+   "repo": "aj-geddes/useful-ai-prompts",
+   "name": "webhook-development",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:aj-geddes/useful-ai-prompts#webhook-integration",
+   "repo": "aj-geddes/useful-ai-prompts",
+   "name": "webhook-integration",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:aj-geddes/useful-ai-prompts#xss-prevention",
+   "repo": "aj-geddes/useful-ai-prompts",
+   "name": "xss-prevention",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:alphaonedev/openclaw-graph#airflow",
+   "repo": "alphaonedev/openclaw-graph",
+   "name": "airflow",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:alphaonedev/openclaw-graph#android-compose",
+   "repo": "alphaonedev/openclaw-graph",
+   "name": "android-compose",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:alphaonedev/openclaw-graph#android-deploy",
+   "repo": "alphaonedev/openclaw-graph",
+   "name": "android-deploy",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:alphaonedev/openclaw-graph#coding-java",
+   "repo": "alphaonedev/openclaw-graph",
+   "name": "coding-java",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:alphaonedev/openclaw-graph#coding-rust",
+   "repo": "alphaonedev/openclaw-graph",
+   "name": "coding-rust",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:alphaonedev/openclaw-graph#coding-typescript",
+   "repo": "alphaonedev/openclaw-graph",
+   "name": "coding-typescript",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:alphaonedev/openclaw-graph#embedding-pipelines",
+   "repo": "alphaonedev/openclaw-graph",
+   "name": "embedding-pipelines",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:alphaonedev/openclaw-graph#game-networking",
+   "repo": "alphaonedev/openclaw-graph",
+   "name": "game-networking",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:alphaonedev/openclaw-graph#game-physics",
+   "repo": "alphaonedev/openclaw-graph",
+   "name": "game-physics",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:alphaonedev/openclaw-graph#gcp-cloud-run",
+   "repo": "alphaonedev/openclaw-graph",
+   "name": "gcp-cloud-run",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:alphaonedev/openclaw-graph#ios-deploy",
+   "repo": "alphaonedev/openclaw-graph",
+   "name": "ios-deploy",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:alphaonedev/openclaw-graph#kafka",
+   "repo": "alphaonedev/openclaw-graph",
+   "name": "kafka",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:alphaonedev/openclaw-graph#linux-systemd",
+   "repo": "alphaonedev/openclaw-graph",
+   "name": "linux-systemd",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:alphaonedev/openclaw-graph#mqtt",
+   "repo": "alphaonedev/openclaw-graph",
+   "name": "mqtt",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:alphaonedev/openclaw-graph#testing-integration",
+   "repo": "alphaonedev/openclaw-graph",
+   "name": "testing-integration",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:alphaonedev/openclaw-graph#web-nextjs",
+   "repo": "alphaonedev/openclaw-graph",
+   "name": "web-nextjs",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:alphaonedev/openclaw-graph#web-security",
+   "repo": "alphaonedev/openclaw-graph",
+   "name": "web-security",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bagelhole/devops-security-agent-skills#aws-ecs-fargate",
+   "repo": "BagelHole/DevOps-Security-Agent-Skills",
+   "name": "aws-ecs-fargate",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bagelhole/devops-security-agent-skills#blue-green-deploy",
+   "repo": "BagelHole/DevOps-Security-Agent-Skills",
+   "name": "blue-green-deploy",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bagelhole/devops-security-agent-skills#cloudflare-pages",
+   "repo": "BagelHole/DevOps-Security-Agent-Skills",
+   "name": "cloudflare-pages",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bagelhole/devops-security-agent-skills#dependency-scanning",
+   "repo": "BagelHole/DevOps-Security-Agent-Skills",
+   "name": "dependency-scanning",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bagelhole/devops-security-agent-skills#feature-flags",
+   "repo": "BagelHole/DevOps-Security-Agent-Skills",
+   "name": "feature-flags",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bagelhole/devops-security-agent-skills#github-actions",
+   "repo": "BagelHole/DevOps-Security-Agent-Skills",
+   "name": "github-actions",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bagelhole/devops-security-agent-skills#gitlab-ci",
+   "repo": "BagelHole/DevOps-Security-Agent-Skills",
+   "name": "gitlab-ci",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bagelhole/devops-security-agent-skills#helm-charts",
+   "repo": "BagelHole/DevOps-Security-Agent-Skills",
+   "name": "helm-charts",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bagelhole/devops-security-agent-skills#linux-hardening",
+   "repo": "BagelHole/DevOps-Security-Agent-Skills",
+   "name": "linux-hardening",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bagelhole/devops-security-agent-skills#model-registry-governance",
+   "repo": "BagelHole/DevOps-Security-Agent-Skills",
+   "name": "model-registry-governance",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bagelhole/devops-security-agent-skills#openshift",
+   "repo": "BagelHole/DevOps-Security-Agent-Skills",
+   "name": "openshift",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bagelhole/devops-security-agent-skills#systemd-services",
+   "repo": "BagelHole/DevOps-Security-Agent-Skills",
+   "name": "systemd-services",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bagelhole/devops-security-agent-skills#vercel-deployments",
+   "repo": "BagelHole/DevOps-Security-Agent-Skills",
+   "name": "vercel-deployments",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bobmatnyc/claude-mpm-skills#api-review",
+   "repo": "bobmatnyc/claude-mpm-skills",
+   "name": "api-review",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bobmatnyc/claude-mpm-skills#celery",
+   "repo": "bobmatnyc/claude-mpm-skills",
+   "name": "celery",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bobmatnyc/claude-mpm-skills#clap",
+   "repo": "bobmatnyc/claude-mpm-skills",
+   "name": "clap",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bobmatnyc/claude-mpm-skills#database-migration",
+   "repo": "bobmatnyc/claude-mpm-skills",
+   "name": "database-migration",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bobmatnyc/claude-mpm-skills#django",
+   "repo": "bobmatnyc/claude-mpm-skills",
+   "name": "django",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bobmatnyc/claude-mpm-skills#django-framework",
+   "repo": "bobmatnyc/claude-mpm-skills",
+   "name": "django-framework",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bobmatnyc/claude-mpm-skills#drizzle",
+   "repo": "bobmatnyc/claude-mpm-skills",
+   "name": "drizzle",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bobmatnyc/claude-mpm-skills#drizzle-migrations",
+   "repo": "bobmatnyc/claude-mpm-skills",
+   "name": "drizzle-migrations",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bobmatnyc/claude-mpm-skills#drizzle-orm",
+   "repo": "bobmatnyc/claude-mpm-skills",
+   "name": "drizzle-orm",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bobmatnyc/claude-mpm-skills#emergency-release-workflow",
+   "repo": "bobmatnyc/claude-mpm-skills",
+   "name": "emergency-release-workflow",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bobmatnyc/claude-mpm-skills#env-manager",
+   "repo": "bobmatnyc/claude-mpm-skills",
+   "name": "env-manager",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bobmatnyc/claude-mpm-skills#github-actions",
+   "repo": "bobmatnyc/claude-mpm-skills",
+   "name": "github-actions",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bobmatnyc/claude-mpm-skills#golang-concurrency-patterns",
+   "repo": "bobmatnyc/claude-mpm-skills",
+   "name": "golang-concurrency-patterns",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bobmatnyc/claude-mpm-skills#golang-grpc",
+   "repo": "bobmatnyc/claude-mpm-skills",
+   "name": "golang-grpc",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bobmatnyc/claude-mpm-skills#golang-testing-strategies",
+   "repo": "bobmatnyc/claude-mpm-skills",
+   "name": "golang-testing-strategies",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bobmatnyc/claude-mpm-skills#homebrew-formula-maintenance",
+   "repo": "bobmatnyc/claude-mpm-skills",
+   "name": "homebrew-formula-maintenance",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bobmatnyc/claude-mpm-skills#jest",
+   "repo": "bobmatnyc/claude-mpm-skills",
+   "name": "jest",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bobmatnyc/claude-mpm-skills#jest-typescript",
+   "repo": "bobmatnyc/claude-mpm-skills",
+   "name": "jest-typescript",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bobmatnyc/claude-mpm-skills#kubernetes",
+   "repo": "bobmatnyc/claude-mpm-skills",
+   "name": "kubernetes",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bobmatnyc/claude-mpm-skills#nextjs",
+   "repo": "bobmatnyc/claude-mpm-skills",
+   "name": "nextjs",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bobmatnyc/claude-mpm-skills#nextjs-core",
+   "repo": "bobmatnyc/claude-mpm-skills",
+   "name": "nextjs-core",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bobmatnyc/claude-mpm-skills#nextjs-v16",
+   "repo": "bobmatnyc/claude-mpm-skills",
+   "name": "nextjs-v16",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bobmatnyc/claude-mpm-skills#playwright-e2e-testing",
+   "repo": "bobmatnyc/claude-mpm-skills",
+   "name": "playwright-e2e-testing",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bobmatnyc/claude-mpm-skills#pytest",
+   "repo": "bobmatnyc/claude-mpm-skills",
+   "name": "pytest",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bobmatnyc/claude-mpm-skills#react-hooks-composition",
+   "repo": "bobmatnyc/claude-mpm-skills",
+   "name": "react-hooks-composition",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bobmatnyc/claude-mpm-skills#rust-quality-gate",
+   "repo": "bobmatnyc/claude-mpm-skills",
+   "name": "rust-quality-gate",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bobmatnyc/claude-mpm-skills#spring-boot",
+   "repo": "bobmatnyc/claude-mpm-skills",
+   "name": "spring-boot",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bobmatnyc/claude-mpm-skills#sqlalchemy",
+   "repo": "bobmatnyc/claude-mpm-skills",
+   "name": "sqlalchemy",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bobmatnyc/claude-mpm-skills#sqlalchemy-orm",
+   "repo": "bobmatnyc/claude-mpm-skills",
+   "name": "sqlalchemy-orm",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bobmatnyc/claude-mpm-skills#tanstack-query",
+   "repo": "bobmatnyc/claude-mpm-skills",
+   "name": "tanstack-query",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bobmatnyc/claude-mpm-skills#trpc",
+   "repo": "bobmatnyc/claude-mpm-skills",
+   "name": "trpc",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bobmatnyc/claude-mpm-skills#trpc-type-safety",
+   "repo": "bobmatnyc/claude-mpm-skills",
+   "name": "trpc-type-safety",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bobmatnyc/claude-mpm-skills#vercel-deployments-builds",
+   "repo": "bobmatnyc/claude-mpm-skills",
+   "name": "vercel-deployments-builds",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bobmatnyc/claude-mpm-skills#vercel-networking-domains",
+   "repo": "bobmatnyc/claude-mpm-skills",
+   "name": "vercel-networking-domains",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bobmatnyc/claude-mpm-skills#vercel-overview",
+   "repo": "bobmatnyc/claude-mpm-skills",
+   "name": "vercel-overview",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bobmatnyc/claude-mpm-skills#vercel-security-access",
+   "repo": "bobmatnyc/claude-mpm-skills",
+   "name": "vercel-security-access",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bobmatnyc/claude-mpm-skills#vitest",
+   "repo": "bobmatnyc/claude-mpm-skills",
+   "name": "vitest",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:bobmatnyc/claude-mpm-skills#zod",
+   "repo": "bobmatnyc/claude-mpm-skills",
+   "name": "zod",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:charleswiltgen/axiom#axiom-ai",
+   "repo": "CharlesWiltgen/Axiom",
+   "name": "axiom-ai",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:charleswiltgen/axiom#axiom-code-signing",
+   "repo": "CharlesWiltgen/Axiom",
+   "name": "axiom-code-signing",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:charleswiltgen/axiom#axiom-concurrency",
+   "repo": "CharlesWiltgen/Axiom",
+   "name": "axiom-concurrency",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:charleswiltgen/axiom#axiom-concurrency-profiling",
+   "repo": "CharlesWiltgen/Axiom",
+   "name": "axiom-concurrency-profiling",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:charleswiltgen/axiom#axiom-core-data",
+   "repo": "CharlesWiltgen/Axiom",
+   "name": "axiom-core-data",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:charleswiltgen/axiom#axiom-database-migration",
+   "repo": "CharlesWiltgen/Axiom",
+   "name": "axiom-database-migration",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:charleswiltgen/axiom#axiom-deep-link-debugging",
+   "repo": "CharlesWiltgen/Axiom",
+   "name": "axiom-deep-link-debugging",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:charleswiltgen/axiom#axiom-ios-ai",
+   "repo": "CharlesWiltgen/Axiom",
+   "name": "axiom-ios-ai",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:charleswiltgen/axiom#axiom-ios-build",
+   "repo": "CharlesWiltgen/Axiom",
+   "name": "axiom-ios-build",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:charleswiltgen/axiom#axiom-ios-concurrency",
+   "repo": "CharlesWiltgen/Axiom",
+   "name": "axiom-ios-concurrency",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:charleswiltgen/axiom#axiom-ios-ml",
+   "repo": "CharlesWiltgen/Axiom",
+   "name": "axiom-ios-ml",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:charleswiltgen/axiom#axiom-keychain",
+   "repo": "CharlesWiltgen/Axiom",
+   "name": "axiom-keychain",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:charleswiltgen/axiom#axiom-security",
+   "repo": "CharlesWiltgen/Axiom",
+   "name": "axiom-security",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:charleswiltgen/axiom#axiom-shipping",
+   "repo": "CharlesWiltgen/Axiom",
+   "name": "axiom-shipping",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:charleswiltgen/axiom#axiom-swift-concurrency",
+   "repo": "CharlesWiltgen/Axiom",
+   "name": "axiom-swift-concurrency",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:charleswiltgen/axiom#axiom-swift-performance",
+   "repo": "CharlesWiltgen/Axiom",
+   "name": "axiom-swift-performance",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:charleswiltgen/axiom#axiom-swiftdata-migration",
+   "repo": "CharlesWiltgen/Axiom",
+   "name": "axiom-swiftdata-migration",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:charleswiltgen/axiom#axiom-swiftui",
+   "repo": "CharlesWiltgen/Axiom",
+   "name": "axiom-swiftui",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:charleswiltgen/axiom#axiom-swiftui-nav",
+   "repo": "CharlesWiltgen/Axiom",
+   "name": "axiom-swiftui-nav",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:charleswiltgen/axiom#axiom-swiftui-nav-ref",
+   "repo": "CharlesWiltgen/Axiom",
+   "name": "axiom-swiftui-nav-ref",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:charleswiltgen/axiom#axiom-swiftui-performance",
+   "repo": "CharlesWiltgen/Axiom",
+   "name": "axiom-swiftui-performance",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:charleswiltgen/axiom#axiom-synchronization",
+   "repo": "CharlesWiltgen/Axiom",
+   "name": "axiom-synchronization",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:charleswiltgen/axiom#axiom-testing",
+   "repo": "CharlesWiltgen/Axiom",
+   "name": "axiom-testing",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:claude-dev-suite/claude-dev-suite#cors-security-headers",
+   "repo": "claude-dev-suite/claude-dev-suite",
+   "name": "cors-security-headers",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:claude-dev-suite/claude-dev-suite#docker",
+   "repo": "claude-dev-suite/claude-dev-suite",
+   "name": "docker",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:claude-dev-suite/claude-dev-suite#expo",
+   "repo": "claude-dev-suite/claude-dev-suite",
+   "name": "expo",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:claude-dev-suite/claude-dev-suite#fastapi",
+   "repo": "claude-dev-suite/claude-dev-suite",
+   "name": "fastapi",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:claude-dev-suite/claude-dev-suite#feature-flags",
+   "repo": "claude-dev-suite/claude-dev-suite",
+   "name": "feature-flags",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:claude-dev-suite/claude-dev-suite#flyway",
+   "repo": "claude-dev-suite/claude-dev-suite",
+   "name": "flyway",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:claude-dev-suite/claude-dev-suite#github-actions",
+   "repo": "claude-dev-suite/claude-dev-suite",
+   "name": "github-actions",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:claude-dev-suite/claude-dev-suite#jacoco",
+   "repo": "claude-dev-suite/claude-dev-suite",
+   "name": "jacoco",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:claude-dev-suite/claude-dev-suite#java",
+   "repo": "claude-dev-suite/claude-dev-suite",
+   "name": "java",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:claude-dev-suite/claude-dev-suite#java-security",
+   "repo": "claude-dev-suite/claude-dev-suite",
+   "name": "java-security",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:claude-dev-suite/claude-dev-suite#jsdoc-tsdoc",
+   "repo": "claude-dev-suite/claude-dev-suite",
+   "name": "jsdoc-tsdoc",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:claude-dev-suite/claude-dev-suite#junit",
+   "repo": "claude-dev-suite/claude-dev-suite",
+   "name": "junit",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:claude-dev-suite/claude-dev-suite#jwt",
+   "repo": "claude-dev-suite/claude-dev-suite",
+   "name": "jwt",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:claude-dev-suite/claude-dev-suite#lombok",
+   "repo": "claude-dev-suite/claude-dev-suite",
+   "name": "lombok",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:claude-dev-suite/claude-dev-suite#nextauth",
+   "repo": "claude-dev-suite/claude-dev-suite",
+   "name": "nextauth",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:claude-dev-suite/claude-dev-suite#nextjs-app-router",
+   "repo": "claude-dev-suite/claude-dev-suite",
+   "name": "nextjs-app-router",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:claude-dev-suite/claude-dev-suite#openapi",
+   "repo": "claude-dev-suite/claude-dev-suite",
+   "name": "openapi",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:claude-dev-suite/claude-dev-suite#pagination",
+   "repo": "claude-dev-suite/claude-dev-suite",
+   "name": "pagination",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:claude-dev-suite/claude-dev-suite#push-notifications",
+   "repo": "claude-dev-suite/claude-dev-suite",
+   "name": "push-notifications",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:claude-dev-suite/claude-dev-suite#python-profiling",
+   "repo": "claude-dev-suite/claude-dev-suite",
+   "name": "python-profiling",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:claude-dev-suite/claude-dev-suite#rate-limiting",
+   "repo": "claude-dev-suite/claude-dev-suite",
+   "name": "rate-limiting",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:claude-dev-suite/claude-dev-suite#react-hooks",
+   "repo": "claude-dev-suite/claude-dev-suite",
+   "name": "react-hooks",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:claude-dev-suite/claude-dev-suite#react-server-components",
+   "repo": "claude-dev-suite/claude-dev-suite",
+   "name": "react-server-components",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:claude-dev-suite/claude-dev-suite#react-testing",
+   "repo": "claude-dev-suite/claude-dev-suite",
+   "name": "react-testing",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:claude-dev-suite/claude-dev-suite#react-websocket",
+   "repo": "claude-dev-suite/claude-dev-suite",
+   "name": "react-websocket",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:claude-dev-suite/claude-dev-suite#resilience-patterns",
+   "repo": "claude-dev-suite/claude-dev-suite",
+   "name": "resilience-patterns",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:claude-dev-suite/claude-dev-suite#rust-testing",
+   "repo": "claude-dev-suite/claude-dev-suite",
+   "name": "rust-testing",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:claude-dev-suite/claude-dev-suite#spring-actuator",
+   "repo": "claude-dev-suite/claude-dev-suite",
+   "name": "spring-actuator",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:claude-dev-suite/claude-dev-suite#spring-batch",
+   "repo": "claude-dev-suite/claude-dev-suite",
+   "name": "spring-batch",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:claude-dev-suite/claude-dev-suite#spring-boot",
+   "repo": "claude-dev-suite/claude-dev-suite",
+   "name": "spring-boot",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:claude-dev-suite/claude-dev-suite#spring-boot-test",
+   "repo": "claude-dev-suite/claude-dev-suite",
+   "name": "spring-boot-test",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:claude-dev-suite/claude-dev-suite#spring-cache",
+   "repo": "claude-dev-suite/claude-dev-suite",
+   "name": "spring-cache",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:claude-dev-suite/claude-dev-suite#spring-data-jdbc",
+   "repo": "claude-dev-suite/claude-dev-suite",
+   "name": "spring-data-jdbc",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:claude-dev-suite/claude-dev-suite#spring-data-jpa",
+   "repo": "claude-dev-suite/claude-dev-suite",
+   "name": "spring-data-jpa",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:claude-dev-suite/claude-dev-suite#spring-kafka",
+   "repo": "claude-dev-suite/claude-dev-suite",
+   "name": "spring-kafka",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:claude-dev-suite/claude-dev-suite#spring-retry",
+   "repo": "claude-dev-suite/claude-dev-suite",
+   "name": "spring-retry",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:claude-dev-suite/claude-dev-suite#spring-security",
+   "repo": "claude-dev-suite/claude-dev-suite",
+   "name": "spring-security",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:claude-dev-suite/claude-dev-suite#springdoc-openapi",
+   "repo": "claude-dev-suite/claude-dev-suite",
+   "name": "springdoc-openapi",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:claude-dev-suite/claude-dev-suite#testcontainers",
+   "repo": "claude-dev-suite/claude-dev-suite",
+   "name": "testcontainers",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:claude-dev-suite/claude-dev-suite#webhooks",
+   "repo": "claude-dev-suite/claude-dev-suite",
+   "name": "webhooks",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:erichowens/some_claude_skills#dark-mode-design-expert",
+   "repo": "curiositech/some_claude_skills",
+   "name": "dark-mode-design-expert",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:erichowens/some_claude_skills#drizzle-migrations",
+   "repo": "curiositech/some_claude_skills",
+   "name": "drizzle-migrations",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:erichowens/some_claude_skills#github-actions-pipeline-builder",
+   "repo": "curiositech/some_claude_skills",
+   "name": "github-actions-pipeline-builder",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:erichowens/some_claude_skills#mdx-sanitizer",
+   "repo": "curiositech/some_claude_skills",
+   "name": "mdx-sanitizer",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:erichowens/some_claude_skills#mobile-ux-optimizer",
+   "repo": "curiositech/some_claude_skills",
+   "name": "mobile-ux-optimizer",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:erichowens/some_claude_skills#nextjs-app-router-expert",
+   "repo": "curiositech/some_claude_skills",
+   "name": "nextjs-app-router-expert",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:erichowens/some_claude_skills#playwright-e2e-tester",
+   "repo": "curiositech/some_claude_skills",
+   "name": "playwright-e2e-tester",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:erichowens/some_claude_skills#technical-writer",
+   "repo": "curiositech/some_claude_skills",
+   "name": "technical-writer",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:erichowens/some_claude_skills#vercel-deployment",
+   "repo": "curiositech/some_claude_skills",
+   "name": "vercel-deployment",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:erichowens/some_claude_skills#vitest-testing-patterns",
+   "repo": "curiositech/some_claude_skills",
+   "name": "vitest-testing-patterns",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:davidcastagnetoa/skills#alembic",
+   "repo": "davidcastagnetoa/skills",
+   "name": "alembic",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:davidcastagnetoa/skills#apscheduler_celery_beat",
+   "repo": "davidcastagnetoa/skills",
+   "name": "apscheduler_celery_beat",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:davidcastagnetoa/skills#celery",
+   "repo": "davidcastagnetoa/skills",
+   "name": "celery",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:davidcastagnetoa/skills#celery_redis",
+   "repo": "davidcastagnetoa/skills",
+   "name": "celery_redis",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:davidcastagnetoa/skills#deep_health_check",
+   "repo": "davidcastagnetoa/skills",
+   "name": "deep_health_check",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:davidcastagnetoa/skills#docker_docker_compose",
+   "repo": "davidcastagnetoa/skills",
+   "name": "docker_docker_compose",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:davidcastagnetoa/skills#dynamic_batching",
+   "repo": "davidcastagnetoa/skills",
+   "name": "dynamic_batching",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:davidcastagnetoa/skills#fastapi",
+   "repo": "davidcastagnetoa/skills",
+   "name": "fastapi",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:davidcastagnetoa/skills#frontend-test",
+   "repo": "davidcastagnetoa/skills",
+   "name": "frontend-test",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:davidcastagnetoa/skills#github_actions_cicd",
+   "repo": "davidcastagnetoa/skills",
+   "name": "github_actions_cicd",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:davidcastagnetoa/skills#http_health_check_probes",
+   "repo": "davidcastagnetoa/skills",
+   "name": "http_health_check_probes",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:davidcastagnetoa/skills#isolation_forest",
+   "repo": "davidcastagnetoa/skills",
+   "name": "isolation_forest",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:davidcastagnetoa/skills#kubernetes_helm",
+   "repo": "davidcastagnetoa/skills",
+   "name": "kubernetes_helm",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:davidcastagnetoa/skills#model_versioning",
+   "repo": "davidcastagnetoa/skills",
+   "name": "model_versioning",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:davidcastagnetoa/skills#onnx_runtime",
+   "repo": "davidcastagnetoa/skills",
+   "name": "onnx_runtime",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:davidcastagnetoa/skills#onnx_runtime_standalone",
+   "repo": "davidcastagnetoa/skills",
+   "name": "onnx_runtime_standalone",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:davidcastagnetoa/skills#pre_commit_hooks",
+   "repo": "davidcastagnetoa/skills",
+   "name": "pre_commit_hooks",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:davidcastagnetoa/skills#rate_limiting_gateway",
+   "repo": "davidcastagnetoa/skills",
+   "name": "rate_limiting_gateway",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:davidcastagnetoa/skills#redis_broker",
+   "repo": "davidcastagnetoa/skills",
+   "name": "redis_broker",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:davidcastagnetoa/skills#redis_rate_limiter",
+   "repo": "davidcastagnetoa/skills",
+   "name": "redis_rate_limiter",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:davila7/claude-code-templates#accessibility",
+   "repo": "davila7/claude-code-templates",
+   "name": "accessibility",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:davila7/claude-code-templates#docker-expert",
+   "repo": "davila7/claude-code-templates",
+   "name": "docker-expert",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:davila7/claude-code-templates#fastapi-endpoint",
+   "repo": "davila7/claude-code-templates",
+   "name": "fastapi-endpoint",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:davila7/claude-code-templates#github-actions-creator",
+   "repo": "davila7/claude-code-templates",
+   "name": "github-actions-creator",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:davila7/claude-code-templates#github-actions-templates",
+   "repo": "davila7/claude-code-templates",
+   "name": "github-actions-templates",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:davila7/claude-code-templates#nextjs-app-router-patterns",
+   "repo": "davila7/claude-code-templates",
+   "name": "nextjs-app-router-patterns",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:davila7/claude-code-templates#nextjs-best-practices",
+   "repo": "davila7/claude-code-templates",
+   "name": "nextjs-best-practices",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:davila7/claude-code-templates#playwright-e2e-builder",
+   "repo": "davila7/claude-code-templates",
+   "name": "playwright-e2e-builder",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:davila7/claude-code-templates#polars",
+   "repo": "davila7/claude-code-templates",
+   "name": "polars",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:davila7/claude-code-templates#railway-database",
+   "repo": "davila7/claude-code-templates",
+   "name": "railway-database",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:davila7/claude-code-templates#railway-deploy",
+   "repo": "davila7/claude-code-templates",
+   "name": "railway-deploy",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:davila7/claude-code-templates#railway-deployment",
+   "repo": "davila7/claude-code-templates",
+   "name": "railway-deployment",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:davila7/claude-code-templates#railway-environment",
+   "repo": "davila7/claude-code-templates",
+   "name": "railway-environment",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:davila7/claude-code-templates#railway-service",
+   "repo": "davila7/claude-code-templates",
+   "name": "railway-service",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:davila7/claude-code-templates#zod-validation-expert",
+   "repo": "davila7/claude-code-templates",
+   "name": "zod-validation-expert",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:dpearson2699/swift-ios-skills#app-store-review",
+   "repo": "dpearson2699/swift-ios-skills",
+   "name": "app-store-review",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:dpearson2699/swift-ios-skills#apple-on-device-ai",
+   "repo": "dpearson2699/swift-ios-skills",
+   "name": "apple-on-device-ai",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:dpearson2699/swift-ios-skills#core-data",
+   "repo": "dpearson2699/swift-ios-skills",
+   "name": "core-data",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:dpearson2699/swift-ios-skills#coreml",
+   "repo": "dpearson2699/swift-ios-skills",
+   "name": "coreml",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:dpearson2699/swift-ios-skills#debugging-instruments",
+   "repo": "dpearson2699/swift-ios-skills",
+   "name": "debugging-instruments",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:dpearson2699/swift-ios-skills#ios-accessibility",
+   "repo": "dpearson2699/swift-ios-skills",
+   "name": "ios-accessibility",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:dpearson2699/swift-ios-skills#ios-security",
+   "repo": "dpearson2699/swift-ios-skills",
+   "name": "ios-security",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:dpearson2699/swift-ios-skills#swift-concurrency",
+   "repo": "dpearson2699/swift-ios-skills",
+   "name": "swift-concurrency",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:dpearson2699/swift-ios-skills#swift-security",
+   "repo": "dpearson2699/swift-ios-skills",
+   "name": "swift-security",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:dpearson2699/swift-ios-skills#swift-testing",
+   "repo": "dpearson2699/swift-ios-skills",
+   "name": "swift-testing",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:dpearson2699/swift-ios-skills#swiftdata",
+   "repo": "dpearson2699/swift-ios-skills",
+   "name": "swiftdata",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:dpearson2699/swift-ios-skills#swiftui-layout-components",
+   "repo": "dpearson2699/swift-ios-skills",
+   "name": "swiftui-layout-components",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:dpearson2699/swift-ios-skills#swiftui-navigation",
+   "repo": "dpearson2699/swift-ios-skills",
+   "name": "swiftui-navigation",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:dpearson2699/swift-ios-skills#swiftui-patterns",
+   "repo": "dpearson2699/swift-ios-skills",
+   "name": "swiftui-patterns",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:dpearson2699/swift-ios-skills#swiftui-performance",
+   "repo": "dpearson2699/swift-ios-skills",
+   "name": "swiftui-performance",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:dpearson2699/swift-ios-skills#vision-framework",
+   "repo": "dpearson2699/swift-ios-skills",
+   "name": "vision-framework",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:flutter/agent-plugins#flutter-add-widget-test",
+   "repo": "flutter/agent-plugins",
+   "name": "flutter-add-widget-test",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:flutter/skills#flutter-add-widget-test",
+   "repo": "flutter/agent-plugins",
+   "name": "flutter-add-widget-test",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:flutter/agent-plugins#flutter-apply-architecture-best-practices",
+   "repo": "flutter/agent-plugins",
+   "name": "flutter-apply-architecture-best-practices",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:flutter/agent-plugins#flutter-build-responsive-layout",
+   "repo": "flutter/agent-plugins",
+   "name": "flutter-build-responsive-layout",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:flutter/agent-plugins#flutter-caching-data",
+   "repo": "flutter/agent-plugins",
+   "name": "flutter-caching-data",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:flutter/agent-plugins#flutter-databases",
+   "repo": "flutter/agent-plugins",
+   "name": "flutter-databases",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:flutter/agent-plugins#flutter-managing-state",
+   "repo": "flutter/agent-plugins",
+   "name": "flutter-managing-state",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:flutter/agent-plugins#flutter-state-management",
+   "repo": "flutter/agent-plugins",
+   "name": "flutter-state-management",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:flutter/agent-plugins#flutter-testing",
+   "repo": "flutter/agent-plugins",
+   "name": "flutter-testing",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:flutter/agent-plugins#flutter-testing-apps",
+   "repo": "flutter/agent-plugins",
+   "name": "flutter-testing-apps",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:flutter/agent-plugins#flutter-use-http-package",
+   "repo": "flutter/agent-plugins",
+   "name": "flutter-use-http-package",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:flutter/agent-plugins#flutter-working-with-databases",
+   "repo": "flutter/agent-plugins",
+   "name": "flutter-working-with-databases",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:github/awesome-copilot#apple-appstore-reviewer",
+   "repo": "github/awesome-copilot",
+   "name": "apple-appstore-reviewer",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:github/awesome-copilot#create-readme",
+   "repo": "github/awesome-copilot",
+   "name": "create-readme",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:github/awesome-copilot#devops-rollout-plan",
+   "repo": "github/awesome-copilot",
+   "name": "devops-rollout-plan",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:github/awesome-copilot#documentation-writer",
+   "repo": "github/awesome-copilot",
+   "name": "documentation-writer",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:github/awesome-copilot#github-actions-efficiency",
+   "repo": "github/awesome-copilot",
+   "name": "github-actions-efficiency",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:github/awesome-copilot#java-docs",
+   "repo": "github/awesome-copilot",
+   "name": "java-docs",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:github/awesome-copilot#java-junit",
+   "repo": "github/awesome-copilot",
+   "name": "java-junit",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:github/awesome-copilot#java-springboot",
+   "repo": "github/awesome-copilot",
+   "name": "java-springboot",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:github/awesome-copilot#javascript-typescript-jest",
+   "repo": "github/awesome-copilot",
+   "name": "javascript-typescript-jest",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:github/awesome-copilot#kotlin-springboot",
+   "repo": "github/awesome-copilot",
+   "name": "kotlin-springboot",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:github/awesome-copilot#multi-stage-dockerfile",
+   "repo": "github/awesome-copilot",
+   "name": "multi-stage-dockerfile",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:github/awesome-copilot#playwright-generate-test",
+   "repo": "github/awesome-copilot",
+   "name": "playwright-generate-test",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:github/awesome-copilot#pytest-coverage",
+   "repo": "github/awesome-copilot",
+   "name": "pytest-coverage",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:github/awesome-copilot#security-review",
+   "repo": "github/awesome-copilot",
+   "name": "security-review",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:giuseppe-trisciuoglio/developer-kit#aws-cloudformation-ecs",
+   "repo": "giuseppe-trisciuoglio/developer-kit",
+   "name": "aws-cloudformation-ecs",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:giuseppe-trisciuoglio/developer-kit#aws-cloudformation-task-ecs-deploy-gh",
+   "repo": "giuseppe-trisciuoglio/developer-kit",
+   "name": "aws-cloudformation-task-ecs-deploy-gh",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:giuseppe-trisciuoglio/developer-kit#drizzle-orm-patterns",
+   "repo": "giuseppe-trisciuoglio/developer-kit",
+   "name": "drizzle-orm-patterns",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:giuseppe-trisciuoglio/developer-kit#nextjs-app-router",
+   "repo": "giuseppe-trisciuoglio/developer-kit",
+   "name": "nextjs-app-router",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:giuseppe-trisciuoglio/developer-kit#nextjs-authentication",
+   "repo": "giuseppe-trisciuoglio/developer-kit",
+   "name": "nextjs-authentication",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:giuseppe-trisciuoglio/developer-kit#nextjs-data-fetching",
+   "repo": "giuseppe-trisciuoglio/developer-kit",
+   "name": "nextjs-data-fetching",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:giuseppe-trisciuoglio/developer-kit-claude-code#nextjs-data-fetching",
+   "repo": "giuseppe-trisciuoglio/developer-kit",
+   "name": "nextjs-data-fetching",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:giuseppe-trisciuoglio/developer-kit#nextjs-deployment",
+   "repo": "giuseppe-trisciuoglio/developer-kit",
+   "name": "nextjs-deployment",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:giuseppe-trisciuoglio/developer-kit-claude-code#nextjs-deployment",
+   "repo": "giuseppe-trisciuoglio/developer-kit",
+   "name": "nextjs-deployment",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:giuseppe-trisciuoglio/developer-kit#spring-boot-actuator",
+   "repo": "giuseppe-trisciuoglio/developer-kit",
+   "name": "spring-boot-actuator",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:giuseppe-trisciuoglio/developer-kit#spring-boot-cache",
+   "repo": "giuseppe-trisciuoglio/developer-kit",
+   "name": "spring-boot-cache",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:giuseppe-trisciuoglio/developer-kit#spring-boot-dependency-injection",
+   "repo": "giuseppe-trisciuoglio/developer-kit",
+   "name": "spring-boot-dependency-injection",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:giuseppe-trisciuoglio/developer-kit#spring-boot-openapi-documentation",
+   "repo": "giuseppe-trisciuoglio/developer-kit",
+   "name": "spring-boot-openapi-documentation",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:giuseppe-trisciuoglio/developer-kit-claude-code#spring-boot-openapi-documentation",
+   "repo": "giuseppe-trisciuoglio/developer-kit",
+   "name": "spring-boot-openapi-documentation",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:giuseppe-trisciuoglio/developer-kit#spring-boot-resilience4j",
+   "repo": "giuseppe-trisciuoglio/developer-kit",
+   "name": "spring-boot-resilience4j",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:giuseppe-trisciuoglio/developer-kit#spring-boot-test-patterns",
+   "repo": "giuseppe-trisciuoglio/developer-kit",
+   "name": "spring-boot-test-patterns",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:giuseppe-trisciuoglio/developer-kit#spring-data-jpa",
+   "repo": "giuseppe-trisciuoglio/developer-kit",
+   "name": "spring-data-jpa",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:giuseppe-trisciuoglio/developer-kit#turborepo-monorepo",
+   "repo": "giuseppe-trisciuoglio/developer-kit",
+   "name": "turborepo-monorepo",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:giuseppe-trisciuoglio/developer-kit#typescript-docs",
+   "repo": "giuseppe-trisciuoglio/developer-kit",
+   "name": "typescript-docs",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:giuseppe-trisciuoglio/developer-kit#typescript-security-review",
+   "repo": "giuseppe-trisciuoglio/developer-kit",
+   "name": "typescript-security-review",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:giuseppe-trisciuoglio/developer-kit#unit-test-controller-layer",
+   "repo": "giuseppe-trisciuoglio/developer-kit",
+   "name": "unit-test-controller-layer",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:giuseppe-trisciuoglio/developer-kit#unit-test-exception-handler",
+   "repo": "giuseppe-trisciuoglio/developer-kit",
+   "name": "unit-test-exception-handler",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:giuseppe-trisciuoglio/developer-kit#unit-test-json-serialization",
+   "repo": "giuseppe-trisciuoglio/developer-kit",
+   "name": "unit-test-json-serialization",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:giuseppe-trisciuoglio/developer-kit#unit-test-parameterized",
+   "repo": "giuseppe-trisciuoglio/developer-kit",
+   "name": "unit-test-parameterized",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:giuseppe-trisciuoglio/developer-kit#unit-test-utility-methods",
+   "repo": "giuseppe-trisciuoglio/developer-kit",
+   "name": "unit-test-utility-methods",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:giuseppe-trisciuoglio/developer-kit#zod-validation-utilities",
+   "repo": "giuseppe-trisciuoglio/developer-kit",
+   "name": "zod-validation-utilities",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:jeremylongshore/claude-code-plugins-plus-skills#building-cicd-pipelines",
+   "repo": "jeremylongshore/tons-of-skills-marketplace",
+   "name": "building-cicd-pipelines",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:jeremylongshore/claude-code-plugins-plus-skills#building-classification-models",
+   "repo": "jeremylongshore/tons-of-skills-marketplace",
+   "name": "building-classification-models",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:jeremylongshore/claude-code-plugins-plus-skills#bundle-size-analyzer",
+   "repo": "jeremylongshore/tons-of-skills-marketplace",
+   "name": "bundle-size-analyzer",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:jeremylongshore/claude-code-plugins-plus-skills#forecasting-time-series-data",
+   "repo": "jeremylongshore/tons-of-skills-marketplace",
+   "name": "forecasting-time-series-data",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:jeremylongshore/claude-code-plugins-plus-skills#gitlab-ci-basics",
+   "repo": "jeremylongshore/tons-of-skills-marketplace",
+   "name": "gitlab-ci-basics",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:jeremylongshore/claude-code-plugins-plus-skills#helm-chart-generator",
+   "repo": "jeremylongshore/tons-of-skills-marketplace",
+   "name": "helm-chart-generator",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:jeremylongshore/claude-code-plugins-plus-skills#insecure-deserialization-checker",
+   "repo": "jeremylongshore/tons-of-skills-marketplace",
+   "name": "insecure-deserialization-checker",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:jeremylongshore/claude-code-plugins-plus-skills#jwt-token-validator",
+   "repo": "jeremylongshore/tons-of-skills-marketplace",
+   "name": "jwt-token-validator",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:jeremylongshore/claude-code-plugins-plus-skills#kafka-producer-consumer",
+   "repo": "jeremylongshore/tons-of-skills-marketplace",
+   "name": "kafka-producer-consumer",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:jeremylongshore/claude-code-plugins-plus-skills#pre-commit-hook-setup",
+   "repo": "jeremylongshore/tons-of-skills-marketplace",
+   "name": "pre-commit-hook-setup",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:jeremylongshore/claude-code-plugins-plus-skills#react-hook-creator",
+   "repo": "jeremylongshore/tons-of-skills-marketplace",
+   "name": "react-hook-creator",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:jeremylongshore/claude-code-plugins-plus-skills#readme-generator",
+   "repo": "jeremylongshore/tons-of-skills-marketplace",
+   "name": "readme-generator",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:jeremylongshore/claude-code-plugins-plus-skills#session-security-checker",
+   "repo": "jeremylongshore/tons-of-skills-marketplace",
+   "name": "session-security-checker",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:jeremylongshore/claude-code-plugins-plus-skills#sql-injection-detector",
+   "repo": "jeremylongshore/tons-of-skills-marketplace",
+   "name": "sql-injection-detector",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:jeremylongshore/claude-code-plugins-plus-skills#testing-mobile-apps",
+   "repo": "jeremylongshore/tons-of-skills-marketplace",
+   "name": "testing-mobile-apps",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:jetbrains/skills#cloudflare-deploy",
+   "repo": "JetBrains/skills",
+   "name": "cloudflare-deploy",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:jetbrains/skills#gradle-kotlin-dsl-doctor",
+   "repo": "JetBrains/skills",
+   "name": "gradle-kotlin-dsl-doctor",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:jetbrains/skills#jackson-kotlin-serialization-specialist",
+   "repo": "JetBrains/skills",
+   "name": "jackson-kotlin-serialization-specialist",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:jetbrains/skills#kotlin-backend-jpa-entity-mapping",
+   "repo": "JetBrains/skills",
+   "name": "kotlin-backend-jpa-entity-mapping",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:jetbrains/skills#kotlin-idiomatic-refactorer-spring-aware",
+   "repo": "JetBrains/skills",
+   "name": "kotlin-idiomatic-refactorer-spring-aware",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:jetbrains/skills#kotlin-spring-proxy-compatibility",
+   "repo": "JetBrains/skills",
+   "name": "kotlin-spring-proxy-compatibility",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:jetbrains/skills#schema-migration-planner",
+   "repo": "JetBrains/skills",
+   "name": "schema-migration-planner",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:jetbrains/skills#spring-security-configurator-auditor",
+   "repo": "JetBrains/skills",
+   "name": "spring-security-configurator-auditor",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:jetbrains/skills#test-suite-builder",
+   "repo": "JetBrains/skills",
+   "name": "test-suite-builder",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:jetbrains/skills#transaction-consistency-designer",
+   "repo": "JetBrains/skills",
+   "name": "transaction-consistency-designer",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:jetbrains/skills#upgrade-breaking-change-navigator",
+   "repo": "JetBrains/skills",
+   "name": "upgrade-breaking-change-navigator",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:manutej/luxor-claude-marketplace#apache-airflow-orchestration",
+   "repo": "manutej/luxor-claude-marketplace",
+   "name": "apache-airflow-orchestration",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:manutej/luxor-claude-marketplace#ci-cd-pipeline-patterns",
+   "repo": "manutej/luxor-claude-marketplace",
+   "name": "ci-cd-pipeline-patterns",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:manutej/luxor-claude-marketplace#kafka-stream-processing",
+   "repo": "manutej/luxor-claude-marketplace",
+   "name": "kafka-stream-processing",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:manutej/luxor-claude-marketplace#nextjs-development",
+   "repo": "manutej/luxor-claude-marketplace",
+   "name": "nextjs-development",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:manutej/luxor-claude-marketplace#pandas",
+   "repo": "manutej/luxor-claude-marketplace",
+   "name": "pandas",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:manutej/luxor-claude-marketplace#pydantic",
+   "repo": "manutej/luxor-claude-marketplace",
+   "name": "pydantic",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:manutej/luxor-claude-marketplace#pytest",
+   "repo": "manutej/luxor-claude-marketplace",
+   "name": "pytest",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:manutej/luxor-claude-marketplace#pytest-patterns",
+   "repo": "manutej/luxor-claude-marketplace",
+   "name": "pytest-patterns",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:manutej/luxor-claude-marketplace#responsive-design",
+   "repo": "manutej/luxor-claude-marketplace",
+   "name": "responsive-design",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:manutej/luxor-claude-marketplace#spring-boot-development",
+   "repo": "manutej/luxor-claude-marketplace",
+   "name": "spring-boot-development",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:manutej/luxor-claude-marketplace#sqlalchemy-orm-expert",
+   "repo": "manutej/luxor-claude-marketplace",
+   "name": "sqlalchemy orm expert",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:manutej/luxor-claude-marketplace#tailwind-css",
+   "repo": "manutej/luxor-claude-marketplace",
+   "name": "tailwind-css",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mindrally/skills#accessibility-a11y",
+   "repo": "Mindrally/skills",
+   "name": "accessibility-a11y",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mindrally/skills#django-rest-api-development",
+   "repo": "Mindrally/skills",
+   "name": "django-rest-api-development",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mindrally/skills#docker",
+   "repo": "Mindrally/skills",
+   "name": "docker",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mindrally/skills#drizzle-orm",
+   "repo": "Mindrally/skills",
+   "name": "drizzle-orm",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mindrally/skills#fastapi-python",
+   "repo": "Mindrally/skills",
+   "name": "fastapi-python",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mindrally/skills#htmx",
+   "repo": "Mindrally/skills",
+   "name": "htmx",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mindrally/skills#java",
+   "repo": "Mindrally/skills",
+   "name": "java",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mindrally/skills#java-spring-development",
+   "repo": "Mindrally/skills",
+   "name": "java-spring-development",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mindrally/skills#jest",
+   "repo": "Mindrally/skills",
+   "name": "jest",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mindrally/skills#jwt-security",
+   "repo": "Mindrally/skills",
+   "name": "jwt-security",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mindrally/skills#kafka-development",
+   "repo": "Mindrally/skills",
+   "name": "kafka-development",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mindrally/skills#nextauth-authentication",
+   "repo": "Mindrally/skills",
+   "name": "nextauth-authentication",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mindrally/skills#pandas-best-practices",
+   "repo": "Mindrally/skills",
+   "name": "pandas-best-practices",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mindrally/skills#pnpm",
+   "repo": "Mindrally/skills",
+   "name": "pnpm",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mindrally/skills#prisma-development",
+   "repo": "Mindrally/skills",
+   "name": "prisma-development",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mindrally/skills#python-testing",
+   "repo": "Mindrally/skills",
+   "name": "python-testing",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mindrally/skills#react-query",
+   "repo": "Mindrally/skills",
+   "name": "react-query",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mindrally/skills#spring-framework",
+   "repo": "Mindrally/skills",
+   "name": "spring-framework",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mindrally/skills#tanstack-query",
+   "repo": "Mindrally/skills",
+   "name": "tanstack-query",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mindrally/skills#trpc",
+   "repo": "Mindrally/skills",
+   "name": "trpc",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mindrally/skills#ui-design",
+   "repo": "Mindrally/skills",
+   "name": "ui-design",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mindrally/skills#zod-schema-validation",
+   "repo": "Mindrally/skills",
+   "name": "zod-schema-validation",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mohitmishra786/low-level-dev-skills#build-acceleration",
+   "repo": "mohitmishra786/low-level-dev-skills",
+   "name": "build-acceleration",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mohitmishra786/low-level-dev-skills#cargo-workflows",
+   "repo": "mohitmishra786/low-level-dev-skills",
+   "name": "cargo-workflows",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mohitmishra786/low-level-dev-skills#concurrency-debugging",
+   "repo": "mohitmishra786/low-level-dev-skills",
+   "name": "concurrency-debugging",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mohitmishra786/low-level-dev-skills#cross-gcc",
+   "repo": "mohitmishra786/low-level-dev-skills",
+   "name": "cross-gcc",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mohitmishra786/low-level-dev-skills#linkers-lto",
+   "repo": "mohitmishra786/low-level-dev-skills",
+   "name": "linkers-lto",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mohitmishra786/low-level-dev-skills#rust-build-times",
+   "repo": "mohitmishra786/low-level-dev-skills",
+   "name": "rust-build-times",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mohitmishra786/low-level-dev-skills#rust-cross",
+   "repo": "mohitmishra786/low-level-dev-skills",
+   "name": "rust-cross",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mohitmishra786/low-level-dev-skills#rust-debugging",
+   "repo": "mohitmishra786/low-level-dev-skills",
+   "name": "rust-debugging",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mohitmishra786/low-level-dev-skills#rust-sanitizers-miri",
+   "repo": "mohitmishra786/low-level-dev-skills",
+   "name": "rust-sanitizers-miri",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mohitmishra786/low-level-dev-skills#rust-security",
+   "repo": "mohitmishra786/low-level-dev-skills",
+   "name": "rust-security",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mohitmishra786/low-level-dev-skills#rust-unsafe",
+   "repo": "mohitmishra786/low-level-dev-skills",
+   "name": "rust-unsafe",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mohitmishra786/low-level-dev-skills#rustc-basics",
+   "repo": "mohitmishra786/low-level-dev-skills",
+   "name": "rustc-basics",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mohitmishra786/low-level-dev-skills#zig-cross",
+   "repo": "mohitmishra786/low-level-dev-skills",
+   "name": "zig-cross",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mukul975/anthropic-cybersecurity-skills#conducting-api-security-testing",
+   "repo": "mukul975/Anthropic-Cybersecurity-Skills",
+   "name": "conducting-api-security-testing",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mukul975/anthropic-cybersecurity-skills#exploiting-api-injection-vulnerabilities",
+   "repo": "mukul975/Anthropic-Cybersecurity-Skills",
+   "name": "exploiting-api-injection-vulnerabilities",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mukul975/anthropic-cybersecurity-skills#exploiting-insecure-deserialization",
+   "repo": "mukul975/Anthropic-Cybersecurity-Skills",
+   "name": "exploiting-insecure-deserialization",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mukul975/anthropic-cybersecurity-skills#exploiting-jwt-algorithm-confusion-attack",
+   "repo": "mukul975/Anthropic-Cybersecurity-Skills",
+   "name": "exploiting-jwt-algorithm-confusion-attack",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mukul975/anthropic-cybersecurity-skills#exploiting-server-side-request-forgery",
+   "repo": "mukul975/Anthropic-Cybersecurity-Skills",
+   "name": "exploiting-server-side-request-forgery",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mukul975/anthropic-cybersecurity-skills#implementing-api-rate-limiting-and-throttling",
+   "repo": "mukul975/Anthropic-Cybersecurity-Skills",
+   "name": "implementing-api-rate-limiting-and-throttling",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mukul975/anthropic-cybersecurity-skills#performing-ssrf-vulnerability-exploitation",
+   "repo": "mukul975/Anthropic-Cybersecurity-Skills",
+   "name": "performing-ssrf-vulnerability-exploitation",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mukul975/anthropic-cybersecurity-skills#scanning-docker-images-with-trivy",
+   "repo": "mukul975/Anthropic-Cybersecurity-Skills",
+   "name": "scanning-docker-images-with-trivy",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mukul975/anthropic-cybersecurity-skills#testing-api-authentication-weaknesses",
+   "repo": "mukul975/Anthropic-Cybersecurity-Skills",
+   "name": "testing-api-authentication-weaknesses",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mukul975/anthropic-cybersecurity-skills#testing-api-for-broken-object-level-authorization",
+   "repo": "mukul975/Anthropic-Cybersecurity-Skills",
+   "name": "testing-api-for-broken-object-level-authorization",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mukul975/anthropic-cybersecurity-skills#testing-for-json-web-token-vulnerabilities",
+   "repo": "mukul975/Anthropic-Cybersecurity-Skills",
+   "name": "testing-for-json-web-token-vulnerabilities",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mukul975/anthropic-cybersecurity-skills#testing-for-xss-vulnerabilities",
+   "repo": "mukul975/Anthropic-Cybersecurity-Skills",
+   "name": "testing-for-xss-vulnerabilities",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mukul975/anthropic-cybersecurity-skills#testing-for-xxe-injection-vulnerabilities",
+   "repo": "mukul975/Anthropic-Cybersecurity-Skills",
+   "name": "testing-for-xxe-injection-vulnerabilities",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mukul975/anthropic-cybersecurity-skills#testing-jwt-token-security",
+   "repo": "mukul975/Anthropic-Cybersecurity-Skills",
+   "name": "testing-jwt-token-security",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:mukul975/anthropic-cybersecurity-skills#testing-mobile-api-authentication",
+   "repo": "mukul975/Anthropic-Cybersecurity-Skills",
+   "name": "testing-mobile-api-authentication",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:pproenca/dot-skills#expo",
+   "repo": "pproenca/dot-skills",
+   "name": "expo",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:pproenca/dot-skills#expo-react-native-performance",
+   "repo": "pproenca/dot-skills",
+   "name": "expo-react-native-performance",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:pproenca/dot-skills#migrate-js-to-modern-typescript",
+   "repo": "pproenca/dot-skills",
+   "name": "migrate-js-to-modern-typescript",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:pproenca/dot-skills#msw",
+   "repo": "pproenca/dot-skills",
+   "name": "msw",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:pproenca/dot-skills#nextjs-bundle-optimizer",
+   "repo": "pproenca/dot-skills",
+   "name": "nextjs-bundle-optimizer",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:pproenca/dot-skills#react-refactor",
+   "repo": "pproenca/dot-skills",
+   "name": "react-refactor",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:pproenca/dot-skills#rust-clap",
+   "repo": "pproenca/dot-skills",
+   "name": "rust-clap",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:pproenca/dot-skills#rust-systems",
+   "repo": "pproenca/dot-skills",
+   "name": "rust-systems",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:pproenca/dot-skills#rust-testing",
+   "repo": "pproenca/dot-skills",
+   "name": "rust-testing",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:pproenca/dot-skills#rust-write-tests",
+   "repo": "pproenca/dot-skills",
+   "name": "rust-write-tests",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:pproenca/dot-skills#vitest",
+   "repo": "pproenca/dot-skills",
+   "name": "vitest",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:rshankras/claude-code-apple-skills#accessibility-generator",
+   "repo": "rshankras/claude-code-apple-skills",
+   "name": "accessibility-generator",
+   "new_id": "rshankras-claude-code-apple-skills/accessibility-generator@87376187cc31",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:rshankras/claude-code-apple-skills#auth-flow",
+   "repo": "rshankras/claude-code-apple-skills",
+   "name": "auth-flow",
+   "new_id": "rshankras-claude-code-apple-skills/auth-flow@e5cd1103f31c",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:rshankras/claude-code-apple-skills#characterization-test-generator",
+   "repo": "rshankras/claude-code-apple-skills",
+   "name": "characterization-test-generator",
+   "new_id": "rshankras-claude-code-apple-skills/characterization-test-generator@a23d34ca77b2",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:rshankras/claude-code-apple-skills#ci-cd-setup",
+   "repo": "rshankras/claude-code-apple-skills",
+   "name": "ci-cd-setup",
+   "new_id": null,
+   "step": null,
+   "reason": "rejected",
+   "rejected_id": "rshankras-claude-code-apple-skills/ci-cd-setup@bb134ff7dfd4",
+   "rejected_status": "scan_failed",
+   "rejected_detail": {
+    "lint_errors": [],
+    "scan_failures": [
+     "exfil.secret-env"
+    ],
+    "license": "unknown",
+    "not_extracted_reason": null
+   }
+  },
+  {
+   "oracle_key": "ss:skill:rshankras/claude-code-apple-skills#core-ml",
+   "repo": "rshankras/claude-code-apple-skills",
+   "name": "core-ml",
+   "new_id": "rshankras-claude-code-apple-skills/core-ml@7f845a30f6cd",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:rshankras/claude-code-apple-skills#deep-linking",
+   "repo": "rshankras/claude-code-apple-skills",
+   "name": "deep-linking",
+   "new_id": "rshankras-claude-code-apple-skills/deep-linking@61d58a1a13e0",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:rshankras/claude-code-apple-skills#image-loading",
+   "repo": "rshankras/claude-code-apple-skills",
+   "name": "image-loading",
+   "new_id": "rshankras-claude-code-apple-skills/image-loading@3ae1f4ec9ac6",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:rshankras/claude-code-apple-skills#integration-test-scaffold",
+   "repo": "rshankras/claude-code-apple-skills",
+   "name": "integration-test-scaffold",
+   "new_id": "rshankras-claude-code-apple-skills/integration-test-scaffold@afa3e47e2a3c",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:rshankras/claude-code-apple-skills#offline-queue",
+   "repo": "rshankras/claude-code-apple-skills",
+   "name": "offline-queue",
+   "new_id": "rshankras-claude-code-apple-skills/offline-queue@7357b9a0875b",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:rshankras/claude-code-apple-skills#security",
+   "repo": "rshankras/claude-code-apple-skills",
+   "name": "security",
+   "new_id": "rshankras-claude-code-apple-skills/security@bf241b5549a7",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:rshankras/claude-code-apple-skills#swift-concurrency-updates",
+   "repo": "rshankras/claude-code-apple-skills",
+   "name": "swift-concurrency-updates",
+   "new_id": "rshankras-claude-code-apple-skills/swift-concurrency-updates@283099a7a3b9",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:rshankras/claude-code-apple-skills#tdd-refactor-guard",
+   "repo": "rshankras/claude-code-apple-skills",
+   "name": "tdd-refactor-guard",
+   "new_id": "rshankras-claude-code-apple-skills/tdd-refactor-guard@8dec1a504aae",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:rshankras/claude-code-apple-skills#test-generator",
+   "repo": "rshankras/claude-code-apple-skills",
+   "name": "test-generator",
+   "new_id": "rshankras-claude-code-apple-skills/test-generator@454caa8f73ad",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:rshankras/claude-code-apple-skills#testing",
+   "repo": "rshankras/claude-code-apple-skills",
+   "name": "testing",
+   "new_id": "rshankras-claude-code-apple-skills/testing@187d348e052e",
+   "step": "name",
+   "reason": null
+  },
+  {
+   "oracle_key": "ss:skill:secondsky/claude-skills#access-control-rbac",
+   "repo": "secondsky/claude-skills",
+   "name": "access-control-rbac",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:secondsky/claude-skills#plugins/access-control-rbac",
+   "repo": "secondsky/claude-skills",
+   "name": "access-control-rbac",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:secondsky/claude-skills#plugins/api-pagination",
+   "repo": "secondsky/claude-skills",
+   "name": "api-pagination",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:secondsky/claude-skills#api-rate-limiting",
+   "repo": "secondsky/claude-skills",
+   "name": "api-rate-limiting",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:secondsky/claude-skills#plugins/api-rate-limiting",
+   "repo": "secondsky/claude-skills",
+   "name": "api-rate-limiting",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:secondsky/claude-skills#api-reference-documentation",
+   "repo": "secondsky/claude-skills",
+   "name": "api-reference-documentation",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:secondsky/claude-skills#plugins/api-reference-documentation",
+   "repo": "secondsky/claude-skills",
+   "name": "api-reference-documentation",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:secondsky/claude-skills#api-testing",
+   "repo": "secondsky/claude-skills",
+   "name": "api-testing",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:secondsky/claude-skills#plugins/app-store-deployment",
+   "repo": "secondsky/claude-skills",
+   "name": "app-store-deployment",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:secondsky/claude-skills#plugins/cloudflare-nextjs",
+   "repo": "secondsky/claude-skills",
+   "name": "cloudflare-nextjs",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:secondsky/claude-skills#csrf-protection",
+   "repo": "secondsky/claude-skills",
+   "name": "csrf-protection",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:secondsky/claude-skills#plugins/csrf-protection",
+   "repo": "secondsky/claude-skills",
+   "name": "csrf-protection",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:secondsky/claude-skills#dependency-upgrade",
+   "repo": "secondsky/claude-skills",
+   "name": "dependency-upgrade",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:secondsky/claude-skills#health-check-endpoints",
+   "repo": "secondsky/claude-skills",
+   "name": "health-check-endpoints",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:secondsky/claude-skills#plugins/health-check-endpoints",
+   "repo": "secondsky/claude-skills",
+   "name": "health-check-endpoints",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:secondsky/claude-skills#idempotency-handling",
+   "repo": "secondsky/claude-skills",
+   "name": "idempotency-handling",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:secondsky/claude-skills#plugins/idempotency-handling",
+   "repo": "secondsky/claude-skills",
+   "name": "idempotency-handling",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:secondsky/claude-skills#jest-generator",
+   "repo": "secondsky/claude-skills",
+   "name": "jest-generator",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:secondsky/claude-skills#mobile-offline-support",
+   "repo": "secondsky/claude-skills",
+   "name": "mobile-offline-support",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:secondsky/claude-skills#plugins/mobile-offline-support",
+   "repo": "secondsky/claude-skills",
+   "name": "mobile-offline-support",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:secondsky/claude-skills#plugins/push-notification-setup",
+   "repo": "secondsky/claude-skills",
+   "name": "push-notification-setup",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:secondsky/claude-skills#push-notification-setup",
+   "repo": "secondsky/claude-skills",
+   "name": "push-notification-setup",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:secondsky/claude-skills#plugins/react-native-skills",
+   "repo": "secondsky/claude-skills",
+   "name": "react-native-skills",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:secondsky/claude-skills#react-native-skills",
+   "repo": "secondsky/claude-skills",
+   "name": "react-native-skills",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:secondsky/claude-skills#plugins/session-management",
+   "repo": "secondsky/claude-skills",
+   "name": "session-management",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:secondsky/claude-skills#session-management",
+   "repo": "secondsky/claude-skills",
+   "name": "session-management",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:secondsky/claude-skills#plugins/sql-query-optimization",
+   "repo": "secondsky/claude-skills",
+   "name": "sql-query-optimization",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:secondsky/claude-skills#plugins/turborepo",
+   "repo": "secondsky/claude-skills",
+   "name": "turborepo",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:secondsky/claude-skills#vitest-testing",
+   "repo": "secondsky/claude-skills",
+   "name": "vitest-testing",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:secondsky/claude-skills#plugins/web-performance-optimization",
+   "repo": "secondsky/claude-skills",
+   "name": "web-performance-optimization",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:secondsky/claude-skills#plugins/websocket-implementation",
+   "repo": "secondsky/claude-skills",
+   "name": "websocket-implementation",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:secondsky/claude-skills#plugins/zod",
+   "repo": "secondsky/claude-skills",
+   "name": "zod",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:secondsky/claude-skills#zod",
+   "repo": "secondsky/claude-skills",
+   "name": "zod",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:sickn33/agentic-awesome-skills#api-patterns",
+   "repo": "sickn33/agentic-awesome-skills",
+   "name": "api-patterns",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:sickn33/agentic-awesome-skills#architecture",
+   "repo": "sickn33/agentic-awesome-skills",
+   "name": "architecture",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:sickn33/antigravity-awesome-skills#architecture-decision-records",
+   "repo": "sickn33/agentic-awesome-skills",
+   "name": "architecture-decision-records",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:sickn33/agentic-awesome-skills#cc-skill-security-review",
+   "repo": "sickn33/agentic-awesome-skills",
+   "name": "cc-skill-security-review",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:sickn33/antigravity-awesome-skills#cc-skill-security-review",
+   "repo": "sickn33/agentic-awesome-skills",
+   "name": "cc-skill-security-review",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:sickn33/antigravity-awesome-skills#database-migrations-sql-migrations",
+   "repo": "sickn33/agentic-awesome-skills",
+   "name": "database-migrations-sql-migrations",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:sickn33/antigravity-awesome-skills#django-access-review",
+   "repo": "sickn33/agentic-awesome-skills",
+   "name": "django-access-review",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:sickn33/antigravity-awesome-skills#django-perf-review",
+   "repo": "sickn33/agentic-awesome-skills",
+   "name": "django-perf-review",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:sickn33/agentic-awesome-skills#docker-expert",
+   "repo": "sickn33/agentic-awesome-skills",
+   "name": "docker-expert",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:sickn33/antigravity-awesome-skills#drizzle-orm-expert",
+   "repo": "sickn33/agentic-awesome-skills",
+   "name": "drizzle-orm-expert",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:sickn33/antigravity-awesome-skills#e2e-testing",
+   "repo": "sickn33/agentic-awesome-skills",
+   "name": "e2e-testing",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:sickn33/antigravity-awesome-skills#fastapi-pro",
+   "repo": "sickn33/agentic-awesome-skills",
+   "name": "fastapi-pro",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:sickn33/antigravity-awesome-skills#frontend-security-coder",
+   "repo": "sickn33/agentic-awesome-skills",
+   "name": "frontend-security-coder",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:sickn33/agentic-awesome-skills#gcp-cloud-run",
+   "repo": "sickn33/agentic-awesome-skills",
+   "name": "gcp-cloud-run",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:sickn33/antigravity-awesome-skills#gcp-cloud-run",
+   "repo": "sickn33/agentic-awesome-skills",
+   "name": "gcp-cloud-run",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:sickn33/antigravity-awesome-skills#mobile-security-coder",
+   "repo": "sickn33/agentic-awesome-skills",
+   "name": "mobile-security-coder",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:sickn33/agentic-awesome-skills#nextjs-best-practices",
+   "repo": "sickn33/agentic-awesome-skills",
+   "name": "nextjs-best-practices",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:sickn33/agentic-awesome-skills#prisma-expert",
+   "repo": "sickn33/agentic-awesome-skills",
+   "name": "prisma-expert",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:sickn33/antigravity-awesome-skills#prisma-expert",
+   "repo": "sickn33/agentic-awesome-skills",
+   "name": "prisma-expert",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:sickn33/antigravity-awesome-skills#python-patterns",
+   "repo": "sickn33/agentic-awesome-skills",
+   "name": "python-patterns",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:sickn33/antigravity-awesome-skills#react-nextjs-development",
+   "repo": "sickn33/agentic-awesome-skills",
+   "name": "react-nextjs-development",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:sickn33/agentic-awesome-skills#security-review",
+   "repo": "sickn33/agentic-awesome-skills",
+   "name": "security-review",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:sickn33/antigravity-awesome-skills#security-review",
+   "repo": "sickn33/agentic-awesome-skills",
+   "name": "security-review",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:sickn33/agentic-awesome-skills#testing-patterns",
+   "repo": "sickn33/agentic-awesome-skills",
+   "name": "testing-patterns",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:sickn33/agentic-awesome-skills#vercel-deployment",
+   "repo": "sickn33/agentic-awesome-skills",
+   "name": "vercel-deployment",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:sickn33/antigravity-awesome-skills#vercel-deployment",
+   "repo": "sickn33/agentic-awesome-skills",
+   "name": "vercel-deployment",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:thebushidocollective/han#android-architecture",
+   "repo": "TheBushidoCollective/han",
+   "name": "android-architecture",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:thebushidocollective/han#django-orm-patterns",
+   "repo": "TheBushidoCollective/han",
+   "name": "django-orm-patterns",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:thebushidocollective/han#expo-build",
+   "repo": "TheBushidoCollective/han",
+   "name": "expo-build",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:thebushidocollective/han#expo-updates",
+   "repo": "TheBushidoCollective/han",
+   "name": "expo-updates",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:thebushidocollective/han#fastapi-async-patterns",
+   "repo": "TheBushidoCollective/han",
+   "name": "fastapi-async-patterns",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:thebushidocollective/han#gitlab-ci-best-practices",
+   "repo": "TheBushidoCollective/han",
+   "name": "gitlab-ci-best-practices",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:thebushidocollective/han#go-concurrency",
+   "repo": "TheBushidoCollective/han",
+   "name": "go-concurrency",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:thebushidocollective/han#nextjs-data-fetching",
+   "repo": "TheBushidoCollective/han",
+   "name": "nextjs-data-fetching",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:thebushidocollective/han#nextjs-server-components",
+   "repo": "TheBushidoCollective/han",
+   "name": "nextjs-server-components",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:thebushidocollective/han#react-native-performance",
+   "repo": "TheBushidoCollective/han",
+   "name": "react-native-performance",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:thebushidocollective/han#rust-async-patterns",
+   "repo": "TheBushidoCollective/han",
+   "name": "rust-async-patterns",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:thebushidocollective/han#rust-error-handling",
+   "repo": "TheBushidoCollective/han",
+   "name": "rust-error-handling",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:thebushidocollective/han#rust-ownership-system",
+   "repo": "TheBushidoCollective/han",
+   "name": "rust-ownership-system",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:thebushidocollective/han#test",
+   "repo": "TheBushidoCollective/han",
+   "name": "test",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:wshobson/agents#accessibility-compliance",
+   "repo": "wshobson/agents",
+   "name": "accessibility-compliance",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:wshobson/agents#architecture-decision-records",
+   "repo": "wshobson/agents",
+   "name": "architecture-decision-records",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:wshobson/agents#e2e-testing-patterns",
+   "repo": "wshobson/agents",
+   "name": "e2e-testing-patterns",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:wshobson/agents#error-handling-patterns",
+   "repo": "wshobson/agents",
+   "name": "error-handling-patterns",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:wshobson/agents#gdpr-data-handling",
+   "repo": "wshobson/agents",
+   "name": "gdpr-data-handling",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:wshobson/agents#github-actions-templates",
+   "repo": "wshobson/agents",
+   "name": "github-actions-templates",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:wshobson/agents#gitlab-ci-patterns",
+   "repo": "wshobson/agents",
+   "name": "gitlab-ci-patterns",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:wshobson/agents#helm-chart-scaffolding",
+   "repo": "wshobson/agents",
+   "name": "helm-chart-scaffolding",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:wshobson/agents#istio-traffic-management",
+   "repo": "wshobson/agents",
+   "name": "istio-traffic-management",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:wshobson/agents#llm-evaluation",
+   "repo": "wshobson/agents",
+   "name": "llm-evaluation",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:wshobson/agents#memory-safety-patterns",
+   "repo": "wshobson/agents",
+   "name": "memory-safety-patterns",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:wshobson/agents#mobile-android-design",
+   "repo": "wshobson/agents",
+   "name": "mobile-android-design",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:wshobson/agents#mtls-configuration",
+   "repo": "wshobson/agents",
+   "name": "mtls-configuration",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:wshobson/agents#python-code-style",
+   "repo": "wshobson/agents",
+   "name": "python-code-style",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:wshobson/agents#python-design-patterns",
+   "repo": "wshobson/agents",
+   "name": "python-design-patterns",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:wshobson/agents#python-performance-optimization",
+   "repo": "wshobson/agents",
+   "name": "python-performance-optimization",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:wshobson/agents#react-native-architecture",
+   "repo": "wshobson/agents",
+   "name": "react-native-architecture",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:wshobson/agents#react-native-design",
+   "repo": "wshobson/agents",
+   "name": "react-native-design",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:wshobson/agents#rust-async-patterns",
+   "repo": "wshobson/agents",
+   "name": "rust-async-patterns",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:wshobson/agents#stripe-integration",
+   "repo": "wshobson/agents",
+   "name": "stripe-integration",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:wshobson/agents#terraform-module-library",
+   "repo": "wshobson/agents",
+   "name": "terraform-module-library",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:wshobson/agents#turborepo-caching",
+   "repo": "wshobson/agents",
+   "name": "turborepo-caching",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:yaklang/hack-skills#android-pentesting-tricks",
+   "repo": "yaklang/hack-skills",
+   "name": "android-pentesting-tricks",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:yaklang/hack-skills#api-auth-and-jwt-abuse",
+   "repo": "yaklang/hack-skills",
+   "name": "api-auth-and-jwt-abuse",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:yaklang/hack-skills#api-authorization-and-bola",
+   "repo": "yaklang/hack-skills",
+   "name": "api-authorization-and-bola",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:yaklang/hack-skills#auth-sec",
+   "repo": "yaklang/hack-skills",
+   "name": "auth-sec",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:yaklang/hack-skills#cmdi-command-injection",
+   "repo": "yaklang/hack-skills",
+   "name": "cmdi-command-injection",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:yaklang/hack-skills#cors-cross-origin-misconfiguration",
+   "repo": "yaklang/hack-skills",
+   "name": "cors-cross-origin-misconfiguration",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:yaklang/hack-skills#csv-formula-injection",
+   "repo": "yaklang/hack-skills",
+   "name": "csv-formula-injection",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:yaklang/hack-skills#deserialization-insecure",
+   "repo": "yaklang/hack-skills",
+   "name": "deserialization-insecure",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:yaklang/hack-skills#jwt-oauth-token-attacks",
+   "repo": "yaklang/hack-skills",
+   "name": "jwt-oauth-token-attacks",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:yaklang/hack-skills#ssrf-server-side-request-forgery",
+   "repo": "yaklang/hack-skills",
+   "name": "ssrf-server-side-request-forgery",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:yaklang/hack-skills#upload-insecure-files",
+   "repo": "yaklang/hack-skills",
+   "name": "upload-insecure-files",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  },
+  {
+   "oracle_key": "ss:skill:yaklang/hack-skills#xxe-xml-external-entity",
+   "repo": "yaklang/hack-skills",
+   "name": "xxe-xml-external-entity",
+   "new_id": null,
+   "step": null,
+   "reason": "repo_not_ingested"
+  }
+ ]
+}

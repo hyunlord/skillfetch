@@ -1,0 +1,1928 @@
+{
+ "cells": [
+  {
+   "task_type": "feature",
+   "stack": "python",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "feature",
+   "stack": "python",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "feature",
+   "stack": "python",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "feature",
+   "stack": "python",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "feature",
+   "stack": "python",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "feature",
+   "stack": "ts_react_next",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "feature",
+   "stack": "ts_react_next",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "feature",
+   "stack": "ts_react_next",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "feature",
+   "stack": "ts_react_next",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "feature",
+   "stack": "go",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "feature",
+   "stack": "go",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "feature",
+   "stack": "go",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "feature",
+   "stack": "go",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "feature",
+   "stack": "rust",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "feature",
+   "stack": "rust",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "feature",
+   "stack": "rust",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "feature",
+   "stack": "rust",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "feature",
+   "stack": "java_kotlin",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "feature",
+   "stack": "java_kotlin",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "feature",
+   "stack": "java_kotlin",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "feature",
+   "stack": "java_kotlin",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "feature",
+   "stack": "mobile",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "feature",
+   "stack": "mobile",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "feature",
+   "stack": "mobile",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "feature",
+   "stack": "mobile",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "bugfix",
+   "stack": "python",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "bugfix",
+   "stack": "python",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "bugfix",
+   "stack": "python",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "bugfix",
+   "stack": "python",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "bugfix",
+   "stack": "ts_react_next",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "bugfix",
+   "stack": "ts_react_next",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "bugfix",
+   "stack": "ts_react_next",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "bugfix",
+   "stack": "ts_react_next",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "bugfix",
+   "stack": "go",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "bugfix",
+   "stack": "go",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "bugfix",
+   "stack": "go",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "bugfix",
+   "stack": "go",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "bugfix",
+   "stack": "go",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "bugfix",
+   "stack": "rust",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "bugfix",
+   "stack": "rust",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "bugfix",
+   "stack": "rust",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "bugfix",
+   "stack": "rust",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "bugfix",
+   "stack": "java_kotlin",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "bugfix",
+   "stack": "java_kotlin",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "bugfix",
+   "stack": "java_kotlin",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "bugfix",
+   "stack": "java_kotlin",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "bugfix",
+   "stack": "mobile",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "bugfix",
+   "stack": "mobile",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "bugfix",
+   "stack": "mobile",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "bugfix",
+   "stack": "mobile",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "refactor",
+   "stack": "python",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "refactor",
+   "stack": "python",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "refactor",
+   "stack": "python",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "refactor",
+   "stack": "python",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "refactor",
+   "stack": "ts_react_next",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "refactor",
+   "stack": "ts_react_next",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "refactor",
+   "stack": "ts_react_next",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "refactor",
+   "stack": "ts_react_next",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "refactor",
+   "stack": "go",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "refactor",
+   "stack": "go",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "refactor",
+   "stack": "go",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "refactor",
+   "stack": "go",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "refactor",
+   "stack": "rust",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "refactor",
+   "stack": "rust",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "refactor",
+   "stack": "rust",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "refactor",
+   "stack": "rust",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "refactor",
+   "stack": "java_kotlin",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "refactor",
+   "stack": "java_kotlin",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "refactor",
+   "stack": "java_kotlin",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "refactor",
+   "stack": "java_kotlin",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "refactor",
+   "stack": "java_kotlin",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "refactor",
+   "stack": "mobile",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "refactor",
+   "stack": "mobile",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "refactor",
+   "stack": "mobile",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "refactor",
+   "stack": "mobile",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "tests",
+   "stack": "python",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "tests",
+   "stack": "python",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "tests",
+   "stack": "python",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "tests",
+   "stack": "python",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "tests",
+   "stack": "python",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "tests",
+   "stack": "ts_react_next",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "tests",
+   "stack": "ts_react_next",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "tests",
+   "stack": "ts_react_next",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "tests",
+   "stack": "ts_react_next",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "tests",
+   "stack": "go",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "tests",
+   "stack": "go",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "tests",
+   "stack": "go",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "tests",
+   "stack": "go",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "tests",
+   "stack": "rust",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "tests",
+   "stack": "rust",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "tests",
+   "stack": "rust",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "tests",
+   "stack": "rust",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "tests",
+   "stack": "java_kotlin",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "tests",
+   "stack": "java_kotlin",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "tests",
+   "stack": "java_kotlin",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "tests",
+   "stack": "java_kotlin",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "tests",
+   "stack": "mobile",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "tests",
+   "stack": "mobile",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "tests",
+   "stack": "mobile",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "tests",
+   "stack": "mobile",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "docs",
+   "stack": "python",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "docs",
+   "stack": "python",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "docs",
+   "stack": "python",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "docs",
+   "stack": "python",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "docs",
+   "stack": "ts_react_next",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "docs",
+   "stack": "ts_react_next",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "docs",
+   "stack": "ts_react_next",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "docs",
+   "stack": "ts_react_next",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "docs",
+   "stack": "go",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "docs",
+   "stack": "go",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "docs",
+   "stack": "go",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "docs",
+   "stack": "go",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "docs",
+   "stack": "go",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "docs",
+   "stack": "rust",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "docs",
+   "stack": "rust",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "docs",
+   "stack": "rust",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "docs",
+   "stack": "rust",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "docs",
+   "stack": "java_kotlin",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "docs",
+   "stack": "java_kotlin",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "docs",
+   "stack": "java_kotlin",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "docs",
+   "stack": "java_kotlin",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "docs",
+   "stack": "mobile",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "docs",
+   "stack": "mobile",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "docs",
+   "stack": "mobile",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "docs",
+   "stack": "mobile",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "ci_infra",
+   "stack": "python",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "ci_infra",
+   "stack": "python",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "ci_infra",
+   "stack": "python",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "ci_infra",
+   "stack": "python",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "ci_infra",
+   "stack": "ts_react_next",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "ci_infra",
+   "stack": "ts_react_next",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "ci_infra",
+   "stack": "ts_react_next",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "ci_infra",
+   "stack": "ts_react_next",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "ci_infra",
+   "stack": "go",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "ci_infra",
+   "stack": "go",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "ci_infra",
+   "stack": "go",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "ci_infra",
+   "stack": "go",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "ci_infra",
+   "stack": "rust",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "ci_infra",
+   "stack": "rust",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "ci_infra",
+   "stack": "rust",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "ci_infra",
+   "stack": "rust",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "ci_infra",
+   "stack": "java_kotlin",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "ci_infra",
+   "stack": "java_kotlin",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "ci_infra",
+   "stack": "java_kotlin",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "ci_infra",
+   "stack": "java_kotlin",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "ci_infra",
+   "stack": "java_kotlin",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "ci_infra",
+   "stack": "mobile",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "ci_infra",
+   "stack": "mobile",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "ci_infra",
+   "stack": "mobile",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "ci_infra",
+   "stack": "mobile",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "deploy",
+   "stack": "python",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "deploy",
+   "stack": "python",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "deploy",
+   "stack": "python",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "deploy",
+   "stack": "python",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "deploy",
+   "stack": "ts_react_next",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "deploy",
+   "stack": "ts_react_next",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "deploy",
+   "stack": "ts_react_next",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "deploy",
+   "stack": "ts_react_next",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "deploy",
+   "stack": "ts_react_next",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "deploy",
+   "stack": "go",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "deploy",
+   "stack": "go",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "deploy",
+   "stack": "go",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "deploy",
+   "stack": "go",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "deploy",
+   "stack": "rust",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "deploy",
+   "stack": "rust",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "deploy",
+   "stack": "rust",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "deploy",
+   "stack": "rust",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "deploy",
+   "stack": "java_kotlin",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "deploy",
+   "stack": "java_kotlin",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "deploy",
+   "stack": "java_kotlin",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "deploy",
+   "stack": "java_kotlin",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "deploy",
+   "stack": "mobile",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "deploy",
+   "stack": "mobile",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "deploy",
+   "stack": "mobile",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "deploy",
+   "stack": "mobile",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "data",
+   "stack": "python",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "data",
+   "stack": "python",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "data",
+   "stack": "python",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "data",
+   "stack": "python",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "data",
+   "stack": "ts_react_next",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "data",
+   "stack": "ts_react_next",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "data",
+   "stack": "ts_react_next",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "data",
+   "stack": "ts_react_next",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "data",
+   "stack": "go",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "data",
+   "stack": "go",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "data",
+   "stack": "go",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "data",
+   "stack": "go",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "data",
+   "stack": "rust",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "data",
+   "stack": "rust",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "data",
+   "stack": "rust",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "data",
+   "stack": "rust",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "data",
+   "stack": "rust",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "data",
+   "stack": "java_kotlin",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "data",
+   "stack": "java_kotlin",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "data",
+   "stack": "java_kotlin",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "data",
+   "stack": "java_kotlin",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "data",
+   "stack": "mobile",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "data",
+   "stack": "mobile",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "data",
+   "stack": "mobile",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "data",
+   "stack": "mobile",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "ml",
+   "stack": "python",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "ml",
+   "stack": "python",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "ml",
+   "stack": "python",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "ml",
+   "stack": "python",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "ml",
+   "stack": "ts_react_next",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "ml",
+   "stack": "ts_react_next",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "ml",
+   "stack": "ts_react_next",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "ml",
+   "stack": "ts_react_next",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "ml",
+   "stack": "go",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "ml",
+   "stack": "go",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "ml",
+   "stack": "go",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "ml",
+   "stack": "go",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "ml",
+   "stack": "rust",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "ml",
+   "stack": "rust",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "ml",
+   "stack": "rust",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "ml",
+   "stack": "rust",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "ml",
+   "stack": "java_kotlin",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "ml",
+   "stack": "java_kotlin",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "ml",
+   "stack": "java_kotlin",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "ml",
+   "stack": "java_kotlin",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "ml",
+   "stack": "mobile",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "ml",
+   "stack": "mobile",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "ml",
+   "stack": "mobile",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "ml",
+   "stack": "mobile",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "ml",
+   "stack": "mobile",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "security_review",
+   "stack": "python",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "security_review",
+   "stack": "python",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "security_review",
+   "stack": "python",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "security_review",
+   "stack": "python",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "security_review",
+   "stack": "ts_react_next",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "security_review",
+   "stack": "ts_react_next",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "security_review",
+   "stack": "ts_react_next",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "security_review",
+   "stack": "ts_react_next",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "security_review",
+   "stack": "ts_react_next",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "security_review",
+   "stack": "go",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "security_review",
+   "stack": "go",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "security_review",
+   "stack": "go",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "security_review",
+   "stack": "go",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "security_review",
+   "stack": "rust",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "security_review",
+   "stack": "rust",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "security_review",
+   "stack": "rust",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "security_review",
+   "stack": "rust",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "security_review",
+   "stack": "java_kotlin",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "security_review",
+   "stack": "java_kotlin",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "security_review",
+   "stack": "java_kotlin",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "security_review",
+   "stack": "java_kotlin",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "security_review",
+   "stack": "mobile",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "security_review",
+   "stack": "mobile",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "security_review",
+   "stack": "mobile",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "security_review",
+   "stack": "mobile",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "performance",
+   "stack": "python",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "performance",
+   "stack": "python",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "performance",
+   "stack": "python",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "performance",
+   "stack": "python",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "performance",
+   "stack": "ts_react_next",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "performance",
+   "stack": "ts_react_next",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "performance",
+   "stack": "ts_react_next",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "performance",
+   "stack": "ts_react_next",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "performance",
+   "stack": "go",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "performance",
+   "stack": "go",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "performance",
+   "stack": "go",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "performance",
+   "stack": "go",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "performance",
+   "stack": "rust",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "performance",
+   "stack": "rust",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "performance",
+   "stack": "rust",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "performance",
+   "stack": "rust",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "performance",
+   "stack": "rust",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "performance",
+   "stack": "java_kotlin",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "performance",
+   "stack": "java_kotlin",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "performance",
+   "stack": "java_kotlin",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "performance",
+   "stack": "java_kotlin",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "performance",
+   "stack": "mobile",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "performance",
+   "stack": "mobile",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "performance",
+   "stack": "mobile",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "performance",
+   "stack": "mobile",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "ui_design",
+   "stack": "python",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "ui_design",
+   "stack": "python",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "ui_design",
+   "stack": "python",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "ui_design",
+   "stack": "python",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "ui_design",
+   "stack": "ts_react_next",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "ui_design",
+   "stack": "ts_react_next",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "ui_design",
+   "stack": "ts_react_next",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "ui_design",
+   "stack": "ts_react_next",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "ui_design",
+   "stack": "go",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "ui_design",
+   "stack": "go",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "ui_design",
+   "stack": "go",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "ui_design",
+   "stack": "go",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "ui_design",
+   "stack": "rust",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "ui_design",
+   "stack": "rust",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "ui_design",
+   "stack": "rust",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "ui_design",
+   "stack": "rust",
+   "phrasing": "directive"
+  },
+  {
+   "task_type": "ui_design",
+   "stack": "java_kotlin",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "ui_design",
+   "stack": "java_kotlin",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "ui_design",
+   "stack": "java_kotlin",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "ui_design",
+   "stack": "java_kotlin",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "ui_design",
+   "stack": "mobile",
+   "phrasing": "terminal"
+  },
+  {
+   "task_type": "ui_design",
+   "stack": "mobile",
+   "phrasing": "normal"
+  },
+  {
+   "task_type": "ui_design",
+   "stack": "mobile",
+   "phrasing": "spec"
+  },
+  {
+   "task_type": "ui_design",
+   "stack": "mobile",
+   "phrasing": "korean"
+  },
+  {
+   "task_type": "ui_design",
+   "stack": "mobile",
+   "phrasing": "directive"
+  }
+ ],
+ "trivial": [
+  {
+   "task_type": "trivial",
+   "stack": "python",
+   "phrasing": "terminal",
+   "kind": "one-line fix"
+  },
+  {
+   "task_type": "trivial",
+   "stack": "ts_react_next",
+   "phrasing": "normal",
+   "kind": "rename"
+  },
+  {
+   "task_type": "trivial",
+   "stack": "go",
+   "phrasing": "spec",
+   "kind": "typo"
+  },
+  {
+   "task_type": "trivial",
+   "stack": "rust",
+   "phrasing": "korean",
+   "kind": "answer a question"
+  },
+  {
+   "task_type": "trivial",
+   "stack": "java_kotlin",
+   "phrasing": "directive",
+   "kind": "constant change"
+  },
+  {
+   "task_type": "trivial",
+   "stack": "mobile",
+   "phrasing": "terminal",
+   "kind": "import fix"
+  },
+  {
+   "task_type": "trivial",
+   "stack": "python",
+   "phrasing": "normal",
+   "kind": "comment edit"
+  },
+  {
+   "task_type": "trivial",
+   "stack": "ts_react_next",
+   "phrasing": "spec",
+   "kind": "version bump"
+  },
+  {
+   "task_type": "trivial",
+   "stack": "go",
+   "phrasing": "korean",
+   "kind": "one-line fix"
+  },
+  {
+   "task_type": "trivial",
+   "stack": "rust",
+   "phrasing": "directive",
+   "kind": "rename"
+  },
+  {
+   "task_type": "trivial",
+   "stack": "java_kotlin",
+   "phrasing": "terminal",
+   "kind": "typo"
+  },
+  {
+   "task_type": "trivial",
+   "stack": "mobile",
+   "phrasing": "normal",
+   "kind": "answer a question"
+  },
+  {
+   "task_type": "trivial",
+   "stack": "python",
+   "phrasing": "spec",
+   "kind": "constant change"
+  },
+  {
+   "task_type": "trivial",
+   "stack": "ts_react_next",
+   "phrasing": "korean",
+   "kind": "import fix"
+  },
+  {
+   "task_type": "trivial",
+   "stack": "go",
+   "phrasing": "directive",
+   "kind": "comment edit"
+  },
+  {
+   "task_type": "trivial",
+   "stack": "rust",
+   "phrasing": "terminal",
+   "kind": "version bump"
+  },
+  {
+   "task_type": "trivial",
+   "stack": "java_kotlin",
+   "phrasing": "normal",
+   "kind": "one-line fix"
+  },
+  {
+   "task_type": "trivial",
+   "stack": "mobile",
+   "phrasing": "spec",
+   "kind": "rename"
+  },
+  {
+   "task_type": "trivial",
+   "stack": "python",
+   "phrasing": "korean",
+   "kind": "typo"
+  },
+  {
+   "task_type": "trivial",
+   "stack": "ts_react_next",
+   "phrasing": "directive",
+   "kind": "answer a question"
+  },
+  {
+   "task_type": "trivial",
+   "stack": "go",
+   "phrasing": "terminal",
+   "kind": "constant change"
+  },
+  {
+   "task_type": "trivial",
+   "stack": "rust",
+   "phrasing": "normal",
+   "kind": "import fix"
+  },
+  {
+   "task_type": "trivial",
+   "stack": "java_kotlin",
+   "phrasing": "spec",
+   "kind": "comment edit"
+  },
+  {
+   "task_type": "trivial",
+   "stack": "mobile",
+   "phrasing": "korean",
+   "kind": "version bump"
+  },
+  {
+   "task_type": "trivial",
+   "stack": "python",
+   "phrasing": "directive",
+   "kind": "one-line fix"
+  },
+  {
+   "task_type": "trivial",
+   "stack": "ts_react_next",
+   "phrasing": "terminal",
+   "kind": "rename"
+  },
+  {
+   "task_type": "trivial",
+   "stack": "go",
+   "phrasing": "normal",
+   "kind": "typo"
+  },
+  {
+   "task_type": "trivial",
+   "stack": "rust",
+   "phrasing": "spec",
+   "kind": "answer a question"
+  },
+  {
+   "task_type": "trivial",
+   "stack": "java_kotlin",
+   "phrasing": "korean",
+   "kind": "constant change"
+  },
+  {
+   "task_type": "trivial",
+   "stack": "mobile",
+   "phrasing": "directive",
+   "kind": "import fix"
+  },
+  {
+   "task_type": "trivial",
+   "stack": "python",
+   "phrasing": "terminal",
+   "kind": "comment edit"
+  },
+  {
+   "task_type": "trivial",
+   "stack": "ts_react_next",
+   "phrasing": "normal",
+   "kind": "version bump"
+  },
+  {
+   "task_type": "trivial",
+   "stack": "go",
+   "phrasing": "spec",
+   "kind": "one-line fix"
+  },
+  {
+   "task_type": "trivial",
+   "stack": "rust",
+   "phrasing": "korean",
+   "kind": "rename"
+  },
+  {
+   "task_type": "trivial",
+   "stack": "java_kotlin",
+   "phrasing": "directive",
+   "kind": "typo"
+  },
+  {
+   "task_type": "trivial",
+   "stack": "mobile",
+   "phrasing": "terminal",
+   "kind": "answer a question"
+  },
+  {
+   "task_type": "trivial",
+   "stack": "python",
+   "phrasing": "normal",
+   "kind": "constant change"
+  },
+  {
+   "task_type": "trivial",
+   "stack": "ts_react_next",
+   "phrasing": "spec",
+   "kind": "import fix"
+  },
+  {
+   "task_type": "trivial",
+   "stack": "go",
+   "phrasing": "korean",
+   "kind": "comment edit"
+  },
+  {
+   "task_type": "trivial",
+   "stack": "rust",
+   "phrasing": "directive",
+   "kind": "version bump"
+  }
+ ],
+ "pairs": [
+  {
+   "pair_id": "pair01",
+   "task_type": "feature",
+   "stack": "python",
+   "directions": [
+    "test-first (TDD)",
+    "minimal diff"
+   ]
+  },
+  {
+   "pair_id": "pair02",
+   "task_type": "ci_infra",
+   "stack": "ts_react_next",
+   "directions": [
+    "security first",
+    "performance first"
+   ]
+  },
+  {
+   "pair_id": "pair03",
+   "task_type": "performance",
+   "stack": "go",
+   "directions": [
+    "accessibility first",
+    "visual polish first"
+   ]
+  },
+  {
+   "pair_id": "pair04",
+   "task_type": "tests",
+   "stack": "rust",
+   "directions": [
+    "no new dependencies",
+    "use a well-known library"
+   ]
+  },
+  {
+   "pair_id": "pair05",
+   "task_type": "ml",
+   "stack": "java_kotlin",
+   "directions": [
+    "plan before coding",
+    "just do it, small change"
+   ]
+  },
+  {
+   "pair_id": "pair06",
+   "task_type": "bugfix",
+   "stack": "mobile",
+   "directions": [
+    "backward compatible",
+    "breaking change allowed"
+   ]
+  },
+  {
+   "pair_id": "pair07",
+   "task_type": "deploy",
+   "stack": "python",
+   "directions": [
+    "test-first (TDD)",
+    "minimal diff"
+   ]
+  },
+  {
+   "pair_id": "pair08",
+   "task_type": "ui_design",
+   "stack": "ts_react_next",
+   "directions": [
+    "security first",
+    "performance first"
+   ]
+  },
+  {
+   "pair_id": "pair09",
+   "task_type": "docs",
+   "stack": "go",
+   "directions": [
+    "accessibility first",
+    "visual polish first"
+   ]
+  },
+  {
+   "pair_id": "pair10",
+   "task_type": "security_review",
+   "stack": "rust",
+   "directions": [
+    "no new dependencies",
+    "use a well-known library"
+   ]
+  },
+  {
+   "pair_id": "pair11",
+   "task_type": "refactor",
+   "stack": "java_kotlin",
+   "directions": [
+    "plan before coding",
+    "just do it, small change"
+   ]
+  },
+  {
+   "pair_id": "pair12",
+   "task_type": "data",
+   "stack": "mobile",
+   "directions": [
+    "backward compatible",
+    "breaking change allowed"
+   ]
+  },
+  {
+   "pair_id": "pair13",
+   "task_type": "feature",
+   "stack": "python",
+   "directions": [
+    "test-first (TDD)",
+    "minimal diff"
+   ]
+  },
+  {
+   "pair_id": "pair14",
+   "task_type": "ci_infra",
+   "stack": "ts_react_next",
+   "directions": [
+    "security first",
+    "performance first"
+   ]
+  },
+  {
+   "pair_id": "pair15",
+   "task_type": "performance",
+   "stack": "go",
+   "directions": [
+    "accessibility first",
+    "visual polish first"
+   ]
+  },
+  {
+   "pair_id": "pair16",
+   "task_type": "tests",
+   "stack": "rust",
+   "directions": [
+    "no new dependencies",
+    "use a well-known library"
+   ]
+  },
+  {
+   "pair_id": "pair17",
+   "task_type": "ml",
+   "stack": "java_kotlin",
+   "directions": [
+    "plan before coding",
+    "just do it, small change"
+   ]
+  },
+  {
+   "pair_id": "pair18",
+   "task_type": "bugfix",
+   "stack": "mobile",
+   "directions": [
+    "backward compatible",
+    "breaking change allowed"
+   ]
+  },
+  {
+   "pair_id": "pair19",
+   "task_type": "deploy",
+   "stack": "python",
+   "directions": [
+    "test-first (TDD)",
+    "minimal diff"
+   ]
+  },
+  {
+   "pair_id": "pair20",
+   "task_type": "ui_design",
+   "stack": "ts_react_next",
+   "directions": [
+    "security first",
+    "performance first"
+   ]
+  }
+ ]
+}

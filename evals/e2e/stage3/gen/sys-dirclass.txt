@@ -1,0 +1,8 @@
+Each item is a developer request that contains an explicit instruction about HOW to do the work (a "direction").
+Name its primary direction — the one the request stresses most — with exactly one of these labels:
+plan_first (plan / measure / write up first, wait for approval), test_first (failing tests before code),
+minimal_diff (smallest change, don't touch unrelated code), no_new_deps (no new dependencies or libraries),
+security_first, accessibility_first, performance (a speed / memory / latency budget), backward_compat
+(keep behaviour, API or format unchanged for existing users), other (anything else — give it a short name).
+Also list any secondary directions with the same labels.
+Output JSON only: [{"id": "<id>", "primary": "<label>", "other_name": "<only when primary is other>", "secondary": [...]}]

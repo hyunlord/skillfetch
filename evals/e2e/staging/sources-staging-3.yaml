@@ -1,0 +1,246 @@
+# Corpus sources for `skillfetch ingest --sources` (index-format.md §1.1).
+#
+# The snapshot stage resolves `ref` to a commit and records it; the commit, not
+# the ref, is what an index is built from.
+#
+# license: `per-skill` = every skill is licensed by its own LICENSE file or its
+# frontmatter `license:` field, and a skill with neither is `unknown`; an SPDX id
+# would apply to every skill of the source. The index records the license and never
+# holds bodies or files; load_skills fetches them from the source (index-format.md §1.8).
+
+- id: anthropics-skills
+  kind: git
+  url: https://github.com/anthropics/skills
+  ref: dbd4588f9e1033efb41dad4bef2f7947c8993d44  #, 19 skills under skills/
+  root: skills/
+  publisher: anthropics
+  publisher_trust: verified
+  # Apache-2.0 for most skills; docx, pdf, pptx and xlsx are "All rights
+  # reserved"; doc-coauthoring has no LICENSE file.
+  license: per-skill
+
+- id: uasl
+  kind: git
+  url: https://github.com/onfire7777/universal-ai-skills-library
+  ref: 2a76bf42ce5c860adf8d0f3fcf3f6804109ac65b  #, 1812 skills under skills/
+  root: skills/
+  publisher: onfire7777
+  publisher_trust: unknown
+  # The repository is MIT, but it aggregates third-party skills (954 of them
+  # carry an .openskills.json naming their upstream repo), so the repository
+  # license is not inherited: per-skill files and frontmatter decide.
+  license: per-skill
+  # Source-level list of third-party upstreams; per-skill upstreams come from
+  # each skill's .openskills.json.
+  third_party_doc: docs/THIRD_PARTY_SOURCE_REPOS.md
+
+- id: affaan-m-ecc
+  kind: git
+  url: https://github.com/affaan-m/ECC
+  ref: 90606c8315ee09cafc303515c5f33024db6b9882
+  root: ""
+  exclude: [template, templates, fixtures, __fixtures__, testdata, test-fixtures]
+  publisher: affaan-m
+  publisher_trust: unknown
+  license: per-skill
+  record_repo_license: true
+  collapse_same_name: true
+
+- id: ahmed3elshaer-everything-claude-code-mobile
+  kind: git
+  url: https://github.com/ahmed3elshaer/everything-claude-code-mobile
+  ref: d94b24037d719bf64794cd385e99fa775a8de428
+  root: ""
+  exclude: [template, templates, fixtures, __fixtures__, testdata, test-fixtures]
+  publisher: ahmed3elshaer
+  publisher_trust: unknown
+  license: per-skill
+  record_repo_license: true
+  collapse_same_name: true
+
+- id: rshankras-claude-code-apple-skills
+  kind: git
+  url: https://github.com/rshankras/claude-code-apple-skills
+  ref: 9ffb83138209057875698dd11c1720c657c47a92
+  # skills/<area>/SKILL.md folders hold more skills one level down (skills/<area>/<name>/);
+  # discovery stops at a skill folder, so each nested one is listed as a root
+  roots:
+    - skills/
+    - skills/app-store/ad-attribution/
+    - skills/app-store/app-description-writer/
+    - skills/app-store/apple-search-ads/
+    - skills/app-store/iap-finalizer/
+    - skills/app-store/keyword-optimizer/
+    - skills/app-store/marketing-strategy/
+    - skills/app-store/originality-check/
+    - skills/app-store/ratings-mechanics/
+    - skills/app-store/rejection-handler/
+    - skills/app-store/review-response-writer/
+    - skills/app-store/screenshot-planner/
+    - skills/app-store/web-presence/
+    - skills/apple-intelligence/app-intents/
+    - skills/apple-intelligence/foundation-models/
+    - skills/apple-intelligence/visual-intelligence/
+    - skills/design/animation-patterns/
+    - skills/design/game-feel/
+    - skills/design/liquid-glass/
+    - skills/design/sf-symbols/
+    - skills/design/typography/
+    - skills/design/ui-prototyping/
+    - skills/design/ux-writing/
+    - skills/foundation/attributed-string/
+    - skills/generators/accessibility-generator/
+    - skills/generators/account-deletion/
+    - skills/generators/analytics-setup/
+    - skills/generators/announcement-banner/
+    - skills/generators/app-clip/
+    - skills/generators/app-extensions/
+    - skills/generators/app-icon-generator/
+    - skills/generators/app-store-assets/
+    - skills/generators/auth-flow/
+    - skills/generators/background-processing/
+    - skills/generators/ci-cd-setup/
+    - skills/generators/cloudkit-sync/
+    - skills/generators/consent-flow/
+    - skills/generators/custom-product-pages/
+    - skills/generators/data-export/
+    - skills/generators/debug-menu/
+    - skills/generators/deep-linking/
+    - skills/generators/error-monitoring/
+    - skills/generators/feature-flags/
+    - skills/generators/featuring-nomination/
+    - skills/generators/feedback-form/
+    - skills/generators/force-update/
+    - skills/generators/http-cache/
+    - skills/generators/image-loading/
+    - skills/generators/in-app-events/
+    - skills/generators/lapsed-user/
+    - skills/generators/live-activity-generator/
+    - skills/generators/localization-setup/
+    - skills/generators/logging-setup/
+    - skills/generators/milestone-celebration/
+    - skills/generators/networking-layer/
+    - skills/generators/offer-codes-setup/
+    - skills/generators/offline-queue/
+    - skills/generators/onboarding-generator/
+    - skills/generators/pagination/
+    - skills/generators/paywall-generator/
+    - skills/generators/permission-priming/
+    - skills/generators/persistence-setup/
+    - skills/generators/pre-orders/
+    - skills/generators/preview-data-generator/
+    - skills/generators/product-page-optimization/
+    - skills/generators/promoted-iap/
+    - skills/generators/push-notifications/
+    - skills/generators/quick-win-session/
+    - skills/generators/referral-system/
+    - skills/generators/review-prompt/
+    - skills/generators/screenshot-automation/
+    - skills/generators/settings-screen/
+    - skills/generators/share-card/
+    - skills/generators/social-export/
+    - skills/generators/spotlight-indexing/
+    - skills/generators/state-restoration/
+    - skills/generators/streak-tracker/
+    - skills/generators/subscription-lifecycle/
+    - skills/generators/subscription-offers/
+    - skills/generators/test-generator/
+    - skills/generators/tipkit-generator/
+    - skills/generators/usage-insights/
+    - skills/generators/variable-rewards/
+    - skills/generators/watermark-engine/
+    - skills/generators/whats-new/
+    - skills/generators/widget-generator/
+    - skills/generators/win-back-offers/
+    - skills/growth/analytics-interpretation/
+    - skills/growth/community-building/
+    - skills/growth/indie-business/
+    - skills/growth/press-media/
+    - skills/growth/store-growth-audit/
+    - skills/growth/store-signals/
+    - skills/ios/accessibility-audit/
+    - skills/ios/app-planner/
+    - skills/ios/assistive-access/
+    - skills/ios/coding-best-practices/
+    - skills/ios/ipad-patterns/
+    - skills/ios/migration-patterns/
+    - skills/ios/navigation-patterns/
+    - skills/ios/run-device/
+    - skills/ios/run-simulator/
+    - skills/ios/ui-review/
+    - skills/legal/privacy-policy/
+    - skills/legal/privacy-publish/
+    - skills/macos/app-planner/
+    - skills/macos/appkit-swiftui-bridge/
+    - skills/macos/architecture-patterns/
+    - skills/macos/coding-best-practices/
+    - skills/macos/macos-capabilities/
+    - skills/macos/macos-tahoe-apis/
+    - skills/macos/swiftdata-architecture/
+    - skills/macos/ui-review-tahoe/
+    - skills/mapkit/geotoolbox/
+    - skills/monetization/bundles-and-licensing/
+    - skills/monetization/external-purchases/
+    - skills/performance/profiling/
+    - skills/performance/swiftui-debugging/
+    - skills/product/app-namer/
+    - skills/product/architecture-spec/
+    - skills/product/beta-testing/
+    - skills/product/competitive-analysis/
+    - skills/product/idea-generator/
+    - skills/product/implementation-guide/
+    - skills/product/implementation-spec/
+    - skills/product/localization-strategy/
+    - skills/product/market-research/
+    - skills/product/prd-generator/
+    - skills/product/product-agent/
+    - skills/product/release-spec/
+    - skills/product/test-spec/
+    - skills/product/ux-spec/
+    - skills/security/privacy-manifests/
+    - skills/shared/skill-auditor/
+    - skills/shared/skill-creator/
+    - skills/swift/code-size/
+    - skills/swift/concurrency/
+    - skills/swift/concurrency-patterns/
+    - skills/swift/memory/
+    - skills/swiftdata/inheritance/
+    - skills/swiftui/alarmkit/
+    - skills/swiftui/charts-3d/
+    - skills/swiftui/data-flow/
+    - skills/swiftui/layout/
+    - skills/swiftui/text-editing/
+    - skills/swiftui/toolbars/
+    - skills/swiftui/webkit/
+    - skills/testing/characterization-test-generator/
+    - skills/testing/coverage-ratchet/
+    - skills/testing/fitness-functions/
+    - skills/testing/flow-walkthrough/
+    - skills/testing/integration-test-scaffold/
+    - skills/testing/mutation-testing/
+    - skills/testing/snapshot-test-setup/
+    - skills/testing/tdd-bug-fix/
+    - skills/testing/tdd-feature/
+    - skills/testing/tdd-refactor-guard/
+    - skills/testing/test-contract/
+    - skills/testing/test-data-factory/
+    - skills/visionos/spatial-design/
+    - skills/visionos/widgets/
+  exclude: [template, templates, fixtures, __fixtures__, testdata, test-fixtures]
+  publisher: rshankras
+  publisher_trust: unknown
+  license: per-skill
+  record_repo_license: true
+  collapse_same_name: true
+
+- id: actionbook-rust-skills
+  kind: git
+  url: https://github.com/actionbook/rust-skills
+  ref: 5c40d3ad785193231b7d0dbfb8e1eb447e5edd94
+  root: ""
+  exclude: [template, templates, fixtures, __fixtures__, testdata, test-fixtures]
+  publisher: actionbook
+  publisher_trust: unknown
+  license: per-skill
+  record_repo_license: true
+  collapse_same_name: true

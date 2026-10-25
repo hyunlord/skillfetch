@@ -1,0 +1,65 @@
+{
+ "graded_tasks": 2,
+ "added": 2,
+ "added_relevant": 1,
+ "cost_usd": 0.02,
+ "n_no_relevant": 85,
+ "n_cov": 288,
+ "S-b": [
+  {
+   "none_acc_no_relevant": 0.894,
+   "hit": 0.792,
+   "unnecessary_loads": 43,
+   "none_acc_expect_none": 0.85,
+   "mean_picks": 0.958
+  },
+  {
+   "none_acc_no_relevant": 0.847,
+   "hit": 0.788,
+   "unnecessary_loads": 48,
+   "none_acc_expect_none": 0.85,
+   "mean_picks": 0.942
+  },
+  {
+   "none_acc_no_relevant": 0.859,
+   "hit": 0.788,
+   "unnecessary_loads": 46,
+   "none_acc_expect_none": 0.825,
+   "mean_picks": 0.968
+  }
+ ],
+ "S-bp": {
+  "none_acc_no_relevant": 0.847,
+  "hit": 0.795,
+  "unnecessary_loads": 44,
+  "none_acc_expect_none": 0.825,
+  "mean_picks": 0.987
+ },
+ "check": {
+  "none_acc_no_relevant": {
+   "S-b_range": [
+    0.847,
+    0.894
+   ],
+   "S-bp": 0.847,
+   "inside_or_better": true
+  },
+  "hit": {
+   "S-b_range": [
+    0.788,
+    0.792
+   ],
+   "S-bp": 0.795,
+   "inside_or_better": true
+  },
+  "unnecessary_loads": {
+   "S-b_range": [
+    43,
+    48
+   ],
+   "S-bp": 44,
+   "inside_or_better": true
+  }
+ },
+ "verdict": "Cb = S-b' (no server branch)"
+}

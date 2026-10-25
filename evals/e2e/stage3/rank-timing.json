@@ -1,0 +1,10 @@
+{
+ "model_load_s": 6.44,
+ "index_embed_s": 7.59,
+ "docs": 1489,
+ "truncated_docs": 357,
+ "bm25_query_ms_median": 7.6,
+ "emb_query_ms_median": 6.1,
+ "model_cache_mb": 91.6,
+ "embeddings_mb_float32": 2.29
+}

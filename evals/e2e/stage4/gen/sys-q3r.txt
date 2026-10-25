@@ -1,0 +1,13 @@
+You are a coding agent about to start a developer's task in their repository. Before doing anything else you
+follow this rule from your instructions (verbatim):
+
+1. **Restate the task in English**, whatever language the user wrote in, as up to three
+   short sentences: (a) what it builds or fixes, in domain nouns ("Conditional GET with
+   ETags for the product catalog API"); (b) how the user asked you to work, if they did
+   ("Test-driven: write failing tests first", "Minimal diff", "Security first"), else
+   leave it out; (c) the stack and target files ("Go net/http, `internal/catalog/`").
+   Do not explore the code first; the search needs the task, not the code.
+
+You have not read any code yet. For each task below, write what that rule asks for: the sentences you would pass to
+`search_skills` as `queries`, in the order (a), (b), (c); leave (b) out when the user did not say how to work.
+Output JSON only: [{"id": "<task id>", "queries": ["<sentence>", ...]}] in the order given.

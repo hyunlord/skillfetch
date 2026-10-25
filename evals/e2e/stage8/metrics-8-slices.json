@@ -1,0 +1,120 @@
+{
+ "index_has_relevant": {
+  "n": 194,
+  "SF": {
+   "@1": 0.335,
+   "@5": 0.634,
+   "@10": 0.773
+  },
+  "SS-q1": {
+   "@1": 0.211,
+   "@5": 0.376,
+   "@10": 0.397
+  },
+  "SS-q3": {
+   "@1": 0.273,
+   "@5": 0.485,
+   "@10": 0.531
+  },
+  "SS-kw": {
+   "@1": 0.66,
+   "@5": 0.814,
+   "@10": 0.845
+  },
+  "final_load": {
+   "SF r1": 0.876,
+   "SF r2": 0.887,
+   "SF r3": 0.887,
+   "SS-load-kw": 0.634,
+   "SS-load-full": 0.216
+  }
+ },
+ "ss_only_relevant": {
+  "n": 129,
+  "SF": {
+   "@1": 0.0,
+   "@5": 0.0,
+   "@10": 0.0
+  },
+  "SS-q1": {
+   "@1": 0.271,
+   "@5": 0.457,
+   "@10": 0.488
+  },
+  "SS-q3": {
+   "@1": 0.349,
+   "@5": 0.543,
+   "@10": 0.589
+  },
+  "SS-kw": {
+   "@1": 0.605,
+   "@5": 0.814,
+   "@10": 0.853
+  },
+  "final_load": {
+   "SF r1": 0.0,
+   "SF r2": 0.0,
+   "SF r3": 0.0,
+   "SS-load-kw": 0.589,
+   "SS-load-full": 0.24
+  }
+ },
+ "relevant_pairs": {
+  "index": 380,
+  "ss_only": 1832
+ },
+ "top10_grade_ge2_mean_per_task": {
+  "SF": 0.703,
+  "SS-q1": 1.055,
+  "SS-q3": 1.334,
+  "SS-kw": 3.061
+ },
+ "kw_refusals": [
+  {
+   "task": "t311",
+   "task_type": "trivial",
+   "expect_none": true,
+   "query": "I wouldn't load a skill for this; fixing a one-word typo in a log message is trivial and needs no recipe.",
+   "SS-kw_results": 5,
+   "SS-load-kw": "ss:skill:bankrbot/skills#aeon-skill-repair",
+   "relevant_v5ss": 0
+  },
+  {
+   "task": "t317",
+   "task_type": "trivial",
+   "expect_none": true,
+   "query": "No skill needed. This is a one-character comparison fix (`>` → `<=`) in InventoryService.java, so I'd edit it directly rather than call the tool.",
+   "SS-kw_results": 12,
+   "SS-load-kw": "ss:skill:ar9av/obsidian-wiki#skill-creator",
+   "relevant_v5ss": 0
+  },
+  {
+   "task": "t327",
+   "task_type": "trivial",
+   "expect_none": true,
+   "query": "I wouldn't load a skill for this; it's a one-word typo fix. If forced to query: go cli help text",
+   "SS-kw_results": 12,
+   "SS-load-kw": "ss:skill:przeprogramowani/10x-cli#10x-cli-guide",
+   "relevant_v5ss": 0
+  },
+  {
+   "task": "t330",
+   "task_type": "trivial",
+   "expect_none": true,
+   "query": "I wouldn't load a skill for this. It's a one-line fix: add `import androidx.lifecycle.compose.collectAsStateWithLifecycle` to `WateringScreen.kt` and leave every other file alone.",
+   "SS-kw_results": 2,
+   "SS-load-kw": "ss:skill:jeffallan/claude-skills#kotlin-specialist",
+   "relevant_v5ss": 0
+  }
+ ],
+ "kw_words": {
+  "2": 9,
+  "3": 182,
+  "4": 180,
+  "5": 5,
+  "20": 1,
+  "21": 1,
+  "22": 1,
+  "24": 1
+ }
+}

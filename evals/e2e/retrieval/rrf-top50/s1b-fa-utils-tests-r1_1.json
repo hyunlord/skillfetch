@@ -1,0 +1,252 @@
+[
+ {
+  "id": "uasl/fastapi-endpoint@2a93d50c4970",
+  "title": "fastapi-endpoint",
+  "summary": "Guides the agent through exploring an existing FastAPI project, asking clarifying questions, planning an endpoint implementation for approval, and then building the endpoint and tests. It emphasizes async SQLAlchemy, Pydantic schemas, dependency-injected authentication, and API test coverage."
+ },
+ {
+  "id": "uasl/python-testing-patterns@e62d0f1ca316",
+  "title": "python-testing-patterns",
+  "summary": "Guides the agent in designing and implementing Python tests using pytest patterns, fixtures, mocks, and specialized testing techniques. It emphasizes focused, isolated tests and meaningful coverage of failure behavior."
+ },
+ {
+  "id": "uasl/fastapi-templates@effcd0de0b4c",
+  "title": "fastapi-templates",
+  "summary": "Guides creation of structured FastAPI backend projects using async patterns, dependency injection, repository and service layers, authentication, and testing examples. Includes templates for API endpoints, database access, and user management."
+ },
+ {
+  "id": "uasl/unit-testing@6c5fbb821103",
+  "title": "unit-testing",
+  "summary": "Guides the agent to write and improve isolated unit tests using common testing patterns, test doubles, naming conventions, and language-specific frameworks. Emphasizes focused, deterministic tests and meaningful coverage."
+ },
+ {
+  "id": "uasl/wycheproof@8924e1e4bfb6",
+  "title": "wycheproof",
+  "summary": "Use Wycheproof test vectors to validate cryptographic implementations against known attacks and edge cases. Integrate the vectors into test harnesses and CI to check valid, invalid, and acceptable cases."
+ },
+ {
+  "id": "uasl/async-python-patterns@957ebfe54aa7",
+  "title": "async-python-patterns",
+  "summary": "Guides implementation of asynchronous Python applications using asyncio, concurrency patterns, and async I/O. It emphasizes keeping call paths consistently synchronous or asynchronous, avoiding event-loop blocking, and offloading synchronous library calls when needed."
+ },
+ {
+  "id": "uasl/radar@a47ea6fd5f95",
+  "title": "radar",
+  "summary": "Add and refine tests, diagnose flaky behavior, and improve coverage while preserving product behavior. Follow the project’s existing testing conventions and verify changes with tests and relevant references."
+ },
+ {
+  "id": "uasl/integration-testing@62b51275be50",
+  "title": "integration-testing",
+  "summary": "Guides agents to write integration tests that exercise multiple components together, using real dependencies and suitable test frameworks. Covers test isolation, API testing patterns, database cleanup, and CI configuration for Testcontainers."
+ },
+ {
+  "id": "anthropics-skills/webapp-testing@a4b4ce82b644",
+  "title": "webapp-testing",
+  "summary": "Use native Python Playwright scripts to test local web applications, choosing an approach based on whether the app is static or dynamic. For dynamic apps, inspect the rendered state before acting, and use bundled helper scripts to manage servers when appropriate."
+ },
+ {
+  "id": "uasl/python-type-safety@60be75b4816f",
+  "title": "python-type-safety",
+  "summary": "Guides agents to use Python type annotations, generics, protocols, and type narrowing to make code statically checkable. It also recommends strict type checking and modern union syntax."
+ },
+ {
+  "id": "uasl/tdd-workflow@6eadb0bf0ea8",
+  "title": "tdd-workflow",
+  "summary": "Follow a test-driven workflow by writing tests before implementation, running tests through development, and refactoring while keeping them green. Aim for at least 80% coverage across unit, integration, and E2E tests, with attention to edge cases and errors."
+ },
+ {
+  "id": "uasl/atheris@5b575b7295c7",
+  "title": "atheris",
+  "summary": "Guides agents in using Atheris to fuzz Python code and Python C extensions, including writing harnesses, configuring instrumentation and sanitizers, and managing fuzzing runs. It emphasizes harness practices and local setup for native-extension fuzzing."
+ },
+ {
+  "id": "uasl/python-design-patterns@5c0fbe0d4633",
+  "title": "python-design-patterns",
+  "summary": "Guides the agent to design and refactor Python code using simple, focused components, clear separation of concerns, composition, and dependency injection. It also recommends delaying abstractions, keeping functions focused, and testing layers in isolation."
+ },
+ {
+  "id": "uasl/openapi-spec-generation@2d2c7a93b8f2",
+  "title": "openapi-spec-generation",
+  "summary": "Guides agents in creating and maintaining OpenAPI 3.1 specifications from design or code, validating API contracts, and generating SDKs and documentation. Includes patterns for reusable schemas, API descriptions, security, versioning, and validation tools."
+ },
+ {
+  "id": "uasl/python-performance-optimization@bf455fd100bf",
+  "title": "python-performance-optimization",
+  "summary": "Profile Python applications to identify CPU, memory, I/O, and database bottlenecks, then apply measured optimization techniques. Covers profiling tools, benchmarking, and implementation patterns for improving performance and memory use."
+ },
+ {
+  "id": "uasl/api-testing@4ada9a2fac88",
+  "title": "api-testing",
+  "summary": "Guides the agent in creating and running direct HTTP API tests with tools such as .http files, Bruno, Postman/Newman, and k6. Covers assertions, environment configuration, secret handling, and CI integration."
+ },
+ {
+  "id": "uasl/test-app-automation@abdd84ebc0ec",
+  "title": "test-app-automation",
+  "summary": "Automate Test App operations through Rube MCP by discovering current tool schemas, checking the Test App connection, and executing schema-compliant tools. Reuse workflow sessions and handle pagination until results are complete."
+ },
+ {
+  "id": "uasl/e2e-testing-patterns@8b25fb0b2da6",
+  "title": "e2e-testing-patterns",
+  "summary": "Guides agents in designing, implementing, and debugging reliable end-to-end test suites with Playwright and Cypress. Emphasizes independent, deterministic tests, stable selectors, user-visible behavior, and practical test data and waiting strategies."
+ },
+ {
+  "id": "uasl/n8n-code-python@ba1cd974d317",
+  "title": "n8n-code-python",
+  "summary": "Guides agents writing Python for n8n Code nodes, including n8n data access and return formats, execution modes, and Python’s standard-library limitations. It recommends considering JavaScript first and using Python (Beta) for better n8n integration."
+ },
+ {
+  "id": "uasl/algorand-vulnerability-scanner@b4ef2e1b7b33",
+  "title": "algorand-vulnerability-scanner",
+  "summary": "Guides security audits of Algorand smart contracts by identifying platform-specific vulnerabilities in TEAL and PyTeal, checking transaction validation and access controls, and using Tealer where available. It also recommends exploit-based tests and reports findings with severity and remediation guidance."
+ },
+ {
+  "id": "uasl/python-error-handling@8dc34883a143",
+  "title": "python-error-handling",
+  "summary": "Guides agents to implement Python validation and error handling with meaningful exceptions, exception chaining, and resilient batch processing. It also recommends practices for domain-type conversion, progress reporting, logging, and testing error paths."
+ },
+ {
+  "id": "uasl/tdd@ff86dad94075",
+  "title": "tdd",
+  "summary": "Follow a red-green-refactor workflow by writing focused behavior tests and implementing only enough code to pass each test. Plan around public interfaces and user-prioritized behavior, then refactor after tests pass."
+ },
+ {
+  "id": "uasl/claude-native-claude-api@24c958899f03",
+  "title": "claude-native-claude-api",
+  "summary": "Guide the agent in building, debugging, and migrating Claude API applications using Anthropic SDKs and documented API patterns. Apply the skill’s defaults for model choice, thinking, streaming, and prompt caching, and consult the relevant language-specific and shared documentation."
+ },
+ {
+  "id": "uasl/acceptance-testing@7f713f1566e8",
+  "title": "acceptance-testing",
+  "summary": "Use BDD acceptance-testing practices to turn business requirements into executable specifications, step definitions, and CI-validated tests. Apply the guidance across Gherkin- and Gauge-based frameworks and keep specifications useful as living documentation."
+ },
+ {
+  "id": "anthropics-skills/mcp-builder@7e8426a435cb",
+  "title": "mcp-builder",
+  "summary": "Guides agents through researching, planning, implementing, testing, and evaluating MCP servers that connect LLMs to external services. It emphasizes discoverable tools, comprehensive API coverage, structured schemas and responses, and realistic evaluations."
+ },
+ {
+  "id": "uasl/github-actions-templates@ce03df93ccdf",
+  "title": "github-actions-templates",
+  "summary": "Create GitHub Actions workflows for CI/CD tasks such as testing, building, security scanning, and deployment. Apply the listed workflow best practices when designing those workflows."
+ },
+ {
+  "id": "uasl/property-based-testing@a168f6739085",
+  "title": "property-based-testing",
+  "summary": "Use property-based testing proactively when it can strengthen coverage, especially for transformations, parsers, validators, algorithms, and smart contracts. Offer it as an option when a high-value pattern is found, adapt the recommendation when the codebase already uses a PBT library, and respect a user's decline."
+ },
+ {
+  "id": "uasl/slack-bot-builder@ce64c6aad24e",
+  "title": "slack-bot-builder",
+  "summary": "Guides implementation of Slack apps with Bolt, including interactive Block Kit interfaces, OAuth installation, and production-oriented handling of tokens, scopes, and request timing. Covers Python, JavaScript, and Java."
+ },
+ {
+  "id": "uasl/migrate-to-shoehorn@50bfd668fa65",
+  "title": "migrate-to-shoehorn",
+  "summary": "Migrate test files from TypeScript `as` assertions to `@total-typescript/shoehorn`, using `fromPartial()` for partial data and `fromAny()` for intentionally incorrect data. Install the package, update imports, and run a type check to verify the migration."
+ },
+ {
+  "id": "uasl/sympy@c0fc68d7bcdb",
+  "title": "sympy",
+  "summary": "Use SymPy to perform exact symbolic mathematics in Python, including algebra, calculus, equation solving, linear algebra, physics, and code generation. Apply the troubleshooting guidance for symbol definition, exact arithmetic, numerical conversion, solver selection, and simplification."
+ },
+ {
+  "id": "uasl/gsap-utils@a1cbf677d835",
+  "title": "gsap-utils",
+  "summary": "Guides the agent in using GSAP utility functions for value mapping, randomization, snapping, units, and collections. It emphasizes reusable function forms and documented APIs."
+ },
+ {
+  "id": "uasl/static-analysis@88c6f201cae0",
+  "title": "static-analysis",
+  "summary": "Guides agents in configuring and integrating static-analysis tools for type checking, linting, security scanning, and formatting across several languages. Recommends strict, layered checks and running them in development, pre-commit, and CI workflows."
+ },
+ {
+  "id": "uasl/contract-testing@b0f4c29940a9",
+  "title": "contract-testing",
+  "summary": "Guides agents in choosing and implementing contract-testing approaches to verify API compatibility between services. Covers Pact workflows, provider verification, Pact Broker and deployment checks, PactFlow, and Spring Cloud Contract."
+ },
+ {
+  "id": "uasl/zyte-api-automation@22b4a48968b2",
+  "title": "zyte-api-automation",
+  "summary": "Use Rube MCP to automate Zyte API operations by discovering current tool schemas, checking the connection, and executing schema-compliant calls. Reuse workflow sessions and handle paginated results until complete."
+ },
+ {
+  "id": "uasl/test-driven-development@0eebe2fe0e28",
+  "title": "test-driven-development",
+  "summary": "Follow a test-first development cycle: write a failing test, verify the failure, implement the minimum code to pass, then refactor while keeping tests green. Apply this approach to features, bug fixes, and integration debugging."
+ },
+ {
+  "id": "uasl/anvil@3a36e8410205",
+  "title": "anvil",
+  "summary": "Guides the agent in designing and implementing CLI and TUI experiences, including command contracts, terminal behavior, tool integration, and cross-platform concerns. It emphasizes self-documenting commands, reliable machine-readable output, and safe behavior in CI and non-TTY environments."
+ },
+ {
+  "id": "uasl/clean-code@f135cf4e9ff5",
+  "title": "clean-code",
+  "summary": "Guide the agent to write, review, and refactor readable, maintainable code using clear names, focused functions, disciplined comments and formatting, explicit error handling, and clean tests. It also calls for scoring code quality and identifying improvements when reviewing or writing code."
+ },
+ {
+  "id": "uasl/monorepo-management@4078df072127",
+  "title": "monorepo-management",
+  "summary": "Guides agents in setting up and managing JavaScript/TypeScript monorepos with workspace package managers and build systems. Covers shared configuration and code, build optimization, CI/CD, dependency management, and package publishing."
+ },
+ {
+  "id": "uasl/auth0-automation@4c6deb665922",
+  "title": "auth0-automation",
+  "summary": "Use Rube MCP to automate Auth0 operations. Discover current tool schemas, verify the Auth0 connection is active, and follow the tool schemas and workflow guidance when executing operations."
+ },
+ {
+  "id": "uasl/dictionary-api-automation@bae158f3873b",
+  "title": "dictionary-api-automation",
+  "summary": "Automates Dictionary API tasks through Rube MCP and Composio. The agent discovers current tool schemas, checks connection status, and follows the returned schemas and workflow guidance when executing tools."
+ },
+ {
+  "id": "uasl/testrunner@68216aa52709",
+  "title": "testrunner",
+  "summary": "Use Asynkron.TestRunner to diagnose unstable .NET test suites when standard testing is insufficient. Follow the skill’s guidance for timeouts, isolation, regression tracking, and parallel runs."
+ },
+ {
+  "id": "uasl/shortpixel-automation@11fe5cac97f5",
+  "title": "shortpixel-automation",
+  "summary": "Automate Shortpixel workflows through Rube MCP by discovering current tool schemas, checking the Shortpixel connection, and executing schema-compliant tools. Reuse workflow sessions and fetch paginated results until complete."
+ },
+ {
+  "id": "uasl/error-handling-patterns@4c19ee7d7821",
+  "title": "error-handling-patterns",
+  "summary": "Guides agents in handling errors across Python, JavaScript/TypeScript, Rust, and Go, including validation, cleanup, logging, and typed errors. Emphasizes preserving useful error context and handling errors at an appropriate level."
+ },
+ {
+  "id": "uasl/backend-patterns@3d87ff489f3e",
+  "title": "backend-patterns",
+  "summary": "Provides TypeScript-oriented backend patterns for API design, data access, query optimization, caching, error handling, authentication, rate limiting, background jobs, and logging. Recommends choosing patterns suited to the complexity level."
+ },
+ {
+  "id": "uasl/coding-standards@f854e26a9529",
+  "title": "coding-standards",
+  "summary": "Applies cross-project conventions for readable, maintainable code, including simplicity, reuse, and avoiding unnecessary complexity. It is a baseline rather than a source of framework-specific patterns."
+ },
+ {
+  "id": "uasl/bolt@c4895c710162",
+  "title": "bolt",
+  "summary": "Bolt directs the agent to identify measurable performance improvements, follow a profiling-to-presentation workflow, and document their impact. It also sets limits on implementation, optimization scope, and when to ask for confirmation or hand off work."
+ },
+ {
+  "id": "uasl/verification-loop@39d9be23cf50",
+  "title": "verification-loop",
+  "summary": "Guides the agent through build, type, lint, test, security, and diff verification. It also specifies how to handle verification failures and report results."
+ },
+ {
+  "id": "uasl/short-menu-automation@35d24e0fbeb9",
+  "title": "short-menu-automation",
+  "summary": "Use Rube MCP to automate Short Menu tasks. Discover current tool schemas, verify the Short Menu connection, and execute tools with schema-compliant arguments."
+ },
+ {
+  "id": "uasl/typescript-unit-testing@6fb3561edcb3",
+  "title": "typescript-unit-testing",
+  "summary": "Guides agents through TypeScript/NestJS unit-testing workflows for setup, writing, reviewing, running, debugging, and optimizing tests. It prescribes Jest testing practices, mock usage, coverage expectations, and a focused process for resolving failures."
+ },
+ {
+  "id": "uasl/code-review-excellence@ad803274d219",
+  "title": "code-review-excellence",
+  "summary": "Guides systematic, constructive code reviews that identify important correctness, security, performance, testing, and design concerns. It emphasizes actionable, respectful feedback and a clear review decision."
+ }
+]

@@ -1,0 +1,321 @@
+{
+ "over": [
+  {
+   "id": "t048",
+   "type": "bugfix",
+   "phrasing": "normal",
+   "expect_none": false,
+   "text": "In the Flutter fitness app, the workout timer keeps running correctly in the foreground but shows the wrong elapsed time after the app is backgrounded for a few minutes on iOS. `lib/workout/timer_controller.dart` just increments a counter in a `Timer.periodic`. Can you change it to derive elapsed time from a start timestamp so it survives backgrounding?",
+   "S-b": [
+    [
+     "uasl/debug-root-cause",
+     "process",
+     1,
+     35
+    ]
+   ],
+   "S-0": [
+    [
+     "uasl/debug-root-cause",
+     "process",
+     1
+    ]
+   ]
+  },
+  {
+   "id": "t109",
+   "type": "docs",
+   "phrasing": "terminal",
+   "expect_none": false,
+   "text": "godoc comments for all exported funcs in pkg/ledger, golint is complaining",
+   "S-b": [
+    [
+     "uasl/quill",
+     "process",
+     1,
+     4
+    ]
+   ],
+   "S-0": [
+    [
+     "uasl/quill",
+     "process",
+     1
+    ],
+    [
+     "uasl/coding-guidelines",
+     "process",
+     1
+    ]
+   ]
+  },
+  {
+   "id": "t115",
+   "type": "docs",
+   "phrasing": "normal",
+   "expect_none": false,
+   "text": "Our soil-moisture sensor firmware crate has about 20 unsafe blocks in src/hal/adc.rs and src/dma.rs with no justification, and clippy's undocumented_unsafe_blocks lint is about to be turned on in CI. Can you add a // SAFETY: comment above each one explaining why it's actually sound? Flag any you think aren't sound instead of making something up.",
+   "S-b": [
+    [
+     "uasl/quill",
+     "process",
+     1,
+     47
+    ]
+   ],
+   "S-0": [
+    [
+     "uasl/quill",
+     "process",
+     1
+    ]
+   ]
+  },
+  {
+   "id": "t214",
+   "type": "ml",
+   "phrasing": "normal",
+   "expect_none": false,
+   "text": "The linfa k-means clustering we use in `src/segment.rs` to group game players by playstyle gives different clusters every run, which makes the weekly reports useless. Can you seed the RNG from config, add k-means++ init, and print a silhouette score so we can pick k properly?",
+   "S-b": [
+    [
+     "uasl/debug-root-cause",
+     "process",
+     1,
+     26
+    ]
+   ],
+   "S-0": [
+    [
+     "uasl/debug-root-cause",
+     "process",
+     1
+    ],
+    [
+     "uasl/coding-guidelines",
+     "process",
+     1
+    ]
+   ]
+  },
+  {
+   "id": "t263",
+   "type": "performance",
+   "phrasing": "terminal",
+   "expect_none": false,
+   "text": "parse_order_book in feed/l2.rs clones every price level, make it zero-copy with borrowed &str",
+   "S-b": [
+    [
+     "uasl/refactoring-patterns",
+     "process",
+     1,
+     46
+    ]
+   ],
+   "S-0": [
+    [
+     "uasl/refactoring-patterns",
+     "process",
+     1
+    ]
+   ]
+  }
+ ],
+ "miss": [
+  {
+   "id": "t022",
+   "type": "feature",
+   "phrasing": "terminal",
+   "text": "swiftui: add pull-to-refresh to OrdersListView, call OrdersViewModel.reload()",
+   "S-b": [],
+   "S-0": [
+    [
+     "uasl/ios-hig-design",
+     "domain",
+     2,
+     7
+    ]
+   ],
+   "relevant": [
+    [
+     "uasl/ios-hig-design",
+     "domain",
+     2,
+     7
+    ]
+   ]
+  },
+  {
+   "id": "t046",
+   "type": "bugfix",
+   "phrasing": "directive",
+   "text": "Our inventory service throws `OptimisticLockException` storms during flash sales and then returns 409 to the warehouse scanners even when stock is available. The retry in `StockReservationService.reserve()` catches the wrong exception type because the JPA one gets wrapped in `ObjectOptimisticLockingFailureException`. Security first: while fixing the retry, make sure the error response stops leaking the entity class name and SQL state to the client.",
+   "S-b": [
+    [
+     "uasl/security-review",
+     "domain",
+     1,
+     14
+    ]
+   ],
+   "S-0": [
+    [
+     "uasl/secure-coding-practices",
+     "domain",
+     2,
+     5
+    ],
+    [
+     "uasl/error-handling-patterns",
+     "domain",
+     2,
+     1
+    ]
+   ],
+   "relevant": [
+    [
+     "uasl/secure-coding-practices",
+     "domain",
+     2,
+     5
+    ],
+    [
+     "uasl/error-handling-patterns",
+     "domain",
+     2,
+     1
+    ],
+    [
+     "uasl/code-security",
+     "domain",
+     2,
+     11
+    ],
+    [
+     "uasl/integration-testing",
+     "process",
+     2,
+     20
+    ],
+    [
+     "uasl/specter",
+     "domain",
+     2,
+     null
+    ],
+    [
+     "uasl/sentinel",
+     "process",
+     2,
+     13
+    ],
+    [
+     "uasl/api-design",
+     "domain",
+     2,
+     10
+    ],
+    [
+     "uasl/release-it",
+     "domain",
+     2,
+     22
+    ],
+    [
+     "uasl/owasp-security",
+     "domain",
+     2,
+     21
+    ]
+   ]
+  },
+  {
+   "id": "t178",
+   "type": "data",
+   "phrasing": "korean",
+   "text": "lms/exports/quiz_attempts.csv에서 학생별 최고 점수랑 평균 응시 횟수를 과목별로 집계하는 스크립트를 scripts/aggregate_quiz.py로 만들어 주세요. 같은 attempt_id가 중복으로 들어온 행이 꽤 있어서 그거 먼저 걸러내야 하고, 결과는 pandas로 처리해서 parquet으로 저장하면 됩니다.",
+   "S-b": [],
+   "S-0": [
+    [
+     "uasl/data-analyst-engine",
+     "domain",
+     2,
+     12
+    ]
+   ],
+   "relevant": [
+    [
+     "uasl/data-analyst-engine",
+     "domain",
+     2,
+     12
+    ]
+   ]
+  },
+  {
+   "id": "t184",
+   "type": "data",
+   "phrasing": "terminal",
+   "text": "downsample sensor_readings to 5-min averages per device_id, write into readings_5m",
+   "S-b": [],
+   "S-0": [
+    [
+     "uasl/sql-optimization-patterns",
+     "domain",
+     2,
+     27
+    ],
+    [
+     "uasl/supabase-postgres-best-practices",
+     "domain",
+     1,
+     20
+    ]
+   ],
+   "relevant": [
+    [
+     "uasl/postgresql-table-design",
+     "domain",
+     2,
+     1
+    ],
+    [
+     "uasl/sql-optimization-patterns",
+     "domain",
+     2,
+     27
+    ]
+   ]
+  },
+  {
+   "id": "t219",
+   "type": "ml",
+   "phrasing": "spec",
+   "text": "Goal: add a shipment delay classifier to the logistics backend (Kotlin, Spring Boot 3, Gradle).\n- New module `:delay-model` that loads an XGBoost4J model from S3 at startup (path from `delay.model.uri`)\n- `DelayPredictor.predict(shipment: Shipment): DelayRisk` returning LOW/MEDIUM/HIGH with probability\n- Feature extraction in `ShipmentFeatures.kt` must match the training notebook column order; add a unit test against `src/test/resources/golden_features.csv`\n- Hot-reload the model when a new version lands without restarting the pod\n- Micrometer timer `delay.predict.latency`\nAcceptance: `./gradlew :delay-model:test` passes and prediction stays under 5ms p95 in the JMH benchmark.",
+   "S-b": [
+    [
+     "uasl/tdd",
+     "process",
+     1,
+     33
+    ]
+   ],
+   "S-0": [
+    [
+     "uasl/unit-testing",
+     "process",
+     2,
+     26
+    ]
+   ],
+   "relevant": [
+    [
+     "uasl/unit-testing",
+     "process",
+     2,
+     26
+    ]
+   ]
+  }
+ ]
+}

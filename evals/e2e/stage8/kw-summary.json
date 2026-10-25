@@ -1,0 +1,24 @@
+{
+ "n": 380,
+ "outside_2_6_words": 4,
+ "examples_outside": [
+  [
+   "t311",
+   "I wouldn't load a skill for this; fixing a one-word typo in a log message is trivial and needs no recipe."
+  ],
+  [
+   "t317",
+   "No skill needed. This is a one-character comparison fix (`>` → `<=`) in InventoryService.java, so I'd edit it directly rather than call the tool."
+  ],
+  [
+   "t327",
+   "I wouldn't load a skill for this; it's a one-word typo fix. If forced to query: go cli help text"
+  ],
+  [
+   "t330",
+   "I wouldn't load a skill for this. It's a one-line fix: add `import androidx.lifecycle.compose.collectAsStateWithLifecycle` to `WateringScreen.kt` and leave every other file alone."
+  ]
+ ],
+ "cost_usd": 1.8,
+ "multi_line_raw": 0
+}

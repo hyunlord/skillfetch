@@ -1,0 +1,34 @@
+@@ -27,17 +27,19 @@
+ 
+ ## Steps
+ 
+-1. **Restate the task in English**, whatever language the user wrote in, as up to three
+-   short sentences: (a) what it builds or fixes, in domain nouns ("Conditional GET with
+-   ETags for the product catalog API"); (b) how the user asked you to work, if they did
+-   ("Test-driven: write failing tests first", "Minimal diff", "Security first"), else
+-   leave it out; (c) the stack and target files ("Go net/http, `internal/catalog/`").
+-   Do not explore the code first; the search needs the task, not the code.
++1. **Restate the task in English**, whatever language the user wrote in, as three short
++   sentences: (a) what it builds or fixes, in domain nouns ("Conditional GET with ETags
++   for the product catalog API"); (b) the kind of work and how to do it: the approach the
++   user asked for ("Test-driven: write failing tests first", "Minimal diff", "Security
++   first"), or, if they did not say, the one that fits this task best ("Bug fix: find the
++   root cause first"); (c) the stack and target files ("Go net/http, `internal/catalog/`").
++   Add (d), the user's request copied word for word, as a fourth query. Do not explore
++   the code first; the search needs the task, not the code.
+ 2. If no `mcp__skillfetch__*` tool is listed yet, the server is starting: load them with
+    ToolSearch (query `+skillfetch`), and search again if it says it is connecting.
+ 3. Call `profile_repo` with the repository root once per session (it reads manifest files
+    only) and pass the result as `profile` to `search_skills`.
+-4. Call `search_skills` with those sentences as `queries`. It returns 50 one-line
++4. Call `search_skills` with (a)–(d) as `queries`. It returns 50 one-line
+    summaries, best first: read all 50 and pick 1–3 that fit this task — the best fit is
+    often not near the top. Each result has a `token_estimate`: when two fit equally, take
+    the smaller, and keep the set's total under `load_skills`' budget (8000 tokens by default).
+@@ -54,6 +56,5 @@
+ 
+ ## Rules
+ 
+-- Search with the task, not with the user's literal wording or a list of keywords.
+ - Never load a skill that `resolve_set` excluded.
+ - Do not search again mid-task unless the task changes.

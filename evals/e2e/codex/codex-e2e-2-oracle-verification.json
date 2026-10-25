@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "checked_at": "2026-10-23T16:17:15.848Z",
+  "new_experiment_sessions": 0,
+  "original_report_prefix_preserved": true,
+  "report_sha256": "a10b518824e5c0ef9ca9d40dabe3ba894e1cb1339e7c24bd259e9c8ebb6173cf",
+  "task_table_rows": 19,
+  "session_load_sets_and_grades_verified": 76,
+  "input_hashes_verified": 4,
+  "local_links_verified": 80,
+  "codex_confirmed_hit": "4/19",
+  "codex_precision_graded": "4/11",
+  "codex_ungraded_loads": 9,
+  "v2_confirmed_hit": "22/55",
+  "v2_precision_graded": "22/43",
+  "v2_ungraded_loads": 42,
+  "long_requests": 4,
+  "query_four_matches": 19
+}

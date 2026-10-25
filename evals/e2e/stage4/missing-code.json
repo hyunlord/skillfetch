@@ -1,0 +1,25 @@
+{
+ "rule": "session ended without making the change and its final message says the code, data or config the task describes is not in the repository (hand-classified from the final message)",
+ "tasks_all_runs": [
+  "s4-t026",
+  "s4-t027",
+  "s4-t033",
+  "s4-t177",
+  "s4-t203",
+  "s4-t211",
+  "s4-t224",
+  "s4-t229",
+  "s4-t253"
+ ],
+ "partial_sessions": [
+  "s4-t130-E1-r1",
+  "s4-t130-E1-r2",
+  "s4-t130-E1-r3",
+  "s4-t130-E2-r1",
+  "s4-t130-E2-r2",
+  "s4-t176-E1-r1",
+  "s4-t176-E1-r2",
+  "s4-t176-E2-r3"
+ ],
+ "sessions": 62
+}

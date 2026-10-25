@@ -1,0 +1,71 @@
+{
+ "graded_tasks": 3,
+ "added": 3,
+ "added_relevant": 0,
+ "cost_usd": 0.03,
+ "n_no_relevant": 85,
+ "n_cov": 288,
+ "per_generation": [
+  {
+   "none_acc": 0.847,
+   "hit": 0.795,
+   "unnecessary_loads": 44,
+   "pairs_moved_16": 11,
+   "moved_pairs": [
+    "pair01",
+    "pair05",
+    "pair07",
+    "pair08",
+    "pair11",
+    "pair13",
+    "pair14",
+    "pair15",
+    "pair17",
+    "pair19",
+    "pair20"
+   ]
+  },
+  {
+   "none_acc": 0.835,
+   "hit": 0.806,
+   "unnecessary_loads": 51,
+   "pairs_moved_16": 10,
+   "moved_pairs": [
+    "pair01",
+    "pair05",
+    "pair07",
+    "pair08",
+    "pair11",
+    "pair13",
+    "pair15",
+    "pair17",
+    "pair19",
+    "pair20"
+   ]
+  },
+  {
+   "none_acc": 0.847,
+   "hit": 0.781,
+   "unnecessary_loads": 53,
+   "pairs_moved_16": 10,
+   "moved_pairs": [
+    "pair01",
+    "pair05",
+    "pair07",
+    "pair08",
+    "pair11",
+    "pair13",
+    "pair15",
+    "pair17",
+    "pair19",
+    "pair20"
+   ]
+  }
+ ],
+ "mean": {
+  "none_acc": 0.843,
+  "hit": 0.794,
+  "unnecessary_loads": 49.333,
+  "pairs_moved_16": 10.333
+ }
+}

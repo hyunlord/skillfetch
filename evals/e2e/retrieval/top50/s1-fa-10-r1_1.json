@@ -1,0 +1,252 @@
+[
+ {
+  "id": "uasl/fastapi-endpoint@2a93d50c4970",
+  "title": "fastapi-endpoint",
+  "summary": "Guides the agent through exploring an existing FastAPI project, asking clarifying questions, planning an endpoint implementation for approval, and then building the endpoint and tests. It emphasizes async SQLAlchemy, Pydantic schemas, dependency-injected authentication, and API test coverage."
+ },
+ {
+  "id": "uasl/fastapi-templates@effcd0de0b4c",
+  "title": "fastapi-templates",
+  "summary": "Guides creation of structured FastAPI backend projects using async patterns, dependency injection, repository and service layers, authentication, and testing examples. Includes templates for API endpoints, database access, and user management."
+ },
+ {
+  "id": "uasl/bolt@c4895c710162",
+  "title": "bolt",
+  "summary": "Bolt directs the agent to identify measurable performance improvements, follow a profiling-to-presentation workflow, and document their impact. It also sets limits on implementation, optimization scope, and when to ask for confirmation or hand off work."
+ },
+ {
+  "id": "uasl/insecure-defaults@a0e826721018",
+  "title": "insecure-defaults",
+  "summary": "Audits production-reachable code and configuration for fail-open security defaults, then verifies runtime behavior and production impact before reporting findings with evidence. Distinguishes insecure fallbacks from fail-secure behavior."
+ },
+ {
+  "id": "uasl/claude-native-claude-api@24c958899f03",
+  "title": "claude-native-claude-api",
+  "summary": "Guide the agent in building, debugging, and migrating Claude API applications using Anthropic SDKs and documented API patterns. Apply the skill’s defaults for model choice, thinking, streaming, and prompt caching, and consult the relevant language-specific and shared documentation."
+ },
+ {
+  "id": "uasl/openapi-spec-generation@2d2c7a93b8f2",
+  "title": "openapi-spec-generation",
+  "summary": "Guides agents in creating and maintaining OpenAPI 3.1 specifications from design or code, validating API contracts, and generating SDKs and documentation. Includes patterns for reusable schemas, API descriptions, security, versioning, and validation tools."
+ },
+ {
+  "id": "uasl/quill@336ba74b0e79",
+  "title": "quill",
+  "summary": "Quill guides the agent to improve codebase documentation, type clarity, and README/API materials while preserving runtime behavior. It emphasizes accurate, useful documentation, checking links and coverage, and reporting the work and its results."
+ },
+ {
+  "id": "uasl/api-testing@4ada9a2fac88",
+  "title": "api-testing",
+  "summary": "Guides the agent in creating and running direct HTTP API tests with tools such as .http files, Bruno, Postman/Newman, and k6. Covers assertions, environment configuration, secret handling, and CI integration."
+ },
+ {
+  "id": "anthropics-skills/docx@74e2b8b277a4",
+  "title": "docx",
+  "summary": "Use DOCX-specific workflows and helper scripts to create, read, edit, and annotate Word documents. Follow the listed docx-js and XML handling requirements, then validate or render outputs where directed."
+ },
+ {
+  "id": "uasl/setup-matt-pocock-skills@d52ac42900e6",
+  "title": "setup-matt-pocock-skills",
+  "summary": "Guides the agent through exploring a repository, presenting findings and confirming setup choices, then configuring an `## Agent skills` block and supporting docs. It specifies file-selection and update rules for the generated Markdown files."
+ },
+ {
+  "id": "uasl/backend-patterns@3d87ff489f3e",
+  "title": "backend-patterns",
+  "summary": "Provides TypeScript-oriented backend patterns for API design, data access, query optimization, caching, error handling, authentication, rate limiting, background jobs, and logging. Recommends choosing patterns suited to the complexity level."
+ },
+ {
+  "id": "uasl/high-perf-browser@aee32087bf43",
+  "title": "high-perf-browser",
+  "summary": "Guide the agent to optimize browser and web-application performance by reducing network latency, improving resource loading and caching, and choosing suitable protocols. When assessing or building an application, provide a performance score and specific improvements toward 10/10."
+ },
+ {
+  "id": "uasl/vercel-cli-with-tokens@3f9c2805c482",
+  "title": "vercel-cli-with-tokens",
+  "summary": "Guides the agent through token-based Vercel CLI setup, deployment, and project management without interactive login. It prioritizes preview deployments, protects tokens, and requires approval before git pushes."
+ },
+ {
+  "id": "anthropics-skills/webapp-testing@a4b4ce82b644",
+  "title": "webapp-testing",
+  "summary": "Use native Python Playwright scripts to test local web applications, choosing an approach based on whether the app is static or dynamic. For dynamic apps, inspect the rendered state before acting, and use bundled helper scripts to manage servers when appropriate."
+ },
+ {
+  "id": "uasl/python-error-handling@8dc34883a143",
+  "title": "python-error-handling",
+  "summary": "Guides agents to implement Python validation and error handling with meaningful exceptions, exception chaining, and resilient batch processing. It also recommends practices for domain-type conversion, progress reporting, logging, and testing error paths."
+ },
+ {
+  "id": "uasl/architecture-patterns@d184d1c3a346",
+  "title": "architecture-patterns",
+  "summary": "Guides the agent in designing or refactoring backend systems with Clean Architecture, Hexagonal Architecture, and Domain-Driven Design. It emphasizes inward dependencies, framework-independent business logic, and testability without external infrastructure."
+ },
+ {
+  "id": "uasl/monorepo-management@4078df072127",
+  "title": "monorepo-management",
+  "summary": "Guides agents in setting up and managing JavaScript/TypeScript monorepos with workspace package managers and build systems. Covers shared configuration and code, build optimization, CI/CD, dependency management, and package publishing."
+ },
+ {
+  "id": "uasl/web-perf@9063b7e5eacf",
+  "title": "web-perf",
+  "summary": "Audits web performance using Chrome DevTools MCP, including Core Web Vitals, network behavior, accessibility, and—when applicable—codebase optimizations. Prefers retrieval from current documentation for specific performance numbers and recommendations."
+ },
+ {
+  "id": "uasl/cf-crawl@77a977c31001",
+  "title": "cf-crawl",
+  "summary": "When asked to crawl a website, the agent uses Cloudflare Browser Rendering’s crawl API, polling jobs and saving page content as Markdown. It loads and validates credentials, handles crawl options such as incremental dates, and parses the skill’s command-line arguments."
+ },
+ {
+  "id": "uasl/web-performance-optimization@b2b38275ed40",
+  "title": "web-performance-optimization",
+  "summary": "Guides agents to measure web performance, identify bottlenecks, prioritize improvements, and verify their impact. Emphasizes Core Web Vitals, asset optimization, efficient loading, and caching."
+ },
+ {
+  "id": "uasl/n8n-expression-syntax@f1845451eb4d",
+  "title": "n8n-expression-syntax",
+  "summary": "Guides the agent to write and troubleshoot n8n expressions, including variable access, webhook data paths, and syntax rules. It also distinguishes expression syntax from direct JavaScript access in Code nodes and identifies places where expressions should not be used."
+ },
+ {
+  "id": "uasl/design-optimize@cbb1632043ec",
+  "title": "design-optimize",
+  "summary": "Measure interface performance, identify bottlenecks, and apply targeted optimizations across loading, rendering, animation, network use, and Core Web Vitals. Verify improvements across real devices and network conditions without sacrificing accessibility or functionality."
+ },
+ {
+  "id": "uasl/firecrawl-scraper@8691949c9232",
+  "title": "firecrawl-scraper",
+  "summary": "Use Firecrawl for deep web-page extraction, page interaction, screenshots, PDF parsing, and batch website crawling. Configure API keys through environment variables."
+ },
+ {
+  "id": "uasl/forge@a8efdfdbe817",
+  "title": "forge",
+  "summary": "Use Forge to build small, runnable prototypes that validate ideas, relying on mocks where useful and keeping work ready for handoff. Prioritize learning and working demos over production polish, and report the prototype’s status, findings, debt, and next decision."
+ },
+ {
+  "id": "uasl/design-integration@03e2661a4d5f",
+  "title": "design-integration",
+  "summary": "Delegate Uniswap integration architecture design to the integration-architect agent and present a project-specific blueprint. The blueprint covers the recommended integration method, architecture, dependencies, security considerations, and an ordered implementation plan."
+ },
+ {
+  "id": "uasl/segment-cdp@42e8e765d937",
+  "title": "segment-cdp",
+  "summary": "Apply Segment CDP patterns when implementing browser or server-side tracking and designing event schemas. The skill covers Analytics.js calls, identity resolution, and Protocols-based tracking plan enforcement."
+ },
+ {
+  "id": "uasl/loom@e731d9ef70c3",
+  "title": "loom",
+  "summary": "Loom directs the agent to analyze a codebase and prepare, stage, validate, and refine Figma Make input packages. It also establishes boundaries for token ownership, Figma access, routing, and delivery requirements."
+ },
+ {
+  "id": "uasl/design-of-experiments@03784eef8ecb",
+  "title": "design-of-experiments",
+  "summary": "Guides the agent through planning and validating efficient multi-factor experiments, from defining objectives and selecting a design to specifying execution and analysis. Emphasizes randomization, replication, appropriate factor levels, and quality checks."
+ },
+ {
+  "id": "uasl/ubiquitous-language@0c7a6937f877",
+  "title": "ubiquitous-language",
+  "summary": "Extract domain terminology from the conversation, identify ambiguities and synonyms, and propose a consistent glossary. Save it to `UBIQUITOUS_LANGUAGE.md` and provide an inline summary; on reruns, update the existing glossary and its example dialogue."
+ },
+ {
+  "id": "uasl/perf-web-optimization@0e20e7b8cc98",
+  "title": "perf-web-optimization",
+  "summary": "Apply practical web-performance optimizations to images, CSS, and related page assets. Route audit work, report reading, and budget setting to the perf-lighthouse skill."
+ },
+ {
+  "id": "uasl/tavily-web@2b69bd325cb7",
+  "title": "tavily-web",
+  "summary": "Provides Tavily-powered web search, URL content extraction, website crawling, and research. It instructs the agent to configure Tavily API keys through environment variables."
+ },
+ {
+  "id": "uasl/gsap-core@ca474b7f6296",
+  "title": "gsap-core",
+  "summary": "Guides the agent in writing and reviewing GSAP core animations, including tweens, easing, stagger, transforms, and playback control. It also recommends GSAP for unspecified JavaScript animation needs and covers responsive and reduced-motion behavior with matchMedia."
+ },
+ {
+  "id": "uasl/ux-audit@d921ee5d8321",
+  "title": "ux-audit",
+  "summary": "Guides an agent through browser-based UX audits and QA sweeps, from selecting a target and browser tool to testing workflows, resilience, layouts, and network behavior. It directs the agent to document findings in reports, with the audit depth determining how extensive and autonomous the testing should be."
+ },
+ {
+  "id": "uasl/exa-search@371597562d6c",
+  "title": "exa-search",
+  "summary": "Use the Exa API for semantic search, similar-content discovery, category-based search, and structured research. Configure API keys through environment variables."
+ },
+ {
+  "id": "uasl/design-system-patterns@cd952cab0879",
+  "title": "design-system-patterns",
+  "summary": "Guides agents in building scalable design systems through token hierarchies, theming infrastructure, and reusable component patterns. It also recommends practices for documenting, versioning, testing, automating, and migrating design tokens."
+ },
+ {
+  "id": "uasl/lemlist-automation@a31df61c312a",
+  "title": "lemlist-automation",
+  "summary": "Use the Lemlist Composio MCP integration to manage campaigns, enroll and enrich leads, export campaign data, and handle unsubscribes. Follow the skill’s guidance for campaign response parsing, lead batching, and resolving lead IDs before adding variables."
+ },
+ {
+  "id": "uasl/typescript-clean-code@409278d3a61a",
+  "title": "typescript-clean-code",
+  "summary": "Use Clean Code and professional-practice workflows tailored to TypeScript, consulting the skill’s reference files before giving advice or writing code. Apply relevant rules and examples, follow task workflows, and cite the sources behind recommendations."
+ },
+ {
+  "id": "anthropics-skills/skill-creator@5d80e84222d8",
+  "title": "skill-creator",
+  "summary": "Guides an agent through creating, testing, evaluating, and improving skills, including optional description optimization and packaging. It specifies workflows for running evaluations and adapts those workflows for Claude.ai and Cowork environments."
+ },
+ {
+  "id": "uasl/sweep@6fda55315322",
+  "title": "sweep",
+  "summary": "Sweep guides repository cleanup by finding and analyzing dead code, orphaned files, unused dependencies, and stale configuration. It requires evidence-based, risk-aware recommendations and safeguards around deletion, verification, and handoffs."
+ },
+ {
+  "id": "uasl/slack-bot-builder@ce64c6aad24e",
+  "title": "slack-bot-builder",
+  "summary": "Guides implementation of Slack apps with Bolt, including interactive Block Kit interfaces, OAuth installation, and production-oriented handling of tokens, scopes, and request timing. Covers Python, JavaScript, and Java."
+ },
+ {
+  "id": "uasl/causal-inference-root-cause@d857d3c52e7a",
+  "title": "causal-inference-root-cause",
+  "summary": "Use a structured causal-inference workflow to investigate effects, generate and test competing explanations, account for confounders, and identify root causes. Document conclusions with evidence, uncertainty, and validated interventions."
+ },
+ {
+  "id": "uasl/pricing-page@8b72ba4d0477",
+  "title": "pricing-page",
+  "summary": "Create a single-screen pricing page as a self-contained HTML document, following the active DESIGN.md and the brief’s product and tier requirements. Include plan cards, a feature comparison table, an FAQ, and a footer CTA, then emit the artifact in the specified format."
+ },
+ {
+  "id": "uasl/scaffold@443673063eb0",
+  "title": "scaffold",
+  "summary": "Guides infrastructure provisioning and local development environment setup through an assess-design-implement-verify-handoff workflow. Emphasizes IaC, security, state management, validation, cost awareness, and routing specialized or multi-agent work appropriately."
+ },
+ {
+  "id": "uasl/coding-standards@f854e26a9529",
+  "title": "coding-standards",
+  "summary": "Applies cross-project conventions for readable, maintainable code, including simplicity, reuse, and avoiding unnecessary complexity. It is a baseline rather than a source of framework-specific patterns."
+ },
+ {
+  "id": "uasl/product-showcase@47ddb0e168e1",
+  "title": "product-showcase",
+  "summary": "Generate a deployable, multi-page marketing showcase that explains a web app through real screenshots, workflow walkthroughs, and benefit-focused copy. Explore the app, capture its key features, then build and deploy a polished site with useful navigation, forms, and SEO basics."
+ },
+ {
+  "id": "uasl/perf-lighthouse@ccafe273f7d2",
+  "title": "perf-lighthouse",
+  "summary": "Guides agents in running Lighthouse audits through the CLI or Node API, interpreting reports, defining performance budgets, and integrating audits into CI. It also covers comparing builds and troubleshooting common audit issues."
+ },
+ {
+  "id": "uasl/static-analysis@88c6f201cae0",
+  "title": "static-analysis",
+  "summary": "Guides agents in configuring and integrating static-analysis tools for type checking, linting, security scanning, and formatting across several languages. Recommends strict, layered checks and running them in development, pre-commit, and CI workflows."
+ },
+ {
+  "id": "uasl/connect@77e02b4574f6",
+  "title": "connect",
+  "summary": "Connect Claude to external apps through Composio so it can execute actions such as sending messages, creating issues, and updating records instead of merely describing them. Supports several agent frameworks and MCP clients."
+ },
+ {
+  "id": "uasl/skill-judge@fbf1f2cc412c",
+  "title": "skill-judge",
+  "summary": "Evaluates Agent Skills against a multi-dimensional rubric covering knowledge value, procedures, anti-patterns, specification compliance, structure, freedom, design patterns, and usability. It guides the agent through analysis, scoring, grading, and producing an actionable evaluation report."
+ },
+ {
+  "id": "uasl/navigator@8d026b4397b8",
+  "title": "navigator",
+  "summary": "Navigator completes browser-based tasks using Playwright and Chrome DevTools, collecting data and evidence while monitoring errors. It emphasizes explicit waits, validation, safe credential handling, and reproducible execution reports."
+ }
+]

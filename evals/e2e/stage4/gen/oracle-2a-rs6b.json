@@ -1,0 +1,23 @@
+{
+ "s6b-t004": {
+  "skills": [
+   "uasl/async-python-patterns@957ebfe54aa7",
+   "uasl/postgresql-table-design@59d09e948243"
+  ],
+  "reason": "Celery background jobs plus a schema change and migration; async/task patterns and Postgres column design help a little."
+ },
+ "s6b-t133": {
+  "skills": [],
+  "reason": "A routine Dockerfile with npm ci, a cache mount and a .dockerignore needs no skill."
+ },
+ "s6b-t179": {
+  "skills": [
+   "uasl/sql-optimization-patterns@389f90da7b56"
+  ],
+  "reason": "A dedupe delete keeping the earliest row per group benefits from window-function and SQL query patterns."
+ },
+ "s6b-t354": {
+  "skills": [],
+  "reason": "A small, well-specified Alembic revision check with a minimal diff needs no skill."
+ }
+}

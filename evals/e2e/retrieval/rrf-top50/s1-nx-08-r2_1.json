@@ -1,0 +1,252 @@
+[
+ {
+  "id": "uasl/vercel-react-best-practices@70f3b5aaf775",
+  "title": "vercel-react-best-practices",
+  "summary": "Provides React and Next.js performance guidance for writing, reviewing, and refactoring code. It prioritizes practices for async work, bundle size, server and client performance, rendering, and JavaScript efficiency."
+ },
+ {
+  "id": "uasl/next-upgrade@df465f7770a5",
+  "title": "next-upgrade",
+  "summary": "Upgrade a project to the latest Next.js version using the official migration guides and codemods. Identify the current version, apply relevant migrations and dependency updates, then verify the upgrade with a build and development testing."
+ },
+ {
+  "id": "uasl/typescript-unit-testing@6fb3561edcb3",
+  "title": "typescript-unit-testing",
+  "summary": "Guides agents through TypeScript/NestJS unit-testing workflows for setup, writing, reviewing, running, debugging, and optimizing tests. It prescribes Jest testing practices, mock usage, coverage expectations, and a focused process for resolving failures."
+ },
+ {
+  "id": "uasl/frontend-patterns@8f659ce2a0bd",
+  "title": "frontend-patterns",
+  "summary": "Use React and Next.js frontend patterns for components, state, data fetching, performance, forms, animation, and accessibility. Keep frontend example data generic and choose patterns appropriate to project complexity."
+ },
+ {
+  "id": "uasl/next-best-practices@ee058f89acea",
+  "title": "next-best-practices",
+  "summary": "Apply Next.js best practices when writing or reviewing Next.js code, including using the optimized image component instead of plain HTML image tags. The skill covers routing, server components, data patterns, rendering, and performance optimization."
+ },
+ {
+  "id": "uasl/tdd-workflow@6eadb0bf0ea8",
+  "title": "tdd-workflow",
+  "summary": "Follow a test-driven workflow by writing tests before implementation, running tests through development, and refactoring while keeping them green. Aim for at least 80% coverage across unit, integration, and E2E tests, with attention to edge cases and errors."
+ },
+ {
+  "id": "uasl/next-cache-components@b22f6e134147",
+  "title": "next-cache-components",
+  "summary": "Guides implementation of Next.js 16 Cache Components, including cached, dynamic, and static content; cache lifetimes and invalidation; and migration from `unstable_cache`. It also documents the restriction on runtime APIs inside `use cache`."
+ },
+ {
+  "id": "uasl/scaffold-nextjs@3d1152f5d9d0",
+  "title": "scaffold-nextjs",
+  "summary": "Guides the agent through gathering project details and scaffolding a Next.js turborepo with UI components, development tooling, and deployment setup. It specifies project structure, configuration, and several implementation constraints."
+ },
+ {
+  "id": "uasl/backend-patterns@3d87ff489f3e",
+  "title": "backend-patterns",
+  "summary": "Provides TypeScript-oriented backend patterns for API design, data access, query optimization, caching, error handling, authentication, rate limiting, background jobs, and logging. Recommends choosing patterns suited to the complexity level."
+ },
+ {
+  "id": "uasl/migrate-to-shoehorn@50bfd668fa65",
+  "title": "migrate-to-shoehorn",
+  "summary": "Migrate test files from TypeScript `as` assertions to `@total-typescript/shoehorn`, using `fromPartial()` for partial data and `fromAny()` for intentionally incorrect data. Install the package, update imports, and run a type check to verify the migration."
+ },
+ {
+  "id": "uasl/taste-skill@57790089504e",
+  "title": "taste-skill",
+  "summary": "The skill directs the agent to build distinctive, responsive React or Next.js interfaces using specified design defaults, component conventions, and motion and performance rules. It also prescribes visual patterns and interaction states, and requires a preflight review of generated UI code."
+ },
+ {
+  "id": "uasl/e2e-testing-patterns@8b25fb0b2da6",
+  "title": "e2e-testing-patterns",
+  "summary": "Guides agents in designing, implementing, and debugging reliable end-to-end test suites with Playwright and Cypress. Emphasizes independent, deterministic tests, stable selectors, user-visible behavior, and practical test data and waiting strategies."
+ },
+ {
+  "id": "uasl/artisan@1e09f38ffcab",
+  "title": "artisan",
+  "summary": "Guides frontend work toward production-quality React, Vue, and Svelte components with TypeScript, accessibility, and explicit state handling. Defines workflow, approval boundaries, handoffs, and required deliverables."
+ },
+ {
+  "id": "uasl/nextjs-turbopack@b0af0186e13a",
+  "title": "nextjs-turbopack",
+  "summary": "Guides Next.js 16+ development toward Turbopack and explains when webpack is an appropriate fallback. It also recommends version-aware documentation and bundle analysis for production optimization."
+ },
+ {
+  "id": "uasl/documentation-lookup@dee6d7478eab",
+  "title": "documentation-lookup",
+  "summary": "For questions involving libraries, frameworks, or APIs, retrieve current documentation through Context7 rather than relying on training data. Resolve the library ID before querying, select relevant documentation, and use the fetched information in the response."
+ },
+ {
+  "id": "uasl/api-design@bba608f8c974",
+  "title": "api-design",
+  "summary": "Guides the agent in designing and reviewing REST API contracts, covering resource URLs, HTTP behavior, response formats, pagination, security, rate limits, and versioning. It also provides implementation patterns and a checklist for endpoint readiness."
+ },
+ {
+  "id": "anthropics-skills/web-artifacts-builder@9c350d2f5f13",
+  "title": "web-artifacts-builder",
+  "summary": "Guides the agent to initialize a React frontend project, develop a multi-component web artifact, bundle it into a single HTML file, and share it with the user. It recommends postponing optional visual testing until after presenting the artifact, unless testing is requested or issues arise."
+ },
+ {
+  "id": "uasl/segment-cdp@42e8e765d937",
+  "title": "segment-cdp",
+  "summary": "Apply Segment CDP patterns when implementing browser or server-side tracking and designing event schemas. The skill covers Analytics.js calls, identity resolution, and Protocols-based tracking plan enforcement."
+ },
+ {
+  "id": "uasl/judge@6ea2e485149e",
+  "title": "judge",
+  "summary": "Use the Codex review CLI to review PRs, pre-commit changes, and commits, then assess findings for correctness, security, intent alignment, consistency, and test quality. Produce evidence-based reports with severity classifications and recommended remediation routes, without modifying code."
+ },
+ {
+  "id": "uasl/radar@a47ea6fd5f95",
+  "title": "radar",
+  "summary": "Add and refine tests, diagnose flaky behavior, and improve coverage while preserving product behavior. Follow the project’s existing testing conventions and verify changes with tests and relevant references."
+ },
+ {
+  "id": "uasl/motion-canvas@08d879d31903",
+  "title": "motion-canvas",
+  "summary": "Guides agents through setting up Motion Canvas projects and creating TypeScript animations, with particular attention to Vite configuration and ESM/CommonJS interoperability. It also provides troubleshooting guidance for common setup and build issues."
+ },
+ {
+  "id": "uasl/typescript-clean-code@409278d3a61a",
+  "title": "typescript-clean-code",
+  "summary": "Use Clean Code and professional-practice workflows tailored to TypeScript, consulting the skill’s reference files before giving advice or writing code. Apply relevant rules and examples, follow task workflows, and cite the sources behind recommendations."
+ },
+ {
+  "id": "uasl/react-patterns@73d1ecc06997",
+  "title": "react-patterns",
+  "summary": "Use React 19 performance and composition patterns when writing, reviewing, or refactoring components, prioritizing critical performance issues before lower-impact ones. Apply the review checklist to find waterfalls, bundle-size problems, unnecessary re-renders, and framework-specific pitfalls."
+ },
+ {
+  "id": "uasl/unit-testing@6c5fbb821103",
+  "title": "unit-testing",
+  "summary": "Guides the agent to write and improve isolated unit tests using common testing patterns, test doubles, naming conventions, and language-specific frameworks. Emphasizes focused, deterministic tests and meaningful coverage."
+ },
+ {
+  "id": "uasl/define-architecture@8ea764417825",
+  "title": "define-architecture",
+  "summary": "Guides the agent to define TypeScript application architecture, including repository shape, module boundaries, request context, middleware, frontend boundaries, testing, and rollout. It also prescribes an architecture brief and validation steps before finalizing recommendations."
+ },
+ {
+  "id": "uasl/forge@a8efdfdbe817",
+  "title": "forge",
+  "summary": "Use Forge to build small, runnable prototypes that validate ideas, relying on mocks where useful and keeping work ready for handoff. Prioritize learning and working demos over production polish, and report the prototype’s status, findings, debt, and next decision."
+ },
+ {
+  "id": "uasl/nextdns-automation@8dd55e59ce22",
+  "title": "nextdns-automation",
+  "summary": "Use Rube MCP to automate Nextdns operations. Discover current tool schemas first, verify the Nextdns connection, and follow the returned schemas and workflow guidance when executing tools."
+ },
+ {
+  "id": "uasl/browser-automation@49c3aed21e27",
+  "title": "browser-automation",
+  "summary": "Guides browser automation for testing, scraping, and agentic control, emphasizing reliable selectors, waits, test isolation, and browser-context practices. Covers Playwright and Puppeteer."
+ },
+ {
+  "id": "uasl/monorepo-management@4078df072127",
+  "title": "monorepo-management",
+  "summary": "Guides agents in setting up and managing JavaScript/TypeScript monorepos with workspace package managers and build systems. Covers shared configuration and code, build optimization, CI/CD, dependency management, and package publishing."
+ },
+ {
+  "id": "uasl/gsap-react@79939b61e00a",
+  "title": "gsap-react",
+  "summary": "Guides agents to build and review GSAP animations in React using useGSAP, scoped refs, context-safe callbacks, and reliable cleanup. It also covers keeping GSAP execution client-side to avoid server-rendering issues."
+ },
+ {
+  "id": "uasl/static-analysis@88c6f201cae0",
+  "title": "static-analysis",
+  "summary": "Guides agents in configuring and integrating static-analysis tools for type checking, linting, security scanning, and formatting across several languages. Recommends strict, layered checks and running them in development, pre-commit, and CI workflows."
+ },
+ {
+  "id": "uasl/acceptance-testing@7f713f1566e8",
+  "title": "acceptance-testing",
+  "summary": "Use BDD acceptance-testing practices to turn business requirements into executable specifications, step definitions, and CI-validated tests. Apply the guidance across Gherkin- and Gauge-based frameworks and keep specifications useful as living documentation."
+ },
+ {
+  "id": "uasl/web-component-design@af6d16dc78dc",
+  "title": "web-component-design",
+  "summary": "Guides the agent in designing reusable UI components and component APIs with React, Vue, and Svelte. Emphasizes composition, styling choices, accessibility, and component implementation patterns."
+ },
+ {
+  "id": "uasl/tripadvisor-content-api-automation@3ab8b1ec4df3",
+  "title": "tripadvisor-content-api-automation",
+  "summary": "Automate TripAdvisor content API tasks through Rube MCP and Composio. Discover current tool schemas, verify the TripAdvisor connection, and follow the skill’s execution, session, and pagination guidance."
+ },
+ {
+  "id": "uasl/mcp-server-patterns@63e29e48e956",
+  "title": "mcp-server-patterns",
+  "summary": "For MCP server work, verify current SDK APIs against official documentation or Context7 and keep server logic independent of its transport. Define and validate tool schemas, use Streamable HTTP for remote clients, and follow the listed error-handling and versioning practices."
+ },
+ {
+  "id": "uasl/navigator@8d026b4397b8",
+  "title": "navigator",
+  "summary": "Navigator completes browser-based tasks using Playwright and Chrome DevTools, collecting data and evidence while monitoring errors. It emphasizes explicit waits, validation, safe credential handling, and reproducible execution reports."
+ },
+ {
+  "id": "uasl/contract-testing@b0f4c29940a9",
+  "title": "contract-testing",
+  "summary": "Guides agents in choosing and implementing contract-testing approaches to verify API compatibility between services. Covers Pact workflows, provider verification, Pact Broker and deployment checks, PactFlow, and Spring Cloud Contract."
+ },
+ {
+  "id": "uasl/nasdaq-automation@e43958c08c4f",
+  "title": "nasdaq-automation",
+  "summary": "Use Rube MCP to discover current Nasdaq tool schemas, check the Nasdaq connection, and execute Nasdaq workflows. Follow the skill’s connection, schema, session, and pagination requirements while working."
+ },
+ {
+  "id": "uasl/page-x-automation@016e2bedc73a",
+  "title": "page-x-automation",
+  "summary": "Use Rube MCP to discover current Page X tool schemas, verify the Page X connection, and execute Page X workflows. Follow schema, session, memory, and pagination requirements when operating tools."
+ },
+ {
+  "id": "uasl/universal-ai-skills@0128810b6ffe",
+  "title": "universal-ai-skills",
+  "summary": "Route substantive user prompts through the shared skill corpus using `skill-router`, loading a skill only when it clearly matches the task. Keep routing quiet and use the router’s commands and source integrations rather than copying the corpus into AI roots."
+ },
+ {
+  "id": "uasl/vercel-composition-patterns@a6f8be32b197",
+  "title": "vercel-composition-patterns",
+  "summary": "Guides React component design toward composition-based APIs, reusable state management, and explicit variants instead of boolean-driven customization. Includes a React 19-specific recommendation about `forwardRef`."
+ },
+ {
+  "id": "uasl/test-app-automation@abdd84ebc0ec",
+  "title": "test-app-automation",
+  "summary": "Automate Test App operations through Rube MCP by discovering current tool schemas, checking the Test App connection, and executing schema-compliant tools. Reuse workflow sessions and handle pagination until results are complete."
+ },
+ {
+  "id": "uasl/onboarding-ux@525055bbdf31",
+  "title": "onboarding-ux",
+  "summary": "Audit a web app from a new user’s perspective, then create onboarding guidance and code to address the gaps. Deliver the audit and generated materials in the specified artifact locations, matching the project’s existing patterns."
+ },
+ {
+  "id": "uasl/wati-automation@ba5cc6daa0aa",
+  "title": "wati-automation",
+  "summary": "Automate Wati operations through Rube MCP by discovering current tool schemas, checking the Wati connection, and executing schema-compliant tools. Follow the skill’s session, memory, and pagination guidance during workflows."
+ },
+ {
+  "id": "uasl/zen@f72229d0a781",
+  "title": "zen",
+  "summary": "Use Zen to review or refactor code for readability and maintainability while preserving behavior, staying within scope, and verifying changes. Produce structured reports or route work to the appropriate agent when needed."
+ },
+ {
+  "id": "uasl/currents-api-automation@a532da3b0b7a",
+  "title": "currents-api-automation",
+  "summary": "Automates Currents API operations through Rube MCP. It requires discovering current tool schemas, checking the connection, and following the returned schemas and workflow guidance when executing tools."
+ },
+ {
+  "id": "uasl/prerender-automation@de4732227359",
+  "title": "prerender-automation",
+  "summary": "Automate Prerender tasks through Rube MCP, discovering current tool schemas and checking the Prerender connection before execution. Follow the returned schemas, include required execution parameters, and handle sessions and pagination as directed."
+ },
+ {
+  "id": "uasl/evenium-automation@bceb3bb6819e",
+  "title": "evenium-automation",
+  "summary": "Automate Evenium operations through Rube MCP by discovering current tool schemas, checking the Evenium connection, and executing schema-compliant workflows. Follow the skill’s connection, session, memory, and pagination requirements."
+ },
+ {
+  "id": "uasl/integration-testing@62b51275be50",
+  "title": "integration-testing",
+  "summary": "Guides agents to write integration tests that exercise multiple components together, using real dependencies and suitable test frameworks. Covers test isolation, API testing patterns, database cleanup, and CI configuration for Testcontainers."
+ },
+ {
+  "id": "uasl/systematic-debug@6b158e105823",
+  "title": "systematic-debug",
+  "summary": "Use test bombs to narrow an unclear bug to a likely component, and layered tests to isolate the failing stage in a pipeline. Keep the resulting tests as regression coverage and use the identified failure to guide the fix."
+ }
+]

@@ -1,0 +1,252 @@
+[
+ {
+  "id": "uasl/fastapi-templates@effcd0de0b4c",
+  "title": "fastapi-templates",
+  "summary": "Guides creation of structured FastAPI backend projects using async patterns, dependency injection, repository and service layers, authentication, and testing examples. Includes templates for API endpoints, database access, and user management."
+ },
+ {
+  "id": "uasl/fastapi-endpoint@2a93d50c4970",
+  "title": "fastapi-endpoint",
+  "summary": "Guides the agent through exploring an existing FastAPI project, asking clarifying questions, planning an endpoint implementation for approval, and then building the endpoint and tests. It emphasizes async SQLAlchemy, Pydantic schemas, dependency-injected authentication, and API test coverage."
+ },
+ {
+  "id": "uasl/api-design@bba608f8c974",
+  "title": "api-design",
+  "summary": "Guides the agent in designing and reviewing REST API contracts, covering resource URLs, HTTP behavior, response formats, pagination, security, rate limits, and versioning. It also provides implementation patterns and a checklist for endpoint readiness."
+ },
+ {
+  "id": "uasl/builder@8d7f0953ade3",
+  "title": "builder",
+  "summary": "Guides the agent to implement production-ready, type-safe business logic, API integrations, and data models, with validation, error handling, and test handoffs. It emphasizes TypeScript strictness, domain-appropriate patterns, and Japanese final outputs."
+ },
+ {
+  "id": "uasl/openapi-spec-generation@2d2c7a93b8f2",
+  "title": "openapi-spec-generation",
+  "summary": "Guides agents in creating and maintaining OpenAPI 3.1 specifications from design or code, validating API contracts, and generating SDKs and documentation. Includes patterns for reusable schemas, API descriptions, security, versioning, and validation tools."
+ },
+ {
+  "id": "uasl/python-error-handling@8dc34883a143",
+  "title": "python-error-handling",
+  "summary": "Guides agents to implement Python validation and error handling with meaningful exceptions, exception chaining, and resilient batch processing. It also recommends practices for domain-type conversion, progress reporting, logging, and testing error paths."
+ },
+ {
+  "id": "uasl/backend-patterns@3d87ff489f3e",
+  "title": "backend-patterns",
+  "summary": "Provides TypeScript-oriented backend patterns for API design, data access, query optimization, caching, error handling, authentication, rate limiting, background jobs, and logging. Recommends choosing patterns suited to the complexity level."
+ },
+ {
+  "id": "uasl/radar@a47ea6fd5f95",
+  "title": "radar",
+  "summary": "Add and refine tests, diagnose flaky behavior, and improve coverage while preserving product behavior. Follow the project’s existing testing conventions and verify changes with tests and relevant references."
+ },
+ {
+  "id": "uasl/error-handling-patterns@4c19ee7d7821",
+  "title": "error-handling-patterns",
+  "summary": "Guides agents in handling errors across Python, JavaScript/TypeScript, Rust, and Go, including validation, cleanup, logging, and typed errors. Emphasizes preserving useful error context and handling errors at an appropriate level."
+ },
+ {
+  "id": "uasl/defense-in-depth@e9a7d1415325",
+  "title": "defense-in-depth",
+  "summary": "Use defense-in-depth validation to prevent invalid data from causing failures deeper in execution. Trace data flow, add checks at each layer, and test whether later layers catch inputs that bypass earlier checks."
+ },
+ {
+  "id": "uasl/systematic-debug@6b158e105823",
+  "title": "systematic-debug",
+  "summary": "Use test bombs to narrow an unclear bug to a likely component, and layered tests to isolate the failing stage in a pipeline. Keep the resulting tests as regression coverage and use the identified failure to guide the fix."
+ },
+ {
+  "id": "uasl/test-driven-development@0eebe2fe0e28",
+  "title": "test-driven-development",
+  "summary": "Follow a test-first development cycle: write a failing test, verify the failure, implement the minimum code to pass, then refactor while keeping tests green. Apply this approach to features, bug fixes, and integration debugging."
+ },
+ {
+  "id": "uasl/tdd-workflow@6eadb0bf0ea8",
+  "title": "tdd-workflow",
+  "summary": "Follow a test-driven workflow by writing tests before implementation, running tests through development, and refactoring while keeping them green. Aim for at least 80% coverage across unit, integration, and E2E tests, with attention to edge cases and errors."
+ },
+ {
+  "id": "uasl/api-testing@4ada9a2fac88",
+  "title": "api-testing",
+  "summary": "Guides the agent in creating and running direct HTTP API tests with tools such as .http files, Bruno, Postman/Newman, and k6. Covers assertions, environment configuration, secret handling, and CI integration."
+ },
+ {
+  "id": "uasl/gateway@8350be122608",
+  "title": "gateway",
+  "summary": "Designs and reviews API contracts, producing OpenAPI specifications or GraphQL SDL along with examples, error formats, versioning recommendations, and security considerations. Favors backward compatibility, routes implementation work elsewhere, and records API design decisions in project files."
+ },
+ {
+  "id": "uasl/provider-api@4da7bed47117",
+  "title": "provider-api",
+  "summary": "Use the neutral `skill-router provider-api` CLI for hosted-provider APIs, explicitly configuring the endpoint and key before making calls. Load the platform’s provider-specific documentation when exact schemas, authentication, rate limits, or provider-only behavior are needed."
+ },
+ {
+  "id": "uasl/python-testing-patterns@e62d0f1ca316",
+  "title": "python-testing-patterns",
+  "summary": "Guides the agent in designing and implementing Python tests using pytest patterns, fixtures, mocks, and specialized testing techniques. It emphasizes focused, isolated tests and meaningful coverage of failure behavior."
+ },
+ {
+  "id": "uasl/owasp-security@9847d3666f75",
+  "title": "owasp-security",
+  "summary": "Apply OWASP security practices when implementing or reviewing application and agent code. Check for common vulnerabilities and favor secure handling of input, authentication, authorization, data, errors, and dependencies."
+ },
+ {
+  "id": "uasl/n8n-validation-expert@9fd2d7e332b0",
+  "title": "n8n-validation-expert",
+  "summary": "Guides the agent to interpret n8n validation results, choose validation profiles, and iteratively resolve configuration and workflow issues. It also explains when warnings may be acceptable and how to use n8n’s sanitization and recovery tools."
+ },
+ {
+  "id": "uasl/verification-before-completion@134bf517af69",
+  "title": "verification-before-completion",
+  "summary": "Requires fresh verification evidence before reporting completion, success, or satisfaction. Agents must run the relevant command, inspect its output, and report the actual result."
+ },
+ {
+  "id": "uasl/design-harden@7850aacd7d45",
+  "title": "design-harden",
+  "summary": "Harden interfaces against unusual inputs, errors, internationalization issues, accessibility needs, and performance problems. Apply the guidance during implementation and verify resilience with manual and automated tests."
+ },
+ {
+  "id": "uasl/thinking-scientific-method@8b3f9fba25b4",
+  "title": "thinking-scientific-method",
+  "summary": "Use a scientific-method workflow for investigations: form falsifiable hypotheses, make predictions that distinguish true from false, test them, and revise conclusions using evidence. The skill is intended for debugging, experimentation, performance investigations, and related analysis."
+ },
+ {
+  "id": "uasl/integration-testing@62b51275be50",
+  "title": "integration-testing",
+  "summary": "Guides agents to write integration tests that exercise multiple components together, using real dependencies and suitable test frameworks. Covers test isolation, API testing patterns, database cleanup, and CI configuration for Testcontainers."
+ },
+ {
+  "id": "uasl/bolt@c4895c710162",
+  "title": "bolt",
+  "summary": "Bolt directs the agent to identify measurable performance improvements, follow a profiling-to-presentation workflow, and document their impact. It also sets limits on implementation, optimization scope, and when to ask for confirmation or hand off work."
+ },
+ {
+  "id": "uasl/secure-coding-practices@cc37fcd8687e",
+  "title": "secure-coding-practices",
+  "summary": "Apply defensive security practices when designing, implementing, and reviewing applications. Validate inputs, protect sensitive data, use secure authentication and cryptography, and check dependencies and error-handling paths."
+ },
+ {
+  "id": "uasl/algorand-vulnerability-scanner@b4ef2e1b7b33",
+  "title": "algorand-vulnerability-scanner",
+  "summary": "Guides security audits of Algorand smart contracts by identifying platform-specific vulnerabilities in TEAL and PyTeal, checking transaction validation and access controls, and using Tealer where available. It also recommends exploit-based tests and reports findings with severity and remediation guidance."
+ },
+ {
+  "id": "uasl/n8n-code-javascript@203459f10f1d",
+  "title": "n8n-code-javascript",
+  "summary": "Guides the agent in writing and troubleshooting JavaScript for n8n Code nodes. It covers execution modes, input and webhook data access, return formats, and common implementation practices."
+ },
+ {
+  "id": "uasl/n8n-workflow-patterns@c9641aab7a0b",
+  "title": "n8n-workflow-patterns",
+  "summary": "Guides agents in selecting, planning, building, validating, and deploying n8n workflows using common workflow patterns and a creation checklist. It also provides practical guidance for common workflow components, data handling, authentication, and error handling."
+ },
+ {
+  "id": "uasl/n8n-expression-syntax@f1845451eb4d",
+  "title": "n8n-expression-syntax",
+  "summary": "Guides the agent to write and troubleshoot n8n expressions, including variable access, webhook data paths, and syntax rules. It also distinguishes expression syntax from direct JavaScript access in Code nodes and identifies places where expressions should not be used."
+ },
+ {
+  "id": "uasl/property-based-testing@a168f6739085",
+  "title": "property-based-testing",
+  "summary": "Use property-based testing proactively when it can strengthen coverage, especially for transformations, parsers, validators, algorithms, and smart contracts. Offer it as an option when a high-value pattern is found, adapt the recommendation when the codebase already uses a PBT library, and respect a user's decline."
+ },
+ {
+  "id": "uasl/sql-injection-testing@5f2e673fc46e",
+  "title": "sql-injection-testing",
+  "summary": "Guide the agent through SQL injection vulnerability assessment, including detection, exploitation techniques, and reporting. Require authorization and scope boundaries, and constrain data extraction and disruptive testing."
+ },
+ {
+  "id": "uasl/workflow-security-audit@84cc84849968",
+  "title": "workflow-security-audit",
+  "summary": "Guides a security audit through threat assessment, automated scanning, code review, penetration testing, remediation planning, and validation. It also specifies expected audit deliverables and success criteria."
+ },
+ {
+  "id": "uasl/debug-root-cause@1d7ea4a832dc",
+  "title": "debug-root-cause",
+  "summary": "Use a systematic debugging process to reproduce and isolate a bug, test root-cause hypotheses, and make a minimal fix. Verify the original failure is resolved and add prevention measures where appropriate."
+ },
+ {
+  "id": "uasl/migrate-to-shoehorn@50bfd668fa65",
+  "title": "migrate-to-shoehorn",
+  "summary": "Migrate test files from TypeScript `as` assertions to `@total-typescript/shoehorn`, using `fromPartial()` for partial data and `fromAny()` for intentionally incorrect data. Install the package, update imports, and run a type check to verify the migration."
+ },
+ {
+  "id": "uasl/software-architecture@011a6d823631",
+  "title": "software-architecture",
+  "summary": "Apply Clean Architecture and domain-driven design principles when designing or analyzing software, and favor readable, modular code. Prefer established libraries and domain-specific naming over unnecessary custom implementations and generic modules."
+ },
+ {
+  "id": "uasl/coding-guidelines@0ec7e45f92f2",
+  "title": "coding-guidelines",
+  "summary": "Use cautious, scope-limited coding practices: clarify uncertainty, favor simple solutions, and make only changes directly tied to the request. Define verifiable goals and verify code changes before considering the task complete."
+ },
+ {
+  "id": "uasl/upstash-qstash@4aec8366af8b",
+  "title": "upstash-qstash",
+  "summary": "Guides the agent in building reliable serverless messaging workflows with Upstash QStash. It emphasizes signature verification, message handling, and operational reliability."
+ },
+ {
+  "id": "uasl/tdd@ff86dad94075",
+  "title": "tdd",
+  "summary": "Follow a red-green-refactor workflow by writing focused behavior tests and implementing only enough code to pass each test. Plan around public interfaces and user-prioritized behavior, then refactor after tests pass."
+ },
+ {
+  "id": "uasl/security-review@fcc354bc486e",
+  "title": "security-review",
+  "summary": "Apply a security checklist when reviewing or implementing application features, with emphasis on secrets, input handling, authentication, data exposure, API protections, and deployment readiness. Validate security-sensitive behavior and tests across web, database, and blockchain code."
+ },
+ {
+  "id": "uasl/scrapingbee-automation@9b31a323a4dc",
+  "title": "scrapingbee-automation",
+  "summary": "Automate Scrapingbee workflows through Rube MCP by discovering current tool schemas, checking the connection, and executing schema-compliant tools. Reuse workflow sessions, include the memory parameter, and fetch paginated results until complete."
+ },
+ {
+  "id": "uasl/chaos-testing@760793a4a18b",
+  "title": "chaos-testing",
+  "summary": "Guides the agent to design, run, and evaluate controlled chaos experiments that test system resilience. Emphasizes steady-state hypotheses, limited blast radius, safeguards, observability, and remediation."
+ },
+ {
+  "id": "uasl/caveman-commit@244182e952a7",
+  "title": "caveman-commit",
+  "summary": "Generate terse, exact commit messages in Conventional Commits format. Keep subjects concise, include a body according to the stated rules, and output the message ready to paste."
+ },
+ {
+  "id": "uasl/instantly-automation@d8854d4a51f6",
+  "title": "instantly-automation",
+  "summary": "Use the Composio MCP integration to manage Instantly cold-email campaigns, sending accounts, lead lists, and campaign analytics from natural-language requests. Apply the documented constraints when configuring schedules, sequences, imports, and campaign updates."
+ },
+ {
+  "id": "uasl/printing-press-output-review@35c772127bb2",
+  "title": "printing-press-output-review",
+  "summary": "Review sampled output from a printed CLI for user-noticeable plausibility and presentation issues that rule-based checks miss. Return findings as warnings in the structured result block, or return a skip result when the live-check data is unavailable or the reviewer cannot complete the task."
+ },
+ {
+  "id": "uasl/connect@77e02b4574f6",
+  "title": "connect",
+  "summary": "Connect Claude to external apps through Composio so it can execute actions such as sending messages, creating issues, and updating records instead of merely describing them. Supports several agent frameworks and MCP clients."
+ },
+ {
+  "id": "uasl/gorgias-automation@2106c504916d",
+  "title": "gorgias-automation",
+  "summary": "Use the Rube MCP integration to manage Gorgias tickets, customers, tags, teams, and account activity from natural-language requests. Follow the documented API requirements and pagination, filtering, custom-field, rate-limit, and authentication guidance."
+ },
+ {
+  "id": "uasl/specter@eeba33cf9245",
+  "title": "specter",
+  "summary": "Specter analyzes concurrency, asynchronous, memory, and resource-management issues, scores and reports findings, and suggests tests. It must not modify code; fixes are handed off to Builder."
+ },
+ {
+  "id": "uasl/epic-hypothesis@787dd038cb63",
+  "title": "epic-hypothesis",
+  "summary": "Guide the agent to frame an epic as a testable if/then hypothesis, design lightweight experiments, and define measurable validation criteria before committing to a full build. If the hypothesis is validated, convert it into user stories and roadmap work."
+ },
+ {
+  "id": "uasl/apify-automation@34a14f015224",
+  "title": "apify-automation",
+  "summary": "Use the Composio Apify integration to run Actors, retrieve and manage datasets, create reusable tasks, and inspect runs and logs. Check Actor-specific input requirements and use pagination or asynchronous runs when appropriate."
+ },
+ {
+  "id": "uasl/the-odds-api-automation@688dcc38656c",
+  "title": "the-odds-api-automation",
+  "summary": "Automate The Odds API operations through Rube MCP by discovering current tool schemas, checking the API connection, and executing schema-compliant tools. The skill also specifies session reuse, memory parameters, and pagination handling."
+ }
+]

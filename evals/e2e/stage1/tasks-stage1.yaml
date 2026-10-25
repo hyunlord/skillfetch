@@ -1,0 +1,466 @@
+# DRAFT — skillfetch real-usage eval, stage 1 (3-condition comparison). Not final; edit freely.
+#
+# Assumptions (see README.md "Open questions"):
+#  - Conditions: A = no skillfetch (router skill + .mcp.json removed), B = skillfetch router (+ optional
+#    prompt hook), C = expert skills from expert-skills.md pinned for the task. Same prompt in all three.
+#  - Every task starts from the same baseline commit as stage 0 (branch e2e-baseline); the condition
+#    only changes the router skill / .mcp.json / pinned skills on top of it.
+#  - `check` runs after the session, on the session's worktree, by the harness (not by the session).
+#    "hidden test" = a file the harness copies in after the session; the session never sees it.
+#    Hidden tests / mutants are described here, not written yet.
+#  - fastapi checks need FASTAPI_ENV=development in the process env (otherwise app import fails:
+#    backend/app/frontend is missing) and a per-run DATABASE_URL, same as stage 0 post_tests.
+#  - `screens` = routes for stage1/scripts/screenshot.py + what a reviewer should see. The DOM facts
+#    (text, links, html_lang, status) are in the screens.json the script writes; where a check says
+#    "manifest" it means that file.
+#  - Bugs: every bugfix task was reproduced on the baseline on 2026-10-22 (how: `verified:` field).
+#  - None of the prompts is a stage-0 prompt; overlapping areas are noted in `note:`.
+#
+# Mix: 20 tasks, 10 per repo; en 10 / ko 10; feature 7, refactor 4, test 4, bugfix 3, docs 2;
+# UI (screenshot-judged) 5: s1-fa-03, s1-nx-01, s1-nx-03, s1-nx-04, s1-nx-05.
+
+repos:
+  fastapi:
+    path: repos/fastapi
+    upstream: fastapi/full-stack-fastapi-template
+    upstream_commit: b1125d8839482cb7bbae603ddc6d0081bf87532e
+    baseline_commit: 9113228767947cea6f6020baedcfef3ee1ac91e6   # e2e-baseline = upstream + router skill + .mcp.json
+    test_cmd: "cd backend && FASTAPI_ENV=development uv run pytest tests/ -q"   # 58 pass on baseline
+    screenshot_kind: fastapi-frontend
+  nextjs:
+    path: repos/nextjs
+    upstream: vercel/next.js examples/with-typescript
+    upstream_commit: fa3830c46ed119ae9490360f0a2ad8d372de80fc
+    baseline_commit: 415e48934fae1046191b0f71774c0513706f58fb
+    test_cmd: "npm run type-check && npx next build"   # no test runner on baseline
+    screenshot_kind: nextjs
+
+tasks:
+  # ======================================================================== fastapi
+  - id: s1-fa-01
+    repo: fastapi
+    kind: feature
+    lang: en
+    prompt: >-
+      GET /api/v1/items/ always sorts newest first. Add an `order_by` query parameter that accepts
+      `created_at` (default) or `title`, and an `order` parameter that accepts `asc` or `desc`
+      (default `desc`). Any other value should be rejected with a 422.
+    note: "stage 0 fa-02 added a title filter to the same endpoint; this one is sorting."
+    check:
+      hidden_test: >-
+        backend/tests/hidden/test_s1_fa01.py, as a fresh normal user with 3 items titled "b", "a", "c"
+        created in that order: (1) no params -> titles [c, a, b]; (2) order_by=title&order=asc -> [a, b, c];
+        (3) order_by=title&order=desc -> [c, b, a]; (4) order_by=created_at&order=asc -> [b, a, c];
+        (5) order_by=owner_id -> 422; (6) order=up -> 422; (7) count == 3 in all 200 responses.
+      cmd: "cd backend && FASTAPI_ENV=development uv run pytest tests/ -q"
+      expect: "58 existing + 7 hidden pass"
+      baseline: "fails (2), (3), (4), (5), (6): unknown params are ignored -> 200, newest first"
+    expert_skills: [uasl/api-design@bba608f8c974]
+
+  - id: s1-fa-02
+    repo: fastapi
+    kind: feature
+    lang: ko
+    prompt: >-
+      아이템에 완료 여부를 나타내는 `is_done` 불리언 필드를 추가해줘. 기본값은 false이고, 아이템
+      생성·수정·조회 API에서 다룰 수 있어야 해. 기존 데이터가 있는 DB에도 적용되도록 alembic 마이그레이션도
+      만들어줘.
+    check:
+      cmd:
+        - "fresh DB: cd backend && uv run alembic upgrade head"            # must succeed
+        - "cd backend && uv run alembic check"                             # 'No new upgrade operations detected.'
+        - "cd backend && uv run alembic downgrade -1 && uv run alembic upgrade head"   # reversible
+        - "DB at previous head with 1 existing item row, then upgrade head: row gets is_done = false"
+        - "cd backend && FASTAPI_ENV=development uv run pytest tests/ -q"
+      hidden_test: >-
+        test_s1_fa02.py: POST /items/ without is_done -> response is_done == false; PUT {"is_done": true}
+        -> true; GET /items/{id} and GET /items/ show is_done; POST with is_done=true -> true.
+      expect: "all commands rc=0, alembic check clean, 58 existing + hidden pass"
+      baseline: "hidden test fails (no field); `alembic check` passes on baseline (verified)"
+    expert_skills: [uasl/postgresql-table-design@59d09e948243]
+
+  - id: s1-fa-03
+    repo: fastapi
+    kind: feature
+    lang: ko
+    ui: true
+    prompt: >-
+      프론트엔드 대시보드(/)가 인사말만 있고 비어 있어. 내 아이템 개수와 가장 최근 아이템 3개의 제목을
+      보여주는 카드를 대시보드에 추가해줘. 기존 UI 컴포넌트 스타일에 맞춰줘.
+    screens:
+      kind: fastapi-frontend
+      args: "--seed-items 4"     # superuser owns exactly 4 items: "Seed item 1".."Seed item 4"
+      routes:
+        - route: /
+          expect: "a card with the item count 4 and the titles Seed item 4, Seed item 3, Seed item 2 (not Seed item 1); styled like the rest of the app (dark theme, shadcn card)"
+        - route: /items
+          expect: "unchanged items table (regression check)"
+    check:
+      cmd:
+        - "cd frontend && bunx tsc -p tsconfig.build.json"   # rc=0
+        - "cd frontend && bunx biome ci ./"                  # rc=0 (passes on baseline)
+        - "screenshot.py --kind fastapi-frontend --seed-items 4 --routes / /items"
+      expect: >-
+        manifest '/': status 200, no page_errors, text contains "Seed item 4", "Seed item 3",
+        "Seed item 2", not "Seed item 1", and a standalone "4"; '/items' unchanged vs baseline run.
+        Visual judgement from index.png.
+      baseline: "fails: dashboard text is only 'Hi, admin@example.com 👋 / Welcome back...' (screens-smoke/fastapi-frontend/index.png)"
+    expert_skills: [uasl/shadcn@fb196fe88c66]
+
+  - id: s1-fa-04
+    repo: fastapi
+    kind: refactor
+    lang: en
+    prompt: >-
+      read_item, update_item and delete_item in backend/app/api/routes/items.py each repeat the same
+      "load the item, 404 if missing, 403 if not the owner and not a superuser" block. Move it into one
+      reusable FastAPI dependency (or helper) and use it in all three. The API behaviour must not change.
+    check:
+      cmd:
+        - "grep -c 'Not enough permissions' backend/app/api/routes/items.py"   # <= 1 (baseline 3)
+        - "grep -c 'Item not found' backend/app/api/routes/items.py"           # <= 1 (baseline 3)
+        - "cd backend && FASTAPI_ENV=development uv run pytest tests/ -q"
+      hidden_test: >-
+        behaviour lock (passes on baseline too): for GET/PUT/DELETE /items/{id}: random uuid -> 404
+        "Item not found"; other user's item as normal user -> 403 "Not enough permissions"; superuser on
+        any item -> 200; owner -> 200. Path parameter is still named `id` in openapi.json.
+      expect: "both greps <= 1, 58 existing + hidden pass"
+      baseline: "greps = 3 and 3 -> fails"
+    expert_skills: [uasl/refactoring-patterns@7283bad3e86e]
+
+  - id: s1-fa-05
+    repo: fastapi
+    kind: refactor
+    lang: ko
+    prompt: >-
+      users.py의 사용자 목록과 items.py의 아이템 목록 엔드포인트가 skip/limit 파라미터를 각자 선언하고 있어.
+      공통 페이지네이션 의존성 하나로 묶어서 두 엔드포인트가 같이 쓰게 해줘. 기존 동작(기본값 skip=0,
+      limit=100)은 그대로 유지해.
+    check:
+      cmd:
+        - "grep -cE 'skip: int = 0|limit: int = 100' backend/app/api/routes/items.py backend/app/api/routes/users.py"   # 0 in both (baseline 1 line each)
+        - "cd backend && FASTAPI_ENV=development uv run pytest tests/ -q"
+      hidden_test: >-
+        openapi.json: GET /api/v1/items/ and GET /api/v1/users/ both still have query params `skip`
+        (integer, default 0) and `limit` (integer, default 100); ?skip=1&limit=1 returns 1 row and the
+        full count for both endpoints.
+      expect: "grep 0/0, 58 existing + hidden pass"
+      baseline: "grep finds the per-route declarations -> fails"
+    note: "the skip=-1 -> 500 bug (stage 0 fa-07 class) stays out of scope; a session that also fixes it is not penalised."
+    expert_skills: [uasl/python-design-patterns@5c0fbe0d4633]
+
+  - id: s1-fa-06
+    repo: fastapi
+    kind: test
+    lang: en
+    prompt: >-
+      There are no tests showing that a normal user's GET /api/v1/items/ only returns their own items.
+      Add tests that cover the item list and its `count` for a normal user who owns some items while
+      other users own others.
+    check:
+      cmd: "cd backend && FASTAPI_ENV=development uv run pytest tests/ -q"   # all pass on the unmodified app code
+      mutants:
+        - "M1: remove `.where(Item.owner_id == current_user.id)` from the list statement in read_items (non-superuser branch)"
+        - "M2: remove the same .where from the count statement"
+      expect: "suite passes; with M1 applied the suite fails; with M2 applied the suite fails"
+      baseline: "existing 58 tests pass under M1 and under M2 (verified 2026-10-22: lines 29-42 of items.py are uncovered)"
+    expert_skills: [uasl/integration-testing@62b51275be50]
+
+  - id: s1-fa-07
+    repo: fastapi
+    kind: test
+    lang: ko
+    prompt: >-
+      인증 의존성 get_current_user(backend/app/api/deps.py)에 대한 테스트가 없어. 잘못된 서명의 토큰, 만료된
+      토큰, 삭제된 사용자의 토큰, 비활성 사용자의 토큰 각각에 대해 API가 어떤 응답을 주는지 테스트를 작성해줘.
+    check:
+      cmd: "cd backend && FASTAPI_ENV=development uv run pytest tests/ -q"
+      mutants:
+        - "M1: drop the `if not user.is_active: raise HTTPException(400, 'Inactive user')` check"
+        - "M2: drop the `if not user: raise HTTPException(404, 'User not found')` check"
+        - "M3: jwt.decode(..., options={'verify_exp': False})"
+      expect: "suite passes; each of M1, M2, M3 makes the suite fail"
+      baseline: "existing 58 tests pass under M1, M2 and M3 (verified 2026-10-22)"
+    expert_skills: [uasl/python-testing-patterns@e62d0f1ca316]
+
+  - id: s1-fa-08
+    repo: fastapi
+    kind: bugfix
+    lang: en
+    prompt: >-
+      Sending PUT /api/v1/items/{id} with {"title": null} makes the server return a 500. It should be
+      rejected as a validation error and the item must stay unchanged.
+    verified: >-
+      2026-10-22, fresh worktree at e2e-baseline, own Postgres, TestClient as superuser: create item, PUT
+      {"title": null} -> 500; exception sqlalchemy.exc.IntegrityError (psycopg.errors.NotNullViolation)
+      null value in column "title" of relation "item". Same class: PATCH /users/me {"email": null} -> 500,
+      PATCH /users/{id} {"is_active": null} -> 500 (not part of this task).
+    check:
+      hidden_test: >-
+        PUT {"title": null} -> 422 and a following GET returns the old title; PUT {"description": null}
+        -> 200 with description null (description is nullable and must stay clearable); PUT {"title": "x"} -> 200.
+      cmd: "cd backend && FASTAPI_ENV=development uv run pytest tests/ -q"
+      expect: "58 existing + hidden pass"
+      baseline: "hidden test fails (500)"
+    expert_skills: [uasl/defense-in-depth@e9a7d1415325, uasl/api-design@bba608f8c974]
+
+  - id: s1-fa-09
+    repo: fastapi
+    kind: bugfix
+    lang: ko
+    prompt: >-
+      대소문자만 다른 이메일로 회원가입하면 계정이 하나 더 생겨요 (foo@example.com이 있는데 FOO@example.com으로
+      가입 가능). 그리고 ADMIN@EXAMPLE.COM으로는 로그인이 안 돼요. 이메일은 대소문자 구분 없이 같은 계정으로
+      취급되게 고쳐줘.
+    verified: >-
+      2026-10-22, same setup as s1-fa-08: POST /users/signup u…@example.com -> 200, then
+      U…@EXAMPLE.COM -> 200 and a second row 'U…@example.com' exists (EmailStr lowercases only the domain);
+      POST /login/access-token username=ADMIN@EXAMPLE.COM with the right password -> 400 "Incorrect email
+      or password".
+    check:
+      hidden_test: >-
+        signup a@x.com then A@X.com -> 400; login with the upper-case variant of FIRST_SUPERUSER -> 200;
+        superuser POST /users/ with a case variant of an existing email -> 400; PATCH /users/me to a case
+        variant of another user's email -> 409.
+      cmd: "cd backend && FASTAPI_ENV=development uv run pytest tests/ -q"
+      expect: "58 existing + hidden pass"
+      baseline: "hidden test fails (signup 200, login 400)"
+    note: "a session may add a migration (e.g. lower() unique index); the check does not require one."
+    expert_skills: []   # none fits, see expert-skills.md
+
+  - id: s1-fa-10
+    repo: fastapi
+    kind: docs
+    lang: en
+    prompt: >-
+      Add a table of the backend's configuration environment variables to backend/README.md, based on
+      Settings in app/core/config.py: name, default value (mark it as required if there is none) and a
+      short description.
+    check:
+      cmd:
+        - "names = regex '^    ([A-Z][A-Z0-9_]+):' over backend/app/core/config.py (20 names on baseline)"
+        - "every name occurs in a line of backend/README.md that starts with '|'"
+        - "rows for SECRET_KEY, PROJECT_NAME, DATABASE_URL, FIRST_SUPERUSER, FIRST_SUPERUSER_PASSWORD contain 'required' (case-insensitive)"
+        - "git diff --name-only <baseline> == backend/README.md only"
+      expect: "all true"
+      baseline: "none of the 20 names appears in backend/README.md (verified)"
+    expert_skills: [uasl/quill@336ba74b0e79]
+
+  # ======================================================================== nextjs
+  - id: s1-nx-01
+    repo: nextjs
+    kind: feature
+    lang: en
+    ui: true
+    prompt: >-
+      On the user detail page, add links labelled "Previous" and "Next" to the neighbouring users (in
+      the order of the users list) and a "Back to list" link to /users. The first user has no Previous
+      link and the last user has no Next link.
+    screens:
+      kind: nextjs
+      routes:
+        - route: /users/101
+          expect: "Alice detail; Next -> Bob; Back to list; no Previous"
+        - route: /users/102
+          expect: "Bob detail; Previous -> Alice, Next -> Caroline; Back to list"
+        - route: /users/104
+          expect: "Dave detail; Previous -> Caroline; no Next"
+    check:
+      cmd:
+        - "npm run type-check && npx next build"
+        - "screenshot.py --kind nextjs --routes /users/101 /users/102 /users/104"
+      expect: >-
+        manifest links: /users/102 has {href:/users/101, text~Previous}, {href:/users/103, text~Next},
+        {href:/users, text~Back to list}; /users/101 has no link text 'Previous'; /users/104 has no link
+        text 'Next'; no page_errors.
+      baseline: "fails: detail pages only have the 4 nav links (screens-smoke/users-101.png)"
+    expert_skills: []   # none fits (Pages Router)
+
+  - id: s1-nx-02
+    repo: nextjs
+    kind: feature
+    lang: en
+    prompt: >-
+      Add an API endpoint GET /api/users/[id] that returns one user as JSON. Return 404 with a JSON
+      error message if no user has that id, and 400 if the id is not a number.
+    note: "stage 0 nx-07 changed /api/users method handling; this is a new route."
+    check:
+      cmd:
+        - "npm run type-check && npx next build"
+        - "screenshot.py --kind nextjs --routes /api/users/101 /api/users/999 /api/users/abc /api/users"
+      expect: >-
+        manifest: /api/users/101 status 200 and text parses to {"id":101,"name":"Alice"};
+        /api/users/999 status 404 and text parses as JSON; /api/users/abc status 400 and JSON;
+        /api/users unchanged (200, 4 users).
+      baseline: "fails: /api/users/101 -> 404 HTML page (verified with screenshot.py, scratch run)"
+    expert_skills: [uasl/backend-patterns@3d87ff489f3e, uasl/api-design@bba608f8c974]
+
+  - id: s1-nx-03
+    repo: nextjs
+    kind: feature
+    lang: ko
+    ui: true
+    prompt: >-
+      없는 주소로 들어가면 Next.js 기본 404 화면이 나와. 사이트 Layout(상단 내비게이션, 푸터 포함)을 쓰는 404
+      페이지를 만들고 "페이지를 찾을 수 없습니다" 문구와 홈으로 가는 링크를 넣어줘.
+    screens:
+      kind: nextjs
+      routes:
+        - route: /does-not-exist
+          expect: "site nav (Home | About | Users List | Users API), '페이지를 찾을 수 없습니다', a link home, footer"
+        - route: /users/999
+          expect: "same custom 404 (fallback: false route)"
+    check:
+      cmd:
+        - "npm run type-check && npx next build"
+        - "screenshot.py --kind nextjs --routes /does-not-exist /users/999"
+      expect: >-
+        both: status 404, text contains '페이지를 찾을 수 없습니다' and 'Users List' and 'Footer',
+        links include href '/'; not 'This page could not be found'.
+      baseline: "fails: default 404 '404 / This page could not be found.' (verified)"
+    expert_skills: []   # none fits (Pages Router; next-best-practices points to App Router not-found.tsx)
+
+  - id: s1-nx-04
+    repo: nextjs
+    kind: feature
+    lang: ko
+    ui: true
+    prompt: >-
+      About 페이지에 우리 팀 소개 섹션을 넣어줘. utils/sample-data.ts의 유저들을 카드 그리드로 보여주고, 카드마다
+      이름, ID, 상세 페이지 링크를 넣어줘. 화면이 좁으면 한 줄에 한 장씩 보이게 해줘.
+    screens:
+      kind: nextjs
+      routes:
+        - route: /about
+          expect: "4 cards (Alice, Bob, Caroline, Dave) in a grid at 1280px, each with ID and a link to /users/<id>"
+      extra_viewport: "375x800: one card per row (run screenshot.py again with --viewport 375x800)"
+    check:
+      cmd:
+        - "npm run type-check && npx next build"
+        - "screenshot.py --kind nextjs --routes /about"
+        - "screenshot.py --kind nextjs --routes /about --viewport 375x800"
+      expect: >-
+        manifest /about: text contains Alice, Bob, Caroline, Dave, 101..104; links include /users/101,
+        /users/102, /users/103, /users/104. Grid vs single column judged from the two PNGs.
+      baseline: "fails: /about only has 'This is the about page' (screens-smoke/about.png)"
+    expert_skills: [uasl/responsive-design@2cf7927ef938]
+
+  - id: s1-nx-05
+    repo: nextjs
+    kind: refactor
+    lang: ko
+    ui: true
+    prompt: >-
+      Layout 컴포넌트의 상단 내비게이션 링크를 하드코딩 대신 배열 하나로 정의해서 렌더링하게 바꾸고, 현재
+      페이지에 해당하는 링크에는 aria-current="page"를 붙여줘. 보이는 모양은 지금과 같게 유지해.
+    screens:
+      kind: nextjs
+      routes:
+        - route: /
+          expect: "nav looks as before (Home | About | Users List | Users API); Home is current"
+        - route: /about
+          expect: "same nav; About is current"
+        - route: /users
+          expect: "same nav; Users List is current"
+    check:
+      cmd:
+        - "npm run type-check && npx next build"
+        - "screenshot.py --kind nextjs --routes / /about /users"
+      expect: >-
+        manifest links with aria_current == 'page': exactly one per route, href '/', '/about', '/users'
+        respectively; nav text line identical to baseline ('Home | About | Users List | Users API');
+        nav links in the same order as baseline. "Defined in one array" is judged by reading the diff
+        (no reliable grep: the hrefs appear once each on baseline too).
+      baseline: "fails: no aria-current anywhere (screens-smoke/screens.json links)"
+    expert_skills: []   # none fits (accessibility-compliance has no aria-current/nav guidance)
+
+  - id: s1-nx-06
+    repo: nextjs
+    kind: refactor
+    lang: en
+    prompt: >-
+      Pages and the API route import sampleUserData directly. Put all user data access behind a small
+      module lib/users.ts with getAllUsers() and getUserById(id), and use it everywhere. Rendered pages
+      and API output must stay exactly the same.
+    check:
+      cmd:
+        - "grep -rl sampleUserData --include='*.ts' --include='*.tsx' --exclude-dir=node_modules --exclude-dir=.next ."   # only ./utils/sample-data.ts and ./lib/users.ts
+        - "lib/users.ts exports getAllUsers and getUserById (grep 'export')"
+        - "npm run type-check && npx next build"
+        - "screenshot.py --kind nextjs --routes / /users /users/101 /users/104 /api/users"
+      expect: "grep as above; manifest text and links for all 5 routes equal to a baseline run"
+      baseline: "grep lists 4 files (pages/api/users/index.ts, pages/users/[id].tsx, pages/users/index.tsx, utils/sample-data.ts) -> fails"
+    expert_skills: [uasl/refactoring-patterns@7283bad3e86e]
+
+  - id: s1-nx-07
+    repo: nextjs
+    kind: test
+    lang: ko
+    prompt: >-
+      이 프로젝트엔 테스트 러너가 없어. Vitest와 React Testing Library를 설정하고 `npm test`로 돌아가게 한 다음,
+      ListDetail 컴포넌트(이름과 ID 표시)와 Layout 컴포넌트(내비게이션 링크 4개와 제목) 테스트를 작성해줘.
+    note: "stage 0 nx-05 tested List/ListItem (jest); different components and runner named here."
+    check:
+      cmd:
+        - "npm test (non-interactive: vitest run)"   # rc=0
+        - "npm run type-check && npx next build"     # test setup must not break the app build
+      mutants:
+        - "M1: components/ListDetail.tsx renders {user.id} instead of {user.name} in the h1"
+        - "M2: components/Layout.tsx drops the 'Users List' link"
+      expect: "npm test passes on the session's tree; fails with M1; fails with M2"
+      baseline: "no test script -> fails"
+    expert_skills: [uasl/tdd-workflow@6eadb0bf0ea8]
+
+  - id: s1-nx-08
+    repo: nextjs
+    kind: test
+    lang: en
+    prompt: >-
+      Add tests for getStaticPaths and getStaticProps in pages/users/[id].tsx: the generated paths, the
+      props for an existing id, and what happens for an unknown id.
+    check:
+      cmd:
+        - "npm test"                               # rc=0, whichever runner the session sets up
+        - "npm run type-check && npx next build"
+      mutants:
+        - "M1: getStaticPaths uses sampleUserData.slice(0, 3)"
+        - "M2: getStaticProps matches data.id === Number(id) + 1"
+      expect: "npm test passes; fails with M1; fails with M2"
+      baseline: "no test script -> fails"
+    expert_skills: [uasl/unit-testing@6c5fbb821103]
+
+  - id: s1-nx-09
+    repo: nextjs
+    kind: bugfix
+    lang: ko
+    prompt: >-
+      스크린리더 점검에서 지적받았는데, 모든 페이지의 <html> 태그에 lang 속성이 없대. 콘텐츠가 영어니까 모든
+      페이지(404 포함)에 lang="en"이 들어가게 고쳐줘.
+    verified: >-
+      2026-10-22, fresh worktree at e2e-baseline: `next build` output .next/server/pages/index.html starts
+      with '<!DOCTYPE html><html><head>' (no lang); screenshot.py manifest html_lang = null for /, /about,
+      /users, /users/101 and for a 404 route (screens-smoke/screens.json).
+    check:
+      cmd:
+        - "npm run type-check && npx next build"
+        - "screenshot.py --kind nextjs --routes / /about /users /users/101 /does-not-exist"
+      expect: "manifest html_lang == 'en' for all 5 routes; page text unchanged vs baseline for the first 4"
+      baseline: "html_lang null -> fails"
+    note: "small fix (pages/_document.tsx); kept as a low-effort bugfix where the router should arguably not fire."
+    expert_skills: []   # none fits
+
+  - id: s1-nx-10
+    repo: nextjs
+    kind: docs
+    lang: en
+    prompt: >-
+      Add JSDoc comments to every component in components/ and every exported type in interfaces/
+      describing what it renders or represents and what each prop/field means. Do not change any code.
+    check:
+      cmd:
+        - "hidden script (typescript compiler API, already a devDependency): every default-exported component in components/*.tsx and every exported type in interfaces/index.ts has a JSDoc block; every Props type member has a JSDoc or the component JSDoc has a matching @param"
+        - "git diff -U0 <baseline> -- components interfaces | grep '^[+-][^+-]' | grep -vE '^[+-]\\s*(/\\*\\*|\\*|\\*/|//)' | wc -l"   # 0 = comment-only change
+        - "npm run type-check && npx next build"
+      expect: "all true"
+      baseline: "no JSDoc blocks in components/ (only a // comment in interfaces/index.ts) -> fails"
+    expert_skills: [uasl/quill@336ba74b0e79]

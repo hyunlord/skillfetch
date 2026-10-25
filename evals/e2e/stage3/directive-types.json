@@ -1,0 +1,348 @@
+[
+ {
+  "id": "t005",
+  "primary": "test_first",
+  "secondary": [
+   "no_new_deps"
+  ]
+ },
+ {
+  "id": "t009",
+  "primary": "accessibility_first",
+  "secondary": []
+ },
+ {
+  "id": "t013",
+  "primary": "no_new_deps",
+  "secondary": []
+ },
+ {
+  "id": "t017",
+  "primary": "backward_compat",
+  "secondary": []
+ },
+ {
+  "id": "t021",
+  "primary": "plan_first",
+  "secondary": []
+ },
+ {
+  "id": "t029",
+  "primary": "test_first",
+  "secondary": [
+   "backward_compat"
+  ]
+ },
+ {
+  "id": "t033",
+  "primary": "minimal_diff",
+  "secondary": [
+   "no_new_deps"
+  ]
+ },
+ {
+  "id": "t038",
+  "primary": "backward_compat",
+  "secondary": []
+ },
+ {
+  "id": "t042",
+  "primary": "plan_first",
+  "secondary": []
+ },
+ {
+  "id": "t046",
+  "primary": "security_first",
+  "secondary": []
+ },
+ {
+  "id": "t054",
+  "primary": "backward_compat",
+  "secondary": []
+ },
+ {
+  "id": "t058",
+  "primary": "minimal_diff",
+  "secondary": [
+   "backward_compat"
+  ]
+ },
+ {
+  "id": "t062",
+  "primary": "test_first",
+  "secondary": [
+   "backward_compat"
+  ]
+ },
+ {
+  "id": "t066",
+  "primary": "performance",
+  "secondary": [
+   "no_new_deps"
+  ]
+ },
+ {
+  "id": "t071",
+  "primary": "plan_first",
+  "secondary": []
+ },
+ {
+  "id": "t080",
+  "primary": "no_new_deps",
+  "secondary": []
+ },
+ {
+  "id": "t084",
+  "primary": "test_first",
+  "secondary": []
+ },
+ {
+  "id": "t088",
+  "primary": "other",
+  "other_name": "deterministic_race_free_tests",
+  "secondary": [
+   "no_new_deps"
+  ]
+ },
+ {
+  "id": "t092",
+  "primary": "minimal_diff",
+  "secondary": [
+   "no_new_deps",
+   "backward_compat"
+  ]
+ },
+ {
+  "id": "t096",
+  "primary": "performance",
+  "secondary": []
+ },
+ {
+  "id": "t104",
+  "primary": "minimal_diff",
+  "secondary": []
+ },
+ {
+  "id": "t108",
+  "primary": "other",
+  "other_name": "verify_by_running_commands",
+  "secondary": []
+ },
+ {
+  "id": "t113",
+  "primary": "other",
+  "other_name": "executable_verified_examples",
+  "secondary": []
+ },
+ {
+  "id": "t117",
+  "primary": "other",
+  "other_name": "runnable_doc_examples",
+  "secondary": [
+   "backward_compat"
+  ]
+ },
+ {
+  "id": "t121",
+  "primary": "plan_first",
+  "secondary": []
+ },
+ {
+  "id": "t129",
+  "primary": "minimal_diff",
+  "secondary": [
+   "no_new_deps"
+  ]
+ },
+ {
+  "id": "t133",
+  "primary": "backward_compat",
+  "secondary": []
+ },
+ {
+  "id": "t137",
+  "primary": "plan_first",
+  "secondary": []
+ },
+ {
+  "id": "t141",
+  "primary": "test_first",
+  "secondary": []
+ },
+ {
+  "id": "t146",
+  "primary": "security_first",
+  "secondary": []
+ },
+ {
+  "id": "t154",
+  "primary": "backward_compat",
+  "secondary": []
+ },
+ {
+  "id": "t159",
+  "primary": "minimal_diff",
+  "secondary": []
+ },
+ {
+  "id": "t163",
+  "primary": "plan_first",
+  "secondary": []
+ },
+ {
+  "id": "t167",
+  "primary": "security_first",
+  "secondary": []
+ },
+ {
+  "id": "t171",
+  "primary": "no_new_deps",
+  "secondary": []
+ },
+ {
+  "id": "t179",
+  "primary": "no_new_deps",
+  "secondary": []
+ },
+ {
+  "id": "t183",
+  "primary": "other",
+  "other_name": "dry_run_first",
+  "secondary": []
+ },
+ {
+  "id": "t187",
+  "primary": "performance",
+  "secondary": []
+ },
+ {
+  "id": "t192",
+  "primary": "test_first",
+  "secondary": []
+ },
+ {
+  "id": "t196",
+  "primary": "security_first",
+  "secondary": []
+ },
+ {
+  "id": "t204",
+  "primary": "test_first",
+  "secondary": [
+   "no_new_deps"
+  ]
+ },
+ {
+  "id": "t208",
+  "primary": "plan_first",
+  "secondary": []
+ },
+ {
+  "id": "t212",
+  "primary": "performance",
+  "secondary": [
+   "backward_compat"
+  ]
+ },
+ {
+  "id": "t216",
+  "primary": "minimal_diff",
+  "secondary": []
+ },
+ {
+  "id": "t225",
+  "primary": "other",
+  "other_name": "privacy_first",
+  "secondary": []
+ },
+ {
+  "id": "t229",
+  "primary": "minimal_diff",
+  "secondary": [
+   "backward_compat"
+  ]
+ },
+ {
+  "id": "t234",
+  "primary": "test_first",
+  "secondary": [
+   "security_first"
+  ]
+ },
+ {
+  "id": "t238",
+  "primary": "no_new_deps",
+  "secondary": []
+ },
+ {
+  "id": "t242",
+  "primary": "backward_compat",
+  "secondary": []
+ },
+ {
+  "id": "t246",
+  "primary": "plan_first",
+  "secondary": []
+ },
+ {
+  "id": "t254",
+  "primary": "plan_first",
+  "secondary": [
+   "no_new_deps"
+  ]
+ },
+ {
+  "id": "t258",
+  "primary": "backward_compat",
+  "secondary": [
+   "performance"
+  ]
+ },
+ {
+  "id": "t262",
+  "primary": "performance",
+  "secondary": [
+   "no_new_deps"
+  ]
+ },
+ {
+  "id": "t267",
+  "primary": "backward_compat",
+  "secondary": [
+   "minimal_diff",
+   "performance"
+  ]
+ },
+ {
+  "id": "t271",
+  "primary": "plan_first",
+  "secondary": []
+ },
+ {
+  "id": "t279",
+  "primary": "accessibility_first",
+  "secondary": []
+ },
+ {
+  "id": "t283",
+  "primary": "minimal_diff",
+  "secondary": [
+   "no_new_deps"
+  ]
+ },
+ {
+  "id": "t287",
+  "primary": "no_new_deps",
+  "secondary": []
+ },
+ {
+  "id": "t291",
+  "primary": "plan_first",
+  "secondary": []
+ },
+ {
+  "id": "t300",
+  "primary": "accessibility_first",
+  "secondary": []
+ }
+]

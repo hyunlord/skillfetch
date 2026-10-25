@@ -1,0 +1,214 @@
+{
+ "s6b-t004": {
+  "uasl/parallel-automation@bf255cb84e87": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/async-python-patterns@957ebfe54aa7": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/gsap-timeline@d4acd84a00f0": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/claude-native-claude-api@24c958899f03": {
+   "grade": 0,
+   "process": false
+  },
+  "anthropics-skills/pptx@4eb5e13af97f": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/landing-page@455a3c3ba6f7": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/connect@77e02b4574f6": {
+   "grade": 0,
+   "process": false
+  },
+  "anthropics-skills/webapp-testing@a4b4ce82b644": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/gsap-utils@a1cbf677d835": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/onesignal-rest-api-automation@69760a7d8416": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/postgresql-table-design@59d09e948243": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/replicate-automation@4053915c756a": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/pandadoc-automation@1f3c475c58e0": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/fastapi-templates@effcd0de0b4c": {
+   "grade": 2,
+   "process": false
+  }
+ },
+ "s6b-t133": {
+  "uasl/bun-runtime@009ca8691cf7": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/onboarding-ux@525055bbdf31": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/coding-standards@f854e26a9529": {
+   "grade": 1,
+   "process": true
+  },
+  "uasl/five-agent-security-review@54653e9fa93f": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/monorepo-management@4078df072127": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/debugging-strategies@c55dad9c9654": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/next-cache-components@b22f6e134147": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/responsive-design@2cf7927ef938": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/shadcn-ui@8c463642324a": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/securitytrails-automation@ea2e0ed3f484": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/adr-architecture@2794198a12ff": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/vercel-react-best-practices@70f3b5aaf775": {
+   "grade": 0,
+   "process": false
+  }
+ },
+ "s6b-t179": {
+  "uasl/n8n-code-python@ba1cd974d317": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/bolt@c4895c710162": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/updown-io-automation@9cc2a17cca7e": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/code-security@e20eb3467925": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/sql-optimization-patterns@389f90da7b56": {
+   "grade": 1,
+   "process": false
+  },
+  "anthropics-skills/xlsx@5350d36b768c": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/n8n-code-javascript@203459f10f1d": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/variant-analysis@4e25478feb58": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/fastapi-templates@effcd0de0b4c": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/lens@6fbc66f7a7bb": {
+   "grade": 1,
+   "process": true
+  },
+  "uasl/fastapi-endpoint@2a93d50c4970": {
+   "grade": 1,
+   "process": true
+  },
+  "uasl/netsuite-automation@b615a37449c9": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/backend-patterns@3d87ff489f3e": {
+   "grade": 0,
+   "process": false
+  }
+ },
+ "s6b-t354": {
+  "uasl/integration-testing@62b51275be50": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/bolt@c4895c710162": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/setup-pre-commit@95f6657588a0": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/linguapop-automation@a5139a991d5e": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/fastapi-templates@effcd0de0b4c": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/verification-loop@39d9be23cf50": {
+   "grade": 1,
+   "process": true
+  },
+  "uasl/python-testing-patterns@e62d0f1ca316": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/backend-patterns@3d87ff489f3e": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/ln-020-codegraph@4b3c5fef9457": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/claude-native-claude-api@24c958899f03": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/campayn-automation@95f47d95f2bc": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/codeql@f2e86220e2ca": {
+   "grade": 0,
+   "process": false
+  }
+ }
+}

@@ -1,0 +1,210 @@
+Installed 30 packages in 19ms
+index 2026-10-22T06:15:43Z
+
+## s2-tests profile=['pytest', 'python', 'uv']
+ 1. uasl/python-testing-patterns@e62d0f1ca316 [B] 6281 — Guides the agent in designing and implementing Python tests using pytest patterns, fixtures, mocks, and specia
+ 2. uasl/unit-testing@6c5fbb821103 [B] 6067 — Guides the agent to write and improve isolated unit tests using common testing patterns, test doubles, naming 
+ 3. uasl/wycheproof@8924e1e4bfb6 [B] 4838 — Use Wycheproof test vectors to validate cryptographic implementations against known attacks and edge cases.
+ 4. uasl/radar@a47ea6fd5f95 [B] 2701 — Add and refine tests, diagnose flaky behavior, and improve coverage while preserving product behavior.
+ 5. uasl/fastapi-endpoint@2a93d50c4970 [B] 3875 — Guides the agent through exploring an existing FastAPI project, asking clarifying questions, planning an endpo
+ 6. uasl/semgrep-rule-creator@ae4d35a76948 [B] 1836 — Guides the agent through creating custom Semgrep rules, from consulting documentation and designing tests to v
+ 7. uasl/variant-analysis@4e25478feb58 [B] 1414 — Guides systematic searching for variants of a known vulnerability or bug, from understanding its root cause th
+ 8. uasl/semgrep-rule-variant-creator@2cea56923011 [B] 2015 — Ports existing Semgrep rules to applicable target languages by analyzing language applicability, creating test
+ 9. uasl/integration-testing@62b51275be50 [B] 5792 — Guides agents to write integration tests that exercise multiple components together, using real dependencies a
+10. uasl/clean-architecture@acaac6e9e2a3 [B] 5067 — Apply Clean Architecture principles to design and review software boundaries, dependencies, components, and mo
+11. uasl/async-python-patterns@957ebfe54aa7 [B] 4953 — Guides implementation of asynchronous Python applications using asyncio, concurrency patterns, and async I/O.
+12. uasl/verification-loop@39d9be23cf50 [B] 619 — Guides the agent through build, type, lint, test, security, and diff verification.
+13. uasl/atheris@5b575b7295c7 [B] 3612 — Guides agents in using Atheris to fuzz Python code and Python C extensions, including writing harnesses, confi
+14. anthropics-skills/mcp-builder@7e8426a435cb [A] 2264 — Guides agents through researching, planning, implementing, testing, and evaluating MCP servers that connect LL
+15. uasl/abstraction-concrete-examples@1fc651aacfd7 [B] 1462 — Use an abstraction ladder to connect high-level principles with concrete, actionable examples.
+16. uasl/code-review-excellence@ad803274d219 [B] 3283 — Guides systematic, constructive code reviews that identify important correctness, security, performance, testi
+17. uasl/attest@3259b6f024a0 [B] 4649 — Verifies implementations against specifications by extracting acceptance criteria, generating BDD scenarios, c
+18. uasl/heuristics-and-checklists@5866be43c566 [B] 3929 — Use practical heuristics to simplify decisions and checklists to prevent missed steps in procedures.
+19. uasl/tdd-workflow@6eadb0bf0ea8 [B] 2411 — Follow a test-driven workflow by writing tests before implementation, running tests through development, and r
+20. uasl/thinking-thought-experiment@da6ed475a5d8 [B] 2224 — Use structured hypothetical scenarios to evaluate ideas when empirical testing is impractical.
+21. anthropics-skills/webapp-testing@a4b4ce82b644 [A] 965 — Use native Python Playwright scripts to test local web applications, choosing an approach based on whether the
+22. uasl/differential-review@b9d1a5a99f5e [B] 1631 — Guides security-focused review of code changes using risk-based analysis, git history, test coverage, blast-ra
+23. uasl/property-based-testing@a168f6739085 [B] 1520 — Use property-based testing proactively when it can strengthen coverage, especially for transformations, parser
+24. uasl/systematic-debug@6b158e105823 [B] 3151 — Use test bombs to narrow an unclear bug to a likely component, and layered tests to isolate the failing stage 
+25. uasl/n8n-code-python@ba1cd974d317 [B] 4461 — Guides agents writing Python for n8n Code nodes, including n8n data access and return formats, execution modes
+26. uasl/challenge-that@3a81f0228530 [B] 601 — When invoked, identify the proposal or decision under discussion and critique it through five adversarial pers
+27. uasl/builder@8d7f0953ade3 [B] 3007 — Guides the agent to implement production-ready, type-safe business logic, API integrations, and data models, w
+28. uasl/python-type-safety@60be75b4816f [B] 2813 — Guides agents to use Python type annotations, generics, protocols, and type narrowing to make code statically 
+29. uasl/dynamics365-automation@03e4959eec42 [B] 2053 — Use the Dynamics 365 CRM toolkit through Rube MCP to manage CRM records, including leads, accounts, contacts, 
+30. uasl/microinteractions@d61a5035d0f0 [B] 4774 — Guides agents in designing and reviewing microinteractions using triggers, rules, feedback, loops and modes, s
+31. uasl/fastapi-templates@effcd0de0b4c [B] 3748 — Guides creation of structured FastAPI backend projects using async patterns, dependency injection, repository 
+32. uasl/saas-revenue-growth-metrics@a287946f472a [B] 5773 — Guides agents through calculating and interpreting SaaS revenue, retention, expansion, and cohort metrics.
+33. uasl/python-error-handling@8dc34883a143 [B] 2680 — Guides agents to implement Python validation and error handling with meaningful exceptions, exception chaining
+34. uasl/python-design-patterns@5c0fbe0d4633 [B] 3093 — Guides the agent to design and refactor Python code using simple, focused components, clear separation of conc
+35. uasl/probe@e9e9e74a4225 [B] 2548 — Use Probe for authorized, safe dynamic security testing, penetration-test planning, and runtime vulnerability 
+36. uasl/acceptance-testing@7f713f1566e8 [B] 5775 — Use BDD acceptance-testing practices to turn business requirements into executable specifications, step defini
+37. uasl/ripple@620dca56eca0 [B] 2125 — Analyze a proposed change before implementation by tracing affected areas, checking consistency with existing 
+38. uasl/sketch@2a8aac6ecc18 [B] 2391 — Guides the agent to produce Python code for Gemini image generation, editing, prompt refinement, and batch wor
+39. uasl/grill-with-docs@99f1bafe73fe [B] 853 — Run an interactive plan review that checks terminology and design claims against the codebase, asking focused 
+40. uasl/big-picture-thinking-engine@cb520dc8c729 [B] 3005 — Use multiple time, scale, stakeholder, causal, and recurrence perspectives to evaluate significant decisions.
+41. uasl/clean-code@f135cf4e9ff5 [B] 4775 — Guide the agent to write, review, and refactor readable, maintainable code using clear names, focused function
+42. uasl/saas-economics-efficiency-metrics@b5a33fe2813c [B] 6236 — Evaluate SaaS unit economics and capital efficiency to judge whether growth is financially sustainable.
+43. uasl/zen@f72229d0a781 [B] 3182 — Use Zen to review or refactor code for readability and maintainability while preserving behavior, staying with
+44. uasl/atlas@eeafabd38463 [B] 2445 — Atlas guides the agent through ordered system-level architecture analysis and turns findings into actionable p
+45. uasl/software-design-philosophy@066bc275787f [B] 5135 — Use software-design principles to reduce complexity through deep modules, information hiding, and deliberate i
+46. uasl/thinking-margin-of-safety@2336a8b814d3 [B] 1978 — Apply a margin-of-safety approach to uncertain commitments and designs by adding buffers or slack.
+47. uasl/saga@fabeed82c780 [B] 4941 — Creates customer-centric product and feature narratives using explicit storytelling frameworks, concrete scene
+48. uasl/clay@6c9572941894 [B] 2997 — Produces reproducible code and operating guidance for AI 3D generation, modeling, game-asset pipelines, and qu
+49. uasl/lens@6fbc66f7a7bb [B] 2813 — Systematically investigate a codebase to explain feature existence, execution and data flows, and module respo
+50. uasl/python-performance-optimization@bf455fd100bf [B] 5128 — Profile Python applications to identify CPU, memory, I/O, and database bottlenecks, then apply measured optimi
+
+## s2-api profile=['fastapi', 'pydantic', 'pytest', 'python', 'uv']
+ 1. uasl/fastapi-endpoint@2a93d50c4970 [B] 3875 — Guides the agent through exploring an existing FastAPI project, asking clarifying questions, planning an endpo
+ 2. uasl/fastapi-templates@effcd0de0b4c [B] 3748 — Guides creation of structured FastAPI backend projects using async patterns, dependency injection, repository 
+ 3. uasl/openapi-spec-generation@2d2c7a93b8f2 [B] 6137 — Guides agents in creating and maintaining OpenAPI 3.1 specifications from design or code, validating API contr
+ 4. uasl/builder@8d7f0953ade3 [B] 3007 — Guides the agent to implement production-ready, type-safe business logic, API integrations, and data models, w
+ 5. uasl/python-testing-patterns@e62d0f1ca316 [B] 6281 — Guides the agent in designing and implementing Python tests using pytest patterns, fixtures, mocks, and specia
+ 6. uasl/integration-testing@62b51275be50 [B] 5792 — Guides agents to write integration tests that exercise multiple components together, using real dependencies a
+ 7. uasl/python-error-handling@8dc34883a143 [B] 2680 — Guides agents to implement Python validation and error handling with meaningful exceptions, exception chaining
+ 8. uasl/unit-testing@6c5fbb821103 [B] 6067 — Guides the agent to write and improve isolated unit tests using common testing patterns, test doubles, naming 
+ 9. uasl/api-design@bba608f8c974 [B] 3267 — Guides the agent in designing and reviewing REST API contracts, covering resource URLs, HTTP behavior, respons
+10. uasl/async-python-patterns@957ebfe54aa7 [B] 4953 — Guides implementation of asynchronous Python applications using asyncio, concurrency patterns, and async I/O.
+11. uasl/gateway@8350be122608 [B] 2681 — Designs and reviews API contracts, producing OpenAPI specifications or GraphQL SDL along with examples, error 
+12. uasl/capsule-crm-automation@97113fa8404d [B] 1912 — Use the Composio MCP integration to carry out Capsule CRM operations, including managing contacts, querying re
+13. uasl/error-handling-patterns@4c19ee7d7821 [B] 4095 — Guides agents in handling errors across Python, JavaScript/TypeScript, Rust, and Go, including validation, cle
+14. uasl/owasp-security@9847d3666f75 [B] 4271 — Apply OWASP security practices when implementing or reviewing application and agent code.
+15. uasl/n8n-workflow-patterns@c9641aab7a0b [B] 2839 — Guides agents in selecting, planning, building, validating, and deploying n8n workflows using common workflow 
+16. uasl/wycheproof@8924e1e4bfb6 [B] 4838 — Use Wycheproof test vectors to validate cryptographic implementations against known attacks and edge cases.
+17. uasl/radar@a47ea6fd5f95 [B] 2701 — Add and refine tests, diagnose flaky behavior, and improve coverage while preserving product behavior.
+18. anthropics-skills/mcp-builder@7e8426a435cb [A] 2264 — Guides agents through researching, planning, implementing, testing, and evaluating MCP servers that connect LL
+19. uasl/clean-code@f135cf4e9ff5 [B] 4775 — Guide the agent to write, review, and refactor readable, maintainable code using clear names, focused function
+20. uasl/contract-testing@b0f4c29940a9 [B] 5767 — Guides agents in choosing and implementing contract-testing approaches to verify API compatibility between ser
+21. uasl/linkhut-automation@9b0e45eac879 [B] 730 — Automate Linkhut operations through Rube MCP by discovering current tool schemas, checking the Linkhut connect
+22. uasl/bright-data-best-practices@15cfe1bca9b8 [B] 3277 — Guides developers in choosing and integrating Bright Data APIs for scraping, search, structured extraction, an
+23. uasl/api-testing@4ada9a2fac88 [B] 3729 — Guides the agent in creating and running direct HTTP API tests with tools such as .http files, Bruno, Postman/
+24. uasl/secure-coding-practices@cc37fcd8687e [B] 1490 — Apply defensive security practices when designing, implementing, and reviewing applications.
+25. uasl/vibe-security@6b07d0f651a7 [B] 6182 — Apply secure-by-default practices when building or reviewing web applications, protecting access, user data, i
+26. uasl/shorten-rest-automation@60861026388c [B] 748 — Automates Shorten Rest tasks through Rube MCP and Composio.
+27. uasl/next-best-practices@ee058f89acea [B] 1008 — Apply Next.js best practices when writing or reviewing Next.js code, including using the optimized image compo
+28. uasl/python-design-patterns@5c0fbe0d4633 [B] 3093 — Guides the agent to design and refactor Python code using simple, focused components, clear separation of conc
+29. uasl/microservices-patterns@40adea69dde4 [B] 4090 — Guide the design and implementation of microservices using service boundaries, inter-service communication, di
+30. uasl/onesignal-rest-api-automation@69760a7d8416 [B] 1045 — Use Rube MCP to discover current OneSignal tool schemas, establish an active connection, and execute OneSignal
+31. uasl/zapier-make-patterns@32e4bb74a0b3 [B] 803 — Guides the agent in choosing between Zapier, Make, and code-based solutions, and in designing reliable no-code
+32. uasl/judge@6ea2e485149e [B] 3644 — Use the Codex review CLI to review PRs, pre-commit changes, and commits, then assess findings for correctness,
+33. uasl/deployment-pipeline-design@2a89fc6f32ff [B] 2043 — Guides the design of multi-stage CI/CD pipelines, including deployment strategies, approval gates, verificatio
+34. uasl/test-driven-development@0eebe2fe0e28 [B] 2469 — Follow a test-first development cycle: write a failing test, verify the failure, implement the minimum code to
+35. uasl/backend-patterns@3d87ff489f3e [B] 3456 — Provides TypeScript-oriented backend patterns for API design, data access, query optimization, caching, error 
+36. uasl/acceptance-testing@7f713f1566e8 [B] 5775 — Use BDD acceptance-testing practices to turn business requirements into executable specifications, step defini
+37. uasl/api-ninjas-automation@e9437531d148 [B] 741 — Automates API Ninjas operations through Rube MCP by discovering current tool schemas, checking the API Ninjas 
+38. uasl/systematic-debug@6b158e105823 [B] 3151 — Use test bombs to narrow an unclear bug to a likely component, and layered tests to isolate the failing stage 
+39. uasl/the-odds-api-automation@688dcc38656c [B] 748 — Automate The Odds API operations through Rube MCP by discovering current tool schemas, checking the API connec
+40. uasl/toggl-automation@ade179c88f7f [B] 1532 — Use Rube MCP to automate Toggl Track time-entry, project, client, tag, and workspace workflows from natural-la
+41. uasl/forge@a8efdfdbe817 [B] 2430 — Use Forge to build small, runnable prototypes that validate ideas, relying on mocks where useful and keeping w
+42. uasl/event-store-design@c739ef000ad1 [B] 3635 — Guides the agent in designing and implementing event stores for event-sourced systems, including technology se
+43. uasl/design-everyday-things@ce8daf49b316 [B] 4892 — Apply foundational human-centered design principles to evaluate and improve discoverability, feedback, error p
+44. uasl/second-opinion@129803cad9d9 [B] 2486 — Collect review parameters, inspect the selected diff, and run external code reviews with Codex, Gemini, or bot
+45. uasl/procfu-automation@2ee6cc6595ec [B] 726 — Automate Procfu operations through Rube MCP by discovering current tool schemas, checking the Procfu connectio
+46. uasl/kit-automation@f2956d04180e [B] 715 — Automate Kit operations through Rube MCP by discovering current tool schemas, checking the Kit connection, and
+47. uasl/design-to-code@fae28f73cda0 [B] 707 — Guides the agent in translating design mockups into frontend code, prioritizing alignment with the design and 
+48. uasl/feature-forge@647addfd7f07 [B] 1055 — Guides the agent through structured feature-requirements workshops, from discovery and stakeholder interviews 
+49. uasl/pragmatic-programmer@d73a94281415 [B] 4514 — Apply pragmatic software-craft principles when designing, reviewing, or writing software, including DRY, ortho
+50. uasl/zoho-mail-automation@fcbe9c3568f5 [B] 1027 — Use Rube MCP to discover current Zoho Mail tools and schemas, establish an active connection, and execute mail
+
+## s2-docs profile=['javascript', 'nextjs', 'npm', 'react', 'typescript']
+ 1. uasl/next-upgrade@df465f7770a5 [B] 509 — Upgrade a project to the latest Next.js version using the official migration guides and codemods.
+ 2. uasl/vercel-react-best-practices@70f3b5aaf775 [B] 1676 — Provides React and Next.js performance guidance for writing, reviewing, and refactoring code.
+ 3. uasl/quill@336ba74b0e79 [B] 3199 — Quill guides the agent to improve codebase documentation, type clarity, and README/API materials while preserv
+ 4. uasl/next-cache-components@b22f6e134147 [B] 2345 — Guides implementation of Next.js 16 Cache Components, including cached, dynamic, and static content; cache lif
+ 5. uasl/scaffold-nextjs@3d1152f5d9d0 [B] 1309 — Guides the agent through gathering project details and scaffolding a Next.js turborepo with UI components, dev
+ 6. uasl/frontend-patterns@8f659ce2a0bd [B] 3849 — Use React and Next.js frontend patterns for components, state, data fetching, performance, forms, animation, a
+ 7. uasl/next-best-practices@ee058f89acea [B] 1008 — Apply Next.js best practices when writing or reviewing Next.js code, including using the optimized image compo
+ 8. uasl/backend-patterns@3d87ff489f3e [B] 3456 — Provides TypeScript-oriented backend patterns for API design, data access, query optimization, caching, error 
+ 9. uasl/documentation-lookup@dee6d7478eab [B] 1222 — For questions involving libraries, frameworks, or APIs, retrieve current documentation through Context7 rather
+10. uasl/design-system-creation@ec5d23e4e974 [B] 1717 — Guides the agent through creating or refactoring a distinctive design system, from documenting its aesthetic t
+11. uasl/gsap-react@79939b61e00a [B] 1632 — Guides agents to build and review GSAP animations in React using useGSAP, scoped refs, context-safe callbacks,
+12. uasl/nextjs-turbopack@b0af0186e13a [B] 536 — Guides Next.js 16+ development toward Turbopack and explains when webpack is an appropriate fallback.
+13. uasl/taste-skill@57790089504e [B] 5281 — The skill directs the agent to build distinctive, responsive React or Next.js interfaces using specified desig
+14. uasl/trigger-dev@d05b3d95379f [B] 592 — Guides the agent in building reliable Trigger.dev background jobs and integrations, including scheduled, AI, l
+15. anthropics-skills/web-artifacts-builder@9c350d2f5f13 [A] 768 — Guides the agent to initialize a React frontend project, develop a multi-component web artifact, bundle it int
+16. uasl/typescript-clean-code@409278d3a61a [B] 1747 — Use Clean Code and professional-practice workflows tailored to TypeScript, consulting the skill’s reference fi
+17. uasl/mcp-server-patterns@63e29e48e956 [B] 961 — For MCP server work, verify current SDK APIs against official documentation or Context7 and keep server logic 
+18. uasl/artisan@1e09f38ffcab [B] 2908 — Guides frontend work toward production-quality React, Vue, and Svelte components with TypeScript, accessibilit
+19. uasl/claude-native-claude-api@24c958899f03 [B] 8191 — Guide the agent in building, debugging, and migrating Claude API applications using Anthropic SDKs and documen
+20. uasl/web-design-builder@61ee1c248717 [B] 4447 — Guides the agent to gather web-design requirements, create responsive and accessible HTML/CSS/JavaScript desig
+21. uasl/shadcn@fb196fe88c66 [B] 4103 — Guides agents working in shadcn/ui projects to use project context, documentation, registries, and existing co
+22. uasl/typescript-unit-testing@6fb3561edcb3 [B] 3832 — Guides agents through TypeScript/NestJS unit-testing workflows for setup, writing, reviewing, running, debuggi
+23. uasl/clay@6c9572941894 [B] 2997 — Produces reproducible code and operating guidance for AI 3D generation, modeling, game-asset pipelines, and qu
+24. uasl/scaffold-exercises@95d0d91c73af [B] 897 — Scaffolds course exercise directories from a plan, with variant folders and readmes that meet the repository's
+25. uasl/define-architecture@8ea764417825 [B] 1323 — Guides the agent to define TypeScript application architecture, including repository shape, module boundaries,
+26. uasl/acceptance-testing@7f713f1566e8 [B] 5775 — Use BDD acceptance-testing practices to turn business requirements into executable specifications, step defini
+27. uasl/hunter-automation@16ca2f412367 [B] 1511 — Use the Hunter.io toolkit through the Composio MCP integration to search for email addresses, find and verify 
+28. uasl/monorepo-management@4078df072127 [B] 3086 — Guides agents in setting up and managing JavaScript/TypeScript monorepos with workspace package managers and b
+29. uasl/onboarding-ux@525055bbdf31 [B] 3093 — Audit a web app from a new user’s perspective, then create onboarding guidance and code to address the gaps.
+30. uasl/architecture-decision-records@715e99d0306d [B] 3172 — Guides the agent to write and maintain Architecture Decision Records that capture technical decisions and thei
+31. uasl/segment-cdp@42e8e765d937 [B] 361 — Apply Segment CDP patterns when implementing browser or server-side tracking and designing event schemas.
+32. uasl/motion-canvas@08d879d31903 [B] 2845 — Guides agents through setting up Motion Canvas projects and creating TypeScript animations, with particular at
+33. uasl/ubiquitous-language@0c7a6937f877 [B] 1220 — Extract domain terminology from the conversation, identify ambiguities and synonyms, and propose a consistent 
+34. uasl/judge@6ea2e485149e [B] 3644 — Use the Codex review CLI to review PRs, pre-commit changes, and commits, then assess findings for correctness,
+35. uasl/openapi-spec-generation@2d2c7a93b8f2 [B] 6137 — Guides agents in creating and maintaining OpenAPI 3.1 specifications from design or code, validating API contr
+36. uasl/polyglot@11be7885bda2 [B] 3136 — Guides agents through internationalization and localization work, including extracting strings, structuring tr
+37. uasl/inngest@fc3f33c4e97f [B] 662 — Guides agents building Inngest-based serverless background jobs and durable, event-driven workflows.
+38. uasl/visual-design-foundations@f7829f5da0d2 [B] 1809 — Establish cohesive visual design systems using typography, color, spacing, and iconography principles.
+39. uasl/caveman-stats@2859ce4e33a6 [B] 150 — Provides real token usage and estimated savings for the current session from the Claude Code session log.
+40. uasl/claude-api@f952c765f5b0 [B] 4742 — Guides agents building Claude API and Anthropic SDK integrations: choose the appropriate API or Agent SDK surf
+41. uasl/vibe-security@6b07d0f651a7 [B] 6182 — Apply secure-by-default practices when building or reviewing web applications, protecting access, user data, i
+42. uasl/accessibility-compliance@696d2b4119ed [B] 2962 — Guides implementation and auditing of accessible interfaces, with emphasis on semantic HTML, keyboard access, 
+43. uasl/component-identification-sizing@a9b4aa9f2de1 [B] 3421 — Maps codebase directory or namespace structures to identify architectural components, then measures their size
+44. uasl/radar@a47ea6fd5f95 [B] 2701 — Add and refine tests, diagnose flaky behavior, and improve coverage while preserving product behavior.
+45. uasl/web-component-design@af6d16dc78dc [B] 1873 — Guides the agent in designing reusable UI components and component APIs with React, Vue, and Svelte.
+46. uasl/openui@c3154bb34a14 [B] 1649 — Guides agents in building generative UI apps with OpenUI and OpenUI Lang, including scaffolding, component lib
+47. uasl/migrate-to-shoehorn@50bfd668fa65 [B] 697 — Migrate test files from TypeScript `as` assertions to `@total-typescript/shoehorn`, using `fromPartial()` for 
+48. uasl/changelog-generator@f7da9390521a [B] 771 — Generate customer-friendly changelogs and release notes from Git commits, organizing changes into useful categ
+49. uasl/bun-runtime@009ca8691cf7 [B] 646 — Guides agents in choosing Bun or Node, migrating scripts and installs to Bun, and configuring Bun for deployme
+50. uasl/n8n-code-python@ba1cd974d317 [B] 4461 — Guides agents writing Python for n8n Code nodes, including n8n data access and return formats, execution modes
+
+## s2-data profile=['pandas', 'pytest', 'python', 'uv']
+ 1. anthropics-skills/xlsx@5350d36b768c [A] 2135 — Guides agents through creating, editing, and analyzing spreadsheet files, with rules for formulas, recalculati
+ 2. uasl/data-analyst-engine@79799e01e2dd [B] 2014 — Guides the agent through data cleaning, exploratory and statistical analysis, visualization, machine learning 
+ 3. uasl/python-testing-patterns@e62d0f1ca316 [B] 6281 — Guides the agent in designing and implementing Python tests using pytest patterns, fixtures, mocks, and specia
+ 4. uasl/n8n-code-python@ba1cd974d317 [B] 4461 — Guides agents writing Python for n8n Code nodes, including n8n data access and return formats, execution modes
+ 5. uasl/invoice-organizer@65f04d96d07a [B] 2905 — Guides the agent through extracting invoice details, choosing an organization strategy, standardizing filename
+ 6. uasl/clay@6c9572941894 [B] 2997 — Produces reproducible code and operating guidance for AI 3D generation, modeling, game-asset pipelines, and qu
+ 7. uasl/eventbrite-automation@3c64bf358971 [B] 1299 — Use the Rube MCP integration to manage Eventbrite workflows, including discovering organizations, listing even
+ 8. uasl/sketch@2a8aac6ecc18 [B] 2391 — Guides the agent to produce Python code for Gemini image generation, editing, prompt refinement, and batch wor
+ 9. uasl/unit-testing@6c5fbb821103 [B] 6067 — Guides the agent to write and improve isolated unit tests using common testing patterns, test doubles, naming 
+10. uasl/api-design@bba608f8c974 [B] 3267 — Guides the agent in designing and reviewing REST API contracts, covering resource URLs, HTTP behavior, respons
+11. uasl/dynamics365-automation@03e4959eec42 [B] 2053 — Use the Dynamics 365 CRM toolkit through Rube MCP to manage CRM records, including leads, accounts, contacts, 
+12. anthropics-skills/webapp-testing@a4b4ce82b644 [A] 965 — Use native Python Playwright scripts to test local web applications, choosing an approach based on whether the
+13. uasl/python-performance-optimization@bf455fd100bf [B] 5128 — Profile Python applications to identify CPU, memory, I/O, and database bottlenecks, then apply measured optimi
+14. uasl/radar@a47ea6fd5f95 [B] 2701 — Add and refine tests, diagnose flaky behavior, and improve coverage while preserving product behavior.
+15. uasl/excel-generator@9ce0c16c81a1 [B] 5783 — Create professional Excel workbooks that are immediately useful for understanding and exploring structured dat
+16. uasl/changelog-generator@f7da9390521a [B] 771 — Generate customer-friendly changelogs and release notes from Git commits, organizing changes into useful categ
+17. uasl/code-maturity-assessor@c0bd3143e45e [B] 1772 — Assess code maturity using Trail of Bits’ nine-category framework, grounding ratings in code evidence and clar
+18. uasl/survey-monkey-automation@d25fdaab9862 [B] 1734 — Use SurveyMonkey tools through natural-language requests to create and discover surveys, manage collectors, an
+19. anthropics-skills/internal-comms@c544dea09136 [A] 377 — For internal communications, identify the communication type and consult the matching guideline file before wr
+20. uasl/atheris@5b575b7295c7 [B] 3612 — Guides agents in using Atheris to fuzz Python code and Python C extensions, including writing harnesses, confi
+21. uasl/design-review@4964367926b4 [B] 2152 — Review a web app or page for visual design quality, including layout, typography, colour, hierarchy, consisten
+22. uasl/internal-comms@8ad08fb91e8c [B] 377 — For internal communications, identify the communication type and load and follow its matching guideline file.
+23. uasl/obviously-awesome@fd4c9e19ced0 [B] 6079 — Guides the agent through defining product positioning by identifying competitive alternatives, unique attribut
+24. uasl/python-error-handling@8dc34883a143 [B] 2680 — Guides agents to implement Python validation and error handling with meaningful exceptions, exception chaining
+25. uasl/fp-check@36809c5d2431 [B] 1651 — Systematically verifies specific suspected security bugs and records evidence for a TRUE POSITIVE or FALSE POS
+26. uasl/async-python-patterns@957ebfe54aa7 [B] 4953 — Guides implementation of asynchronous Python applications using asyncio, concurrency patterns, and async I/O.
+27. uasl/positioning-statement@235d6165147e [B] 2388 — Guides the agent to create and stress-test a Geoffrey Moore-style positioning statement covering the target cu
+28. uasl/gorgias-automation@2106c504916d [B] 1421 — Use the Rube MCP integration to manage Gorgias tickets, customers, tags, teams, and account activity from natu
+29. uasl/meta-prompt-engineering@c01cd11b78a1 [B] 2559 — Turn vague or unreliable prompts into structured prompts with explicit roles, steps, constraints, output forma
+30. uasl/zoho-inventory-automation@2f2863777368 [B] 1054 — Use Rube MCP to discover current Zoho Inventory tool schemas, verify the connection, and execute inventory wor
+31. uasl/translation-reframing-audience-shift@d1a28fb19e3e [B] 4206 — Adapt existing content for a new audience by changing its tone, depth, emphasis, or format while preserving se
+32. uasl/kommo-automation@67ebbb9c7737 [B] 1504 — Use the Kommo CRM tools through the Composio MCP integration to manage leads, pipelines, tasks, and custom fie
+33. uasl/builder@8d7f0953ade3 [B] 3007 — Guides the agent to implement production-ready, type-safe business logic, API integrations, and data models, w
+34. uasl/semgrep-rule-variant-creator@2cea56923011 [B] 2015 — Ports existing Semgrep rules to applicable target languages by analyzing language applicability, creating test
+35. uasl/error-handling-patterns@4c19ee7d7821 [B] 4095 — Guides agents in handling errors across Python, JavaScript/TypeScript, Rust, and Go, including validation, cle
+36. uasl/claude-native-brand-guidelines@7d7cc96e7e20 [B] 562 — Apply Anthropic brand styling to visual artifacts, using its typography and accent-color guidance.
+37. uasl/think-tank@833fcce1b6d9 [B] 3156 — Before planning or making architectural, design, or strategic decisions, run a moderated debate among a divers
+38. uasl/exa-search@371597562d6c [B] 237 — Use the Exa API for semantic search, similar-content discovery, category-based search, and structured research
+39. uasl/fastapi-templates@effcd0de0b4c [B] 3748 — Guides creation of structured FastAPI backend projects using async patterns, dependency injection, repository 
+40. uasl/netsuite-automation@b615a37449c9 [B] 2118 — Use the NetSuite toolkit to query and manage ERP records, including customers and sales orders.
+41. uasl/lemon-squeezy-automation@78ae0198fdfd [B] 1450 — Use the Rube MCP integration to manage Lemon Squeezy stores and retrieve products, orders, subscriptions, cust
+42. uasl/python-type-safety@60be75b4816f [B] 2813 — Guides agents to use Python type annotations, generics, protocols, and type narrowing to make code statically 
+43. uasl/python-design-patterns@5c0fbe0d4633 [B] 3093 — Guides the agent to design and refactor Python code using simple, focused components, clear separation of conc
+44. uasl/coupling-analysis@600d3107e2f9 [B] 3898 — Guides the agent through analyzing software coupling using integration strength, distance, and volatility.
+45. uasl/openapi-spec-generation@2d2c7a93b8f2 [B] 6137 — Guides agents in creating and maintaining OpenAPI 3.1 specifications from design or code, validating API contr
+46. uasl/documentation-lookup@dee6d7478eab [B] 1222 — For questions involving libraries, frameworks, or APIs, retrieve current documentation through Context7 rather
+47. uasl/thinking-margin-of-safety@2336a8b814d3 [B] 1978 — Apply a margin-of-safety approach to uncertain commitments and designs by adding buffers or slack.
+48. uasl/zen@f72229d0a781 [B] 3182 — Use Zen to review or refactor code for readability and maintainability while preserving behavior, staying with
+49. uasl/compete@c2b41286409b [B] 3131 — Perform evidence-based competitive research and analysis, then turn findings into differentiated strategic rec
+50. uasl/negotiation@00a3e4e874e5 [B] 6067 — Apply a tactical-empathy negotiation framework to prepare for and conduct negotiations, uncover information, r

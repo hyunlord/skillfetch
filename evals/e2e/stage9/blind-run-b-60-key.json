@@ -1,0 +1,3742 @@
+{
+"t002": {
+"g01": {
+"skill": "dpearson2699-swift-ios-skills/alarmkit@9f4fa3d13f87",
+"source": "new",
+"opus_grade": 0
+},
+"g02": {
+"skill": "uasl/focus-timeboxing-8020@4317b5bf1913",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g03": {
+"skill": "anthropics-skills/claude-api@e30e2c97f747",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g04": {
+"skill": "affaan-m-ecc/autonomous-agent-harness@bb1eef77f9c6",
+"source": "new",
+"opus_grade": 0
+},
+"g05": {
+"skill": "affaan-m-ecc/agentic-os@d82a931a353b",
+"source": "new",
+"opus_grade": 0
+},
+"g06": {
+"skill": "uasl/timekit-automation@ca8a9faa9e8c",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g07": {
+"skill": "uasl/claude-native-claude-api@24c958899f03",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g08": {
+"skill": "affaan-m-ecc/contract-first@11744547b93a",
+"source": "new",
+"opus_grade": 0
+}
+},
+"t007": {
+"g01": {
+"skill": "uasl/onboarding-ux@525055bbdf31",
+"source": "old_baseline_top10",
+"opus_grade": 1
+},
+"g02": {
+"skill": "affaan-m-ecc/nextjs-turbopack@56ef796fca80",
+"source": "new",
+"opus_grade": 1
+},
+"g03": {
+"skill": "dpearson2699-swift-ios-skills/cryptotokenkit@ff8dc42ff2a8",
+"source": "new",
+"opus_grade": 0
+},
+"g04": {
+"skill": "affaan-m-ecc/react-native-patterns@9dedc460ef07",
+"source": "new",
+"opus_grade": 0
+},
+"g05": {
+"skill": "uasl/documentation-lookup@dee6d7478eab",
+"source": "old_baseline_top10",
+"opus_grade": 1
+},
+"g06": {
+"skill": "uasl/taste-skill@57790089504e",
+"source": "old_staging_top10",
+"opus_grade": 1
+},
+"g07": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/sqldelight-patterns@da2d7af1b6cd",
+"source": "new",
+"opus_grade": 0
+},
+"g08": {
+"skill": "affaan-m-ecc/frontend-patterns@4f7ece8fd5c6",
+"source": "new",
+"opus_grade": 3
+},
+"g09": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/pagination-patterns@6a9e0648a2de",
+"source": "new",
+"opus_grade": 1
+},
+"g10": {
+"skill": "uasl/bright-data-best-practices@15cfe1bca9b8",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g11": {
+"skill": "uasl/vercel-react-best-practices@70f3b5aaf775",
+"source": "old_baseline_top10",
+"opus_grade": 2
+},
+"g12": {
+"skill": "affaan-m-ecc/ui-demo@2769780633a2",
+"source": "new",
+"opus_grade": 0
+},
+"g13": {
+"skill": "anthropics-skills/webapp-testing@a4b4ce82b644",
+"source": "old_staging_top10",
+"opus_grade": 2
+},
+"g14": {
+"skill": "uasl/next-best-practices@ee058f89acea",
+"source": "old_staging_top10",
+"opus_grade": 3
+}
+},
+"t016": {
+"g01": {
+"skill": "uasl/ton-vulnerability-scanner@377d84553d54",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g02": {
+"skill": "dpearson2699-swift-ios-skills/device-integrity@0350955f2cab",
+"source": "new",
+"opus_grade": 0
+},
+"g03": {
+"skill": "actionbook-rust-skills/m07-concurrency@0686c877c8a6",
+"source": "new",
+"opus_grade": 3
+},
+"g04": {
+"skill": "uasl/strategic-compact@7e1496f1097b",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g05": {
+"skill": "affaan-m-ecc/android-clean-architecture@e7e455dec364",
+"source": "new",
+"opus_grade": 0
+},
+"g06": {
+"skill": "affaan-m-ecc/rust-patterns@f0961b5637b0",
+"source": "new",
+"opus_grade": 2
+},
+"g07": {
+"skill": "affaan-m-ecc/recursive-decision-ledger@276d8ad51e02",
+"source": "new",
+"opus_grade": 0
+},
+"g08": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/room-patterns@84f8b0841b0a",
+"source": "new",
+"opus_grade": 0
+},
+"g09": {
+"skill": "uasl/webex-automation@7afdcc0f0d94",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g10": {
+"skill": "uasl/chatwork-automation@b3ef79e7f607",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g11": {
+"skill": "uasl/trace@5c68ce48e264",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g12": {
+"skill": "uasl/cairo-vulnerability-scanner@ec05b2fd95f9",
+"source": "old_staging_top10",
+"opus_grade": 0
+}
+},
+"t022": {
+"g01": {
+"skill": "uasl/five-agent-state-update@d7d66be120b0",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g02": {
+"skill": "uasl/ux-audit@d921ee5d8321",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g03": {
+"skill": "uasl/gsap-scrolltrigger@dd7bfe79efb2",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g04": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/swiftui-patterns@d91b337199dc",
+"source": "new",
+"opus_grade": 2
+},
+"g05": {
+"skill": "uasl/ios-hig-design@81a44fe68e4e",
+"source": "old_baseline_top10",
+"opus_grade": 1
+},
+"g06": {
+"skill": "dpearson2699-swift-ios-skills/swiftui-patterns@926eba464a2f",
+"source": "new",
+"opus_grade": 2
+},
+"g07": {
+"skill": "uasl/microinteractions@d61a5035d0f0",
+"source": "old_baseline_top10",
+"opus_grade": 1
+},
+"g08": {
+"skill": "dpearson2699-swift-ios-skills/widgetkit@6812f8eee35e",
+"source": "new",
+"opus_grade": 0
+},
+"g09": {
+"skill": "dpearson2699-swift-ios-skills/swiftui-layout-components@5f0742228f1a",
+"source": "new",
+"opus_grade": 2
+},
+"g10": {
+"skill": "uasl/live-artifact@a7e66be6fd82",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g11": {
+"skill": "uasl/caveman-review@23eed6aa48dd",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g12": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/ios-testing@fdec9c2c0ff8",
+"source": "new",
+"opus_grade": 0
+},
+"g13": {
+"skill": "dpearson2699-swift-ios-skills/swiftui-gestures@202568925e30",
+"source": "new",
+"opus_grade": 0
+},
+"g14": {
+"skill": "dpearson2699-swift-ios-skills/ios-networking@a76711379d39",
+"source": "new",
+"opus_grade": 1
+},
+"g15": {
+"skill": "uasl/gsap-performance@545d16027a95",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g16": {
+"skill": "affaan-m-ecc/swiftui-patterns@ea4b3d0fc833",
+"source": "new",
+"opus_grade": 2
+},
+"g17": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/ktor-patterns@bddbbf8dddac",
+"source": "new",
+"opus_grade": 0
+},
+"g18": {
+"skill": "uasl/gong-automation@09a015febb35",
+"source": "old_baseline_top10",
+"opus_grade": 0
+}
+},
+"t030": {
+"g01": {
+"skill": "uasl/workday-automation@3e9313379197",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g02": {
+"skill": "affaan-m-ecc/nuxt4-patterns@3df291143d6f",
+"source": "new",
+"opus_grade": 1
+},
+"g03": {
+"skill": "affaan-m-ecc/network-interface-health@a52dcb8204e4",
+"source": "new",
+"opus_grade": 0
+},
+"g04": {
+"skill": "uasl/eventbrite-automation@3c64bf358971",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g05": {
+"skill": "affaan-m-ecc/documentation-lookup@57773ac70da0",
+"source": "new",
+"opus_grade": 1
+},
+"g06": {
+"skill": "affaan-m-ecc/motion-foundations@c6b0c952cb47",
+"source": "new",
+"opus_grade": 0
+},
+"g07": {
+"skill": "uasl/next-best-practices@ee058f89acea",
+"source": "old_staging_top10",
+"opus_grade": 2
+},
+"g08": {
+"skill": "uasl/vercel-react-best-practices@70f3b5aaf775",
+"source": "old_staging_top10",
+"opus_grade": 2
+}
+},
+"t036": {
+"g01": {
+"skill": "uasl/n8n-code-javascript@203459f10f1d",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g02": {
+"skill": "uasl/async-python-patterns@957ebfe54aa7",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g03": {
+"skill": "actionbook-rust-skills/domain-cloud-native@078769fd2fa0",
+"source": "new",
+"opus_grade": 1
+},
+"g04": {
+"skill": "uasl/contract-testing@b0f4c29940a9",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g05": {
+"skill": "uasl/gumroad-automation@ee18d39c540e",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g06": {
+"skill": "affaan-m-ecc/django-celery@30de29f8fd35",
+"source": "new",
+"opus_grade": 0
+},
+"g07": {
+"skill": "affaan-m-ecc/test-collaboration@747081661241",
+"source": "new",
+"opus_grade": 0
+},
+"g08": {
+"skill": "uasl/release-it@e3e5b4710eea",
+"source": "old_baseline_top10",
+"opus_grade": 2
+},
+"g09": {
+"skill": "affaan-m-ecc/autonomous-agent-harness@bb1eef77f9c6",
+"source": "new",
+"opus_grade": 0
+},
+"g10": {
+"skill": "affaan-m-ecc/contract-first@11744547b93a",
+"source": "new",
+"opus_grade": 0
+},
+"g11": {
+"skill": "affaan-m-ecc/tinystruct-patterns@5b08a71b403d",
+"source": "new",
+"opus_grade": 0
+},
+"g12": {
+"skill": "uasl/tdd@ff86dad94075",
+"source": "old_baseline_top10",
+"opus_grade": 2
+},
+"g13": {
+"skill": "uasl/n8n-workflow-patterns@c9641aab7a0b",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g14": {
+"skill": "affaan-m-ecc/error-handling@f630539a5890",
+"source": "new",
+"opus_grade": 2
+},
+"g15": {
+"skill": "uasl/siege@06245d21dd1c",
+"source": "old_baseline_top10",
+"opus_grade": 1
+},
+"g16": {
+"skill": "affaan-m-ecc/springboot-verification@8667ba45dc39",
+"source": "new",
+"opus_grade": 0
+},
+"g17": {
+"skill": "uasl/video-shortform@6be3340d3873",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g18": {
+"skill": "affaan-m-ecc/redis-patterns@3e02a884352b",
+"source": "new",
+"opus_grade": 2
+}
+},
+"t037": {
+"g01": {
+"skill": "affaan-m-ecc/production-scheduling@9d8584623d21",
+"source": "new",
+"opus_grade": 0
+},
+"g02": {
+"skill": "uasl/freshbooks-automation@8508cc146d7f",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g03": {
+"skill": "uasl/relay@7794e4cab2a2",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g04": {
+"skill": "uasl/project-risk-register@f5e560b93885",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g05": {
+"skill": "affaan-m-ecc/laravel-verification@7a536a86b654",
+"source": "new",
+"opus_grade": 0
+},
+"g06": {
+"skill": "affaan-m-ecc/product-lens@234c51518d5c",
+"source": "new",
+"opus_grade": 0
+},
+"g07": {
+"skill": "affaan-m-ecc/nodejs-keccak256@ffc3759434bc",
+"source": "new",
+"opus_grade": 0
+},
+"g08": {
+"skill": "uasl/clockify-automation@2a7df079c351",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g09": {
+"skill": "uasl/introspection-self-reflection-engine@d024bcbe9e28",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g10": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/jetpack-compose@4c3931b3c56f",
+"source": "new",
+"opus_grade": 0
+},
+"g11": {
+"skill": "uasl/crossing-the-chasm@8676ab924768",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g12": {
+"skill": "affaan-m-ecc/compose-multiplatform-patterns@29c993eec209",
+"source": "new",
+"opus_grade": 0
+},
+"g13": {
+"skill": "affaan-m-ecc/golang-testing@37756125e539",
+"source": "new",
+"opus_grade": 2
+},
+"g14": {
+"skill": "uasl/harvest-automation@9d33356a1149",
+"source": "old_staging_top10",
+"opus_grade": 0
+}
+},
+"t048": {
+"g01": {
+"skill": "uasl/clockify-automation@2a7df079c351",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g02": {
+"skill": "uasl/imagegen-frontend-mobile@d57843fce66f",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g03": {
+"skill": "uasl/mobile-app@a9dba8039c51",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g04": {
+"skill": "dpearson2699-swift-ios-skills/core-motion@83d288a86cbe",
+"source": "new",
+"opus_grade": 0
+},
+"g05": {
+"skill": "dpearson2699-swift-ios-skills/healthkit@54ccb4109330",
+"source": "new",
+"opus_grade": 0
+},
+"g06": {
+"skill": "dpearson2699-swift-ios-skills/relevancekit@8e6296f1dc38",
+"source": "new",
+"opus_grade": 0
+},
+"g07": {
+"skill": "dpearson2699-swift-ios-skills/activitykit@bd1cab8c9697",
+"source": "new",
+"opus_grade": 0
+},
+"g08": {
+"skill": "uasl/relay@7794e4cab2a2",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g09": {
+"skill": "dpearson2699-swift-ios-skills/realitykit@437a20f5b814",
+"source": "new",
+"opus_grade": 0
+},
+"g10": {
+"skill": "uasl/toggl-automation@ade179c88f7f",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g11": {
+"skill": "uasl/rewind@64cfc63aad18",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g12": {
+"skill": "dpearson2699-swift-ios-skills/alarmkit@9f4fa3d13f87",
+"source": "new",
+"opus_grade": 0
+},
+"g13": {
+"skill": "dpearson2699-swift-ios-skills/homekit@dcf67eef21d2",
+"source": "new",
+"opus_grade": 0
+},
+"g14": {
+"skill": "uasl/browser-automation@49c3aed21e27",
+"source": "old_baseline_top10",
+"opus_grade": 0
+}
+},
+"t051": {
+"g01": {
+"skill": "affaan-m-ecc/api-design@2c61753734ba",
+"source": "new",
+"opus_grade": 0
+},
+"g02": {
+"skill": "affaan-m-ecc/esign-field-placement@5f8d395dd2ea",
+"source": "new",
+"opus_grade": 0
+},
+"g03": {
+"skill": "affaan-m-ecc/swift-protocol-di-testing@8452633f0111",
+"source": "new",
+"opus_grade": 0
+},
+"g04": {
+"skill": "affaan-m-ecc/carrier-relationship-management@5e0b98576c21",
+"source": "new",
+"opus_grade": 0
+},
+"g05": {
+"skill": "uasl/component-flattening-analysis@82a0a8d664dd",
+"source": "old_staging_top10",
+"opus_grade": 1
+},
+"g06": {
+"skill": "dpearson2699-swift-ios-skills/swift-api-design-guidelines@89e3734ff081",
+"source": "new",
+"opus_grade": 0
+},
+"g07": {
+"skill": "uasl/python-type-safety@60be75b4816f",
+"source": "old_staging_top10",
+"opus_grade": 2
+},
+"g08": {
+"skill": "affaan-m-ecc/logistics-exception-management@2cacb2c19770",
+"source": "new",
+"opus_grade": 0
+},
+"g09": {
+"skill": "uasl/company-research@32017182b1af",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g10": {
+"skill": "uasl/unit-testing@6c5fbb821103",
+"source": "old_baseline_top10",
+"opus_grade": 1
+},
+"g11": {
+"skill": "uasl/refactoring-patterns@7283bad3e86e",
+"source": "old_staging_top10",
+"opus_grade": 3
+},
+"g12": {
+"skill": "uasl/shipengine-automation@b77f30f2f345",
+"source": "old_baseline_top10",
+"opus_grade": 0
+}
+},
+"t069": {
+"g01": {
+"skill": "uasl/domain-driven-design@0d649fab3ce3",
+"source": "old_staging_top10",
+"opus_grade": 3
+},
+"g02": {
+"skill": "uasl/knowledge-graph-construction@5eb99ca78465",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g03": {
+"skill": "affaan-m-ecc/ito-training@10682f36cbf3",
+"source": "new",
+"opus_grade": 0
+},
+"g04": {
+"skill": "uasl/skill-connection-map@b7d597f0981c",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g05": {
+"skill": "uasl/mermaid-diagrams@a50e01188b8f",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g06": {
+"skill": "actionbook-rust-skills/m05-type-driven@206212865a2c",
+"source": "new",
+"opus_grade": 1
+},
+"g07": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/shared-models@ba605fce8904",
+"source": "new",
+"opus_grade": 0
+},
+"g08": {
+"skill": "affaan-m-ecc/springboot-tdd@5ff62a01f15c",
+"source": "new",
+"opus_grade": 2
+},
+"g09": {
+"skill": "uasl/grill-with-docs@99f1bafe73fe",
+"source": "old_baseline_top10",
+"opus_grade": 1
+},
+"g10": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/android-patterns@be5a5e06ea8a",
+"source": "new",
+"opus_grade": 0
+},
+"g11": {
+"skill": "affaan-m-ecc/hexagonal-architecture@c87164f6cc56",
+"source": "new",
+"opus_grade": 2
+},
+"g12": {
+"skill": "actionbook-rust-skills/m09-domain@0298b12045b8",
+"source": "new",
+"opus_grade": 3
+},
+"g13": {
+"skill": "affaan-m-ecc/jpa-patterns@f2814de65ae0",
+"source": "new",
+"opus_grade": 2
+},
+"g14": {
+"skill": "uasl/tdd@ff86dad94075",
+"source": "old_baseline_top10",
+"opus_grade": 1
+},
+"g15": {
+"skill": "affaan-m-ecc/ito-inference@27297e544d29",
+"source": "new",
+"opus_grade": 0
+},
+"g16": {
+"skill": "uasl/api-testing@4ada9a2fac88",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g17": {
+"skill": "uasl/web-design-builder@61ee1c248717",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g18": {
+"skill": "uasl/builder@8d7f0953ade3",
+"source": "old_baseline_top10",
+"opus_grade": 1
+}
+},
+"t072": {
+"g01": {
+"skill": "uasl/decomposition-reconstruction@c615c9eb3d97",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g02": {
+"skill": "dpearson2699-swift-ios-skills/swift-charts@2935e367fb16",
+"source": "new",
+"opus_grade": 1
+},
+"g03": {
+"skill": "uasl/to-issues@fe551bc54a09",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g04": {
+"skill": "uasl/user-story-splitting@2d9d6a6fd3e3",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g05": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/combine-framework@6b57e1dc8ee3",
+"source": "new",
+"opus_grade": 0
+},
+"g06": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/swiftui-patterns@d91b337199dc",
+"source": "new",
+"opus_grade": 2
+},
+"g07": {
+"skill": "rshankras-claude-code-apple-skills/macos-development@e5ee59e4b65d",
+"source": "new",
+"opus_grade": 0
+},
+"g08": {
+"skill": "uasl/request-refactor-plan@49b853892f06",
+"source": "old_staging_top10",
+"opus_grade": 1
+},
+"g09": {
+"skill": "affaan-m-ecc/swiftui-patterns@ea4b3d0fc833",
+"source": "new",
+"opus_grade": 2
+},
+"g10": {
+"skill": "uasl/improve-retention@f80cefef268d",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g11": {
+"skill": "dpearson2699-swift-ios-skills/swiftui-patterns@926eba464a2f",
+"source": "new",
+"opus_grade": 2
+},
+"g12": {
+"skill": "uasl/zen@f72229d0a781",
+"source": "old_staging_top10",
+"opus_grade": 1
+}
+},
+"t075": {
+"g01": {
+"skill": "actionbook-rust-skills/rust-symbol-analyzer@c519d33f9d97",
+"source": "new",
+"opus_grade": 0
+},
+"g02": {
+"skill": "uasl/gsap-frameworks@13a7c7540177",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g03": {
+"skill": "uasl/gsap-react@79939b61e00a",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g04": {
+"skill": "affaan-m-ecc/config-gc@4ac753304de6",
+"source": "new",
+"opus_grade": 0
+},
+"g05": {
+"skill": "affaan-m-ecc/react-native-patterns@9dedc460ef07",
+"source": "new",
+"opus_grade": 2
+},
+"g06": {
+"skill": "uasl/motion-canvas@08d879d31903",
+"source": "old_staging_top10",
+"opus_grade": 0
+}
+},
+"t076": {
+"g01": {
+"skill": "affaan-m-ecc/cpp-testing@3dd184e4ffa3",
+"source": "new",
+"opus_grade": 0
+},
+"g02": {
+"skill": "affaan-m-ecc/python-testing@b62ce0637eb1",
+"source": "new",
+"opus_grade": 3
+},
+"g03": {
+"skill": "uasl/python-testing-patterns@e62d0f1ca316",
+"source": "old_staging_top10",
+"opus_grade": 3
+},
+"g04": {
+"skill": "affaan-m-ecc/regex-vs-llm-structured-text@049120d0690d",
+"source": "new",
+"opus_grade": 1
+},
+"g05": {
+"skill": "uasl/wycheproof@8924e1e4bfb6",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g06": {
+"skill": "uasl/unit-testing@6c5fbb821103",
+"source": "old_staging_top10",
+"opus_grade": 2
+}
+},
+"t079": {
+"g01": {
+"skill": "uasl/python-testing-patterns@e62d0f1ca316",
+"source": "old_staging_top10",
+"opus_grade": 2
+},
+"g02": {
+"skill": "affaan-m-ecc/perl-testing@071b8c1bc977",
+"source": "new",
+"opus_grade": 0
+},
+"g03": {
+"skill": "affaan-m-ecc/python-testing@b62ce0637eb1",
+"source": "new",
+"opus_grade": 3
+},
+"g04": {
+"skill": "uasl/fastapi-templates@effcd0de0b4c",
+"source": "old_staging_top10",
+"opus_grade": 1
+},
+"g05": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/room-patterns@84f8b0841b0a",
+"source": "new",
+"opus_grade": 0
+},
+"g06": {
+"skill": "uasl/timekit-automation@ca8a9faa9e8c",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g07": {
+"skill": "uasl/fastapi-endpoint@2a93d50c4970",
+"source": "old_staging_top10",
+"opus_grade": 1
+},
+"g08": {
+"skill": "uasl/api-sports-automation@0461bade6799",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g09": {
+"skill": "affaan-m-ecc/laravel-tdd@5c6b40e666ff",
+"source": "new",
+"opus_grade": 0
+},
+"g10": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/sqldelight-patterns@da2d7af1b6cd",
+"source": "new",
+"opus_grade": 0
+}
+},
+"t080": {
+"g01": {
+"skill": "uasl/integration-testing@62b51275be50",
+"source": "old_staging_top10",
+"opus_grade": 1
+},
+"g02": {
+"skill": "affaan-m-ecc/python-testing@b62ce0637eb1",
+"source": "new",
+"opus_grade": 3
+},
+"g03": {
+"skill": "affaan-m-ecc/django-tdd@b6ebe260d6ff",
+"source": "new",
+"opus_grade": 0
+},
+"g04": {
+"skill": "uasl/unit-testing@6c5fbb821103",
+"source": "old_staging_top10",
+"opus_grade": 2
+},
+"g05": {
+"skill": "uasl/typescript-unit-testing@6fb3561edcb3",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g06": {
+"skill": "affaan-m-ecc/rust-testing@68e797f602f9",
+"source": "new",
+"opus_grade": 0
+},
+"g07": {
+"skill": "affaan-m-ecc/fsharp-testing@c45a0f69a634",
+"source": "new",
+"opus_grade": 0
+},
+"g08": {
+"skill": "uasl/python-testing-patterns@e62d0f1ca316",
+"source": "old_staging_top10",
+"opus_grade": 3
+}
+},
+"t081": {
+"g01": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/mobile-testing@628084187f00",
+"source": "new",
+"opus_grade": 0
+},
+"g02": {
+"skill": "uasl/radar@a47ea6fd5f95",
+"source": "old_staging_top10",
+"opus_grade": 2
+},
+"g03": {
+"skill": "affaan-m-ecc/quarkus-tdd@1cdb9a6641fd",
+"source": "new",
+"opus_grade": 0
+},
+"g04": {
+"skill": "uasl/typescript-unit-testing@6fb3561edcb3",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g05": {
+"skill": "affaan-m-ecc/test-collaboration@747081661241",
+"source": "new",
+"opus_grade": 1
+},
+"g06": {
+"skill": "uasl/python-testing-patterns@e62d0f1ca316",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g07": {
+"skill": "affaan-m-ecc/e2e-testing@7070d6d2a0cc",
+"source": "new",
+"opus_grade": 1
+},
+"g08": {
+"skill": "affaan-m-ecc/frontend-patterns@4f7ece8fd5c6",
+"source": "new",
+"opus_grade": 2
+},
+"g09": {
+"skill": "uasl/unit-testing@6c5fbb821103",
+"source": "old_staging_top10",
+"opus_grade": 1
+},
+"g10": {
+"skill": "uasl/contract-testing@b0f4c29940a9",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g11": {
+"skill": "uasl/tdd-workflow@6eadb0bf0ea8",
+"source": "old_staging_top10",
+"opus_grade": 1
+},
+"g12": {
+"skill": "affaan-m-ecc/golang-testing@37756125e539",
+"source": "new",
+"opus_grade": 0
+}
+},
+"t103": {
+"g01": {
+"skill": "affaan-m-ecc/data-throughput-accelerator@dd10866718ea",
+"source": "new",
+"opus_grade": 1
+},
+"g02": {
+"skill": "uasl/focus-timeboxing-8020@4317b5bf1913",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g03": {
+"skill": "uasl/quill@336ba74b0e79",
+"source": "old_staging_top10",
+"opus_grade": 1
+},
+"g04": {
+"skill": "uasl/agent-sort@a8e06853ada8",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g05": {
+"skill": "uasl/stream@94a72913c590",
+"source": "old_staging_top10",
+"opus_grade": 1
+},
+"g06": {
+"skill": "affaan-m-ecc/agent-sort@dd1abd00a377",
+"source": "new",
+"opus_grade": 0
+},
+"g07": {
+"skill": "affaan-m-ecc/living-docs-governance@aba321acc34f",
+"source": "new",
+"opus_grade": 1
+},
+"g08": {
+"skill": "actionbook-rust-skills/rust-daily@5e3d8d8fd9b6",
+"source": "new",
+"opus_grade": 0
+}
+},
+"t105": {
+"g01": {
+"skill": "uasl/quill@336ba74b0e79",
+"source": "old_staging_top10",
+"opus_grade": 2
+},
+"g02": {
+"skill": "uasl/latch@1bd1d888e79e",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g03": {
+"skill": "affaan-m-ecc/remotion-video-creation@7ea621e468b0",
+"source": "new",
+"opus_grade": 0
+},
+"g04": {
+"skill": "affaan-m-ecc/inventory-demand-planning@2281c0d7da64",
+"source": "new",
+"opus_grade": 0
+}
+},
+"t119": {
+"g01": {
+"skill": "affaan-m-ecc/springboot-patterns@5c01aceada30",
+"source": "new",
+"opus_grade": 2
+},
+"g02": {
+"skill": "affaan-m-ecc/architecture-decision-records@233b5a169011",
+"source": "new",
+"opus_grade": 3
+},
+"g03": {
+"skill": "uasl/architecture-decision-records@715e99d0306d",
+"source": "old_staging_top10",
+"opus_grade": 3
+},
+"g04": {
+"skill": "uasl/grill-with-docs@99f1bafe73fe",
+"source": "old_staging_top10",
+"opus_grade": 1
+},
+"g05": {
+"skill": "uasl/setup-matt-pocock-skills@d52ac42900e6",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g06": {
+"skill": "affaan-m-ecc/context-and-decisions@4cfcc77eb45e",
+"source": "new",
+"opus_grade": 2
+},
+"g07": {
+"skill": "affaan-m-ecc/jpa-patterns@f2814de65ae0",
+"source": "new",
+"opus_grade": 2
+},
+"g08": {
+"skill": "uasl/arc-design-review@8489bd47116c",
+"source": "old_staging_top10",
+"opus_grade": 1
+},
+"g09": {
+"skill": "affaan-m-ecc/hexagonal-architecture@c87164f6cc56",
+"source": "new",
+"opus_grade": 1
+},
+"g10": {
+"skill": "uasl/adr-architecture@2794198a12ff",
+"source": "old_staging_top10",
+"opus_grade": 3
+}
+},
+"t129": {
+"g01": {
+"skill": "affaan-m-ecc/mcp-dependency-review@e2c6d5701d8b",
+"source": "new",
+"opus_grade": 0
+},
+"g02": {
+"skill": "uasl/scaffold-exercises@95d0d91c73af",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g03": {
+"skill": "affaan-m-ecc/verification-loop@177cbc7338f5",
+"source": "new",
+"opus_grade": 1
+},
+"g04": {
+"skill": "uasl/static-analysis@88c6f201cae0",
+"source": "old_staging_top10",
+"opus_grade": 2
+},
+"g05": {
+"skill": "affaan-m-ecc/django-verification@06dac8832ab5",
+"source": "new",
+"opus_grade": 1
+},
+"g06": {
+"skill": "affaan-m-ecc/python-patterns@ee10659bf72b",
+"source": "new",
+"opus_grade": 1
+},
+"g07": {
+"skill": "affaan-m-ecc/laravel-verification@7a536a86b654",
+"source": "new",
+"opus_grade": 0
+},
+"g08": {
+"skill": "uasl/guardian@27ad146feaed",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g09": {
+"skill": "uasl/everything-claude-code@dad489339e1e",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g10": {
+"skill": "uasl/judge@6ea2e485149e",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g11": {
+"skill": "uasl/caveman-commit@244182e952a7",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g12": {
+"skill": "affaan-m-ecc/flox-environments@c9fa4700be34",
+"source": "new",
+"opus_grade": 0
+},
+"g13": {
+"skill": "affaan-m-ecc/vite-patterns@f148bce73744",
+"source": "new",
+"opus_grade": 0
+},
+"g14": {
+"skill": "uasl/setup-pre-commit@95f6657588a0",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g15": {
+"skill": "uasl/monorepo-management@4078df072127",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g16": {
+"skill": "affaan-m-ecc/plankton-code-quality@62bd3668ac6d",
+"source": "new",
+"opus_grade": 1
+}
+},
+"t131": {
+"g01": {
+"skill": "affaan-m-ecc/browser-qa@d20ced555a0f",
+"source": "new",
+"opus_grade": 1
+},
+"g02": {
+"skill": "uasl/github-workflow-automation@519f4ba6e482",
+"source": "old_staging_top10",
+"opus_grade": 1
+},
+"g03": {
+"skill": "uasl/monorepo-management@4078df072127",
+"source": "old_staging_top10",
+"opus_grade": 1
+},
+"g04": {
+"skill": "uasl/e2e-testing-patterns@8b25fb0b2da6",
+"source": "old_staging_top10",
+"opus_grade": 2
+},
+"g05": {
+"skill": "affaan-m-ecc/windows-desktop-e2e@d03c9bd686f6",
+"source": "new",
+"opus_grade": 0
+},
+"g06": {
+"skill": "affaan-m-ecc/test-collaboration@747081661241",
+"source": "new",
+"opus_grade": 0
+},
+"g07": {
+"skill": "affaan-m-ecc/canary-watch@0427be38be87",
+"source": "new",
+"opus_grade": 1
+},
+"g08": {
+"skill": "affaan-m-ecc/e2e-testing@7070d6d2a0cc",
+"source": "new",
+"opus_grade": 2
+},
+"g09": {
+"skill": "uasl/github-actions-templates@ce03df93ccdf",
+"source": "old_staging_top10",
+"opus_grade": 2
+},
+"g10": {
+"skill": "uasl/pipe@0f029a41f006",
+"source": "old_staging_top10",
+"opus_grade": 2
+}
+},
+"t132": {
+"g01": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/ios-testing@fdec9c2c0ff8",
+"source": "new",
+"opus_grade": 0
+},
+"g02": {
+"skill": "uasl/showcase@66f46f81d885",
+"source": "old_staging_top10",
+"opus_grade": 1
+},
+"g03": {
+"skill": "uasl/openui@c3154bb34a14",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g04": {
+"skill": "affaan-m-ecc/e2e-testing@7070d6d2a0cc",
+"source": "new",
+"opus_grade": 1
+},
+"g05": {
+"skill": "uasl/grove@f2d6429d9632",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g06": {
+"skill": "uasl/monorepo-management@4078df072127",
+"source": "old_staging_top10",
+"opus_grade": 2
+},
+"g07": {
+"skill": "affaan-m-ecc/laravel-plugin-discovery@3a57220726ca",
+"source": "new",
+"opus_grade": 0
+},
+"g08": {
+"skill": "affaan-m-ecc/windows-desktop-e2e@d03c9bd686f6",
+"source": "new",
+"opus_grade": 0
+}
+},
+"t138": {
+"g01": {
+"skill": "actionbook-rust-skills/rust-deps-visualizer@b977cba5ffb7",
+"source": "new",
+"opus_grade": 0
+},
+"g02": {
+"skill": "uasl/iterate-pr@0c545d33cef2",
+"source": "old_baseline_top10",
+"opus_grade": 1
+},
+"g03": {
+"skill": "uasl/cargo-fuzz@2b31cd9657f5",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g04": {
+"skill": "affaan-m-ecc/prompt-caching-strategy@d6388b3f07db",
+"source": "new",
+"opus_grade": 0
+},
+"g05": {
+"skill": "uasl/perf-lighthouse@ccafe273f7d2",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g06": {
+"skill": "affaan-m-ecc/rust-testing@68e797f602f9",
+"source": "new",
+"opus_grade": 0
+},
+"g07": {
+"skill": "affaan-m-ecc/rust-patterns@f0961b5637b0",
+"source": "new",
+"opus_grade": 0
+},
+"g08": {
+"skill": "uasl/radar@a47ea6fd5f95",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g09": {
+"skill": "actionbook-rust-skills/m07-concurrency@0686c877c8a6",
+"source": "new",
+"opus_grade": 0
+},
+"g10": {
+"skill": "uasl/next-cache-components@b22f6e134147",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g11": {
+"skill": "uasl/deployment-pipeline-design@2a89fc6f32ff",
+"source": "old_staging_top10",
+"opus_grade": 1
+},
+"g12": {
+"skill": "uasl/pipe@0f029a41f006",
+"source": "old_baseline_top10",
+"opus_grade": 2
+},
+"g13": {
+"skill": "actionbook-rust-skills/m10-performance@c46289fecbad",
+"source": "new",
+"opus_grade": 1
+},
+"g14": {
+"skill": "actionbook-rust-skills/rust-learner@2a967e43636a",
+"source": "new",
+"opus_grade": 0
+}
+},
+"t143": {
+"g01": {
+"skill": "uasl/iterate-pr@0c545d33cef2",
+"source": "old_staging_top10",
+"opus_grade": 1
+},
+"g02": {
+"skill": "affaan-m-ecc/jpa-patterns@f2814de65ae0",
+"source": "new",
+"opus_grade": 0
+},
+"g03": {
+"skill": "affaan-m-ecc/e2e-testing@7070d6d2a0cc",
+"source": "new",
+"opus_grade": 0
+},
+"g04": {
+"skill": "affaan-m-ecc/springboot-tdd@5ff62a01f15c",
+"source": "new",
+"opus_grade": 1
+},
+"g05": {
+"skill": "affaan-m-ecc/springboot-patterns@5c01aceada30",
+"source": "new",
+"opus_grade": 1
+},
+"g06": {
+"skill": "affaan-m-ecc/java-coding-standards@f726fc11b7e1",
+"source": "new",
+"opus_grade": 0
+},
+"g07": {
+"skill": "uasl/integration-testing@62b51275be50",
+"source": "old_staging_top10",
+"opus_grade": 1
+},
+"g08": {
+"skill": "uasl/github-actions-templates@ce03df93ccdf",
+"source": "old_baseline_top10",
+"opus_grade": 2
+},
+"g09": {
+"skill": "uasl/contract-testing@b0f4c29940a9",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g10": {
+"skill": "uasl/yeet@7665edb92f0c",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g11": {
+"skill": "affaan-m-ecc/springboot-verification@8667ba45dc39",
+"source": "new",
+"opus_grade": 2
+},
+"g12": {
+"skill": "affaan-m-ecc/mybatis-patterns@e31dbc18477d",
+"source": "new",
+"opus_grade": 0
+},
+"g13": {
+"skill": "uasl/monorepo-management@4078df072127",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g14": {
+"skill": "uasl/static-analysis@88c6f201cae0",
+"source": "old_baseline_top10",
+"opus_grade": 0
+}
+},
+"t158": {
+"g01": {
+"skill": "affaan-m-ecc/bun-runtime@edea00e477cd",
+"source": "new",
+"opus_grade": 1
+},
+"g02": {
+"skill": "uasl/monorepo-management@4078df072127",
+"source": "old_staging_top10",
+"opus_grade": 2
+},
+"g03": {
+"skill": "uasl/scaffold-nextjs@3d1152f5d9d0",
+"source": "old_staging_top10",
+"opus_grade": 1
+},
+"g04": {
+"skill": "affaan-m-ecc/nuxt4-patterns@3df291143d6f",
+"source": "new",
+"opus_grade": 0
+}
+},
+"t164": {
+"g01": {
+"skill": "uasl/legacy-migration-planner@462fe9f6af79",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g02": {
+"skill": "uasl/cli-windows-powershell-mastery@88aa890eefd5",
+"source": "old_staging_top10",
+"opus_grade": 1
+},
+"g03": {
+"skill": "affaan-m-ecc/quarkus-verification@58c51d83d752",
+"source": "new",
+"opus_grade": 0
+},
+"g04": {
+"skill": "affaan-m-ecc/generating-python-installer@bb8faee02bba",
+"source": "new",
+"opus_grade": 0
+},
+"g05": {
+"skill": "affaan-m-ecc/flox-environments@c9fa4700be34",
+"source": "new",
+"opus_grade": 1
+},
+"g06": {
+"skill": "uasl/environmental-scanning-foresight@84fb5106baed",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g07": {
+"skill": "uasl/anvil@3a36e8410205",
+"source": "old_staging_top10",
+"opus_grade": 1
+},
+"g08": {
+"skill": "actionbook-rust-skills/meta-cognition-parallel@9ee8f5501e5a",
+"source": "new",
+"opus_grade": 0
+},
+"g09": {
+"skill": "uasl/docker-hub-automation@271792aed33b",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g10": {
+"skill": "actionbook-rust-skills/domain-iot@91e3a350989f",
+"source": "new",
+"opus_grade": 1
+}
+},
+"t165": {
+"g01": {
+"skill": "actionbook-rust-skills/m11-ecosystem@ec78464294e9",
+"source": "new",
+"opus_grade": 1
+},
+"g02": {
+"skill": "actionbook-rust-skills/rust-deps-visualizer@b977cba5ffb7",
+"source": "new",
+"opus_grade": 0
+},
+"g03": {
+"skill": "actionbook-rust-skills/domain-web@e85236f514d2",
+"source": "new",
+"opus_grade": 1
+},
+"g04": {
+"skill": "uasl/address-sanitizer@945fe8a1ab1b",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g05": {
+"skill": "affaan-m-ecc/rust-testing@68e797f602f9",
+"source": "new",
+"opus_grade": 0
+},
+"g06": {
+"skill": "uasl/pipe@0f029a41f006",
+"source": "old_staging_top10",
+"opus_grade": 2
+},
+"g07": {
+"skill": "affaan-m-ecc/mcp-dependency-review@e2c6d5701d8b",
+"source": "new",
+"opus_grade": 0
+},
+"g08": {
+"skill": "affaan-m-ecc/quarkus-verification@58c51d83d752",
+"source": "new",
+"opus_grade": 0
+},
+"g09": {
+"skill": "uasl/harness-writing@b71c9af45925",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g10": {
+"skill": "uasl/github-actions-templates@ce03df93ccdf",
+"source": "old_staging_top10",
+"opus_grade": 2
+},
+"g11": {
+"skill": "uasl/chaos-testing@760793a4a18b",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g12": {
+"skill": "uasl/cargo-fuzz@2b31cd9657f5",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g13": {
+"skill": "uasl/responsive-design@2cf7927ef938",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g14": {
+"skill": "uasl/monorepo-management@4078df072127",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g15": {
+"skill": "affaan-m-ecc/deployment-patterns@eb1f7daa4ca4",
+"source": "new",
+"opus_grade": 3
+},
+"g16": {
+"skill": "actionbook-rust-skills/domain-cloud-native@078769fd2fa0",
+"source": "new",
+"opus_grade": 2
+}
+},
+"t174": {
+"g01": {
+"skill": "uasl/vercel-react-native-skills@6e314641b44a",
+"source": "old_baseline_top10",
+"opus_grade": 1
+},
+"g02": {
+"skill": "affaan-m-ecc/deployment-patterns@eb1f7daa4ca4",
+"source": "new",
+"opus_grade": 2
+},
+"g03": {
+"skill": "uasl/github-actions-templates@ce03df93ccdf",
+"source": "old_staging_top10",
+"opus_grade": 2
+},
+"g04": {
+"skill": "uasl/new-relic-automation@efeb6349c763",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g05": {
+"skill": "affaan-m-ecc/unified-notifications-ops@b85bf8eb6bfa",
+"source": "new",
+"opus_grade": 0
+},
+"g06": {
+"skill": "uasl/deployment-pipeline-design@2a89fc6f32ff",
+"source": "old_staging_top10",
+"opus_grade": 2
+},
+"g07": {
+"skill": "affaan-m-ecc/quarkus-verification@58c51d83d752",
+"source": "new",
+"opus_grade": 0
+},
+"g08": {
+"skill": "uasl/accessibility-compliance@696d2b4119ed",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g09": {
+"skill": "uasl/connect@77e02b4574f6",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g10": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/push-notifications@cc0cefa6d417",
+"source": "new",
+"opus_grade": 0
+},
+"g11": {
+"skill": "affaan-m-ecc/counterparty-channel-discipline@ed358eed1a74",
+"source": "new",
+"opus_grade": 0
+},
+"g12": {
+"skill": "uasl/pipe@0f029a41f006",
+"source": "old_staging_top10",
+"opus_grade": 2
+},
+"g13": {
+"skill": "affaan-m-ecc/windows-desktop-e2e@d03c9bd686f6",
+"source": "new",
+"opus_grade": 0
+},
+"g14": {
+"skill": "affaan-m-ecc/react-native-patterns@9dedc460ef07",
+"source": "new",
+"opus_grade": 2
+}
+},
+"t179": {
+"g01": {
+"skill": "actionbook-rust-skills/domain-ml@272bdcdb41c6",
+"source": "new",
+"opus_grade": 0
+},
+"g02": {
+"skill": "uasl/segment-cdp@42e8e765d937",
+"source": "old_staging_top10",
+"opus_grade": 1
+},
+"g03": {
+"skill": "uasl/jobs-to-be-done@bfffa3a12f42",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g04": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/analytics-patterns@127a588e948d",
+"source": "new",
+"opus_grade": 1
+},
+"g05": {
+"skill": "affaan-m-ecc/clickhouse-io@49af693bbd4e",
+"source": "new",
+"opus_grade": 1
+},
+"g06": {
+"skill": "uasl/pulse@d691047d31fb",
+"source": "old_staging_top10",
+"opus_grade": 1
+},
+"g07": {
+"skill": "uasl/inngest@fc3f33c4e97f",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g08": {
+"skill": "uasl/eventbrite-automation@3c64bf358971",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g09": {
+"skill": "affaan-m-ecc/database-migrations@60a7f8fbfa22",
+"source": "new",
+"opus_grade": 0
+},
+"g10": {
+"skill": "dpearson2699-swift-ios-skills/eventkit@261520191ad6",
+"source": "new",
+"opus_grade": 0
+},
+"g11": {
+"skill": "uasl/simple-analytics-automation@743acba70ac7",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g12": {
+"skill": "affaan-m-ecc/growth-log@5f1ac3bb5a87",
+"source": "new",
+"opus_grade": 0
+}
+},
+"t182": {
+"g01": {
+"skill": "uasl/browser-extension-builder@3240e6183c28",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g02": {
+"skill": "uasl/bun-runtime@009ca8691cf7",
+"source": "old_staging_top10",
+"opus_grade": 1
+},
+"g03": {
+"skill": "affaan-m-ecc/database-migrations@60a7f8fbfa22",
+"source": "new",
+"opus_grade": 3
+},
+"g04": {
+"skill": "affaan-m-ecc/netmiko-ssh-automation@3e574cdf6d88",
+"source": "new",
+"opus_grade": 0
+},
+"g05": {
+"skill": "uasl/backend-patterns@3d87ff489f3e",
+"source": "old_staging_top10",
+"opus_grade": 1
+},
+"g06": {
+"skill": "affaan-m-ecc/springboot-security@ac703b9cdb44",
+"source": "new",
+"opus_grade": 0
+},
+"g07": {
+"skill": "uasl/clay@6c9572941894",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g08": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/sqldelight-patterns@da2d7af1b6cd",
+"source": "new",
+"opus_grade": 0
+},
+"g09": {
+"skill": "uasl/security-review@fcc354bc486e",
+"source": "old_baseline_top10",
+"opus_grade": 1
+},
+"g10": {
+"skill": "uasl/stream@94a72913c590",
+"source": "old_staging_top10",
+"opus_grade": 1
+},
+"g11": {
+"skill": "affaan-m-ecc/data-throughput-accelerator@dd10866718ea",
+"source": "new",
+"opus_grade": 2
+},
+"g12": {
+"skill": "affaan-m-ecc/inventory-demand-planning@2281c0d7da64",
+"source": "new",
+"opus_grade": 0
+}
+},
+"t190": {
+"g01": {
+"skill": "affaan-m-ecc/clickhouse-io@49af693bbd4e",
+"source": "new",
+"opus_grade": 2
+},
+"g02": {
+"skill": "actionbook-rust-skills/rust-skill-creator@74c31cabe0b5",
+"source": "new",
+"opus_grade": 0
+},
+"g03": {
+"skill": "uasl/cf-crawl@77a977c31001",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g04": {
+"skill": "actionbook-rust-skills/m11-ecosystem@ec78464294e9",
+"source": "new",
+"opus_grade": 1
+},
+"g05": {
+"skill": "uasl/experiment@e2419a708eaf",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g06": {
+"skill": "uasl/invoice-organizer@65f04d96d07a",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g07": {
+"skill": "actionbook-rust-skills/rust-learner@2a967e43636a",
+"source": "new",
+"opus_grade": 1
+},
+"g08": {
+"skill": "actionbook-rust-skills/core-fix-skill-docs@ff9fad06d98c",
+"source": "new",
+"opus_grade": 0
+},
+"g09": {
+"skill": "anthropics-skills/docx@74e2b8b277a4",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g10": {
+"skill": "uasl/excel-automation@026ac73c3c63",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g11": {
+"skill": "uasl/stream@94a72913c590",
+"source": "old_baseline_top10",
+"opus_grade": 2
+},
+"g12": {
+"skill": "affaan-m-ecc/knowledge-ops@c8c73f075209",
+"source": "new",
+"opus_grade": 0
+},
+"g13": {
+"skill": "anthropics-skills/xlsx@5350d36b768c",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g14": {
+"skill": "affaan-m-ecc/data-throughput-accelerator@dd10866718ea",
+"source": "new",
+"opus_grade": 2
+},
+"g15": {
+"skill": "affaan-m-ecc/ml-adoption-playbook@17ecbc5e4d8d",
+"source": "new",
+"opus_grade": 0
+},
+"g16": {
+"skill": "uasl/survey-monkey-automation@d25fdaab9862",
+"source": "old_baseline_top10",
+"opus_grade": 0
+}
+},
+"t194": {
+"g01": {
+"skill": "uasl/printing-press-reprint@af02d260d0be",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g02": {
+"skill": "uasl/postgresql-table-design@59d09e948243",
+"source": "old_baseline_top10",
+"opus_grade": 1
+},
+"g03": {
+"skill": "affaan-m-ecc/agent-introspection-debugging@0ebed81a4f6a",
+"source": "new",
+"opus_grade": 0
+},
+"g04": {
+"skill": "uasl/investor-materials@7b41352320eb",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g05": {
+"skill": "affaan-m-ecc/mybatis-patterns@e31dbc18477d",
+"source": "new",
+"opus_grade": 1
+},
+"g06": {
+"skill": "affaan-m-ecc/clickhouse-io@49af693bbd4e",
+"source": "new",
+"opus_grade": 0
+},
+"g07": {
+"skill": "affaan-m-ecc/parallel-execution-optimizer@805a2838ed57",
+"source": "new",
+"opus_grade": 0
+},
+"g08": {
+"skill": "uasl/omnisend-automation@cac8b5f5b289",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g09": {
+"skill": "affaan-m-ecc/plan-orchestrate@338805b3da51",
+"source": "new",
+"opus_grade": 0
+},
+"g10": {
+"skill": "uasl/test-driven-development@0eebe2fe0e28",
+"source": "old_baseline_top10",
+"opus_grade": 1
+},
+"g11": {
+"skill": "uasl/docs-page@d9c05e10601d",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g12": {
+"skill": "uasl/instantly-automation@d8854d4a51f6",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g13": {
+"skill": "affaan-m-ecc/data-throughput-accelerator@dd10866718ea",
+"source": "new",
+"opus_grade": 1
+},
+"g14": {
+"skill": "uasl/verification-before-completion@134bf517af69",
+"source": "old_baseline_top10",
+"opus_grade": 1
+},
+"g15": {
+"skill": "affaan-m-ecc/springboot-tdd@5ff62a01f15c",
+"source": "new",
+"opus_grade": 1
+},
+"g16": {
+"skill": "dpearson2699-swift-ios-skills/appmigrationkit@7094d18b21fa",
+"source": "new",
+"opus_grade": 0
+}
+},
+"t206": {
+"g01": {
+"skill": "uasl/web-performance-optimization@b2b38275ed40",
+"source": "old_staging_top10",
+"opus_grade": 2
+},
+"g02": {
+"skill": "dpearson2699-swift-ios-skills/apple-on-device-ai@3c9a11ebbb54",
+"source": "new",
+"opus_grade": 0
+},
+"g03": {
+"skill": "affaan-m-ecc/ml-adoption-playbook@17ecbc5e4d8d",
+"source": "new",
+"opus_grade": 1
+},
+"g04": {
+"skill": "rshankras-claude-code-apple-skills/core-ml@7f845a30f6cd",
+"source": "new",
+"opus_grade": 0
+},
+"g05": {
+"skill": "uasl/workday-automation@3e9313379197",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g06": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/kmp-networking@137b90760b3e",
+"source": "new",
+"opus_grade": 0
+},
+"g07": {
+"skill": "uasl/web-perf@9063b7e5eacf",
+"source": "old_staging_top10",
+"opus_grade": 2
+},
+"g08": {
+"skill": "uasl/next-best-practices@ee058f89acea",
+"source": "old_staging_top10",
+"opus_grade": 2
+},
+"g09": {
+"skill": "uasl/high-perf-browser@aee32087bf43",
+"source": "old_staging_top10",
+"opus_grade": 1
+},
+"g10": {
+"skill": "dpearson2699-swift-ios-skills/coreml@0c35c1be5d10",
+"source": "new",
+"opus_grade": 0
+}
+},
+"t218": {
+"g01": {
+"skill": "rshankras-claude-code-apple-skills/monetization@a9c3ddca66c9",
+"source": "new",
+"opus_grade": 0
+},
+"g02": {
+"skill": "anthropics-skills/claude-api@e30e2c97f747",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g03": {
+"skill": "affaan-m-ecc/tinystruct-patterns@5b08a71b403d",
+"source": "new",
+"opus_grade": 0
+},
+"g04": {
+"skill": "uasl/data-analyst-engine@79799e01e2dd",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g05": {
+"skill": "affaan-m-ecc/ito-training@10682f36cbf3",
+"source": "new",
+"opus_grade": 0
+},
+"g06": {
+"skill": "uasl/pricing-page@8b72ba4d0477",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g07": {
+"skill": "uasl/ai-expertise-engine@902bd0b3e61f",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g08": {
+"skill": "affaan-m-ecc/mle-workflow@5fb9b6889d3a",
+"source": "new",
+"opus_grade": 3
+},
+"g09": {
+"skill": "uasl/saas-revenue-growth-metrics@a287946f472a",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g10": {
+"skill": "uasl/finance-metrics-quickref@dfe896ee13a2",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g11": {
+"skill": "affaan-m-ecc/finance-billing-ops@9947adb10e34",
+"source": "new",
+"opus_grade": 0
+},
+"g12": {
+"skill": "affaan-m-ecc/ml-adoption-playbook@17ecbc5e4d8d",
+"source": "new",
+"opus_grade": 1
+}
+},
+"t220": {
+"g01": {
+"skill": "affaan-m-ecc/mybatis-patterns@e31dbc18477d",
+"source": "new",
+"opus_grade": 0
+},
+"g02": {
+"skill": "uasl/skill-share@1399c8172d6b",
+"source": "old_staging_top10",
+"opus_grade": 0
+}
+},
+"t221": {
+"g01": {
+"skill": "dpearson2699-swift-ios-skills/vision-framework@d8188d7f0584",
+"source": "new",
+"opus_grade": 2
+},
+"g02": {
+"skill": "dpearson2699-swift-ios-skills/core-motion@83d288a86cbe",
+"source": "new",
+"opus_grade": 0
+},
+"g03": {
+"skill": "dpearson2699-swift-ios-skills/coreml@0c35c1be5d10",
+"source": "new",
+"opus_grade": 3
+},
+"g04": {
+"skill": "uasl/domain-driven-design@0d649fab3ce3",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g05": {
+"skill": "rshankras-claude-code-apple-skills/core-ml@7f845a30f6cd",
+"source": "new",
+"opus_grade": 3
+},
+"g06": {
+"skill": "uasl/web-performance-optimization@b2b38275ed40",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g07": {
+"skill": "affaan-m-ecc/ml-adoption-playbook@17ecbc5e4d8d",
+"source": "new",
+"opus_grade": 1
+},
+"g08": {
+"skill": "uasl/claude-api@f952c765f5b0",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g09": {
+"skill": "uasl/web-perf@9063b7e5eacf",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g10": {
+"skill": "uasl/ai-ml-api-automation@f198121938ac",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g11": {
+"skill": "dpearson2699-swift-ios-skills/swiftdata@d6daed9bb565",
+"source": "new",
+"opus_grade": 1
+},
+"g12": {
+"skill": "dpearson2699-swift-ios-skills/core-data@ed3735d4952a",
+"source": "new",
+"opus_grade": 0
+},
+"g13": {
+"skill": "uasl/design-optimize@cbb1632043ec",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g14": {
+"skill": "dpearson2699-swift-ios-skills/apple-on-device-ai@3c9a11ebbb54",
+"source": "new",
+"opus_grade": 3
+},
+"g15": {
+"skill": "uasl/claude-native-claude-api@24c958899f03",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g16": {
+"skill": "uasl/high-perf-browser@aee32087bf43",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g17": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/core-data@5af9586b2607",
+"source": "new",
+"opus_grade": 0
+},
+"g18": {
+"skill": "uasl/ai-expertise-engine@902bd0b3e61f",
+"source": "old_baseline_top10",
+"opus_grade": 0
+}
+},
+"t225": {
+"g01": {
+"skill": "anthropics-skills/xlsx@5350d36b768c",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g02": {
+"skill": "uasl/documentation-lookup@dee6d7478eab",
+"source": "old_baseline_top10",
+"opus_grade": 1
+},
+"g03": {
+"skill": "uasl/replicate-automation@4053915c756a",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g04": {
+"skill": "rshankras-claude-code-apple-skills/core-ml@7f845a30f6cd",
+"source": "new",
+"opus_grade": 3
+},
+"g05": {
+"skill": "uasl/groqcloud-automation@e4dc6956991c",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g06": {
+"skill": "uasl/ai-expertise-engine@902bd0b3e61f",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g07": {
+"skill": "uasl/claude-native-claude-api@24c958899f03",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g08": {
+"skill": "uasl/microsoft-clarity-automation@44237e641aae",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g09": {
+"skill": "affaan-m-ecc/ito-training@10682f36cbf3",
+"source": "new",
+"opus_grade": 0
+},
+"g10": {
+"skill": "actionbook-rust-skills/domain-ml@272bdcdb41c6",
+"source": "new",
+"opus_grade": 0
+},
+"g11": {
+"skill": "dpearson2699-swift-ios-skills/apple-on-device-ai@3c9a11ebbb54",
+"source": "new",
+"opus_grade": 2
+},
+"g12": {
+"skill": "dpearson2699-swift-ios-skills/vision-framework@d8188d7f0584",
+"source": "new",
+"opus_grade": 0
+},
+"g13": {
+"skill": "affaan-m-ecc/mle-workflow@5fb9b6889d3a",
+"source": "new",
+"opus_grade": 1
+},
+"g14": {
+"skill": "dpearson2699-swift-ios-skills/coreml@0c35c1be5d10",
+"source": "new",
+"opus_grade": 3
+},
+"g15": {
+"skill": "affaan-m-ecc/foundation-models-on-device@d0c272462a29",
+"source": "new",
+"opus_grade": 0
+},
+"g16": {
+"skill": "uasl/transformers@0b5f07bd96f0",
+"source": "old_staging_top10",
+"opus_grade": 0
+}
+},
+"t239": {
+"g01": {
+"skill": "rshankras-claude-code-apple-skills/swift-development@7cd23f1142e7",
+"source": "new",
+"opus_grade": 0
+},
+"g02": {
+"skill": "uasl/motion-frames@d5cda8fa6801",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g03": {
+"skill": "uasl/ton-vulnerability-scanner@377d84553d54",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g04": {
+"skill": "affaan-m-ecc/cpp-coding-standards@5eff0ccaa43c",
+"source": "new",
+"opus_grade": 0
+},
+"g05": {
+"skill": "actionbook-rust-skills/unsafe-checker@6544b8069b76",
+"source": "new",
+"opus_grade": 3
+},
+"g06": {
+"skill": "uasl/cairo-vulnerability-scanner@ec05b2fd95f9",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g07": {
+"skill": "actionbook-rust-skills/m15-anti-pattern@612551f1644b",
+"source": "new",
+"opus_grade": 1
+},
+"g08": {
+"skill": "uasl/algorand-vulnerability-scanner@b4ef2e1b7b33",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g09": {
+"skill": "uasl/address-sanitizer@945fe8a1ab1b",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g10": {
+"skill": "affaan-m-ecc/production-scheduling@9d8584623d21",
+"source": "new",
+"opus_grade": 0
+},
+"g11": {
+"skill": "uasl/mend@9ea877a21ec7",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g12": {
+"skill": "affaan-m-ecc/rust-patterns@f0961b5637b0",
+"source": "new",
+"opus_grade": 1
+}
+},
+"t248": {
+"g01": {
+"skill": "dpearson2699-swift-ios-skills/authentication@4487b880b2a5",
+"source": "new",
+"opus_grade": 2
+},
+"g02": {
+"skill": "dpearson2699-swift-ios-skills/cryptotokenkit@ff8dc42ff2a8",
+"source": "new",
+"opus_grade": 1
+},
+"g03": {
+"skill": "uasl/auth-implementation-patterns@7a99b395d548",
+"source": "old_staging_top10",
+"opus_grade": 1
+},
+"g04": {
+"skill": "uasl/token-integration-analyzer@73f7e737c832",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g05": {
+"skill": "uasl/design-system-patterns@cd952cab0879",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g06": {
+"skill": "uasl/design-system-creation@ec5d23e4e974",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g07": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/mobile-security@dc1c2f98167b",
+"source": "new",
+"opus_grade": 0
+},
+"g08": {
+"skill": "uasl/slack-bot-builder@ce64c6aad24e",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g09": {
+"skill": "dpearson2699-swift-ios-skills/app-clips@be7713bea475",
+"source": "new",
+"opus_grade": 0
+},
+"g10": {
+"skill": "rshankras-claude-code-apple-skills/security@bf241b5549a7",
+"source": "new",
+"opus_grade": 3
+},
+"g11": {
+"skill": "rshankras-claude-code-apple-skills/release-review@49bb55128aa8",
+"source": "new",
+"opus_grade": 2
+},
+"g12": {
+"skill": "dpearson2699-swift-ios-skills/ios-networking@a76711379d39",
+"source": "new",
+"opus_grade": 2
+},
+"g13": {
+"skill": "uasl/insecure-defaults@a0e826721018",
+"source": "old_baseline_top10",
+"opus_grade": 2
+},
+"g14": {
+"skill": "uasl/imagegen-frontend-mobile@d57843fce66f",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g15": {
+"skill": "uasl/vercel-cli-with-tokens@3f9c2805c482",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g16": {
+"skill": "dpearson2699-swift-ios-skills/swift-security@6aa0bf24fb61",
+"source": "new",
+"opus_grade": 3
+}
+},
+"t250": {
+"g01": {
+"skill": "uasl/n8n-code-javascript@203459f10f1d",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g02": {
+"skill": "actionbook-rust-skills/rust-learner@2a967e43636a",
+"source": "new",
+"opus_grade": 0
+},
+"g03": {
+"skill": "affaan-m-ecc/flutter-dart-code-review@c08e3eec5e6d",
+"source": "new",
+"opus_grade": 2
+},
+"g04": {
+"skill": "affaan-m-ecc/dart-flutter-patterns@2c84304f91d5",
+"source": "new",
+"opus_grade": 2
+},
+"g05": {
+"skill": "uasl/gamified-app@89f56442216c",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g06": {
+"skill": "uasl/n8n-code-python@ba1cd974d317",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g07": {
+"skill": "dpearson2699-swift-ios-skills/swiftui-webkit@c2d486deeb19",
+"source": "new",
+"opus_grade": 1
+},
+"g08": {
+"skill": "uasl/output-skill@8da7a8f7c7fc",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g09": {
+"skill": "dpearson2699-swift-ios-skills/swiftui-navigation@c32235d648e1",
+"source": "new",
+"opus_grade": 0
+},
+"g10": {
+"skill": "uasl/quickbooks-automation@bbe37470a32c",
+"source": "old_staging_top10",
+"opus_grade": 0
+}
+},
+"t264": {
+"g01": {
+"skill": "actionbook-rust-skills/domain-ml@272bdcdb41c6",
+"source": "new",
+"opus_grade": 0
+},
+"g02": {
+"skill": "uasl/skill-composition-protocol@b862de6f0dbf",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g03": {
+"skill": "uasl/karpathy-guidelines@da897c8c3bab",
+"source": "old_baseline_top10",
+"opus_grade": 2
+},
+"g04": {
+"skill": "uasl/vercel-react-best-practices@70f3b5aaf775",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g05": {
+"skill": "actionbook-rust-skills/rust-learner@2a967e43636a",
+"source": "new",
+"opus_grade": 0
+},
+"g06": {
+"skill": "actionbook-rust-skills/core-fix-skill-docs@ff9fad06d98c",
+"source": "new",
+"opus_grade": 0
+},
+"g07": {
+"skill": "uasl/brandkit@be1d18f9b581",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g08": {
+"skill": "uasl/latch@1bd1d888e79e",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g09": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/swiftui-patterns@d91b337199dc",
+"source": "new",
+"opus_grade": 0
+},
+"g10": {
+"skill": "actionbook-rust-skills/m11-ecosystem@ec78464294e9",
+"source": "new",
+"opus_grade": 0
+},
+"g11": {
+"skill": "uasl/quest@2a366b046bee",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g12": {
+"skill": "actionbook-rust-skills/rust-symbol-analyzer@c519d33f9d97",
+"source": "new",
+"opus_grade": 1
+},
+"g13": {
+"skill": "dpearson2699-swift-ios-skills/tabletopkit@a1d5a6b73126",
+"source": "new",
+"opus_grade": 0
+},
+"g14": {
+"skill": "uasl/next-best-practices@ee058f89acea",
+"source": "old_staging_top10",
+"opus_grade": 0
+}
+},
+"t266": {
+"g01": {
+"skill": "uasl/banner-design@0e161f38cea1",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g02": {
+"skill": "actionbook-rust-skills/rust-symbol-analyzer@c519d33f9d97",
+"source": "new",
+"opus_grade": 0
+},
+"g03": {
+"skill": "uasl/fal-ai-media@1a7fc3310ea8",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g04": {
+"skill": "uasl/image-poster@57a9b39c0f2f",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g05": {
+"skill": "uasl/vercel-react-native-skills@6e314641b44a",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g06": {
+"skill": "affaan-m-ecc/rust-patterns@f0961b5637b0",
+"source": "new",
+"opus_grade": 2
+},
+"g07": {
+"skill": "actionbook-rust-skills/m07-concurrency@0686c877c8a6",
+"source": "new",
+"opus_grade": 3
+},
+"g08": {
+"skill": "uasl/image-enhancer@df8c8d454fcf",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g09": {
+"skill": "actionbook-rust-skills/domain-web@e85236f514d2",
+"source": "new",
+"opus_grade": 2
+},
+"g10": {
+"skill": "dpearson2699-swift-ios-skills/swift-concurrency@85e6e8feee4e",
+"source": "new",
+"opus_grade": 0
+},
+"g11": {
+"skill": "uasl/async-python-patterns@957ebfe54aa7",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g12": {
+"skill": "actionbook-rust-skills/rust-router@4a05b7063eb2",
+"source": "new",
+"opus_grade": 1
+}
+},
+"t268": {
+"g01": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/swiftui-patterns@d91b337199dc",
+"source": "new",
+"opus_grade": 0
+},
+"g02": {
+"skill": "uasl/bolt@c4895c710162",
+"source": "old_staging_top10",
+"opus_grade": 1
+},
+"g03": {
+"skill": "affaan-m-ecc/config-gc@4ac753304de6",
+"source": "new",
+"opus_grade": 0
+},
+"g04": {
+"skill": "uasl/meeting-notes@da1c35784ab9",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g05": {
+"skill": "affaan-m-ecc/mybatis-patterns@e31dbc18477d",
+"source": "new",
+"opus_grade": 1
+},
+"g06": {
+"skill": "uasl/invoice@234bae53884f",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g07": {
+"skill": "uasl/caveman-review@23eed6aa48dd",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g08": {
+"skill": "uasl/knowledge-graph-construction@5eb99ca78465",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g09": {
+"skill": "uasl/audit-context-building@70a8e16e2385",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g10": {
+"skill": "affaan-m-ecc/jpa-patterns@f2814de65ae0",
+"source": "new",
+"opus_grade": 3
+},
+"g11": {
+"skill": "actionbook-rust-skills/domain-cli@299b233ce67e",
+"source": "new",
+"opus_grade": 0
+},
+"g12": {
+"skill": "dpearson2699-swift-ios-skills/swift-charts@2935e367fb16",
+"source": "new",
+"opus_grade": 0
+}
+},
+"t270": {
+"g01": {
+"skill": "uasl/verification-before-completion@134bf517af69",
+"source": "old_baseline_top10",
+"opus_grade": 2
+},
+"g02": {
+"skill": "uasl/integration-testing@62b51275be50",
+"source": "old_staging_top10",
+"opus_grade": 1
+},
+"g03": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/mobile-verification@18f6a07f43e8",
+"source": "new",
+"opus_grade": 0
+},
+"g04": {
+"skill": "affaan-m-ecc/santa-method@8778a5a693ea",
+"source": "new",
+"opus_grade": 0
+},
+"g05": {
+"skill": "affaan-m-ecc/springboot-verification@8667ba45dc39",
+"source": "new",
+"opus_grade": 2
+},
+"g06": {
+"skill": "uasl/caveman-commit@244182e952a7",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g07": {
+"skill": "uasl/async-python-patterns@957ebfe54aa7",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g08": {
+"skill": "uasl/sql-optimization-patterns@389f90da7b56",
+"source": "old_baseline_top10",
+"opus_grade": 1
+},
+"g09": {
+"skill": "affaan-m-ecc/conventional-commit-review@5889275f40c6",
+"source": "new",
+"opus_grade": 0
+},
+"g10": {
+"skill": "dpearson2699-swift-ios-skills/adattributionkit@d3937006c12c",
+"source": "new",
+"opus_grade": 0
+},
+"g11": {
+"skill": "affaan-m-ecc/mybatis-patterns@e31dbc18477d",
+"source": "new",
+"opus_grade": 1
+},
+"g12": {
+"skill": "uasl/stream@94a72913c590",
+"source": "old_staging_top10",
+"opus_grade": 1
+},
+"g13": {
+"skill": "uasl/debug-root-cause@1d7ea4a832dc",
+"source": "old_baseline_top10",
+"opus_grade": 1
+},
+"g14": {
+"skill": "affaan-m-ecc/springboot-tdd@5ff62a01f15c",
+"source": "new",
+"opus_grade": 1
+},
+"g15": {
+"skill": "dpearson2699-swift-ios-skills/core-data@ed3735d4952a",
+"source": "new",
+"opus_grade": 0
+},
+"g16": {
+"skill": "uasl/contract-testing@b0f4c29940a9",
+"source": "old_baseline_top10",
+"opus_grade": 0
+}
+},
+"t281": {
+"g01": {
+"skill": "uasl/taste-skill@57790089504e",
+"source": "old_staging_top10",
+"opus_grade": 1
+},
+"g02": {
+"skill": "affaan-m-ecc/frontend-patterns@4f7ece8fd5c6",
+"source": "new",
+"opus_grade": 2
+}
+},
+"t287": {
+"g01": {
+"skill": "actionbook-rust-skills/m13-domain-error@a22462038089",
+"source": "new",
+"opus_grade": 1
+},
+"g02": {
+"skill": "affaan-m-ecc/golang-patterns@57517385906f",
+"source": "new",
+"opus_grade": 2
+},
+"g03": {
+"skill": "affaan-m-ecc/seo@29d94236c39a",
+"source": "new",
+"opus_grade": 0
+},
+"g04": {
+"skill": "uasl/dating-web@a74a01fd41b0",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g05": {
+"skill": "affaan-m-ecc/error-handling@f630539a5890",
+"source": "new",
+"opus_grade": 1
+},
+"g06": {
+"skill": "uasl/web-prototype@9fcfd712fe7c",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g07": {
+"skill": "uasl/web-design-builder@61ee1c248717",
+"source": "old_staging_top10",
+"opus_grade": 1
+},
+"g08": {
+"skill": "anthropics-skills/web-artifacts-builder@9c350d2f5f13",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g09": {
+"skill": "uasl/error-handling-patterns@4c19ee7d7821",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g10": {
+"skill": "dpearson2699-swift-ios-skills/swiftui-webkit@c2d486deeb19",
+"source": "new",
+"opus_grade": 0
+}
+},
+"t297": {
+"g01": {
+"skill": "uasl/video-editing@6c68b3cc7f35",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g02": {
+"skill": "affaan-m-ecc/accessibility@64025eb683c5",
+"source": "new",
+"opus_grade": 2
+},
+"g03": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/jetpack-compose@4c3931b3c56f",
+"source": "new",
+"opus_grade": 2
+},
+"g04": {
+"skill": "uasl/mobile-onboarding@dae55de6dde3",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g05": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/kmp-navigation@862b4b14bdfb",
+"source": "new",
+"opus_grade": 0
+},
+"g06": {
+"skill": "uasl/web-design@b19d7c3f962e",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g07": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/accessibility-patterns@eb127d28916a",
+"source": "new",
+"opus_grade": 2
+},
+"g08": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/mobile-testing@628084187f00",
+"source": "new",
+"opus_grade": 1
+},
+"g09": {
+"skill": "uasl/mobile-app@a9dba8039c51",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g10": {
+"skill": "uasl/tailwind-design-system@7db0651a06b1",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g11": {
+"skill": "uasl/memory-retrieval-learning@fc5680ba29e1",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g12": {
+"skill": "uasl/hr-onboarding@a215d70427b3",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g13": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/mvi-architecture@8ae353df8416",
+"source": "new",
+"opus_grade": 1
+},
+"g14": {
+"skill": "uasl/imagegen-frontend-mobile@d57843fce66f",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g15": {
+"skill": "affaan-m-ecc/compose-multiplatform-patterns@29c993eec209",
+"source": "new",
+"opus_grade": 1
+},
+"g16": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/android-patterns@be5a5e06ea8a",
+"source": "new",
+"opus_grade": 1
+}
+},
+"t299": {
+"g01": {
+"skill": "uasl/soft-skill@4dd04c5022d2",
+"source": "old_baseline_top10",
+"opus_grade": 1
+},
+"g02": {
+"skill": "uasl/tailwind-design-system@7db0651a06b1",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g03": {
+"skill": "uasl/imagegen-frontend-mobile@d57843fce66f",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g04": {
+"skill": "uasl/claude-native-brand-guidelines@7d7cc96e7e20",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g05": {
+"skill": "affaan-m-ecc/react-native-patterns@9dedc460ef07",
+"source": "new",
+"opus_grade": 3
+},
+"g06": {
+"skill": "dpearson2699-swift-ios-skills/financekit@fd4a13cc003e",
+"source": "new",
+"opus_grade": 0
+},
+"g07": {
+"skill": "affaan-m-ecc/agent-payment-x402@ed8a07807c83",
+"source": "new",
+"opus_grade": 0
+},
+"g08": {
+"skill": "uasl/gamified-app@89f56442216c",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g09": {
+"skill": "uasl/coinbase-automation@5c971806493f",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g10": {
+"skill": "affaan-m-ecc/llm-trading-agent-security@b0b650bc772d",
+"source": "new",
+"opus_grade": 0
+},
+"g11": {
+"skill": "dpearson2699-swift-ios-skills/passkit@f6c140c76b2d",
+"source": "new",
+"opus_grade": 0
+},
+"g12": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/kmp-navigation@862b4b14bdfb",
+"source": "new",
+"opus_grade": 0
+},
+"g13": {
+"skill": "affaan-m-ecc/frontend-a11y@635c71ee05ce",
+"source": "new",
+"opus_grade": 1
+},
+"g14": {
+"skill": "uasl/mobile-onboarding@dae55de6dde3",
+"source": "old_baseline_top10",
+"opus_grade": 0
+}
+},
+"t305": {
+"g01": {
+"skill": "uasl/find-bugs@c3ff7d64ff9f",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g02": {
+"skill": "uasl/verification-loop@39d9be23cf50",
+"source": "old_staging_top10",
+"opus_grade": 1
+},
+"g03": {
+"skill": "uasl/insecure-defaults@a0e826721018",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g04": {
+"skill": "uasl/caveman-commit@244182e952a7",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g05": {
+"skill": "affaan-m-ecc/gan-style-harness@3fb0f5f81c3d",
+"source": "new",
+"opus_grade": 0
+},
+"g06": {
+"skill": "affaan-m-ecc/windows-desktop-e2e@d03c9bd686f6",
+"source": "new",
+"opus_grade": 0
+},
+"g07": {
+"skill": "affaan-m-ecc/conventional-commit-review@5889275f40c6",
+"source": "new",
+"opus_grade": 1
+},
+"g08": {
+"skill": "affaan-m-ecc/springboot-tdd@5ff62a01f15c",
+"source": "new",
+"opus_grade": 1
+},
+"g09": {
+"skill": "uasl/openclaw-color-palette@22baa399c5eb",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g10": {
+"skill": "uasl/setup-pre-commit@95f6657588a0",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g11": {
+"skill": "affaan-m-ecc/springboot-verification@8667ba45dc39",
+"source": "new",
+"opus_grade": 1
+},
+"g12": {
+"skill": "affaan-m-ecc/change-impact@a1bf7ff09329",
+"source": "new",
+"opus_grade": 1
+},
+"g13": {
+"skill": "uasl/e2e-testing-patterns@8b25fb0b2da6",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g14": {
+"skill": "affaan-m-ecc/e2e-testing@7070d6d2a0cc",
+"source": "new",
+"opus_grade": 0
+},
+"g15": {
+"skill": "affaan-m-ecc/quarkus-tdd@1cdb9a6641fd",
+"source": "new",
+"opus_grade": 0
+},
+"g16": {
+"skill": "uasl/mermaid-diagrams@a50e01188b8f",
+"source": "old_baseline_top10",
+"opus_grade": 0
+}
+},
+"t309": {
+"g01": {
+"skill": "dpearson2699-swift-ios-skills/metrickit@a6d8f77f87fe",
+"source": "new",
+"opus_grade": 0
+},
+"g02": {
+"skill": "uasl/printing-press-polish@b4aef54a7866",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g03": {
+"skill": "uasl/brutalist-skill@29fc0f9ccf21",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g04": {
+"skill": "actionbook-rust-skills/domain-iot@91e3a350989f",
+"source": "new",
+"opus_grade": 0
+},
+"g05": {
+"skill": "uasl/internal-comms@8ad08fb91e8c",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g06": {
+"skill": "affaan-m-ecc/ecc-council@d9f6a8cd2d9c",
+"source": "new",
+"opus_grade": 0
+},
+"g07": {
+"skill": "affaan-m-ecc/council@07d8f1900152",
+"source": "new",
+"opus_grade": 0
+},
+"g08": {
+"skill": "uasl/caveman-commit@244182e952a7",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g09": {
+"skill": "affaan-m-ecc/counterparty-channel-discipline@ed358eed1a74",
+"source": "new",
+"opus_grade": 0
+},
+"g10": {
+"skill": "uasl/printing-press-catalog@3572c42ad04d",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g11": {
+"skill": "uasl/html-ppt-taste-brutalist@d8696297ed9a",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g12": {
+"skill": "uasl/crossing-the-chasm@8676ab924768",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g13": {
+"skill": "affaan-m-ecc/nasiko-control-plane@6f8c1ab28992",
+"source": "new",
+"opus_grade": 0
+},
+"g14": {
+"skill": "affaan-m-ecc/project-flow-ops@e5937c4adc1b",
+"source": "new",
+"opus_grade": 0
+}
+},
+"t310": {
+"g01": {
+"skill": "uasl/caveman-stats@2859ce4e33a6",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g02": {
+"skill": "uasl/forecast-premortem@dcdd0b67c70f",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g03": {
+"skill": "affaan-m-ecc/nanoclaw-repl@935eb0019015",
+"source": "new",
+"opus_grade": 0
+},
+"g04": {
+"skill": "actionbook-rust-skills/rust-learner@2a967e43636a",
+"source": "new",
+"opus_grade": 0
+},
+"g05": {
+"skill": "uasl/universal-ai-config@810b8c3c5958",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g06": {
+"skill": "uasl/invoice-organizer@65f04d96d07a",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g07": {
+"skill": "uasl/similarweb-analytics@938e9f87287b",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g08": {
+"skill": "actionbook-rust-skills/core-dynamic-skills@63ab438f5c03",
+"source": "new",
+"opus_grade": 0
+},
+"g09": {
+"skill": "actionbook-rust-skills/rust-skill-creator@74c31cabe0b5",
+"source": "new",
+"opus_grade": 0
+},
+"g10": {
+"skill": "actionbook-rust-skills/core-fix-skill-docs@ff9fad06d98c",
+"source": "new",
+"opus_grade": 0
+},
+"g11": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/mobile-checkpoint@d17ea4066674",
+"source": "new",
+"opus_grade": 0
+},
+"g12": {
+"skill": "uasl/zen@f72229d0a781",
+"source": "old_baseline_top10",
+"opus_grade": 1
+}
+},
+"t316": {
+"g01": {
+"skill": "actionbook-rust-skills/m07-concurrency@0686c877c8a6",
+"source": "new",
+"opus_grade": 1
+},
+"g02": {
+"skill": "uasl/ossfuzz@29bd6a21c586",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g03": {
+"skill": "actionbook-rust-skills/rust-learner@2a967e43636a",
+"source": "new",
+"opus_grade": 1
+},
+"g04": {
+"skill": "uasl/fuzzing-dictionary@1b7491e2ab32",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g05": {
+"skill": "uasl/cargo-fuzz@2b31cd9657f5",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g06": {
+"skill": "uasl/fastapi-templates@effcd0de0b4c",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g07": {
+"skill": "actionbook-rust-skills/m11-ecosystem@ec78464294e9",
+"source": "new",
+"opus_grade": 2
+},
+"g08": {
+"skill": "actionbook-rust-skills/rust-skill-creator@74c31cabe0b5",
+"source": "new",
+"opus_grade": 0
+},
+"g09": {
+"skill": "affaan-m-ecc/rust-testing@68e797f602f9",
+"source": "new",
+"opus_grade": 0
+},
+"g10": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/gradle-patterns@16795bbadcc9",
+"source": "new",
+"opus_grade": 0
+},
+"g11": {
+"skill": "uasl/address-sanitizer@945fe8a1ab1b",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g12": {
+"skill": "actionbook-rust-skills/rust-router@4a05b7063eb2",
+"source": "new",
+"opus_grade": 1
+},
+"g13": {
+"skill": "uasl/fuzzing-obstacles@cb574f4c1b3b",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g14": {
+"skill": "affaan-m-ecc/nasiko-control-plane@6f8c1ab28992",
+"source": "new",
+"opus_grade": 0
+},
+"g15": {
+"skill": "affaan-m-ecc/rust-patterns@f0961b5637b0",
+"source": "new",
+"opus_grade": 0
+},
+"g16": {
+"skill": "uasl/next-upgrade@df465f7770a5",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g17": {
+"skill": "uasl/finance-metrics-quickref@dfe896ee13a2",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g18": {
+"skill": "uasl/harness-writing@b71c9af45925",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g19": {
+"skill": "actionbook-rust-skills/rust-deps-visualizer@b977cba5ffb7",
+"source": "new",
+"opus_grade": 1
+},
+"g20": {
+"skill": "uasl/saas-economics-efficiency-metrics@b5a33fe2813c",
+"source": "old_baseline_top10",
+"opus_grade": 0
+}
+},
+"t317": {
+"g01": {
+"skill": "uasl/invoice@234bae53884f",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g02": {
+"skill": "affaan-m-ecc/mybatis-patterns@e31dbc18477d",
+"source": "new",
+"opus_grade": 0
+},
+"g03": {
+"skill": "affaan-m-ecc/java-coding-standards@f726fc11b7e1",
+"source": "new",
+"opus_grade": 1
+},
+"g04": {
+"skill": "uasl/image-to-code-skill@4f1a4537825d",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g05": {
+"skill": "affaan-m-ecc/inherit-legacy-style@63967b734112",
+"source": "new",
+"opus_grade": 0
+},
+"g06": {
+"skill": "uasl/five-agent-ci-debug@66324570bafb",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g07": {
+"skill": "uasl/printing-press-score@7ec218523bea",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g08": {
+"skill": "affaan-m-ecc/returns-reverse-logistics@5dd518e347c0",
+"source": "new",
+"opus_grade": 0
+},
+"g09": {
+"skill": "affaan-m-ecc/springboot-tdd@5ff62a01f15c",
+"source": "new",
+"opus_grade": 1
+},
+"g10": {
+"skill": "uasl/codenavi@109490043377",
+"source": "old_baseline_top10",
+"opus_grade": 1
+},
+"g11": {
+"skill": "uasl/tlc-spec-driven@394ed16ecc07",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g12": {
+"skill": "affaan-m-ecc/recsys-pipeline-architect@3cb4facf9a85",
+"source": "new",
+"opus_grade": 0
+},
+"g13": {
+"skill": "uasl/software-architecture@011a6d823631",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g14": {
+"skill": "affaan-m-ecc/security-bounty-hunter@2cfded18c33f",
+"source": "new",
+"opus_grade": 0
+}
+},
+"t333": {
+"g01": {
+"skill": "anthropics-skills/internal-comms@c544dea09136",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g02": {
+"skill": "uasl/internal-comms@8ad08fb91e8c",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g03": {
+"skill": "uasl/n8n-code-javascript@203459f10f1d",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g04": {
+"skill": "affaan-m-ecc/tinystruct-patterns@5b08a71b403d",
+"source": "new",
+"opus_grade": 0
+},
+"g05": {
+"skill": "affaan-m-ecc/kotlin-ktor-patterns@89a0ba343deb",
+"source": "new",
+"opus_grade": 0
+},
+"g06": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/ktor-patterns@bddbbf8dddac",
+"source": "new",
+"opus_grade": 0
+},
+"g07": {
+"skill": "affaan-m-ecc/canary-watch@0427be38be87",
+"source": "new",
+"opus_grade": 0
+},
+"g08": {
+"skill": "actionbook-rust-skills/domain-web@e85236f514d2",
+"source": "new",
+"opus_grade": 0
+},
+"g09": {
+"skill": "affaan-m-ecc/ito-inference@27297e544d29",
+"source": "new",
+"opus_grade": 0
+},
+"g10": {
+"skill": "uasl/api-testing@4ada9a2fac88",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g11": {
+"skill": "uasl/tdd-workflow@6eadb0bf0ea8",
+"source": "old_baseline_top10",
+"opus_grade": 1
+},
+"g12": {
+"skill": "uasl/mcp-server-patterns@63e29e48e956",
+"source": "old_staging_top10",
+"opus_grade": 0
+}
+},
+"t346": {
+"g01": {
+"skill": "affaan-m-ecc/content-hash-cache-pattern@5974a14b9898",
+"source": "new",
+"opus_grade": 0
+},
+"g02": {
+"skill": "affaan-m-ecc/clickhouse-io@49af693bbd4e",
+"source": "new",
+"opus_grade": 0
+},
+"g03": {
+"skill": "uasl/web-prototype-taste-editorial@ea4a250e3329",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g04": {
+"skill": "uasl/minimalist-skill@6bec0a57af30",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g05": {
+"skill": "uasl/web-design@b19d7c3f962e",
+"source": "old_staging_top10",
+"opus_grade": 1
+},
+"g06": {
+"skill": "anthropics-skills/webapp-testing@a4b4ce82b644",
+"source": "old_staging_top10",
+"opus_grade": 1
+},
+"g07": {
+"skill": "uasl/firecrawl-automation@555ae9b52289",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g08": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/jetpack-compose@4c3931b3c56f",
+"source": "new",
+"opus_grade": 0
+},
+"g09": {
+"skill": "affaan-m-ecc/nodejs-keccak256@ffc3759434bc",
+"source": "new",
+"opus_grade": 0
+},
+"g10": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/image-loading@44ed04c73779",
+"source": "new",
+"opus_grade": 0
+}
+},
+"t353": {
+"g01": {
+"skill": "affaan-m-ecc/django-verification@06dac8832ab5",
+"source": "new",
+"opus_grade": 1
+},
+"g02": {
+"skill": "affaan-m-ecc/production-audit@243bb70923d7",
+"source": "new",
+"opus_grade": 1
+},
+"g03": {
+"skill": "uasl/integration-testing@62b51275be50",
+"source": "old_staging_top10",
+"opus_grade": 1
+},
+"g04": {
+"skill": "affaan-m-ecc/deployment-patterns@eb1f7daa4ca4",
+"source": "new",
+"opus_grade": 2
+},
+"g05": {
+"skill": "uasl/python-testing-patterns@e62d0f1ca316",
+"source": "old_staging_top10",
+"opus_grade": 3
+},
+"g06": {
+"skill": "uasl/contract-testing@b0f4c29940a9",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g07": {
+"skill": "affaan-m-ecc/python-testing@b62ce0637eb1",
+"source": "new",
+"opus_grade": 3
+},
+"g08": {
+"skill": "affaan-m-ecc/django-tdd@b6ebe260d6ff",
+"source": "new",
+"opus_grade": 1
+},
+"g09": {
+"skill": "uasl/unit-testing@6c5fbb821103",
+"source": "old_staging_top10",
+"opus_grade": 2
+},
+"g10": {
+"skill": "uasl/fastapi-endpoint@2a93d50c4970",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g11": {
+"skill": "affaan-m-ecc/canary-watch@0427be38be87",
+"source": "new",
+"opus_grade": 1
+},
+"g12": {
+"skill": "uasl/vercel-cli-with-tokens@3f9c2805c482",
+"source": "old_baseline_top10",
+"opus_grade": 0
+}
+},
+"t358": {
+"g01": {
+"skill": "uasl/anvil@3a36e8410205",
+"source": "old_staging_top10",
+"opus_grade": 1
+},
+"g02": {
+"skill": "affaan-m-ecc/nasiko-control-plane@6f8c1ab28992",
+"source": "new",
+"opus_grade": 0
+},
+"g03": {
+"skill": "actionbook-rust-skills/domain-cli@299b233ce67e",
+"source": "new",
+"opus_grade": 1
+},
+"g04": {
+"skill": "affaan-m-ecc/architecture-decision-records@233b5a169011",
+"source": "new",
+"opus_grade": 0
+},
+"g05": {
+"skill": "uasl/public-param-golden@6b8109050c5c",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g06": {
+"skill": "uasl/printing-press-polish@b4aef54a7866",
+"source": "old_staging_top10",
+"opus_grade": 0
+}
+},
+"t360": {
+"g01": {
+"skill": "actionbook-rust-skills/m11-ecosystem@ec78464294e9",
+"source": "new",
+"opus_grade": 2
+},
+"g02": {
+"skill": "uasl/design-system-patterns@cd952cab0879",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g03": {
+"skill": "uasl/constant-time-testing@6bbb97cc6cc1",
+"source": "old_staging_top10",
+"opus_grade": 2
+},
+"g04": {
+"skill": "actionbook-rust-skills/rust-symbol-analyzer@c519d33f9d97",
+"source": "new",
+"opus_grade": 1
+},
+"g05": {
+"skill": "uasl/caveman-stats@2859ce4e33a6",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g06": {
+"skill": "uasl/token-integration-analyzer@73f7e737c832",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g07": {
+"skill": "uasl/ln-002-session-analyzer@e1f577ca3f6a",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g08": {
+"skill": "affaan-m-ecc/quarkus-security@b20c2f268187",
+"source": "new",
+"opus_grade": 0
+},
+"g09": {
+"skill": "actionbook-rust-skills/rust-skill-creator@74c31cabe0b5",
+"source": "new",
+"opus_grade": 0
+},
+"g10": {
+"skill": "actionbook-rust-skills/domain-ml@272bdcdb41c6",
+"source": "new",
+"opus_grade": 0
+},
+"g11": {
+"skill": "uasl/printing-press-score@7ec218523bea",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g12": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/mobile-security@dc1c2f98167b",
+"source": "new",
+"opus_grade": 0
+},
+"g13": {
+"skill": "uasl/auth-implementation-patterns@7a99b395d548",
+"source": "old_staging_top10",
+"opus_grade": 1
+},
+"g14": {
+"skill": "dpearson2699-swift-ios-skills/activitykit@bd1cab8c9697",
+"source": "new",
+"opus_grade": 0
+},
+"g15": {
+"skill": "uasl/taste-skill@57790089504e",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g16": {
+"skill": "actionbook-rust-skills/core-dynamic-skills@63ab438f5c03",
+"source": "new",
+"opus_grade": 0
+}
+},
+"t366": {
+"g01": {
+"skill": "uasl/error-handling-patterns@4c19ee7d7821",
+"source": "old_baseline_top10",
+"opus_grade": 1
+},
+"g02": {
+"skill": "uasl/python-design-patterns@5c0fbe0d4633",
+"source": "old_baseline_top10",
+"opus_grade": 1
+},
+"g03": {
+"skill": "affaan-m-ecc/network-interface-health@a52dcb8204e4",
+"source": "new",
+"opus_grade": 0
+},
+"g04": {
+"skill": "uasl/fastapi-endpoint@2a93d50c4970",
+"source": "old_staging_top10",
+"opus_grade": 2
+},
+"g05": {
+"skill": "affaan-m-ecc/redis-patterns@3e02a884352b",
+"source": "new",
+"opus_grade": 2
+},
+"g06": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/kmp-networking@137b90760b3e",
+"source": "new",
+"opus_grade": 0
+},
+"g07": {
+"skill": "actionbook-rust-skills/domain-web@e85236f514d2",
+"source": "new",
+"opus_grade": 1
+},
+"g08": {
+"skill": "affaan-m-ecc/backend-patterns@59af753c1b38",
+"source": "new",
+"opus_grade": 0
+},
+"g09": {
+"skill": "uasl/provider-api@4da7bed47117",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g10": {
+"skill": "uasl/define-architecture@8ea764417825",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g11": {
+"skill": "uasl/fastapi-templates@effcd0de0b4c",
+"source": "old_staging_top10",
+"opus_grade": 1
+},
+"g12": {
+"skill": "uasl/claude-native-claude-api@24c958899f03",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g13": {
+"skill": "affaan-m-ecc/fastapi-patterns@419da9966f07",
+"source": "new",
+"opus_grade": 3
+},
+"g14": {
+"skill": "affaan-m-ecc/error-handling@f630539a5890",
+"source": "new",
+"opus_grade": 1
+}
+},
+"t376": {
+"g01": {
+"skill": "uasl/caveman-commit@244182e952a7",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g02": {
+"skill": "uasl/workday-automation@3e9313379197",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g03": {
+"skill": "uasl/rewind@64cfc63aad18",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g04": {
+"skill": "uasl/ecc-source@ac3a6c8604b3",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g05": {
+"skill": "anthropics-skills/discernment-nudge@a9d2caea7e0b",
+"source": "old_staging_top10",
+"opus_grade": 0
+},
+"g06": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/push-notifications@cc0cefa6d417",
+"source": "new",
+"opus_grade": 1
+},
+"g07": {
+"skill": "affaan-m-ecc/conventional-commit-review@5889275f40c6",
+"source": "new",
+"opus_grade": 0
+},
+"g08": {
+"skill": "dpearson2699-swift-ios-skills/push-notifications@c82c36682391",
+"source": "new",
+"opus_grade": 1
+},
+"g09": {
+"skill": "affaan-m-ecc/flutter-dart-code-review@c08e3eec5e6d",
+"source": "new",
+"opus_grade": 1
+},
+"g10": {
+"skill": "uasl/onesignal-rest-api-automation@69760a7d8416",
+"source": "old_baseline_top10",
+"opus_grade": 0
+},
+"g11": {
+"skill": "affaan-m-ecc/unified-notifications-ops@b85bf8eb6bfa",
+"source": "new",
+"opus_grade": 0
+},
+"g12": {
+"skill": "affaan-m-ecc/dart-flutter-patterns@2c84304f91d5",
+"source": "new",
+"opus_grade": 2
+}
+}
+}

@@ -1,0 +1,15 @@
+{
+ "s4-t026": {
+  "skills": [
+   "uasl/frontend-patterns@8f659ce2a0bd"
+  ],
+  "reason": "React/TanStack Query server-side pagination wiring; frontend data-fetching patterns help, otherwise routine"
+ },
+ "s4-t177": {
+  "skills": [
+   "uasl/stream@94a72913c590",
+   "uasl/python-testing-patterns@e62d0f1ca316"
+  ],
+  "reason": "Idempotent batch ingestion pipeline with dedupe/normalization; testing patterns help verify rerun and manifest-count acceptance"
+ }
+}

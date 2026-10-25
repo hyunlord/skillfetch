@@ -1,0 +1,385 @@
+{"task_id": "t268", "candidate_id": "c01", "grade": 0, "process": false, "reason": "Doctrine 설정은 JPA 엔티티 그래프와 다른 ORM이다."}
+{"task_id": "t268", "candidate_id": "c02", "grade": 2, "process": false, "reason": "JPA와 Hibernate 엔티티 지식은 연관 로딩 수정에 유용하다."}
+{"task_id": "t268", "candidate_id": "c03", "grade": 0, "process": false, "reason": "주문 업무 흐름은 저장소의 지연 로딩 수정과 무관하다."}
+{"task_id": "t268", "candidate_id": "c04", "grade": 0, "process": false, "reason": "회의록 작성은 데이터 조회 최적화와 무관하다."}
+{"task_id": "t268", "candidate_id": "c05", "grade": 2, "process": false, "reason": "Spring Data 저장소와 관계 설정이 해당 조회 수정에 도움이 된다."}
+{"task_id": "t268", "candidate_id": "c06", "grade": 1, "process": false, "reason": "집합 소유권 분석은 조회 그래프 적용에 간접적인 맥락만 준다."}
+{"task_id": "t268", "candidate_id": "c07", "grade": 1, "process": true, "reason": "원인이 제시된 국소 수정에는 상세 아키텍처 감사의 효용이 작다."}
+{"task_id": "t268", "candidate_id": "c08", "grade": 1, "process": false, "reason": "SQL 튜닝은 관련되지만 엔티티 그래프 적용을 다루지 않는다."}
+{"task_id": "t268", "candidate_id": "c09", "grade": 2, "process": false, "reason": "Hibernate 지연 연관관계 모델링은 로딩 변경의 안전성에 도움이 된다."}
+{"task_id": "t268", "candidate_id": "c10", "grade": 1, "process": false, "reason": "새 엔티티 일관성 지침은 기존 저장소 로딩 수정과 거리가 있다."}
+{"task_id": "t268", "candidate_id": "c11", "grade": 0, "process": false, "reason": "N+1 문제는 같지만 Laravel용 구현 지침은 다른 스택이다."}
+{"task_id": "t268", "candidate_id": "c12", "grade": 1, "process": false, "reason": "주문 쿼리 성능과 관련되나 인덱스·분할은 요청된 해결책이 아니다."}
+{"task_id": "t268", "candidate_id": "c13", "grade": 2, "process": false, "reason": "JPA 관계와 fetch 관련 모델링이 조회 로딩 계획에 유용하다."}
+{"task_id": "t268", "candidate_id": "c14", "grade": 2, "process": false, "reason": "JPA 관계 매핑 지식이 연관 항목 조회 수정에 도움이 된다."}
+{"task_id": "t268", "candidate_id": "c15", "grade": 2, "process": false, "reason": "N+1 개선을 명시하여 해당 성능 문제 해결에 도움이 된다."}
+{"task_id": "t268", "candidate_id": "c16", "grade": 0, "process": true, "reason": "SQLAlchemy 리뷰는 JPA 저장소에 적용할 수 없다."}
+{"task_id": "t268", "candidate_id": "c17", "grade": 0, "process": false, "reason": "Doctrine 대량 처리 지침은 다른 ORM과 문제를 다룬다."}
+{"task_id": "t268", "candidate_id": "c18", "grade": 1, "process": false, "reason": "일반 성능 개선은 엔티티 그래프 수정에 구체성이 부족하다."}
+{"task_id": "t268", "candidate_id": "c19", "grade": 1, "process": false, "reason": "쿼리 효율은 관련되지만 API 페이로드 최적화가 주된 범위다."}
+{"task_id": "t268", "candidate_id": "c20", "grade": 0, "process": false, "reason": "브랜드 시각 체계는 데이터 로딩과 무관하다."}
+{"task_id": "t268", "candidate_id": "c21", "grade": 0, "process": false, "reason": "송장 페이지 디자인은 주문 항목 조회와 무관하다."}
+{"task_id": "t268", "candidate_id": "c22", "grade": 2, "process": false, "reason": "Hibernate 쿼리 최적화는 이 JPA 성능 수정에 유용하다."}
+{"task_id": "t268", "candidate_id": "c23", "grade": 1, "process": false, "reason": "관계 모델링은 인접하지만 기존 조회의 로딩 전략이 핵심이다."}
+{"task_id": "t268", "candidate_id": "c24", "grade": 2, "process": false, "reason": "JPA 쿼리 최적화와 관계 지식이 수정에 직접 보조된다."}
+{"task_id": "t268", "candidate_id": "c25", "grade": 0, "process": false, "reason": "D3 시각화는 ORM 조회와 무관하다."}
+{"task_id": "t268", "candidate_id": "c26", "grade": 2, "process": false, "reason": "Spring Data 저장소 메서드 지식이 해당 메서드 수정에 유용하다."}
+{"task_id": "t268", "candidate_id": "c27", "grade": 1, "process": true, "reason": "원인과 해결책이 이미 제시되어 일반 디버깅 절차의 추가 효용이 작다."}
+{"task_id": "t268", "candidate_id": "c28", "grade": 0, "process": false, "reason": "NetSuite 주문 자동화는 JPA 저장소와 무관하다."}
+{"task_id": "t268", "candidate_id": "c29", "grade": 0, "process": true, "reason": "리뷰 문장 압축은 구현 작업에 실질적인 도움이 없다."}
+{"task_id": "t268", "candidate_id": "c30", "grade": 0, "process": false, "reason": "지식 그래프 구축은 JPA 엔티티 그래프와 다른 주제다."}
+{"task_id": "t269", "candidate_id": "c01", "grade": 0, "process": true, "reason": "Java를 Kotlin으로 변환하는 작업이 아니다."}
+{"task_id": "t269", "candidate_id": "c02", "grade": 2, "process": false, "reason": "Kubernetes 장애 진단은 readiness 실패와 롤아웃 검증에 유용하다."}
+{"task_id": "t269", "candidate_id": "c03", "grade": 1, "process": true, "reason": "증거 검토는 보조적이나 기동 병목 진단 방법은 제공하지 않는다."}
+{"task_id": "t269", "candidate_id": "c04", "grade": 2, "process": true, "reason": "공식 문서에 근거한 설정 변경은 Spring 초기화 조정에 유용하다."}
+{"task_id": "t269", "candidate_id": "c05", "grade": 0, "process": false, "reason": "인증·인가 설정은 기동 시간 문제의 제시된 범위가 아니다."}
+{"task_id": "t269", "candidate_id": "c06", "grade": 0, "process": true, "reason": "EKS 버전 업그레이드 준비도는 서비스 기동 병목과 다르다."}
+{"task_id": "t269", "candidate_id": "c07", "grade": 0, "process": false, "reason": "행동 트리 파일 생성은 Spring 서비스와 무관하다."}
+{"task_id": "t269", "candidate_id": "c08", "grade": 2, "process": true, "reason": "Spring 빌드·통합 검증 절차는 지연 초기화의 회귀 확인에 도움이 된다."}
+{"task_id": "t269", "candidate_id": "c09", "grade": 2, "process": false, "reason": "자동 설정을 포함한 Spring Boot 지식이 기동 설정 조사에 유용하다."}
+{"task_id": "t269", "candidate_id": "c10", "grade": 1, "process": false, "reason": "일반 백엔드 구조와 API 개발은 기동 병목에 구체성이 부족하다."}
+{"task_id": "t269", "candidate_id": "c11", "grade": 0, "process": true, "reason": "학술 논문 작성 지침은 서비스 성능 개선과 무관하다."}
+{"task_id": "t269", "candidate_id": "c12", "grade": 0, "process": false, "reason": "Azure 구조 시각화는 주어진 Spring 기동 분석과 무관하다."}
+{"task_id": "t269", "candidate_id": "c13", "grade": 0, "process": false, "reason": "Azure 자원 진단은 명시되지 않은 클라우드 전용이다."}
+{"task_id": "t269", "candidate_id": "c14", "grade": 1, "process": false, "reason": "REST와 계층 구조 패턴은 초기화 최적화에 간접적이다."}
+{"task_id": "t269", "candidate_id": "c15", "grade": 1, "process": false, "reason": "시작 프로브 지식은 인접하지만 ML 전용 긴 타임아웃은 30초 목표를 해결하지 못한다."}
+{"task_id": "t269", "candidate_id": "c16", "grade": 0, "process": false, "reason": "새 프로젝트 생성은 기존 서비스 기동 개선과 다르다."}
+{"task_id": "t269", "candidate_id": "c17", "grade": 2, "process": false, "reason": "배포와 운영 설정은 수정 후 Kubernetes 롤아웃 검증에 유용하다."}
+{"task_id": "t269", "candidate_id": "c18", "grade": 0, "process": false, "reason": "SharpSpring 마케팅 연동은 Spring Boot와 무관하다."}
+{"task_id": "t269", "candidate_id": "c19", "grade": 0, "process": false, "reason": "Kafka 설정이 기동 지연 원인이라는 근거가 없다."}
+{"task_id": "t269", "candidate_id": "c20", "grade": 2, "process": false, "reason": "Spring Boot 구성 지침과 공식 문서는 초기화 설정 조정에 도움이 된다."}
+{"task_id": "t269", "candidate_id": "c21", "grade": 1, "process": false, "reason": "매니페스트 생성은 인접하지만 앱 내부 기동 분석이 핵심이다."}
+{"task_id": "t269", "candidate_id": "c22", "grade": 1, "process": false, "reason": "Kotlin 사용이 확인되지 않아 Kotlin 중심 Spring 지침은 제한적이다."}
+{"task_id": "t269", "candidate_id": "c23", "grade": 0, "process": false, "reason": "OAuth 권한 매핑은 기동 최적화와 무관하다."}
+{"task_id": "t269", "candidate_id": "c24", "grade": 0, "process": false, "reason": "Python 프로파일러는 JVM 서비스에 맞지 않는다."}
+{"task_id": "t269", "candidate_id": "c25", "grade": 1, "process": false, "reason": "Hibernate 엔티티 일관성은 validate 단계 분석에 간접적이다."}
+{"task_id": "t269", "candidate_id": "c26", "grade": 0, "process": true, "reason": "코드 투어 문서 제작은 성능 개선 요구와 다르다."}
+{"task_id": "t269", "candidate_id": "c27", "grade": 1, "process": false, "reason": "일반 서비스·캐시 패턴은 기동 병목에 구체적인 안내가 부족하다."}
+{"task_id": "t269", "candidate_id": "c28", "grade": 0, "process": false, "reason": "브라우저 페이지 속도 개선은 JVM 기동과 다르다."}
+{"task_id": "t269", "candidate_id": "c29", "grade": 2, "process": false, "reason": "의존성 주입과 애너테이션 설정 지식은 빈 초기화 변경에 유용하다."}
+{"task_id": "t269", "candidate_id": "c30", "grade": 0, "process": false, "reason": "교실 개설 자동화는 서비스 기동과 무관하다."}
+{"task_id": "t269", "candidate_id": "c31", "grade": 0, "process": true, "reason": "보안 리뷰는 명시된 시작 지연 원인과 무관하다."}
+{"task_id": "t269", "candidate_id": "c32", "grade": 0, "process": true, "reason": "스타트업 사업 전략은 애플리케이션 시작 시간과 무관하다."}
+{"task_id": "t269", "candidate_id": "c33", "grade": 1, "process": true, "reason": "복원력 실험은 롤아웃 안정성에 인접하지만 기동 최적화 자체는 아니다."}
+{"task_id": "t269", "candidate_id": "c34", "grade": 0, "process": false, "reason": "Spring 인증 설정은 현재 문제의 핵심이 아니다."}
+{"task_id": "t269", "candidate_id": "c35", "grade": 0, "process": false, "reason": "Azure 자원 구조 분석은 명시된 Kubernetes 앱 병목과 무관하다."}
+{"task_id": "t269", "candidate_id": "c36", "grade": 2, "process": true, "reason": "롤링 배포 절차는 readiness 실패를 포함한 운영 검증에 도움이 된다."}
+{"task_id": "t269", "candidate_id": "c37", "grade": 0, "process": true, "reason": "API 호환 계약 테스트는 기동 시간 검증과 다르다."}
+{"task_id": "t269", "candidate_id": "c38", "grade": 0, "process": true, "reason": "스프린트 방향 변경 절차는 성능 디버깅 요구와 다르다."}
+{"task_id": "t269", "candidate_id": "c39", "grade": 2, "process": false, "reason": "의존성 주입과 구성 관리 지식은 비핵심 빈 초기화 조정에 도움이 된다."}
+{"task_id": "t269", "candidate_id": "c40", "grade": 0, "process": false, "reason": "Python 자원 관리는 JVM 서비스에 적용되지 않는다."}
+{"task_id": "t269", "candidate_id": "c41", "grade": 0, "process": true, "reason": "이슈 분류 상태 관리는 기동 분석과 무관하다."}
+{"task_id": "t269", "candidate_id": "c42", "grade": 1, "process": true, "reason": "배포 파이프라인 설계는 인접하지만 기존 앱의 느린 시작을 해결하지 않는다."}
+{"task_id": "t269", "candidate_id": "c43", "grade": 2, "process": false, "reason": "일반 성능 최적화 기법은 병목 개선에 보조적으로 유용하다."}
+{"task_id": "t269", "candidate_id": "c44", "grade": 0, "process": false, "reason": "Kotlin 프로젝트 신규 생성은 기존 기동 개선과 다르다."}
+{"task_id": "t269", "candidate_id": "c45", "grade": 0, "process": false, "reason": "클러스터 보안 정책은 기동 지연 문제와 무관하다."}
+{"task_id": "t269", "candidate_id": "c46", "grade": 0, "process": false, "reason": "GitHub Actions 구축은 요청된 범위가 아니다."}
+{"task_id": "t269", "candidate_id": "c47", "grade": 0, "process": true, "reason": "사업 혁신 사고법은 서비스 기동 최적화와 무관하다."}
+{"task_id": "t269", "candidate_id": "c48", "grade": 1, "process": false, "reason": "일반 계층·DTO 패턴은 시작 병목 분석에 한정적인 맥락만 준다."}
+{"task_id": "t269", "candidate_id": "c49", "grade": 0, "process": false, "reason": "Azure 자원 목록은 앱 시작 최적화와 무관하다."}
+{"task_id": "t269", "candidate_id": "c50", "grade": 1, "process": false, "reason": "일반 Spring 앱 구축 지침은 초기화 문제에 구체성이 부족하다."}
+{"task_id": "t269", "candidate_id": "c51", "grade": 2, "process": false, "reason": "Spring 데이터 지속성과 운영 지식은 기동 원인 조사에 도움이 된다."}
+{"task_id": "t269", "candidate_id": "c52", "grade": 2, "process": false, "reason": "프로브·롤아웃·문제 해결 지식은 실패 재현과 검증에 유용하다."}
+{"task_id": "t269", "candidate_id": "c53", "grade": 2, "process": true, "reason": "Spring 테스트 절차는 초기화 변경 후 기능 회귀 방지에 유용하다."}
+{"task_id": "t275", "candidate_id": "c01", "grade": 0, "process": false, "reason": "Mapbox 스타일 설정은 BitmapDescriptor 기반 지도와 SDK가 다르다."}
+{"task_id": "t275", "candidate_id": "c02", "grade": 0, "process": false, "reason": "Mapbox GL JS 웹 성능 기법은 Flutter 지도 구현에 맞지 않는다."}
+{"task_id": "t275", "candidate_id": "c03", "grade": 0, "process": true, "reason": "Mapbox로 교체하는 작업은 요청한 캐싱·클러스터링과 다르다."}
+{"task_id": "t275", "candidate_id": "c04", "grade": 0, "process": false, "reason": "Flutter는 같지만 Mapbox 전용 API는 해당 지도 SDK와 다르다."}
+{"task_id": "t275", "candidate_id": "c05", "grade": 1, "process": false, "reason": "플랫폼 뷰 지식은 Flutter 지도 성능에 인접하나 마커 최적화는 다루지 않는다."}
+{"task_id": "t275", "candidate_id": "c06", "grade": 0, "process": false, "reason": "D3 웹 시각화는 Flutter 지도 마커와 다른 도구다."}
+{"task_id": "t275", "candidate_id": "c07", "grade": 0, "process": false, "reason": "단일세포 분석의 클러스터링은 지도 마커와 무관하다."}
+{"task_id": "t275", "candidate_id": "c08", "grade": 0, "process": false, "reason": "Google 광고 자동화는 지도 성능과 무관하다."}
+{"task_id": "t275", "candidate_id": "c09", "grade": 0, "process": true, "reason": "웹 시각 계층 수정은 지도 팬·줌 성능과 다르다."}
+{"task_id": "t275", "candidate_id": "c10", "grade": 1, "process": true, "reason": "가설과 실제 동작 비교는 보조적이나 마커 캐싱 안내는 없다."}
+{"task_id": "t275", "candidate_id": "c11", "grade": 1, "process": false, "reason": "확대·이동 UX는 관련되나 Flutter 마커 성능 구현에는 구체성이 부족하다."}
+{"task_id": "t275", "candidate_id": "c12", "grade": 0, "process": false, "reason": "전사체 군집 분석은 지도 마커와 무관하다."}
+{"task_id": "t275", "candidate_id": "c13", "grade": 0, "process": false, "reason": "Mapbox 매장 탐색기 구현은 지정된 지도 SDK와 다르다."}
+{"task_id": "t275", "candidate_id": "c14", "grade": 0, "process": false, "reason": "와이어프레임 작성은 실행 성능 문제를 해결하지 않는다."}
+{"task_id": "t275", "candidate_id": "c15", "grade": 0, "process": false, "reason": "HTTP 통신 구현은 마커 아이콘 재생성 문제와 다르다."}
+{"task_id": "t275", "candidate_id": "c16", "grade": 2, "process": false, "reason": "대규모 지도 클러스터링과 레이어 설계는 마커 수 문제에 유용하다."}
+{"task_id": "t275", "candidate_id": "c17", "grade": 0, "process": false, "reason": "shadcn 웹 UI는 Flutter 지도와 무관하다."}
+{"task_id": "t275", "candidate_id": "c18", "grade": 0, "process": false, "reason": "새 SVG 아이콘 제작은 기존 비트맵 캐싱과 다르다."}
+{"task_id": "t275", "candidate_id": "c19", "grade": 0, "process": false, "reason": "웹 파비콘 생성은 지도 마커 성능과 무관하다."}
+{"task_id": "t275", "candidate_id": "c20", "grade": 0, "process": false, "reason": "Folium HTML 지도는 Flutter 구현과 맞지 않는다."}
+{"task_id": "t275", "candidate_id": "c21", "grade": 0, "process": false, "reason": "Syncfusion React 지도는 다른 프레임워크다."}
+{"task_id": "t275", "candidate_id": "c22", "grade": 0, "process": false, "reason": "WeChat Tencent 지도는 다른 플랫폼과 SDK다."}
+{"task_id": "t275", "candidate_id": "c23", "grade": 0, "process": false, "reason": "Apple MapKit API는 Flutter BitmapDescriptor 구현과 다르다."}
+{"task_id": "t275", "candidate_id": "c24", "grade": 0, "process": false, "reason": "Next.js 캐싱은 Flutter 비트맵 캐싱과 무관하다."}
+{"task_id": "t275", "candidate_id": "c25", "grade": 0, "process": false, "reason": "Felt 자동화는 앱 마커 성능 수정과 무관하다."}
+{"task_id": "t275", "candidate_id": "c26", "grade": 0, "process": false, "reason": "단일세포 분석 도구는 지리 마커 군집화와 무관하다."}
+{"task_id": "t275", "candidate_id": "c27", "grade": 0, "process": false, "reason": "세포 유형 군집 분석은 지도 클러스터링과 무관하다."}
+{"task_id": "t275", "candidate_id": "c28", "grade": 0, "process": false, "reason": "RNA 분석은 지도 마커 성능과 무관하다."}
+{"task_id": "t275", "candidate_id": "c29", "grade": 0, "process": false, "reason": "ArcGIS 전용 지도 UI는 해당 BitmapDescriptor SDK와 다르다."}
+{"task_id": "t294", "candidate_id": "c01", "grade": 0, "process": false, "reason": "주거 조경 설계는 JavaFX 창과 무관하다."}
+{"task_id": "t294", "candidate_id": "c02", "grade": 0, "process": false, "reason": "shadcn 웹 컴포넌트는 JavaFX에 맞지 않는다."}
+{"task_id": "t294", "candidate_id": "c03", "grade": 1, "process": true, "reason": "서비스 접점 분석은 사용성에 인접하나 화면 재구현에 구체성이 부족하다."}
+{"task_id": "t294", "candidate_id": "c04", "grade": 0, "process": false, "reason": "스크린샷을 uxscii로 바꾸는 도구는 FXML 수정과 다르다."}
+{"task_id": "t294", "candidate_id": "c05", "grade": 2, "process": true, "reason": "명시된 수용 조건을 실행 가능한 검증으로 정리하는 데 유용하다."}
+{"task_id": "t294", "candidate_id": "c06", "grade": 0, "process": false, "reason": "Rust GPUI 레이아웃 API는 JavaFX에 적용되지 않는다."}
+{"task_id": "t294", "candidate_id": "c07", "grade": 0, "process": true, "reason": "특정 다섯 에이전트 병합 게이트는 현재 UI 구현과 무관하다."}
+{"task_id": "t294", "candidate_id": "c08", "grade": 1, "process": true, "reason": "디자인 구현 절차는 인접하나 제공된 목업이나 JavaFX 안내가 없다."}
+{"task_id": "t294", "candidate_id": "c09", "grade": 0, "process": false, "reason": "HTML 대시보드 생성은 FXML 데스크톱 창과 다른 산출물이다."}
+{"task_id": "t294", "candidate_id": "c10", "grade": 0, "process": false, "reason": "음악 생성은 기기 제어 화면과 무관하다."}
+{"task_id": "t294", "candidate_id": "c11", "grade": 2, "process": true, "reason": "기존 앱의 기능을 보존하며 디자인을 개선하는 절차가 유용하다."}
+{"task_id": "t294", "candidate_id": "c12", "grade": 0, "process": false, "reason": "브랜드 키트 생성은 기능 중심 JavaFX 창 재설계와 다르다."}
+{"task_id": "t294", "candidate_id": "c13", "grade": 0, "process": false, "reason": "Chrome 자동화는 JavaFX 창을 검증하지 못한다."}
+{"task_id": "t294", "candidate_id": "c14", "grade": 0, "process": false, "reason": "이미지 재생성과 브랜드 자산은 FXML 레이아웃 구현과 다르다."}
+{"task_id": "t294", "candidate_id": "c15", "grade": 2, "process": true, "reason": "접근성·상호작용·배치 감사는 데스크톱 화면 사용성 검증에도 유용하다."}
+{"task_id": "t294", "candidate_id": "c16", "grade": 0, "process": true, "reason": "AI 제품 성숙도 평가는 화면 재설계와 무관하다."}
+{"task_id": "t294", "candidate_id": "c17", "grade": 1, "process": true, "reason": "사용 용이성 관점은 인접하지만 유지율 분석이 요청된 일은 아니다."}
+{"task_id": "t294", "candidate_id": "c18", "grade": 0, "process": false, "reason": "Flutter 레이아웃 API는 JavaFX와 맞지 않는다."}
+{"task_id": "t294", "candidate_id": "c19", "grade": 1, "process": false, "reason": "UI 디자인이라는 설명만 있어 구체적 적용 근거가 부족하다."}
+{"task_id": "t294", "candidate_id": "c20", "grade": 2, "process": true, "reason": "실제 작업 흐름에서 구조를 재검토하는 방법은 메뉴 탐색 감소에 유용하다."}
+{"task_id": "t294", "candidate_id": "c21", "grade": 1, "process": false, "reason": "웹 중심 프론트엔드 디자인은 데스크톱 UI에 일부 시각 원칙만 준다."}
+{"task_id": "t294", "candidate_id": "c22", "grade": 0, "process": false, "reason": "SwiftUI 레이아웃은 JavaFX FXML과 다른 도구다."}
+{"task_id": "t294", "candidate_id": "c23", "grade": 0, "process": true, "reason": "사이트 도메인 이전은 데스크톱 창 변경과 무관하다."}
+{"task_id": "t294", "candidate_id": "c24", "grade": 2, "process": true, "reason": "기능 보존을 전제로 기존 화면을 감사하고 개선하는 방법이 유용하다."}
+{"task_id": "t294", "candidate_id": "c25", "grade": 0, "process": false, "reason": "SwiftUI 컨트롤 API는 JavaFX에 적용되지 않는다."}
+{"task_id": "t294", "candidate_id": "c26", "grade": 0, "process": false, "reason": "웹 Grid·Flexbox는 JavaFX CSS 레이아웃 방식과 다르다."}
+{"task_id": "t294", "candidate_id": "c27", "grade": 0, "process": false, "reason": "일반적인 개발 기능이라는 설명만으로 유용성을 확인할 수 없다."}
+{"task_id": "t294", "candidate_id": "c28", "grade": 2, "process": false, "reason": "계층·간격·색상·접근성 원칙은 새 제어 화면 설계에 유용하다."}
+{"task_id": "t294", "candidate_id": "c29", "grade": 0, "process": false, "reason": "에이전트 HUD는 실험실 앱의 상태 화면과 무관하다."}
+{"task_id": "t294", "candidate_id": "c30", "grade": 0, "process": false, "reason": "브랜드 이미지 생성은 JavaFX 조작 화면 구현과 다르다."}
+{"task_id": "t294", "candidate_id": "c31", "grade": 0, "process": false, "reason": "MapleStory Worlds UI는 JavaFX와 다른 런타임이다."}
+{"task_id": "t294", "candidate_id": "c32", "grade": 0, "process": false, "reason": "HTML 라이브 조정 패널은 FXML 편집에 적용되지 않는다."}
+{"task_id": "t294", "candidate_id": "c33", "grade": 2, "process": true, "reason": "기존 앱 디자인 감사와 개선 절차는 요청한 재설계에 도움이 된다."}
+{"task_id": "t294", "candidate_id": "c34", "grade": 0, "process": false, "reason": "Flutter 플러그인은 JavaFX 앱에 맞지 않는다."}
+{"task_id": "t294", "candidate_id": "c35", "grade": 0, "process": false, "reason": "픽셀아트 업무 대시보드는 실험실 제어 창 요구와 다른 제품이다."}
+{"task_id": "t296", "candidate_id": "c01", "grade": 2, "process": false, "reason": "SwiftUI 시트 표시 패턴이 요금 내역의 모달 전환에 유용하다."}
+{"task_id": "t296", "candidate_id": "c02", "grade": 0, "process": false, "reason": "동영상 자막 추출은 SwiftUI 화면 변경과 무관하다."}
+{"task_id": "t296", "candidate_id": "c03", "grade": 2, "process": false, "reason": "SwiftUI 구성과 상태 소유권은 시트 분리에 도움이 된다."}
+{"task_id": "t296", "candidate_id": "c04", "grade": 0, "process": false, "reason": "Liquid Glass 채택은 요구된 시트 전환과 다른 변경이다."}
+{"task_id": "t296", "candidate_id": "c05", "grade": 0, "process": true, "reason": "성능 문제가 제기되지 않아 런타임 감사는 필요하지 않다."}
+{"task_id": "t296", "candidate_id": "c06", "grade": 2, "process": false, "reason": "SwiftUI sheets와 상태 기반 탐색 지침이 해당 변경에 유용하다."}
+{"task_id": "t296", "candidate_id": "c07", "grade": 1, "process": false, "reason": "iOS 디자인 원칙은 보조적이나 작은 시트 전환에는 효용이 제한적이다."}
+{"task_id": "t296", "candidate_id": "c08", "grade": 0, "process": false, "reason": "VTEX 웹 상점 컴포넌트 교체는 SwiftUI와 무관하다."}
+{"task_id": "t296", "candidate_id": "c09", "grade": 0, "process": true, "reason": "코드 리뷰 피드백 처리 상황이 아니다."}
+{"task_id": "t296", "candidate_id": "c10", "grade": 0, "process": false, "reason": "차트 API는 요금 내역 시트와 무관하다."}
+{"task_id": "t296", "candidate_id": "c11", "grade": 0, "process": false, "reason": "기업 분석 문서의 tear sheet는 UI 시트와 다르다."}
+{"task_id": "t296", "candidate_id": "c12", "grade": 1, "process": false, "reason": "고급 SwiftUI 전반은 작은 표시 방식 변경에 과도하게 넓다."}
+{"task_id": "t296", "candidate_id": "c13", "grade": 0, "process": false, "reason": "GSAP 웹 페이지 구조는 SwiftUI와 맞지 않는다."}
+{"task_id": "t296", "candidate_id": "c14", "grade": 0, "process": false, "reason": "Excel 파일 생성은 모달 시트와 무관하다."}
+{"task_id": "t296", "candidate_id": "c15", "grade": 1, "process": true, "reason": "계획과 검증 절차는 인접하나 작은 화면 수정에는 부담이 크다."}
+{"task_id": "t296", "candidate_id": "c16", "grade": 0, "process": false, "reason": "기업 요약 Word 문서 생성은 SwiftUI 시트와 무관하다."}
+{"task_id": "t296", "candidate_id": "c17", "grade": 2, "process": false, "reason": "시트 표시와 상태 관리가 명시되어 내역 분리에 도움이 된다."}
+{"task_id": "t296", "candidate_id": "c18", "grade": 0, "process": false, "reason": "Rivet 액터 연결은 요금 시트 변경과 무관하다."}
+{"task_id": "t296", "candidate_id": "c19", "grade": 0, "process": true, "reason": "이슈 분할은 요청한 UI 수정과 다른 작업이다."}
+{"task_id": "t296", "candidate_id": "c20", "grade": 2, "process": true, "reason": "뷰 분리와 상태 격리 절차는 인라인 내역을 시트로 옮기는 데 유용하다."}
+{"task_id": "t296", "candidate_id": "c21", "grade": 1, "process": false, "reason": "일반 SwiftUI 참조는 관련되지만 시트 안내가 확인되지 않는다."}
+{"task_id": "t296", "candidate_id": "c22", "grade": 2, "process": false, "reason": "상태 기반 모달 표시 지침은 요금 내역 시트에 유용하다."}
+{"task_id": "t296", "candidate_id": "c23", "grade": 0, "process": false, "reason": "스프레드시트 자동화는 UI 시트와 무관하다."}
+{"task_id": "t296", "candidate_id": "c24", "grade": 0, "process": true, "reason": "하위 에이전트 위임 결정법은 이 작은 화면 수정에 필요하지 않다."}
+{"task_id": "t296", "candidate_id": "c25", "grade": 0, "process": true, "reason": "온보딩 감사는 요금 내역 표시 전환과 다르다."}
+{"task_id": "t296", "candidate_id": "c26", "grade": 0, "process": false, "reason": "문서 페이지 레이아웃은 SwiftUI 시트와 무관하다."}
+{"task_id": "t296", "candidate_id": "c27", "grade": 0, "process": false, "reason": "OpenClaw 무료 모델 설정은 앱 UI와 무관하다."}
+{"task_id": "t296", "candidate_id": "c28", "grade": 0, "process": false, "reason": "실제 승차 호출 도구는 앱 요금 화면 구현과 다르다."}
+{"task_id": "t297", "candidate_id": "c01", "grade": 0, "process": false, "reason": "앱 아이콘 생성은 강사 아바타를 카드에 표시하는 작업과 다르다."}
+{"task_id": "t297", "candidate_id": "c02", "grade": 0, "process": false, "reason": "Clerk 인증은 수업 일정 UI와 무관하다."}
+{"task_id": "t297", "candidate_id": "c03", "grade": 2, "process": false, "reason": "Kotlin Compose 개발 지식은 기존 화면 변경에 유용하다."}
+{"task_id": "t297", "candidate_id": "c04", "grade": 0, "process": false, "reason": "전문 에이전트 플러그인 제작은 Compose 화면 구현과 다르다."}
+{"task_id": "t297", "candidate_id": "c05", "grade": 0, "process": false, "reason": "Expo용 Compose 래퍼는 네이티브 Kotlin 화면과 다르다."}
+{"task_id": "t297", "candidate_id": "c06", "grade": 2, "process": false, "reason": "Android Compose와 상태 패턴은 일정 화면 수정에 유용하다."}
+{"task_id": "t297", "candidate_id": "c07", "grade": 0, "process": false, "reason": "안경 전용 Glimmer 제약은 일반 Android 휴대폰 앱에 맞지 않는다."}
+{"task_id": "t297", "candidate_id": "c08", "grade": 0, "process": true, "reason": "딥링크 제공자 이전은 일정 화면 개선과 무관하다."}
+{"task_id": "t297", "candidate_id": "c09", "grade": 3, "process": false, "reason": "Material 3와 Compose 인터페이스 설계가 칩·카드 상태 구현을 직접 이끈다."}
+{"task_id": "t297", "candidate_id": "c10", "grade": 3, "process": false, "reason": "Compose 선언형 UI 지침은 요청한 화면 컴포넌트 변경에 직접 적용된다."}
+{"task_id": "t297", "candidate_id": "c11", "grade": 0, "process": false, "reason": "XR 안경 전용 UI는 일반 체육관 앱에 맞지 않는다."}
+{"task_id": "t297", "candidate_id": "c12", "grade": 2, "process": false, "reason": "Compose 상태 관리 패턴은 날짜 선택과 마감 상태 표시에 유용하다."}
+{"task_id": "t297", "candidate_id": "c13", "grade": 2, "process": false, "reason": "상태와 UI 분리는 칩 선택·비활성 카드의 프리뷰와 검증에 도움이 된다."}
+{"task_id": "t297", "candidate_id": "c14", "grade": 1, "process": false, "reason": "모바일 시안은 시각 탐색에 보조적이나 기존 Kotlin 구현 안내는 아니다."}
+{"task_id": "t297", "candidate_id": "c15", "grade": 1, "process": false, "reason": "애니메이션은 인접하지만 요청된 칩·아바타·비활성 표시의 필수 요소가 아니다."}
+{"task_id": "t297", "candidate_id": "c16", "grade": 0, "process": false, "reason": "CometChat XML 테마는 Compose 일정 화면과 다르다."}
+{"task_id": "t297", "candidate_id": "c17", "grade": 3, "process": false, "reason": "Compose 테마와 상태 지침은 카드와 선택 칩 구현에 직접 적용된다."}
+{"task_id": "t297", "candidate_id": "c18", "grade": 3, "process": false, "reason": "Material Design과 Compose UI 패턴은 화면 개선의 핵심이다."}
+{"task_id": "t297", "candidate_id": "c19", "grade": 3, "process": false, "reason": "Android 색상·접근성 지침은 마감 수업의 명확한 비활성 표시에 직접 유용하다."}
+{"task_id": "t297", "candidate_id": "c20", "grade": 1, "process": false, "reason": "M3 연관성은 있으나 설명에 실제 UI 패턴이 제시되지 않는다."}
+{"task_id": "t297", "candidate_id": "c21", "grade": 1, "process": false, "reason": "Jetpack 구성요소 전반은 현재 화면의 시각 수정과 거리가 있다."}
+{"task_id": "t297", "candidate_id": "c22", "grade": 0, "process": false, "reason": "휴대폰 제어 에이전트 프레임워크는 UI 구현 지침이 아니다."}
+{"task_id": "t297", "candidate_id": "c23", "grade": 2, "process": true, "reason": "상태 기반 Compose 테스트는 선택 칩과 마감 카드 검증에 유용하다."}
+{"task_id": "t297", "candidate_id": "c24", "grade": 0, "process": true, "reason": "교육 세션 계획은 수업 일정 앱 UI와 무관하다."}
+{"task_id": "t297", "candidate_id": "c25", "grade": 0, "process": false, "reason": "Meet 자동화는 앱 일정 화면 구현과 무관하다."}
+{"task_id": "t297", "candidate_id": "c26", "grade": 3, "process": false, "reason": "Compose 목록·상태·Material 3 지식은 요청된 화면 변경에 직접 적용된다."}
+{"task_id": "t297", "candidate_id": "c27", "grade": 2, "process": false, "reason": "Android 색상·타이포·스타일 지침은 시각적 구분에 유용하다."}
+{"task_id": "t297", "candidate_id": "c28", "grade": 0, "process": false, "reason": "브라우저 자동화는 네이티브 Compose 화면과 도구가 맞지 않는다."}
+{"task_id": "t297", "candidate_id": "c29", "grade": 3, "process": false, "reason": "Android Material 규칙은 칩과 카드 상태 디자인에 직접 적용된다."}
+{"task_id": "t297", "candidate_id": "c30", "grade": 3, "process": false, "reason": "테마 역할과 접근성 지침은 비활성 카드와 화면 계층에 직접 유용하다."}
+{"task_id": "t297", "candidate_id": "c31", "grade": 0, "process": false, "reason": "CSS 구현 패턴은 Kotlin Compose와 다른 스택이다."}
+{"task_id": "t297", "candidate_id": "c32", "grade": 1, "process": false, "reason": "전체 모듈 아키텍처는 국소적인 화면 스타일 수정에 실용성이 작다."}
+{"task_id": "t297", "candidate_id": "c33", "grade": 0, "process": false, "reason": "직원 온보딩 문서는 체육관 일정 UI와 무관하다."}
+{"task_id": "t297", "candidate_id": "c34", "grade": 0, "process": false, "reason": "AI 에이전트 구축이라는 요약에는 Compose 구현 근거가 없다."}
+{"task_id": "t297", "candidate_id": "c35", "grade": 0, "process": false, "reason": "HTML iPhone 목업은 실제 Android Compose 수정과 다르다."}
+{"task_id": "t297", "candidate_id": "c36", "grade": 1, "process": true, "reason": "웹 시각 감사의 계층 원칙은 참고되지만 네이티브 구현과 거리가 있다."}
+{"task_id": "t297", "candidate_id": "c37", "grade": 2, "process": false, "reason": "사용자 피드백과 상호작용 패턴은 선택·비활성 상태를 명확히 하는 데 유용하다."}
+{"task_id": "t297", "candidate_id": "c38", "grade": 0, "process": false, "reason": "온보딩 목업은 수업 일정 화면 개선과 다르다."}
+{"task_id": "t297", "candidate_id": "c39", "grade": 0, "process": false, "reason": "Capacitor 플러그인은 네이티브 Kotlin Compose와 맞지 않는다."}
+{"task_id": "t297", "candidate_id": "c40", "grade": 0, "process": false, "reason": "Classroom API 관리는 앱 화면의 수업 카드와 무관하다."}
+{"task_id": "t297", "candidate_id": "c41", "grade": 0, "process": false, "reason": "AI 교실 생성 플랫폼은 일정 UI 구현과 무관하다."}
+{"task_id": "t297", "candidate_id": "c42", "grade": 0, "process": false, "reason": "Bitwarden 전용 구현 규칙은 체육관 앱에 적용할 근거가 없다."}
+{"task_id": "t297", "candidate_id": "c43", "grade": 0, "process": false, "reason": "교실 생성 자동화는 일정 화면 구성과 무관하다."}
+{"task_id": "t297", "candidate_id": "c44", "grade": 1, "process": false, "reason": "화면 경계 처리와 관련은 있으나 edge-to-edge 이전은 요구되지 않았다."}
+{"task_id": "t297", "candidate_id": "c45", "grade": 0, "process": false, "reason": "CometChat 라우팅은 수업 일정 화면과 무관하다."}
+{"task_id": "t297", "candidate_id": "c46", "grade": 3, "process": false, "reason": "Compose 테마·목록·modifier 패턴은 화면 변경을 직접 이끈다."}
+{"task_id": "t297", "candidate_id": "c47", "grade": 0, "process": false, "reason": "Tailwind 컴포넌트 체계는 네이티브 Compose에 적용되지 않는다."}
+{"task_id": "t297", "candidate_id": "c48", "grade": 0, "process": false, "reason": ".NET 네이티브 충돌 분석은 UI 시각 개선과 무관하다."}
+{"task_id": "t297", "candidate_id": "c49", "grade": 0, "process": false, "reason": "온라인 수업 스트리밍은 일정 카드 디자인과 무관하다."}
+{"task_id": "t297", "candidate_id": "c50", "grade": 0, "process": true, "reason": "광고 SDK 이전은 요청한 UI 기능과 무관하다."}
+{"task_id": "t297", "candidate_id": "c51", "grade": 0, "process": false, "reason": "WordPress 플러그인 생성은 Android 화면과 다른 스택이다."}
+{"task_id": "t297", "candidate_id": "c52", "grade": 0, "process": true, "reason": "영상 편집은 앱 UI 개선과 무관하다."}
+{"task_id": "t297", "candidate_id": "c53", "grade": 1, "process": false, "reason": "계층 아키텍처 지식은 국소 화면 변경에 간접적인 맥락만 준다."}
+{"task_id": "t297", "candidate_id": "c54", "grade": 0, "process": false, "reason": "저장소·Room 데이터 계층은 제시된 시각 변경의 범위가 아니다."}
+{"task_id": "t297", "candidate_id": "c55", "grade": 0, "process": true, "reason": "학습 기억법은 체육관 앱 UI 구현과 무관하다."}
+{"task_id": "t297", "candidate_id": "c56", "grade": 0, "process": true, "reason": "이미 Compose인 화면이므로 XML 이전 절차는 맞지 않는다."}
+{"task_id": "t297", "candidate_id": "c57", "grade": 1, "process": false, "reason": "포커스 처리는 접근성에 인접하지만 TV·키보드 중심 요구는 없다."}
+{"task_id": "t297", "candidate_id": "c58", "grade": 1, "process": false, "reason": "일반 코드 생성은 관련되나 Compose 화면에 구체적인 지침이 없다."}
+{"task_id": "t305", "candidate_id": "c01", "grade": 1, "process": false, "reason": "Kotlin 문법 지식은 관련되지만 상수 값 변경에는 추가 효용이 작다."}
+{"task_id": "t305", "candidate_id": "c02", "grade": 0, "process": true, "reason": "새 커밋 훅 도입은 최소 변경 요구와 다르다."}
+{"task_id": "t305", "candidate_id": "c03", "grade": 0, "process": false, "reason": "Ktor 서버 구현은 상수 하나 수정에 필요하지 않다."}
+{"task_id": "t305", "candidate_id": "c04", "grade": 0, "process": false, "reason": "짧은 영상 생성은 로그인 상수와 무관하다."}
+{"task_id": "t305", "candidate_id": "c05", "grade": 1, "process": true, "reason": "기존 동작 변경 절차는 관련되나 상수 수정에는 과도하다."}
+{"task_id": "t305", "candidate_id": "c06", "grade": 0, "process": true, "reason": "브라우저 E2E 구축은 Kotlin 상수 변경 범위를 벗어난다."}
+{"task_id": "t305", "candidate_id": "c07", "grade": 0, "process": false, "reason": "인증 우회 공격 기법은 지정된 숫자 수정에 도움이 없다."}
+{"task_id": "t305", "candidate_id": "c08", "grade": 1, "process": true, "reason": "변경 단위 관리 원칙은 최소 diff에 보조적이다."}
+{"task_id": "t305", "candidate_id": "c09", "grade": 0, "process": true, "reason": "릴리스 노트 생성은 요청되지 않았다."}
+{"task_id": "t305", "candidate_id": "c10", "grade": 1, "process": false, "reason": "Kotlin 테스트 지식은 하드코딩 확인에 참고되나 수정 자체는 단순하다."}
+{"task_id": "t305", "candidate_id": "c11", "grade": 1, "process": true, "reason": "일반 검증 절차는 상수와 테스트 값 확인에 제한적으로 유용하다."}
+{"task_id": "t305", "candidate_id": "c12", "grade": 0, "process": false, "reason": "Celery 대시보드는 Kotlin 인증 상수와 무관하다."}
+{"task_id": "t305", "candidate_id": "c13", "grade": 0, "process": true, "reason": "경력 전환 조언은 코드 상수 변경과 무관하다."}
+{"task_id": "t305", "candidate_id": "c14", "grade": 0, "process": false, "reason": "MCP 서버 생성은 요청한 변경과 무관하다."}
+{"task_id": "t305", "candidate_id": "c15", "grade": 0, "process": false, "reason": "Python 설정 관리는 Kotlin 파일과 다른 스택이다."}
+{"task_id": "t305", "candidate_id": "c16", "grade": 0, "process": false, "reason": "음성 변환은 인증 설정과 무관하다."}
+{"task_id": "t305", "candidate_id": "c17", "grade": 0, "process": true, "reason": "변경 로그 자동화는 최소 상수 수정과 별개다."}
+{"task_id": "t305", "candidate_id": "c18", "grade": 1, "process": false, "reason": "Kotlin 설정 속성 지식은 인접하지만 지정 값 변경에는 불필요하다."}
+{"task_id": "t305", "candidate_id": "c19", "grade": 1, "process": false, "reason": "인증 구현 지식은 같은 영역이나 상수 변경에 실용성이 작다."}
+{"task_id": "t305", "candidate_id": "c20", "grade": 1, "process": false, "reason": "Kotlin 전반의 전문 지식은 단순 숫자 수정에 큰 도움이 없다."}
+{"task_id": "t305", "candidate_id": "c21", "grade": 0, "process": false, "reason": "색상 팔레트 생성은 로그인 시도 횟수와 무관하다."}
+{"task_id": "t305", "candidate_id": "c22", "grade": 1, "process": true, "reason": "변경 리뷰는 확인에 보조적이나 한 줄 수정에 효용이 제한적이다."}
+{"task_id": "t305", "candidate_id": "c23", "grade": 0, "process": true, "reason": "커밋 메시지 작성은 요청된 코드 변경과 별개다."}
+{"task_id": "t305", "candidate_id": "c24", "grade": 1, "process": true, "reason": "보안 기본값 감사는 관련되나 지정된 횟수를 바꾸는 데 필요하지 않다."}
+{"task_id": "t305", "candidate_id": "c25", "grade": 0, "process": true, "reason": "ElevenLabs 스킬 갱신 절차는 Kotlin 상수와 무관하다."}
+{"task_id": "t305", "candidate_id": "c26", "grade": 0, "process": true, "reason": "Java에서 Kotlin으로 변환하는 작업이 아니다."}
+{"task_id": "t305", "candidate_id": "c27", "grade": 0, "process": false, "reason": "Drive 변경 구독은 로그인 횟수 변경과 무관하다."}
+{"task_id": "t305", "candidate_id": "c28", "grade": 1, "process": true, "reason": "명세와 diff 대조는 최소 변경 확인에 제한적으로 도움이 된다."}
+{"task_id": "t305", "candidate_id": "c29", "grade": 0, "process": false, "reason": "변경 로그 영상 생성은 코드 수정과 무관하다."}
+{"task_id": "t305", "candidate_id": "c30", "grade": 0, "process": false, "reason": "Mermaid 다이어그램은 상수 값 변경에 필요하지 않다."}
+{"task_id": "t305", "candidate_id": "c31", "grade": 0, "process": true, "reason": "Supabase 인증 감사는 명시된 Kotlin 상수와 스택이 다르다."}
+{"task_id": "t305", "candidate_id": "c32", "grade": 0, "process": false, "reason": "Exposed 데이터베이스 접근은 인증 상수와 무관하다."}
+{"task_id": "t305", "candidate_id": "c33", "grade": 0, "process": true, "reason": "CORS 보안 시험은 로그인 횟수 변경과 다르다."}
+{"task_id": "t305", "candidate_id": "c34", "grade": 0, "process": false, "reason": "Better Auth 설정은 Kotlin 상수와 다른 도구다."}
+{"task_id": "t308", "candidate_id": "c01", "grade": 1, "process": false, "reason": "Next 테스트 지식은 인접하지만 요청은 기존 빌드·린트 실행이다."}
+{"task_id": "t308", "candidate_id": "c02", "grade": 0, "process": false, "reason": "Next 16 이전 가이드는 고정된 14 패치 변경에 맞지 않는다."}
+{"task_id": "t308", "candidate_id": "c03", "grade": 0, "process": true, "reason": "자체 소프트웨어 릴리스 번호 변경은 의존성 패치와 다르다."}
+{"task_id": "t308", "candidate_id": "c04", "grade": 1, "process": true, "reason": "Next 보안 감사는 인접하지만 지정된 패치 적용과 범위가 다르다."}
+{"task_id": "t308", "candidate_id": "c05", "grade": 0, "process": false, "reason": "Next 16 캐시 API는 14 패치 변경과 무관하다."}
+{"task_id": "t308", "candidate_id": "c06", "grade": 1, "process": false, "reason": "일반 Next 개발 패턴은 버전 숫자와 lockfile 갱신에 효용이 작다."}
+{"task_id": "t308", "candidate_id": "c07", "grade": 0, "process": true, "reason": "pnpm·uv 갱신 절차는 명시된 npm lockfile 방식과 맞지 않는다."}
+{"task_id": "t308", "candidate_id": "c08", "grade": 0, "process": false, "reason": "Nx Gradle 버전 변경은 해당 npm 의존성과 무관하다."}
+{"task_id": "t308", "candidate_id": "c09", "grade": 0, "process": true, "reason": "특정 pnpm 카탈로그 갱신 규칙은 npm 프로젝트에 맞지 않는다."}
+{"task_id": "t308", "candidate_id": "c10", "grade": 0, "process": false, "reason": "컴포넌트 성능 개선은 의존성 패치 갱신과 다르다."}
+{"task_id": "t308", "candidate_id": "c11", "grade": 0, "process": false, "reason": "Bun 사용 지침은 npm으로 갱신하라는 요청과 맞지 않는다."}
+{"task_id": "t308", "candidate_id": "c12", "grade": 1, "process": false, "reason": "Next 번들링 지식은 검증 실패 시 참고되지만 단순 갱신에 효용이 작다."}
+{"task_id": "t308", "candidate_id": "c13", "grade": 0, "process": true, "reason": "size-limit 실패 수정은 빌드·린트 검증 요청과 다르다."}
+{"task_id": "t308", "candidate_id": "c14", "grade": 0, "process": false, "reason": "Bun 런타임은 명시된 npm 갱신에 불필요하다."}
+{"task_id": "t308", "candidate_id": "c15", "grade": 0, "process": true, "reason": "Next 16.3 개발 서버 검증은 14 버전에 맞지 않는다."}
+{"task_id": "t308", "candidate_id": "c16", "grade": 0, "process": false, "reason": "Next 16 앱 구축은 14 패치 변경과 다른 버전이다."}
+{"task_id": "t308", "candidate_id": "c17", "grade": 0, "process": true, "reason": "CockroachDB 배포 후 전용 버전 변경 절차는 무관하다."}
+{"task_id": "t308", "candidate_id": "c18", "grade": 0, "process": false, "reason": "새 turborepo 생성은 기존 storefront 패치 갱신과 다르다."}
+{"task_id": "t308", "candidate_id": "c19", "grade": 0, "process": false, "reason": "Next 16 Turbopack 지침은 현재 버전에 맞지 않는다."}
+{"task_id": "t308", "candidate_id": "c20", "grade": 1, "process": false, "reason": "ESLint 구성은 관련되나 기존 설정 변경 없이 패키지만 올리는 작업이다."}
+{"task_id": "t308", "candidate_id": "c21", "grade": 0, "process": false, "reason": "일반 AI 개발 설명만으로 패치 갱신 유용성을 확인할 수 없다."}
+{"task_id": "t308", "candidate_id": "c22", "grade": 0, "process": false, "reason": "GitHub Actions 도입은 로컬 빌드·린트 실행과 다르다."}
+{"task_id": "t308", "candidate_id": "c23", "grade": 0, "process": false, "reason": "Next 16 패턴은 14 패치 갱신과 버전이 다르다."}
+{"task_id": "t308", "candidate_id": "c24", "grade": 0, "process": false, "reason": "Next 16 Turbopack은 해당 갱신에 적용되지 않는다."}
+{"task_id": "t308", "candidate_id": "c25", "grade": 0, "process": false, "reason": "Cache Components 채택은 요청한 최소 의존성 변경을 벗어난다."}
+{"task_id": "t308", "candidate_id": "c26", "grade": 1, "process": false, "reason": "의존성 관리와 인접하나 monorepo 도구는 명시되지 않았다."}
+{"task_id": "t308", "candidate_id": "c27", "grade": 1, "process": true, "reason": "Next 업그레이드 절차는 관련되지만 최신·대규모 이전은 고정 패치에 과도하다."}
+{"task_id": "t308", "candidate_id": "c28", "grade": 2, "process": true, "reason": "npm을 포함한 안전한 패키지 갱신 절차는 제한된 lockfile 변경에 유용하다."}
+{"task_id": "t308", "candidate_id": "c29", "grade": 0, "process": false, "reason": "캐시 성능 최적화는 패치 버전 갱신과 무관하다."}
+{"task_id": "t308", "candidate_id": "c30", "grade": 1, "process": true, "reason": "Next 갱신과 관련되나 최신 버전·codemod는 작은 고정 패치에 과도하다."}
+{"task_id": "t308", "candidate_id": "c31", "grade": 0, "process": false, "reason": "일반 도구 설명과 Next 15 제목은 이 14 패치 갱신을 지원하지 않는다."}
+{"task_id": "t308", "candidate_id": "c32", "grade": 0, "process": false, "reason": "백그라운드 작업 플랫폼은 패키지 버전 변경과 무관하다."}
+{"task_id": "t308", "candidate_id": "c33", "grade": 0, "process": true, "reason": "프로젝트 릴리스 태깅은 외부 의존성 패치와 다르다."}
+{"task_id": "t308", "candidate_id": "c34", "grade": 0, "process": false, "reason": "Next 16 부트스트랩은 고정된 14 버전 요청과 맞지 않는다."}
+{"task_id": "t308", "candidate_id": "c35", "grade": 0, "process": true, "reason": "릴리스 변경 로그 작성은 외부 의존성 갱신과 다르다."}
+{"task_id": "t308", "candidate_id": "c36", "grade": 0, "process": false, "reason": "monorepo 기반 구축은 기존 앱의 국소 갱신 범위가 아니다."}
+{"task_id": "t308", "candidate_id": "c37", "grade": 0, "process": false, "reason": "Next 16 마이그레이션 지침은 14 패치에 맞지 않는다."}
+{"task_id": "t308", "candidate_id": "c38", "grade": 0, "process": false, "reason": "React 성능 규칙은 의존성 갱신 작업과 다르다."}
+{"task_id": "t308", "candidate_id": "c39", "grade": 1, "process": true, "reason": "일반 검증 체계는 빌드·린트 확인에 제한적으로 도움이 된다."}
+{"task_id": "t308", "candidate_id": "c40", "grade": 1, "process": true, "reason": "npm 갱신 도구는 관련되나 전체 refresh는 두 패키지 고정 요청보다 넓다."}
+{"task_id": "t308", "candidate_id": "c41", "grade": 0, "process": false, "reason": "Next 16·React 19.2 지침은 14 패치 변경에 맞지 않는다."}
+{"task_id": "t308", "candidate_id": "c42", "grade": 0, "process": true, "reason": "부분 prefetch 도입은 의존성 패치 변경과 다르다."}
+{"task_id": "t308", "candidate_id": "c43", "grade": 0, "process": false, "reason": "Next 16 전용 모범 사례는 해당 버전에 맞지 않는다."}
+{"task_id": "t312", "candidate_id": "c01", "grade": 0, "process": true, "reason": "유도 질문 교수법은 코드 의도를 직접 설명해 달라는 요구와 다르다."}
+{"task_id": "t312", "candidate_id": "c02", "grade": 1, "process": false, "reason": "위젯 테스트는 동작 확인에 보조적이나 질문 답변에 필수는 아니다."}
+{"task_id": "t312", "candidate_id": "c03", "grade": 1, "process": false, "reason": "렌더링·상태 시험은 보조적이나 변경 요청은 아니다."}
+{"task_id": "t312", "candidate_id": "c04", "grade": 0, "process": false, "reason": "마케팅 웹사이트 제작은 Flutter 코드 질문과 무관하다."}
+{"task_id": "t312", "candidate_id": "c05", "grade": 0, "process": false, "reason": "일반 AI 개발 설명만으로 생명주기 분석에 도움이 되는지 알 수 없다."}
+{"task_id": "t312", "candidate_id": "c06", "grade": 0, "process": false, "reason": "위젯 프리뷰 추가는 기존 호출 의도 분석과 다르다."}
+{"task_id": "t312", "candidate_id": "c07", "grade": 0, "process": false, "reason": "앱 프로토타입은 기존 코드의 의도 질문과 무관하다."}
+{"task_id": "t312", "candidate_id": "c08", "grade": 1, "process": false, "reason": "UI와 상태 분리 지식은 관련되나 아키텍처 변경은 요청되지 않았다."}
+{"task_id": "t312", "candidate_id": "c09", "grade": 1, "process": false, "reason": "Flutter 상태 패턴은 인접하지만 BLoC 사용은 명시되지 않았다."}
+{"task_id": "t312", "candidate_id": "c10", "grade": 0, "process": false, "reason": "온보딩 목업은 코드 생명주기 분석과 무관하다."}
+{"task_id": "t312", "candidate_id": "c11", "grade": 0, "process": false, "reason": "Apple WidgetKit은 Flutter 위젯 생명주기와 다르다."}
+{"task_id": "t312", "candidate_id": "c12", "grade": 0, "process": false, "reason": "React setState 배칭은 Flutter setState와 다른 동작이다."}
+{"task_id": "t312", "candidate_id": "c13", "grade": 1, "process": false, "reason": "Flutter 상태와 rebuild 지식은 질문에 참고되나 짧은 코드 확인이 핵심이다."}
+{"task_id": "t312", "candidate_id": "c14", "grade": 1, "process": false, "reason": "위젯 시험 지침은 동작 재현에 보조적으로만 유용하다."}
+{"task_id": "t312", "candidate_id": "c15", "grade": 0, "process": false, "reason": "Contentful 자동화는 Flutter 생명주기와 무관하다."}
+{"task_id": "t312", "candidate_id": "c16", "grade": 0, "process": false, "reason": "HTML 휴대폰 목업은 코드 호출 의도와 무관하다."}
+{"task_id": "t312", "candidate_id": "c17", "grade": 0, "process": false, "reason": "홈 화면 위젯 연동은 일반 Flutter 화면 생명주기와 다르다."}
+{"task_id": "t312", "candidate_id": "c18", "grade": 1, "process": false, "reason": "Flutter rebuild 최적화 원칙은 인접하지만 호출 역사 분석은 아니다."}
+{"task_id": "t312", "candidate_id": "c19", "grade": 0, "process": false, "reason": "디지털 가이드 디자인은 코드 질문과 무관하다."}
+{"task_id": "t312", "candidate_id": "c20", "grade": 0, "process": false, "reason": "React Native 지침은 Flutter 코드에 맞지 않는다."}
+{"task_id": "t312", "candidate_id": "c21", "grade": 1, "process": false, "reason": "Flutter 상태 갱신 지식은 호출 의미 설명에 제한적으로 유용하다."}
+{"task_id": "t312", "candidate_id": "c22", "grade": 0, "process": false, "reason": "Google Tasks 자동화는 코드 질문과 무관하다."}
+{"task_id": "t312", "candidate_id": "c23", "grade": 0, "process": false, "reason": "프리뷰 설정은 기존 메서드 호출 의도 분석과 다르다."}
+{"task_id": "t312", "candidate_id": "c24", "grade": 0, "process": false, "reason": "프리뷰 추가는 런타임 생명주기 의도 질문에 필요하지 않다."}
+{"task_id": "t312", "candidate_id": "c25", "grade": 0, "process": false, "reason": "홈 화면 위젯 구성은 일반 화면 코드와 다른 주제다."}
+{"task_id": "t312", "candidate_id": "c26", "grade": 1, "process": false, "reason": "Flutter 일반 지식은 관련되나 작은 의도 질문에는 효용이 제한적이다."}
+{"task_id": "t312", "candidate_id": "c27", "grade": 0, "process": false, "reason": "모바일 이미지 시안은 코드 동작 질문과 무관하다."}
+{"task_id": "t312", "candidate_id": "c28", "grade": 1, "process": true, "reason": "Flutter 코드 리뷰는 의심스러운 호출 확인에 보조적으로 유용하다."}
+{"task_id": "t312", "candidate_id": "c29", "grade": 0, "process": false, "reason": "JSON 직렬화는 setState 호출 이유와 무관하다."}
+{"task_id": "t312", "candidate_id": "c30", "grade": 1, "process": false, "reason": "Flutter 상태 관리 참고는 관련되지만 코드 이력을 대신 설명하지 못한다."}
+{"task_id": "t324", "candidate_id": "c01", "grade": 1, "process": false, "reason": "React Native 지식은 관련되나 지정된 버전 문자열 수정에는 효용이 작다."}
+{"task_id": "t324", "candidate_id": "c02", "grade": 1, "process": true, "reason": "앱 실행·검증 절차는 보조적이나 단순 패키지 수정에 과도하다."}
+{"task_id": "t324", "candidate_id": "c03", "grade": 0, "process": false, "reason": "Bun 도입이나 런타임 변경은 요청되지 않았다."}
+{"task_id": "t324", "candidate_id": "c04", "grade": 1, "process": true, "reason": "React Native 업그레이드 절차는 관련되나 라이브러리 하나 변경보다 넓다."}
+{"task_id": "t324", "candidate_id": "c05", "grade": 0, "process": false, "reason": "React 18·19 웹 의존성 표는 지정된 Reanimated 3 버전과 직접 관계가 없다."}
+{"task_id": "t324", "candidate_id": "c06", "grade": 0, "process": false, "reason": "JSON Canvas는 package.json과 다른 파일 형식이다."}
+{"task_id": "t324", "candidate_id": "c07", "grade": 1, "process": false, "reason": "React Native 애니메이션 지식은 관련되나 버전 수정에는 제한적이다."}
+{"task_id": "t324", "candidate_id": "c08", "grade": 1, "process": true, "reason": "문서 확인은 호환성 참고에 보조적이나 변경 값은 이미 지정되어 있다."}
+{"task_id": "t324", "candidate_id": "c09", "grade": 0, "process": true, "reason": "EaseView로 라이브러리를 교체하는 것은 요청한 Reanimated 갱신과 다르다."}
+{"task_id": "t324", "candidate_id": "c10", "grade": 0, "process": true, "reason": "Expo SDK 업그레이드는 명시된 패키지 한 개 수정과 다르다."}
+{"task_id": "t324", "candidate_id": "c11", "grade": 1, "process": false, "reason": "React Native 성능 지침은 같은 영역이지만 버전 수정에 실용성이 작다."}
+{"task_id": "t324", "candidate_id": "c12", "grade": 1, "process": false, "reason": "제목은 대상 라이브러리와 같지만 요약이 없어 구체적 도움은 확인되지 않는다."}
+{"task_id": "t324", "candidate_id": "c13", "grade": 0, "process": false, "reason": "Flutter 애니메이션은 다른 프레임워크다."}
+{"task_id": "t324", "candidate_id": "c14", "grade": 0, "process": false, "reason": "GSAP 웹 애니메이션은 React Native Reanimated와 다르다."}
+{"task_id": "t324", "candidate_id": "c15", "grade": 0, "process": true, "reason": "성능 프로파일링은 지정된 버전 문자열 갱신과 다르다."}
+{"task_id": "t324", "candidate_id": "c16", "grade": 0, "process": false, "reason": "React 웹 성능 규칙은 해당 네이티브 패키지 수정과 다르다."}
+{"task_id": "t324", "candidate_id": "c17", "grade": 1, "process": false, "reason": "Reanimated 관련 UI 지식은 인접하지만 API 구현 변경은 요청되지 않았다."}
+{"task_id": "t324", "candidate_id": "c18", "grade": 0, "process": false, "reason": "Reanimated v4 지침은 지정된 v3 버전 갱신에 맞지 않는다."}
+{"task_id": "t324", "candidate_id": "c19", "grade": 0, "process": true, "reason": "특정 fixture 앱의 React Native 최신 갱신은 대상 패키지 수정과 다르다."}
+{"task_id": "t324", "candidate_id": "c20", "grade": 0, "process": true, "reason": "Ionic·Capacitor 이전은 다른 스택이다."}
+{"task_id": "t324", "candidate_id": "c21", "grade": 0, "process": true, "reason": "테스트 타입 단언 이전은 애니메이션 패키지와 무관하다."}
+{"task_id": "t324", "candidate_id": "c22", "grade": 0, "process": false, "reason": "Clerk 웹 인증은 React Native 패키지 갱신과 무관하다."}
+{"task_id": "t324", "candidate_id": "c23", "grade": 1, "process": false, "reason": "React Native 유지보수 지식은 관련되나 단순 버전 수정에는 효용이 작다."}
+{"task_id": "t324", "candidate_id": "c24", "grade": 1, "process": false, "reason": "애니메이션 구성 지식은 인접하지만 코드 패턴 수정은 요청되지 않았다."}
+{"task_id": "t324", "candidate_id": "c25", "grade": 0, "process": false, "reason": "새 프로젝트 생성은 기존 package.json 수정과 다르다."}
+{"task_id": "t324", "candidate_id": "c26", "grade": 0, "process": false, "reason": "monorepo 구축은 제시되지 않은 별도 작업이다."}
+{"task_id": "t324", "candidate_id": "c27", "grade": 0, "process": true, "reason": "Capacitor 플러그인 갱신은 다른 플랫폼이다."}
+{"task_id": "t324", "candidate_id": "c28", "grade": 0, "process": false, "reason": "Vite React 디자인 변환은 네이티브 의존성 수정과 무관하다."}
+{"task_id": "t324", "candidate_id": "c29", "grade": 1, "process": false, "reason": "React Native 구성 지식은 참고되지만 한 줄 수정에는 실용성이 작다."}
+{"task_id": "t324", "candidate_id": "c30", "grade": 0, "process": true, "reason": "Next.js 업그레이드는 다른 프레임워크다."}
+{"task_id": "t324", "candidate_id": "c31", "grade": 0, "process": true, "reason": "성능 병목 최적화는 지정된 패키지 버전 수정과 다르다."}
+{"task_id": "t324", "candidate_id": "c32", "grade": 0, "process": true, "reason": "Expo SDK 이전은 요청된 Reanimated 단독 갱신과 다르다."}
+{"task_id": "t324", "candidate_id": "c33", "grade": 1, "process": false, "reason": "네이티브 모듈 지식은 인접하지만 아키텍처 변경은 필요하지 않다."}
+{"task_id": "t324", "candidate_id": "c34", "grade": 1, "process": false, "reason": "애니메이션 관련 안내는 인접하나 버전 수정에 구체적인 근거가 없다."}
+{"task_id": "t324", "candidate_id": "c35", "grade": 0, "process": false, "reason": "Stitch HTML을 네이티브 화면으로 변환하는 작업이 아니다."}
+{"task_id": "t324", "candidate_id": "c36", "grade": 0, "process": false, "reason": "Motion 웹 라이브러리는 Reanimated와 다른 도구다."}
+{"task_id": "t324", "candidate_id": "c37", "grade": 0, "process": true, "reason": "Capacitor 앱 업그레이드는 다른 플랫폼이다."}
+{"task_id": "t324", "candidate_id": "c38", "grade": 0, "process": false, "reason": "React 웹 View Transition은 React Native와 다르다."}
+{"task_id": "t324", "candidate_id": "c39", "grade": 0, "process": false, "reason": "생성형 UI 플랫폼은 패키지 버전 수정과 무관하다."}
+{"task_id": "t324", "candidate_id": "c40", "grade": 0, "process": false, "reason": "SwiftUI 애니메이션 API는 다른 프레임워크다."}
+{"task_id": "t324", "candidate_id": "c41", "grade": 0, "process": false, "reason": "Flutter 애니메이션은 React Native와 다른 스택이다."}
+{"task_id": "t324", "candidate_id": "c42", "grade": 0, "process": false, "reason": "GSAP React 웹 지침은 Reanimated 패키지 수정과 다르다."}
+{"task_id": "t324", "candidate_id": "c43", "grade": 1, "process": false, "reason": "Reanimated 패턴은 관련되지만 단순 버전 변경에는 제한적으로 유용하다."}
+{"task_id": "t324", "candidate_id": "c44", "grade": 0, "process": false, "reason": "shadcn 웹 컴포넌트 설치는 네이티브 패키지 수정과 무관하다."}
+{"task_id": "t324", "candidate_id": "c45", "grade": 1, "process": true, "reason": "React Native 업그레이드 절차는 인접하나 요청은 라이브러리 한 개의 값 변경이다."}

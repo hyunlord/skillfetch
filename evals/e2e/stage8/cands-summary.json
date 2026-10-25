@@ -1,0 +1,12 @@
+{
+ "merge": {
+  "no_repo_name_match": 12304,
+  "merged": 14
+ },
+ "tasks": 380,
+ "candidates": 14002,
+ "per_task_min": 10,
+ "per_task_max": 67,
+ "per_task_mean": 36.8,
+ "empty_desc": 0
+}

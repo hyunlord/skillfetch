@@ -11,3 +11,7 @@ graft/
 *.env
 .env*
 !.env.example
+# published e2e artifacts (evals/e2e/) include folders named data/ and retrieval/
+!evals/e2e/**/data/
+!evals/e2e/retrieval/
+!evals/e2e/**/retrieval/

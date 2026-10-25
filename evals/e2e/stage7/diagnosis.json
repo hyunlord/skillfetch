@@ -1,0 +1,1561 @@
+{
+ "cases": [
+  {
+   "pair": "pair01",
+   "gen": 1,
+   "class": "moved",
+   "dir_a": "test-first (TDD)",
+   "dir_b": "minimal diff",
+   "sel_a": [
+    "uasl/python-testing-patterns@e62d0f1ca316",
+    "uasl/tdd@ff86dad94075"
+   ],
+   "sel_b": [],
+   "M_a": [
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28"
+   ],
+   "M_b": [],
+   "M_a_rank": {
+    "uasl/tdd-workflow@6eadb0bf0ea8": 1,
+    "uasl/tdd@ff86dad94075": 6,
+    "uasl/test-driven-development@0eebe2fe0e28": 3
+   },
+   "M_b_rank": {},
+   "T_a": [
+    "uasl/integration-testing@62b51275be50",
+    "uasl/python-testing-patterns@e62d0f1ca316",
+    "uasl/radar@a47ea6fd5f95",
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28"
+   ],
+   "T_b": [
+    "uasl/verification-before-completion@134bf517af69"
+   ]
+  },
+  {
+   "pair": "pair01",
+   "gen": 2,
+   "class": "moved",
+   "dir_a": "test-first (TDD)",
+   "dir_b": "minimal diff",
+   "sel_a": [
+    "uasl/python-testing-patterns@e62d0f1ca316",
+    "uasl/tdd@ff86dad94075"
+   ],
+   "sel_b": [],
+   "M_a": [
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28"
+   ],
+   "M_b": [],
+   "M_a_rank": {
+    "uasl/tdd-workflow@6eadb0bf0ea8": 1,
+    "uasl/tdd@ff86dad94075": 6,
+    "uasl/test-driven-development@0eebe2fe0e28": 3
+   },
+   "M_b_rank": {},
+   "T_a": [
+    "uasl/integration-testing@62b51275be50",
+    "uasl/python-testing-patterns@e62d0f1ca316",
+    "uasl/radar@a47ea6fd5f95",
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28"
+   ],
+   "T_b": [
+    "uasl/verification-before-completion@134bf517af69"
+   ]
+  },
+  {
+   "pair": "pair01",
+   "gen": 3,
+   "class": "moved",
+   "dir_a": "test-first (TDD)",
+   "dir_b": "minimal diff",
+   "sel_a": [
+    "uasl/python-testing-patterns@e62d0f1ca316",
+    "uasl/tdd@ff86dad94075"
+   ],
+   "sel_b": [],
+   "M_a": [
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28"
+   ],
+   "M_b": [],
+   "M_a_rank": {
+    "uasl/tdd-workflow@6eadb0bf0ea8": 1,
+    "uasl/tdd@ff86dad94075": 6,
+    "uasl/test-driven-development@0eebe2fe0e28": 3
+   },
+   "M_b_rank": {},
+   "T_a": [
+    "uasl/integration-testing@62b51275be50",
+    "uasl/python-testing-patterns@e62d0f1ca316",
+    "uasl/radar@a47ea6fd5f95",
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28"
+   ],
+   "T_b": [
+    "uasl/verification-before-completion@134bf517af69"
+   ]
+  },
+  {
+   "pair": "pair03",
+   "gen": 1,
+   "class": "b_select",
+   "dir_a": "accessibility first",
+   "dir_b": "visual polish first",
+   "sel_a": [
+    "uasl/accessibility-compliance@696d2b4119ed",
+    "uasl/sql-optimization-patterns@389f90da7b56"
+   ],
+   "sel_b": [
+    "uasl/sql-optimization-patterns@389f90da7b56",
+    "uasl/web-design@b19d7c3f962e"
+   ],
+   "M_a": [
+    "uasl/accessibility-compliance@696d2b4119ed",
+    "uasl/ui-audit@be637d5e2baf"
+   ],
+   "M_b": [],
+   "M_a_rank": {
+    "uasl/accessibility-compliance@696d2b4119ed": 13,
+    "uasl/ui-audit@be637d5e2baf": 19
+   },
+   "M_b_rank": {},
+   "T_a": [
+    "uasl/accessibility-compliance@696d2b4119ed",
+    "uasl/ui-audit@be637d5e2baf"
+   ],
+   "T_b": [
+    "uasl/backend-patterns@3d87ff489f3e"
+   ]
+  },
+  {
+   "pair": "pair03",
+   "gen": 2,
+   "class": "b_select",
+   "dir_a": "accessibility first",
+   "dir_b": "visual polish first",
+   "sel_a": [
+    "uasl/accessibility-compliance@696d2b4119ed",
+    "uasl/sql-optimization-patterns@389f90da7b56"
+   ],
+   "sel_b": [
+    "uasl/sql-optimization-patterns@389f90da7b56",
+    "uasl/web-design@b19d7c3f962e"
+   ],
+   "M_a": [
+    "uasl/accessibility-compliance@696d2b4119ed",
+    "uasl/ui-audit@be637d5e2baf"
+   ],
+   "M_b": [],
+   "M_a_rank": {
+    "uasl/accessibility-compliance@696d2b4119ed": 13,
+    "uasl/ui-audit@be637d5e2baf": 19
+   },
+   "M_b_rank": {},
+   "T_a": [
+    "uasl/accessibility-compliance@696d2b4119ed",
+    "uasl/ui-audit@be637d5e2baf"
+   ],
+   "T_b": [
+    "uasl/backend-patterns@3d87ff489f3e"
+   ]
+  },
+  {
+   "pair": "pair03",
+   "gen": 3,
+   "class": "b_select",
+   "dir_a": "accessibility first",
+   "dir_b": "visual polish first",
+   "sel_a": [
+    "uasl/accessibility-compliance@696d2b4119ed",
+    "uasl/sql-optimization-patterns@389f90da7b56"
+   ],
+   "sel_b": [
+    "uasl/sql-optimization-patterns@389f90da7b56",
+    "uasl/web-design@b19d7c3f962e"
+   ],
+   "M_a": [
+    "uasl/accessibility-compliance@696d2b4119ed",
+    "uasl/ui-audit@be637d5e2baf"
+   ],
+   "M_b": [],
+   "M_a_rank": {
+    "uasl/accessibility-compliance@696d2b4119ed": 13,
+    "uasl/ui-audit@be637d5e2baf": 19
+   },
+   "M_b_rank": {},
+   "T_a": [
+    "uasl/accessibility-compliance@696d2b4119ed",
+    "uasl/ui-audit@be637d5e2baf"
+   ],
+   "T_b": [
+    "uasl/backend-patterns@3d87ff489f3e"
+   ]
+  },
+  {
+   "pair": "pair04",
+   "gen": 1,
+   "class": "c_label",
+   "dir_a": "no new dependencies",
+   "dir_b": "use a well-known library",
+   "sel_a": [
+    "uasl/property-based-testing@a168f6739085"
+   ],
+   "sel_b": [
+    "uasl/property-based-testing@a168f6739085"
+   ],
+   "M_a": [],
+   "M_b": [],
+   "M_a_rank": {},
+   "M_b_rank": {},
+   "T_a": [
+    "uasl/unit-testing@6c5fbb821103"
+   ],
+   "T_b": []
+  },
+  {
+   "pair": "pair04",
+   "gen": 2,
+   "class": "c_label",
+   "dir_a": "no new dependencies",
+   "dir_b": "use a well-known library",
+   "sel_a": [
+    "uasl/property-based-testing@a168f6739085"
+   ],
+   "sel_b": [
+    "uasl/property-based-testing@a168f6739085"
+   ],
+   "M_a": [],
+   "M_b": [],
+   "M_a_rank": {},
+   "M_b_rank": {},
+   "T_a": [
+    "uasl/unit-testing@6c5fbb821103"
+   ],
+   "T_b": []
+  },
+  {
+   "pair": "pair04",
+   "gen": 3,
+   "class": "c_label",
+   "dir_a": "no new dependencies",
+   "dir_b": "use a well-known library",
+   "sel_a": [
+    "uasl/property-based-testing@a168f6739085"
+   ],
+   "sel_b": [
+    "uasl/property-based-testing@a168f6739085"
+   ],
+   "M_a": [],
+   "M_b": [],
+   "M_a_rank": {},
+   "M_b_rank": {},
+   "T_a": [
+    "uasl/unit-testing@6c5fbb821103"
+   ],
+   "T_b": []
+  },
+  {
+   "pair": "pair05",
+   "gen": 1,
+   "class": "moved",
+   "dir_a": "plan before coding",
+   "dir_b": "just do it, small change",
+   "sel_a": [
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "sel_b": [],
+   "M_a": [
+    "uasl/grill-with-docs@99f1bafe73fe",
+    "uasl/tlc-spec-driven@394ed16ecc07",
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "M_b": [],
+   "M_a_rank": {
+    "uasl/grill-with-docs@99f1bafe73fe": 5,
+    "uasl/tlc-spec-driven@394ed16ecc07": 11,
+    "uasl/writing-plans@219901eb119f": 16
+   },
+   "M_b_rank": {},
+   "T_a": [
+    "uasl/coding-guidelines@0ec7e45f92f2",
+    "uasl/grill-with-docs@99f1bafe73fe",
+    "uasl/tlc-spec-driven@394ed16ecc07",
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "T_b": []
+  },
+  {
+   "pair": "pair05",
+   "gen": 2,
+   "class": "moved",
+   "dir_a": "plan before coding",
+   "dir_b": "just do it, small change",
+   "sel_a": [
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "sel_b": [],
+   "M_a": [
+    "uasl/grill-with-docs@99f1bafe73fe",
+    "uasl/tlc-spec-driven@394ed16ecc07",
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "M_b": [],
+   "M_a_rank": {
+    "uasl/grill-with-docs@99f1bafe73fe": 5,
+    "uasl/tlc-spec-driven@394ed16ecc07": 11,
+    "uasl/writing-plans@219901eb119f": 16
+   },
+   "M_b_rank": {},
+   "T_a": [
+    "uasl/coding-guidelines@0ec7e45f92f2",
+    "uasl/grill-with-docs@99f1bafe73fe",
+    "uasl/tlc-spec-driven@394ed16ecc07",
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "T_b": []
+  },
+  {
+   "pair": "pair05",
+   "gen": 3,
+   "class": "moved",
+   "dir_a": "plan before coding",
+   "dir_b": "just do it, small change",
+   "sel_a": [
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "sel_b": [],
+   "M_a": [
+    "uasl/grill-with-docs@99f1bafe73fe",
+    "uasl/tlc-spec-driven@394ed16ecc07",
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "M_b": [],
+   "M_a_rank": {
+    "uasl/grill-with-docs@99f1bafe73fe": 5,
+    "uasl/tlc-spec-driven@394ed16ecc07": 11,
+    "uasl/writing-plans@219901eb119f": 16
+   },
+   "M_b_rank": {},
+   "T_a": [
+    "uasl/coding-guidelines@0ec7e45f92f2",
+    "uasl/grill-with-docs@99f1bafe73fe",
+    "uasl/tlc-spec-driven@394ed16ecc07",
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "T_b": []
+  },
+  {
+   "pair": "pair06",
+   "gen": 1,
+   "class": "c_label",
+   "dir_a": "backward compatible",
+   "dir_b": "breaking change allowed",
+   "sel_a": [
+    "uasl/coding-guidelines@0ec7e45f92f2",
+    "uasl/debug-root-cause@1d7ea4a832dc"
+   ],
+   "sel_b": [
+    "uasl/ripple@620dca56eca0",
+    "uasl/verification-loop@39d9be23cf50"
+   ],
+   "M_a": [],
+   "M_b": [],
+   "M_a_rank": {},
+   "M_b_rank": {},
+   "T_a": [
+    "uasl/coding-guidelines@0ec7e45f92f2",
+    "uasl/tdd@ff86dad94075",
+    "uasl/verification-before-completion@134bf517af69"
+   ],
+   "T_b": [
+    "uasl/ripple@620dca56eca0"
+   ]
+  },
+  {
+   "pair": "pair06",
+   "gen": 2,
+   "class": "c_label",
+   "dir_a": "backward compatible",
+   "dir_b": "breaking change allowed",
+   "sel_a": [
+    "uasl/coding-guidelines@0ec7e45f92f2",
+    "uasl/debug-root-cause@1d7ea4a832dc"
+   ],
+   "sel_b": [
+    "uasl/ripple@620dca56eca0",
+    "uasl/verification-loop@39d9be23cf50"
+   ],
+   "M_a": [],
+   "M_b": [],
+   "M_a_rank": {},
+   "M_b_rank": {},
+   "T_a": [
+    "uasl/coding-guidelines@0ec7e45f92f2",
+    "uasl/tdd@ff86dad94075",
+    "uasl/verification-before-completion@134bf517af69"
+   ],
+   "T_b": [
+    "uasl/ripple@620dca56eca0"
+   ]
+  },
+  {
+   "pair": "pair06",
+   "gen": 3,
+   "class": "c_label",
+   "dir_a": "backward compatible",
+   "dir_b": "breaking change allowed",
+   "sel_a": [
+    "uasl/coding-guidelines@0ec7e45f92f2",
+    "uasl/debug-root-cause@1d7ea4a832dc"
+   ],
+   "sel_b": [
+    "uasl/ripple@620dca56eca0",
+    "uasl/verification-loop@39d9be23cf50"
+   ],
+   "M_a": [],
+   "M_b": [],
+   "M_a_rank": {},
+   "M_b_rank": {},
+   "T_a": [
+    "uasl/coding-guidelines@0ec7e45f92f2",
+    "uasl/tdd@ff86dad94075",
+    "uasl/verification-before-completion@134bf517af69"
+   ],
+   "T_b": [
+    "uasl/ripple@620dca56eca0"
+   ]
+  },
+  {
+   "pair": "pair07",
+   "gen": 1,
+   "class": "moved",
+   "dir_a": "test-first (TDD)",
+   "dir_b": "minimal diff",
+   "sel_a": [
+    "uasl/python-testing-patterns@e62d0f1ca316",
+    "uasl/tdd@ff86dad94075"
+   ],
+   "sel_b": [],
+   "M_a": [
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28"
+   ],
+   "M_b": [],
+   "M_a_rank": {
+    "uasl/tdd-workflow@6eadb0bf0ea8": 15,
+    "uasl/tdd@ff86dad94075": 31,
+    "uasl/test-driven-development@0eebe2fe0e28": 22
+   },
+   "M_b_rank": {},
+   "T_a": [
+    "uasl/python-testing-patterns@e62d0f1ca316",
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28",
+    "uasl/unit-testing@6c5fbb821103"
+   ],
+   "T_b": []
+  },
+  {
+   "pair": "pair07",
+   "gen": 2,
+   "class": "moved",
+   "dir_a": "test-first (TDD)",
+   "dir_b": "minimal diff",
+   "sel_a": [
+    "uasl/python-testing-patterns@e62d0f1ca316",
+    "uasl/tdd@ff86dad94075"
+   ],
+   "sel_b": [],
+   "M_a": [
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28"
+   ],
+   "M_b": [],
+   "M_a_rank": {
+    "uasl/tdd-workflow@6eadb0bf0ea8": 15,
+    "uasl/tdd@ff86dad94075": 31,
+    "uasl/test-driven-development@0eebe2fe0e28": 22
+   },
+   "M_b_rank": {},
+   "T_a": [
+    "uasl/python-testing-patterns@e62d0f1ca316",
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28",
+    "uasl/unit-testing@6c5fbb821103"
+   ],
+   "T_b": []
+  },
+  {
+   "pair": "pair07",
+   "gen": 3,
+   "class": "moved",
+   "dir_a": "test-first (TDD)",
+   "dir_b": "minimal diff",
+   "sel_a": [
+    "uasl/python-testing-patterns@e62d0f1ca316",
+    "uasl/tdd@ff86dad94075"
+   ],
+   "sel_b": [],
+   "M_a": [
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28"
+   ],
+   "M_b": [],
+   "M_a_rank": {
+    "uasl/tdd-workflow@6eadb0bf0ea8": 15,
+    "uasl/tdd@ff86dad94075": 31,
+    "uasl/test-driven-development@0eebe2fe0e28": 22
+   },
+   "M_b_rank": {},
+   "T_a": [
+    "uasl/python-testing-patterns@e62d0f1ca316",
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28",
+    "uasl/unit-testing@6c5fbb821103"
+   ],
+   "T_b": []
+  },
+  {
+   "pair": "pair08",
+   "gen": 1,
+   "class": "moved",
+   "dir_a": "security first",
+   "dir_b": "performance first",
+   "sel_a": [
+    "uasl/artisan@1e09f38ffcab",
+    "uasl/security-review@fcc354bc486e"
+   ],
+   "sel_b": [
+    "uasl/artisan@1e09f38ffcab",
+    "uasl/vercel-react-best-practices@70f3b5aaf775"
+   ],
+   "M_a": [
+    "uasl/secure-coding-practices@cc37fcd8687e",
+    "uasl/security-review@fcc354bc486e",
+    "uasl/vibe-security@6b07d0f651a7"
+   ],
+   "M_b": [
+    "uasl/design-optimize@cbb1632043ec",
+    "uasl/vercel-react-best-practices@70f3b5aaf775",
+    "uasl/web-performance-optimization@b2b38275ed40"
+   ],
+   "M_a_rank": {
+    "uasl/secure-coding-practices@cc37fcd8687e": null,
+    "uasl/security-review@fcc354bc486e": 12,
+    "uasl/vibe-security@6b07d0f651a7": 31
+   },
+   "M_b_rank": {
+    "uasl/design-optimize@cbb1632043ec": null,
+    "uasl/vercel-react-best-practices@70f3b5aaf775": 3,
+    "uasl/web-performance-optimization@b2b38275ed40": 6
+   },
+   "T_a": [
+    "uasl/design-to-code@fae28f73cda0",
+    "uasl/redesign-skill@2e4f7f16e367",
+    "uasl/secure-coding-practices@cc37fcd8687e",
+    "uasl/security-review@fcc354bc486e",
+    "uasl/vibe-security@6b07d0f651a7"
+   ],
+   "T_b": [
+    "uasl/design-optimize@cbb1632043ec",
+    "uasl/interaction-design@7c9d38549c2b",
+    "uasl/stripe-best-practices@795a33f68129",
+    "uasl/vercel-react-best-practices@70f3b5aaf775",
+    "uasl/web-performance-optimization@b2b38275ed40"
+   ]
+  },
+  {
+   "pair": "pair08",
+   "gen": 2,
+   "class": "moved",
+   "dir_a": "security first",
+   "dir_b": "performance first",
+   "sel_a": [
+    "uasl/artisan@1e09f38ffcab",
+    "uasl/security-review@fcc354bc486e"
+   ],
+   "sel_b": [
+    "uasl/stripe-best-practices@795a33f68129",
+    "uasl/vercel-react-best-practices@70f3b5aaf775"
+   ],
+   "M_a": [
+    "uasl/secure-coding-practices@cc37fcd8687e",
+    "uasl/security-review@fcc354bc486e",
+    "uasl/vibe-security@6b07d0f651a7"
+   ],
+   "M_b": [
+    "uasl/design-optimize@cbb1632043ec",
+    "uasl/vercel-react-best-practices@70f3b5aaf775",
+    "uasl/web-performance-optimization@b2b38275ed40"
+   ],
+   "M_a_rank": {
+    "uasl/secure-coding-practices@cc37fcd8687e": null,
+    "uasl/security-review@fcc354bc486e": 12,
+    "uasl/vibe-security@6b07d0f651a7": 31
+   },
+   "M_b_rank": {
+    "uasl/design-optimize@cbb1632043ec": null,
+    "uasl/vercel-react-best-practices@70f3b5aaf775": 3,
+    "uasl/web-performance-optimization@b2b38275ed40": 6
+   },
+   "T_a": [
+    "uasl/design-to-code@fae28f73cda0",
+    "uasl/redesign-skill@2e4f7f16e367",
+    "uasl/secure-coding-practices@cc37fcd8687e",
+    "uasl/security-review@fcc354bc486e",
+    "uasl/vibe-security@6b07d0f651a7"
+   ],
+   "T_b": [
+    "uasl/design-optimize@cbb1632043ec",
+    "uasl/interaction-design@7c9d38549c2b",
+    "uasl/stripe-best-practices@795a33f68129",
+    "uasl/vercel-react-best-practices@70f3b5aaf775",
+    "uasl/web-performance-optimization@b2b38275ed40"
+   ]
+  },
+  {
+   "pair": "pair08",
+   "gen": 3,
+   "class": "moved",
+   "dir_a": "security first",
+   "dir_b": "performance first",
+   "sel_a": [
+    "uasl/artisan@1e09f38ffcab",
+    "uasl/security-review@fcc354bc486e",
+    "uasl/stripe-best-practices@795a33f68129"
+   ],
+   "sel_b": [
+    "uasl/artisan@1e09f38ffcab",
+    "uasl/stripe-best-practices@795a33f68129",
+    "uasl/vercel-react-best-practices@70f3b5aaf775"
+   ],
+   "M_a": [
+    "uasl/secure-coding-practices@cc37fcd8687e",
+    "uasl/security-review@fcc354bc486e",
+    "uasl/vibe-security@6b07d0f651a7"
+   ],
+   "M_b": [
+    "uasl/design-optimize@cbb1632043ec",
+    "uasl/vercel-react-best-practices@70f3b5aaf775",
+    "uasl/web-performance-optimization@b2b38275ed40"
+   ],
+   "M_a_rank": {
+    "uasl/secure-coding-practices@cc37fcd8687e": null,
+    "uasl/security-review@fcc354bc486e": 12,
+    "uasl/vibe-security@6b07d0f651a7": 31
+   },
+   "M_b_rank": {
+    "uasl/design-optimize@cbb1632043ec": null,
+    "uasl/vercel-react-best-practices@70f3b5aaf775": 3,
+    "uasl/web-performance-optimization@b2b38275ed40": 6
+   },
+   "T_a": [
+    "uasl/design-to-code@fae28f73cda0",
+    "uasl/redesign-skill@2e4f7f16e367",
+    "uasl/secure-coding-practices@cc37fcd8687e",
+    "uasl/security-review@fcc354bc486e",
+    "uasl/vibe-security@6b07d0f651a7"
+   ],
+   "T_b": [
+    "uasl/design-optimize@cbb1632043ec",
+    "uasl/interaction-design@7c9d38549c2b",
+    "uasl/stripe-best-practices@795a33f68129",
+    "uasl/vercel-react-best-practices@70f3b5aaf775",
+    "uasl/web-performance-optimization@b2b38275ed40"
+   ]
+  },
+  {
+   "pair": "pair09",
+   "gen": 1,
+   "class": "c_label",
+   "dir_a": "accessibility first",
+   "dir_b": "visual polish first",
+   "sel_a": [
+    "uasl/accessibility-compliance@696d2b4119ed",
+    "uasl/quill@336ba74b0e79"
+   ],
+   "sel_b": [
+    "uasl/quill@336ba74b0e79"
+   ],
+   "M_a": [],
+   "M_b": [],
+   "M_a_rank": {},
+   "M_b_rank": {},
+   "T_a": [
+    "uasl/prose@bbd22d3eb9b7"
+   ],
+   "T_b": []
+  },
+  {
+   "pair": "pair09",
+   "gen": 2,
+   "class": "c_label",
+   "dir_a": "accessibility first",
+   "dir_b": "visual polish first",
+   "sel_a": [
+    "uasl/accessibility-compliance@696d2b4119ed",
+    "uasl/quill@336ba74b0e79"
+   ],
+   "sel_b": [
+    "uasl/quill@336ba74b0e79"
+   ],
+   "M_a": [],
+   "M_b": [],
+   "M_a_rank": {},
+   "M_b_rank": {},
+   "T_a": [
+    "uasl/prose@bbd22d3eb9b7"
+   ],
+   "T_b": []
+  },
+  {
+   "pair": "pair09",
+   "gen": 3,
+   "class": "c_label",
+   "dir_a": "accessibility first",
+   "dir_b": "visual polish first",
+   "sel_a": [
+    "uasl/accessibility-compliance@696d2b4119ed",
+    "uasl/quill@336ba74b0e79"
+   ],
+   "sel_b": [
+    "uasl/quill@336ba74b0e79"
+   ],
+   "M_a": [],
+   "M_b": [],
+   "M_a_rank": {},
+   "M_b_rank": {},
+   "T_a": [
+    "uasl/prose@bbd22d3eb9b7"
+   ],
+   "T_b": []
+  },
+  {
+   "pair": "pair10",
+   "gen": 1,
+   "class": "moved",
+   "dir_a": "no new dependencies",
+   "dir_b": "use a well-known library",
+   "sel_a": [
+    "uasl/auth-implementation-patterns@7a99b395d548",
+    "uasl/security-review@fcc354bc486e"
+   ],
+   "sel_b": [
+    "uasl/auth-implementation-patterns@7a99b395d548",
+    "uasl/secure-coding-practices@cc37fcd8687e"
+   ],
+   "M_a": [],
+   "M_b": [],
+   "M_a_rank": {},
+   "M_b_rank": {},
+   "T_a": [],
+   "T_b": [
+    "uasl/code-review@dface80322fb",
+    "uasl/find-bugs@c3ff7d64ff9f",
+    "uasl/sentinel@68f8e2afebcc",
+    "uasl/top-100-web-vulnerabilities-reference@21b2293939a2"
+   ]
+  },
+  {
+   "pair": "pair10",
+   "gen": 2,
+   "class": "c_label",
+   "dir_a": "no new dependencies",
+   "dir_b": "use a well-known library",
+   "sel_a": [
+    "uasl/auth-implementation-patterns@7a99b395d548",
+    "uasl/code-security@e20eb3467925",
+    "uasl/find-bugs@c3ff7d64ff9f"
+   ],
+   "sel_b": [
+    "uasl/auth-implementation-patterns@7a99b395d548",
+    "uasl/code-security@e20eb3467925",
+    "uasl/documentation-lookup@dee6d7478eab"
+   ],
+   "M_a": [],
+   "M_b": [],
+   "M_a_rank": {},
+   "M_b_rank": {},
+   "T_a": [],
+   "T_b": [
+    "uasl/code-review@dface80322fb",
+    "uasl/find-bugs@c3ff7d64ff9f",
+    "uasl/sentinel@68f8e2afebcc",
+    "uasl/top-100-web-vulnerabilities-reference@21b2293939a2"
+   ]
+  },
+  {
+   "pair": "pair10",
+   "gen": 3,
+   "class": "c_label",
+   "dir_a": "no new dependencies",
+   "dir_b": "use a well-known library",
+   "sel_a": [
+    "uasl/auth-implementation-patterns@7a99b395d548",
+    "uasl/secure-coding-practices@cc37fcd8687e"
+   ],
+   "sel_b": [
+    "uasl/auth-implementation-patterns@7a99b395d548",
+    "uasl/secure-coding-practices@cc37fcd8687e"
+   ],
+   "M_a": [],
+   "M_b": [],
+   "M_a_rank": {},
+   "M_b_rank": {},
+   "T_a": [],
+   "T_b": [
+    "uasl/code-review@dface80322fb",
+    "uasl/find-bugs@c3ff7d64ff9f",
+    "uasl/sentinel@68f8e2afebcc",
+    "uasl/top-100-web-vulnerabilities-reference@21b2293939a2"
+   ]
+  },
+  {
+   "pair": "pair11",
+   "gen": 1,
+   "class": "moved",
+   "dir_a": "plan before coding",
+   "dir_b": "just do it, small change",
+   "sel_a": [
+    "uasl/refactoring-patterns@7283bad3e86e",
+    "uasl/request-refactor-plan@49b853892f06"
+   ],
+   "sel_b": [
+    "uasl/refactoring-patterns@7283bad3e86e"
+   ],
+   "M_a": [
+    "uasl/request-refactor-plan@49b853892f06",
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "M_b": [],
+   "M_a_rank": {
+    "uasl/request-refactor-plan@49b853892f06": 30,
+    "uasl/writing-plans@219901eb119f": 10
+   },
+   "M_b_rank": {},
+   "T_a": [
+    "uasl/architecture-patterns@d184d1c3a346",
+    "uasl/clean-architecture@acaac6e9e2a3",
+    "uasl/domain-analysis@c37c7de1017e",
+    "uasl/karpathy-guidelines@da897c8c3bab",
+    "uasl/legacy-modernizer@519b6311409d",
+    "uasl/request-refactor-plan@49b853892f06",
+    "uasl/software-design-philosophy@066bc275787f",
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "T_b": []
+  },
+  {
+   "pair": "pair11",
+   "gen": 2,
+   "class": "moved",
+   "dir_a": "plan before coding",
+   "dir_b": "just do it, small change",
+   "sel_a": [
+    "uasl/refactoring-patterns@7283bad3e86e",
+    "uasl/request-refactor-plan@49b853892f06"
+   ],
+   "sel_b": [
+    "uasl/refactoring-patterns@7283bad3e86e"
+   ],
+   "M_a": [
+    "uasl/request-refactor-plan@49b853892f06",
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "M_b": [],
+   "M_a_rank": {
+    "uasl/request-refactor-plan@49b853892f06": 30,
+    "uasl/writing-plans@219901eb119f": 10
+   },
+   "M_b_rank": {},
+   "T_a": [
+    "uasl/architecture-patterns@d184d1c3a346",
+    "uasl/clean-architecture@acaac6e9e2a3",
+    "uasl/domain-analysis@c37c7de1017e",
+    "uasl/karpathy-guidelines@da897c8c3bab",
+    "uasl/legacy-modernizer@519b6311409d",
+    "uasl/request-refactor-plan@49b853892f06",
+    "uasl/software-design-philosophy@066bc275787f",
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "T_b": []
+  },
+  {
+   "pair": "pair11",
+   "gen": 3,
+   "class": "moved",
+   "dir_a": "plan before coding",
+   "dir_b": "just do it, small change",
+   "sel_a": [
+    "uasl/refactoring-patterns@7283bad3e86e",
+    "uasl/request-refactor-plan@49b853892f06"
+   ],
+   "sel_b": [
+    "uasl/refactoring-patterns@7283bad3e86e"
+   ],
+   "M_a": [
+    "uasl/request-refactor-plan@49b853892f06",
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "M_b": [],
+   "M_a_rank": {
+    "uasl/request-refactor-plan@49b853892f06": 30,
+    "uasl/writing-plans@219901eb119f": 10
+   },
+   "M_b_rank": {},
+   "T_a": [
+    "uasl/architecture-patterns@d184d1c3a346",
+    "uasl/clean-architecture@acaac6e9e2a3",
+    "uasl/domain-analysis@c37c7de1017e",
+    "uasl/karpathy-guidelines@da897c8c3bab",
+    "uasl/legacy-modernizer@519b6311409d",
+    "uasl/request-refactor-plan@49b853892f06",
+    "uasl/software-design-philosophy@066bc275787f",
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "T_b": []
+  },
+  {
+   "pair": "pair13",
+   "gen": 1,
+   "class": "moved",
+   "dir_a": "test-first (TDD)",
+   "dir_b": "minimal diff",
+   "sel_a": [
+    "uasl/python-testing-patterns@e62d0f1ca316",
+    "uasl/tdd@ff86dad94075"
+   ],
+   "sel_b": [],
+   "M_a": [
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28"
+   ],
+   "M_b": [],
+   "M_a_rank": {
+    "uasl/tdd-workflow@6eadb0bf0ea8": 5,
+    "uasl/tdd@ff86dad94075": 8,
+    "uasl/test-driven-development@0eebe2fe0e28": 4
+   },
+   "M_b_rank": {},
+   "T_a": [
+    "uasl/python-testing-patterns@e62d0f1ca316",
+    "uasl/radar@a47ea6fd5f95",
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28",
+    "uasl/unit-testing@6c5fbb821103"
+   ],
+   "T_b": [
+    "uasl/async-python-patterns@957ebfe54aa7"
+   ]
+  },
+  {
+   "pair": "pair13",
+   "gen": 2,
+   "class": "moved",
+   "dir_a": "test-first (TDD)",
+   "dir_b": "minimal diff",
+   "sel_a": [
+    "uasl/python-testing-patterns@e62d0f1ca316",
+    "uasl/tdd@ff86dad94075"
+   ],
+   "sel_b": [],
+   "M_a": [
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28"
+   ],
+   "M_b": [],
+   "M_a_rank": {
+    "uasl/tdd-workflow@6eadb0bf0ea8": 5,
+    "uasl/tdd@ff86dad94075": 8,
+    "uasl/test-driven-development@0eebe2fe0e28": 4
+   },
+   "M_b_rank": {},
+   "T_a": [
+    "uasl/python-testing-patterns@e62d0f1ca316",
+    "uasl/radar@a47ea6fd5f95",
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28",
+    "uasl/unit-testing@6c5fbb821103"
+   ],
+   "T_b": [
+    "uasl/async-python-patterns@957ebfe54aa7"
+   ]
+  },
+  {
+   "pair": "pair13",
+   "gen": 3,
+   "class": "moved",
+   "dir_a": "test-first (TDD)",
+   "dir_b": "minimal diff",
+   "sel_a": [
+    "uasl/python-testing-patterns@e62d0f1ca316",
+    "uasl/tdd@ff86dad94075"
+   ],
+   "sel_b": [],
+   "M_a": [
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28"
+   ],
+   "M_b": [],
+   "M_a_rank": {
+    "uasl/tdd-workflow@6eadb0bf0ea8": 5,
+    "uasl/tdd@ff86dad94075": 8,
+    "uasl/test-driven-development@0eebe2fe0e28": 4
+   },
+   "M_b_rank": {},
+   "T_a": [
+    "uasl/python-testing-patterns@e62d0f1ca316",
+    "uasl/radar@a47ea6fd5f95",
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28",
+    "uasl/unit-testing@6c5fbb821103"
+   ],
+   "T_b": [
+    "uasl/async-python-patterns@957ebfe54aa7"
+   ]
+  },
+  {
+   "pair": "pair14",
+   "gen": 1,
+   "class": "moved",
+   "dir_a": "security first",
+   "dir_b": "performance first",
+   "sel_a": [
+    "uasl/github-actions-templates@ce03df93ccdf",
+    "uasl/pipe@0f029a41f006"
+   ],
+   "sel_b": [
+    "uasl/github-actions-templates@ce03df93ccdf"
+   ],
+   "M_a": [],
+   "M_b": [],
+   "M_a_rank": {},
+   "M_b_rank": {},
+   "T_a": [
+    "uasl/github-workflow-automation@519f4ba6e482"
+   ],
+   "T_b": []
+  },
+  {
+   "pair": "pair14",
+   "gen": 2,
+   "class": "moved",
+   "dir_a": "security first",
+   "dir_b": "performance first",
+   "sel_a": [
+    "uasl/github-actions-templates@ce03df93ccdf"
+   ],
+   "sel_b": [
+    "uasl/pipe@0f029a41f006"
+   ],
+   "M_a": [],
+   "M_b": [],
+   "M_a_rank": {},
+   "M_b_rank": {},
+   "T_a": [
+    "uasl/github-workflow-automation@519f4ba6e482"
+   ],
+   "T_b": []
+  },
+  {
+   "pair": "pair14",
+   "gen": 3,
+   "class": "moved",
+   "dir_a": "security first",
+   "dir_b": "performance first",
+   "sel_a": [
+    "uasl/github-actions-templates@ce03df93ccdf"
+   ],
+   "sel_b": [
+    "uasl/pipe@0f029a41f006"
+   ],
+   "M_a": [],
+   "M_b": [],
+   "M_a_rank": {},
+   "M_b_rank": {},
+   "T_a": [
+    "uasl/github-workflow-automation@519f4ba6e482"
+   ],
+   "T_b": []
+  },
+  {
+   "pair": "pair15",
+   "gen": 1,
+   "class": "moved",
+   "dir_a": "accessibility first",
+   "dir_b": "visual polish first",
+   "sel_a": [
+    "uasl/accessibility-compliance@696d2b4119ed"
+   ],
+   "sel_b": [],
+   "M_a": [
+    "uasl/accessibility-compliance@696d2b4119ed"
+   ],
+   "M_b": [],
+   "M_a_rank": {
+    "uasl/accessibility-compliance@696d2b4119ed": 11
+   },
+   "M_b_rank": {},
+   "T_a": [
+    "uasl/accessibility-compliance@696d2b4119ed"
+   ],
+   "T_b": []
+  },
+  {
+   "pair": "pair15",
+   "gen": 2,
+   "class": "moved",
+   "dir_a": "accessibility first",
+   "dir_b": "visual polish first",
+   "sel_a": [
+    "uasl/accessibility-compliance@696d2b4119ed"
+   ],
+   "sel_b": [],
+   "M_a": [
+    "uasl/accessibility-compliance@696d2b4119ed"
+   ],
+   "M_b": [],
+   "M_a_rank": {
+    "uasl/accessibility-compliance@696d2b4119ed": 11
+   },
+   "M_b_rank": {},
+   "T_a": [
+    "uasl/accessibility-compliance@696d2b4119ed"
+   ],
+   "T_b": []
+  },
+  {
+   "pair": "pair15",
+   "gen": 3,
+   "class": "moved",
+   "dir_a": "accessibility first",
+   "dir_b": "visual polish first",
+   "sel_a": [
+    "uasl/accessibility-compliance@696d2b4119ed"
+   ],
+   "sel_b": [],
+   "M_a": [
+    "uasl/accessibility-compliance@696d2b4119ed"
+   ],
+   "M_b": [],
+   "M_a_rank": {
+    "uasl/accessibility-compliance@696d2b4119ed": 11
+   },
+   "M_b_rank": {},
+   "T_a": [
+    "uasl/accessibility-compliance@696d2b4119ed"
+   ],
+   "T_b": []
+  },
+  {
+   "pair": "pair17",
+   "gen": 1,
+   "class": "moved",
+   "dir_a": "plan before coding",
+   "dir_b": "just do it, small change",
+   "sel_a": [
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "sel_b": [],
+   "M_a": [
+    "uasl/grill-with-docs@99f1bafe73fe",
+    "uasl/product-capability@bbb08b3b6752",
+    "uasl/ripple@620dca56eca0",
+    "uasl/system-design@e45b77ba7a35",
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "M_b": [],
+   "M_a_rank": {
+    "uasl/grill-with-docs@99f1bafe73fe": 45,
+    "uasl/product-capability@bbb08b3b6752": null,
+    "uasl/ripple@620dca56eca0": 5,
+    "uasl/system-design@e45b77ba7a35": null,
+    "uasl/writing-plans@219901eb119f": 20
+   },
+   "M_b_rank": {},
+   "T_a": [
+    "uasl/coding-guidelines@0ec7e45f92f2",
+    "uasl/documentation-lookup@dee6d7478eab",
+    "uasl/grill-with-docs@99f1bafe73fe",
+    "uasl/product-capability@bbb08b3b6752",
+    "uasl/ripple@620dca56eca0",
+    "uasl/system-design@e45b77ba7a35",
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "T_b": []
+  },
+  {
+   "pair": "pair17",
+   "gen": 2,
+   "class": "moved",
+   "dir_a": "plan before coding",
+   "dir_b": "just do it, small change",
+   "sel_a": [
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "sel_b": [],
+   "M_a": [
+    "uasl/grill-with-docs@99f1bafe73fe",
+    "uasl/product-capability@bbb08b3b6752",
+    "uasl/ripple@620dca56eca0",
+    "uasl/system-design@e45b77ba7a35",
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "M_b": [],
+   "M_a_rank": {
+    "uasl/grill-with-docs@99f1bafe73fe": 45,
+    "uasl/product-capability@bbb08b3b6752": null,
+    "uasl/ripple@620dca56eca0": 5,
+    "uasl/system-design@e45b77ba7a35": null,
+    "uasl/writing-plans@219901eb119f": 20
+   },
+   "M_b_rank": {},
+   "T_a": [
+    "uasl/coding-guidelines@0ec7e45f92f2",
+    "uasl/documentation-lookup@dee6d7478eab",
+    "uasl/grill-with-docs@99f1bafe73fe",
+    "uasl/product-capability@bbb08b3b6752",
+    "uasl/ripple@620dca56eca0",
+    "uasl/system-design@e45b77ba7a35",
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "T_b": []
+  },
+  {
+   "pair": "pair17",
+   "gen": 3,
+   "class": "moved",
+   "dir_a": "plan before coding",
+   "dir_b": "just do it, small change",
+   "sel_a": [
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "sel_b": [],
+   "M_a": [
+    "uasl/grill-with-docs@99f1bafe73fe",
+    "uasl/product-capability@bbb08b3b6752",
+    "uasl/ripple@620dca56eca0",
+    "uasl/system-design@e45b77ba7a35",
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "M_b": [],
+   "M_a_rank": {
+    "uasl/grill-with-docs@99f1bafe73fe": 45,
+    "uasl/product-capability@bbb08b3b6752": null,
+    "uasl/ripple@620dca56eca0": 5,
+    "uasl/system-design@e45b77ba7a35": null,
+    "uasl/writing-plans@219901eb119f": 20
+   },
+   "M_b_rank": {},
+   "T_a": [
+    "uasl/coding-guidelines@0ec7e45f92f2",
+    "uasl/documentation-lookup@dee6d7478eab",
+    "uasl/grill-with-docs@99f1bafe73fe",
+    "uasl/product-capability@bbb08b3b6752",
+    "uasl/ripple@620dca56eca0",
+    "uasl/system-design@e45b77ba7a35",
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "T_b": []
+  },
+  {
+   "pair": "pair19",
+   "gen": 1,
+   "class": "moved",
+   "dir_a": "test-first (TDD)",
+   "dir_b": "minimal diff",
+   "sel_a": [
+    "uasl/python-testing-patterns@e62d0f1ca316",
+    "uasl/tdd@ff86dad94075"
+   ],
+   "sel_b": [
+    "uasl/deployment-pipeline-design@2a89fc6f32ff"
+   ],
+   "M_a": [
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28"
+   ],
+   "M_b": [],
+   "M_a_rank": {
+    "uasl/tdd@ff86dad94075": 29,
+    "uasl/test-driven-development@0eebe2fe0e28": 23
+   },
+   "M_b_rank": {},
+   "T_a": [
+    "uasl/python-testing-patterns@e62d0f1ca316",
+    "uasl/radar@a47ea6fd5f95",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28",
+    "uasl/unit-testing@6c5fbb821103"
+   ],
+   "T_b": [
+    "uasl/release-it@e3e5b4710eea"
+   ]
+  },
+  {
+   "pair": "pair19",
+   "gen": 2,
+   "class": "moved",
+   "dir_a": "test-first (TDD)",
+   "dir_b": "minimal diff",
+   "sel_a": [
+    "uasl/deployment-pipeline-design@2a89fc6f32ff",
+    "uasl/tdd@ff86dad94075"
+   ],
+   "sel_b": [
+    "uasl/deployment-pipeline-design@2a89fc6f32ff"
+   ],
+   "M_a": [
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28"
+   ],
+   "M_b": [],
+   "M_a_rank": {
+    "uasl/tdd@ff86dad94075": 29,
+    "uasl/test-driven-development@0eebe2fe0e28": 23
+   },
+   "M_b_rank": {},
+   "T_a": [
+    "uasl/python-testing-patterns@e62d0f1ca316",
+    "uasl/radar@a47ea6fd5f95",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28",
+    "uasl/unit-testing@6c5fbb821103"
+   ],
+   "T_b": [
+    "uasl/release-it@e3e5b4710eea"
+   ]
+  },
+  {
+   "pair": "pair19",
+   "gen": 3,
+   "class": "moved",
+   "dir_a": "test-first (TDD)",
+   "dir_b": "minimal diff",
+   "sel_a": [
+    "uasl/python-testing-patterns@e62d0f1ca316",
+    "uasl/tdd@ff86dad94075"
+   ],
+   "sel_b": [],
+   "M_a": [
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28"
+   ],
+   "M_b": [],
+   "M_a_rank": {
+    "uasl/tdd@ff86dad94075": 29,
+    "uasl/test-driven-development@0eebe2fe0e28": 23
+   },
+   "M_b_rank": {},
+   "T_a": [
+    "uasl/python-testing-patterns@e62d0f1ca316",
+    "uasl/radar@a47ea6fd5f95",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28",
+    "uasl/unit-testing@6c5fbb821103"
+   ],
+   "T_b": [
+    "uasl/release-it@e3e5b4710eea"
+   ]
+  },
+  {
+   "pair": "pair20",
+   "gen": 1,
+   "class": "moved",
+   "dir_a": "security first",
+   "dir_b": "performance first",
+   "sel_a": [
+    "uasl/next-best-practices@ee058f89acea",
+    "uasl/vibe-security@6b07d0f651a7"
+   ],
+   "sel_b": [
+    "uasl/next-best-practices@ee058f89acea",
+    "uasl/vercel-react-best-practices@70f3b5aaf775"
+   ],
+   "M_a": [
+    "uasl/auth-implementation-patterns@7a99b395d548",
+    "uasl/security-review@fcc354bc486e",
+    "uasl/vibe-security@6b07d0f651a7"
+   ],
+   "M_b": [
+    "uasl/next-cache-components@b22f6e134147",
+    "uasl/perf-web-optimization@0e20e7b8cc98",
+    "uasl/react-patterns@73d1ecc06997"
+   ],
+   "M_a_rank": {
+    "uasl/auth-implementation-patterns@7a99b395d548": 14,
+    "uasl/security-review@fcc354bc486e": null,
+    "uasl/vibe-security@6b07d0f651a7": 39
+   },
+   "M_b_rank": {
+    "uasl/next-cache-components@b22f6e134147": 17,
+    "uasl/perf-web-optimization@0e20e7b8cc98": 43,
+    "uasl/react-patterns@73d1ecc06997": 7
+   },
+   "T_a": [
+    "uasl/auth-implementation-patterns@7a99b395d548",
+    "uasl/backend-patterns@3d87ff489f3e",
+    "uasl/security-review@fcc354bc486e",
+    "uasl/vibe-security@6b07d0f651a7"
+   ],
+   "T_b": [
+    "uasl/next-cache-components@b22f6e134147",
+    "uasl/nextjs-turbopack@b0af0186e13a",
+    "uasl/perf-web-optimization@0e20e7b8cc98",
+    "uasl/react-patterns@73d1ecc06997",
+    "uasl/taste-skill@57790089504e"
+   ]
+  },
+  {
+   "pair": "pair20",
+   "gen": 2,
+   "class": "moved",
+   "dir_a": "security first",
+   "dir_b": "performance first",
+   "sel_a": [
+    "uasl/next-best-practices@ee058f89acea",
+    "uasl/vibe-security@6b07d0f651a7"
+   ],
+   "sel_b": [
+    "uasl/next-best-practices@ee058f89acea",
+    "uasl/vercel-react-best-practices@70f3b5aaf775"
+   ],
+   "M_a": [
+    "uasl/auth-implementation-patterns@7a99b395d548",
+    "uasl/security-review@fcc354bc486e",
+    "uasl/vibe-security@6b07d0f651a7"
+   ],
+   "M_b": [
+    "uasl/next-cache-components@b22f6e134147",
+    "uasl/perf-web-optimization@0e20e7b8cc98",
+    "uasl/react-patterns@73d1ecc06997"
+   ],
+   "M_a_rank": {
+    "uasl/auth-implementation-patterns@7a99b395d548": 14,
+    "uasl/security-review@fcc354bc486e": null,
+    "uasl/vibe-security@6b07d0f651a7": 39
+   },
+   "M_b_rank": {
+    "uasl/next-cache-components@b22f6e134147": 17,
+    "uasl/perf-web-optimization@0e20e7b8cc98": 43,
+    "uasl/react-patterns@73d1ecc06997": 7
+   },
+   "T_a": [
+    "uasl/auth-implementation-patterns@7a99b395d548",
+    "uasl/backend-patterns@3d87ff489f3e",
+    "uasl/security-review@fcc354bc486e",
+    "uasl/vibe-security@6b07d0f651a7"
+   ],
+   "T_b": [
+    "uasl/next-cache-components@b22f6e134147",
+    "uasl/nextjs-turbopack@b0af0186e13a",
+    "uasl/perf-web-optimization@0e20e7b8cc98",
+    "uasl/react-patterns@73d1ecc06997",
+    "uasl/taste-skill@57790089504e"
+   ]
+  },
+  {
+   "pair": "pair20",
+   "gen": 3,
+   "class": "moved",
+   "dir_a": "security first",
+   "dir_b": "performance first",
+   "sel_a": [
+    "uasl/next-best-practices@ee058f89acea",
+    "uasl/vibe-security@6b07d0f651a7"
+   ],
+   "sel_b": [
+    "uasl/next-best-practices@ee058f89acea",
+    "uasl/vercel-react-best-practices@70f3b5aaf775"
+   ],
+   "M_a": [
+    "uasl/auth-implementation-patterns@7a99b395d548",
+    "uasl/security-review@fcc354bc486e",
+    "uasl/vibe-security@6b07d0f651a7"
+   ],
+   "M_b": [
+    "uasl/next-cache-components@b22f6e134147",
+    "uasl/perf-web-optimization@0e20e7b8cc98",
+    "uasl/react-patterns@73d1ecc06997"
+   ],
+   "M_a_rank": {
+    "uasl/auth-implementation-patterns@7a99b395d548": 14,
+    "uasl/security-review@fcc354bc486e": null,
+    "uasl/vibe-security@6b07d0f651a7": 39
+   },
+   "M_b_rank": {
+    "uasl/next-cache-components@b22f6e134147": 17,
+    "uasl/perf-web-optimization@0e20e7b8cc98": 43,
+    "uasl/react-patterns@73d1ecc06997": 7
+   },
+   "T_a": [
+    "uasl/auth-implementation-patterns@7a99b395d548",
+    "uasl/backend-patterns@3d87ff489f3e",
+    "uasl/security-review@fcc354bc486e",
+    "uasl/vibe-security@6b07d0f651a7"
+   ],
+   "T_b": [
+    "uasl/next-cache-components@b22f6e134147",
+    "uasl/nextjs-turbopack@b0af0186e13a",
+    "uasl/perf-web-optimization@0e20e7b8cc98",
+    "uasl/react-patterns@73d1ecc06997",
+    "uasl/taste-skill@57790089504e"
+   ]
+  }
+ ],
+ "counts_cases": {
+  "moved": 34,
+  "b_select": 3,
+  "c_label": 11
+ },
+ "counts_pairs_majority": {
+  "moved": 11,
+  "b_select": 1,
+  "c_label": 4
+ },
+ "by_pair": {
+  "pair01": "moved",
+  "pair03": "b_select",
+  "pair04": "c_label",
+  "pair05": "moved",
+  "pair06": "c_label",
+  "pair07": "moved",
+  "pair08": "moved",
+  "pair09": "c_label",
+  "pair10": "c_label",
+  "pair11": "moved",
+  "pair13": "moved",
+  "pair14": "moved",
+  "pair15": "moved",
+  "pair17": "moved",
+  "pair19": "moved",
+  "pair20": "moved"
+ },
+ "moved_per_gen": [
+  12,
+  11,
+  11
+ ]
+}

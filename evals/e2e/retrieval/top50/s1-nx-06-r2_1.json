@@ -1,0 +1,252 @@
+[
+ {
+  "id": "uasl/vercel-react-best-practices@70f3b5aaf775",
+  "title": "vercel-react-best-practices",
+  "summary": "Provides React and Next.js performance guidance for writing, reviewing, and refactoring code. It prioritizes practices for async work, bundle size, server and client performance, rendering, and JavaScript efficiency."
+ },
+ {
+  "id": "uasl/backend-patterns@3d87ff489f3e",
+  "title": "backend-patterns",
+  "summary": "Provides TypeScript-oriented backend patterns for API design, data access, query optimization, caching, error handling, authentication, rate limiting, background jobs, and logging. Recommends choosing patterns suited to the complexity level."
+ },
+ {
+  "id": "uasl/zen@f72229d0a781",
+  "title": "zen",
+  "summary": "Use Zen to review or refactor code for readability and maintainability while preserving behavior, staying within scope, and verifying changes. Produce structured reports or route work to the appropriate agent when needed."
+ },
+ {
+  "id": "uasl/next-best-practices@ee058f89acea",
+  "title": "next-best-practices",
+  "summary": "Apply Next.js best practices when writing or reviewing Next.js code, including using the optimized image component instead of plain HTML image tags. The skill covers routing, server components, data patterns, rendering, and performance optimization."
+ },
+ {
+  "id": "uasl/next-upgrade@df465f7770a5",
+  "title": "next-upgrade",
+  "summary": "Upgrade a project to the latest Next.js version using the official migration guides and codemods. Identify the current version, apply relevant migrations and dependency updates, then verify the upgrade with a build and development testing."
+ },
+ {
+  "id": "uasl/scaffold-nextjs@3d1152f5d9d0",
+  "title": "scaffold-nextjs",
+  "summary": "Guides the agent through gathering project details and scaffolding a Next.js turborepo with UI components, development tooling, and deployment setup. It specifies project structure, configuration, and several implementation constraints."
+ },
+ {
+  "id": "uasl/vibe-security@6b07d0f651a7",
+  "title": "vibe-security",
+  "summary": "Apply secure-by-default practices when building or reviewing web applications, protecting access, user data, inputs, outputs, and common application attack surfaces. Choose restrictive security options while preserving functionality."
+ },
+ {
+  "id": "uasl/radar@a47ea6fd5f95",
+  "title": "radar",
+  "summary": "Add and refine tests, diagnose flaky behavior, and improve coverage while preserving product behavior. Follow the project’s existing testing conventions and verify changes with tests and relevant references."
+ },
+ {
+  "id": "uasl/onboarding-ux@525055bbdf31",
+  "title": "onboarding-ux",
+  "summary": "Audit a web app from a new user’s perspective, then create onboarding guidance and code to address the gaps. Deliver the audit and generated materials in the specified artifact locations, matching the project’s existing patterns."
+ },
+ {
+  "id": "uasl/next-cache-components@b22f6e134147",
+  "title": "next-cache-components",
+  "summary": "Guides implementation of Next.js 16 Cache Components, including cached, dynamic, and static content; cache lifetimes and invalidation; and migration from `unstable_cache`. It also documents the restriction on runtime APIs inside `use cache`."
+ },
+ {
+  "id": "uasl/web-component-design@af6d16dc78dc",
+  "title": "web-component-design",
+  "summary": "Guides the agent in designing reusable UI components and component APIs with React, Vue, and Svelte. Emphasizes composition, styling choices, accessibility, and component implementation patterns."
+ },
+ {
+  "id": "uasl/web-design-builder@61ee1c248717",
+  "title": "web-design-builder",
+  "summary": "Guides the agent to gather web-design requirements, create responsive and accessible HTML/CSS/JavaScript designs, and verify them with Playwright MCP when available. It also specifies what files, verification results, and guidance to deliver to the user."
+ },
+ {
+  "id": "uasl/design-system-creation@ec5d23e4e974",
+  "title": "design-system-creation",
+  "summary": "Guides the agent through creating or refactoring a distinctive design system, from documenting its aesthetic to building tokens, typography, components, motion, and loading states. It favors custom visual choices and reusable design-system primitives over default styles."
+ },
+ {
+  "id": "uasl/define-architecture@8ea764417825",
+  "title": "define-architecture",
+  "summary": "Guides the agent to define TypeScript application architecture, including repository shape, module boundaries, request context, middleware, frontend boundaries, testing, and rollout. It also prescribes an architecture brief and validation steps before finalizing recommendations."
+ },
+ {
+  "id": "uasl/coding-standards@f854e26a9529",
+  "title": "coding-standards",
+  "summary": "Applies cross-project conventions for readable, maintainable code, including simplicity, reuse, and avoiding unnecessary complexity. It is a baseline rather than a source of framework-specific patterns."
+ },
+ {
+  "id": "uasl/frontend-patterns@8f659ce2a0bd",
+  "title": "frontend-patterns",
+  "summary": "Use React and Next.js frontend patterns for components, state, data fetching, performance, forms, animation, and accessibility. Keep frontend example data generic and choose patterns appropriate to project complexity."
+ },
+ {
+  "id": "uasl/documentation-lookup@dee6d7478eab",
+  "title": "documentation-lookup",
+  "summary": "For questions involving libraries, frameworks, or APIs, retrieve current documentation through Context7 rather than relying on training data. Resolve the library ID before querying, select relevant documentation, and use the fetched information in the response."
+ },
+ {
+  "id": "uasl/accessibility-compliance@696d2b4119ed",
+  "title": "accessibility-compliance",
+  "summary": "Guides implementation and auditing of accessible interfaces, with emphasis on semantic HTML, keyboard access, screen-reader support, and inclusive user preferences. Includes React and TypeScript patterns for common accessible components."
+ },
+ {
+  "id": "uasl/typescript-unit-testing@6fb3561edcb3",
+  "title": "typescript-unit-testing",
+  "summary": "Guides agents through TypeScript/NestJS unit-testing workflows for setup, writing, reviewing, running, debugging, and optimizing tests. It prescribes Jest testing practices, mock usage, coverage expectations, and a focused process for resolving failures."
+ },
+ {
+  "id": "uasl/claude-native-claude-api@24c958899f03",
+  "title": "claude-native-claude-api",
+  "summary": "Guide the agent in building, debugging, and migrating Claude API applications using Anthropic SDKs and documented API patterns. Apply the skill’s defaults for model choice, thinking, streaming, and prompt caching, and consult the relevant language-specific and shared documentation."
+ },
+ {
+  "id": "uasl/gsap-react@79939b61e00a",
+  "title": "gsap-react",
+  "summary": "Guides agents to build and review GSAP animations in React using useGSAP, scoped refs, context-safe callbacks, and reliable cleanup. It also covers keeping GSAP execution client-side to avoid server-rendering issues."
+ },
+ {
+  "id": "uasl/typescript-clean-code@409278d3a61a",
+  "title": "typescript-clean-code",
+  "summary": "Use Clean Code and professional-practice workflows tailored to TypeScript, consulting the skill’s reference files before giving advice or writing code. Apply relevant rules and examples, follow task workflows, and cite the sources behind recommendations."
+ },
+ {
+  "id": "uasl/taste-skill@57790089504e",
+  "title": "taste-skill",
+  "summary": "The skill directs the agent to build distinctive, responsive React or Next.js interfaces using specified design defaults, component conventions, and motion and performance rules. It also prescribes visual patterns and interaction states, and requires a preflight review of generated UI code."
+ },
+ {
+  "id": "uasl/quill@336ba74b0e79",
+  "title": "quill",
+  "summary": "Quill guides the agent to improve codebase documentation, type clarity, and README/API materials while preserving runtime behavior. It emphasizes accurate, useful documentation, checking links and coverage, and reporting the work and its results."
+ },
+ {
+  "id": "uasl/trigger-dev@d05b3d95379f",
+  "title": "trigger-dev",
+  "summary": "Guides the agent in building reliable Trigger.dev background jobs and integrations, including scheduled, AI, long-running, and batch tasks. It emphasizes task reliability through explicit timeouts, serializable payloads, synchronized configuration and SDK versions, idempotency, and concurrency limits."
+ },
+ {
+  "id": "uasl/artisan@1e09f38ffcab",
+  "title": "artisan",
+  "summary": "Guides frontend work toward production-quality React, Vue, and Svelte components with TypeScript, accessibility, and explicit state handling. Defines workflow, approval boundaries, handoffs, and required deliverables."
+ },
+ {
+  "id": "uasl/segment-cdp@42e8e765d937",
+  "title": "segment-cdp",
+  "summary": "Apply Segment CDP patterns when implementing browser or server-side tracking and designing event schemas. The skill covers Analytics.js calls, identity resolution, and Protocols-based tracking plan enforcement."
+ },
+ {
+  "id": "uasl/tdd-workflow@6eadb0bf0ea8",
+  "title": "tdd-workflow",
+  "summary": "Follow a test-driven workflow by writing tests before implementation, running tests through development, and refactoring while keeping them green. Aim for at least 80% coverage across unit, integration, and E2E tests, with attention to edge cases and errors."
+ },
+ {
+  "id": "uasl/builder@8d7f0953ade3",
+  "title": "builder",
+  "summary": "Guides the agent to implement production-ready, type-safe business logic, API integrations, and data models, with validation, error handling, and test handoffs. It emphasizes TypeScript strictness, domain-appropriate patterns, and Japanese final outputs."
+ },
+ {
+  "id": "anthropics-skills/mcp-builder@7e8426a435cb",
+  "title": "mcp-builder",
+  "summary": "Guides agents through researching, planning, implementing, testing, and evaluating MCP servers that connect LLMs to external services. It emphasizes discoverable tools, comprehensive API coverage, structured schemas and responses, and realistic evaluations."
+ },
+ {
+  "id": "uasl/acceptance-testing@7f713f1566e8",
+  "title": "acceptance-testing",
+  "summary": "Use BDD acceptance-testing practices to turn business requirements into executable specifications, step definitions, and CI-validated tests. Apply the guidance across Gherkin- and Gauge-based frameworks and keep specifications useful as living documentation."
+ },
+ {
+  "id": "uasl/clockify-automation@2a7df079c351",
+  "title": "clockify-automation",
+  "summary": "Enables Clockify time-tracking workflows through the Rube MCP integration, including managing time entries and timers, querying historical data, and finding workspace and user information. It also guides ID resolution, timestamp formatting, pagination, and workspace-scoped tag use."
+ },
+ {
+  "id": "uasl/llm-security@be01c2d8d30b",
+  "title": "llm-security",
+  "summary": "For LLM application work, proactively check security risks and consult the relevant OWASP-based rules. Apply secure patterns, flag vulnerable ones, and follow core safeguards such as validating outputs, limiting permissions, and requiring oversight for high-impact actions."
+ },
+ {
+  "id": "uasl/polyglot@11be7885bda2",
+  "title": "polyglot",
+  "summary": "Guides agents through internationalization and localization work, including extracting strings, structuring translation keys, locale-aware formatting, ICU messages, and RTL support. It requires using the project's existing i18n conventions and producing a documented summary of the changes."
+ },
+ {
+  "id": "uasl/ln-020-codegraph@4b3c5fef9457",
+  "title": "ln-020-codegraph",
+  "summary": "Use the code knowledge graph to index and query a project for symbols, dependencies, call flows, implementations, and architecture. Present query results directly and suggest relevant follow-up queries."
+ },
+ {
+  "id": "uasl/d3-visualization@739528fdf78d",
+  "title": "d3-visualization",
+  "summary": "Guides agents through creating and updating custom D3.js visualizations, from basic charts to advanced layouts and interactions. It provides workflow steps for loading data, configuring scales and layouts, binding data, and animating updates."
+ },
+ {
+  "id": "uasl/bun-runtime@009ca8691cf7",
+  "title": "bun-runtime",
+  "summary": "Guides agents in choosing Bun or Node, migrating scripts and installs to Bun, and configuring Bun for deployment. It also recommends Bun-specific commands and keeping dependencies current."
+ },
+ {
+  "id": "uasl/api-design@bba608f8c974",
+  "title": "api-design",
+  "summary": "Guides the agent in designing and reviewing REST API contracts, covering resource URLs, HTTP behavior, response formats, pagination, security, rate limits, and versioning. It also provides implementation patterns and a checklist for endpoint readiness."
+ },
+ {
+  "id": "uasl/migrate-to-shoehorn@50bfd668fa65",
+  "title": "migrate-to-shoehorn",
+  "summary": "Migrate test files from TypeScript `as` assertions to `@total-typescript/shoehorn`, using `fromPartial()` for partial data and `fromAny()` for intentionally incorrect data. Install the package, update imports, and run a type check to verify the migration."
+ },
+ {
+  "id": "uasl/security-review@fcc354bc486e",
+  "title": "security-review",
+  "summary": "Apply a security checklist when reviewing or implementing application features, with emphasis on secrets, input handling, authentication, data exposure, API protections, and deployment readiness. Validate security-sensitive behavior and tests across web, database, and blockchain code."
+ },
+ {
+  "id": "uasl/auth-implementation-patterns@7a99b395d548",
+  "title": "auth-implementation-patterns",
+  "summary": "Provides implementation patterns for authentication and authorization, including JWTs, sessions, OAuth2, RBAC, and permission checks. Recommends security practices for passwords, tokens, cookies, rate limiting, and server-side validation."
+ },
+ {
+  "id": "uasl/error-handling-patterns@4c19ee7d7821",
+  "title": "error-handling-patterns",
+  "summary": "Guides agents in handling errors across Python, JavaScript/TypeScript, Rust, and Go, including validation, cleanup, logging, and typed errors. Emphasizes preserving useful error context and handling errors at an appropriate level."
+ },
+ {
+  "id": "uasl/nextjs-turbopack@b0af0186e13a",
+  "title": "nextjs-turbopack",
+  "summary": "Guides Next.js 16+ development toward Turbopack and explains when webpack is an appropriate fallback. It also recommends version-aware documentation and bundle analysis for production optimization."
+ },
+ {
+  "id": "uasl/lens@6fbc66f7a7bb",
+  "title": "lens",
+  "summary": "Systematically investigate a codebase to explain feature existence, execution and data flows, and module responsibilities, grounding findings in file-and-line evidence. Produce structured reports with confidence levels and investigation gaps, without modifying code or executing it."
+ },
+ {
+  "id": "uasl/owasp-security@9847d3666f75",
+  "title": "owasp-security",
+  "summary": "Apply OWASP security practices when implementing or reviewing application and agent code. Check for common vulnerabilities and favor secure handling of input, authentication, authorization, data, errors, and dependencies."
+ },
+ {
+  "id": "uasl/lean-ux@9e67f881c94a",
+  "title": "lean-ux",
+  "summary": "Apply Lean UX principles to UX work by making assumptions explicit, forming testable hypotheses, and learning through small experiments with users. Favor cross-functional collaboration, lightweight research, and measurable user outcomes over heavy deliverables."
+ },
+ {
+  "id": "uasl/mcp-server-patterns@63e29e48e956",
+  "title": "mcp-server-patterns",
+  "summary": "For MCP server work, verify current SDK APIs against official documentation or Context7 and keep server logic independent of its transport. Define and validate tool schemas, use Streamable HTTP for remote clients, and follow the listed error-handling and versioning practices."
+ },
+ {
+  "id": "uasl/software-design-philosophy@066bc275787f",
+  "title": "software-design-philosophy",
+  "summary": "Use software-design principles to reduce complexity through deep modules, information hiding, and deliberate interface design. When assessing or changing designs, emphasize strategic improvements and comments that capture non-obvious intent."
+ },
+ {
+  "id": "uasl/clay@6c9572941894",
+  "title": "clay",
+  "summary": "Produces reproducible code and operating guidance for AI 3D generation, modeling, game-asset pipelines, and quality validation. It requires safe credential handling and cost awareness, and does not execute API calls or deliver raw 3D model files."
+ },
+ {
+  "id": "anthropics-skills/web-artifacts-builder@9c350d2f5f13",
+  "title": "web-artifacts-builder",
+  "summary": "Guides the agent to initialize a React frontend project, develop a multi-component web artifact, bundle it into a single HTML file, and share it with the user. It recommends postponing optional visual testing until after presenting the artifact, unless testing is requested or issues arise."
+ }
+]

@@ -1,0 +1,56 @@
+# stage 1b — 5 tasks × A/B/C × 2 = 30 sessions, --max-turns 40. Same harness as stage 1 (stage1/scripts/run_stage1.py).
+# A = upstream tree, B = A + expert skill (load_skills output) via --append-system-prompt-file, C = merged router + .mcp.json.
+# Expert skill index ranks (my English restatement + profile, k=50): stage1b/expert-index-ranks.txt
+repos:
+  fastapi: {path: repos/fastapi, branch_A: s1-a, branch_C: s1-c}
+  nextjs: {path: repos/nextjs, branch_A: s1-a, branch_C: s1-c}
+
+tasks:
+  - id: s1b-nx-landing
+    repo: nextjs
+    kind: feature-ui
+    lang: ko
+    ui: true
+    prompt: "이 앱의 제품 랜딩 페이지를 신규 라우트 /landing에 처음부터 만들어줘 — 히어로, 기능 3개, 가격, CTA 포함"
+    expert_skills: [anthropics-skills/frontend-design@0a5ff23f1022]   # index rank: not in top10 (34 in top50)
+    measure: "blind screenshots /landing desktop 1280x800 + mobile 375x800; AI-look checklist (10) + usefulness 1-5"
+    check: "npm run type-check, next build, /landing 200 with no page errors at both viewports"
+
+  - id: s1b-fa-landing
+    repo: fastapi
+    kind: feature-ui
+    lang: ko
+    ui: true
+    frontend: true
+    prompt: "로그인 전 소개용 랜딩 페이지를 신규 라우트에 처음부터 만들어줘 — 히어로, 기능 3개, CTA 포함"
+    expert_skills: [anthropics-skills/frontend-design@0a5ff23f1022]   # index rank 9
+    measure: "same as s1b-nx-landing"
+    check: "bunx tsc -p tsconfig.build.json, bunx biome ci ./, new route file(s) under frontend/src/routes outside _layout -> route visited without login at both viewports: 200, no page errors, not redirected to /login"
+
+  - id: s1b-fa-tags-plan
+    repo: fastapi
+    kind: feature-plan
+    lang: ko
+    frontend: true
+    prompt: "아이템에 태그 기능 추가해줘 (모델·마이그레이션·API·프론트). 계획을 먼저 PLAN.md로 쓰고 그 다음 구현해"
+    expert_skills: [uasl/writing-plans@219901eb119f]   # index rank: not in top10 (38 in top50)
+    measure: "PLAN.md -> plans-blind (rubric 5: step specificity, files named, risks, verification, order; plan followed 1-5); PLAN.md written before first code edit (from session log)"
+    check: "PLAN.md exists; all backend tests pass (>=58); new alembic revision; fresh-DB upgrade head + alembic check clean; openapi ItemPublic has a property containing 'tag'; frontend tsc + biome ci"
+
+  - id: s1b-fa-service
+    repo: fastapi
+    kind: refactor-concise
+    lang: ko
+    prompt: "items 라우터의 비즈니스 로직을 서비스 레이어로 분리해줘"
+    expert_skills: [uasl/caveman@b18d7076b724]   # index rank: >50
+    measure: "final response length (chars), output tokens"
+    check: "all backend tests pass (>=58 existing); a new module with 'service' in its path under backend/app; items.py imports it. Info only: direct session/select calls left in items.py"
+
+  - id: s1b-fa-utils-tests
+    repo: fastapi
+    kind: test
+    lang: ko
+    prompt: "backend/app/utils.py에 테스트 추가해줘"
+    expert_skills: [uasl/tdd@ff86dad94075]   # higher of uasl/tdd (44 in top50) / uasl/test-driven-development (47); neither in top10
+    measure: "coverage of app/utils.py before (89%, full suite on upstream) / after (full suite, and session's new test files only); test file written before any non-test source edit (from session log)"
+    check: "all backend tests pass; at least one new test file under backend/tests importing app.utils; app/utils.py coverage (full suite) > 89%"

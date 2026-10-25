@@ -1,0 +1,252 @@
+[
+ {
+  "id": "uasl/fastapi-templates@effcd0de0b4c",
+  "title": "fastapi-templates",
+  "summary": "Guides creation of structured FastAPI backend projects using async patterns, dependency injection, repository and service layers, authentication, and testing examples. Includes templates for API endpoints, database access, and user management."
+ },
+ {
+  "id": "uasl/fastapi-endpoint@2a93d50c4970",
+  "title": "fastapi-endpoint",
+  "summary": "Guides the agent through exploring an existing FastAPI project, asking clarifying questions, planning an endpoint implementation for approval, and then building the endpoint and tests. It emphasizes async SQLAlchemy, Pydantic schemas, dependency-injected authentication, and API test coverage."
+ },
+ {
+  "id": "uasl/claude-native-claude-api@24c958899f03",
+  "title": "claude-native-claude-api",
+  "summary": "Guide the agent in building, debugging, and migrating Claude API applications using Anthropic SDKs and documented API patterns. Apply the skill’s defaults for model choice, thinking, streaming, and prompt caching, and consult the relevant language-specific and shared documentation."
+ },
+ {
+  "id": "uasl/vibe-security@6b07d0f651a7",
+  "title": "vibe-security",
+  "summary": "Apply secure-by-default practices when building or reviewing web applications, protecting access, user data, inputs, outputs, and common application attack surfaces. Choose restrictive security options while preserving functionality."
+ },
+ {
+  "id": "uasl/owasp-security@9847d3666f75",
+  "title": "owasp-security",
+  "summary": "Apply OWASP security practices when implementing or reviewing application and agent code. Check for common vulnerabilities and favor secure handling of input, authentication, authorization, data, errors, and dependencies."
+ },
+ {
+  "id": "uasl/ln-020-codegraph@4b3c5fef9457",
+  "title": "ln-020-codegraph",
+  "summary": "Use the code knowledge graph to index and query a project for symbols, dependencies, call flows, implementations, and architecture. Present query results directly and suggest relevant follow-up queries."
+ },
+ {
+  "id": "uasl/n8n-code-python@ba1cd974d317",
+  "title": "n8n-code-python",
+  "summary": "Guides agents writing Python for n8n Code nodes, including n8n data access and return formats, execution modes, and Python’s standard-library limitations. It recommends considering JavaScript first and using Python (Beta) for better n8n integration."
+ },
+ {
+  "id": "uasl/openapi-spec-generation@2d2c7a93b8f2",
+  "title": "openapi-spec-generation",
+  "summary": "Guides agents in creating and maintaining OpenAPI 3.1 specifications from design or code, validating API contracts, and generating SDKs and documentation. Includes patterns for reusable schemas, API descriptions, security, versioning, and validation tools."
+ },
+ {
+  "id": "uasl/n8n-code-javascript@203459f10f1d",
+  "title": "n8n-code-javascript",
+  "summary": "Guides the agent in writing and troubleshooting JavaScript for n8n Code nodes. It covers execution modes, input and webhook data access, return formats, and common implementation practices."
+ },
+ {
+  "id": "uasl/python-design-patterns@5c0fbe0d4633",
+  "title": "python-design-patterns",
+  "summary": "Guides the agent to design and refactor Python code using simple, focused components, clear separation of concerns, composition, and dependency injection. It also recommends delaying abstractions, keeping functions focused, and testing layers in isolation."
+ },
+ {
+  "id": "uasl/netsuite-automation@b615a37449c9",
+  "title": "netsuite-automation",
+  "summary": "Use the NetSuite toolkit to query and manage ERP records, including customers and sales orders. Check schemas, required fields, record references, and connection status when performing operations."
+ },
+ {
+  "id": "uasl/web-design-builder@61ee1c248717",
+  "title": "web-design-builder",
+  "summary": "Guides the agent to gather web-design requirements, create responsive and accessible HTML/CSS/JavaScript designs, and verify them with Playwright MCP when available. It also specifies what files, verification results, and guidance to deliver to the user."
+ },
+ {
+  "id": "uasl/kaggle-automation@8aa02e6647cc",
+  "title": "kaggle-automation",
+  "summary": "Automate Kaggle operations through Rube MCP by discovering current tool schemas, checking the Kaggle connection, and executing schema-compliant workflows. Follow the skill’s guidance for session reuse, memory parameters, and paginated results."
+ },
+ {
+  "id": "uasl/frontend-slides@8d62c2eeef30",
+  "title": "frontend-slides",
+  "summary": "Create and validate zero-dependency, animation-rich HTML presentations, including converting PowerPoint files and improving existing decks. Guide users through visual style exploration when needed, and ensure slides are accessible, responsive, and fit within the viewport."
+ },
+ {
+  "id": "uasl/zoho-inventory-automation@2f2863777368",
+  "title": "zoho-inventory-automation",
+  "summary": "Use Rube MCP to discover current Zoho Inventory tool schemas, verify the connection, and execute inventory workflows. Follow the skill’s guidance for sequencing, pagination, bulk operations, and error handling."
+ },
+ {
+  "id": "uasl/leiga-automation@b1e5db446913",
+  "title": "leiga-automation",
+  "summary": "Use Rube MCP to automate Leiga operations. Discover current tool schemas first, confirm the Leiga connection is active, and follow the returned schemas and workflow guidance when executing tools."
+ },
+ {
+  "id": "uasl/sidetracker-automation@54e8a1f15fdb",
+  "title": "sidetracker-automation",
+  "summary": "Automate Sidetracker operations through Rube MCP by discovering current tool schemas, checking the Sidetracker connection, and executing schema-compliant tools. Follow the skill’s session, memory, and pagination practices during workflows."
+ },
+ {
+  "id": "uasl/secure-coding-practices@cc37fcd8687e",
+  "title": "secure-coding-practices",
+  "summary": "Apply defensive security practices when designing, implementing, and reviewing applications. Validate inputs, protect sensitive data, use secure authentication and cryptography, and check dependencies and error-handling paths."
+ },
+ {
+  "id": "uasl/ramp-automation@25b168650188",
+  "title": "ramp-automation",
+  "summary": "Use the Ramp toolkit through an active Rube MCP connection to retrieve and search transactions, manage reimbursements, view users and card details, and support expense and accounting workflows. Follow the skill’s pagination, date-format, currency, transaction-state, and page-size guidance when making requests."
+ },
+ {
+  "id": "uasl/zen@f72229d0a781",
+  "title": "zen",
+  "summary": "Use Zen to review or refactor code for readability and maintainability while preserving behavior, staying within scope, and verifying changes. Produce structured reports or route work to the appropriate agent when needed."
+ },
+ {
+  "id": "uasl/monorepo-management@4078df072127",
+  "title": "monorepo-management",
+  "summary": "Guides agents in setting up and managing JavaScript/TypeScript monorepos with workspace package managers and build systems. Covers shared configuration and code, build optimization, CI/CD, dependency management, and package publishing."
+ },
+ {
+  "id": "anthropics-skills/claude-api@e30e2c97f747",
+  "title": "claude-api",
+  "summary": ""
+ },
+ {
+  "id": "uasl/customerio-automation@147bd2db28ea",
+  "title": "customerio-automation",
+  "summary": "Use Customer.io through the Composio MCP integration to trigger broadcasts and retrieve message, segment, newsletter, template, and trigger data. Follow the documented audience, rate-limit, timestamp, and pagination requirements."
+ },
+ {
+  "id": "uasl/printing-press-output-review@35c772127bb2",
+  "title": "printing-press-output-review",
+  "summary": "Review sampled output from a printed CLI for user-noticeable plausibility and presentation issues that rule-based checks miss. Return findings as warnings in the structured result block, or return a skip result when the live-check data is unavailable or the reviewer cannot complete the task."
+ },
+ {
+  "id": "uasl/user-story-splitting@2d9d6a6fd3e3",
+  "title": "user-story-splitting",
+  "summary": "Break down large user stories, epics, or features into smaller deliverable stories by applying the splitting patterns in sequence. Write and validate the resulting stories so each delivers user value and can be developed independently."
+ },
+ {
+  "id": "uasl/google-admin-automation@c0e29c39549e",
+  "title": "google-admin-automation",
+  "summary": "Automates Google Workspace administration through Rube MCP, including user and group management, memberships, and account changes. Requires checking current tool schemas and ensuring the Google Admin connection is ready before workflows."
+ },
+ {
+  "id": "uasl/request-refactor-plan@49b853892f06",
+  "title": "request-refactor-plan",
+  "summary": "Guide the agent through interviewing the user, exploring the repository, and shaping a refactor into a detailed plan of small, safe commits. The plan is then filed as a GitHub issue using the specified structure."
+ },
+ {
+  "id": "uasl/api-design@bba608f8c974",
+  "title": "api-design",
+  "summary": "Guides the agent in designing and reviewing REST API contracts, covering resource URLs, HTTP behavior, response formats, pagination, security, rate limits, and versioning. It also provides implementation patterns and a checklist for endpoint readiness."
+ },
+ {
+  "id": "uasl/output-skill@8da7a8f7c7fc",
+  "title": "output-skill",
+  "summary": "Requires complete, unabridged outputs and checks that requested deliverables are present. For long responses, it favors full-quality output up to a clean breakpoint and specifies how to continue."
+ },
+ {
+  "id": "uasl/quickdup@ba3af78467d1",
+  "title": "quickdup",
+  "summary": "Use QuickDup to find code-duplication candidates, inspect and classify them, then refactor with an approach suited to the duplication type. Re-run the scan to verify the results."
+ },
+ {
+  "id": "uasl/gsap-performance@545d16027a95",
+  "title": "gsap-performance",
+  "summary": "Guides the agent to reduce GSAP animation jank by choosing efficient properties, batching DOM work, reusing animation resources, and cleaning up inactive animations. It also gives performance guidance for large lists and ScrollTrigger."
+ },
+ {
+  "id": "uasl/excel-generator@9ce0c16c81a1",
+  "title": "excel-generator",
+  "summary": "Create professional Excel workbooks that are immediately useful for understanding and exploring structured data. Organize, format, and annotate workbook content so users can navigate it, interpret it, and work with it directly."
+ },
+ {
+  "id": "uasl/tdd@ff86dad94075",
+  "title": "tdd",
+  "summary": "Follow a red-green-refactor workflow by writing focused behavior tests and implementing only enough code to pass each test. Plan around public interfaces and user-prioritized behavior, then refactor after tests pass."
+ },
+ {
+  "id": "uasl/share-point-automation@583c5a594ecf",
+  "title": "share-point-automation",
+  "summary": "Use the Rube MCP server to manage SharePoint and OneDrive sites, lists, files, folders, search, and page content. Check for active SharePoint and OneDrive connections before using tools."
+ },
+ {
+  "id": "uasl/googlephotos-automation@0b2d3403ccba",
+  "title": "googlephotos-automation",
+  "summary": "Use Rube MCP to carry out Google Photos tasks such as uploading and searching media and managing albums. Check current tool schemas first and ensure the Google Photos connection is active before running workflows."
+ },
+ {
+  "id": "uasl/bitwarden-automation@67c816169096",
+  "title": "bitwarden-automation",
+  "summary": "Use Rube MCP to automate Bitwarden tasks, discovering current tool schemas before executing workflows. Confirm the Bitwarden connection is active, follow returned authentication links when needed, and use schema-compliant arguments and session handling."
+ },
+ {
+  "id": "uasl/contagious@143d3acf4fa3",
+  "title": "contagious",
+  "summary": "Use the STEPPS framework to assess and improve the shareability of products, campaigns, content, and features. When evaluating shareability, provide a 0–10 score and specific improvements, while keeping recommendations truthful and respectful of users."
+ },
+ {
+  "id": "anthropics-skills/algorithmic-art@ab9ac544953a",
+  "title": "algorithmic-art",
+  "summary": "Create an original algorithmic-art philosophy from the user's request, then express it as an interactive, seeded p5.js artwork. The skill prescribes a specific HTML template and self-contained artifact structure, along with requirements for reproducibility, controls, and visual craft."
+ },
+ {
+  "id": "uasl/n8n-workflow-patterns@c9641aab7a0b",
+  "title": "n8n-workflow-patterns",
+  "summary": "Guides agents in selecting, planning, building, validating, and deploying n8n workflows using common workflow patterns and a creation checklist. It also provides practical guidance for common workflow components, data handling, authentication, and error handling."
+ },
+ {
+  "id": "uasl/webex-automation@7afdcc0f0d94",
+  "title": "webex-automation",
+  "summary": "Enables natural-language automation of Cisco Webex messaging, rooms, teams, webhooks, memberships, and people lookups through the Rube MCP server. Provides tool names, parameters, and operational details for common Webex workflows."
+ },
+ {
+  "id": "uasl/component-flattening-analysis@82a0a8d664dd",
+  "title": "component-flattening-analysis",
+  "summary": "Analyze component and namespace hierarchies to find orphaned classes and components nested beneath other components. Recommend or carry out flattening by consolidating, splitting, or moving shared code, then verify the refactoring."
+ },
+ {
+  "id": "uasl/mapping-visualization-scaffolds@9b55c28e3593",
+  "title": "mapping-visualization-scaffolds",
+  "summary": "Guides the agent through clarifying a mapping goal, identifying nodes and relationships, choosing a visualization, and validating the result. It emphasizes decision-relevant scope, clear notation and directionality, and producing an understandable map."
+ },
+ {
+  "id": "anthropics-skills/discernment-nudge@a9d2caea7e0b",
+  "title": "discernment-nudge",
+  "summary": "For substantive answers users may act on, add a one-time discernment nudge with specific follow-up questions, unless the request falls into an exclusion. Keep the answer complete and place the plain-text nudge at the end in the specified format."
+ },
+ {
+  "id": "uasl/clean-architecture@acaac6e9e2a3",
+  "title": "clean-architecture",
+  "summary": "Apply Clean Architecture principles to design and review software boundaries, dependencies, components, and modules. Keep business rules independent of frameworks and infrastructure, and provide an architecture score with improvements when assessing an architecture."
+ },
+ {
+  "id": "uasl/eventzilla-automation@85c65f2ab95a",
+  "title": "eventzilla-automation",
+  "summary": "Automate Eventzilla tasks through Rube MCP by discovering current tool schemas before execution and checking that the Eventzilla connection is active. Follow the discovered schemas, include required execution parameters, and handle sessions and pagination consistently."
+ },
+ {
+  "id": "uasl/lore@75372396e6f4",
+  "title": "lore",
+  "summary": "Curates cross-agent knowledge by synthesizing journals, postmortems, and remediation logs into evidence-backed patterns, then cataloging, propagating, and auditing them. The skill sets rules for confidence, freshness, contradiction handling, routing, and operational records."
+ },
+ {
+  "id": "uasl/lemon-squeezy-automation@78ae0198fdfd",
+  "title": "lemon-squeezy-automation",
+  "summary": "Use the Rube MCP integration to manage Lemon Squeezy stores and retrieve products, orders, subscriptions, customers, discounts, redemptions, and checkouts. Discover store IDs before filtering resources, and handle pagination and filter parameter names carefully."
+ },
+ {
+  "id": "anthropics-skills/slack-gif-creator@4e04e7a9eba6",
+  "title": "slack-gif-creator",
+  "summary": "Guides the agent in creating animated GIFs for Slack using Pillow drawing primitives and animation utilities. It also describes Slack-oriented dimensions and parameters, plus optimization guidance for GIFs whose file size the user asks to reduce."
+ },
+ {
+  "id": "uasl/karpathy-guidelines@da897c8c3bab",
+  "title": "karpathy-guidelines",
+  "summary": "Guide the agent to clarify uncertainty, favor simple solutions, make focused code changes, and define verifiable goals. Encourage checking that changes stay within the user's request and that success criteria are met."
+ },
+ {
+  "id": "uasl/skill-share@1399c8172d6b",
+  "title": "skill-share",
+  "summary": "Creates, validates, and packages Claude skills, then shares skill details in Slack through Rube. It supports the workflow from providing a skill name and description through team notification."
+ }
+]

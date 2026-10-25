@@ -1,0 +1,252 @@
+[
+ {
+  "id": "uasl/taste-skill@57790089504e",
+  "title": "taste-skill",
+  "summary": "The skill directs the agent to build distinctive, responsive React or Next.js interfaces using specified design defaults, component conventions, and motion and performance rules. It also prescribes visual patterns and interaction states, and requires a preflight review of generated UI code."
+ },
+ {
+  "id": "uasl/responsive-design@2cf7927ef938",
+  "title": "responsive-design",
+  "summary": "Guides the agent to build responsive interfaces with mobile-first styling, content-based breakpoints, fluid sizing, and container queries. It also emphasizes real-device testing, image optimization, suitable touch targets, and logical CSS properties."
+ },
+ {
+  "id": "uasl/vercel-react-best-practices@70f3b5aaf775",
+  "title": "vercel-react-best-practices",
+  "summary": "Provides React and Next.js performance guidance for writing, reviewing, and refactoring code. It prioritizes practices for async work, bundle size, server and client performance, rendering, and JavaScript efficiency."
+ },
+ {
+  "id": "uasl/frontend-patterns@8f659ce2a0bd",
+  "title": "frontend-patterns",
+  "summary": "Use React and Next.js frontend patterns for components, state, data fetching, performance, forms, animation, and accessibility. Keep frontend example data generic and choose patterns appropriate to project complexity."
+ },
+ {
+  "id": "uasl/interaction-design@7c9d38549c2b",
+  "title": "interaction-design",
+  "summary": "Guides the agent in designing and implementing UI interactions with motion, transitions, and feedback. Emphasizes performance, reduced-motion support, and making animations interruptible and resilient without JavaScript animations."
+ },
+ {
+  "id": "uasl/next-cache-components@b22f6e134147",
+  "title": "next-cache-components",
+  "summary": "Guides implementation of Next.js 16 Cache Components, including cached, dynamic, and static content; cache lifetimes and invalidation; and migration from `unstable_cache`. It also documents the restriction on runtime APIs inside `use cache`."
+ },
+ {
+  "id": "uasl/next-best-practices@ee058f89acea",
+  "title": "next-best-practices",
+  "summary": "Apply Next.js best practices when writing or reviewing Next.js code, including using the optimized image component instead of plain HTML image tags. The skill covers routing, server components, data patterns, rendering, and performance optimization."
+ },
+ {
+  "id": "uasl/next-upgrade@df465f7770a5",
+  "title": "next-upgrade",
+  "summary": "Upgrade a project to the latest Next.js version using the official migration guides and codemods. Identify the current version, apply relevant migrations and dependency updates, then verify the upgrade with a build and development testing."
+ },
+ {
+  "id": "uasl/web-design-builder@61ee1c248717",
+  "title": "web-design-builder",
+  "summary": "Guides the agent to gather web-design requirements, create responsive and accessible HTML/CSS/JavaScript designs, and verify them with Playwright MCP when available. It also specifies what files, verification results, and guidance to deliver to the user."
+ },
+ {
+  "id": "uasl/scaffold-nextjs@3d1152f5d9d0",
+  "title": "scaffold-nextjs",
+  "summary": "Guides the agent through gathering project details and scaffolding a Next.js turborepo with UI components, development tooling, and deployment setup. It specifies project structure, configuration, and several implementation constraints."
+ },
+ {
+  "id": "uasl/soft-skill@4dd04c5022d2",
+  "title": "soft-skill",
+  "summary": "For UI work, create polished, premium-feeling interfaces with distinctive layouts, nested component styling, fluid motion, and responsive behavior. Avoid generic visual defaults and check the generated code against the skill’s design and performance rules."
+ },
+ {
+  "id": "uasl/gpt-tasteskill@134558e228c5",
+  "title": "gpt-tasteskill",
+  "summary": "Requires a randomized, AIDA-structured frontend design with wide hero typography, gapless bento grids, and GSAP motion. It also mandates a preflight design plan before UI code and bans emoji and specified meta-labels."
+ },
+ {
+  "id": "uasl/tailwind-design-system@7db0651a06b1",
+  "title": "tailwind-design-system",
+  "summary": "Guides the agent in building reusable Tailwind CSS and React component libraries with CVA variants, composable components, design tokens, theming, and accessibility. Provides implementation patterns for dark mode, forms, responsive grids, and animation utilities."
+ },
+ {
+  "id": "uasl/scroll-experience@f1aa0edee6ad",
+  "title": "scroll-experience",
+  "summary": "Guides agents in creating immersive scroll-driven web experiences with animation, parallax, sticky sections, and narrative structure. Emphasizes natural scroll behavior, restrained animation, and mobile-friendly design."
+ },
+ {
+  "id": "uasl/documentation-lookup@dee6d7478eab",
+  "title": "documentation-lookup",
+  "summary": "For questions involving libraries, frameworks, or APIs, retrieve current documentation through Context7 rather than relying on training data. Resolve the library ID before querying, select relevant documentation, and use the fetched information in the response."
+ },
+ {
+  "id": "uasl/backend-patterns@3d87ff489f3e",
+  "title": "backend-patterns",
+  "summary": "Provides TypeScript-oriented backend patterns for API design, data access, query optimization, caching, error handling, authentication, rate limiting, background jobs, and logging. Recommends choosing patterns suited to the complexity level."
+ },
+ {
+  "id": "uasl/replit-deck@84797e95ef8f",
+  "title": "replit-deck",
+  "summary": "Create a single-file, horizontal-swipe HTML deck using one of eight Replit Slides themes. Follow the required theme-selection, slide-planning, template, and self-review workflow, and emit the finished deck as an HTML artifact."
+ },
+ {
+  "id": "uasl/image-to-code-skill@4f1a4537825d",
+  "title": "image-to-code-skill",
+  "summary": "For visually important website work, generate design reference images first, analyze them closely, and then implement a frontend that stays faithful to those references. Prefer clear, section-specific images and clean, readable layouts over compressed references, generic designs, and unnecessary UI clutter."
+ },
+ {
+  "id": "uasl/gsap-react@79939b61e00a",
+  "title": "gsap-react",
+  "summary": "Guides agents to build and review GSAP animations in React using useGSAP, scoped refs, context-safe callbacks, and reliable cleanup. It also covers keeping GSAP execution client-side to avoid server-rendering issues."
+ },
+ {
+  "id": "uasl/typescript-unit-testing@6fb3561edcb3",
+  "title": "typescript-unit-testing",
+  "summary": "Guides agents through TypeScript/NestJS unit-testing workflows for setup, writing, reviewing, running, debugging, and optimizing tests. It prescribes Jest testing practices, mock usage, coverage expectations, and a focused process for resolving failures."
+ },
+ {
+  "id": "uasl/flow@d1423e53e763",
+  "title": "flow",
+  "summary": "Flow guides scoped implementation of meaningful UI motion, including accessibility and performance considerations. It favors restrained animation, reduced-motion paths, and motion techniques suited to the active framework."
+ },
+ {
+  "id": "uasl/forge@a8efdfdbe817",
+  "title": "forge",
+  "summary": "Use Forge to build small, runnable prototypes that validate ideas, relying on mocks where useful and keeping work ready for handoff. Prioritize learning and working demos over production polish, and report the prototype’s status, findings, debt, and next decision."
+ },
+ {
+  "id": "uasl/design-to-code@fae28f73cda0",
+  "title": "design-to-code",
+  "summary": "Guides the agent in translating design mockups into frontend code, prioritizing alignment with the design and the existing project. It also calls for responsive behavior, clear interaction states, reusable components, and noting necessary deviations."
+ },
+ {
+  "id": "uasl/imagegen-frontend-web@3c09b1b364ef",
+  "title": "imagegen-frontend-web",
+  "summary": "Directs the agent to create premium, implementation-friendly frontend design references with deliberate visual variety, consistent branding, and conversion-aware section design. Requires a separate horizontal image for each section and specifies how to plan, label, and deliver the image set."
+ },
+ {
+  "id": "uasl/design-system-creation@ec5d23e4e974",
+  "title": "design-system-creation",
+  "summary": "Guides the agent through creating or refactoring a distinctive design system, from documenting its aesthetic to building tokens, typography, components, motion, and loading states. It favors custom visual choices and reusable design-system primitives over default styles."
+ },
+ {
+  "id": "uasl/social-carousel@ad5180e0b228",
+  "title": "social-carousel",
+  "summary": "Create a three-panel, square social-media carousel as a single HTML artifact, following the active design system and the brief. Use connected cinematic headlines, distinct panel styling, and the specified carousel details and output format."
+ },
+ {
+  "id": "uasl/gsap-utils@a1cbf677d835",
+  "title": "gsap-utils",
+  "summary": "Guides the agent in using GSAP utility functions for value mapping, randomization, snapping, units, and collections. It emphasizes reusable function forms and documented APIs."
+ },
+ {
+  "id": "uasl/landing-page@455a3c3ba6f7",
+  "title": "landing-page",
+  "summary": "Generate a complete, deployable landing page as a single HTML file using Tailwind CSS via CDN. Gather a brief, build a responsive and accessible page with suitable sections and interactions, then provide preview and deployment guidance."
+ },
+ {
+  "id": "uasl/frontend-slides@8d62c2eeef30",
+  "title": "frontend-slides",
+  "summary": "Create and validate zero-dependency, animation-rich HTML presentations, including converting PowerPoint files and improving existing decks. Guide users through visual style exploration when needed, and ensure slides are accessible, responsive, and fit within the viewport."
+ },
+ {
+  "id": "uasl/tweaks@800b9d426375",
+  "title": "tweaks",
+  "summary": "Wrap an existing HTML artifact in a self-contained live-tuning panel that updates selected design parameters and persists user choices. Test the controls and persistence, and follow the skill’s output format."
+ },
+ {
+  "id": "uasl/segment-cdp@42e8e765d937",
+  "title": "segment-cdp",
+  "summary": "Apply Segment CDP patterns when implementing browser or server-side tracking and designing event schemas. The skill covers Analytics.js calls, identity resolution, and Protocols-based tracking plan enforcement."
+ },
+ {
+  "id": "uasl/web-design@b19d7c3f962e",
+  "title": "web-design",
+  "summary": "Guides CSS implementation for production-grade interfaces, covering layout, typography, color, spacing, responsiveness, accessibility, and component behavior. Emphasizes deliberate visual hierarchy and reusable design patterns."
+ },
+ {
+  "id": "anthropics-skills/web-artifacts-builder@9c350d2f5f13",
+  "title": "web-artifacts-builder",
+  "summary": "Guides the agent to initialize a React frontend project, develop a multi-component web artifact, bundle it into a single HTML file, and share it with the user. It recommends postponing optional visual testing until after presenting the artifact, unless testing is requested or issues arise."
+ },
+ {
+  "id": "uasl/bolt@c4895c710162",
+  "title": "bolt",
+  "summary": "Bolt directs the agent to identify measurable performance improvements, follow a profiling-to-presentation workflow, and document their impact. It also sets limits on implementation, optimization scope, and when to ask for confirmation or hand off work."
+ },
+ {
+  "id": "uasl/react-patterns@73d1ecc06997",
+  "title": "react-patterns",
+  "summary": "Use React 19 performance and composition patterns when writing, reviewing, or refactoring components, prioritizing critical performance issues before lower-impact ones. Apply the review checklist to find waterfalls, bundle-size problems, unnecessary re-renders, and framework-specific pitfalls."
+ },
+ {
+  "id": "uasl/top-design@4ea889def6d2",
+  "title": "top-design",
+  "summary": "Guides the agent to plan and build distinctive, immersive web experiences using intentional typography, composition, motion, color, and performance. It also sets accessibility requirements and requires user approval before implementing custom cursors."
+ },
+ {
+  "id": "uasl/3d-web-experience@e1485751556b",
+  "title": "3d-web-experience",
+  "summary": "Guides agents in choosing and building interactive 3D web experiences, including model integration, scrolling effects, and mobile-aware usability. Emphasizes purposeful 3D, mobile testing, fallbacks, and optimized loading."
+ },
+ {
+  "id": "uasl/web-prototype-taste-soft@7734ae078ad9",
+  "title": "web-prototype-taste-soft",
+  "summary": "Build soft-premium web prototypes with a silver or cream canvas, nested card architecture, pill-shaped CTAs, and restrained ambient motion. Follow the specified typography, components, responsive behavior, and banned styling patterns."
+ },
+ {
+  "id": "uasl/figma-implement-design@6f82bf7fa5ca",
+  "title": "figma-implement-design",
+  "summary": "Implements Figma designs by gathering design context, screenshots, and assets, then translating them into the project’s conventions and design system. The workflow emphasizes visual validation, accessibility, and reuse of existing components."
+ },
+ {
+  "id": "uasl/web-component-design@af6d16dc78dc",
+  "title": "web-component-design",
+  "summary": "Guides the agent in designing reusable UI components and component APIs with React, Vue, and Svelte. Emphasizes composition, styling choices, accessibility, and component implementation patterns."
+ },
+ {
+  "id": "uasl/accessibility-compliance@696d2b4119ed",
+  "title": "accessibility-compliance",
+  "summary": "Guides implementation and auditing of accessible interfaces, with emphasis on semantic HTML, keyboard access, screen-reader support, and inclusive user preferences. Includes React and TypeScript patterns for common accessible components."
+ },
+ {
+  "id": "uasl/artisan@1e09f38ffcab",
+  "title": "artisan",
+  "summary": "Guides frontend work toward production-quality React, Vue, and Svelte components with TypeScript, accessibility, and explicit state handling. Defines workflow, approval boundaries, handoffs, and required deliverables."
+ },
+ {
+  "id": "uasl/shadcn-ui@8c463642324a",
+  "title": "shadcn-ui",
+  "summary": "Guides agents through selecting, installing, and customizing shadcn/ui components in themed React projects. It emphasizes dependency order, semantic theme tokens, and assembling components into common UI patterns."
+ },
+ {
+  "id": "uasl/gsap-scrolltrigger@dd7bfe79efb2",
+  "title": "gsap-scrolltrigger",
+  "summary": "Guides agents in implementing GSAP ScrollTrigger features, including triggers, scrubbing, pinning, batching, and horizontal scroll. It also specifies configuration, refresh, ordering, and cleanup practices."
+ },
+ {
+  "id": "uasl/minimalist-skill@6bec0a57af30",
+  "title": "minimalist-skill",
+  "summary": "Build frontend interfaces with a warm, editorial minimalist aesthetic, using restrained colors, strong typography, generous whitespace, and flat component styling. Avoid generic design defaults and add subtle, performance-conscious motion and visual depth."
+ },
+ {
+  "id": "uasl/nextjs-turbopack@b0af0186e13a",
+  "title": "nextjs-turbopack",
+  "summary": "Guides Next.js 16+ development toward Turbopack and explains when webpack is an appropriate fallback. It also recommends version-aware documentation and bundle analysis for production optimization."
+ },
+ {
+  "id": "uasl/slides@8f50ae3bf0c5",
+  "title": "slides",
+  "summary": "Create strategic HTML presentations with data visualizations, responsive layouts, and copywriting-focused slide content. Route requests through the appropriate slide subcommand and its reference file."
+ },
+ {
+  "id": "uasl/gsap-core@ca474b7f6296",
+  "title": "gsap-core",
+  "summary": "Guides the agent in writing and reviewing GSAP core animations, including tweens, easing, stagger, transforms, and playback control. It also recommends GSAP for unspecified JavaScript animation needs and covers responsive and reduced-motion behavior with matchMedia."
+ },
+ {
+  "id": "uasl/typescript-clean-code@409278d3a61a",
+  "title": "typescript-clean-code",
+  "summary": "Use Clean Code and professional-practice workflows tailored to TypeScript, consulting the skill’s reference files before giving advice or writing code. Apply relevant rules and examples, follow task workflows, and cite the sources behind recommendations."
+ },
+ {
+  "id": "uasl/radar@a47ea6fd5f95",
+  "title": "radar",
+  "summary": "Add and refine tests, diagnose flaky behavior, and improve coverage while preserving product behavior. Follow the project’s existing testing conventions and verify changes with tests and relevant references."
+ }
+]

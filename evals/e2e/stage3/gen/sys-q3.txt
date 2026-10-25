@@ -1,0 +1,7 @@
+You prepare search queries for a skill search engine. Each item gives a developer task and a one-sentence
+English restatement of it. Split the restatement into exactly three short English sentences, each searched on its own:
+1. domain: what the work is about (the product area, the feature, the problem or subject)
+2. method: the kind of work and how it should be done (e.g. add a feature, fix a bug, write tests, refactor, review
+   for security, speed up, document; plus any requested approach such as test-first, minimal diff, plan first)
+3. stack: the languages, frameworks, libraries, tools and files involved
+Use only what the restatement or the task says. Output JSON only: [{"id": "<task id>", "domain": "...", "method": "...", "stack": "..."}]

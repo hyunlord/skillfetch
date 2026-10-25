@@ -1,0 +1,86 @@
+{
+ "agreement": {
+  "all": {
+   "n": 724,
+   "exact": 0.711,
+   "within1": 0.983,
+   "relevance_kappa": 0.655,
+   "process_kappa": 0.645,
+   "opus_ge2": 113,
+   "gpt_ge2": 160,
+   "both_ge2": 98
+  },
+  "new": {
+   "n": 362,
+   "exact": 0.71,
+   "within1": 0.994,
+   "relevance_kappa": 0.718,
+   "process_kappa": 0.735,
+   "opus_ge2": 70,
+   "gpt_ge2": 77,
+   "both_ge2": 57
+  },
+  "old": {
+   "n": 362,
+   "exact": 0.713,
+   "within1": 0.972,
+   "relevance_kappa": 0.586,
+   "process_kappa": 0.557,
+   "opus_ge2": 43,
+   "gpt_ge2": 83,
+   "both_ge2": 41
+  },
+  "old_staging_top10": {
+   "n": 188,
+   "exact": 0.638,
+   "within1": 0.957,
+   "relevance_kappa": 0.595,
+   "process_kappa": 0.506,
+   "opus_ge2": 34,
+   "gpt_ge2": 59,
+   "both_ge2": 32
+  },
+  "old_baseline_top10": {
+   "n": 174,
+   "exact": 0.793,
+   "within1": 0.989,
+   "relevance_kappa": 0.508,
+   "process_kappa": 0.603,
+   "opus_ge2": 9,
+   "gpt_ge2": 24,
+   "both_ge2": 9
+  }
+ },
+ "opus": {
+  "n_baseline_relevant": 42,
+  "n_staging_relevant": 54,
+  "rc_hit@10_baseline": 0.714,
+  "rc_hit@10_staging_own": 0.796,
+  "rc_hit@10_staging_on_baseline_denominator": 0.857,
+  "sbp_rel_load_baseline_r1_r3": [
+   0.714,
+   0.762,
+   0.762
+  ],
+  "sbp_rel_load_staging": 0.889
+ },
+ "intersection": {
+  "n_baseline_relevant": 42,
+  "n_staging_relevant": 53,
+  "rc_hit@10_baseline": 0.69,
+  "rc_hit@10_staging_own": 0.774,
+  "rc_hit@10_staging_on_baseline_denominator": 0.833,
+  "sbp_rel_load_baseline_r1_r3": [
+   0.714,
+   0.762,
+   0.762
+  ],
+  "sbp_rel_load_staging": 0.887
+ },
+ "coverage": {
+  "staging_top10_slots_seen": "550/600",
+  "baseline_top10_slots_seen": "356/600",
+  "staging_picks_seen": "51/78",
+  "baseline_r1_picks_seen": "28/64"
+ }
+}

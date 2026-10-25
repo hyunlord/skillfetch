@@ -1,0 +1,40 @@
+{
+ "tasks_graded": 20,
+ "added": 35,
+ "added_relevant": 13,
+ "cost_usd": 0.22,
+ "offline_class_changed": {
+  "s4-t027": [
+   "select_fail",
+   "ok"
+  ],
+  "s4-t253": [
+   "select_fail",
+   "ok"
+  ],
+  "s4-t055": [
+   "restate_fail",
+   "ok"
+  ],
+  "s4-t033": [
+   "search_fail",
+   "ok"
+  ],
+  "s4-t130": [
+   "search_fail",
+   "ok"
+  ],
+  "s4-t224": [
+   "search_fail",
+   "ok"
+  ],
+  "s4-t280": [
+   "over_load",
+   "select_fail"
+  ],
+  "s4-t001": [
+   "over_load",
+   "search_fail"
+  ]
+ }
+}

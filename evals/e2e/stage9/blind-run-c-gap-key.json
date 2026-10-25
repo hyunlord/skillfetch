@@ -1,0 +1,2395 @@
+{
+"t002": {
+"h01": {
+"skill": "uasl/n8n-workflow-patterns@c9641aab7a0b",
+"where": [
+"base_top10"
+]
+},
+"h02": {
+"skill": "rshankras-claude-code-apple-skills/analytics-setup@63bd49a554e5",
+"where": [
+"runc_top10"
+]
+},
+"h03": {
+"skill": "rshankras-claude-code-apple-skills/announcement-banner@f9f3347daeba",
+"where": [
+"runc_top10"
+]
+},
+"h04": {
+"skill": "uasl/provider-api@4da7bed47117",
+"where": [
+"base_top10"
+]
+},
+"h05": {
+"skill": "uasl/thinking-map-territory@329a6f9a1863",
+"where": [
+"base_top10"
+]
+},
+"h06": {
+"skill": "anthropics-skills/xlsx@5350d36b768c",
+"where": [
+"base_top10"
+]
+},
+"h07": {
+"skill": "rshankras-claude-code-apple-skills/widget-generator@f273d14c59e0",
+"where": [
+"runc_top10"
+]
+},
+"h08": {
+"skill": "uasl/statsmodels@49021b731076",
+"where": [
+"base_top10"
+]
+},
+"h09": {
+"skill": "anthropics-skills/discernment-nudge@a9d2caea7e0b",
+"where": [
+"base_top10"
+]
+}
+},
+"t007": {
+"h01": {
+"skill": "uasl/frontend-patterns@8f659ce2a0bd",
+"where": [
+"base_picks",
+"runc_picks"
+]
+},
+"h02": {
+"skill": "uasl/gsap-react@79939b61e00a",
+"where": [
+"base_top10"
+]
+},
+"h03": {
+"skill": "uasl/next-cache-components@b22f6e134147",
+"where": [
+"base_top10"
+]
+},
+"h04": {
+"skill": "affaan-m-ecc/e2e-testing@7070d6d2a0cc",
+"where": [
+"runc_picks"
+]
+},
+"h05": {
+"skill": "uasl/browser-automation@49c3aed21e27",
+"where": [
+"base_picks"
+]
+},
+"h06": {
+"skill": "uasl/figma-implement-design@6f82bf7fa5ca",
+"where": [
+"base_top10"
+]
+},
+"h07": {
+"skill": "affaan-m-ecc/documentation-lookup@57773ac70da0",
+"where": [
+"runc_top10"
+]
+},
+"h08": {
+"skill": "rshankras-claude-code-apple-skills/pagination@d620f73a86e8",
+"where": [
+"runc_top10"
+]
+}
+},
+"t016": {
+"h01": {
+"skill": "uasl/event-store-design@c739ef000ad1",
+"where": [
+"base_top10"
+]
+},
+"h02": {
+"skill": "uasl/relay@7794e4cab2a2",
+"where": [
+"base_top10"
+]
+},
+"h03": {
+"skill": "actionbook-rust-skills/rust-learner@2a967e43636a",
+"where": [
+"runc_top10"
+]
+},
+"h04": {
+"skill": "uasl/git-advanced-workflows@72c3e980a1f8",
+"where": [
+"base_top10"
+]
+},
+"h05": {
+"skill": "uasl/specter@eeba33cf9245",
+"where": [
+"base_picks"
+]
+},
+"h06": {
+"skill": "uasl/rewind@64cfc63aad18",
+"where": [
+"base_top10"
+]
+}
+},
+"t022": {
+"h01": {
+"skill": "rshankras-claude-code-apple-skills/pagination@d620f73a86e8",
+"where": [
+"runc_top10"
+]
+},
+"h02": {
+"skill": "uasl/five-agent-pr-handoff@92c06031cdfe",
+"where": [
+"base_top10"
+]
+},
+"h03": {
+"skill": "rshankras-claude-code-apple-skills/swiftui@ab239a07f6d0",
+"where": [
+"runc_top10"
+]
+},
+"h04": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/pagination-patterns@6a9e0648a2de",
+"where": [
+"runc_top10"
+]
+},
+"h05": {
+"skill": "rshankras-claude-code-apple-skills/background-processing@6a2448296187",
+"where": [
+"runc_top10"
+]
+}
+},
+"t030": {
+"h01": {
+"skill": "uasl/it-infrastructure-sysadmin-engine@b170286527c0",
+"where": [
+"base_top10"
+]
+},
+"h02": {
+"skill": "uasl/debug-root-cause@1d7ea4a832dc",
+"where": [
+"base_picks",
+"base_top10",
+"runc_picks",
+"runc_top10"
+]
+},
+"h03": {
+"skill": "uasl/agent-introspection-debugging@68529b68f0f1",
+"where": [
+"base_top10"
+]
+},
+"h04": {
+"skill": "uasl/documentation-lookup@dee6d7478eab",
+"where": [
+"base_top10"
+]
+},
+"h05": {
+"skill": "uasl/motion-canvas@08d879d31903",
+"where": [
+"runc_top10"
+]
+},
+"h06": {
+"skill": "uasl/gong-automation@09a015febb35",
+"where": [
+"base_top10"
+]
+},
+"h07": {
+"skill": "uasl/omnisend-automation@cac8b5f5b289",
+"where": [
+"base_top10",
+"runc_top10"
+]
+},
+"h08": {
+"skill": "uasl/prismic-automation@4ad566233625",
+"where": [
+"base_top10"
+]
+}
+},
+"t036": {
+"h01": {
+"skill": "affaan-m-ecc/golang-patterns@57517385906f",
+"where": [
+"runc_picks"
+]
+},
+"h02": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/coroutines-patterns@8d22e4564909",
+"where": [
+"runc_top10"
+]
+},
+"h03": {
+"skill": "uasl/coding-guidelines@0ec7e45f92f2",
+"where": [
+"base_picks"
+]
+},
+"h04": {
+"skill": "uasl/dating-web@a74a01fd41b0",
+"where": [
+"base_top10"
+]
+}
+},
+"t037": {
+"h01": {
+"skill": "uasl/deliberation-debate-red-teaming@3163aa9a1489",
+"where": [
+"base_top10"
+]
+},
+"h02": {
+"skill": "uasl/test-driven-development@0eebe2fe0e28",
+"where": [
+"base_picks"
+]
+},
+"h03": {
+"skill": "rshankras-claude-code-apple-skills/announcement-banner@f9f3347daeba",
+"where": [
+"runc_top10"
+]
+},
+"h04": {
+"skill": "uasl/launch@117c5509679d",
+"where": [
+"base_top10"
+]
+},
+"h05": {
+"skill": "uasl/unit-testing@6c5fbb821103",
+"where": [
+"base_picks",
+"base_top10"
+]
+}
+},
+"t048": {
+"h01": {
+"skill": "uasl/scout@97653445d7f1",
+"where": [
+"base_top10"
+]
+},
+"h02": {
+"skill": "affaan-m-ecc/dart-flutter-patterns@2c84304f91d5",
+"where": [
+"runc_picks",
+"runc_top10"
+]
+},
+"h03": {
+"skill": "rshankras-claude-code-apple-skills/watchos@6a1f0f5716e4",
+"where": [
+"runc_top10"
+]
+},
+"h04": {
+"skill": "uasl/debug-root-cause@1d7ea4a832dc",
+"where": [
+"base_picks"
+]
+},
+"h05": {
+"skill": "uasl/voice-ai-development@76a8425e5865",
+"where": [
+"base_top10"
+]
+},
+"h06": {
+"skill": "affaan-m-ecc/network-interface-health@a52dcb8204e4",
+"where": [
+"runc_top10"
+]
+},
+"h07": {
+"skill": "affaan-m-ecc/flutter-dart-code-review@c08e3eec5e6d",
+"where": [
+"runc_top10"
+]
+},
+"h08": {
+"skill": "uasl/motion-frames@d5cda8fa6801",
+"where": [
+"base_top10"
+]
+},
+"h09": {
+"skill": "rshankras-claude-code-apple-skills/alarmkit@b2535f47ce8f",
+"where": [
+"runc_top10"
+]
+},
+"h10": {
+"skill": "rshankras-claude-code-apple-skills/app-intents@7b7944f62fe5",
+"where": [
+"runc_top10"
+]
+},
+"h11": {
+"skill": "rshankras-claude-code-apple-skills/live-activity-generator@dd6e376605af",
+"where": [
+"runc_top10"
+]
+}
+},
+"t051": {
+"h01": {
+"skill": "uasl/chain-roleplay-debate-synthesis@ccf96409045f",
+"where": [
+"base_top10"
+]
+},
+"h02": {
+"skill": "uasl/python-design-patterns@5c0fbe0d4633",
+"where": [
+"base_picks"
+]
+},
+"h03": {
+"skill": "uasl/tdd@ff86dad94075",
+"where": [
+"base_top10"
+]
+},
+"h04": {
+"skill": "rshankras-claude-code-apple-skills/ipad-patterns@a0a6eb1c1410",
+"where": [
+"runc_top10"
+]
+},
+"h05": {
+"skill": "uasl/software-design-philosophy@066bc275787f",
+"where": [
+"base_top10"
+]
+},
+"h06": {
+"skill": "uasl/zen@f72229d0a781",
+"where": [
+"base_top10",
+"runc_picks"
+]
+}
+},
+"t069": {
+"h01": {
+"skill": "uasl/architecture-patterns@d184d1c3a346",
+"where": [
+"base_top10"
+]
+},
+"h02": {
+"skill": "affaan-m-ecc/kotlin-patterns@94da25eaf618",
+"where": [
+"runc_picks"
+]
+}
+},
+"t072": {
+"h01": {
+"skill": "rshankras-claude-code-apple-skills/characterization-test-generator@a23d34ca77b2",
+"where": [
+"runc_top10"
+]
+},
+"h02": {
+"skill": "rshankras-claude-code-apple-skills/spotlight-indexing@988e4be27c40",
+"where": [
+"runc_top10"
+]
+},
+"h03": {
+"skill": "uasl/thinking-first-principles@96badf934096",
+"where": [
+"base_top10"
+]
+},
+"h04": {
+"skill": "uasl/gws-best-practices@8d174ef89902",
+"where": [
+"base_top10"
+]
+},
+"h05": {
+"skill": "rshankras-claude-code-apple-skills/streak-tracker@5e9737188984",
+"where": [
+"runc_top10"
+]
+},
+"h06": {
+"skill": "uasl/first-principles-thinking@99ae94038a5a",
+"where": [
+"base_top10"
+]
+},
+"h07": {
+"skill": "uasl/thinking-cynefin@35c884c46e92",
+"where": [
+"base_top10"
+]
+},
+"h08": {
+"skill": "rshankras-claude-code-apple-skills/snapshot-test-setup@d9efb8324d79",
+"where": [
+"runc_top10"
+]
+}
+},
+"t075": {
+"h01": {
+"skill": "uasl/imagegen-frontend-mobile@d57843fce66f",
+"where": [
+"base_top10"
+]
+},
+"h02": {
+"skill": "uasl/error-handling-patterns@4c19ee7d7821",
+"where": [
+"base_top10",
+"runc_top10"
+]
+},
+"h03": {
+"skill": "uasl/latch@1bd1d888e79e",
+"where": [
+"base_top10"
+]
+},
+"h04": {
+"skill": "affaan-m-ecc/frontend-patterns@4f7ece8fd5c6",
+"where": [
+"runc_picks"
+]
+},
+"h05": {
+"skill": "uasl/zen@f72229d0a781",
+"where": [
+"base_picks",
+"runc_picks"
+]
+},
+"h06": {
+"skill": "uasl/refactoring-patterns@7283bad3e86e",
+"where": [
+"base_picks",
+"base_top10",
+"runc_top10"
+]
+},
+"h07": {
+"skill": "uasl/finishing-a-development-branch@6d92d8cff27f",
+"where": [
+"base_top10",
+"runc_top10"
+]
+},
+"h08": {
+"skill": "uasl/quickdup@ba3af78467d1",
+"where": [
+"base_top10",
+"runc_top10"
+]
+},
+"h09": {
+"skill": "uasl/sweep@6fda55315322",
+"where": [
+"base_top10"
+]
+},
+"h10": {
+"skill": "uasl/react-patterns@73d1ecc06997",
+"where": [
+"base_picks"
+]
+}
+},
+"t076": {
+"h01": {
+"skill": "uasl/integration-testing@62b51275be50",
+"where": [
+"base_top10"
+]
+},
+"h02": {
+"skill": "uasl/radar@a47ea6fd5f95",
+"where": [
+"base_top10",
+"runc_top10"
+]
+},
+"h03": {
+"skill": "uasl/code-review-excellence@ad803274d219",
+"where": [
+"base_top10"
+]
+},
+"h04": {
+"skill": "uasl/thinking-thought-experiment@da6ed475a5d8",
+"where": [
+"base_top10"
+]
+},
+"h05": {
+"skill": "uasl/property-based-testing@a168f6739085",
+"where": [
+"base_picks",
+"base_top10",
+"runc_top10"
+]
+},
+"h06": {
+"skill": "uasl/design-harden@7850aacd7d45",
+"where": [
+"base_top10",
+"runc_top10"
+]
+},
+"h07": {
+"skill": "uasl/tdd-workflow@6eadb0bf0ea8",
+"where": [
+"base_top10",
+"runc_top10"
+]
+}
+},
+"t079": {
+"h01": {
+"skill": "uasl/acceptance-testing@7f713f1566e8",
+"where": [
+"base_top10"
+]
+},
+"h02": {
+"skill": "affaan-m-ecc/fastapi-patterns@419da9966f07",
+"where": [
+"runc_top10"
+]
+},
+"h03": {
+"skill": "uasl/radar@a47ea6fd5f95",
+"where": [
+"base_top10"
+]
+},
+"h04": {
+"skill": "uasl/integration-testing@62b51275be50",
+"where": [
+"base_top10"
+]
+},
+"h05": {
+"skill": "uasl/unit-testing@6c5fbb821103",
+"where": [
+"base_top10"
+]
+},
+"h06": {
+"skill": "uasl/openapi-spec-generation@2d2c7a93b8f2",
+"where": [
+"base_top10"
+]
+},
+"h07": {
+"skill": "rshankras-claude-code-apple-skills/test-data-factory@f9bff2be1094",
+"where": [
+"runc_top10"
+]
+}
+},
+"t080": {
+"h01": {
+"skill": "uasl/property-based-testing@a168f6739085",
+"where": [
+"base_top10",
+"runc_top10"
+]
+},
+"h02": {
+"skill": "rshankras-claude-code-apple-skills/test-contract@055ba867cc05",
+"where": [
+"runc_top10"
+]
+},
+"h03": {
+"skill": "uasl/wycheproof@8924e1e4bfb6",
+"where": [
+"base_top10"
+]
+},
+"h04": {
+"skill": "uasl/tdd-workflow@6eadb0bf0ea8",
+"where": [
+"base_top10",
+"runc_top10"
+]
+},
+"h05": {
+"skill": "uasl/fastapi-endpoint@2a93d50c4970",
+"where": [
+"base_top10"
+]
+},
+"h06": {
+"skill": "uasl/radar@a47ea6fd5f95",
+"where": [
+"base_top10"
+]
+},
+"h07": {
+"skill": "uasl/acceptance-testing@7f713f1566e8",
+"where": [
+"base_top10"
+]
+}
+},
+"t081": {
+"h01": {
+"skill": "uasl/property-based-testing@a168f6739085",
+"where": [
+"base_picks",
+"base_top10",
+"runc_picks"
+]
+},
+"h02": {
+"skill": "uasl/setup-pre-commit@95f6657588a0",
+"where": [
+"base_top10"
+]
+},
+"h03": {
+"skill": "uasl/integration-testing@62b51275be50",
+"where": [
+"base_top10"
+]
+},
+"h04": {
+"skill": "uasl/latch@1bd1d888e79e",
+"where": [
+"base_top10"
+]
+}
+},
+"t103": {
+"h01": {
+"skill": "uasl/microsoft-clarity-automation@44237e641aae",
+"where": [
+"base_top10"
+]
+},
+"h02": {
+"skill": "uasl/printing-press-polish@b4aef54a7866",
+"where": [
+"base_top10",
+"runc_top10"
+]
+},
+"h03": {
+"skill": "uasl/gamified-app@89f56442216c",
+"where": [
+"base_top10"
+]
+},
+"h04": {
+"skill": "uasl/gong-automation@09a015febb35",
+"where": [
+"base_top10"
+]
+},
+"h05": {
+"skill": "rshankras-claude-code-apple-skills/variable-rewards@87d17dfb529a",
+"where": [
+"runc_top10"
+]
+},
+"h06": {
+"skill": "affaan-m-ecc/claude-devfleet@50cd824cacaa",
+"where": [
+"runc_top10"
+]
+},
+"h07": {
+"skill": "uasl/habitica-automation@ccd00cec596d",
+"where": [
+"base_top10"
+]
+},
+"h08": {
+"skill": "uasl/claude-native-claude-api@24c958899f03",
+"where": [
+"base_top10"
+]
+},
+"h09": {
+"skill": "uasl/spec-miner@cebd849612b0",
+"where": [
+"base_picks"
+]
+}
+},
+"t105": {
+"h01": {
+"skill": "uasl/shadcn-ui@8c463642324a",
+"where": [
+"base_top10"
+]
+},
+"h02": {
+"skill": "uasl/frontend-patterns@8f659ce2a0bd",
+"where": [
+"base_top10"
+]
+},
+"h03": {
+"skill": "uasl/invoice-organizer@65f04d96d07a",
+"where": [
+"runc_top10"
+]
+},
+"h04": {
+"skill": "uasl/design-hook@561de9aa519a",
+"where": [
+"base_top10"
+]
+},
+"h05": {
+"skill": "actionbook-rust-skills/domain-fintech@5ecaa13b47d8",
+"where": [
+"runc_top10"
+]
+},
+"h06": {
+"skill": "uasl/setup-pre-commit@95f6657588a0",
+"where": [
+"base_top10"
+]
+},
+"h07": {
+"skill": "uasl/invoice@234bae53884f",
+"where": [
+"base_top10",
+"runc_top10"
+]
+},
+"h08": {
+"skill": "rshankras-claude-code-apple-skills/offer-codes-setup@450aa0d50bac",
+"where": [
+"runc_top10"
+]
+},
+"h09": {
+"skill": "uasl/typescript-unit-testing@6fb3561edcb3",
+"where": [
+"runc_top10"
+]
+},
+"h10": {
+"skill": "uasl/radar@a47ea6fd5f95",
+"where": [
+"base_top10"
+]
+},
+"h11": {
+"skill": "uasl/ln-002-session-analyzer@e1f577ca3f6a",
+"where": [
+"base_top10"
+]
+},
+"h12": {
+"skill": "uasl/levy@083441b4d967",
+"where": [
+"base_top10",
+"runc_top10"
+]
+}
+},
+"t119": {
+"h01": {
+"skill": "uasl/mermaid-diagrams@a50e01188b8f",
+"where": [
+"base_top10"
+]
+},
+"h02": {
+"skill": "uasl/atlas@eeafabd38463",
+"where": [
+"base_top10"
+]
+},
+"h03": {
+"skill": "uasl/domain-driven-design@0d649fab3ce3",
+"where": [
+"base_top10"
+]
+},
+"h04": {
+"skill": "uasl/software-architecture@011a6d823631",
+"where": [
+"base_top10"
+]
+},
+"h05": {
+"skill": "uasl/clean-architecture@acaac6e9e2a3",
+"where": [
+"base_top10"
+]
+},
+"h06": {
+"skill": "uasl/spec-miner@cebd849612b0",
+"where": [
+"base_picks"
+]
+}
+},
+"t129": {
+"h01": {
+"skill": "uasl/python-type-safety@60be75b4816f",
+"where": [
+"base_top10"
+]
+},
+"h02": {
+"skill": "uasl/five-agent-ci-debug@66324570bafb",
+"where": [
+"base_top10"
+]
+}
+},
+"t131": {
+"h01": {
+"skill": "uasl/api-testing@4ada9a2fac88",
+"where": [
+"base_top10"
+]
+},
+"h02": {
+"skill": "uasl/judge@6ea2e485149e",
+"where": [
+"base_top10"
+]
+},
+"h03": {
+"skill": "uasl/iterate-pr@0c545d33cef2",
+"where": [
+"base_top10"
+]
+},
+"h04": {
+"skill": "uasl/radar@a47ea6fd5f95",
+"where": [
+"base_top10"
+]
+},
+"h05": {
+"skill": "uasl/typescript-unit-testing@6fb3561edcb3",
+"where": [
+"base_top10"
+]
+}
+},
+"t132": {
+"h01": {
+"skill": "rshankras-claude-code-apple-skills/snapshot-test-setup@d9efb8324d79",
+"where": [
+"runc_top10"
+]
+},
+"h02": {
+"skill": "uasl/github-actions-templates@ce03df93ccdf",
+"where": [
+"base_top10"
+]
+},
+"h03": {
+"skill": "rshankras-claude-code-apple-skills/screenshot-automation@8ee53a3f91e5",
+"where": [
+"runc_top10"
+]
+},
+"h04": {
+"skill": "uasl/acceptance-testing@7f713f1566e8",
+"where": [
+"base_top10"
+]
+},
+"h05": {
+"skill": "uasl/radar@a47ea6fd5f95",
+"where": [
+"base_top10"
+]
+},
+"h06": {
+"skill": "uasl/static-analysis@88c6f201cae0",
+"where": [
+"base_top10"
+]
+},
+"h07": {
+"skill": "uasl/pipe@0f029a41f006",
+"where": [
+"base_picks",
+"base_top10",
+"runc_picks"
+]
+},
+"h08": {
+"skill": "uasl/iterate-pr@0c545d33cef2",
+"where": [
+"base_top10",
+"runc_top10"
+]
+}
+},
+"t138": {
+"h01": {
+"skill": "uasl/github-actions-templates@ce03df93ccdf",
+"where": [
+"base_top10"
+]
+},
+"h02": {
+"skill": "rshankras-claude-code-apple-skills/http-cache@69cc9dea8fb8",
+"where": [
+"runc_top10"
+]
+},
+"h03": {
+"skill": "uasl/static-analysis@88c6f201cae0",
+"where": [
+"base_top10"
+]
+},
+"h04": {
+"skill": "uasl/anvil@3a36e8410205",
+"where": [
+"base_top10"
+]
+},
+"h05": {
+"skill": "rshankras-claude-code-apple-skills/image-loading@3ae1f4ec9ac6",
+"where": [
+"runc_top10"
+]
+},
+"h06": {
+"skill": "uasl/monorepo-management@4078df072127",
+"where": [
+"base_top10"
+]
+}
+},
+"t143": {
+"h01": {
+"skill": "uasl/five-agent-ci-debug@66324570bafb",
+"where": [
+"base_top10"
+]
+},
+"h02": {
+"skill": "uasl/five-agent-security-review@54653e9fa93f",
+"where": [
+"base_top10"
+]
+},
+"h03": {
+"skill": "uasl/pipe@0f029a41f006",
+"where": [
+"base_picks",
+"base_top10",
+"runc_picks"
+]
+}
+},
+"t158": {
+"h01": {
+"skill": "uasl/bun-runtime@009ca8691cf7",
+"where": [
+"base_top10",
+"runc_top10"
+]
+},
+"h02": {
+"skill": "uasl/anthropic-administrator-automation@37f36f9f61d4",
+"where": [
+"base_top10",
+"runc_top10"
+]
+},
+"h03": {
+"skill": "uasl/dashboard@537186e4443a",
+"where": [
+"base_top10",
+"runc_top10"
+]
+},
+"h04": {
+"skill": "uasl/vercel-react-native-skills@6e314641b44a",
+"where": [
+"runc_top10"
+]
+},
+"h05": {
+"skill": "uasl/openui@c3154bb34a14",
+"where": [
+"base_top10",
+"runc_top10"
+]
+},
+"h06": {
+"skill": "uasl/product-showcase@47ddb0e168e1",
+"where": [
+"base_top10"
+]
+},
+"h07": {
+"skill": "uasl/vercel-react-best-practices@70f3b5aaf775",
+"where": [
+"base_top10",
+"runc_top10"
+]
+},
+"h08": {
+"skill": "uasl/frontend-design-principles@e9b2a10a43d1",
+"where": [
+"base_top10"
+]
+},
+"h09": {
+"skill": "uasl/vercel-cli-with-tokens@3f9c2805c482",
+"where": [
+"base_picks",
+"base_top10",
+"runc_picks",
+"runc_top10"
+]
+}
+},
+"t164": {
+"h01": {
+"skill": "rshankras-claude-code-apple-skills/ui-prototyping@dd1f31aeac7e",
+"where": [
+"runc_top10"
+]
+},
+"h02": {
+"skill": "uasl/thinking-margin-of-safety@2336a8b814d3",
+"where": [
+"base_top10"
+]
+},
+"h03": {
+"skill": "uasl/universal-ai-setup@c9f3fcedeec6",
+"where": [
+"runc_top10"
+]
+},
+"h04": {
+"skill": "uasl/browser-extension-builder@3240e6183c28",
+"where": [
+"base_top10"
+]
+},
+"h05": {
+"skill": "uasl/accord@7f75cd0d8980",
+"where": [
+"base_top10"
+]
+},
+"h06": {
+"skill": "uasl/skill-connection-map@b7d597f0981c",
+"where": [
+"base_top10"
+]
+},
+"h07": {
+"skill": "uasl/darwin@77e74a263e71",
+"where": [
+"base_top10"
+]
+},
+"h08": {
+"skill": "uasl/lore@75372396e6f4",
+"where": [
+"base_top10"
+]
+}
+},
+"t165": {
+"h01": {
+"skill": "affaan-m-ecc/docker-patterns@39f84b55bca5",
+"where": [
+"runc_picks"
+]
+},
+"h02": {
+"skill": "uasl/clay@6c9572941894",
+"where": [
+"base_top10"
+]
+},
+"h03": {
+"skill": "rshankras-claude-code-apple-skills/image-loading@3ae1f4ec9ac6",
+"where": [
+"runc_top10"
+]
+},
+"h04": {
+"skill": "uasl/next-best-practices@ee058f89acea",
+"where": [
+"base_top10"
+]
+}
+},
+"t174": {
+"h01": {
+"skill": "uasl/five-agent-ci-debug@66324570bafb",
+"where": [
+"base_top10"
+]
+},
+"h02": {
+"skill": "rshankras-claude-code-apple-skills/whats-new@247983dbbc05",
+"where": [
+"runc_top10"
+]
+},
+"h03": {
+"skill": "uasl/github-workflow-automation@519f4ba6e482",
+"where": [
+"base_top10"
+]
+},
+"h04": {
+"skill": "rshankras-claude-code-apple-skills/force-update@1d011b931700",
+"where": [
+"runc_top10"
+]
+},
+"h05": {
+"skill": "uasl/imagegen-frontend-mobile@d57843fce66f",
+"where": [
+"base_top10"
+]
+}
+},
+"t179": {
+"h01": {
+"skill": "rshankras-claude-code-apple-skills/analytics-setup@63bd49a554e5",
+"where": [
+"runc_top10"
+]
+},
+"h02": {
+"skill": "rshankras-claude-code-apple-skills/whats-new@247983dbbc05",
+"where": [
+"runc_top10"
+]
+},
+"h03": {
+"skill": "uasl/cro-methodology@898a4d958df2",
+"where": [
+"base_top10"
+]
+},
+"h04": {
+"skill": "uasl/dashboard@537186e4443a",
+"where": [
+"base_top10"
+]
+},
+"h05": {
+"skill": "uasl/thinking-fermi-estimation@2e78f221fd92",
+"where": [
+"base_top10"
+]
+},
+"h06": {
+"skill": "rshankras-claude-code-apple-skills/in-app-events@254f797ee822",
+"where": [
+"runc_top10"
+]
+},
+"h07": {
+"skill": "uasl/mailerlite-automation@45ce991e9569",
+"where": [
+"base_top10"
+]
+}
+},
+"t182": {
+"h01": {
+"skill": "affaan-m-ecc/scientific-db-pubmed-database@697b3fc2d046",
+"where": [
+"runc_top10"
+]
+},
+"h02": {
+"skill": "uasl/roadmap-backcast@7cd18481befb",
+"where": [
+"base_top10"
+]
+},
+"h03": {
+"skill": "uasl/postgresql-table-design@59d09e948243",
+"where": [
+"base_top10"
+]
+},
+"h04": {
+"skill": "rshankras-claude-code-apple-skills/offer-codes-setup@450aa0d50bac",
+"where": [
+"runc_top10"
+]
+},
+"h05": {
+"skill": "uasl/schema@e6f260ce62e0",
+"where": [
+"base_picks",
+"base_top10"
+]
+},
+"h06": {
+"skill": "uasl/sketch@2a8aac6ecc18",
+"where": [
+"base_top10"
+]
+}
+},
+"t190": {
+"h01": {
+"skill": "uasl/error-handling-patterns@4c19ee7d7821",
+"where": [
+"base_top10"
+]
+},
+"h02": {
+"skill": "uasl/owasp-security@9847d3666f75",
+"where": [
+"base_top10"
+]
+}
+},
+"t194": {
+"h01": {
+"skill": "rshankras-claude-code-apple-skills/fitness-functions@0a945cde189a",
+"where": [
+"runc_top10"
+]
+},
+"h02": {
+"skill": "uasl/trigger-dev@d05b3d95379f",
+"where": [
+"base_top10"
+]
+},
+"h03": {
+"skill": "uasl/debug-root-cause@1d7ea4a832dc",
+"where": [
+"base_picks",
+"runc_picks"
+]
+},
+"h04": {
+"skill": "uasl/python-error-handling@8dc34883a143",
+"where": [
+"base_top10"
+]
+},
+"h05": {
+"skill": "rshankras-claude-code-apple-skills/data-export@385685877124",
+"where": [
+"runc_top10"
+]
+}
+},
+"t206": {
+"h01": {
+"skill": "uasl/transformers@0b5f07bd96f0",
+"where": [
+"runc_top10"
+]
+},
+"h02": {
+"skill": "uasl/nextjs-turbopack@b0af0186e13a",
+"where": [
+"base_top10"
+]
+},
+"h03": {
+"skill": "uasl/perf-astro@f72360d52c4a",
+"where": [
+"base_top10"
+]
+},
+"h04": {
+"skill": "uasl/next-upgrade@df465f7770a5",
+"where": [
+"runc_top10"
+]
+},
+"h05": {
+"skill": "uasl/vercel-react-best-practices@70f3b5aaf775",
+"where": [
+"base_picks",
+"base_top10",
+"runc_picks"
+]
+},
+"h06": {
+"skill": "uasl/universal-ai-skills@0128810b6ffe",
+"where": [
+"base_top10",
+"runc_top10"
+]
+},
+"h07": {
+"skill": "uasl/claude-native-claude-api@24c958899f03",
+"where": [
+"base_top10"
+]
+},
+"h08": {
+"skill": "uasl/perf-lighthouse@ccafe273f7d2",
+"where": [
+"base_picks",
+"runc_picks"
+]
+}
+},
+"t218": {
+"h01": {
+"skill": "uasl/compete@c2b41286409b",
+"where": [
+"base_top10"
+]
+},
+"h02": {
+"skill": "uasl/ahrefs-automation@4a20ad8c28ef",
+"where": [
+"base_top10"
+]
+},
+"h03": {
+"skill": "uasl/documentation-lookup@dee6d7478eab",
+"where": [
+"base_picks"
+]
+},
+"h04": {
+"skill": "rshankras-claude-code-apple-skills/competitive-analysis@a1ca02d7648a",
+"where": [
+"runc_top10"
+]
+},
+"h05": {
+"skill": "uasl/web-prototype@9fcfd712fe7c",
+"where": [
+"base_top10"
+]
+},
+"h06": {
+"skill": "anthropics-skills/academy-guide@8b9f8d715b84",
+"where": [
+"base_top10"
+]
+},
+"h07": {
+"skill": "uasl/pm-spec@f01a5865e09d",
+"where": [
+"base_top10"
+]
+}
+},
+"t220": {
+"h01": {
+"skill": "uasl/connect-apps@9a34ce12c40c",
+"where": [
+"base_top10",
+"runc_top10"
+]
+},
+"h02": {
+"skill": "uasl/thinking-margin-of-safety@2336a8b814d3",
+"where": [
+"base_top10",
+"runc_top10"
+]
+},
+"h03": {
+"skill": "anthropics-skills/slack-gif-creator@4e04e7a9eba6",
+"where": [
+"base_top10",
+"runc_top10"
+]
+},
+"h04": {
+"skill": "affaan-m-ecc/kotlin-patterns@94da25eaf618",
+"where": [
+"runc_picks"
+]
+},
+"h05": {
+"skill": "uasl/new-relic-automation@efeb6349c763",
+"where": [
+"base_top10",
+"runc_top10"
+]
+},
+"h06": {
+"skill": "uasl/developer-growth-analysis@4615ad8d56aa",
+"where": [
+"base_top10",
+"runc_top10"
+]
+},
+"h07": {
+"skill": "uasl/contract-testing@b0f4c29940a9",
+"where": [
+"base_top10"
+]
+},
+"h08": {
+"skill": "affaan-m-ecc/healthcare-eval-harness@1615a0481ff7",
+"where": [
+"runc_top10"
+]
+},
+"h09": {
+"skill": "uasl/slack-bot-builder@ce64c6aad24e",
+"where": [
+"base_top10",
+"runc_top10"
+]
+},
+"h10": {
+"skill": "uasl/live-artifact@a7e66be6fd82",
+"where": [
+"base_top10"
+]
+},
+"h11": {
+"skill": "uasl/n8n-mcp-tools-expert@07b0be26e0fd",
+"where": [
+"base_top10",
+"runc_top10"
+]
+}
+},
+"t221": {
+"h01": {
+"skill": "uasl/gsap-core@ca474b7f6296",
+"where": [
+"base_top10"
+]
+},
+"h02": {
+"skill": "affaan-m-ecc/swiftui-patterns@ea4b3d0fc833",
+"where": [
+"runc_picks"
+]
+},
+"h03": {
+"skill": "rshankras-claude-code-apple-skills/coding-best-practices@c3a0f4e9021e",
+"where": [
+"runc_top10"
+]
+},
+"h04": {
+"skill": "rshankras-claude-code-apple-skills/spotlight-indexing@988e4be27c40",
+"where": [
+"runc_top10"
+]
+},
+"h05": {
+"skill": "rshankras-claude-code-apple-skills/visual-intelligence@09e98946bc4f",
+"where": [
+"runc_top10"
+]
+},
+"h06": {
+"skill": "affaan-m-ecc/mle-workflow@5fb9b6889d3a",
+"where": [
+"runc_top10"
+]
+},
+"h07": {
+"skill": "actionbook-rust-skills/domain-ml@272bdcdb41c6",
+"where": [
+"runc_top10"
+]
+},
+"h08": {
+"skill": "rshankras-claude-code-apple-skills/swiftdata-inheritance@2caf07afe561",
+"where": [
+"runc_top10"
+]
+}
+},
+"t225": {
+"h01": {
+"skill": "uasl/similarweb-analytics@938e9f87287b",
+"where": [
+"base_top10"
+]
+},
+"h02": {
+"skill": "rshankras-claude-code-apple-skills/analytics-setup@63bd49a554e5",
+"where": [
+"runc_top10"
+]
+},
+"h03": {
+"skill": "affaan-m-ecc/ml-adoption-playbook@17ecbc5e4d8d",
+"where": [
+"runc_top10"
+]
+},
+"h04": {
+"skill": "uasl/ios-hig-design@81a44fe68e4e",
+"where": [
+"base_top10"
+]
+},
+"h05": {
+"skill": "rshankras-claude-code-apple-skills/usage-insights@ee14bd87a3c1",
+"where": [
+"runc_top10"
+]
+}
+},
+"t239": {
+"h01": {
+"skill": "uasl/thinking-margin-of-safety@2336a8b814d3",
+"where": [
+"base_top10"
+]
+},
+"h02": {
+"skill": "actionbook-rust-skills/rust-symbol-analyzer@c519d33f9d97",
+"where": [
+"runc_top10"
+]
+},
+"h03": {
+"skill": "uasl/aether@06bc728c00e7",
+"where": [
+"base_top10"
+]
+},
+"h04": {
+"skill": "uasl/semgrep-rule-creator@ae4d35a76948",
+"where": [
+"base_top10"
+]
+},
+"h05": {
+"skill": "uasl/debug-root-cause@1d7ea4a832dc",
+"where": [
+"base_picks",
+"runc_picks"
+]
+},
+"h06": {
+"skill": "uasl/ring-central-automation@06c9d910bfec",
+"where": [
+"base_top10"
+]
+}
+},
+"t248": {
+"h01": {
+"skill": "rshankras-claude-code-apple-skills/integration-test-scaffold@afa3e47e2a3c",
+"where": [
+"runc_top10"
+]
+},
+"h02": {
+"skill": "rshankras-claude-code-apple-skills/feature-flags@36c1eb24f661",
+"where": [
+"runc_top10"
+]
+},
+"h03": {
+"skill": "rshankras-claude-code-apple-skills/auth-flow@e5cd1103f31c",
+"where": [
+"runc_picks",
+"runc_top10"
+]
+},
+"h04": {
+"skill": "rshankras-claude-code-apple-skills/app-clip@7642b1674ae5",
+"where": [
+"runc_top10"
+]
+},
+"h05": {
+"skill": "rshankras-claude-code-apple-skills/deep-linking@61d58a1a13e0",
+"where": [
+"runc_top10"
+]
+},
+"h06": {
+"skill": "uasl/visual-design-foundations@f7829f5da0d2",
+"where": [
+"base_top10"
+]
+},
+"h07": {
+"skill": "uasl/fuzzing-dictionary@1b7491e2ab32",
+"where": [
+"base_top10"
+]
+},
+"h08": {
+"skill": "uasl/security-review@fcc354bc486e",
+"where": [
+"base_picks"
+]
+},
+"h09": {
+"skill": "rshankras-claude-code-apple-skills/account-deletion@51dc596c571c",
+"where": [
+"runc_top10"
+]
+},
+"h10": {
+"skill": "rshankras-claude-code-apple-skills/background-processing@6a2448296187",
+"where": [
+"runc_top10"
+]
+}
+},
+"t250": {
+"h01": {
+"skill": "uasl/product-showcase@47ddb0e168e1",
+"where": [
+"base_top10"
+]
+},
+"h02": {
+"skill": "uasl/gauge@b84b3ee9b507",
+"where": [
+"base_top10"
+]
+},
+"h03": {
+"skill": "uasl/slack-bot-builder@ce64c6aad24e",
+"where": [
+"base_top10"
+]
+},
+"h04": {
+"skill": "rshankras-claude-code-apple-skills/store-growth-audit@35fa53c25c7a",
+"where": [
+"runc_top10"
+]
+},
+"h05": {
+"skill": "uasl/security-review@fcc354bc486e",
+"where": [
+"base_picks"
+]
+},
+"h06": {
+"skill": "rshankras-claude-code-apple-skills/toolbars@98ba7ffe1e0d",
+"where": [
+"runc_top10"
+]
+},
+"h07": {
+"skill": "rshankras-claude-code-apple-skills/webkit-integration@21101fec565c",
+"where": [
+"runc_top10"
+]
+},
+"h08": {
+"skill": "uasl/bitwarden-automation@67c816169096",
+"where": [
+"base_top10"
+]
+},
+"h09": {
+"skill": "uasl/imagegen-frontend-mobile@d57843fce66f",
+"where": [
+"base_top10"
+]
+}
+},
+"t264": {
+"h01": {
+"skill": "rshankras-claude-code-apple-skills/spatial-design@46d2b647d0f5",
+"where": [
+"runc_top10"
+]
+},
+"h02": {
+"skill": "actionbook-rust-skills/m10-performance@c46289fecbad",
+"where": [
+"runc_picks"
+]
+},
+"h03": {
+"skill": "uasl/bolt@c4895c710162",
+"where": [
+"base_picks"
+]
+},
+"h04": {
+"skill": "rshankras-claude-code-apple-skills/apple-search-ads@34b6e210c01d",
+"where": [
+"runc_top10"
+]
+},
+"h05": {
+"skill": "uasl/dot@e787e142131c",
+"where": [
+"base_top10"
+]
+},
+"h06": {
+"skill": "uasl/chaos-testing@760793a4a18b",
+"where": [
+"base_top10"
+]
+},
+"h07": {
+"skill": "uasl/sketch@2a8aac6ecc18",
+"where": [
+"base_top10"
+]
+}
+},
+"t266": {
+"h01": {
+"skill": "uasl/next-best-practices@ee058f89acea",
+"where": [
+"base_top10"
+]
+},
+"h02": {
+"skill": "uasl/specter@eeba33cf9245",
+"where": [
+"base_picks"
+]
+},
+"h03": {
+"skill": "rshankras-claude-code-apple-skills/share-card@9cba2efcf948",
+"where": [
+"runc_top10"
+]
+},
+"h04": {
+"skill": "rshankras-claude-code-apple-skills/concurrency-patterns@1739fd5742ea",
+"where": [
+"runc_top10"
+]
+},
+"h05": {
+"skill": "uasl/googlephotos-automation@0b2d3403ccba",
+"where": [
+"base_top10"
+]
+},
+"h06": {
+"skill": "uasl/audio-jingle@a4d3695ad5fd",
+"where": [
+"base_top10"
+]
+},
+"h07": {
+"skill": "uasl/sketch@2a8aac6ecc18",
+"where": [
+"base_top10"
+]
+}
+},
+"t268": {
+"h01": {
+"skill": "uasl/debug-root-cause@1d7ea4a832dc",
+"where": [
+"base_picks"
+]
+},
+"h02": {
+"skill": "uasl/data-schema-knowledge-modeling@c06f86b10d33",
+"where": [
+"base_top10"
+]
+},
+"h03": {
+"skill": "uasl/d3-visualization@739528fdf78d",
+"where": [
+"base_top10"
+]
+},
+"h04": {
+"skill": "uasl/netsuite-automation@b615a37449c9",
+"where": [
+"base_top10"
+]
+},
+"h05": {
+"skill": "affaan-m-ecc/rails-patterns@69affc69f47b",
+"where": [
+"runc_top10"
+]
+},
+"h06": {
+"skill": "uasl/sql-optimization-patterns@389f90da7b56",
+"where": [
+"base_picks",
+"base_top10"
+]
+}
+},
+"t270": {
+"h01": {
+"skill": "rshankras-claude-code-apple-skills/whats-new@247983dbbc05",
+"where": [
+"runc_top10"
+]
+},
+"h02": {
+"skill": "uasl/everything-claude-code@dad489339e1e",
+"where": [
+"base_top10"
+]
+},
+"h03": {
+"skill": "affaan-m-ecc/dashboard-builder@fca53fcaed64",
+"where": [
+"runc_top10"
+]
+},
+"h04": {
+"skill": "uasl/tdd@ff86dad94075",
+"where": [
+"base_top10"
+]
+},
+"h05": {
+"skill": "affaan-m-ecc/benchmark-optimization-loop@1212005fae1e",
+"where": [
+"runc_picks"
+]
+}
+},
+"t281": {
+"h01": {
+"skill": "affaan-m-ecc/browser-qa@d20ced555a0f",
+"where": [
+"runc_top10"
+]
+},
+"h02": {
+"skill": "uasl/loom@e731d9ef70c3",
+"where": [
+"base_top10"
+]
+},
+"h03": {
+"skill": "uasl/soft-skill@4dd04c5022d2",
+"where": [
+"base_top10",
+"runc_top10"
+]
+},
+"h04": {
+"skill": "uasl/spec-to-code-compliance@dee9b880b526",
+"where": [
+"base_top10"
+]
+},
+"h05": {
+"skill": "uasl/accessibility-compliance@696d2b4119ed",
+"where": [
+"base_picks"
+]
+},
+"h06": {
+"skill": "uasl/web-component-design@af6d16dc78dc",
+"where": [
+"base_top10",
+"runc_top10"
+]
+},
+"h07": {
+"skill": "uasl/next-best-practices@ee058f89acea",
+"where": [
+"base_picks"
+]
+},
+"h08": {
+"skill": "affaan-m-ecc/frontend-a11y@635c71ee05ce",
+"where": [
+"runc_picks"
+]
+},
+"h09": {
+"skill": "rshankras-claude-code-apple-skills/external-purchases@386fb87cfa56",
+"where": [
+"runc_top10"
+]
+},
+"h10": {
+"skill": "uasl/figma-implement-design@6f82bf7fa5ca",
+"where": [
+"base_picks",
+"runc_picks"
+]
+},
+"h11": {
+"skill": "uasl/scaffold-nextjs@3d1152f5d9d0",
+"where": [
+"runc_top10"
+]
+},
+"h12": {
+"skill": "uasl/tailwind-design-system@7db0651a06b1",
+"where": [
+"base_top10",
+"runc_top10"
+]
+},
+"h13": {
+"skill": "uasl/invoice@234bae53884f",
+"where": [
+"base_top10",
+"runc_top10"
+]
+},
+"h14": {
+"skill": "uasl/gpt-tasteskill@134558e228c5",
+"where": [
+"base_top10"
+]
+},
+"h15": {
+"skill": "uasl/shadcn-ui@8c463642324a",
+"where": [
+"base_top10"
+]
+},
+"h16": {
+"skill": "uasl/dashboard@537186e4443a",
+"where": [
+"base_top10",
+"runc_top10"
+]
+}
+},
+"t287": {
+"h01": {
+"skill": "uasl/brutalist-skill@29fc0f9ccf21",
+"where": [
+"base_top10",
+"runc_top10"
+]
+},
+"h02": {
+"skill": "uasl/secure-coding-practices@cc37fcd8687e",
+"where": [
+"base_top10"
+]
+},
+"h03": {
+"skill": "uasl/landing-page@455a3c3ba6f7",
+"where": [
+"base_top10"
+]
+},
+"h04": {
+"skill": "uasl/frontend-design@5da82907743d",
+"where": [
+"base_top10"
+]
+},
+"h05": {
+"skill": "uasl/redesign-skill@2e4f7f16e367",
+"where": [
+"base_picks",
+"base_top10",
+"runc_picks",
+"runc_top10"
+]
+}
+},
+"t297": {
+"h01": {
+"skill": "uasl/googlemeet-automation@d25b5982718c",
+"where": [
+"base_top10"
+]
+},
+"h02": {
+"skill": "uasl/interaction-design@7c9d38549c2b",
+"where": [
+"base_top10"
+]
+},
+"h03": {
+"skill": "uasl/refactoring-ui@a0c00159d43d",
+"where": [
+"base_picks"
+]
+},
+"h04": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/image-loading@44ed04c73779",
+"where": [
+"runc_picks"
+]
+},
+"h05": {
+"skill": "ahmed3elshaer-everything-claude-code-mobile/shared-models@ba605fce8904",
+"where": [
+"runc_top10"
+]
+}
+},
+"t299": {
+"h01": {
+"skill": "uasl/vercel-react-native-skills@6e314641b44a",
+"where": [
+"base_picks",
+"runc_picks",
+"runc_top10"
+]
+},
+"h02": {
+"skill": "uasl/security-review@fcc354bc486e",
+"where": [
+"base_top10"
+]
+},
+"h03": {
+"skill": "uasl/refactoring-ui@a0c00159d43d",
+"where": [
+"base_picks",
+"runc_picks"
+]
+},
+"h04": {
+"skill": "uasl/web-component-design@af6d16dc78dc",
+"where": [
+"base_top10",
+"runc_top10"
+]
+},
+"h05": {
+"skill": "uasl/claude-native-theme-factory@4ef38be1dfbf",
+"where": [
+"base_top10"
+]
+}
+},
+"t346": {
+"h01": {
+"skill": "uasl/meeting-notes@da1c35784ab9",
+"where": [
+"base_top10"
+]
+},
+"h02": {
+"skill": "uasl/next-cache-components@b22f6e134147",
+"where": [
+"base_top10"
+]
+},
+"h03": {
+"skill": "uasl/tweaks@800b9d426375",
+"where": [
+"base_top10"
+]
+},
+"h04": {
+"skill": "uasl/supabase-postgres-best-practices@af167084fda1",
+"where": [
+"base_top10"
+]
+},
+"h05": {
+"skill": "affaan-m-ecc/latency-critical-systems@ed19fb1b5f10",
+"where": [
+"runc_picks"
+]
+},
+"h06": {
+"skill": "uasl/sql-optimization-patterns@389f90da7b56",
+"where": [
+"base_picks",
+"base_top10",
+"runc_picks"
+]
+},
+"h07": {
+"skill": "rshankras-claude-code-apple-skills/image-loading@3ae1f4ec9ac6",
+"where": [
+"runc_top10"
+]
+}
+},
+"t353": {
+"h01": {
+"skill": "uasl/tdd@ff86dad94075",
+"where": [
+"base_picks"
+]
+},
+"h02": {
+"skill": "uasl/press-release@705776e510df",
+"where": [
+"base_top10"
+]
+},
+"h03": {
+"skill": "uasl/thinking-map-territory@329a6f9a1863",
+"where": [
+"base_top10"
+]
+},
+"h04": {
+"skill": "uasl/wycheproof@8924e1e4bfb6",
+"where": [
+"base_top10"
+]
+},
+"h05": {
+"skill": "uasl/launch@117c5509679d",
+"where": [
+"base_top10"
+]
+}
+},
+"t358": {
+"h01": {
+"skill": "uasl/documentation-lookup@dee6d7478eab",
+"where": [
+"base_top10",
+"runc_top10"
+]
+},
+"h02": {
+"skill": "uasl/find-skills@b7dc2a876b3e",
+"where": [
+"base_top10",
+"runc_top10"
+]
+},
+"h03": {
+"skill": "uasl/printing-press-output-review@35c772127bb2",
+"where": [
+"base_top10",
+"runc_top10"
+]
+},
+"h04": {
+"skill": "uasl/docs-page@d9c05e10601d",
+"where": [
+"base_top10"
+]
+},
+"h05": {
+"skill": "uasl/printing-press-catalog@3572c42ad04d",
+"where": [
+"base_top10",
+"runc_top10"
+]
+},
+"h06": {
+"skill": "uasl/cli-windows-powershell-mastery@88aa890eefd5",
+"where": [
+"base_top10",
+"runc_top10"
+]
+},
+"h07": {
+"skill": "uasl/quill@336ba74b0e79",
+"where": [
+"base_picks"
+]
+},
+"h08": {
+"skill": "uasl/github-gem-seeker@759ed0b02cdc",
+"where": [
+"base_top10"
+]
+}
+},
+"t360": {
+"h01": {
+"skill": "uasl/flow@d1423e53e763",
+"where": [
+"base_top10"
+]
+},
+"h02": {
+"skill": "actionbook-rust-skills/rust-learner@2a967e43636a",
+"where": [
+"runc_top10"
+]
+},
+"h03": {
+"skill": "uasl/clay@6c9572941894",
+"where": [
+"base_top10"
+]
+},
+"h04": {
+"skill": "rshankras-claude-code-apple-skills/auth-flow@e5cd1103f31c",
+"where": [
+"runc_top10"
+]
+},
+"h05": {
+"skill": "uasl/secure-coding-practices@cc37fcd8687e",
+"where": [
+"base_picks",
+"runc_picks"
+]
+},
+"h06": {
+"skill": "uasl/find-bugs@c3ff7d64ff9f",
+"where": [
+"base_picks"
+]
+},
+"h07": {
+"skill": "uasl/documentation-lookup@dee6d7478eab",
+"where": [
+"base_picks"
+]
+},
+"h08": {
+"skill": "actionbook-rust-skills/domain-web@e85236f514d2",
+"where": [
+"runc_picks"
+]
+}
+},
+"t366": {
+"h01": {
+"skill": "affaan-m-ecc/api-design@2c61753734ba",
+"where": [
+"runc_top10"
+]
+},
+"h02": {
+"skill": "uasl/backend-patterns@3d87ff489f3e",
+"where": [
+"base_top10"
+]
+},
+"h03": {
+"skill": "uasl/sentinel@68f8e2afebcc",
+"where": [
+"base_top10"
+]
+},
+"h04": {
+"skill": "uasl/secure-coding-practices@cc37fcd8687e",
+"where": [
+"base_top10"
+]
+}
+},
+"t376": {
+"h01": {
+"skill": "uasl/hooked-ux@64362f56c26b",
+"where": [
+"base_top10"
+]
+},
+"h02": {
+"skill": "rshankras-claude-code-apple-skills/lapsed-user@6d5b063ed626",
+"where": [
+"runc_top10"
+]
+},
+"h03": {
+"skill": "rshankras-claude-code-apple-skills/whats-new@247983dbbc05",
+"where": [
+"runc_top10"
+]
+},
+"h04": {
+"skill": "rshankras-claude-code-apple-skills/push-notifications@2b29207522c5",
+"where": [
+"runc_top10"
+]
+},
+"h05": {
+"skill": "uasl/thinking-archetypes@48c7ccc46e1c",
+"where": [
+"base_top10"
+]
+},
+"h06": {
+"skill": "rshankras-claude-code-apple-skills/onboarding-generator@8e65269d8b65",
+"where": [
+"runc_top10"
+]
+},
+"h07": {
+"skill": "uasl/googlemeet-automation@d25b5982718c",
+"where": [
+"base_top10"
+]
+},
+"h08": {
+"skill": "uasl/printing-press-reprint@af02d260d0be",
+"where": [
+"base_top10"
+]
+},
+"h09": {
+"skill": "rshankras-claude-code-apple-skills/streak-tracker@5e9737188984",
+"where": [
+"runc_top10"
+]
+},
+"h10": {
+"skill": "uasl/debug-root-cause@1d7ea4a832dc",
+"where": [
+"base_picks"
+]
+},
+"h11": {
+"skill": "anthropics-skills/pptx@4eb5e13af97f",
+"where": [
+"base_top10"
+]
+},
+"h12": {
+"skill": "uasl/nextjs-turbopack@b0af0186e13a",
+"where": [
+"base_top10"
+]
+}
+}
+}

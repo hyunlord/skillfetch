@@ -1,0 +1,28 @@
+diff --git a/backend/app/models.py b/backend/app/models.py
+index 181acf2..47538b7 100644
+--- a/backend/app/models.py
++++ b/backend/app/models.py
+@@ -1,7 +1,7 @@
+ import uuid
+ from datetime import UTC, datetime
+ 
+-from pydantic import EmailStr
++from pydantic import EmailStr, field_validator
+ from sqlmodel import Field, Relationship, SQLModel
+ 
+ 
+@@ -82,6 +82,14 @@ class ItemUpdate(SQLModel):
+     title: str | None = Field(default=None, min_length=1, max_length=255)
+     description: str | None = Field(default=None, max_length=255)
+ 
++    @field_validator("title")
++    @classmethod
++    def _title_not_null(cls, value: str | None) -> str:
++        # title may be omitted, but not set to null (the column is NOT NULL)
++        if value is None:
++            raise ValueError("title cannot be null")
++        return value
++
+ 
+ # Database model, database table inferred from class name
+ class Item(ItemBase, table=True):

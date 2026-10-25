@@ -1,0 +1,14 @@
+A coding agent can load short instruction documents ("skills") before it starts a job. For the developer request
+below, rate each listed skill on this scale:
+
+- 3: this skill is written for exactly this kind of job; the agent should certainly load it
+- 2: loading it would noticeably improve the result
+- 1: only loosely connected; loading it would hardly matter
+- 0: irrelevant, for another language/tool, or likely to push the work in a wrong direction
+
+Requests that are tiny (rename, typo, single-line change, a plain question) almost never warrant a 2 or a 3.
+
+For each skill also say whether it is a "process" skill — one that prescribes a way of working (e.g. write tests
+first, plan first, a debugging or review procedure) — as opposed to one about a technology or domain.
+
+Reply with JSON only, one entry per listed skill: [{"skill": "<id>", "grade": <0-3>, "process": <true/false>}]

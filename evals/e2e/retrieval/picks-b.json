@@ -1,0 +1,237 @@
+{
+ "s1-fa-01-r1#1": {
+  "ids": [
+   "uasl/api-design@bba608f8c974",
+   "uasl/python-testing-patterns@e62d0f1ca316"
+  ],
+  "why": "Query-param/422 contract design plus pytest patterns for the new tests"
+ },
+ "s1-fa-03-r2#1": {
+  "ids": [
+   "uasl/frontend-patterns@8f659ce2a0bd"
+  ],
+  "why": "React data-fetching/component patterns; design skills push novel aesthetics, conflicting with matching existing styles"
+ },
+ "s1-fa-07-r1#1": {
+  "ids": [
+   "uasl/python-testing-patterns@e62d0f1ca316",
+   "uasl/auth-implementation-patterns@7a99b395d548"
+  ],
+  "why": "pytest fixtures/failure-path tests plus JWT validation semantics"
+ },
+ "s1-fa-10-r1#1": {
+  "ids": [
+   "uasl/quill@336ba74b0e79"
+  ],
+  "why": "README/documentation accuracy skill fits the env-var table task"
+ },
+ "s1-nx-04-r2#1": {
+  "ids": [
+   "uasl/responsive-design@2cf7927ef938",
+   "uasl/next-best-practices@ee058f89acea"
+  ],
+  "why": "Responsive card grid (one column on narrow) plus Next.js Link/routing practices"
+ },
+ "s1-nx-07-r2#1": {
+  "ids": [
+   "uasl/unit-testing@6c5fbb821103"
+  ],
+  "why": "Generic component unit-testing guidance; no Vitest/RTL-specific candidate"
+ },
+ "s1b-fa-landing-r1#1": {
+  "ids": [
+   "anthropics-skills/frontend-design@0a5ff23f1022",
+   "uasl/copywriting@67282b309ff8"
+  ],
+  "why": "Distinctive landing UI in the React frontend plus hero/feature/CTA copy"
+ },
+ "s1b-fa-tags-plan-r1#1": {
+  "ids": [
+   "uasl/api-design@bba608f8c974",
+   "uasl/fastapi-endpoint@2a93d50c4970"
+  ],
+  "why": "REST design for tag endpoints and explore-plan-build-test FastAPI endpoint workflow"
+ },
+ "s1b-nx-landing-r1#1": {
+  "ids": [
+   "anthropics-skills/frontend-design@0a5ff23f1022",
+   "uasl/copywriting@67282b309ff8",
+   "uasl/next-best-practices@ee058f89acea"
+  ],
+  "why": "Landing page design, marketing copy, and Next.js page conventions"
+ },
+ "s1-fa-02-r1#1": {
+  "ids": [
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/fastapi-templates@effcd0de0b4c"
+  ],
+  "why": "FastAPI model/schema/endpoint patterns; nothing Alembic-specific available"
+ },
+ "s1-fa-05-r1#1": {
+  "ids": [
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/python-design-patterns@5c0fbe0d4633"
+  ],
+  "why": "FastAPI dependency injection plus Python DI refactor guidance"
+ },
+ "s1-fa-07-r2#1": {
+  "ids": [
+   "uasl/python-testing-patterns@e62d0f1ca316",
+   "uasl/integration-testing@62b51275be50"
+  ],
+  "why": "pytest fixtures/failure-path tests and API-level integration tests with real DB"
+ },
+ "s1-nx-02-r1#1": {
+  "ids": [
+   "uasl/api-design@bba608f8c974",
+   "uasl/next-best-practices@ee058f89acea"
+  ],
+  "why": "REST status/error contract and Next.js routing conventions"
+ },
+ "s1-nx-06-r1#1": {
+  "ids": [
+   "uasl/zen@f72229d0a781",
+   "uasl/software-design-philosophy@066bc275787f"
+  ],
+  "why": "behavior-preserving refactor and small deep data-access module design"
+ },
+ "s1-nx-08-r1#1": {
+  "ids": [
+   "uasl/unit-testing@6c5fbb821103",
+   "uasl/typescript-unit-testing@6fb3561edcb3"
+  ],
+  "why": "isolated unit tests with Jest in TypeScript"
+ },
+ "s1b-fa-landing-r2#1": {
+  "ids": [
+   "anthropics-skills/frontend-design@0a5ff23f1022",
+   "uasl/copywriting@67282b309ff8"
+  ],
+  "why": "distinctive in-repo page design plus hero/feature/CTA copy"
+ },
+ "s1b-fa-tags-plan-r2#1": {
+  "ids": [
+   "uasl/writing-plans@219901eb119f",
+   "uasl/fastapi-endpoint@2a93d50c4970"
+  ],
+  "why": "PLAN.md first, then FastAPI endpoint implementation"
+ },
+ "s1b-nx-landing-r2#1": {
+  "ids": [
+   "anthropics-skills/frontend-design@0a5ff23f1022",
+   "uasl/copywriting@67282b309ff8"
+  ],
+  "why": "distinctive landing UI plus conversion copy for hero/pricing/CTA"
+ },
+ "s1-fa-02-r2#1": {
+  "ids": [
+   "uasl/fastapi-templates@effcd0de0b4c"
+  ],
+  "why": "FastAPI model/schema/API patterns; no Alembic-specific skill available"
+ },
+ "s1-fa-06-r1#1": {
+  "ids": [
+   "uasl/python-testing-patterns@e62d0f1ca316",
+   "uasl/radar@a47ea6fd5f95"
+  ],
+  "why": "pytest fixtures/patterns plus following the repo's existing test conventions"
+ },
+ "s1-fa-08-r1#1": {
+  "ids": [
+   "uasl/fastapi-endpoint@2a93d50c4970"
+  ],
+  "why": "FastAPI Pydantic schema validation and endpoint test coverage"
+ },
+ "s1-nx-02-r2#1": {
+  "ids": [
+   "uasl/next-best-practices@ee058f89acea",
+   "uasl/api-design@bba608f8c974"
+  ],
+  "why": "Next.js routing conventions plus REST status/error response design"
+ },
+ "s1-nx-06-r2#1": {
+  "ids": [
+   "uasl/zen@f72229d0a781",
+   "uasl/next-best-practices@ee058f89acea"
+  ],
+  "why": "behavior-preserving refactor in a Next.js data-access context"
+ },
+ "s1-nx-08-r2#1": {
+  "ids": [
+   "uasl/unit-testing@6c5fbb821103",
+   "uasl/radar@a47ea6fd5f95"
+  ],
+  "why": "isolated unit tests for data-fetching functions following project test conventions"
+ },
+ "s1b-fa-service-r1#1": {
+  "ids": [
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/python-design-patterns@5c0fbe0d4633",
+   "uasl/refactoring-patterns@7283bad3e86e"
+  ],
+  "why": "FastAPI service-layer structure, Python separation of concerns, behavior-preserving refactoring"
+ },
+ "s1b-fa-utils-tests-r1#1": {
+  "ids": [
+   "uasl/python-testing-patterns@e62d0f1ca316",
+   "uasl/radar@a47ea6fd5f95"
+  ],
+  "why": "pytest patterns/mocks plus matching existing backend test conventions"
+ },
+ "s1-fa-03-r1#1": {
+  "ids": [
+   "uasl/frontend-patterns@8f659ce2a0bd"
+  ],
+  "why": "React component/data-fetching patterns; aesthetic-redesign skills conflict with matching existing styles"
+ },
+ "s1-fa-06-r2#1": {
+  "ids": [
+   "uasl/python-testing-patterns@e62d0f1ca316",
+   "uasl/radar@a47ea6fd5f95",
+   "uasl/integration-testing@62b51275be50"
+  ],
+  "why": "pytest patterns following existing test conventions, DB-backed API tests"
+ },
+ "s1-fa-08-r2#1": {
+  "ids": [
+   "uasl/debug-root-cause@1d7ea4a832dc",
+   "uasl/python-testing-patterns@e62d0f1ca316"
+  ],
+  "why": "reproduce and minimally fix the 500, add pytest regression test"
+ },
+ "s1-nx-04-r1#1": {
+  "ids": [
+   "uasl/responsive-design@2cf7927ef938",
+   "uasl/next-best-practices@ee058f89acea"
+  ],
+  "why": "responsive card grid collapsing on narrow screens in Next.js"
+ },
+ "s1-nx-07-r1#1": {
+  "ids": [
+   "uasl/unit-testing@6c5fbb821103",
+   "uasl/documentation-lookup@dee6d7478eab"
+  ],
+  "why": "component unit tests plus current Vitest/RTL setup docs"
+ },
+ "s1-nx-10-r1#1": {
+  "ids": [
+   "uasl/quill@336ba74b0e79"
+  ],
+  "why": "documentation/type-clarity work preserving runtime behavior"
+ },
+ "s1b-fa-service-r2#1": {
+  "ids": [
+   "uasl/python-design-patterns@5c0fbe0d4633",
+   "uasl/refactoring-patterns@7283bad3e86e",
+   "uasl/fastapi-templates@effcd0de0b4c"
+  ],
+  "why": "behavior-preserving extraction of a FastAPI service layer"
+ },
+ "s1b-fa-utils-tests-r2#1": {
+  "ids": [
+   "uasl/python-testing-patterns@e62d0f1ca316",
+   "uasl/unit-testing@6c5fbb821103"
+  ],
+  "why": "pytest unit tests with mocks for helper module"
+ }
+}

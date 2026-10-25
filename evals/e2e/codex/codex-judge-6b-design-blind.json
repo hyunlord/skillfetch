@@ -1,0 +1,348 @@
+[
+  {
+    "task": "d1-landing",
+    "code": "27562c2e",
+    "ai_items": [
+      8
+    ],
+    "ai_count": 1,
+    "score": 5,
+    "reason": "8번: pill CTA 반복. 실제 사용자 목록 예시, 기능 3개·가격·CTA가 명료하며 좁은 화면에서도 읽기 쉽다.",
+    "rank": 2
+  },
+  {
+    "task": "d1-landing",
+    "code": "9a813dcd",
+    "ai_items": [
+      8
+    ],
+    "ai_count": 1,
+    "score": 4,
+    "reason": "8번: pill CTA 반복. 세 기능과 가격은 잘 전달하나 이름 외 역할·팀 검색 약속이 제품 설명을 과장하며 모바일 명찰의 줄바꿈이 과하다.",
+    "rank": 4
+  },
+  {
+    "task": "d1-landing",
+    "code": "9cf001e6",
+    "ai_items": [
+      8
+    ],
+    "ai_count": 1,
+    "score": 5,
+    "reason": "8번: pill CTA 반복. 이름·프로필·JSON API를 구체적으로 보여주고 가격과 다음 행동이 명확하며 모바일 재배치도 안정적이다.",
+    "rank": 2
+  },
+  {
+    "task": "d1-landing",
+    "code": "a609a2f3",
+    "ai_items": [],
+    "ai_count": 0,
+    "score": 5,
+    "reason": "체크 항목 없음. 목록 시연과 세 경로별 기능 설명, 가격 및 CTA의 위계가 분명하고 모바일에서도 내용 손실이 없다.",
+    "rank": 1
+  },
+  {
+    "task": "d1-landing",
+    "code": "bd8dc7a7",
+    "ai_items": [
+      8
+    ],
+    "ai_count": 1,
+    "score": 4,
+    "reason": "8번: pill CTA 반복. 명찰 표현과 반응형은 좋으나 직무·연락처·직원 자체 갱신 등 화면으로 확인할 수 없는 제품 약속이 많다.",
+    "rank": 4
+  },
+  {
+    "task": "d1-landing",
+    "code": "c4c399b0",
+    "ai_items": [
+      8
+    ],
+    "ai_count": 1,
+    "score": 4,
+    "reason": "8번: pill CTA 반복. 게시판 콘셉트와 세 기능·가격이 일관되지만 시연 이름이 반쯤 사라진 캡처와 취소선 숫자가 첫 인지를 방해한다.",
+    "rank": 4
+  },
+  {
+    "task": "d1-landing",
+    "code": "caf0bf81",
+    "ai_items": [
+      1,
+      5,
+      6
+    ],
+    "ai_count": 3,
+    "score": 4,
+    "reason": "1·5·6번: 보라 그라데이션 히어로, 이모지 기능 표식, 3열 기능 그리드. 필수 섹션과 모바일 흐름은 완결되나 일반적인 기술 홍보에 치우친다.",
+    "rank": 7
+  },
+  {
+    "task": "d1-landing",
+    "code": "f96d2a65",
+    "ai_items": [
+      1,
+      5,
+      6
+    ],
+    "ai_count": 3,
+    "score": 4,
+    "reason": "1·5·6번: 청보라 그라데이션 히어로 글자, 이모지, 3열 기능 그리드. 요구 섹션이 잘 보이지만 모바일 마지막 CTA의 단어 줄바꿈과 추상적 소개가 아쉽다.",
+    "rank": 7
+  },
+  {
+    "task": "d1-landing",
+    "code": "fc9d2553",
+    "ai_items": [
+      1,
+      5,
+      6
+    ],
+    "ai_count": 3,
+    "score": 4,
+    "reason": "1·5·6번: 보라 그라데이션 히어로 글자, 이모지, 3열 기능 그리드. 스타터 제품 설명·기능·가격은 충족하나 모바일 마지막 CTA에서 한 글자 줄이 생긴다.",
+    "rank": 7
+  },
+  {
+    "task": "d2-redesign",
+    "code": "04934cda",
+    "ai_items": [],
+    "ai_count": 0,
+    "score": 4,
+    "reason": "체크 항목 없음. 이름과 ID 위계 및 모바일 카드가 명확하지만 내부 구현 설명이 주 부제이고 데스크톱 3+1 배치가 다소 성기다.",
+    "rank": 7
+  },
+  {
+    "task": "d2-redesign",
+    "code": "3b961cc1",
+    "ai_items": [],
+    "ai_count": 0,
+    "score": 5,
+    "reason": "체크 항목 없음. 인원수·선택 안내·이름·보조 ID가 정돈되고 모바일에서 ID를 아래로 옮겨 목록 탐색이 쉽다.",
+    "rank": 1
+  },
+  {
+    "task": "d2-redesign",
+    "code": "4041e542",
+    "ai_items": [],
+    "ai_count": 0,
+    "score": 4,
+    "reason": "체크 항목 없음. 모바일 카드가 안정적이나 구현 설명과 별도 인원수 행이 목록 위 공간을 과하게 차지한다.",
+    "rank": 7
+  },
+  {
+    "task": "d2-redesign",
+    "code": "6c787950",
+    "ai_items": [],
+    "ai_count": 0,
+    "score": 5,
+    "reason": "체크 항목 없음. 간결한 인원수와 선택 안내, 일관된 행 구분 및 모바일 이름/ID 위계가 요청을 충족한다.",
+    "rank": 1
+  },
+  {
+    "task": "d2-redesign",
+    "code": "81b24ee3",
+    "ai_items": [],
+    "ai_count": 0,
+    "score": 5,
+    "reason": "체크 항목 없음. 네 사용자에 맞는 데스크톱 2열과 모바일 1열이 균형적이며 이름·ID·진입 표시를 빠르게 읽을 수 있다.",
+    "rank": 1
+  },
+  {
+    "task": "d2-redesign",
+    "code": "a311acb4",
+    "ai_items": [],
+    "ai_count": 0,
+    "score": 4,
+    "reason": "체크 항목 없음. 경로 탐색과 모바일 카드는 좋지만 구현 설명이 핵심 안내를 대신하고 데스크톱 마지막 단독 카드가 남는다.",
+    "rank": 7
+  },
+  {
+    "task": "d2-redesign",
+    "code": "b07a6ddd",
+    "ai_items": [],
+    "ai_count": 0,
+    "score": 5,
+    "reason": "체크 항목 없음. 사용자 선택 안내를 먼저 두고 기술 설명은 하단으로 내렸으며 모바일 터치 영역과 글자 위계가 선명하다.",
+    "rank": 1
+  },
+  {
+    "task": "d2-redesign",
+    "code": "d4cfa666",
+    "ai_items": [],
+    "ai_count": 0,
+    "score": 5,
+    "reason": "체크 항목 없음. 경로·인원·목록·상세 진입의 위계가 일관되고 좁은 화면에서도 이름과 ID가 명확하다.",
+    "rank": 1
+  },
+  {
+    "task": "d2-redesign",
+    "code": "ec3d29da",
+    "ai_items": [],
+    "ai_count": 0,
+    "score": 5,
+    "reason": "체크 항목 없음. 간결한 선택 안내와 큰 사용자 카드, 하단의 보조 설명이 모바일에서도 잘 구분된다.",
+    "rank": 1
+  },
+  {
+    "task": "d3-dashboard",
+    "code": "14cadca9",
+    "ai_items": [],
+    "ai_count": 0,
+    "score": 3,
+    "reason": "체크 항목 없음. 카드·차트·표는 있지만 이름순 누적 수를 설명 없이 User growth로 제시하여 오해를 부르고 모바일 차트 글자가 매우 작다.",
+    "rank": 6
+  },
+  {
+    "task": "d3-dashboard",
+    "code": "3c7c204d",
+    "ai_items": [],
+    "ai_count": 0,
+    "score": 4,
+    "reason": "체크 항목 없음. 요약·최근 표와 누적 차트는 완결되나 ID를 가입 순서로 단정하고 모바일 축 글자가 작다.",
+    "rank": 2
+  },
+  {
+    "task": "d3-dashboard",
+    "code": "4054f84b",
+    "ai_items": [],
+    "ai_count": 0,
+    "score": 4,
+    "reason": "체크 항목 없음. 이름 길이와 ID 기반 최근 순서를 명시하고 표도 좁은 폭에 맞지만 모바일 차트 라벨이 지나치게 작다.",
+    "rank": 2
+  },
+  {
+    "task": "d3-dashboard",
+    "code": "473036e9",
+    "ai_items": [],
+    "ai_count": 0,
+    "score": 3,
+    "reason": "체크 항목 없음. 요약과 월별 차트는 명료하나 좁은 화면에서 최근 사용자 표가 카드와 화면 밖으로 넘쳐 날짜 읽기가 불편하다.",
+    "rank": 6
+  },
+  {
+    "task": "d3-dashboard",
+    "code": "4ddafee8",
+    "ai_items": [],
+    "ai_count": 0,
+    "score": 3,
+    "reason": "체크 항목 없음. 대시보드 구성은 갖췄으나 모바일 최근 표에서 상태·가입일이 잘리고 스크롤 가능성 안내가 없어 핵심 정보 확인이 어렵다.",
+    "rank": 6
+  },
+  {
+    "task": "d3-dashboard",
+    "code": "95abbb10",
+    "ai_items": [],
+    "ai_count": 0,
+    "score": 5,
+    "reason": "체크 항목 없음. 날짜가 없어 최근을 ID로 대체한다는 한계를 명시하며 카드·누적 차트·최근 표가 두 폭에서 정돈된다.",
+    "rank": 1
+  },
+  {
+    "task": "d3-dashboard",
+    "code": "b897aa63",
+    "ai_items": [],
+    "ai_count": 0,
+    "score": 4,
+    "reason": "체크 항목 없음. 실제 이름 길이 및 ID 내림차순 기준이 명확하고 모바일 표도 들어가지만 차트 이름·숫자가 작다.",
+    "rank": 2
+  },
+  {
+    "task": "d3-dashboard",
+    "code": "c233321b",
+    "ai_items": [],
+    "ai_count": 0,
+    "score": 4,
+    "reason": "체크 항목 없음. 기본 서체여도 요약·이름 길이 차트·최근 표가 모두 있고 좁은 화면에 맞으나 최근 기준 설명과 차트 가독성이 부족하다.",
+    "rank": 2
+  },
+  {
+    "task": "d3-dashboard",
+    "code": "df557913",
+    "ai_items": [],
+    "ai_count": 0,
+    "score": 3,
+    "reason": "체크 항목 없음. 카드와 월별 차트는 모바일에서도 좋지만 최근 표의 역할·가입일 열이 잘려 요청한 주요 표를 한눈에 읽기 어렵다.",
+    "rank": 6
+  },
+  {
+    "task": "d4-email",
+    "code": "183f9fbc",
+    "ai_items": [],
+    "ai_count": 0,
+    "score": 5,
+    "reason": "체크 항목 없음. 브랜드 색·환영·자격 정보·로그인·비밀번호 변경·대체 링크가 간결하게 구분되며 두 폭에서 깨짐이 없다.",
+    "rank": 1
+  },
+  {
+    "task": "d4-email",
+    "code": "82aaa3a3",
+    "ai_items": [],
+    "ai_count": 0,
+    "score": 5,
+    "reason": "체크 항목 없음. 임시 비밀번호와 로그인 CTA, 필요한 두 다음 단계가 명확하며 모바일에서도 충분한 폭과 대비를 유지한다.",
+    "rank": 1
+  },
+  {
+    "task": "d4-email",
+    "code": "85a8228a",
+    "ai_items": [],
+    "ai_count": 0,
+    "score": 4,
+    "reason": "체크 항목 없음. 색상과 자격 정보·CTA는 선명하나 모바일에서 세 번째 일반적 탐색 단계까지 길어져 환영 메일이 장황하다.",
+    "rank": 5
+  },
+  {
+    "task": "d4-email",
+    "code": "a4dec800",
+    "ai_items": [],
+    "ai_count": 0,
+    "score": 5,
+    "reason": "체크 항목 없음. 절제된 브랜드 색과 로그인·임시 비밀번호·예상치 못한 수신 안내가 실용적이며 모바일 레이아웃이 안정적이다.",
+    "rank": 1
+  },
+  {
+    "task": "d4-email",
+    "code": "a98f9743",
+    "ai_items": [],
+    "ai_count": 0,
+    "score": 4,
+    "reason": "체크 항목 없음. 자격 정보와 보안 안내는 좋으나 모바일에서 환영·로그인·탐색·보안 안내가 반복되어 핵심 행동 대비 길이가 길다.",
+    "rank": 5
+  },
+  {
+    "task": "d4-email",
+    "code": "ab1ea878",
+    "ai_items": [],
+    "ai_count": 0,
+    "score": 4,
+    "reason": "체크 항목 없음. 넓은 CTA와 안정된 모바일 폭은 좋지만 다음 단계와 보안 박스가 비밀번호 변경 안내를 반복한다.",
+    "rank": 5
+  },
+  {
+    "task": "d4-email",
+    "code": "be1a55f1",
+    "ai_items": [],
+    "ai_count": 0,
+    "score": 4,
+    "reason": "체크 항목 없음. 브랜드와 로그인 정보가 명확하나 세 단계·프로필 작성·메일 삭제 안내까지 길어져 좁은 화면에서 훑기 어렵다.",
+    "rank": 5
+  },
+  {
+    "task": "d4-email",
+    "code": "bf37c958",
+    "ai_items": [],
+    "ai_count": 0,
+    "score": 4,
+    "reason": "체크 항목 없음. 일관된 브랜드와 모바일 표시가 좋지만 계정 준비·로그인·비밀번호 변경을 여러 영역에서 반복한다.",
+    "rank": 5
+  },
+  {
+    "task": "d4-email",
+    "code": "cdfee37e",
+    "ai_items": [],
+    "ai_count": 0,
+    "score": 5,
+    "reason": "체크 항목 없음. 자격 정보와 큰 로그인 CTA, 두 가지 후속 행동만 남겨 위계가 명확하고 두 폭 모두 읽기 쉽다.",
+    "rank": 1
+  }
+]

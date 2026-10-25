@@ -1,0 +1,1060 @@
+{
+ "oracle": "oracle-v5-direction-b-inter.jsonl",
+ "differ": [
+  "pair01",
+  "pair03",
+  "pair04",
+  "pair05",
+  "pair06",
+  "pair07",
+  "pair08",
+  "pair09",
+  "pair10",
+  "pair11",
+  "pair13",
+  "pair14",
+  "pair15",
+  "pair17",
+  "pair19",
+  "pair20"
+ ],
+ "n_differ": 16,
+ "denominator": [
+  "pair03",
+  "pair08",
+  "pair20"
+ ],
+ "n_den": 3,
+ "coverage_gap": [
+  "pair01",
+  "pair04",
+  "pair05",
+  "pair06",
+  "pair07",
+  "pair09",
+  "pair10",
+  "pair11",
+  "pair13",
+  "pair14",
+  "pair15",
+  "pair17",
+  "pair19"
+ ],
+ "same_sets": [
+  "pair02",
+  "pair12",
+  "pair16",
+  "pair18"
+ ],
+ "cover": {
+  "pair01": {
+   "a": [
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28"
+   ],
+   "b": []
+  },
+  "pair02": {
+   "a": [
+    "uasl/pipe@0f029a41f006"
+   ],
+   "b": []
+  },
+  "pair03": {
+   "a": [
+    "uasl/accessibility-compliance@696d2b4119ed",
+    "uasl/ui-audit@be637d5e2baf"
+   ],
+   "b": [
+    "uasl/web-design@b19d7c3f962e"
+   ]
+  },
+  "pair04": {
+   "a": [],
+   "b": [
+    "uasl/property-based-testing@a168f6739085"
+   ]
+  },
+  "pair05": {
+   "a": [
+    "uasl/grill-with-docs@99f1bafe73fe",
+    "uasl/tlc-spec-driven@394ed16ecc07",
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "b": []
+  },
+  "pair06": {
+   "a": [],
+   "b": []
+  },
+  "pair07": {
+   "a": [
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28"
+   ],
+   "b": []
+  },
+  "pair08": {
+   "a": [
+    "uasl/secure-coding-practices@cc37fcd8687e",
+    "uasl/security-review@fcc354bc486e",
+    "uasl/vibe-security@6b07d0f651a7"
+   ],
+   "b": [
+    "uasl/design-optimize@cbb1632043ec",
+    "uasl/react-patterns@73d1ecc06997",
+    "uasl/vercel-react-best-practices@70f3b5aaf775",
+    "uasl/web-performance-optimization@b2b38275ed40"
+   ]
+  },
+  "pair09": {
+   "a": [
+    "uasl/accessibility-compliance@696d2b4119ed"
+   ],
+   "b": []
+  },
+  "pair10": {
+   "a": [],
+   "b": []
+  },
+  "pair11": {
+   "a": [
+    "uasl/request-refactor-plan@49b853892f06",
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "b": []
+  },
+  "pair12": {
+   "a": [],
+   "b": []
+  },
+  "pair13": {
+   "a": [
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28"
+   ],
+   "b": []
+  },
+  "pair14": {
+   "a": [
+    "uasl/pipe@0f029a41f006"
+   ],
+   "b": []
+  },
+  "pair15": {
+   "a": [
+    "uasl/accessibility-compliance@696d2b4119ed",
+    "uasl/ui-audit@be637d5e2baf"
+   ],
+   "b": []
+  },
+  "pair16": {
+   "a": [],
+   "b": []
+  },
+  "pair17": {
+   "a": [
+    "uasl/grill-with-docs@99f1bafe73fe",
+    "uasl/ripple@620dca56eca0",
+    "uasl/system-design@e45b77ba7a35",
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "b": []
+  },
+  "pair18": {
+   "a": [],
+   "b": []
+  },
+  "pair19": {
+   "a": [
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28"
+   ],
+   "b": []
+  },
+  "pair20": {
+   "a": [
+    "uasl/auth-implementation-patterns@7a99b395d548",
+    "uasl/security-review@fcc354bc486e",
+    "uasl/vibe-security@6b07d0f651a7"
+   ],
+   "b": [
+    "uasl/react-patterns@73d1ecc06997",
+    "uasl/vercel-react-best-practices@70f3b5aaf775"
+   ]
+  }
+ },
+ "M": {
+  "pair01": {
+   "a": [
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28"
+   ],
+   "b": []
+  },
+  "pair02": {
+   "a": [],
+   "b": []
+  },
+  "pair03": {
+   "a": [
+    "uasl/accessibility-compliance@696d2b4119ed",
+    "uasl/ui-audit@be637d5e2baf"
+   ],
+   "b": [
+    "uasl/web-design@b19d7c3f962e"
+   ]
+  },
+  "pair04": {
+   "a": [],
+   "b": []
+  },
+  "pair05": {
+   "a": [
+    "uasl/grill-with-docs@99f1bafe73fe",
+    "uasl/tlc-spec-driven@394ed16ecc07",
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "b": []
+  },
+  "pair06": {
+   "a": [],
+   "b": []
+  },
+  "pair07": {
+   "a": [
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28"
+   ],
+   "b": []
+  },
+  "pair08": {
+   "a": [
+    "uasl/secure-coding-practices@cc37fcd8687e",
+    "uasl/security-review@fcc354bc486e",
+    "uasl/vibe-security@6b07d0f651a7"
+   ],
+   "b": [
+    "uasl/design-optimize@cbb1632043ec",
+    "uasl/react-patterns@73d1ecc06997",
+    "uasl/vercel-react-best-practices@70f3b5aaf775",
+    "uasl/web-performance-optimization@b2b38275ed40"
+   ]
+  },
+  "pair09": {
+   "a": [
+    "uasl/accessibility-compliance@696d2b4119ed"
+   ],
+   "b": []
+  },
+  "pair10": {
+   "a": [],
+   "b": []
+  },
+  "pair11": {
+   "a": [
+    "uasl/request-refactor-plan@49b853892f06",
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "b": []
+  },
+  "pair12": {
+   "a": [],
+   "b": []
+  },
+  "pair13": {
+   "a": [
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28"
+   ],
+   "b": []
+  },
+  "pair14": {
+   "a": [],
+   "b": []
+  },
+  "pair15": {
+   "a": [
+    "uasl/accessibility-compliance@696d2b4119ed",
+    "uasl/ui-audit@be637d5e2baf"
+   ],
+   "b": []
+  },
+  "pair16": {
+   "a": [],
+   "b": []
+  },
+  "pair17": {
+   "a": [
+    "uasl/grill-with-docs@99f1bafe73fe",
+    "uasl/ripple@620dca56eca0",
+    "uasl/system-design@e45b77ba7a35",
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "b": []
+  },
+  "pair18": {
+   "a": [],
+   "b": []
+  },
+  "pair19": {
+   "a": [
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28"
+   ],
+   "b": []
+  },
+  "pair20": {
+   "a": [
+    "uasl/auth-implementation-patterns@7a99b395d548",
+    "uasl/security-review@fcc354bc486e",
+    "uasl/vibe-security@6b07d0f651a7"
+   ],
+   "b": [
+    "uasl/react-patterns@73d1ecc06997",
+    "uasl/vercel-react-best-practices@70f3b5aaf775"
+   ]
+  }
+ },
+ "match_cost_usd": 0.352956,
+ "n_no_relevant": 85,
+ "n_cov": 288,
+ "threshold_ratio": 0.8125,
+ "S-bp": {
+  "per_generation": [
+   {
+    "moved_den": 3,
+    "moved_all_differ": 13,
+    "moved_pairs": [
+     "pair01",
+     "pair03",
+     "pair05",
+     "pair07",
+     "pair08",
+     "pair09",
+     "pair11",
+     "pair13",
+     "pair14",
+     "pair15",
+     "pair17",
+     "pair19",
+     "pair20"
+    ],
+    "none_acc": 0.847,
+    "hit": 0.788
+   },
+   {
+    "moved_den": 3,
+    "moved_all_differ": 12,
+    "moved_pairs": [
+     "pair01",
+     "pair03",
+     "pair05",
+     "pair07",
+     "pair08",
+     "pair09",
+     "pair11",
+     "pair13",
+     "pair15",
+     "pair17",
+     "pair19",
+     "pair20"
+    ],
+    "none_acc": 0.835,
+    "hit": 0.799
+   },
+   {
+    "moved_den": 3,
+    "moved_all_differ": 12,
+    "moved_pairs": [
+     "pair01",
+     "pair03",
+     "pair05",
+     "pair07",
+     "pair08",
+     "pair09",
+     "pair11",
+     "pair13",
+     "pair15",
+     "pair17",
+     "pair19",
+     "pair20"
+    ],
+    "none_acc": 0.847,
+    "hit": 0.774
+   }
+  ],
+  "mean_moved_den": 3.0,
+  "mean_ratio_den": 1.0,
+  "mean_moved_all_differ": 12.333,
+  "mean_ratio_all_differ": 0.771,
+  "mean_none_acc": 0.843,
+  "mean_hit": 0.787,
+  "counts_cases": {
+   "moved": 9
+  },
+  "by_pair": {
+   "pair03": "moved",
+   "pair08": "moved",
+   "pair20": "moved"
+  },
+  "cases": [
+   {
+    "pair": "pair03",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/sql-optimization-patterns@389f90da7b56"
+    ],
+    "sel_b": [
+     "uasl/sql-optimization-patterns@389f90da7b56",
+     "uasl/web-design@b19d7c3f962e"
+    ],
+    "M_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/ui-audit@be637d5e2baf"
+    ],
+    "M_b": [
+     "uasl/web-design@b19d7c3f962e"
+    ],
+    "M_a_rank": {
+     "uasl/accessibility-compliance@696d2b4119ed": 13,
+     "uasl/ui-audit@be637d5e2baf": 19
+    },
+    "M_b_rank": {
+     "uasl/web-design@b19d7c3f962e": 1
+    }
+   },
+   {
+    "pair": "pair08",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/artisan@1e09f38ffcab",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/stripe-best-practices@795a33f68129"
+    ],
+    "sel_b": [
+     "uasl/stripe-best-practices@795a33f68129",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a": [
+     "uasl/secure-coding-practices@cc37fcd8687e",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "M_b": [
+     "uasl/design-optimize@cbb1632043ec",
+     "uasl/react-patterns@73d1ecc06997",
+     "uasl/vercel-react-best-practices@70f3b5aaf775",
+     "uasl/web-performance-optimization@b2b38275ed40"
+    ],
+    "M_a_rank": {
+     "uasl/secure-coding-practices@cc37fcd8687e": null,
+     "uasl/security-review@fcc354bc486e": 12,
+     "uasl/vibe-security@6b07d0f651a7": 31
+    },
+    "M_b_rank": {
+     "uasl/design-optimize@cbb1632043ec": null,
+     "uasl/react-patterns@73d1ecc06997": 21,
+     "uasl/vercel-react-best-practices@70f3b5aaf775": 3,
+     "uasl/web-performance-optimization@b2b38275ed40": 6
+    }
+   },
+   {
+    "pair": "pair20",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/next-best-practices@ee058f89acea",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "sel_b": [
+     "uasl/next-best-practices@ee058f89acea",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a": [
+     "uasl/auth-implementation-patterns@7a99b395d548",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "M_b": [
+     "uasl/react-patterns@73d1ecc06997",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a_rank": {
+     "uasl/auth-implementation-patterns@7a99b395d548": 14,
+     "uasl/security-review@fcc354bc486e": null,
+     "uasl/vibe-security@6b07d0f651a7": 39
+    },
+    "M_b_rank": {
+     "uasl/react-patterns@73d1ecc06997": 7,
+     "uasl/vercel-react-best-practices@70f3b5aaf775": 2
+    }
+   },
+   {
+    "pair": "pair03",
+    "gen": 2,
+    "class": "moved",
+    "sel_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/sql-optimization-patterns@389f90da7b56"
+    ],
+    "sel_b": [
+     "uasl/sql-optimization-patterns@389f90da7b56",
+     "uasl/web-design@b19d7c3f962e"
+    ],
+    "M_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/ui-audit@be637d5e2baf"
+    ],
+    "M_b": [
+     "uasl/web-design@b19d7c3f962e"
+    ],
+    "M_a_rank": {
+     "uasl/accessibility-compliance@696d2b4119ed": 13,
+     "uasl/ui-audit@be637d5e2baf": 19
+    },
+    "M_b_rank": {
+     "uasl/web-design@b19d7c3f962e": 1
+    }
+   },
+   {
+    "pair": "pair08",
+    "gen": 2,
+    "class": "moved",
+    "sel_a": [
+     "uasl/artisan@1e09f38ffcab",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/stripe-best-practices@795a33f68129"
+    ],
+    "sel_b": [
+     "uasl/stripe-best-practices@795a33f68129",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a": [
+     "uasl/secure-coding-practices@cc37fcd8687e",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "M_b": [
+     "uasl/design-optimize@cbb1632043ec",
+     "uasl/react-patterns@73d1ecc06997",
+     "uasl/vercel-react-best-practices@70f3b5aaf775",
+     "uasl/web-performance-optimization@b2b38275ed40"
+    ],
+    "M_a_rank": {
+     "uasl/secure-coding-practices@cc37fcd8687e": null,
+     "uasl/security-review@fcc354bc486e": 12,
+     "uasl/vibe-security@6b07d0f651a7": 31
+    },
+    "M_b_rank": {
+     "uasl/design-optimize@cbb1632043ec": null,
+     "uasl/react-patterns@73d1ecc06997": 21,
+     "uasl/vercel-react-best-practices@70f3b5aaf775": 3,
+     "uasl/web-performance-optimization@b2b38275ed40": 6
+    }
+   },
+   {
+    "pair": "pair20",
+    "gen": 2,
+    "class": "moved",
+    "sel_a": [
+     "uasl/next-best-practices@ee058f89acea",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "sel_b": [
+     "uasl/next-best-practices@ee058f89acea",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a": [
+     "uasl/auth-implementation-patterns@7a99b395d548",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "M_b": [
+     "uasl/react-patterns@73d1ecc06997",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a_rank": {
+     "uasl/auth-implementation-patterns@7a99b395d548": 14,
+     "uasl/security-review@fcc354bc486e": null,
+     "uasl/vibe-security@6b07d0f651a7": 39
+    },
+    "M_b_rank": {
+     "uasl/react-patterns@73d1ecc06997": 7,
+     "uasl/vercel-react-best-practices@70f3b5aaf775": 2
+    }
+   },
+   {
+    "pair": "pair03",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/sql-optimization-patterns@389f90da7b56"
+    ],
+    "sel_b": [
+     "uasl/sql-optimization-patterns@389f90da7b56",
+     "uasl/web-design@b19d7c3f962e"
+    ],
+    "M_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/ui-audit@be637d5e2baf"
+    ],
+    "M_b": [
+     "uasl/web-design@b19d7c3f962e"
+    ],
+    "M_a_rank": {
+     "uasl/accessibility-compliance@696d2b4119ed": 13,
+     "uasl/ui-audit@be637d5e2baf": 19
+    },
+    "M_b_rank": {
+     "uasl/web-design@b19d7c3f962e": 1
+    }
+   },
+   {
+    "pair": "pair08",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/artisan@1e09f38ffcab",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/stripe-best-practices@795a33f68129"
+    ],
+    "sel_b": [
+     "uasl/stripe-best-practices@795a33f68129",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a": [
+     "uasl/secure-coding-practices@cc37fcd8687e",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "M_b": [
+     "uasl/design-optimize@cbb1632043ec",
+     "uasl/react-patterns@73d1ecc06997",
+     "uasl/vercel-react-best-practices@70f3b5aaf775",
+     "uasl/web-performance-optimization@b2b38275ed40"
+    ],
+    "M_a_rank": {
+     "uasl/secure-coding-practices@cc37fcd8687e": null,
+     "uasl/security-review@fcc354bc486e": 12,
+     "uasl/vibe-security@6b07d0f651a7": 31
+    },
+    "M_b_rank": {
+     "uasl/design-optimize@cbb1632043ec": null,
+     "uasl/react-patterns@73d1ecc06997": 21,
+     "uasl/vercel-react-best-practices@70f3b5aaf775": 3,
+     "uasl/web-performance-optimization@b2b38275ed40": 6
+    }
+   },
+   {
+    "pair": "pair20",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/next-best-practices@ee058f89acea",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "sel_b": [
+     "uasl/next-best-practices@ee058f89acea",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a": [
+     "uasl/auth-implementation-patterns@7a99b395d548",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "M_b": [
+     "uasl/react-patterns@73d1ecc06997",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a_rank": {
+     "uasl/auth-implementation-patterns@7a99b395d548": 14,
+     "uasl/security-review@fcc354bc486e": null,
+     "uasl/vibe-security@6b07d0f651a7": 39
+    },
+    "M_b_rank": {
+     "uasl/react-patterns@73d1ecc06997": 7,
+     "uasl/vercel-react-best-practices@70f3b5aaf775": 2
+    }
+   }
+  ]
+ },
+ "S-b": {
+  "per_generation": [
+   {
+    "moved_den": 3,
+    "moved_all_differ": 14,
+    "moved_pairs": [
+     "pair01",
+     "pair03",
+     "pair05",
+     "pair07",
+     "pair08",
+     "pair09",
+     "pair10",
+     "pair11",
+     "pair13",
+     "pair14",
+     "pair15",
+     "pair17",
+     "pair19",
+     "pair20"
+    ],
+    "none_acc": 0.894,
+    "hit": 0.785
+   },
+   {
+    "moved_den": 2,
+    "moved_all_differ": 12,
+    "moved_pairs": [
+     "pair01",
+     "pair03",
+     "pair05",
+     "pair07",
+     "pair09",
+     "pair11",
+     "pair13",
+     "pair14",
+     "pair15",
+     "pair17",
+     "pair19",
+     "pair20"
+    ],
+    "none_acc": 0.847,
+    "hit": 0.781
+   },
+   {
+    "moved_den": 3,
+    "moved_all_differ": 13,
+    "moved_pairs": [
+     "pair01",
+     "pair03",
+     "pair05",
+     "pair07",
+     "pair08",
+     "pair09",
+     "pair11",
+     "pair13",
+     "pair14",
+     "pair15",
+     "pair17",
+     "pair19",
+     "pair20"
+    ],
+    "none_acc": 0.859,
+    "hit": 0.781
+   }
+  ],
+  "mean_moved_den": 2.667,
+  "mean_ratio_den": 0.889,
+  "mean_moved_all_differ": 13.0,
+  "mean_ratio_all_differ": 0.812,
+  "mean_none_acc": 0.867,
+  "mean_hit": 0.782,
+  "counts_cases": {
+   "moved": 8,
+   "b_select": 1
+  },
+  "by_pair": {
+   "pair03": "moved",
+   "pair08": "moved",
+   "pair20": "moved"
+  },
+  "cases": [
+   {
+    "pair": "pair03",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/sql-optimization-patterns@389f90da7b56"
+    ],
+    "sel_b": [
+     "uasl/sql-optimization-patterns@389f90da7b56",
+     "uasl/web-design@b19d7c3f962e"
+    ],
+    "M_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/ui-audit@be637d5e2baf"
+    ],
+    "M_b": [
+     "uasl/web-design@b19d7c3f962e"
+    ],
+    "M_a_rank": {
+     "uasl/accessibility-compliance@696d2b4119ed": 13,
+     "uasl/ui-audit@be637d5e2baf": 19
+    },
+    "M_b_rank": {
+     "uasl/web-design@b19d7c3f962e": 1
+    }
+   },
+   {
+    "pair": "pair08",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/artisan@1e09f38ffcab",
+     "uasl/security-review@fcc354bc486e"
+    ],
+    "sel_b": [
+     "uasl/artisan@1e09f38ffcab",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a": [
+     "uasl/secure-coding-practices@cc37fcd8687e",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "M_b": [
+     "uasl/design-optimize@cbb1632043ec",
+     "uasl/react-patterns@73d1ecc06997",
+     "uasl/vercel-react-best-practices@70f3b5aaf775",
+     "uasl/web-performance-optimization@b2b38275ed40"
+    ],
+    "M_a_rank": {
+     "uasl/secure-coding-practices@cc37fcd8687e": null,
+     "uasl/security-review@fcc354bc486e": 12,
+     "uasl/vibe-security@6b07d0f651a7": 31
+    },
+    "M_b_rank": {
+     "uasl/design-optimize@cbb1632043ec": null,
+     "uasl/react-patterns@73d1ecc06997": 21,
+     "uasl/vercel-react-best-practices@70f3b5aaf775": 3,
+     "uasl/web-performance-optimization@b2b38275ed40": 6
+    }
+   },
+   {
+    "pair": "pair20",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/next-best-practices@ee058f89acea",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "sel_b": [
+     "uasl/next-best-practices@ee058f89acea",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a": [
+     "uasl/auth-implementation-patterns@7a99b395d548",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "M_b": [
+     "uasl/react-patterns@73d1ecc06997",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a_rank": {
+     "uasl/auth-implementation-patterns@7a99b395d548": 14,
+     "uasl/security-review@fcc354bc486e": null,
+     "uasl/vibe-security@6b07d0f651a7": 39
+    },
+    "M_b_rank": {
+     "uasl/react-patterns@73d1ecc06997": 7,
+     "uasl/vercel-react-best-practices@70f3b5aaf775": 2
+    }
+   },
+   {
+    "pair": "pair03",
+    "gen": 2,
+    "class": "moved",
+    "sel_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/sql-optimization-patterns@389f90da7b56"
+    ],
+    "sel_b": [
+     "uasl/sql-optimization-patterns@389f90da7b56",
+     "uasl/web-design@b19d7c3f962e"
+    ],
+    "M_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/ui-audit@be637d5e2baf"
+    ],
+    "M_b": [
+     "uasl/web-design@b19d7c3f962e"
+    ],
+    "M_a_rank": {
+     "uasl/accessibility-compliance@696d2b4119ed": 13,
+     "uasl/ui-audit@be637d5e2baf": 19
+    },
+    "M_b_rank": {
+     "uasl/web-design@b19d7c3f962e": 1
+    }
+   },
+   {
+    "pair": "pair08",
+    "gen": 2,
+    "class": "b_select",
+    "sel_a": [
+     "uasl/artisan@1e09f38ffcab",
+     "uasl/security-review@fcc354bc486e"
+    ],
+    "sel_b": [
+     "uasl/stripe-best-practices@795a33f68129",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a": [
+     "uasl/secure-coding-practices@cc37fcd8687e",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "M_b": [
+     "uasl/design-optimize@cbb1632043ec",
+     "uasl/react-patterns@73d1ecc06997",
+     "uasl/vercel-react-best-practices@70f3b5aaf775",
+     "uasl/web-performance-optimization@b2b38275ed40"
+    ],
+    "M_a_rank": {
+     "uasl/secure-coding-practices@cc37fcd8687e": null,
+     "uasl/security-review@fcc354bc486e": 12,
+     "uasl/vibe-security@6b07d0f651a7": 31
+    },
+    "M_b_rank": {
+     "uasl/design-optimize@cbb1632043ec": null,
+     "uasl/react-patterns@73d1ecc06997": 21,
+     "uasl/vercel-react-best-practices@70f3b5aaf775": 3,
+     "uasl/web-performance-optimization@b2b38275ed40": 6
+    }
+   },
+   {
+    "pair": "pair20",
+    "gen": 2,
+    "class": "moved",
+    "sel_a": [
+     "uasl/next-best-practices@ee058f89acea",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "sel_b": [
+     "uasl/next-best-practices@ee058f89acea",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a": [
+     "uasl/auth-implementation-patterns@7a99b395d548",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "M_b": [
+     "uasl/react-patterns@73d1ecc06997",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a_rank": {
+     "uasl/auth-implementation-patterns@7a99b395d548": 14,
+     "uasl/security-review@fcc354bc486e": null,
+     "uasl/vibe-security@6b07d0f651a7": 39
+    },
+    "M_b_rank": {
+     "uasl/react-patterns@73d1ecc06997": 7,
+     "uasl/vercel-react-best-practices@70f3b5aaf775": 2
+    }
+   },
+   {
+    "pair": "pair03",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/sql-optimization-patterns@389f90da7b56"
+    ],
+    "sel_b": [
+     "uasl/sql-optimization-patterns@389f90da7b56",
+     "uasl/web-design@b19d7c3f962e"
+    ],
+    "M_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/ui-audit@be637d5e2baf"
+    ],
+    "M_b": [
+     "uasl/web-design@b19d7c3f962e"
+    ],
+    "M_a_rank": {
+     "uasl/accessibility-compliance@696d2b4119ed": 13,
+     "uasl/ui-audit@be637d5e2baf": 19
+    },
+    "M_b_rank": {
+     "uasl/web-design@b19d7c3f962e": 1
+    }
+   },
+   {
+    "pair": "pair08",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/artisan@1e09f38ffcab",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/stripe-best-practices@795a33f68129"
+    ],
+    "sel_b": [
+     "uasl/artisan@1e09f38ffcab",
+     "uasl/stripe-best-practices@795a33f68129",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a": [
+     "uasl/secure-coding-practices@cc37fcd8687e",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "M_b": [
+     "uasl/design-optimize@cbb1632043ec",
+     "uasl/react-patterns@73d1ecc06997",
+     "uasl/vercel-react-best-practices@70f3b5aaf775",
+     "uasl/web-performance-optimization@b2b38275ed40"
+    ],
+    "M_a_rank": {
+     "uasl/secure-coding-practices@cc37fcd8687e": null,
+     "uasl/security-review@fcc354bc486e": 12,
+     "uasl/vibe-security@6b07d0f651a7": 31
+    },
+    "M_b_rank": {
+     "uasl/design-optimize@cbb1632043ec": null,
+     "uasl/react-patterns@73d1ecc06997": 21,
+     "uasl/vercel-react-best-practices@70f3b5aaf775": 3,
+     "uasl/web-performance-optimization@b2b38275ed40": 6
+    }
+   },
+   {
+    "pair": "pair20",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/next-best-practices@ee058f89acea",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "sel_b": [
+     "uasl/next-best-practices@ee058f89acea",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a": [
+     "uasl/auth-implementation-patterns@7a99b395d548",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "M_b": [
+     "uasl/react-patterns@73d1ecc06997",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a_rank": {
+     "uasl/auth-implementation-patterns@7a99b395d548": 14,
+     "uasl/security-review@fcc354bc486e": null,
+     "uasl/vibe-security@6b07d0f651a7": 39
+    },
+    "M_b_rank": {
+     "uasl/react-patterns@73d1ecc06997": 7,
+     "uasl/vercel-react-best-practices@70f3b5aaf775": 2
+    }
+   }
+  ]
+ },
+ "baseline_meets": true
+}

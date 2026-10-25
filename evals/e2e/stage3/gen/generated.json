@@ -1,0 +1,3942 @@
+{
+ "gen-feature": {
+  "items": [
+   {
+    "i": 1,
+    "text": "add --dry-run to scripts/reconcile_payouts.py, print the diff instead of writing rows"
+   },
+   {
+    "i": 2,
+    "text": "Front desk staff at the clinics keep asking for recurring appointments, like every Tuesday at 10 for six weeks. Can you add a recurrence option to the Appointment model in scheduling/models.py and have AppointmentCreateView generate the individual slots? It should skip any date where the provider already has a ProviderTimeOff entry."
+   },
+   {
+    "i": 3,
+    "text": "Feature: threshold alerts for device telemetry in our FastAPI service (app/telemetry/).\n- New table `alert_rules` (device_id, metric, operator, threshold, cooldown_seconds), with an Alembic migration\n- CRUD endpoints under /api/v1/devices/{device_id}/alert-rules\n- When POST /api/v1/telemetry ingests a reading, evaluate the matching rules and enqueue a notification through the existing `notify.send_alert()`\n- Respect the cooldown so a sensor flapping around the threshold doesn't fire every second\n- Acceptance: pytest cases in tests/telemetry/test_alerts.py covering trigger, no-trigger and cooldown\n- Constraint: rule evaluation must not add more than ~5ms to ingest latency, so cache rules per device"
+   },
+   {
+    "i": 4,
+    "text": "도서관 대출 시스템에 반납 예정일 하루 전에 리마인더 이메일 보내는 Celery periodic task 추가해줘. loans/tasks.py에 넣고, 이미 보낸 건 Loan.reminder_sent_at 필드로 중복 발송 막아주면 돼."
+   },
+   {
+    "i": 5,
+    "text": "Add a CSV export to the weekly retention report served by the `/reports/retention` route in our Flask app (analytics/reports/retention.py). Work test-first: write the failing tests in tests/reports/test_retention_export.py before touching the view, covering the header row, cohort date formatting, and an empty cohort. Use the stdlib csv module, no pandas for this."
+   },
+   {
+    "i": 6,
+    "text": "On the property listings page (app/listings/page.tsx), users want to save their current filter combo, like price range, bedrooms and neighborhood, and come back to it later. Can you add a \"Save this filter\" button that persists to our `/api/saved-filters` route handler and shows the saved ones in a dropdown above the results?"
+   },
+   {
+    "i": 7,
+    "text": "Build a payout history page for drivers in the Next.js app.\n- Route: app/(driver)/payouts/page.tsx, server component that fetches through the existing tRPC router `payouts.list`\n- Add cursor-based pagination to `payouts.list` in server/routers/payouts.ts (limit 25, cursor = payout id)\n- Table columns: period, trips count, gross, fees, net, status badge\n- Add a date-range filter that is kept in the URL search params so links are shareable\n- Acceptance: loading state uses Suspense, empty state copy matches Figma, and a Playwright test covers paging forward and back\n- Must not leak other drivers' payouts: the router must scope by ctx.session.driverId"
+   },
+   {
+    "i": 8,
+    "text": "CMS 글 편집기(components/editor/PostEditor.tsx)에 draft 자동 저장 기능 넣어줘. 입력 멈추고 2초 지나면 PATCH /api/posts/[id]/draft 호출하고, 상단에 \"저장됨 · 방금 전\" 같은 상태 표시도 띄워주면 좋겠어."
+   },
+   {
+    "i": 9,
+    "text": "Add an interactive seat picker for the event checkout (components/checkout/SeatMap.tsx) that renders seats from the `/api/events/[id]/seats` response. Make it accessible from the start: full keyboard navigation with arrow keys across rows, proper ARIA grid roles, screen-reader labels like \"Row F, seat 12, $85, available\", and don't rely on color alone for sold/held states."
+   },
+   {
+    "i": 10,
+    "text": "add /readyz to cmd/fleetd that checks redis and db, 503 if either fails"
+   },
+   {
+    "i": 11,
+    "text": "Add retrying webhook delivery to the shipment events service (internal/webhooks/).\n- Replace the fire-and-forget POST in `Dispatcher.Send` with a delivery queue backed by the `webhook_deliveries` table\n- Exponential backoff with jitter: 30s base, max 6 attempts, cap at 1h\n- Sign each payload with HMAC-SHA256 using the merchant's secret, sent in the `X-Shipr-Signature` header\n- Mark a delivery `failed` after the last attempt and expose it through GET /v1/webhooks/deliveries?status=failed\n- Acceptance: table-driven tests with httptest.Server simulating 500s and timeouts; `go test ./internal/webhooks/...` passes with -race"
+   },
+   {
+    "i": 12,
+    "text": "matchmaking 서버(internal/matchmaker)에 region 필터 추가해줘. FindMatchRequest proto에 preferred_regions 필드 넣고, 30초 지나도 매칭 안 되면 인접 region까지 범위 넓히는 로직도 같이 부탁해."
+   },
+   {
+    "i": 13,
+    "text": "Add ETag and If-None-Match support to the product catalog endpoints in internal/catalog/handler.go so the mobile app stops re-downloading unchanged listings. Don't add any new dependencies; compute the ETag from the product's updated_at and version columns with the standard library, and return 304 with no body when it matches."
+   },
+   {
+    "i": 14,
+    "text": "add `--format json` output to `ledgerctl balances` in src/bin/ledgerctl.rs"
+   },
+   {
+    "i": 15,
+    "text": "Our weather stations are on flaky cellular links, so they'd rather buffer readings and send them in one go. Could you add a POST /ingest/batch route to the axum app in src/routes/ingest.rs that accepts up to 500 readings, validates each one, and inserts them with a single sqlx transaction, returning per-item errors for the bad ones?"
+   },
+   {
+    "i": 16,
+    "text": "tokio 기반 채팅 서버(src/room.rs)에 방 입장 시 최근 메시지 50개를 다시 보내주는 history replay 기능 추가해줘. 메모리는 방마다 VecDeque로 링버퍼처럼 관리하면 될 것 같아."
+   },
+   {
+    "i": 17,
+    "text": "Add TLS client-cert support for the MQTT connection in the sensor agent (src/config.rs, src/mqtt.rs): new optional `[mqtt.tls]` section with ca_file, cert_file and key_file. Keep it backward compatible: existing config.toml files without the section must still parse and connect exactly as before, and add a test that loads one of the old fixture configs."
+   },
+   {
+    "i": 18,
+    "text": "add soft delete to Patient entity, exclude deleted rows in PatientRepository queries"
+   },
+   {
+    "i": 19,
+    "text": "Teachers want timed quizzes. Can you add an optional timeLimitMinutes to the Quiz entity in our Spring Boot service, record when an attempt starts, and have QuizAttemptService reject submissions that arrive after the limit plus a 30-second grace period?"
+   },
+   {
+    "i": 20,
+    "text": "Add idempotency keys to claim submission in the insurance claims service.\n- POST /api/claims accepts an `Idempotency-Key` header (UUID, required for clients on API v2)\n- Store key, request hash, response status and body in a new `idempotency_records` table (Flyway migration V42)\n- Same key + same body: replay the stored response; same key + different body: 422\n- Records expire after 24h, cleaned up by a @Scheduled job\n- Handle concurrent duplicates safely with a unique constraint, not an in-memory lock (we run 4 replicas)\n- Acceptance: @SpringBootTest with Testcontainers covering replay, conflict and two parallel requests"
+   },
+   {
+    "i": 21,
+    "text": "We need per-tenant feature flags in the Ktor backend for the warehouse SaaS so we can turn on the new picking screen for a few customers first. Plan before coding: give me a short proposal covering storage, caching, how routes check a flag, and how admins toggle it, and wait for my OK before writing any Kotlin."
+   },
+   {
+    "i": 22,
+    "text": "swiftui: add pull-to-refresh to OrdersListView, call OrdersViewModel.reload()"
+   },
+   {
+    "i": 23,
+    "text": "In the Flutter fitness app, people log workouts in basement gyms with no signal and lose everything. Can you make workout logging work offline by saving sets to the local Drift database first and syncing them to /api/workouts when connectivity comes back?"
+   },
+   {
+    "i": 24,
+    "text": "Add tappable push notifications for parcel status changes in the Android app (Kotlin, Compose).\n- Handle FCM data messages in `ParcelMessagingService` with fields parcel_id, status, eta\n- Show a notification on a new \"Delivery updates\" channel, with a user-toggleable setting in SettingsScreen\n- Tapping opens TrackingDetailScreen for that parcel through a deep link `parceltrack://parcel/{id}`, wired into the Navigation Compose graph\n- Request POST_NOTIFICATIONS on Android 13+ the first time the user tracks a parcel, not at startup\n- Acceptance: works from cold start and when the app is in the background; add a unit test for the payload parsing"
+   },
+   {
+    "i": 25,
+    "text": "React Native 앱 로그인 화면에 Face ID / 지문 로그인 추가해줘. react-native-keychain으로 refresh token 저장하고, 최초 로그인 성공 후에 생체인증 사용할지 물어보는 모달도 띄워줘."
+   }
+  ],
+  "meta": [
+   {
+    "task_type": "feature",
+    "stack": "python",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "feature",
+    "stack": "python",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "feature",
+    "stack": "python",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "feature",
+    "stack": "python",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "feature",
+    "stack": "python",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "feature",
+    "stack": "ts_react_next",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "feature",
+    "stack": "ts_react_next",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "feature",
+    "stack": "ts_react_next",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "feature",
+    "stack": "ts_react_next",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "feature",
+    "stack": "go",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "feature",
+    "stack": "go",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "feature",
+    "stack": "go",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "feature",
+    "stack": "go",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "feature",
+    "stack": "rust",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "feature",
+    "stack": "rust",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "feature",
+    "stack": "rust",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "feature",
+    "stack": "rust",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "feature",
+    "stack": "java_kotlin",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "feature",
+    "stack": "java_kotlin",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "feature",
+    "stack": "java_kotlin",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "feature",
+    "stack": "java_kotlin",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "feature",
+    "stack": "mobile",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "feature",
+    "stack": "mobile",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "feature",
+    "stack": "mobile",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "feature",
+    "stack": "mobile",
+    "phrasing": "korean"
+   }
+  ],
+  "usage": {
+   "input_tokens": 2,
+   "cache_creation_input_tokens": 2659,
+   "cache_read_input_tokens": 0,
+   "output_tokens": 4536,
+   "output_tokens_details": {
+    "thinking_tokens": 1148
+   },
+   "server_tool_use": {
+    "web_search_requests": 0,
+    "web_fetch_requests": 0
+   },
+   "service_tier": "standard",
+   "cache_creation": {
+    "ephemeral_1h_input_tokens": 2659,
+    "ephemeral_5m_input_tokens": 0
+   },
+   "inference_geo": "global",
+   "iterations": [
+    {
+     "input_tokens": 2,
+     "output_tokens": 4536,
+     "cache_read_input_tokens": 0,
+     "cache_creation_input_tokens": 2659,
+     "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 2659
+     },
+     "type": "message"
+    }
+   ],
+   "speed": "standard"
+  },
+  "cost_usd": 0.11199999999999999
+ },
+ "gen-bugfix": {
+  "items": [
+   {
+    "i": 1,
+    "text": "Patients are getting their refill reminder SMS twice on the Sunday clocks change. The Celery beat job in `reminders/tasks.py::send_due_refill_reminders` compares naive datetimes against `Prescription.next_refill_at`, which is stored in UTC. Can you fix the comparison so each reminder fires exactly once across DST transitions?"
+   },
+   {
+    "i": 2,
+    "text": "Bug: fare estimates from `POST /v1/rides/estimate` are off by a cent on roughly 3% of trips.\n- Repro: the distance 7.345 km, base 2.50, per-km 1.15 case in `tests/fixtures/fares.json` returns 10.94 instead of 10.95\n- Cause is likely float math in `pricing/fare_calculator.py::compute_fare` before the final `round()`\n- Switch the whole calculation to `Decimal` with `ROUND_HALF_UP`, applied once at the end\n- Surge multiplier and promo discount must be applied in that order (product decision, don't change it)\n- The Pydantic response model should still serialize amounts as strings with 2 decimals\nAcceptance: all fixtures in `fares.json` match the finance team's expected values, and existing API contract tests pass unchanged."
+   },
+   {
+    "i": 3,
+    "text": "`shipments/tasks.py`의 `sync_carrier_status` Celery task가 carrier API에서 429 받으면 retry 없이 그냥 성공 처리돼서 배송 상태가 몇 시간씩 안 바뀌는 문제가 있어요. `autoretry_for`랑 backoff 제대로 걸어주고, 429일 때 `Retry-After` 헤더도 반영되게 고쳐주세요."
+   },
+   {
+    "i": 4,
+    "text": "The nightly meter-readings ETL (`etl/meter_readings.py`) drops the last reading of every month when it resamples to hourly. I think it's the `resample('H', closed='left')` combined with the end-date filter in `load_window()`. Go test-first: add a failing pytest case using a small CSV fixture with a reading at 23:45 on the 31st, then fix it so the test passes without changing output for the other days."
+   },
+   {
+    "i": 5,
+    "text": "hydration mismatch on /listings/[id] from toLocaleDateString in ListingHeader.tsx, fix it"
+   },
+   {
+    "i": 6,
+    "text": "Fix duplicate orders on checkout in the Next.js storefront.\n- Symptom: support reports ~40 double charges last week; logs show two `POST /api/orders` calls within 200ms from the same session\n- `app/checkout/CheckoutForm.tsx` disables the button only after `await createPaymentIntent()` resolves, so fast double-clicks get through\n- Disable the submit immediately on click and show the pending state via `useFormStatus`\n- Server side: make `app/api/orders/route.ts` honor an `Idempotency-Key` header (generate one per checkout attempt on the client) and return the existing order on a repeat\n- Store keys in the existing `idempotency_keys` table via Prisma with a 24h expiry\nAcceptance: a Playwright test that double-clicks Pay creates exactly one order, and a repeated request with the same key returns 200 with the same order id."
+   },
+   {
+    "i": 7,
+    "text": "강의 수강 페이지에서 레슨 완료 체크하면 `useMarkLessonComplete` mutation은 성공하는데 사이드바 진도율이 새로고침 전까지 안 바뀌어요. `hooks/useCourseProgress.ts` 쪽 React Query key가 `['progress', courseId]`랑 `['course-progress', courseId]`로 섞여 있는 것 같은데 invalidate 제대로 되게 고쳐주세요."
+   },
+   {
+    "i": 8,
+    "text": "In the CMS editor, pasting from Google Docs into `components/editor/RichTextField.tsx` strips all links, because our sanitize step in `lib/sanitizeHtml.ts` drops `<a>` tags whose href has a `google.com/url?q=` wrapper. Keep the diff minimal: just unwrap the redirect to the real URL and allow it through the existing allowlist, no new packages, and don't touch the toolbar code."
+   },
+   {
+    "i": 9,
+    "text": "goroutine leak in telemetry ingest worker when device disconnects mid-batch, see internal/ingest/worker.go"
+   },
+   {
+    "i": 10,
+    "text": "Our matchmaking service sometimes puts the same player into two lobbies at once. I suspect a race in `internal/lobby/queue.go` where `Dequeue` reads the slice under an RLock and then removes under a separate Lock. Can you fix it so dequeue is atomic, and make sure `go test -race ./internal/lobby/...` stays clean?"
+   },
+   {
+    "i": 11,
+    "text": "Bug: webhook deliveries to merchants silently stop after a Redis failover.\n- Service: `cmd/webhook-dispatcher`, consumer loop in `internal/dispatch/consumer.go`\n- After failover, `BLPOP` returns an error, we log it once and the loop exits; the process keeps running so k8s never restarts it\n- Requirements: reconnect with exponential backoff (cap 30s, with jitter), keep the loop alive, and expose a `dispatcher_consumer_up` Prometheus metric\n- The readiness endpoint `/readyz` should return 503 while the consumer is down\n- No changes to the go-redis client version\nAcceptance: an integration test using miniredis that restarts the server mid-run shows deliveries resuming within one backoff window."
+   },
+   {
+    "i": 12,
+    "text": "`pkg/scheduler/slots.go`에서 병원 예약 가능 시간 계산할 때 `time.Truncate`를 써서 KST 기준으로 하루 경계가 9시간 밀리고 있어요. 그래서 오전 9시 전 슬롯이 전날로 잡히는데, location 기준으로 날짜 자르도록 고쳐주고 테이블 테스트도 추가해 주세요."
+   },
+   {
+    "i": 13,
+    "text": "The fleet tracking API returns a 500 on `GET /vehicles/{id}/route` when a vehicle has zero GPS points, because `internal/route/simplify.go` indexes `points[0]` unconditionally. Fix it and keep it backward compatible: an empty route should come back as `{\"points\": []}` with 200, the same shape existing clients already parse, not a 404 or null."
+   },
+   {
+    "i": 14,
+    "text": "panic 'byte index is not a char boundary' in src/parser/csv_row.rs on utf-8 names"
+   },
+   {
+    "i": 15,
+    "text": "Our IoT firmware update server deadlocks under load. In `src/updates/registry.rs`, `assign_rollout` holds the `devices` tokio `Mutex` across an `.await` on the S3 presign call, and `heartbeat` takes the locks in the opposite order. Can you restructure it so we never hold a lock across an await and the lock order is consistent?"
+   },
+   {
+    "i": 16,
+    "text": "주문 매칭 엔진 `src/book/order_book.rs`에서 같은 가격에 들어온 주문이 시간 순서대로 체결이 안 되고 가끔 뒤에 온 주문이 먼저 체결돼요. `BinaryHeap`에 timestamp만 넣고 있어서 동일 timestamp일 때 순서가 보장 안 되는 것 같은데, sequence number 기준으로 FIFO 보장되게 고쳐주세요."
+   },
+   {
+    "i": 17,
+    "text": "The analytics query service leaks memory: RSS climbs about 200MB/hour in prod. I believe the `Arc<QueryCache>` in `src/cache/mod.rs` gets cloned into every spawned task and the eviction path in `evict_expired` never runs because the interval task is dropped. Plan before coding: write up the suspected ownership cycle and how you'll verify it with a test, then make the fix."
+   },
+   {
+    "i": 18,
+    "text": "LazyInitializationException on GET /api/claims/{id} after spring boot 3.3 upgrade"
+   },
+   {
+    "i": 19,
+    "text": "Hotel booking confirmations show the wrong check-in date for guests in Australia. `BookingMapper.toDto` in the Spring Boot service converts `LocalDate` through `java.util.Date` using the server default timezone, so it shifts by a day. Please fix the mapping to keep it as a plain `LocalDate` end to end and add a test that runs with `-Duser.timezone=Australia/Sydney`."
+   },
+   {
+    "i": 20,
+    "text": "Fix the payroll export job writing duplicate rows.\n- Job: `PayrollExportJob` (Spring Batch, Kotlin) in `payroll-service/src/main/kotlin/.../export/`\n- Symptom: when the job restarts after a failure on chunk 14, rows from chunks 1-13 are exported again to the SFTP CSV\n- The `JdbcPagingItemReader` has `saveState = false` and the writer appends instead of resuming\n- Requirements: make the step restartable from the last committed chunk, writer must be idempotent per run id\n- Use the existing `BATCH_STEP_EXECUTION_CONTEXT` tables, no new tables\nAcceptance: a Spring Batch test that forces a failure on chunk 3 and restarts produces exactly one row per employee."
+   },
+   {
+    "i": 21,
+    "text": "Our inventory service throws `OptimisticLockException` storms during flash sales and then returns 409 to the warehouse scanners even when stock is available. The retry in `StockReservationService.reserve()` catches the wrong exception type because the JPA one gets wrapped in `ObjectOptimisticLockingFailureException`. Security first: while fixing the retry, make sure the error response stops leaking the entity class name and SQL state to the client."
+   },
+   {
+    "i": 22,
+    "text": "android compose: LazyColumn scroll jumps to top on every sensor reading update, fix"
+   },
+   {
+    "i": 23,
+    "text": "In the Flutter fitness app, the workout timer keeps running correctly in the foreground but shows the wrong elapsed time after the app is backgrounded for a few minutes on iOS. `lib/workout/timer_controller.dart` just increments a counter in a `Timer.periodic`. Can you change it to derive elapsed time from a start timestamp so it survives backgrounding?"
+   },
+   {
+    "i": 24,
+    "text": "Fix the crash in the SwiftUI telehealth app when a video visit ends.\n- Crash: `EXC_BAD_ACCESS` in `VisitRoomViewModel.deinit`, around 2% of sessions in the last release per Crashlytics\n- `VisitRoomViewModel` registers a `NotificationCenter` observer with a closure capturing `self` strongly and never removes it\n- The AVAudioSession route-change handler also fires after the view model is gone\n- Requirements: use `[weak self]` captures, store tokens and remove them in `deinit` or switch to async `notifications(named:)` tied to the task lifetime\n- Must keep supporting iOS 16\nAcceptance: ending a visit 20 times in a row in the simulator with Zombies enabled shows no crash, and the existing `VisitRoomViewModelTests` pass."
+   },
+   {
+    "i": 25,
+    "text": "React Native 배달 앱에서 Android만 `PushNotificationHandler.ts`에서 알림 탭하면 앱이 cold start일 때 주문 상세 화면으로 안 넘어가고 홈에서 멈춰요. `getInitialNotification()`이 navigation ready 전에 호출되는 것 같은데 `NavigationContainer` onReady 이후에 처리되게 고쳐주세요."
+   }
+  ],
+  "meta": [
+   {
+    "task_type": "bugfix",
+    "stack": "python",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "bugfix",
+    "stack": "python",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "bugfix",
+    "stack": "python",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "bugfix",
+    "stack": "python",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "bugfix",
+    "stack": "ts_react_next",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "bugfix",
+    "stack": "ts_react_next",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "bugfix",
+    "stack": "ts_react_next",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "bugfix",
+    "stack": "ts_react_next",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "bugfix",
+    "stack": "go",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "bugfix",
+    "stack": "go",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "bugfix",
+    "stack": "go",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "bugfix",
+    "stack": "go",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "bugfix",
+    "stack": "go",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "bugfix",
+    "stack": "rust",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "bugfix",
+    "stack": "rust",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "bugfix",
+    "stack": "rust",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "bugfix",
+    "stack": "rust",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "bugfix",
+    "stack": "java_kotlin",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "bugfix",
+    "stack": "java_kotlin",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "bugfix",
+    "stack": "java_kotlin",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "bugfix",
+    "stack": "java_kotlin",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "bugfix",
+    "stack": "mobile",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "bugfix",
+    "stack": "mobile",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "bugfix",
+    "stack": "mobile",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "bugfix",
+    "stack": "mobile",
+    "phrasing": "korean"
+   }
+  ],
+  "usage": {
+   "input_tokens": 2,
+   "cache_creation_input_tokens": 2709,
+   "cache_read_input_tokens": 0,
+   "output_tokens": 4614,
+   "output_tokens_details": {
+    "thinking_tokens": 589
+   },
+   "server_tool_use": {
+    "web_search_requests": 0,
+    "web_fetch_requests": 0
+   },
+   "service_tier": "standard",
+   "cache_creation": {
+    "ephemeral_1h_input_tokens": 2709,
+    "ephemeral_5m_input_tokens": 0
+   },
+   "inference_geo": "global",
+   "iterations": [
+    {
+     "input_tokens": 2,
+     "output_tokens": 4614,
+     "cache_read_input_tokens": 0,
+     "cache_creation_input_tokens": 2709,
+     "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 2709
+     },
+     "type": "message"
+    }
+   ],
+   "speed": "standard"
+  },
+  "cost_usd": 0.11395999999999999
+ },
+ "gen-refactor": {
+  "items": [
+   {
+    "i": 1,
+    "text": "The `RateQuoteService` in `shipping/quotes.py` has grown to about 900 lines, and the UPS, FedEx and DHL branches all live in one `calculate()` method. Can you split each carrier into its own class behind a common `CarrierRater` protocol, without changing the public `calculate()` signature?"
+   },
+   {
+    "i": 2,
+    "text": "Goal: pull the appointment slot logic out of the Django view in our clinic scheduling app.\n- Move the availability computation from `scheduling/views.py` (`AvailableSlotsView.get`) into `scheduling/services/availability.py`\n- Make it pure functions that take a provider, a date range and existing bookings, with no ORM calls inside\n- Keep the queries in a thin `scheduling/repositories.py`, and have the view just wire the two together\n- Timezone handling (clinic local tz, DST edges) must behave exactly as it does today\nAcceptance: `tests/test_slots_api.py` passes unmodified and API responses are identical."
+   },
+   {
+    "i": 3,
+    "text": "`etl/transforms.py`에 있는 pandas 변환 함수들이 전역 변수 `CONFIG`를 직접 참조하고 있어서 테스트하기가 너무 힘들어요. 설정값을 인자로 받도록 바꿔주시고, 호출하는 쪽인 `jobs/daily_rollup.py`도 같이 수정해주세요."
+   },
+   {
+    "i": 4,
+    "text": "Replace the raw dict handling in `app/routers/grades.py` with Pydantic v2 models for submissions and grade updates. Keep it backward compatible: the mobile app reads these responses, so the JSON shape and field names must stay identical. Run the existing pytest suite before and after to confirm nothing changed."
+   },
+   {
+    "i": 5,
+    "text": "move useCartTotals logic out of CheckoutPage.tsx into hooks/useCartTotals.ts"
+   },
+   {
+    "i": 6,
+    "text": "Goal: unify the three HTTP helpers in our newsroom CMS (Next.js app router).\n- `lib/api.ts`, `lib/fetcher.ts` and `utils/http.ts` duplicate each other; replace them with a single `lib/apiClient.ts`\n- Expose typed `get/post/patch/del` methods and attach the auth header from the session in one place\n- On non-2xx responses, throw an `ApiError` carrying the status and the parsed body\n- Update every call site under `app/(editor)/**` and `app/(admin)/**`\nConstraints: the actual network requests must not change (same URLs, headers, methods). Delete the old files at the end.\nAcceptance: `pnpm typecheck` and `pnpm test` are green."
+   },
+   {
+    "i": 7,
+    "text": "`components/TripMap.tsx`가 600줄이 넘는데 지도 렌더링, 드라이버 위치 폴링, 요금 계산이 전부 섞여 있어요. 폴링은 커스텀 훅으로, 요금 계산은 `lib/fare.ts`로 분리해주시고 UI 동작은 지금 그대로 유지해주세요."
+   },
+   {
+    "i": 8,
+    "text": "Convert `src/matchmaking/queue.js` and `src/matchmaking/elo.js` in our game server to TypeScript with strict mode on. Minimal diff please: no logic changes and no renamed exports, just types and whatever `tsc --strict` needs. If something can't be typed cleanly, leave a TODO instead of rewriting it."
+   },
+   {
+    "i": 9,
+    "text": "extract retry logic from internal/payments/stripe_client.go into a shared retry pkg"
+   },
+   {
+    "i": 10,
+    "text": "Our `device/registry.go` uses a package-level `map[string]*Device` behind a global mutex, and every handler reaches into it directly. Can you wrap it in a `Registry` struct with proper methods and inject it into the HTTP handlers from `cmd/hub/main.go` instead?"
+   },
+   {
+    "i": 11,
+    "text": "`internal/inventory/handler.go`에서 에러를 전부 문자열로 비교하고 있는데 (`err.Error() == \"not found\"` 이런 식으로요), sentinel error와 `errors.Is`를 쓰도록 바꿔주세요. HTTP 상태 코드 매핑 결과는 지금과 똑같아야 합니다."
+   },
+   {
+    "i": 12,
+    "text": "Split the 1,400-line `pkg/telemetry/ingest.go` in our fleet tracking service into separate files for decoding, validation and persistence, all within the same package. Work test-first: write characterization tests that pin the current output for the sample payloads in `testdata/`, then do the split so we can prove nothing changed."
+   },
+   {
+    "i": 13,
+    "text": "replace unwrap()s in src/parser/ledger.rs with proper Result and thiserror"
+   },
+   {
+    "i": 14,
+    "text": "In `crates/feed-gen/src/rss.rs`, our podcast host builds XML by concatenating `String`s with `format!` all over the place. Could you refactor it to use `quick-xml`'s writer so escaping is handled in one spot, while keeping the generated feeds byte-identical for the fixtures in `tests/fixtures/`?"
+   },
+   {
+    "i": 15,
+    "text": "Goal: break the `robot-core` crate in our warehouse robotics repo into a Cargo workspace.\n- New `robot-proto` crate for message types and serde impls, with no tokio dependency\n- New `robot-nav` crate for path planning (A*, costmap code from `src/nav/`)\n- `robot-core` keeps the async runtime and re-exports the public API, so downstream `fleet-svc` compiles with no changes\n- No circular dependencies between crates\nAcceptance: `cargo test --workspace` and `cargo clippy --workspace -- -D warnings` pass, and incremental build time after touching `robot-nav` does not get worse."
+   },
+   {
+    "i": 16,
+    "text": "Refactor `src/cache/mod.rs` in our CDN edge service so `LruStore` is generic over the key type instead of hard-coding `String`. Add no new dependencies and keep the hot path allocation-free. Run the criterion benches in `benches/cache.rs` before and after, and include both sets of numbers."
+   },
+   {
+    "i": 17,
+    "text": "convert OrderDto and friends to java records, drop lombok from billing module"
+   },
+   {
+    "i": 18,
+    "text": "`ClaimService` in the claims module uses `@Autowired` field injection for twelve dependencies, so the unit tests are a mess of reflection. Switch it to constructor injection and split the fraud-scoring calls out into a `FraudCheckService`, since they're half the class anyway."
+   },
+   {
+    "i": 19,
+    "text": "Goal: move hotel booking state transitions out of `BookingController.kt` into the domain model.\n- Introduce a sealed class `BookingState` (Pending, Confirmed, CheckedIn, CheckedOut, Cancelled)\n- Put the transitions as methods on `Booking` that throw `IllegalTransitionException` on invalid moves\n- The controller should only map HTTP to and from the domain, with no status checks left in it\n- Leave the JPA entity mapping and column values unchanged, so no Flyway migration is needed\nAcceptance: `./gradlew test` passes and the existing MockMvc tests are not edited."
+   },
+   {
+    "i": 20,
+    "text": "`NotificationSender` 클래스에 SMS, 이메일, 푸시 분기가 if-else로 다 들어가 있는데, 채널별로 인터페이스 구현체로 나눠주세요. Spring에서 `List<NotificationChannel>`으로 주입받는 방식이면 좋겠어요."
+   },
+   {
+    "i": 21,
+    "text": "Migrate `ShipmentRepository` in the Maven `tracking-core` module from raw `JdbcTemplate` queries with string-concatenated SQL to Spring Data JDBC. Plan before coding: list each query, its replacement, and any you think should stay native, then wait for my OK before touching any files."
+   },
+   {
+    "i": 22,
+    "text": "break up WorkoutDetailView.swift into smaller subviews, it's 800 lines"
+   },
+   {
+    "i": 23,
+    "text": "Our banking app's `TransferViewModel` calls Retrofit and the Room DAO directly and handles the caching itself. Could you move that into a `TransferRepository` injected with Hilt, so the ViewModel only deals with UI state and the Compose screen stays the same?"
+   },
+   {
+    "i": 24,
+    "text": "Goal: replace the setState mess in `lib/screens/order_tracking_screen.dart` (food delivery app) with Riverpod.\n- Add separate providers for order status polling, courier location and ETA\n- Turn the screen into a `ConsumerWidget` with no business logic in `build()`\n- Keep the existing `OrderApi` class as is and wrap it in a provider rather than rewriting it\n- Cancel the polling timer when the screen is disposed, as it is now\nAcceptance: the widget tests in `test/order_tracking_test.dart` are updated and pass, and there is no visual change."
+   },
+   {
+    "i": 25,
+    "text": "`src/screens/ChatRoom.tsx`에 소켓 연결 코드가 컴포넌트 안에 다 들어있는데, `useChatSocket` 훅으로 빼주세요. 재연결 로직과 언마운트 시 cleanup 동작은 지금과 똑같이 유지해야 돼요."
+   }
+  ],
+  "meta": [
+   {
+    "task_type": "refactor",
+    "stack": "python",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "refactor",
+    "stack": "python",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "refactor",
+    "stack": "python",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "refactor",
+    "stack": "python",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "refactor",
+    "stack": "ts_react_next",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "refactor",
+    "stack": "ts_react_next",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "refactor",
+    "stack": "ts_react_next",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "refactor",
+    "stack": "ts_react_next",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "refactor",
+    "stack": "go",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "refactor",
+    "stack": "go",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "refactor",
+    "stack": "go",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "refactor",
+    "stack": "go",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "refactor",
+    "stack": "rust",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "refactor",
+    "stack": "rust",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "refactor",
+    "stack": "rust",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "refactor",
+    "stack": "rust",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "refactor",
+    "stack": "java_kotlin",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "refactor",
+    "stack": "java_kotlin",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "refactor",
+    "stack": "java_kotlin",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "refactor",
+    "stack": "java_kotlin",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "refactor",
+    "stack": "java_kotlin",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "refactor",
+    "stack": "mobile",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "refactor",
+    "stack": "mobile",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "refactor",
+    "stack": "mobile",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "refactor",
+    "stack": "mobile",
+    "phrasing": "korean"
+   }
+  ],
+  "usage": {
+   "input_tokens": 2,
+   "cache_creation_input_tokens": 2689,
+   "cache_read_input_tokens": 0,
+   "output_tokens": 6897,
+   "output_tokens_details": {
+    "thinking_tokens": 3653
+   },
+   "server_tool_use": {
+    "web_search_requests": 0,
+    "web_fetch_requests": 0
+   },
+   "service_tier": "standard",
+   "cache_creation": {
+    "ephemeral_1h_input_tokens": 2689,
+    "ephemeral_5m_input_tokens": 0
+   },
+   "inference_geo": "global",
+   "iterations": [
+    {
+     "input_tokens": 2,
+     "output_tokens": 6897,
+     "cache_read_input_tokens": 0,
+     "cache_creation_input_tokens": 2689,
+     "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 2689
+     },
+     "type": "message"
+    }
+   ],
+   "speed": "standard"
+  },
+  "cost_usd": 0.15946000000000002
+ },
+ "gen-tests": {
+  "items": [
+   {
+    "i": 1,
+    "text": "add pytest cases for parse_dosage() in pharmacy/rx_parser.py, cover mg/mcg edge cases"
+   },
+   {
+    "i": 2,
+    "text": "Can you write tests for `RateQuoter.quote()` in logistics/rates.py? It returns negative totals when a discount code exceeds the base fare. I want a failing regression test in place before I touch the fix."
+   },
+   {
+    "i": 3,
+    "text": "Goal: get test coverage on the enrollment waitlist logic in `school/enrollment/services.py` (Django 4.2, pytest-django).\n- Cover `promote_from_waitlist(section_id)` for these cases: seat frees up, section full, student already enrolled elsewhere at the same time slot, and an expired hold.\n- Use factory_boy factories in `tests/factories.py`. Add `SectionFactory` and `WaitlistEntryFactory` if they're missing.\n- Test the `select_for_update` path with two concurrent promotions using `transaction=True` tests.\n- Assert that the `EnrollmentPromoted` signal fires exactly once per promotion.\nAcceptance: `pytest school/enrollment` passes locally and in CI, with no real email sends (patch `notifications.send_email`). Coverage on services.py should be at least 90%."
+   },
+   {
+    "i": 4,
+    "text": "FastAPI `/v1/appointments` 라우터에 대한 테스트 좀 작성해줘. `TestClient`로 예약 생성, 중복 시간대 409 응답, 그리고 의사 휴무일 예약 거절 케이스까지 커버해줘. DB는 conftest.py에 있는 sqlite fixture 쓰면 돼."
+   },
+   {
+    "i": 5,
+    "text": "Write unit tests for `ingest/csv_normalizer.py` in our ad analytics repo, especially `normalize_row()` and the currency conversion fallback. Don't add any new dependencies. Stick to pytest and unittest.mock, which we already have, and parametrize instead of copy-pasting cases."
+   },
+   {
+    "i": 6,
+    "text": "Could you add Vitest + React Testing Library tests for the `useCartTotals` hook in `src/hooks/useCartTotals.ts`? I especially want coverage for the tax rounding when there are mixed-rate items, since QA filed a bug about a 1-cent mismatch against the order summary."
+   },
+   {
+    "i": 7,
+    "text": "Add tests for the Next.js route handler at `app/api/bookings/route.ts` (ride-share scheduling).\n- Use Jest with MSW to mock the external pricing service at `PRICING_API_URL`.\n- POST cases: valid booking returns 201, pickup time in the past returns 400, pricing service timeout returns 503 with a retry-after header.\n- GET case: paginated results respect the `cursor` param and cap at 50.\n- Mock the Prisma client via `lib/__mocks__/prisma.ts` and don't hit a real DB.\nAcceptance: `pnpm test app/api/bookings` is green and the suite runs in under 5s."
+   },
+   {
+    "i": 8,
+    "text": "Playwright로 결제 페이지 e2e 테스트 추가해줘. `/checkout`에서 쿠폰 적용하고 카드 결제 실패했을 때 에러 토스트 뜨는지, 재시도하면 주문 완료 페이지로 가는지 확인하면 돼. Stripe는 test mode 키로 mock 처리해줘."
+   },
+   {
+    "i": 9,
+    "text": "I'm about to add `validateShipmentLabel` in `packages/labels/src/validate.ts` using zod. Work test-first: write the failing Jest specs for postal code formats (US, CA, UK) and weight limits first, show me they fail, then implement until they pass."
+   },
+   {
+    "i": 10,
+    "text": "table-driven tests for geofence.Contains in internal/geo, include antimeridian polygons"
+   },
+   {
+    "i": 11,
+    "text": "Need tests for the token bucket in `internal/ratelimit/bucket.go` used by our IoT telemetry ingest service.\n- Table-driven tests for `Allow()` and `AllowN()` covering burst, refill after idle, and zero-capacity config.\n- Inject a fake clock via the existing `Clock` interface. No `time.Sleep` in tests.\n- Add a concurrency test with 100 goroutines hammering one device key and assert the total allowed never exceeds capacity plus refill.\n- Add a benchmark `BenchmarkAllowParallel` so we can compare before/after the sync.Map change.\nAcceptance: `go test -race ./internal/ratelimit/...` passes cleanly."
+   },
+   {
+    "i": 12,
+    "text": "`handlers/menu.go`에 있는 `GetMenuHandler` 테스트 짜줘. `httptest.NewRecorder` 써서 매장 ID 없을 때 404, 품절 메뉴 필터링, 그리고 `Accept-Language` 헤더에 따라 번역된 이름 내려주는지까지 확인해줘."
+   },
+   {
+    "i": 13,
+    "text": "Add tests for `scheduler.Dispatcher` in `pkg/dispatch`, which assigns delivery jobs to couriers. They must pass under `go test -race -count=50`, so no sleeps and no shared global state. Use the fake clock and channels to synchronize, and keep everything in the stdlib testing package (no testify)."
+   },
+   {
+    "i": 14,
+    "text": "proptest roundtrip for Packet::encode/decode in crates/netcode, include max-size payloads"
+   },
+   {
+    "i": 15,
+    "text": "Can you write tests for `reconcile_entries` in `ledger/src/reconcile.rs`? We had a report where duplicate settlement lines from the bank got matched twice, so I want a test that reproduces that, plus coverage for partial matches and currency mismatches."
+   },
+   {
+    "i": 16,
+    "text": "`job_queue/src/worker.rs`의 async 워커에 대해 `#[tokio::test]`로 테스트 추가해줘. 작업 실패 시 지수 백오프로 재시도하는지, 최대 재시도 넘으면 dead letter로 가는지 확인하고, 시간은 `tokio::time::pause()`로 제어해줘."
+   },
+   {
+    "i": 17,
+    "text": "Add integration tests under `tests/` for the CMS markdown renderer crate covering shortcodes, nested lists, and escaped HTML. Keep the diff minimal: don't add any crates to Cargo.toml and don't change the public API, just reuse the fixtures in `tests/data/`."
+   },
+   {
+    "i": 18,
+    "text": "junit5 + mockito tests for FareCalculator surge multiplier, cover cap at 3x"
+   },
+   {
+    "i": 19,
+    "text": "Please add a `@DataJpaTest` for `InventoryReservationRepository` using Testcontainers with the same PG version we run in prod. I care most about the custom `findExpiredReservations` query, which seems to skip rows exactly at the cutoff timestamp."
+   },
+   {
+    "i": 20,
+    "text": "Write tests for `MatchmakingService` in our Kotlin game backend (`matchmaking/src/main/kotlin/MatchmakingService.kt`).\n- Use JUnit 5, MockK, and kotlinx-coroutines-test (`runTest`, `StandardTestDispatcher`).\n- Cases: players grouped by MMR bracket within ±100, bracket widens after 30s wait, party members are never split, and a cancelled ticket is removed mid-queue.\n- Mock `PlayerRatingClient` and `LobbyAllocator`, and verify `allocate()` is called once per formed match.\n- Use virtual time only, no real delays.\nAcceptance: `./gradlew :matchmaking:test` passes, and new tests take under 2s total."
+   },
+   {
+    "i": 21,
+    "text": "Add controller tests for `ClaimsController` in our insurance claims Spring Boot service. Use `@WebMvcTest` slices with `@MockBean` services instead of `@SpringBootTest`. The whole new suite has to stay under 10 seconds because CI is already slow."
+   },
+   {
+    "i": 22,
+    "text": "XCTest for WorkoutSessionViewModel pause/resume, elapsed time shouldn't drift"
+   },
+   {
+    "i": 23,
+    "text": "Can you add Compose UI tests for `LoginScreen` in the Android app? Check that the submit button stays disabled until both fields are valid, that the error text shows on a 401, and that TalkBack content descriptions are set on the password visibility toggle."
+   },
+   {
+    "i": 24,
+    "text": "Add Flutter widget tests for the medication reminder screen (`lib/features/reminders/reminder_list_page.dart`).\n- Render with a mocked `ReminderRepository` using mocktail.\n- Cases: empty state message, list sorted by next dose time, swipe-to-dismiss marks a dose as taken, and a snooze dialog with 10/30/60 min options.\n- Add golden tests for light and dark themes at the 375x812 size.\n- Fake the clock with `package:clock` so the tests don't depend on wall time.\nAcceptance: `flutter test test/features/reminders` passes on CI, and goldens are committed under `test/goldens/`."
+   },
+   {
+    "i": 25,
+    "text": "React Native 앱의 `useOfflineSync` 훅 테스트 작성해줘. jest랑 `@testing-library/react-native` 쓰고, 네트워크 끊겼을 때 큐에 쌓였다가 다시 연결되면 순서대로 전송되는지 확인해줘. NetInfo는 mock 처리하면 돼."
+   }
+  ],
+  "meta": [
+   {
+    "task_type": "tests",
+    "stack": "python",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "tests",
+    "stack": "python",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "tests",
+    "stack": "python",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "tests",
+    "stack": "python",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "tests",
+    "stack": "python",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "tests",
+    "stack": "ts_react_next",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "tests",
+    "stack": "ts_react_next",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "tests",
+    "stack": "ts_react_next",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "tests",
+    "stack": "ts_react_next",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "tests",
+    "stack": "go",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "tests",
+    "stack": "go",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "tests",
+    "stack": "go",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "tests",
+    "stack": "go",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "tests",
+    "stack": "rust",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "tests",
+    "stack": "rust",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "tests",
+    "stack": "rust",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "tests",
+    "stack": "rust",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "tests",
+    "stack": "java_kotlin",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "tests",
+    "stack": "java_kotlin",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "tests",
+    "stack": "java_kotlin",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "tests",
+    "stack": "java_kotlin",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "tests",
+    "stack": "mobile",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "tests",
+    "stack": "mobile",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "tests",
+    "stack": "mobile",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "tests",
+    "stack": "mobile",
+    "phrasing": "korean"
+   }
+  ],
+  "usage": {
+   "input_tokens": 2,
+   "cache_creation_input_tokens": 2659,
+   "cache_read_input_tokens": 0,
+   "output_tokens": 4371,
+   "output_tokens_details": {
+    "thinking_tokens": 1071
+   },
+   "server_tool_use": {
+    "web_search_requests": 0,
+    "web_fetch_requests": 0
+   },
+   "service_tier": "standard",
+   "cache_creation": {
+    "ephemeral_1h_input_tokens": 2659,
+    "ephemeral_5m_input_tokens": 0
+   },
+   "inference_geo": "global",
+   "iterations": [
+    {
+     "input_tokens": 2,
+     "output_tokens": 4371,
+     "cache_read_input_tokens": 0,
+     "cache_creation_input_tokens": 2659,
+     "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 2659
+     },
+     "type": "message"
+    }
+   ],
+   "speed": "standard"
+  },
+  "cost_usd": 0.10869999999999999
+ },
+ "gen-docs": {
+  "items": [
+   {
+    "i": 1,
+    "text": "Can you write proper docstrings for the functions in scheduling/slots.py, especially find_open_slots and _apply_clinic_hours? New devs keep getting confused about how buffer_minutes interacts with a provider's working hours and DST changes, and right now none of that is written down anywhere."
+   },
+   {
+    "i": 2,
+    "text": "Write API reference docs for the trips endpoints in our FastAPI ride-hailing service.\n- Cover POST /v1/trips, GET /v1/trips/{trip_id}, POST /v1/trips/{trip_id}/cancel and PATCH /v1/trips/{trip_id}/destination\n- Fill in summary/description on each route in app/routers/trips.py so they show up in the generated OpenAPI page\n- Add Field(description=...) and example values to the Pydantic models in app/models/trip.py (TripCreate, TripOut, CancelRequest)\n- Document every error code we raise: 409 when a driver is already assigned, 422 for out-of-zone pickups, 402 when the rider's card fails preauth\n- Also add docs/trips.md with a curl walkthrough of the request → driver assigned → cancel lifecycle\nAcceptance: /docs renders a description and example for every field, and no route logic changes."
+   },
+   {
+    "i": 3,
+    "text": "analytics/etl/daily_rollup.py에 있는 Airflow DAG들 설명하는 README 좀 써줘. 각 task가 어떤 테이블을 읽고 쓰는지, 실패하면 backfill 어떻게 돌리는지 정리해줘. 다음 주에 온콜 넘겨야 하는데 지금 문서가 하나도 없어."
+   },
+   {
+    "i": 4,
+    "text": "Add docstrings to everything in iot_hub/config/settings.py. That's our pydantic-settings class for the greenhouse sensor hub, and nobody knows what MQTT_QOS_DEFAULT or SENSOR_STALE_AFTER_S actually control. Strict constraint: only touch docstrings and comments, with zero changes to defaults, types, or validators. I want the diff to be reviewable in two minutes, and include the matching env var name in each docstring."
+   },
+   {
+    "i": 5,
+    "text": "add jsdoc to src/hooks/useCartTotals.ts, explain the tax + promo rounding order"
+   },
+   {
+    "i": 6,
+    "text": "Document the on-demand revalidation setup for our Next.js CMS frontend.\nGoal: editors and backend devs should understand how publishing an article in Payload updates the live site.\n- Write docs/revalidation.md covering app/api/revalidate/route.ts, the tag naming (article:<slug>, section:<id>), and which pages use which tags\n- Explain the REVALIDATE_SECRET header check and what the endpoint returns on bad/missing secrets\n- Include a sequence of what happens when an article is unpublished vs. edited\n- Add TSDoc to revalidateArticle() and revalidateSection() in lib/cache/tags.ts\nConstraints: no code behaviour changes. Examples must use the real tag strings from the code, not made-up ones."
+   },
+   {
+    "i": 7,
+    "text": "server/routers/ 밑에 있는 tRPC router들(course, enrollment, grading)에 TSDoc 좀 달아줘. 특히 grading.submitScore가 어떤 권한 체크를 하는지, 언제 TRPCError FORBIDDEN 던지는지 명확하게 적어줬으면 좋겠어. 강사용 앱 붙이는 팀이 계속 물어봐서."
+   },
+   {
+    "i": 8,
+    "text": "Rewrite the root README for our pnpm/Turborepo monorepo (apps/web, apps/admin, packages/ui, packages/db). The current setup steps are stale and still mention yarn. Before you write any command into the README, actually run it from a clean state and only document what really works. If something fails, note it in your reply instead of papering over it. Keep it to local setup, env vars from .env.example, and how to run the Prisma migrations and seed."
+   },
+   {
+    "i": 9,
+    "text": "godoc comments for all exported funcs in pkg/ledger, golint is complaining"
+   },
+   {
+    "i": 10,
+    "text": "Could you document the retry and backoff behaviour in internal/carrier/client.go? Ops got paged last night because nobody realized we retry FedEx rate requests up to 5 times on 429s but never on 503s. I'd like doc comments on NewClient, doWithRetry and the RetryPolicy struct, plus a short section in docs/carriers.md."
+   },
+   {
+    "i": 11,
+    "text": "Write docs/matchmaking.md for our Go game backend's matchmaking service.\n- Explain the gRPC methods in proto/matchmaking/v1/matchmaking.proto: EnqueuePlayer, CancelTicket, WatchTicket\n- Describe how internal/mm/pool.go buckets players by MMR and region, and how the bucket widens every 10s of wait\n- Document the Redis keys we write (mm:ticket:*, mm:pool:*) and their TTLs\n- List the Prometheus metrics exported by the service and what a healthy range looks like\n- Add comments to the .proto file so generated clients get descriptions too\nAcceptance: a new engineer can explain why a 2400 MMR EU player waited 45s just from this doc. No behaviour changes."
+   },
+   {
+    "i": 12,
+    "text": "internal/consumer/orders.go에 있는 Kafka consumer 동작 방식 문서 좀 써줘. offset commit 타이밍이랑 DLQ로 보내는 조건, 그리고 rebalancing 때 처리 중인 메시지가 어떻게 되는지 위주로. docs/consumers.md에 넣어주면 돼."
+   },
+   {
+    "i": 13,
+    "text": "Add usage docs for our pkg/geofence package (point-in-polygon checks for delivery zones), but write them as Example functions in example_test.go rather than prose, so they show up on pkg.go.dev and get verified by go test. Cover Contains, Nearest and LoadZonesFromGeoJSON. Each example must have a correct // Output: block and the whole thing has to pass go test ./pkg/geofence/... before you're done."
+   },
+   {
+    "i": 14,
+    "text": "add crate-level docs to telemetry-codec/src/lib.rs, explain the frame format bytes"
+   },
+   {
+    "i": 15,
+    "text": "Our soil-moisture sensor firmware crate has about 20 unsafe blocks in src/hal/adc.rs and src/dma.rs with no justification, and clippy's undocumented_unsafe_blocks lint is about to be turned on in CI. Can you add a // SAFETY: comment above each one explaining why it's actually sound? Flag any you think aren't sound instead of making something up."
+   },
+   {
+    "i": 16,
+    "text": "src/error.rs에 있는 ApiError enum 각 variant에 doc comment 달아주고, 어떤 HTTP status로 매핑되는지도 적어줘. axum IntoResponse 구현 쪽에도 설명 좀 넣어주고, 프론트 팀이 에러 코드 표 달라고 해서 docs/errors.md도 같이 만들어줘."
+   },
+   {
+    "i": 17,
+    "text": "Write rustdoc for the public API of the `ratecalc` crate (the tariff calculator for our energy billing system): TariffPlan, Meter, compute_period_charge. Every doc must include a runnable example. No `ignore` or `no_run` unless there's a real reason, and `cargo test --doc` has to pass. Don't change any signatures; if an example would need a new helper, tell me instead of adding it."
+   },
+   {
+    "i": 18,
+    "text": "javadoc for PaymentReconciliationService, reviewer flagged missing @throws on reconcileBatch"
+   },
+   {
+    "i": 19,
+    "text": "We're moving the claims module in our Kotlin Spring Boot insurance app from synchronous REST calls to Spring application events, and I need an ADR for it in docs/adr/0014-claims-domain-events.md. Base it on what's actually in ClaimSubmittedListener.kt and ClaimService.kt, and cover the transactional boundaries since that's what the reviewers will poke at."
+   },
+   {
+    "i": 20,
+    "text": "Add springdoc-openapi annotations to the booking API in our hotel reservation service.\n- Controllers: ReservationController, AvailabilityController, RateController under com.staybook.api\n- Every endpoint gets @Operation with summary + description and @ApiResponse for each status it can return\n- Request/response DTOs get @Schema descriptions and examples (dates in ISO-8601, currency as ISO 4217)\n- Document the Idempotency-Key header on POST /reservations and what happens on a replay\n- Group endpoints with @Tag so the Swagger UI isn't one giant list\nAcceptance: /swagger-ui.html shows no undocumented fields, ./gradlew test still passes, and no controller logic changes."
+   },
+   {
+    "i": 21,
+    "text": "Write a module-level README for each subproject in our Gradle multi-module build (:core-domain, :warehouse-api, :picking-worker, :shared-kafka) for the warehouse management system. Plan first: give me an outline of what each README will cover and how the modules depend on each other, wait for my OK, then write them. Derive the dependency info from the actual build.gradle.kts files, not from guessing."
+   },
+   {
+    "i": 22,
+    "text": "document deep link routes handled in ios/App/Navigation/DeepLinkRouter.swift"
+   },
+   {
+    "i": 23,
+    "text": "Can you write a doc explaining how state management works in our Flutter workout-tracking app? We use Riverpod, and the providers in lib/providers/ (workoutSessionProvider, heartRateProvider, syncQueueProvider) depend on each other in ways nobody remembers. Put it in docs/state.md with a short note on when to use ref.watch vs ref.read in our codebase."
+   },
+   {
+    "i": 24,
+    "text": "Document the Jetpack Compose components in our :designsystem module for the banking app.\n- Add KDoc to every public composable in designsystem/src/main/java/com/finly/ds/components (PrimaryButton, AmountField, AccountCard, OtpInput)\n- Each KDoc explains params, default values and accessibility behaviour (content descriptions, minimum touch target)\n- Add @Preview functions for light/dark and font scale 1.5x where they're missing\n- Write designsystem/README.md listing components with a one-line purpose and do/don't usage notes\nAcceptance: Dokka generates without warnings, previews render in Android Studio, and no component APIs change."
+   },
+   {
+    "i": 25,
+    "text": "React Native 앱 릴리즈 절차 문서 좀 만들어줘. fastlane lane들(ios beta, android internal) 돌리는 순서, CodePush로 핫픽스 나가는 경우 기준, 버전 넘버 올리는 방법까지 docs/release.md에 정리해줘. 담당자가 이번 달에 휴가 가서 다른 사람이 해야 하거든."
+   }
+  ],
+  "meta": [
+   {
+    "task_type": "docs",
+    "stack": "python",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "docs",
+    "stack": "python",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "docs",
+    "stack": "python",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "docs",
+    "stack": "python",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "docs",
+    "stack": "ts_react_next",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "docs",
+    "stack": "ts_react_next",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "docs",
+    "stack": "ts_react_next",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "docs",
+    "stack": "ts_react_next",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "docs",
+    "stack": "go",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "docs",
+    "stack": "go",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "docs",
+    "stack": "go",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "docs",
+    "stack": "go",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "docs",
+    "stack": "go",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "docs",
+    "stack": "rust",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "docs",
+    "stack": "rust",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "docs",
+    "stack": "rust",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "docs",
+    "stack": "rust",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "docs",
+    "stack": "java_kotlin",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "docs",
+    "stack": "java_kotlin",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "docs",
+    "stack": "java_kotlin",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "docs",
+    "stack": "java_kotlin",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "docs",
+    "stack": "mobile",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "docs",
+    "stack": "mobile",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "docs",
+    "stack": "mobile",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "docs",
+    "stack": "mobile",
+    "phrasing": "korean"
+   }
+  ],
+  "usage": {
+   "input_tokens": 2,
+   "cache_creation_input_tokens": 2659,
+   "cache_read_input_tokens": 0,
+   "output_tokens": 4909,
+   "output_tokens_details": {
+    "thinking_tokens": 1117
+   },
+   "server_tool_use": {
+    "web_search_requests": 0,
+    "web_fetch_requests": 0
+   },
+   "service_tier": "standard",
+   "cache_creation": {
+    "ephemeral_1h_input_tokens": 2659,
+    "ephemeral_5m_input_tokens": 0
+   },
+   "inference_geo": "global",
+   "iterations": [
+    {
+     "input_tokens": 2,
+     "output_tokens": 4909,
+     "cache_read_input_tokens": 0,
+     "cache_creation_input_tokens": 2659,
+     "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 2659
+     },
+     "type": "message"
+    }
+   ],
+   "speed": "standard"
+  },
+  "cost_usd": 0.11946
+ },
+ "gen-ci_infra": {
+  "items": [
+   {
+    "i": 1,
+    "text": "Our GitHub Actions CI for the claims-processing service takes 14 minutes, and most of that is reinstalling poetry deps on every run. Can you add dependency caching keyed on poetry.lock to ci.yml and split pytest into the unit and integration jobs we already mark with @pytest.mark.integration?"
+   },
+   {
+    "i": 2,
+    "text": "Goal: containerize the warehouse-slotting API (FastAPI + SQLAlchemy) for staging.\n- Multi-stage Dockerfile: build wheels in a python:3.12-slim builder stage, copy only the venv into the final image\n- Run as a non-root user `slotting` and expose port 8080 via uvicorn with 4 workers\n- Add a docker-compose.yml with the app, a PG 16 container and Redis for local dev\n- Alembic migrations run as a separate one-shot compose service, not on app startup\n- Final image must be under 250MB (it is currently 1.1GB)\nAcceptance: `docker compose up` brings up a working /healthz, and `make image` produces a tagged image."
+   },
+   {
+    "i": 3,
+    "text": "tox.ini에 py310, py311, py312 환경 나눠서 돌리게 하고, GitLab CI에서 matrix로 병렬 실행되게 .gitlab-ci.yml 고쳐줘. 지금 lab-results 파서 라이브러리가 3.10에서만 테스트되고 있어서 고객사에서 3.12 이슈 터졌어."
+   },
+   {
+    "i": 4,
+    "text": "Add a pre-commit setup for the ride-matching repo with ruff, mypy (strict on `matching/core/` only), and a check that blocks committing `.env` files. Keep it minimal: no new runtime dependencies, reuse the ruff config already in pyproject.toml, and make the CI lint job just run `pre-commit run --all-files` so local and CI can't drift."
+   },
+   {
+    "i": 5,
+    "text": "turbo cache not hitting in CI for apps/storefront, fix the remote cache env vars"
+   },
+   {
+    "i": 6,
+    "text": "Set up preview deploys for the Next.js 14 course-catalog app on every PR.\n- Use GitHub Actions; build with `pnpm build` and deploy to our existing Cloudflare Pages project `catalog-preview`\n- Post the preview URL as a PR comment, updating the same comment on new pushes instead of spamming\n- Skip the deploy when only files under docs/ or *.md change\n- Run Playwright smoke tests (tests/e2e/smoke.spec.ts) against the preview URL after deploy\n- Secrets: CF_API_TOKEN and CF_ACCOUNT_ID are already in repo secrets\nAcceptance: a PR touching src/ gets a working preview link and green smoke tests within 8 minutes."
+   },
+   {
+    "i": 7,
+    "text": "monorepo에서 packages/ui 바뀌었을 때만 Storybook 빌드랑 Chromatic 비주얼 테스트 돌게 CI 조건 걸어줘. 지금은 apps/admin만 고쳐도 매번 돌아서 Chromatic 스냅샷 쿼터가 월 중순에 다 떨어져."
+   },
+   {
+    "i": 8,
+    "text": "The Dockerfile for our Node event-ticketing backend copies the whole repo before `npm ci`, so every code change busts the layer cache. Restructure it so package.json/package-lock.json are copied first and use a BuildKit cache mount for ~/.npm; keep it backward compatible with the existing `docker run` args and env vars our ECS task definition passes in."
+   },
+   {
+    "i": 9,
+    "text": "add golangci-lint to the makefile and ci, pin v1.61, fail on new issues only"
+   },
+   {
+    "i": 10,
+    "text": "We cross-compile the telemetry-agent binary for linux/amd64, linux/arm64 and linux/armv7 for the field sensors, and right now it's a shell script someone runs by hand. Can you move this to goreleaser with a GitHub Actions job that triggers on version tags and uploads checksums alongside the archives?"
+   },
+   {
+    "i": 11,
+    "text": "Go 서비스 integration 테스트가 로컬 PG에 의존해서 CI에서 자꾸 깨지는데, testcontainers-go로 바꾸고 CI runner에서 Docker 쓸 수 있게 설정 좀 해줘. 대상은 internal/inventory/store_test.go 쪽이야."
+   },
+   {
+    "i": 12,
+    "text": "Write Terraform for the shipment-tracking Go service: an ECR repo, an ECS Fargate service behind the existing ALB, and CloudWatch log group with 30-day retention. Plan before coding: show me the module layout and variables first, and reuse the shared `vpc` and `alb` remote state outputs in infra/envs/staging instead of hardcoding subnet IDs."
+   },
+   {
+    "i": 13,
+    "text": "cargo build in ci recompiles everything, add sccache or rust-cache to the job"
+   },
+   {
+    "i": 14,
+    "text": "The game-matchmaking server crate needs CI checks for `cargo fmt --check`, `cargo clippy -- -D warnings`, and tests on both stable and our pinned MSRV 1.75. Also add cargo-deny so we catch the GPL-licensed transitive dep that slipped in last month before it gets merged."
+   },
+   {
+    "i": 15,
+    "text": "Goal: ship a static musl build of the `ledgerctl` CLI for our payments ops team.\n- Target x86_64-unknown-linux-musl and aarch64-unknown-linux-musl using cross in GitHub Actions\n- openssl currently breaks the musl build; switch reqwest to rustls-tls instead\n- Strip binaries and enable lto = \"thin\" in the release profile section of Cargo.toml\n- Attach tarballs + sha256 sums to the GitHub release on `v*` tags\n- Keep the existing macOS build job untouched\nAcceptance: `file ledgerctl` shows statically linked, and the binary runs on a bare alpine:3.20 container."
+   },
+   {
+    "i": 16,
+    "text": "Our Rust firmware-update service image is built from rust:latest and ends up at 1.4GB. Rewrite the Dockerfile with cargo-chef for dependency layer caching and a distroless final stage, test-first: add a CI step that runs the container and hits /version before switching the deploy job over to the new image."
+   },
+   {
+    "i": 17,
+    "text": "gradle build cache isn't shared between ci jobs, wire up the remote cache on our nexus"
+   },
+   {
+    "i": 18,
+    "text": "Our Spring Boot hotel-booking service still uses a hand-written Jenkinsfile with a Maven Docker agent, and builds randomly fail when the agent's ~/.m2 gets corrupted. Can you migrate it to GitHub Actions with setup-java's Maven caching and keep the same stages: compile, unit tests, Testcontainers integration tests, and jib push to our registry?"
+   },
+   {
+    "i": 19,
+    "text": "Goal: add Kotlin code quality gates to the subscription-billing Gradle multi-module project.\n- Add detekt and ktlint via the Gradle plugins, configured once in buildSrc convention plugins\n- Generate a detekt baseline so existing violations don't fail the build\n- Add a JaCoCo aggregate coverage report across :billing-core, :billing-api and :billing-worker\n- CI fails if line coverage on :billing-core drops below 80%\n- Upload the HTML reports as CI artifacts\nConstraints: Gradle 8.10, Kotlin 2.0, configuration cache must stay enabled and not emit warnings."
+   },
+   {
+    "i": 20,
+    "text": "Spring Boot 앱 k8s 배포용 chart 만들어줘. actuator /actuator/health/liveness랑 readiness 엔드포인트 연결하고, JVM 메모리는 컨테이너 limit 기준으로 MaxRAMPercentage=75로 잡아줘. 지금 물류 배차 서비스가 OOMKilled 계속 나서 급해."
+   },
+   {
+    "i": 21,
+    "text": "Add OWASP dependency-check to the Maven build of our patient-records API and run it nightly in CI rather than on every PR, since it takes ~6 minutes. Security first: fail on CVSS >= 7, keep the NVD API key in a CI secret only, and add a suppression file with justifications rather than blanket ignores."
+   },
+   {
+    "i": 22,
+    "text": "set up fastlane match for ios signing in ci, certs keep expiring on the mac runner"
+   },
+   {
+    "i": 23,
+    "text": "Our Flutter grocery-delivery app has no CI at all. Can you add a GitHub Actions job that runs `flutter analyze` and `flutter test`, builds a release APK and an unsigned iOS build, and caches the pub and Gradle dirs so it doesn't take forever?"
+   },
+   {
+    "i": 24,
+    "text": "Goal: automate Android release builds for the fitness-tracking app (Kotlin, Compose, Gradle KTS).\n- Bitrise or GitHub Actions is fine; prefer GitHub Actions since the repo lives there\n- Build signed AAB using keystore decoded from a base64 secret, never committed\n- versionCode derived from the CI run number, versionName from the git tag\n- Upload to the Play Console internal track via the Gradle Play Publisher plugin\n- Run `./gradlew lintRelease testReleaseUnitTest` before signing\nAcceptance: pushing tag `v2.4.0` produces an internal-track build with versionName 2.4.0 and no secrets in logs."
+   },
+   {
+    "i": 25,
+    "text": "React Native 앱 Detox E2E 테스트를 CI에서 Android 에뮬레이터로 돌리고 싶은데, 에뮬레이터 부팅이 너무 느려서 AVD 스냅샷 캐싱 포함해서 설정해줘. 학원 출결 앱이고 e2e/ 폴더에 테스트는 이미 있어."
+   }
+  ],
+  "meta": [
+   {
+    "task_type": "ci_infra",
+    "stack": "python",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "ci_infra",
+    "stack": "python",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "ci_infra",
+    "stack": "python",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "ci_infra",
+    "stack": "python",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "ci_infra",
+    "stack": "ts_react_next",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "ci_infra",
+    "stack": "ts_react_next",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "ci_infra",
+    "stack": "ts_react_next",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "ci_infra",
+    "stack": "ts_react_next",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "ci_infra",
+    "stack": "go",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "ci_infra",
+    "stack": "go",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "ci_infra",
+    "stack": "go",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "ci_infra",
+    "stack": "go",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "ci_infra",
+    "stack": "rust",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "ci_infra",
+    "stack": "rust",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "ci_infra",
+    "stack": "rust",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "ci_infra",
+    "stack": "rust",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "ci_infra",
+    "stack": "java_kotlin",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "ci_infra",
+    "stack": "java_kotlin",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "ci_infra",
+    "stack": "java_kotlin",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "ci_infra",
+    "stack": "java_kotlin",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "ci_infra",
+    "stack": "java_kotlin",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "ci_infra",
+    "stack": "mobile",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "ci_infra",
+    "stack": "mobile",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "ci_infra",
+    "stack": "mobile",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "ci_infra",
+    "stack": "mobile",
+    "phrasing": "korean"
+   }
+  ],
+  "usage": {
+   "input_tokens": 2,
+   "cache_creation_input_tokens": 2739,
+   "cache_read_input_tokens": 0,
+   "output_tokens": 3785,
+   "output_tokens_details": {
+    "thinking_tokens": 366
+   },
+   "server_tool_use": {
+    "web_search_requests": 0,
+    "web_fetch_requests": 0
+   },
+   "service_tier": "standard",
+   "cache_creation": {
+    "ephemeral_1h_input_tokens": 2739,
+    "ephemeral_5m_input_tokens": 0
+   },
+   "inference_geo": "global",
+   "iterations": [
+    {
+     "input_tokens": 2,
+     "output_tokens": 3785,
+     "cache_read_input_tokens": 0,
+     "cache_creation_input_tokens": 2739,
+     "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 2739
+     },
+     "type": "message"
+    }
+   ],
+   "speed": "standard"
+  },
+  "cost_usd": 0.09762
+ },
+ "gen-deploy": {
+  "items": [
+   {
+    "i": 1,
+    "text": "Can you get our FastAPI claims-processing service ready to deploy on Fly.io? I need a fly.toml and a release command that runs `alembic upgrade head` before the new machines take traffic, so we stop forgetting migrations like we did last Friday."
+   },
+   {
+    "i": 2,
+    "text": "Goal: blue/green deploy for the Django pharmacy-refill app on AWS ECS behind the ALB.\n- Add a `deploy/ecs/` folder with task definitions for `web` (gunicorn) and `worker` (celery)\n- Use CodeDeploy blue/green with a 10% canary for 5 minutes, then shift all traffic\n- Run `python manage.py migrate --noinput` as a one-off task before the traffic shift; abort if it exits non-zero\n- Read secrets from SSM Parameter Store (`/refill/prod/*`), never from the image\n- Health check hits `/healthz/` and must return 200 within 2s\nAcceptance: a failed health check during canary rolls back automatically, and the old task set stays up until the shift completes."
+   },
+   {
+    "i": 3,
+    "text": "Airflow 스케줄러를 2.9로 올리면서 staging 환경에 먼저 배포하고 싶은데, `deploy/airflow/values-staging.yaml`에 이미지 태그랑 `AIRFLOW__CORE__PARALLELISM` 값 정리해주고 DAG 동기화가 git-sync로 되게 바꿔줘. prod는 아직 건드리지 말아줘."
+   },
+   {
+    "i": 4,
+    "text": "We need to roll out the new pricing model for the ride-sharing surge service (`surge_api/`) to prod. Keep it backward compatible: the old `/v1/quote` response fields must stay exactly as they are, gate the new calculation behind the `SURGE_V2_ENABLED` env var defaulting to false, and add the env var to `k8s/surge/deployment.yaml` so we can flip it per-region without a redeploy."
+   },
+   {
+    "i": 5,
+    "text": "vercel preview deploys failing on missing NEXT_PUBLIC_MAPBOX_TOKEN, fix env config"
+   },
+   {
+    "i": 6,
+    "text": "Our Next.js storefront for the furniture shop needs to move from Vercel to a self-hosted Docker setup on Hetzner. Can you switch next.config.ts to `output: 'standalone'`, write a slim Dockerfile, and make sure ISR cache still works with a shared volume across the two replicas?"
+   },
+   {
+    "i": 7,
+    "text": "Set up staged releases for the tutoring-marketplace web app (Next.js 15, app router) on Cloudflare via OpenNext.\n- Three environments: `preview` per PR, `staging` on merge to `main`, `production` on a `v*` tag\n- Each environment gets its own `wrangler.toml` env block and KV namespace for session data\n- Build once, deploy the same artifact to staging and prod (no rebuild on tag)\n- Post the deployed URL as a PR comment for previews\n- Fail the release if `pnpm build` emits any type errors\nAcceptance: tagging `v1.4.0` deploys the exact build that was on staging, and rolling back is a single `wrangler rollback` command documented in `docs/releasing.md`."
+   },
+   {
+    "i": 8,
+    "text": "admin 페이지(`apps/admin`)만 별도 서브도메인 admin.clinicbook.kr로 배포해야 하는데, turborepo에서 이 앱만 빌드되게 Vercel 프로젝트 설정이랑 `vercel.json` rewrites 좀 잡아줘. 기존 `apps/web` 배포에는 영향 없어야 해."
+   },
+   {
+    "i": 9,
+    "text": "Roll the new checkout API routes for the ticketing site out to production using a minimal diff: just add a percentage-based feature toggle in `middleware.ts` reading from Edge Config so 5% of users hit `/api/checkout-v2`, and don't refactor the existing `/api/checkout` handler at all."
+   },
+   {
+    "i": 10,
+    "text": "add ko build + push for cmd/tracker-ingest to the release makefile target"
+   },
+   {
+    "i": 11,
+    "text": "Goal: zero-downtime deploys for the Go fleet-telemetry service (`cmd/telemetryd`) on our k3s cluster.\n- Handle SIGTERM in `main.go`: stop accepting new MQTT sessions, drain in-flight writes for up to 25s, then exit\n- Set `terminationGracePeriodSeconds: 30` and a `preStop` sleep of 5s in `deploy/k8s/telemetryd.yaml`\n- Readiness endpoint `/readyz` should flip to 503 as soon as shutdown begins\n- RollingUpdate with `maxUnavailable: 0`, `maxSurge: 1`\nAcceptance: during a rollout under the load script in `scripts/loadgen`, zero device writes are dropped (check the `telemetry_write_errors_total` counter)."
+   },
+   {
+    "i": 12,
+    "text": "goreleaser로 `inventory-cli` 바이너리 릴리스할 때 darwin arm64랑 linux amd64만 빌드하고 Homebrew tap에도 자동으로 올라가게 `.goreleaser.yaml` 수정해줘. 지금은 windows까지 빌드돼서 릴리스가 10분 넘게 걸려."
+   },
+   {
+    "i": 13,
+    "text": "The payments reconciliation worker (`internal/recon`) needs to go to prod tomorrow. Plan before coding: write up in `deploy/RECON_ROLLOUT.md` what env vars, IAM permissions on the S3 bucket, and cron schedule changes are needed, let me review it, and only then update the Terraform in `infra/recon/` and the systemd unit."
+   },
+   {
+    "i": 14,
+    "text": "cross-compile edge-agent for aarch64-unknown-linux-musl and ship via scp to gateway boxes"
+   },
+   {
+    "i": 15,
+    "text": "Can you set up a release for our Axum-based game matchmaking server so that tagging a version builds a distroless image with cargo-chef caching and pushes it to GHCR? Right now every deploy rebuilds all deps from scratch and takes about 14 minutes."
+   },
+   {
+    "i": 16,
+    "text": "`ledger-sync` 서비스 새 버전을 Shuttle에서 Railway로 옮겨서 배포하려고 하는데, `DATABASE_URL`이랑 sqlx 오프라인 모드(`.sqlx` 디렉토리) 설정 맞춰서 `railway.toml` 만들어줘. 빌드할 때 DB 접속 없이 컴파일돼야 해."
+   },
+   {
+    "i": 17,
+    "text": "Deploy the Rust firmware-update server (`ota-server/`) to the three regional VMs, security first: the systemd unit should run as a dedicated non-root user with `ProtectSystem=strict`, `NoNewPrivileges=yes`, and the signing key loaded via `LoadCredential=` instead of an env var. Add the unit and an Ansible playbook under `deploy/ansible/`."
+   },
+   {
+    "i": 18,
+    "text": "bump spring boot to 3.3.5 and redeploy shipment-service to staging via jib"
+   },
+   {
+    "i": 19,
+    "text": "Our Kotlin Ktor appointment-booking API keeps failing the first health check after deploy on Cloud Run because JVM startup takes ~9s. Can you add a startup check config, raise the CPU boost, and see if enabling CDS in the Dockerfile gets cold start under 4s?"
+   },
+   {
+    "i": 20,
+    "text": "Goal: move the loan-origination Spring Boot service from manual WAR deploys on Tomcat to an OpenShift deployment.\n- Build an OCI image with `./gradlew bootBuildImage`, push to the internal registry\n- Add `openshift/` manifests: DeploymentConfig replacement as a plain Deployment, Service, Route with edge TLS\n- Externalize `application-prod.yml` into a ConfigMap; DB password from a Secret\n- Flyway migrations run on startup but only on one pod (use `spring.flyway` with a lock, not an init container per replica)\n- Actuator `/actuator/health/liveness` and `/readiness` wired to the kube checks\nAcceptance: a rollout of 3 replicas completes with no 5xx from the Route, and the old Tomcat job in Jenkins is marked deprecated in `README.md`."
+   },
+   {
+    "i": 21,
+    "text": "We're releasing the warehouse-picking module (`picking-core`) as a library to our internal Nexus for the other teams. No new dependencies or plugins beyond what's in `build.gradle.kts` already — just configure `maven-publish` with sources and javadoc jars, sign with the existing GPG setup, and version from the git tag."
+   },
+   {
+    "i": 22,
+    "text": "fastlane beta lane for the courier app: bump build number, upload to testflight"
+   },
+   {
+    "i": 23,
+    "text": "We need to ship the Android version of our plant-care Compose app to the Play Store internal track. Can you set up the Gradle Play Publisher plugin with the service account JSON from CI secrets and make release builds use the upload keystore instead of the debug one they're accidentally using now?"
+   },
+   {
+    "i": 24,
+    "text": "Goal: over-the-air releases for the React Native hotel check-in app using EAS Update.\n- Configure `eas.json` channels: `preview`, `staging`, `production`\n- `runtimeVersion` policy set to `fingerprint` so native changes force a store build instead of an OTA update\n- Add a GitHub Actions job that publishes to `staging` on merge to `main`\n- Production updates go out at 10% first, then 100% after manual approval\n- Expose the current update ID on the in-app About screen for support tickets\nAcceptance: an update with only JS changes reaches staging devices without a store submission, and a change to a native module is blocked from OTA."
+   },
+   {
+    "i": 25,
+    "text": "Flutter로 만든 헬스장 예약 앱 iOS 배포가 App Store Connect에서 계속 'Missing Purpose String' 때문에 거절당해. `ios/Runner/Info.plist`에 카메라랑 위치 권한 설명 추가하고 Codemagic 설정에서 자동으로 TestFlight 업로드까지 되게 고쳐줘."
+   }
+  ],
+  "meta": [
+   {
+    "task_type": "deploy",
+    "stack": "python",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "deploy",
+    "stack": "python",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "deploy",
+    "stack": "python",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "deploy",
+    "stack": "python",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "deploy",
+    "stack": "ts_react_next",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "deploy",
+    "stack": "ts_react_next",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "deploy",
+    "stack": "ts_react_next",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "deploy",
+    "stack": "ts_react_next",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "deploy",
+    "stack": "ts_react_next",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "deploy",
+    "stack": "go",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "deploy",
+    "stack": "go",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "deploy",
+    "stack": "go",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "deploy",
+    "stack": "go",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "deploy",
+    "stack": "rust",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "deploy",
+    "stack": "rust",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "deploy",
+    "stack": "rust",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "deploy",
+    "stack": "rust",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "deploy",
+    "stack": "java_kotlin",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "deploy",
+    "stack": "java_kotlin",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "deploy",
+    "stack": "java_kotlin",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "deploy",
+    "stack": "java_kotlin",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "deploy",
+    "stack": "mobile",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "deploy",
+    "stack": "mobile",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "deploy",
+    "stack": "mobile",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "deploy",
+    "stack": "mobile",
+    "phrasing": "korean"
+   }
+  ],
+  "usage": {
+   "input_tokens": 2,
+   "cache_creation_input_tokens": 2689,
+   "cache_read_input_tokens": 0,
+   "output_tokens": 3969,
+   "output_tokens_details": {
+    "thinking_tokens": 398
+   },
+   "server_tool_use": {
+    "web_search_requests": 0,
+    "web_fetch_requests": 0
+   },
+   "service_tier": "standard",
+   "cache_creation": {
+    "ephemeral_1h_input_tokens": 2689,
+    "ephemeral_5m_input_tokens": 0
+   },
+   "inference_geo": "global",
+   "iterations": [
+    {
+     "input_tokens": 2,
+     "output_tokens": 3969,
+     "cache_read_input_tokens": 0,
+     "cache_creation_input_tokens": 2689,
+     "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 2689
+     },
+     "type": "message"
+    }
+   ],
+   "speed": "standard"
+  },
+  "cost_usd": 0.1009
+ },
+ "gen-data": {
+  "items": [
+   {
+    "i": 1,
+    "text": "The weekly no-show report in reports/no_show.py is double counting appointments that were rescheduled, because both the original and the new slot rows come back from the appointments table with status='missed'. Can you change the aggregation so only the latest slot per booking_id counts, and regenerate the September numbers to compare against what the clinic ops team flagged?"
+   },
+   {
+    "i": 2,
+    "text": "Goal: load shipment scan events from the S3 parquet drops into our warehouse table `fact_shipment_scans`.\n- Source: s3://carrier-drops/scans/dt=YYYY-MM-DD/*.parquet, written by three carriers with slightly different column names (`scan_ts` vs `event_time`, `hub_code` vs `facility_id`)\n- Put the column mapping in etl/carriers/mappings.py, one dict per carrier\n- Normalize timestamps to UTC; DHL files are in local hub time, so use hub_timezones.csv for those\n- Dedupe on (tracking_number, scan_type, scan_ts) before insert\n- Must be idempotent: rerunning a date replaces that partition, never appends\nAcceptance: running `python -m etl.load_scans --date 2026-10-20` twice leaves the same row count, and the scan count per carrier matches the manifest.json shipped with each drop."
+   },
+   {
+    "i": 3,
+    "text": "lms/exports/quiz_attempts.csv에서 학생별 최고 점수랑 평균 응시 횟수를 과목별로 집계하는 스크립트를 scripts/aggregate_quiz.py로 만들어 주세요. 같은 attempt_id가 중복으로 들어온 행이 꽤 있어서 그거 먼저 걸러내야 하고, 결과는 pandas로 처리해서 parquet으로 저장하면 됩니다."
+   },
+   {
+    "i": 4,
+    "text": "Our analytics event tables have duplicate page_view rows wherever the mobile SDK retried, roughly 4% in October. Write a dedupe step in analytics/jobs/dedupe_events.py that keeps the earliest row per (session_id, event_id). Use polars, which we already depend on, and don't add any new packages. Also print a before/after count per day so I can sanity check it against the raw bucket."
+   },
+   {
+    "i": 5,
+    "text": "prisma seed script for cms: 50 articles, authors, tags, realistic publish dates"
+   },
+   {
+    "i": 6,
+    "text": "Move user notification settings out of the `users.preferences` jsonb column and into a proper `notification_settings` table (Drizzle ORM, Next.js app).\n- Add the new table in db/tables/notificationSettings.ts with columns user_id, channel, category, enabled, updated_at\n- Write a one-off backfill in scripts/backfill-notification-settings.ts that reads every users.preferences.notifications blob and inserts the corresponding rows\n- Some old blobs use `email: true` and newer ones use `channels: { email: { marketing: false } }`, so handle both shapes\n- Process in batches of 1000 and log any user whose blob can't be parsed, but don't abort the run\n- Leave the jsonb column alone for now; we'll drop it in a later release\nDone when: row counts reconcile and /api/settings/notifications returns identical output for a sample of 200 users before and after."
+   },
+   {
+    "i": 7,
+    "text": "trips 테이블에 driver_earnings 컬럼이 새로 생겼는데 기존 트립들은 다 null이라서, fare랑 commission_rate 가지고 계산해서 채워넣는 backfill 스크립트를 scripts/backfill-earnings.ts로 짜주세요. 프로모 할인 들어간 트립은 promo_adjustments 테이블까지 조인해야 금액이 맞습니다."
+   },
+   {
+    "i": 8,
+    "text": "Build a CSV product importer for the merchant portal at app/api/import/products/route.ts that validates each row with zod (sku, title, price_cents, stock, category_slug) and upserts into the products table. Implement dry-run mode first, returning the per-row validation errors and a would-insert/would-update summary without touching the DB, and only wire up the real write once that output looks right. Rows with an unknown category_slug should be reported, not created."
+   },
+   {
+    "i": 9,
+    "text": "downsample sensor_readings to 5-min averages per device_id, write into readings_5m"
+   },
+   {
+    "i": 10,
+    "text": "We're splitting the leaderboard from one global table into per-season tables. Can you write a Go migration command under cmd/migrate-leaderboard that copies rows from `leaderboard_entries` into `leaderboard_s{N}` based on the season_id, recomputes rank within each season, and verifies the per-season counts at the end?"
+   },
+   {
+    "i": 11,
+    "text": "PG 정산 파일(settlement_YYYYMMDD.csv)이랑 우리 payments 테이블을 transaction_id 기준으로 대사하는 기능을 internal/reconcile 패키지에 추가해 주세요. 금액 불일치, 우리 쪽에만 있는 건, PG 쪽에만 있는 건을 각각 분류해서 리포트 CSV로 떨궈주면 됩니다."
+   },
+   {
+    "i": 12,
+    "text": "Add an export in internal/telemetry/export.go that dumps a day of truck GPS points (~40M rows) from the telemetry DB into parquet files partitioned by fleet_id. It has to run on the 512MB worker pod, so read with a cursor in chunks and write row groups incrementally; never load the full day into memory. Please check heap usage with a test run on staging's 2026-10-15 data before calling it done."
+   },
+   {
+    "i": 13,
+    "text": "convert nginx access logs in data/raw/*.log.gz to parquet, one file per day"
+   },
+   {
+    "i": 14,
+    "text": "I need a small CLI in src/bin/fastq_stats.rs that walks a directory of gzipped FASTQ files and writes a per-sample summary CSV: read count, mean read length, GC content, and percent of bases with Q30+. The lab is currently doing this by hand in a notebook and it takes hours on the full run."
+   },
+   {
+    "i": 15,
+    "text": "Goal: ingest smart meter interval data from utility CSVs into ClickHouse.\n- New crate module src/ingest/meters.rs, using the csv and clickhouse crates we already have\n- Input columns: meter_id, interval_start, kwh, quality_flag; files can be up to 2GB\n- Skip rows with quality_flag = 'E' but count them and log the count per file\n- Convert interval_start from the utility's local time (America/Chicago) to UTC, handling the DST fallback hour without dropping rows\n- Insert in batches of 50k rows\nAcceptance: the sample file in fixtures/meters_2026_03.csv loads with the expected 2,976 intervals per meter for March, and re-ingesting the same file doesn't create duplicates (use ReplacingMergeTree on meter_id + interval_start)."
+   },
+   {
+    "i": 16,
+    "text": "여러 중개 사이트에서 긁어온 부동산 매물 JSON이 data/listings/에 쌓여 있는데, 같은 매물이 주소 표기만 조금 다르게 중복으로 들어와 있어요. 주소 정규화하고 면적·층수까지 같이 비교해서 중복을 묶어주는 dedupe 로직을 src/dedupe.rs에 만들어 주세요."
+   },
+   {
+    "i": 17,
+    "text": "Write the hourly rollup for weather station observations in src/rollup.rs (min/max/mean temperature, total precipitation, max wind gust per station per hour). Go test-first: start with tests for an empty hour, a station that reports missing values as -9999, and observations landing exactly on the hour boundary, then write the implementation to make them pass."
+   },
+   {
+    "i": 18,
+    "text": "flyway migration to backfill orders.region_code from shipping_address.country"
+   },
+   {
+    "i": 19,
+    "text": "The Spring Batch job that imports insurance claims from the partner SFTP (ClaimsImportJobConfig) is silently skipping rows where the diagnosis code column has trailing whitespace. Can you fix the reader/processor so those get trimmed and imported, and add a skip listener that writes any rows that genuinely fail into a claims_import_rejects table?"
+   },
+   {
+    "i": 20,
+    "text": "Goal: nightly occupancy report for the hotel booking service (Kotlin, Spring Boot).\n- New scheduled job in reporting/OccupancyReportJob.kt, running at 02:00 property-local time\n- For each property, compute occupied room-nights, ADR and RevPAR for the previous day from the bookings and room_inventory tables\n- Exclude cancelled bookings and owner-blocked rooms from both the numerator and the denominator\n- Write results to the daily_occupancy table, upserting on (property_id, stay_date)\n- Use a single aggregate SQL query per run, not a per-booking loop in Kotlin\nAcceptance: the numbers for property 1042 on 2026-10-01 match the revenue team's spreadsheet figures they sent (78.4% occupancy, ADR 142.10)."
+   },
+   {
+    "i": 21,
+    "text": "We need to hand loan history from the library system to a university research group. Add an anonymizing export in LoanExportService.kt that replaces patron_id with a salted hash, buckets birth year into 10-year ranges, and drops free-text notes. Do a security-first pass: the salt comes from config and is never logged, the output has no column that can be joined back to patrons, and there's a test asserting that."
+   },
+   {
+    "i": 22,
+    "text": "room migration v7→v8: split workouts.duration into active_seconds and rest_seconds"
+   },
+   {
+    "i": 23,
+    "text": "We're moving the iOS habit tracker from Core Data to SwiftData in the next release. Can you write the one-time migration that copies existing HabitEntity and CheckInEntity records into the new @Model types on first launch, keeps the streak counts intact, and marks the migration done in UserDefaults so it never reruns?"
+   },
+   {
+    "i": 24,
+    "text": "Goal: offline sync for the Flutter field inspection app so inspectors can work without signal.\n- Store pending inspections and photo references in the local drift database (tables inspections_pending and photos_pending)\n- When connectivity returns, upload in order: inspection record first, then its photos, then mark it synced\n- On a 409 from POST /api/inspections, keep the server version and move the local copy to an inspections_conflicts table for manual review\n- Retry failed uploads with exponential backoff, capped at 5 attempts\nAcceptance: in airplane mode, create 3 inspections with 4 photos each, go back online, and all of them show up server-side with no duplicates and the photos attached to the right inspection_id."
+   },
+   {
+    "i": 25,
+    "text": "React Native 레시피 앱에서 AsyncStorage에 저장하던 즐겨찾기랑 장보기 목록을 react-native-mmkv로 옮기려고 해요. 앱 업데이트 후 첫 실행 때 기존 데이터를 한 번만 옮기고, 옮긴 다음에는 AsyncStorage 키를 지우는 마이그레이션 코드를 src/storage/migrate.ts에 작성해 주세요."
+   }
+  ],
+  "meta": [
+   {
+    "task_type": "data",
+    "stack": "python",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "data",
+    "stack": "python",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "data",
+    "stack": "python",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "data",
+    "stack": "python",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "data",
+    "stack": "ts_react_next",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "data",
+    "stack": "ts_react_next",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "data",
+    "stack": "ts_react_next",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "data",
+    "stack": "ts_react_next",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "data",
+    "stack": "go",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "data",
+    "stack": "go",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "data",
+    "stack": "go",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "data",
+    "stack": "go",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "data",
+    "stack": "rust",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "data",
+    "stack": "rust",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "data",
+    "stack": "rust",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "data",
+    "stack": "rust",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "data",
+    "stack": "rust",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "data",
+    "stack": "java_kotlin",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "data",
+    "stack": "java_kotlin",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "data",
+    "stack": "java_kotlin",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "data",
+    "stack": "java_kotlin",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "data",
+    "stack": "mobile",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "data",
+    "stack": "mobile",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "data",
+    "stack": "mobile",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "data",
+    "stack": "mobile",
+    "phrasing": "korean"
+   }
+  ],
+  "usage": {
+   "input_tokens": 2,
+   "cache_creation_input_tokens": 993,
+   "cache_read_input_tokens": 1642,
+   "output_tokens": 4804,
+   "output_tokens_details": {
+    "thinking_tokens": 952
+   },
+   "server_tool_use": {
+    "web_search_requests": 0,
+    "web_fetch_requests": 0
+   },
+   "service_tier": "standard",
+   "cache_creation": {
+    "ephemeral_1h_input_tokens": 993,
+    "ephemeral_5m_input_tokens": 0
+   },
+   "inference_geo": "global",
+   "iterations": [
+    {
+     "input_tokens": 2,
+     "output_tokens": 4804,
+     "cache_read_input_tokens": 1642,
+     "cache_creation_input_tokens": 993,
+     "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 993
+     },
+     "type": "message"
+    }
+   ],
+   "speed": "standard"
+  },
+  "cost_usd": 0.10436039999999999
+ },
+ "gen-ml": {
+  "items": [
+   {
+    "i": 1,
+    "text": "The churn model in `models/churn/train.py` scores really well offline but its recall on the latest month of subscriber data dropped from 0.71 to 0.52. Can you add a time-based split to `build_splits()` so we stop leaking future rows into validation, then retrain and tell me what the honest numbers look like?"
+   },
+   {
+    "i": 2,
+    "text": "Goal: add a demand forecasting model for our grocery delivery warehouses in `forecasting/`.\n- Input: `data/orders_daily.parquet` (store_id, sku_id, date, units, promo_flag)\n- Train a LightGBM regressor per category with lag features (7, 14, 28 days) and rolling means\n- Hold out the last 6 weeks as the test set, no shuffling\n- Report WAPE per category and overall into `reports/forecast_eval.json`\n- Save models with joblib under `artifacts/forecast/{category}.pkl`\nAcceptance: `python -m forecasting.train --config configs/forecast.yaml` runs end to end in under 20 minutes on the CI runner, and overall WAPE beats the current seasonal-naive baseline in `baselines.py`."
+   },
+   {
+    "i": 3,
+    "text": "`triage_bot/classifier.py`에 있는 의료 문의 분류 모델이 클래스 불균형 때문에 '응급' 라벨을 거의 못 맞추고 있어요. class weight 넣거나 focal loss로 바꿔서 다시 학습하고 클래스별 F1 비교해 주세요."
+   },
+   {
+    "i": 4,
+    "text": "Add early stopping and a cosine LR schedule to the PyTorch training loop in `recsys/train_two_tower.py` for our music recommendation retrieval model. Write a small failing test first in `tests/test_train_loop.py` that checks training halts after `patience` epochs without val improvement, then implement it — and don't add any new dependencies, just use what's in torch."
+   },
+   {
+    "i": 5,
+    "text": "wire onnxruntime-node into /api/moderate for the toxicity model, replace the openai call"
+   },
+   {
+    "i": 6,
+    "text": "Build client-side image classification for the plant ID feature in our gardening app (Next.js 14, app router).\n- Load the MobileNetV3 TF.js model from `/public/models/plants/model.json` lazily, only when the user opens `/identify`\n- Run inference in a Web Worker (`workers/classify.worker.ts`) so the main thread never blocks\n- Return the top 3 species with confidence; hide anything under 0.15\n- Cache the model in IndexedDB after the first download\n- Typed results via a `PlantPrediction` type in `lib/ml/types.ts`\nAcceptance: Lighthouse TBT on `/identify` stays under 200ms, and second visits load the model without a network request."
+   },
+   {
+    "i": 7,
+    "text": "부동산 매물 가격 예측 API(`app/api/estimate/route.ts`)에서 호출하는 Python 모델 서버 응답이 가끔 NaN으로 와서 화면이 깨져요. Node 쪽에서 응답 검증 추가하고 NaN이면 fallback으로 지역 평균가 보여주게 해주세요."
+   },
+   {
+    "i": 8,
+    "text": "Our support ticket tagging in `services/ticketTagger.ts` uses a hosted embedding model plus cosine similarity against tag centroids. Add an offline eval script `scripts/eval-tagger.ts` that runs against `fixtures/labeled_tickets.jsonl` and prints precision@1 and @3 — plan it out first and show me the approach before writing any code, since I want to reuse it for other classifiers."
+   },
+   {
+    "i": 9,
+    "text": "fraud scorer: load xgboost model via leaves in internal/scoring, drop the python sidecar"
+   },
+   {
+    "i": 10,
+    "text": "Our fleet telemetry service in `cmd/anomaly` computes a rolling z-score on engine temperature per truck, but it fires way too many false alarms on cold starts. Can you swap it for an isolation-forest style detector (go-isoforest or a small hand-rolled one is fine) and train it on the last 30 days from `testdata/telemetry.csv`?"
+   },
+   {
+    "i": 11,
+    "text": "광고 CTR 예측 서빙 서버(`internal/ctr/predictor.go`)에서 피처 해싱 버킷 수가 학습 때랑 달라서 예측값이 다 0.5 근처로 나와요. 학습 config에서 버킷 수 읽어오도록 바꾸고 불일치하면 시작할 때 에러 나게 해주세요."
+   },
+   {
+    "i": 12,
+    "text": "Add batching to the ONNX inference handler in `pkg/inference/handler.go` for the delivery ETA model — collect requests for up to 5ms or 32 items, whichever comes first. Keep the p99 latency under 25ms at 2k rps (there's a vegeta script in `bench/`), and keep the existing `/v1/eta` response shape backward compatible."
+   },
+   {
+    "i": 13,
+    "text": "candle bert embeddings for product titles in crates/catalog-embed, cpu only"
+   },
+   {
+    "i": 14,
+    "text": "The linfa k-means clustering we use in `src/segment.rs` to group game players by playstyle gives different clusters every run, which makes the weekly reports useless. Can you seed the RNG from config, add k-means++ init, and print a silhouette score so we can pick k properly?"
+   },
+   {
+    "i": 15,
+    "text": "Goal: serve the speech keyword-spotting model on our smart thermostat firmware's companion hub (Rust, tokio).\n- Load `models/kws_int8.onnx` with the `ort` crate at startup\n- Expose `async fn detect(samples: &[i16]) -> Option<Keyword>` in `src/kws/mod.rs`\n- Compute log-mel features in Rust (40 bins, 25ms window, 10ms hop) matching `training/features.py` exactly\n- Add a parity test comparing Rust features to the fixtures in `tests/fixtures/mel_*.npy` (max abs diff < 1e-4)\nConstraints: no Python at runtime, binary must stay under 30MB, inference under 15ms per 1s clip on a Raspberry Pi 4."
+   },
+   {
+    "i": 16,
+    "text": "Port the gradient-boosted credit risk scorer from the Python notebook into `risk-engine/src/model.rs` so loan decisions don't round-trip to the Python service. Minimal diff please — reuse the existing `Features` struct and the tree JSON export we already have in `assets/gbm_trees.json`, and don't touch the HTTP layer."
+   },
+   {
+    "i": 17,
+    "text": "djl pytorch model for review sentiment in ReviewScoringService, replace regex rules"
+   },
+   {
+    "i": 18,
+    "text": "The hotel pricing model we retrain nightly with Tribuo in `pricing-ml/src/main/java/com/stayhub/pricing/Trainer.java` has no record of which training run produced the model in prod. Can you write metrics and the dataset hash into an `ModelMetadata` JSON next to the artifact and expose it at `/actuator/model-info`?"
+   },
+   {
+    "i": 19,
+    "text": "Goal: add a shipment delay classifier to the logistics backend (Kotlin, Spring Boot 3, Gradle).\n- New module `:delay-model` that loads an XGBoost4J model from S3 at startup (path from `delay.model.uri`)\n- `DelayPredictor.predict(shipment: Shipment): DelayRisk` returning LOW/MEDIUM/HIGH with probability\n- Feature extraction in `ShipmentFeatures.kt` must match the training notebook column order; add a unit test against `src/test/resources/golden_features.csv`\n- Hot-reload the model when a new version lands without restarting the pod\n- Micrometer timer `delay.predict.latency`\nAcceptance: `./gradlew :delay-model:test` passes and prediction stays under 5ms p95 in the JMH benchmark."
+   },
+   {
+    "i": 20,
+    "text": "학습 플랫폼의 문제 난이도 추천 모델을 Spring Batch 잡(`DifficultyRetrainJob.kt`)으로 매주 재학습하는데, 새 모델 AUC가 기존보다 떨어져도 그냥 배포돼요. 검증 단계 추가해서 AUC가 0.01 이상 떨어지면 교체 안 하고 Slack 알림 보내게 해주세요."
+   },
+   {
+    "i": 21,
+    "text": "add core ml food recognizer to MealLogView, model in Resources/FoodNet.mlpackage"
+   },
+   {
+    "i": 22,
+    "text": "In our Android fitness app, the TFLite rep-counting model in `app/src/main/java/com/repcount/pose/RepCounter.kt` drains battery fast because it runs on every camera image at 30fps. Can you throttle it to ~10fps, turn on the GPU delegate with a CPU fallback, and add a quick log of average inference time?"
+   },
+   {
+    "i": 23,
+    "text": "Goal: on-device receipt text extraction for the expense app (Flutter).\n- Use `google_mlkit_text_recognition` in `lib/features/receipts/ocr_service.dart`\n- Parse merchant name, date, and total from the recognized blocks with a small rules layer in `receipt_parser.dart`\n- Return a `ReceiptDraft` the user can edit before saving\n- Must work fully offline on iOS and Android\n- Unit tests for the parser using the 20 sample OCR outputs in `test/fixtures/receipts/`\nAcceptance: total amount is correct on at least 18 of 20 fixtures, and the scan-to-draft screen shows results in under 1.5s on a Pixel 6."
+   },
+   {
+    "i": 24,
+    "text": "React Native 반려동물 앱에서 `react-native-fast-tflite`로 견종 분류 모델 돌리는데, iOS에서만 결과가 이상하게 나와요. 전처리에서 RGB/BGR 순서나 정규화가 플랫폼별로 다른지 확인하고 `src/ml/preprocess.ts` 고쳐주세요."
+   },
+   {
+    "i": 25,
+    "text": "Add a personalized next-workout suggestion to the SwiftUI app using a Create ML tabular model trained on the user's own history, stored in `Sources/Coach/WorkoutSuggester.swift`. Privacy first: all training and inference stays on device, nothing about the user's history goes to our API or analytics, and the model file lives in the app's protected container."
+   }
+  ],
+  "meta": [
+   {
+    "task_type": "ml",
+    "stack": "python",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "ml",
+    "stack": "python",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "ml",
+    "stack": "python",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "ml",
+    "stack": "python",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "ml",
+    "stack": "ts_react_next",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "ml",
+    "stack": "ts_react_next",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "ml",
+    "stack": "ts_react_next",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "ml",
+    "stack": "ts_react_next",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "ml",
+    "stack": "go",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "ml",
+    "stack": "go",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "ml",
+    "stack": "go",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "ml",
+    "stack": "go",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "ml",
+    "stack": "rust",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "ml",
+    "stack": "rust",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "ml",
+    "stack": "rust",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "ml",
+    "stack": "rust",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "ml",
+    "stack": "java_kotlin",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "ml",
+    "stack": "java_kotlin",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "ml",
+    "stack": "java_kotlin",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "ml",
+    "stack": "java_kotlin",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "ml",
+    "stack": "mobile",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "ml",
+    "stack": "mobile",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "ml",
+    "stack": "mobile",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "ml",
+    "stack": "mobile",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "ml",
+    "stack": "mobile",
+    "phrasing": "directive"
+   }
+  ],
+  "usage": {
+   "input_tokens": 2,
+   "cache_creation_input_tokens": 1019,
+   "cache_read_input_tokens": 1642,
+   "output_tokens": 3963,
+   "output_tokens_details": {
+    "thinking_tokens": 363
+   },
+   "server_tool_use": {
+    "web_search_requests": 0,
+    "web_fetch_requests": 0
+   },
+   "service_tier": "standard",
+   "cache_creation": {
+    "ephemeral_1h_input_tokens": 1019,
+    "ephemeral_5m_input_tokens": 0
+   },
+   "inference_geo": "global",
+   "iterations": [
+    {
+     "input_tokens": 2,
+     "output_tokens": 3963,
+     "cache_read_input_tokens": 1642,
+     "cache_creation_input_tokens": 1019,
+     "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 1019
+     },
+     "type": "message"
+    }
+   ],
+   "speed": "standard"
+  },
+  "cost_usd": 0.0877484
+ },
+ "gen-security_review": {
+  "items": [
+   {
+    "i": 1,
+    "text": "Can you look over apps/appointments/views.py for IDOR issues? A patient reported they could see someone else's appointment by changing the id in /api/appointments/<id>/. I want to know if the reschedule and cancel endpoints in the same file have the same hole."
+   },
+   {
+    "i": 2,
+    "text": "Security pass on the contract upload endpoint in our FastAPI service (services/intake/routes/uploads.py).\nGoal: make sure a malicious upload can't hurt us before we open intake to external law firms next sprint.\nCheck:\n- filename handling: path traversal via ../ or absolute paths when we write to UPLOAD_ROOT\n- content-type is checked against magic bytes, not just the client header\n- size limit is enforced while reading, not after the whole body is in memory\n- the OCR subprocess call in workers/ocr.py takes no user-controlled args\n- presigned S3 URLs expire and are scoped to one object\nAcceptance: a written list of findings with severity, plus fixes for anything high. Existing tests in tests/intake/ must still pass."
+   },
+   {
+    "i": 3,
+    "text": "devices/firmware/updater.py 보안 검토 좀 해줘. 디바이스에서 올라오는 manifest를 yaml.load로 읽고, 버전 문자열을 subprocess에 shell=True로 넘기는 부분이 있어서 command injection 가능성이 걱정돼."
+   },
+   {
+    "i": 4,
+    "text": "Our Celery tasks in analytics/tasks/export.py still use the pickle serializer, and the broker is shared with another team's Redis. Please harden this: switch to json serialization and set accept_content so pickle payloads are rejected. Keep the diff minimal and don't change any public task signatures, because the scheduler service calls them by name."
+   },
+   {
+    "i": 5,
+    "text": "check app/api/webhooks/stripe/route.ts verifies signature before parsing body"
+   },
+   {
+    "i": 6,
+    "text": "Editors on our CMS can paste HTML into article bodies, and components/ArticleBody.tsx renders it with dangerouslySetInnerHTML. Can you review the server actions in app/(editor)/actions.ts and the render path for stored XSS, and tell me whether DOMPurify on the server would cover it?"
+   },
+   {
+    "i": 7,
+    "text": "Review authorization for the ride-sharing ops console (Next.js 14 app router, NextAuth).\nContext: a support agent was able to open /ops/drivers/payouts, which should be finance-only.\nScope:\n- middleware.ts matcher config: are any /ops routes skipped?\n- role checks in route handlers under app/api/ops/**: confirm they check session.user.role server-side, not only in the UI\n- the JWT callback in lib/auth.ts: can a user influence the role claim?\n- server actions that mutate driver payouts\nDeliverable: list of unprotected routes, a fix that adds a shared requireRole() helper, and a Playwright test proving a support role gets 403 on payouts."
+   },
+   {
+    "i": 8,
+    "text": "티켓 예매 Next.js 앱에서 next.config.js랑 .env.production 좀 봐줘. 결제 PG secret key가 NEXT_PUBLIC_ 접두사로 들어가서 클라이언트 번들에 노출된 것 같다는 제보가 있었어."
+   },
+   {
+    "i": 9,
+    "text": "The course-report endpoints in src/reports/service.ts build SQL with prisma.$queryRawUnsafe and string-interpolate the cohortId and sortBy params. Fix the injection test-first: write failing Jest tests with payloads like `1; DROP TABLE` and `name desc--` against the report service, then switch to $queryRaw tagged templates with a whitelist for sortBy."
+   },
+   {
+    "i": 10,
+    "text": "audit internal/fleet/handler.go for ssrf in the carrier callback url fetch"
+   },
+   {
+    "i": 11,
+    "text": "Harden JWT validation in our matchmaking gRPC service.\nFile: internal/auth/interceptor.go (unary + streaming interceptors, golang-jwt/jwt v5).\nRequirements:\n- reject alg=none and any alg other than RS256 explicitly\n- enforce exp, nbf, and iss=\"auth.playgrid.io\" with at most 30s clock skew\n- the public key comes from JWKS; make sure the key cache can't be poisoned by a kid header pointing elsewhere\n- player ID must come from the token claims, not from request metadata\nAcceptance: table-driven tests in interceptor_test.go covering expired, wrong alg, wrong issuer, and forged kid cases; go test ./... and go vet pass."
+   },
+   {
+    "i": 12,
+    "text": "창고 재고 import 기능에서 pkg/importer/archive.go가 업로드된 zip을 그대로 풀고 있는데, zip slip 취약점 있는지 확인하고 막아줘. 파일 경로가 extractDir 밖으로 나가면 에러 반환하게 하면 될 것 같아."
+   },
+   {
+    "i": 13,
+    "text": "In cmd/meterd, our MQTT auth hook compares device tokens with == in internal/broker/auth.go, which leaks timing. Please fix it and check the rest of the package for similar comparisons. No new dependencies; use crypto/subtle and the standard library only."
+   },
+   {
+    "i": 14,
+    "text": "review unsafe blocks in src/codec/ring_buffer.rs, miri reports UB in read_slice"
+   },
+   {
+    "i": 15,
+    "text": "Our axum wallet service keeps private keys in a struct that derives Debug, and I'm pretty sure one ended up in tracing output last week. Can you go through src/keys/ and make sure secret material is zeroized on drop, never Debug-printed, and not cloned around more than it needs to be?"
+   },
+   {
+    "i": 16,
+    "text": "사내 위키 서버(actix-web)에서 src/render/markdown.rs가 pulldown-cmark로 렌더링할 때 raw HTML을 그대로 허용하고 있어. XSS 가능한지 보고, ammonia 같은 걸로 sanitize하는 방향으로 고쳐줘."
+   },
+   {
+    "i": 17,
+    "text": "The game lobby TCP server in src/net/framing.rs reads a u32 length prefix and does Vec::with_capacity(len) before reading the body, so one client can make us allocate 4GB. Add a max message size and timeouts on partial reads, but keep the wire format backward compatible because older clients can't be force-updated."
+   },
+   {
+    "i": 18,
+    "text": "are actuator endpoints exposed in prod? check application-prod.yml in claims-service"
+   },
+   {
+    "i": 19,
+    "text": "BookingEventConsumer in our Kotlin Spring hotel reservation service uses an ObjectMapper with activateDefaultTyping(LaissezFaireSubTypeValidator), and it consumes from a Kafka topic that partners can write to. Can you assess whether that's exploitable for gadget-chain deserialization and replace it with explicit @JsonSubTypes on BookingEvent?"
+   },
+   {
+    "i": 20,
+    "text": "Review the Spring Security setup for our retail banking API before the external pen test on Nov 12.\nFiles: config/SecurityConfig.java, config/CorsConfig.java.\nKnown concerns:\n- CSRF is disabled globally, but the statement download pages still use cookie sessions\n- CORS allows origin \"*\" with allowCredentials(true)\n- /internal/** is permitAll and relies on the network for protection\n- password encoder is still Pbkdf2 with default iterations\nRequirements: each concern gets a finding with risk and a recommended fix; apply fixes for CORS and CSRF; MockMvc tests prove a cross-origin credentialed request is rejected.\nConstraint: the mobile app uses bearer tokens and must keep working unchanged."
+   },
+   {
+    "i": 21,
+    "text": "Our e-prescription importer (PrescriptionXmlParser.java, Maven module rx-import) parses XML from pharmacy partners with a default DocumentBuilderFactory, so I suspect XXE. Plan before coding: list every XML parsing site in the module and the risk for each first, then wait for my go-ahead before disabling DTDs and external entities."
+   },
+   {
+    "i": 22,
+    "text": "android: check exported activities in AndroidManifest.xml for the order deeplink handler"
+   },
+   {
+    "i": 23,
+    "text": "The SwiftUI fitness app stores the auth token and refresh token in UserDefaults (see AuthStore.swift), and Info.plist has NSAllowsArbitraryLoads set to true from some old debugging. Can you move the tokens to the Keychain with kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly and tighten the ATS exceptions to only the domains we actually need?"
+   },
+   {
+    "i": 24,
+    "text": "Security review of our React Native banking app before app store submission.\nAreas to check:\n- src/storage/session.ts writes the session token to AsyncStorage; move it to react-native-keychain\n- certificate pinning in src/api/client.ts: confirm it's active in release builds, not just configured\n- deep link handler in src/navigation/linking.ts: make sure transfer screens can't be opened with prefilled amounts from an external link\n- console.log statements printing account numbers\nAcceptance: findings report with severity, fixes for the storage and deep link issues, and a passing release build on both iOS and Android."
+   },
+   {
+    "i": 25,
+    "text": "중고거래 Flutter 앱에서 lib/screens/item_webview.dart가 webview_flutter로 판매자가 넣은 임의 URL을 열고, JavaScriptChannel로 토큰 가져오는 함수까지 노출하고 있어. 허용 도메인만 로드하도록 막고 채널 노출 범위 검토해줘."
+   }
+  ],
+  "meta": [
+   {
+    "task_type": "security_review",
+    "stack": "python",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "security_review",
+    "stack": "python",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "security_review",
+    "stack": "python",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "security_review",
+    "stack": "python",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "security_review",
+    "stack": "ts_react_next",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "security_review",
+    "stack": "ts_react_next",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "security_review",
+    "stack": "ts_react_next",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "security_review",
+    "stack": "ts_react_next",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "security_review",
+    "stack": "ts_react_next",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "security_review",
+    "stack": "go",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "security_review",
+    "stack": "go",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "security_review",
+    "stack": "go",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "security_review",
+    "stack": "go",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "security_review",
+    "stack": "rust",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "security_review",
+    "stack": "rust",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "security_review",
+    "stack": "rust",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "security_review",
+    "stack": "rust",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "security_review",
+    "stack": "java_kotlin",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "security_review",
+    "stack": "java_kotlin",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "security_review",
+    "stack": "java_kotlin",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "security_review",
+    "stack": "java_kotlin",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "security_review",
+    "stack": "mobile",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "security_review",
+    "stack": "mobile",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "security_review",
+    "stack": "mobile",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "security_review",
+    "stack": "mobile",
+    "phrasing": "korean"
+   }
+  ],
+  "usage": {
+   "input_tokens": 2,
+   "cache_creation_input_tokens": 1047,
+   "cache_read_input_tokens": 1642,
+   "output_tokens": 5112,
+   "output_tokens_details": {
+    "thinking_tokens": 1738
+   },
+   "server_tool_use": {
+    "web_search_requests": 0,
+    "web_fetch_requests": 0
+   },
+   "service_tier": "standard",
+   "cache_creation": {
+    "ephemeral_1h_input_tokens": 1047,
+    "ephemeral_5m_input_tokens": 0
+   },
+   "inference_geo": "global",
+   "iterations": [
+    {
+     "input_tokens": 2,
+     "output_tokens": 5112,
+     "cache_read_input_tokens": 1642,
+     "cache_creation_input_tokens": 1047,
+     "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 1047
+     },
+     "type": "message"
+    }
+   ],
+   "speed": "standard"
+  },
+  "cost_usd": 0.11095239999999999
+ },
+ "gen-performance": {
+  "items": [
+   {
+    "i": 1,
+    "text": "Our /api/shipments/ endpoint in the Django logistics app takes about 4s to return 200 rows. django-debug-toolbar shows 600+ queries coming from ShipmentSerializer, which pulls carrier, origin_depot and stops for each row. Can you fix the queryset in ShipmentViewSet with select_related/prefetch_related so the request drops to a handful of queries?"
+   },
+   {
+    "i": 2,
+    "text": "Goal: get the nightly job `etl/aggregate_meter_readings.py` from ~48 min down to under 10 min. It's currently blowing past the 02:00 window and delaying the utility billing export.\n- Today it loads ~90M smart-meter rows into pandas with `read_csv` and does a `groupby(['meter_id', 'hour']).apply(custom_agg)`. Replace the `apply` with vectorized aggs or polars.\n- Read the input in chunks or as parquet with only the needed columns: meter_id, ts, kwh, voltage.\n- Downcast dtypes (category for meter_id, float32 for readings).\n- Write the output with pyarrow instead of `to_sql` row inserts.\nAcceptance: output parquet is byte-for-byte equal on the sample fixture in `tests/fixtures/meters_small/`, peak RSS stays under 8GB, and the timing for the full run goes in the PR description."
+   },
+   {
+    "i": 3,
+    "text": "`scheduling/slots.py`의 `compute_available_slots()`가 의사 50명 기준으로 요청당 1.8초나 걸려요. 루프 안에서 의사마다 SQLAlchemy 쿼리를 따로 날리는 것 같은데, 예약이랑 휴무 데이터를 한 번에 가져와서 메모리에서 계산하도록 바꿔주세요."
+   },
+   {
+    "i": 4,
+    "text": "The Celery worker that generates listing thumbnails (`listings/tasks.py::generate_photo_variants`) grows to ~3GB RSS after a few hundred tasks and then gets OOM-killed. Before changing anything, measure with tracemalloc snapshots around the task and show me the top allocators. Then fix the leak (I suspect Pillow images not being closed, or the module-level `_variant_cache` dict). Don't add any new dependencies."
+   },
+   {
+    "i": 5,
+    "text": "/checkout bundle is 1.2MB in next build, lazy-load the stripe and date-fns imports"
+   },
+   {
+    "i": 6,
+    "text": "Fix input lag on the fleet tracking admin page (`app/fleet/vehicles/page.tsx`).\n- `VehicleTable` renders ~2,000 rows at once. Typing in the plate-number filter lags ~300ms per keystroke.\n- Virtualize the rows with @tanstack/react-virtual and keep the sticky header working.\n- Wrap `VehicleRow` in React.memo with stable props. Right now `onSelect` is recreated on every render.\n- Debounce the filter (150ms) and move filtering into useMemo.\n- Keep column sorting and row selection behaviour identical.\nAcceptance: INP under 200ms in Chrome on a 4x CPU throttle, and existing Playwright tests in `e2e/fleet.spec.ts` still pass."
+   },
+   {
+    "i": 7,
+    "text": "`app/courses/[slug]/page.tsx`가 요청마다 CMS API를 세 번 순차로 호출해서 TTFB가 1.4초 정도 나와요. `revalidate` 걸어서 ISR로 바꾸고, 남는 fetch는 `Promise.all`로 병렬 처리해서 줄여주세요."
+   },
+   {
+    "i": 8,
+    "text": "The ride-sharing fare estimate endpoint `POST /v2/fares/estimate` in our Express service is at p95 450ms, mostly spent geocoding pickup/dropoff through the maps API on every call. Add an in-process LRU cache (lru-cache is already in package.json) keyed on rounded coordinates, and parallelize the surge lookup with the route call. Keep it fully backward compatible: same response shape and same error codes, because the iOS app pins to this contract."
+   },
+   {
+    "i": 9,
+    "text": "FindLobby in matchmaker.go allocates 40MB/s, reuse the candidate slices via sync.Pool"
+   },
+   {
+    "i": 10,
+    "text": "Running pprof on the telemetry ingest service shows ~35% of CPU in encoding/json inside handleDeviceBatch. Could you swap `internal/ingest/decode.go` over to goccy/go-json (or a hand-written decoder for the fixed payload if that's cleaner) and add a benchmark with before/after numbers?"
+   },
+   {
+    "i": 11,
+    "text": "settlement 서비스에 부하 테스트를 돌리면 p99가 2초까지 튀는데, pgxpool 설정을 보니 MaxConns가 4로 되어 있네요. `internal/db/pool.go` 설정을 조정해주시고, `ReconcileBatch`에서 외부 API 호출하는 동안 트랜잭션을 오래 잡고 있는 부분도 같이 봐주세요."
+   },
+   {
+    "i": 12,
+    "text": "StockCache in `internal/warehouse/cache.go` sits behind one big sync.RWMutex, and lock contention is killing throughput on the 16-core pods. Write BenchmarkStockCacheGet and BenchmarkStockCacheMixed first and run them with -cpu 1,8,16 so we have a baseline. Then shard the map by SKU hash and re-run the benchmarks. Stick to the standard library, no new dependencies."
+   },
+   {
+    "i": 13,
+    "text": "parse_order_book in feed/l2.rs clones every price level, make it zero-copy with borrowed &str"
+   },
+   {
+    "i": 14,
+    "text": "The server tick in `crates/sim/src/world.rs` is creeping past 16ms once we hit ~3k entities, and the collision pass is plain O(n²). Can you add a uniform spatial grid for the broad phase so we stay inside the tick budget? Keep the narrow-phase code as is."
+   },
+   {
+    "i": 15,
+    "text": "Speed up `logcrunch`, the CLI that aggregates our access logs for the analytics team.\n- Right now it reads ~20GB of .gz files one at a time on a single thread and takes ~25 min.\n- Process files in parallel with rayon. Each file gets its own `HashMap<RouteKey, Stats>`, merged at the end.\n- Use flate2 with a 256KB BufReader and parse lines with `memchr` instead of `split_whitespace().collect::<Vec<_>>()`.\n- Avoid allocating a String per line; reuse a buffer with `read_until`.\nAcceptance: output CSV identical to current on `testdata/sample_logs/`, runtime under 5 min on the 16-core box, and a criterion bench added for `parse_line`."
+   },
+   {
+    "i": 16,
+    "text": "`routes/media.rs`에서 `image` crate로 하는 리사이즈를 axum async 핸들러 안에서 그냥 돌리고 있어서, 동시 요청이 20개만 넘어가도 다른 CMS API까지 전부 느려져요. `spawn_blocking`으로 빼고 `Semaphore`로 동시 처리 수 제한도 걸어주세요."
+   },
+   {
+    "i": 17,
+    "text": "KmerCounter in `src/kmer.rs` spends most of its time hashing with the default SipHash. Switch the internal map to ahash (already in Cargo.lock through another crate, so add it as a direct dep) and pack k-mers into u64 instead of storing `Vec<u8>` keys. Keep the public API of KmerCounter unchanged and keep the diff minimal. Add a criterion bench on the chr21 fixture to show the speedup."
+   },
+   {
+    "i": 18,
+    "text": "OrderRepository.findAllByMerchant lazy-loads line items one by one, fix it with an entity graph"
+   },
+   {
+    "i": 19,
+    "text": "Our Spring Boot claims-service takes ~90s to start on Kubernetes, so pods regularly fail the readiness check during rollouts. Can you figure out what's slow at startup (I suspect the classpath scanning in `ClaimsAutoConfiguration` and the Hibernate validate step) and get it under 30s, e.g. with lazy init for the non-critical beans?"
+   },
+   {
+    "i": 20,
+    "text": "Fix consumer lag on the ad-impression topic. The Kotlin consumer in `impressions-ingest` is falling ~2M messages behind during evening peaks.\n- `ImpressionListener.onMessage` currently does one JDBC insert per record. Switch to batch listening and `JdbcTemplate.batchUpdate` with chunks of 500.\n- Raise `max.poll.records` and tune `fetch.min.bytes` in `application.yml`.\n- Move the campaign lookup out of the per-record path into a Caffeine cache with a 5 min TTL.\n- Keep at-least-once semantics and commit offsets only after the batch is written.\nAcceptance: sustained 40k msg/s on the load-test profile with lag under 10k, and the existing Testcontainers integration tests still pass."
+   },
+   {
+    "i": 21,
+    "text": "The hotel availability endpoint `GET /api/properties/{id}/availability` in our Spring service hits ~800ms p95, because `AvailabilityService` queries rates, room blocks and restrictions separately for every night of the stay. Before writing code, give me a short plan of which queries you'd merge and what you'd cache (Caffeine, with invalidation on rate updates). Implement it only after I've confirmed the plan."
+   },
+   {
+    "i": 22,
+    "text": "FeedView in SwiftUI stutters on scroll, move image decoding off the main thread"
+   },
+   {
+    "i": 23,
+    "text": "In the Android recipe app, `RecipeListScreen`'s LazyColumn stutters on fling, and the Layout Inspector shows every item recomposing whenever the favorites set changes. Can you make the item params stable (the `List<Ingredient>` is probably the culprit), add keys to the items, and hoist the favorite state so only the toggled row recomposes?"
+   },
+   {
+    "i": 24,
+    "text": "Cut cold start time of the React Native fitness app on Android.\n- Currently ~4.2s to first interactive screen on a Galaxy A23-class device.\n- Confirm Hermes is enabled and turn on inline requires in `metro.config.js`.\n- `App.tsx` eagerly imports the workout video player, the charts lib and the Health Connect module. Defer them until their screens mount.\n- Move the `syncWorkoutHistory()` call out of startup and run it after the first render with InteractionManager.\n- Keep the splash screen until the auth token is read, nothing else.\nAcceptance: cold start under 2.5s measured with `adb shell am start -W` (median of 5 runs), and no regressions in the Detox smoke suite."
+   },
+   {
+    "i": 25,
+    "text": "Flutter 배달 앱 지도 화면에서 가게 마커가 300개 넘어가면 팬/줌할 때 버벅여요. `StoreMapPage`에서 매번 마커 아이콘을 새로 만드는 것 같은데, `BitmapDescriptor` 캐싱하고 클러스터링 적용해서 부드럽게 만들어주세요."
+   }
+  ],
+  "meta": [
+   {
+    "task_type": "performance",
+    "stack": "python",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "performance",
+    "stack": "python",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "performance",
+    "stack": "python",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "performance",
+    "stack": "python",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "performance",
+    "stack": "ts_react_next",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "performance",
+    "stack": "ts_react_next",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "performance",
+    "stack": "ts_react_next",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "performance",
+    "stack": "ts_react_next",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "performance",
+    "stack": "go",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "performance",
+    "stack": "go",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "performance",
+    "stack": "go",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "performance",
+    "stack": "go",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "performance",
+    "stack": "rust",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "performance",
+    "stack": "rust",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "performance",
+    "stack": "rust",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "performance",
+    "stack": "rust",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "performance",
+    "stack": "rust",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "performance",
+    "stack": "java_kotlin",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "performance",
+    "stack": "java_kotlin",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "performance",
+    "stack": "java_kotlin",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "performance",
+    "stack": "java_kotlin",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "performance",
+    "stack": "mobile",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "performance",
+    "stack": "mobile",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "performance",
+    "stack": "mobile",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "performance",
+    "stack": "mobile",
+    "phrasing": "korean"
+   }
+  ],
+  "usage": {
+   "input_tokens": 2,
+   "cache_creation_input_tokens": 1018,
+   "cache_read_input_tokens": 1642,
+   "output_tokens": 6524,
+   "output_tokens_details": {
+    "thinking_tokens": 2652
+   },
+   "server_tool_use": {
+    "web_search_requests": 0,
+    "web_fetch_requests": 0
+   },
+   "service_tier": "standard",
+   "cache_creation": {
+    "ephemeral_1h_input_tokens": 1018,
+    "ephemeral_5m_input_tokens": 0
+   },
+   "inference_geo": "global",
+   "iterations": [
+    {
+     "input_tokens": 2,
+     "output_tokens": 6524,
+     "cache_read_input_tokens": 1642,
+     "cache_creation_input_tokens": 1018,
+     "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 1018
+     },
+     "type": "message"
+    }
+   ],
+   "speed": "standard"
+  },
+  "cost_usd": 0.13896040000000004
+ },
+ "gen-ui_design": {
+  "items": [
+   {
+    "i": 1,
+    "text": "The Textual TUI in `pickpack/tui/order_view.py` looks cramped on 80-column terminals. Can you rework the layout so the bin location and quantity columns stay visible, and move the order notes into a collapsible panel at the bottom?"
+   },
+   {
+    "i": 2,
+    "text": "Redesign the enrollment status page in our Streamlit app (`apps/trial_enroll/pages/2_Site_Status.py`).\n- Goal: coordinators should see at a glance which sites are behind their recruitment targets\n- Replace the raw `st.dataframe` with per-site cards: site name, enrolled vs target, and a small progress bar\n- Color the cards amber below 70% of target and red below 40%; use the existing palette in `ui/theme.py`\n- Keep the sidebar filters (region, protocol ID) working exactly as they do now\n- Cards wrap to 3 per row on wide screens and 1 per row on narrow ones\n- Acceptance: no new pip packages, page still renders under 2s with 120 sites from `fixtures/sites_large.json`"
+   },
+   {
+    "i": 3,
+    "text": "Django 쪽 `bookings/templates/bookings/slot_picker.html`에서 예약 시간 선택 UI가 너무 촘촘해서 모바일에서 잘못 누르는 경우가 많다는 피드백이 왔어요. 시간 버튼을 오전/오후로 그룹 나누고 터치 영역을 최소 44px로 키워주세요."
+   },
+   {
+    "i": 4,
+    "text": "Our Flask library-catalog app's book detail page (`catalog/views/book.py` + `book_detail.html`) needs a visual refresh: cover on the left, availability and hold button on the right, copies table below. Do it accessibility-first: correct heading order, visible focus states, 4.5:1 contrast on the status badges, and the hold button must be fully usable by keyboard."
+   },
+   {
+    "i": 5,
+    "text": "add skeleton loaders to ShipmentList in app/(ops)/shipments/page.tsx, it flickers on load"
+   },
+   {
+    "i": 6,
+    "text": "New checkout summary sidebar for the Next.js storefront (`components/checkout/OrderSummary.tsx`).\n- Sticky on desktop (>=1024px); on mobile it becomes a collapsible bar pinned above the pay button\n- Show line items with thumbnails, a promo code input, subtotal, shipping, tax and total\n- Promo errors render inline under the input, not as a toast\n- Use our Tailwind tokens from `tailwind.config.ts`, no hardcoded hex values\n- Totals must not shift layout when the promo applies (reserve the space)\n- Acceptance: matches the Figma 'Checkout v3' spacing, passes axe in the Playwright a11y spec, no CLS warnings in Lighthouse"
+   },
+   {
+    "i": 7,
+    "text": "`src/features/tutor/LessonCalendar.tsx` 주간 뷰에서 수업이 겹치면 카드가 서로 덮어버려요. 겹치는 일정은 Google Calendar처럼 옆으로 나란히 배치되게 바꿔주고, 각 카드 위에 과목 색상 띠도 추가해 주세요."
+   },
+   {
+    "i": 8,
+    "text": "Add a dark mode to the internal admin overview page in `apps/admin` for our podcast hosting platform. Minimal diff please: switch the color values in `styles/globals.css` to CSS variables and toggle with a `data-theme` attribute instead of rewriting components or adding next-themes."
+   },
+   {
+    "i": 9,
+    "text": "bubbletea fleet list: highlight offline trucks red, add a status column"
+   },
+   {
+    "i": 10,
+    "text": "The sensor readings page in our greenhouse controller (`web/views/readings.templ`, served with htmx) is just a long table right now. Could you turn it into a grid of tiles per zone showing temperature, humidity and last-updated time, with stale readings visibly greyed out?"
+   },
+   {
+    "i": 11,
+    "text": "Fyne로 만든 POS 데스크톱 앱 `cmd/register/ui/cart.go`에서 상품 목록이랑 결제 버튼 영역 비율이 이상해서 결제 버튼이 화면 밖으로 밀려나요. 결제 영역은 항상 하단에 고정되게 레이아웃 고쳐주세요."
+   },
+   {
+    "i": 12,
+    "text": "Redesign the error pages (404, 500, maintenance) for our Go ticketing service in `internal/web/html/errors/` so they match the main site header and give users a way back. No new dependencies: plain html/template and the existing CSS file, no JS framework."
+   },
+   {
+    "i": 13,
+    "text": "ratatui log viewer: make the selected row bold and add a scrollbar on the right"
+   },
+   {
+    "i": 14,
+    "text": "In our egui-based firmware flashing tool, the device settings panel (`src/ui/device_panel.rs`) dumps every option in one long column. Can you group the settings into collapsing sections (network, power, OTA) and add tooltips explaining each field?"
+   },
+   {
+    "i": 15,
+    "text": "Rebuild the invoice-free billing history view in our Leptos app (`src/pages/billing_history.rs`) for the coworking membership portal.\n- Goal: members can quickly find a past charge and download its receipt\n- Group charges by month with a sticky month header\n- Each row: date, description, amount right-aligned in tabular numerals, status pill (paid / refunded / failed)\n- Failed charges get a 'Retry payment' button inline\n- Empty state with an illustration and short copy when there are no charges\n- Acceptance: works without hydration (SSR output is readable), keyboard navigable, styles stay in `style/billing.css`"
+   },
+   {
+    "i": 16,
+    "text": "Our iced desktop app for managing recording studio bookings needs a proper settings screen in `src/screens/settings.rs`: tabs for account, audio devices and notifications. Plan before coding: propose the widget layout and message enum changes first, and wait for my OK before touching the update loop."
+   },
+   {
+    "i": 17,
+    "text": "vaadin grid in PatientQueueView: freeze first column, compact row height"
+   },
+   {
+    "i": 18,
+    "text": "The Compose Desktop client for our freight dispatch team shows load assignments in `ui/LoadBoardScreen.kt` as a plain LazyColumn. I'd like it to be a kanban-style board with columns for unassigned, en route and delivered, and drag-and-drop between them if it's not too painful."
+   },
+   {
+    "i": 19,
+    "text": "Redesign the main window of our JavaFX lab instrument app (`src/main/java/com/labsys/ui/MainWindow.fxml`).\n- Goal: technicians run sample batches without hunting through menus\n- Left: collapsible sample list; center: live run status; right: instrument parameters\n- Move the Start/Stop/Abort actions into a toolbar with icons and keyboard shortcuts (F5, F6, Esc)\n- Abort must require a confirmation dialog and be styled in red\n- All styling goes in `styles/main.css`, no inline `-fx-` styles in FXML\n- Acceptance: usable at 1366x768, window state persists between sessions"
+   },
+   {
+    "i": 20,
+    "text": "Spring Boot + Thymeleaf로 만든 보험 청구 접수 화면(`claims/new.html`)이 한 페이지에 필드가 40개라 사용자들이 많이 이탈해요. 단계별 입력(인적사항 → 사고정보 → 서류첨부)으로 나누고 상단에 진행 단계 표시를 넣어주세요."
+   },
+   {
+    "i": 21,
+    "text": "swiftui RideSummaryView: fare breakdown should be a sheet, not inline"
+   },
+   {
+    "i": 22,
+    "text": "On the Android app for our gym chain, the class schedule screen (`feature/schedule/ScheduleScreen.kt`, Jetpack Compose) feels flat. Can you add day chips at the top, show instructor avatars on each class card, and make full classes look clearly disabled?"
+   },
+   {
+    "i": 23,
+    "text": "Redesign the onboarding screens in our Flutter meal-kit app (`lib/features/onboarding/`).\n- Goal: cut drop-off before users pick their dietary preferences\n- Three pages with a PageView and page indicator; skip button top-right on every page\n- Diet preferences page uses selectable chips instead of the current checkbox list\n- Respect system text scaling up to 200% without overflow errors\n- Use colors and text styles from `lib/theme/app_theme.dart` only\n- Acceptance: golden tests updated for light and dark themes, no RenderFlex overflow in debug on a small iPhone SE size"
+   },
+   {
+    "i": 24,
+    "text": "React Native 앱의 `src/screens/Wallet/TransactionDetail.tsx` 화면이 너무 밋밋하다는 디자이너 피드백이 있었어요. 상단에 금액을 크게 보여주고, 상태별 아이콘이랑 색상 추가하고, 하단 정보는 카드 형태로 정리해 주세요."
+   },
+   {
+    "i": 25,
+    "text": "Rework the medication reminder list in our iOS app (`Reminders/ReminderListView.swift`) so each dose shows time, pill name and a big 'Taken' button. Accessibility first: it must work well with VoiceOver and Dynamic Type at the largest sizes, since a lot of our users are older."
+   }
+  ],
+  "meta": [
+   {
+    "task_type": "ui_design",
+    "stack": "python",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "ui_design",
+    "stack": "python",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "ui_design",
+    "stack": "python",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "ui_design",
+    "stack": "python",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "ui_design",
+    "stack": "ts_react_next",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "ui_design",
+    "stack": "ts_react_next",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "ui_design",
+    "stack": "ts_react_next",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "ui_design",
+    "stack": "ts_react_next",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "ui_design",
+    "stack": "go",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "ui_design",
+    "stack": "go",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "ui_design",
+    "stack": "go",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "ui_design",
+    "stack": "go",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "ui_design",
+    "stack": "rust",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "ui_design",
+    "stack": "rust",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "ui_design",
+    "stack": "rust",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "ui_design",
+    "stack": "rust",
+    "phrasing": "directive"
+   },
+   {
+    "task_type": "ui_design",
+    "stack": "java_kotlin",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "ui_design",
+    "stack": "java_kotlin",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "ui_design",
+    "stack": "java_kotlin",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "ui_design",
+    "stack": "java_kotlin",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "ui_design",
+    "stack": "mobile",
+    "phrasing": "terminal"
+   },
+   {
+    "task_type": "ui_design",
+    "stack": "mobile",
+    "phrasing": "normal"
+   },
+   {
+    "task_type": "ui_design",
+    "stack": "mobile",
+    "phrasing": "spec"
+   },
+   {
+    "task_type": "ui_design",
+    "stack": "mobile",
+    "phrasing": "korean"
+   },
+   {
+    "task_type": "ui_design",
+    "stack": "mobile",
+    "phrasing": "directive"
+   }
+  ],
+  "usage": {
+   "input_tokens": 2,
+   "cache_creation_input_tokens": 1069,
+   "cache_read_input_tokens": 1642,
+   "output_tokens": 4146,
+   "output_tokens_details": {
+    "thinking_tokens": 926
+   },
+   "server_tool_use": {
+    "web_search_requests": 0,
+    "web_fetch_requests": 0
+   },
+   "service_tier": "standard",
+   "cache_creation": {
+    "ephemeral_1h_input_tokens": 1069,
+    "ephemeral_5m_input_tokens": 0
+   },
+   "inference_geo": "global",
+   "iterations": [
+    {
+     "input_tokens": 2,
+     "output_tokens": 4146,
+     "cache_read_input_tokens": 1642,
+     "cache_creation_input_tokens": 1069,
+     "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 1069
+     },
+     "type": "message"
+    }
+   ],
+   "speed": "standard"
+  },
+  "cost_usd": 0.09180840000000001
+ },
+ "gen-trivial": {
+  "items": [
+   {
+    "i": 1,
+    "text": "fix off-by-one in paginate() in billing/api/views.py, last page drops a row"
+   },
+   {
+    "i": 2,
+    "text": "Can you rename the `useCartTotals` hook to `useBasketTotals` in src/hooks/useCartTotals.ts and update every import? We're matching the naming the checkout API team uses."
+   },
+   {
+    "i": 3,
+    "text": "Fix a typo in the warehouse service error messages.\n- File: internal/warehouse/errors.go\n- `ErrBinFull` message reads \"storage bin is at capacitiy\"; it should say \"capacity\"\n- Same misspelling shows up in the matching string in internal/warehouse/errors_test.go\nAcceptance:\n- Both strings corrected\n- `go test ./internal/warehouse/...` passes\n- No other changes"
+   },
+   {
+    "i": 4,
+    "text": "src/scheduler/queue.rs 에서 `Arc<Mutex<VecDeque<Job>>>` 쓰고 있는데 crossbeam channel 안 쓴 이유가 코드상 있는 건지 궁금해. 수정은 하지 말고 설명만 해줘."
+   },
+   {
+    "i": 5,
+    "text": "Change MAX_LOGIN_ATTEMPTS in AuthProperties.kt from 5 to 3. Keep the diff minimal and only touch tests if they hardcode 5."
+   },
+   {
+    "i": 6,
+    "text": "OrderTrackingViewModel.swift missing import Combine, build fails"
+   },
+   {
+    "i": 7,
+    "text": "The docstring on `compute_dosage_window` in clinic/scheduling/rules.py still says it returns minutes as an int, but it returns a timedelta now. Please fix the comment."
+   },
+   {
+    "i": 8,
+    "text": "Bump Next.js on the storefront app.\n- package.json: `next` 14.2.3 -> 14.2.15\n- Bump `eslint-config-next` to the same version\n- Regenerate package-lock.json with npm\nAcceptance:\n- `npm run build` and `npm run lint` pass\n- No other dependency versions change"
+   },
+   {
+    "i": 9,
+    "text": "internal/telemetry/ingest.go 에서 `defer resp.Body.Close()` 가 err 체크보다 먼저 있어서 요청 실패하면 nil pointer panic 나요. 순서만 바꿔줘."
+   },
+   {
+    "i": 10,
+    "text": "Rename the `PlayerStats::kdr` field to `kill_death_ratio` in crates/match-core/src/stats.rs. Keep it backward compatible by adding `#[serde(alias = \"kdr\")]` so old save files still deserialize."
+   },
+   {
+    "i": 11,
+    "text": "fix 'recieved' typo in ShipmentController.java log message"
+   },
+   {
+    "i": 12,
+    "text": "In the Flutter app, why does `lib/screens/lesson_list.dart` call `setState` inside `didChangeDependencies`? Is that intentional, or is it leftover from an earlier version?"
+   },
+   {
+    "i": 13,
+    "text": "Change the device heartbeat timeout for the IoT hub.\n- File: hub/devices/config.py\n- `HEARTBEAT_TIMEOUT_SEC` goes from 30 to 90\n- Reason: field thermostats on weak LTE get marked offline too eagerly\n- Update the matching value in the README table under \"Device settings\"\nAcceptance:\n- Only the constant and the doc line change\n- pytest tests/devices passes"
+   },
+   {
+    "i": 14,
+    "text": "components/ListingCard.tsx 에서 `Image` 를 `next/legacy/image` 에서 import 하고 있는데, `next/image` 로 바꿔줘."
+   },
+   {
+    "i": 15,
+    "text": "Update the godoc on `RateLimiter.Allow` in pkg/ratelimit/limiter.go. It still says token bucket, but the code is a sliding window now. Change the comment only, no code edits."
+   },
+   {
+    "i": 16,
+    "text": "bump tokio to 1.40 in Cargo.toml"
+   },
+   {
+    "i": 17,
+    "text": "`InventoryService.findLowStock()` compares with `>` instead of `<=` against `reorderThreshold`, so it returns overstocked items. It's a one-character fix around line 88 of InventoryService.java."
+   },
+   {
+    "i": 18,
+    "text": "Rename a Compose component in the ride app.\n- `RideCard` composable in app/src/main/java/com/zipride/ui/home/RideCard.kt becomes `TripSummaryCard`\n- Rename the file to TripSummaryCard.kt\n- Update all call sites and the `@Preview` function name\nAcceptance:\n- `./gradlew :app:compileDebugKotlin` passes\n- No behaviour or layout changes"
+   },
+   {
+    "i": 19,
+    "text": "reports/export.py 에서 CSV 헤더가 'Quantitiy' 로 오타 나 있어요. 'Quantity' 로 고쳐줘."
+   },
+   {
+    "i": 20,
+    "text": "Just explain, don't change any code: where does `revalidate` get set for app/blog/[slug]/page.tsx, and do the fetch options in lib/cms.ts override it?"
+   },
+   {
+    "i": 21,
+    "text": "set defaultPageSize to 50 in internal/api/pagination.go"
+   },
+   {
+    "i": 22,
+    "text": "cargo build fails with `no method named read_to_end found` in src/firmware/upload.rs. I think it's just missing `use tokio::io::AsyncReadExt;` at the top."
+   },
+   {
+    "i": 23,
+    "text": "Fix the Javadoc on `PaymentRefundService.issueRefund`.\n- File: src/main/java/com/paywise/refunds/PaymentRefundService.java\n- The comment says refunds are synchronous; they're queued now and the method returns a `RefundTicket`\n- Fix the `@return` tag and drop the outdated `@throws GatewayTimeoutException`\nConstraints:\n- Javadoc only, no code changes\n- `./gradlew javadoc` runs with no warnings for this class"
+   },
+   {
+    "i": 24,
+    "text": "React Native 앱 package.json 에서 react-native-reanimated 를 3.10.1 에서 3.15.0 으로 올려줘. pod install 은 내가 따로 할게."
+   },
+   {
+    "i": 25,
+    "text": "In tasks/notify.py, `send_reminder` uses `datetime.now()` instead of `datetime.now(timezone.utc)`. Fix only that line, no refactor, and no new dependencies."
+   },
+   {
+    "i": 26,
+    "text": "rename prop isOpen -> open on Modal in src/ui/Modal.tsx"
+   },
+   {
+    "i": 27,
+    "text": "There's a typo in the CLI help text in cmd/fleetctl/main.go: 'avaliable' should be 'available'."
+   },
+   {
+    "i": 28,
+    "text": "Question about the code, no changes needed.\n- File: src/catalog/index.rs\n- `fn lookup<'a>(&'a self, key: &str) -> Option<&'a Product>` compiles\n- When I drop the explicit `'a`, clippy says it's needless, but I get an error in `merge_indexes`\nWhat I want:\n- Why elision works in one place and not the other\n- Which line in `merge_indexes` forces the explicit lifetime\nKeep it short and point at the line numbers."
+   },
+   {
+    "i": 29,
+    "text": "application.yml 에서 spring.datasource.hikari.maximum-pool-size 를 10 에서 20 으로 바꿔줘."
+   },
+   {
+    "i": 30,
+    "text": "In app/src/main/java/com/greenleaf/plants/ui/WateringScreen.kt, the build breaks because `collectAsStateWithLifecycle` is unresolved. Add the import from androidx.lifecycle.compose and touch only that file."
+   },
+   {
+    "i": 31,
+    "text": "remove stale TODO above load_tariffs() in energy/pricing.py"
+   },
+   {
+    "i": 32,
+    "text": "Can you bump zod from 3.22.4 to 3.23.8 in package.json and regenerate the lockfile with pnpm?"
+   },
+   {
+    "i": 33,
+    "text": "Fix the wrong status code on the booking create endpoint.\n- File: internal/booking/handler.go\n- `CreateReservation` writes `http.StatusOK` on success; it should be `http.StatusCreated`\n- The mobile client checks for 201 and shows a false error toast\nAcceptance:\n- One-line change in the handler\n- Update the expected code in handler_test.go\n- `go test ./internal/booking/...` passes"
+   },
+   {
+    "i": 34,
+    "text": "src/ledger/mod.rs 에 있는 `fn calc` 함수 이름을 `compute_balance` 로 바꿔줘. 호출하는 곳도 같이 바꿔줘."
+   },
+   {
+    "i": 35,
+    "text": "Fix 'Occured' to 'Occurred' in the exception message in AppointmentNotFoundException.java. Keep the diff minimal and update the one test that asserts on that message."
+   },
+   {
+    "i": 36,
+    "text": "what does @MainActor on CartStore.swift actually protect here?"
+   },
+   {
+    "i": 37,
+    "text": "Change `CACHE_TTL_SECONDS` in recommender/settings.py from 300 to 900. The product team wants recommendations refreshed less often."
+   },
+   {
+    "i": 38,
+    "text": "Fix a broken import after the utils move.\n- File: src/features/orders/OrderTable.tsx\n- It imports `formatCurrency` from '@/lib/format', which was deleted\n- The function now lives in '@/lib/money/formatCurrency'\nAcceptance:\n- `tsc --noEmit` passes\n- Only the import line changes\n- No barrel file added"
+   },
+   {
+    "i": 39,
+    "text": "pkg/geo/distance.go 의 haversine 함수 위 주석에 지구 반지름 단위가 마일로 적혀 있는데, 실제 상수는 km 이야. 주석만 고쳐줘."
+   },
+   {
+    "i": 40,
+    "text": "Bump serde_json to 1.0.128 in crates/api/Cargo.toml only. Don't run cargo update for the whole workspace; keep the Cargo.lock changes limited to serde_json."
+   }
+  ],
+  "meta": [
+   {
+    "task_type": "trivial",
+    "stack": "python",
+    "phrasing": "terminal",
+    "kind": "one-line fix"
+   },
+   {
+    "task_type": "trivial",
+    "stack": "ts_react_next",
+    "phrasing": "normal",
+    "kind": "rename"
+   },
+   {
+    "task_type": "trivial",
+    "stack": "go",
+    "phrasing": "spec",
+    "kind": "typo"
+   },
+   {
+    "task_type": "trivial",
+    "stack": "rust",
+    "phrasing": "korean",
+    "kind": "answer a question"
+   },
+   {
+    "task_type": "trivial",
+    "stack": "java_kotlin",
+    "phrasing": "directive",
+    "kind": "constant change"
+   },
+   {
+    "task_type": "trivial",
+    "stack": "mobile",
+    "phrasing": "terminal",
+    "kind": "import fix"
+   },
+   {
+    "task_type": "trivial",
+    "stack": "python",
+    "phrasing": "normal",
+    "kind": "comment edit"
+   },
+   {
+    "task_type": "trivial",
+    "stack": "ts_react_next",
+    "phrasing": "spec",
+    "kind": "version bump"
+   },
+   {
+    "task_type": "trivial",
+    "stack": "go",
+    "phrasing": "korean",
+    "kind": "one-line fix"
+   },
+   {
+    "task_type": "trivial",
+    "stack": "rust",
+    "phrasing": "directive",
+    "kind": "rename"
+   },
+   {
+    "task_type": "trivial",
+    "stack": "java_kotlin",
+    "phrasing": "terminal",
+    "kind": "typo"
+   },
+   {
+    "task_type": "trivial",
+    "stack": "mobile",
+    "phrasing": "normal",
+    "kind": "answer a question"
+   },
+   {
+    "task_type": "trivial",
+    "stack": "python",
+    "phrasing": "spec",
+    "kind": "constant change"
+   },
+   {
+    "task_type": "trivial",
+    "stack": "ts_react_next",
+    "phrasing": "korean",
+    "kind": "import fix"
+   },
+   {
+    "task_type": "trivial",
+    "stack": "go",
+    "phrasing": "directive",
+    "kind": "comment edit"
+   },
+   {
+    "task_type": "trivial",
+    "stack": "rust",
+    "phrasing": "terminal",
+    "kind": "version bump"
+   },
+   {
+    "task_type": "trivial",
+    "stack": "java_kotlin",
+    "phrasing": "normal",
+    "kind": "one-line fix"
+   },
+   {
+    "task_type": "trivial",
+    "stack": "mobile",
+    "phrasing": "spec",
+    "kind": "rename"
+   },
+   {
+    "task_type": "trivial",
+    "stack": "python",
+    "phrasing": "korean",
+    "kind": "typo"
+   },
+   {
+    "task_type": "trivial",
+    "stack": "ts_react_next",
+    "phrasing": "directive",
+    "kind": "answer a question"
+   },
+   {
+    "task_type": "trivial",
+    "stack": "go",
+    "phrasing": "terminal",
+    "kind": "constant change"
+   },
+   {
+    "task_type": "trivial",
+    "stack": "rust",
+    "phrasing": "normal",
+    "kind": "import fix"
+   },
+   {
+    "task_type": "trivial",
+    "stack": "java_kotlin",
+    "phrasing": "spec",
+    "kind": "comment edit"
+   },
+   {
+    "task_type": "trivial",
+    "stack": "mobile",
+    "phrasing": "korean",
+    "kind": "version bump"
+   },
+   {
+    "task_type": "trivial",
+    "stack": "python",
+    "phrasing": "directive",
+    "kind": "one-line fix"
+   },
+   {
+    "task_type": "trivial",
+    "stack": "ts_react_next",
+    "phrasing": "terminal",
+    "kind": "rename"
+   },
+   {
+    "task_type": "trivial",
+    "stack": "go",
+    "phrasing": "normal",
+    "kind": "typo"
+   },
+   {
+    "task_type": "trivial",
+    "stack": "rust",
+    "phrasing": "spec",
+    "kind": "answer a question"
+   },
+   {
+    "task_type": "trivial",
+    "stack": "java_kotlin",
+    "phrasing": "korean",
+    "kind": "constant change"
+   },
+   {
+    "task_type": "trivial",
+    "stack": "mobile",
+    "phrasing": "directive",
+    "kind": "import fix"
+   },
+   {
+    "task_type": "trivial",
+    "stack": "python",
+    "phrasing": "terminal",
+    "kind": "comment edit"
+   },
+   {
+    "task_type": "trivial",
+    "stack": "ts_react_next",
+    "phrasing": "normal",
+    "kind": "version bump"
+   },
+   {
+    "task_type": "trivial",
+    "stack": "go",
+    "phrasing": "spec",
+    "kind": "one-line fix"
+   },
+   {
+    "task_type": "trivial",
+    "stack": "rust",
+    "phrasing": "korean",
+    "kind": "rename"
+   },
+   {
+    "task_type": "trivial",
+    "stack": "java_kotlin",
+    "phrasing": "directive",
+    "kind": "typo"
+   },
+   {
+    "task_type": "trivial",
+    "stack": "mobile",
+    "phrasing": "terminal",
+    "kind": "answer a question"
+   },
+   {
+    "task_type": "trivial",
+    "stack": "python",
+    "phrasing": "normal",
+    "kind": "constant change"
+   },
+   {
+    "task_type": "trivial",
+    "stack": "ts_react_next",
+    "phrasing": "spec",
+    "kind": "import fix"
+   },
+   {
+    "task_type": "trivial",
+    "stack": "go",
+    "phrasing": "korean",
+    "kind": "comment edit"
+   },
+   {
+    "task_type": "trivial",
+    "stack": "rust",
+    "phrasing": "directive",
+    "kind": "version bump"
+   }
+  ],
+  "usage": {
+   "input_tokens": 2,
+   "cache_creation_input_tokens": 1486,
+   "cache_read_input_tokens": 1642,
+   "output_tokens": 6250,
+   "output_tokens_details": {
+    "thinking_tokens": 2786
+   },
+   "server_tool_use": {
+    "web_search_requests": 0,
+    "web_fetch_requests": 0
+   },
+   "service_tier": "standard",
+   "cache_creation": {
+    "ephemeral_1h_input_tokens": 1486,
+    "ephemeral_5m_input_tokens": 0
+   },
+   "inference_geo": "global",
+   "iterations": [
+    {
+     "input_tokens": 2,
+     "output_tokens": 6250,
+     "cache_read_input_tokens": 1642,
+     "cache_creation_input_tokens": 1486,
+     "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 1486
+     },
+     "type": "message"
+    }
+   ],
+   "speed": "standard"
+  },
+  "cost_usd": 0.13722440000000002
+ },
+ "gen-pairs": {
+  "items": [
+   {
+    "i": 1,
+    "a": "Add a `--dry-run` flag to the `reconcile_payouts` management command in `payouts/management/commands/reconcile_payouts.py` so finance can see which Stripe transfers would be marked settled without writing to the `payout_ledger` table. It should print a summary table of payout IDs, amounts and the old/new status. Write the failing tests in `tests/test_reconcile_payouts.py` first, then implement until they pass.",
+    "b": "Add a `--dry-run` flag to the `reconcile_payouts` management command in `payouts/management/commands/reconcile_payouts.py` so finance can see which Stripe transfers would be marked settled without writing to the `payout_ledger` table. It should print a summary table of payout IDs, amounts and the old/new status. Keep the diff minimal: just thread the flag through the existing `handle()` and skip the save calls."
+   },
+   {
+    "i": 2,
+    "a": "Add a preview deploy job to our GitHub Actions CI (`ci.yml`) for the Next.js storefront. It should run `next build` on every PR, push the output to Vercel, and post a PR comment with the preview URL. Security first: pin every third-party action to a commit SHA, scope `GITHUB_TOKEN` permissions to the minimum, and make sure `VERCEL_TOKEN` is never exposed to PRs from forks.",
+    "b": "Add a preview deploy job to our GitHub Actions CI (`ci.yml`) for the Next.js storefront. It should run `next build` on every PR, push the output to Vercel, and post a PR comment with the preview URL. Performance first: cache `.next/cache` and the pnpm store between runs so the whole job stays under 4 minutes."
+   },
+   {
+    "i": 3,
+    "a": "The `/clinics/{id}/availability` handler in `internal/web/availability.go` renders the weekly appointment grid server-side. It takes 1.8s at p95 because it re-queries the `slots` table once per day. Batch it into a single query and cache the rendered page per clinic for 30s. Accessibility first: keep the grid's table headers, the `aria-label`s on slot buttons and the keyboard tab order exactly intact while you optimize.",
+    "b": "The `/clinics/{id}/availability` handler in `internal/web/availability.go` renders the weekly appointment grid server-side. It takes 1.8s at p95 because it re-queries the `slots` table once per day. Batch it into a single query and cache the rendered page per clinic for 30s. Visual polish first: keep the colored slot states pixel-identical and add a subtle loading skeleton so the page doesn't look broken on a cache miss."
+   },
+   {
+    "i": 4,
+    "a": "Add randomized tests for `parse_nmea_sentence` in `crates/gps-ingest/src/nmea.rs` covering bad checksums, truncated sentences and garbage bytes. Malformed input from our IoT trackers has caused panics in prod twice this month. Don't add any new dependencies; hand-roll a small random input generator inside the test module.",
+    "b": "Add randomized tests for `parse_nmea_sentence` in `crates/gps-ingest/src/nmea.rs` covering bad checksums, truncated sentences and garbage bytes. Malformed input from our IoT trackers has caused panics in prod twice this month. Use `proptest` for the generators rather than rolling our own."
+   },
+   {
+    "i": 5,
+    "a": "Add a nightly retraining job to the `fraud-scoring` Spring Boot service. It should retrain the XGBoost model via xgboost4j on the last 30 days of `card_transactions`, compare AUC against the current model, and only swap the new one into `ModelRegistry` if it improves by at least 0.5%. Plan before coding: write up the steps, where the job lives and how the swap stays atomic, then wait for my OK.",
+    "b": "Add a nightly retraining job to the `fraud-scoring` Spring Boot service. It should retrain the XGBoost model via xgboost4j on the last 30 days of `card_transactions`, compare AUC against the current model, and only swap the new one into `ModelRegistry` if it improves by at least 0.5%. Just do it as a small change: a `@Scheduled` method in `RetrainService` is fine, no new modules."
+   },
+   {
+    "i": 6,
+    "a": "In the ride-sharing iOS app, `TripHistoryView` shows duplicate trips after pull-to-refresh because `TripStore.merge(_:)` appends instead of upserting by `tripId`. Please fix it. Keep it backward compatible: the widget extension uses the `TripStore` public API, so don't change any signatures.",
+    "b": "In the ride-sharing iOS app, `TripHistoryView` shows duplicate trips after pull-to-refresh because `TripStore.merge(_:)` appends instead of upserting by `tripId`. Please fix it. Breaking changes are fine here, so feel free to replace `merge(_:)` with an async `replaceAll(_:)` and update every call site, including the widget extension."
+   },
+   {
+    "i": 7,
+    "a": "Add a pre-deploy check to our Fabric release script `deploy/release.py` for the lab-results API. It should compare the target host's Alembic revision with the head in the repo and abort the rollout if they don't match. Do it test-first: write pytest cases with a mocked connection for match, mismatch and missing revision before touching the script.",
+    "b": "Add a pre-deploy check to our Fabric release script `deploy/release.py` for the lab-results API. It should compare the target host's Alembic revision with the head in the repo and abort the rollout if they don't match. Minimal diff please: one new function and one call inside `release()`."
+   },
+   {
+    "i": 8,
+    "a": "Redesign the course enrollment modal in `components/enroll/EnrollModal.tsx` as a two-step layout: pick a cohort, then pay. Add a progress indicator at the top and a sticky footer with Back/Continue buttons. Security first: never render server-returned promo code messages as HTML, and keep the payment token out of any client state that gets logged.",
+    "b": "Redesign the course enrollment modal in `components/enroll/EnrollModal.tsx` as a two-step layout: pick a cohort, then pay. Add a progress indicator at the top and a sticky footer with Back/Continue buttons. Performance first: lazy-load the Stripe Elements chunk only when step two opens, so the modal itself opens instantly."
+   },
+   {
+    "i": 9,
+    "a": "Write the README for `cmd/fleetctl`, our Go CLI for managing the telematics units in our delivery vans. Cover install, auth, and the `units list`, `units reboot` and `firmware push` commands, with example output for each. Accessibility first: use properly ordered headings, alt text on every screenshot, and don't rely on color alone in the sample terminal output.",
+    "b": "Write the README for `cmd/fleetctl`, our Go CLI for managing the telematics units in our delivery vans. Cover install, auth, and the `units list`, `units reboot` and `firmware push` commands, with example output for each. Make it look polished, with a header image, a command reference table, and collapsible sections for the longer examples."
+   },
+   {
+    "i": 10,
+    "a": "Review `src/auth/session.rs` in our axum game backend. Session tokens are generated with `rand::thread_rng`, compared with `==`, and the cookies don't set `SameSite`. Harden all of that and list anything else you spot. Don't pull in any new crates; work only with what's already in Cargo.toml.",
+    "b": "Review `src/auth/session.rs` in our axum game backend. Session tokens are generated with `rand::thread_rng`, compared with `==`, and the cookies don't set `SameSite`. Harden all of that and list anything else you spot. Use well-known crates for the fixes, e.g. `subtle` for constant-time comparison and `getrandom` for token generation."
+   },
+   {
+    "i": 11,
+    "a": "Split `ShipmentService.kt` (1,900 lines) in the logistics backend into `ShipmentQueryService`, `ShipmentLabelService` and `CarrierRateService`. Don't change any REST behavior exposed by `ShipmentController`. Plan first: propose the class boundaries and which methods move where, and let me review that before you move any code.",
+    "b": "Split `ShipmentService.kt` (1,900 lines) in the logistics backend into `ShipmentQueryService`, `ShipmentLabelService` and `CarrierRateService`. Don't change any REST behavior exposed by `ShipmentController`. Just do it as a small first step: extract only the carrier rate methods now and leave the rest for later PRs."
+   },
+   {
+    "i": 12,
+    "a": "Our Android habit-tracker app stores check-ins in Room with `timestamp` as a local-time String. Migrate the `check_ins` table to UTC epoch millis plus a `zone_id` column, converting existing rows in `Migration_7_8`. It must stay backward compatible: keep the old `timestamp` column populated for one more release so the v3.x sync endpoint keeps working.",
+    "b": "Our Android habit-tracker app stores check-ins in Room with `timestamp` as a local-time String. Migrate the `check_ins` table to UTC epoch millis plus a `zone_id` column, converting existing rows in `Migration_7_8`. A breaking change is fine: drop the old column and bump the sync API to v4."
+   },
+   {
+    "i": 13,
+    "a": "Add rate limiting to the `/v1/readings` ingestion endpoint in our FastAPI IoT service (`app/routers/readings.py`). Allow 120 requests per minute per device API key, and return 429 with a `Retry-After` header when a key goes over. Start with failing tests in `tests/test_readings_rate_limit.py` using TestClient, then write the code to make them pass.",
+    "b": "Add rate limiting to the `/v1/readings` ingestion endpoint in our FastAPI IoT service (`app/routers/readings.py`). Allow 120 requests per minute per device API key, and return 429 with a `Retry-After` header when a key goes over. Keep the diff small: use a plain dependency on that router, with no new middleware layer."
+   },
+   {
+    "i": 14,
+    "a": "The Docker image for our Next.js CMS admin is 1.4 GB, built from `node:20` in a single stage. Rewrite the Dockerfile as a multi-stage build using Next's standalone output, and update the image build step in GitHub Actions. Security first: run as a non-root user, use a distroless or alpine base, and add a Trivy scan that fails the job on high CVEs.",
+    "b": "The Docker image for our Next.js CMS admin is 1.4 GB, built from `node:20` in a single stage. Rewrite the Dockerfile as a multi-stage build using Next's standalone output, and update the image build step in GitHub Actions. Performance first: order layers so dependency installs only rerun when `pnpm-lock.yaml` changes, and aim for an image under 200 MB."
+   },
+   {
+    "i": 15,
+    "a": "Our status page generator in `internal/statuspage/render.go` writes a static HTML page covering 400 service checks every minute. Each run takes 9s and about 600 MB because it builds the whole document with string `+=`. Switch it to a buffered writer and reuse buffers across runs. Accessibility first: keep the `<table>` semantics, the `scope` attributes and the text status labels that screen readers rely on.",
+    "b": "Our status page generator in `internal/statuspage/render.go` writes a static HTML page covering 400 service checks every minute. Each run takes 9s and about 600 MB because it builds the whole document with string `+=`. Switch it to a buffered writer and reuse buffers across runs. Visual polish first: the new uptime sparklines and the color legend must look exactly as they do now."
+   },
+   {
+    "i": 16,
+    "a": "Write integration tests for `reconcile()` in the `inventory-sync` crate, which calls the warehouse API. Cover pagination, a retry after a 503, and a truncated final page. No new dependencies: spin up a tiny fake server on a tokio `TcpListener` inside the tests.",
+    "b": "Write integration tests for `reconcile()` in the `inventory-sync` crate, which calls the warehouse API. Cover pagination, a retry after a 503, and a truncated final page. Use `wiremock` to fake the warehouse API."
+   },
+   {
+    "i": 17,
+    "a": "Serve the podcast app's recommendation model (ONNX, exported from PyTorch) from our Ktor service using ONNX Runtime Java. Expose it as a new `GET /recommendations/{userId}` endpoint with p99 under 50 ms. Plan before coding: outline session reuse, feature loading and batching, and check with me before writing it.",
+    "b": "Serve the podcast app's recommendation model (ONNX, exported from PyTorch) from our Ktor service using ONNX Runtime Java. Expose it as a new `GET /recommendations/{userId}` endpoint with p99 under 50 ms. Just do it as a small change: one route plus a singleton `OrtSession`, and we'll optimize later."
+   },
+   {
+    "i": 18,
+    "a": "In our Flutter pharmacy app, refill reminder notifications fire an hour off after a DST change. The cause is that `ReminderScheduler` stores a local `DateTime` with no timezone. Fix it by switching to `zonedSchedule` in flutter_local_notifications. Keep it backward compatible: read the old shared_preferences format and migrate saved reminders lazily.",
+    "b": "In our Flutter pharmacy app, refill reminder notifications fire an hour off after a DST change. The cause is that `ReminderScheduler` stores a local `DateTime` with no timezone. Fix it by switching to `zonedSchedule` in flutter_local_notifications. Breaking is OK: wipe the old format and reschedule everything on update, with a one-time notice to the user."
+   },
+   {
+    "i": 19,
+    "a": "Add a canary rollout to the Kubernetes deploy for our Django hotel-booking API, with the logic in `ops/rollout.py`. Route 10% of traffic to the new version for 15 minutes, check the 5xx rate from Prometheus, then promote or roll back. Do it test-first: write pytest cases for the promote and rollback decisions with a stubbed Prometheus client before implementing.",
+    "b": "Add a canary rollout to the Kubernetes deploy for our Django hotel-booking API, with the logic in `ops/rollout.py`. Route 10% of traffic to the new version for 15 minutes, check the 5xx rate from Prometheus, then promote or roll back. Keep it a minimal diff on top of the existing `deploy()` function, with no restructuring."
+   },
+   {
+    "i": 20,
+    "a": "Build the driver earnings page in `app/(driver)/earnings/page.tsx`. It needs a weekly bar chart, a sortable per-trip breakdown table, and a prominent \"Cash out\" button. Security first: fetch earnings server-side for the logged-in driver only, and never trust a `driverId` coming from query params.",
+    "b": "Build the driver earnings page in `app/(driver)/earnings/page.tsx`. It needs a weekly bar chart, a sortable per-trip breakdown table, and a prominent \"Cash out\" button. Performance first: make it a server component, hydrate only the chart, and keep client JS for the route under 80 KB."
+   }
+  ],
+  "meta": [
+   {
+    "pair_id": "pair01",
+    "task_type": "feature",
+    "stack": "python",
+    "directions": [
+     "test-first (TDD)",
+     "minimal diff"
+    ]
+   },
+   {
+    "pair_id": "pair02",
+    "task_type": "ci_infra",
+    "stack": "ts_react_next",
+    "directions": [
+     "security first",
+     "performance first"
+    ]
+   },
+   {
+    "pair_id": "pair03",
+    "task_type": "performance",
+    "stack": "go",
+    "directions": [
+     "accessibility first",
+     "visual polish first"
+    ]
+   },
+   {
+    "pair_id": "pair04",
+    "task_type": "tests",
+    "stack": "rust",
+    "directions": [
+     "no new dependencies",
+     "use a well-known library"
+    ]
+   },
+   {
+    "pair_id": "pair05",
+    "task_type": "ml",
+    "stack": "java_kotlin",
+    "directions": [
+     "plan before coding",
+     "just do it, small change"
+    ]
+   },
+   {
+    "pair_id": "pair06",
+    "task_type": "bugfix",
+    "stack": "mobile",
+    "directions": [
+     "backward compatible",
+     "breaking change allowed"
+    ]
+   },
+   {
+    "pair_id": "pair07",
+    "task_type": "deploy",
+    "stack": "python",
+    "directions": [
+     "test-first (TDD)",
+     "minimal diff"
+    ]
+   },
+   {
+    "pair_id": "pair08",
+    "task_type": "ui_design",
+    "stack": "ts_react_next",
+    "directions": [
+     "security first",
+     "performance first"
+    ]
+   },
+   {
+    "pair_id": "pair09",
+    "task_type": "docs",
+    "stack": "go",
+    "directions": [
+     "accessibility first",
+     "visual polish first"
+    ]
+   },
+   {
+    "pair_id": "pair10",
+    "task_type": "security_review",
+    "stack": "rust",
+    "directions": [
+     "no new dependencies",
+     "use a well-known library"
+    ]
+   },
+   {
+    "pair_id": "pair11",
+    "task_type": "refactor",
+    "stack": "java_kotlin",
+    "directions": [
+     "plan before coding",
+     "just do it, small change"
+    ]
+   },
+   {
+    "pair_id": "pair12",
+    "task_type": "data",
+    "stack": "mobile",
+    "directions": [
+     "backward compatible",
+     "breaking change allowed"
+    ]
+   },
+   {
+    "pair_id": "pair13",
+    "task_type": "feature",
+    "stack": "python",
+    "directions": [
+     "test-first (TDD)",
+     "minimal diff"
+    ]
+   },
+   {
+    "pair_id": "pair14",
+    "task_type": "ci_infra",
+    "stack": "ts_react_next",
+    "directions": [
+     "security first",
+     "performance first"
+    ]
+   },
+   {
+    "pair_id": "pair15",
+    "task_type": "performance",
+    "stack": "go",
+    "directions": [
+     "accessibility first",
+     "visual polish first"
+    ]
+   },
+   {
+    "pair_id": "pair16",
+    "task_type": "tests",
+    "stack": "rust",
+    "directions": [
+     "no new dependencies",
+     "use a well-known library"
+    ]
+   },
+   {
+    "pair_id": "pair17",
+    "task_type": "ml",
+    "stack": "java_kotlin",
+    "directions": [
+     "plan before coding",
+     "just do it, small change"
+    ]
+   },
+   {
+    "pair_id": "pair18",
+    "task_type": "bugfix",
+    "stack": "mobile",
+    "directions": [
+     "backward compatible",
+     "breaking change allowed"
+    ]
+   },
+   {
+    "pair_id": "pair19",
+    "task_type": "deploy",
+    "stack": "python",
+    "directions": [
+     "test-first (TDD)",
+     "minimal diff"
+    ]
+   },
+   {
+    "pair_id": "pair20",
+    "task_type": "ui_design",
+    "stack": "ts_react_next",
+    "directions": [
+     "security first",
+     "performance first"
+    ]
+   }
+  ],
+  "usage": {
+   "input_tokens": 2,
+   "cache_creation_input_tokens": 1248,
+   "cache_read_input_tokens": 1642,
+   "output_tokens": 9113,
+   "output_tokens_details": {
+    "thinking_tokens": 3926
+   },
+   "server_tool_use": {
+    "web_search_requests": 0,
+    "web_fetch_requests": 0
+   },
+   "service_tier": "standard",
+   "cache_creation": {
+    "ephemeral_1h_input_tokens": 1248,
+    "ephemeral_5m_input_tokens": 0
+   },
+   "inference_geo": "global",
+   "iterations": [
+    {
+     "input_tokens": 2,
+     "output_tokens": 9113,
+     "cache_read_input_tokens": 1642,
+     "cache_creation_input_tokens": 1248,
+     "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 1248
+     },
+     "type": "message"
+    }
+   ],
+   "speed": "standard"
+  },
+  "cost_usd": 0.19258039999999998
+ }
+}

@@ -1,0 +1,1 @@
+- docs _context/NOTE.txt added after building (both passes): .mcp.json/.claude/ exist in some copies; mentioning or omitting both accurate

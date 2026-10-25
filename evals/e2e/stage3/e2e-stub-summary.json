@@ -1,0 +1,60 @@
+{
+ "sessions": 40,
+ "router_fired": "12/40",
+ "searched": "12/40",
+ "loaded_any": "9/40",
+ "identical_set": "11/40",
+ "mean_jaccard": 0.296,
+ "none_agree": "15/40",
+ "hit_agree": "33/40",
+ "class_agree": "17/40",
+ "by_offline_class": {
+  "over_load": {
+   "n": 10,
+   "identical": 1,
+   "class_agree": 3,
+   "mean_jaccard": 0.15
+  },
+  "select_fail": {
+   "n": 10,
+   "identical": 4,
+   "class_agree": 0,
+   "mean_jaccard": 0.433
+  },
+  "restate_fail": {
+   "n": 10,
+   "identical": 5,
+   "class_agree": 8,
+   "mean_jaccard": 0.5
+  },
+  "search_fail": {
+   "n": 7,
+   "identical": 1,
+   "class_agree": 6,
+   "mean_jaccard": 0.143
+  },
+  "ok": {
+   "n": 3,
+   "identical": 0,
+   "class_agree": 0,
+   "mean_jaccard": 0.0
+  }
+ },
+ "searched_only": {
+  "sessions": 12,
+  "identical_set": "2/12",
+  "mean_jaccard": 0.236,
+  "none_agree": "6/12",
+  "hit_agree": "7/12",
+  "class_agree": "4/12",
+  "mean_top50_jaccard_vs_offline_q2": 0.448
+ },
+ "first_tool_when_not_searched": {
+  "Read": 3,
+  "Bash": 17,
+  "Skill(oh-my-claudecode:autopilot)": 1,
+  "Glob": 3,
+  "Grep": 3,
+  "Skill(skillfetch-router)": 1
+ }
+}

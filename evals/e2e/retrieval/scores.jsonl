@@ -1,0 +1,41 @@
+{"qid": "s1-fa-01-r1#1", "has_gold": true, "top1": 43.336, "top1_id": "uasl/fastapi-endpoint@2a93d50c4970", "top10": 19.538, "gold_best": [7, 23.665828121252908], "query_tokens": 17}
+{"qid": "s1-fa-02-r1#1", "has_gold": true, "top1": 40.602, "top1_id": "uasl/fastapi-templates@effcd0de0b4c", "top10": 20.894, "gold_best": [685, 2.93330467964402], "query_tokens": 23}
+{"qid": "s1-fa-02-r2#1", "has_gold": true, "top1": 33.433, "top1_id": "uasl/fastapi-templates@effcd0de0b4c", "top10": 18.917, "gold_best": [495, 2.5214463066531367], "query_tokens": 21}
+{"qid": "s1-fa-03-r1#1", "has_gold": true, "top1": 42.004, "top1_id": "uasl/taste-skill@57790089504e", "top10": 23.045, "gold_best": [74, 11.088591477622137], "query_tokens": 23}
+{"qid": "s1-fa-03-r2#1", "has_gold": true, "top1": 38.196, "top1_id": "uasl/taste-skill@57790089504e", "top10": 21.216, "gold_best": [64, 11.088591477622137], "query_tokens": 22}
+{"qid": "s1-fa-05-r1#1", "has_gold": true, "top1": 38.274, "top1_id": "uasl/fastapi-templates@effcd0de0b4c", "top10": 15.954, "gold_best": [10, 15.954048524228956], "query_tokens": 17}
+{"qid": "s1-fa-06-r1#1", "has_gold": true, "top1": 53.374, "top1_id": "uasl/fastapi-endpoint@2a93d50c4970", "top10": 22.187, "gold_best": [6, 28.643729484122176], "query_tokens": 19}
+{"qid": "s1-fa-06-r2#1", "has_gold": true, "top1": 51.257, "top1_id": "uasl/fastapi-templates@effcd0de0b4c", "top10": 26.935, "gold_best": [5, 35.56481060184578], "query_tokens": 22}
+{"qid": "s1-fa-07-r1#1", "has_gold": true, "top1": 64.296, "top1_id": "uasl/fastapi-templates@effcd0de0b4c", "top10": 22.688, "gold_best": [7, 28.14474176229508], "query_tokens": 21}
+{"qid": "s1-fa-07-r2#1", "has_gold": true, "top1": 69.035, "top1_id": "uasl/fastapi-templates@effcd0de0b4c", "top10": 24.386, "gold_best": [7, 27.895932577752657], "query_tokens": 22}
+{"qid": "s1-fa-08-r1#1", "has_gold": true, "top1": 32.359, "top1_id": "uasl/fastapi-endpoint@2a93d50c4970", "top10": 21.551, "gold_best": [5, 26.392745056198777], "query_tokens": 24}
+{"qid": "s1-fa-08-r2#1", "has_gold": true, "top1": 46.606, "top1_id": "uasl/fastapi-templates@effcd0de0b4c", "top10": 24.264, "gold_best": [8, 26.392745056198777], "query_tokens": 25}
+{"qid": "s1-fa-10-r1#1", "has_gold": true, "top1": 33.759, "top1_id": "uasl/fastapi-endpoint@2a93d50c4970", "top10": 14.591, "gold_best": [7, 17.242109936612835], "query_tokens": 15}
+{"qid": "s1-nx-02-r1#1", "has_gold": true, "top1": 57.252, "top1_id": "uasl/backend-patterns@3d87ff489f3e", "top10": 28.961, "gold_best": [1, 57.252050783799916], "query_tokens": 16}
+{"qid": "s1-nx-02-r2#1", "has_gold": true, "top1": 57.252, "top1_id": "uasl/backend-patterns@3d87ff489f3e", "top10": 28.961, "gold_best": [1, 57.252050783799916], "query_tokens": 16}
+{"qid": "s1-nx-04-r1#1", "has_gold": true, "top1": 65.793, "top1_id": "uasl/responsive-design@2cf7927ef938", "top10": 31.813, "gold_best": [1, 65.79328715030198], "query_tokens": 30}
+{"qid": "s1-nx-04-r2#1", "has_gold": true, "top1": 65.793, "top1_id": "uasl/responsive-design@2cf7927ef938", "top10": 31.813, "gold_best": [1, 65.79328715030198], "query_tokens": 30}
+{"qid": "s1-nx-06-r1#1", "has_gold": true, "top1": 54.778, "top1_id": "uasl/vercel-react-best-practices@70f3b5aaf775", "top10": 30.207, "gold_best": [153, 8.522963846469862], "query_tokens": 26}
+{"qid": "s1-nx-06-r2#1", "has_gold": true, "top1": 54.778, "top1_id": "uasl/vercel-react-best-practices@70f3b5aaf775", "top10": 30.536, "gold_best": [81, 12.228996210076545], "query_tokens": 26}
+{"qid": "s1-nx-07-r1#1", "has_gold": true, "top1": 67.95, "top1_id": "uasl/vercel-react-best-practices@70f3b5aaf775", "top10": 51.328, "gold_best": [13, 43.56607135790023], "query_tokens": 19}
+{"qid": "s1-nx-07-r2#1", "has_gold": true, "top1": 65.128, "top1_id": "uasl/next-upgrade@df465f7770a5", "top10": 42.124, "gold_best": [9, 43.56607135790023], "query_tokens": 18}
+{"qid": "s1-nx-08-r1#1", "has_gold": true, "top1": 57.735, "top1_id": "uasl/unit-testing@6c5fbb821103", "top10": 26.361, "gold_best": [1, 57.73467616277889], "query_tokens": 16}
+{"qid": "s1-nx-08-r2#1", "has_gold": true, "top1": 50.564, "top1_id": "uasl/vercel-react-best-practices@70f3b5aaf775", "top10": 29.851, "gold_best": [3, 39.7074935061324], "query_tokens": 22}
+{"qid": "s1-nx-10-r1#1", "has_gold": true, "top1": 74.299, "top1_id": "uasl/vercel-react-best-practices@70f3b5aaf775", "top10": 40.329, "gold_best": [3, 65.53939762132592], "query_tokens": 18}
+{"qid": "s1b-fa-landing-r1#1", "has_gold": true, "top1": 45.304, "top1_id": "uasl/landing-page@455a3c3ba6f7", "top10": 27.96, "gold_best": [24, 15.817321568090076], "query_tokens": 19}
+{"qid": "s1b-fa-landing-r2#1", "has_gold": true, "top1": 54.678, "top1_id": "uasl/gpt-tasteskill@134558e228c5", "top10": 24.68, "gold_best": [13, 21.80446133032927], "query_tokens": 19}
+{"qid": "s1b-fa-service-r1#1", "has_gold": true, "top1": 46.354, "top1_id": "uasl/fastapi-templates@effcd0de0b4c", "top10": 15.503, "gold_best": null, "query_tokens": 11}
+{"qid": "s1b-fa-service-r2#1", "has_gold": true, "top1": 53.509, "top1_id": "uasl/fastapi-templates@effcd0de0b4c", "top10": 18.279, "gold_best": null, "query_tokens": 12}
+{"qid": "s1b-fa-tags-plan-r1#1", "has_gold": true, "top1": 47.93, "top1_id": "uasl/fastapi-templates@effcd0de0b4c", "top10": 26.395, "gold_best": [93, 11.485272053655532], "query_tokens": 25}
+{"qid": "s1b-fa-tags-plan-r2#1", "has_gold": true, "top1": 53.709, "top1_id": "uasl/fastapi-templates@effcd0de0b4c", "top10": 25.843, "gold_best": [29, 17.122501250083687], "query_tokens": 20}
+{"qid": "s1b-fa-utils-tests-r1#1", "has_gold": true, "top1": 55.062, "top1_id": "uasl/unit-testing@6c5fbb821103", "top10": 22.759, "gold_best": [59, 8.238023775896757], "query_tokens": 12}
+{"qid": "s1b-fa-utils-tests-r2#1", "has_gold": true, "top1": 50.029, "top1_id": "uasl/unit-testing@6c5fbb821103", "top10": 21.721, "gold_best": [47, 8.238023775896757], "query_tokens": 11}
+{"qid": "s1b-nx-landing-r1#1", "has_gold": true, "top1": 60.039, "top1_id": "uasl/taste-skill@57790089504e", "top10": 32.555, "gold_best": [39, 18.07267476091596], "query_tokens": 17}
+{"qid": "s1b-nx-landing-r2#1", "has_gold": true, "top1": 73.823, "top1_id": "uasl/taste-skill@57790089504e", "top10": 34.534, "gold_best": [41, 18.07267476091596], "query_tokens": 20}
+{"qid": "s1-fa-09-r1#1", "has_gold": false, "top1": 51.266, "top1_id": "uasl/fastapi-endpoint@2a93d50c4970", "top10": 19.966, "gold_best": null, "query_tokens": 20}
+{"qid": "s1-fa-09-r2#1", "has_gold": false, "top1": 31.558, "top1_id": "uasl/fastapi-templates@effcd0de0b4c", "top10": 13.741, "gold_best": null, "query_tokens": 17}
+{"qid": "s1-nx-01-r1#1", "has_gold": false, "top1": 38.601, "top1_id": "uasl/frontend-patterns@8f659ce2a0bd", "top10": 26.456, "gold_best": null, "query_tokens": 18}
+{"qid": "s1-nx-01-r2#1", "has_gold": false, "top1": 38.601, "top1_id": "uasl/frontend-patterns@8f659ce2a0bd", "top10": 26.456, "gold_best": null, "query_tokens": 19}
+{"qid": "s1-nx-03-r1#1", "has_gold": false, "top1": 53.283, "top1_id": "uasl/vercel-react-best-practices@70f3b5aaf775", "top10": 35.327, "gold_best": null, "query_tokens": 20}
+{"qid": "s1-nx-05-r1#1", "has_gold": false, "top1": 53.622, "top1_id": "uasl/taste-skill@57790089504e", "top10": 36.249, "gold_best": null, "query_tokens": 24}
+{"qid": "s1-nx-05-r2#1", "has_gold": false, "top1": 78.026, "top1_id": "uasl/vercel-react-best-practices@70f3b5aaf775", "top10": 44.351, "gold_best": null, "query_tokens": 26}

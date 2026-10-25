@@ -1,0 +1,1825 @@
+{
+ "query": "Write a Python script that cleans a messy orders CSV (missing values, inconsistent date, price and category formats, duplicates) and produces a summary report",
+ "profile": {
+  "path": "<e2e>/repos/s2-data",
+  "languages": [
+   "python"
+  ],
+  "frameworks": [
+   "pandas",
+   "pytest"
+  ],
+  "package_managers": [
+   "uv"
+  ],
+  "tags": [
+   "pandas",
+   "pytest",
+   "python",
+   "uv"
+  ],
+  "manifests": [
+   "pyproject.toml",
+   "uv.lock"
+  ]
+ },
+ "compact": {
+  "query": "Write a Python script that cleans a messy orders CSV (missing values, inconsistent date, price and category formats, duplicates) and produces a summary report",
+  "results": [
+   {
+    "id": "anthropics-skills/xlsx@5350d36b768c",
+    "title": "xlsx",
+    "summary": "Guides agents through creating, editing, and analyzing spreadsheet files, with rules for formulas, recalculation, formatting, and preserving existing workbook…",
+    "tier": "A",
+    "token_estimate": 2135
+   },
+   {
+    "id": "uasl/data-analyst-engine@79799e01e2dd",
+    "title": "data-analyst-engine",
+    "summary": "Guides the agent through data cleaning, exploratory and statistical analysis, visualization, machine learning workflows, and communicating findings.",
+    "tier": "B",
+    "token_estimate": 2014
+   },
+   {
+    "id": "uasl/python-testing-patterns@e62d0f1ca316",
+    "title": "python-testing-patterns",
+    "summary": "Guides the agent in designing and implementing Python tests using pytest patterns, fixtures, mocks, and specialized testing techniques.",
+    "tier": "B",
+    "token_estimate": 6281
+   },
+   {
+    "id": "uasl/n8n-code-python@ba1cd974d317",
+    "title": "n8n-code-python",
+    "summary": "Guides agents writing Python for n8n Code nodes, including n8n data access and return formats, execution modes, and Python’s standard-library limitations.",
+    "tier": "B",
+    "token_estimate": 4461
+   },
+   {
+    "id": "uasl/invoice-organizer@65f04d96d07a",
+    "title": "invoice-organizer",
+    "summary": "Guides the agent through extracting invoice details, choosing an organization strategy, standardizing filenames, and organizing financial files.",
+    "tier": "B",
+    "token_estimate": 2905
+   },
+   {
+    "id": "uasl/clay@6c9572941894",
+    "title": "clay",
+    "summary": "Produces reproducible code and operating guidance for AI 3D generation, modeling, game-asset pipelines, and quality validation.",
+    "tier": "B",
+    "token_estimate": 2997
+   },
+   {
+    "id": "uasl/eventbrite-automation@3c64bf358971",
+    "title": "eventbrite-automation",
+    "summary": "Use the Rube MCP integration to manage Eventbrite workflows, including discovering organizations, listing events, retrieving attendees, and browsing…",
+    "tier": "B",
+    "token_estimate": 1299
+   },
+   {
+    "id": "uasl/sketch@2a8aac6ecc18",
+    "title": "sketch",
+    "summary": "Guides the agent to produce Python code for Gemini image generation, editing, prompt refinement, and batch workflows without executing API calls.",
+    "tier": "B",
+    "token_estimate": 2391
+   },
+   {
+    "id": "uasl/unit-testing@6c5fbb821103",
+    "title": "unit-testing",
+    "summary": "Guides the agent to write and improve isolated unit tests using common testing patterns, test doubles, naming conventions, and language-specific frameworks.",
+    "tier": "B",
+    "token_estimate": 6067
+   },
+   {
+    "id": "uasl/api-design@bba608f8c974",
+    "title": "api-design",
+    "summary": "Guides the agent in designing and reviewing REST API contracts, covering resource URLs, HTTP behavior, response formats, pagination, security, rate limits…",
+    "tier": "B",
+    "token_estimate": 3267
+   },
+   {
+    "id": "uasl/dynamics365-automation@03e4959eec42",
+    "title": "dynamics365-automation",
+    "summary": "Use the Dynamics 365 CRM toolkit through Rube MCP to manage CRM records, including leads, accounts, contacts, opportunities, sales orders, invoices, and…",
+    "tier": "B",
+    "token_estimate": 2053
+   },
+   {
+    "id": "anthropics-skills/webapp-testing@a4b4ce82b644",
+    "title": "webapp-testing",
+    "summary": "Use native Python Playwright scripts to test local web applications, choosing an approach based on whether the app is static or dynamic.",
+    "tier": "A",
+    "token_estimate": 965
+   },
+   {
+    "id": "uasl/python-performance-optimization@bf455fd100bf",
+    "title": "python-performance-optimization",
+    "summary": "Profile Python applications to identify CPU, memory, I/O, and database bottlenecks, then apply measured optimization techniques.",
+    "tier": "B",
+    "token_estimate": 5128
+   },
+   {
+    "id": "uasl/radar@a47ea6fd5f95",
+    "title": "radar",
+    "summary": "Add and refine tests, diagnose flaky behavior, and improve coverage while preserving product behavior.",
+    "tier": "B",
+    "token_estimate": 2701
+   },
+   {
+    "id": "uasl/excel-generator@9ce0c16c81a1",
+    "title": "excel-generator",
+    "summary": "Create professional Excel workbooks that are immediately useful for understanding and exploring structured data.",
+    "tier": "B",
+    "token_estimate": 5783
+   },
+   {
+    "id": "uasl/changelog-generator@f7da9390521a",
+    "title": "changelog-generator",
+    "summary": "Generate customer-friendly changelogs and release notes from Git commits, organizing changes into useful categories and filtering internal noise.",
+    "tier": "B",
+    "token_estimate": 771
+   },
+   {
+    "id": "uasl/code-maturity-assessor@c0bd3143e45e",
+    "title": "code-maturity-assessor",
+    "summary": "Assess code maturity using Trail of Bits’ nine-category framework, grounding ratings in code evidence and clarifying questions about processes not visible in…",
+    "tier": "B",
+    "token_estimate": 1772
+   },
+   {
+    "id": "uasl/survey-monkey-automation@d25fdaab9862",
+    "title": "survey-monkey-automation",
+    "summary": "Use SurveyMonkey tools through natural-language requests to create and discover surveys, manage collectors, and retrieve survey details and responses.",
+    "tier": "B",
+    "token_estimate": 1734
+   },
+   {
+    "id": "anthropics-skills/internal-comms@c544dea09136",
+    "title": "internal-comms",
+    "summary": "For internal communications, identify the communication type and consult the matching guideline file before writing.",
+    "tier": "A",
+    "token_estimate": 377
+   },
+   {
+    "id": "uasl/atheris@5b575b7295c7",
+    "title": "atheris",
+    "summary": "Guides agents in using Atheris to fuzz Python code and Python C extensions, including writing harnesses, configuring instrumentation and sanitizers, and…",
+    "tier": "B",
+    "token_estimate": 3612
+   },
+   {
+    "id": "uasl/design-review@4964367926b4",
+    "title": "design-review",
+    "summary": "Review a web app or page for visual design quality, including layout, typography, colour, hierarchy, consistency, interaction patterns, and responsive…",
+    "tier": "B",
+    "token_estimate": 2152
+   },
+   {
+    "id": "uasl/internal-comms@8ad08fb91e8c",
+    "title": "internal-comms",
+    "summary": "For internal communications, identify the communication type and load and follow its matching guideline file.",
+    "tier": "B",
+    "token_estimate": 377
+   },
+   {
+    "id": "uasl/obviously-awesome@fd4c9e19ced0",
+    "title": "obviously-awesome",
+    "summary": "Guides the agent through defining product positioning by identifying competitive alternatives, unique attributes, customer value, best-fit customers, and a…",
+    "tier": "B",
+    "token_estimate": 6079
+   },
+   {
+    "id": "uasl/python-error-handling@8dc34883a143",
+    "title": "python-error-handling",
+    "summary": "Guides agents to implement Python validation and error handling with meaningful exceptions, exception chaining, and resilient batch processing.",
+    "tier": "B",
+    "token_estimate": 2680
+   },
+   {
+    "id": "uasl/fp-check@36809c5d2431",
+    "title": "fp-check",
+    "summary": "Systematically verifies specific suspected security bugs and records evidence for a TRUE POSITIVE or FALSE POSITIVE verdict.",
+    "tier": "B",
+    "token_estimate": 1651
+   },
+   {
+    "id": "uasl/async-python-patterns@957ebfe54aa7",
+    "title": "async-python-patterns",
+    "summary": "Guides implementation of asynchronous Python applications using asyncio, concurrency patterns, and async I/O.",
+    "tier": "B",
+    "token_estimate": 4953
+   },
+   {
+    "id": "uasl/positioning-statement@235d6165147e",
+    "title": "positioning-statement",
+    "summary": "Guides the agent to create and stress-test a Geoffrey Moore-style positioning statement covering the target customer, underserved need, product category…",
+    "tier": "B",
+    "token_estimate": 2388
+   },
+   {
+    "id": "uasl/gorgias-automation@2106c504916d",
+    "title": "gorgias-automation",
+    "summary": "Use the Rube MCP integration to manage Gorgias tickets, customers, tags, teams, and account activity from natural-language requests.",
+    "tier": "B",
+    "token_estimate": 1421
+   },
+   {
+    "id": "uasl/meta-prompt-engineering@c01cd11b78a1",
+    "title": "meta-prompt-engineering",
+    "summary": "Turn vague or unreliable prompts into structured prompts with explicit roles, steps, constraints, output formats, and quality checks.",
+    "tier": "B",
+    "token_estimate": 2559
+   },
+   {
+    "id": "uasl/zoho-inventory-automation@2f2863777368",
+    "title": "zoho-inventory-automation",
+    "summary": "Use Rube MCP to discover current Zoho Inventory tool schemas, verify the connection, and execute inventory workflows.",
+    "tier": "B",
+    "token_estimate": 1054
+   },
+   {
+    "id": "uasl/translation-reframing-audience-shift@d1a28fb19e3e",
+    "title": "translation-reframing-audience-shift",
+    "summary": "Adapt existing content for a new audience by changing its tone, depth, emphasis, or format while preserving semantic accuracy.",
+    "tier": "B",
+    "token_estimate": 4206
+   },
+   {
+    "id": "uasl/kommo-automation@67ebbb9c7737",
+    "title": "kommo-automation",
+    "summary": "Use the Kommo CRM tools through the Composio MCP integration to manage leads, pipelines, tasks, and custom fields.",
+    "tier": "B",
+    "token_estimate": 1504
+   },
+   {
+    "id": "uasl/builder@8d7f0953ade3",
+    "title": "builder",
+    "summary": "Guides the agent to implement production-ready, type-safe business logic, API integrations, and data models, with validation, error handling, and test handoffs.",
+    "tier": "B",
+    "token_estimate": 3007
+   },
+   {
+    "id": "uasl/semgrep-rule-variant-creator@2cea56923011",
+    "title": "semgrep-rule-variant-creator",
+    "summary": "Ports existing Semgrep rules to applicable target languages by analyzing language applicability, creating tests before rules, and validating each variant…",
+    "tier": "B",
+    "token_estimate": 2015
+   },
+   {
+    "id": "uasl/error-handling-patterns@4c19ee7d7821",
+    "title": "error-handling-patterns",
+    "summary": "Guides agents in handling errors across Python, JavaScript/TypeScript, Rust, and Go, including validation, cleanup, logging, and typed errors.",
+    "tier": "B",
+    "token_estimate": 4095
+   },
+   {
+    "id": "uasl/claude-native-brand-guidelines@7d7cc96e7e20",
+    "title": "claude-native-brand-guidelines",
+    "summary": "Apply Anthropic brand styling to visual artifacts, using its typography and accent-color guidance.",
+    "tier": "B",
+    "token_estimate": 562
+   },
+   {
+    "id": "uasl/think-tank@833fcce1b6d9",
+    "title": "think-tank",
+    "summary": "Before planning or making architectural, design, or strategic decisions, run a moderated debate among a diverse panel of personas.",
+    "tier": "B",
+    "token_estimate": 3156
+   },
+   {
+    "id": "uasl/exa-search@371597562d6c",
+    "title": "exa-search",
+    "summary": "Use the Exa API for semantic search, similar-content discovery, category-based search, and structured research.",
+    "tier": "B",
+    "token_estimate": 237
+   },
+   {
+    "id": "uasl/fastapi-templates@effcd0de0b4c",
+    "title": "fastapi-templates",
+    "summary": "Guides creation of structured FastAPI backend projects using async patterns, dependency injection, repository and service layers, authentication, and testing…",
+    "tier": "B",
+    "token_estimate": 3748
+   },
+   {
+    "id": "uasl/netsuite-automation@b615a37449c9",
+    "title": "netsuite-automation",
+    "summary": "Use the NetSuite toolkit to query and manage ERP records, including customers and sales orders.",
+    "tier": "B",
+    "token_estimate": 2118
+   },
+   {
+    "id": "uasl/lemon-squeezy-automation@78ae0198fdfd",
+    "title": "lemon-squeezy-automation",
+    "summary": "Use the Rube MCP integration to manage Lemon Squeezy stores and retrieve products, orders, subscriptions, customers, discounts, redemptions, and checkouts.",
+    "tier": "B",
+    "token_estimate": 1450
+   },
+   {
+    "id": "uasl/python-type-safety@60be75b4816f",
+    "title": "python-type-safety",
+    "summary": "Guides agents to use Python type annotations, generics, protocols, and type narrowing to make code statically checkable.",
+    "tier": "B",
+    "token_estimate": 2813
+   },
+   {
+    "id": "uasl/python-design-patterns@5c0fbe0d4633",
+    "title": "python-design-patterns",
+    "summary": "Guides the agent to design and refactor Python code using simple, focused components, clear separation of concerns, composition, and dependency injection.",
+    "tier": "B",
+    "token_estimate": 3093
+   },
+   {
+    "id": "uasl/coupling-analysis@600d3107e2f9",
+    "title": "coupling-analysis",
+    "summary": "Guides the agent through analyzing software coupling using integration strength, distance, and volatility.",
+    "tier": "B",
+    "token_estimate": 3898
+   },
+   {
+    "id": "uasl/openapi-spec-generation@2d2c7a93b8f2",
+    "title": "openapi-spec-generation",
+    "summary": "Guides agents in creating and maintaining OpenAPI 3.1 specifications from design or code, validating API contracts, and generating SDKs and documentation.",
+    "tier": "B",
+    "token_estimate": 6137
+   },
+   {
+    "id": "uasl/documentation-lookup@dee6d7478eab",
+    "title": "documentation-lookup",
+    "summary": "For questions involving libraries, frameworks, or APIs, retrieve current documentation through Context7 rather than relying on training data.",
+    "tier": "B",
+    "token_estimate": 1222
+   },
+   {
+    "id": "uasl/thinking-margin-of-safety@2336a8b814d3",
+    "title": "thinking-margin-of-safety",
+    "summary": "Apply a margin-of-safety approach to uncertain commitments and designs by adding buffers or slack.",
+    "tier": "B",
+    "token_estimate": 1978
+   },
+   {
+    "id": "uasl/zen@f72229d0a781",
+    "title": "zen",
+    "summary": "Use Zen to review or refactor code for readability and maintainability while preserving behavior, staying within scope, and verifying changes.",
+    "tier": "B",
+    "token_estimate": 3182
+   },
+   {
+    "id": "uasl/compete@c2b41286409b",
+    "title": "compete",
+    "summary": "Perform evidence-based competitive research and analysis, then turn findings into differentiated strategic recommendations and actionable handoffs.",
+    "tier": "B",
+    "token_estimate": 3131
+   },
+   {
+    "id": "uasl/negotiation@00a3e4e874e5",
+    "title": "negotiation",
+    "summary": "Apply a tactical-empathy negotiation framework to prepare for and conduct negotiations, uncover information, respond to objections, and evaluate negotiation…",
+    "tier": "B",
+    "token_estimate": 6067
+   }
+  ]
+ },
+ "verbose": {
+  "query": "Write a Python script that cleans a messy orders CSV (missing values, inconsistent date, price and category formats, duplicates) and produces a summary report",
+  "results": [
+   {
+    "id": "anthropics-skills/xlsx@5350d36b768c",
+    "title": "xlsx",
+    "summary": "Guides agents through creating, editing, and analyzing spreadsheet files, with rules for formulas, recalculation, formatting, and preserving existing workbook conventions. It also gives specific safeguards for financial models and common openpyxl pitfalls.",
+    "tier": "A",
+    "tags": {
+     "languages": [
+      "python"
+     ],
+     "frameworks": [
+      "openpyxl",
+      "pandas",
+      "markitdown"
+     ],
+     "phase": [
+      "implement",
+      "test",
+      "format",
+      "review"
+     ],
+     "domain": [
+      "spreadsheets",
+      "data",
+      "finance"
+     ]
+    },
+    "match_reasons": [
+     "'python' in description",
+     "'script' in description",
+     "'messy' in description, synthetic_queries",
+     "'csv' in description, synthetic_queries",
+     "'values' in synthetic_queries",
+     "'formats' in description",
+     "'report' in description",
+     "profile tag 'pandas' matches tags.frameworks (x1.3)",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 2135
+   },
+   {
+    "id": "uasl/data-analyst-engine@79799e01e2dd",
+    "title": "data-analyst-engine",
+    "summary": "Guides the agent through data cleaning, exploratory and statistical analysis, visualization, machine learning workflows, and communicating findings. Includes Python data-analysis tools and practical recommendations for analysis and modeling.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python"
+     ],
+     "frameworks": [
+      "pandas",
+      "numpy",
+      "matplotlib",
+      "seaborn",
+      "plotly",
+      "scipy",
+      "scikit-learn"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "review"
+     ],
+     "domain": [
+      "data-analysis",
+      "statistics",
+      "visualization",
+      "machine-learning"
+     ]
+    },
+    "match_reasons": [
+     "'python' in summary",
+     "'csv' in synthetic_queries",
+     "'missing' in synthetic_queries",
+     "'values' in synthetic_queries",
+     "'duplicates' in synthetic_queries",
+     "profile tag 'pandas' matches tags.frameworks (x1.3)",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 2014
+   },
+   {
+    "id": "uasl/python-testing-patterns@e62d0f1ca316",
+    "title": "python-testing-patterns",
+    "summary": "Guides the agent in designing and implementing Python tests using pytest patterns, fixtures, mocks, and specialized testing techniques. It emphasizes focused, isolated tests and meaningful coverage of failure behavior.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python"
+     ],
+     "frameworks": [
+      "pytest",
+      "hypothesis",
+      "freezegun",
+      "unittest.mock"
+     ],
+     "phase": [
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "testing",
+      "backend"
+     ]
+    },
+    "match_reasons": [
+     "'write' in synthetic_queries",
+     "'python' in title, description, keywords, synthetic_queries, summary",
+     "'cleans' in synthetic_queries",
+     "profile tag 'pytest' matches tags.frameworks (x1.3)",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 6281
+   },
+   {
+    "id": "uasl/n8n-code-python@ba1cd974d317",
+    "title": "n8n-code-python",
+    "summary": "Guides agents writing Python for n8n Code nodes, including n8n data access and return formats, execution modes, and Python’s standard-library limitations. It recommends considering JavaScript first and using Python (Beta) for better n8n integration.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python",
+      "javascript"
+     ],
+     "frameworks": [
+      "n8n"
+     ],
+     "phase": [
+      "implement"
+     ],
+     "domain": [
+      "automation",
+      "workflow",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'write' in description, synthetic_queries",
+     "'python' in title, description, keywords, synthetic_queries, summary",
+     "'values' in synthetic_queries",
+     "'formats' in summary",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 4461
+   },
+   {
+    "id": "uasl/invoice-organizer@65f04d96d07a",
+    "title": "invoice-organizer",
+    "summary": "Guides the agent through extracting invoice details, choosing an organization strategy, standardizing filenames, and organizing financial files. It also directs the agent to flag unclear records and create a CSV summary.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "plan",
+      "implement"
+     ],
+     "domain": [
+      "finance",
+      "bookkeeping",
+      "file-management",
+      "document-processing"
+     ]
+    },
+    "match_reasons": [
+     "'messy' in description",
+     "'csv' in keywords, synthetic_queries, summary",
+     "'category' in synthetic_queries",
+     "'summary' in synthetic_queries, summary"
+    ],
+    "token_estimate": 2905
+   },
+   {
+    "id": "uasl/clay@6c9572941894",
+    "title": "clay",
+    "summary": "Produces reproducible code and operating guidance for AI 3D generation, modeling, game-asset pipelines, and quality validation. It requires safe credential handling and cost awareness, and does not execute API calls or deliver raw 3D model files.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python",
+      "javascript",
+      "typescript",
+      "openscad"
+     ],
+     "frameworks": [
+      "three.js",
+      "babylon.js",
+      "react three fiber",
+      "blender"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "3d",
+      "game-development",
+      "graphics",
+      "api-integration",
+      "asset-pipeline"
+     ]
+    },
+    "match_reasons": [
+     "'write' in synthetic_queries",
+     "'python' in description, synthetic_queries",
+     "'script' in synthetic_queries",
+     "'produces' in summary",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 2997
+   },
+   {
+    "id": "uasl/eventbrite-automation@3c64bf358971",
+    "title": "eventbrite-automation",
+    "summary": "Use the Rube MCP integration to manage Eventbrite workflows, including discovering organizations, listing events, retrieving attendees, and browsing categories and formats. Follow the documented ID dependencies, pagination conventions, and parameter formats.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [],
+     "domain": [
+      "event-management",
+      "automation",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'date' in synthetic_queries",
+     "'category' in description, synthetic_queries",
+     "'formats' in keywords, synthetic_queries, summary"
+    ],
+    "token_estimate": 1299
+   },
+   {
+    "id": "uasl/sketch@2a8aac6ecc18",
+    "title": "sketch",
+    "summary": "Guides the agent to produce Python code for Gemini image generation, editing, prompt refinement, and batch workflows without executing API calls. It sets defaults for the API, prompt construction, output metadata, safety, and cost guidance.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python"
+     ],
+     "frameworks": [
+      "google-genai"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "image-generation",
+      "api",
+      "asset-generation"
+     ]
+    },
+    "match_reasons": [
+     "'write' in synthetic_queries",
+     "'python' in keywords, synthetic_queries, summary",
+     "'script' in synthetic_queries",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 2391
+   },
+   {
+    "id": "uasl/unit-testing@6c5fbb821103",
+    "title": "unit-testing",
+    "summary": "Guides the agent to write and improve isolated unit tests using common testing patterns, test doubles, naming conventions, and language-specific frameworks. Emphasizes focused, deterministic tests and meaningful coverage.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "c#",
+      "go",
+      "java",
+      "javascript",
+      "python",
+      "typescript"
+     ],
+     "frameworks": [
+      "autofixture",
+      "jest",
+      "junit 5",
+      "mstest",
+      "nunit",
+      "pytest",
+      "vitest",
+      "xunit"
+     ],
+     "phase": [
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "testing"
+     ]
+    },
+    "match_reasons": [
+     "'write' in synthetic_queries, summary",
+     "'python' in synthetic_queries",
+     "'messy' in synthetic_queries",
+     "profile tag 'pytest' matches tags.frameworks (x1.3)",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 6067
+   },
+   {
+    "id": "uasl/api-design@bba608f8c974",
+    "title": "api-design",
+    "summary": "Guides the agent in designing and reviewing REST API contracts, covering resource URLs, HTTP behavior, response formats, pagination, security, rate limits, and versioning. It also provides implementation patterns and a checklist for endpoint readiness.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "typescript",
+      "python",
+      "go"
+     ],
+     "frameworks": [
+      "next.js",
+      "django rest framework"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "review"
+     ],
+     "domain": [
+      "api",
+      "backend",
+      "security"
+     ]
+    },
+    "match_reasons": [
+     "'orders' in synthetic_queries",
+     "'inconsistent' in synthetic_queries",
+     "'formats' in summary",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 3267
+   },
+   {
+    "id": "uasl/dynamics365-automation@03e4959eec42",
+    "title": "dynamics365-automation",
+    "summary": "Use the Dynamics 365 CRM toolkit through Rube MCP to manage CRM records, including leads, accounts, contacts, opportunities, sales orders, invoices, and support cases. Check the toolkit connection before using tools and follow the documented reference and OData formats.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "implement"
+     ],
+     "domain": [
+      "crm",
+      "sales",
+      "customer-support",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'orders' in description, keywords, summary",
+     "'date' in synthetic_queries",
+     "'formats' in summary"
+    ],
+    "token_estimate": 2053
+   },
+   {
+    "id": "anthropics-skills/webapp-testing@a4b4ce82b644",
+    "title": "webapp-testing",
+    "summary": "Use native Python Playwright scripts to test local web applications, choosing an approach based on whether the app is static or dynamic. For dynamic apps, inspect the rendered state before acting, and use bundled helper scripts to manage servers when appropriate.",
+    "tier": "A",
+    "tags": {
+     "languages": [
+      "python"
+     ],
+     "frameworks": [
+      "playwright"
+     ],
+     "phase": [
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "testing",
+      "frontend",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'write' in synthetic_queries",
+     "'python' in keywords, summary",
+     "'script' in synthetic_queries",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 965
+   },
+   {
+    "id": "uasl/python-performance-optimization@bf455fd100bf",
+    "title": "python-performance-optimization",
+    "summary": "Profile Python applications to identify CPU, memory, I/O, and database bottlenecks, then apply measured optimization techniques. Covers profiling tools, benchmarking, and implementation patterns for improving performance and memory use.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python"
+     ],
+     "frameworks": [
+      "cprofile",
+      "line_profiler",
+      "memory_profiler",
+      "py-spy",
+      "numpy",
+      "pytest-benchmark"
+     ],
+     "phase": [
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "performance",
+      "profiling",
+      "optimization",
+      "memory",
+      "database"
+     ]
+    },
+    "match_reasons": [
+     "'python' in title, description, keywords, synthetic_queries, summary",
+     "'script' in synthetic_queries",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 5128
+   },
+   {
+    "id": "uasl/radar@a47ea6fd5f95",
+    "title": "radar",
+    "summary": "Add and refine tests, diagnose flaky behavior, and improve coverage while preserving product behavior. Follow the project’s existing testing conventions and verify changes with tests and relevant references.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "javascript",
+      "typescript",
+      "python",
+      "go",
+      "rust",
+      "java"
+     ],
+     "frameworks": [
+      "vitest",
+      "jest",
+      "pytest",
+      "testify",
+      "junit 5"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "test",
+      "review"
+     ],
+     "domain": [
+      "testing",
+      "coverage",
+      "ci",
+      "reliability"
+     ]
+    },
+    "match_reasons": [
+     "'python' in description",
+     "'missing' in synthetic_queries",
+     "'report' in synthetic_queries",
+     "profile tag 'pytest' matches tags.frameworks (x1.3)",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 2701
+   },
+   {
+    "id": "uasl/excel-generator@9ce0c16c81a1",
+    "title": "excel-generator",
+    "summary": "Create professional Excel workbooks that are immediately useful for understanding and exploring structured data. Organize, format, and annotate workbook content so users can navigate it, interpret it, and work with it directly.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python"
+     ],
+     "frameworks": [
+      "openpyxl"
+     ],
+     "phase": [
+      "plan",
+      "implement"
+     ],
+     "domain": [
+      "spreadsheets",
+      "data-analysis",
+      "data-visualization"
+     ]
+    },
+    "match_reasons": [
+     "'formats' in synthetic_queries",
+     "'summary' in synthetic_queries",
+     "'report' in synthetic_queries",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 5783
+   },
+   {
+    "id": "uasl/changelog-generator@f7da9390521a",
+    "title": "changelog-generator",
+    "summary": "Generate customer-friendly changelogs and release notes from Git commits, organizing changes into useful categories and filtering internal noise. The skill also recommends where to run the task, how to guide formatting, and what to do with the generated changelog before publishing.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "implement",
+      "review",
+      "format"
+     ],
+     "domain": [
+      "git",
+      "docs",
+      "release-management"
+     ]
+    },
+    "match_reasons": [
+     "'write' in synthetic_queries",
+     "'date' in keywords, synthetic_queries",
+     "'summary' in synthetic_queries"
+    ],
+    "token_estimate": 771
+   },
+   {
+    "id": "uasl/code-maturity-assessor@c0bd3143e45e",
+    "title": "code-maturity-assessor",
+    "summary": "Assess code maturity using Trail of Bits’ nine-category framework, grounding ratings in code evidence and clarifying questions about processes not visible in the repository. Produce a maturity scorecard, detailed findings, and a priority-ordered improvement roadmap.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "review"
+     ],
+     "domain": [
+      "smart contracts",
+      "security",
+      "testing",
+      "documentation",
+      "code review"
+     ]
+    },
+    "match_reasons": [
+     "'category' in description, synthetic_queries, summary",
+     "'produces' in description",
+     "'report' in synthetic_queries"
+    ],
+    "token_estimate": 1772
+   },
+   {
+    "id": "uasl/survey-monkey-automation@d25fdaab9862",
+    "title": "survey-monkey-automation",
+    "summary": "Use SurveyMonkey tools through natural-language requests to create and discover surveys, manage collectors, and retrieve survey details and responses. Follow the guidance for handling survey IDs, pagination, response status filters, and date formats.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "implement"
+     ],
+     "domain": [
+      "tooling",
+      "automation",
+      "surveys"
+     ]
+    },
+    "match_reasons": [
+     "'missing' in synthetic_queries",
+     "'date' in synthetic_queries, summary",
+     "'formats' in summary"
+    ],
+    "token_estimate": 1734
+   },
+   {
+    "id": "anthropics-skills/internal-comms@c544dea09136",
+    "title": "internal-comms",
+    "summary": "For internal communications, identify the communication type and consult the matching guideline file before writing. Follow that file’s instructions, and ask for clarification when no guideline matches.",
+    "tier": "A",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "plan",
+      "implement"
+     ],
+     "domain": [
+      "docs",
+      "communications"
+     ]
+    },
+    "match_reasons": [
+     "'write' in description, synthetic_queries",
+     "'formats' in description",
+     "'report' in synthetic_queries"
+    ],
+    "token_estimate": 377
+   },
+   {
+    "id": "uasl/atheris@5b575b7295c7",
+    "title": "atheris",
+    "summary": "Guides agents in using Atheris to fuzz Python code and Python C extensions, including writing harnesses, configuring instrumentation and sanitizers, and managing fuzzing runs. It emphasizes harness practices and local setup for native-extension fuzzing.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python",
+      "c"
+     ],
+     "frameworks": [
+      "atheris",
+      "libfuzzer"
+     ],
+     "phase": [
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "testing",
+      "fuzzing",
+      "security",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'write' in synthetic_queries",
+     "'python' in description, keywords, synthetic_queries, summary",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 3612
+   },
+   {
+    "id": "uasl/design-review@4964367926b4",
+    "title": "design-review",
+    "summary": "Review a web app or page for visual design quality, including layout, typography, colour, hierarchy, consistency, interaction patterns, and responsive behaviour. Produce a design findings report with screenshots of visual issues.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "review"
+     ],
+     "domain": [
+      "frontend",
+      "design"
+     ]
+    },
+    "match_reasons": [
+     "'inconsistent' in synthetic_queries",
+     "'produces' in description",
+     "'report' in description, synthetic_queries, summary"
+    ],
+    "token_estimate": 2152
+   },
+   {
+    "id": "uasl/internal-comms@8ad08fb91e8c",
+    "title": "internal-comms",
+    "summary": "For internal communications, identify the communication type and load and follow its matching guideline file. If no guideline matches, ask for clarification or more context about the desired format.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "plan",
+      "implement"
+     ],
+     "domain": [
+      "docs",
+      "internal-communications"
+     ]
+    },
+    "match_reasons": [
+     "'write' in description, synthetic_queries",
+     "'formats' in description",
+     "'report' in synthetic_queries"
+    ],
+    "token_estimate": 377
+   },
+   {
+    "id": "uasl/obviously-awesome@fd4c9e19ced0",
+    "title": "obviously-awesome",
+    "summary": "Guides the agent through defining product positioning by identifying competitive alternatives, unique attributes, customer value, best-fit customers, and a market category. It also provides a positioning canvas and team workshop process for aligning positioning and deriving customer-facing messaging.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "plan"
+     ],
+     "domain": [
+      "marketing",
+      "product",
+      "strategy"
+     ]
+    },
+    "match_reasons": [
+     "'missing' in synthetic_queries",
+     "'category' in description, keywords, synthetic_queries, summary"
+    ],
+    "token_estimate": 6079
+   },
+   {
+    "id": "uasl/python-error-handling@8dc34883a143",
+    "title": "python-error-handling",
+    "summary": "Guides agents to implement Python validation and error handling with meaningful exceptions, exception chaining, and resilient batch processing. It also recommends practices for domain-type conversion, progress reporting, logging, and testing error paths.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python"
+     ],
+     "frameworks": [],
+     "phase": [
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "backend",
+      "validation",
+      "error-handling",
+      "api",
+      "testing"
+     ]
+    },
+    "match_reasons": [
+     "'write' in synthetic_queries",
+     "'python' in title, description, keywords, synthetic_queries, summary",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 2680
+   },
+   {
+    "id": "uasl/fp-check@36809c5d2431",
+    "title": "fp-check",
+    "summary": "Systematically verifies specific suspected security bugs and records evidence for a TRUE POSITIVE or FALSE POSITIVE verdict. Routes each bug through standard or deep verification and requires a final summary after all bugs are processed.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "plan",
+      "test",
+      "review"
+     ],
+     "domain": [
+      "security",
+      "testing",
+      "code-review"
+     ]
+    },
+    "match_reasons": [
+     "'produces' in description",
+     "'summary' in summary",
+     "'report' in synthetic_queries"
+    ],
+    "token_estimate": 1651
+   },
+   {
+    "id": "uasl/async-python-patterns@957ebfe54aa7",
+    "title": "async-python-patterns",
+    "summary": "Guides implementation of asynchronous Python applications using asyncio, concurrency patterns, and async I/O. It emphasizes keeping call paths consistently synchronous or asynchronous, avoiding event-loop blocking, and offloading synchronous library calls when needed.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python"
+     ],
+     "frameworks": [
+      "asyncio",
+      "aiohttp",
+      "fastapi",
+      "sanic",
+      "httpx",
+      "pytest-asyncio"
+     ],
+     "phase": [
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "backend",
+      "concurrency",
+      "async programming",
+      "testing"
+     ]
+    },
+    "match_reasons": [
+     "'write' in synthetic_queries",
+     "'python' in title, description, keywords, synthetic_queries, summary",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 4953
+   },
+   {
+    "id": "uasl/positioning-statement@235d6165147e",
+    "title": "positioning-statement",
+    "summary": "Guides the agent to create and stress-test a Geoffrey Moore-style positioning statement covering the target customer, underserved need, product category, benefit, and differentiation. It emphasizes using customer and market evidence, specific outcomes, and a real competitive alternative.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [
+      "geoffrey moore"
+     ],
+     "phase": [
+      "plan",
+      "review"
+     ],
+     "domain": [
+      "product strategy",
+      "marketing",
+      "research"
+     ]
+    },
+    "match_reasons": [
+     "'write' in synthetic_queries",
+     "'category' in description, keywords, synthetic_queries, summary"
+    ],
+    "token_estimate": 2388
+   },
+   {
+    "id": "uasl/gorgias-automation@2106c504916d",
+    "title": "gorgias-automation",
+    "summary": "Use the Rube MCP integration to manage Gorgias tickets, customers, tags, teams, and account activity from natural-language requests. Follow the documented API requirements and pagination, filtering, custom-field, rate-limit, and authentication guidance.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "implement"
+     ],
+     "domain": [
+      "customer-support",
+      "e-commerce",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'missing' in synthetic_queries",
+     "'values' in synthetic_queries",
+     "'date' in synthetic_queries"
+    ],
+    "token_estimate": 1421
+   },
+   {
+    "id": "uasl/meta-prompt-engineering@c01cd11b78a1",
+    "title": "meta-prompt-engineering",
+    "summary": "Turn vague or unreliable prompts into structured prompts with explicit roles, steps, constraints, output formats, and quality checks. Test and refine prompts to improve consistency and prevent known failure modes.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "plan",
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "ai",
+      "prompt-engineering",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'inconsistent' in description, synthetic_queries",
+     "'formats' in summary"
+    ],
+    "token_estimate": 2559
+   },
+   {
+    "id": "uasl/zoho-inventory-automation@2f2863777368",
+    "title": "zoho-inventory-automation",
+    "summary": "Use Rube MCP to discover current Zoho Inventory tool schemas, verify the connection, and execute inventory workflows. Follow the skill’s guidance for sequencing, pagination, bulk operations, and error handling.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [
+      "composio"
+     ],
+     "phase": [
+      "plan",
+      "implement"
+     ],
+     "domain": [
+      "inventory",
+      "automation",
+      "integration",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'orders' in description",
+     "'duplicates' in synthetic_queries"
+    ],
+    "token_estimate": 1054
+   },
+   {
+    "id": "uasl/translation-reframing-audience-shift@d1a28fb19e3e",
+    "title": "translation-reframing-audience-shift",
+    "summary": "Adapt existing content for a new audience by changing its tone, depth, emphasis, or format while preserving semantic accuracy. Analyze the source and target audiences, validate the reframed content, and deliver it in a structured Markdown file.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "plan",
+      "implement",
+      "review"
+     ],
+     "domain": [
+      "docs",
+      "communication"
+     ]
+    },
+    "match_reasons": [
+     "'script' in description, synthetic_queries",
+     "'summary' in description",
+     "'report' in description, synthetic_queries"
+    ],
+    "token_estimate": 4206
+   },
+   {
+    "id": "uasl/kommo-automation@67ebbb9c7737",
+    "title": "kommo-automation",
+    "summary": "Use the Kommo CRM tools through the Composio MCP integration to manage leads, pipelines, tasks, and custom fields. Apply the documented ID, date-filter, and pagination requirements when carrying out CRM operations.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "implement"
+     ],
+     "domain": [
+      "crm",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'date' in summary",
+     "'price' in synthetic_queries"
+    ],
+    "token_estimate": 1504
+   },
+   {
+    "id": "uasl/builder@8d7f0953ade3",
+    "title": "builder",
+    "summary": "Guides the agent to implement production-ready, type-safe business logic, API integrations, and data models, with validation, error handling, and test handoffs. It emphasizes TypeScript strictness, domain-appropriate patterns, and Japanese final outputs.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "typescript",
+      "go",
+      "python"
+     ],
+     "frameworks": [
+      "zod",
+      "pydantic",
+      "tanstack query",
+      "zustand",
+      "xstate"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "test",
+      "review"
+     ],
+     "domain": [
+      "backend",
+      "api",
+      "data-modeling",
+      "validation",
+      "state-management",
+      "event-sourcing"
+     ]
+    },
+    "match_reasons": [
+     "'python' in synthetic_queries",
+     "'orders' in synthetic_queries",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 3007
+   },
+   {
+    "id": "uasl/semgrep-rule-variant-creator@2cea56923011",
+    "title": "semgrep-rule-variant-creator",
+    "summary": "Ports existing Semgrep rules to applicable target languages by analyzing language applicability, creating tests before rules, and validating each variant independently. Produces a separate rule and annotated test file for each applicable language.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "plan",
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "security",
+      "static-analysis",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'python' in synthetic_queries",
+     "'produces' in description, summary"
+    ],
+    "token_estimate": 2015
+   },
+   {
+    "id": "uasl/error-handling-patterns@4c19ee7d7821",
+    "title": "error-handling-patterns",
+    "summary": "Guides agents in handling errors across Python, JavaScript/TypeScript, Rust, and Go, including validation, cleanup, logging, and typed errors. Emphasizes preserving useful error context and handling errors at an appropriate level.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python",
+      "javascript",
+      "typescript",
+      "rust",
+      "go"
+     ],
+     "frameworks": [],
+     "phase": [
+      "implement",
+      "review"
+     ],
+     "domain": [
+      "backend",
+      "error-handling",
+      "reliability"
+     ]
+    },
+    "match_reasons": [
+     "'python' in synthetic_queries, summary",
+     "'missing' in synthetic_queries",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 4095
+   },
+   {
+    "id": "uasl/claude-native-brand-guidelines@7d7cc96e7e20",
+    "title": "claude-native-brand-guidelines",
+    "summary": "Apply Anthropic brand styling to visual artifacts, using its typography and accent-color guidance. The skill also describes color values, font fallbacks, and Python presentation-color implementation details.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python"
+     ],
+     "frameworks": [
+      "python-pptx"
+     ],
+     "phase": [
+      "implement",
+      "format"
+     ],
+     "domain": [
+      "branding",
+      "design",
+      "presentations"
+     ]
+    },
+    "match_reasons": [
+     "'python' in summary",
+     "'values' in summary",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 562
+   },
+   {
+    "id": "uasl/think-tank@833fcce1b6d9",
+    "title": "think-tank",
+    "summary": "Before planning or making architectural, design, or strategic decisions, run a moderated debate among a diverse panel of personas. Use the debate to surface trade-offs and user context, then provide a structured summary that informs—but does not replace—the user's decision or plan.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "plan"
+     ],
+     "domain": [
+      "decision-making",
+      "architecture",
+      "strategy",
+      "product"
+     ]
+    },
+    "match_reasons": [
+     "'missing' in synthetic_queries",
+     "'produces' in description",
+     "'summary' in summary"
+    ],
+    "token_estimate": 3156
+   },
+   {
+    "id": "uasl/exa-search@371597562d6c",
+    "title": "exa-search",
+    "summary": "Use the Exa API for semantic search, similar-content discovery, category-based search, and structured research. Configure API keys through environment variables.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [],
+     "domain": [
+      "search",
+      "research",
+      "web",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'category' in keywords, synthetic_queries, summary"
+    ],
+    "token_estimate": 237
+   },
+   {
+    "id": "uasl/fastapi-templates@effcd0de0b4c",
+    "title": "fastapi-templates",
+    "summary": "Guides creation of structured FastAPI backend projects using async patterns, dependency injection, repository and service layers, authentication, and testing examples. Includes templates for API endpoints, database access, and user management.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python"
+     ],
+     "frameworks": [
+      "fastapi",
+      "sqlalchemy",
+      "pydantic",
+      "pytest"
+     ],
+     "phase": [
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "backend",
+      "api",
+      "testing"
+     ]
+    },
+    "match_reasons": [
+     "'python' in keywords, synthetic_queries",
+     "profile tag 'pytest' matches tags.frameworks (x1.3)",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 3748
+   },
+   {
+    "id": "uasl/netsuite-automation@b615a37449c9",
+    "title": "netsuite-automation",
+    "summary": "Use the NetSuite toolkit to query and manage ERP records, including customers and sales orders. Check schemas, required fields, record references, and connection status when performing operations.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "plan",
+      "implement"
+     ],
+     "domain": [
+      "backend",
+      "tooling",
+      "erp"
+     ]
+    },
+    "match_reasons": [
+     "'orders' in description, keywords, synthetic_queries, summary"
+    ],
+    "token_estimate": 2118
+   },
+   {
+    "id": "uasl/lemon-squeezy-automation@78ae0198fdfd",
+    "title": "lemon-squeezy-automation",
+    "summary": "Use the Rube MCP integration to manage Lemon Squeezy stores and retrieve products, orders, subscriptions, customers, discounts, redemptions, and checkouts. Discover store IDs before filtering resources, and handle pagination and filter parameter names carefully.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "implement"
+     ],
+     "domain": [
+      "e-commerce",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'orders' in description, keywords, synthetic_queries, summary"
+    ],
+    "token_estimate": 1450
+   },
+   {
+    "id": "uasl/python-type-safety@60be75b4816f",
+    "title": "python-type-safety",
+    "summary": "Guides agents to use Python type annotations, generics, protocols, and type narrowing to make code statically checkable. It also recommends strict type checking and modern union syntax.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python"
+     ],
+     "frameworks": [],
+     "phase": [
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "tooling",
+      "backend"
+     ]
+    },
+    "match_reasons": [
+     "'python' in title, description, keywords, synthetic_queries, summary",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 2813
+   },
+   {
+    "id": "uasl/python-design-patterns@5c0fbe0d4633",
+    "title": "python-design-patterns",
+    "summary": "Guides the agent to design and refactor Python code using simple, focused components, clear separation of concerns, composition, and dependency injection. It also recommends delaying abstractions, keeping functions focused, and testing layers in isolation.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python"
+     ],
+     "frameworks": [],
+     "phase": [
+      "plan",
+      "implement",
+      "review",
+      "test"
+     ],
+     "domain": [
+      "software-architecture",
+      "refactoring",
+      "code-quality",
+      "testing"
+     ]
+    },
+    "match_reasons": [
+     "'python' in title, description, keywords, synthetic_queries, summary",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 3093
+   },
+   {
+    "id": "uasl/coupling-analysis@600d3107e2f9",
+    "title": "coupling-analysis",
+    "summary": "Guides the agent through analyzing software coupling using integration strength, distance, and volatility. It produces a structured architectural report with a dependency map, issues, and recommendations.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "review"
+     ],
+     "domain": [
+      "architecture",
+      "software-design",
+      "code-analysis"
+     ]
+    },
+    "match_reasons": [
+     "'produces' in summary",
+     "'report' in description, keywords, synthetic_queries, summary"
+    ],
+    "token_estimate": 3898
+   },
+   {
+    "id": "uasl/openapi-spec-generation@2d2c7a93b8f2",
+    "title": "openapi-spec-generation",
+    "summary": "Guides agents in creating and maintaining OpenAPI 3.1 specifications from design or code, validating API contracts, and generating SDKs and documentation. Includes patterns for reusable schemas, API descriptions, security, versioning, and validation tools.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python",
+      "typescript",
+      "yaml"
+     ],
+     "frameworks": [
+      "fastapi",
+      "express",
+      "tsoa"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "test",
+      "review"
+     ],
+     "domain": [
+      "api",
+      "backend",
+      "docs",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'python' in synthetic_queries",
+     "'missing' in synthetic_queries",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 6137
+   },
+   {
+    "id": "uasl/documentation-lookup@dee6d7478eab",
+    "title": "documentation-lookup",
+    "summary": "For questions involving libraries, frameworks, or APIs, retrieve current documentation through Context7 rather than relying on training data. Resolve the library ID before querying, select relevant documentation, and use the fetched information in the response.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [],
+     "domain": [
+      "docs",
+      "tooling",
+      "api"
+     ]
+    },
+    "match_reasons": [
+     "'write' in synthetic_queries",
+     "'date' in description, synthetic_queries"
+    ],
+    "token_estimate": 1222
+   },
+   {
+    "id": "uasl/thinking-margin-of-safety@2336a8b814d3",
+    "title": "thinking-margin-of-safety",
+    "summary": "Apply a margin-of-safety approach to uncertain commitments and designs by adding buffers or slack. Use estimates and uncertainty to guide capacity, timeline, resource, and risk decisions.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "plan"
+     ],
+     "domain": [
+      "capacity-planning",
+      "risk-management",
+      "architecture",
+      "infrastructure",
+      "project-estimation"
+     ]
+    },
+    "match_reasons": [
+     "'missing' in synthetic_queries",
+     "'date' in synthetic_queries"
+    ],
+    "token_estimate": 1978
+   },
+   {
+    "id": "uasl/zen@f72229d0a781",
+    "title": "zen",
+    "summary": "Use Zen to review or refactor code for readability and maintainability while preserving behavior, staying within scope, and verifying changes. Produce structured reports or route work to the appropriate agent when needed.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "typescript",
+      "javascript",
+      "python",
+      "go",
+      "rust",
+      "java"
+     ],
+     "frameworks": [
+      "react"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "test",
+      "review",
+      "format"
+     ],
+     "domain": [
+      "code-quality",
+      "refactoring",
+      "code-review",
+      "testing",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'values' in synthetic_queries",
+     "'report' in synthetic_queries",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 3182
+   },
+   {
+    "id": "uasl/compete@c2b41286409b",
+    "title": "compete",
+    "summary": "Perform evidence-based competitive research and analysis, then turn findings into differentiated strategic recommendations and actionable handoffs. Do not write implementation code; use public, ethical sources and make uncertainty explicit.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "plan",
+      "review"
+     ],
+     "domain": [
+      "market-research",
+      "strategy",
+      "competitive-intelligence"
+     ]
+    },
+    "match_reasons": [
+     "'write' in description, summary",
+     "'category' in synthetic_queries"
+    ],
+    "token_estimate": 3131
+   },
+   {
+    "id": "uasl/negotiation@00a3e4e874e5",
+    "title": "negotiation",
+    "summary": "Apply a tactical-empathy negotiation framework to prepare for and conduct negotiations, uncover information, respond to objections, and evaluate negotiation preparation or interactions. Use techniques such as mirroring, labeling, calibrated questions, accusation audits, and Ackerman bargaining while maintaining ethical boundaries.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "plan",
+      "implement",
+      "review"
+     ],
+     "domain": [
+      "negotiation",
+      "communication",
+      "business",
+      "sales"
+     ]
+    },
+    "match_reasons": [
+     "'missing' in synthetic_queries",
+     "'price' in synthetic_queries"
+    ],
+    "token_estimate": 6067
+   }
+  ]
+ }
+}

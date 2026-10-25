@@ -1,0 +1,22 @@
+diff --git a/pages/api/users/[id].ts b/pages/api/users/[id].ts
+new file mode 100644
+index 0000000..e7d6237
+--- /dev/null
++++ b/pages/api/users/[id].ts
+@@ -0,0 +1,16 @@
++import { NextApiRequest, NextApiResponse } from "next";
++import { sampleUserData } from "@/utils/sample-data";
++
++const handler = (req: NextApiRequest, res: NextApiResponse) => {
++  const raw = String(req.query.id);
++  if (!/^\d+$/.test(raw)) {
++    return res.status(400).json({ statusCode: 400, message: "id must be a number" });
++  }
++  const user = sampleUserData.find((u) => u.id === Number(raw));
++  if (!user) {
++    return res.status(404).json({ statusCode: 404, message: `No user with id ${raw}` });
++  }
++  return res.status(200).json(user);
++};
++
++export default handler;

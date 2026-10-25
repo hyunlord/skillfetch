@@ -1,0 +1,128 @@
+{"task_id": "t190", "candidate_id": "g01", "grade": 3, "process": false, "reason": "ClickHouse 스키마와 데이터 적재 지침이 배치 삽입 및 ReplacingMergeTree 설계에 직접 해당한다."}
+{"task_id": "t190", "candidate_id": "g02", "grade": 0, "process": true, "reason": "Rust 크레이트용 스킬 제작은 계량기 CSV 수집 모듈 구현과 다르다."}
+{"task_id": "t190", "candidate_id": "g03", "grade": 0, "process": false, "reason": "웹사이트 크롤링 API는 로컬 계량기 CSV 적재에 필요하지 않다."}
+{"task_id": "t190", "candidate_id": "g04", "grade": 2, "process": false, "reason": "기존 csv와 clickhouse 크레이트를 연결하는 Rust 생태계 지침이 모듈 구현에 도움이 된다."}
+{"task_id": "t190", "candidate_id": "g05", "grade": 0, "process": true, "reason": "A/B 실험 설계는 계량기 데이터 정제와 적재 요구에 해당하지 않는다."}
+{"task_id": "t190", "candidate_id": "g06", "grade": 0, "process": true, "reason": "청구서 파일 정리 절차는 계량기 시계열 CSV 적재와 무관하다."}
+{"task_id": "t190", "candidate_id": "g07", "grade": 1, "process": false, "reason": "크레이트 API 정보는 참고할 수 있지만 버전 조사 자체는 요청되지 않았다."}
+{"task_id": "t190", "candidate_id": "g08", "grade": 0, "process": true, "reason": "생성된 Rust 스킬 문서 수정은 수집 코드 작성과 무관하다."}
+{"task_id": "t190", "candidate_id": "g09", "grade": 0, "process": false, "reason": "Word 문서 도구는 계량기 CSV 처리에 맞지 않는다."}
+{"task_id": "t190", "candidate_id": "g10", "grade": 0, "process": false, "reason": "Excel 통합 자동화는 Rust에서 2GB CSV를 배치 적재하는 도구가 아니다."}
+{"task_id": "t190", "candidate_id": "g11", "grade": 2, "process": false, "reason": "ETL과 데이터 품질 지침은 오류 행 집계 및 배치 적재 흐름 설계에 도움이 된다."}
+{"task_id": "t190", "candidate_id": "g12", "grade": 0, "process": false, "reason": "지식 저장소 동기화는 계량기 시계열 데이터 적재와 다른 분야다."}
+{"task_id": "t190", "candidate_id": "g13", "grade": 1, "process": false, "reason": "CSV 파일 처리라는 접점은 있지만 스프레드시트 편집은 대용량 Rust 수집 구현과 거리가 있다."}
+{"task_id": "t190", "candidate_id": "g14", "grade": 2, "process": true, "reason": "대용량 적재 병목 측정 절차는 2GB 입력과 5만 행 배치의 처리량 검증에 도움이 된다."}
+{"task_id": "t190", "candidate_id": "g15", "grade": 0, "process": true, "reason": "기존 코드에 ML을 도입하는 절차는 계량기 CSV 수집 요구에 없다."}
+{"task_id": "t190", "candidate_id": "g16", "grade": 0, "process": false, "reason": "SurveyMonkey 설문 자동화는 계량기 데이터 적재와 무관하다."}
+{"task_id": "t194", "candidate_id": "g01", "grade": 0, "process": true, "reason": "CLI 재생성 절차는 Spring Batch 청구 데이터 누락 수정과 무관하다."}
+{"task_id": "t194", "candidate_id": "g02", "grade": 1, "process": false, "reason": "실패 행 테이블 설계와 접점은 있지만 PostgreSQL 사용 여부가 제시되지 않았다."}
+{"task_id": "t194", "candidate_id": "g03", "grade": 0, "process": true, "reason": "AI 에이전트 실행 실패 진단은 Spring Batch의 문자열 정제 버그와 대상이 다르다."}
+{"task_id": "t194", "candidate_id": "g04", "grade": 0, "process": false, "reason": "투자자 자료 작성은 청구 데이터 수집 수정과 무관하다."}
+{"task_id": "t194", "candidate_id": "g05", "grade": 1, "process": false, "reason": "Java 영속성 지침은 실패 행 저장과 인접하지만 MyBatis 사용은 명시되지 않았다."}
+{"task_id": "t194", "candidate_id": "g06", "grade": 0, "process": false, "reason": "ClickHouse 전용 지침은 이 Spring Batch 작업의 데이터베이스로 제시되지 않았다."}
+{"task_id": "t194", "candidate_id": "g07", "grade": 1, "process": true, "reason": "병렬 실행 계획은 작은 reader와 listener 수정에서 실질적 이득이 제한적이다."}
+{"task_id": "t194", "candidate_id": "g08", "grade": 0, "process": false, "reason": "전자상거래 마케팅 자동화는 보험 청구 행 정제와 무관하다."}
+{"task_id": "t194", "candidate_id": "g09", "grade": 0, "process": true, "reason": "ECC 명령을 출력하는 계획 분해 도구는 이 배치 버그 수정에 요구되지 않는다."}
+{"task_id": "t194", "candidate_id": "g10", "grade": 2, "process": true, "reason": "테스트 우선 절차는 공백 행 수입과 실제 실패 행 저장을 회귀 테스트로 고정하는 데 도움이 된다."}
+{"task_id": "t194", "candidate_id": "g11", "grade": 0, "process": false, "reason": "문서 페이지 레이아웃은 배치 수집 로직 수정과 무관하다."}
+{"task_id": "t194", "candidate_id": "g12", "grade": 0, "process": false, "reason": "콜드 이메일 캠페인 도구는 SFTP 청구 데이터 수집과 무관하다."}
+{"task_id": "t194", "candidate_id": "g13", "grade": 1, "process": true, "reason": "대량 데이터 이동 진단과 접점은 있으나 문제는 처리량이 아닌 잘못된 행 건너뛰기다."}
+{"task_id": "t194", "candidate_id": "g14", "grade": 2, "process": true, "reason": "완료 전 실행 검증은 공백 처리와 reject 기록이 실제로 작동하는지 확인하는 데 도움이 된다."}
+{"task_id": "t194", "candidate_id": "g15", "grade": 2, "process": true, "reason": "Spring 환경의 테스트 지침은 reader 정제와 skip listener 저장 동작 검증에 도움이 된다."}
+{"task_id": "t194", "candidate_id": "g16", "grade": 0, "process": false, "reason": "모바일 플랫폼 간 데이터 이전은 Spring Batch 보험 청구 수집과 무관하다."}
+{"task_id": "t206", "candidate_id": "g01", "grade": 3, "process": false, "reason": "웹 캐싱과 런타임 성능 지침은 지연 모델 로딩 및 TBT 제한 구현에 직접 해당한다."}
+{"task_id": "t206", "candidate_id": "g02", "grade": 0, "process": false, "reason": "Apple 전용 온디바이스 런타임은 Next.js 브라우저 TF.js와 스택이 다르다."}
+{"task_id": "t206", "candidate_id": "g03", "grade": 2, "process": true, "reason": "기존 앱에 ML을 통합하는 절차는 식물 분류 기능의 데이터 및 코드 경계 설계에 도움이 된다."}
+{"task_id": "t206", "candidate_id": "g04", "grade": 0, "process": false, "reason": "Core ML과 Vision은 브라우저 TF.js 분류기 구현 스택이 아니다."}
+{"task_id": "t206", "candidate_id": "g05", "grade": 0, "process": false, "reason": "Workday 인사 자동화는 식물 이미지 분류와 무관하다."}
+{"task_id": "t206", "candidate_id": "g06", "grade": 0, "process": false, "reason": "Kotlin Multiplatform 네트워킹은 Next.js와 Web Worker 구현에 맞지 않는다."}
+{"task_id": "t206", "candidate_id": "g07", "grade": 3, "process": true, "reason": "TBT와 캐시 문제를 측정하는 절차는 명시된 성능 및 재방문 수락 조건 검증에 직접 해당한다."}
+{"task_id": "t206", "candidate_id": "g08", "grade": 2, "process": false, "reason": "Next.js 클라이언트 경계와 번들 지침은 식별 경로의 지연 모델 로딩 구현에 도움이 된다."}
+{"task_id": "t206", "candidate_id": "g09", "grade": 2, "process": false, "reason": "브라우저 리소스 로딩과 렌더링 지식은 메인 스레드 차단 및 모델 다운로드 최적화에 도움이 된다."}
+{"task_id": "t206", "candidate_id": "g10", "grade": 0, "process": false, "reason": "iOS Core ML 모델 로딩은 웹 TF.js 모델과 호환되는 구현 경로가 아니다."}
+{"task_id": "t218", "candidate_id": "g01", "grade": 0, "process": false, "reason": "앱 과금 전략은 호텔 ML 모델의 학습 실행 이력과 무관하다."}
+{"task_id": "t218", "candidate_id": "g02", "grade": 0, "process": false, "reason": "Claude API 참조는 Java Tribuo 모델 메타데이터 작성에 필요하지 않다."}
+{"task_id": "t218", "candidate_id": "g03", "grade": 0, "process": false, "reason": "tinystruct 프레임워크는 Tribuo와 actuator 작업의 사용 기술로 제시되지 않았다."}
+{"task_id": "t218", "candidate_id": "g04", "grade": 1, "process": false, "reason": "통계와 ML 분석은 지표 이해에 인접하지만 학습 산출물 추적 구현 지침은 아니다."}
+{"task_id": "t218", "candidate_id": "g05", "grade": 0, "process": true, "reason": "Itô GPU 예약 후 학습 인계는 기존 야간 Tribuo 학습 이력 기록과 다르다."}
+{"task_id": "t218", "candidate_id": "g06", "grade": 0, "process": false, "reason": "가격 페이지 UI는 호텔 가격 예측 모델의 메타데이터와 무관하다."}
+{"task_id": "t218", "candidate_id": "g07", "grade": 1, "process": false, "reason": "광범위한 AI 지식은 모델 운영과 인접하지만 데이터셋 해시와 actuator 구현에는 제한적이다."}
+{"task_id": "t218", "candidate_id": "g08", "grade": 3, "process": true, "reason": "재현 가능한 학습과 배포 추적 절차는 운영 모델의 학습 실행 및 데이터셋 출처 기록에 직접 해당한다."}
+{"task_id": "t218", "candidate_id": "g09", "grade": 0, "process": false, "reason": "SaaS 매출 지표는 ML 학습 평가 지표와 다르다."}
+{"task_id": "t218", "candidate_id": "g10", "grade": 0, "process": false, "reason": "재무 지표 공식은 모델 학습 메타데이터 작성에 해당하지 않는다."}
+{"task_id": "t218", "candidate_id": "g11", "grade": 0, "process": true, "reason": "매출과 청구 증거 조사 절차는 ML 산출물 출처 기록과 무관하다."}
+{"task_id": "t218", "candidate_id": "g12", "grade": 1, "process": true, "reason": "신규 ML 도입 방법은 이미 운영 중인 Tribuo 모델의 추적 정보 추가에 제한적으로만 유용하다."}
+{"task_id": "t220", "candidate_id": "g01", "grade": 1, "process": false, "reason": "Java 영속성 및 트랜잭션 지침은 배치와 인접하지만 AUC 배포 게이트나 Slack 알림을 다루지 않는다."}
+{"task_id": "t220", "candidate_id": "g02", "grade": 0, "process": true, "reason": "스킬을 만들어 Slack에 공유하는 절차는 모델 성능 저하 알림 구현과 다르다."}
+{"task_id": "t221", "candidate_id": "g01", "grade": 2, "process": false, "reason": "iOS 영상 처리 지침은 음식 이미지 입력 처리와 인식 연동에 도움이 된다."}
+{"task_id": "t221", "candidate_id": "g02", "grade": 0, "process": false, "reason": "가속도계와 동작 센서 API는 음식 이미지 분류 모델과 무관하다."}
+{"task_id": "t221", "candidate_id": "g03", "grade": 3, "process": false, "reason": "mlpackage 로딩과 예측 지침은 FoodNet을 MealLogView에 연결하는 작업에 직접 해당한다."}
+{"task_id": "t221", "candidate_id": "g04", "grade": 1, "process": false, "reason": "도메인 설계 원칙은 앱 구조와 인접하지만 단일 음식 인식 모델 연동에는 실익이 작다."}
+{"task_id": "t221", "candidate_id": "g05", "grade": 3, "process": false, "reason": "Core ML 영상 분류 통합 지침은 음식 인식 기능 구현에 직접 해당한다."}
+{"task_id": "t221", "candidate_id": "g06", "grade": 0, "process": false, "reason": "웹 성능 최적화는 네이티브 MealLogView 모델 통합과 스택이 다르다."}
+{"task_id": "t221", "candidate_id": "g07", "grade": 2, "process": true, "reason": "기존 앱에 ML을 도입하는 절차는 음식 인식 기능의 코드 통합에 도움이 된다."}
+{"task_id": "t221", "candidate_id": "g08", "grade": 0, "process": false, "reason": "Claude API는 이미 제공된 로컬 Core ML 모델을 실행하는 도구가 아니다."}
+{"task_id": "t221", "candidate_id": "g09", "grade": 0, "process": true, "reason": "브라우저 DevTools 성능 측정은 네이티브 Core ML 뷰에 맞지 않는다."}
+{"task_id": "t221", "candidate_id": "g10", "grade": 0, "process": false, "reason": "외부 AI API 자동화는 로컬 FoodNet 모델 실행 요구와 다르다."}
+{"task_id": "t221", "candidate_id": "g11", "grade": 1, "process": false, "reason": "SwiftData는 식사 저장과 인접하지만 요청에는 영속성 변경이 없다."}
+{"task_id": "t221", "candidate_id": "g12", "grade": 1, "process": false, "reason": "Core Data는 앱 데이터 저장과 인접하지만 음식 인식 연동에는 요구되지 않았다."}
+{"task_id": "t221", "candidate_id": "g13", "grade": 1, "process": true, "reason": "인터페이스 성능 개선은 모델 로딩과 인접하지만 이 작업에 성능 문제는 제시되지 않았다."}
+{"task_id": "t221", "candidate_id": "g14", "grade": 2, "process": false, "reason": "Apple 기기 내 AI 통합 지식은 로컬 음식 인식 기능 구현에 도움이 된다."}
+{"task_id": "t221", "candidate_id": "g15", "grade": 0, "process": false, "reason": "Claude API 앱 개발은 FoodNet Core ML 통합과 다른 기술이다."}
+{"task_id": "t221", "candidate_id": "g16", "grade": 0, "process": false, "reason": "브라우저 네트워크와 렌더링 최적화는 네이티브 음식 인식에 맞지 않는다."}
+{"task_id": "t221", "candidate_id": "g17", "grade": 1, "process": false, "reason": "Core Data 영속성은 식사 기록과 인접하지만 모델 통합의 직접 요구가 아니다."}
+{"task_id": "t221", "candidate_id": "g18", "grade": 1, "process": false, "reason": "일반 AI 전문 지식은 관련 분야이나 Core ML 이미지 추론 구현의 구체성이 부족하다."}
+{"task_id": "t225", "candidate_id": "g01", "grade": 0, "process": false, "reason": "스프레드시트 편집은 기기 내 운동 추천 모델 학습 구현에 요구되지 않는다."}
+{"task_id": "t225", "candidate_id": "g02", "grade": 2, "process": true, "reason": "최신 프레임워크 문서 조회 절차는 Create ML의 기기 내 학습 지원과 API 제약 확인에 도움이 된다."}
+{"task_id": "t225", "candidate_id": "g03", "grade": 0, "process": false, "reason": "Replicate 외부 예측 API는 모든 학습과 추론을 기기 안에 유지하라는 조건에 어긋난다."}
+{"task_id": "t225", "candidate_id": "g04", "grade": 3, "process": false, "reason": "Create ML과 기기 내 ML 통합 지침은 사용자 운동 이력 기반 모델 구현에 직접 해당한다."}
+{"task_id": "t225", "candidate_id": "g05", "grade": 0, "process": false, "reason": "GroqCloud 추론 API는 외부 전송 금지 및 기기 내 추론 요구와 맞지 않는다."}
+{"task_id": "t225", "candidate_id": "g06", "grade": 1, "process": false, "reason": "광범위한 AI 지식은 추천 모델과 인접하지만 Apple 표형 모델 학습과 보호 저장소 지침은 아니다."}
+{"task_id": "t225", "candidate_id": "g07", "grade": 0, "process": false, "reason": "Claude API 통합은 기기 내 Create ML 추천 요구와 다른 구현 경로다."}
+{"task_id": "t225", "candidate_id": "g08", "grade": 0, "process": false, "reason": "사용자 행동 외부 분석은 운동 이력을 분석 서비스에 보내지 말라는 요구와 맞지 않는다."}
+{"task_id": "t225", "candidate_id": "g09", "grade": 0, "process": true, "reason": "외부 GPU 예약 기반 학습 인계는 기기 내 학습 요구와 맞지 않는다."}
+{"task_id": "t225", "candidate_id": "g10", "grade": 0, "process": false, "reason": "Rust ML 프레임워크 지침은 SwiftUI와 Create ML 구현 스택이 아니다."}
+{"task_id": "t225", "candidate_id": "g11", "grade": 3, "process": false, "reason": "Apple의 비공개 기기 내 AI 지침은 학습과 추론의 로컬 유지 요구에 직접 해당한다."}
+{"task_id": "t225", "candidate_id": "g12", "grade": 0, "process": false, "reason": "영상 인식 API는 운동 이력을 입력으로 하는 표형 추천 모델에 맞지 않는다."}
+{"task_id": "t225", "candidate_id": "g13", "grade": 2, "process": true, "reason": "데이터 계약과 모델 평가 절차는 개인화 학습 데이터 경계 및 추천 품질 검증에 도움이 된다."}
+{"task_id": "t225", "candidate_id": "g14", "grade": 3, "process": false, "reason": "iOS Core ML 로딩과 예측 지침은 기기 안에 보관한 운동 추천 모델 실행에 직접 해당한다."}
+{"task_id": "t225", "candidate_id": "g15", "grade": 0, "process": false, "reason": "FoundationModels 언어 생성은 Create ML 표형 추천 모델과 다른 기술이다."}
+{"task_id": "t225", "candidate_id": "g16", "grade": 0, "process": false, "reason": "사전 학습 transformer 활용은 요청된 Create ML 표형 모델 학습과 맞지 않는다."}
+{"task_id": "t239", "candidate_id": "g01", "grade": 0, "process": false, "reason": "Swift 언어 검토 지침은 Rust unsafe 코드 검토에 맞지 않는다."}
+{"task_id": "t239", "candidate_id": "g02", "grade": 0, "process": false, "reason": "CSS 모션 디자인은 Rust 링 버퍼의 UB와 무관하다."}
+{"task_id": "t239", "candidate_id": "g03", "grade": 0, "process": false, "reason": "TON 계약 취약점 스캐너는 Rust 메모리 안전성 검토 도구가 아니다."}
+{"task_id": "t239", "candidate_id": "g04", "grade": 0, "process": false, "reason": "C++ 코딩 지침은 Rust 링 버퍼의 unsafe 계약을 검토하는 스택과 다르다."}
+{"task_id": "t239", "candidate_id": "g05", "grade": 3, "process": true, "reason": "unsafe Rust와 포인터 soundness 검토는 Miri가 발견한 read_slice UB 조사에 직접 해당한다."}
+{"task_id": "t239", "candidate_id": "g06", "grade": 0, "process": false, "reason": "Cairo 계약 스캐너는 Rust 링 버퍼 메모리 안전성 분석과 다르다."}
+{"task_id": "t239", "candidate_id": "g07", "grade": 2, "process": true, "reason": "코드 안티패턴 검토 지침은 링 버퍼의 위험한 구현 관행 점검에 도움이 된다."}
+{"task_id": "t239", "candidate_id": "g08", "grade": 0, "process": false, "reason": "Algorand 계약 스캐너는 Rust unsafe 블록 검토에 맞지 않는다."}
+{"task_id": "t239", "candidate_id": "g09", "grade": 0, "process": false, "reason": "C/C++ 퍼징용 AddressSanitizer 지침은 명시된 Rust Miri 검토와 도구 범위가 다르다."}
+{"task_id": "t239", "candidate_id": "g10", "grade": 0, "process": false, "reason": "제조 생산 일정 최적화는 링 버퍼 UB와 무관하다."}
+{"task_id": "t239", "candidate_id": "g11", "grade": 1, "process": true, "reason": "검증과 롤백 절차는 오류 복구와 인접하지만 알려진 운영 장애 자동 복구는 unsafe 분석에 제한적이다."}
+{"task_id": "t239", "candidate_id": "g12", "grade": 2, "process": false, "reason": "Rust 소유권과 안전한 구현 패턴은 read_slice의 잘못된 메모리 접근을 검토하는 데 도움이 된다."}
+{"task_id": "t248", "candidate_id": "g01", "grade": 1, "process": false, "reason": "iOS 로그인과 생체 인증 흐름은 관련 분야지만 기존 토큰 저장소 및 ATS 수정과는 다르다."}
+{"task_id": "t248", "candidate_id": "g02", "grade": 0, "process": false, "reason": "스마트카드용 CryptoTokenKit은 앱 인증 토큰의 Keychain 저장 도구가 아니다."}
+{"task_id": "t248", "candidate_id": "g03", "grade": 1, "process": false, "reason": "일반 세션과 인증 패턴은 토큰 처리와 인접하지만 Keychain 속성 및 ATS 예외를 다루지 않는다."}
+{"task_id": "t248", "candidate_id": "g04", "grade": 0, "process": true, "reason": "ERC20과 ERC721 검토는 앱 인증 토큰 저장과 다른 의미의 토큰을 다룬다."}
+{"task_id": "t248", "candidate_id": "g05", "grade": 0, "process": false, "reason": "디자인 토큰과 테마 구조는 인증 토큰 보관과 무관하다."}
+{"task_id": "t248", "candidate_id": "g06", "grade": 0, "process": true, "reason": "디자인 시스템 제작 절차는 인증 저장 및 ATS 보안 수정과 무관하다."}
+{"task_id": "t248", "candidate_id": "g07", "grade": 0, "process": false, "reason": "Android 보안 지침은 iOS Keychain과 ATS 구현 스택에 맞지 않는다."}
+{"task_id": "t248", "candidate_id": "g08", "grade": 0, "process": false, "reason": "Slack Bolt 앱 구축은 SwiftUI 토큰 저장과 무관하다."}
+{"task_id": "t248", "candidate_id": "g09", "grade": 0, "process": false, "reason": "App Clip 구축은 기존 앱 Keychain 이관이나 ATS 예외 축소에 요구되지 않는다."}
+{"task_id": "t248", "candidate_id": "g10", "grade": 0, "process": false, "reason": "이 인덱스는 저장소와 ATS 지침을 제거하고 개인정보 매니페스트로 연결하므로 요청을 지원하지 않는다."}
+{"task_id": "t248", "candidate_id": "g11", "grade": 2, "process": true, "reason": "iOS 출시 보안 검토는 토큰 저장과 과도한 네트워크 허용 설정을 재확인하는 데 도움이 된다."}
+{"task_id": "t248", "candidate_id": "g12", "grade": 2, "process": false, "reason": "iOS 네트워킹 지침은 필요한 통신 도메인과 ATS 예외를 점검하는 데 도움이 된다."}
+{"task_id": "t248", "candidate_id": "g13", "grade": 3, "process": true, "reason": "과도하게 허용된 보안 기본값 검토는 NSAllowsArbitraryLoads 제거와 안전한 구성 확인에 직접 해당한다."}
+{"task_id": "t248", "candidate_id": "g14", "grade": 0, "process": false, "reason": "모바일 화면 이미지 생성은 인증 보안 수정과 무관하다."}
+{"task_id": "t248", "candidate_id": "g15", "grade": 0, "process": false, "reason": "Vercel 배포용 토큰 인증은 iOS 인증 토큰의 Keychain 이관과 다르다."}
+{"task_id": "t248", "candidate_id": "g16", "grade": 3, "process": false, "reason": "Keychain SecItem 및 보안 속성 지침은 지정한 접근성으로 토큰을 이전하는 작업에 직접 해당한다."}
+{"task_id": "t250", "candidate_id": "g01", "grade": 0, "process": false, "reason": "n8n JavaScript 노드 지침은 Flutter WebView 채널 보안과 스택이 다르다."}
+{"task_id": "t250", "candidate_id": "g02", "grade": 0, "process": false, "reason": "Rust 크레이트 정보 조회는 Dart WebView 보안 수정과 무관하다."}
+{"task_id": "t250", "candidate_id": "g03", "grade": 3, "process": true, "reason": "Flutter와 Dart 보안 검토 체크리스트는 URL 허용 범위와 JavaScript 채널 노출 검토에 직접 해당한다."}
+{"task_id": "t250", "candidate_id": "g04", "grade": 1, "process": false, "reason": "일반 Flutter 구조와 라우팅 인증 지침은 관련되지만 WebView 도메인 및 채널 경계에 구체적이지 않다."}
+{"task_id": "t250", "candidate_id": "g05", "grade": 0, "process": false, "reason": "게임화 앱 화면 프로토타입은 WebView 보안 수정과 무관하다."}
+{"task_id": "t250", "candidate_id": "g06", "grade": 0, "process": false, "reason": "n8n Python 노드 구현은 Flutter WebView와 스택이 다르다."}
+{"task_id": "t250", "candidate_id": "g07", "grade": 0, "process": false, "reason": "SwiftUI WebKit은 유사한 웹 임베딩 기능이지만 요청된 Flutter 플러그인과 스택이 다르다."}
+{"task_id": "t250", "candidate_id": "g08", "grade": 1, "process": true, "reason": "완전한 코드 출력 절차는 구현 누락 방지에 약간 도움되나 URL 검증이나 채널 보안 지침은 아니다."}
+{"task_id": "t250", "candidate_id": "g09", "grade": 0, "process": false, "reason": "SwiftUI 화면 이동 지침은 Flutter WebView의 허용 도메인 검토에 맞지 않는다."}
+{"task_id": "t250", "candidate_id": "g10", "grade": 0, "process": false, "reason": "QuickBooks 회계 자동화는 WebView 토큰 노출과 무관하다."}

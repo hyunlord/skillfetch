@@ -1,0 +1,55 @@
+{
+ "baseline": {
+  "v3_full": {
+   "hit@10": 0.7535,
+   "hit@50": 0.9296
+  },
+  "v5_full": {
+   "hit@10": 0.5556,
+   "hit@50": 0.9407
+  },
+  "A_fixed": {
+   "v3_hit@50": 0.9296,
+   "v3_recall@50": 0.8082,
+   "v5_hit@50": 0.9407,
+   "v5_recall@50": 0.8222
+  }
+ },
+ "run-b": {
+  "v3_full": {
+   "hit@10": 0.8732,
+   "hit@50": 0.9894
+  },
+  "v5_full": {
+   "hit@10": 0.8259,
+   "hit@50": 0.9741
+  },
+  "A_fixed": {
+   "v3_hit@50": 0.8592,
+   "v3_recall@50": 0.6432,
+   "v5_hit@50": 0.8185,
+   "v5_recall@50": 0.5403
+  }
+ },
+ "run-b minus dpearson": {
+  "v3_full": {
+   "hit@10": 0.8486,
+   "hit@50": 0.9894
+  },
+  "v5_full": {
+   "hit@10": 0.8148,
+   "hit@50": 0.9704
+  },
+  "A_fixed": {
+   "v3_hit@50": 0.8451,
+   "v3_recall@50": 0.624,
+   "v5_hit@50": 0.7889,
+   "v5_recall@50": 0.5166
+  }
+ },
+ "A_pass_minus_dpearson": false,
+ "B_pass_minus_dpearson": true,
+ "unlabeled_in_top50_minus_dpearson": 2656,
+ "unlabeled_in_top10_minus_dpearson": 440,
+ "new_slots_top50_minus_dpearson": 11280
+}

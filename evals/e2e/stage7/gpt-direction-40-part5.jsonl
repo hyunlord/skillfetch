@@ -1,0 +1,331 @@
+{"task_id":"t373","candidate_id":"uasl/content-research-writer@f1af82e4025e","grade":0,"process":true,"reason":"공동 집필 절차는 글쓰기용이며 추론 서버 설계와 거리가 있다."}
+{"task_id":"t373","candidate_id":"uasl/documentation-lookup@dee6d7478eab","grade":2,"process":true,"reason":"Ktor와 ONNX Runtime API 문서 확인이 구현 전 설계의 정확도를 높인다."}
+{"task_id":"t373","candidate_id":"uasl/spotify-automation@ccaa582efd70","grade":0,"process":false,"reason":"Spotify 재생·카탈로그 자동화는 자체 ONNX 추천 제공과 무관하다."}
+{"task_id":"t373","candidate_id":"uasl/stride-analysis-patterns@55940fc31e02","grade":1,"process":true,"reason":"위협 모델링은 API 설계의 주변 검토이나 지연·세션 설계를 다루지 않는다."}
+{"task_id":"t373","candidate_id":"uasl/secure-coding-practices@cc37fcd8687e","grade":1,"process":false,"reason":"입력 검증 등은 참고할 수 있으나 핵심 추론 계획과는 주변적이다."}
+{"task_id":"t373","candidate_id":"uasl/ko-fi-automation@56dbaba7e8b2","grade":0,"process":false,"reason":"Ko-fi 결제 자동화는 추천 모델 서버와 관계없다."}
+{"task_id":"t373","candidate_id":"uasl/coding-guidelines@0ec7e45f92f2","grade":2,"process":true,"reason":"불확실성 확인과 검증 목표 설정이 코딩 전 범위·성능 합의에 도움된다."}
+{"task_id":"t373","candidate_id":"uasl/decomposition-reconstruction@c615c9eb3d97","grade":2,"process":true,"reason":"기능 로딩·추론·배칭 구성요소를 분해해 계획하는 데 분명히 도움된다."}
+{"task_id":"t373","candidate_id":"uasl/elevenlabs-automation@444b586e8ee3","grade":0,"process":false,"reason":"음성 합성 자동화는 ONNX 추천 추론과 다른 작업이다."}
+{"task_id":"t373","candidate_id":"uasl/groqcloud-automation@e4dc6956991c","grade":0,"process":false,"reason":"GroqCloud 원격 모델 호출은 지정한 ONNX Java 제공 방식과 다르다."}
+{"task_id":"t373","candidate_id":"uasl/replicate-automation@4053915c756a","grade":0,"process":false,"reason":"Replicate 예측 서비스는 지정한 Ktor 내 ONNX 실행과 다르다."}
+{"task_id":"t373","candidate_id":"uasl/design-audit@167429859d7b","grade":0,"process":true,"reason":"인터페이스 품질 감사는 백엔드 추천 설계 대상이 아니다."}
+{"task_id":"t373","candidate_id":"uasl/web-performance-optimization@b2b38275ed40","grade":0,"process":false,"reason":"브라우저 자산과 Core Web Vitals 최적화는 JVM 추론 지연과 다르다."}
+{"task_id":"t373","candidate_id":"uasl/brand-voice@1253e24a13ab","grade":0,"process":true,"reason":"브랜드 문체 프로필은 서버 구현 계획과 관계없다."}
+{"task_id":"t373","candidate_id":"uasl/bun-runtime@009ca8691cf7","grade":0,"process":false,"reason":"Bun과 Node 런타임 전환은 Ktor Java 스택과 맞지 않는다."}
+{"task_id":"t373","candidate_id":"uasl/opencage-automation@6a160e893ff4","grade":0,"process":false,"reason":"Opencage 자동화는 추천 모델 엔드포인트와 무관하다."}
+{"task_id":"t373","candidate_id":"uasl/product-capability@bbb08b3b6752","grade":3,"process":true,"reason":"제약·계약·미결정을 드러낸 구현 준비 계획은 승인 전 설계를 직접 지원한다."}
+{"task_id":"t373","candidate_id":"uasl/3d-web-experience@e1485751556b","grade":0,"process":false,"reason":"3D 웹 경험은 추천 추론 백엔드와 무관하다."}
+{"task_id":"t373","candidate_id":"uasl/chain-estimation-decision-storytelling@431c43e177d3","grade":1,"process":true,"reason":"가정과 선택 비교는 참고 가능하지만 기술 구현 계획보다 사업 의사결정에 가깝다."}
+{"task_id":"t373","candidate_id":"uasl/researcher@55d55341b29b","grade":0,"process":true,"reason":"사용자 조사·페르소나는 지정된 추론 API 계획과 다르다."}
+{"task_id":"t373","candidate_id":"uasl/developer-growth-analysis@4615ad8d56aa","grade":0,"process":true,"reason":"개발자 대화 이력 성장 보고는 이번 모델 제공 작업과 무관하다."}
+{"task_id":"t373","candidate_id":"uasl/subagent-driven-development@c88a11afe515","grade":1,"process":true,"reason":"승인된 계획의 실행 절차이므로 지금 요구한 계획 작성·확인 단계에는 제한적이다."}
+{"task_id":"t373","candidate_id":"uasl/thinking-model-selection@21af56b9c574","grade":1,"process":true,"reason":"사고 모형 선택은 일반적 도움에 그치며 세션 재사용 설계를 구체화하지 않는다."}
+{"task_id":"t373","candidate_id":"uasl/writing-plans@219901eb119f","grade":3,"process":true,"reason":"다단계 구현 계획을 검토하고 실행 인계하는 절차가 코딩 전 승인 요구에 직접 맞는다."}
+{"task_id":"t373","candidate_id":"uasl/eol-message@05765e0a4b63","grade":0,"process":true,"reason":"서비스 종료 공지는 추천 API 계획과 무관하다."}
+{"task_id":"t373","candidate_id":"uasl/react-patterns@73d1ecc06997","grade":0,"process":false,"reason":"React 렌더링 성능은 Ktor 추론 서버 스택과 다르다."}
+{"task_id":"t373","candidate_id":"uasl/communication-storytelling@5152c43359f2","grade":1,"process":true,"reason":"설계 설명을 명료하게 전달하는 데 주변적으로 유용하다."}
+{"task_id":"t373","candidate_id":"uasl/neverbounce-automation@7da133b84bcb","grade":0,"process":false,"reason":"이메일 검증 자동화는 추론 API와 무관하다."}
+{"task_id":"t373","candidate_id":"uasl/typescript-clean-code@409278d3a61a","grade":0,"process":false,"reason":"TypeScript 전용 코드 규칙은 Kotlin·Java 제공 스택과 맞지 않는다."}
+{"task_id":"t373","candidate_id":"uasl/launch@117c5509679d","grade":1,"process":true,"reason":"릴리스 계획은 후속 단계이며 요청한 세션·배칭 설계에는 제한적이다."}
+{"task_id":"t373","candidate_id":"uasl/listennotes-automation@c5a2d5bf60f9","grade":0,"process":false,"reason":"팟캐스트 카탈로그 도구 자동화는 자체 추천 모델 제공과 다르다."}
+{"task_id":"t373","candidate_id":"uasl/high-perf-browser@aee32087bf43","grade":0,"process":false,"reason":"브라우저 로딩 최적화는 서버 ONNX 지연 설계를 다루지 않는다."}
+{"task_id":"t373","candidate_id":"uasl/content-engine@d3c510c6c4bf","grade":0,"process":true,"reason":"캠페인 콘텐츠 제작은 모델 서비스 계획과 무관하다."}
+{"task_id":"t373","candidate_id":"uasl/gong-automation@09a015febb35","grade":0,"process":false,"reason":"Gong 통화 분석 자동화는 추천 추론과 무관하다."}
+{"task_id":"t373","candidate_id":"uasl/thinking-model-router@5d0c1ebb8223","grade":1,"process":true,"reason":"문제 사고 모형 라우팅은 일반적이며 API 실행 설계의 실용성이 작다."}
+{"task_id":"t373","candidate_id":"anthropics-skills/academy-guide@8b9f8d715b84","grade":0,"process":false,"reason":"Claude 학습 자료 추천은 Ktor 모델 제공과 무관하다."}
+{"task_id":"t373","candidate_id":"uasl/audio-jingle@a4d3695ad5fd","grade":0,"process":false,"reason":"음악·음성 생성 라우팅은 추천 추론 엔드포인트와 무관하다."}
+{"task_id":"t373","candidate_id":"uasl/hypeauditor-automation@d91ef203585a","grade":0,"process":false,"reason":"인플루언서 분석 자동화는 모델 서빙과 무관하다."}
+{"task_id":"t373","candidate_id":"uasl/ripple@620dca56eca0","grade":3,"process":true,"reason":"수정 전 영향·패턴·위험 보고만 수행하므로 승인 전 계획 요구를 직접 지원한다."}
+{"task_id":"t373","candidate_id":"uasl/aether@06bc728c00e7","grade":1,"process":false,"reason":"실시간 지연 검증은 주변적으로 닿지만 AITuber 파이프라인은 다른 도메인이다."}
+{"task_id":"t373","candidate_id":"uasl/code-security@e20eb3467925","grade":1,"process":false,"reason":"보안 패턴은 API의 부수 검토에 유용하지만 핵심 성능 계획은 다루지 않는다."}
+{"task_id":"t373","candidate_id":"uasl/data-schema-knowledge-modeling@c06f86b10d33","grade":2,"process":true,"reason":"입력 특성·응답 계약과 데이터 제약을 모델링하여 기능 로딩 설계에 도움된다."}
+{"task_id":"t373","candidate_id":"uasl/thinking-debiasing@d264900b6c92","grade":1,"process":true,"reason":"설계 가정 점검은 주변적으로 유용하나 구체적인 제공 계획과는 거리가 있다."}
+{"task_id":"t373","candidate_id":"uasl/component-identification-sizing@a9b4aa9f2de1","grade":1,"process":true,"reason":"구성요소 크기 분석은 변경 위치 파악에 제한적으로 도움된다."}
+{"task_id":"t373","candidate_id":"uasl/legacy-modernizer@519b6311409d","grade":0,"process":true,"reason":"레거시 현대화와 마이그레이션은 신규 추론 경로 계획과 다르다."}
+{"task_id":"t373","candidate_id":"uasl/grill-with-docs@99f1bafe73fe","grade":3,"process":true,"reason":"대화형 계획 검토와 코드 기반 설계 주장 확인이 구현 전 사용자 합의에 직접 맞는다."}
+{"task_id":"t373","candidate_id":"uasl/frontend-design-principles@e9b2a10a43d1","grade":1,"process":true,"reason":"계획 우선 절차는 닿지만 프런트엔드 시각 설계 내용은 적용성이 작다."}
+{"task_id":"t373","candidate_id":"uasl/onboarding-ux@525055bbdf31","grade":0,"process":true,"reason":"웹 온보딩 감사와 생성은 추론 API와 무관하다."}
+{"task_id":"t373","candidate_id":"uasl/guidelines-advisor@30a5870183a1","grade":0,"process":true,"reason":"스마트 계약 보안 검토는 JVM 추천 서버와 다른 대상이다."}
+{"task_id":"t373","candidate_id":"uasl/system-design@e45b77ba7a35","grade":3,"process":true,"reason":"요구·용량·아키텍처·신뢰성 계획이 세션 재사용과 지연 목표 설계를 직접 이끈다."}
+{"task_id":"t373","candidate_id":"uasl/test-driven-development@0eebe2fe0e28","grade":1,"process":true,"reason":"테스트 우선 구현은 이후 유용하지만 현재는 작성 전 설계 승인 단계이다."}
+{"task_id":"t373","candidate_id":"uasl/beaconchain-automation@d3245b29cde8","grade":0,"process":false,"reason":"Beaconchain 자동화는 추천 모델 제공과 무관하다."}
+{"task_id":"t373","candidate_id":"uasl/bench-automation@346a78d05d22","grade":0,"process":false,"reason":"Bench 도구 자동화는 ONNX 제공 작업과 무관하다."}
+{"task_id":"t373","candidate_id":"uasl/fastapi-endpoint@2a93d50c4970","grade":1,"process":true,"reason":"승인 후 구현 방식은 맞지만 FastAPI·SQLAlchemy 중심이어서 Ktor 설계에 제한적이다."}
+{"task_id":"t373","candidate_id":"uasl/nextdns-automation@8dd55e59ce22","grade":0,"process":false,"reason":"Nextdns 자동화는 ONNX 서버 구현과 무관하다."}
+{"task_id":"t374","candidate_id":"uasl/typescript-unit-testing@6fb3561edcb3","grade":0,"process":false,"reason":"NestJS·Jest 단위 테스트는 Ktor Java 스택과 다르다."}
+{"task_id":"t374","candidate_id":"uasl/aether@06bc728c00e7","grade":0,"process":false,"reason":"AITuber 스트리밍 설계는 단일 추천 경로 제공과 무관하다."}
+{"task_id":"t374","candidate_id":"uasl/beaconchain-automation@d3245b29cde8","grade":0,"process":false,"reason":"Beaconchain 자동화는 추천 추론과 무관하다."}
+{"task_id":"t374","candidate_id":"uasl/backend-patterns@3d87ff489f3e","grade":1,"process":false,"reason":"API 패턴은 닿지만 TypeScript 지향이라 지정한 Ktor 소규모 변경에 제한적이다."}
+{"task_id":"t374","candidate_id":"uasl/twitch-automation@7c6a1f5fa6ec","grade":0,"process":false,"reason":"Twitch 자동화는 추천 서버 구현과 관계없다."}
+{"task_id":"t374","candidate_id":"uasl/embedding-fusion-strategy@21173cbce66e","grade":0,"process":false,"reason":"지식 그래프 임베딩 전략은 이미 내보낸 모델의 제공 작업과 다르다."}
+{"task_id":"t374","candidate_id":"uasl/twitter-algorithm-optimizer@ee2e940fffc6","grade":0,"process":false,"reason":"트윗 도달 최적화는 추천 모델 서빙과 무관하다."}
+{"task_id":"t374","candidate_id":"uasl/audio-jingle@a4d3695ad5fd","grade":0,"process":false,"reason":"오디오 생성은 추천 결과 제공과 다른 작업이다."}
+{"task_id":"t374","candidate_id":"uasl/documentation-lookup@dee6d7478eab","grade":2,"process":true,"reason":"ONNX Runtime 세션과 Ktor API 문서 확인은 작은 구현에서도 분명히 도움된다."}
+{"task_id":"t374","candidate_id":"anthropics-skills/academy-guide@8b9f8d715b84","grade":0,"process":false,"reason":"Claude 학습 자료 추천은 ONNX 경로 구현과 무관하다."}
+{"task_id":"t374","candidate_id":"uasl/voice-ai-development@76a8425e5865","grade":0,"process":false,"reason":"음성 스트리밍 공급자 결합은 ONNX 추천 제공와 다른 스택이다."}
+{"task_id":"t374","candidate_id":"uasl/decomposition-reconstruction@c615c9eb3d97","grade":1,"process":true,"reason":"분해·최적화 분석 중심 절차는 바로 작은 변경 후 최적화하자는 방향과 어긋난다."}
+{"task_id":"t374","candidate_id":"uasl/scaffold-nextjs@3d1152f5d9d0","grade":0,"process":false,"reason":"Next.js 프로젝트 생성은 Ktor 서버와 무관하다."}
+{"task_id":"t374","candidate_id":"uasl/bun-runtime@009ca8691cf7","grade":0,"process":false,"reason":"Bun 런타임 전환은 Java ONNX Runtime과 맞지 않는다."}
+{"task_id":"t374","candidate_id":"uasl/nextdns-automation@8dd55e59ce22","grade":0,"process":false,"reason":"Nextdns 자동화는 추천 API와 무관하다."}
+{"task_id":"t374","candidate_id":"uasl/workshop-facilitation@c8ec916a4f0c","grade":0,"process":true,"reason":"워크숍 진행은 구체적으로 지정된 소규모 구현과 관계없다."}
+{"task_id":"t374","candidate_id":"uasl/titan@39c6080f3dfc","grade":2,"process":true,"reason":"범위에 맞춰 최소 실행 체인과 구현 우선을 택하는 방식이 즉시 작은 변경 방향에 맞는다."}
+{"task_id":"t374","candidate_id":"uasl/x-api@f7be0ce6f0ec","grade":0,"process":false,"reason":"X API 게시·검색은 자체 추천 추론과 무관하다."}
+{"task_id":"t374","candidate_id":"uasl/experiment@e2419a708eaf","grade":0,"process":true,"reason":"제품 실험 설계는 단일 경로 구현 요청과 다르다."}
+{"task_id":"t374","candidate_id":"uasl/fastapi-endpoint@2a93d50c4970","grade":0,"process":true,"reason":"FastAPI 구현·승인 절차는 Ktor 스택 및 즉시 소규모 구현 방향과 맞지 않는다."}
+{"task_id":"t374","candidate_id":"uasl/sql-optimization-patterns@389f90da7b56","grade":1,"process":false,"reason":"DB 기능 로딩에 주변적으로 닿지만 SQL 최적화는 뒤로 미룬 작업이다."}
+{"task_id":"t374","candidate_id":"uasl/gbrain@cf3beac3a2cf","grade":0,"process":false,"reason":"GBrain 지식 도구 관리가 ONNX 구현을 직접 돕지 않는다."}
+{"task_id":"t374","candidate_id":"uasl/drive-motivation@1ca80e37840e","grade":0,"process":false,"reason":"팀 동기 설계는 추천 추론 서버와 무관하다."}
+{"task_id":"t374","candidate_id":"uasl/ko-fi-automation@56dbaba7e8b2","grade":0,"process":false,"reason":"Ko-fi 자동화는 추천 모델 제공과 무관하다."}
+{"task_id":"t374","candidate_id":"uasl/mailcheck-automation@1a4df2b39df4","grade":0,"process":false,"reason":"Mailcheck 자동화는 추천 모델 제공과 무관하다."}
+{"task_id":"t374","candidate_id":"uasl/groqcloud-automation@e4dc6956991c","grade":0,"process":false,"reason":"GroqCloud 호출은 지정된 ONNX Runtime Java 실행과 다르다."}
+{"task_id":"t374","candidate_id":"uasl/listennotes-automation@c5a2d5bf60f9","grade":0,"process":false,"reason":"Listennotes 자동화는 자체 추천 모델 경로 구현과 다르다."}
+{"task_id":"t374","candidate_id":"uasl/google-maps-automation@8d888f14d993","grade":0,"process":false,"reason":"지도 위치 검색 자동화는 추천 모델 제공와 무관하다."}
+{"task_id":"t374","candidate_id":"uasl/component-identification-sizing@a9b4aa9f2de1","grade":1,"process":true,"reason":"구성요소 분할·통합 분석은 한 경로와 싱글턴만 바꾸는 범위에 과하다."}
+{"task_id":"t374","candidate_id":"uasl/next-best-practices@ee058f89acea","grade":0,"process":false,"reason":"Next.js 컴포넌트 관행은 Ktor 서버와 다른 스택이다."}
+{"task_id":"t374","candidate_id":"uasl/collab-modes@cdc15bee33c0","grade":1,"process":true,"reason":"협업 방식 선택은 주변적이며 구체적인 즉시 구현 요구를 더 해결하지 않는다."}
+{"task_id":"t374","candidate_id":"uasl/guidelines-advisor@30a5870183a1","grade":0,"process":true,"reason":"스마트 계약 보안 검토는 JVM 서비스와 다른 대상이다."}
+{"task_id":"t374","candidate_id":"uasl/chain-estimation-decision-storytelling@431c43e177d3","grade":0,"process":true,"reason":"사업 의사결정 추정·스토리텔링은 작은 서버 구현과 관계없다."}
+{"task_id":"t374","candidate_id":"uasl/visual-storytelling-design@74639e4dc5f9","grade":0,"process":true,"reason":"시각적 데이터 스토리텔링은 API 구현과 무관하다."}
+{"task_id":"t374","candidate_id":"uasl/spotify-automation@ccaa582efd70","grade":0,"process":false,"reason":"Spotify 자동화는 자체 ONNX 모델 실행과 다르다."}
+{"task_id":"t374","candidate_id":"uasl/ripple@620dca56eca0","grade":1,"process":true,"reason":"코드를 바꾸지 않는 영향 보고는 바로 작은 구현을 하라는 방향과 상충한다."}
+{"task_id":"t374","candidate_id":"uasl/neverbounce-automation@7da133b84bcb","grade":0,"process":false,"reason":"Neverbounce 이메일 검증은 추천 모델과 무관하다."}
+{"task_id":"t374","candidate_id":"uasl/design-audit@167429859d7b","grade":0,"process":true,"reason":"UI 품질 감사는 백엔드 경로 구현과 무관하다."}
+{"task_id":"t374","candidate_id":"uasl/connect-apps@9a34ce12c40c","grade":0,"process":false,"reason":"외부 앱 연결 자동화는 Ktor ONNX 구현과 관계없다."}
+{"task_id":"t374","candidate_id":"uasl/thinking-debiasing@d264900b6c92","grade":1,"process":true,"reason":"가정 점검은 일반적 참고이나 작은 변경 실행에 추가 실용성은 적다."}
+{"task_id":"t374","candidate_id":"uasl/3d-web-experience@e1485751556b","grade":0,"process":false,"reason":"3D 웹 경험은 추천 서버와 무관하다."}
+{"task_id":"t374","candidate_id":"uasl/sendspark-automation@932029b8cfbb","grade":0,"process":false,"reason":"Sendspark 자동화는 추천 추론과 무관하다."}
+{"task_id":"t374","candidate_id":"uasl/perf-web-optimization@0e20e7b8cc98","grade":0,"process":false,"reason":"이미지·CSS 성능 최적화는 Java 서버 추론과 다르다."}
+{"task_id":"t374","candidate_id":"uasl/svg-logo-designer@d54de4c01dc1","grade":0,"process":false,"reason":"SVG 로고 제작은 추천 서버 구현과 무관하다."}
+{"task_id":"t374","candidate_id":"uasl/content-engine@d3c510c6c4bf","grade":0,"process":true,"reason":"마케팅 콘텐츠 제작은 ONNX 경로 구현과 무관하다."}
+{"task_id":"t374","candidate_id":"uasl/high-perf-browser@aee32087bf43","grade":0,"process":false,"reason":"브라우저 네트워크 최적화는 JVM 모델 서빙 대상과 다르다."}
+{"task_id":"t374","candidate_id":"uasl/thinking-model-router@5d0c1ebb8223","grade":1,"process":true,"reason":"사고 모형 선택은 일반적이며 구체적인 라우트·싱글턴 구현 도움은 작다."}
+{"task_id":"t374","candidate_id":"uasl/browser-extension-builder@3240e6183c28","grade":0,"process":false,"reason":"브라우저 확장 개발은 Ktor 서버와 무관하다."}
+{"task_id":"t375","candidate_id":"uasl/accessibility-compliance@696d2b4119ed","grade":0,"process":false,"reason":"React·HTML 접근성 규칙은 Flutter 알림 예약 버그와 다른 대상이다."}
+{"task_id":"t375","candidate_id":"uasl/docker-hub-automation@271792aed33b","grade":0,"process":false,"reason":"Docker Hub 조직 관리는 로컬 알림 마이그레이션과 무관하다."}
+{"task_id":"t375","candidate_id":"uasl/monorepo-management@4078df072127","grade":0,"process":false,"reason":"JS 모노레포 관리는 Flutter 저장 형식 호환성과 무관하다."}
+{"task_id":"t375","candidate_id":"uasl/roadmap-backcast@7cd18481befb","grade":0,"process":true,"reason":"기한 역산 로드맵은 원인과 수정 방향이 정해진 버그에 실용성이 없다."}
+{"task_id":"t375","candidate_id":"uasl/flutterwave-automation@f68129e94e97","grade":0,"process":false,"reason":"Flutterwave 결제 도구는 Flutter 알림 프레임워크와 무관하다."}
+{"task_id":"t375","candidate_id":"uasl/claude-native-claude-api@24c958899f03","grade":0,"process":false,"reason":"Claude API 구축은 로컬 알림 시간대 처리와 무관하다."}
+{"task_id":"t375","candidate_id":"uasl/habitica-automation@ccd00cec596d","grade":0,"process":false,"reason":"Habitica 자동화는 앱 내부 예약 구현과 관계없다."}
+{"task_id":"t375","candidate_id":"uasl/migrate-to-shoehorn@50bfd668fa65","grade":0,"process":false,"reason":"TypeScript 테스트 캐스팅 마이그레이션은 Dart 저장 형식 이행과 다르다."}
+{"task_id":"t375","candidate_id":"uasl/reviews-retros-reflection@5432cc49ac73","grade":0,"process":true,"reason":"팀 회고 절차는 지정된 알림 버그 수정과 무관하다."}
+{"task_id":"t375","candidate_id":"uasl/design-system-patterns@cd952cab0879","grade":0,"process":false,"reason":"디자인 토큰 시스템은 알림 날짜 저장·호환성 구현과 무관하다."}
+{"task_id":"t375","candidate_id":"uasl/shadcn@fb196fe88c66","grade":0,"process":false,"reason":"shadcn React UI는 Flutter 스택과 다르다."}
+{"task_id":"t375","candidate_id":"uasl/dispatching-parallel-agents@e14ed020e820","grade":1,"process":true,"reason":"테스트와 구현 분담은 가능하지만 하나의 결합된 마이그레이션 문제에 병렬화 가치는 작다."}
+{"task_id":"t375","candidate_id":"uasl/gws-best-practices@8d174ef89902","grade":0,"process":false,"reason":"Google Workspace CLI는 앱 내부 알림 수정과 무관하다."}
+{"task_id":"t375","candidate_id":"uasl/timekit-automation@ca8a9faa9e8c","grade":0,"process":false,"reason":"Timekit API 자동화는 flutter_local_notifications와 다른 도구이다."}
+{"task_id":"t375","candidate_id":"anthropics-skills/webapp-testing@a4b4ce82b644","grade":0,"process":false,"reason":"Playwright 웹 테스트는 Flutter 로컬 알림 검증과 맞지 않는다."}
+{"task_id":"t375","candidate_id":"uasl/printing-press-reprint@af02d260d0be","grade":0,"process":true,"reason":"CLI 재출판 조정은 저장된 알림 호환성 수정과 무관하다."}
+{"task_id":"t375","candidate_id":"uasl/polyglot@11be7885bda2","grade":1,"process":false,"reason":"지역별 형식은 주변적이나 JS 국제화 지침이 Dart 시간대 예약을 해결하지 않는다."}
+{"task_id":"t375","candidate_id":"uasl/workday-automation@3e9313379197","grade":0,"process":false,"reason":"Workday 휴가 API는 앱 알림 예약과 무관하다."}
+{"task_id":"t375","candidate_id":"anthropics-skills/pptx@4eb5e13af97f","grade":0,"process":false,"reason":"PowerPoint 문서 제작은 알림 수정과 무관하다."}
+{"task_id":"t375","candidate_id":"uasl/thinking-scientific-method@8b3f9fba25b4","grade":2,"process":true,"reason":"DST 경계와 기존 형식 읽기를 가설·검증으로 확인하는 데 분명히 도움된다."}
+{"task_id":"t375","candidate_id":"uasl/scaffold@443673063eb0","grade":0,"process":false,"reason":"인프라 프로비저닝은 모바일 로컬 알림 수정과 무관하다."}
+{"task_id":"t375","candidate_id":"uasl/thinking-archetypes@48c7ccc46e1c","grade":1,"process":true,"reason":"원인과 구조 분석은 일반적이나 이미 알려진 저장 문제에는 효용이 제한적이다."}
+{"task_id":"t375","candidate_id":"uasl/new-relic-automation@efeb6349c763","grade":0,"process":false,"reason":"New Relic 알림 정책은 Flutter 로컬 알림과 다른 대상이다."}
+{"task_id":"t375","candidate_id":"uasl/universal-ai-config@810b8c3c5958","grade":0,"process":false,"reason":"AI 도구 설정은 알림 시간대 수정과 무관하다."}
+{"task_id":"t375","candidate_id":"uasl/favicon-gen@ff315899c13f","grade":0,"process":false,"reason":"파비콘 생성은 모바일 예약 로직과 무관하다."}
+{"task_id":"t375","candidate_id":"uasl/retain@80a5ca883d36","grade":0,"process":true,"reason":"유지율 개입 설계는 시간대 버그와 저장 호환성 문제가 아니다."}
+{"task_id":"t375","candidate_id":"uasl/clockify-automation@2a7df079c351","grade":0,"process":false,"reason":"Clockify 시간 추적 자동화는 모바일 예약 구현과 다르다."}
+{"task_id":"t375","candidate_id":"uasl/countdown-api-automation@1f935a92be57","grade":0,"process":false,"reason":"Countdown API 자동화는 지정된 Flutter 알림 라이브러리와 다르다."}
+{"task_id":"t375","candidate_id":"uasl/chain-roleplay-debate-synthesis@ccf96409045f","grade":0,"process":true,"reason":"관점 토론 의사결정은 수정 방식이 정해진 버그에 실용성이 없다."}
+{"task_id":"t375","candidate_id":"uasl/debugging-strategies@c55dad9c9654","grade":2,"process":true,"reason":"재현과 수정 검증 절차가 DST 회귀 및 구형 데이터 읽기 확인에 유용하다."}
+{"task_id":"t375","candidate_id":"uasl/debug-root-cause@1d7ea4a832dc","grade":2,"process":true,"reason":"최소 수정과 원래 실패 재검증은 저장 알림의 호환성을 지키는 데 도움된다."}
+{"task_id":"t375","candidate_id":"uasl/hooked-ux@64362f56c26b","grade":0,"process":false,"reason":"습관형 제품 설계는 알림 시간대 버그 수정과 다르다."}
+{"task_id":"t375","candidate_id":"uasl/onesignal-rest-api-automation@69760a7d8416","grade":0,"process":false,"reason":"OneSignal 원격 API는 Flutter 로컬 알림 예약과 다르다."}
+{"task_id":"t375","candidate_id":"uasl/forecast-premortem@dcdd0b67c70f","grade":0,"process":true,"reason":"예측 사전 부검은 명확한 날짜 저장 버그에 관련성이 낮다."}
+{"task_id":"t375","candidate_id":"uasl/universal-ai-skills@0128810b6ffe","grade":0,"process":false,"reason":"일반 스킬 라우터 사용은 DST·지연 마이그레이션에 직접 내용이 없다."}
+{"task_id":"t375","candidate_id":"uasl/nextjs-turbopack@b0af0186e13a","grade":0,"process":false,"reason":"Next.js 번들러는 Flutter 알림과 다른 스택이다."}
+{"task_id":"t375","candidate_id":"uasl/eol-message@05765e0a4b63","grade":0,"process":true,"reason":"서비스 종료 공지는 구형 형식 유지·이행 구현과 무관하다."}
+{"task_id":"t375","candidate_id":"uasl/timely-automation@71cef9db2e67","grade":0,"process":false,"reason":"Timely 자동화는 Flutter 로컬 시간 저장과 무관하다."}
+{"task_id":"t375","candidate_id":"uasl/zoho-inventory-automation@2f2863777368","grade":0,"process":false,"reason":"재고 API 자동화는 약국 앱의 알림 예약 문제와 다르다."}
+{"task_id":"t375","candidate_id":"uasl/focus-timeboxing-8020@4317b5bf1913","grade":0,"process":true,"reason":"개인 시간 관리 계획은 코드의 DST 버그와 무관하다."}
+{"task_id":"t375","candidate_id":"uasl/thinking-systems@07aec864bc94","grade":1,"process":true,"reason":"상호작용 원인 분석은 주변적이며 이미 알려진 시간대 원인을 더 직접 다루지 않는다."}
+{"task_id":"t375","candidate_id":"uasl/improve-retention@f80cefef268d","grade":0,"process":false,"reason":"행동 유지율 설계는 기존 예약 데이터 호환성 작업과 다르다."}
+{"task_id":"t375","candidate_id":"uasl/scout@97653445d7f1","grade":1,"process":true,"reason":"버그 재현은 닿지만 수정하지 않고 인계만 하므로 확정 원인의 실제 수정에는 제한적이다."}
+{"task_id":"t375","candidate_id":"uasl/component-flattening-analysis@82a0a8d664dd","grade":0,"process":true,"reason":"컴포넌트 평탄화는 저장된 알림 형식의 지연 이행과 관계없다."}
+{"task_id":"t376","candidate_id":"uasl/college-football-data-automation@c8e0671f076c","grade":0,"process":false,"reason":"대학 미식축구 데이터 자동화는 Flutter 알림과 무관하다."}
+{"task_id":"t376","candidate_id":"uasl/onesignal-rest-api-automation@69760a7d8416","grade":0,"process":false,"reason":"OneSignal API는 지정된 로컬 알림 라이브러리와 다른 도구이다."}
+{"task_id":"t376","candidate_id":"uasl/workday-automation@3e9313379197","grade":0,"process":false,"reason":"Workday 휴가 처리는 앱 내부 알림 예약과 무관하다."}
+{"task_id":"t376","candidate_id":"uasl/design-system-patterns@cd952cab0879","grade":0,"process":false,"reason":"디자인 토큰 시스템은 DST 예약 로직과 무관하다."}
+{"task_id":"t376","candidate_id":"uasl/connect@77e02b4574f6","grade":0,"process":false,"reason":"Composio 앱 연결은 Flutter 내부 버그 수정과 무관하다."}
+{"task_id":"t376","candidate_id":"uasl/ecc-source@ac3a6c8604b3","grade":0,"process":false,"reason":"ECC 설치 유지보수는 알림 저장 형식 갱신과 무관하다."}
+{"task_id":"t376","candidate_id":"uasl/focus-timeboxing-8020@4317b5bf1913","grade":0,"process":true,"reason":"일과 시간 배분은 날짜 저장 버그와 무관하다."}
+{"task_id":"t376","candidate_id":"uasl/coding-guidelines@0ec7e45f92f2","grade":2,"process":true,"reason":"요청 범위에 한정한 단순 수정과 검증 목표 설정은 재예약·일회 안내 구현에 도움된다."}
+{"task_id":"t376","candidate_id":"anthropics-skills/discernment-nudge@a9d2caea7e0b","grade":0,"process":true,"reason":"답변 말미 숙고 문구는 앱의 일회 알림 구현을 다루지 않는다."}
+{"task_id":"t376","candidate_id":"uasl/docker-hub-automation@271792aed33b","grade":0,"process":false,"reason":"Docker Hub 관리는 모바일 알림과 무관하다."}
+{"task_id":"t376","candidate_id":"anthropics-skills/pptx@4eb5e13af97f","grade":0,"process":false,"reason":"PowerPoint 제작은 알림 시간대 처리와 무관하다."}
+{"task_id":"t376","candidate_id":"uasl/collab-modes@cdc15bee33c0","grade":1,"process":true,"reason":"협업 방식 설정은 일반적 도움에 그치며 알림 재예약 작업을 구체화하지 않는다."}
+{"task_id":"t376","candidate_id":"uasl/debug-root-cause@1d7ea4a832dc","grade":2,"process":true,"reason":"원래 DST 실패 재현·최소 수정·회귀 방지 절차가 변경 검증에 도움된다."}
+{"task_id":"t376","candidate_id":"uasl/accessibility-compliance@696d2b4119ed","grade":0,"process":false,"reason":"웹 접근성 구현은 Flutter 예약 로직과 다른 스택이다."}
+{"task_id":"t376","candidate_id":"uasl/thinking-scientific-method@8b3f9fba25b4","grade":2,"process":true,"reason":"DST 변경 전후 예약 가설을 실험해 수정 효과를 확인하는 데 유용하다."}
+{"task_id":"t376","candidate_id":"uasl/countdown-api-automation@1f935a92be57","grade":0,"process":false,"reason":"Countdown API는 지정한 Flutter 로컬 예약과 다르다."}
+{"task_id":"t376","candidate_id":"uasl/nextjs-turbopack@b0af0186e13a","grade":0,"process":false,"reason":"Next.js 번들러 지침은 Flutter 코드에 맞지 않는다."}
+{"task_id":"t376","candidate_id":"uasl/polyglot@11be7885bda2","grade":1,"process":false,"reason":"일회 안내의 지역화에는 주변적이나 JS 국제화 중심이라 직접성은 낮다."}
+{"task_id":"t376","candidate_id":"uasl/timely-automation@71cef9db2e67","grade":0,"process":false,"reason":"Timely 자동화는 Flutter 저장 형식 재설정과 무관하다."}
+{"task_id":"t376","candidate_id":"uasl/clockify-automation@2a7df079c351","grade":0,"process":false,"reason":"Clockify 시간 추적은 모바일 로컬 예약과 다르다."}
+{"task_id":"t376","candidate_id":"uasl/onboarding-ux@525055bbdf31","grade":1,"process":true,"reason":"변경 안내 UX는 주변적으로 닿지만 웹 신규 사용자 온보딩 절차는 범위가 다르다."}
+{"task_id":"t376","candidate_id":"uasl/rewind@64cfc63aad18","grade":1,"process":true,"reason":"이력 조사로 확인은 가능하나 원인이 알려져 있어 재예약 수정 효용은 제한적이다."}
+{"task_id":"t376","candidate_id":"uasl/thinking-systems@07aec864bc94","grade":1,"process":true,"reason":"시스템 관계 분석은 부수적으로 유용하지만 구체적 원인이 이미 정해져 있다."}
+{"task_id":"t376","candidate_id":"uasl/printing-press-reprint@af02d260d0be","grade":0,"process":true,"reason":"CLI 재출판은 Flutter 알림 형식 초기화와 다르다."}
+{"task_id":"t376","candidate_id":"uasl/googlemeet-automation@d25b5982718c","grade":0,"process":false,"reason":"Google Meet 일정 자동화는 앱 알림 스케줄러와 다르다."}
+{"task_id":"t376","candidate_id":"uasl/flutterwave-automation@f68129e94e97","grade":0,"process":false,"reason":"Flutterwave 결제 통합은 Flutter 로컬 알림과 무관하다."}
+{"task_id":"t376","candidate_id":"uasl/hooked-ux@64362f56c26b","grade":0,"process":false,"reason":"습관 루프 설계는 DST 버그 수정과 무관하다."}
+{"task_id":"t376","candidate_id":"uasl/timekit-automation@ca8a9faa9e8c","grade":0,"process":false,"reason":"Timekit 서비스 호출은 flutter_local_notifications와 다른 대상이다."}
+{"task_id":"t376","candidate_id":"uasl/ux-audit@d921ee5d8321","grade":0,"process":true,"reason":"브라우저 UX 감사는 모바일 알림 재예약 검증과 다른 표면이다."}
+{"task_id":"t376","candidate_id":"uasl/debugging-strategies@c55dad9c9654","grade":2,"process":true,"reason":"재현·증거 수집·수정 검증 절차가 DST 수정과 업데이트 경로 확인에 도움된다."}
+{"task_id":"t376","candidate_id":"uasl/ticktick-automation@35ba033f5e3d","grade":0,"process":false,"reason":"TickTick 작업 자동화는 앱 내부 알림 스케줄러와 다르다."}
+{"task_id":"t376","candidate_id":"uasl/improve-retention@f80cefef268d","grade":0,"process":false,"reason":"제품 유지율 행동 모형은 알림 버그 수정과 다르다."}
+{"task_id":"t376","candidate_id":"uasl/tdd@ff86dad94075","grade":2,"process":true,"reason":"행동별 테스트로 초기화·재예약·일회 안내를 검증한 뒤 최소 구현하는 데 유용하다."}
+{"task_id":"t376","candidate_id":"uasl/new-relic-automation@efeb6349c763","grade":0,"process":false,"reason":"New Relic 알림 관리와 모바일 로컬 알림은 다른 대상이다."}
+{"task_id":"t376","candidate_id":"uasl/mapulus-automation@b69103bc4139","grade":0,"process":false,"reason":"Mapulus 지도 자동화는 시간대 알림 수정과 무관하다."}
+{"task_id":"t376","candidate_id":"uasl/thinking-archetypes@48c7ccc46e1c","grade":1,"process":true,"reason":"반복 문제 구조 분석은 주변적이며 알려진 구현 원인에 직접 도움은 작다."}
+{"task_id":"t376","candidate_id":"uasl/redesign-skill@2e4f7f16e367","grade":0,"process":true,"reason":"시각 리디자인은 알림 스케줄러의 저장·재예약 변경과 무관하다."}
+{"task_id":"t376","candidate_id":"uasl/component-flattening-analysis@82a0a8d664dd","grade":0,"process":true,"reason":"컴포넌트 평탄화는 지정된 예약 API 전환과 관계없다."}
+{"task_id":"t376","candidate_id":"uasl/scout@97653445d7f1","grade":1,"process":true,"reason":"원인 조사·인계만 하는 절차는 이미 알려진 원인을 직접 수정하는 작업에 제한적이다."}
+{"task_id":"t376","candidate_id":"uasl/error-handling-patterns@4c19ee7d7821","grade":1,"process":false,"reason":"재예약 실패 정리와 오류 맥락은 참고 가능하지만 Dart를 다루지 않는다."}
+{"task_id":"t376","candidate_id":"uasl/harvest-automation@9d33356a1149","grade":0,"process":false,"reason":"Harvest 시간 기록 자동화는 Flutter 날짜 처리와 무관하다."}
+{"task_id":"t376","candidate_id":"uasl/caveman-commit@244182e952a7","grade":0,"process":true,"reason":"커밋 메시지 형식은 DST 수정 실행에 실용적 관련성이 없다."}
+{"task_id":"t377","candidate_id":"uasl/fastapi-templates@effcd0de0b4c","grade":0,"process":false,"reason":"FastAPI 프로젝트 생성은 Django의 배포 의사결정 테스트와 다르다."}
+{"task_id":"t377","candidate_id":"uasl/deployment-pipeline-design@2a89fc6f32ff","grade":3,"process":false,"reason":"단계별 배포·검증·롤백 전략이 Kubernetes 카나리 구현을 직접 다룬다."}
+{"task_id":"t377","candidate_id":"uasl/mend@9ea877a21ec7","grade":1,"process":true,"reason":"안전한 운영 복구는 관련되지만 pytest 기반 배포 로직 작성과는 다르다."}
+{"task_id":"t377","candidate_id":"uasl/define-architecture@8ea764417825","grade":0,"process":false,"reason":"TypeScript 앱 아키텍처 정의는 Python 배포 로직과 다른 스택이다."}
+{"task_id":"t377","candidate_id":"uasl/spotify-automation@ccaa582efd70","grade":0,"process":false,"reason":"Spotify 자동화는 Kubernetes 배포와 무관하다."}
+{"task_id":"t377","candidate_id":"uasl/github-actions-templates@ce03df93ccdf","grade":1,"process":false,"reason":"CI 배포 연결에는 참고되나 GitHub Actions를 쓴다는 근거가 없고 핵심은 Python 로직이다."}
+{"task_id":"t377","candidate_id":"uasl/integration-testing@62b51275be50","grade":1,"process":true,"reason":"실제 의존성 기반 통합 테스트는 Prometheus 스텁을 먼저 쓰라는 방향과 어긋난다."}
+{"task_id":"t377","candidate_id":"uasl/wycheproof@8924e1e4bfb6","grade":0,"process":false,"reason":"암호화 테스트 벡터는 배포 승격·롤백 판단과 무관하다."}
+{"task_id":"t377","candidate_id":"uasl/emailoctopus-automation@c84ffa8a8056","grade":0,"process":false,"reason":"이메일 마케팅 자동화는 카나리 배포와 무관하다."}
+{"task_id":"t377","candidate_id":"uasl/test-driven-development@0eebe2fe0e28","grade":3,"process":true,"reason":"실패 테스트부터 최소 구현하는 순서가 명시된 test-first 요구에 직접 맞는다."}
+{"task_id":"t377","candidate_id":"uasl/acceptance-testing@7f713f1566e8","grade":1,"process":true,"reason":"실행 사양은 관련되지만 Gherkin·Gauge 중심은 지정된 pytest 단위 테스트에 제한적이다."}
+{"task_id":"t377","candidate_id":"uasl/timekit-automation@ca8a9faa9e8c","grade":0,"process":false,"reason":"Timekit 자동화는 배포 대기 시간 구현과 무관하다."}
+{"task_id":"t377","candidate_id":"uasl/fastapi-endpoint@2a93d50c4970","grade":0,"process":true,"reason":"FastAPI 엔드포인트 구현 절차는 Django 배포 결정 로직과 다르다."}
+{"task_id":"t377","candidate_id":"uasl/error-handling-patterns@4c19ee7d7821","grade":2,"process":false,"reason":"Prometheus 조회 실패와 롤백 오류의 정리·로그 처리를 설계하는 데 도움된다."}
+{"task_id":"t377","candidate_id":"uasl/chaos-testing@760793a4a18b","grade":1,"process":true,"reason":"복원력 실험은 후속 검증에 닿지만 우선 요청한 스텁 단위 테스트를 대체하지 못한다."}
+{"task_id":"t377","candidate_id":"uasl/radar@a47ea6fd5f95","grade":2,"process":true,"reason":"기존 pytest 관행에 맞춰 분기·실패 테스트를 추가하고 검증하는 데 도움된다."}
+{"task_id":"t377","candidate_id":"uasl/klipfolio-automation@ce45aee544df","grade":0,"process":false,"reason":"Klipfolio 자동화는 Prometheus 기반 롤아웃과 다르다."}
+{"task_id":"t377","candidate_id":"uasl/system-design@e45b77ba7a35","grade":1,"process":true,"reason":"신뢰성 설계는 주변적이며 구체적 카나리 판단과 테스트에는 범위가 넓다."}
+{"task_id":"t377","candidate_id":"uasl/elorus-automation@5245b8377e5f","grade":0,"process":false,"reason":"Elorus 회계 자동화는 배포와 무관하다."}
+{"task_id":"t377","candidate_id":"uasl/kubernetes-security-policies@83bbc7f29e7e","grade":1,"process":false,"reason":"동일 Kubernetes 환경이지만 보안 정책은 트래픽 비율·5xx 판단과 별개이다."}
+{"task_id":"t377","candidate_id":"uasl/tdd-workflow@6eadb0bf0ea8","grade":3,"process":true,"reason":"테스트를 구현보다 먼저 작성하는 절차가 요구된 작업 순서를 직접 지원한다."}
+{"task_id":"t377","candidate_id":"uasl/unit-testing@6c5fbb821103","grade":3,"process":true,"reason":"테스트 더블과 결정론적 격리 테스트가 Prometheus 스텁 승격·롤백 사례에 직접 맞는다."}
+{"task_id":"t377","candidate_id":"uasl/api-testing@4ada9a2fac88","grade":1,"process":false,"reason":"실제 HTTP API 테스트는 운영 확인에 주변적이며 롤아웃 결정 단위 테스트와 다르다."}
+{"task_id":"t377","candidate_id":"uasl/kraken-io-automation@6138f774ae6a","grade":0,"process":false,"reason":"Kraken IO 자동화는 배포 로직과 무관하다."}
+{"task_id":"t377","candidate_id":"uasl/python-testing-patterns@e62d0f1ca316","grade":3,"process":false,"reason":"pytest fixture·mock·실패 행동 패턴이 스텁 클라이언트 기반 결정 테스트에 직접 맞는다."}
+{"task_id":"t377","candidate_id":"uasl/pm-spec@f01a5865e09d","grade":0,"process":true,"reason":"HTML 제품 명세서는 정해진 배포 코드 구현·테스트와 다르다."}
+{"task_id":"t377","candidate_id":"uasl/backend-patterns@3d87ff489f3e","grade":0,"process":false,"reason":"TypeScript API 패턴은 Python 운영 스크립트와 맞지 않는다."}
+{"task_id":"t377","candidate_id":"uasl/async-python-patterns@957ebfe54aa7","grade":1,"process":false,"reason":"비동기 대기·조회에는 참고되지만 asyncio 사용 요구가 없어 직접성은 낮다."}
+{"task_id":"t377","candidate_id":"uasl/legacy-modernizer@519b6311409d","grade":2,"process":true,"reason":"안전 시험·점진 배포·롤백·관찰성 절차가 카나리 도입에 분명히 도움된다."}
+{"task_id":"t377","candidate_id":"uasl/contract-testing@b0f4c29940a9","grade":1,"process":false,"reason":"서비스 계약 검증은 배포 안전에 주변적이나 5xx 기반 승격 분기와 다른 테스트다."}
+{"task_id":"t377","candidate_id":"uasl/launch@117c5509679d","grade":2,"process":true,"reason":"롤아웃·롤백 안전 기준은 구현 설계에 도움되며 실배포 금지는 코드 작성과 충돌하지 않는다."}
+{"task_id":"t377","candidate_id":"uasl/upstash-qstash@4aec8366af8b","grade":0,"process":false,"reason":"QStash 메시징은 Kubernetes 카나리와 다른 도구이다."}
+{"task_id":"t377","candidate_id":"uasl/payhip-automation@0f66e6e395fc","grade":0,"process":false,"reason":"Payhip 상거래 자동화는 배포와 무관하다."}
+{"task_id":"t377","candidate_id":"uasl/tdd@ff86dad94075","grade":3,"process":true,"reason":"행동 테스트 후 최소 구현하는 red-green-refactor가 요청한 test-first와 직접 일치한다."}
+{"task_id":"t378","candidate_id":"uasl/claude-native-claude-api@24c958899f03","grade":0,"process":false,"reason":"Claude API SDK 구축은 Kubernetes 배포와 무관하다."}
+{"task_id":"t378","candidate_id":"uasl/backend-patterns@3d87ff489f3e","grade":0,"process":false,"reason":"TypeScript API 패턴은 Python deploy 함수와 맞지 않는다."}
+{"task_id":"t378","candidate_id":"uasl/contract-testing@b0f4c29940a9","grade":1,"process":false,"reason":"API 호환성 검증은 배포 안전의 주변 항목이며 5xx 판단 코드와 다르다."}
+{"task_id":"t378","candidate_id":"uasl/pm-spec@f01a5865e09d","grade":0,"process":true,"reason":"HTML 제품 명세서는 기존 deploy 함수의 작은 변경과 다르다."}
+{"task_id":"t378","candidate_id":"uasl/system-design@e45b77ba7a35","grade":1,"process":true,"reason":"아키텍처 선정 중심은 이미 정해진 deploy 함수의 최소 변경에 제한적이다."}
+{"task_id":"t378","candidate_id":"uasl/product-showcase@47ddb0e168e1","grade":0,"process":false,"reason":"마케팅 쇼케이스 제작은 Kubernetes 배포 코드와 무관하다."}
+{"task_id":"t378","candidate_id":"uasl/fastapi-endpoint@2a93d50c4970","grade":0,"process":true,"reason":"FastAPI 엔드포인트 추가는 Django 운영 배포 로직과 다른 작업이다."}
+{"task_id":"t378","candidate_id":"uasl/sherpa@e80ffe2d019e","grade":1,"process":true,"reason":"작은 단계 분해는 참고되지만 코드를 구현하지 않는 안내 역할이라 효용이 제한적이다."}
+{"task_id":"t378","candidate_id":"uasl/deployment-pipeline-design@2a89fc6f32ff","grade":3,"process":false,"reason":"배포 전략·검증·롤백 지식이 기존 함수 위 카나리 분기를 구현하는 데 직접 맞는다."}
+{"task_id":"t378","candidate_id":"uasl/github-actions-templates@ce03df93ccdf","grade":1,"process":false,"reason":"CI 워크플로 템플릿은 주변적이며 지정된 Python 함수 변경을 직접 다루지 않는다."}
+{"task_id":"t378","candidate_id":"uasl/mend@9ea877a21ec7","grade":1,"process":true,"reason":"운영 복구 runbook은 롤백 사고에 참고되지만 신규 카나리 로직 작성과는 다르다."}
+{"task_id":"t378","candidate_id":"uasl/x-api@f7be0ce6f0ec","grade":0,"process":false,"reason":"X API 호출은 Kubernetes 배포와 무관하다."}
+{"task_id":"t378","candidate_id":"uasl/brex-staging-automation@36f144418b9b","grade":0,"process":false,"reason":"Brex Staging 금융 자동화는 애플리케이션 배포 스테이징과 다르다."}
+{"task_id":"t378","candidate_id":"uasl/release-it@e3e5b4710eea","grade":2,"process":false,"reason":"배포 안정성과 관찰성·실패 처리는 작은 카나리 변경을 안전하게 만드는 데 도움된다."}
+{"task_id":"t378","candidate_id":"uasl/fastapi-templates@effcd0de0b4c","grade":0,"process":false,"reason":"FastAPI 구조 생성은 기존 Django deploy 함수 변경과 맞지 않는다."}
+{"task_id":"t378","candidate_id":"uasl/api-design@bba608f8c974","grade":0,"process":false,"reason":"REST 계약 설계는 배포 트래픽 전환 로직과 무관하다."}
+{"task_id":"t378","candidate_id":"uasl/launch@117c5509679d","grade":2,"process":true,"reason":"롤아웃·롤백 안전 원칙은 카나리 판단을 설계하는 데 도움되며 구조 변경을 강제하지 않는다."}
+{"task_id":"t378","candidate_id":"uasl/error-handling-patterns@4c19ee7d7821","grade":2,"process":false,"reason":"조회·승격·롤백 오류를 기존 함수에서 적절히 처리하는 데 도움된다."}
+{"task_id":"t378","candidate_id":"uasl/product-capability@bbb08b3b6752","grade":1,"process":true,"reason":"제약·비목표 정리는 참고되나 범위가 정해진 최소 수정에서 별도 계획의 가치는 제한적이다."}
+{"task_id":"t378","candidate_id":"uasl/kraken-io-automation@6138f774ae6a","grade":0,"process":false,"reason":"Kraken IO 자동화는 카나리 배포와 무관하다."}
+{"task_id":"t378","candidate_id":"uasl/klipfolio-automation@ce45aee544df","grade":0,"process":false,"reason":"Klipfolio 자동화는 Prometheus 5xx 조회와 다른 통합이다."}
+{"task_id":"t378","candidate_id":"uasl/vercel-cli-with-tokens@3f9c2805c482","grade":0,"process":false,"reason":"Vercel CLI 배포는 지정된 Kubernetes 배포와 다른 플랫폼이다."}
+{"task_id":"t378","candidate_id":"uasl/define-architecture@8ea764417825","grade":0,"process":false,"reason":"TypeScript 아키텍처 정의는 Python 함수 최소 변경과 맞지 않는다."}
+{"task_id":"t378","candidate_id":"uasl/similarweb-analytics@938e9f87287b","grade":0,"process":false,"reason":"웹 시장 트래픽 분석은 서비스 카나리 트래픽 분배와 다르다."}
+{"task_id":"t378","candidate_id":"uasl/timekit-automation@ca8a9faa9e8c","grade":0,"process":false,"reason":"Timekit 예약 API는 배포 대기·롤백 로직과 무관하다."}
+{"task_id":"t378","candidate_id":"uasl/legacy-modernizer@519b6311409d","grade":2,"process":true,"reason":"기존 동작 보존과 작은 점진 변경·롤백 안전장치는 구조를 유지한 카나리 추가에 도움된다."}
+{"task_id":"t378","candidate_id":"uasl/ninox-automation@5c0813b7d348","grade":0,"process":false,"reason":"Ninox 자동화는 Kubernetes 운영 코드와 무관하다."}
+{"task_id":"t378","candidate_id":"uasl/manim@b0a6f7da4632","grade":0,"process":false,"reason":"수학 애니메이션은 카나리 배포와 무관하다."}
+{"task_id":"t378","candidate_id":"uasl/keap-automation@93a64ca10830","grade":0,"process":false,"reason":"Keap CRM 자동화는 배포 로직과 무관하다."}
+{"task_id":"t378","candidate_id":"uasl/python-testing-patterns@e62d0f1ca316","grade":2,"process":false,"reason":"pytest mock과 실패 분기 검증으로 기존 deploy 동작 및 새 판단을 확인할 수 있다."}
+{"task_id":"t378","candidate_id":"uasl/kubernetes-security-policies@83bbc7f29e7e","grade":1,"process":false,"reason":"Kubernetes 보안은 인접 분야지만 트래픽 전환과 Prometheus 판단을 직접 다루지 않는다."}
+{"task_id":"t378","candidate_id":"uasl/builder@8d7f0953ade3","grade":1,"process":true,"reason":"일반 비즈니스 로직 구현 지침은 주변적이며 카나리·최소 diff에 구체성이 작다."}
+{"task_id":"t378","candidate_id":"uasl/upstash-qstash@4aec8366af8b","grade":0,"process":false,"reason":"QStash 서버리스 메시징은 Kubernetes 카나리와 다른 도구이다."}
+{"task_id":"t378","candidate_id":"uasl/kadoa-automation@3a2eb009abd7","grade":0,"process":false,"reason":"Kadoa 자동화는 배포 로직과 무관하다."}
+{"task_id":"t379","candidate_id":"uasl/evenium-automation@bceb3bb6819e","grade":0,"process":false,"reason":"Evenium 행사 자동화는 운전자 수익 페이지와 무관하다."}
+{"task_id":"t379","candidate_id":"uasl/gsap-react@79939b61e00a","grade":1,"process":false,"reason":"React 애니메이션은 인접하지만 수익 표시나 운전자 접근 제어를 다루지 않는다."}
+{"task_id":"t379","candidate_id":"uasl/next-upgrade@df465f7770a5","grade":0,"process":false,"reason":"Next.js 버전 업그레이드는 기존 수익 페이지 구현 범위와 다르다."}
+{"task_id":"t379","candidate_id":"uasl/artisan@1e09f38ffcab","grade":2,"process":true,"reason":"타입 안전한 UI와 명시적 상태 처리 절차가 수익 표와 출금 버튼 구현에 도움이 된다."}
+{"task_id":"t379","candidate_id":"uasl/next-best-practices@ee058f89acea","grade":3,"process":false,"reason":"Next.js 서버 컴포넌트와 데이터 패턴이 서버 측 수익 조회 페이지 구현을 직접 다룬다."}
+{"task_id":"t379","candidate_id":"uasl/vibe-security@6b07d0f651a7","grade":3,"process":false,"reason":"접근 제한과 사용자 데이터 보호를 기본으로 삼아 로그인 운전자만 조회해야 하는 요구에 직접 맞는다."}
+{"task_id":"t379","candidate_id":"uasl/meeting-notes@da1c35784ab9","grade":0,"process":false,"reason":"회의 기록 전용 화면은 수익 페이지의 기능과 맞지 않는다."}
+{"task_id":"t379","candidate_id":"uasl/printing-press-score@7ec218523bea","grade":0,"process":false,"reason":"생성된 CLI 점수 평가는 웹 수익 페이지 구현과 무관하다."}
+{"task_id":"t379","candidate_id":"uasl/microsoft-clarity-automation@44237e641aae","grade":0,"process":false,"reason":"Clarity 분석 데이터 내보내기는 운전자 수익 데이터나 화면 구현과 무관하다."}
+{"task_id":"t379","candidate_id":"uasl/taste-skill@57790089504e","grade":2,"process":false,"reason":"React와 Next.js의 반응형 UI 및 상호작용 상태 지침이 수익 화면 구성에 도움이 된다."}
+{"task_id":"t379","candidate_id":"uasl/ux-audit@d921ee5d8321","grade":2,"process":true,"reason":"브라우저에서 워크플로와 네트워크 동작을 점검하는 절차가 수익 조회와 출금 화면 검증에 도움이 된다."}
+{"task_id":"t379","candidate_id":"uasl/react-patterns@73d1ecc06997","grade":2,"process":false,"reason":"React 구성과 성능 패턴이 차트와 정렬 표 구현을 돕지만 운전자 권한 검사는 직접 다루지 않는다."}
+{"task_id":"t379","candidate_id":"uasl/ramp-automation@25b168650188","grade":0,"process":false,"reason":"Ramp 회계 도구 연동은 자체 운전자 수익 페이지 구축과 무관하다."}
+{"task_id":"t379","candidate_id":"uasl/seat-geek-automation@806a8a8943fe","grade":0,"process":false,"reason":"Seat Geek 티켓 도구 자동화는 이 페이지와 무관하다."}
+{"task_id":"t379","candidate_id":"uasl/pricing-page@8b72ba4d0477","grade":1,"process":false,"reason":"가격 비교 표와 CTA 배치는 인접하지만 요금제 HTML 화면은 운전자 수익 기능과 다르다."}
+{"task_id":"t379","candidate_id":"uasl/digital-eguide@c4288adfa368","grade":0,"process":false,"reason":"디지털 가이드 미리보기 제작은 수익 페이지와 무관하다."}
+{"task_id":"t379","candidate_id":"uasl/dating-web@a74a01fd41b0","grade":1,"process":false,"reason":"대시보드 차트 표현은 인접하지만 데이팅용 단일 HTML 제작은 요청한 Next.js 기능과 다르다."}
+{"task_id":"t379","candidate_id":"uasl/nextjs-turbopack@b0af0186e13a","grade":1,"process":false,"reason":"Next.js 빌드 도구와 번들 분석은 주변 지식이며 운전자별 보안 조회를 해결하지 않는다."}
+{"task_id":"t379","candidate_id":"uasl/security-review@fcc354bc486e","grade":3,"process":true,"reason":"인증과 입력 및 데이터 노출 검증 체크리스트가 쿼리의 driverId를 신뢰하지 않는 보안 구현에 직접 맞는다."}
+{"task_id":"t379","candidate_id":"uasl/gamified-app@89f56442216c","grade":0,"process":false,"reason":"게임화 모바일 쇼케이스 제작은 운전자 수익 페이지와 무관하다."}
+{"task_id":"t379","candidate_id":"uasl/coinmarketcap-automation@761594342907","grade":0,"process":false,"reason":"Coinmarketcap 도구 자동화는 운전자 수익 조회와 무관하다."}
+{"task_id":"t379","candidate_id":"uasl/auth-implementation-patterns@7a99b395d548","grade":3,"process":false,"reason":"세션과 권한 검사 및 서버 측 검증 패턴이 로그인 운전자만 수익을 읽게 하는 핵심 요구를 직접 다룬다."}
+{"task_id":"t379","candidate_id":"uasl/files-com-automation@1456dcab2a34","grade":0,"process":false,"reason":"Files Com 자동화는 수익 페이지 구현과 무관하다."}
+{"task_id":"t379","candidate_id":"uasl/d3-visualization@739528fdf78d","grade":2,"process":false,"reason":"D3의 데이터 바인딩과 차트 구성 지침은 주간 막대 차트 구현에 분명히 도움이 된다."}
+{"task_id":"t379","candidate_id":"uasl/visualization-choice-reporting@7496a3ae2eeb","grade":1,"process":true,"reason":"접근 가능한 차트 설계는 인접하지만 시각화 선택과 보고서 전달이 중심이며 차트 종류도 이미 정해졌다."}
+{"task_id":"t379","candidate_id":"uasl/finance-report@ab7b24a4526c","grade":1,"process":false,"reason":"재무 수치 표시 지침은 인접하지만 단일 HTML 보고서는 인증된 Next.js 수익 페이지와 다르다."}
+{"task_id":"t379","candidate_id":"uasl/vercel-react-best-practices@70f3b5aaf775","grade":2,"process":false,"reason":"Next.js 서버와 클라이언트 성능 패턴이 수익 화면 구현을 돕지만 접근 제어가 주제는 아니다."}
+{"task_id":"t379","candidate_id":"uasl/caveman-stats@2859ce4e33a6","grade":0,"process":false,"reason":"Claude 세션 토큰 사용량 표시는 수익 페이지와 무관하다."}
+{"task_id":"t379","candidate_id":"uasl/landing-page@455a3c3ba6f7","grade":1,"process":false,"reason":"반응형 페이지와 CTA 지침은 주변 도움이지만 단일 HTML 마케팅 페이지 제작이 중심이다."}
+{"task_id":"t379","candidate_id":"uasl/segment-cdp@42e8e765d937","grade":0,"process":false,"reason":"Segment 사용자 추적 구현은 운전자 수익 조회나 권한 검증과 무관하다."}
+{"task_id":"t379","candidate_id":"uasl/sidetracker-automation@54e8a1f15fdb","grade":0,"process":false,"reason":"Sidetracker 자동화는 수익 페이지와 무관하다."}
+{"task_id":"t379","candidate_id":"uasl/backend-patterns@3d87ff489f3e","grade":2,"process":false,"reason":"Next.js의 인증과 데이터 접근 패턴은 서버 측 운전자 수익 조회 구현에 도움이 된다."}
+{"task_id":"t379","candidate_id":"uasl/pdfmonkey-automation@5af88908f123","grade":0,"process":false,"reason":"Pdfmonkey 자동화는 수익 페이지와 무관하다."}
+{"task_id":"t379","candidate_id":"uasl/team-okrs@7a95ee8c1302","grade":0,"process":false,"reason":"OKR 추적 화면은 운전자별 수익 표시 기능과 다르다."}
+{"task_id":"t379","candidate_id":"uasl/mobile-onboarding@dae55de6dde3","grade":0,"process":false,"reason":"모바일 온보딩 시안은 기존 운전자 수익 페이지 구현과 다르다."}
+{"task_id":"t379","candidate_id":"uasl/scaffold-nextjs@3d1152f5d9d0","grade":1,"process":false,"reason":"Next.js 구성 지식은 인접하지만 새 turborepo 생성은 기존 페이지 구현에 필요하지 않다."}
+{"task_id":"t379","candidate_id":"anthropics-skills/claude-api@e30e2c97f747","grade":0,"process":false,"reason":"Claude API 참조는 운전자 수익 페이지 구현과 무관하다."}
+{"task_id":"t379","candidate_id":"uasl/next-cache-components@b22f6e134147","grade":1,"process":false,"reason":"Next.js 캐시와 런타임 API 제약은 인접하지만 요청의 핵심인 운전자 권한 검사를 직접 다루지 않는다."}
+{"task_id":"t379","candidate_id":"uasl/dashboard@537186e4443a","grade":1,"process":false,"reason":"차트 대시보드 배치는 참고할 수 있으나 단일 HTML 산출 방식은 인증된 Next.js 페이지와 다르다."}
+{"task_id":"t379","candidate_id":"uasl/navigator@8d026b4397b8","grade":1,"process":true,"reason":"브라우저 검증과 증거 수집은 주변 도움이지만 수익 페이지 구현이나 서버 권한 처리가 주제는 아니다."}
+{"task_id":"t379","candidate_id":"uasl/weekly-update@e18ba8d591b9","grade":0,"process":false,"reason":"주간 팀 발표 슬라이드는 주간 수익 차트 페이지와 무관하다."}
+{"task_id":"t379","candidate_id":"uasl/shadcn-ui@8c463642324a","grade":2,"process":false,"reason":"React UI 구성 요소와 공통 패턴 조립은 정렬 표와 출금 버튼 구현에 도움이 된다."}
+{"task_id":"t379","candidate_id":"uasl/frontend-patterns@8f659ce2a0bd","grade":2,"process":false,"reason":"Next.js 데이터 조회와 컴포넌트 및 상태 패턴이 수익 차트와 표 구현에 도움이 된다."}
+{"task_id":"t380","candidate_id":"uasl/microsoft-clarity-automation@44237e641aae","grade":0,"process":false,"reason":"Clarity 분석 내보내기는 수익 페이지의 클라이언트 용량 제한 구현과 무관하다."}
+{"task_id":"t380","candidate_id":"uasl/taste-skill@57790089504e","grade":2,"process":false,"reason":"Next.js UI와 성능 규칙은 페이지 구성에 도움이 되며 요약만으로 불필요한 클라이언트 렌더링을 강제한다고 볼 수 없다."}
+{"task_id":"t380","candidate_id":"uasl/visualization-choice-reporting@7496a3ae2eeb","grade":1,"process":true,"reason":"접근 가능한 차트 설계는 주변 도움이지만 보고서 중심 절차이고 막대 차트가 이미 지정됐다."}
+{"task_id":"t380","candidate_id":"uasl/finance-report@ab7b24a4526c","grade":1,"process":false,"reason":"재무 표시 방식은 인접하지만 단일 HTML 보고서는 요청한 서버 컴포넌트 구현과 다르다."}
+{"task_id":"t380","candidate_id":"uasl/tisane-automation@bbb431591a98","grade":0,"process":false,"reason":"Tisane 자동화는 수익 화면과 무관하다."}
+{"task_id":"t380","candidate_id":"uasl/frontend-patterns@8f659ce2a0bd","grade":2,"process":false,"reason":"React와 Next.js의 데이터 조회 및 성능 패턴이 차트와 표를 나누는 구현에 도움이 된다."}
+{"task_id":"t380","candidate_id":"uasl/team-okrs@7a95ee8c1302","grade":0,"process":false,"reason":"OKR 추적 화면은 운전자 수익 기능과 무관하다."}
+{"task_id":"t380","candidate_id":"uasl/vercel-react-best-practices@70f3b5aaf775","grade":3,"process":false,"reason":"서버와 클라이언트 렌더링 및 번들 크기 최적화를 직접 다뤄 제한된 하이드레이션과 80KB 목표에 맞는다."}
+{"task_id":"t380","candidate_id":"uasl/svg-logo-designer@d54de4c01dc1","grade":0,"process":false,"reason":"SVG 로고 제작은 수익 페이지 성능 구현과 무관하다."}
+{"task_id":"t380","candidate_id":"uasl/finance-metrics-quickref@dfe896ee13a2","grade":0,"process":false,"reason":"SaaS 투자와 가격 지표는 운전자별 수익 화면 구현과 무관하다."}
+{"task_id":"t380","candidate_id":"uasl/scaffold-nextjs@3d1152f5d9d0","grade":1,"process":false,"reason":"Next.js 프로젝트 구성은 인접하지만 새 turborepo 생성은 기존 경로의 페이지 구현에 필요하지 않다."}
+{"task_id":"t380","candidate_id":"uasl/react-patterns@73d1ecc06997","grade":3,"process":false,"reason":"React 구성과 번들 크기 문제를 우선 점검하는 지침이 성능 우선 페이지 구현을 직접 돕는다."}
+{"task_id":"t380","candidate_id":"uasl/nextjs-turbopack@b0af0186e13a","grade":2,"process":false,"reason":"번들 분석과 버전별 Next.js 빌드 지침이 경로의 클라이언트 JS 예산 확인에 도움이 된다."}
+{"task_id":"t380","candidate_id":"uasl/segment-cdp@42e8e765d937","grade":0,"process":false,"reason":"Segment 추적 도입은 요청한 수익 기능과 성능 예산에 도움이 되지 않는다."}
+{"task_id":"t380","candidate_id":"uasl/meeting-notes@da1c35784ab9","grade":0,"process":false,"reason":"회의 기록 페이지는 운전자 수익 화면과 무관하다."}
+{"task_id":"t380","candidate_id":"uasl/slides@8f50ae3bf0c5","grade":1,"process":false,"reason":"데이터 시각화는 인접하지만 HTML 발표 자료 제작은 Next.js 수익 페이지와 다르다."}
+{"task_id":"t380","candidate_id":"uasl/wireframe-sketch@715426b3232f","grade":1,"process":false,"reason":"화면 배치 탐색은 주변 도움이지만 저충실도 HTML 시안은 성능 제약을 만족하는 구현을 다루지 않는다."}
+{"task_id":"t380","candidate_id":"uasl/dashboard@537186e4443a","grade":1,"process":false,"reason":"가벼운 SVG 차트 배치는 참고 가능하지만 단일 HTML 대시보드 산출은 Next.js 서버 컴포넌트 방식과 다르다."}
+{"task_id":"t380","candidate_id":"uasl/next-upgrade@df465f7770a5","grade":0,"process":false,"reason":"Next.js 업그레이드는 수익 페이지 구현에 요구되지 않는다."}
+{"task_id":"t380","candidate_id":"uasl/next-best-practices@ee058f89acea","grade":3,"process":false,"reason":"서버 컴포넌트와 렌더링 및 성능 최적화 지침이 차트만 하이드레이션하는 요구에 직접 맞는다."}
+{"task_id":"t380","candidate_id":"uasl/dating-web@a74a01fd41b0","grade":1,"process":false,"reason":"차트 대시보드 디자인은 인접하지만 데이팅용 HTML 산출물은 요청한 페이지 구현과 다르다."}
+{"task_id":"t380","candidate_id":"uasl/focus-timeboxing-8020@4317b5bf1913","grade":0,"process":true,"reason":"개인 일정과 집중 시간 관리 절차는 페이지의 기술적 성능 최적화와 무관하다."}
+{"task_id":"t380","candidate_id":"uasl/universal-ai-skills@0128810b6ffe","grade":1,"process":true,"reason":"스킬 선택 절차는 일반적 작업 보조이지만 서버 렌더링이나 번들 예산을 직접 해결하지 않는다."}
+{"task_id":"t380","candidate_id":"uasl/flow@d1423e53e763","grade":1,"process":true,"reason":"절제된 모션과 성능 점검은 주변 도움이지만 요청에는 모션 구현이 없다."}
+{"task_id":"t380","candidate_id":"uasl/ramp-automation@25b168650188","grade":0,"process":false,"reason":"Ramp 회계 자동화는 자체 운전자 수익 페이지와 무관하다."}
+{"task_id":"t380","candidate_id":"uasl/next-cache-components@b22f6e134147","grade":2,"process":false,"reason":"Next.js의 동적 콘텐츠와 캐시 경계 지침이 서버 중심 수익 페이지 구성에 도움이 된다."}
+{"task_id":"t380","candidate_id":"uasl/perf-web-optimization@0e20e7b8cc98","grade":2,"process":false,"reason":"페이지 자산 최적화와 성능 예산 도구 안내가 클라이언트 용량 제약을 만족하는 데 도움이 된다."}
+{"task_id":"t380","candidate_id":"uasl/weekly-update@e18ba8d591b9","grade":0,"process":false,"reason":"팀 주간 업데이트 발표 자료는 운전자 수익 페이지와 무관하다."}
+{"task_id":"t380","candidate_id":"uasl/shadcn-ui@8c463642324a","grade":2,"process":false,"reason":"React 공통 UI 패턴과 구성 요소 조립은 정렬 표와 출금 버튼 구현을 돕고 요약상 전면 하이드레이션을 강제하지 않는다."}
+{"task_id":"t380","candidate_id":"uasl/gsap-react@79939b61e00a","grade":1,"process":false,"reason":"GSAP 클라이언트 애니메이션 지침은 인접하지만 차트만 하이드레이션하는 제한에서 추가 모션은 필요하지 않다."}
+{"task_id":"t380","candidate_id":"uasl/d3-visualization@739528fdf78d","grade":2,"process":false,"reason":"D3 차트 구성과 데이터 바인딩은 지정된 주간 막대 차트 구현에 도움이 되며 차트의 하이드레이션은 허용된다."}

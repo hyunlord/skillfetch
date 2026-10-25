@@ -1,0 +1,50 @@
+[
+ {
+  "id": "uasl/claude-native-docx@da77bd3e44ea#c3",
+  "only_fan_out_false_to_true": true,
+  "release": "{\"skill_id\": \"uasl/claude-native-docx@da77bd3e44ea\", \"id\": \"uasl/claude-native-docx@da77bd3e44ea#c3\", \"subject\": \"package-manager\", \"directive\": \"require\", \"object\": \"npm\", \"object_raw\": null, \"direction\": null, \"scope\": {\"artifact\": \"any\", \"phase\": \"any\", \"condition\": null}, \"strength\": \"must\", \"evidence\": {\"line_no\": 58, \"text\": \"Generate .docx files with JavaScript, then validate. Install: `npm install -g docx`\"}, \"section_heading\": \"Creating New Documents\", \"fan_out\": false}",
+  "staging": "{\"skill_id\": \"uasl/claude-native-docx@da77bd3e44ea\", \"id\": \"uasl/claude-native-docx@da77bd3e44ea#c3\", \"subject\": \"package-manager\", \"directive\": \"require\", \"object\": \"npm\", \"object_raw\": null, \"direction\": null, \"scope\": {\"artifact\": \"any\", \"phase\": \"any\", \"condition\": null}, \"strength\": \"must\", \"evidence\": {\"line_no\": 58, \"text\": \"Generate .docx files with JavaScript, then validate. Install: `npm install -g docx`\"}, \"section_heading\": \"Creating New Documents\", \"fan_out\": true}"
+ },
+ {
+  "id": "uasl/deploy-to-vercel@261a4caec244#c16",
+  "only_fan_out_false_to_true": true,
+  "release": "{\"skill_id\": \"uasl/deploy-to-vercel@261a4caec244\", \"id\": \"uasl/deploy-to-vercel@261a4caec244#c16\", \"subject\": \"package-manager\", \"directive\": \"require\", \"object\": \"npm\", \"object_raw\": null, \"direction\": null, \"scope\": {\"artifact\": \"any\", \"phase\": \"implement\", \"condition\": null}, \"strength\": \"must\", \"evidence\": {\"line_no\": 142, \"text\": \"npm install -g vercel\"}, \"section_heading\": \"Not linked + CLI not authenticated → Install, auth, link, deploy\", \"fan_out\": false}",
+  "staging": "{\"skill_id\": \"uasl/deploy-to-vercel@261a4caec244\", \"id\": \"uasl/deploy-to-vercel@261a4caec244#c16\", \"subject\": \"package-manager\", \"directive\": \"require\", \"object\": \"npm\", \"object_raw\": null, \"direction\": null, \"scope\": {\"artifact\": \"any\", \"phase\": \"implement\", \"condition\": null}, \"strength\": \"must\", \"evidence\": {\"line_no\": 142, \"text\": \"npm install -g vercel\"}, \"section_heading\": \"Not linked + CLI not authenticated → Install, auth, link, deploy\", \"fan_out\": true}"
+ },
+ {
+  "id": "uasl/detecting-sql-injection-via-waf-logs@18ecf4b7f84f#c1",
+  "only_fan_out_false_to_true": true,
+  "release": "{\"skill_id\": \"uasl/detecting-sql-injection-via-waf-logs@18ecf4b7f84f\", \"id\": \"uasl/detecting-sql-injection-via-waf-logs@18ecf4b7f84f#c1\", \"subject\": \"package-manager\", \"directive\": \"require\", \"object\": \"pip\", \"object_raw\": null, \"direction\": null, \"scope\": {\"artifact\": \"any\", \"phase\": \"any\", \"condition\": null}, \"strength\": \"must\", \"evidence\": {\"line_no\": 35, \"text\": \"Install dependencies: `pip install requests`\"}, \"section_heading\": \"Instructions\", \"fan_out\": false}",
+  "staging": "{\"skill_id\": \"uasl/detecting-sql-injection-via-waf-logs@18ecf4b7f84f\", \"id\": \"uasl/detecting-sql-injection-via-waf-logs@18ecf4b7f84f#c1\", \"subject\": \"package-manager\", \"directive\": \"require\", \"object\": \"pip\", \"object_raw\": null, \"direction\": null, \"scope\": {\"artifact\": \"any\", \"phase\": \"any\", \"condition\": null}, \"strength\": \"must\", \"evidence\": {\"line_no\": 35, \"text\": \"Install dependencies: `pip install requests`\"}, \"section_heading\": \"Instructions\", \"fan_out\": true}"
+ },
+ {
+  "id": "uasl/develop-web-game@c6a60b3baced#c35",
+  "only_fan_out_false_to_true": true,
+  "release": "{\"skill_id\": \"uasl/develop-web-game@c6a60b3baced\", \"id\": \"uasl/develop-web-game@c6a60b3baced#c35\", \"subject\": \"package-manager\", \"directive\": \"require\", \"object\": \"npm\", \"object_raw\": \"if `npx` is missing\", \"direction\": null, \"scope\": {\"artifact\": \"tests\", \"phase\": \"test\", \"condition\": null}, \"strength\": \"must\", \"evidence\": {\"line_no\": 138, \"text\": \"If `npx` is missing, install Node/npm and then install Playwright globally:\"}, \"section_heading\": \"Playwright Prerequisites\", \"fan_out\": false}",
+  "staging": "{\"skill_id\": \"uasl/develop-web-game@c6a60b3baced\", \"id\": \"uasl/develop-web-game@c6a60b3baced#c35\", \"subject\": \"package-manager\", \"directive\": \"require\", \"object\": \"npm\", \"object_raw\": \"if `npx` is missing\", \"direction\": null, \"scope\": {\"artifact\": \"tests\", \"phase\": \"test\", \"condition\": null}, \"strength\": \"must\", \"evidence\": {\"line_no\": 138, \"text\": \"If `npx` is missing, install Node/npm and then install Playwright globally:\"}, \"section_heading\": \"Playwright Prerequisites\", \"fan_out\": true}"
+ },
+ {
+  "id": "uasl/implementing-aes-encryption-for-data-at-rest@d2fba424b6a5#c6",
+  "only_fan_out_false_to_true": true,
+  "release": "{\"skill_id\": \"uasl/implementing-aes-encryption-for-data-at-rest@d2fba424b6a5\", \"id\": \"uasl/implementing-aes-encryption-for-data-at-rest@d2fba424b6a5#c6\", \"subject\": \"package-manager\", \"directive\": \"require\", \"object\": \"pip\", \"object_raw\": \"to install the cryptography library\", \"direction\": null, \"scope\": {\"artifact\": \"any\", \"phase\": \"any\", \"condition\": null}, \"strength\": \"must\", \"evidence\": {\"line_no\": 73, \"text\": \"1. Install the `cryptography` library: `pip install cryptography`\"}, \"section_heading\": \"Workflow\", \"fan_out\": false}",
+  "staging": "{\"skill_id\": \"uasl/implementing-aes-encryption-for-data-at-rest@d2fba424b6a5\", \"id\": \"uasl/implementing-aes-encryption-for-data-at-rest@d2fba424b6a5#c6\", \"subject\": \"package-manager\", \"directive\": \"require\", \"object\": \"pip\", \"object_raw\": \"to install the cryptography library\", \"direction\": null, \"scope\": {\"artifact\": \"any\", \"phase\": \"any\", \"condition\": null}, \"strength\": \"must\", \"evidence\": {\"line_no\": 73, \"text\": \"1. Install the `cryptography` library: `pip install cryptography`\"}, \"section_heading\": \"Workflow\", \"fan_out\": true}"
+ },
+ {
+  "id": "uasl/migrate-to-shoehorn@50bfd668fa65#c2",
+  "only_fan_out_false_to_true": true,
+  "release": "{\"skill_id\": \"uasl/migrate-to-shoehorn@50bfd668fa65\", \"id\": \"uasl/migrate-to-shoehorn@50bfd668fa65#c2\", \"subject\": \"package-manager\", \"directive\": \"require\", \"object\": \"npm\", \"object_raw\": \"install @total-typescript/shoehorn\", \"direction\": null, \"scope\": {\"artifact\": \"any\", \"phase\": \"any\", \"condition\": null}, \"strength\": \"must\", \"evidence\": {\"line_no\": 113, \"text\": \"- [ ] Install: `npm i @total-typescript/shoehorn`\"}, \"section_heading\": \"Workflow\", \"fan_out\": false}",
+  "staging": "{\"skill_id\": \"uasl/migrate-to-shoehorn@50bfd668fa65\", \"id\": \"uasl/migrate-to-shoehorn@50bfd668fa65#c2\", \"subject\": \"package-manager\", \"directive\": \"require\", \"object\": \"npm\", \"object_raw\": \"install @total-typescript/shoehorn\", \"direction\": null, \"scope\": {\"artifact\": \"any\", \"phase\": \"any\", \"condition\": null}, \"strength\": \"must\", \"evidence\": {\"line_no\": 113, \"text\": \"- [ ] Install: `npm i @total-typescript/shoehorn`\"}, \"section_heading\": \"Workflow\", \"fan_out\": true}"
+ },
+ {
+  "id": "uasl/pragmatic-programmer@d73a94281415#c12",
+  "only_fan_out_false_to_true": true,
+  "release": "{\"skill_id\": \"uasl/pragmatic-programmer@d73a94281415\", \"id\": \"uasl/pragmatic-programmer@d73a94281415#c12\", \"subject\": \"comments\", \"directive\": \"require\", \"object\": \"todo\", \"object_raw\": \"if you can't fix it now; with a ticket\", \"direction\": null, \"scope\": {\"artifact\": \"code\", \"phase\": \"any\", \"condition\": null}, \"strength\": \"must\", \"evidence\": {\"line_no\": 136, \"text\": \"If you can't fix it now, board it up: add a TODO with a ticket, disable the feature, replace with a stub\"}, \"section_heading\": \"Key insights\", \"fan_out\": false}",
+  "staging": "{\"skill_id\": \"uasl/pragmatic-programmer@d73a94281415\", \"id\": \"uasl/pragmatic-programmer@d73a94281415#c12\", \"subject\": \"comments\", \"directive\": \"require\", \"object\": \"todo\", \"object_raw\": \"if you can't fix it now; with a ticket\", \"direction\": null, \"scope\": {\"artifact\": \"code\", \"phase\": \"any\", \"condition\": null}, \"strength\": \"must\", \"evidence\": {\"line_no\": 136, \"text\": \"If you can't fix it now, board it up: add a TODO with a ticket, disable the feature, replace with a stub\"}, \"section_heading\": \"Key insights\", \"fan_out\": true}"
+ },
+ {
+  "id": "uasl/printable-cards@efc5dcdead0d#c16",
+  "only_fan_out_false_to_true": true,
+  "release": "{\"skill_id\": \"uasl/printable-cards@efc5dcdead0d\", \"id\": \"uasl/printable-cards@efc5dcdead0d#c16\", \"subject\": \"package-manager\", \"directive\": \"require\", \"object\": \"pip\", \"object_raw\": \"install weasyprint\", \"direction\": null, \"scope\": {\"artifact\": \"any\", \"phase\": \"any\", \"condition\": null}, \"strength\": \"must\", \"evidence\": {\"line_no\": 64, \"text\": \"Ensure `weasyprint` is installed: `pip install weasyprint`\"}, \"section_heading\": \"Dependencies\", \"fan_out\": false}",
+  "staging": "{\"skill_id\": \"uasl/printable-cards@efc5dcdead0d\", \"id\": \"uasl/printable-cards@efc5dcdead0d#c16\", \"subject\": \"package-manager\", \"directive\": \"require\", \"object\": \"pip\", \"object_raw\": \"install weasyprint\", \"direction\": null, \"scope\": {\"artifact\": \"any\", \"phase\": \"any\", \"condition\": null}, \"strength\": \"must\", \"evidence\": {\"line_no\": 64, \"text\": \"Ensure `weasyprint` is installed: `pip install weasyprint`\"}, \"section_heading\": \"Dependencies\", \"fan_out\": true}"
+ }
+]

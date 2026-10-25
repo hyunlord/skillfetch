@@ -1,0 +1,114 @@
+{
+ "s4-t026": {
+  "uasl/frontend-patterns@8f659ce2a0bd": {
+   "grade": 2,
+   "process": false
+  },
+  "uasl/vibe-security@6b07d0f651a7": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/helloleads-automation@f060aee0629f": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/bolt@c4895c710162": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/vercel-react-best-practices@70f3b5aaf775": {
+   "grade": 1,
+   "process": false
+  },
+  "anthropics-skills/pdf@9bc3a6e1ff66": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/n8n-code-javascript@203459f10f1d": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/five-agent-preflight-check@972573c45dcf": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/forge@a8efdfdbe817": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/fastapi-templates@effcd0de0b4c": {
+   "grade": 1,
+   "process": false
+  },
+  "anthropics-skills/docx@74e2b8b277a4": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/n8n-code-python@ba1cd974d317": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/gpt-tasteskill@134558e228c5": {
+   "grade": 0,
+   "process": false
+  }
+ },
+ "s4-t177": {
+  "uasl/n8n-expression-syntax@f1845451eb4d": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/acceptance-testing@7f713f1566e8": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/anvil@3a36e8410205": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/clay@6c9572941894": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/fastapi-endpoint@2a93d50c4970": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/n8n-code-python@ba1cd974d317": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/fastapi-templates@effcd0de0b4c": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/netsuite-automation@b615a37449c9": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/stream@94a72913c590": {
+   "grade": 2,
+   "process": false
+  },
+  "uasl/n8n-mcp-tools-expert@07b0be26e0fd": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/python-testing-patterns@e62d0f1ca316": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/component-identification-sizing@a9b4aa9f2de1": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/skyfire-automation@970a9884751c": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/cf-crawl@77a977c31001": {
+   "grade": 0,
+   "process": false
+  }
+ }
+}

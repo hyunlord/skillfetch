@@ -1,0 +1,30 @@
+{
+ "tasks_with_new_candidates": 373,
+ "calls": 373,
+ "added": 2143,
+ "grade_dist_added": {
+  "0": 1659,
+  "1": 384,
+  "2": 94,
+  "3": 6
+ },
+ "added_relevant": 100,
+ "relevant_v2": 915,
+ "relevant_v3": 1015,
+ "by_candidate": {
+  "R-a": {
+   "added": 990,
+   "relevant": 45
+  },
+  "R-b": {
+   "added": 1063,
+   "relevant": 52
+  },
+  "R-c": {
+   "added": 687,
+   "relevant": 42
+  }
+ },
+ "grading_problems": [],
+ "cost_usd": 7.06
+}

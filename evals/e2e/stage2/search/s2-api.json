@@ -1,0 +1,2044 @@
+{
+ "query": "Design and implement a bookmarks REST API with FastAPI and SQLite: Pydantic schemas, CRUD endpoints with tag filter and pagination, error handling (404, 409, 422) and pytest tests",
+ "profile": {
+  "path": "<e2e>/repos/s2-api",
+  "languages": [
+   "python"
+  ],
+  "frameworks": [
+   "fastapi",
+   "pydantic",
+   "pytest"
+  ],
+  "package_managers": [
+   "uv"
+  ],
+  "tags": [
+   "fastapi",
+   "pydantic",
+   "pytest",
+   "python",
+   "uv"
+  ],
+  "manifests": [
+   "pyproject.toml",
+   "uv.lock"
+  ]
+ },
+ "compact": {
+  "query": "Design and implement a bookmarks REST API with FastAPI and SQLite: Pydantic schemas, CRUD endpoints with tag filter and pagination, error handling (404, 409, 422) and pytest tests",
+  "results": [
+   {
+    "id": "uasl/fastapi-endpoint@2a93d50c4970",
+    "title": "fastapi-endpoint",
+    "summary": "Guides the agent through exploring an existing FastAPI project, asking clarifying questions, planning an endpoint implementation for approval, and then…",
+    "tier": "B",
+    "token_estimate": 3875
+   },
+   {
+    "id": "uasl/fastapi-templates@effcd0de0b4c",
+    "title": "fastapi-templates",
+    "summary": "Guides creation of structured FastAPI backend projects using async patterns, dependency injection, repository and service layers, authentication, and testing…",
+    "tier": "B",
+    "token_estimate": 3748
+   },
+   {
+    "id": "uasl/openapi-spec-generation@2d2c7a93b8f2",
+    "title": "openapi-spec-generation",
+    "summary": "Guides agents in creating and maintaining OpenAPI 3.1 specifications from design or code, validating API contracts, and generating SDKs and documentation.",
+    "tier": "B",
+    "token_estimate": 6137
+   },
+   {
+    "id": "uasl/builder@8d7f0953ade3",
+    "title": "builder",
+    "summary": "Guides the agent to implement production-ready, type-safe business logic, API integrations, and data models, with validation, error handling, and test handoffs.",
+    "tier": "B",
+    "token_estimate": 3007
+   },
+   {
+    "id": "uasl/python-testing-patterns@e62d0f1ca316",
+    "title": "python-testing-patterns",
+    "summary": "Guides the agent in designing and implementing Python tests using pytest patterns, fixtures, mocks, and specialized testing techniques.",
+    "tier": "B",
+    "token_estimate": 6281
+   },
+   {
+    "id": "uasl/integration-testing@62b51275be50",
+    "title": "integration-testing",
+    "summary": "Guides agents to write integration tests that exercise multiple components together, using real dependencies and suitable test frameworks.",
+    "tier": "B",
+    "token_estimate": 5792
+   },
+   {
+    "id": "uasl/python-error-handling@8dc34883a143",
+    "title": "python-error-handling",
+    "summary": "Guides agents to implement Python validation and error handling with meaningful exceptions, exception chaining, and resilient batch processing.",
+    "tier": "B",
+    "token_estimate": 2680
+   },
+   {
+    "id": "uasl/unit-testing@6c5fbb821103",
+    "title": "unit-testing",
+    "summary": "Guides the agent to write and improve isolated unit tests using common testing patterns, test doubles, naming conventions, and language-specific frameworks.",
+    "tier": "B",
+    "token_estimate": 6067
+   },
+   {
+    "id": "uasl/api-design@bba608f8c974",
+    "title": "api-design",
+    "summary": "Guides the agent in designing and reviewing REST API contracts, covering resource URLs, HTTP behavior, response formats, pagination, security, rate limits…",
+    "tier": "B",
+    "token_estimate": 3267
+   },
+   {
+    "id": "uasl/async-python-patterns@957ebfe54aa7",
+    "title": "async-python-patterns",
+    "summary": "Guides implementation of asynchronous Python applications using asyncio, concurrency patterns, and async I/O.",
+    "tier": "B",
+    "token_estimate": 4953
+   },
+   {
+    "id": "uasl/gateway@8350be122608",
+    "title": "gateway",
+    "summary": "Designs and reviews API contracts, producing OpenAPI specifications or GraphQL SDL along with examples, error formats, versioning recommendations, and…",
+    "tier": "B",
+    "token_estimate": 2681
+   },
+   {
+    "id": "uasl/capsule-crm-automation@97113fa8404d",
+    "title": "capsule-crm-automation",
+    "summary": "Use the Composio MCP integration to carry out Capsule CRM operations, including managing contacts, querying records, and tracking tasks, projects, and activity.",
+    "tier": "B",
+    "token_estimate": 1912
+   },
+   {
+    "id": "uasl/error-handling-patterns@4c19ee7d7821",
+    "title": "error-handling-patterns",
+    "summary": "Guides agents in handling errors across Python, JavaScript/TypeScript, Rust, and Go, including validation, cleanup, logging, and typed errors.",
+    "tier": "B",
+    "token_estimate": 4095
+   },
+   {
+    "id": "uasl/owasp-security@9847d3666f75",
+    "title": "owasp-security",
+    "summary": "Apply OWASP security practices when implementing or reviewing application and agent code.",
+    "tier": "B",
+    "token_estimate": 4271
+   },
+   {
+    "id": "uasl/n8n-workflow-patterns@c9641aab7a0b",
+    "title": "n8n-workflow-patterns",
+    "summary": "Guides agents in selecting, planning, building, validating, and deploying n8n workflows using common workflow patterns and a creation checklist.",
+    "tier": "B",
+    "token_estimate": 2839
+   },
+   {
+    "id": "uasl/wycheproof@8924e1e4bfb6",
+    "title": "wycheproof",
+    "summary": "Use Wycheproof test vectors to validate cryptographic implementations against known attacks and edge cases.",
+    "tier": "B",
+    "token_estimate": 4838
+   },
+   {
+    "id": "uasl/radar@a47ea6fd5f95",
+    "title": "radar",
+    "summary": "Add and refine tests, diagnose flaky behavior, and improve coverage while preserving product behavior.",
+    "tier": "B",
+    "token_estimate": 2701
+   },
+   {
+    "id": "anthropics-skills/mcp-builder@7e8426a435cb",
+    "title": "mcp-builder",
+    "summary": "Guides agents through researching, planning, implementing, testing, and evaluating MCP servers that connect LLMs to external services.",
+    "tier": "A",
+    "token_estimate": 2264
+   },
+   {
+    "id": "uasl/clean-code@f135cf4e9ff5",
+    "title": "clean-code",
+    "summary": "Guide the agent to write, review, and refactor readable, maintainable code using clear names, focused functions, disciplined comments and formatting, explicit…",
+    "tier": "B",
+    "token_estimate": 4775
+   },
+   {
+    "id": "uasl/contract-testing@b0f4c29940a9",
+    "title": "contract-testing",
+    "summary": "Guides agents in choosing and implementing contract-testing approaches to verify API compatibility between services.",
+    "tier": "B",
+    "token_estimate": 5767
+   },
+   {
+    "id": "uasl/linkhut-automation@9b0e45eac879",
+    "title": "linkhut-automation",
+    "summary": "Automate Linkhut operations through Rube MCP by discovering current tool schemas, checking the Linkhut connection, and executing schema-compliant workflows.",
+    "tier": "B",
+    "token_estimate": 730
+   },
+   {
+    "id": "uasl/bright-data-best-practices@15cfe1bca9b8",
+    "title": "bright-data-best-practices",
+    "summary": "Guides developers in choosing and integrating Bright Data APIs for scraping, search, structured extraction, and browser automation.",
+    "tier": "B",
+    "token_estimate": 3277
+   },
+   {
+    "id": "uasl/api-testing@4ada9a2fac88",
+    "title": "api-testing",
+    "summary": "Guides the agent in creating and running direct HTTP API tests with tools such as .http files, Bruno, Postman/Newman, and k6.",
+    "tier": "B",
+    "token_estimate": 3729
+   },
+   {
+    "id": "uasl/secure-coding-practices@cc37fcd8687e",
+    "title": "secure-coding-practices",
+    "summary": "Apply defensive security practices when designing, implementing, and reviewing applications.",
+    "tier": "B",
+    "token_estimate": 1490
+   },
+   {
+    "id": "uasl/vibe-security@6b07d0f651a7",
+    "title": "vibe-security",
+    "summary": "Apply secure-by-default practices when building or reviewing web applications, protecting access, user data, inputs, outputs, and common application attack…",
+    "tier": "B",
+    "token_estimate": 6182
+   },
+   {
+    "id": "uasl/shorten-rest-automation@60861026388c",
+    "title": "shorten-rest-automation",
+    "summary": "Automates Shorten Rest tasks through Rube MCP and Composio.",
+    "tier": "B",
+    "token_estimate": 748
+   },
+   {
+    "id": "uasl/next-best-practices@ee058f89acea",
+    "title": "next-best-practices",
+    "summary": "Apply Next.js best practices when writing or reviewing Next.js code, including using the optimized image component instead of plain HTML image tags.",
+    "tier": "B",
+    "token_estimate": 1008
+   },
+   {
+    "id": "uasl/python-design-patterns@5c0fbe0d4633",
+    "title": "python-design-patterns",
+    "summary": "Guides the agent to design and refactor Python code using simple, focused components, clear separation of concerns, composition, and dependency injection.",
+    "tier": "B",
+    "token_estimate": 3093
+   },
+   {
+    "id": "uasl/microservices-patterns@40adea69dde4",
+    "title": "microservices-patterns",
+    "summary": "Guide the design and implementation of microservices using service boundaries, inter-service communication, distributed data patterns, and resilience…",
+    "tier": "B",
+    "token_estimate": 4090
+   },
+   {
+    "id": "uasl/onesignal-rest-api-automation@69760a7d8416",
+    "title": "onesignal-rest-api-automation",
+    "summary": "Use Rube MCP to discover current OneSignal tool schemas, establish an active connection, and execute OneSignal workflows.",
+    "tier": "B",
+    "token_estimate": 1045
+   },
+   {
+    "id": "uasl/zapier-make-patterns@32e4bb74a0b3",
+    "title": "zapier-make-patterns",
+    "summary": "Guides the agent in choosing between Zapier, Make, and code-based solutions, and in designing reliable no-code automations.",
+    "tier": "B",
+    "token_estimate": 803
+   },
+   {
+    "id": "uasl/judge@6ea2e485149e",
+    "title": "judge",
+    "summary": "Use the Codex review CLI to review PRs, pre-commit changes, and commits, then assess findings for correctness, security, intent alignment, consistency, and…",
+    "tier": "B",
+    "token_estimate": 3644
+   },
+   {
+    "id": "uasl/deployment-pipeline-design@2a89fc6f32ff",
+    "title": "deployment-pipeline-design",
+    "summary": "Guides the design of multi-stage CI/CD pipelines, including deployment strategies, approval gates, verification, and rollback.",
+    "tier": "B",
+    "token_estimate": 2043
+   },
+   {
+    "id": "uasl/test-driven-development@0eebe2fe0e28",
+    "title": "test-driven-development",
+    "summary": "Follow a test-first development cycle: write a failing test, verify the failure, implement the minimum code to pass, then refactor while keeping tests green.",
+    "tier": "B",
+    "token_estimate": 2469
+   },
+   {
+    "id": "uasl/backend-patterns@3d87ff489f3e",
+    "title": "backend-patterns",
+    "summary": "Provides TypeScript-oriented backend patterns for API design, data access, query optimization, caching, error handling, authentication, rate limiting…",
+    "tier": "B",
+    "token_estimate": 3456
+   },
+   {
+    "id": "uasl/acceptance-testing@7f713f1566e8",
+    "title": "acceptance-testing",
+    "summary": "Use BDD acceptance-testing practices to turn business requirements into executable specifications, step definitions, and CI-validated tests.",
+    "tier": "B",
+    "token_estimate": 5775
+   },
+   {
+    "id": "uasl/api-ninjas-automation@e9437531d148",
+    "title": "api-ninjas-automation",
+    "summary": "Automates API Ninjas operations through Rube MCP by discovering current tool schemas, checking the API Ninjas connection, and executing schema-compliant tools.",
+    "tier": "B",
+    "token_estimate": 741
+   },
+   {
+    "id": "uasl/systematic-debug@6b158e105823",
+    "title": "systematic-debug",
+    "summary": "Use test bombs to narrow an unclear bug to a likely component, and layered tests to isolate the failing stage in a pipeline.",
+    "tier": "B",
+    "token_estimate": 3151
+   },
+   {
+    "id": "uasl/the-odds-api-automation@688dcc38656c",
+    "title": "the-odds-api-automation",
+    "summary": "Automate The Odds API operations through Rube MCP by discovering current tool schemas, checking the API connection, and executing schema-compliant tools.",
+    "tier": "B",
+    "token_estimate": 748
+   },
+   {
+    "id": "uasl/toggl-automation@ade179c88f7f",
+    "title": "toggl-automation",
+    "summary": "Use Rube MCP to automate Toggl Track time-entry, project, client, tag, and workspace workflows from natural-language requests.",
+    "tier": "B",
+    "token_estimate": 1532
+   },
+   {
+    "id": "uasl/forge@a8efdfdbe817",
+    "title": "forge",
+    "summary": "Use Forge to build small, runnable prototypes that validate ideas, relying on mocks where useful and keeping work ready for handoff.",
+    "tier": "B",
+    "token_estimate": 2430
+   },
+   {
+    "id": "uasl/event-store-design@c739ef000ad1",
+    "title": "event-store-design",
+    "summary": "Guides the agent in designing and implementing event stores for event-sourced systems, including technology selection, persistence patterns, and scaling…",
+    "tier": "B",
+    "token_estimate": 3635
+   },
+   {
+    "id": "uasl/design-everyday-things@ce8daf49b316",
+    "title": "design-everyday-things",
+    "summary": "Apply foundational human-centered design principles to evaluate and improve discoverability, feedback, error prevention, and users’ understanding of a product.",
+    "tier": "B",
+    "token_estimate": 4892
+   },
+   {
+    "id": "uasl/second-opinion@129803cad9d9",
+    "title": "second-opinion",
+    "summary": "Collect review parameters, inspect the selected diff, and run external code reviews with Codex, Gemini, or both.",
+    "tier": "B",
+    "token_estimate": 2486
+   },
+   {
+    "id": "uasl/procfu-automation@2ee6cc6595ec",
+    "title": "procfu-automation",
+    "summary": "Automate Procfu operations through Rube MCP by discovering current tool schemas, checking the Procfu connection, and executing schema-compliant tools.",
+    "tier": "B",
+    "token_estimate": 726
+   },
+   {
+    "id": "uasl/kit-automation@f2956d04180e",
+    "title": "kit-automation",
+    "summary": "Automate Kit operations through Rube MCP by discovering current tool schemas, checking the Kit connection, and executing schema-compliant tools.",
+    "tier": "B",
+    "token_estimate": 715
+   },
+   {
+    "id": "uasl/design-to-code@fae28f73cda0",
+    "title": "design-to-code",
+    "summary": "Guides the agent in translating design mockups into frontend code, prioritizing alignment with the design and the existing project.",
+    "tier": "B",
+    "token_estimate": 707
+   },
+   {
+    "id": "uasl/feature-forge@647addfd7f07",
+    "title": "feature-forge",
+    "summary": "Guides the agent through structured feature-requirements workshops, from discovery and stakeholder interviews to EARS requirements, acceptance criteria, and…",
+    "tier": "B",
+    "token_estimate": 1055
+   },
+   {
+    "id": "uasl/pragmatic-programmer@d73a94281415",
+    "title": "pragmatic-programmer",
+    "summary": "Apply pragmatic software-craft principles when designing, reviewing, or writing software, including DRY, orthogonality, contracts, reversibility, and…",
+    "tier": "B",
+    "token_estimate": 4514
+   },
+   {
+    "id": "uasl/zoho-mail-automation@fcbe9c3568f5",
+    "title": "zoho-mail-automation",
+    "summary": "Use Rube MCP to discover current Zoho Mail tools and schemas, establish an active connection, and execute mailbox workflows.",
+    "tier": "B",
+    "token_estimate": 1027
+   }
+  ]
+ },
+ "verbose": {
+  "query": "Design and implement a bookmarks REST API with FastAPI and SQLite: Pydantic schemas, CRUD endpoints with tag filter and pagination, error handling (404, 409, 422) and pytest tests",
+  "results": [
+   {
+    "id": "uasl/fastapi-endpoint@2a93d50c4970",
+    "title": "fastapi-endpoint",
+    "summary": "Guides the agent through exploring an existing FastAPI project, asking clarifying questions, planning an endpoint implementation for approval, and then building the endpoint and tests. It emphasizes async SQLAlchemy, Pydantic schemas, dependency-injected authentication, and API test coverage.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python"
+     ],
+     "frameworks": [
+      "fastapi",
+      "pydantic",
+      "sqlalchemy",
+      "pytest"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "backend",
+      "api",
+      "database",
+      "testing"
+     ]
+    },
+    "match_reasons": [
+     "'implement' in synthetic_queries",
+     "'api' in synthetic_queries, summary",
+     "'fastapi' in title, description, keywords, synthetic_queries, summary",
+     "'pydantic' in description, keywords, synthetic_queries, summary",
+     "'schemas' in synthetic_queries, summary",
+     "'crud' in keywords, synthetic_queries",
+     "'endpoints' in description",
+     "'pagination' in description, keywords, synthetic_queries",
+     "'pytest' in description, synthetic_queries",
+     "'tests' in description, synthetic_queries, summary",
+     "profile tag 'fastapi' matches tags.frameworks (x1.3)",
+     "profile tag 'pydantic' matches tags.frameworks (x1.3)",
+     "profile tag 'pytest' matches tags.frameworks (x1.3)",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 3875
+   },
+   {
+    "id": "uasl/fastapi-templates@effcd0de0b4c",
+    "title": "fastapi-templates",
+    "summary": "Guides creation of structured FastAPI backend projects using async patterns, dependency injection, repository and service layers, authentication, and testing examples. Includes templates for API endpoints, database access, and user management.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python"
+     ],
+     "frameworks": [
+      "fastapi",
+      "sqlalchemy",
+      "pydantic",
+      "pytest"
+     ],
+     "phase": [
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "backend",
+      "api",
+      "testing"
+     ]
+    },
+    "match_reasons": [
+     "'rest' in keywords, synthetic_queries",
+     "'api' in description, keywords, synthetic_queries, summary",
+     "'fastapi' in title, description, keywords, synthetic_queries, summary",
+     "'schemas' in synthetic_queries",
+     "'crud' in synthetic_queries",
+     "'endpoints' in synthetic_queries, summary",
+     "'error' in description",
+     "'handling' in description",
+     "profile tag 'fastapi' matches tags.frameworks (x1.3)",
+     "profile tag 'pydantic' matches tags.frameworks (x1.3)",
+     "profile tag 'pytest' matches tags.frameworks (x1.3)",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 3748
+   },
+   {
+    "id": "uasl/openapi-spec-generation@2d2c7a93b8f2",
+    "title": "openapi-spec-generation",
+    "summary": "Guides agents in creating and maintaining OpenAPI 3.1 specifications from design or code, validating API contracts, and generating SDKs and documentation. Includes patterns for reusable schemas, API descriptions, security, versioning, and validation tools.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python",
+      "typescript",
+      "yaml"
+     ],
+     "frameworks": [
+      "fastapi",
+      "express",
+      "tsoa"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "test",
+      "review"
+     ],
+     "domain": [
+      "api",
+      "backend",
+      "docs",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'design' in description, synthetic_queries, summary",
+     "'rest' in synthetic_queries",
+     "'api' in description, keywords, synthetic_queries, summary",
+     "'fastapi' in keywords, synthetic_queries",
+     "'schemas' in synthetic_queries, summary",
+     "'endpoints' in synthetic_queries",
+     "profile tag 'fastapi' matches tags.frameworks (x1.3)",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 6137
+   },
+   {
+    "id": "uasl/builder@8d7f0953ade3",
+    "title": "builder",
+    "summary": "Guides the agent to implement production-ready, type-safe business logic, API integrations, and data models, with validation, error handling, and test handoffs. It emphasizes TypeScript strictness, domain-appropriate patterns, and Japanese final outputs.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "typescript",
+      "go",
+      "python"
+     ],
+     "frameworks": [
+      "zod",
+      "pydantic",
+      "tanstack query",
+      "zustand",
+      "xstate"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "test",
+      "review"
+     ],
+     "domain": [
+      "backend",
+      "api",
+      "data-modeling",
+      "validation",
+      "state-management",
+      "event-sourcing"
+     ]
+    },
+    "match_reasons": [
+     "'design' in synthetic_queries",
+     "'implement' in synthetic_queries, summary",
+     "'api' in description, keywords, synthetic_queries, summary",
+     "'crud' in synthetic_queries",
+     "'error' in keywords, summary",
+     "'handling' in keywords, summary",
+     "profile tag 'pydantic' matches tags.frameworks (x1.3)",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 3007
+   },
+   {
+    "id": "uasl/python-testing-patterns@e62d0f1ca316",
+    "title": "python-testing-patterns",
+    "summary": "Guides the agent in designing and implementing Python tests using pytest patterns, fixtures, mocks, and specialized testing techniques. It emphasizes focused, isolated tests and meaningful coverage of failure behavior.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python"
+     ],
+     "frameworks": [
+      "pytest",
+      "hypothesis",
+      "freezegun",
+      "unittest.mock"
+     ],
+     "phase": [
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "testing",
+      "backend"
+     ]
+    },
+    "match_reasons": [
+     "'implement' in description",
+     "'api' in synthetic_queries",
+     "'error' in synthetic_queries",
+     "'pytest' in description, keywords, synthetic_queries, summary",
+     "'tests' in description, synthetic_queries, summary",
+     "profile tag 'pytest' matches tags.frameworks (x1.3)",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 6281
+   },
+   {
+    "id": "uasl/integration-testing@62b51275be50",
+    "title": "integration-testing",
+    "summary": "Guides agents to write integration tests that exercise multiple components together, using real dependencies and suitable test frameworks. Covers test isolation, API testing patterns, database cleanup, and CI configuration for Testcontainers.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "typescript",
+      "csharp",
+      "java",
+      "python",
+      "go"
+     ],
+     "frameworks": [
+      "testcontainers",
+      "vitest",
+      "xunit",
+      "pytest",
+      "supertest",
+      "asp.net",
+      "spring-boot"
+     ],
+     "phase": [
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "testing",
+      "backend",
+      "ci"
+     ]
+    },
+    "match_reasons": [
+     "'api' in keywords, synthetic_queries, summary",
+     "'endpoints' in synthetic_queries",
+     "'pytest' in description, keywords",
+     "'tests' in description, synthetic_queries, summary",
+     "profile tag 'pytest' matches tags.frameworks (x1.3)",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 5792
+   },
+   {
+    "id": "uasl/python-error-handling@8dc34883a143",
+    "title": "python-error-handling",
+    "summary": "Guides agents to implement Python validation and error handling with meaningful exceptions, exception chaining, and resilient batch processing. It also recommends practices for domain-type conversion, progress reporting, logging, and testing error paths.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python"
+     ],
+     "frameworks": [],
+     "phase": [
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "backend",
+      "validation",
+      "error-handling",
+      "api",
+      "testing"
+     ]
+    },
+    "match_reasons": [
+     "'implement' in summary",
+     "'api' in synthetic_queries",
+     "'pydantic' in keywords",
+     "'error' in title, description, keywords, synthetic_queries, summary",
+     "'handling' in title, description, keywords, synthetic_queries, summary",
+     "'tests' in synthetic_queries",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 2680
+   },
+   {
+    "id": "uasl/unit-testing@6c5fbb821103",
+    "title": "unit-testing",
+    "summary": "Guides the agent to write and improve isolated unit tests using common testing patterns, test doubles, naming conventions, and language-specific frameworks. Emphasizes focused, deterministic tests and meaningful coverage.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "c#",
+      "go",
+      "java",
+      "javascript",
+      "python",
+      "typescript"
+     ],
+     "frameworks": [
+      "autofixture",
+      "jest",
+      "junit 5",
+      "mstest",
+      "nunit",
+      "pytest",
+      "vitest",
+      "xunit"
+     ],
+     "phase": [
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "testing"
+     ]
+    },
+    "match_reasons": [
+     "'api' in description",
+     "'error' in synthetic_queries",
+     "'pytest' in description, keywords, synthetic_queries",
+     "'tests' in description, synthetic_queries, summary",
+     "profile tag 'pytest' matches tags.frameworks (x1.3)",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 6067
+   },
+   {
+    "id": "uasl/api-design@bba608f8c974",
+    "title": "api-design",
+    "summary": "Guides the agent in designing and reviewing REST API contracts, covering resource URLs, HTTP behavior, response formats, pagination, security, rate limits, and versioning. It also provides implementation patterns and a checklist for endpoint readiness.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "typescript",
+      "python",
+      "go"
+     ],
+     "frameworks": [
+      "next.js",
+      "django rest framework"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "review"
+     ],
+     "domain": [
+      "api",
+      "backend",
+      "security"
+     ]
+    },
+    "match_reasons": [
+     "'design' in title, description, synthetic_queries",
+     "'rest' in description, keywords, synthetic_queries, summary",
+     "'api' in title, description, keywords, synthetic_queries, summary",
+     "'endpoints' in keywords, synthetic_queries",
+     "'pagination' in description, keywords, synthetic_queries, summary",
+     "'error' in description",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 3267
+   },
+   {
+    "id": "uasl/async-python-patterns@957ebfe54aa7",
+    "title": "async-python-patterns",
+    "summary": "Guides implementation of asynchronous Python applications using asyncio, concurrency patterns, and async I/O. It emphasizes keeping call paths consistently synchronous or asynchronous, avoiding event-loop blocking, and offloading synchronous library calls when needed.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python"
+     ],
+     "frameworks": [
+      "asyncio",
+      "aiohttp",
+      "fastapi",
+      "sanic",
+      "httpx",
+      "pytest-asyncio"
+     ],
+     "phase": [
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "backend",
+      "concurrency",
+      "async programming",
+      "testing"
+     ]
+    },
+    "match_reasons": [
+     "'implement' in synthetic_queries",
+     "'api' in synthetic_queries",
+     "'pytest' in synthetic_queries",
+     "'tests' in synthetic_queries",
+     "profile tag 'fastapi' matches tags.frameworks (x1.3)",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 4953
+   },
+   {
+    "id": "uasl/gateway@8350be122608",
+    "title": "gateway",
+    "summary": "Designs and reviews API contracts, producing OpenAPI specifications or GraphQL SDL along with examples, error formats, versioning recommendations, and security considerations. Favors backward compatibility, routes implementation work elsewhere, and records API design decisions in project files.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "plan",
+      "review"
+     ],
+     "domain": [
+      "api",
+      "backend",
+      "docs",
+      "security"
+     ]
+    },
+    "match_reasons": [
+     "'design' in description, synthetic_queries, summary",
+     "'rest' in description, keywords, synthetic_queries",
+     "'api' in description, keywords, synthetic_queries, summary",
+     "'schemas' in keywords",
+     "'endpoints' in synthetic_queries",
+     "'pagination' in synthetic_queries",
+     "'error' in summary"
+    ],
+    "token_estimate": 2681
+   },
+   {
+    "id": "uasl/capsule-crm-automation@97113fa8404d",
+    "title": "capsule-crm-automation",
+    "summary": "Use the Composio MCP integration to carry out Capsule CRM operations, including managing contacts, querying records, and tracking tasks, projects, and activity. Follow the documented API field syntax and pagination requirements when retrieving or updating CRM data.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "plan",
+      "implement"
+     ],
+     "domain": [
+      "crm",
+      "automation",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'api' in summary",
+     "'tag' in synthetic_queries",
+     "'filter' in description, synthetic_queries",
+     "'pagination' in keywords, summary"
+    ],
+    "token_estimate": 1912
+   },
+   {
+    "id": "uasl/error-handling-patterns@4c19ee7d7821",
+    "title": "error-handling-patterns",
+    "summary": "Guides agents in handling errors across Python, JavaScript/TypeScript, Rust, and Go, including validation, cleanup, logging, and typed errors. Emphasizes preserving useful error context and handling errors at an appropriate level.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python",
+      "javascript",
+      "typescript",
+      "rust",
+      "go"
+     ],
+     "frameworks": [],
+     "phase": [
+      "implement",
+      "review"
+     ],
+     "domain": [
+      "backend",
+      "error-handling",
+      "reliability"
+     ]
+    },
+    "match_reasons": [
+     "'api' in synthetic_queries",
+     "'error' in title, description, keywords, synthetic_queries, summary",
+     "'handling' in title, description, keywords, summary",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 4095
+   },
+   {
+    "id": "uasl/owasp-security@9847d3666f75",
+    "title": "owasp-security",
+    "summary": "Apply OWASP security practices when implementing or reviewing application and agent code. Check for common vulnerabilities and favor secure handling of input, authentication, authorization, data, errors, and dependencies.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "javascript",
+      "typescript",
+      "python",
+      "java",
+      "c#",
+      "php",
+      "go",
+      "ruby",
+      "rust",
+      "swift",
+      "kotlin",
+      "c",
+      "c++",
+      "scala",
+      "r",
+      "perl",
+      "bash",
+      "lua",
+      "elixir",
+      "dart",
+      "powershell",
+      "sql"
+     ],
+     "frameworks": [
+      "next.js",
+      "express",
+      "flask"
+     ],
+     "phase": [
+      "implement",
+      "review"
+     ],
+     "domain": [
+      "security",
+      "web",
+      "backend",
+      "authentication",
+      "ai"
+     ]
+    },
+    "match_reasons": [
+     "'implement' in synthetic_queries",
+     "'api' in synthetic_queries",
+     "'error' in synthetic_queries",
+     "'handling' in description, synthetic_queries, summary",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 4271
+   },
+   {
+    "id": "uasl/n8n-workflow-patterns@c9641aab7a0b",
+    "title": "n8n-workflow-patterns",
+    "summary": "Guides agents in selecting, planning, building, validating, and deploying n8n workflows using common workflow patterns and a creation checklist. It also provides practical guidance for common workflow components, data handling, authentication, and error handling.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "javascript",
+      "python"
+     ],
+     "frameworks": [
+      "n8n"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "test",
+      "review"
+     ],
+     "domain": [
+      "workflow-automation",
+      "integrations",
+      "webhooks",
+      "databases",
+      "ai",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'api' in description, synthetic_queries",
+     "'pagination' in synthetic_queries",
+     "'error' in keywords, summary",
+     "'handling' in keywords, summary",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 2839
+   },
+   {
+    "id": "uasl/wycheproof@8924e1e4bfb6",
+    "title": "wycheproof",
+    "summary": "Use Wycheproof test vectors to validate cryptographic implementations against known attacks and edge cases. Integrate the vectors into test harnesses and CI to check valid, invalid, and acceptable cases.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python",
+      "javascript",
+      "java"
+     ],
+     "frameworks": [
+      "pytest",
+      "mocha"
+     ],
+     "phase": [
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "cryptography",
+      "testing",
+      "security"
+     ]
+    },
+    "match_reasons": [
+     "'pytest' in synthetic_queries",
+     "'tests' in synthetic_queries",
+     "profile tag 'pytest' matches tags.frameworks (x1.3)",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 4838
+   },
+   {
+    "id": "uasl/radar@a47ea6fd5f95",
+    "title": "radar",
+    "summary": "Add and refine tests, diagnose flaky behavior, and improve coverage while preserving product behavior. Follow the project’s existing testing conventions and verify changes with tests and relevant references.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "javascript",
+      "typescript",
+      "python",
+      "go",
+      "rust",
+      "java"
+     ],
+     "frameworks": [
+      "vitest",
+      "jest",
+      "pytest",
+      "testify",
+      "junit 5"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "test",
+      "review"
+     ],
+     "domain": [
+      "testing",
+      "coverage",
+      "ci",
+      "reliability"
+     ]
+    },
+    "match_reasons": [
+     "'api' in synthetic_queries",
+     "'tests' in description, keywords, synthetic_queries, summary",
+     "profile tag 'pytest' matches tags.frameworks (x1.3)",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 2701
+   },
+   {
+    "id": "anthropics-skills/mcp-builder@7e8426a435cb",
+    "title": "mcp-builder",
+    "summary": "Guides agents through researching, planning, implementing, testing, and evaluating MCP servers that connect LLMs to external services. It emphasizes discoverable tools, comprehensive API coverage, structured schemas and responses, and realistic evaluations.",
+    "tier": "A",
+    "tags": {
+     "languages": [
+      "python",
+      "typescript"
+     ],
+     "frameworks": [
+      "fastmcp",
+      "mcp sdk",
+      "pydantic",
+      "zod"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "test",
+      "review"
+     ],
+     "domain": [
+      "mcp",
+      "api",
+      "backend",
+      "tooling",
+      "testing"
+     ]
+    },
+    "match_reasons": [
+     "'design' in synthetic_queries",
+     "'api' in keywords, synthetic_queries, summary",
+     "'schemas' in keywords, synthetic_queries, summary",
+     "'pagination' in keywords",
+     "profile tag 'pydantic' matches tags.frameworks (x1.3)",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 2264
+   },
+   {
+    "id": "uasl/clean-code@f135cf4e9ff5",
+    "title": "clean-code",
+    "summary": "Guide the agent to write, review, and refactor readable, maintainable code using clear names, focused functions, disciplined comments and formatting, explicit error handling, and clean tests. It also calls for scoring code quality and identifying improvements when reviewing or writing code.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "implement",
+      "review",
+      "test",
+      "format"
+     ],
+     "domain": [
+      "code-quality",
+      "testing",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'error' in description, keywords, synthetic_queries, summary",
+     "'handling' in description, keywords, synthetic_queries, summary",
+     "'tests' in synthetic_queries, summary"
+    ],
+    "token_estimate": 4775
+   },
+   {
+    "id": "uasl/contract-testing@b0f4c29940a9",
+    "title": "contract-testing",
+    "summary": "Guides agents in choosing and implementing contract-testing approaches to verify API compatibility between services. Covers Pact workflows, provider verification, Pact Broker and deployment checks, PactFlow, and Spring Cloud Contract.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "typescript",
+      "javascript",
+      "csharp",
+      "java",
+      "kotlin",
+      "groovy",
+      "python",
+      "go",
+      "ruby",
+      "rust"
+     ],
+     "frameworks": [
+      "pact",
+      "pactflow",
+      "spring cloud contract",
+      "pactnet",
+      "pact jvm",
+      "vitest"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "testing",
+      "backend",
+      "api",
+      "microservices",
+      "ci/cd"
+     ]
+    },
+    "match_reasons": [
+     "'api' in description, keywords, synthetic_queries, summary",
+     "'tests' in description, synthetic_queries",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 5767
+   },
+   {
+    "id": "uasl/linkhut-automation@9b0e45eac879",
+    "title": "linkhut-automation",
+    "summary": "Automate Linkhut operations through Rube MCP by discovering current tool schemas, checking the Linkhut connection, and executing schema-compliant workflows. Reuse sessions within a workflow and handle pagination until results are complete.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [
+      "composio",
+      "rube mcp"
+     ],
+     "phase": [
+      "implement"
+     ],
+     "domain": [
+      "automation",
+      "tooling",
+      "integrations"
+     ]
+    },
+    "match_reasons": [
+     "'bookmarks' in synthetic_queries",
+     "'schemas' in description, keywords, synthetic_queries, summary",
+     "'pagination' in keywords, summary",
+     "'error' in synthetic_queries"
+    ],
+    "token_estimate": 730
+   },
+   {
+    "id": "uasl/bright-data-best-practices@15cfe1bca9b8",
+    "title": "bright-data-best-practices",
+    "summary": "Guides developers in choosing and integrating Bright Data APIs for scraping, search, structured extraction, and browser automation. Provides practical authentication, request, polling, and session guidance for Web Unlocker, SERP, Web Scraper, and Browser APIs.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "javascript",
+      "python"
+     ],
+     "frameworks": [
+      "playwright",
+      "puppeteer",
+      "selenium"
+     ],
+     "phase": [
+      "plan",
+      "implement"
+     ],
+     "domain": [
+      "web scraping",
+      "browser automation",
+      "search",
+      "apis",
+      "data extraction"
+     ]
+    },
+    "match_reasons": [
+     "'implement' in description",
+     "'api' in description, keywords, synthetic_queries",
+     "'handling' in synthetic_queries",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 3277
+   },
+   {
+    "id": "uasl/api-testing@4ada9a2fac88",
+    "title": "api-testing",
+    "summary": "Guides the agent in creating and running direct HTTP API tests with tools such as .http files, Bruno, Postman/Newman, and k6. Covers assertions, environment configuration, secret handling, and CI integration.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "javascript"
+     ],
+     "frameworks": [],
+     "phase": [
+      "test"
+     ],
+     "domain": [
+      "api",
+      "testing",
+      "ci",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'rest' in description",
+     "'api' in title, description, keywords, synthetic_queries, summary",
+     "'endpoints' in description, synthetic_queries",
+     "'error' in synthetic_queries",
+     "'handling' in summary",
+     "'tests' in description, synthetic_queries, summary",
+     "skill languages ['javascript'] are not the repo's ['python'] (x0.5)"
+    ],
+    "token_estimate": 3729
+   },
+   {
+    "id": "uasl/secure-coding-practices@cc37fcd8687e",
+    "title": "secure-coding-practices",
+    "summary": "Apply defensive security practices when designing, implementing, and reviewing applications. Validate inputs, protect sensitive data, use secure authentication and cryptography, and check dependencies and error-handling paths.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "plan",
+      "implement",
+      "test",
+      "review"
+     ],
+     "domain": [
+      "security",
+      "backend",
+      "testing",
+      "code-review",
+      "dependencies"
+     ]
+    },
+    "match_reasons": [
+     "'api' in synthetic_queries",
+     "'error' in keywords, summary",
+     "'handling' in description, keywords, synthetic_queries, summary"
+    ],
+    "token_estimate": 1490
+   },
+   {
+    "id": "uasl/vibe-security@6b07d0f651a7",
+    "title": "vibe-security",
+    "summary": "Apply secure-by-default practices when building or reviewing web applications, protecting access, user data, inputs, outputs, and common application attack surfaces. Choose restrictive security options while preserving functionality.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "java",
+      "python",
+      "php",
+      "javascript",
+      "csharp"
+     ],
+     "frameworks": [
+      "react",
+      "vue",
+      "apollo"
+     ],
+     "phase": [
+      "implement",
+      "review"
+     ],
+     "domain": [
+      "security",
+      "web",
+      "backend",
+      "frontend",
+      "api"
+     ]
+    },
+    "match_reasons": [
+     "'api' in synthetic_queries",
+     "'endpoints' in synthetic_queries",
+     "'handling' in synthetic_queries",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 6182
+   },
+   {
+    "id": "uasl/shorten-rest-automation@60861026388c",
+    "title": "shorten-rest-automation",
+    "summary": "Automates Shorten Rest tasks through Rube MCP and Composio. The skill directs the agent to discover current tool schemas, verify the Shorten Rest connection, and execute schema-compliant workflows.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [
+      "composio",
+      "rube mcp"
+     ],
+     "phase": [
+      "implement"
+     ],
+     "domain": [
+      "automation",
+      "integrations",
+      "productivity",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'rest' in title, description, keywords, synthetic_queries, summary",
+     "'schemas' in description, synthetic_queries, summary",
+     "'pagination' in keywords"
+    ],
+    "token_estimate": 748
+   },
+   {
+    "id": "uasl/next-best-practices@ee058f89acea",
+    "title": "next-best-practices",
+    "summary": "Apply Next.js best practices when writing or reviewing Next.js code, including using the optimized image component instead of plain HTML image tags. The skill covers routing, server components, data patterns, rendering, and performance optimization.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [
+      "next.js",
+      "react"
+     ],
+     "phase": [
+      "implement",
+      "review"
+     ],
+     "domain": [
+      "frontend",
+      "backend"
+     ]
+    },
+    "match_reasons": [
+     "'tag' in synthetic_queries",
+     "'error' in description, synthetic_queries",
+     "'handling' in description"
+    ],
+    "token_estimate": 1008
+   },
+   {
+    "id": "uasl/python-design-patterns@5c0fbe0d4633",
+    "title": "python-design-patterns",
+    "summary": "Guides the agent to design and refactor Python code using simple, focused components, clear separation of concerns, composition, and dependency injection. It also recommends delaying abstractions, keeping functions focused, and testing layers in isolation.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python"
+     ],
+     "frameworks": [],
+     "phase": [
+      "plan",
+      "implement",
+      "review",
+      "test"
+     ],
+     "domain": [
+      "software-architecture",
+      "refactoring",
+      "code-quality",
+      "testing"
+     ]
+    },
+    "match_reasons": [
+     "'design' in title, description, keywords, synthetic_queries, summary",
+     "'api' in synthetic_queries",
+     "'tests' in synthetic_queries",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 3093
+   },
+   {
+    "id": "uasl/microservices-patterns@40adea69dde4",
+    "title": "microservices-patterns",
+    "summary": "Guide the design and implementation of microservices using service boundaries, inter-service communication, distributed data patterns, and resilience techniques. Apply architectural patterns such as API gateways, event-driven communication, sagas, and circuit breakers.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python"
+     ],
+     "frameworks": [
+      "fastapi"
+     ],
+     "phase": [
+      "plan",
+      "implement"
+     ],
+     "domain": [
+      "backend",
+      "architecture",
+      "distributed-systems",
+      "microservices"
+     ]
+    },
+    "match_reasons": [
+     "'design' in description, synthetic_queries, summary",
+     "'api' in keywords, summary",
+     "profile tag 'fastapi' matches tags.frameworks (x1.3)",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 4090
+   },
+   {
+    "id": "uasl/onesignal-rest-api-automation@69760a7d8416",
+    "title": "onesignal-rest-api-automation",
+    "summary": "Use Rube MCP to discover current OneSignal tool schemas, establish an active connection, and execute OneSignal workflows. Search existing resources before creating them, follow pagination, and handle errors, rate limits, and bulk operations as directed.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python"
+     ],
+     "frameworks": [],
+     "phase": [
+      "plan",
+      "implement"
+     ],
+     "domain": [
+      "integrations",
+      "automation",
+      "notifications",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'rest' in title",
+     "'api' in title",
+     "'schemas' in description, summary",
+     "'pagination' in keywords, summary",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 1045
+   },
+   {
+    "id": "uasl/zapier-make-patterns@32e4bb74a0b3",
+    "title": "zapier-make-patterns",
+    "summary": "Guides the agent in choosing between Zapier, Make, and code-based solutions, and in designing reliable no-code automations. Emphasizes dropdown selection, error handling, and modular workflow design.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [
+      "zapier",
+      "make"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "review"
+     ],
+     "domain": [
+      "automation",
+      "business-process-automation",
+      "no-code"
+     ]
+    },
+    "match_reasons": [
+     "'design' in synthetic_queries, summary",
+     "'error' in keywords, summary",
+     "'handling' in keywords, summary"
+    ],
+    "token_estimate": 803
+   },
+   {
+    "id": "uasl/judge@6ea2e485149e",
+    "title": "judge",
+    "summary": "Use the Codex review CLI to review PRs, pre-commit changes, and commits, then assess findings for correctness, security, intent alignment, consistency, and test quality. Produce evidence-based reports with severity classifications and recommended remediation routes, without modifying code.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "typescript",
+      "python",
+      "go"
+     ],
+     "frameworks": [
+      "react",
+      "next.js",
+      "express"
+     ],
+     "phase": [
+      "review"
+     ],
+     "domain": [
+      "code review",
+      "security",
+      "testing",
+      "git",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'error' in synthetic_queries",
+     "'handling' in synthetic_queries",
+     "'tests' in synthetic_queries",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 3644
+   },
+   {
+    "id": "uasl/deployment-pipeline-design@2a89fc6f32ff",
+    "title": "deployment-pipeline-design",
+    "summary": "Guides the design of multi-stage CI/CD pipelines, including deployment strategies, approval gates, verification, and rollback. It also recommends practices for testing, job execution, artifact handling, secrets, and monitoring.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "yaml",
+      "python",
+      "bash"
+     ],
+     "frameworks": [
+      "github actions",
+      "gitlab ci",
+      "azure pipelines",
+      "kubernetes",
+      "argo rollouts"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "ci/cd",
+      "devops",
+      "deployment",
+      "security",
+      "monitoring"
+     ]
+    },
+    "match_reasons": [
+     "'design' in title, description, synthetic_queries, summary",
+     "'handling' in summary",
+     "'tests' in synthetic_queries",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 2043
+   },
+   {
+    "id": "uasl/test-driven-development@0eebe2fe0e28",
+    "title": "test-driven-development",
+    "summary": "Follow a test-first development cycle: write a failing test, verify the failure, implement the minimum code to pass, then refactor while keeping tests green. Apply this approach to features, bug fixes, and integration debugging.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "testing",
+      "development"
+     ]
+    },
+    "match_reasons": [
+     "'implement' in synthetic_queries, summary",
+     "'tests' in keywords, synthetic_queries, summary"
+    ],
+    "token_estimate": 2469
+   },
+   {
+    "id": "uasl/backend-patterns@3d87ff489f3e",
+    "title": "backend-patterns",
+    "summary": "Provides TypeScript-oriented backend patterns for API design, data access, query optimization, caching, error handling, authentication, rate limiting, background jobs, and logging. Recommends choosing patterns suited to the complexity level.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "typescript",
+      "javascript"
+     ],
+     "frameworks": [
+      "express",
+      "next.js",
+      "supabase"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "review"
+     ],
+     "domain": [
+      "backend",
+      "api",
+      "database",
+      "authentication",
+      "caching",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'design' in description, keywords, synthetic_queries, summary",
+     "'rest' in synthetic_queries",
+     "'api' in description, keywords, synthetic_queries, summary",
+     "'error' in keywords, summary",
+     "'handling' in keywords, synthetic_queries, summary",
+     "skill languages ['javascript', 'typescript'] are not the repo's ['python'] (x0.5)"
+    ],
+    "token_estimate": 3456
+   },
+   {
+    "id": "uasl/acceptance-testing@7f713f1566e8",
+    "title": "acceptance-testing",
+    "summary": "Use BDD acceptance-testing practices to turn business requirements into executable specifications, step definitions, and CI-validated tests. Apply the guidance across Gherkin- and Gauge-based frameworks and keep specifications useful as living documentation.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "java",
+      "javascript",
+      "typescript",
+      "ruby",
+      "c#",
+      "python",
+      "go"
+     ],
+     "frameworks": [
+      "cucumber",
+      "specflow",
+      "reqnroll",
+      "behave",
+      "gauge",
+      "godog"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "test",
+      "review"
+     ],
+     "domain": [
+      "testing",
+      "acceptance testing",
+      "bdd",
+      "ci"
+     ]
+    },
+    "match_reasons": [
+     "'api' in description, synthetic_queries",
+     "'tests' in synthetic_queries, summary",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 5775
+   },
+   {
+    "id": "uasl/api-ninjas-automation@e9437531d148",
+    "title": "api-ninjas-automation",
+    "summary": "Automates API Ninjas operations through Rube MCP by discovering current tool schemas, checking the API Ninjas connection, and executing schema-compliant tools. It also specifies session reuse, memory parameters, and pagination handling.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [
+      "composio",
+      "rube mcp"
+     ],
+     "phase": [
+      "implement"
+     ],
+     "domain": [
+      "tooling",
+      "automation",
+      "api integration"
+     ]
+    },
+    "match_reasons": [
+     "'api' in title, description, keywords, synthetic_queries, summary",
+     "'schemas' in description, keywords, summary",
+     "'pagination' in keywords, summary",
+     "'handling' in summary"
+    ],
+    "token_estimate": 741
+   },
+   {
+    "id": "uasl/systematic-debug@6b158e105823",
+    "title": "systematic-debug",
+    "summary": "Use test bombs to narrow an unclear bug to a likely component, and layered tests to isolate the failing stage in a pipeline. Keep the resulting tests as regression coverage and use the identified failure to guide the fix.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "c#",
+      "go",
+      "python",
+      "typescript"
+     ],
+     "frameworks": [
+      "jest",
+      "pytest",
+      "vitest",
+      "xunit"
+     ],
+     "phase": [
+      "test",
+      "implement"
+     ],
+     "domain": [
+      "debugging",
+      "testing"
+     ]
+    },
+    "match_reasons": [
+     "'tests' in description, keywords, synthetic_queries, summary",
+     "profile tag 'pytest' matches tags.frameworks (x1.3)",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 3151
+   },
+   {
+    "id": "uasl/the-odds-api-automation@688dcc38656c",
+    "title": "the-odds-api-automation",
+    "summary": "Automate The Odds API operations through Rube MCP by discovering current tool schemas, checking the API connection, and executing schema-compliant tools. The skill also specifies session reuse, memory parameters, and pagination handling.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "implement"
+     ],
+     "domain": [
+      "api",
+      "automation",
+      "tooling",
+      "sports"
+     ]
+    },
+    "match_reasons": [
+     "'api' in title, description, keywords, synthetic_queries, summary",
+     "'schemas' in description, keywords, synthetic_queries, summary",
+     "'pagination' in keywords, summary",
+     "'handling' in summary"
+    ],
+    "token_estimate": 748
+   },
+   {
+    "id": "uasl/toggl-automation@ade179c88f7f",
+    "title": "toggl-automation",
+    "summary": "Use Rube MCP to automate Toggl Track time-entry, project, client, tag, and workspace workflows from natural-language requests. Discover workspace IDs before other operations and include required time-entry fields.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "implement"
+     ],
+     "domain": [
+      "productivity",
+      "time-tracking",
+      "integrations",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'design' in synthetic_queries",
+     "'tag' in synthetic_queries, summary"
+    ],
+    "token_estimate": 1532
+   },
+   {
+    "id": "uasl/forge@a8efdfdbe817",
+    "title": "forge",
+    "summary": "Use Forge to build small, runnable prototypes that validate ideas, relying on mocks where useful and keeping work ready for handoff. Prioritize learning and working demos over production polish, and report the prototype’s status, findings, debt, and next decision.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [
+      "express",
+      "fastify",
+      "msw",
+      "json-server"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "test",
+      "review"
+     ],
+     "domain": [
+      "frontend",
+      "backend",
+      "prototyping",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'api' in description, keywords, synthetic_queries",
+     "'crud' in synthetic_queries"
+    ],
+    "token_estimate": 2430
+   },
+   {
+    "id": "uasl/event-store-design@c739ef000ad1",
+    "title": "event-store-design",
+    "summary": "Guides the agent in designing and implementing event stores for event-sourced systems, including technology selection, persistence patterns, and scaling considerations. It recommends specific event-store practices for identifiers, versioning, indexing, concurrency, and event immutability.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python",
+      "sql"
+     ],
+     "frameworks": [],
+     "phase": [
+      "plan",
+      "implement"
+     ],
+     "domain": [
+      "backend",
+      "databases",
+      "event-sourcing"
+     ]
+    },
+    "match_reasons": [
+     "'design' in title, description, synthetic_queries",
+     "'implement' in description, synthetic_queries",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 3635
+   },
+   {
+    "id": "uasl/design-everyday-things@ce8daf49b316",
+    "title": "design-everyday-things",
+    "summary": "Apply foundational human-centered design principles to evaluate and improve discoverability, feedback, error prevention, and users’ understanding of a product. Use the framework to identify where interactions confuse users and suggest design improvements.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "plan",
+      "implement",
+      "test",
+      "review"
+     ],
+     "domain": [
+      "design",
+      "ux",
+      "frontend"
+     ]
+    },
+    "match_reasons": [
+     "'design' in title, description, keywords, synthetic_queries, summary",
+     "'error' in description, keywords, synthetic_queries, summary"
+    ],
+    "token_estimate": 4892
+   },
+   {
+    "id": "uasl/second-opinion@129803cad9d9",
+    "title": "second-opinion",
+    "summary": "Collect review parameters, inspect the selected diff, and run external code reviews with Codex, Gemini, or both. Handle inapplicable checks and tool failures, then present findings and compare reviews when both tools run.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "review"
+     ],
+     "domain": [
+      "code review",
+      "git",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'error' in keywords, synthetic_queries",
+     "'handling' in keywords, synthetic_queries"
+    ],
+    "token_estimate": 2486
+   },
+   {
+    "id": "uasl/procfu-automation@2ee6cc6595ec",
+    "title": "procfu-automation",
+    "summary": "Automate Procfu operations through Rube MCP by discovering current tool schemas, checking the Procfu connection, and executing schema-compliant tools. The skill also specifies session reuse, memory parameters, and pagination handling.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "implement"
+     ],
+     "domain": [
+      "tooling",
+      "automation"
+     ]
+    },
+    "match_reasons": [
+     "'schemas' in description, keywords, summary",
+     "'pagination' in keywords, summary",
+     "'error' in synthetic_queries",
+     "'handling' in summary"
+    ],
+    "token_estimate": 726
+   },
+   {
+    "id": "uasl/kit-automation@f2956d04180e",
+    "title": "kit-automation",
+    "summary": "Automate Kit operations through Rube MCP by discovering current tool schemas, checking the Kit connection, and executing schema-compliant tools. Follow the skill’s session, memory-parameter, and pagination practices during workflows.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "implement"
+     ],
+     "domain": [
+      "automation",
+      "email-marketing",
+      "integrations",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'schemas' in description, keywords, summary",
+     "'tag' in synthetic_queries",
+     "'pagination' in keywords, summary"
+    ],
+    "token_estimate": 715
+   },
+   {
+    "id": "uasl/design-to-code@fae28f73cda0",
+    "title": "design-to-code",
+    "summary": "Guides the agent in translating design mockups into frontend code, prioritizing alignment with the design and the existing project. It also calls for responsive behavior, clear interaction states, reusable components, and noting necessary deviations.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "implement",
+      "review"
+     ],
+     "domain": [
+      "frontend",
+      "design"
+     ]
+    },
+    "match_reasons": [
+     "'design' in title, description, keywords, synthetic_queries, summary",
+     "'implement' in synthetic_queries"
+    ],
+    "token_estimate": 707
+   },
+   {
+    "id": "uasl/feature-forge@647addfd7f07",
+    "title": "feature-forge",
+    "summary": "Guides the agent through structured feature-requirements workshops, from discovery and stakeholder interviews to EARS requirements, acceptance criteria, and an implementation checklist. It emphasizes tool-supported elicitation, testable requirements, security, and error handling.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "plan"
+     ],
+     "domain": [
+      "docs",
+      "planning",
+      "product",
+      "workflow"
+     ]
+    },
+    "match_reasons": [
+     "'error' in keywords, summary",
+     "'handling' in keywords, summary"
+    ],
+    "token_estimate": 1055
+   },
+   {
+    "id": "uasl/pragmatic-programmer@d73a94281415",
+    "title": "pragmatic-programmer",
+    "summary": "Apply pragmatic software-craft principles when designing, reviewing, or writing software, including DRY, orthogonality, contracts, reversibility, and estimation. When scoring software work, provide its current score and specific improvements needed to reach 10/10.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "plan",
+      "implement",
+      "review"
+     ],
+     "domain": [
+      "software-architecture",
+      "code-quality",
+      "engineering-practices",
+      "estimation"
+     ]
+    },
+    "match_reasons": [
+     "'design' in description, keywords, synthetic_queries",
+     "'rest' in synthetic_queries",
+     "'api' in synthetic_queries"
+    ],
+    "token_estimate": 4514
+   },
+   {
+    "id": "uasl/zoho-mail-automation@fcbe9c3568f5",
+    "title": "zoho-mail-automation",
+    "summary": "Use Rube MCP to discover current Zoho Mail tools and schemas, establish an active connection, and execute mailbox workflows. Follow the skill’s guidance for multi-step operations, pagination, error handling, rate limits, and bulk processing.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [
+      "composio",
+      "rube mcp"
+     ],
+     "phase": [
+      "implement"
+     ],
+     "domain": [
+      "email",
+      "tooling",
+      "integrations"
+     ]
+    },
+    "match_reasons": [
+     "'schemas' in description, summary",
+     "'pagination' in keywords, summary",
+     "'error' in synthetic_queries, summary",
+     "'handling' in summary"
+    ],
+    "token_estimate": 1027
+   }
+  ]
+ }
+}

@@ -1,0 +1,14 @@
+You are a coding agent about to start a developer's task in their repository. Before doing anything else you
+follow this step from your instructions (verbatim):
+
+1. **Restate the task in English**, whatever language the user wrote in, as three short
+   sentences: (a) what it builds or fixes, in domain nouns ("Conditional GET with ETags
+   for the product catalog API"); (b) the kind of work and how to do it: the approach the
+   user asked for ("Test-driven: write failing tests first", "Minimal diff", "Security
+   first"), or, if they did not say, the one that fits this task best ("Bug fix: find the
+   root cause first"); (c) the stack and target files ("Go net/http, `internal/catalog/`").
+   Add (d), the user's request copied word for word, as a fourth query. Do not explore
+   the code first; the search needs the task, not the code.
+
+You have not read any code yet. For each task below, write the `queries` you would pass to `search_skills` under that
+step, in the order the step gives them. Output JSON only: [{"id": "<task id>", "queries": ["<query>", ...]}] in the order given.

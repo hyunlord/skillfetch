@@ -1,0 +1,370 @@
+{"task_id": "t190", "candidate_id": "c01", "grade": 1, "process": true, "reason": "복잡한 목표 분해는 보조적이나 이미 구현 조건이 구체적이다."}
+{"task_id": "t190", "candidate_id": "c02", "grade": 2, "process": false, "reason": "적재 결과와 중복 여부를 ClickHouse 쿼리로 확인하는 데 유용하다."}
+{"task_id": "t190", "candidate_id": "c03", "grade": 2, "process": false, "reason": "대용량 CSV 파싱과 DB 삽입의 오류 전파를 설계하는 데 도움이 된다."}
+{"task_id": "t190", "candidate_id": "c04", "grade": 0, "process": true, "reason": "AgentOps 목표 파일 관리이며 데이터 적재 구현과 무관하다."}
+{"task_id": "t190", "candidate_id": "c05", "grade": 1, "process": true, "reason": "목표와 검증 범위 정리는 가능하지만 이미 수용 조건이 정해졌다."}
+{"task_id": "t190", "candidate_id": "c06", "grade": 0, "process": true, "reason": "ClickHouse 관리형 PostgreSQL 성능 진단은 대상 DB와 작업이 다르다."}
+{"task_id": "t190", "candidate_id": "c07", "grade": 1, "process": false, "reason": "입력 보안 일반론은 인접하지만 핵심 적재 요구를 해결하지 않는다."}
+{"task_id": "t190", "candidate_id": "c08", "grade": 0, "process": false, "reason": "NHL 경기 데이터는 전력 계량 CSV와 무관하다."}
+{"task_id": "t190", "candidate_id": "c09", "grade": 3, "process": false, "reason": "ClickHouse 데이터 엔지니어링과 DB 패턴이 적재 설계를 직접 안내한다."}
+{"task_id": "t190", "candidate_id": "c10", "grade": 2, "process": false, "reason": "배치 ETL과 데이터 품질 설계가 CSV 적재에 도움이 된다."}
+{"task_id": "t190", "candidate_id": "c11", "grade": 0, "process": false, "reason": "Word 문서 처리 작업이 아니다."}
+{"task_id": "t190", "candidate_id": "c12", "grade": 1, "process": true, "reason": "코드 목표 분해는 보조적이나 단일 모듈의 요구가 이미 명확하다."}
+{"task_id": "t190", "candidate_id": "c13", "grade": 1, "process": true, "reason": "목표 패키지 작성 절차는 구현에 간접적으로만 기여한다."}
+{"task_id": "t190", "candidate_id": "c14", "grade": 0, "process": false, "reason": "Excel 통합 자동화는 Rust 스트리밍 적재와 다르다."}
+{"task_id": "t190", "candidate_id": "c15", "grade": 0, "process": true, "reason": "불명확한 제품 구상을 정리하는 작업이 아니다."}
+{"task_id": "t190", "candidate_id": "c16", "grade": 3, "process": false, "reason": "ClickHouse 스키마와 적재 규칙이 배치 및 중복 제거 요구에 직접 맞는다."}
+{"task_id": "t190", "candidate_id": "c17", "grade": 1, "process": false, "reason": "CSV 파일 처리는 인접하지만 대용량 Rust 적재 파이프라인 지침은 아니다."}
+{"task_id": "t190", "candidate_id": "c18", "grade": 0, "process": true, "reason": "Kotlin Spring 저장소 전용 탐색은 Rust 모듈에 맞지 않는다."}
+{"task_id": "t190", "candidate_id": "c19", "grade": 0, "process": false, "reason": "광고 전환 이벤트 API는 유틸리티 CSV 적재와 다르다."}
+{"task_id": "t190", "candidate_id": "c20", "grade": 1, "process": true, "reason": "ClickHouse 분석 쿼리는 검증에 일부 쓰이지만 분석 지표 정의가 주목적이다."}
+{"task_id": "t190", "candidate_id": "c21", "grade": 0, "process": false, "reason": "Google Ads 전환 추적과 무관하다."}
+{"task_id": "t190", "candidate_id": "c22", "grade": 0, "process": true, "reason": "기술 후보 비교가 아니라 이미 선택한 크레이트로 구현하는 작업이다."}
+{"task_id": "t190", "candidate_id": "c23", "grade": 0, "process": false, "reason": "청구서 정리와 무관하다."}
+{"task_id": "t190", "candidate_id": "c24", "grade": 0, "process": true, "reason": "조직 OKR 수립과 무관하다."}
+{"task_id": "t190", "candidate_id": "c25", "grade": 1, "process": false, "reason": "개발용 ClickHouse 운영은 인접하지만 서버 설치 요청은 아니다."}
+{"task_id": "t190", "candidate_id": "c26", "grade": 1, "process": true, "reason": "복제 검증 설계는 일부 참고되나 Alibaba 동기화 작업은 아니다."}
+{"task_id": "t190", "candidate_id": "c27", "grade": 0, "process": false, "reason": "Node.js ClickHouse 클라이언트는 지정된 Rust 스택과 다르다."}
+{"task_id": "t190", "candidate_id": "c28", "grade": 0, "process": false, "reason": "GitLab 배포 분석 데이터 쿼리는 대상 데이터와 다르다."}
+{"task_id": "t190", "candidate_id": "c29", "grade": 0, "process": false, "reason": "Loki 레이블 설계와 무관하다."}
+{"task_id": "t190", "candidate_id": "c30", "grade": 0, "process": false, "reason": "웹 크롤링과 무관하다."}
+{"task_id": "t190", "candidate_id": "c31", "grade": 1, "process": true, "reason": "목표 계획은 간접적이며 구체적 적재 조건을 추가로 해결하지 않는다."}
+{"task_id": "t190", "candidate_id": "c32", "grade": 0, "process": false, "reason": "A/B 실험이나 통계 검정 작업이 아니다."}
+{"task_id": "t190", "candidate_id": "c33", "grade": 0, "process": false, "reason": "Obsidian 자료 수집과 무관하다."}
+{"task_id": "t190", "candidate_id": "c34", "grade": 0, "process": false, "reason": "Google 광고 잠재고객 API와 무관하다."}
+{"task_id": "t190", "candidate_id": "c35", "grade": 3, "process": false, "reason": "ClickHouse 스키마와 데이터 수집 지침이 정확한 적재 구현에 맞는다."}
+{"task_id": "t190", "candidate_id": "c36", "grade": 2, "process": false, "reason": "워크로드별 ClickHouse 구조 선택이 배치와 테이블 설계에 유용하다."}
+{"task_id": "t190", "candidate_id": "c37", "grade": 0, "process": false, "reason": "설문 자동화와 무관하다."}
+{"task_id": "t203", "candidate_id": "c01", "grade": 0, "process": true, "reason": "의료 연구 폴더 정리는 분류 모델 학습 개선과 다르다."}
+{"task_id": "t203", "candidate_id": "c02", "grade": 0, "process": false, "reason": "일반 AI 개발 설명만으로 불균형 학습 지원을 확인할 수 없다."}
+{"task_id": "t203", "candidate_id": "c03", "grade": 1, "process": true, "reason": "일반 개발 파이프라인은 보조적이나 학습 손실과 평가를 다루지 않는다."}
+{"task_id": "t203", "candidate_id": "c04", "grade": 0, "process": false, "reason": "다이어그램 생성은 모델 학습 문제에 필요하지 않다."}
+{"task_id": "t203", "candidate_id": "c05", "grade": 0, "process": false, "reason": "얼굴 영상 딥페이크 추론은 의료 문의 분류와 다르다."}
+{"task_id": "t203", "candidate_id": "c06", "grade": 0, "process": false, "reason": "TAO 이미지 분류는 텍스트 문의 분류 스택과 다르다."}
+{"task_id": "t203", "candidate_id": "c07", "grade": 0, "process": false, "reason": "Mermaid 문서화와 무관하다."}
+{"task_id": "t203", "candidate_id": "c08", "grade": 0, "process": false, "reason": "ST-GCN 포즈 분류는 문의 텍스트 모델과 다르다."}
+{"task_id": "t203", "candidate_id": "c09", "grade": 2, "process": false, "reason": "텍스트 분류 평가와 도메인 적응은 클래스별 성능 개선에 유용하다."}
+{"task_id": "t203", "candidate_id": "c10", "grade": 0, "process": false, "reason": "이메일 자동 분류 사용은 기존 의료 모델 재학습을 안내하지 않는다."}
+{"task_id": "t203", "candidate_id": "c11", "grade": 0, "process": true, "reason": "동작 보존 리팩터링은 모델 동작을 변경하려는 요구와 다르다."}
+{"task_id": "t203", "candidate_id": "c12", "grade": 0, "process": false, "reason": "구체적 학습이나 평가 지침이 없는 일반 설명이다."}
+{"task_id": "t203", "candidate_id": "c13", "grade": 0, "process": false, "reason": "Linear 이슈 라벨링과 무관하다."}
+{"task_id": "t203", "candidate_id": "c14", "grade": 0, "process": false, "reason": "Classroom 행정 자동화와 무관하다."}
+{"task_id": "t203", "candidate_id": "c15", "grade": 1, "process": false, "reason": "소프트웨어 복잡성 원칙은 인접하지만 불균형 학습 문제를 풀지 않는다."}
+{"task_id": "t203", "candidate_id": "c16", "grade": 0, "process": true, "reason": "PR 의견 분류와 무관하다."}
+{"task_id": "t203", "candidate_id": "c17", "grade": 1, "process": false, "reason": "Python 구조 원칙은 보조적이지만 손실 함수나 모델 평가 지침은 아니다."}
+{"task_id": "t203", "candidate_id": "c18", "grade": 0, "process": false, "reason": "메일함 분류 자동화와 무관하다."}
+{"task_id": "t203", "candidate_id": "c19", "grade": 0, "process": true, "reason": "예측 기준율 설정은 지도학습 클래스 불균형 수정과 다르다."}
+{"task_id": "t203", "candidate_id": "c20", "grade": 0, "process": false, "reason": "Claude 사용 강좌 추천과 무관하다."}
+{"task_id": "t203", "candidate_id": "c21", "grade": 1, "process": false, "reason": "코드 관계 탐색은 가능하지만 지정 분류기 수정에 효용이 제한적이다."}
+{"task_id": "t203", "candidate_id": "c22", "grade": 0, "process": true, "reason": "프롬프트 라이브러리 분류와 무관하다."}
+{"task_id": "t203", "candidate_id": "c23", "grade": 0, "process": false, "reason": "GitHub Stars 분류와 무관하다."}
+{"task_id": "t203", "candidate_id": "c24", "grade": 0, "process": true, "reason": "운영 장애 긴급 대응은 의료 응급 라벨 학습과 다르다."}
+{"task_id": "t203", "candidate_id": "c25", "grade": 3, "process": false, "reason": "분류 모델 재학습과 평가 절차가 요청 작업을 직접 안내한다."}
+{"task_id": "t203", "candidate_id": "c26", "grade": 0, "process": true, "reason": "PR CI 반복 수정 요청이 아니다."}
+{"task_id": "t203", "candidate_id": "c27", "grade": 1, "process": true, "reason": "학습 경로와 실행 명령 탐색은 재학습 준비에 간접적으로 도움 된다."}
+{"task_id": "t206", "candidate_id": "c01", "grade": 1, "process": false, "reason": "서비스 워커 캐시는 인접하지만 요청된 추론 워커와 IndexedDB 모델 캐시와 다르다."}
+{"task_id": "t206", "candidate_id": "c02", "grade": 0, "process": false, "reason": "Google Places CLI와 무관하다."}
+{"task_id": "t206", "candidate_id": "c03", "grade": 0, "process": false, "reason": "Expo 네이티브 개발 클라이언트는 Next.js 웹 앱과 다르다."}
+{"task_id": "t206", "candidate_id": "c04", "grade": 0, "process": false, "reason": "DNS 재바인딩 공격 테스트가 아니다."}
+{"task_id": "t206", "candidate_id": "c05", "grade": 2, "process": false, "reason": "Next.js 성능 규칙이 지연 로딩과 메인 스레드 부하 관리에 유용하다."}
+{"task_id": "t206", "candidate_id": "c06", "grade": 2, "process": false, "reason": "React 클라이언트 렌더링 경계가 브라우저 추론 통합에 도움이 된다."}
+{"task_id": "t206", "candidate_id": "c07", "grade": 3, "process": true, "reason": "Lighthouse TBT 수용 기준을 직접 측정하고 검증한다."}
+{"task_id": "t206", "candidate_id": "c08", "grade": 0, "process": false, "reason": "Astro 전용 최적화는 지정 스택과 다르다."}
+{"task_id": "t206", "candidate_id": "c09", "grade": 0, "process": false, "reason": "서버리스 엣지 추론은 브라우저 로컬 추론 요구와 다르다."}
+{"task_id": "t206", "candidate_id": "c10", "grade": 0, "process": false, "reason": "Rivet Actor 클라이언트와 무관하다."}
+{"task_id": "t206", "candidate_id": "c11", "grade": 3, "process": true, "reason": "TBT와 캐시 네트워크 점검이 두 수용 기준을 직접 검증한다."}
+{"task_id": "t206", "candidate_id": "c12", "grade": 1, "process": false, "reason": "접근성은 UI 일반 품질에 유익하지만 추론 및 캐시 요구에는 주변적이다."}
+{"task_id": "t206", "candidate_id": "c13", "grade": 0, "process": false, "reason": "Mapbox 토큰 보안과 무관하다."}
+{"task_id": "t206", "candidate_id": "c14", "grade": 0, "process": false, "reason": "Swift NSCache 이미지 로딩은 웹 모델 캐시와 다르다."}
+{"task_id": "t206", "candidate_id": "c15", "grade": 0, "process": false, "reason": "Claude API 대신 TF.js 로컬 모델을 쓰는 작업이다."}
+{"task_id": "t206", "candidate_id": "c16", "grade": 0, "process": false, "reason": ".NET HTTP 클라이언트와 무관하다."}
+{"task_id": "t206", "candidate_id": "c17", "grade": 0, "process": false, "reason": "Redis 연결 최적화와 무관하다."}
+{"task_id": "t206", "candidate_id": "c18", "grade": 0, "process": false, "reason": "Cloudflare 엣지 워커는 브라우저 Web Worker와 다르다."}
+{"task_id": "t206", "candidate_id": "c19", "grade": 2, "process": false, "reason": "브라우저 사진 처리와 EXIF 보정은 식물 이미지 추론 입력에 유용하다."}
+{"task_id": "t206", "candidate_id": "c20", "grade": 0, "process": false, "reason": "Celery 모델 워밍은 브라우저 TF.js 작업과 다르다."}
+{"task_id": "t206", "candidate_id": "c21", "grade": 2, "process": false, "reason": "IndexedDB 로컬 저장 패턴이 재방문 모델 캐시 구현에 도움 된다."}
+{"task_id": "t206", "candidate_id": "c22", "grade": 0, "process": false, "reason": "Workday 인사 자동화와 무관하다."}
+{"task_id": "t206", "candidate_id": "c23", "grade": 1, "process": false, "reason": "이미지 자산 전송 최적화는 인접하지만 모델 추론 성능 문제와 다르다."}
+{"task_id": "t206", "candidate_id": "c24", "grade": 2, "process": false, "reason": "React 클라이언트 상태와 컴포넌트 구현이 결과 표시 통합에 유용하다."}
+{"task_id": "t206", "candidate_id": "c25", "grade": 2, "process": false, "reason": "비필수 리소스 지연 로딩 원칙이 식별 페이지 모델 로딩에 도움이 된다."}
+{"task_id": "t206", "candidate_id": "c26", "grade": 0, "process": false, "reason": "Next.js 16 전용 번들러 안내는 지정된 14 환경과 맞지 않는다."}
+{"task_id": "t206", "candidate_id": "c27", "grade": 0, "process": false, "reason": "MCP 서버 구축과 무관하다."}
+{"task_id": "t206", "candidate_id": "c28", "grade": 2, "process": false, "reason": "RSC 경계와 번들 규칙이 클라이언트 전용 모델 통합에 유용하다."}
+{"task_id": "t206", "candidate_id": "c29", "grade": 0, "process": false, "reason": "Salesforce 대화 클라이언트와 무관하다."}
+{"task_id": "t206", "candidate_id": "c30", "grade": 3, "process": false, "reason": "로딩과 캐시 및 런타임 최적화가 명시된 성능 요구를 직접 안내한다."}
+{"task_id": "t206", "candidate_id": "c31", "grade": 0, "process": false, "reason": "Salesforce 채팅 위젯 통합과 무관하다."}
+{"task_id": "t206", "candidate_id": "c32", "grade": 1, "process": false, "reason": "웹 이미지 최적화는 관련 영역이지만 TF.js 모델 성능과 캐시의 핵심은 아니다."}
+{"task_id": "t206", "candidate_id": "c33", "grade": 0, "process": false, "reason": "Cloudflare GPU 추론은 로컬 브라우저 추론과 다르다."}
+{"task_id": "t206", "candidate_id": "c34", "grade": 0, "process": false, "reason": "스킬 라우터 설정 요청이 아니다."}
+{"task_id": "t206", "candidate_id": "c35", "grade": 0, "process": false, "reason": "GraphQL Apollo 상태 관리가 필요하지 않다."}
+{"task_id": "t206", "candidate_id": "c36", "grade": 3, "process": false, "reason": "지연 로딩과 캐싱 및 Web Vitals가 요청 구현에 직접 대응한다."}
+{"task_id": "t206", "candidate_id": "c37", "grade": 2, "process": false, "reason": "브라우저 리소스 로딩과 렌더링 지식이 TBT 제한 달성에 유용하다."}
+{"task_id": "t214", "candidate_id": "c01", "grade": 0, "process": true, "reason": "파일 업로드 보안과 무관하다."}
+{"task_id": "t214", "candidate_id": "c02", "grade": 2, "process": true, "reason": "비결정적 결과 재현과 원인 격리가 수정 검증에 도움이 된다."}
+{"task_id": "t214", "candidate_id": "c03", "grade": 0, "process": false, "reason": "shadcn UI와 무관하다."}
+{"task_id": "t214", "candidate_id": "c04", "grade": 0, "process": false, "reason": "Customer.io 세그먼트 운영은 k-means 군집과 다르다."}
+{"task_id": "t214", "candidate_id": "c05", "grade": 0, "process": false, "reason": "시장 진입 전략과 무관하다."}
+{"task_id": "t214", "candidate_id": "c06", "grade": 0, "process": true, "reason": "구직 추천인 문서 작성과 무관하다."}
+{"task_id": "t214", "candidate_id": "c07", "grade": 0, "process": true, "reason": "창업 전략 수립과 무관하다."}
+{"task_id": "t214", "candidate_id": "c08", "grade": 0, "process": false, "reason": "Segment CDP는 linfa 군집화와 다른 도구다."}
+{"task_id": "t214", "candidate_id": "c09", "grade": 0, "process": false, "reason": "강의 실습 디렉터리 생성과 무관하다."}
+{"task_id": "t214", "candidate_id": "c10", "grade": 0, "process": true, "reason": "논문 집필 요청이 아니다."}
+{"task_id": "t214", "candidate_id": "c11", "grade": 0, "process": true, "reason": "에이전트 스킬 평가와 무관하다."}
+{"task_id": "t214", "candidate_id": "c12", "grade": 1, "process": true, "reason": "연구 절차는 간접적으로 가능하지만 구체적 수정에 과도하다."}
+{"task_id": "t214", "candidate_id": "c13", "grade": 1, "process": false, "reason": "플레이어 심리와 게임 기획은 인접하지만 군집 구현을 해결하지 않는다."}
+{"task_id": "t214", "candidate_id": "c14", "grade": 0, "process": true, "reason": "Claude 세션 평가 프레임워크는 군집 품질 평가와 다르다."}
+{"task_id": "t214", "candidate_id": "c15", "grade": 1, "process": false, "reason": "시드 기반 결정론은 참고되나 지형 생성과 k-means 구현은 다르다."}
+{"task_id": "t214", "candidate_id": "c16", "grade": 0, "process": false, "reason": "색상 팔레트 시드는 군집 RNG와 무관하다."}
+{"task_id": "t214", "candidate_id": "c17", "grade": 0, "process": true, "reason": "퍼징 하네스가 필요한 작업이 아니다."}
+{"task_id": "t214", "candidate_id": "c18", "grade": 0, "process": false, "reason": "Word 문서 생성과 무관하다."}
+{"task_id": "t214", "candidate_id": "c19", "grade": 1, "process": true, "reason": "행동 패턴 해석은 군집 활용과 인접하지만 재현성과 점수 구현을 돕지 않는다."}
+{"task_id": "t221", "candidate_id": "c01", "grade": 0, "process": false, "reason": "Claude 원격 API가 아니라 Apple 로컬 모델 통합이다."}
+{"task_id": "t221", "candidate_id": "c02", "grade": 0, "process": false, "reason": "분자 피처 라이브러리는 음식 이미지 인식과 다르다."}
+{"task_id": "t221", "candidate_id": "c03", "grade": 0, "process": true, "reason": "Salesforce UI 감사와 무관하다."}
+{"task_id": "t221", "candidate_id": "c04", "grade": 0, "process": false, "reason": "언어 모델 훈련 레시피는 기존 Core ML 모델 통합과 다르다."}
+{"task_id": "t221", "candidate_id": "c05", "grade": 3, "process": false, "reason": "Swift 앱의 Core ML 추론 통합을 직접 안내한다."}
+{"task_id": "t221", "candidate_id": "c06", "grade": 0, "process": false, "reason": "JavaScript GSAP 애니메이션과 무관하다."}
+{"task_id": "t221", "candidate_id": "c07", "grade": 0, "process": false, "reason": "모호한 개발 설명만으로 모델 통합 지원을 확인할 수 없다."}
+{"task_id": "t221", "candidate_id": "c08", "grade": 1, "process": false, "reason": "도메인 설계는 주변적이며 모델을 뷰에 붙이는 핵심 지침은 아니다."}
+{"task_id": "t221", "candidate_id": "c09", "grade": 0, "process": false, "reason": "개인 영양 조언은 음식 인식 코드 구현과 다르다."}
+{"task_id": "t221", "candidate_id": "c10", "grade": 0, "process": false, "reason": "야구 데이터와 무관하다."}
+{"task_id": "t221", "candidate_id": "c11", "grade": 0, "process": true, "reason": "LLM 에이전트 평가와 무관하다."}
+{"task_id": "t221", "candidate_id": "c12", "grade": 0, "process": false, "reason": "웹 성능 최적화는 네이티브 Core ML 통합과 다르다."}
+{"task_id": "t221", "candidate_id": "c13", "grade": 0, "process": false, "reason": "Anthropic SDK를 사용하는 작업이 아니다."}
+{"task_id": "t221", "candidate_id": "c14", "grade": 0, "process": false, "reason": "브라우저 성능과 무관하다."}
+{"task_id": "t221", "candidate_id": "c15", "grade": 0, "process": false, "reason": "HTML 영상 구성 엔진과 무관하다."}
+{"task_id": "t221", "candidate_id": "c16", "grade": 3, "process": false, "reason": "번들 모델 로드와 Swift 예측 API가 정확한 통합 작업에 맞는다."}
+{"task_id": "t221", "candidate_id": "c17", "grade": 2, "process": false, "reason": "비전 전처리와 추론 파이프라인이 음식 분류 통합에 유용하다."}
+{"task_id": "t221", "candidate_id": "c18", "grade": 3, "process": false, "reason": "Apple 모델 임포트와 추론 스케줄링이 해당 기능 구현을 직접 안내한다."}
+{"task_id": "t221", "candidate_id": "c19", "grade": 1, "process": true, "reason": "UI 성능 점검은 보조적이지만 모델 연결의 핵심 지식은 아니다."}
+{"task_id": "t221", "candidate_id": "c20", "grade": 1, "process": false, "reason": "일반 AI 지식은 인접하지만 Apple 음식 분류 통합에 구체적이지 않다."}
+{"task_id": "t221", "candidate_id": "c21", "grade": 0, "process": false, "reason": "외부 AI ML API 자동화와 무관하다."}
+{"task_id": "t221", "candidate_id": "c22", "grade": 2, "process": false, "reason": "Swift 온디바이스 AI 기술 라우팅이 적절한 Apple 통합 지침 탐색에 유용하다."}
+{"task_id": "t221", "candidate_id": "c23", "grade": 0, "process": false, "reason": "SAP 클라우드 모델 배포와 무관하다."}
+{"task_id": "t221", "candidate_id": "c24", "grade": 0, "process": false, "reason": "병리 이미지 전처리와 무관하다."}
+{"task_id": "t221", "candidate_id": "c25", "grade": 0, "process": true, "reason": "웹 성능 진단은 네이티브 뷰와 다르다."}
+{"task_id": "t221", "candidate_id": "c26", "grade": 3, "process": false, "reason": "iOS Vision의 Core ML 추론 연결이 이미지 음식 인식 구현에 직접 맞는다."}
+{"task_id": "t221", "candidate_id": "c27", "grade": 1, "process": false, "reason": "이미지 분류 일반 흐름은 인접하지만 Countbot 에이전트 통합은 다른 환경이다."}
+{"task_id": "t226", "candidate_id": "c01", "grade": 0, "process": false, "reason": "FastAPI 신규 프로젝트 구성은 Django 접근 검토와 다르다."}
+{"task_id": "t226", "candidate_id": "c02", "grade": 0, "process": false, "reason": "과학 데이터베이스 조회와 무관하다."}
+{"task_id": "t226", "candidate_id": "c03", "grade": 0, "process": false, "reason": "증권 목록 조회와 무관하다."}
+{"task_id": "t226", "candidate_id": "c04", "grade": 3, "process": true, "reason": "알려진 IDOR가 다른 엔드포인트에도 있는지 변종을 찾는 정확한 절차다."}
+{"task_id": "t226", "candidate_id": "c05", "grade": 0, "process": false, "reason": "Frappe 권한 체계는 Django와 다르다."}
+{"task_id": "t226", "candidate_id": "c06", "grade": 2, "process": true, "reason": "보안 감사와 신뢰 경계 분석이 객체 권한 검토에 유용하다."}
+{"task_id": "t226", "candidate_id": "c07", "grade": 0, "process": false, "reason": "Outlook 일정 관리와 무관하다."}
+{"task_id": "t226", "candidate_id": "c08", "grade": 1, "process": true, "reason": "프레임워크 권한 API 문서 확인에 간접적으로 도움이 된다."}
+{"task_id": "t226", "candidate_id": "c09", "grade": 0, "process": false, "reason": "VTEX 결제 커넥터와 무관하다."}
+{"task_id": "t226", "candidate_id": "c10", "grade": 0, "process": false, "reason": "Azure 자원 목록 조회와 무관하다."}
+{"task_id": "t226", "candidate_id": "c11", "grade": 2, "process": false, "reason": "Django ORM과 REST 구조 지식이 뷰의 권한 검토에 유용하다."}
+{"task_id": "t226", "candidate_id": "c12", "grade": 0, "process": true, "reason": "이해관계자 식별과 무관하다."}
+{"task_id": "t226", "candidate_id": "c13", "grade": 2, "process": true, "reason": "일반 코드 보안 검토 절차가 누락된 접근 제어 발견에 도움이 된다."}
+{"task_id": "t226", "candidate_id": "c14", "grade": 0, "process": false, "reason": "Inngest API 참조와 무관하다."}
+{"task_id": "t226", "candidate_id": "c15", "grade": 1, "process": true, "reason": "Django 문서 확인은 보조적이나 IDOR 검토 절차는 아니다."}
+{"task_id": "t226", "candidate_id": "c16", "grade": 0, "process": false, "reason": "프롬프트 검색과 무관하다."}
+{"task_id": "t226", "candidate_id": "c17", "grade": 0, "process": false, "reason": "Claude API 통합과 무관하다."}
+{"task_id": "t226", "candidate_id": "c18", "grade": 0, "process": false, "reason": "Salesforce DataSpace 권한은 다른 시스템이다."}
+{"task_id": "t226", "candidate_id": "c19", "grade": 0, "process": true, "reason": "스킬 검색 자체가 요청된 보안 검토가 아니다."}
+{"task_id": "t226", "candidate_id": "c20", "grade": 2, "process": false, "reason": "HTTP 요청으로 사용자별 접근을 검증하는 데 유용하다."}
+{"task_id": "t226", "candidate_id": "c21", "grade": 2, "process": false, "reason": "웹 보안 원칙이 민감한 예약 접근 제어 검토에 도움 된다."}
+{"task_id": "t226", "candidate_id": "c22", "grade": 2, "process": true, "reason": "동적 보안 검증으로 재예약 및 취소의 취약성을 재현할 수 있다."}
+{"task_id": "t226", "candidate_id": "c23", "grade": 3, "process": true, "reason": "Django 뷰와 ORM의 IDOR 및 권한 검토가 정확히 요청과 일치한다."}
+{"task_id": "t226", "candidate_id": "c24", "grade": 3, "process": false, "reason": "Django 인증 및 인가 보안 지침이 해당 접근 제어 문제에 직접 적용된다."}
+{"task_id": "t226", "candidate_id": "c25", "grade": 0, "process": true, "reason": "Android Firebase 검사와 무관하다."}
+{"task_id": "t226", "candidate_id": "c26", "grade": 0, "process": true, "reason": "스킬 조회 절차는 실제 접근 제어 검토와 다르다."}
+{"task_id": "t226", "candidate_id": "c27", "grade": 0, "process": false, "reason": "ERPNext 권한은 대상 프레임워크와 다르다."}
+{"task_id": "t226", "candidate_id": "c28", "grade": 3, "process": true, "reason": "Django 객체 수준 인가 증명 절차가 요청된 IDOR 검토에 직접 맞는다."}
+{"task_id": "t226", "candidate_id": "c29", "grade": 0, "process": false, "reason": "Calendly 외부 API 일정 조작은 자체 예약 코드 검토와 다르다."}
+{"task_id": "t226", "candidate_id": "c30", "grade": 3, "process": true, "reason": "다른 사용자의 자원 접근을 찾는 IDOR 탐지가 정확한 작업이다."}
+{"task_id": "t226", "candidate_id": "c31", "grade": 2, "process": true, "reason": "민감한 API 보안 체크리스트가 검토에 유용하다."}
+{"task_id": "t226", "candidate_id": "c32", "grade": 3, "process": true, "reason": "역할별 식별자 교체 테스트가 보고된 취약점과 다른 엔드포인트를 직접 검증한다."}
+{"task_id": "t226", "candidate_id": "c33", "grade": 2, "process": false, "reason": "Django REST 및 ORM 구조 지식이 권한 누락 검토에 도움이 된다."}
+{"task_id": "t226", "candidate_id": "c34", "grade": 0, "process": false, "reason": "arXiv 논문 조회와 무관하다."}
+{"task_id": "t226", "candidate_id": "c35", "grade": 3, "process": false, "reason": "Django REST 인증 및 인가 지침이 해당 뷰 접근 제어 검토에 직접 맞는다."}
+{"task_id": "t226", "candidate_id": "c36", "grade": 1, "process": false, "reason": "REST 설계 일반론은 권한 취약점 검토에 주변적으로만 유용하다."}
+{"task_id": "t226", "candidate_id": "c37", "grade": 3, "process": false, "reason": "Django 인가 보안 가이드가 객체 접근 제어 검토를 직접 지원한다."}
+{"task_id": "t226", "candidate_id": "c38", "grade": 0, "process": false, "reason": "회사 인사 정책 설명과 무관하다."}
+{"task_id": "t226", "candidate_id": "c39", "grade": 0, "process": false, "reason": "Timekit 자동화와 무관하다."}
+{"task_id": "t233", "candidate_id": "c01", "grade": 1, "process": false, "reason": "Next.js 성능 지침은 인접하지만 비밀키 노출 보안 검토와 다르다."}
+{"task_id": "t233", "candidate_id": "c02", "grade": 1, "process": false, "reason": "React 성능 최적화는 환경변수 보안 검토에 주변적이다."}
+{"task_id": "t233", "candidate_id": "c03", "grade": 3, "process": true, "reason": "비밀키와 환경 설정의 불안전한 기본값 감사가 해당 제보 확인에 직접 맞는다."}
+{"task_id": "t233", "candidate_id": "c04", "grade": 1, "process": false, "reason": "배포 환경변수 관리에 인접하지만 Vercel CLI 작업은 요구되지 않았다."}
+{"task_id": "t233", "candidate_id": "c05", "grade": 1, "process": false, "reason": "안전한 결제 통합은 관련되나 Next.js 공개 환경변수 문제가 핵심이다."}
+{"task_id": "t233", "candidate_id": "c06", "grade": 1, "process": false, "reason": "결제 흐름 설계는 키 노출 설정 검토에 간접적이다."}
+{"task_id": "t233", "candidate_id": "c07", "grade": 3, "process": true, "reason": "비밀값과 결제 보안 체크리스트가 해당 노출 감사에 직접 맞는다."}
+{"task_id": "t233", "candidate_id": "c08", "grade": 1, "process": false, "reason": "제목은 환경변수지만 요약은 일반 빌드 자동화여서 보안 지침을 확인할 수 없다."}
+{"task_id": "t233", "candidate_id": "c09", "grade": 0, "process": false, "reason": "신규 Bun 앱 배포 설정은 기존 노출 감사와 다르다."}
+{"task_id": "t233", "candidate_id": "c10", "grade": 1, "process": false, "reason": "CLI 비밀값 처리 원칙은 참고되나 클라이언트 번들 노출과 환경이 다르다."}
+{"task_id": "t233", "candidate_id": "c11", "grade": 2, "process": true, "reason": "빌드와 운영 환경변수 및 출시 점검이 노출 확인에 유용하다."}
+{"task_id": "t233", "candidate_id": "c12", "grade": 3, "process": true, "reason": "Next.js 설정과 라우터 보안 검토가 제보된 노출 확인을 직접 안내한다."}
+{"task_id": "t233", "candidate_id": "c13", "grade": 1, "process": true, "reason": "특정 에이전트 팀의 비밀 관리 검토는 일반 원칙만 간접 적용된다."}
+{"task_id": "t233", "candidate_id": "c14", "grade": 2, "process": false, "reason": "API 키와 환경 비밀값의 안전한 저장 및 회전 지침이 유용하다."}
+{"task_id": "t233", "candidate_id": "c15", "grade": 2, "process": false, "reason": "서버와 클라이언트 경계 지식이 키 노출 경로 이해에 도움이 된다."}
+{"task_id": "t233", "candidate_id": "c16", "grade": 0, "process": false, "reason": "Cloudflare 배포 환경은 주어진 작업에 없다."}
+{"task_id": "t233", "candidate_id": "c17", "grade": 0, "process": false, "reason": "WorkOS 인증 통합과 무관하다."}
+{"task_id": "t233", "candidate_id": "c18", "grade": 0, "process": false, "reason": "GSAP 애니메이션과 무관하다."}
+{"task_id": "t233", "candidate_id": "c19", "grade": 1, "process": false, "reason": "결제 키 사용은 관련되지만 Stripe 결제 구현을 요청한 것은 아니다."}
+{"task_id": "t233", "candidate_id": "c20", "grade": 0, "process": false, "reason": "새 Turborepo 생성과 무관하다."}
+{"task_id": "t233", "candidate_id": "c21", "grade": 1, "process": false, "reason": "결제 보안은 인접하지만 PG별 통합 흐름이 핵심이 아니다."}
+{"task_id": "t233", "candidate_id": "c22", "grade": 2, "process": true, "reason": "Next.js 환경변수 문서를 확인하는 절차가 설정 감사에 유용하다."}
+{"task_id": "t233", "candidate_id": "c23", "grade": 0, "process": true, "reason": "에이전트 팀 상태 갱신과 무관하다."}
+{"task_id": "t233", "candidate_id": "c24", "grade": 0, "process": false, "reason": "이스라엘 결제 페이로드 규칙과 무관하다."}
+{"task_id": "t233", "candidate_id": "c25", "grade": 3, "process": false, "reason": "환경변수 명명과 비밀값 주입 관리가 노출 원인 및 수정에 직접 맞는다."}
+{"task_id": "t233", "candidate_id": "c26", "grade": 1, "process": false, "reason": "Next.js 설정은 인접하지만 Bun 런타임 설정이 주제다."}
+{"task_id": "t233", "candidate_id": "c27", "grade": 0, "process": false, "reason": "Cache Components 채택과 무관하다."}
+{"task_id": "t233", "candidate_id": "c28", "grade": 0, "process": false, "reason": "Alchemy 결제 게이트웨이 통합과 무관하다."}
+{"task_id": "t233", "candidate_id": "c29", "grade": 1, "process": false, "reason": "번들러 지식은 주변적이나 특정 버전 개발 속도는 핵심이 아니다."}
+{"task_id": "t233", "candidate_id": "c30", "grade": 0, "process": false, "reason": "Bitcoin 지갑 비밀값 워크플로는 해당 PG 및 Next.js 설정과 다르다."}
+{"task_id": "t233", "candidate_id": "c31", "grade": 0, "process": false, "reason": "영업 리드 수집과 무관하다."}
+{"task_id": "t233", "candidate_id": "c32", "grade": 0, "process": true, "reason": "Clerk 인증 감사는 지정되지 않은 도구다."}
+{"task_id": "t233", "candidate_id": "c33", "grade": 0, "process": false, "reason": "Contentful CMS 통합과 무관하다."}
+{"task_id": "t233", "candidate_id": "c34", "grade": 1, "process": false, "reason": "Next.js 테스트 일반론은 보조적이나 비밀 환경변수 감사에 특화되지 않았다."}
+{"task_id": "t233", "candidate_id": "c35", "grade": 0, "process": false, "reason": "Circle 금융 에이전트 연결과 무관하다."}
+{"task_id": "t233", "candidate_id": "c36", "grade": 0, "process": false, "reason": "에이전트 HTTP 402 결제와 무관하다."}
+{"task_id": "t233", "candidate_id": "c37", "grade": 1, "process": true, "reason": "Next.js 개발 확인 절차는 간접적이며 특정 16.3 도구 요구가 있다."}
+{"task_id": "t233", "candidate_id": "c38", "grade": 2, "process": false, "reason": "RSC 경계와 번들링 규칙이 서버 비밀값 유출 분석에 도움이 된다."}
+{"task_id": "t233", "candidate_id": "c39", "grade": 2, "process": false, "reason": "키의 안전한 주입과 회전 원칙이 유출 대응에 유용하다."}
+{"task_id": "t233", "candidate_id": "c40", "grade": 0, "process": true, "reason": "일회성 API 호출 스크립트 작성이 아니다."}
+{"task_id": "t233", "candidate_id": "c41", "grade": 0, "process": false, "reason": "Cardcom V11 통합 요구가 없다."}
+{"task_id": "t233", "candidate_id": "c42", "grade": 0, "process": false, "reason": "Tranzila 결제 연동 요구가 없다."}
+{"task_id": "t233", "candidate_id": "c43", "grade": 3, "process": true, "reason": "Next.js 보안 감사가 제보된 클라이언트 키 노출 조사에 직접 맞는다."}
+{"task_id": "t233", "candidate_id": "c44", "grade": 0, "process": false, "reason": "Nordic 은행 API 통합과 무관하다."}
+{"task_id": "t233", "candidate_id": "c45", "grade": 3, "process": false, "reason": "NEXT_PUBLIC 변수와 서버 비밀값 구분을 정확히 다룬다."}
+{"task_id": "t233", "candidate_id": "c46", "grade": 0, "process": false, "reason": "일반 AI 개발 소개만으로 결제 키 감사 도움을 확인할 수 없다."}
+{"task_id": "t233", "candidate_id": "c47", "grade": 0, "process": false, "reason": "부분 프리페치 도입과 무관하다."}
+{"task_id": "t234", "candidate_id": "c01", "grade": 3, "process": true, "reason": "SQL 주입 페이로드 테스트가 요청된 실패 테스트 작성에 직접 맞는다."}
+{"task_id": "t234", "candidate_id": "c02", "grade": 2, "process": true, "reason": "주입 입증과 매개변수 쿼리 권고가 테스트 및 수정에 유용하다."}
+{"task_id": "t234", "candidate_id": "c03", "grade": 1, "process": true, "reason": "일반 비기능 검증은 단위 수준 주입 회귀 테스트에 주변적이다."}
+{"task_id": "t234", "candidate_id": "c04", "grade": 0, "process": false, "reason": "NoSQL 주입은 SQL Prisma 쿼리와 다르다."}
+{"task_id": "t234", "candidate_id": "c05", "grade": 2, "process": false, "reason": "Prisma 쿼리 및 안티패턴 지식이 안전한 수정에 유용하다."}
+{"task_id": "t234", "candidate_id": "c06", "grade": 3, "process": true, "reason": "ORM과 입력을 SQL 주입에 견고하게 하는 절차가 정확한 수정 작업이다."}
+{"task_id": "t234", "candidate_id": "c07", "grade": 3, "process": true, "reason": "쿼리 구성과 입력 처리 검토가 명시된 주입 취약점을 직접 다룬다."}
+{"task_id": "t234", "candidate_id": "c08", "grade": 3, "process": false, "reason": "TypeScript Jest 단위 테스트 지침이 지정 서비스 회귀 테스트에 직접 맞는다."}
+{"task_id": "t234", "candidate_id": "c09", "grade": 0, "process": true, "reason": "스프린트 방향 수정과 무관하다."}
+{"task_id": "t234", "candidate_id": "c10", "grade": 0, "process": false, "reason": "SQL Server 신규 연결 설정은 요구되지 않았다."}
+{"task_id": "t234", "candidate_id": "c11", "grade": 0, "process": true, "reason": "MongoDB 등 NoSQL 주입은 대상과 다르다."}
+{"task_id": "t234", "candidate_id": "c12", "grade": 0, "process": true, "reason": "LinkedIn 게시물 작성과 무관하다."}
+{"task_id": "t234", "candidate_id": "c13", "grade": 2, "process": false, "reason": "Prisma 쿼리 패턴과 진단이 raw 쿼리 수정에 유용하다."}
+{"task_id": "t234", "candidate_id": "c14", "grade": 3, "process": true, "reason": "명시된 테스트 우선 개발 순서를 정확히 안내한다."}
+{"task_id": "t234", "candidate_id": "c15", "grade": 0, "process": false, "reason": "Prisma MySQL 연결 설정은 기존 쿼리 보안 수정과 다르다."}
+{"task_id": "t234", "candidate_id": "c16", "grade": 3, "process": true, "reason": "Jest 서비스 단위 회귀 테스트 작성 방법이 직접 적용된다."}
+{"task_id": "t234", "candidate_id": "c17", "grade": 1, "process": false, "reason": "Prisma CLI는 관련 도구지만 raw 쿼리 코드 변경의 핵심은 아니다."}
+{"task_id": "t234", "candidate_id": "c18", "grade": 0, "process": false, "reason": "PostgreSQL 연결 구성 작업이 아니다."}
+{"task_id": "t234", "candidate_id": "c19", "grade": 2, "process": false, "reason": "Prisma Client 쿼리 패턴이 안전한 DB 접근 코드 수정에 도움이 된다."}
+{"task_id": "t234", "candidate_id": "c20", "grade": 0, "process": false, "reason": "Prisma 버전 업그레이드 요청이 아니다."}
+{"task_id": "t234", "candidate_id": "c21", "grade": 0, "process": true, "reason": "장애 주입 복원성 실험과 무관하다."}
+{"task_id": "t234", "candidate_id": "c22", "grade": 0, "process": false, "reason": "Google Classroom 과정 생성과 무관하다."}
+{"task_id": "t234", "candidate_id": "c23", "grade": 1, "process": false, "reason": "DB 설정은 인접하지만 연결 변경이 필요하지 않다."}
+{"task_id": "t234", "candidate_id": "c24", "grade": 0, "process": false, "reason": "SQLite 데이터소스 설치 작업이 아니다."}
+{"task_id": "t234", "candidate_id": "c25", "grade": 0, "process": true, "reason": "NoSQL 연산자 주입은 SQL 문자열 보간과 다르다."}
+{"task_id": "t234", "candidate_id": "c26", "grade": 2, "process": true, "reason": "ORM의 SQL 주입 테스트 지침이 공격 입력 회귀 검증에 유용하다."}
+{"task_id": "t234", "candidate_id": "c27", "grade": 2, "process": true, "reason": "입력을 받는 API의 보안 체크리스트가 수정 검토에 도움이 된다."}
+{"task_id": "t234", "candidate_id": "c28", "grade": 3, "process": true, "reason": "SQL 보안 검토가 보간 쿼리와 방어 패턴 점검에 직접 맞는다."}
+{"task_id": "t234", "candidate_id": "c29", "grade": 2, "process": true, "reason": "보안 감사의 주입 테스트가 회귀 공격 사례 구성에 유용하다."}
+{"task_id": "t234", "candidate_id": "c30", "grade": 0, "process": false, "reason": "NoSQL 일반 스킬은 대상 SQL 코드와 다르다."}
+{"task_id": "t234", "candidate_id": "c31", "grade": 1, "process": false, "reason": "고급 SQL 공격은 관련되지만 알려진 단순 주입의 단위 수정에 과도하다."}
+{"task_id": "t234", "candidate_id": "c32", "grade": 0, "process": false, "reason": "FastAPI 프로젝트 템플릿은 TypeScript 서비스와 다르다."}
+{"task_id": "t234", "candidate_id": "c33", "grade": 2, "process": false, "reason": "안전한 코드와 SQL 주입 지침이 수정 검증에 유용하다."}
+{"task_id": "t234", "candidate_id": "c34", "grade": 2, "process": false, "reason": "Prisma 쿼리 지식이 서비스 DB 코드 변경에 도움이 된다."}
+{"task_id": "t234", "candidate_id": "c35", "grade": 3, "process": false, "reason": "queryRaw 태그 템플릿과 안전한 SQL 조각을 정확히 다룬다."}
+{"task_id": "t234", "candidate_id": "c36", "grade": 1, "process": false, "reason": "제목은 관련되지만 요약에 구체적인 주입 테스트 방법이 없다."}
+{"task_id": "t234", "candidate_id": "c37", "grade": 2, "process": true, "reason": "DB 연동 테스트는 주입 방어의 실제 실행 검증에 도움이 된다."}
+{"task_id": "t234", "candidate_id": "c38", "grade": 3, "process": true, "reason": "매개변수 쿼리와 입력 검증이 요청한 취약점 수정과 직접 일치한다."}
+{"task_id": "t234", "candidate_id": "c39", "grade": 0, "process": true, "reason": "RAPID MySQL 및 Vitest 전용 절차는 해당 Jest 서비스와 다르다."}
+{"task_id": "t234", "candidate_id": "c40", "grade": 1, "process": true, "reason": "sqlmap 외부 공격은 관련되나 요청된 Jest 서비스 테스트와 방식이 다르다."}
+{"task_id": "t236", "candidate_id": "c01", "grade": 0, "process": false, "reason": "Express 전용 보안 패턴은 Go gRPC 인터셉터와 다르다."}
+{"task_id": "t236", "candidate_id": "c02", "grade": 3, "process": true, "reason": "서명과 알고리즘 및 클레임과 키 관리 테스트가 수용 조건에 직접 맞는다."}
+{"task_id": "t236", "candidate_id": "c03", "grade": 2, "process": true, "reason": "테스트 우선 절차는 보안 회귀 방지에 도움이 되나 과도한 범위도 포함한다."}
+{"task_id": "t236", "candidate_id": "c04", "grade": 0, "process": true, "reason": "AgentCore 운영 준비와 무관하다."}
+{"task_id": "t236", "candidate_id": "c05", "grade": 0, "process": false, "reason": "Fastify OAuth 흐름은 지정된 Go JWT 검증과 다르다."}
+{"task_id": "t236", "candidate_id": "c06", "grade": 0, "process": false, "reason": "ASP.NET Auth0 패키지는 다른 스택이다."}
+{"task_id": "t236", "candidate_id": "c07", "grade": 0, "process": true, "reason": "GitHub Actions 보안과 무관하다."}
+{"task_id": "t236", "candidate_id": "c08", "grade": 2, "process": false, "reason": "JWT 및 인가 일반 패턴이 신뢰 경계 강화에 유용하다."}
+{"task_id": "t236", "candidate_id": "c09", "grade": 1, "process": false, "reason": "Go JWT 검증은 인접하지만 Auth0 HTTP 미들웨어는 지정 gRPC 라이브러리와 다르다."}
+{"task_id": "t236", "candidate_id": "c10", "grade": 0, "process": true, "reason": "Linux 서버 강화와 무관하다."}
+{"task_id": "t236", "candidate_id": "c11", "grade": 0, "process": true, "reason": "Python pytest는 Go 테스트와 다르다."}
+{"task_id": "t236", "candidate_id": "c12", "grade": 0, "process": false, "reason": "Supabase RLS는 대상 인증 체계와 다르다."}
+{"task_id": "t236", "candidate_id": "c13", "grade": 2, "process": false, "reason": "JWT 기반 API 인증 설계가 클레임 신뢰와 검증 강화에 도움이 된다."}
+{"task_id": "t236", "candidate_id": "c14", "grade": 1, "process": false, "reason": "알고리즘 혼동 제목은 관련되지만 요약에 실제 검증 내용이 없다."}
+{"task_id": "t236", "candidate_id": "c15", "grade": 0, "process": false, "reason": "Spring Boot JWT 구현은 Go 스택과 다르다."}
+{"task_id": "t236", "candidate_id": "c16", "grade": 0, "process": false, "reason": "OneSignal 자동화와 무관하다."}
+{"task_id": "t236", "candidate_id": "c17", "grade": 0, "process": false, "reason": "Fastify Auth0 플러그인은 다른 스택이다."}
+{"task_id": "t236", "candidate_id": "c18", "grade": 3, "process": false, "reason": "JWT 서명 및 검증 지침이 핵심 인증 강화 작업에 직접 맞는다."}
+{"task_id": "t236", "candidate_id": "c19", "grade": 0, "process": true, "reason": "UI 상태 처리와 무관하다."}
+{"task_id": "t236", "candidate_id": "c20", "grade": 2, "process": true, "reason": "인증 및 비신뢰 입력 보안 강화 지침이 구현 점검에 유용하다."}
+{"task_id": "t236", "candidate_id": "c21", "grade": 1, "process": true, "reason": "일반 구현 후 감사 반복은 보조적이지만 JWT 특화 지침은 아니다."}
+{"task_id": "t236", "candidate_id": "c22", "grade": 1, "process": false, "reason": "Go JWK 지식은 인접하지만 jwx v4 API는 지정된 jwt v5와 다르다."}
+{"task_id": "t236", "candidate_id": "c23", "grade": 1, "process": true, "reason": "완료 후 자체 검토는 간접적으로 유용하지만 JWT 검증 구현에 구체적이지 않다."}
+{"task_id": "t236", "candidate_id": "c24", "grade": 0, "process": false, "reason": "Encore TypeScript 인증은 Go gRPC와 다르다."}
+{"task_id": "t236", "candidate_id": "c25", "grade": 0, "process": true, "reason": "ERC20 토큰 검토는 JWT와 다른 토큰이다."}
+{"task_id": "t236", "candidate_id": "c26", "grade": 0, "process": true, "reason": "프런트엔드 예외 상태 처리와 무관하다."}
+{"task_id": "t236", "candidate_id": "c27", "grade": 1, "process": false, "reason": "웹 보안 일반론은 참고되지만 gRPC JWT 검증에 구체적이지 않다."}
+{"task_id": "t236", "candidate_id": "c28", "grade": 0, "process": false, "reason": "Node.js JWT 구현은 지정 Go 스택과 다르다."}
+{"task_id": "t236", "candidate_id": "c29", "grade": 3, "process": true, "reason": "알고리즘 대체와 만료 토큰 테스트가 요구된 방어 회귀 테스트에 직접 맞는다."}
+{"task_id": "t236", "candidate_id": "c30", "grade": 2, "process": false, "reason": "안전한 인증 코드 원칙이 검증 누락을 점검하는 데 유용하다."}
+{"task_id": "t236", "candidate_id": "c31", "grade": 0, "process": true, "reason": "Supabase 클라이언트 토큰 추출은 검증 로직 강화와 다르다."}
+{"task_id": "t236", "candidate_id": "c32", "grade": 0, "process": false, "reason": "FastAPI와 Vault 기반 구현은 Go JWKS 인터셉터와 다르다."}
+{"task_id": "t236", "candidate_id": "c33", "grade": 0, "process": false, "reason": "TypeScript Node 인증 참조는 다른 스택이다."}
+{"task_id": "t236", "candidate_id": "c34", "grade": 2, "process": true, "reason": "테스트 우선 구현은 보안 회귀 테스트 작성에 도움이 된다."}
+{"task_id": "t236", "candidate_id": "c35", "grade": 2, "process": false, "reason": "일반 JWT 인가 패턴이 토큰의 신뢰 경계 설계에 유용하다."}
+{"task_id": "t236", "candidate_id": "c36", "grade": 3, "process": false, "reason": "JWT 검증 및 비대칭 서명 보안 원칙이 요청 강화 작업을 직접 다룬다."}
+{"task_id": "t236", "candidate_id": "c37", "grade": 3, "process": false, "reason": "토큰 신뢰와 헤더 조작 및 요청 신원 검토가 kid와 player ID 요구에 직접 맞는다."}
+{"task_id": "t236", "candidate_id": "c38", "grade": 0, "process": true, "reason": "OpenClaw 배포 보안은 다른 시스템이다."}
+{"task_id": "t236", "candidate_id": "c39", "grade": 3, "process": false, "reason": "서명과 클레임 및 만료 검증이 해당 인터셉터의 핵심 작업이다."}
+{"task_id": "t236", "candidate_id": "c40", "grade": 2, "process": true, "reason": "인증의 fail-open 검사로 누락된 검증을 찾는 데 유용하다."}
+{"task_id": "t236", "candidate_id": "c41", "grade": 0, "process": false, "reason": "FastAPI SQLAlchemy 엔드포인트는 Go gRPC와 다르다."}
+{"task_id": "t236", "candidate_id": "c42", "grade": 0, "process": false, "reason": "FastAPI Auth0 통합은 지정 스택과 다르다."}
+{"task_id": "t236", "candidate_id": "c43", "grade": 2, "process": false, "reason": "API 인증 및 인가 강화는 유용하나 REST 중심으로 범위가 넓다."}
+{"task_id": "t236", "candidate_id": "c44", "grade": 3, "process": false, "reason": "alg none과 알고리즘 혼동 및 kid 주입이 명시된 위협에 정확히 맞는다."}
+{"task_id": "t236", "candidate_id": "c45", "grade": 1, "process": false, "reason": "세션 수명주기는 인접하지만 기존 토큰 검증 강화가 중심이다."}
+{"task_id": "t236", "candidate_id": "c46", "grade": 0, "process": false, "reason": "Express Auth0 미들웨어는 Go 서비스와 다르다."}
+{"task_id": "t236", "candidate_id": "c47", "grade": 2, "process": true, "reason": "TDD 절차는 검증 테스트 작성에 유용하나 사용자가 테스트 우선까지 지정하지 않았다."}
+{"task_id": "t265", "candidate_id": "c01", "grade": 0, "process": true, "reason": "Lighthouse 웹 성능 진단은 Rust CLI 처리량과 다르다."}
+{"task_id": "t265", "candidate_id": "c02", "grade": 1, "process": true, "reason": "로그 내용 분석은 인접하지만 파서 병렬화와 할당 최적화를 해결하지 않는다."}
+{"task_id": "t265", "candidate_id": "c03", "grade": 0, "process": false, "reason": "출처만 있고 작업 관련 기능 설명이 없다."}
+{"task_id": "t265", "candidate_id": "c04", "grade": 0, "process": false, "reason": "Parallel 연구 상태 조회는 파일 병렬 처리와 다르다."}
+{"task_id": "t265", "candidate_id": "c05", "grade": 1, "process": true, "reason": "Rust 질문 분석 절차는 보조적이나 처리량 개선 구현 지침은 아니다."}
+{"task_id": "t265", "candidate_id": "c06", "grade": 0, "process": true, "reason": "외부 심층 연구 플랫폼은 병렬 파일 처리와 다르다."}
+{"task_id": "t265", "candidate_id": "c07", "grade": 0, "process": false, "reason": "Node.js 서버 패턴은 Rust CLI와 다르다."}
+{"task_id": "t265", "candidate_id": "c08", "grade": 0, "process": true, "reason": "병렬 PR 처리와 무관하다."}
+{"task_id": "t265", "candidate_id": "c09", "grade": 0, "process": true, "reason": "Claude 자동화 추천은 지정 CLI 최적화와 다르다."}
+{"task_id": "t265", "candidate_id": "c10", "grade": 0, "process": false, "reason": ".NET 백엔드 패턴은 Rust 코드와 다르다."}
+{"task_id": "t265", "candidate_id": "c11", "grade": 0, "process": true, "reason": "스킬 사용 초기화는 성능 개선에 구체적인 가치가 없다."}
+{"task_id": "t265", "candidate_id": "c12", "grade": 0, "process": false, "reason": "Lark 근태 조회와 무관하다."}
+{"task_id": "t265", "candidate_id": "c13", "grade": 0, "process": false, "reason": "Loki 쿼리 언어는 로컬 Rust 파서와 다르다."}
+{"task_id": "t265", "candidate_id": "c14", "grade": 1, "process": true, "reason": "병렬 원인 조사 방법은 일부 참고되지만 개선 방향이 이미 구체적이다."}
+{"task_id": "t265", "candidate_id": "c15", "grade": 1, "process": false, "reason": "로그 집계 목적은 비슷하지만 Rust 병렬 처리와 파싱 최적화 지침은 아니다."}
+{"task_id": "t265", "candidate_id": "c16", "grade": 0, "process": false, "reason": "웹 콘텐츠 추출과 무관하다."}
+{"task_id": "t265", "candidate_id": "c17", "grade": 1, "process": true, "reason": "CLI 출력 검토는 보조적이나 기존 CSV 동일성의 정밀 검증을 대신하지 않는다."}
+{"task_id": "t265", "candidate_id": "c18", "grade": 0, "process": false, "reason": "출처만 있어 CLI 최적화 관련 내용을 확인할 수 없다."}
+{"task_id": "t265", "candidate_id": "c19", "grade": 0, "process": false, "reason": "Parallel 연구 결과 조회와 무관하다."}
+{"task_id": "t265", "candidate_id": "c20", "grade": 0, "process": true, "reason": "TODO 병렬 해결은 데이터 처리 병렬화와 다르다."}
+{"task_id": "t265", "candidate_id": "c21", "grade": 0, "process": false, "reason": "출처만 있고 관련 기능 설명이 없다."}
+{"task_id": "t265", "candidate_id": "c22", "grade": 0, "process": false, "reason": "출처만 있고 관련 기능 설명이 없다."}
+{"task_id": "t265", "candidate_id": "c23", "grade": 0, "process": true, "reason": "여러 PR 관리 자동화와 무관하다."}
+{"task_id": "t265", "candidate_id": "c24", "grade": 0, "process": false, "reason": "React 프런트엔드 패턴은 Rust CLI와 다르다."}
+{"task_id": "t265", "candidate_id": "c25", "grade": 2, "process": true, "reason": "성능 개선과 비동기 처리 지침이 병목 개선에 유용하다."}
+{"task_id": "t265", "candidate_id": "c26", "grade": 0, "process": true, "reason": "Printing Press CLI 재생성은 기존 Rust 도구 최적화와 다르다."}
+{"task_id": "t265", "candidate_id": "c27", "grade": 0, "process": false, "reason": "출처만 있고 관련 기능 설명이 없다."}
+{"task_id": "t265", "candidate_id": "c28", "grade": 0, "process": false, "reason": "출처만 있고 관련 기능 설명이 없다."}
+{"task_id": "t265", "candidate_id": "c29", "grade": 0, "process": false, "reason": "Node.js API 구조는 Rust 로그 집계기와 다르다."}
+{"task_id": "t265", "candidate_id": "c30", "grade": 0, "process": false, "reason": "nginx 로그 출력과 Loki 전송 설정은 기존 파일 처리 최적화와 다르다."}
+{"task_id": "t265", "candidate_id": "c31", "grade": 1, "process": true, "reason": "접근 로그 조사는 같은 데이터 영역이지만 파서 성능 변경을 돕지 않는다."}
+{"task_id": "t265", "candidate_id": "c32", "grade": 0, "process": false, "reason": "CLI 매개변수 고정 테스트 설명은 로그 성능과 무관하다."}
+{"task_id": "t265", "candidate_id": "c33", "grade": 0, "process": false, "reason": "출처만 있고 관련 기능 설명이 없다."}
+{"task_id": "t265", "candidate_id": "c34", "grade": 0, "process": false, "reason": "React Next.js 패턴은 Rust CLI와 다르다."}
+{"task_id": "t265", "candidate_id": "c35", "grade": 0, "process": false, "reason": "Vercel 배포와 무관하다."}
+{"task_id": "t265", "candidate_id": "c36", "grade": 1, "process": false, "reason": "CLI 개발 일반 지원은 인접하지만 연산 처리량 개선이 주제다."}
+{"task_id": "t265", "candidate_id": "c37", "grade": 3, "process": false, "reason": "풀 크기와 안전한 fan-out 동시성 패턴이 파일별 병렬 처리 설계를 직접 안내한다."}
+{"task_id": "t265", "candidate_id": "c38", "grade": 0, "process": false, "reason": "출처만 있고 관련 기능 설명이 없다."}
+{"task_id": "t265", "candidate_id": "c39", "grade": 1, "process": true, "reason": "로그 이상 분석은 인접하지만 집계 도구 구현 성능과 다르다."}
+{"task_id": "t265", "candidate_id": "c40", "grade": 0, "process": false, "reason": "출처만 있고 관련 기능 설명이 없다."}
+{"task_id": "t265", "candidate_id": "c41", "grade": 0, "process": false, "reason": "Google Chat 메시지 전송과 무관하다."}
+{"task_id": "t265", "candidate_id": "c42", "grade": 1, "process": false, "reason": "터미널 운용 지식은 주변적이며 Rust 병렬 파서 구현을 안내하지 않는다."}
+{"task_id": "t265", "candidate_id": "c43", "grade": 1, "process": true, "reason": "공개 구현 조사 절차는 참고되나 라이브러리와 개선 방향이 이미 정해졌다."}
+{"task_id": "t265", "candidate_id": "c44", "grade": 1, "process": true, "reason": "독립 에이전트 작업 분담은 가능하지만 파일 실행 병렬화의 직접 지침은 아니다."}
+{"task_id": "t265", "candidate_id": "c45", "grade": 0, "process": false, "reason": "웹 기반 데이터 보강은 로그 집계 최적화와 다르다."}
+{"task_id": "t265", "candidate_id": "c46", "grade": 0, "process": true, "reason": "AI 세션 로그 출력 축약은 gzip 파일 해제 및 파싱과 다르다."}
+{"task_id": "t265", "candidate_id": "c47", "grade": 0, "process": false, "reason": "LogQL 생성은 Rust 로그 파일 처리와 다른 도구다."}
+{"task_id": "t265", "candidate_id": "c48", "grade": 0, "process": false, "reason": "Google Workspace CLI와 무관하다."}
+{"task_id": "t265", "candidate_id": "c49", "grade": 0, "process": false, "reason": "웹 변화 감시는 로컬 파일 병렬 처리와 다르다."}
+{"task_id": "t265", "candidate_id": "c50", "grade": 1, "process": false, "reason": "로그 중앙 수집은 관련 영역이나 기존 CLI 집계기의 속도 개선과 다르다."}

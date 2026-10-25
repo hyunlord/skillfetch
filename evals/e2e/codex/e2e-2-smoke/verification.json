@@ -1,0 +1,80 @@
+{
+  "cohort": false,
+  "purpose": "model-mediated MCP approval preflight",
+  "started_at": "2026-10-23T15:41:11.253Z",
+  "worktree": "<tmp>/skillfetch-e2e2-smoke-O67Asz/fastapi",
+  "login": {
+    "checked_at": "2026-10-23T15:41:11.394Z",
+    "exit_code": 0,
+    "chatgpt": true,
+    "output": "Logged in using ChatGPT",
+    "api_key_environment_absent": {
+      "OPENAI_API_KEY": true,
+      "CODEX_API_KEY": true,
+      "AZURE_OPENAI_API_KEY": true,
+      "ANTHROPIC_API_KEY": true,
+      "GOOGLE_API_KEY": true,
+      "GEMINI_API_KEY": true,
+      "AWS_ACCESS_KEY_ID": true,
+      "AWS_SECRET_ACCESS_KEY": true
+    }
+  },
+  "turn": {
+    "id": "01a1696c-62de-7232-93c0-4a03248deff7",
+    "rootTurnId": "01a1696c-62de-7232-93c0-4a03248deff7",
+    "items": [
+      {
+        "type": "agentMessage",
+        "id": "msg_0c7d192c2e45c724016adb803dcfa08191bb09f9af9caaa908",
+        "text": "Loaded skill: `uasl/api-testing@4ada9a2fac88`",
+        "phase": "final_answer",
+        "memoryCitation": null,
+        "delivery": null,
+        "questions": null
+      }
+    ],
+    "itemsView": "summary",
+    "status": "completed",
+    "error": null,
+    "startedAt": 1792770073,
+    "completedAt": 1792770110,
+    "durationMs": 36798
+  },
+  "calls": [
+    {
+      "id": "exec-80f3ccec-6c0b-43f0-8b7f-5635bbf2df4b",
+      "server": "skillfetch",
+      "tool": "profile_repo",
+      "status": "completed",
+      "error": null,
+      "has_result": true
+    },
+    {
+      "id": "exec-e61231a0-7d91-44b6-a18b-9db3109c9b47",
+      "server": "skillfetch",
+      "tool": "search_skills",
+      "status": "completed",
+      "error": null,
+      "has_result": true
+    },
+    {
+      "id": "exec-4a8f427d-9b84-4105-9f05-d0c876c0650a",
+      "server": "skillfetch",
+      "tool": "resolve_set",
+      "status": "completed",
+      "error": null,
+      "has_result": true
+    },
+    {
+      "id": "exec-5396fd83-ab72-4975-b074-7ad0817dd5ee",
+      "server": "skillfetch",
+      "tool": "load_skills",
+      "status": "completed",
+      "error": null,
+      "has_result": true
+    }
+  ],
+  "status": "PASS",
+  "cleanup": "DONE",
+  "finished_at": "2026-10-23T15:41:50.159Z"
+}

@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "skillfetch": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": ["--from", "<worktrees>/s6b-server/main", "skillfetch", "serve"],
+      "env": {}
+    }
+  }
+}

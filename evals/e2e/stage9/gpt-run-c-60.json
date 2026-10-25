@@ -1,0 +1,117 @@
+{
+ "excluded": "claude-run-b-60.jsonl (same family as Opus) not used; not present in stage9/",
+ "direction": {
+  "new": {
+   "n": 362,
+   "relevance_kappa": 0.718,
+   "both": 57,
+   "gpt_only": 20,
+   "opus_only": 13,
+   "gpt_only_rate": 0.055,
+   "opus_only_rate": 0.036,
+   "opus_only_share_of_disagreements": 0.394
+  },
+  "existing": {
+   "n": 362,
+   "relevance_kappa": 0.586,
+   "both": 41,
+   "gpt_only": 42,
+   "opus_only": 2,
+   "gpt_only_rate": 0.116,
+   "opus_only_rate": 0.006,
+   "opus_only_share_of_disagreements": 0.045
+  }
+ },
+ "coverage_top10": {
+  "run-c": "401/540",
+  "baseline": "312/540"
+ },
+ "coverage_picks": {
+  "run-c": "44/77",
+  "baseline r1": "28/62",
+  "baseline r2": "30/65",
+  "baseline r3": "28/64"
+ },
+ "rc_hit@10": {
+  "run-c": {
+   "intersection": {
+    "D": 54,
+    "confirmed_hit": 37,
+    "confirmed_miss": 0,
+    "undetermined": 17,
+    "rate_range": [
+     0.685,
+     1.0
+    ]
+   },
+   "opus_only": 0.796
+  },
+  "baseline": {
+   "intersection": {
+    "D": 54,
+    "confirmed_hit": 26,
+    "confirmed_miss": 0,
+    "undetermined": 28,
+    "rate_range": [
+     0.481,
+     1.0
+    ]
+   },
+   "opus_only": 0.556
+  }
+ },
+ "sbp_rel_load": {
+  "run-c": {
+   "intersection": {
+    "D": 54,
+    "confirmed_hit": 35,
+    "confirmed_miss": 7,
+    "undetermined": 12,
+    "rate_range": [
+     0.648,
+     0.87
+    ]
+   },
+   "opus_only": 0.833
+  },
+  "baseline r1": {
+   "intersection": {
+    "D": 54,
+    "confirmed_hit": 20,
+    "confirmed_miss": 14,
+    "undetermined": 20,
+    "rate_range": [
+     0.37,
+     0.741
+    ]
+   },
+   "opus_only": 0.556
+  },
+  "baseline r2": {
+   "intersection": {
+    "D": 54,
+    "confirmed_hit": 23,
+    "confirmed_miss": 12,
+    "undetermined": 19,
+    "rate_range": [
+     0.426,
+     0.778
+    ]
+   },
+   "opus_only": 0.593
+  },
+  "baseline r3": {
+   "intersection": {
+    "D": 54,
+    "confirmed_hit": 21,
+    "confirmed_miss": 14,
+    "undetermined": 19,
+    "rate_range": [
+     0.389,
+     0.741
+    ]
+   },
+   "opus_only": 0.593
+  }
+ }
+}

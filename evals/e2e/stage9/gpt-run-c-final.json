@@ -1,0 +1,101 @@
+{
+ "gpt_rows_total": 1092,
+ "gap_rows": 368,
+ "coverage_top10": {
+  "run-c": "540/540",
+  "baseline": "540/540"
+ },
+ "rc_hit@10": {
+  "run-c": {
+   "intersection": {
+    "D": 54,
+    "confirmed_hit": 41,
+    "confirmed_miss": 13,
+    "undetermined": 0,
+    "rate": 0.759,
+    "range": [
+     0.759,
+     0.759
+    ]
+   },
+   "opus_only": 0.796
+  },
+  "baseline": {
+   "intersection": {
+    "D": 54,
+    "confirmed_hit": 29,
+    "confirmed_miss": 25,
+    "undetermined": 0,
+    "rate": 0.537,
+    "range": [
+     0.537,
+     0.537
+    ]
+   },
+   "opus_only": 0.556
+  }
+ },
+ "sbp_rel_load": {
+  "run-c": {
+   "intersection": {
+    "D": 54,
+    "confirmed_hit": 44,
+    "confirmed_miss": 10,
+    "undetermined": 0,
+    "rate": 0.815,
+    "range": [
+     0.815,
+     0.815
+    ]
+   },
+   "opus_only": 0.833
+  },
+  "baseline r1": {
+   "intersection": {
+    "D": 54,
+    "confirmed_hit": 29,
+    "confirmed_miss": 25,
+    "undetermined": 0,
+    "rate": 0.537,
+    "range": [
+     0.537,
+     0.537
+    ]
+   },
+   "opus_only": 0.556
+  },
+  "baseline r2": {
+   "intersection": {
+    "D": 54,
+    "confirmed_hit": 31,
+    "confirmed_miss": 23,
+    "undetermined": 0,
+    "rate": 0.574,
+    "range": [
+     0.574,
+     0.574
+    ]
+   },
+   "opus_only": 0.593
+  },
+  "baseline r3": {
+   "intersection": {
+    "D": 54,
+    "confirmed_hit": 31,
+    "confirmed_miss": 23,
+    "undetermined": 0,
+    "rate": 0.574,
+    "range": [
+     0.574,
+     0.574
+    ]
+   },
+   "opus_only": 0.593
+  }
+ },
+ "gap_rows_relevance": {
+  "opus_ge2": 56,
+  "gpt_ge2": 92
+ },
+ "all_undetermined_zero": true
+}

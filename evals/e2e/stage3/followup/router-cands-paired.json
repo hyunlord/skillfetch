@@ -1,0 +1,164 @@
+{
+ "relevant@10 R-c-R-b": {
+  "diff": -0.007,
+  "ci95": [
+   -0.044,
+   0.029
+  ],
+  "better": 58,
+  "worse": 68
+ },
+ "relevant@10 R-b-R-a": {
+  "diff": 0.055,
+  "ci95": [
+   0.014,
+   0.095
+  ],
+  "better": 90,
+  "worse": 56
+ },
+ "relevant@10 R-c-R-a": {
+  "diff": 0.048,
+  "ci95": [
+   0.005,
+   0.088
+  ],
+  "better": 88,
+  "worse": 59
+ },
+ "relevant@50 R-c-R-b": {
+  "diff": 0.001,
+  "ci95": [
+   -0.028,
+   0.032
+  ],
+  "better": 45,
+  "worse": 45
+ },
+ "relevant@50 R-b-R-a": {
+  "diff": 0.069,
+  "ci95": [
+   0.035,
+   0.105
+  ],
+  "better": 68,
+  "worse": 30
+ },
+ "relevant@50 R-c-R-a": {
+  "diff": 0.071,
+  "ci95": [
+   0.035,
+   0.108
+  ],
+  "better": 79,
+  "worse": 38
+ },
+ "relevant_2a@10 R-c-R-b": {
+  "diff": 0.018,
+  "ci95": [
+   -0.025,
+   0.057
+  ],
+  "better": 22,
+  "worse": 17
+ },
+ "relevant_2a@10 R-b-R-a": {
+  "diff": 0.029,
+  "ci95": [
+   -0.014,
+   0.074
+  ],
+  "better": 28,
+  "worse": 22
+ },
+ "relevant_2a@10 R-c-R-a": {
+  "diff": 0.046,
+  "ci95": [
+   -0.003,
+   0.097
+  ],
+  "better": 35,
+  "worse": 20
+ },
+ "relevant_2a@50 R-c-R-b": {
+  "diff": -0.026,
+  "ci95": [
+   -0.072,
+   0.02
+  ],
+  "better": 19,
+  "worse": 26
+ },
+ "relevant_2a@50 R-b-R-a": {
+  "diff": 0.077,
+  "ci95": [
+   0.033,
+   0.122
+  ],
+  "better": 32,
+  "worse": 11
+ },
+ "relevant_2a@50 R-c-R-a": {
+  "diff": 0.05,
+  "ci95": [
+   0.005,
+   0.096
+  ],
+  "better": 32,
+  "worse": 18
+ },
+ "relevant_process@10 R-c-R-b": {
+  "diff": -0.031,
+  "ci95": [
+   -0.078,
+   0.016
+  ],
+  "better": 31,
+  "worse": 37
+ },
+ "relevant_process@10 R-b-R-a": {
+  "diff": 0.076,
+  "ci95": [
+   0.017,
+   0.135
+  ],
+  "better": 55,
+  "worse": 38
+ },
+ "relevant_process@10 R-c-R-a": {
+  "diff": 0.046,
+  "ci95": [
+   -0.011,
+   0.102
+  ],
+  "better": 53,
+  "worse": 34
+ },
+ "relevant_process@50 R-c-R-b": {
+  "diff": -0.004,
+  "ci95": [
+   -0.046,
+   0.04
+  ],
+  "better": 29,
+  "worse": 30
+ },
+ "relevant_process@50 R-b-R-a": {
+  "diff": 0.118,
+  "ci95": [
+   0.062,
+   0.176
+  ],
+  "better": 51,
+  "worse": 22
+ },
+ "relevant_process@50 R-c-R-a": {
+  "diff": 0.114,
+  "ci95": [
+   0.059,
+   0.173
+  ],
+  "better": 57,
+  "worse": 27
+ }
+}

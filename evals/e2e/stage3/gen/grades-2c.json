@@ -1,0 +1,2082 @@
+{
+ "t008": {
+  "uasl/composio-search-automation@d306d9cc8294": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/prismic-automation@4ad566233625": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/blog-post@0609b6877ec5": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/contentful-automation@3591ba90ee0a": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/x-api@f7be0ce6f0ec": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/content-engine@d3c510c6c4bf": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/brand-voice@1253e24a13ab": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/vercel-composition-patterns@a6f8be32b197": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/react-patterns@73d1ecc06997": {
+   "grade": 2,
+   "process": false
+  },
+  "uasl/agility-cms-automation@de75dca70ec8": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/fuzzing-obstacles@cb574f4c1b3b": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/motion-canvas@08d879d31903": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/boloforms-automation@60598456e042": {
+   "grade": 0,
+   "process": false
+  }
+ },
+ "t010": {
+  "uasl/microservices-patterns@40adea69dde4": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/meta-prompt-engineering@c01cd11b78a1": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/error-handling-patterns@4c19ee7d7821": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/busybox-on-windows@8fa5a351edc2": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/appsflyer-automation@ecf48ef72a39": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/cli-windows-powershell-mastery@88aa890eefd5": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/lemlist-automation@a31df61c312a": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/setup-pre-commit@95f6657588a0": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/connecteam-automation@15c80fc0267d": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/verification-before-completion@134bf517af69": {
+   "grade": 1,
+   "process": true
+  },
+  "uasl/defense-in-depth@e9a7d1415325": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/thinking-regret-minimization@f18d99ba7cec": {
+   "grade": 0,
+   "process": true
+  }
+ },
+ "t021": {
+  "uasl/scaffold-exercises@95d0d91c73af": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/architecture-designer@9a54494f5c45": {
+   "grade": 2,
+   "process": true
+  },
+  "uasl/backend-patterns@3d87ff489f3e": {
+   "grade": 1,
+   "process": false
+  },
+  "anthropics-skills/discernment-nudge@a9d2caea7e0b": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/launch@117c5509679d": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/karpathy-guidelines@da897c8c3bab": {
+   "grade": 2,
+   "process": true
+  },
+  "uasl/launch-darkly-automation@d0c96e8232c3": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/finance-metrics-quickref@dfe896ee13a2": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/one-pager-prd@3613e5b1fc98": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/spark@e34a95f62716": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/saas-revenue-growth-metrics@a287946f472a": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/experiment@e2419a708eaf": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/humanitix-automation@eda519b09039": {
+   "grade": 0,
+   "process": false
+  }
+ },
+ "t036": {
+  "uasl/release-it@e3e5b4710eea": {
+   "grade": 3,
+   "process": false
+  },
+  "uasl/debug-root-cause@1d7ea4a832dc": {
+   "grade": 2,
+   "process": true
+  },
+  "uasl/builder@8d7f0953ade3": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/contract-testing@b0f4c29940a9": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/tdd@ff86dad94075": {
+   "grade": 1,
+   "process": true
+  },
+  "uasl/integration-testing@62b51275be50": {
+   "grade": 2,
+   "process": false
+  },
+  "uasl/n8n-code-javascript@203459f10f1d": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/cli-windows-powershell-mastery@88aa890eefd5": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/minimalist-skill@6bec0a57af30": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/api-testing@4ada9a2fac88": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/acceptance-testing@7f713f1566e8": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/brandkit@be1d18f9b581": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/thinking-five-whys-plus@9d8a7d64affe": {
+   "grade": 1,
+   "process": true
+  },
+  "uasl/api-design@bba608f8c974": {
+   "grade": 0,
+   "process": false
+  }
+ },
+ "t043": {
+  "uasl/cloudinary-automation@279c66a5816e": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/printing-press-reprint@af02d260d0be": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/openapi-spec-generation@2d2c7a93b8f2": {
+   "grade": 0,
+   "process": false
+  },
+  "anthropics-skills/discernment-nudge@a9d2caea7e0b": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/contract-testing@b0f4c29940a9": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/placekey-automation@8b22d06166a6": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/netsuite-automation@b615a37449c9": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/debug-root-cause@1d7ea4a832dc": {
+   "grade": 2,
+   "process": true
+  },
+  "uasl/next-upgrade@df465f7770a5": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/horizon@8e6f79e4495d": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/verification-before-completion@134bf517af69": {
+   "grade": 1,
+   "process": true
+  },
+  "uasl/integration-testing@62b51275be50": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/heygen-automation@a6866ec9d3eb": {
+   "grade": 0,
+   "process": false
+  }
+ },
+ "t068": {
+  "uasl/refactoring-patterns@7283bad3e86e": {
+   "grade": 3,
+   "process": true
+  },
+  "uasl/security-audit@0b0f681978a4": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/thinking-cynefin@35c884c46e92": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/unit-testing@6c5fbb821103": {
+   "grade": 2,
+   "process": false
+  },
+  "uasl/python-design-patterns@5c0fbe0d4633": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/security-review@fcc354bc486e": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/chatfai-automation@6aad9a049efe": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/ln-020-codegraph@4b3c5fef9457": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/n8n-node-configuration@11407cd84493": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/clean-code@f135cf4e9ff5": {
+   "grade": 2,
+   "process": false
+  },
+  "anthropics-skills/discernment-nudge@a9d2caea7e0b": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/typescript-unit-testing@6fb3561edcb3": {
+   "grade": 0,
+   "process": false
+  }
+ },
+ "t079": {
+  "uasl/api-testing@4ada9a2fac88": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/fastapi-templates@effcd0de0b4c": {
+   "grade": 2,
+   "process": false
+  },
+  "uasl/fastapi-endpoint@2a93d50c4970": {
+   "grade": 1,
+   "process": true
+  },
+  "uasl/virustotal-automation@2125283ee6e4": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/api-sports-automation@0461bade6799": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/python-testing-patterns@e62d0f1ca316": {
+   "grade": 3,
+   "process": false
+  },
+  "uasl/public-param-golden@6b8109050c5c": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/openapi-spec-generation@2d2c7a93b8f2": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/ln-020-codegraph@4b3c5fef9457": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/timekit-automation@ca8a9faa9e8c": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/claude-native-claude-api@24c958899f03": {
+   "grade": 0,
+   "process": false
+  }
+ },
+ "t084": {
+  "uasl/typescript-unit-testing@6fb3561edcb3": {
+   "grade": 2,
+   "process": false
+  },
+  "uasl/python-testing-patterns@e62d0f1ca316": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/unit-testing@6c5fbb821103": {
+   "grade": 2,
+   "process": false
+  },
+  "uasl/scout@97653445d7f1": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/fuzzing-dictionary@1b7491e2ab32": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/warden@420cd481af69": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/test-driven-development@0eebe2fe0e28": {
+   "grade": 3,
+   "process": true
+  },
+  "uasl/tdd@ff86dad94075": {
+   "grade": 3,
+   "process": true
+  },
+  "anthropics-skills/web-artifacts-builder@9c350d2f5f13": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/ragic-automation@139d7159048a": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/mcp-server-patterns@63e29e48e956": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/systematic-debug@6b158e105823": {
+   "grade": 0,
+   "process": true
+  }
+ },
+ "t107": {
+  "uasl/lemlist-automation@a31df61c312a": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/eval-harness@2a2fcc11c03a": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/universal-ai-config@810b8c3c5958": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/scaffold-exercises@95d0d91c73af": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/provider-api@4da7bed47117": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/thinking-fermi-estimation@2e78f221fd92": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/universal-ai-skills@0128810b6ffe": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/interzoid-automation@4d8c02fef68a": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/ossfuzz@29bd6a21c586": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/gbrain@cf3beac3a2cf": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/quill@336ba74b0e79": {
+   "grade": 3,
+   "process": false
+  },
+  "uasl/google-classroom-automation@2fc169e6c142": {
+   "grade": 0,
+   "process": false
+  }
+ },
+ "t113": {
+  "uasl/property-based-testing@a168f6739085": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/documentation-lookup@dee6d7478eab": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/saga@fabeed82c780": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/d3-visualization@739528fdf78d": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/thinking-reversibility@00c6455aabae": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/unit-testing@6c5fbb821103": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/test-driven-development@0eebe2fe0e28": {
+   "grade": 0,
+   "process": true
+  },
+  "anthropics-skills/discernment-nudge@a9d2caea7e0b": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/verification-before-completion@134bf517af69": {
+   "grade": 2,
+   "process": true
+  },
+  "uasl/anvil@3a36e8410205": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/thinking-jobs-to-be-done@1b920fccd1fc": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/printing-press-output-review@35c772127bb2": {
+   "grade": 0,
+   "process": true
+  }
+ },
+ "t118": {
+  "uasl/beaconstac-automation@7e64ffae4f9a": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/cavecrew@6b0708483bbb": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/printing-press-output-review@35c772127bb2": {
+   "grade": 0,
+   "process": true
+  },
+  "anthropics-skills/skill-creator@5d80e84222d8": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/thinking-margin-of-safety@2336a8b814d3": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/solana-vulnerability-scanner@05e33b7d1d05": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/receiving-code-review@5c548774a9ad": {
+   "grade": 1,
+   "process": true
+  },
+  "anthropics-skills/discernment-nudge@a9d2caea7e0b": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/requesting-code-review@82594984f359": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/n8n-code-javascript@203459f10f1d": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/insecure-defaults@a0e826721018": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/byteforms-automation@9a0960fc5e59": {
+   "grade": 0,
+   "process": false
+  }
+ },
+ "t137": {
+  "uasl/multi-repo-git-ops@d1a9b3bcdc7d": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/planning-with-files@5da17072dc31": {
+   "grade": 1,
+   "process": true
+  },
+  "uasl/executive-onboarding-playbook@dc89777e55ba": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/chaos-testing@760793a4a18b": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/define-architecture@8ea764417825": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/bitquery-automation@d0b5fb8182e0": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/writing-plans@219901eb119f": {
+   "grade": 2,
+   "process": true
+  },
+  "uasl/scaffold@443673063eb0": {
+   "grade": 3,
+   "process": true
+  },
+  "uasl/terraform-module-library@d02b1cc84d22": {
+   "grade": 3,
+   "process": false
+  },
+  "uasl/ashby-automation@b9813e1a534d": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/hr-onboarding@a215d70427b3": {
+   "grade": 0,
+   "process": false
+  },
+  "anthropics-skills/frontend-design@0a5ff23f1022": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/executing-plans@3bfe5761e031": {
+   "grade": 1,
+   "process": true
+  }
+ },
+ "t142": {
+  "uasl/monorepo-management@4078df072127": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/fal-ai-media@1a7fc3310ea8": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/api-testing@4ada9a2fac88": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/static-analysis@88c6f201cae0": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/vercel-cli-with-tokens@3f9c2805c482": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/auth0-automation@4c6deb665922": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/perf-lighthouse@ccafe273f7d2": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/universal-ai-skills@0128810b6ffe": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/titan@39c6080f3dfc": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/anvil@3a36e8410205": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/claude-native-claude-api@24c958899f03": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/next-cache-components@b22f6e134147": {
+   "grade": 0,
+   "process": false
+  }
+ },
+ "t149": {
+  "uasl/mistral-ai-automation@df160a2db3cd": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/changelog-generator@f7da9390521a": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/github-actions-templates@ce03df93ccdf": {
+   "grade": 3,
+   "process": false
+  },
+  "uasl/iterate-pr@0c545d33cef2": {
+   "grade": 1,
+   "process": true
+  },
+  "uasl/printautopilot-automation@2c1588a88c7e": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/five-agent-preflight-check@972573c45dcf": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/github-workflow-automation@519f4ba6e482": {
+   "grade": 2,
+   "process": false
+  },
+  "uasl/five-agent-ci-debug@66324570bafb": {
+   "grade": 1,
+   "process": true
+  },
+  "uasl/pipe@0f029a41f006": {
+   "grade": 3,
+   "process": false
+  },
+  "uasl/prose@bbd22d3eb9b7": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/monorepo-management@4078df072127": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/multi-repo-git-ops@d1a9b3bcdc7d": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/five-agent-security-review@54653e9fa93f": {
+   "grade": 1,
+   "process": true
+  }
+ },
+ "t152": {
+  "uasl/apify-automation@34a14f015224": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/image-to-code-skill@4f1a4537825d": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/segmetrics-automation@de3f329083b9": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/doppler-secretops-automation@2a767cbe6ac5": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/acceptance-testing@7f713f1566e8": {
+   "grade": 1,
+   "process": true
+  },
+  "uasl/claude-native-claude-api@24c958899f03": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/public-param-golden@6b8109050c5c": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/kubernetes-security-policies@83bbc7f29e7e": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/codacy-automation@360b7aba6c5e": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/release-it@e3e5b4710eea": {
+   "grade": 2,
+   "process": false
+  },
+  "uasl/invoice-organizer@65f04d96d07a": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/workday-automation@3e9313379197": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/deployment-pipeline-design@2a89fc6f32ff": {
+   "grade": 2,
+   "process": false
+  }
+ },
+ "t163": {
+  "uasl/perf-lighthouse@ccafe273f7d2": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/writing-plans@219901eb119f": {
+   "grade": 3,
+   "process": true
+  },
+  "uasl/unit-testing@6c5fbb821103": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/launch@117c5509679d": {
+   "grade": 1,
+   "process": true
+  },
+  "uasl/executing-plans@3bfe5761e031": {
+   "grade": 2,
+   "process": true
+  },
+  "uasl/karpathy-guidelines@da897c8c3bab": {
+   "grade": 1,
+   "process": true
+  },
+  "uasl/code-security@e20eb3467925": {
+   "grade": 2,
+   "process": false
+  },
+  "uasl/browser-extension-builder@3240e6183c28": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/coding-guidelines@0ec7e45f92f2": {
+   "grade": 1,
+   "process": true
+  },
+  "uasl/apipie-ai-automation@6afa202b2cee": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/write-a-skill@82d5bd29e631": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/typescript-unit-testing@6fb3561edcb3": {
+   "grade": 0,
+   "process": false
+  }
+ },
+ "t169": {
+  "uasl/smartrecruiters-automation@5647e70c7d68": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/contract-testing@b0f4c29940a9": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/investor-outreach@fedb2eb4a89c": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/python-performance-optimization@bf455fd100bf": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/fuzzing-obstacles@cb574f4c1b3b": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/release-it@e3e5b4710eea": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/lean-startup@776b03bb7136": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/chatwork-automation@b3ef79e7f607": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/timekit-automation@ca8a9faa9e8c": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/thinking-effectuation@f26a123bc884": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/workflow-automation@8036a9d484a3": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/typescript-unit-testing@6fb3561edcb3": {
+   "grade": 0,
+   "process": true
+  }
+ },
+ "t176": {
+  "uasl/trace@5c68ce48e264": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/ux-audit@d921ee5d8321": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/thinking-archetypes@48c7ccc46e1c": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/estimation-fermi@3630339fb35e": {
+   "grade": 0,
+   "process": true
+  },
+  "anthropics-skills/claude-api@e30e2c97f747": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/debug-root-cause@1d7ea4a832dc": {
+   "grade": 1,
+   "process": true
+  },
+  "uasl/coverage-analysis@d4d536b8cbac": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/quickdup@ba3af78467d1": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/weekly-update@e18ba8d591b9": {
+   "grade": 0,
+   "process": false
+  },
+  "anthropics-skills/internal-comms@c544dea09136": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/internal-comms@8ad08fb91e8c": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/caveman-stats@2859ce4e33a6": {
+   "grade": 0,
+   "process": false
+  }
+ },
+ "t179": {
+  "uasl/coinbase-automation@5c971806493f": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/shadcn-ui@8c463642324a": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/clean-code@f135cf4e9ff5": {
+   "grade": 1,
+   "process": true
+  },
+  "uasl/plasmic-automation@2e9b7adbd76d": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/claude-native-claude-api@24c958899f03": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/segment-cdp@42e8e765d937": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/event-store-design@c739ef000ad1": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/eventbrite-automation@3c64bf358971": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/inngest@fc3f33c4e97f": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/pulse@d691047d31fb": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/thinking-fermi-estimation@2e78f221fd92": {
+   "grade": 0,
+   "process": true
+  },
+  "anthropics-skills/pdf@9bc3a6e1ff66": {
+   "grade": 0,
+   "process": false
+  }
+ },
+ "t194": {
+  "uasl/python-error-handling@8dc34883a143": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/docs-page@d9c05e10601d": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/instantly-automation@d8854d4a51f6": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/agent-introspection-debugging@68529b68f0f1": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/libfuzzer@a1e2ef172192": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/trigger-dev@d05b3d95379f": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/component-flattening-analysis@82a0a8d664dd": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/postgresql-table-design@59d09e948243": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/claude-native-claude-api@24c958899f03": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/debug-root-cause@1d7ea4a832dc": {
+   "grade": 2,
+   "process": true
+  },
+  "uasl/thinking-partner@80abb24d238a": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/excel-automation@026ac73c3c63": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/to-issues@fe551bc54a09": {
+   "grade": 0,
+   "process": true
+  }
+ },
+ "t219": {
+  "uasl/unit-testing@6c5fbb821103": {
+   "grade": 2,
+   "process": false
+  },
+  "uasl/roadmap-backcast@7cd18481befb": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/thinking-effectuation@f26a123bc884": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/thinking-bayesian@df0e4b2e75b4": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/thinking-probabilistic@798a0444c814": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/writing-plans@219901eb119f": {
+   "grade": 2,
+   "process": true
+  },
+  "uasl/typescript-unit-testing@6fb3561edcb3": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/async-python-patterns@957ebfe54aa7": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/acceptance-testing@7f713f1566e8": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/tomba-automation@78e0c70c76c3": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/codenavi@109490043377": {
+   "grade": 2,
+   "process": true
+  },
+  "uasl/integration-testing@62b51275be50": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/tdd-workflow@6eadb0bf0ea8": {
+   "grade": 1,
+   "process": true
+  },
+  "uasl/thinking-scientific-method@8b3f9fba25b4": {
+   "grade": 1,
+   "process": true
+  }
+ },
+ "t220": {
+  "uasl/thinking-margin-of-safety@2336a8b814d3": {
+   "grade": 1,
+   "process": true
+  },
+  "uasl/developer-growth-analysis@4615ad8d56aa": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/slack-bot-builder@ce64c6aad24e": {
+   "grade": 1,
+   "process": false
+  },
+  "anthropics-skills/slack-gif-creator@4e04e7a9eba6": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/bench-automation@346a78d05d22": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/connect-apps@9a34ce12c40c": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/skill-share@1399c8172d6b": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/python-error-handling@8dc34883a143": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/docsbot-ai-automation@2bdd49b25e0e": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/contract-testing@b0f4c29940a9": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/connect@77e02b4574f6": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/integration-testing@62b51275be50": {
+   "grade": 1,
+   "process": false
+  }
+ },
+ "t222": {
+  "uasl/mobile-app@a9dba8039c51": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/design-to-code@fae28f73cda0": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/replicate-automation@4053915c756a": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/statsmodels@49021b731076": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/firebase-apk-scanner@70f61dd5e15b": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/groqcloud-automation@e4dc6956991c": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/ux-audit@d921ee5d8321": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/ocrspace-automation@7c9801fc34e9": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/imagegen-frontend-mobile@d57843fce66f": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/transformers@0b5f07bd96f0": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/zoho-desk-automation@fc28363b5a7e": {
+   "grade": 0,
+   "process": false
+  },
+  "anthropics-skills/claude-api@e30e2c97f747": {
+   "grade": 0,
+   "process": false
+  }
+ },
+ "t228": {
+  "uasl/anvil@3a36e8410205": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/gsap-utils@a1cbf677d835": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/owasp-security@9847d3666f75": {
+   "grade": 3,
+   "process": false
+  },
+  "uasl/cli-windows-powershell-mastery@88aa890eefd5": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/security-review@fcc354bc486e": {
+   "grade": 2,
+   "process": true
+  },
+  "uasl/semgrep-rule-creator@ae4d35a76948": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/latch@1bd1d888e79e": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/dialectical-mapping-steelmanning@14e588d042df": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/favicon-gen@ff315899c13f": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/release-it@e3e5b4710eea": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/siege@06245d21dd1c": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/sql-injection-testing@5f2e673fc46e": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/browser-extension-builder@3240e6183c28": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/chaos-testing@760793a4a18b": {
+   "grade": 0,
+   "process": true
+  }
+ },
+ "t245": {
+  "uasl/caveman-review@23eed6aa48dd": {
+   "grade": 1,
+   "process": true
+  },
+  "uasl/test-driven-development@0eebe2fe0e28": {
+   "grade": 1,
+   "process": true
+  },
+  "uasl/defense-in-depth@e9a7d1415325": {
+   "grade": 1,
+   "process": true
+  },
+  "uasl/integration-testing@62b51275be50": {
+   "grade": 2,
+   "process": false
+  },
+  "uasl/security-audit@0b0f681978a4": {
+   "grade": 3,
+   "process": true
+  },
+  "uasl/owasp-security@9847d3666f75": {
+   "grade": 3,
+   "process": false
+  },
+  "uasl/vibe-security@6b07d0f651a7": {
+   "grade": 2,
+   "process": false
+  },
+  "uasl/acceptance-testing@7f713f1566e8": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/security-review@fcc354bc486e": {
+   "grade": 2,
+   "process": true
+  },
+  "uasl/typescript-unit-testing@6fb3561edcb3": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/taste-skill@57790089504e": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/find-bugs@c3ff7d64ff9f": {
+   "grade": 1,
+   "process": true
+  },
+  "uasl/ton-vulnerability-scanner@377d84553d54": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/sentinel@68f8e2afebcc": {
+   "grade": 1,
+   "process": true
+  }
+ },
+ "t247": {
+  "uasl/retellai-automation@701588322543": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/amazon-automation@2e14389a3986": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/imagegen-frontend-mobile@d57843fce66f": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/thinking-second-order@6a0831afa6ac": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/mobile-app@a9dba8039c51": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/netsuite-automation@b615a37449c9": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/thinking-fermi-estimation@2e78f221fd92": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/estimation-fermi@3630339fb35e": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/user-story-mapping@f4c7115086b0": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/hyperise-automation@21a47f662f5c": {
+   "grade": 0,
+   "process": false
+  },
+  "anthropics-skills/docx@74e2b8b277a4": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/firebase-apk-scanner@70f61dd5e15b": {
+   "grade": 1,
+   "process": false
+  }
+ },
+ "t255": {
+  "uasl/vercel-react-best-practices@70f3b5aaf775": {
+   "grade": 3,
+   "process": false
+  },
+  "uasl/meeting-notes@da1c35784ab9": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/stripe-best-practices@795a33f68129": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/gstack@3a23a30cf4c0": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/perf-web-optimization@0e20e7b8cc98": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/ninox-automation@5c0813b7d348": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/web-performance-optimization@b2b38275ed40": {
+   "grade": 2,
+   "process": true
+  },
+  "uasl/docnify-automation@6be142bbaac2": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/eventbrite-automation@3c64bf358971": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/braintree-automation@6ca1049d53ee": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/bolt@c4895c710162": {
+   "grade": 1,
+   "process": true
+  },
+  "uasl/nextjs-turbopack@b0af0186e13a": {
+   "grade": 2,
+   "process": false
+  }
+ },
+ "t256": {
+  "uasl/browser-automation@49c3aed21e27": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/altoviz-automation@bfb99e71847c": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/react-patterns@73d1ecc06997": {
+   "grade": 2,
+   "process": false
+  },
+  "uasl/tdd-workflow@6eadb0bf0ea8": {
+   "grade": 1,
+   "process": true
+  },
+  "uasl/vercel-react-best-practices@70f3b5aaf775": {
+   "grade": 3,
+   "process": false
+  },
+  "uasl/vercel-composition-patterns@a6f8be32b197": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/e2e-testing-patterns@8b25fb0b2da6": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/kommo-automation@67ebbb9c7737": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/bolt@c4895c710162": {
+   "grade": 2,
+   "process": true
+  },
+  "uasl/software-design-philosophy@066bc275787f": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/navigator@8d026b4397b8": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/typescript-unit-testing@6fb3561edcb3": {
+   "grade": 0,
+   "process": false
+  }
+ },
+ "t258": {
+  "uasl/proxiedmail-automation@4b2f0bc1d945": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/triage@4f63c8a85819": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/geocodio-automation@62dbc5564aed": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/api-design@bba608f8c974": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/contract-testing@b0f4c29940a9": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/next-cache-components@b22f6e134147": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/happy-scribe-automation@70cdb7fcfd0e": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/backend-patterns@3d87ff489f3e": {
+   "grade": 2,
+   "process": false
+  },
+  "uasl/fastapi-endpoint@2a93d50c4970": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/json-canvas@909f14be9fa9": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/google-maps-automation@8d888f14d993": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/api-testing@4ada9a2fac88": {
+   "grade": 1,
+   "process": false
+  }
+ },
+ "t276": {
+  "uasl/social-carousel@ad5180e0b228": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/design-review@4964367926b4": {
+   "grade": 1,
+   "process": true
+  },
+  "uasl/anvil@3a36e8410205": {
+   "grade": 3,
+   "process": false
+  },
+  "uasl/dashboard@537186e4443a": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/salesforce-service-cloud-automation@c5dffab48cca": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/docs-page@d9c05e10601d": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/domain-driven-design@0d649fab3ce3": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/kanban-board@2d1da6290ea3": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/email-marketing@a37255743f2c": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/tdd-workflow@6eadb0bf0ea8": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/wireframe-sketch@715426b3232f": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/responsive-design@2cf7927ef938": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/responsiveness-check@d53a385e5699": {
+   "grade": 0,
+   "process": true
+  }
+ },
+ "t282": {
+  "uasl/googleads-automation@13c0cd459708": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/google-address-validation-automation@334e106c4099": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/cairo-vulnerability-scanner@ec05b2fd95f9": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/peopledatalabs-automation@9716ebf37534": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/googlecalendar-automation@e287cc4b5124": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/google-admin-automation@c0e29c39549e": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/googlesuper-automation@cc856af1f944": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/googledocs-automation@205a55e5ad22": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/googlephotos-automation@0b2d3403ccba": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/googledrive-automation@522876388f34": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/googlemeet-automation@d25b5982718c": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/google-cloud-vision-automation@45dcbabcf748": {
+   "grade": 0,
+   "process": false
+  }
+ },
+ "t293": {
+  "uasl/interaction-design@7c9d38549c2b": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/soft-skill@4dd04c5022d2": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/next-best-practices@ee058f89acea": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/ui-animation@8e756d76dc18": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/ui-design@812122996fbd": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/google-classroom-automation@2fc169e6c142": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/coinbase-automation@5c971806493f": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/api-testing@4ada9a2fac88": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/spec-to-code-compliance@dee9b880b526": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/universal-ai-skills@0128810b6ffe": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/wireframe-sketch@715426b3232f": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/kanban-board@2d1da6290ea3": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/replit-deck@84797e95ef8f": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/five-agent-security-review@54653e9fa93f": {
+   "grade": 0,
+   "process": false
+  }
+ },
+ "t311": {
+  "uasl/caveman-stats@2859ce4e33a6": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/everything-claude-code@dad489339e1e": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/tapform-automation@68462250b4c5": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/debug-root-cause@1d7ea4a832dc": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/caveman-commit@244182e952a7": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/upstash-qstash@4aec8366af8b": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/route4me-automation@9bfeaede29bf": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/harvest-automation@9d33356a1149": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/eol-message@05765e0a4b63": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/customerio-automation@147bd2db28ea": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/made-to-stick@8667d5f2a5ae": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/slack-bot-builder@ce64c6aad24e": {
+   "grade": 0,
+   "process": false
+  }
+ },
+ "t314": {
+  "uasl/vercel-react-best-practices@70f3b5aaf775": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/googledocs-automation@205a55e5ad22": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/legacy-modernizer@519b6311409d": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/frontend-patterns@8f659ce2a0bd": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/guidelines-advisor@30a5870183a1": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/next-cache-components@b22f6e134147": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/taste-skill@57790089504e": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/legacy-migration-planner@462fe9f6af79": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/scaffold-nextjs@3d1152f5d9d0": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/motion-canvas@08d879d31903": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/design-to-code@fae28f73cda0": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/next-best-practices@ee058f89acea": {
+   "grade": 2,
+   "process": false
+  }
+ },
+ "t317": {
+  "uasl/caveman-commit@244182e952a7": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/tdd@ff86dad94075": {
+   "grade": 1,
+   "process": true
+  },
+  "uasl/edit-article@50d401cdd74b": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/spec-to-code-compliance@dee9b880b526": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/invoice@234bae53884f": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/image-to-code-skill@4f1a4537825d": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/clockify-automation@2a7df079c351": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/universal-ai-config@810b8c3c5958": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/tripadvisor-content-api-automation@3ab8b1ec4df3": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/cf-crawl@77a977c31001": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/caveman-review@23eed6aa48dd": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/software-architecture@011a6d823631": {
+   "grade": 0,
+   "process": false
+  }
+ },
+ "t326": {
+  "uasl/github-gem-seeker@759ed0b02cdc": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/mobile-onboarding@dae55de6dde3": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/flow@d1423e53e763": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/openui@c3154bb34a14": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/benzinga-automation@378b9ce6bf36": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/shadcn-ui@8c463642324a": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/open-sea-automation@35da2a8c0ec9": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/insecure-defaults@a0e826721018": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/minimalist-skill@6bec0a57af30": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/ui-animation@8e756d76dc18": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/yeet@7665edb92f0c": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/frontend-patterns@8f659ce2a0bd": {
+   "grade": 1,
+   "process": false
+  }
+ },
+ "t348": {
+  "uasl/bolt-iot-automation@85e121fde6f2": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/defense-in-depth@e9a7d1415325": {
+   "grade": 1,
+   "process": true
+  },
+  "uasl/security-review@fcc354bc486e": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/property-based-testing@a168f6739085": {
+   "grade": 3,
+   "process": false
+  },
+  "uasl/design-an-interface@14a6b0b5787c": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/cloudconvert-automation@994a9a2a86c8": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/harness-writing@b71c9af45925": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/python-error-handling@8dc34883a143": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/fuzzing-obstacles@cb574f4c1b3b": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/five-agent-state-update@d7d66be120b0": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/simplesat-automation@9d60a87f70b6": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/cosmos-vulnerability-scanner@15287e1284d6": {
+   "grade": 0,
+   "process": false
+  }
+ },
+ "t361": {
+  "uasl/sendfox-automation@7502b2153453": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/writing-plans@219901eb119f": {
+   "grade": 2,
+   "process": true
+  },
+  "uasl/request-refactor-plan@49b853892f06": {
+   "grade": 2,
+   "process": true
+  },
+  "uasl/karpathy-guidelines@da897c8c3bab": {
+   "grade": 1,
+   "process": true
+  },
+  "uasl/tdd@ff86dad94075": {
+   "grade": 1,
+   "process": true
+  },
+  "uasl/thinking-dual-process@ef71f2040b15": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/component-identification-sizing@a9b4aa9f2de1": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/xero-automation@390f963c9c47": {
+   "grade": 0,
+   "process": false
+  },
+  "anthropics-skills/frontend-design@0a5ff23f1022": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/define-architecture@8ea764417825": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/output-skill@8da7a8f7c7fc": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/refactoring-patterns@7283bad3e86e": {
+   "grade": 2,
+   "process": false
+  },
+  "uasl/clean-architecture@acaac6e9e2a3": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/atlas@eeafabd38463": {
+   "grade": 1,
+   "process": false
+  }
+ },
+ "t362": {
+  "uasl/api-design@bba608f8c974": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/guardian@27ad146feaed": {
+   "grade": 1,
+   "process": true
+  },
+  "uasl/gagelist-automation@7041ff752ce1": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/improve-retention@f80cefef268d": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/debugging-strategies@c55dad9c9654": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/tdd@ff86dad94075": {
+   "grade": 1,
+   "process": true
+  },
+  "uasl/titan@39c6080f3dfc": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/design-harden@7850aacd7d45": {
+   "grade": 0,
+   "process": false
+  },
+  "anthropics-skills/claude-api@e30e2c97f747": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/backend-patterns@3d87ff489f3e": {
+   "grade": 1,
+   "process": false
+  },
+  "uasl/output-skill@8da7a8f7c7fc": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/refactoring-patterns@7283bad3e86e": {
+   "grade": 3,
+   "process": true
+  },
+  "uasl/mom-test@6f43f16a3566": {
+   "grade": 0,
+   "process": false
+  }
+ },
+ "t376": {
+  "uasl/college-football-data-automation@c8e0671f076c": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/workday-automation@3e9313379197": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/thinking-systems@07aec864bc94": {
+   "grade": 1,
+   "process": true
+  },
+  "uasl/scout@97653445d7f1": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/ux-audit@d921ee5d8321": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/redesign-skill@2e4f7f16e367": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/debug-root-cause@1d7ea4a832dc": {
+   "grade": 2,
+   "process": true
+  },
+  "uasl/rewind@64cfc63aad18": {
+   "grade": 0,
+   "process": true
+  },
+  "uasl/caveman-commit@244182e952a7": {
+   "grade": 1,
+   "process": false
+  },
+  "anthropics-skills/discernment-nudge@a9d2caea7e0b": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/ecc-source@ac3a6c8604b3": {
+   "grade": 0,
+   "process": false
+  },
+  "uasl/mapulus-automation@b69103bc4139": {
+   "grade": 0,
+   "process": false
+  }
+ }
+}
