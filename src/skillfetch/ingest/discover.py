@@ -1,0 +1,631 @@
+"""Discover (index-format.md §6): find repositories that could become corpus sources, and
+check each one without a model.
+
+Three channels feed the candidate list:
+- GitHub code search for SKILL.md files, split into size ranges because one query returns
+  at most 1,000 results. GitHub reports far more SKILL.md files than one run can page
+  through at code search's 10 requests a minute, so each run covers a few ranges and the
+  next run continues from there (the range offset follows the ISO week);
+- GitHub repository search by topic (agent-skills, claude-skills, ...);
+- list sources from the config file: awesome lists and registry pages or APIs whose text
+  names GitHub repositories (skills.sh, Skillselion).
+
+Repositories already in sources.yaml or in data/discover/seen.jsonl (evaluated before) are
+left out. The top candidates are shallow-cloned and pre-checked with the same lint, scan,
+license and hashing code the ingest pipeline uses: SKILL.md count, lint and scan pass
+rates, licenses, name and content-hash overlap with the current index, locale copies,
+last commit and stars. Nothing here calls a model or a paid API, and nothing writes to an
+index or to sources.yaml.
+"""
+
+from __future__ import annotations
+
+import json
+import re
+import subprocess
+import time
+from collections import Counter
+from collections.abc import Callable, Iterable
+from dataclasses import asdict, dataclass, field
+from datetime import date
+from pathlib import Path
+from typing import Protocol
+from urllib.error import HTTPError
+from urllib.parse import quote_plus
+from urllib.request import Request, urlopen
+
+import yaml
+from pydantic import BaseModel, ConfigDict, field_validator
+
+from skillfetch.ingest.build import _locale_paths, _norm_name
+from skillfetch.ingest.injection import load_rules, scan_skill
+from skillfetch.ingest.licenses import REDISTRIBUTABLE, root_license, skill_license
+from skillfetch.ingest.lint import lint_skill
+from skillfetch.ingest.skillfile import content_hash, discover_skills, read_skill
+from skillfetch.ingest.sources import Source
+from skillfetch.ingest.upstream_licenses import GitHubClient, _safe_repo
+
+DEFAULT_CONFIG = Path("discover.yaml")
+DEFAULT_OUT = Path("data/discover")
+SEEN_FILE = "seen.jsonl"
+REPORT_FILE = "discover-report.md"
+ROWS_FILE = "discover.jsonl"
+SEARCH_CAP = 1000  # results GitHub returns for one search query
+PER_PAGE = 100
+ISSUE_START = "<!-- skillfetch-discover:start -->"
+ISSUE_END = "<!-- skillfetch-discover:end -->"
+ISSUE_MAX = 60_000  # GitHub caps an issue body or comment at 65,536 characters
+_GITHUB_LINK = r"github\.com/(?P<owner>[A-Za-z0-9-]+)/(?P<repo>[A-Za-z0-9._-]+)"
+_REPO_URL = re.compile(r"^https://github\.com/([^/]+)/([^/#?]+?)(?:\.git)?/?$")
+
+
+class CodeSearch(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    filename: str = "SKILL.md"
+    size_step: int = 100  # bytes per size range
+    size_max: int = 20_000  # the last range is "size >= size_max"
+    shards_per_run: int = 12
+    pages_per_shard: int = 3
+    pause: float = 6.5  # seconds between code search requests (10 a minute)
+
+
+class ListSource(BaseModel):
+    """A page or API whose text names GitHub repositories. `pattern` must have the named
+    groups `owner` and `repo`; `url` may use {page} (1-based) and {offset} (page × step)."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    id: str
+    url: str
+    pattern: str = _GITHUB_LINK
+    pages: int = 1
+    step: int = 0
+
+    @field_validator("url")
+    @classmethod
+    def _https(cls, url: str) -> str:
+        if not url.startswith("https://"):
+            raise ValueError(f"list source url {url!r}: https only")
+        return url
+
+    @field_validator("pattern")
+    @classmethod
+    def _groups(cls, pattern: str) -> str:
+        if not {"owner", "repo"} <= set(re.compile(pattern).groupindex):
+            raise ValueError(f"pattern {pattern!r} needs the groups owner and repo")
+        return pattern
+
+
+class DiscoverConfig(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    code_search: CodeSearch = CodeSearch()
+    repo_topics: list[str] = []
+    topic_pages: int = 1
+    lists: list[ListSource] = []
+    exclude_forks: bool = True
+    exclude_archived: bool = True
+    max_checks: int = 25  # candidates cloned and pre-checked per run
+    max_repo_kb: int = 200_000  # larger repositories are reported, not cloned
+
+
+def load_config(path: Path) -> DiscoverConfig:
+    return DiscoverConfig.model_validate(yaml.safe_load(path.read_text()) or {})
+
+
+class Fetch(Protocol):
+    def __call__(self, url: str) -> str | None: ...
+
+
+class HttpFetch:
+    """GET an https URL as text; None on any failure, with the reason in `last_error`."""
+
+    last_error: str | None = None
+
+    def __call__(self, url: str) -> str | None:
+        self.last_error = None
+        if not url.startswith("https://"):
+            self.last_error = "not https"
+            return None
+        try:
+            req = Request(url, headers={"User-Agent": "skillfetch-discover"})
+            with urlopen(req, timeout=30) as r:
+                return r.read(5_000_000).decode("utf-8", "replace")
+        except HTTPError as exc:
+            self.last_error = f"HTTP {exc.code}"
+        except (OSError, ValueError) as exc:
+            self.last_error = type(exc).__name__
+        return None
+
+
+http_fetch = HttpFetch()
+
+
+class GhApi:
+    """GitHubClient over `gh api` (its token: GH_TOKEN in CI). Like GhCli, None on failure,
+    but the reason is kept in `last_error` (gh's message, which carries the HTTP status)."""
+
+    last_error: str | None = None
+
+    def get(self, path: str) -> dict | None:
+        self.last_error = None
+        proc = subprocess.run(["gh", "api", path], capture_output=True, text=True)
+        if proc.returncode != 0:
+            lines = [ln.strip() for ln in proc.stderr.splitlines() if ln.strip()]
+            self.last_error = (lines[-1] if lines else f"exit {proc.returncode}")[:200]
+            return None
+        return json.loads(proc.stdout)
+
+
+def _why(client) -> str:
+    return getattr(client, "last_error", None) or "no response"
+
+
+def repo_key(owner: str, name: str) -> str | None:
+    """'owner/name' lowercased, or None for something that cannot be a repository."""
+    name = name.removesuffix(".git")
+    return f"{owner}/{name}".lower() if _safe_repo(owner, name) else None
+
+
+def known_repos(sources: Iterable[Source], seen_path: Path) -> set[str]:
+    """Repositories already in sources.yaml or already evaluated (seen.jsonl)."""
+    known = set()
+    for source in sources:
+        m = _REPO_URL.match(source.url.strip())
+        if m and (key := repo_key(*m.groups())):
+            known.add(key)
+    if seen_path.is_file():
+        for line in seen_path.read_text().splitlines():
+            if line.strip():
+                known.add(json.loads(line)["repo"].lower())
+    return known
+
+
+@dataclass
+class Candidate:
+    repo: str  # owner/name as first seen
+    channels: Counter = field(default_factory=Counter)  # "code", "topic:<t>", "list:<id>"
+    skill_md_seen: int = 0  # SKILL.md paths seen in code search results
+    meta: dict | None = None  # GitHub repository object
+
+    def rank(self) -> tuple:
+        stars = (self.meta or {}).get("stargazers_count") or 0
+        return (-len(self.channels), -self.skill_md_seen, -stars, self.repo.lower())
+
+
+@dataclass
+class ShardStat:
+    size: str
+    total: int | None  # total_count GitHub reported; None if the request failed
+    fetched: int
+    truncated: bool  # more results than this run read (the 1,000 cap or the page limit)
+
+
+@dataclass
+class Found:
+    candidates: dict[str, Candidate] = field(default_factory=dict)
+    shards: list[ShardStat] = field(default_factory=list)
+    shard_count: int = 0
+    failed: list[tuple[str, str]] = field(default_factory=list)  # (request, reason)
+
+    def add(self, owner: str, name: str, channel: str, meta: dict | None = None) -> Candidate:
+        key = repo_key(owner, name)
+        if key is None:
+            return Candidate(f"{owner}/{name}")
+        cand = self.candidates.setdefault(key, Candidate(f"{owner}/{name.removesuffix('.git')}"))
+        cand.channels[channel] += 1
+        if meta and cand.meta is None:
+            cand.meta = meta
+        return cand
+
+
+def size_shards(cfg: CodeSearch) -> list[str]:
+    """Size qualifiers covering every size: 0..step-1, step..2·step-1, ..., >=size_max."""
+    shards = [f"{lo}..{lo + cfg.size_step - 1}" for lo in range(0, cfg.size_max, cfg.size_step)]
+    return [*shards, f">={cfg.size_max}"]
+
+
+def shards_for_run(shards: list[str], per_run: int, week: int) -> list[str]:
+    """The ranges this run searches: per_run consecutive ranges, starting where the previous
+    week's run stopped (wrapping around)."""
+    n = len(shards)
+    start = (week * per_run) % n
+    return [shards[(start + i) % n] for i in range(min(per_run, n))]
+
+
+def search_code(client: GitHubClient, cfg: CodeSearch, week: int, found: Found) -> None:
+    shards = size_shards(cfg)
+    found.shard_count = len(shards)
+    first = True
+    for shard in shards_for_run(shards, cfg.shards_per_run, week):
+        total, fetched = None, 0
+        for page in range(1, cfg.pages_per_shard + 1):
+            if not first and cfg.pause:
+                time.sleep(cfg.pause)
+            first = False
+            q = quote_plus(f"filename:{cfg.filename} size:{shard}")
+            path = f"search/code?q={q}&per_page={PER_PAGE}&page={page}"
+            data = client.get(path)
+            if not data:
+                found.failed.append((path, _why(client)))
+                break
+            total = data.get("total_count", 0)
+            items = data.get("items", [])
+            for item in items:
+                owner, _, name = item.get("repository", {}).get("full_name", "").partition("/")
+                if owner and name:
+                    found.add(owner, name, "code").skill_md_seen += 1
+            fetched += len(items)
+            if len(items) < PER_PAGE or fetched >= min(total, SEARCH_CAP):
+                break
+        truncated = total is None or fetched < total
+        found.shards.append(ShardStat(shard, total, fetched, truncated))
+
+
+def search_topics(client: GitHubClient, topics: list[str], pages: int, found: Found) -> None:
+    for topic in topics:
+        for page in range(1, pages + 1):
+            q = quote_plus(f"topic:{topic}")
+            path = (
+                f"search/repositories?q={q}&sort=updated&order=desc&per_page={PER_PAGE}&page={page}"
+            )
+            data = client.get(path)
+            if not data:
+                found.failed.append((path, _why(client)))
+                break
+            items = data.get("items", [])
+            for repo in items:
+                owner, _, name = repo.get("full_name", "").partition("/")
+                if owner and name:
+                    found.add(owner, name, f"topic:{topic}", meta=repo)
+            if len(items) < PER_PAGE:
+                break
+
+
+def read_lists(fetch: Fetch, lists: list[ListSource], found: Found) -> None:
+    for src in lists:
+        pattern = re.compile(src.pattern)
+        for i in range(src.pages):
+            url = src.url.format(page=i + 1, offset=i * src.step)
+            text = fetch(url)
+            if text is None:
+                found.failed.append((url, _why(fetch)))
+                break
+            hits = {(m["owner"], m["repo"]) for m in pattern.finditer(text)}
+            for owner, name in sorted(hits):
+                found.add(owner, name, f"list:{src.id}")
+            if not hits:
+                break
+
+
+def select(
+    found: Found, known: set[str], client: GitHubClient, cfg: DiscoverConfig
+) -> tuple[list[Candidate], dict[str, int]]:
+    """Drop known repositories, forks and archived ones; return the candidates in rank order
+    with metadata for the first max_checks, and how many were dropped for each reason."""
+    dropped: Counter = Counter()
+    pool = []
+    for key, cand in found.candidates.items():
+        if key in known:
+            dropped["in sources.yaml or seen.jsonl"] += 1
+        else:
+            pool.append(cand)
+    pool.sort(key=Candidate.rank)
+    out: list[Candidate] = []
+    with_meta = 0
+    for cand in pool:
+        if with_meta < cfg.max_checks:
+            if cand.meta is None:
+                cand.meta = client.get(f"repos/{cand.repo}")
+                if cand.meta is None:
+                    found.failed.append((f"repos/{cand.repo}", _why(client)))
+            meta = cand.meta or {}
+            full = meta.get("full_name")
+            renamed = repo_key(*full.split("/", 1)) if full and "/" in full else None
+            if renamed and renamed in known:  # a renamed repository already listed
+                dropped["in sources.yaml or seen.jsonl"] += 1
+                continue
+            if cfg.exclude_forks and meta.get("fork"):
+                dropped["fork"] += 1
+                continue
+            if cfg.exclude_archived and meta.get("archived"):
+                dropped["archived"] += 1
+                continue
+            with_meta += 1
+        out.append(cand)
+    return out, dict(dropped)
+
+
+@dataclass
+class IndexView:
+    names: set[str]
+    hashes: set[str]
+
+    @classmethod
+    def load(cls, index_dir: Path) -> IndexView | None:
+        path = index_dir / "skills.jsonl"
+        if not path.is_file():
+            return None
+        names, hashes = set(), set()
+        for line in path.read_text().splitlines():
+            if line.strip():
+                rec = json.loads(line)
+                names.add(_norm_name(rec.get("name", "")))
+                hashes.add(rec.get("content_hash", ""))
+        return cls(names, hashes)
+
+
+def _share(n: int, d: int) -> float | None:
+    return round(n / d, 3) if d else None
+
+
+def precheck(repo_dir: Path, index: IndexView | None) -> dict:
+    """Model-free checks of every skill folder in a checked-out repository."""
+    dirs = discover_skills(repo_dir)
+    rules = load_rules()
+    rows = []
+    for d in dirs:
+        rel = d.relative_to(repo_dir).as_posix() if d != repo_dir else ""
+        try:
+            doc = read_skill(d)
+            fm = doc.frontmatter or {}
+            name = fm.get("name") if isinstance(fm.get("name"), str) else d.name
+            rows.append(
+                {
+                    "path": rel,
+                    "name": _norm_name(name or d.name),
+                    "lint": lint_skill(d).ok,
+                    "scan": scan_skill(d, rules).ok,
+                    "hash": content_hash(d),
+                    "license": skill_license(d, doc.frontmatter, "per-skill").license,
+                }
+            )
+        except (OSError, UnicodeError, ValueError):
+            rows.append(
+                {
+                    "path": rel,
+                    "name": _norm_name(d.name),
+                    "lint": False,
+                    "scan": False,
+                    "hash": "",
+                    "license": "unknown",
+                }
+            )
+    n = len(rows)
+    by_name = Counter(r["name"] for r in rows)
+    locale = _locale_paths([r["path"] for r in rows])
+    copies = sum(1 for r in rows if by_name[r["name"]] > 1 and r["path"] in locale)
+    licenses = Counter(r["license"] for r in rows)
+    return {
+        "skills": n,
+        "lint_pass": _share(sum(r["lint"] for r in rows), n),
+        "scan_pass": _share(sum(r["scan"] for r in rows), n),
+        "root_license": root_license(repo_dir),
+        "skill_licenses": dict(licenses.most_common()),
+        "redistributable": _share(sum(v for k, v in licenses.items() if k in REDISTRIBUTABLE), n),
+        "name_in_index": _share(sum(r["name"] in index.names for r in rows), n) if index else None,
+        "hash_in_index": _share(sum(r["hash"] in index.hashes for r in rows), n) if index else None,
+        "locale_copies": _share(copies, n),
+    }
+
+
+Checkout = Callable[[str, str], tuple[Path, str | None]]  # (repo, ref) -> (dir, commit date)
+
+
+def check_candidates(
+    cands: list[Candidate],
+    cfg: DiscoverConfig,
+    checkout: Checkout,
+    index: IndexView | None,
+) -> list[dict]:
+    rows = []
+    for i, cand in enumerate(cands):
+        meta = cand.meta or {}
+        row = {
+            "repo": meta.get("full_name") or cand.repo,
+            "url": f"https://github.com/{meta.get('full_name') or cand.repo}",
+            "channels": dict(sorted(cand.channels.items())),
+            "skill_md_seen": cand.skill_md_seen,
+            "stars": meta.get("stargazers_count"),
+            "pushed_at": meta.get("pushed_at"),
+            "repo_license": (meta.get("license") or {}).get("spdx_id"),
+            "status": "not_checked",
+        }
+        if i < cfg.max_checks:
+            if not meta:
+                row["status"] = "unreachable"
+            elif (meta.get("size") or 0) > cfg.max_repo_kb:
+                row["status"] = "too_large"
+            else:
+                try:
+                    path, commit_date = checkout(row["repo"], meta.get("default_branch") or "main")
+                except Exception as exc:  # any clone failure is reported, not raised
+                    row.update(status="clone_failed", error=str(exc)[:200])
+                else:
+                    row.update(precheck(path, index), last_commit=commit_date)
+                    row["status"] = "checked" if row["skills"] else "no_skills"
+        rows.append(row)
+    return rows
+
+
+def git_checkout(work_dir: Path) -> Checkout:
+    """Shallow clone through the snapshot stage (https only, cached per commit)."""
+    from skillfetch.ingest.snapshot import snapshot
+
+    def run(repo: str, ref: str) -> tuple[Path, str | None]:
+        source = Source(
+            id=f"discover-{repo.replace('/', '--')}",
+            kind="git",
+            url=f"https://github.com/{repo}",
+            ref=ref,
+            publisher=repo.split("/")[0],
+            publisher_trust="unknown",
+        )
+        snap = snapshot(source, work_dir)
+        return snap.path, snap.commit_date
+
+    return run
+
+
+@dataclass
+class Run:
+    day: str
+    week: int
+    rows: list[dict]
+    found: Found
+    dropped: dict[str, int]
+    known: int
+    index: bool
+
+
+def discover(
+    cfg: DiscoverConfig,
+    client: GitHubClient,
+    fetch: Fetch,
+    known: set[str],
+    checkout: Checkout,
+    index: IndexView | None,
+    today: date,
+) -> Run:
+    week = today.isocalendar().week
+    found = Found()
+    search_code(client, cfg.code_search, week, found)
+    search_topics(client, cfg.repo_topics, cfg.topic_pages, found)
+    read_lists(fetch, cfg.lists, found)
+    cands, dropped = select(found, known, client, cfg)
+    rows = check_candidates(cands, cfg, checkout, index)
+    return Run(today.isoformat(), week, rows, found, dropped, len(known), index is not None)
+
+
+def _pct(v: float | None) -> str:
+    return "–" if v is None else f"{v * 100:.0f}%"
+
+
+def _cell(v) -> str:
+    return "–" if v is None else str(v).replace("|", "\\|")
+
+
+def render_table(rows: list[dict]) -> str:
+    checked = [r for r in rows if r["status"] != "not_checked"]
+    checked.sort(key=lambda r: (r["status"] != "checked", -(r.get("skills") or 0), r["repo"]))
+    head = (
+        "| repository | status | SKILL.md | lint pass | scan pass | redistributable | "
+        "root license | name in index | hash in index | locale copies | last commit | stars "
+        "| found by |\n|---|---|---:|---:|---:|---:|---|---:|---:|---:|---|---:|---|"
+    )
+    lines = [head]
+    for r in checked:
+        lines.append(
+            f"| [{r['repo']}]({r['url']}) | {r['status']} | {_cell(r.get('skills'))} | "
+            f"{_pct(r.get('lint_pass'))} | {_pct(r.get('scan_pass'))} | "
+            f"{_pct(r.get('redistributable'))} | {_cell(r.get('root_license'))} | "
+            f"{_pct(r.get('name_in_index'))} | {_pct(r.get('hash_in_index'))} | "
+            f"{_pct(r.get('locale_copies'))} | {_cell((r.get('last_commit') or '')[:10] or None)} "
+            f"| {_cell(r.get('stars'))} | {', '.join(r['channels'])} |"
+        )
+    return "\n".join(lines)
+
+
+def _failure_kind(request: str) -> str:
+    """search/code, search/repositories, repos (metadata) or the list page's host."""
+    if request.startswith("https://"):
+        return "list " + request.split("/")[2]
+    path = request.split("?")[0]
+    return "repos" if path.startswith("repos/") else path
+
+
+def channel_lines(run: Run) -> list[str]:
+    """Candidates per channel (code search, each topic, each list source) and the failed
+    requests with their reasons: the top of the report."""
+    f = run.found
+    per = Counter(ch for c in f.candidates.values() for ch in c.channels)
+    # distinct repositories per kind; a repository on two lists counts once under lists
+    by_kind = Counter(
+        k for c in f.candidates.values() for k in {ch.split(":")[0] for ch in c.channels}
+    )
+    results = sum(s.fetched for s in f.shards)
+    topics = ", ".join(f"{k[6:]} {v}" for k, v in sorted(per.items()) if k.startswith("topic:"))
+    lists = ", ".join(f"{k[5:]} {v}" for k, v in sorted(per.items()) if k.startswith("list:"))
+    fails = Counter((_failure_kind(req), why) for req, why in f.failed)
+    fail_text = "; ".join(f"{kind} {n}× ({why})" for (kind, why), n in sorted(fails.items()))
+    return [
+        f"- Code search (`filename:SKILL.md`): {by_kind['code']} repositories from {results} "
+        "results.",
+        f"- Topics: {by_kind['topic']} distinct ({topics or 'none'}).",
+        f"- List sources: {by_kind['list']} distinct ({lists or 'none'}).",
+        f"- All channels: {len(f.candidates)} distinct repositories (a repository can come "
+        "from several channels).",
+        f"- Failed requests: {len(f.failed)}" + (f": {fail_text}." if fail_text else "."),
+    ]
+
+
+def render_report(run: Run) -> str:
+    f = run.found
+    checked = sum(r["status"] != "not_checked" for r in run.rows)
+    covered = ", ".join(
+        f"{s.size} ({'failed' if s.total is None else f'{s.fetched}/{s.total}'})" for s in f.shards
+    )
+    lines = [
+        f"# skillfetch discover, {run.day}",
+        "",
+        *channel_lines(run),
+        "",
+        "Model-free pre-check of candidate source repositories (index-format.md §6). Nothing "
+        "here is admitted: sources.yaml and the index are unchanged.",
+        "",
+        f"- Left out: {', '.join(f'{k} {v}' for k, v in sorted(run.dropped.items())) or 'none'} "
+        f"({run.known} repositories in sources.yaml or seen.jsonl).",
+        f"- Pre-checked: {checked}; not checked this run: {len(run.rows) - checked}.",
+        f"- Code search, week {run.week}: {len(f.shards)} of {f.shard_count} size ranges "
+        f"(results read/total): {covered or 'none'}. Ranges marked with fewer read than total "
+        "were cut by GitHub's 1,000-result cap or the page limit.",
+        f"- Index for overlap: {'loaded' if run.index else 'not found (overlap columns empty)'}.",
+        "",
+        "Columns: shares are of the repository's SKILL.md folders. redistributable = the "
+        "skill folder's own LICENSE or frontmatter is a permissive license (the root license "
+        "is not inherited, §1.8). name/hash in index = same normalized name / same "
+        "content_hash as an index record. locale copies = folders under a locale segment "
+        "that share their name with another folder (§1.6).",
+        "",
+        render_table(run.rows),
+    ]
+    rest = [r for r in run.rows if r["status"] == "not_checked"][:50]
+    if rest:
+        lines += ["", f"Next candidates (not checked this run, first {len(rest)}):", ""]
+        lines += [f"- {r['repo']} ({', '.join(r['channels'])})" for r in rest]
+    return "\n".join(lines) + "\n"
+
+
+def write_outputs(run: Run, out: Path) -> tuple[Path, Path]:
+    out.mkdir(parents=True, exist_ok=True)
+    report, rows = out / REPORT_FILE, out / ROWS_FILE
+    report.write_text(render_report(run))
+    meta = {
+        "day": run.day,
+        "week": run.week,
+        "shards": [asdict(s) for s in run.found.shards],
+        "failed": [{"request": r, "reason": why} for r, why in run.found.failed],
+    }
+    rows.write_text(
+        "\n".join(json.dumps(r, ensure_ascii=False) for r in [{"run": meta}, *run.rows]) + "\n"
+    )
+    return report, rows
+
+
+def issue_body(body: str, report: str) -> str | None:
+    """The issue body with the report between the discover markers, or None when the body
+    has no markers (then the report goes into a comment)."""
+    start, end = body.find(ISSUE_START), body.find(ISSUE_END)
+    if start < 0 or end < start:
+        return None
+    return body[: start + len(ISSUE_START)] + "\n" + report.strip() + "\n" + body[end:]
+
+
+def fit_issue(report: str) -> str:
+    if len(report) <= ISSUE_MAX:
+        return report
+    return (
+        report[:ISSUE_MAX].rsplit("\n", 1)[0]
+        + "\n\n(truncated; full report in the run's artifact)\n"
+    )

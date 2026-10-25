@@ -1,0 +1,49 @@
+# Candidate-source discovery for `skillfetch discover` (index-format.md §6).
+# No model and no paid API: GitHub REST search (through the gh CLI, its token) and plain
+# https GETs of the list sources below. Candidates already in sources.yaml or in
+# data/discover/seen.jsonl are left out. Nothing here admits a source.
+
+code_search:
+  filename: SKILL.md
+  # GitHub returns at most 1,000 results per query, so the search is split by file size.
+  # 200 ranges of 100 bytes plus ">= 20000"; each weekly run searches 12 of them and the
+  # next run continues where it stopped (the offset follows the ISO week).
+  size_step: 100
+  size_max: 20000
+  shards_per_run: 12
+  pages_per_shard: 3          # 100 results a page
+  pause: 6.5                  # code search allows 10 requests a minute
+
+# GitHub repository search, most recently updated first.
+repo_topics:
+  - agent-skills
+  - claude-skills
+  - claude-code-skills
+  - agent-skill
+  - anthropic-skills
+topic_pages: 1
+
+# Pages or APIs whose text names GitHub repositories. `pattern` needs the groups owner and
+# repo (default: github.com/<owner>/<repo> links); `url` may use {page} and {offset}.
+lists:
+  - id: awesome-claude-skills-travisvn
+    url: https://raw.githubusercontent.com/travisvn/awesome-claude-skills/main/README.md
+  - id: awesome-claude-skills-composio
+    url: https://raw.githubusercontent.com/ComposioHQ/awesome-claude-skills/master/README.md
+  - id: awesome-agent-skills-voltagent
+    url: https://raw.githubusercontent.com/VoltAgent/awesome-agent-skills/main/README.md
+  # skills.sh: the leaderboard links each skill as /<owner>/<repo>/<skill>
+  - id: skills-sh
+    url: https://skills.sh/
+    pattern: 'href="/(?P<owner>[A-Za-z0-9-]+)/(?P<repo>[A-Za-z0-9._-]+)/[^"/]+"'
+  # Skillselion: listing ids are skill:<owner>/<repo>#<skill>; most-installed first
+  - id: skillselion
+    url: https://skillselion.com/api/v1/listings?type=skill&limit=100&cursor={offset}
+    pattern: '"id":\s*"skill:(?P<owner>[A-Za-z0-9-]+)/(?P<repo>[A-Za-z0-9._-]+)#'
+    pages: 10
+    step: 100
+
+exclude_forks: true
+exclude_archived: true
+max_checks: 25                # candidates shallow-cloned and pre-checked per run
+max_repo_kb: 200000           # larger repositories are reported, not cloned

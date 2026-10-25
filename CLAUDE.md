@@ -67,7 +67,7 @@ skillfetch/
     index/                      index loading, BM25 search, tag filters
     resolve/                    conflict/redundancy resolution
     mcp/                        MCP server exposing the tool surface below
-    cli.py                      `skillfetch scan|ingest|judge|obedience|sync|serve|eval`
+    cli.py                      `skillfetch scan|ingest|judge|obedience|sync|serve|eval|discover`
     evals.py                    `skillfetch eval retrieval` over evals/retrieval/
   assets/
     router-skill/SKILL.md       the one always-on skill the user installs
