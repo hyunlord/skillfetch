@@ -22,7 +22,12 @@ HOME = Path.home() / ".skillfetch"
 OUT = ROOT / "docs" / "writeup" / "numbers.md"
 
 
-_E2E_FOLDERS = {"runs": "stage0/runs", "runs-0.5": "stage0.5/runs", "staging30": "staging"}
+_E2E_FOLDERS = {
+    "runs": "stage0/runs",
+    "runs-0.5": "stage0.5/runs",
+    "staging30": "staging",
+    "stage10-private": "stage10/private",
+}
 
 
 def _published(match: re.Match) -> str:
@@ -1060,6 +1065,14 @@ def stage9(out: list[str]) -> None:
     out += [path.read_text().strip() if path.is_file() else "Not run yet.", ""]
 
 
+def stage10(out: list[str]) -> None:
+    """§21: stage 10, the final stack in real sessions (the stage 10 report, transcribed in
+    data/e2e/stage10.md)."""
+    out += ["## 21. Stage 10: final stack in real sessions (after the post freeze)", ""]
+    path = DATA / "e2e" / "stage10.md"
+    out += [path.read_text().strip() if path.is_file() else "Not run yet.", ""]
+
+
 def main() -> None:
     out = [
         "# Numbers for the write-up",
@@ -1091,6 +1104,7 @@ def main() -> None:
         stage7a,
         stage8,
         stage9,
+        stage10,
     ):
         section(out)
     OUT.parent.mkdir(parents=True, exist_ok=True)
