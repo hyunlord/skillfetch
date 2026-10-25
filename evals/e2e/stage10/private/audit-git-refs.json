@@ -1,0 +1,109 @@
+{
+ "A": {
+  "E2/A/d1-landing-m2": [
+   "git checkout feature/landing-s10-e2a-d1"
+  ],
+  "E2/A/s10-t016-m1": [
+   "git log --oneline -3 feature/room-history-replay",
+   "git rev-parse HEAD feature/room-history-replay"
+  ],
+  "E2/A/s10-t016-m3": [
+   "git log --oneline -3 feature/room-history-replay"
+  ],
+  "E2/A/s10-t263-m2": [
+   "git log --oneline --all",
+   "git log --oneline -3 perf/l2-zero-copy"
+  ],
+  "E2/A/s10-t263-m3": [
+   "git log --oneline -5 --all"
+  ],
+  "E2/R1/s10-t016-m1": [
+   "git log --oneline -3 feature/room-history-replay"
+  ],
+  "E2/R1/s10-t016-m2": [
+   "git log --oneline -5 feature/room-history-replay",
+   "git diff HEAD feature/room-history-replay --stat",
+   "git switch feature/room-history-replay"
+  ],
+  "E2/R1/s10-t016-m3": [
+   "git log --oneline -3 feature/room-history-replay",
+   "git diff HEAD feature/room-history-replay --stat",
+   "git checkout feature/room-history-replay"
+  ],
+  "E2/R1/s2-api-m1": [
+   "git log --oneline -3 feature/bookmarks-api-s10-m1"
+  ],
+  "E2/R1/s2-api-m3": [
+   "git log --oneline -3 feature/bookmarks-api-s10-e2-r1-m3",
+   "git checkout feature/bookmarks-api-s10-e2-r1-m3"
+  ]
+ },
+ "B_only": {
+  "E2/A/d1-landing-m1": [
+   "git branch"
+  ],
+  "E2/A/d1-landing-m3": [
+   "git branch"
+  ],
+  "E2/A/s10-t016-m2": [
+   "git branch -a"
+  ],
+  "E2/A/s10-t016-p0": [
+   "git branch"
+  ],
+  "E2/A/s10-t115-m3": [
+   "git branch"
+  ],
+  "E2/A/s10-t198-m2": [
+   "git branch"
+  ],
+  "E2/A/s2-api-m1": [
+   "git branch"
+  ],
+  "E2/A/s2-api-m2": [
+   "git branch"
+  ],
+  "E2/A/s2-api-m3": [
+   "git branch"
+  ],
+  "E2/A/s2-data-m1": [
+   "git branch"
+  ],
+  "E2/A/s2-data-m3": [
+   "git branch"
+  ],
+  "E2/A/s2-tests-m1": [
+   "git branch"
+  ],
+  "E2/A/s2-tests-m3": [
+   "git branch"
+  ],
+  "E2/A/s6b-t133-m1": [
+   "git branch"
+  ],
+  "E2/A/s6b-t133-m3": [
+   "git branch"
+  ],
+  "E2/R1/d1-landing-m1": [
+   "git branch -a"
+  ],
+  "E2/R1/d1-landing-m3": [
+   "git branch -a"
+  ],
+  "E2/R1/s10-t016-p0": [
+   "git branch"
+  ],
+  "E2/R1/s2-api-m2": [
+   "git branch"
+  ],
+  "E2/R1/s2-data-m1": [
+   "git branch"
+  ],
+  "E2/R1/s2-data-m2": [
+   "git branch"
+  ],
+  "harness-fail/E2/R1/s2-api-m3": [
+   "git branch"
+  ]
+ }
+}
