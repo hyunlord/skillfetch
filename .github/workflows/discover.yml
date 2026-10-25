@@ -1,0 +1,49 @@
+# Weekly candidate-source discovery (index-format.md §6, issue #60).
+# Searches GitHub with the workflow's GITHUB_TOKEN, pre-checks candidates without a model,
+# and puts the report on issue #60: between the discover markers in its body when they are
+# present, otherwise as a comment. It never changes sources.yaml, the index or a release.
+name: discover
+
+on:
+  schedule:
+    - cron: "0 3 * * 1" # Mondays 03:00 UTC
+  workflow_dispatch:
+    inputs:
+      max_checks:
+        description: "candidates to clone and pre-check (default: discover.yaml)"
+        required: false
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: discover
+  cancel-in-progress: false
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync
+      - name: Index for the overlap columns
+        run: uv run skillfetch sync
+      - name: Discover and pre-check
+        env:
+          MAX_CHECKS: ${{ inputs.max_checks }}
+        run: >-
+          uv run skillfetch discover
+          --out discover-out
+          --work-dir "${RUNNER_TEMP}/discover-work"
+          --issue 60
+          ${MAX_CHECKS:+--max-checks "$MAX_CHECKS"}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: discover-report
+          path: discover-out/
