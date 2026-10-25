@@ -576,6 +576,13 @@ As built (`ingest/discover.py`, `cli.py`, `.github/workflows/discover.yml`):
     stopped: the starting range is `ISO week × shards_per_run` (mod the number
     of ranges). This channel samples. It is not a census; the report prints
     each range's results read against GitHub's total.
+  - *Rate limits.* A GitHub request answered with 429 (or a 403 that signals a
+    rate limit) waits as long as GitHub asks, from the `retry-after` header, else
+    the message's "try again in N s", else `x-ratelimit-reset` when no requests
+    remain, else 60 s. Then it is retried once. When the wait would exceed 900 s,
+    the request is skipped; a size range lost that way reads "rate-limited,
+    skipped". The top of the report gives the retries, the total wait and the
+    skipped requests.
   - *Repository search* by topic (`repo_topics`, most recently updated first).
   - *List sources* (`lists`): an https page or API whose text names GitHub
     repositories, read with a regular expression whose groups are `owner` and
@@ -597,12 +604,27 @@ As built (`ingest/discover.py`, `cli.py`, `.github/workflows/discover.yml`):
   than `max_repo_kb`. Then, over its SKILL.md folders (§1.2 discovery):
   - count; lint pass rate (§1.3); injection-scan pass rate (§1.4, the same
     rules);
-  - licenses: each skill's own (§1.8 `skill_license` with `per-skill`, so the
-    root license is not inherited), the share that is redistributable, and the
-    root license file (`root_license`) separately;
+  - aggregator or not: a repository is an aggregator when at least 10% of its
+    skills name an upstream (an `.openskills.json`, §1.1, or a frontmatter
+    `upstream:`/`source:`/`source_url:`/`origin:`/`original:`/`repository:` field
+    holding a GitHub URL), or when it lists third-party upstreams: a root file named
+    THIRD_PARTY*, UPSTREAM*, CREDITS* or ATTRIBUTION*, a README with UASL's
+    `- Upstream:` lines, or a README section headed third-party, upstream, credits or
+    attribution that links at least three GitHub repositories;
+  - licenses, by the `ingest --upstream-licenses` rule (§1.8) with the repository
+    as the upstream: a skill's own LICENSE file or frontmatter `license:` first;
+    otherwise, when the repository is not an aggregator and the skill names no
+    upstream, the nearest license file above the skill folder, up to the repository
+    root. Skills of an aggregator, and skills that name an upstream, never take the
+    repository's license. The report's "redistributable (own + root)" is the share of
+    skills whose license so found is permissive; the root license file
+    (`root_license`) is also shown on its own;
   - overlap with the current index (`--index`, default `~/.skillfetch/index`):
     the share of skills whose normalized name (§1.6) and whose `content_hash`
-    (§1.2) match an index record;
+    (§1.2) match an index record. Name overlap of at least 50% with hash overlap
+    under 10% marks an older copy in the index: the index holds these skills, but
+    not this version. The report lists such candidates in their own section, with
+    the index sources (`source_id`) of the matching names;
   - locale copies: the share of folders under a locale segment (§1.6
     `collapse_same_name` rule) that share their name with another folder of the
     repository;

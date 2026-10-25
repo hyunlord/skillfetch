@@ -201,8 +201,10 @@ def test_precheck_counts(tmp_path):
     assert out["lint_pass"] == 0.8  # gamma's broken link
     assert out["scan_pass"] == 0.8  # beta's override
     assert out["root_license"] == "MIT"
-    assert out["skill_licenses"] == {"unknown": 4, "MIT": 1}  # the root license is not inherited
-    assert out["redistributable"] == 0.2
+    assert out["aggregator"] is False
+    assert out["skill_licenses"] == {"MIT": 5}  # not an aggregator: the root license applies
+    assert out["license_from_repo"] == 4  # alpha has its own (frontmatter)
+    assert out["redistributable"] == 1.0
     assert out["name_in_index"] == 0.4  # gamma, delta
     assert out["hash_in_index"] == 0.2  # delta
     assert out["locale_copies"] == 0.2  # skills/ja-JP/alpha
@@ -301,3 +303,132 @@ def test_repo_config_parses():
     seen = root / "data" / "discover" / "seen.jsonl"
     rows = [json.loads(x) for x in seen.read_text().splitlines() if x.strip()]
     assert all({"repo", "date", "decision"} <= set(r) for r in rows)
+
+
+def test_aggregator_skills_do_not_take_the_root_license(tmp_path):
+    repo = tmp_path / "agg"
+    a = write_skill(repo, "skills/a", "a")
+    (a / ".openskills.json").write_text(
+        '{"repoUrl": "https://github.com/up/stream", "subpath": "a"}'
+    )
+    write_skill(repo, "skills/b", "b")
+    write_skill(repo, "skills/c", "c", lic="Apache-2.0")
+    (repo / "LICENSE").write_text("MIT License\n\nPermission is hereby granted, free of charge")
+    out = d.precheck(repo, None)
+    assert out["aggregator"] is True and out["upstream_marked"] == 0.333
+    assert out["license_from_repo"] == 0
+    assert out["skill_licenses"] == {"unknown": 2, "Apache-2.0": 1}
+    assert out["redistributable"] == 0.333
+
+
+def test_third_party_list_makes_an_aggregator(tmp_path):
+    repo = tmp_path / "r"
+    write_skill(repo, "s/a", "a")
+    (repo / "LICENSE").write_text("MIT License\n\nPermission is hereby granted, free of charge")
+    readme = "# Skills\n\n## Credits\n\n- github.com/a/one\n- github.com/b/two\n"
+    (repo / "README.md").write_text(readme)
+    assert d.third_party_list(repo) is None  # two linked repositories are not a list
+    (repo / "README.md").write_text(readme + "- https://github.com/c/three\n")
+    assert d.third_party_list(repo) == "README.md (credits section)"
+    assert d.precheck(repo, None)["redistributable"] == 0.0
+    (repo / "README.md").unlink()
+    (repo / "THIRD_PARTY_NOTICES.md").write_text("x")
+    assert d.third_party_list(repo) == "THIRD_PARTY_NOTICES.md"
+
+
+def test_upstream_in_frontmatter_and_nearest_license(tmp_path):
+    repo = tmp_path / "r"
+    sub = write_skill(repo, "pack/one", "one")
+    (repo / "pack" / "LICENSE").write_text("Apache License\nVersion 2.0, January 2004")
+    (repo / "LICENSE").write_text("MIT License\n\nPermission is hereby granted, free of charge")
+    assert d.nearest_repo_license(repo, sub) == ("pack/LICENSE", "Apache-2.0")
+    assert d.upstream_marked(sub, {"source": "https://github.com/x/y"}) is True
+    assert d.upstream_marked(sub, {"source": "written by me"}) is False
+
+
+def test_older_copy_in_index_is_flagged_with_its_sources(tmp_path):
+    repo = tmp_path / "r"
+    for name in ("one", "two", "three"):
+        write_skill(repo, f"s/{name}", name, body=f"new version of {name}\n")
+    index = d.IndexView(
+        names={"one", "two"},
+        hashes={"old"},
+        sources={"one": {"uasl"}, "two": {"uasl", "anthropics-skills"}},
+    )
+    out = d.precheck(repo, index)
+    assert out["name_in_index"] == 0.667 and out["hash_in_index"] == 0.0
+    assert out["stale_in_index"] is True
+    assert out["index_sources"] == {"uasl": 2, "anthropics-skills": 1}
+    row = {"repo": "o/r", "url": "https://github.com/o/r", "status": "checked", **out}
+    text = "\n".join(d.render_stale([row]))
+    assert "## Older copies in the index" in text and "uasl 2, anthropics-skills 1" in text
+    index.hashes = {content_hash(repo / "s" / "one")}
+    assert d.precheck(repo, index)["stale_in_index"] is False  # hash overlap 33%
+
+
+class Proc:
+    def __init__(self, code, stdout="", stderr=""):
+        self.returncode, self.stdout, self.stderr = code, stdout, stderr
+
+
+def limited(wait_header=None, message="gh: API rate limit exceeded (HTTP 403)"):
+    head = "HTTP/2.0 403 Forbidden\r\nX-Ratelimit-Remaining: 0\r\n"
+    if wait_header:
+        head += f"Retry-After: {wait_header}\r\n"
+    return Proc(1, head + "\r\n{}", message)
+
+
+def ok(body='{"total_count": 1}'):
+    return Proc(0, "HTTP/2.0 200 OK\r\nContent-Type: application/json\r\n\r\n" + body)
+
+
+def test_rate_limit_waits_then_retries_once():
+    replies = [limited(wait_header="30"), ok()]
+    slept = []
+    api = d.GhApi(run=lambda *a, **k: replies.pop(0), sleep=slept.append, clock=lambda: 0)
+    assert api.get("search/code?q=x") == {"total_count": 1}
+    assert slept == [30.0] and (api.retries, api.waited, api.skipped) == (1, 30.0, 0)
+
+
+def test_rate_limit_retry_failure_and_long_wait():
+    replies = [limited(wait_header="5"), limited(wait_header="5")]
+    api = d.GhApi(run=lambda *a, **k: replies.pop(0), sleep=lambda s: None, clock=lambda: 0)
+    assert api.get("p") is None
+    assert api.last_error.startswith("after one retry:") and api.retries == 1
+    msg = "gh: try again in 999.4s (HTTP 429)"  # over the 900 s limit
+    long = Proc(1, "HTTP/2.0 429 Too Many Requests\r\n\r\n{}", msg)
+    api = d.GhApi(run=lambda *a, **k: long, sleep=lambda s: pytest.fail("slept"), clock=lambda: 0)
+    assert api.get("p") is None
+    assert api.last_error == "rate-limited, skipped (asked to wait 999 s)"
+    assert (api.retries, api.skipped) == (0, 1)
+
+
+def test_retry_wait_sources():
+    assert d.retry_wait(429, {}, "gh: try again in 3.5s (HTTP 429)", now=0) == 3.5
+    assert (
+        d.retry_wait(403, {"x-ratelimit-remaining": "0", "x-ratelimit-reset": "160"}, "", 100) == 60
+    )
+    assert d.retry_wait(429, {}, "", now=0) == 60.0
+    assert d.retry_wait(404, {}, "gh: Not Found (HTTP 404)", now=0) is None
+    assert d.retry_wait(403, {}, "gh: Resource not accessible (HTTP 403)", now=0) is None
+    api = d.GhApi(run=lambda *a, **k: Proc(1, "", "gh: Not Found (HTTP 404)"), sleep=None)
+    assert api.get("repos/x/y") is None and api.last_error == "gh: Not Found (HTTP 404)"
+
+
+def test_skipped_range_and_rate_line_in_the_report(tmp_path):
+    class Skipping(FakeGitHub):
+        retries, waited, skipped = 2, 9.0, 1
+
+        def get(self, path):
+            if path.startswith("search/code") and "1000..1999" in path.replace("%2E", "."):
+                self.last_error = "rate-limited, skipped (asked to wait 999 s)"
+                return None
+            self.last_error = None
+            return super().get(path)
+
+    gh = Skipping(code={"0..999": (1, ["a/b"])})
+    cfg = d.DiscoverConfig(code_search=NO_PAUSE, max_checks=0)
+    run = d.discover(cfg, gh, lambda u: None, set(), None, None, date(2026, 1, 5))
+    text = d.render_report(run)
+    assert "1000..1999 (rate-limited, skipped)" in text
+    assert "- Rate limits: 2 retries after waiting 9 s in total; 1 requests skipped" in text

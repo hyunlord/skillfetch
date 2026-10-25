@@ -39,9 +39,16 @@ from pydantic import BaseModel, ConfigDict, field_validator
 
 from skillfetch.ingest.build import _locale_paths, _norm_name
 from skillfetch.ingest.injection import load_rules, scan_skill
-from skillfetch.ingest.licenses import REDISTRIBUTABLE, root_license, skill_license
+from skillfetch.ingest.licenses import (
+    LICENSE_FILES,
+    REDISTRIBUTABLE,
+    classify_text,
+    root_license,
+    skill_license,
+)
 from skillfetch.ingest.lint import lint_skill
-from skillfetch.ingest.skillfile import content_hash, discover_skills, read_skill
+from skillfetch.ingest.provenance import openskills_upstream, parse_third_party_doc
+from skillfetch.ingest.skillfile import content_hash, discover_skills, read_skill, read_text
 from skillfetch.ingest.sources import Source
 from skillfetch.ingest.upstream_licenses import GitHubClient, _safe_repo
 
@@ -142,20 +149,92 @@ class HttpFetch:
 http_fetch = HttpFetch()
 
 
-class GhApi:
-    """GitHubClient over `gh api` (its token: GH_TOKEN in CI). Like GhCli, None on failure,
-    but the reason is kept in `last_error` (gh's message, which carries the HTTP status)."""
+RATE_WAIT_MAX = 900.0  # seconds; a longer wait skips the request ("rate-limited, skipped")
+RATE_SKIPPED = "rate-limited, skipped"
+_TRY_AGAIN = re.compile(r"try again in ([0-9.]+)\s*s", re.I)
+_STATUS = re.compile(r"^HTTP/\S+\s+(\d{3})")
 
-    last_error: str | None = None
+
+def retry_wait(
+    status: int | None, headers: dict[str, str], message: str, now: float
+) -> float | None:
+    """Seconds GitHub asks for before a retry, when the failure is a rate limit (429, or 403
+    with a rate-limit sign); None for any other failure. Order: the retry-after header, the
+    message's "try again in N s", x-ratelimit-reset when no requests remain, else 60 s."""
+    exhausted = headers.get("x-ratelimit-remaining") == "0"
+    limited = status == 429 or (
+        status == 403 and ("retry-after" in headers or exhausted or "rate limit" in message.lower())
+    )
+    if not limited:
+        return None
+    if (after := headers.get("retry-after", "").strip()).isdigit():
+        return float(after)
+    if m := _TRY_AGAIN.search(message):
+        return float(m.group(1))
+    if exhausted and (reset := headers.get("x-ratelimit-reset", "").strip()).isdigit():
+        return max(0.0, float(reset) - now)
+    return 60.0
+
+
+def _split_include(stdout: str) -> tuple[int | None, dict[str, str], str]:
+    """`gh api --include` output: status line and headers, a blank line, the body."""
+    text = stdout.replace("\r\n", "\n")
+    head, _, body = text.partition("\n\n")
+    lines = head.split("\n")
+    m = _STATUS.match(lines[0]) if lines else None
+    if m is None:  # no header block: the whole output is the body
+        return None, {}, text
+    headers = {}
+    for line in lines[1:]:
+        key, sep, value = line.partition(":")
+        if sep:
+            headers[key.strip().lower()] = value.strip()
+    return int(m.group(1)), headers, body
+
+
+class GhApi:
+    """GitHubClient over `gh api` (its token: GH_TOKEN in CI). None on failure, with the
+    reason in `last_error` (gh's message, which carries the HTTP status). A rate-limited
+    request waits as long as GitHub asks and is retried once; a wait over `max_wait` skips it.
+    `retries`, `waited` (seconds) and `skipped` count what happened."""
+
+    def __init__(
+        self, run=subprocess.run, sleep=time.sleep, clock=time.time, max_wait=RATE_WAIT_MAX
+    ):
+        self._run, self._sleep, self._clock, self.max_wait = run, sleep, clock, max_wait
+        self.last_error: str | None = None
+        self.retries = 0
+        self.waited = 0.0
+        self.skipped = 0
+
+    def _once(self, path: str) -> tuple[dict | None, str | None, float | None]:
+        proc = self._run(["gh", "api", "--include", path], capture_output=True, text=True)
+        status, headers, body = _split_include(proc.stdout or "")
+        if proc.returncode == 0:
+            return json.loads(body), None, None
+        lines = [ln.strip() for ln in (proc.stderr or "").splitlines() if ln.strip()]
+        message = lines[-1] if lines else f"exit {proc.returncode}"
+        return None, message[:200], retry_wait(status, headers, message, self._clock())
 
     def get(self, path: str) -> dict | None:
         self.last_error = None
-        proc = subprocess.run(["gh", "api", path], capture_output=True, text=True)
-        if proc.returncode != 0:
-            lines = [ln.strip() for ln in proc.stderr.splitlines() if ln.strip()]
-            self.last_error = (lines[-1] if lines else f"exit {proc.returncode}")[:200]
-            return None
-        return json.loads(proc.stdout)
+        data, message, wait = self._once(path)
+        if message is None:
+            return data
+        if wait is not None:
+            if wait > self.max_wait:
+                self.skipped += 1
+                self.last_error = f"{RATE_SKIPPED} (asked to wait {wait:.0f} s)"
+                return None
+            self._sleep(wait)
+            self.retries += 1
+            self.waited += wait
+            data, message, _ = self._once(path)
+            if message is None:
+                return data
+            message = f"after one retry: {message}"
+        self.last_error = message
+        return None
 
 
 def _why(client) -> str:
@@ -200,6 +279,7 @@ class ShardStat:
     total: int | None  # total_count GitHub reported; None if the request failed
     fetched: int
     truncated: bool  # more results than this run read (the 1,000 cap or the page limit)
+    error: str | None = None  # why a page failed
 
 
 @dataclass
@@ -239,7 +319,7 @@ def search_code(client: GitHubClient, cfg: CodeSearch, week: int, found: Found) 
     found.shard_count = len(shards)
     first = True
     for shard in shards_for_run(shards, cfg.shards_per_run, week):
-        total, fetched = None, 0
+        total, fetched, error = None, 0, None
         for page in range(1, cfg.pages_per_shard + 1):
             if not first and cfg.pause:
                 time.sleep(cfg.pause)
@@ -248,7 +328,8 @@ def search_code(client: GitHubClient, cfg: CodeSearch, week: int, found: Found) 
             path = f"search/code?q={q}&per_page={PER_PAGE}&page={page}"
             data = client.get(path)
             if not data:
-                found.failed.append((path, _why(client)))
+                error = _why(client)
+                found.failed.append((path, error))
                 break
             total = data.get("total_count", 0)
             items = data.get("items", [])
@@ -260,7 +341,7 @@ def search_code(client: GitHubClient, cfg: CodeSearch, week: int, found: Found) 
             if len(items) < PER_PAGE or fetched >= min(total, SEARCH_CAP):
                 break
         truncated = total is None or fetched < total
-        found.shards.append(ShardStat(shard, total, fetched, truncated))
+        found.shards.append(ShardStat(shard, total, fetched, truncated, error))
 
 
 def search_topics(client: GitHubClient, topics: list[str], pages: int, found: Found) -> None:
@@ -337,27 +418,89 @@ def select(
     return out, dict(dropped)
 
 
+STALE_NAME_MIN = 0.5  # name overlap at or above this ...
+STALE_HASH_MAX = 0.1  # ... and content-hash overlap below this: the index has older copies
+
+
 @dataclass
 class IndexView:
     names: set[str]
     hashes: set[str]
+    sources: dict[str, set[str]] = field(default_factory=dict)  # normalized name -> source ids
 
     @classmethod
     def load(cls, index_dir: Path) -> IndexView | None:
         path = index_dir / "skills.jsonl"
         if not path.is_file():
             return None
-        names, hashes = set(), set()
+        view = cls(set(), set())
         for line in path.read_text().splitlines():
             if line.strip():
                 rec = json.loads(line)
-                names.add(_norm_name(rec.get("name", "")))
-                hashes.add(rec.get("content_hash", ""))
-        return cls(names, hashes)
+                name = _norm_name(rec.get("name", ""))
+                view.names.add(name)
+                view.hashes.add(rec.get("content_hash", ""))
+                view.sources.setdefault(name, set()).add(rec.get("source_id", "?"))
+        return view
 
 
 def _share(n: int, d: int) -> float | None:
     return round(n / d, 3) if d else None
+
+
+AGGREGATOR_UPSTREAM_SHARE = 0.1  # this share of upstream-marked skills makes an aggregator
+_UPSTREAM_KEYS = ("upstream", "source", "source_url", "origin", "original", "repository")
+_THIRD_PARTY_FILE = re.compile(r"^(third[-_ ]?party|upstreams?|credits|attribution)", re.I)
+_THIRD_PARTY_HEADING = re.compile(
+    r"^#{1,6}\s.*\b(third[- ]party|upstream|credits|attribution)", re.I | re.M
+)
+_LINKED_REPO = re.compile(r"github\.com/([A-Za-z0-9-]+)/([A-Za-z0-9._-]+)")
+
+
+def upstream_marked(skill_dir: Path, frontmatter: dict | None) -> bool:
+    """The skill says it came from elsewhere: an `.openskills.json` upstream (§1.1), or a
+    frontmatter field such as `upstream:` or `source:` holding a GitHub URL."""
+    if openskills_upstream(skill_dir) is not None:
+        return True
+    fm = frontmatter or {}
+    return any(isinstance(fm.get(k), str) and "github.com/" in fm[k] for k in _UPSTREAM_KEYS)
+
+
+def third_party_list(repo_dir: Path) -> str | None:
+    """Where the repository lists third-party upstreams: a root file named like
+    THIRD_PARTY*/UPSTREAM*/CREDITS*/ATTRIBUTION*, or a README section with such a heading
+    and links to at least three other GitHub repositories, or UASL's `- Upstream:` format.
+    None when there is none."""
+    for path in sorted(repo_dir.iterdir()):
+        if path.is_file() and not path.is_symlink() and _THIRD_PARTY_FILE.match(path.name):
+            return path.name
+    for name in ("README.md", "readme.md", "README"):
+        path = repo_dir / name
+        if not path.is_file() or path.is_symlink():
+            continue
+        text = read_text(path)
+        if parse_third_party_doc(text):
+            return f"{name} (Upstream lines)"
+        if m := _THIRD_PARTY_HEADING.search(text):
+            repos = {f"{o}/{r}".lower() for o, r in _LINKED_REPO.findall(text[m.start() :])}
+            if len(repos) >= 3:
+                return f"{name} ({m.group(1).lower()} section)"
+    return None
+
+
+def nearest_repo_license(repo_dir: Path, skill_dir: Path) -> tuple[str, str] | None:
+    """(license file, license) of the nearest license file above the skill folder, up to the
+    repository root: the --upstream-licenses rule (§1.8) with the repository as the upstream."""
+    folder = skill_dir.parent if skill_dir != repo_dir else repo_dir
+    while True:
+        for name in LICENSE_FILES:
+            path = folder / name
+            if path.is_file() and not path.is_symlink():
+                rel = path.relative_to(repo_dir).as_posix()
+                return rel, classify_text(read_text(path)) or "unrecognized"
+        if folder == repo_dir or repo_dir not in folder.parents:
+            return None
+        folder = folder.parent
 
 
 def precheck(repo_dir: Path, index: IndexView | None) -> dict:
@@ -371,43 +514,77 @@ def precheck(repo_dir: Path, index: IndexView | None) -> dict:
             doc = read_skill(d)
             fm = doc.frontmatter or {}
             name = fm.get("name") if isinstance(fm.get("name"), str) else d.name
+            own = skill_license(d, doc.frontmatter, "per-skill")
             rows.append(
                 {
+                    "dir": d,
                     "path": rel,
                     "name": _norm_name(name or d.name),
                     "lint": lint_skill(d).ok,
                     "scan": scan_skill(d, rules).ok,
                     "hash": content_hash(d),
-                    "license": skill_license(d, doc.frontmatter, "per-skill").license,
+                    "license": own.license,
+                    "own_license": own.origin != "none",
+                    "upstream": upstream_marked(d, doc.frontmatter),
                 }
             )
         except (OSError, UnicodeError, ValueError):
             rows.append(
                 {
+                    "dir": d,
                     "path": rel,
                     "name": _norm_name(d.name),
                     "lint": False,
                     "scan": False,
                     "hash": "",
                     "license": "unknown",
+                    "own_license": False,
+                    "upstream": False,
                 }
             )
     n = len(rows)
+    upstream_share = _share(sum(r["upstream"] for r in rows), n)
+    third_party = third_party_list(repo_dir)
+    aggregator = bool(third_party) or (upstream_share or 0) >= AGGREGATOR_UPSTREAM_SHARE
+    from_root = 0
+    if not aggregator:  # the repository is the skills' upstream: its license files apply
+        for r in rows:
+            if not r["own_license"] and not r["upstream"]:
+                found = nearest_repo_license(repo_dir, r["dir"])
+                if found:
+                    r["license"] = found[1]
+                    from_root += 1
     by_name = Counter(r["name"] for r in rows)
     locale = _locale_paths([r["path"] for r in rows])
     copies = sum(1 for r in rows if by_name[r["name"]] > 1 and r["path"] in locale)
     licenses = Counter(r["license"] for r in rows)
-    return {
+    out = {
         "skills": n,
         "lint_pass": _share(sum(r["lint"] for r in rows), n),
         "scan_pass": _share(sum(r["scan"] for r in rows), n),
         "root_license": root_license(repo_dir),
+        "aggregator": aggregator,
+        "upstream_marked": upstream_share,
+        "third_party_list": third_party,
+        "license_from_repo": from_root,
         "skill_licenses": dict(licenses.most_common()),
         "redistributable": _share(sum(v for k, v in licenses.items() if k in REDISTRIBUTABLE), n),
-        "name_in_index": _share(sum(r["name"] in index.names for r in rows), n) if index else None,
-        "hash_in_index": _share(sum(r["hash"] in index.hashes for r in rows), n) if index else None,
+        "name_in_index": None,
+        "hash_in_index": None,
+        "stale_in_index": None,
+        "index_sources": None,
         "locale_copies": _share(copies, n),
     }
+    if index is not None and n:
+        named = [r for r in rows if r["name"] in index.names]
+        out["name_in_index"] = _share(len(named), n)
+        out["hash_in_index"] = _share(sum(r["hash"] in index.hashes for r in rows), n)
+        out["stale_in_index"] = (
+            out["name_in_index"] >= STALE_NAME_MIN and out["hash_in_index"] < STALE_HASH_MAX
+        )
+        sources = Counter(s for r in named for s in index.sources.get(r["name"], ()))
+        out["index_sources"] = dict(sources.most_common()) or None
+    return out
 
 
 Checkout = Callable[[str, str], tuple[Path, str | None]]  # (repo, ref) -> (dir, commit date)
@@ -477,6 +654,7 @@ class Run:
     dropped: dict[str, int]
     known: int
     index: bool
+    rate: dict = field(default_factory=dict)  # retries, waited (s), skipped
 
 
 def discover(
@@ -495,7 +673,8 @@ def discover(
     read_lists(fetch, cfg.lists, found)
     cands, dropped = select(found, known, client, cfg)
     rows = check_candidates(cands, cfg, checkout, index)
-    return Run(today.isoformat(), week, rows, found, dropped, len(known), index is not None)
+    rate = {k: getattr(client, k, 0) for k in ("retries", "waited", "skipped")}
+    return Run(today.isoformat(), week, rows, found, dropped, len(known), index is not None, rate)
 
 
 def _pct(v: float | None) -> str:
@@ -506,21 +685,57 @@ def _cell(v) -> str:
     return "–" if v is None else str(v).replace("|", "\\|")
 
 
+def _aggregator(r: dict) -> str:
+    if "aggregator" not in r:
+        return "–"
+    if not r["aggregator"]:
+        return "no"
+    if r.get("third_party_list"):
+        return f"yes: {r['third_party_list']}"
+    return f"yes: {_pct(r.get('upstream_marked'))} upstream-marked"
+
+
+def render_stale(rows: list[dict]) -> list[str]:
+    stale = [r for r in rows if r.get("stale_in_index")]
+    if not stale:
+        return []
+    lines = [
+        "",
+        "## Older copies in the index",
+        "",
+        f"Name overlap at least {STALE_NAME_MIN:.0%} and content-hash overlap under "
+        f"{STALE_HASH_MAX:.0%}: the index holds these skills, but not this version.",
+        "",
+        "| repository | SKILL.md | name in index | hash in index "
+        "| index sources (matching names) |",
+        "|---|---:|---:|---:|---|",
+    ]
+    for r in sorted(stale, key=lambda r: r["repo"]):
+        sources = ", ".join(f"{k} {v}" for k, v in (r.get("index_sources") or {}).items())
+        lines.append(
+            f"| [{r['repo']}]({r['url']}) | {r['skills']} | {_pct(r['name_in_index'])} | "
+            f"{_pct(r['hash_in_index'])} | {sources or '–'} |"
+        )
+    return lines
+
+
 def render_table(rows: list[dict]) -> str:
     checked = [r for r in rows if r["status"] != "not_checked"]
     checked.sort(key=lambda r: (r["status"] != "checked", -(r.get("skills") or 0), r["repo"]))
     head = (
-        "| repository | status | SKILL.md | lint pass | scan pass | redistributable | "
-        "root license | name in index | hash in index | locale copies | last commit | stars "
-        "| found by |\n|---|---|---:|---:|---:|---:|---|---:|---:|---:|---|---:|---|"
+        "| repository | status | SKILL.md | lint pass | scan pass | aggregator | "
+        "redistributable (own + root) | root license | name in index | hash in index | "
+        "older copy in index | locale copies | last commit | stars | found by |\n"
+        "|---|---|---:|---:|---:|---|---:|---|---:|---:|---|---:|---|---:|---|"
     )
     lines = [head]
     for r in checked:
         lines.append(
             f"| [{r['repo']}]({r['url']}) | {r['status']} | {_cell(r.get('skills'))} | "
-            f"{_pct(r.get('lint_pass'))} | {_pct(r.get('scan_pass'))} | "
+            f"{_pct(r.get('lint_pass'))} | {_pct(r.get('scan_pass'))} | {_aggregator(r)} | "
             f"{_pct(r.get('redistributable'))} | {_cell(r.get('root_license'))} | "
             f"{_pct(r.get('name_in_index'))} | {_pct(r.get('hash_in_index'))} | "
+            f"{'yes' if r.get('stale_in_index') else '–'} | "
             f"{_pct(r.get('locale_copies'))} | {_cell((r.get('last_commit') or '')[:10] or None)} "
             f"| {_cell(r.get('stars'))} | {', '.join(r['channels'])} |"
         )
@@ -557,15 +772,23 @@ def channel_lines(run: Run) -> list[str]:
         f"- All channels: {len(f.candidates)} distinct repositories (a repository can come "
         "from several channels).",
         f"- Failed requests: {len(f.failed)}" + (f": {fail_text}." if fail_text else "."),
+        f"- Rate limits: {run.rate.get('retries', 0)} retries after waiting "
+        f"{run.rate.get('waited', 0):.0f} s in total; {run.rate.get('skipped', 0)} requests "
+        f"skipped (GitHub asked for a wait over {RATE_WAIT_MAX:.0f} s).",
     ]
+
+
+def _shard_text(s: ShardStat) -> str:
+    parts = [] if s.total is None else [f"{s.fetched}/{s.total}"]
+    if s.error:
+        parts.append(RATE_SKIPPED if s.error.startswith(RATE_SKIPPED) else "failed")
+    return ", ".join(parts) or "failed"
 
 
 def render_report(run: Run) -> str:
     f = run.found
     checked = sum(r["status"] != "not_checked" for r in run.rows)
-    covered = ", ".join(
-        f"{s.size} ({'failed' if s.total is None else f'{s.fetched}/{s.total}'})" for s in f.shards
-    )
+    covered = ", ".join(f"{s.size} ({_shard_text(s)})" for s in f.shards)
     lines = [
         f"# skillfetch discover, {run.day}",
         "",
@@ -582,13 +805,20 @@ def render_report(run: Run) -> str:
         "were cut by GitHub's 1,000-result cap or the page limit.",
         f"- Index for overlap: {'loaded' if run.index else 'not found (overlap columns empty)'}.",
         "",
-        "Columns: shares are of the repository's SKILL.md folders. redistributable = the "
-        "skill folder's own LICENSE or frontmatter is a permissive license (the root license "
-        "is not inherited, §1.8). name/hash in index = same normalized name / same "
-        "content_hash as an index record. locale copies = folders under a locale segment "
-        "that share their name with another folder (§1.6).",
+        "Columns: shares are of the repository's SKILL.md folders. aggregator = at least "
+        f"{AGGREGATOR_UPSTREAM_SHARE:.0%} of its skills name an upstream (`.openskills.json` or "
+        "a frontmatter `upstream:`/`source:` GitHub URL), or it has a third-party list (a "
+        "THIRD_PARTY/UPSTREAM/CREDITS file, or a README section of that name linking three or "
+        "more repositories). redistributable (own + root) = the skill's own LICENSE or "
+        "frontmatter is permissive, or, outside an aggregator and for a skill naming no "
+        "upstream, the nearest license file up to the repository root is (the "
+        "--upstream-licenses rule, §1.8). name/hash in index = same normalized name / same "
+        "content_hash as an index record; older copy in index = name overlap "
+        f"≥ {STALE_NAME_MIN:.0%} and hash overlap < {STALE_HASH_MAX:.0%}. locale copies = "
+        "folders under a locale segment that share their name with another folder (§1.6).",
         "",
         render_table(run.rows),
+        *render_stale(run.rows),
     ]
     rest = [r for r in run.rows if r["status"] == "not_checked"][:50]
     if rest:
