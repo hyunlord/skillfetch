@@ -1,0 +1,51 @@
+diff --git a/src/room.rs b/src/room.rs
+index 41067b9..c119e0d 100644
+--- a/src/room.rs
++++ b/src/room.rs
+@@ -1,22 +1,31 @@
+-use std::collections::HashMap;
++use std::collections::{HashMap, VecDeque};
+ use std::sync::Arc;
+ 
+ use tokio::sync::mpsc::UnboundedSender;
+ use tokio::sync::Mutex;
+ 
+-/// One chat room: its members and their outgoing channels.
++/// How many past lines a room keeps for members who join later.
++pub const HISTORY_LEN: usize = 50;
++
++/// One chat room: its members, their outgoing channels and the last `HISTORY_LEN` lines.
+ pub struct Room {
+     pub name: String,
+     members: HashMap<u64, UnboundedSender<String>>,
++    history: VecDeque<String>,
+ }
+ 
+ impl Room {
+     pub fn new(name: impl Into<String>) -> Self {
+-        Room { name: name.into(), members: HashMap::new() }
++        Room { name: name.into(), members: HashMap::new(), history: VecDeque::with_capacity(HISTORY_LEN) }
+     }
+ 
+-    /// Adds a member; `tx` receives every line broadcast in this room from now on.
++    /// Adds a member: replays the room's recent history (oldest first), then `tx` receives every new line.
+     pub fn join(&mut self, id: u64, tx: UnboundedSender<String>) {
++        for line in &self.history {
++            if tx.send(line.clone()).is_err() {
++                return;
++            }
++        }
+         self.members.insert(id, tx);
+     }
+ 
+@@ -32,6 +41,10 @@ impl Room {
+     pub fn broadcast(&mut self, from: u64, text: &str) {
+         let line = format!("{from}: {text}");
+         self.members.retain(|id, tx| *id == from || tx.send(line.clone()).is_ok());
++        if self.history.len() == HISTORY_LEN {
++            self.history.pop_front();
++        }
++        self.history.push_back(line);
+     }
+ }
+ 

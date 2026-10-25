@@ -1,0 +1,46 @@
+diff --git a/Sources/HabitTracker/App/AppStartup.swift b/Sources/HabitTracker/App/AppStartup.swift
+index 5abd3e3..475e3e4 100644
+--- a/Sources/HabitTracker/App/AppStartup.swift
++++ b/Sources/HabitTracker/App/AppStartup.swift
+@@ -1,3 +1,4 @@
++import CoreData
+ import Foundation
+ import SwiftData
+ 
+@@ -7,5 +8,36 @@ public enum AppStartup {
+     @MainActor
+     public static func run(coreData: CoreDataStack, container: ModelContainer, defaults: UserDefaults = .standard) throws {
+         container.mainContext.autosaveEnabled = true
++        try LegacyMigration.runIfNeeded(from: coreData, into: container.mainContext, defaults: defaults)
++    }
++}
++
++/// One-time copy of the 2.x Core Data store into SwiftData on the first 3.0 launch.
++enum LegacyMigration {
++    static let doneKey = "migration.coreDataToSwiftData.done"
++
++    @MainActor
++    static func runIfNeeded(from coreData: CoreDataStack, into context: ModelContext, defaults: UserDefaults) throws {
++        guard !defaults.bool(forKey: doneKey) else { return }
++        let request = NSFetchRequest<NSManagedObject>(entityName: "HabitEntity")
++        for old in try coreData.viewContext.fetch(request) {
++            guard let id = old.value(forKey: "id") as? UUID else { continue }
++            let habit = Habit(
++                id: id,
++                name: old.value(forKey: "name") as? String ?? "",
++                createdAt: old.value(forKey: "createdAt") as? Date ?? .now,
++                currentStreak: Int(old.value(forKey: "streakCount") as? Int64 ?? 0),
++                isArchived: old.value(forKey: "archived") as? Bool ?? false
++            )
++            context.insert(habit)
++            for case let oldCheckIn as NSManagedObject in (old.value(forKey: "checkIns") as? Set<NSManagedObject>) ?? [] {
++                guard let cid = oldCheckIn.value(forKey: "id") as? UUID, let date = oldCheckIn.value(forKey: "date") as? Date else { continue }
++                let checkIn = CheckIn(id: cid, date: date, note: oldCheckIn.value(forKey: "note") as? String)
++                context.insert(checkIn)
++                checkIn.habit = habit
++            }
++        }
++        try context.save()
++        defaults.set(true, forKey: doneKey)
+     }
+ }

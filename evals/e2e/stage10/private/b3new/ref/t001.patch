@@ -1,0 +1,145 @@
+diff --git a/payouts/ledger.py b/payouts/ledger.py
+index 35cfa47..6534b62 100644
+--- a/payouts/ledger.py
++++ b/payouts/ledger.py
+@@ -37,10 +37,16 @@ CREATE TABLE IF NOT EXISTS payout_adjustments (
+ AdjustmentRow = tuple[str, int, int, int, str, str]
+ 
+ 
+-def connect(path: str | Path) -> sqlite3.Connection:
+-    """Open the ledger database. The file must already exist."""
++def connect(path: str | Path, *, readonly: bool = False) -> sqlite3.Connection:
++    """Open the ledger database. The file must already exist.
++
++    With ``readonly=True`` the file is opened with SQLite's ``mode=ro`` so no
++    statement can modify it.
++    """
+     if not Path(path).is_file():
+         raise FileNotFoundError(f"ledger database not found: {path}")
++    if readonly:
++        return sqlite3.connect(f"{Path(path).resolve().as_uri()}?mode=ro", uri=True)
+     return sqlite3.connect(path)
+ 
+ 
+diff --git a/scripts/reconcile_payouts.py b/scripts/reconcile_payouts.py
+index 772e7ce..cf60c27 100644
+--- a/scripts/reconcile_payouts.py
++++ b/scripts/reconcile_payouts.py
+@@ -11,6 +11,10 @@ CSV with the same amount. Each discrepancy is recorded as a row in
+ 
+ Usage:
+     python scripts/reconcile_payouts.py --settlements data/settlements.csv --db ledger.db
++    python scripts/reconcile_payouts.py --settlements data/settlements.csv --db ledger.db --dry-run
++
++With ``--dry-run`` the ledger is opened read-only and the rows that would be
++inserted are printed as a diff instead of being written.
+ """
+ 
+ from __future__ import annotations
+@@ -119,6 +123,22 @@ def write_adjustments(
+     return len(adjustments)
+ 
+ 
++def format_cents(cents: int) -> str:
++    sign = "-" if cents < 0 else ""
++    return f"{sign}{abs(cents) // 100}.{abs(cents) % 100:02d}"
++
++
++def format_diff(adjustments: list[Adjustment]) -> str:
++    """Render the rows that would be added to payout_adjustments, diff style."""
++    lines = ["--- payout_adjustments", "+++ payout_adjustments (after reconciliation)"]
++    for a in adjustments:
++        lines.append(
++            f"+ {a.payout_id}  {a.reason:<24}  expected={format_cents(a.expected_cents)}"
++            f"  settled={format_cents(a.settled_cents)}  delta={format_cents(a.delta_cents)}"
++        )
++    return "\n".join(lines)
++
++
+ def build_parser() -> argparse.ArgumentParser:
+     parser = argparse.ArgumentParser(
+         description="Reconcile a settlement CSV against the payouts ledger "
+@@ -132,6 +152,12 @@ def build_parser() -> argparse.ArgumentParser:
+         default=os.environ.get("LEDGER_DB"),
+         help="path to the ledger SQLite database (default: $LEDGER_DB)",
+     )
++    parser.add_argument(
++        "--dry-run",
++        action="store_true",
++        help="print the adjustment rows that would be written as a diff; "
++        "do not modify the database",
++    )
+     return parser
+ 
+ 
+@@ -143,15 +169,25 @@ def main(argv: list[str] | None = None) -> int:
+ 
+     try:
+         settled = load_settlements(args.settlements)
+-        conn = ledger.connect(args.db)
++        conn = ledger.connect(args.db, readonly=args.dry_run)
+     except (OSError, ValueError) as exc:
+         print(f"error: {exc}", file=sys.stderr)
+         return 2
+ 
+     try:
+-        ledger.ensure_adjustments_table(conn)
++        if not args.dry_run:
++            ledger.ensure_adjustments_table(conn)
+         expected = load_ledger(conn)
+         adjustments = compute_adjustments(expected, settled)
++        if args.dry_run:
++            if adjustments:
++                print(format_diff(adjustments))
++            print(
++                f"dry run: reconciled {len(expected)} ledger payouts against "
++                f"{len(settled)} settled payouts: would write {len(adjustments)} "
++                "adjustment(s), nothing written"
++            )
++            return 0
+         written = write_adjustments(conn, adjustments)
+     finally:
+         conn.close()
+diff --git a/tests/test_reconcile.py b/tests/test_reconcile.py
+index 711de4b..e0c554c 100644
+--- a/tests/test_reconcile.py
++++ b/tests/test_reconcile.py
+@@ -117,3 +117,38 @@ def test_main_missing_db(tmp_path, settlements_csv, capsys):
+     assert rc == 2
+     assert "ledger database not found" in capsys.readouterr().err
+     assert not (tmp_path / "nope.db").exists()
++
++
++def test_main_dry_run_prints_diff_and_writes_nothing(ledger_db, settlements_csv, capsys):
++    before = ledger_db.read_bytes()
++    rc = rp.main(["--settlements", str(settlements_csv), "--db", str(ledger_db), "--dry-run"])
++    assert rc == 0
++    assert ledger_db.read_bytes() == before
++
++    out = capsys.readouterr().out
++    assert "+ po_2  amount_mismatch" in out
++    assert "expected=25.50  settled=25.00  delta=-0.50" in out
++    assert "po_3" in out and "missing_from_settlement" in out
++    assert "po_9" in out and "unknown_payout" in out
++    assert "would write 3 adjustment(s), nothing written" in out
++
++
++def test_main_dry_run_on_ledger_without_adjustments_table(tmp_path, settlements_csv, capsys):
++    db = tmp_path / "old.db"
++    conn = sqlite3.connect(db)
++    conn.execute(ledger.PAYOUTS_DDL)
++    conn.execute("INSERT INTO payouts VALUES ('po_1', 'm_a', 10000, 'USD', 'paid', 'x')")
++    conn.commit()
++    conn.close()
++    before = db.read_bytes()
++
++    assert rp.main(["--settlements", str(settlements_csv), "--db", str(db), "--dry-run"]) == 0
++    assert db.read_bytes() == before
++    assert "would write 2 adjustment(s)" in capsys.readouterr().out
++
++
++def test_format_cents():
++    assert rp.format_cents(128450) == "1284.50"
++    assert rp.format_cents(-1250) == "-12.50"
++    assert rp.format_cents(-5) == "-0.05"
++    assert rp.format_cents(0) == "0.00"

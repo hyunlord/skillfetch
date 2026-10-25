@@ -1,0 +1,31 @@
+{
+  "task": "t114",
+  "pass": true,
+  "items": [
+    {
+      "name": "a_cargo_test",
+      "pass": true,
+      "detail": "ok (18 tests in 4 suites)"
+    },
+    {
+      "name": "b_cargo_doc",
+      "pass": true,
+      "detail": "ok"
+    },
+    {
+      "name": "c_code_unchanged",
+      "pass": true,
+      "detail": "5 .rs files, code identical modulo comments/doc attrs"
+    },
+    {
+      "name": "d_crate_docs_present",
+      "pass": true,
+      "detail": "71 non-blank crate doc lines (need 15); sources=['//!']"
+    },
+    {
+      "name": "e_docs_explain_bytes",
+      "pass": true,
+      "detail": "all 12 term groups present"
+    }
+  ]
+}

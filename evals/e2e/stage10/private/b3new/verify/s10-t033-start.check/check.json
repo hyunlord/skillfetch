@@ -1,0 +1,31 @@
+{
+  "task": "t033",
+  "pass": false,
+  "items": [
+    {
+      "name": "typecheck",
+      "pass": true,
+      "detail": "tsc ok"
+    },
+    {
+      "name": "tests_pass",
+      "pass": true,
+      "detail": "exit 0: 23 passed (23)"
+    },
+    {
+      "name": "hidden_tests",
+      "pass": false,
+      "detail": "exit 1: 4 failed | 4 passed (8) | failed: still removes script tags; unwraps http://google.com/url?q= wrapper to the re; unwraps https://google.com/url?q= wrapper to the r; unwraps https://www.google.com/url?q= wrapper to t"
+    },
+    {
+      "name": "no_new_packages",
+      "pass": true,
+      "detail": "deps and lockfile unchanged"
+    },
+    {
+      "name": "toolbar_untouched",
+      "pass": true,
+      "detail": "Toolbar.tsx unchanged"
+    }
+  ]
+}

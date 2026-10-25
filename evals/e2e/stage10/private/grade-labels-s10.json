@@ -1,0 +1,54 @@
+{
+"d1-landing": {
+"m01": "uasl/copywriting@67282b309ff8",
+"m02": "anthropics-skills/frontend-design@0a5ff23f1022",
+"m03": "uasl/next-best-practices@ee058f89acea"
+},
+"d2-redesign": {
+"m01": "uasl/ui-audit@be637d5e2baf",
+"m02": "uasl/refactoring-ui@a0c00159d43d",
+"m03": "uasl/redesign-skill@2e4f7f16e367",
+"m04": "uasl/responsive-design@2cf7927ef938"
+},
+"d3-dashboard": {
+"m01": "uasl/frontend-design@5da82907743d",
+"m02": "affaan-m-ecc/frontend-a11y@635c71ee05ce",
+"m03": "uasl/accessibility-compliance@696d2b4119ed",
+"m04": "uasl/vercel-react-best-practices@70f3b5aaf775",
+"m05": "uasl/next-best-practices@ee058f89acea",
+"m06": "uasl/visualization-choice-reporting@7496a3ae2eeb"
+},
+"d4-email": {
+"m01": "anthropics-skills/frontend-design@0a5ff23f1022",
+"m02": "uasl/email-marketing@a37255743f2c",
+"m03": "uasl/redesign-skill@2e4f7f16e367"
+},
+"s2-api": {
+"m01": "affaan-m-ecc/api-design@2c61753734ba",
+"m02": "affaan-m-ecc/fastapi-patterns@419da9966f07",
+"m03": "uasl/api-design@bba608f8c974",
+"m04": "uasl/fastapi-templates@effcd0de0b4c",
+"m05": "uasl/python-error-handling@8dc34883a143"
+},
+"s2-data": {
+"m01": "uasl/python-error-handling@8dc34883a143",
+"m02": "uasl/data-analyst-engine@79799e01e2dd"
+},
+"s2-docs": {
+"m01": "uasl/spec-miner@cebd849612b0",
+"m02": "uasl/quill@336ba74b0e79"
+},
+"s2-tests": {
+"m01": "uasl/python-testing-patterns@e62d0f1ca316",
+"m02": "affaan-m-ecc/python-testing@b62ce0637eb1",
+"m03": "uasl/property-based-testing@a168f6739085",
+"m04": "uasl/radar@a47ea6fd5f95"
+},
+"s6b-t133": {
+"m01": "affaan-m-ecc/deployment-patterns@eb1f7daa4ca4",
+"m02": "affaan-m-ecc/docker-patterns@39f84b55bca5"
+},
+"s6b-t179": {
+"m01": "affaan-m-ecc/database-migrations@60a7f8fbfa22"
+}
+}

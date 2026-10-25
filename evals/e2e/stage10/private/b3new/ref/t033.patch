@@ -1,0 +1,75 @@
+diff --git a/lib/sanitizeHtml.ts b/lib/sanitizeHtml.ts
+index edaf1c8..2ba971b 100644
+--- a/lib/sanitizeHtml.ts
++++ b/lib/sanitizeHtml.ts
+@@ -35,8 +35,8 @@ const DROP_WITH_CONTENT: ReadonlySet<string> = new Set(['script', 'style']);
+ export const ALLOWED_PROTOCOLS: readonly string[] = ['http:', 'https:', 'mailto:'];
+ 
+ /**
+- * Click-tracking redirect wrappers. These hide the real destination, so links
+- * that use them are not allowed through.
++ * Google's click-tracking redirect (`https://www.google.com/url?q=<real url>&sa=D...`),
++ * which Google Docs wraps around every link. The real destination is in `q`.
+  */
+ const TRACKING_REDIRECT = /^https?:\/\/(www\.)?google\.com\/url\?/i;
+ 
+@@ -108,11 +108,25 @@ function getAttribute(rawAttrs: string, name: string): string | null {
+ /** Returns the href to emit for a link, or null to drop the <a>. */
+ function sanitizeHref(rawHref: string | null): string | null {
+   if (rawHref === null) return null;
+-  const href = decodeEntities(rawHref).trim();
+-  if (TRACKING_REDIRECT.test(href)) return null;
++  let href = decodeEntities(rawHref).trim();
++  if (TRACKING_REDIRECT.test(href)) {
++    const target = unwrapRedirect(href);
++    if (target === null) return null;
++    href = target;
++  }
+   return isAllowedHref(href) ? href : null;
+ }
+ 
++/** Returns the destination wrapped in a Google redirect URL, or null if there is none. */
++function unwrapRedirect(href: string): string | null {
++  try {
++    const target = new URL(href).searchParams.get('q');
++    return target ? target.trim() : null;
++  } catch {
++    return null;
++  }
++}
++
+ export function sanitizeHtml(input: string): string {
+   const out: string[] = [];
+   // One entry per open <a>: whether its opening tag was emitted.
+diff --git a/tests/sanitizeHtml.test.ts b/tests/sanitizeHtml.test.ts
+index 0adad00..d9a5059 100644
+--- a/tests/sanitizeHtml.test.ts
++++ b/tests/sanitizeHtml.test.ts
+@@ -72,6 +72,27 @@ describe('links', () => {
+     expect(sanitizeHtml('<a href="vbscript:msgbox(1)">v</a>')).toBe('v');
+   });
+ 
++  it('unwraps Google Docs redirect links to the real URL', () => {
++    const wrapped =
++      'https://www.google.com/url?q=https%3A%2F%2Fexample.com%2Fdocs%3Fa%3D1%26b%3D2&amp;sa=D&amp;source=editors';
++    expect(sanitizeHtml(`<a href="${wrapped}">docs</a>`)).toBe(
++      '<a href="https://example.com/docs?a=1&amp;b=2">docs</a>',
++    );
++    expect(sanitizeHtml('<a href="https://google.com/url?q=/pricing&sa=D">p</a>')).toBe(
++      '<a href="/pricing">p</a>',
++    );
++  });
++
++  it('still applies the allowlist to unwrapped redirect targets', () => {
++    expect(sanitizeHtml('<a href="https://www.google.com/url?q=javascript%3Aalert(1)&sa=D">x</a>')).toBe('x');
++    expect(sanitizeHtml('<a href="https://www.google.com/url?sa=D">x</a>')).toBe('x');
++  });
++
++  it('only unwraps google.com redirects', () => {
++    const html = '<a href="https://example.com/url?q=https://evil.test">y</a>';
++    expect(sanitizeHtml(html)).toBe(html);
++  });
++
+   it('drops anchors without an href', () => {
+     expect(sanitizeHtml('<a name="top">top</a>')).toBe('top');
+   });

@@ -1,0 +1,96 @@
+diff --git a/src/feed/l2.rs b/src/feed/l2.rs
+index 8901720..6f500d2 100644
+--- a/src/feed/l2.rs
++++ b/src/feed/l2.rs
+@@ -4,17 +4,19 @@
+ //! `SYMBOL|B:<price>x<size>,<price>x<size>...|A:<price>x<size>,...`
+ //! e.g. `BTC-USD|B:101.25x3.0,101.00x1.5|A:101.50x2.0`. Either side may be empty (`B:`).
+ 
+-#[derive(Debug, Clone, PartialEq)]
+-pub struct PriceLevel {
+-    pub price: String,
+-    pub size: String,
++/// One price level; `price` and `size` borrow from the snapshot line (no copies).
++#[derive(Debug, Clone, Copy, PartialEq)]
++pub struct PriceLevel<'a> {
++    pub price: &'a str,
++    pub size: &'a str,
+ }
+ 
++/// A parsed snapshot borrowing from the input line; it cannot outlive it.
+ #[derive(Debug, Clone, PartialEq, Default)]
+-pub struct OrderBook {
+-    pub symbol: String,
+-    pub bids: Vec<PriceLevel>,
+-    pub asks: Vec<PriceLevel>,
++pub struct OrderBook<'a> {
++    pub symbol: &'a str,
++    pub bids: Vec<PriceLevel<'a>>,
++    pub asks: Vec<PriceLevel<'a>>,
+ }
+ 
+ #[derive(Debug, PartialEq)]
+@@ -24,26 +26,26 @@ pub enum ParseError {
+     BadLevel(String),
+ }
+ 
+-pub fn parse_order_book(input: &str) -> Result<OrderBook, ParseError> {
++pub fn parse_order_book(input: &str) -> Result<OrderBook<'_>, ParseError> {
+     let mut parts = input.trim_end().split('|');
+     let symbol = parts.next().filter(|s| !s.is_empty()).ok_or(ParseError::MissingSymbol)?;
+     let bids = parse_side(parts.next(), 'B')?;
+     let asks = parse_side(parts.next(), 'A')?;
+-    Ok(OrderBook { symbol: symbol.to_string(), bids, asks })
++    Ok(OrderBook { symbol, bids, asks })
+ }
+ 
+-fn parse_side(part: Option<&str>, side: char) -> Result<Vec<PriceLevel>, ParseError> {
++fn parse_side(part: Option<&str>, side: char) -> Result<Vec<PriceLevel<'_>>, ParseError> {
+     let body = part
+         .and_then(|p| p.strip_prefix(side))
+         .and_then(|p| p.strip_prefix(':'))
+         .ok_or(ParseError::MissingSide(side))?;
+-    let mut levels = Vec::new();
++    let mut levels = Vec::with_capacity(body.bytes().filter(|&b| b == b',').count() + 1);
+     for raw in body.split(',').filter(|s| !s.is_empty()) {
+         let (price, size) = raw.split_once('x').ok_or_else(|| ParseError::BadLevel(raw.to_string()))?;
+         if price.is_empty() || size.is_empty() {
+             return Err(ParseError::BadLevel(raw.to_string()));
+         }
+-        levels.push(PriceLevel { price: price.to_string(), size: size.to_string() });
++        levels.push(PriceLevel { price, size });
+     }
+     Ok(levels)
+ }
+diff --git a/src/feed/mod.rs b/src/feed/mod.rs
+index bcf5894..4ff41e8 100644
+--- a/src/feed/mod.rs
++++ b/src/feed/mod.rs
+@@ -4,23 +4,23 @@ pub mod l2;
+ use l2::{OrderBook, PriceLevel};
+ 
+ /// Highest bid (bids are sent best first).
+-pub fn best_bid(book: &OrderBook) -> Option<&PriceLevel> {
++pub fn best_bid<'a>(book: &'a OrderBook<'_>) -> Option<&'a PriceLevel<'a>> {
+     book.bids.first()
+ }
+ 
+ /// Lowest ask (asks are sent best first).
+-pub fn best_ask(book: &OrderBook) -> Option<&PriceLevel> {
++pub fn best_ask<'a>(book: &'a OrderBook<'_>) -> Option<&'a PriceLevel<'a>> {
+     book.asks.first()
+ }
+ 
+ /// Mid price of the top of book, if both sides are present.
+-pub fn mid_price(book: &OrderBook) -> Option<f64> {
++pub fn mid_price(book: &OrderBook<'_>) -> Option<f64> {
+     let bid: f64 = best_bid(book)?.price.parse().ok()?;
+     let ask: f64 = best_ask(book)?.price.parse().ok()?;
+     Some((bid + ask) / 2.0)
+ }
+ 
+ /// Total size resting on one side.
+-pub fn depth(levels: &[PriceLevel]) -> f64 {
++pub fn depth(levels: &[PriceLevel<'_>]) -> f64 {
+     levels.iter().filter_map(|l| l.size.parse::<f64>().ok()).sum()
+ }

@@ -1,0 +1,78 @@
+{
+ "cells": {
+  "R0": {
+   "n": 9,
+   "fired": 9,
+   "loaded_any": 9,
+   "relevant_load": 0,
+   "check_pass": 9,
+   "turns_med": 15,
+   "input_tokens_med": 372297,
+   "cost_med": 0.341,
+   "cost_sum": 3.34,
+   "score": {
+    "p1n": 4.778,
+    "p2n": 4.778,
+    "gptn": 4.889
+   },
+   "score_claude": 4.778
+  },
+  "R1": {
+   "n": 9,
+   "fired": 8,
+   "loaded_any": 4,
+   "relevant_load": 0,
+   "check_pass": 9,
+   "turns_med": 14,
+   "input_tokens_med": 375202,
+   "cost_med": 0.372,
+   "cost_sum": 3.1,
+   "score": {
+    "p1n": 4.778,
+    "p2n": 4.778,
+    "gptn": 4.667
+   },
+   "score_claude": 4.778
+  },
+  "R1s": {
+   "n": 9,
+   "fired": 9,
+   "loaded_any": 4,
+   "relevant_load": 0,
+   "check_pass": 9,
+   "turns_med": 14,
+   "input_tokens_med": 354013,
+   "cost_med": 0.326,
+   "cost_sum": 3.07,
+   "score": {
+    "p1n": 4.778,
+    "p2n": 4.778,
+    "gptn": 4.889
+   },
+   "score_claude": 4.778
+  }
+ },
+ "D": {
+  "claude": 0.0,
+  "gpt": 0.111
+ },
+ "b3_gate_items": {
+  "ii_claude": true,
+  "ii_gpt": false,
+  "iii": true,
+  "iv": true
+ },
+ "r1s_b3": {
+  "b_claude": true,
+  "b_gpt": true,
+  "c": true
+ },
+ "gate_recomputed": {
+  "i": true,
+  "ii_claude": true,
+  "ii_gpt": false,
+  "iii": true,
+  "iv": true,
+  "pass": false
+ }
+}

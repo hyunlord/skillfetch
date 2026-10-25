@@ -21,6 +21,8 @@ from collections import Counter
 from pathlib import Path
 
 E2E = Path(__file__).resolve().parents[1] / "evals" / "e2e"
+# workspace folders published under another path
+MOVED = {"../stage10-private/": "private/"}
 
 
 def _rows(name: str) -> list[list[str]]:
@@ -46,6 +48,8 @@ def main() -> int:
                 continue
             digest, rel = line.split(maxsplit=1)
             rel = rel.lstrip("*")
+            for old, new in MOVED.items():
+                rel = rel.replace(old, new) if rel.startswith(old) else rel
             candidates = [(frozen.parent / rel).resolve(), (E2E / stage / rel).resolve()]
             path = next((p for p in candidates if p.is_file()), None)
             key = next((str(p.relative_to(E2E)) for p in candidates if p.is_relative_to(E2E)), rel)

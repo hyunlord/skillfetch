@@ -1,0 +1,95 @@
+diff --git a/telemetry-codec/src/lib.rs b/telemetry-codec/src/lib.rs
+index 67887ae..c622b38 100644
+--- a/telemetry-codec/src/lib.rs
++++ b/telemetry-codec/src/lib.rs
+@@ -1,3 +1,90 @@
++//! Encoder and decoder for the sensor telemetry wire format.
++//!
++//! Sensors send one [`Packet`] per frame. [`encode`] turns a packet into
++//! bytes and [`decode`] parses bytes back, validating the framing and the
++//! checksum and reporting problems as a [`DecodeError`].
++//!
++//! # Wire format (version 2)
++//!
++//! A packet is a fixed 20-byte header ([`HEADER_LEN`]), followed by
++//! `payload_len` bytes of payload, followed by a 2-byte CRC trailer
++//! ([`CRC_LEN`]). The total size is `20 + payload_len + 2` bytes, between 22
++//! and 1046. All multi-byte integers are **little-endian**.
++//!
++//! | Offset       | Size | Field          | Type     | Description                                         |
++//! |--------------|------|----------------|----------|-----------------------------------------------------|
++//! | 0            | 2    | magic          | `[u8;2]` | Always `0x54 0x43` (ASCII `"TC"`), see [`MAGIC`]    |
++//! | 2            | 1    | version        | `u8`     | Format version, currently `2` ([`VERSION`])         |
++//! | 3            | 1    | flags          | `u8`     | Bitfield, see below                                 |
++//! | 4            | 2    | sensor_id      | `u16` LE | Sending sensor                                      |
++//! | 6            | 4    | seq            | `u32` LE | Per-sensor sequence number                          |
++//! | 10           | 8    | timestamp_ms   | `u64` LE | Milliseconds since the Unix epoch                   |
++//! | 18           | 2    | payload_len    | `u16` LE | Payload length `n`, at most 1024 ([`MAX_PAYLOAD`])  |
++//! | 20           | n    | payload        | bytes    | Opaque to the codec                                 |
++//! | 20 + n       | 2    | crc            | `u16` LE | CRC-16/CCITT-FALSE over bytes `0 .. 20 + n`         |
++//!
++//! ## Flags
++//!
++//! | Bit  | Mask   | Meaning                                                   |
++//! |------|--------|-----------------------------------------------------------|
++//! | 0    | `0x01` | Payload is compressed ([`Packet::compressed`])            |
++//! | 1    | `0x02` | Sender requests an acknowledgement ([`Packet::ack_requested`]) |
++//! | 2..7 | `0xFC` | Reserved: written as 0 by [`encode`], ignored by [`decode`] |
++//!
++//! ## Checksum
++//!
++//! The trailer is CRC-16/CCITT-FALSE (polynomial `0x1021`, initial value
++//! `0xFFFF`, no input/output reflection, no final XOR; check value `0x29B1`
++//! for `"123456789"`), computed over every preceding byte, from the magic
++//! through the last payload byte, and stored little-endian. It is available
++//! as [`crc16_ccitt`].
++//!
++//! ## Decoding rules
++//!
++//! [`decode`] checks, in order: the magic ([`DecodeError::BadMagic`]), the
++//! version ([`DecodeError::UnsupportedVersion`]), that the full header is
++//! present, that `payload_len <= 1024` ([`DecodeError::LengthTooLarge`]),
++//! that payload and CRC are present ([`DecodeError::Truncated`] for any
++//! short buffer), and finally the CRC ([`DecodeError::BadCrc`]). Bytes after
++//! the trailer are ignored; [`Packet::encoded_len`] says where the next
++//! packet starts.
++//!
++//! # Example
++//!
++//! Sensor `0x0107`, sequence 42, timestamp `1_700_000_000_123`, ack
++//! requested, 4-byte payload:
++//!
++//! ```
++//! use telemetry_codec::{decode, encode, Packet};
++//!
++//! let packet = Packet {
++//!     compressed: false,
++//!     ack_requested: true,
++//!     sensor_id: 0x0107,
++//!     seq: 42,
++//!     timestamp_ms: 1_700_000_000_123,
++//!     payload: vec![0xde, 0xad, 0xbe, 0xef],
++//! };
++//!
++//! let bytes = encode(&packet);
++//! assert_eq!(
++//!     bytes,
++//!     [
++//!         0x54, 0x43,                                     // magic "TC"
++//!         0x02,                                           // version
++//!         0x02,                                           // flags: ack requested
++//!         0x07, 0x01,                                     // sensor_id 0x0107
++//!         0x2a, 0x00, 0x00, 0x00,                         // seq 42
++//!         0x7b, 0x68, 0xe5, 0xcf, 0x8b, 0x01, 0x00, 0x00, // timestamp_ms
++//!         0x04, 0x00,                                     // payload_len 4
++//!         0xde, 0xad, 0xbe, 0xef,                         // payload
++//!         0x91, 0xc3,                                     // crc 0xc391
++//!     ]
++//! );
++//! assert_eq!(bytes.len(), packet.encoded_len());
++//! assert_eq!(decode(&bytes), Ok(packet));
++//! ```
++
+ mod crc;
+ mod error;
+ 

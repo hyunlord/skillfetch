@@ -1,0 +1,158 @@
+diff --git a/src/dma.rs b/src/dma.rs
+index 721707c..d31265b 100644
+--- a/src/dma.rs
++++ b/src/dma.rs
+@@ -29,22 +29,29 @@ impl DmaBuffer {
+     /// Copies as much of the buffer as fits into `dst`; returns the number of bytes copied.
+     pub fn copy_into(&self, dst: &mut [u8]) -> usize {
+         let n = dst.len().min(self.data.len());
++        // SAFETY: `n` is at most the length of both buffers; `dst` is a `&mut` borrow, so it cannot overlap `self.data`.
+         unsafe { ptr::copy_nonoverlapping(self.data.as_ptr(), dst.as_mut_ptr(), n) };
+         n
+     }
+ 
+     pub fn fill(&mut self, byte: u8) {
++        // SAFETY: writes exactly `self.data.len()` bytes into memory we own through `&mut self`.
+         unsafe { ptr::write_bytes(self.data.as_mut_ptr(), byte, self.data.len()) }
+     }
+ 
+     /// The buffer as 32-bit words (the DMA engine writes whole words).
+     pub fn as_words(&self) -> &[u32] {
+         assert!(self.data.as_ptr() as usize % 4 == 0 && self.data.len() % 4 == 0, "buffer is not word-aligned");
++        // SAFETY: alignment and length are asserted above; every byte is initialized and any bit pattern is a valid
++        // `u32`; the slice borrows `self`.
+         unsafe { slice::from_raw_parts(self.data.as_ptr() as *const u32, self.data.len() / 4) }
+     }
+ 
+     /// A view of `len` bytes starting at `start`.
+     pub fn window(&self, start: usize, len: usize) -> &[u8] {
++        // FIXME(unsound): `start` and `len` are never checked against the buffer length, so `window(0, len() + 1)` or
++        // any `start > len()` builds a slice past the allocation: undefined behavior from a safe API. Bounds-check (or
++        // use `&self.data[start..start + len]`); this cannot be justified as written.
+         unsafe { slice::from_raw_parts(self.data.as_ptr().add(start), len) }
+     }
+ 
+@@ -53,12 +60,15 @@ impl DmaBuffer {
+         let len = self.data.len();
+         let half = len / 2;
+         let (a, b) = self.data.split_at_mut(len - half);
++        // SAFETY: `a` has `len - half >= half` bytes and `b` has exactly `half`; they come from `split_at_mut`, so they
++        // do not overlap.
+         unsafe { ptr::swap_nonoverlapping(a.as_mut_ptr(), b.as_mut_ptr(), half) }
+     }
+ 
+     pub fn checksum(&self) -> u8 {
+         let mut sum = 0u8;
+         for i in 0..self.data.len() {
++            // SAFETY: `i` ranges over `0..self.data.len()`.
+             sum = sum.wrapping_add(unsafe { *self.data.get_unchecked(i) });
+         }
+         sum
+@@ -68,6 +78,8 @@ impl DmaBuffer {
+         if off.checked_add(2)? > self.data.len() {
+             return None;
+         }
++        // SAFETY: `off + 2 <= len` is checked above (without overflow), so both bytes are in bounds; `read_unaligned`
++        // has no alignment requirement.
+         Some(u16::from_le(unsafe { ptr::read_unaligned(self.data.as_ptr().add(off) as *const u16) }))
+     }
+ 
+@@ -76,6 +88,7 @@ impl DmaBuffer {
+         if !self.data.is_ascii() {
+             return None;
+         }
++        // SAFETY: the bytes were just checked to be ASCII, which is valid UTF-8.
+         Some(unsafe { str::from_utf8_unchecked(&self.data) })
+     }
+ 
+@@ -83,6 +96,7 @@ impl DmaBuffer {
+         if self.data.is_empty() {
+             return None;
+         }
++        // SAFETY: the buffer is non-empty (checked above), so `len - 1` is a valid index.
+         Some(unsafe { *self.data.get_unchecked(self.data.len() - 1) })
+     }
+ 
+@@ -93,6 +107,8 @@ impl DmaBuffer {
+         let mut start = 0;
+         while start < self.data.len() {
+             let n = frame.min(self.data.len() - start);
++            // SAFETY: `start < len` (loop condition) and `n <= len - start`, so the range is in bounds; the slices borrow
++            // `self`.
+             out.push(unsafe { slice::from_raw_parts(self.data.as_ptr().add(start), n) });
+             start += n;
+         }
+diff --git a/src/hal/adc.rs b/src/hal/adc.rs
+index 2860ca4..859fbec 100644
+--- a/src/hal/adc.rs
++++ b/src/hal/adc.rs
+@@ -26,24 +26,31 @@ pub enum Gain {
+ 
+ pub fn read_channel(regs: &AdcRegs, ch: usize) -> u16 {
+     assert!(ch < CHANNELS, "no ADC channel {ch}");
++    // SAFETY: `ch < CHANNELS` is asserted above, so `add(ch)` stays inside `regs.data`; the pointer comes from a
++    // live reference, so it is aligned and valid for a read.
+     unsafe { ptr::read_volatile(regs.data.as_ptr().add(ch)) as u16 }
+ }
+ 
+ pub fn start_conversion(regs: &mut AdcRegs) {
+     let ctrl = regs.ctrl | START;
++    // SAFETY: `&mut regs.ctrl` is a unique, aligned, valid reference to a `u32`.
+     unsafe { ptr::write_volatile(&mut regs.ctrl, ctrl) }
+ }
+ 
+ pub fn is_ready(regs: &AdcRegs) -> bool {
++    // SAFETY: `&regs.status` is an aligned, valid reference to a `u32`.
+     unsafe { ptr::read_volatile(&regs.status) & READY != 0 }
+ }
+ 
+ pub fn clear_status(regs: &mut AdcRegs) {
++    // SAFETY: `&mut regs.status` is a unique, aligned, valid reference to a `u32`.
+     unsafe { ptr::write_volatile(&mut regs.status, 0) }
+ }
+ 
+ pub fn read_all(regs: &AdcRegs, out: &mut [u16; CHANNELS]) {
+     for (ch, slot) in out.iter_mut().enumerate() {
++        // SAFETY: `ch` comes from enumerating `out`, which has `CHANNELS` slots like `regs.data`, and the indexing
++        // `regs.data[ch]` is bounds-checked; the reference is aligned and valid for a read.
+         *slot = unsafe { ptr::read_volatile(&regs.data[ch]) } as u16;
+     }
+ }
+@@ -54,6 +61,7 @@ pub fn average(samples: &[u16]) -> u16 {
+     }
+     let mut sum = 0u32;
+     for i in 0..samples.len() {
++        // SAFETY: `i` ranges over `0..samples.len()`.
+         sum += unsafe { *samples.get_unchecked(i) } as u32;
+     }
+     (sum / samples.len() as u32) as u16
+@@ -62,16 +70,22 @@ pub fn average(samples: &[u16]) -> u16 {
+ /// Maps a 16-bit raw reading to a calibrated value through a 16-entry table (top 4 bits select the entry).
+ pub fn calibrate(raw: u16, table: &[u16; 16]) -> u16 {
+     let idx = (raw >> 12) as usize;
++    // SAFETY: `raw >> 12` of a `u16` is at most 15 and `table` has 16 entries.
+     unsafe { *table.get_unchecked(idx) }
+ }
+ 
+ /// One sample from a capture buffer.
+ pub fn sample_at(buf: &[u16], idx: usize) -> u16 {
++    // FIXME(unsound): `idx` comes straight from the (safe) caller and is never checked against `buf.len()`, so
++    // `sample_at(&buf, buf.len())` reads out of bounds: undefined behavior reachable from safe code. Needs a bounds
++    // check (or `buf[idx]`); no SAFETY justification is possible as written.
+     unsafe { *buf.get_unchecked(idx) }
+ }
+ 
+ /// Raw little-endian bytes of a sample buffer, for the radio uplink.
+ pub fn as_bytes(samples: &[u16]) -> &[u8] {
++    // SAFETY: the bytes of `samples` are initialized `u16`s; `u8` has alignment 1; the length is exactly the byte size
++    // of the slice; the returned slice borrows `samples`, so it cannot outlive it or alias a `&mut`.
+     unsafe { slice::from_raw_parts(samples.as_ptr() as *const u8, samples.len() * mem::size_of::<u16>()) }
+ }
+ 
+@@ -79,5 +93,6 @@ pub fn gain_from_bits(bits: u8) -> Option<Gain> {
+     if bits > Gain::X8 as u8 {
+         return None;
+     }
++    // SAFETY: `Gain` is `repr(u8)` with discriminants 0..=3, and `bits <= 3` is checked above.
+     Some(unsafe { mem::transmute::<u8, Gain>(bits) })
+ }
