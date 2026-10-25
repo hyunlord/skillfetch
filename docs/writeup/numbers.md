@@ -1864,6 +1864,7 @@ GPT judging was supplied by the author; its cost is not recorded.
 - **Shared git branches:** worktrees share refs. 18 branches created by E2 sessions were visible to later sessions; names only, no commits on top.
   - Sessions whose tool output showed such a name: E2 A 25/45, E2 R1 12/45, E1 R0 1/45, other E1 0/45.
   - The branches were deleted after the run.
+  - Stage 10 sessions were created as shared worktrees, so they could see each other's branches. Exposure: E1 0, E2 10 sessions (no code came in). Stage 11 blocked this.
 - **t115 check:** changed three times during the run.
   - Two implementation fixes (no change of definition) and one revision the user approved.
   - Both results are given: 15 of 18 main-run sessions pass under the first check, 18 of 18 under the revised one.
