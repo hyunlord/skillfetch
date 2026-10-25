@@ -441,9 +441,13 @@ def _discover(args: argparse.Namespace) -> int:
     report, rows = discover_mod.write_outputs(run, args.out)
     checked = sum(r["status"] != "not_checked" for r in run.rows)
     print(f"{len(run.rows)} candidates, {checked} pre-checked: {report}, {rows}")
+    code = 0
     if args.issue is not None:
-        return _post_issue(args.issue, report.read_text())
-    return 0
+        code = _post_issue(args.issue, report.read_text())
+    if run.partial:  # the report (and the issue) went out; the exit code still says so
+        print(f"skillfetch: discover: partial result: {'; '.join(run.partial)}", file=sys.stderr)
+        return 1
+    return code
 
 
 def _post_issue(number: int, report: str) -> int:

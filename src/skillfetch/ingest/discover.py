@@ -151,6 +151,8 @@ http_fetch = HttpFetch()
 
 RATE_WAIT_MAX = 900.0  # seconds; a longer wait skips the request ("rate-limited, skipped")
 RATE_SKIPPED = "rate-limited, skipped"
+RATE_BUDGET = 1800.0  # seconds of rate-limit waiting per run, all requests together
+BUDGET_SKIPPED = "budget exhausted, skipped"
 _TRY_AGAIN = re.compile(r"try again in ([0-9.]+)\s*s", re.I)
 _STATUS = re.compile(r"^HTTP/\S+\s+(\d{3})")
 
@@ -195,17 +197,26 @@ def _split_include(stdout: str) -> tuple[int | None, dict[str, str], str]:
 class GhApi:
     """GitHubClient over `gh api` (its token: GH_TOKEN in CI). None on failure, with the
     reason in `last_error` (gh's message, which carries the HTTP status). A rate-limited
-    request waits as long as GitHub asks and is retried once; a wait over `max_wait` skips it.
-    `retries`, `waited` (seconds) and `skipped` count what happened."""
+    request waits as long as GitHub asks and is retried once; a wait over `max_wait` skips it,
+    and so does a wait that would take the run's total past `budget` (after which
+    `budget_exhausted` is set). `retries`, `waited` (seconds) and `skipped` count what
+    happened."""
 
     def __init__(
-        self, run=subprocess.run, sleep=time.sleep, clock=time.time, max_wait=RATE_WAIT_MAX
+        self,
+        run=subprocess.run,
+        sleep=time.sleep,
+        clock=time.time,
+        max_wait=RATE_WAIT_MAX,
+        budget=RATE_BUDGET,
     ):
-        self._run, self._sleep, self._clock, self.max_wait = run, sleep, clock, max_wait
+        self._run, self._sleep, self._clock = run, sleep, clock
+        self.max_wait, self.budget = max_wait, budget
         self.last_error: str | None = None
         self.retries = 0
         self.waited = 0.0
         self.skipped = 0
+        self.budget_exhausted = False
 
     def _once(self, path: str) -> tuple[dict | None, str | None, float | None]:
         proc = self._run(["gh", "api", "--include", path], capture_output=True, text=True)
@@ -225,6 +236,14 @@ class GhApi:
             if wait > self.max_wait:
                 self.skipped += 1
                 self.last_error = f"{RATE_SKIPPED} (asked to wait {wait:.0f} s)"
+                return None
+            if self.waited + wait > self.budget:
+                self.skipped += 1
+                self.budget_exhausted = True
+                self.last_error = (
+                    f"{BUDGET_SKIPPED} (asked to wait {wait:.0f} s, {self.waited:.0f} s of "
+                    f"{self.budget:.0f} s used)"
+                )
                 return None
             self._sleep(wait)
             self.retries += 1
@@ -319,6 +338,9 @@ def search_code(client: GitHubClient, cfg: CodeSearch, week: int, found: Found) 
     found.shard_count = len(shards)
     first = True
     for shard in shards_for_run(shards, cfg.shards_per_run, week):
+        if getattr(client, "budget_exhausted", False):  # the rest is not requested
+            found.shards.append(ShardStat(shard, None, 0, True, BUDGET_SKIPPED))
+            continue
         total, fetched, error = None, 0, None
         for page in range(1, cfg.pages_per_shard + 1):
             if not first and cfg.pause:
@@ -620,8 +642,13 @@ def check_candidates(
                 except Exception as exc:  # any clone failure is reported, not raised
                     row.update(status="clone_failed", error=str(exc)[:200])
                 else:
-                    row.update(precheck(path, index), last_commit=commit_date)
-                    row["status"] = "checked" if row["skills"] else "no_skills"
+                    try:
+                        row.update(precheck(path, index), last_commit=commit_date)
+                        row["status"] = "checked" if row["skills"] else "no_skills"
+                    except Exception as exc:  # one broken repository does not stop the run
+                        row.update(
+                            status="check_failed", error=f"{type(exc).__name__}: {exc}"[:200]
+                        )
         rows.append(row)
     return rows
 
@@ -655,6 +682,7 @@ class Run:
     known: int
     index: bool
     rate: dict = field(default_factory=dict)  # retries, waited (s), skipped
+    partial: list[str] = field(default_factory=list)  # phases that stopped with an error
 
 
 def discover(
@@ -666,15 +694,34 @@ def discover(
     index: IndexView | None,
     today: date,
 ) -> Run:
+    """Every phase runs even when an earlier one stopped with an error; such a phase is
+    named in `partial`, and the report says the result is partial."""
     week = today.isocalendar().week
     found = Found()
-    search_code(client, cfg.code_search, week, found)
-    search_topics(client, cfg.repo_topics, cfg.topic_pages, found)
-    read_lists(fetch, cfg.lists, found)
-    cands, dropped = select(found, known, client, cfg)
-    rows = check_candidates(cands, cfg, checkout, index)
+    partial: list[str] = []
+
+    def phase(name: str, fn):
+        try:
+            return fn()
+        except Exception as exc:  # report what was gathered, not a traceback
+            partial.append(f"{name}: {type(exc).__name__}: {exc}"[:300])
+            return None
+
+    phase("code search", lambda: search_code(client, cfg.code_search, week, found))
+    phase("topic search", lambda: search_topics(client, cfg.repo_topics, cfg.topic_pages, found))
+    phase("list sources", lambda: read_lists(fetch, cfg.lists, found))
+    picked = phase("selection", lambda: select(found, known, client, cfg))
+    if picked is None:  # fall back to the raw ranking, nothing cloned
+        pool = [c for k, c in found.candidates.items() if k not in known]
+        picked = (sorted(pool, key=Candidate.rank), {})
+        cfg = cfg.model_copy(update={"max_checks": 0})
+    cands, dropped = picked
+    rows = phase("pre-check", lambda: check_candidates(cands, cfg, checkout, index)) or []
     rate = {k: getattr(client, k, 0) for k in ("retries", "waited", "skipped")}
-    return Run(today.isoformat(), week, rows, found, dropped, len(known), index is not None, rate)
+    rate["budget_exhausted"] = getattr(client, "budget_exhausted", False)
+    return Run(
+        today.isoformat(), week, rows, found, dropped, len(known), index is not None, rate, partial
+    )
 
 
 def _pct(v: float | None) -> str:
@@ -773,15 +820,18 @@ def channel_lines(run: Run) -> list[str]:
         "from several channels).",
         f"- Failed requests: {len(f.failed)}" + (f": {fail_text}." if fail_text else "."),
         f"- Rate limits: {run.rate.get('retries', 0)} retries after waiting "
-        f"{run.rate.get('waited', 0):.0f} s in total; {run.rate.get('skipped', 0)} requests "
-        f"skipped (GitHub asked for a wait over {RATE_WAIT_MAX:.0f} s).",
+        f"{run.rate.get('waited', 0):.0f} s in total (budget {RATE_BUDGET:.0f} s"
+        f"{', exhausted' if run.rate.get('budget_exhausted') else ''}); "
+        f"{run.rate.get('skipped', 0)} requests skipped (a wait over {RATE_WAIT_MAX:.0f} s, "
+        "or past the budget).",
     ]
 
 
 def _shard_text(s: ShardStat) -> str:
     parts = [] if s.total is None else [f"{s.fetched}/{s.total}"]
     if s.error:
-        parts.append(RATE_SKIPPED if s.error.startswith(RATE_SKIPPED) else "failed")
+        known = (RATE_SKIPPED, BUDGET_SKIPPED)
+        parts.append(next((k for k in known if s.error.startswith(k)), "failed"))
     return ", ".join(parts) or "failed"
 
 
@@ -792,6 +842,16 @@ def render_report(run: Run) -> str:
     lines = [
         f"# skillfetch discover, {run.day}",
         "",
+        *(
+            [
+                "**Partial result:** "
+                + "; ".join(run.partial)
+                + ". Everything below is what was gathered before that.",
+                "",
+            ]
+            if run.partial
+            else []
+        ),
         *channel_lines(run),
         "",
         "Model-free pre-check of candidate source repositories (index-format.md §6). Nothing "
@@ -836,6 +896,8 @@ def write_outputs(run: Run, out: Path) -> tuple[Path, Path]:
         "week": run.week,
         "shards": [asdict(s) for s in run.found.shards],
         "failed": [{"request": r, "reason": why} for r, why in run.found.failed],
+        "rate": run.rate,
+        "partial": run.partial,
     }
     rows.write_text(
         "\n".join(json.dumps(r, ensure_ascii=False) for r in [{"run": meta}, *run.rows]) + "\n"
