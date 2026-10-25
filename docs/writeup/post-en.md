@@ -2,6 +2,13 @@
 
 *2026-10-22 · Kwan Hyeon*
 
+**At a glance**
+
+- **Licenses**: only one in five skills states a license (20.6%).
+- **Conflicts**: skills rarely contradict each other outright. When two disagree, naming the winner gets the named skill followed in 43–56% of runs.
+- **Effect**: of the 5 task types measured, skills changed the result in one, design.
+- **Router**: it fires in 55 of 57 sessions on non-trivial tasks and puts at least one relevant skill in its top 50 for 93% of the tasks that have one.
+
 SKILL.md files are the new npm: you install thirty of them into your coding agent and never read one. I pulled 1,831 public skills, linted them, scanned them for prompt-injection patterns, extracted 29,880 individual instructions from them, and checked which instructions contradict each other. Then I ran 1,708 agent sessions to see what any of it changes. Four things stood out. Only one in five states a license. The rules found almost no outright contradictions: both of their two hard flags were false, and how many they miss is unmeasured. When two skills do disagree, the agent usually picks the same one on a given task, and none of the three ways I tried to name the winner was a reliable control: the named skill was followed in 43–56% of runs, and the best method turned the agent's own choice around in only 8 of the 23 pairs where it had one. And skills mattered in 1 of the 5 task types I measured: on design, the expert's skill removed the template look; on tests, APIs, docs and data scripts the agent passed every check with or without one. For 93% of the 284 benchmark tasks that have a relevant skill, the router's search puts at least one in its top 50. In real repos the router fired on 68% of non-trivial tasks (39/57); rewriting one line of its description took that to 96% (55/57), while firing on 1 of 30 trivial ones.
 
 ## What I did
@@ -21,11 +28,7 @@ Apart from the Claude Code subscription, the only money spent was **$15.75** on 
 
 377 of 1,831 skills (20.6%) carry a license, either in their own folder or in the upstream repo they were copied from. The rest state nothing. Under copyright law, nothing stated means all rights reserved: you can read it on GitHub, but you cannot legally bundle it into an index and ship it.
 
-| License status | Skills | Share |
-| --- | --- | --- |
-| Explicit (367 permissive, 10 proprietary) | 377 | 20.6% |
-| Upstream repo found, no LICENSE file in it | 824 | 45.0% |
-| Upstream repo unknown | 630 | 34.4% |
+![Figure 1. One stacked horizontal bar splitting 1,831 skills by license status: license stated 377 (20.6%; 367 permissive, 10 proprietary), upstream repo found but no LICENSE file in it 824 (45.0%), upstream repo unknown 630 (34.4%).](img/fig1-licenses-en.png)
 
 822 of the 824 "upstream found, no license" skills come from a single aggregator, `ComposioHQ/awesome-claude-skills`, which has no repo-level LICENSE. The library that re-collects them is MIT, but an MIT badge on an aggregator does not license the files it copied from somewhere else. This is not specific to either project; it is how the whole ecosystem currently works, and I doubt most maintainers have thought about it. Even Anthropic's own repo is mixed: 4 of its 19 skills (docx, pdf, pptx, xlsx) are all-rights-reserved and one has no license file.
 
@@ -65,13 +68,7 @@ That is the OODA loop, not a contradiction. The other one pairs caveman-review:5
 
 What the rules did find was 2,011 pairs they could not settle: 137 soft tensions and 1,874 marked `needs_review`. I had a second model read the original lines for every one of them.
 
-| Judge verdict | Pairs | Share |
-| --- | --- | --- |
-| Independent (same topic, compatible) | 1,666 | 82.8% |
-| Situational (true in different contexts) | 191 | 9.5% |
-| Conflict | 90 | 4.5% |
-| Carve-out (one narrows the other) | 57 | 2.8% |
-| Error or unclear | 7 | 0.3% |
+![Figure 2. Top: judge verdicts on the 2,011 pairs the rules could not settle. Independent (same topic, compatible) 1,666 pairs (82.8%), situational (true in different contexts) 191 (9.5%), conflict 90 (4.5%), carve-out (one narrows the other) 57 (2.8%), error or unclear 7 (0.3%). Bottom: the three ways of naming the winner and the share of runs that followed the named winner (260 runs each), with a line at 50%: precedence header before the skills 43% (112/260), block naming the winner and quoting both conflicting lines 56% (145/260), loser's conflicting lines replaced by a comment 46% (120/260).](img/fig2-conflicts-en.png)
 
 Four in five pairs that looked suspicious to the rules are fine. Of the 90 the judge called conflicts, most are of the form "always ask before acting" against "once the team is chosen, proceed without asking": one rule carving an exception out of another. The judge over-calls these: on a hand-labelled set it marked 6 of 7 known carve-outs as conflicts, so some of the 90 are not real conflicts. The pairs it called independent were not audited, so 90 is not a ceiling on conflicts in the corpus either.
 
@@ -94,13 +91,11 @@ So on the tested tasks the failure mode was mostly not randomness but a stable, 
 
 Two caveats that matter. First, the harness wording moved results: in a discarded batch, a note saying "finish in this one reply" pushed every "stop and ask the user" rule to lose. Pairs about pausing versus proceeding are the most fragile. Second, all 130 outputs were classified by one classifier, a Claude Code session; there was no second rater. I would want one before putting a decimal on any of this.
 
-**No method I tried gave skills a reliable order.** The obvious fix is to tell the agent which skill wins. I tried three ways on the same 26 pairs: five runs with A named the winner and five with B, 260 runs per method, same harness and classification.
+**No method I tried gave skills a reliable order.** The obvious fix is to tell the agent which skill wins. I tried three ways on the same 26 pairs: five runs with A named the winner and five with B, 260 runs per method, same harness and classification. Runs that followed the named winner (Figure 2, bottom):
 
-| How the winner was named | Runs that followed the named winner |
-| --- | --- |
-| Header before the skills: "Skills are listed in precedence order. If two instructions disagree, follow the earlier one." (what `load_skills` emitted) | 43% (112/260) |
-| A block naming the winner and quoting both conflicting lines | 56% (145/260) |
-| The loser's conflicting lines replaced with `<!-- overridden by <winner>: "<line>" -->` | 46% (120/260) |
+- Header before the skills: "Skills are listed in precedence order. If two instructions disagree, follow the earlier one." (what `load_skills` emitted): 43% (112/260)
+- A block naming the winner and quoting both conflicting lines: 56% (145/260)
+- The loser's conflicting lines replaced with `<!-- overridden by <winner>: "<line>" -->`: 46% (120/260)
 
 None of the three is a reliable control: 43–56% of runs followed the named skill. The best, the block that names the winner, turned the agent's own choice around in 8 of the 23 pairs where it had one (the other 3 had no majority winner). That is 910 runs counting the 130 above. Per-pair tables are in [numbers.md](numbers.md) §8–§10.
 
@@ -112,24 +107,11 @@ On 20 small maintenance tasks on two repos (a FastAPI template and a Next.js sta
 
 On 5 larger tasks on the same two repos, each run twice per condition (stage 1b), the picture split. To see whether that generalises, I then ran one large task in each of four more domains, each in its own repo (stage 2): tests for an untested 280-line module, a FastAPI bookmarks API, a README for an undocumented Next.js app, and a script that cleans a 375-row orders CSV with ten planted problems. Five runs per condition, checks frozen before the runs, every output judged blind twice by fresh model judges. Stage 2 used only the router after the search fix described below.
 
-| | A: no skill | B: expert's skill | C: router, first version | C: router, after the search fix |
-|---|---|---|---|---|
-| Landing page, usable (1–5) | 3.50 | 4.75 | 4.50 | 4.75 |
-| Landing page, "AI-template" tells | 2.00 | 0.50 | 2.00 | 0.50 |
-| Test writing: score (1–5) · branch coverage | 4.90 · 100% | 5.00 · 100% | – | 5.00 · 100% |
-| Test writing: median turns / input tokens | 10 / 0.78M | 9 / 0.83M | – | 16 / 1.49M |
-| Backend API: score · contract calls passed | 4.20 · 27/27 | 4.20 · 27/27 | – | 4.80 · 27/27 |
-| Backend API: median turns / input tokens | 15 / 0.90M | 14 / 0.87M | – | 23 / 1.87M |
-| Documentation: score · checks passed | 4.10 · 5/5 | 4.70 · 5/5 | – | 4.40 · 5/5 |
-| Documentation: median turns / input tokens | 10 / 0.69M | 9 / 0.73M | – | 17 / 1.33M |
-| Data script: score · output checks passed | 4.50 · 5/5 | 4.50 · 5/5 | – | 4.50 · 5/5 |
-| Data script: median turns / input tokens | 12 / 0.91M | 12 / 0.85M | – | 18 / 1.52M |
-| Plan quality (rank, 0 = best) | 0.36 | 0.00 | 0.79 | 0.71 |
-| Stage 1b, all 5 tasks: median turns | 19.5 | 24 | 34 | 26.5 |
+![Figure 3. Score (1–5) and median turns for no skill, the expert's skill and the router (after the search fix) on five task types. Design (landing page, highlighted row): 3.50, 4.75, 4.75; turns 19.5 → 26.5 (all 5 stage 1b tasks). Test writing: 4.90, 5.00, 5.00; turns 10 → 16. Backend API: 4.20, 4.20, 4.80; turns 15 → 23. Documentation: 4.10, 4.70, 4.40; turns 10 → 17. Data script: 4.50, 4.50, 4.50; turns 12 → 18. On the four non-design types, score gaps of 0.6 or less are smaller than the gap between judging passes.](img/fig3-task-types-en.png)
 
 *Two notes on stage 2.* (a) Documentation: two C2 runs described the router's install files (`.mcp.json` and `.claude/`, present only in the C2 repo) in their README, and the first judging pass cited that when marking them down. That is a trace of the harness, not a weakness of the router; allowing for it, documentation is also close to no difference between conditions. (b) The harness gave the sessions no AskUserQuestion or plan-mode tools, so this experiment cannot observe whether an interactive skill the router picks (one with interview or approval steps) stalls a real session. Backend API run 1 is such a case: it loaded `fastapi-endpoint`, which says "Enter plan mode" and "Use AskUserQuestion to clarify requirements", and went ahead with "Requirements are clear enough to implement directly."
 
-The expert's skill matters: with Anthropic's `frontend-design` loaded, the landing pages lost their template look. The router's first version never found that skill (it ranked 13th to 41st, never in the 10 results the search returned) and loaded design-adjacent skills instead. On the landing pages they did not reduce the template tells (2.00, the same as no skill); on the planning task they made the plan worse than no skill (rank 0.79 vs 0.36). There, loading the wrong skill was worse than loading none.
+The expert's skill matters: with Anthropic's `frontend-design` loaded, the landing pages lost their template look ("AI-template" tells 2.00 → 0.50; 0.50 for the router after the search fix too). The router's first version never found that skill (it ranked 13th to 41st, never in the 10 results the search returned) and loaded design-adjacent skills instead. On the landing pages they did not reduce the template tells (2.00, the same as no skill); on the planning task they made the plan worse than no skill (rank 0.79 vs 0.36, 0 = best). There, loading the wrong skill was worse than loading none.
 
 Widening the search to 50 compact summaries and letting the agent choose from those put the expert's skill in the router's top 50 in every one of these domain-named tasks:
 
@@ -150,7 +132,26 @@ The router still misses skills about *how* to work. The expert's `writing-plans`
 
 Five task types is a small sample, so I built a larger, offline one: 380 synthetic developer requests. 300 fill 300 of the 360 combinations of 12 task types × 6 stacks × 5 phrasings, one task each, 40 are trivial requests that should load nothing, and 20 pairs differ only in how the user asked to work. For every task a model graded the candidate skills 0–3, and the relevant set is grade 2 or more. That model (Opus 5.5) is the one that runs the router, so the labels measure consistency, not ground truth: two grading passes agreed exactly on 94% of 500 pairs. A second model (GPT Astra) relabelled 120 tasks: it marks generic process skills relevant far more often (κ 0.48 on relevance), but the ranking of methods is unchanged on the labels both agree on. The tasks, labels, queries and the scorer are in the repo (`evals/retrieval/`, `skillfetch eval retrieval`).
 
-Search first: the share of relevant skills in the top 10 and the top 50.
+The router works in three steps: given a task, it decides whether to call skillfetch at all (firing), restates the task and searches, then picks from the top 50 the search returns. What follows takes them in that order. Figure 4 puts the earlier and the current version of each step side by side.
+
+![Figure 4. The router, step by step, before → now. Fired on non-trivial tasks 39/57 → 55/57; stayed off on trivial tasks 30/30 → 29/30 (went down); a relevant skill in the top 50 89% → 93%; picked nothing when nothing fits 0.55 → 0.85; picked at least one relevant skill 0.88 → 0.80 (went down). The first two come from one line of the description (stage 5), the third from the search fix (three sentences plus the request), the last two from one sentence added to the selection step after the freeze.](img/fig4-router-en.png)
+
+### Firing
+
+First, real sessions in the two real repositories (stage 4): 29 of the benchmark tasks, rewritten for the repos, three runs each in two environments, a clean one (skillfetch only) and my own (14 MCP servers, 134 skills, hooks on every tool call). On non-trivial tasks the router fired in 23 of 57 sessions in the clean environment and 22 of 57 in mine; per task the difference averaged +0.018 on these 19 tasks (0.000 over all 29, trivial ones included). In real repositories the router fired on 40% of non-trivial tasks, and removing my configuration did not raise that rate in this sample. On trivial tasks, which it is told to skip, it fired in 0 of 30 and 1 of 30. An earlier run on stub repositories (stage 3) reached search in 12 of 40 sessions; with no real code to work on, that number is a limit of the stubs, not a firing rate.
+
+One more run, on what makes the router fire (stage 5): the 19 non-trivial tasks again, in the clean environment, three runs each, with 9 of them rewritten to point at code that is in the repo. Each variant changes one thing against the shipped router. Fired / loaded a skill / mean session cost per variant:
+
+- V0, the router as shipped then: 39/57, 35/57, $0.396
+- V1, its description says to run before the first tool call (before git status, Read, Grep, Glob or ls): 55/57, 50/57, $0.455
+- V2, V0 plus one line in the project's CLAUDE.md: 57/57, 55/57, $0.533
+- V3, V0 plus sharper MCP server instructions: 36/57, 31/57, $0.384
+
+V1 and V2 each raised firing on 9 of the 19 tasks and lowered it on none (sign test p 0.004). MCP server instructions did not help: V3 fired in 36 sessions, 19 of them by calling the tools directly instead of through the router. V1 is now the router's description; on the 10 trivial tasks it fired in 1 of 30 runs (V0: 0 of 30). V2 is an option for a repository you control, measured with the old description only.
+
+### Search
+
+The share of relevant skills in the top 10 and the top 50:
 
 | What search_skills was given | top 10 | top 50 | process skills, top 50 |
 |---|---|---|---|
@@ -159,26 +160,21 @@ Search first: the share of relevant skills in the top 10 and the top 50.
 | Three sentences (what it builds, how to work, the stack), each searched, merged | 0.535 | 0.835 | 0.783 |
 | The one sentence, BM25 fused with MiniLM embeddings | 0.473 | 0.801 | 0.734 |
 
-Splitting the restatement into three sentences recovers most of what one sentence missed, process skills included. The router first shipped a version that wrote the how-to-work sentence only when the user named one; it now always writes all three and adds the request as typed as a fourth query. Stage 4 below ran the earlier version in real sessions, not against the one-query version, and task outcomes were not scored. The embedding model added 0.026 at top 50 on the same sentence, under the 0.10 bar for adopting it, so it stays out.
+Splitting the restatement into three sentences recovers most of what one sentence missed, process skills included. The router first shipped a version that wrote the how-to-work sentence only when the user named one; it now always writes all three and adds the request as typed as a fourth query. Stage 4 above ran the earlier version in real sessions, not against the one-query version, and task outcomes were not scored. The embedding model added 0.026 at top 50 on the same sentence, under the 0.10 bar for adopting it, so it stays out.
 
-Selection is where it breaks. Given the real top 50, the picker loaded at least one relevant skill in 82% of the tasks that had one (precision 0.81, recall 0.42). But in 30 of the 95 tasks where nothing in the index fits, it loaded something anyway, and it loaded a skill for 30% of the 40 trivial requests. Counted per task, the failures are: selection 55 (25 passed over a relevant skill that was in the list, 30 loaded one when none fit), restatement 20, search 7.
+Three questions instead of one raised top-50 recall to 0.835 on the 278 tasks with a labelled relevant skill. The shipped router: top-50 recall 0.81, up from 0.74 before this fix; it puts at least one relevant skill in its top 50 for 93% of them (89% before). 0.81, 0.74, 93% and 89% are on labels extended to the skills its queries find (284 tasks).
+
+On other labels ([numbers.md](numbers.md) §13): the three questions reach 0.764 on the catalogue-picked subset; the shipped router reaches top-50 recall 0.75 and at least one relevant skill in the top 50 for 81% on the labels the search could not bias (209 tasks).
 
 Some tasks have nothing to find. 62 of the 340 non-trivial tasks have no relevant skill in the index, most of them in ml (11 of 29), deploy (9 of 29), feature and performance (8 each) and data and ui_design (7 each).
 
-Last, real sessions in the two real repositories (stage 4): 29 of these tasks, rewritten for the repos, three runs each in two environments, a clean one (skillfetch only) and my own (14 MCP servers, 134 skills, hooks on every tool call). On non-trivial tasks the router fired in 23 of 57 sessions in the clean environment and 22 of 57 in mine; per task the difference averaged +0.018 on these 19 tasks (0.000 over all 29, trivial ones included). On trivial tasks, which it is told to skip, it fired in 0 of 30 and 1 of 30. When it loaded something, the set held a relevant skill in 8 of 14 and 10 of 17 sessions, and it loaded a skill for a task with nothing relevant in 4 of 24 sessions in each environment. An earlier run on stub repositories (stage 3) reached search in 12 of 40 sessions; with no real code to work on, that number is a limit of the stubs, not a firing rate.
+### Selection
 
-Three questions instead of one raised top-50 recall to 0.835 on the 278 tasks with a labelled relevant skill (0.764 on the catalogue-picked subset). The shipped router: top-50 recall 0.81 (0.75 on labels the search could not bias), up from 0.74 before this fix, on labels extended to the skills its queries find (284 tasks); it puts at least one relevant skill in its top 50 for 93% of them (89% before; 81% on the labels the search could not bias, 209 tasks). That does not make the index complete: 62 non-trivial tasks have no labelled relevant skill. In real repositories the router fired on 40% of non-trivial tasks, and removing my configuration did not raise that rate in this sample.
+Selection is where it breaks. Given the real top 50, the picker loaded at least one relevant skill in 82% of the tasks that had one (precision 0.81, recall 0.42). But in 30 of the 95 tasks where nothing in the index fits, it loaded something anyway, and it loaded a skill for 30% of the 40 trivial requests. Counted per task, the failures are: selection 55 (25 passed over a relevant skill that was in the list, 30 loaded one when none fit), restatement 20, search 7.
 
-One more run, on what makes the router fire (stage 5): the 19 non-trivial tasks again, in the clean environment, three runs each, with 9 of them rewritten to point at code that is in the repo. Each variant changes one thing against the shipped router.
+In stage 4, when the router loaded something, the set held a relevant skill in 8 of 14 and 10 of 17 sessions. In stage 5, when it loaded a set on a task that has a relevant skill, the set held one in 26 of 32 sessions with V0 and 35 of 45 with V1; whether the work itself got better is not measured. When nothing in the index fits, the router still loads something: 30 of the 95 such tasks offline, 4 of 24 sessions in each environment in stage 4, and in stage 5 every session that searched on the two such tasks except one.
 
-| Variant | Fired | Loaded a skill | Mean session cost |
-|---|---|---|---|
-| V0: the router as shipped then | 39/57 | 35/57 | $0.396 |
-| V1: its description says to run before the first tool call (before git status, Read, Grep, Glob or ls) | 55/57 | 50/57 | $0.455 |
-| V2: V0 plus one line in the project's CLAUDE.md | 57/57 | 55/57 | $0.533 |
-| V3: V0 plus sharper MCP server instructions | 36/57 | 31/57 | $0.384 |
-
-V1 and V2 each raised firing on 9 of the 19 tasks and lowered it on none (sign test p 0.004). MCP server instructions did not help: V3 fired in 36 sessions, 19 of them by calling the tools directly instead of through the router. V1 is now the router's description; on the 10 trivial tasks it fired in 1 of 30 runs (V0: 0 of 30). V2 is an option for a repository you control, measured with the old description only. When the router loaded a set on a task that has a relevant skill, the set held one in 26 of 32 sessions with V0 and 35 of 45 with V1; whether the work itself got better is not measured. When nothing in the index fits, the router still loads something: 30 of the 95 such tasks offline, 4 of 24 sessions in each environment in stage 4, and in stage 5 every session that searched on the two such tasks except one. After this post's numbers were frozen, one added sentence in the selection step ("Do not pick a skill unless you can say in one sentence what its summary changes in this task") raised none-accuracy offline from 0.55 to 0.85, while the share of tasks where it picked a relevant skill fell from 0.88 to 0.80; in a run whose decision rule was fixed beforehand, its scores on design tasks stayed within judge disagreement and it cut turns and tokens elsewhere, loading nothing on the tasks no skill fits (0/9 vs 5/9). It ships now; [numbers.md](numbers.md) §17.
+After this post's numbers were frozen, one added sentence in the selection step ("Do not pick a skill unless you can say in one sentence what its summary changes in this task") raised none-accuracy offline from 0.55 to 0.85, while the share of tasks where it picked a relevant skill fell from 0.88 to 0.80; in a run whose decision rule was fixed beforehand, its scores on design tasks stayed within judge disagreement and it cut turns and tokens elsewhere, loading nothing on the tasks no skill fits (0/9 vs 5/9). It ships now; [numbers.md](numbers.md) §17.
 
 ## What the tool gets wrong
 
