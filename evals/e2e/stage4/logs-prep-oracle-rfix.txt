@@ -1,0 +1,1 @@
+{"tasks": 7, "added": 67, "added_relevant": 3, "relevant_v1": 7, "relevant_v2": 10, "no_relevant": 3, "cost_usd": {"2a": 0.7, "2b": 0.25, "queries": 0.09, "3-0": 0.2}}

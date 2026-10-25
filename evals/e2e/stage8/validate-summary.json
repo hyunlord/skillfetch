@@ -1,0 +1,124 @@
+{
+ "scan_rules_version": 5,
+ "per_kind": {
+  "SS-load-kw": {
+   "loads": 339,
+   "body_copied": 339,
+   "lint_error": 25,
+   "scan_fail": 8,
+   "scan_warn": 165,
+   "has_scripts": 44,
+   "bundled_files_gt0": 198,
+   "license": {
+    "MIT": 230,
+    "unknown": 59,
+    "Apache-2.0": 35,
+    "Unlicense": 5,
+    "BSD-3-Clause": 4,
+    "proprietary": 4,
+    "AGPL-3.0": 1,
+    "GPL-3.0": 1
+   },
+   "license_origin": {
+    "source": 231,
+    "frontmatter": 54,
+    "none": 46,
+    "LICENSE.txt": 6,
+    "LICENSE": 2
+   },
+   "redistributable": 274,
+   "scan_fail_rules": {
+    "hidden.invisible-chars": 16,
+    "exfil.secret-env": 7,
+    "privilege.run-as-root": 2
+   },
+   "lint_error_rules": {
+    "lint.link-outside-skill": 62,
+    "lint.broken-link": 1,
+    "lint.frontmatter-missing": 1,
+    "lint.frontmatter-invalid": 1
+   }
+  },
+  "SS-load-full": {
+   "loads": 339,
+   "body_copied": 339,
+   "lint_error": 26,
+   "scan_fail": 10,
+   "scan_warn": 164,
+   "has_scripts": 57,
+   "bundled_files_gt0": 178,
+   "license": {
+    "MIT": 218,
+    "unknown": 63,
+    "Apache-2.0": 45,
+    "BSD-3-Clause": 6,
+    "Unlicense": 3,
+    "MPL-2.0": 2,
+    "CC0-1.0": 1,
+    "proprietary": 1
+   },
+   "license_origin": {
+    "source": 216,
+    "frontmatter": 57,
+    "none": 56,
+    "LICENSE": 6,
+    "LICENSE.txt": 4
+   },
+   "redistributable": 275,
+   "scan_fail_rules": {
+    "exfil.secret-env": 10,
+    "privilege.dangerous-flag": 2,
+    "exfil.ssh-keys": 1,
+    "hidden.invisible-chars": 1,
+    "privilege.run-as-root": 1
+   },
+   "lint_error_rules": {
+    "lint.link-outside-skill": 84,
+    "lint.broken-link": 17,
+    "lint.frontmatter-invalid": 1
+   }
+  }
+ },
+ "unique_bodies": {
+  "loads": 518,
+  "body_copied": 518,
+  "lint_error": 38,
+  "scan_fail": 13,
+  "scan_warn": 246,
+  "has_scripts": 74,
+  "bundled_files_gt0": 284,
+  "license": {
+   "MIT": 343,
+   "unknown": 90,
+   "Apache-2.0": 67,
+   "Unlicense": 5,
+   "BSD-3-Clause": 5,
+   "proprietary": 4,
+   "AGPL-3.0": 1,
+   "GPL-3.0": 1,
+   "MPL-2.0": 1,
+   "CC0-1.0": 1
+  },
+  "license_origin": {
+   "source": 341,
+   "frontmatter": 89,
+   "none": 74,
+   "LICENSE.txt": 7,
+   "LICENSE": 7
+  },
+  "redistributable": 422,
+  "scan_fail_rules": {
+   "exfil.secret-env": 11,
+   "hidden.invisible-chars": 9,
+   "privilege.run-as-root": 2,
+   "privilege.dangerous-flag": 2,
+   "exfil.ssh-keys": 1
+  },
+  "lint_error_rules": {
+   "lint.link-outside-skill": 96,
+   "lint.broken-link": 18,
+   "lint.frontmatter-invalid": 2,
+   "lint.frontmatter-missing": 1
+  }
+ }
+}

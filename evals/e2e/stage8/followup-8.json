@@ -1,0 +1,332 @@
+{
+ "1_final_load_194": {
+  "n": 194,
+  "SF S-b' r1": {
+   "rel_load_rate": 0.876,
+   "rel_load_n": 170,
+   "loaded_tasks": 186,
+   "precision_task": 0.914,
+   "precision_skill": 0.8,
+   "loaded_skills": 290
+  },
+  "SF S-b' r2": {
+   "rel_load_rate": 0.887,
+   "rel_load_n": 172,
+   "loaded_tasks": 186,
+   "precision_task": 0.925,
+   "precision_skill": 0.819,
+   "loaded_skills": 298
+  },
+  "SF S-b' r3": {
+   "rel_load_rate": 0.887,
+   "rel_load_n": 172,
+   "loaded_tasks": 183,
+   "precision_task": 0.94,
+   "precision_skill": 0.821,
+   "loaded_skills": 290
+  },
+  "SF S-b' mean": {
+   "rel_load_rate": 0.883,
+   "rel_load_n": 171.333,
+   "loaded_tasks": 185,
+   "precision_task": 0.926,
+   "precision_skill": 0.813,
+   "loaded_skills": 292.667
+  },
+  "SS-load-kw (short)": {
+   "rel_load_rate": 0.634,
+   "rel_load_n": 123,
+   "loaded_tasks": 175,
+   "precision_task": 0.703,
+   "precision_skill": 0.703,
+   "loaded_skills": 175
+  },
+  "SS-load-full": {
+   "rel_load_rate": 0.216,
+   "rel_load_n": 42,
+   "loaded_tasks": 178,
+   "precision_task": 0.236,
+   "precision_skill": 0.236,
+   "loaded_skills": 178
+  }
+ },
+ "4_balance": {
+  "pool_mean_full": 36.8,
+  "pool_mean_cut": 30.7,
+  "relevant_pairs_full": {
+   "index": 380,
+   "ss": 1832
+  },
+  "relevant_pairs_cut": {
+   "index": 380,
+   "ss": 1584
+  },
+  "relevant_tasks_full": 323,
+  "relevant_tasks_cut": 320,
+  "ss_only_tasks_full": 129,
+  "ss_only_tasks_cut": 126,
+  "table1_full": {
+   "SF": {
+    "@1": 0.201,
+    "@5": 0.381,
+    "@10": 0.464
+   },
+   "SS-q1": {
+    "@1": 0.235,
+    "@5": 0.409,
+    "@10": 0.433
+   },
+   "SS-q3": {
+    "@1": 0.303,
+    "@5": 0.508,
+    "@10": 0.554
+   },
+   "SS-kw": {
+    "@1": 0.638,
+    "@5": 0.814,
+    "@10": 0.848
+   }
+  },
+  "table1_cut": {
+   "SF": {
+    "@1": 0.203,
+    "@5": 0.384,
+    "@10": 0.469
+   },
+   "SS-q1": {
+    "@1": 0.237,
+    "@5": 0.412,
+    "@10": 0.438
+   },
+   "SS-q3": {
+    "@1": 0.306,
+    "@5": 0.512,
+    "@10": 0.559
+   },
+   "SS-kw": {
+    "@1": 0.644,
+    "@5": 0.822,
+    "@10": 0.856
+   }
+  }
+ },
+ "3_hit_25_50": {
+  "v5-ss_lower_bound": {
+   "n": 323,
+   "SF": {
+    "@10": 0.464,
+    "@25": 0.536,
+    "@50": 0.601
+   },
+   "SS-q1": {
+    "@10": 0.433,
+    "@25": 0.455
+   },
+   "SS-q3": {
+    "@10": 0.554,
+    "@25": 0.573
+   },
+   "SS-kw": {
+    "@10": 0.848,
+    "@25": 0.858
+   }
+  },
+  "v5-ss-b": {
+   "all_relevant": {
+    "n": 331,
+    "SF": {
+     "@10": 0.453,
+     "@25": 0.656,
+     "@50": 0.767
+    },
+    "SS-q1": {
+     "@10": 0.423,
+     "@25": 0.444
+    },
+    "SS-q3": {
+     "@10": 0.541,
+     "@25": 0.559
+    },
+    "SS-kw": {
+     "@10": 0.828,
+     "@25": 0.837
+    }
+   },
+   "index_relevant": {
+    "n": 270,
+    "SF": {
+     "@10": 0.556,
+     "@25": 0.804,
+     "@50": 0.941
+    },
+    "SS-q1": {
+     "@10": 0.4,
+     "@25": 0.426
+    },
+    "SS-q3": {
+     "@10": 0.522,
+     "@25": 0.544
+    },
+    "SS-kw": {
+     "@10": 0.837,
+     "@25": 0.844
+    }
+   }
+  },
+  "denominator_change": {
+   "relevant_tasks_v5ss": 323,
+   "relevant_tasks_v5ssb": 331,
+   "index_relevant_v5ss": 194,
+   "index_relevant_v5ssb": 270
+  }
+ },
+ "1b_final_load_index_relevant_v5ssb": {
+  "n": 270,
+  "SF S-b' r1": {
+   "rel_load_rate": 0.63,
+   "rel_load_n": 170,
+   "loaded_tasks": 229,
+   "precision_task": 0.742,
+   "precision_skill": 0.68,
+   "loaded_skills": 341
+  },
+  "SF S-b' r2": {
+   "rel_load_rate": 0.637,
+   "rel_load_n": 172,
+   "loaded_tasks": 230,
+   "precision_task": 0.748,
+   "precision_skill": 0.687,
+   "loaded_skills": 355
+  },
+  "SF S-b' r3": {
+   "rel_load_rate": 0.637,
+   "rel_load_n": 172,
+   "loaded_tasks": 227,
+   "precision_task": 0.758,
+   "precision_skill": 0.698,
+   "loaded_skills": 341
+  },
+  "SF S-b' mean": {
+   "rel_load_rate": 0.635,
+   "rel_load_n": 171.333,
+   "loaded_tasks": 228.667,
+   "precision_task": 0.749,
+   "precision_skill": 0.688,
+   "loaded_skills": 345.667
+  },
+  "SS-load-kw (short)": {
+   "rel_load_rate": 0.615,
+   "rel_load_n": 166,
+   "loaded_tasks": 244,
+   "precision_task": 0.68,
+   "precision_skill": 0.68,
+   "loaded_skills": 244
+  },
+  "SS-load-full": {
+   "rel_load_rate": 0.207,
+   "rel_load_n": 56,
+   "loaded_tasks": 245,
+   "precision_task": 0.229,
+   "precision_skill": 0.229,
+   "loaded_skills": 245
+  }
+ },
+ "5_short_query": {
+  "v3": {
+   "n": 284,
+   "R-c": {
+    "hit@10": 0.754,
+    "hit@50": 0.93,
+    "recall@50": 0.808,
+    "unlabeled_share_top50": 0.486
+   },
+   "kw": {
+    "hit@10": 0.63,
+    "hit@50": 0.782,
+    "recall@50": 0.569,
+    "unlabeled_share_top50": 0.724
+   },
+   "R-c+kw": {
+    "hit@10": 0.771,
+    "hit@50": 0.937,
+    "recall@50": 0.823,
+    "unlabeled_share_top50": 0.496
+   }
+  },
+  "v5-ss-b (index skills)": {
+   "n": 270,
+   "R-c": {
+    "hit@10": 0.556,
+    "hit@50": 0.941,
+    "recall@50": 0.822,
+    "unlabeled_share_top50": 0.0
+   },
+   "kw": {
+    "hit@10": 0.578,
+    "hit@50": 0.8,
+    "recall@50": 0.594,
+    "unlabeled_share_top50": 0.0
+   },
+   "R-c+kw": {
+    "hit@10": 0.622,
+    "hit@50": 0.944,
+    "recall@50": 0.852,
+    "unlabeled_share_top50": 0.0
+   }
+  }
+ },
+ "5_refusal_tasks": {
+  "t311": {
+   "expect_none": true,
+   "kw": "I wouldn't load a skill for this; fixing a one-word typo in a log message is tri",
+   "kw_top5": [
+    "uasl/writing-revision@0a53ecc70a84",
+    "uasl/system-design@e45b77ba7a35",
+    "anthropics-skills/docx@74e2b8b277a4",
+    "uasl/cosmos-vulnerability-scanner@15287e1284d6",
+    "uasl/storybrand-messaging@b5d59f437b2f"
+   ],
+   "R-c+kw_top10_changed_vs_R-c": true
+  },
+  "t317": {
+   "expect_none": true,
+   "kw": "No skill needed. This is a one-character comparison fix (`>` → `<=`) in Inventor",
+   "kw_top5": [
+    "uasl/control-d-automation@0cdab1227c49",
+    "uasl/design-an-interface@14a6b0b5787c",
+    "uasl/canon@9bbebfd09bb7",
+    "uasl/caveman-review@23eed6aa48dd",
+    "uasl/video-editing@6c68b3cc7f35"
+   ],
+   "R-c+kw_top10_changed_vs_R-c": true
+  },
+  "t327": {
+   "expect_none": true,
+   "kw": "I wouldn't load a skill for this; it's a one-word typo fix. If forced to query: ",
+   "kw_top5": [
+    "uasl/printing-press-polish@b4aef54a7866",
+    "uasl/printing-press-catalog@3572c42ad04d",
+    "anthropics-skills/docx@74e2b8b277a4",
+    "uasl/printing-press-output-review@35c772127bb2",
+    "uasl/gws-best-practices@8d174ef89902"
+   ],
+   "R-c+kw_top10_changed_vs_R-c": true
+  },
+  "t330": {
+   "expect_none": true,
+   "kw": "I wouldn't load a skill for this. It's a one-line fix: add `import androidx.life",
+   "kw_top5": [
+    "anthropics-skills/pdf@9bc3a6e1ff66",
+    "uasl/motion-canvas@08d879d31903",
+    "uasl/gsap-frameworks@13a7c7540177",
+    "uasl/gws-best-practices@8d174ef89902",
+    "uasl/five-agent-security-review@54653e9fa93f"
+   ],
+   "R-c+kw_top10_changed_vs_R-c": true
+  }
+ },
+ "5_kw_empty_tasks": [
+  "t040",
+  "t162"
+ ]
+}

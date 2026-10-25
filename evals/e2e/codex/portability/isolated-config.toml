@@ -1,0 +1,3 @@
+[mcp_servers.skillfetch]
+command = "<skillfetch>/.venv/bin/skillfetch"
+args = ["serve", "--index", "~/.skillfetch/index"]

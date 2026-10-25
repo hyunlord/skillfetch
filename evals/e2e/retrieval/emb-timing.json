@@ -1,0 +1,18 @@
+{
+ "model": "sentence-transformers/all-MiniLM-L6-v2",
+ "model_cache_bytes": 91578415,
+ "params": 22713216,
+ "dim": 384,
+ "max_seq_length": 256,
+ "docs": 1489,
+ "docs_truncated": 208,
+ "model_load_s": 3.68,
+ "index_s": 5.09,
+ "embeddings_bytes_float32": 2287104,
+ "query_latency_ms": {
+  "median": 4.6,
+  "max": 6.0
+ },
+ "cpu": 14,
+ "device": "cpu"
+}

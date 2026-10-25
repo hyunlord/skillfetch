@@ -1,0 +1,91 @@
+diff --git a/lib/users.ts b/lib/users.ts
+new file mode 100644
+index 0000000..7dc0a52
+--- /dev/null
++++ b/lib/users.ts
+@@ -0,0 +1,10 @@
++import { User } from "../interfaces";
++import { sampleUserData } from "../utils/sample-data";
++
++export function getAllUsers(): User[] {
++  return sampleUserData;
++}
++
++export function getUserById(id: number): User | undefined {
++  return sampleUserData.find((user) => user.id === id);
++}
+diff --git a/pages/api/users/index.ts b/pages/api/users/index.ts
+index bcb9fd1..3d2246c 100644
+--- a/pages/api/users/index.ts
++++ b/pages/api/users/index.ts
+@@ -1,13 +1,14 @@
+ import { NextApiRequest, NextApiResponse } from "next";
+-import { sampleUserData } from "@/utils/sample-data";
++import { getAllUsers } from "@/lib/users";
+ 
+ const handler = (_req: NextApiRequest, res: NextApiResponse) => {
+   try {
+-    if (!Array.isArray(sampleUserData)) {
++    const users = getAllUsers();
++    if (!Array.isArray(users)) {
+       throw new Error("Cannot find user data");
+     }
+ 
+-    res.status(200).json(sampleUserData);
++    res.status(200).json(users);
+   } catch (err: any) {
+     res.status(500).json({ statusCode: 500, message: err.message });
+   }
+diff --git a/pages/users/[id].tsx b/pages/users/[id].tsx
+index e8a7973..74abfff 100644
+--- a/pages/users/[id].tsx
++++ b/pages/users/[id].tsx
+@@ -1,7 +1,7 @@
+ import { GetStaticProps, GetStaticPaths } from "next";
+ 
+ import { User } from "../../interfaces";
+-import { sampleUserData } from "../../utils/sample-data";
++import { getAllUsers, getUserById } from "../../lib/users";
+ import Layout from "../../components/Layout";
+ import ListDetail from "../../components/ListDetail";
+ 
+@@ -36,7 +36,7 @@ export default StaticPropsDetail;
+ 
+ export const getStaticPaths: GetStaticPaths = async () => {
+   // Get the paths we want to pre-render based on users
+-  const paths = sampleUserData.map((user) => ({
++  const paths = getAllUsers().map((user) => ({
+     params: { id: user.id.toString() },
+   }));
+ 
+@@ -51,7 +51,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
+ export const getStaticProps: GetStaticProps = async ({ params }) => {
+   try {
+     const id = params?.id;
+-    const item = sampleUserData.find((data) => data.id === Number(id));
++    const item = getUserById(Number(id));
+     // By returning { props: item }, the StaticPropsDetail component
+     // will receive `item` as a prop at build time
+     return { props: { item } };
+diff --git a/pages/users/index.tsx b/pages/users/index.tsx
+index 489a930..a7e9092 100644
+--- a/pages/users/index.tsx
++++ b/pages/users/index.tsx
+@@ -2,7 +2,7 @@ import { GetStaticProps } from "next";
+ import Link from "next/link";
+ 
+ import { User } from "../../interfaces";
+-import { sampleUserData } from "../../utils/sample-data";
++import { getAllUsers } from "../../lib/users";
+ import Layout from "../../components/Layout";
+ import List from "../../components/List";
+ 
+@@ -28,7 +28,7 @@ export const getStaticProps: GetStaticProps = async () => {
+   // Example for including static props in a Next.js function component page.
+   // Don't forget to include the respective types for any props passed into
+   // the component.
+-  const items: User[] = sampleUserData;
++  const items: User[] = getAllUsers();
+   return { props: { items } };
+ };
+ 

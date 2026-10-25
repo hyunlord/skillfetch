@@ -1,0 +1,303 @@
+{
+ "denominators": {
+  "relevant_tasks": 323,
+  "irrelevant_tasks": 57,
+  "irrelevant_expect_none": 40,
+  "gap56": 56
+ },
+ "hit": {
+  "SF": {
+   "@1": 0.201,
+   "@5": 0.381,
+   "@10": 0.464
+  },
+  "SS-q1": {
+   "@1": 0.235,
+   "@5": 0.409,
+   "@10": 0.433
+  },
+  "SS-q3": {
+   "@1": 0.303,
+   "@5": 0.508,
+   "@10": 0.554
+  },
+  "SS-kw": {
+   "@1": 0.638,
+   "@5": 0.814,
+   "@10": 0.848
+  }
+ },
+ "hit_counts": {
+  "SF": {
+   "@1": 65,
+   "@5": 123,
+   "@10": 150
+  },
+  "SS-q1": {
+   "@1": 76,
+   "@5": 132,
+   "@10": 140
+  },
+  "SS-q3": {
+   "@1": 98,
+   "@5": 164,
+   "@10": 179
+  },
+  "SS-kw": {
+   "@1": 206,
+   "@5": 263,
+   "@10": 274
+  }
+ },
+ "results_len_median": {
+  "SF": 50.0,
+  "SS-q1": 10.0,
+  "SS-q3": 10.0,
+  "SS-kw": 9.0
+ },
+ "empty": {
+  "SF R-c top-50 empty": 0,
+  "SF S-b' r1 none": 122,
+  "SF S-b' r2 none": 117,
+  "SF S-b' r3 none": 121,
+  "SS-q1": 19,
+  "SS-q3": 7,
+  "SS-kw": 18,
+  "SS-load-kw": 41,
+  "SS-load-full": 41
+ },
+ "errors": {},
+ "empty_by_group": {
+  "SS-q1": {
+   "relevant": 14,
+   "irrelevant": 5
+  },
+  "SS-q3": {
+   "relevant": 6,
+   "irrelevant": 1
+  },
+  "SS-kw": {
+   "relevant": 12,
+   "irrelevant": 6
+  },
+  "SS-load-kw": {
+   "relevant": 29,
+   "irrelevant": 12
+  },
+  "SS-load-full": {
+   "relevant": 27,
+   "irrelevant": 14
+  }
+ },
+ "final_load": {
+  "SF S-b' r1": {
+   "rel_hit_over_relevant": 0.526,
+   "rel_hit_n": 170,
+   "rel_hit_over_loaded": 0.691,
+   "relevant_loaded_n": 246,
+   "irrelevant_loaded_rate": 0.211,
+   "irrelevant_loaded_n": 12,
+   "expect_none_loaded_n": 7,
+   "mean_loaded_relevant_tasks": 1.118
+  },
+  "SF S-b' r2": {
+   "rel_hit_over_relevant": 0.533,
+   "rel_hit_n": 172,
+   "rel_hit_over_loaded": 0.688,
+   "relevant_loaded_n": 250,
+   "irrelevant_loaded_rate": 0.228,
+   "irrelevant_loaded_n": 13,
+   "expect_none_loaded_n": 8,
+   "mean_loaded_relevant_tasks": 1.173
+  },
+  "SF S-b' r3": {
+   "rel_hit_over_relevant": 0.533,
+   "rel_hit_n": 172,
+   "rel_hit_over_loaded": 0.694,
+   "relevant_loaded_n": 248,
+   "irrelevant_loaded_rate": 0.193,
+   "irrelevant_loaded_n": 11,
+   "expect_none_loaded_n": 6,
+   "mean_loaded_relevant_tasks": 1.133
+  },
+  "SF S-b' mean": {
+   "rel_hit_over_relevant": 0.531,
+   "rel_hit_n": 171.333,
+   "rel_hit_over_loaded": 0.691,
+   "relevant_loaded_n": 248,
+   "irrelevant_loaded_rate": 0.211,
+   "irrelevant_loaded_n": 12,
+   "expect_none_loaded_n": 7,
+   "mean_loaded_relevant_tasks": 1.141
+  },
+  "SS-load-kw": {
+   "rel_hit_over_relevant": 0.616,
+   "rel_hit_n": 199,
+   "rel_hit_over_loaded": 0.677,
+   "relevant_loaded_n": 294,
+   "irrelevant_loaded_rate": 0.789,
+   "irrelevant_loaded_n": 45,
+   "expect_none_loaded_n": 37,
+   "mean_loaded_relevant_tasks": 0.91,
+   "loaded_grade_dist": {
+    "0": 56,
+    "1": 75,
+    "2": 103,
+    "3": 105
+   }
+  },
+  "SS-load-full": {
+   "rel_hit_over_relevant": 0.226,
+   "rel_hit_n": 73,
+   "rel_hit_over_loaded": 0.247,
+   "relevant_loaded_n": 296,
+   "irrelevant_loaded_rate": 0.754,
+   "irrelevant_loaded_n": 43,
+   "expect_none_loaded_n": 31,
+   "mean_loaded_relevant_tasks": 0.916,
+   "loaded_grade_dist": {
+    "0": 197,
+    "1": 65,
+    "2": 37,
+    "3": 40
+   }
+  }
+ },
+ "ss_relevant": {
+  "unique_ss_keys_grade_ge2": 1284,
+  "classification": {
+   "out_of_index": 1241,
+   "same_name_body_unavailable": 43
+  },
+  "out_of_index_unique": 1241,
+  "out_of_index_task_pairs": 1778,
+  "relevant_tasks_with_out_of_index": 310,
+  "relevant_tasks_relevant_only_from_ss": 129,
+  "gap56_with_out_of_index": 45,
+  "gap56_out_of_index_unique": 179,
+  "gap56_with_any_relevant_v5ss": 46,
+  "gap56_with_index_relevant_v5ss": 1,
+  "gap56_by_type": {
+   "feature": 6,
+   "tests": 1,
+   "docs": 3,
+   "ci_infra": 2,
+   "deploy": 9,
+   "data": 5,
+   "ml": 8,
+   "security_review": 1,
+   "performance": 6,
+   "ui_design": 2,
+   "bugfix": 2
+  }
+ },
+ "ss_relevant_examples": [
+  [
+   8,
+   "ss:skill:affaan-m/ecc#rust-testing",
+   "rust-testing"
+  ],
+  [
+   7,
+   "ss:skill:affaan-m/everything-claude-code#rust-testing",
+   "rust-testing"
+  ],
+  [
+   6,
+   "ss:skill:github/awesome-copilot#multi-stage-dockerfile",
+   "multi-stage-dockerfile"
+  ],
+  [
+   6,
+   "ss:skill:davila7/claude-code-templates#github-actions-creator",
+   "github-actions-creator"
+  ],
+  [
+   5,
+   "ss:skill:vanman2024/ai-dev-marketplace#plugins/celery",
+   "celery"
+  ],
+  [
+   5,
+   "ss:skill:pproenca/dot-skills#rust-testing",
+   "rust-testing"
+  ],
+  [
+   5,
+   "ss:skill:pluginagentmarketplace/custom-plugin-java#java-spring-boot",
+   "java-spring-boot"
+  ],
+  [
+   5,
+   "ss:skill:onewave-ai/claude-skills#database-migrator",
+   "database-migrator"
+  ],
+  [
+   5,
+   "ss:skill:martinholovsky/claude-skills-generator#celery-expert",
+   "celery-expert"
+  ],
+  [
+   5,
+   "ss:skill:jeffallan/claude-skills#rust-engineer",
+   "rust-engineer"
+  ],
+  [
+   5,
+   "ss:skill:bobmatnyc/claude-mpm-skills#pytest",
+   "pytest"
+  ],
+  [
+   5,
+   "ss:skill:bobmatnyc/claude-mpm-skills#nextjs-core",
+   "nextjs-core"
+  ],
+  [
+   5,
+   "ss:skill:bobmatnyc/claude-mpm-skills#database-migration",
+   "database-migration"
+  ],
+  [
+   5,
+   "ss:skill:affaan-m/ecc#database-migrations",
+   "database-migrations"
+  ],
+  [
+   4,
+   "ss:skill:wshobson/agents#rust-async-patterns",
+   "rust-async-patterns"
+  ]
+ ],
+ "latency": {
+  "SS-q1": {
+   "n": 380,
+   "median_s": 1.133,
+   "p95_s": 1.971,
+   "max_s": 3.011
+  },
+  "SS-q3": {
+   "n": 380,
+   "median_s": 1.224,
+   "p95_s": 1.951,
+   "max_s": 2.567
+  },
+  "SS-kw": {
+   "n": 380,
+   "median_s": 1.107,
+   "p95_s": 1.687,
+   "max_s": 2.046
+  },
+  "SS-load-kw": {
+   "n": 380,
+   "median_s": 1.507,
+   "p95_s": 2.255,
+   "max_s": 18.713
+  },
+  "SS-load-full": {
+   "n": 380,
+   "median_s": 1.498,
+   "p95_s": 2.367,
+   "max_s": 8.727
+  }
+ }
+}

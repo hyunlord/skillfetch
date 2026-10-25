@@ -1,0 +1,4457 @@
+{
+ "s4-t012": {
+  "order": [
+   "uasl/claude-api@f952c765f5b0",
+   "uasl/builder@8d7f0953ade3",
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/planning-with-files@5da17072dc31",
+   "uasl/api-design@bba608f8c974",
+   "uasl/design-integration@03e2661a4d5f",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/bolt@c4895c710162",
+   "uasl/n8n-code-javascript@203459f10f1d",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/bright-data-best-practices@15cfe1bca9b8",
+   "uasl/n8n-code-python@ba1cd974d317",
+   "uasl/harvest-automation@9d33356a1149"
+  ],
+  "sources": {
+   "uasl/fastapi-endpoint@2a93d50c4970": [
+    "2a"
+   ],
+   "uasl/api-design@bba608f8c974": [
+    "2a"
+   ],
+   "uasl/fastapi-templates@effcd0de0b4c": [
+    "bm25"
+   ],
+   "uasl/backend-patterns@3d87ff489f3e": [
+    "bm25"
+   ],
+   "uasl/claude-native-claude-api@24c958899f03": [
+    "bm25"
+   ],
+   "uasl/n8n-code-python@ba1cd974d317": [
+    "bm25"
+   ],
+   "uasl/bolt@c4895c710162": [
+    "bm25"
+   ],
+   "uasl/bright-data-best-practices@15cfe1bca9b8": [
+    "bm25"
+   ],
+   "uasl/n8n-code-javascript@203459f10f1d": [
+    "bm25"
+   ],
+   "uasl/design-integration@03e2661a4d5f": [
+    "bm25"
+   ],
+   "uasl/claude-api@f952c765f5b0": [
+    "bm25"
+   ],
+   "uasl/builder@8d7f0953ade3": [
+    "bm25"
+   ],
+   "uasl/planning-with-files@5da17072dc31": [
+    "random"
+   ],
+   "uasl/harvest-automation@9d33356a1149": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/n8n-code-python@ba1cd974d317",
+   "uasl/bolt@c4895c710162",
+   "uasl/bright-data-best-practices@15cfe1bca9b8",
+   "uasl/n8n-code-javascript@203459f10f1d",
+   "uasl/design-integration@03e2661a4d5f",
+   "uasl/claude-api@f952c765f5b0",
+   "uasl/builder@8d7f0953ade3",
+   "uasl/architecture-patterns@d184d1c3a346",
+   "uasl/forge@a8efdfdbe817",
+   "uasl/openai-automation@e4810b012ee7",
+   "uasl/transformers@0b5f07bd96f0",
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "uasl/clay@6c9572941894",
+   "uasl/using-git-worktrees@b0857168cfee",
+   "uasl/netsuite-automation@b615a37449c9",
+   "uasl/vibe-security@6b07d0f651a7",
+   "uasl/googlephotos-automation@0b2d3403ccba",
+   "uasl/zoho-inventory-automation@2f2863777368",
+   "uasl/voice-ai-development@76a8425e5865",
+   "uasl/gateway@8350be122608",
+   "uasl/thinking-map-territory@329a6f9a1863",
+   "anthropics-skills/xlsx@5350d36b768c",
+   "uasl/segment-cdp@42e8e765d937",
+   "uasl/data-schema-knowledge-modeling@c06f86b10d33",
+   "uasl/leiga-automation@b1e5db446913",
+   "uasl/3d-web-experience@e1485751556b",
+   "uasl/sidetracker-automation@54e8a1f15fdb",
+   "uasl/codeql@f2e86220e2ca",
+   "uasl/connect@77e02b4574f6",
+   "uasl/groqcloud-automation@e4dc6956991c",
+   "uasl/system-design@e45b77ba7a35",
+   "uasl/user-story-splitting@2d9d6a6fd3e3",
+   "uasl/slack-bot-builder@ce64c6aad24e",
+   "uasl/similarweb-analytics@938e9f87287b",
+   "uasl/thinking-model-combination@e3fb11c9e5e8",
+   "uasl/contract-testing@b0f4c29940a9",
+   "uasl/product-showcase@47ddb0e168e1",
+   "uasl/gsap-core@ca474b7f6296",
+   "uasl/polyglot@11be7885bda2",
+   "uasl/neon-automation@998078570d02",
+   "uasl/thinking-model-selection@21af56b9c574",
+   "uasl/statsmodels@49021b731076",
+   "uasl/frontend-design-principles@e9b2a10a43d1",
+   "uasl/asin-data-api-automation@fa3bf5f34403",
+   "uasl/thinking-model-router@5d0c1ebb8223",
+   "uasl/api-sports-automation@0461bade6799"
+  ]
+ },
+ "s4-t013": {
+  "order": [
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/googlephotos-automation@0b2d3403ccba",
+   "uasl/bolt@c4895c710162",
+   "uasl/ashby-automation@b9813e1a534d",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/api-design@bba608f8c974",
+   "uasl/polyglot@11be7885bda2",
+   "uasl/semrush-automation@e0e5480c7eb1",
+   "uasl/n8n-code-javascript@203459f10f1d",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/n8n-code-python@ba1cd974d317",
+   "uasl/vibe-security@6b07d0f651a7",
+   "uasl/fastapi-templates@effcd0de0b4c"
+  ],
+  "sources": {
+   "uasl/api-design@bba608f8c974": [
+    "2a"
+   ],
+   "uasl/fastapi-endpoint@2a93d50c4970": [
+    "2a",
+    "bm25"
+   ],
+   "uasl/n8n-code-python@ba1cd974d317": [
+    "bm25"
+   ],
+   "uasl/fastapi-templates@effcd0de0b4c": [
+    "bm25"
+   ],
+   "uasl/backend-patterns@3d87ff489f3e": [
+    "bm25"
+   ],
+   "uasl/bolt@c4895c710162": [
+    "bm25"
+   ],
+   "uasl/googlephotos-automation@0b2d3403ccba": [
+    "bm25"
+   ],
+   "uasl/claude-native-claude-api@24c958899f03": [
+    "bm25"
+   ],
+   "uasl/polyglot@11be7885bda2": [
+    "bm25"
+   ],
+   "uasl/n8n-code-javascript@203459f10f1d": [
+    "bm25"
+   ],
+   "uasl/vibe-security@6b07d0f651a7": [
+    "bm25"
+   ],
+   "uasl/semrush-automation@e0e5480c7eb1": [
+    "random"
+   ],
+   "uasl/ashby-automation@b9813e1a534d": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "uasl/n8n-code-python@ba1cd974d317",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/bolt@c4895c710162",
+   "uasl/googlephotos-automation@0b2d3403ccba",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/polyglot@11be7885bda2",
+   "uasl/n8n-code-javascript@203459f10f1d",
+   "uasl/vibe-security@6b07d0f651a7",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "uasl/design-integration@03e2661a4d5f",
+   "uasl/forge@a8efdfdbe817",
+   "uasl/netsuite-automation@b615a37449c9",
+   "uasl/architecture-patterns@d184d1c3a346",
+   "uasl/agent-sort@a8e06853ada8",
+   "anthropics-skills/pptx@4eb5e13af97f",
+   "uasl/horizon@8e6f79e4495d",
+   "uasl/radar@a47ea6fd5f95",
+   "anthropics-skills/brand-guidelines@25de6a138cd8",
+   "uasl/gsap-core@ca474b7f6296",
+   "uasl/sweep@6fda55315322",
+   "uasl/security-review@fcc354bc486e",
+   "uasl/web-design-builder@61ee1c248717",
+   "uasl/documentation-lookup@dee6d7478eab",
+   "uasl/using-git-worktrees@b0857168cfee",
+   "anthropics-skills/frontend-design@0a5ff23f1022",
+   "uasl/caveman-commit@244182e952a7",
+   "uasl/quill@336ba74b0e79",
+   "uasl/integration-testing@62b51275be50",
+   "uasl/design-to-code@fae28f73cda0",
+   "uasl/connect@77e02b4574f6",
+   "uasl/api-testing@4ada9a2fac88",
+   "uasl/claude-native-theme-factory@4ef38be1dfbf",
+   "uasl/quickbooks-automation@bbe37470a32c",
+   "uasl/voice-ai-development@76a8425e5865",
+   "uasl/debugging-strategies@c55dad9c9654",
+   "uasl/api-design@bba608f8c974",
+   "uasl/user-story-splitting@2d9d6a6fd3e3",
+   "uasl/frontend-design-principles@e9b2a10a43d1",
+   "uasl/write-a-skill@82d5bd29e631",
+   "uasl/brand-guidelines@ae7f734e524e",
+   "anthropics-skills/theme-factory@b505b234a3cd",
+   "uasl/grill-me@a821be519d0d",
+   "uasl/bright-data-best-practices@15cfe1bca9b8",
+   "anthropics-skills/claude-api@e30e2c97f747",
+   "uasl/uploadcare-automation@e055339389ff",
+   "uasl/judge@6ea2e485149e",
+   "uasl/dynamics365-automation@03e4959eec42",
+   "uasl/variant-analysis@4e25478feb58"
+  ]
+ },
+ "s4-t019": {
+  "order": [
+   "uasl/memberstack-automation@b1cf9e24f851",
+   "uasl/latch@1bd1d888e79e",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/claude-api@f952c765f5b0",
+   "anthropics-skills/xlsx@5350d36b768c",
+   "uasl/statsmodels@49021b731076",
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/vibe-security@6b07d0f651a7",
+   "uasl/n8n-code-python@ba1cd974d317",
+   "anthropics-skills/skill-creator@5d80e84222d8"
+  ],
+  "sources": {
+   "uasl/fastapi-endpoint@2a93d50c4970": [
+    "2a",
+    "bm25"
+   ],
+   "uasl/claude-native-claude-api@24c958899f03": [
+    "bm25"
+   ],
+   "uasl/fastapi-templates@effcd0de0b4c": [
+    "bm25"
+   ],
+   "anthropics-skills/xlsx@5350d36b768c": [
+    "bm25"
+   ],
+   "uasl/n8n-code-python@ba1cd974d317": [
+    "bm25"
+   ],
+   "uasl/backend-patterns@3d87ff489f3e": [
+    "bm25"
+   ],
+   "uasl/claude-api@f952c765f5b0": [
+    "bm25"
+   ],
+   "uasl/statsmodels@49021b731076": [
+    "bm25"
+   ],
+   "anthropics-skills/skill-creator@5d80e84222d8": [
+    "bm25"
+   ],
+   "uasl/vibe-security@6b07d0f651a7": [
+    "bm25"
+   ],
+   "uasl/memberstack-automation@b1cf9e24f851": [
+    "random"
+   ],
+   "uasl/latch@1bd1d888e79e": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "anthropics-skills/xlsx@5350d36b768c",
+   "uasl/n8n-code-python@ba1cd974d317",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/claude-api@f952c765f5b0",
+   "uasl/statsmodels@49021b731076",
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "anthropics-skills/skill-creator@5d80e84222d8",
+   "uasl/vibe-security@6b07d0f651a7",
+   "uasl/data-schema-knowledge-modeling@c06f86b10d33",
+   "uasl/voice-ai-development@76a8425e5865",
+   "uasl/groqcloud-automation@e4dc6956991c",
+   "anthropics-skills/pptx@4eb5e13af97f",
+   "uasl/3d-web-experience@e1485751556b",
+   "uasl/clay@6c9572941894",
+   "uasl/next-upgrade@df465f7770a5",
+   "anthropics-skills/docx@74e2b8b277a4",
+   "uasl/thinking-map-territory@329a6f9a1863",
+   "uasl/zoho-inventory-automation@2f2863777368",
+   "uasl/frontend-slides@8d62c2eeef30",
+   "uasl/bolt@c4895c710162",
+   "uasl/netsuite-automation@b615a37449c9",
+   "uasl/thinking-partner@80abb24d238a",
+   "uasl/architecture-patterns@d184d1c3a346",
+   "uasl/thinking-second-order@6a0831afa6ac",
+   "uasl/video-editing@6c68b3cc7f35",
+   "uasl/transformers@0b5f07bd96f0",
+   "uasl/googlephotos-automation@0b2d3403ccba",
+   "uasl/design-integration@03e2661a4d5f",
+   "uasl/segment-cdp@42e8e765d937",
+   "uasl/fal-ai-media@1a7fc3310ea8",
+   "uasl/python-error-handling@8dc34883a143",
+   "uasl/radar@a47ea6fd5f95",
+   "uasl/builder@8d7f0953ade3",
+   "uasl/n8n-code-javascript@203459f10f1d",
+   "uasl/twitter-algorithm-optimizer@ee2e940fffc6",
+   "uasl/sidetracker-automation@54e8a1f15fdb",
+   "uasl/legacy-modernizer@519b6311409d",
+   "uasl/second-opinion@129803cad9d9",
+   "uasl/polyglot@11be7885bda2",
+   "uasl/design-system-patterns@cd952cab0879",
+   "uasl/leiga-automation@b1e5db446913",
+   "uasl/improve-retention@f80cefef268d",
+   "uasl/googledocs-automation@205a55e5ad22",
+   "uasl/hooked-ux@64362f56c26b",
+   "uasl/gsap-frameworks@13a7c7540177",
+   "uasl/clockify-automation@2a7df079c351",
+   "uasl/gateway@8350be122608",
+   "uasl/openai-automation@e4810b012ee7"
+  ]
+ },
+ "s4-t037": {
+  "order": [
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/integration-testing@62b51275be50",
+   "uasl/unit-testing@6c5fbb821103",
+   "uasl/wycheproof@8924e1e4bfb6",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/algorand-vulnerability-scanner@b4ef2e1b7b33",
+   "uasl/python-testing-patterns@e62d0f1ca316",
+   "uasl/thinking-theory-of-constraints@d55f9f735e58",
+   "uasl/acceptance-testing@7f713f1566e8",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/radar@a47ea6fd5f95"
+  ],
+  "sources": {
+   "uasl/python-testing-patterns@e62d0f1ca316": [
+    "2a",
+    "bm25"
+   ],
+   "uasl/unit-testing@6c5fbb821103": [
+    "bm25"
+   ],
+   "uasl/integration-testing@62b51275be50": [
+    "bm25"
+   ],
+   "uasl/fastapi-templates@effcd0de0b4c": [
+    "bm25"
+   ],
+   "uasl/wycheproof@8924e1e4bfb6": [
+    "bm25"
+   ],
+   "uasl/fastapi-endpoint@2a93d50c4970": [
+    "bm25"
+   ],
+   "uasl/backend-patterns@3d87ff489f3e": [
+    "bm25"
+   ],
+   "uasl/claude-native-claude-api@24c958899f03": [
+    "bm25"
+   ],
+   "uasl/radar@a47ea6fd5f95": [
+    "bm25"
+   ],
+   "uasl/acceptance-testing@7f713f1566e8": [
+    "bm25"
+   ],
+   "uasl/algorand-vulnerability-scanner@b4ef2e1b7b33": [
+    "random"
+   ],
+   "uasl/thinking-theory-of-constraints@d55f9f735e58": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "uasl/unit-testing@6c5fbb821103",
+   "uasl/integration-testing@62b51275be50",
+   "uasl/python-testing-patterns@e62d0f1ca316",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/wycheproof@8924e1e4bfb6",
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/radar@a47ea6fd5f95",
+   "uasl/acceptance-testing@7f713f1566e8",
+   "uasl/tdd-workflow@6eadb0bf0ea8",
+   "uasl/api-testing@4ada9a2fac88",
+   "uasl/contract-testing@b0f4c29940a9",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "uasl/bolt@c4895c710162",
+   "uasl/architecture-patterns@d184d1c3a346",
+   "uasl/async-python-patterns@957ebfe54aa7",
+   "uasl/judge@6ea2e485149e",
+   "uasl/systematic-debug@6b158e105823",
+   "uasl/verification-loop@39d9be23cf50",
+   "uasl/tdd@ff86dad94075",
+   "uasl/using-git-worktrees@b0857168cfee",
+   "uasl/forge@a8efdfdbe817",
+   "uasl/design-integration@03e2661a4d5f",
+   "uasl/bright-data-best-practices@15cfe1bca9b8",
+   "uasl/monorepo-management@4078df072127",
+   "uasl/test-app-automation@abdd84ebc0ec",
+   "uasl/probe@e9e9e74a4225",
+   "uasl/builder@8d7f0953ade3",
+   "uasl/everything-claude-code@dad489339e1e",
+   "uasl/test-driven-development@0eebe2fe0e28",
+   "uasl/ux-audit@d921ee5d8321",
+   "uasl/vibe-security@6b07d0f651a7",
+   "uasl/security-review@fcc354bc486e",
+   "uasl/algorand-vulnerability-scanner@b4ef2e1b7b33",
+   "uasl/voice-ai-development@76a8425e5865",
+   "uasl/python-design-patterns@5c0fbe0d4633",
+   "uasl/bun-runtime@009ca8691cf7",
+   "uasl/siege@06245d21dd1c",
+   "uasl/gateway@8350be122608",
+   "uasl/semgrep-rule-variant-creator@2cea56923011",
+   "uasl/n8n-code-python@ba1cd974d317",
+   "uasl/netsuite-automation@b615a37449c9",
+   "uasl/n8n-code-javascript@203459f10f1d",
+   "uasl/segment-cdp@42e8e765d937",
+   "uasl/workflow-security-audit@84cc84849968",
+   "anthropics-skills/skill-creator@5d80e84222d8",
+   "anthropics-skills/mcp-builder@7e8426a435cb",
+   "uasl/security-audit@0b0f681978a4",
+   "uasl/design-harden@7850aacd7d45"
+  ]
+ },
+ "s4-t038": {
+  "order": [
+   "uasl/n8n-code-python@ba1cd974d317",
+   "uasl/bright-data-best-practices@15cfe1bca9b8",
+   "uasl/owasp-security@9847d3666f75",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/canvas-design@320497271570",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/forge@a8efdfdbe817",
+   "uasl/pexels-automation@85deb1fc6afd",
+   "uasl/frontend-slides@8d62c2eeef30",
+   "uasl/variant-analysis@4e25478feb58",
+   "uasl/bolt@c4895c710162"
+  ],
+  "sources": {
+   "uasl/bolt@c4895c710162": [
+    "bm25"
+   ],
+   "uasl/fastapi-templates@effcd0de0b4c": [
+    "bm25"
+   ],
+   "uasl/forge@a8efdfdbe817": [
+    "bm25"
+   ],
+   "uasl/claude-native-claude-api@24c958899f03": [
+    "bm25"
+   ],
+   "uasl/backend-patterns@3d87ff489f3e": [
+    "bm25"
+   ],
+   "uasl/bright-data-best-practices@15cfe1bca9b8": [
+    "bm25"
+   ],
+   "uasl/variant-analysis@4e25478feb58": [
+    "bm25"
+   ],
+   "uasl/n8n-code-python@ba1cd974d317": [
+    "bm25"
+   ],
+   "uasl/frontend-slides@8d62c2eeef30": [
+    "bm25"
+   ],
+   "uasl/owasp-security@9847d3666f75": [
+    "bm25"
+   ],
+   "uasl/pexels-automation@85deb1fc6afd": [
+    "random"
+   ],
+   "uasl/canvas-design@320497271570": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "uasl/bolt@c4895c710162",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/forge@a8efdfdbe817",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/bright-data-best-practices@15cfe1bca9b8",
+   "uasl/variant-analysis@4e25478feb58",
+   "uasl/n8n-code-python@ba1cd974d317",
+   "uasl/frontend-slides@8d62c2eeef30",
+   "uasl/owasp-security@9847d3666f75",
+   "anthropics-skills/xlsx@5350d36b768c",
+   "uasl/error-handling-patterns@4c19ee7d7821",
+   "uasl/cf-crawl@77a977c31001",
+   "uasl/frontend-design-principles@e9b2a10a43d1",
+   "uasl/segment-cdp@42e8e765d937",
+   "uasl/codeql@f2e86220e2ca",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "uasl/design-an-interface@14a6b0b5787c",
+   "uasl/similarweb-analytics@938e9f87287b",
+   "uasl/ux-audit@d921ee5d8321",
+   "uasl/contract-testing@b0f4c29940a9",
+   "uasl/vibe-security@6b07d0f651a7",
+   "anthropics-skills/frontend-design@0a5ff23f1022",
+   "uasl/gateway@8350be122608",
+   "uasl/design-integration@03e2661a4d5f",
+   "uasl/n8n-workflow-patterns@c9641aab7a0b",
+   "uasl/claude-api@f952c765f5b0",
+   "uasl/cavecrew@6b0708483bbb",
+   "uasl/debug-root-cause@1d7ea4a832dc",
+   "uasl/coding-standards@f854e26a9529",
+   "anthropics-skills/claude-api@e30e2c97f747",
+   "uasl/writing-revision@0a53ecc70a84",
+   "uasl/titan@39c6080f3dfc",
+   "uasl/taste-skill@57790089504e",
+   "uasl/constraint-based-creativity@bc35d25acb0f",
+   "uasl/clay@6c9572941894",
+   "uasl/gpt-tasteskill@134558e228c5",
+   "uasl/n8n-code-javascript@203459f10f1d",
+   "anthropics-skills/pptx@4eb5e13af97f",
+   "uasl/software-architecture@011a6d823631",
+   "uasl/acceptance-testing@7f713f1566e8",
+   "uasl/openweather-api-automation@065a8b46a4a9",
+   "uasl/lens@6fbc66f7a7bb",
+   "uasl/onboarding-ux@525055bbdf31",
+   "uasl/defense-in-depth@e9a7d1415325",
+   "uasl/thinking-systems@07aec864bc94",
+   "uasl/api-design@bba608f8c974",
+   "uasl/reviews-retros-reflection@5432cc49ac73",
+   "uasl/architecture-patterns@d184d1c3a346",
+   "uasl/builder@8d7f0953ade3"
+  ]
+ },
+ "s4-t040": {
+  "order": [
+   "uasl/specter@eeba33cf9245",
+   "uasl/connect@77e02b4574f6",
+   "uasl/vibe-security@6b07d0f651a7",
+   "uasl/kadoa-automation@3a2eb009abd7",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/forcemanager-automation@1e1561c4243d",
+   "uasl/netsuite-automation@b615a37449c9",
+   "uasl/gsap-utils@a1cbf677d835",
+   "uasl/microservices-patterns@40adea69dde4",
+   "uasl/algorand-vulnerability-scanner@b4ef2e1b7b33",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/ddia-systems@d2b3af9bb043"
+  ],
+  "sources": {
+   "uasl/specter@eeba33cf9245": [
+    "2a",
+    "bm25"
+   ],
+   "uasl/ddia-systems@d2b3af9bb043": [
+    "2a"
+   ],
+   "uasl/claude-native-claude-api@24c958899f03": [
+    "bm25"
+   ],
+   "uasl/fastapi-templates@effcd0de0b4c": [
+    "bm25"
+   ],
+   "uasl/connect@77e02b4574f6": [
+    "bm25"
+   ],
+   "uasl/algorand-vulnerability-scanner@b4ef2e1b7b33": [
+    "bm25"
+   ],
+   "uasl/backend-patterns@3d87ff489f3e": [
+    "bm25"
+   ],
+   "uasl/vibe-security@6b07d0f651a7": [
+    "bm25"
+   ],
+   "uasl/gsap-utils@a1cbf677d835": [
+    "bm25"
+   ],
+   "uasl/netsuite-automation@b615a37449c9": [
+    "bm25"
+   ],
+   "uasl/microservices-patterns@40adea69dde4": [
+    "bm25"
+   ],
+   "uasl/forcemanager-automation@1e1561c4243d": [
+    "random"
+   ],
+   "uasl/kadoa-automation@3a2eb009abd7": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/connect@77e02b4574f6",
+   "uasl/algorand-vulnerability-scanner@b4ef2e1b7b33",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/vibe-security@6b07d0f651a7",
+   "uasl/specter@eeba33cf9245",
+   "uasl/gsap-utils@a1cbf677d835",
+   "uasl/netsuite-automation@b615a37449c9",
+   "uasl/microservices-patterns@40adea69dde4",
+   "uasl/estimation-fermi@3630339fb35e",
+   "uasl/gorgias-automation@2106c504916d",
+   "uasl/connect-apps@9a34ce12c40c",
+   "uasl/forge@a8efdfdbe817",
+   "anthropics-skills/xlsx@5350d36b768c",
+   "uasl/claude-api@f952c765f5b0",
+   "uasl/webex-automation@7afdcc0f0d94",
+   "uasl/segment-cdp@42e8e765d937",
+   "uasl/security-review@fcc354bc486e",
+   "uasl/design-integration@03e2661a4d5f",
+   "anthropics-skills/claude-api@e30e2c97f747",
+   "uasl/excel-automation@026ac73c3c63",
+   "uasl/bolt@c4895c710162",
+   "uasl/design-system-patterns@cd952cab0879",
+   "uasl/release-it@e3e5b4710eea",
+   "uasl/dynamics365-automation@03e4959eec42",
+   "uasl/ramp-automation@25b168650188",
+   "uasl/coding-standards@f854e26a9529",
+   "uasl/sketch@2a8aac6ecc18",
+   "uasl/storybrand-messaging@b5d59f437b2f",
+   "uasl/crosspost@391532c80819",
+   "uasl/async-python-patterns@957ebfe54aa7",
+   "uasl/contract-testing@b0f4c29940a9",
+   "uasl/llm-security@be01c2d8d30b",
+   "uasl/edit-article@50d401cdd74b",
+   "uasl/onesignal-rest-api-automation@69760a7d8416",
+   "uasl/google-admin-automation@c0e29c39549e",
+   "uasl/gstack@3a23a30cf4c0",
+   "uasl/landing-page@455a3c3ba6f7",
+   "uasl/ln-020-codegraph@4b3c5fef9457",
+   "uasl/api-testing@4ada9a2fac88",
+   "uasl/brand-voice@1253e24a13ab",
+   "uasl/ring-central-automation@06c9d910bfec",
+   "uasl/vercel-react-best-practices@70f3b5aaf775",
+   "uasl/capsule-crm-automation@97113fa8404d",
+   "uasl/design-system-creation@ec5d23e4e974",
+   "uasl/visual-design-foundations@f7829f5da0d2",
+   "uasl/echo@cb69fbdef665",
+   "uasl/braintree-automation@6ca1049d53ee",
+   "uasl/investor-outreach@fedb2eb4a89c"
+  ]
+ },
+ "s4-t044": {
+  "order": [
+   "uasl/unit-testing@6c5fbb821103",
+   "uasl/systematic-debug@6b158e105823",
+   "uasl/3d-web-experience@e1485751556b",
+   "uasl/contract-testing@b0f4c29940a9",
+   "uasl/polyglot@11be7885bda2",
+   "uasl/python-testing-patterns@e62d0f1ca316",
+   "uasl/tdd-workflow@6eadb0bf0ea8",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "uasl/gsap-frameworks@13a7c7540177",
+   "uasl/mapbox-automation@4abb5fe11f9c",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/wycheproof@8924e1e4bfb6",
+   "uasl/debugging-strategies@c55dad9c9654"
+  ],
+  "sources": {
+   "uasl/python-testing-patterns@e62d0f1ca316": [
+    "2a"
+   ],
+   "uasl/polyglot@11be7885bda2": [
+    "bm25"
+   ],
+   "uasl/fastapi-templates@effcd0de0b4c": [
+    "bm25"
+   ],
+   "uasl/systematic-debug@6b158e105823": [
+    "bm25"
+   ],
+   "uasl/contract-testing@b0f4c29940a9": [
+    "bm25"
+   ],
+   "anthropics-skills/webapp-testing@a4b4ce82b644": [
+    "bm25"
+   ],
+   "uasl/3d-web-experience@e1485751556b": [
+    "bm25"
+   ],
+   "uasl/gsap-frameworks@13a7c7540177": [
+    "bm25"
+   ],
+   "uasl/unit-testing@6c5fbb821103": [
+    "bm25"
+   ],
+   "uasl/tdd-workflow@6eadb0bf0ea8": [
+    "bm25"
+   ],
+   "uasl/wycheproof@8924e1e4bfb6": [
+    "bm25"
+   ],
+   "uasl/debugging-strategies@c55dad9c9654": [
+    "random"
+   ],
+   "uasl/mapbox-automation@4abb5fe11f9c": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "uasl/polyglot@11be7885bda2",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/systematic-debug@6b158e105823",
+   "uasl/contract-testing@b0f4c29940a9",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "uasl/3d-web-experience@e1485751556b",
+   "uasl/gsap-frameworks@13a7c7540177",
+   "uasl/unit-testing@6c5fbb821103",
+   "uasl/tdd-workflow@6eadb0bf0ea8",
+   "uasl/wycheproof@8924e1e4bfb6",
+   "uasl/api-testing@4ada9a2fac88",
+   "uasl/gsap-react@79939b61e00a",
+   "uasl/radar@a47ea6fd5f95",
+   "uasl/acceptance-testing@7f713f1566e8",
+   "uasl/atheris@5b575b7295c7",
+   "uasl/mcp-server-patterns@63e29e48e956",
+   "uasl/n8n-code-javascript@203459f10f1d",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/python-testing-patterns@e62d0f1ca316",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/integration-testing@62b51275be50",
+   "anthropics-skills/pptx@4eb5e13af97f",
+   "uasl/segment-cdp@42e8e765d937",
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/using-git-worktrees@b0857168cfee",
+   "uasl/builder@8d7f0953ade3",
+   "uasl/vercel-react-best-practices@70f3b5aaf775",
+   "uasl/vibe-security@6b07d0f651a7",
+   "uasl/tdd@ff86dad94075",
+   "anthropics-skills/xlsx@5350d36b768c",
+   "uasl/setup-pre-commit@95f6657588a0",
+   "uasl/debug-root-cause@1d7ea4a832dc",
+   "uasl/everything-claude-code@dad489339e1e",
+   "uasl/verification-loop@39d9be23cf50",
+   "uasl/bolt@c4895c710162",
+   "uasl/architecture-patterns@d184d1c3a346",
+   "uasl/executive-onboarding-playbook@dc89777e55ba",
+   "uasl/forge@a8efdfdbe817",
+   "uasl/product-showcase@47ddb0e168e1",
+   "uasl/nextjs-turbopack@b0af0186e13a",
+   "uasl/ux-audit@d921ee5d8321",
+   "uasl/test-driven-development@0eebe2fe0e28",
+   "uasl/imagegen-frontend-mobile@d57843fce66f",
+   "uasl/live-artifact@a7e66be6fd82",
+   "uasl/uploadcare-automation@e055339389ff",
+   "uasl/harvest-automation@9d33356a1149",
+   "uasl/to-issues@fe551bc54a09",
+   "anthropics-skills/mcp-builder@7e8426a435cb",
+   "uasl/quickbooks-automation@bbe37470a32c",
+   "uasl/claude-api@f952c765f5b0"
+  ]
+ },
+ "s4-t065": {
+  "order": [
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/verification-loop@39d9be23cf50",
+   "uasl/ln-020-codegraph@4b3c5fef9457",
+   "uasl/refactoring-patterns@7283bad3e86e",
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/sensibo-automation@9dccf51be258",
+   "uasl/bolt@c4895c710162",
+   "uasl/setup-pre-commit@95f6657588a0",
+   "uasl/logo-dev-automation@268ed6b2989e",
+   "uasl/acceptance-testing@7f713f1566e8",
+   "uasl/everything-claude-code@dad489339e1e",
+   "uasl/python-design-patterns@5c0fbe0d4633"
+  ],
+  "sources": {
+   "uasl/refactoring-patterns@7283bad3e86e": [
+    "2a"
+   ],
+   "uasl/python-design-patterns@5c0fbe0d4633": [
+    "2a"
+   ],
+   "uasl/fastapi-templates@effcd0de0b4c": [
+    "bm25"
+   ],
+   "uasl/fastapi-endpoint@2a93d50c4970": [
+    "bm25"
+   ],
+   "uasl/claude-native-claude-api@24c958899f03": [
+    "bm25"
+   ],
+   "uasl/acceptance-testing@7f713f1566e8": [
+    "bm25"
+   ],
+   "uasl/backend-patterns@3d87ff489f3e": [
+    "bm25"
+   ],
+   "uasl/setup-pre-commit@95f6657588a0": [
+    "bm25"
+   ],
+   "uasl/verification-loop@39d9be23cf50": [
+    "bm25"
+   ],
+   "uasl/everything-claude-code@dad489339e1e": [
+    "bm25"
+   ],
+   "uasl/bolt@c4895c710162": [
+    "bm25"
+   ],
+   "uasl/ln-020-codegraph@4b3c5fef9457": [
+    "bm25"
+   ],
+   "uasl/sensibo-automation@9dccf51be258": [
+    "random"
+   ],
+   "uasl/logo-dev-automation@268ed6b2989e": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/acceptance-testing@7f713f1566e8",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/setup-pre-commit@95f6657588a0",
+   "uasl/verification-loop@39d9be23cf50",
+   "uasl/everything-claude-code@dad489339e1e",
+   "uasl/bolt@c4895c710162",
+   "uasl/ln-020-codegraph@4b3c5fef9457",
+   "uasl/n8n-workflow-patterns@c9641aab7a0b",
+   "uasl/tdd@ff86dad94075",
+   "uasl/printing-press-reprint@af02d260d0be",
+   "uasl/monorepo-management@4078df072127",
+   "uasl/radar@a47ea6fd5f95",
+   "uasl/architecture-patterns@d184d1c3a346",
+   "uasl/software-architecture@011a6d823631",
+   "uasl/integration-testing@62b51275be50",
+   "anthropics-skills/docx@74e2b8b277a4",
+   "uasl/builder@8d7f0953ade3",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "anthropics-skills/xlsx@5350d36b768c",
+   "uasl/to-issues@fe551bc54a09",
+   "uasl/browser-extension-builder@3240e6183c28",
+   "uasl/claude-api@f952c765f5b0",
+   "uasl/forge@a8efdfdbe817",
+   "uasl/polyglot@11be7885bda2",
+   "uasl/gateway@8350be122608",
+   "uasl/component-flattening-analysis@82a0a8d664dd",
+   "uasl/canvas@fc2071ed7429",
+   "uasl/judge@6ea2e485149e",
+   "uasl/atlas@eeafabd38463",
+   "uasl/user-story-splitting@2d9d6a6fd3e3",
+   "uasl/bun-runtime@009ca8691cf7",
+   "uasl/grove@f2d6429d9632",
+   "uasl/bright-data-best-practices@15cfe1bca9b8",
+   "uasl/data-schema-knowledge-modeling@c06f86b10d33",
+   "uasl/api-design@bba608f8c974",
+   "uasl/vibe-security@6b07d0f651a7",
+   "uasl/lens@6fbc66f7a7bb",
+   "uasl/write-a-skill@82d5bd29e631",
+   "uasl/thinking-partner@80abb24d238a",
+   "uasl/skill-seekers@d8bf1d3864b9",
+   "uasl/api-testing@4ada9a2fac88",
+   "uasl/writing-revision@0a53ecc70a84",
+   "uasl/codeql@f2e86220e2ca",
+   "uasl/x-api@f7be0ce6f0ec",
+   "uasl/attest@3259b6f024a0",
+   "uasl/contract-testing@b0f4c29940a9",
+   "uasl/component-identification-sizing@a9b4aa9f2de1"
+  ]
+ },
+ "s4-t073": {
+  "order": [
+   "uasl/web-prototype-taste-editorial@ea4a250e3329",
+   "uasl/taste-skill@57790089504e",
+   "uasl/react-patterns@73d1ecc06997",
+   "uasl/refactoring-patterns@7283bad3e86e",
+   "uasl/gpt-tasteskill@134558e228c5",
+   "uasl/plain-automation@b66aa67425f7",
+   "uasl/ln-020-codegraph@4b3c5fef9457",
+   "anthropics-skills/frontend-design@0a5ff23f1022",
+   "uasl/ui-audit@be637d5e2baf",
+   "uasl/dotsimple-automation@d41fef628185",
+   "uasl/design-hook@561de9aa519a",
+   "uasl/frontend-design@5da82907743d",
+   "uasl/design-to-code@fae28f73cda0",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "uasl/frontend-patterns@8f659ce2a0bd"
+  ],
+  "sources": {
+   "uasl/frontend-patterns@8f659ce2a0bd": [
+    "2a"
+   ],
+   "uasl/react-patterns@73d1ecc06997": [
+    "2a"
+   ],
+   "uasl/refactoring-patterns@7283bad3e86e": [
+    "2a"
+   ],
+   "uasl/gpt-tasteskill@134558e228c5": [
+    "bm25"
+   ],
+   "uasl/frontend-design@5da82907743d": [
+    "bm25"
+   ],
+   "uasl/design-to-code@fae28f73cda0": [
+    "bm25"
+   ],
+   "uasl/design-hook@561de9aa519a": [
+    "bm25"
+   ],
+   "uasl/taste-skill@57790089504e": [
+    "bm25"
+   ],
+   "anthropics-skills/frontend-design@0a5ff23f1022": [
+    "bm25"
+   ],
+   "uasl/ln-020-codegraph@4b3c5fef9457": [
+    "bm25"
+   ],
+   "anthropics-skills/webapp-testing@a4b4ce82b644": [
+    "bm25"
+   ],
+   "uasl/ui-audit@be637d5e2baf": [
+    "bm25"
+   ],
+   "uasl/web-prototype-taste-editorial@ea4a250e3329": [
+    "bm25"
+   ],
+   "uasl/dotsimple-automation@d41fef628185": [
+    "random"
+   ],
+   "uasl/plain-automation@b66aa67425f7": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "uasl/gpt-tasteskill@134558e228c5",
+   "uasl/frontend-design@5da82907743d",
+   "uasl/design-to-code@fae28f73cda0",
+   "uasl/design-hook@561de9aa519a",
+   "uasl/taste-skill@57790089504e",
+   "anthropics-skills/frontend-design@0a5ff23f1022",
+   "uasl/ln-020-codegraph@4b3c5fef9457",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "uasl/ui-audit@be637d5e2baf",
+   "uasl/web-prototype-taste-editorial@ea4a250e3329",
+   "uasl/frontend-design-principles@e9b2a10a43d1",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/next-cache-components@b22f6e134147",
+   "uasl/design-review@4964367926b4",
+   "uasl/caveman-stats@2859ce4e33a6",
+   "uasl/setup-pre-commit@95f6657588a0",
+   "uasl/soft-skill@4dd04c5022d2",
+   "uasl/frontend-patterns@8f659ce2a0bd",
+   "uasl/image-to-code-skill@4f1a4537825d",
+   "uasl/agent-sort@a8e06853ada8",
+   "uasl/anvil@3a36e8410205",
+   "uasl/web-design-builder@61ee1c248717",
+   "uasl/gsap-performance@545d16027a95",
+   "uasl/responsive-design@2cf7927ef938",
+   "uasl/component-flattening-analysis@82a0a8d664dd",
+   "uasl/bolt@c4895c710162",
+   "uasl/gsap-frameworks@13a7c7540177",
+   "uasl/design-system-creation@ec5d23e4e974",
+   "uasl/n8n-validation-expert@9fd2d7e332b0",
+   "uasl/forge@a8efdfdbe817",
+   "uasl/vercel-react-native-skills@6e314641b44a",
+   "uasl/vercel-react-best-practices@70f3b5aaf775",
+   "uasl/imagegen-frontend-web@3c09b1b364ef",
+   "uasl/codeql@f2e86220e2ca",
+   "uasl/artisan@1e09f38ffcab",
+   "uasl/radar@a47ea6fd5f95",
+   "uasl/web-design-guidelines@b95baac579eb",
+   "uasl/titan@39c6080f3dfc",
+   "anthropics-skills/web-artifacts-builder@9c350d2f5f13",
+   "uasl/banner-design@0e161f38cea1",
+   "uasl/vercel-composition-patterns@a6f8be32b197",
+   "uasl/web-perf@9063b7e5eacf",
+   "uasl/builder@8d7f0953ade3",
+   "uasl/systematic-debug@6b158e105823",
+   "uasl/teamcamp-automation@aa48c88a793d",
+   "uasl/refactoring-ui@a0c00159d43d",
+   "uasl/variant-analysis@4e25478feb58",
+   "uasl/vibe-security@6b07d0f651a7",
+   "uasl/monorepo-management@4078df072127",
+   "uasl/slack-bot-builder@ce64c6aad24e"
+  ]
+ },
+ "s4-t091": {
+  "order": [
+   "uasl/unit-testing@6c5fbb821103",
+   "uasl/python-testing-patterns@e62d0f1ca316",
+   "uasl/windows-privilege-escalation@dbfda1d74f8e",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/gsap-utils@a1cbf677d835",
+   "uasl/architecture-patterns@d184d1c3a346",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/bolt@c4895c710162",
+   "uasl/integration-testing@62b51275be50",
+   "uasl/findymail-automation@be5ac18b44c6",
+   "uasl/toggl-automation@ade179c88f7f"
+  ],
+  "sources": {
+   "uasl/python-testing-patterns@e62d0f1ca316": [
+    "2a",
+    "bm25"
+   ],
+   "uasl/unit-testing@6c5fbb821103": [
+    "bm25"
+   ],
+   "uasl/gsap-utils@a1cbf677d835": [
+    "bm25"
+   ],
+   "uasl/fastapi-templates@effcd0de0b4c": [
+    "bm25"
+   ],
+   "uasl/claude-native-claude-api@24c958899f03": [
+    "bm25"
+   ],
+   "uasl/windows-privilege-escalation@dbfda1d74f8e": [
+    "bm25"
+   ],
+   "uasl/bolt@c4895c710162": [
+    "bm25"
+   ],
+   "uasl/integration-testing@62b51275be50": [
+    "bm25"
+   ],
+   "uasl/architecture-patterns@d184d1c3a346": [
+    "bm25"
+   ],
+   "uasl/backend-patterns@3d87ff489f3e": [
+    "bm25"
+   ],
+   "uasl/toggl-automation@ade179c88f7f": [
+    "random"
+   ],
+   "uasl/findymail-automation@be5ac18b44c6": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "uasl/unit-testing@6c5fbb821103",
+   "uasl/gsap-utils@a1cbf677d835",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/windows-privilege-escalation@dbfda1d74f8e",
+   "uasl/python-testing-patterns@e62d0f1ca316",
+   "uasl/bolt@c4895c710162",
+   "uasl/integration-testing@62b51275be50",
+   "uasl/architecture-patterns@d184d1c3a346",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/product-showcase@47ddb0e168e1",
+   "uasl/design-system-patterns@cd952cab0879",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "uasl/token-metrics-automation@6fadb79ed1c7",
+   "uasl/caveman-stats@2859ce4e33a6",
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/landing-page@455a3c3ba6f7",
+   "uasl/wycheproof@8924e1e4bfb6",
+   "uasl/output-skill@8da7a8f7c7fc",
+   "uasl/segment-cdp@42e8e765d937",
+   "uasl/imagegen-frontend-mobile@d57843fce66f",
+   "uasl/owasp-security@9847d3666f75",
+   "uasl/theme-factory@3703d7e4f45c",
+   "uasl/claude-native-theme-factory@4ef38be1dfbf",
+   "anthropics-skills/theme-factory@b505b234a3cd",
+   "uasl/forge@a8efdfdbe817",
+   "uasl/design-integration@03e2661a4d5f",
+   "uasl/slack-bot-builder@ce64c6aad24e",
+   "uasl/design-system-creation@ec5d23e4e974",
+   "uasl/lastpass-automation@207fe0ad45a7",
+   "uasl/debugging-strategies@c55dad9c9654",
+   "uasl/next-upgrade@df465f7770a5",
+   "uasl/changelog-generator@f7da9390521a",
+   "uasl/async-python-patterns@957ebfe54aa7",
+   "uasl/design-brief@3b3646a38d3e",
+   "uasl/brandkit@be1d18f9b581",
+   "uasl/vibe-security@6b07d0f651a7",
+   "uasl/vercel-cli-with-tokens@3f9c2805c482",
+   "uasl/dot@e787e142131c",
+   "uasl/git-advanced-workflows@72c3e980a1f8",
+   "anthropics-skills/claude-api@e30e2c97f747",
+   "uasl/web-design-builder@61ee1c248717",
+   "uasl/voice-ai-development@76a8425e5865",
+   "uasl/coding-standards@f854e26a9529",
+   "uasl/web-design-guidelines@b95baac579eb",
+   "uasl/test-app-automation@abdd84ebc0ec",
+   "uasl/loom@e731d9ef70c3",
+   "uasl/openapi-spec-generation@2d2c7a93b8f2",
+   "uasl/insecure-defaults@a0e826721018",
+   "uasl/connect@77e02b4574f6"
+  ]
+ },
+ "s4-t092": {
+  "order": [
+   "uasl/ln-020-codegraph@4b3c5fef9457",
+   "uasl/everything-claude-code@dad489339e1e",
+   "uasl/python-testing-patterns@e62d0f1ca316",
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/using-git-worktrees@b0857168cfee",
+   "uasl/brightpearl-automation@1ecb8adc7ebd",
+   "uasl/proto-persona@3f45ee751a23",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/unit-testing@6c5fbb821103",
+   "uasl/verification-loop@39d9be23cf50",
+   "anthropics-skills/xlsx@5350d36b768c",
+   "uasl/radar@a47ea6fd5f95"
+  ],
+  "sources": {
+   "uasl/python-testing-patterns@e62d0f1ca316": [
+    "2a",
+    "bm25"
+   ],
+   "uasl/unit-testing@6c5fbb821103": [
+    "bm25"
+   ],
+   "uasl/radar@a47ea6fd5f95": [
+    "bm25"
+   ],
+   "uasl/fastapi-templates@effcd0de0b4c": [
+    "bm25"
+   ],
+   "uasl/using-git-worktrees@b0857168cfee": [
+    "bm25"
+   ],
+   "uasl/verification-loop@39d9be23cf50": [
+    "bm25"
+   ],
+   "uasl/ln-020-codegraph@4b3c5fef9457": [
+    "bm25"
+   ],
+   "uasl/fastapi-endpoint@2a93d50c4970": [
+    "bm25"
+   ],
+   "anthropics-skills/xlsx@5350d36b768c": [
+    "bm25"
+   ],
+   "uasl/everything-claude-code@dad489339e1e": [
+    "bm25"
+   ],
+   "uasl/brightpearl-automation@1ecb8adc7ebd": [
+    "random"
+   ],
+   "uasl/proto-persona@3f45ee751a23": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "uasl/unit-testing@6c5fbb821103",
+   "uasl/python-testing-patterns@e62d0f1ca316",
+   "uasl/radar@a47ea6fd5f95",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/using-git-worktrees@b0857168cfee",
+   "uasl/verification-loop@39d9be23cf50",
+   "uasl/ln-020-codegraph@4b3c5fef9457",
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "anthropics-skills/xlsx@5350d36b768c",
+   "uasl/everything-claude-code@dad489339e1e",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/integration-testing@62b51275be50",
+   "uasl/acceptance-testing@7f713f1566e8",
+   "uasl/tdd-workflow@6eadb0bf0ea8",
+   "uasl/landing-page@455a3c3ba6f7",
+   "uasl/architecture-patterns@d184d1c3a346",
+   "uasl/tdd@ff86dad94075",
+   "uasl/systematic-debug@6b158e105823",
+   "uasl/design-integration@03e2661a4d5f",
+   "uasl/gsap-utils@a1cbf677d835",
+   "uasl/cf-crawl@77a977c31001",
+   "uasl/printing-press-reprint@af02d260d0be",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "uasl/voice-ai-development@76a8425e5865",
+   "uasl/test-driven-development@0eebe2fe0e28",
+   "uasl/showcase@66f46f81d885",
+   "uasl/wycheproof@8924e1e4bfb6",
+   "uasl/ripple@620dca56eca0",
+   "anthropics-skills/pptx@4eb5e13af97f",
+   "uasl/vercel-cli-with-tokens@3f9c2805c482",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/api-testing@4ada9a2fac88",
+   "uasl/banner-design@0e161f38cea1",
+   "anthropics-skills/claude-api@e30e2c97f747",
+   "uasl/security-review@fcc354bc486e",
+   "uasl/owasp-security@9847d3666f75",
+   "uasl/caveman-commit@244182e952a7",
+   "uasl/tweaks@800b9d426375",
+   "uasl/connect@77e02b4574f6",
+   "uasl/vibe-security@6b07d0f651a7",
+   "uasl/coding-standards@f854e26a9529",
+   "uasl/bun-runtime@009ca8691cf7",
+   "uasl/debug-root-cause@1d7ea4a832dc",
+   "uasl/x-api@f7be0ce6f0ec",
+   "uasl/contract-testing@b0f4c29940a9",
+   "uasl/openapi-spec-generation@2d2c7a93b8f2",
+   "uasl/specter@eeba33cf9245",
+   "uasl/setup-pre-commit@95f6657588a0",
+   "uasl/manim@b0a6f7da4632",
+   "uasl/openai-automation@e4810b012ee7"
+  ]
+ },
+ "s4-t100": {
+  "order": [
+   "uasl/frontend-design-principles@e9b2a10a43d1",
+   "uasl/gpt-tasteskill@134558e228c5",
+   "uasl/web-design-builder@61ee1c248717",
+   "uasl/design-to-code@fae28f73cda0",
+   "uasl/taste-skill@57790089504e",
+   "uasl/firecrawl-scraper@8691949c9232",
+   "uasl/e2e-testing-patterns@8b25fb0b2da6",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "uasl/radar@a47ea6fd5f95",
+   "uasl/forge@a8efdfdbe817",
+   "uasl/code-review@dface80322fb",
+   "uasl/frontend-design@5da82907743d",
+   "uasl/fastapi-endpoint@2a93d50c4970"
+  ],
+  "sources": {
+   "uasl/e2e-testing-patterns@8b25fb0b2da6": [
+    "2a"
+   ],
+   "uasl/gpt-tasteskill@134558e228c5": [
+    "bm25"
+   ],
+   "anthropics-skills/webapp-testing@a4b4ce82b644": [
+    "bm25"
+   ],
+   "uasl/frontend-design@5da82907743d": [
+    "bm25"
+   ],
+   "uasl/web-design-builder@61ee1c248717": [
+    "bm25"
+   ],
+   "uasl/taste-skill@57790089504e": [
+    "bm25"
+   ],
+   "uasl/forge@a8efdfdbe817": [
+    "bm25"
+   ],
+   "uasl/radar@a47ea6fd5f95": [
+    "bm25"
+   ],
+   "uasl/frontend-design-principles@e9b2a10a43d1": [
+    "bm25"
+   ],
+   "uasl/design-to-code@fae28f73cda0": [
+    "bm25"
+   ],
+   "uasl/fastapi-endpoint@2a93d50c4970": [
+    "bm25"
+   ],
+   "uasl/firecrawl-scraper@8691949c9232": [
+    "random"
+   ],
+   "uasl/code-review@dface80322fb": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "uasl/gpt-tasteskill@134558e228c5",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "uasl/frontend-design@5da82907743d",
+   "uasl/web-design-builder@61ee1c248717",
+   "uasl/taste-skill@57790089504e",
+   "uasl/forge@a8efdfdbe817",
+   "uasl/radar@a47ea6fd5f95",
+   "uasl/frontend-design-principles@e9b2a10a43d1",
+   "uasl/design-to-code@fae28f73cda0",
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/typescript-unit-testing@6fb3561edcb3",
+   "uasl/web-prototype-taste-editorial@ea4a250e3329",
+   "uasl/tdd-workflow@6eadb0bf0ea8",
+   "uasl/setup-matt-pocock-skills@d52ac42900e6",
+   "uasl/browser-automation@49c3aed21e27",
+   "uasl/monorepo-management@4078df072127",
+   "uasl/polyglot@11be7885bda2",
+   "uasl/universal-ai-skills@0128810b6ffe",
+   "uasl/perf-web-optimization@0e20e7b8cc98",
+   "uasl/bolt@c4895c710162",
+   "uasl/using-git-worktrees@b0857168cfee",
+   "uasl/ui-audit@be637d5e2baf",
+   "uasl/bright-data-best-practices@15cfe1bca9b8",
+   "uasl/design-brief@3b3646a38d3e",
+   "uasl/static-analysis@88c6f201cae0",
+   "uasl/imagegen-frontend-web@3c09b1b364ef",
+   "uasl/integration-testing@62b51275be50",
+   "uasl/frame@40df32596215",
+   "uasl/motion-canvas@08d879d31903",
+   "anthropics-skills/frontend-design@0a5ff23f1022",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/next-best-practices@ee058f89acea",
+   "uasl/gsap-performance@545d16027a95",
+   "uasl/web-perf@9063b7e5eacf",
+   "uasl/setup-pre-commit@95f6657588a0",
+   "uasl/image-to-code-skill@4f1a4537825d",
+   "uasl/zen@f72229d0a781",
+   "uasl/design-review@4964367926b4",
+   "uasl/attest@3259b6f024a0",
+   "uasl/builder@8d7f0953ade3",
+   "uasl/systematic-debug@6b158e105823",
+   "uasl/soft-skill@4dd04c5022d2",
+   "uasl/ln-020-codegraph@4b3c5fef9457",
+   "uasl/vercel-composition-patterns@a6f8be32b197",
+   "uasl/unit-testing@6c5fbb821103",
+   "uasl/impeccable-frontend-design@deeb3fdb9086",
+   "uasl/vercel-react-best-practices@70f3b5aaf775",
+   "uasl/subagent-driven-development@c88a11afe515",
+   "uasl/component-identification-sizing@a9b4aa9f2de1",
+   "uasl/documentation-lookup@dee6d7478eab"
+  ]
+ },
+ "s4-t118": {
+  "order": [
+   "uasl/architecture-patterns@d184d1c3a346",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/bright-data-best-practices@15cfe1bca9b8",
+   "uasl/design-integration@03e2661a4d5f",
+   "uasl/digital-ocean-automation@e1ed99cb4214",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/vibe-security@6b07d0f651a7",
+   "uasl/forge@a8efdfdbe817",
+   "uasl/requesting-code-review@82594984f359",
+   "uasl/perf-web-optimization@0e20e7b8cc98",
+   "uasl/bolt@c4895c710162"
+  ],
+  "sources": {
+   "uasl/claude-native-claude-api@24c958899f03": [
+    "bm25"
+   ],
+   "uasl/fastapi-templates@effcd0de0b4c": [
+    "bm25"
+   ],
+   "uasl/backend-patterns@3d87ff489f3e": [
+    "bm25"
+   ],
+   "uasl/bolt@c4895c710162": [
+    "bm25"
+   ],
+   "uasl/design-integration@03e2661a4d5f": [
+    "bm25"
+   ],
+   "uasl/bright-data-best-practices@15cfe1bca9b8": [
+    "bm25"
+   ],
+   "uasl/requesting-code-review@82594984f359": [
+    "bm25"
+   ],
+   "uasl/forge@a8efdfdbe817": [
+    "bm25"
+   ],
+   "uasl/vibe-security@6b07d0f651a7": [
+    "bm25"
+   ],
+   "uasl/architecture-patterns@d184d1c3a346": [
+    "bm25"
+   ],
+   "uasl/perf-web-optimization@0e20e7b8cc98": [
+    "random"
+   ],
+   "uasl/digital-ocean-automation@e1ed99cb4214": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/bolt@c4895c710162",
+   "uasl/design-integration@03e2661a4d5f",
+   "uasl/bright-data-best-practices@15cfe1bca9b8",
+   "uasl/requesting-code-review@82594984f359",
+   "uasl/forge@a8efdfdbe817",
+   "uasl/vibe-security@6b07d0f651a7",
+   "uasl/architecture-patterns@d184d1c3a346",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "uasl/firecrawl-automation@555ae9b52289",
+   "uasl/contract-testing@b0f4c29940a9",
+   "uasl/openapi-spec-generation@2d2c7a93b8f2",
+   "uasl/gsap-scrolltrigger@dd7bfe79efb2",
+   "uasl/voice-ai-development@76a8425e5865",
+   "uasl/think-tank@833fcce1b6d9",
+   "uasl/content-research-writer@f1af82e4025e",
+   "uasl/polyglot@11be7885bda2",
+   "uasl/receiving-code-review@5c548774a9ad",
+   "uasl/segment-cdp@42e8e765d937",
+   "uasl/radar@a47ea6fd5f95",
+   "uasl/imagegen-frontend-web@3c09b1b364ef",
+   "uasl/error-handling-patterns@4c19ee7d7821",
+   "uasl/x-api@f7be0ce6f0ec",
+   "uasl/insecure-defaults@a0e826721018",
+   "uasl/image-to-code-skill@4f1a4537825d",
+   "anthropics-skills/doc-coauthoring@bb40097e54fb",
+   "uasl/thinking-socratic@7c6f525da475",
+   "uasl/connect@77e02b4574f6",
+   "uasl/api-testing@4ada9a2fac88",
+   "uasl/api-sports-automation@0461bade6799",
+   "uasl/claude-api@f952c765f5b0",
+   "uasl/asin-data-api-automation@fa3bf5f34403",
+   "uasl/ai-ml-api-automation@f198121938ac",
+   "uasl/taste-skill@57790089504e",
+   "uasl/top-100-web-vulnerabilities-reference@21b2293939a2",
+   "uasl/openweather-api-automation@065a8b46a4a9",
+   "uasl/the-odds-api-automation@688dcc38656c",
+   "uasl/sslmate-cert-spotter-api-automation@33ef5987b7da",
+   "uasl/slack-bot-builder@ce64c6aad24e",
+   "uasl/similarweb-analytics@938e9f87287b",
+   "uasl/wolfram-alpha-api-automation@44019919605d",
+   "uasl/uiux-design-review@73334ec22610",
+   "uasl/tavily-web@2b69bd325cb7",
+   "anthropics-skills/mcp-builder@7e8426a435cb",
+   "uasl/owasp-security@9847d3666f75",
+   "uasl/security-review@fcc354bc486e",
+   "uasl/acceptance-testing@7f713f1566e8",
+   "uasl/cavecrew@6b0708483bbb"
+  ]
+ },
+ "s4-t145": {
+  "order": [
+   "uasl/competitive-ads-extractor@6f40d57e4b50",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/instantly-automation@d8854d4a51f6",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/release-it@e3e5b4710eea",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/contract-testing@b0f4c29940a9",
+   "uasl/workday-automation@3e9313379197",
+   "uasl/browser-extension-builder@3240e6183c28",
+   "uasl/gsap-utils@a1cbf677d835",
+   "uasl/product-showcase@47ddb0e168e1",
+   "uasl/bolt@c4895c710162"
+  ],
+  "sources": {
+   "uasl/release-it@e3e5b4710eea": [
+    "2a",
+    "bm25"
+   ],
+   "uasl/claude-native-claude-api@24c958899f03": [
+    "bm25"
+   ],
+   "uasl/fastapi-templates@effcd0de0b4c": [
+    "bm25"
+   ],
+   "uasl/backend-patterns@3d87ff489f3e": [
+    "bm25"
+   ],
+   "uasl/workday-automation@3e9313379197": [
+    "bm25"
+   ],
+   "uasl/contract-testing@b0f4c29940a9": [
+    "bm25"
+   ],
+   "uasl/gsap-utils@a1cbf677d835": [
+    "bm25"
+   ],
+   "uasl/bolt@c4895c710162": [
+    "bm25"
+   ],
+   "uasl/browser-extension-builder@3240e6183c28": [
+    "bm25"
+   ],
+   "uasl/product-showcase@47ddb0e168e1": [
+    "bm25"
+   ],
+   "uasl/competitive-ads-extractor@6f40d57e4b50": [
+    "random"
+   ],
+   "uasl/instantly-automation@d8854d4a51f6": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/workday-automation@3e9313379197",
+   "uasl/contract-testing@b0f4c29940a9",
+   "uasl/gsap-utils@a1cbf677d835",
+   "uasl/bolt@c4895c710162",
+   "uasl/release-it@e3e5b4710eea",
+   "uasl/browser-extension-builder@3240e6183c28",
+   "uasl/product-showcase@47ddb0e168e1",
+   "uasl/api-design@bba608f8c974",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "uasl/architecture-patterns@d184d1c3a346",
+   "uasl/forge@a8efdfdbe817",
+   "uasl/design-integration@03e2661a4d5f",
+   "uasl/bright-data-best-practices@15cfe1bca9b8",
+   "uasl/d3-visualization@739528fdf78d",
+   "uasl/security-review@fcc354bc486e",
+   "uasl/vibe-security@6b07d0f651a7",
+   "uasl/neon-automation@998078570d02",
+   "uasl/gateway@8350be122608",
+   "uasl/voice-ai-development@76a8425e5865",
+   "uasl/debugging-strategies@c55dad9c9654",
+   "uasl/async-python-patterns@957ebfe54aa7",
+   "uasl/tlc-spec-driven@394ed16ecc07",
+   "uasl/segment-cdp@42e8e765d937",
+   "uasl/vercel-cli-with-tokens@3f9c2805c482",
+   "uasl/beacon@47f360c45fe3",
+   "uasl/visualization-choice-reporting@7496a3ae2eeb",
+   "uasl/atlas@eeafabd38463",
+   "uasl/universal-ai-skills@0128810b6ffe",
+   "uasl/openclaw-color-palette@22baa399c5eb",
+   "uasl/grove@f2d6429d9632",
+   "uasl/writing-pre-publish-checklist@a23d9bdf22bd",
+   "uasl/n8n-workflow-patterns@c9641aab7a0b",
+   "uasl/supply-chain-risk-auditor@e1d4cbea9ff6",
+   "uasl/deel-automation@97aa95264d4f",
+   "uasl/cognitive-fallacies-guard@f04ba097bb61",
+   "uasl/slack-bot-builder@ce64c6aad24e",
+   "uasl/prose@bbd22d3eb9b7",
+   "uasl/the-odds-api-automation@688dcc38656c",
+   "uasl/darwin@77e74a263e71",
+   "uasl/workflow-automation@8036a9d484a3",
+   "anthropics-skills/pptx@4eb5e13af97f",
+   "uasl/frontend-design-principles@e9b2a10a43d1",
+   "uasl/polyglot@11be7885bda2",
+   "uasl/asin-data-api-automation@fa3bf5f34403",
+   "uasl/pdf-api-io-automation@7b8915fb3da2",
+   "uasl/ai-ml-api-automation@f198121938ac",
+   "uasl/api-ninjas-automation@e9437531d148"
+  ]
+ },
+ "s4-t161": {
+  "order": [
+   "uasl/firmao-automation@0e4f47676b63",
+   "uasl/openapi-spec-generation@2d2c7a93b8f2",
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/contract-testing@b0f4c29940a9",
+   "uasl/bolt@c4895c710162",
+   "uasl/acceptance-testing@7f713f1566e8",
+   "uasl/release-it@e3e5b4710eea",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/deployment-pipeline-design@2a89fc6f32ff",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/cloudpress-automation@35519f747e8b",
+   "uasl/error-handling-patterns@4c19ee7d7821",
+   "uasl/async-python-patterns@957ebfe54aa7",
+   "uasl/api-testing@4ada9a2fac88",
+   "uasl/claude-native-claude-api@24c958899f03"
+  ],
+  "sources": {
+   "uasl/release-it@e3e5b4710eea": [
+    "2a"
+   ],
+   "uasl/deployment-pipeline-design@2a89fc6f32ff": [
+    "2a"
+   ],
+   "uasl/async-python-patterns@957ebfe54aa7": [
+    "2a"
+   ],
+   "uasl/fastapi-templates@effcd0de0b4c": [
+    "bm25"
+   ],
+   "uasl/backend-patterns@3d87ff489f3e": [
+    "bm25"
+   ],
+   "uasl/error-handling-patterns@4c19ee7d7821": [
+    "bm25"
+   ],
+   "uasl/fastapi-endpoint@2a93d50c4970": [
+    "bm25"
+   ],
+   "uasl/openapi-spec-generation@2d2c7a93b8f2": [
+    "bm25"
+   ],
+   "uasl/contract-testing@b0f4c29940a9": [
+    "bm25"
+   ],
+   "uasl/api-testing@4ada9a2fac88": [
+    "bm25"
+   ],
+   "uasl/acceptance-testing@7f713f1566e8": [
+    "bm25"
+   ],
+   "uasl/bolt@c4895c710162": [
+    "bm25"
+   ],
+   "uasl/claude-native-claude-api@24c958899f03": [
+    "bm25"
+   ],
+   "uasl/firmao-automation@0e4f47676b63": [
+    "random"
+   ],
+   "uasl/cloudpress-automation@35519f747e8b": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/error-handling-patterns@4c19ee7d7821",
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/openapi-spec-generation@2d2c7a93b8f2",
+   "uasl/contract-testing@b0f4c29940a9",
+   "uasl/api-testing@4ada9a2fac88",
+   "uasl/acceptance-testing@7f713f1566e8",
+   "uasl/bolt@c4895c710162",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/release-it@e3e5b4710eea",
+   "uasl/api-design@bba608f8c974",
+   "uasl/owasp-security@9847d3666f75",
+   "uasl/n8n-code-javascript@203459f10f1d",
+   "uasl/clay@6c9572941894",
+   "uasl/n8n-code-python@ba1cd974d317",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "uasl/connect@77e02b4574f6",
+   "uasl/anvil@3a36e8410205",
+   "uasl/browser-extension-builder@3240e6183c28",
+   "uasl/security-review@fcc354bc486e",
+   "uasl/gsap-utils@a1cbf677d835",
+   "uasl/executive-onboarding-playbook@dc89777e55ba",
+   "uasl/python-error-handling@8dc34883a143",
+   "uasl/write-a-skill@82d5bd29e631",
+   "uasl/landing-page@455a3c3ba6f7",
+   "uasl/writing-revision@0a53ecc70a84",
+   "uasl/tdd-workflow@6eadb0bf0ea8",
+   "uasl/gateway@8350be122608",
+   "uasl/bun-runtime@009ca8691cf7",
+   "uasl/x-api@f7be0ce6f0ec",
+   "uasl/3d-web-experience@e1485751556b",
+   "uasl/kill-criteria-exit-ramps@af7f1bfad09d",
+   "uasl/slack-bot-builder@ce64c6aad24e",
+   "uasl/judge@6ea2e485149e",
+   "uasl/forge@a8efdfdbe817",
+   "uasl/claude-api@f952c765f5b0",
+   "uasl/googlephotos-automation@0b2d3403ccba",
+   "uasl/chrome-devtools@6237e93b6aa2",
+   "uasl/thinking-bounded-rationality@17d6c0bdfb95",
+   "uasl/async-python-patterns@957ebfe54aa7",
+   "uasl/siege@06245d21dd1c",
+   "uasl/sidetracker-automation@54e8a1f15fdb",
+   "uasl/zoho-inventory-automation@2f2863777368",
+   "uasl/n8n-workflow-patterns@c9641aab7a0b",
+   "uasl/provider-api@4da7bed47117",
+   "uasl/skill-share@1399c8172d6b",
+   "uasl/canny-automation@aa331d8fa62f",
+   "uasl/echo@cb69fbdef665",
+   "uasl/bright-data-best-practices@15cfe1bca9b8"
+  ]
+ },
+ "s4-t167": {
+  "order": [
+   "uasl/bolt@c4895c710162",
+   "uasl/openapi-spec-generation@2d2c7a93b8f2",
+   "uasl/vibe-security@6b07d0f651a7",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/static-analysis@88c6f201cae0",
+   "uasl/owasp-security@9847d3666f75",
+   "uasl/it-infrastructure-sysadmin-engine@b170286527c0",
+   "uasl/verification-loop@39d9be23cf50",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/secure-coding-practices@cc37fcd8687e",
+   "uasl/unit-testing@6c5fbb821103",
+   "uasl/insecure-defaults@a0e826721018",
+   "uasl/contract-testing@b0f4c29940a9",
+   "uasl/n8n-node-configuration@11407cd84493"
+  ],
+  "sources": {
+   "uasl/secure-coding-practices@cc37fcd8687e": [
+    "2a"
+   ],
+   "uasl/it-infrastructure-sysadmin-engine@b170286527c0": [
+    "2a"
+   ],
+   "uasl/fastapi-templates@effcd0de0b4c": [
+    "bm25"
+   ],
+   "uasl/static-analysis@88c6f201cae0": [
+    "bm25"
+   ],
+   "uasl/contract-testing@b0f4c29940a9": [
+    "bm25"
+   ],
+   "uasl/claude-native-claude-api@24c958899f03": [
+    "bm25"
+   ],
+   "uasl/bolt@c4895c710162": [
+    "bm25"
+   ],
+   "uasl/insecure-defaults@a0e826721018": [
+    "bm25"
+   ],
+   "uasl/unit-testing@6c5fbb821103": [
+    "bm25"
+   ],
+   "uasl/vibe-security@6b07d0f651a7": [
+    "bm25"
+   ],
+   "uasl/owasp-security@9847d3666f75": [
+    "bm25"
+   ],
+   "uasl/openapi-spec-generation@2d2c7a93b8f2": [
+    "bm25"
+   ],
+   "uasl/n8n-node-configuration@11407cd84493": [
+    "random"
+   ],
+   "uasl/verification-loop@39d9be23cf50": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/static-analysis@88c6f201cae0",
+   "uasl/contract-testing@b0f4c29940a9",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/bolt@c4895c710162",
+   "uasl/insecure-defaults@a0e826721018",
+   "uasl/unit-testing@6c5fbb821103",
+   "uasl/vibe-security@6b07d0f651a7",
+   "uasl/owasp-security@9847d3666f75",
+   "uasl/openapi-spec-generation@2d2c7a93b8f2",
+   "uasl/tdd-workflow@6eadb0bf0ea8",
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/product-showcase@47ddb0e168e1",
+   "uasl/vercel-cli-with-tokens@3f9c2805c482",
+   "uasl/acceptance-testing@7f713f1566e8",
+   "uasl/component-identification-sizing@a9b4aa9f2de1",
+   "uasl/debugging-strategies@c55dad9c9654",
+   "uasl/design-integration@03e2661a4d5f",
+   "uasl/segment-cdp@42e8e765d937",
+   "uasl/api-testing@4ada9a2fac88",
+   "uasl/variant-analysis@4e25478feb58",
+   "uasl/python-type-safety@60be75b4816f",
+   "uasl/3d-web-experience@e1485751556b",
+   "uasl/anvil@3a36e8410205",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/high-perf-browser@aee32087bf43",
+   "uasl/llm-security@be01c2d8d30b",
+   "uasl/using-git-worktrees@b0857168cfee",
+   "uasl/workflow-security-audit@84cc84849968",
+   "uasl/security-review@fcc354bc486e",
+   "uasl/gpt-tasteskill@134558e228c5",
+   "uasl/connect@77e02b4574f6",
+   "uasl/slack-bot-builder@ce64c6aad24e",
+   "uasl/gsap-frameworks@13a7c7540177",
+   "uasl/monorepo-management@4078df072127",
+   "uasl/clay@6c9572941894",
+   "uasl/code-security@e20eb3467925",
+   "uasl/component-flattening-analysis@82a0a8d664dd",
+   "uasl/it-infrastructure-sysadmin-engine@b170286527c0",
+   "uasl/agent-sort@a8e06853ada8",
+   "anthropics-skills/docx@74e2b8b277a4",
+   "uasl/chrome-devtools@6237e93b6aa2",
+   "uasl/top-100-web-vulnerabilities-reference@21b2293939a2",
+   "uasl/systematic-debug@6b158e105823",
+   "uasl/documentation-lookup@dee6d7478eab",
+   "uasl/architecture-patterns@d184d1c3a346",
+   "uasl/judge@6ea2e485149e",
+   "uasl/clean-code@f135cf4e9ff5",
+   "uasl/polyglot@11be7885bda2",
+   "uasl/web-performance-optimization@b2b38275ed40"
+  ]
+ },
+ "s4-t169": {
+  "order": [
+   "uasl/zoho-desk-automation@fc28363b5a7e",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/openapi-spec-generation@2d2c7a93b8f2",
+   "uasl/clay@6c9572941894",
+   "uasl/flow@d1423e53e763",
+   "uasl/contract-testing@b0f4c29940a9",
+   "uasl/python-performance-optimization@bf455fd100bf",
+   "uasl/workflow-automation@8036a9d484a3",
+   "uasl/bolt@c4895c710162",
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/instantly-automation@d8854d4a51f6",
+   "uasl/fastapi-templates@effcd0de0b4c"
+  ],
+  "sources": {
+   "uasl/python-performance-optimization@bf455fd100bf": [
+    "2a",
+    "bm25"
+   ],
+   "uasl/contract-testing@b0f4c29940a9": [
+    "bm25"
+   ],
+   "uasl/fastapi-templates@effcd0de0b4c": [
+    "bm25"
+   ],
+   "uasl/openapi-spec-generation@2d2c7a93b8f2": [
+    "bm25"
+   ],
+   "uasl/fastapi-endpoint@2a93d50c4970": [
+    "bm25"
+   ],
+   "uasl/clay@6c9572941894": [
+    "bm25"
+   ],
+   "uasl/bolt@c4895c710162": [
+    "bm25"
+   ],
+   "uasl/backend-patterns@3d87ff489f3e": [
+    "bm25"
+   ],
+   "uasl/instantly-automation@d8854d4a51f6": [
+    "bm25"
+   ],
+   "uasl/workflow-automation@8036a9d484a3": [
+    "bm25"
+   ],
+   "uasl/flow@d1423e53e763": [
+    "random"
+   ],
+   "uasl/zoho-desk-automation@fc28363b5a7e": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "uasl/contract-testing@b0f4c29940a9",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/openapi-spec-generation@2d2c7a93b8f2",
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/clay@6c9572941894",
+   "uasl/bolt@c4895c710162",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/python-performance-optimization@bf455fd100bf",
+   "uasl/instantly-automation@d8854d4a51f6",
+   "uasl/workflow-automation@8036a9d484a3",
+   "uasl/gsap-utils@a1cbf677d835",
+   "uasl/release-it@e3e5b4710eea",
+   "uasl/browser-extension-builder@3240e6183c28",
+   "uasl/printing-press-reprint@af02d260d0be",
+   "uasl/thinking-effectuation@f26a123bc884",
+   "uasl/forge@a8efdfdbe817",
+   "uasl/investor-outreach@fedb2eb4a89c",
+   "uasl/acceptance-testing@7f713f1566e8",
+   "uasl/deployment-pipeline-design@2a89fc6f32ff",
+   "uasl/gsap-frameworks@13a7c7540177",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "uasl/phantombuster-automation@4448a05bbdf0",
+   "uasl/voice-ai-development@76a8425e5865",
+   "uasl/static-analysis@88c6f201cae0",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/atheris@5b575b7295c7",
+   "uasl/grove@f2d6429d9632",
+   "uasl/lean-startup@776b03bb7136",
+   "uasl/toggl-automation@ade179c88f7f",
+   "uasl/motion-canvas@08d879d31903",
+   "uasl/error-handling-patterns@4c19ee7d7821",
+   "uasl/sherpa@e80ffe2d019e",
+   "uasl/freshbooks-automation@8508cc146d7f",
+   "uasl/reviews-retros-reflection@5432cc49ac73",
+   "uasl/lean-ux@9e67f881c94a",
+   "uasl/thinking-bounded-rationality@17d6c0bdfb95",
+   "uasl/influxdb-cloud-automation@303b971a6e74",
+   "uasl/architecture-patterns@d184d1c3a346",
+   "uasl/thinking-archetypes@48c7ccc46e1c",
+   "uasl/integration-testing@62b51275be50",
+   "uasl/zyte-api-automation@22b4a48968b2",
+   "uasl/vercel-cli-with-tokens@3f9c2805c482",
+   "uasl/agent-introspection-debugging@68529b68f0f1",
+   "uasl/systematic-debug@6b158e105823",
+   "uasl/predictable-revenue@fcafde23c133",
+   "uasl/product-showcase@47ddb0e168e1",
+   "uasl/atlas@eeafabd38463",
+   "uasl/setup-pre-commit@95f6657588a0",
+   "uasl/polyglot@11be7885bda2",
+   "uasl/stripe-best-practices@795a33f68129"
+  ]
+ },
+ "s4-t173": {
+  "order": [
+   "uasl/design-review@4964367926b4",
+   "uasl/product-showcase@47ddb0e168e1",
+   "uasl/vercel-cli-with-tokens@3f9c2805c482",
+   "uasl/deployment-pipeline-design@2a89fc6f32ff",
+   "uasl/insecure-defaults@a0e826721018",
+   "uasl/five-agent-security-review@54653e9fa93f",
+   "uasl/api-testing@4ada9a2fac88",
+   "uasl/pexels-automation@85deb1fc6afd",
+   "uasl/integration-testing@62b51275be50",
+   "uasl/contract-testing@b0f4c29940a9",
+   "uasl/acceptance-testing@7f713f1566e8",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/github-actions-templates@ce03df93ccdf"
+  ],
+  "sources": {
+   "uasl/github-actions-templates@ce03df93ccdf": [
+    "2a"
+   ],
+   "uasl/insecure-defaults@a0e826721018": [
+    "2a",
+    "bm25"
+   ],
+   "uasl/contract-testing@b0f4c29940a9": [
+    "bm25"
+   ],
+   "uasl/vercel-cli-with-tokens@3f9c2805c482": [
+    "bm25"
+   ],
+   "uasl/fastapi-templates@effcd0de0b4c": [
+    "bm25"
+   ],
+   "uasl/api-testing@4ada9a2fac88": [
+    "bm25"
+   ],
+   "uasl/deployment-pipeline-design@2a89fc6f32ff": [
+    "bm25"
+   ],
+   "uasl/acceptance-testing@7f713f1566e8": [
+    "bm25"
+   ],
+   "uasl/integration-testing@62b51275be50": [
+    "bm25"
+   ],
+   "uasl/product-showcase@47ddb0e168e1": [
+    "bm25"
+   ],
+   "uasl/five-agent-security-review@54653e9fa93f": [
+    "bm25"
+   ],
+   "uasl/design-review@4964367926b4": [
+    "random"
+   ],
+   "uasl/pexels-automation@85deb1fc6afd": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "uasl/contract-testing@b0f4c29940a9",
+   "uasl/vercel-cli-with-tokens@3f9c2805c482",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/api-testing@4ada9a2fac88",
+   "uasl/insecure-defaults@a0e826721018",
+   "uasl/deployment-pipeline-design@2a89fc6f32ff",
+   "uasl/acceptance-testing@7f713f1566e8",
+   "uasl/integration-testing@62b51275be50",
+   "uasl/product-showcase@47ddb0e168e1",
+   "uasl/five-agent-security-review@54653e9fa93f",
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/gsap-timeline@d4acd84a00f0",
+   "uasl/using-git-worktrees@b0857168cfee",
+   "uasl/voice-ai-development@76a8425e5865",
+   "uasl/workflow-automation@8036a9d484a3",
+   "uasl/openapi-spec-generation@2d2c7a93b8f2",
+   "uasl/static-analysis@88c6f201cae0",
+   "uasl/windows-privilege-escalation@dbfda1d74f8e",
+   "uasl/caveman-stats@2859ce4e33a6",
+   "uasl/github-workflow-automation@519f4ba6e482",
+   "uasl/secure-coding-practices@cc37fcd8687e",
+   "uasl/provider-api@4da7bed47117",
+   "uasl/radar@a47ea6fd5f95",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "uasl/five-agent-ci-debug@66324570bafb",
+   "uasl/soft-skill@4dd04c5022d2",
+   "uasl/wycheproof@8924e1e4bfb6",
+   "uasl/atheris@5b575b7295c7",
+   "anthropics-skills/discernment-nudge@a9d2caea7e0b",
+   "uasl/vibe-security@6b07d0f651a7",
+   "anthropics-skills/frontend-design@0a5ff23f1022",
+   "uasl/video-editing@6c68b3cc7f35",
+   "uasl/bolt@c4895c710162",
+   "uasl/gsap-plugins@a63cb79f853e",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/architecture-patterns@d184d1c3a346",
+   "uasl/gbrain@cf3beac3a2cf",
+   "uasl/salesforce-marketing-cloud-automation@bda673615399",
+   "uasl/thinking-bounded-rationality@17d6c0bdfb95",
+   "uasl/forge@a8efdfdbe817",
+   "uasl/workshop-facilitation@c8ec916a4f0c",
+   "uasl/agent-introspection-debugging@68529b68f0f1",
+   "uasl/documentation-lookup@dee6d7478eab",
+   "uasl/image-poster@57a9b39c0f2f",
+   "uasl/anvil@3a36e8410205",
+   "uasl/scaffold@443673063eb0",
+   "uasl/ecc-source@ac3a6c8604b3",
+   "uasl/five-agent-captain-merge-gate@de13897132dc",
+   "uasl/slack-bot-builder@ce64c6aad24e"
+  ]
+ },
+ "s4-t187": {
+  "order": [
+   "uasl/python-performance-optimization@bf455fd100bf",
+   "uasl/raffle-winner-picker@6eef98375e60",
+   "uasl/segment-cdp@42e8e765d937",
+   "uasl/stream@94a72913c590",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/lyric@49d6eb64a034",
+   "uasl/chaos-testing@760793a4a18b",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "uasl/verification-loop@39d9be23cf50",
+   "uasl/api-testing@4ada9a2fac88",
+   "uasl/n8n-code-python@ba1cd974d317",
+   "anthropics-skills/xlsx@5350d36b768c",
+   "uasl/integration-testing@62b51275be50",
+   "uasl/backend-patterns@3d87ff489f3e"
+  ],
+  "sources": {
+   "uasl/python-performance-optimization@bf455fd100bf": [
+    "2a"
+   ],
+   "uasl/stream@94a72913c590": [
+    "2a"
+   ],
+   "uasl/backend-patterns@3d87ff489f3e": [
+    "bm25"
+   ],
+   "anthropics-skills/xlsx@5350d36b768c": [
+    "bm25"
+   ],
+   "anthropics-skills/webapp-testing@a4b4ce82b644": [
+    "bm25"
+   ],
+   "uasl/segment-cdp@42e8e765d937": [
+    "bm25"
+   ],
+   "uasl/verification-loop@39d9be23cf50": [
+    "bm25"
+   ],
+   "uasl/n8n-code-python@ba1cd974d317": [
+    "bm25"
+   ],
+   "uasl/chaos-testing@760793a4a18b": [
+    "bm25"
+   ],
+   "uasl/fastapi-templates@effcd0de0b4c": [
+    "bm25"
+   ],
+   "uasl/integration-testing@62b51275be50": [
+    "bm25"
+   ],
+   "uasl/api-testing@4ada9a2fac88": [
+    "bm25"
+   ],
+   "uasl/lyric@49d6eb64a034": [
+    "random"
+   ],
+   "uasl/raffle-winner-picker@6eef98375e60": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "uasl/backend-patterns@3d87ff489f3e",
+   "anthropics-skills/xlsx@5350d36b768c",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "uasl/segment-cdp@42e8e765d937",
+   "uasl/verification-loop@39d9be23cf50",
+   "uasl/n8n-code-python@ba1cd974d317",
+   "uasl/chaos-testing@760793a4a18b",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/integration-testing@62b51275be50",
+   "uasl/api-testing@4ada9a2fac88",
+   "uasl/workday-automation@3e9313379197",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/vercel-react-best-practices@70f3b5aaf775",
+   "uasl/excel-automation@026ac73c3c63",
+   "uasl/owasp-security@9847d3666f75",
+   "uasl/bolt@c4895c710162",
+   "uasl/wycheproof@8924e1e4bfb6",
+   "uasl/cf-crawl@77a977c31001",
+   "uasl/codeql@f2e86220e2ca",
+   "anthropics-skills/pptx@4eb5e13af97f",
+   "uasl/uploadcare-automation@e055339389ff",
+   "anthropics-skills/docx@74e2b8b277a4",
+   "uasl/python-testing-patterns@e62d0f1ca316",
+   "uasl/phantombuster-automation@4448a05bbdf0",
+   "uasl/typescript-clean-code@409278d3a61a",
+   "uasl/architecture-patterns@d184d1c3a346",
+   "uasl/n8n-workflow-patterns@c9641aab7a0b",
+   "uasl/bright-data-best-practices@15cfe1bca9b8",
+   "uasl/acceptance-testing@7f713f1566e8",
+   "uasl/sidetracker-automation@54e8a1f15fdb",
+   "uasl/n8n-code-javascript@203459f10f1d",
+   "uasl/radar@a47ea6fd5f95",
+   "uasl/python-performance-optimization@bf455fd100bf",
+   "uasl/high-perf-browser@aee32087bf43",
+   "uasl/netsuite-automation@b615a37449c9",
+   "uasl/lemlist-automation@a31df61c312a",
+   "uasl/tdd-workflow@6eadb0bf0ea8",
+   "uasl/omnisend-automation@cac8b5f5b289",
+   "uasl/gsap-react@79939b61e00a",
+   "uasl/unit-testing@6c5fbb821103",
+   "uasl/write-a-skill@82d5bd29e631",
+   "uasl/banner-design@0e161f38cea1",
+   "uasl/system-design@e45b77ba7a35",
+   "anthropics-skills/pdf@9bc3a6e1ff66",
+   "uasl/vibe-security@6b07d0f651a7",
+   "uasl/dispatching-parallel-agents@e14ed020e820",
+   "uasl/next-best-practices@ee058f89acea",
+   "uasl/siege@06245d21dd1c",
+   "uasl/design-sprint@4550ceb8d09f",
+   "uasl/top-design@4ea889def6d2"
+  ]
+ },
+ "s4-t190": {
+  "order": [
+   "uasl/cf-crawl@77a977c31001",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/guizang-ppt@169ebe37242f",
+   "uasl/esputnik-automation@d708e2f0102b",
+   "uasl/stream@94a72913c590",
+   "anthropics-skills/pptx@4eb5e13af97f",
+   "uasl/using-git-worktrees@b0857168cfee",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "anthropics-skills/xlsx@5350d36b768c",
+   "uasl/postgresql-table-design@59d09e948243",
+   "anthropics-skills/docx@74e2b8b277a4",
+   "uasl/python-testing-patterns@e62d0f1ca316",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/code-security@e20eb3467925",
+   "uasl/clay@6c9572941894"
+  ],
+  "sources": {
+   "uasl/stream@94a72913c590": [
+    "2a"
+   ],
+   "uasl/python-testing-patterns@e62d0f1ca316": [
+    "2a"
+   ],
+   "uasl/postgresql-table-design@59d09e948243": [
+    "2a"
+   ],
+   "anthropics-skills/xlsx@5350d36b768c": [
+    "bm25"
+   ],
+   "uasl/claude-native-claude-api@24c958899f03": [
+    "bm25"
+   ],
+   "anthropics-skills/pptx@4eb5e13af97f": [
+    "bm25"
+   ],
+   "uasl/clay@6c9572941894": [
+    "bm25"
+   ],
+   "uasl/code-security@e20eb3467925": [
+    "bm25"
+   ],
+   "uasl/fastapi-templates@effcd0de0b4c": [
+    "bm25"
+   ],
+   "uasl/using-git-worktrees@b0857168cfee": [
+    "bm25"
+   ],
+   "anthropics-skills/docx@74e2b8b277a4": [
+    "bm25"
+   ],
+   "uasl/cf-crawl@77a977c31001": [
+    "bm25"
+   ],
+   "uasl/backend-patterns@3d87ff489f3e": [
+    "bm25"
+   ],
+   "uasl/guizang-ppt@169ebe37242f": [
+    "random"
+   ],
+   "uasl/esputnik-automation@d708e2f0102b": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "anthropics-skills/xlsx@5350d36b768c",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "anthropics-skills/pptx@4eb5e13af97f",
+   "uasl/clay@6c9572941894",
+   "uasl/code-security@e20eb3467925",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/using-git-worktrees@b0857168cfee",
+   "anthropics-skills/docx@74e2b8b277a4",
+   "uasl/cf-crawl@77a977c31001",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/acceptance-testing@7f713f1566e8",
+   "uasl/python-testing-patterns@e62d0f1ca316",
+   "uasl/python-error-handling@8dc34883a143",
+   "uasl/radar@a47ea6fd5f95",
+   "uasl/statsmodels@49021b731076",
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/replicate-automation@4053915c756a",
+   "uasl/codeql@f2e86220e2ca",
+   "uasl/setup-pre-commit@95f6657588a0",
+   "uasl/owasp-security@9847d3666f75",
+   "uasl/n8n-code-python@ba1cd974d317",
+   "uasl/coding-standards@f854e26a9529",
+   "uasl/netsuite-automation@b615a37449c9",
+   "anthropics-skills/pdf@9bc3a6e1ff66",
+   "uasl/builder@8d7f0953ade3",
+   "uasl/architecture-patterns@d184d1c3a346",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "uasl/unit-testing@6c5fbb821103",
+   "uasl/landing-page@455a3c3ba6f7",
+   "uasl/claude-api@f952c765f5b0",
+   "uasl/googlephotos-automation@0b2d3403ccba",
+   "uasl/frontend-slides@8d62c2eeef30",
+   "uasl/security-review@fcc354bc486e",
+   "uasl/n8n-code-javascript@203459f10f1d",
+   "uasl/excel-automation@026ac73c3c63",
+   "uasl/printing-press-reprint@af02d260d0be",
+   "uasl/error-handling-patterns@4c19ee7d7821",
+   "uasl/crosspost@391532c80819",
+   "anthropics-skills/claude-api@e30e2c97f747",
+   "uasl/instantly-automation@d8854d4a51f6",
+   "uasl/invoice-organizer@65f04d96d07a",
+   "uasl/bolt@c4895c710162",
+   "uasl/vibe-security@6b07d0f651a7",
+   "uasl/data-schema-knowledge-modeling@c06f86b10d33",
+   "uasl/googlemeet-automation@d25b5982718c",
+   "uasl/uploadcare-automation@e055339389ff",
+   "anthropics-skills/discernment-nudge@a9d2caea7e0b",
+   "uasl/find-bugs@c3ff7d64ff9f",
+   "uasl/zoho-inventory-automation@2f2863777368",
+   "uasl/connect@77e02b4574f6"
+  ]
+ },
+ "s4-t196": {
+  "order": [
+   "uasl/shipengine-automation@b77f30f2f345",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/omnisend-automation@cac8b5f5b289",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/python-testing-patterns@e62d0f1ca316",
+   "uasl/secure-coding-practices@cc37fcd8687e",
+   "uasl/radar@a47ea6fd5f95",
+   "uasl/verification-loop@39d9be23cf50",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/vibe-security@6b07d0f651a7",
+   "uasl/contract-testing@b0f4c29940a9",
+   "uasl/bolt@c4895c710162",
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/unit-testing@6c5fbb821103"
+  ],
+  "sources": {
+   "uasl/secure-coding-practices@cc37fcd8687e": [
+    "2a"
+   ],
+   "uasl/fastapi-endpoint@2a93d50c4970": [
+    "2a",
+    "bm25"
+   ],
+   "uasl/python-testing-patterns@e62d0f1ca316": [
+    "2a"
+   ],
+   "uasl/fastapi-templates@effcd0de0b4c": [
+    "bm25"
+   ],
+   "uasl/backend-patterns@3d87ff489f3e": [
+    "bm25"
+   ],
+   "uasl/claude-native-claude-api@24c958899f03": [
+    "bm25"
+   ],
+   "uasl/radar@a47ea6fd5f95": [
+    "bm25"
+   ],
+   "uasl/bolt@c4895c710162": [
+    "bm25"
+   ],
+   "uasl/vibe-security@6b07d0f651a7": [
+    "bm25"
+   ],
+   "uasl/verification-loop@39d9be23cf50": [
+    "bm25"
+   ],
+   "uasl/contract-testing@b0f4c29940a9": [
+    "bm25"
+   ],
+   "uasl/unit-testing@6c5fbb821103": [
+    "bm25"
+   ],
+   "uasl/omnisend-automation@cac8b5f5b289": [
+    "random"
+   ],
+   "uasl/shipengine-automation@b77f30f2f345": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/radar@a47ea6fd5f95",
+   "uasl/bolt@c4895c710162",
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/vibe-security@6b07d0f651a7",
+   "uasl/verification-loop@39d9be23cf50",
+   "uasl/contract-testing@b0f4c29940a9",
+   "uasl/unit-testing@6c5fbb821103",
+   "uasl/anvil@3a36e8410205",
+   "uasl/tdd-workflow@6eadb0bf0ea8",
+   "uasl/judge@6ea2e485149e",
+   "anthropics-skills/pptx@4eb5e13af97f",
+   "uasl/acceptance-testing@7f713f1566e8",
+   "uasl/n8n-code-python@ba1cd974d317",
+   "uasl/integration-testing@62b51275be50",
+   "uasl/voice-ai-development@76a8425e5865",
+   "uasl/static-analysis@88c6f201cae0",
+   "uasl/googledocs-automation@205a55e5ad22",
+   "uasl/tdd@ff86dad94075",
+   "uasl/llm-security@be01c2d8d30b",
+   "anthropics-skills/skill-creator@5d80e84222d8",
+   "uasl/design-harden@7850aacd7d45",
+   "uasl/python-testing-patterns@e62d0f1ca316",
+   "uasl/api-testing@4ada9a2fac88",
+   "uasl/systematic-debug@6b158e105823",
+   "uasl/test-driven-development@0eebe2fe0e28",
+   "uasl/everything-claude-code@dad489339e1e",
+   "uasl/wycheproof@8924e1e4bfb6",
+   "uasl/segment-cdp@42e8e765d937",
+   "uasl/algorand-vulnerability-scanner@b4ef2e1b7b33",
+   "uasl/design-integration@03e2661a4d5f",
+   "uasl/probe@e9e9e74a4225",
+   "uasl/netsuite-automation@b615a37449c9",
+   "uasl/security-review@fcc354bc486e",
+   "uasl/monorepo-management@4078df072127",
+   "uasl/gsap-core@ca474b7f6296",
+   "uasl/ux-audit@d921ee5d8321",
+   "uasl/googlephotos-automation@0b2d3403ccba",
+   "anthropics-skills/docx@74e2b8b277a4",
+   "uasl/code-security@e20eb3467925",
+   "uasl/banner-design@0e161f38cea1",
+   "uasl/using-git-worktrees@b0857168cfee",
+   "uasl/architecture-patterns@d184d1c3a346",
+   "uasl/differential-review@b9d1a5a99f5e",
+   "uasl/api-design@bba608f8c974",
+   "uasl/n8n-code-javascript@203459f10f1d",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "uasl/google-admin-automation@c0e29c39549e"
+  ]
+ },
+ "s4-t211": {
+  "order": [
+   "uasl/shorten-rest-automation@60861026388c",
+   "uasl/owasp-security@9847d3666f75",
+   "uasl/debug-root-cause@1d7ea4a832dc",
+   "uasl/morphological-analysis-triz@7cdfff96791e",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/bolt@c4895c710162",
+   "uasl/architecture-patterns@d184d1c3a346",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/insecure-defaults@a0e826721018",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "uasl/monorepo-management@4078df072127",
+   "uasl/ai-ml-api-automation@f198121938ac"
+  ],
+  "sources": {
+   "uasl/debug-root-cause@1d7ea4a832dc": [
+    "2a"
+   ],
+   "uasl/claude-native-claude-api@24c958899f03": [
+    "bm25"
+   ],
+   "uasl/owasp-security@9847d3666f75": [
+    "bm25"
+   ],
+   "uasl/fastapi-templates@effcd0de0b4c": [
+    "bm25"
+   ],
+   "uasl/bolt@c4895c710162": [
+    "bm25"
+   ],
+   "uasl/architecture-patterns@d184d1c3a346": [
+    "bm25"
+   ],
+   "uasl/monorepo-management@4078df072127": [
+    "bm25"
+   ],
+   "uasl/backend-patterns@3d87ff489f3e": [
+    "bm25"
+   ],
+   "anthropics-skills/webapp-testing@a4b4ce82b644": [
+    "bm25"
+   ],
+   "uasl/ai-ml-api-automation@f198121938ac": [
+    "bm25"
+   ],
+   "uasl/insecure-defaults@a0e826721018": [
+    "bm25"
+   ],
+   "uasl/shorten-rest-automation@60861026388c": [
+    "random"
+   ],
+   "uasl/morphological-analysis-triz@7cdfff96791e": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/owasp-security@9847d3666f75",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/bolt@c4895c710162",
+   "uasl/architecture-patterns@d184d1c3a346",
+   "uasl/monorepo-management@4078df072127",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "uasl/ai-ml-api-automation@f198121938ac",
+   "uasl/insecure-defaults@a0e826721018",
+   "uasl/segment-cdp@42e8e765d937",
+   "uasl/imagegen-frontend-mobile@d57843fce66f",
+   "uasl/forge@a8efdfdbe817",
+   "uasl/design-integration@03e2661a4d5f",
+   "uasl/sweep@6fda55315322",
+   "uasl/slack-bot-builder@ce64c6aad24e",
+   "uasl/ux-audit@d921ee5d8321",
+   "uasl/contagious@143d3acf4fa3",
+   "uasl/strategy-and-competitive-analysis@9a629ebfd512",
+   "uasl/product-showcase@47ddb0e168e1",
+   "uasl/static-analysis@88c6f201cae0",
+   "uasl/ai-expertise-engine@902bd0b3e61f",
+   "uasl/showcase@66f46f81d885",
+   "uasl/design-to-code@fae28f73cda0",
+   "uasl/tlc-spec-driven@394ed16ecc07",
+   "uasl/vibe-security@6b07d0f651a7",
+   "uasl/five-agent-captain-merge-gate@de13897132dc",
+   "uasl/ln-020-codegraph@4b3c5fef9457",
+   "uasl/unit-testing@6c5fbb821103",
+   "uasl/voice-ai-development@76a8425e5865",
+   "uasl/coding-standards@f854e26a9529",
+   "uasl/test-app-automation@abdd84ebc0ec",
+   "uasl/claude-api@f952c765f5b0",
+   "uasl/connect@77e02b4574f6",
+   "uasl/cavecrew@6b0708483bbb",
+   "uasl/thinking-kepner-tregoe@2a9ddc837752",
+   "uasl/top-100-web-vulnerabilities-reference@21b2293939a2",
+   "uasl/postmortem@cf2cf9722781",
+   "uasl/hooked-ux@64362f56c26b",
+   "uasl/define-architecture@8ea764417825",
+   "uasl/simple-deck@acfa7f4d3e22",
+   "uasl/next-upgrade@df465f7770a5",
+   "uasl/n8n-node-configuration@11407cd84493",
+   "uasl/workflow-security-audit@84cc84849968",
+   "uasl/vercel-react-best-practices@70f3b5aaf775",
+   "uasl/predictable-revenue@fcafde23c133",
+   "uasl/polyglot@11be7885bda2",
+   "uasl/design-review@4964367926b4",
+   "uasl/debugging-strategies@c55dad9c9654",
+   "uasl/data-analyst-engine@79799e01e2dd"
+  ]
+ },
+ "s4-t215": {
+  "order": [
+   "uasl/translation-reframing-audience-shift@d1a28fb19e3e",
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/async-python-patterns@957ebfe54aa7",
+   "uasl/python-performance-optimization@bf455fd100bf",
+   "uasl/kanban-board@2d1da6290ea3",
+   "uasl/radar@a47ea6fd5f95",
+   "uasl/clay@6c9572941894",
+   "uasl/groqcloud-automation@e4dc6956991c",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/python-testing-patterns@e62d0f1ca316",
+   "uasl/transformers@0b5f07bd96f0",
+   "uasl/unit-testing@6c5fbb821103"
+  ],
+  "sources": {
+   "uasl/fastapi-endpoint@2a93d50c4970": [
+    "2a",
+    "bm25"
+   ],
+   "uasl/async-python-patterns@957ebfe54aa7": [
+    "2a"
+   ],
+   "uasl/python-performance-optimization@bf455fd100bf": [
+    "2a"
+   ],
+   "uasl/fastapi-templates@effcd0de0b4c": [
+    "bm25"
+   ],
+   "uasl/claude-native-claude-api@24c958899f03": [
+    "bm25"
+   ],
+   "uasl/radar@a47ea6fd5f95": [
+    "bm25"
+   ],
+   "uasl/python-testing-patterns@e62d0f1ca316": [
+    "bm25"
+   ],
+   "uasl/transformers@0b5f07bd96f0": [
+    "bm25"
+   ],
+   "uasl/backend-patterns@3d87ff489f3e": [
+    "bm25"
+   ],
+   "uasl/clay@6c9572941894": [
+    "bm25"
+   ],
+   "uasl/unit-testing@6c5fbb821103": [
+    "bm25"
+   ],
+   "uasl/groqcloud-automation@e4dc6956991c": [
+    "bm25"
+   ],
+   "uasl/translation-reframing-audience-shift@d1a28fb19e3e": [
+    "random"
+   ],
+   "uasl/kanban-board@2d1da6290ea3": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/radar@a47ea6fd5f95",
+   "uasl/python-testing-patterns@e62d0f1ca316",
+   "uasl/transformers@0b5f07bd96f0",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/clay@6c9572941894",
+   "uasl/unit-testing@6c5fbb821103",
+   "uasl/groqcloud-automation@e4dc6956991c",
+   "uasl/wycheproof@8924e1e4bfb6",
+   "uasl/statsmodels@49021b731076",
+   "uasl/integration-testing@62b51275be50",
+   "uasl/claude-api@f952c765f5b0",
+   "uasl/verification-loop@39d9be23cf50",
+   "uasl/voice-ai-development@76a8425e5865",
+   "uasl/specter@eeba33cf9245",
+   "uasl/tdd-workflow@6eadb0bf0ea8",
+   "uasl/api-testing@4ada9a2fac88",
+   "uasl/data-schema-knowledge-modeling@c06f86b10d33",
+   "uasl/acceptance-testing@7f713f1566e8",
+   "uasl/tdd@ff86dad94075",
+   "uasl/contract-testing@b0f4c29940a9",
+   "uasl/caveman-stats@2859ce4e33a6",
+   "uasl/fal-ai-media@1a7fc3310ea8",
+   "uasl/3d-web-experience@e1485751556b",
+   "uasl/async-python-patterns@957ebfe54aa7",
+   "uasl/openapi-spec-generation@2d2c7a93b8f2",
+   "uasl/thinking-model-router@5d0c1ebb8223",
+   "uasl/replicate-automation@4053915c756a",
+   "uasl/data-analyst-engine@79799e01e2dd",
+   "uasl/openai-automation@e4810b012ee7",
+   "uasl/typescript-clean-code@409278d3a61a",
+   "uasl/thinking-bounded-rationality@17d6c0bdfb95",
+   "uasl/architecture-patterns@d184d1c3a346",
+   "uasl/next-best-practices@ee058f89acea",
+   "uasl/x-api@f7be0ce6f0ec",
+   "uasl/builder@8d7f0953ade3",
+   "uasl/bun-runtime@009ca8691cf7",
+   "uasl/probe@e9e9e74a4225",
+   "uasl/article-writing@408c77d800c4",
+   "uasl/security-review@fcc354bc486e",
+   "uasl/crosspost@391532c80819",
+   "uasl/siege@06245d21dd1c",
+   "uasl/horizon@8e6f79e4495d",
+   "uasl/forge@a8efdfdbe817",
+   "uasl/thinking-model-selection@21af56b9c574",
+   "uasl/vercel-react-best-practices@70f3b5aaf775",
+   "uasl/vibe-security@6b07d0f651a7",
+   "uasl/sketch@2a8aac6ecc18"
+  ]
+ },
+ "s4-t218": {
+  "order": [
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/n8n-code-python@ba1cd974d317",
+   "uasl/googleads-automation@13c0cd459708",
+   "uasl/netsuite-automation@b615a37449c9",
+   "uasl/excel-generator@9ce0c16c81a1",
+   "uasl/gsap-utils@a1cbf677d835",
+   "uasl/clay@6c9572941894",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/perf-lighthouse@ccafe273f7d2",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/claude-api@f952c765f5b0",
+   "uasl/ai-expertise-engine@902bd0b3e61f"
+  ],
+  "sources": {
+   "uasl/claude-native-claude-api@24c958899f03": [
+    "bm25"
+   ],
+   "uasl/backend-patterns@3d87ff489f3e": [
+    "bm25"
+   ],
+   "uasl/fastapi-templates@effcd0de0b4c": [
+    "bm25"
+   ],
+   "uasl/n8n-code-python@ba1cd974d317": [
+    "bm25"
+   ],
+   "uasl/clay@6c9572941894": [
+    "bm25"
+   ],
+   "uasl/perf-lighthouse@ccafe273f7d2": [
+    "bm25"
+   ],
+   "uasl/netsuite-automation@b615a37449c9": [
+    "bm25"
+   ],
+   "uasl/ai-expertise-engine@902bd0b3e61f": [
+    "bm25"
+   ],
+   "uasl/gsap-utils@a1cbf677d835": [
+    "bm25"
+   ],
+   "uasl/claude-api@f952c765f5b0": [
+    "bm25"
+   ],
+   "uasl/excel-generator@9ce0c16c81a1": [
+    "random"
+   ],
+   "uasl/googleads-automation@13c0cd459708": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/n8n-code-python@ba1cd974d317",
+   "uasl/clay@6c9572941894",
+   "uasl/perf-lighthouse@ccafe273f7d2",
+   "uasl/netsuite-automation@b615a37449c9",
+   "uasl/ai-expertise-engine@902bd0b3e61f",
+   "uasl/gsap-utils@a1cbf677d835",
+   "uasl/claude-api@f952c765f5b0",
+   "uasl/sketch@2a8aac6ecc18",
+   "uasl/documentation-lookup@dee6d7478eab",
+   "uasl/ai-ml-api-automation@f198121938ac",
+   "uasl/data-analyst-engine@79799e01e2dd",
+   "uasl/bolt@c4895c710162",
+   "uasl/next-best-practices@ee058f89acea",
+   "uasl/transformers@0b5f07bd96f0",
+   "uasl/architecture-patterns@d184d1c3a346",
+   "uasl/n8n-code-javascript@203459f10f1d",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "uasl/vibe-security@6b07d0f651a7",
+   "anthropics-skills/claude-api@e30e2c97f747",
+   "uasl/forge@a8efdfdbe817",
+   "uasl/statsmodels@49021b731076",
+   "uasl/finance-metrics-quickref@dfe896ee13a2",
+   "anthropics-skills/xlsx@5350d36b768c",
+   "uasl/openai-automation@e4810b012ee7",
+   "uasl/live-artifact@a7e66be6fd82",
+   "uasl/chain-spec-risk-metrics@6e706a43be19",
+   "uasl/thinking-map-territory@329a6f9a1863",
+   "uasl/next-upgrade@df465f7770a5",
+   "uasl/x-api@f7be0ce6f0ec",
+   "uasl/design-integration@03e2661a4d5f",
+   "uasl/bright-data-best-practices@15cfe1bca9b8",
+   "uasl/saas-revenue-growth-metrics@a287946f472a",
+   "uasl/n8n-expression-syntax@f1845451eb4d",
+   "uasl/vercel-react-best-practices@70f3b5aaf775",
+   "uasl/product-showcase@47ddb0e168e1",
+   "uasl/apify-automation@34a14f015224",
+   "uasl/navigator@8d026b4397b8",
+   "uasl/landing-page@455a3c3ba6f7",
+   "uasl/judge@6ea2e485149e",
+   "uasl/compete@c2b41286409b",
+   "uasl/architecture-decision-records@715e99d0306d",
+   "uasl/contract-testing@b0f4c29940a9",
+   "uasl/workflow-security-audit@84cc84849968",
+   "uasl/five-agent-state-update@d7d66be120b0",
+   "uasl/audio-jingle@a4d3695ad5fd",
+   "uasl/investor-materials@7b41352320eb",
+   "uasl/integration-testing@62b51275be50"
+  ]
+ },
+ "s4-t219": {
+  "order": [
+   "uasl/monorepo-management@4078df072127",
+   "uasl/contract-testing@b0f4c29940a9",
+   "uasl/voice-ai-development@76a8425e5865",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/python-testing-patterns@e62d0f1ca316",
+   "uasl/tdd-workflow@6eadb0bf0ea8",
+   "uasl/acceptance-testing@7f713f1566e8",
+   "uasl/radar@a47ea6fd5f95",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/python-performance-optimization@bf455fd100bf",
+   "uasl/unit-testing@6c5fbb821103",
+   "uasl/press-release@705776e510df",
+   "uasl/lever-sandbox-automation@05436c5d7cae"
+  ],
+  "sources": {
+   "uasl/fastapi-templates@effcd0de0b4c": [
+    "2a",
+    "bm25"
+   ],
+   "uasl/python-testing-patterns@e62d0f1ca316": [
+    "2a",
+    "bm25"
+   ],
+   "uasl/python-performance-optimization@bf455fd100bf": [
+    "2a"
+   ],
+   "uasl/acceptance-testing@7f713f1566e8": [
+    "bm25"
+   ],
+   "uasl/unit-testing@6c5fbb821103": [
+    "bm25"
+   ],
+   "uasl/tdd-workflow@6eadb0bf0ea8": [
+    "bm25"
+   ],
+   "uasl/radar@a47ea6fd5f95": [
+    "bm25"
+   ],
+   "uasl/claude-native-claude-api@24c958899f03": [
+    "bm25"
+   ],
+   "uasl/voice-ai-development@76a8425e5865": [
+    "bm25"
+   ],
+   "uasl/monorepo-management@4078df072127": [
+    "bm25"
+   ],
+   "uasl/contract-testing@b0f4c29940a9": [
+    "bm25"
+   ],
+   "uasl/lever-sandbox-automation@05436c5d7cae": [
+    "random"
+   ],
+   "uasl/press-release@705776e510df": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "uasl/acceptance-testing@7f713f1566e8",
+   "uasl/unit-testing@6c5fbb821103",
+   "uasl/python-testing-patterns@e62d0f1ca316",
+   "uasl/tdd-workflow@6eadb0bf0ea8",
+   "uasl/radar@a47ea6fd5f95",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/voice-ai-development@76a8425e5865",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/monorepo-management@4078df072127",
+   "uasl/contract-testing@b0f4c29940a9",
+   "uasl/thinking-probabilistic@798a0444c814",
+   "uasl/static-analysis@88c6f201cae0",
+   "uasl/test-driven-development@0eebe2fe0e28",
+   "uasl/verification-loop@39d9be23cf50",
+   "uasl/wycheproof@8924e1e4bfb6",
+   "uasl/high-perf-browser@aee32087bf43",
+   "uasl/bun-runtime@009ca8691cf7",
+   "uasl/bayesian-reasoning-calibration@233f17864898",
+   "anthropics-skills/xlsx@5350d36b768c",
+   "uasl/thinking-scientific-method@8b3f9fba25b4",
+   "uasl/thinking-bayesian@df0e4b2e75b4",
+   "uasl/architecture-patterns@d184d1c3a346",
+   "uasl/forecast-premortem@dcdd0b67c70f",
+   "uasl/using-git-worktrees@b0857168cfee",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "uasl/everything-claude-code@dad489339e1e",
+   "uasl/codenavi@109490043377",
+   "uasl/3d-web-experience@e1485751556b",
+   "uasl/setup-pre-commit@95f6657588a0",
+   "uasl/finance-metrics-quickref@dfe896ee13a2",
+   "uasl/integration-testing@62b51275be50",
+   "uasl/thinking-effectuation@f26a123bc884",
+   "anthropics-skills/skill-creator@5d80e84222d8",
+   "uasl/tdd@ff86dad94075",
+   "uasl/bolt@c4895c710162",
+   "uasl/feature-forge@647addfd7f07",
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/claude-api@f952c765f5b0",
+   "uasl/reference-class-forecasting@22a3efbe5756",
+   "uasl/user-story-splitting@2d9d6a6fd3e3",
+   "uasl/typescript-unit-testing@6fb3561edcb3",
+   "uasl/ai-expertise-engine@902bd0b3e61f",
+   "uasl/slack-bot-builder@ce64c6aad24e",
+   "uasl/zen@f72229d0a781",
+   "uasl/strategic-planning-engine@64327bc2d012",
+   "uasl/image-to-code-skill@4f1a4537825d",
+   "uasl/perf-lighthouse@ccafe273f7d2",
+   "uasl/to-issues@fe551bc54a09",
+   "uasl/portfolio-roadmapping-bets@1cf547b9fba5",
+   "uasl/data-analyst-engine@79799e01e2dd"
+  ]
+ },
+ "s4-t224": {
+  "order": [
+   "uasl/vercel-react-best-practices@70f3b5aaf775",
+   "anthropics-skills/algorithmic-art@ab9ac544953a",
+   "uasl/typescript-unit-testing@6fb3561edcb3",
+   "uasl/humanitix-automation@eda519b09039",
+   "uasl/segment-cdp@42e8e765d937",
+   "uasl/thinking-pre-mortem@3de61a7f85c4",
+   "uasl/frontend-patterns@8f659ce2a0bd",
+   "uasl/debug-root-cause@1d7ea4a832dc",
+   "uasl/gsap-utils@a1cbf677d835",
+   "uasl/next-upgrade@df465f7770a5",
+   "uasl/next-cache-components@b22f6e134147",
+   "uasl/radar@a47ea6fd5f95",
+   "uasl/web-design-builder@61ee1c248717"
+  ],
+  "sources": {
+   "uasl/debug-root-cause@1d7ea4a832dc": [
+    "2a"
+   ],
+   "uasl/vercel-react-best-practices@70f3b5aaf775": [
+    "bm25"
+   ],
+   "uasl/gsap-utils@a1cbf677d835": [
+    "bm25"
+   ],
+   "uasl/radar@a47ea6fd5f95": [
+    "bm25"
+   ],
+   "uasl/next-upgrade@df465f7770a5": [
+    "bm25"
+   ],
+   "uasl/segment-cdp@42e8e765d937": [
+    "bm25"
+   ],
+   "anthropics-skills/algorithmic-art@ab9ac544953a": [
+    "bm25"
+   ],
+   "uasl/next-cache-components@b22f6e134147": [
+    "bm25"
+   ],
+   "uasl/web-design-builder@61ee1c248717": [
+    "bm25"
+   ],
+   "uasl/frontend-patterns@8f659ce2a0bd": [
+    "bm25"
+   ],
+   "uasl/typescript-unit-testing@6fb3561edcb3": [
+    "bm25"
+   ],
+   "uasl/thinking-pre-mortem@3de61a7f85c4": [
+    "random"
+   ],
+   "uasl/humanitix-automation@eda519b09039": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "uasl/vercel-react-best-practices@70f3b5aaf775",
+   "uasl/gsap-utils@a1cbf677d835",
+   "uasl/radar@a47ea6fd5f95",
+   "uasl/next-upgrade@df465f7770a5",
+   "uasl/segment-cdp@42e8e765d937",
+   "anthropics-skills/algorithmic-art@ab9ac544953a",
+   "uasl/next-cache-components@b22f6e134147",
+   "uasl/web-design-builder@61ee1c248717",
+   "uasl/frontend-patterns@8f659ce2a0bd",
+   "uasl/typescript-unit-testing@6fb3561edcb3",
+   "uasl/motion-canvas@08d879d31903",
+   "uasl/gsap-react@79939b61e00a",
+   "uasl/taste-skill@57790089504e",
+   "uasl/openclaw-color-palette@22baa399c5eb",
+   "uasl/next-best-practices@ee058f89acea",
+   "uasl/web-component-design@af6d16dc78dc",
+   "uasl/scaffold-nextjs@3d1152f5d9d0",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/ramp-automation@25b168650188",
+   "uasl/clay@6c9572941894",
+   "uasl/clockify-automation@2a7df079c351",
+   "uasl/documentation-lookup@dee6d7478eab",
+   "uasl/d3-visualization@739528fdf78d",
+   "uasl/3d-web-experience@e1485751556b",
+   "uasl/nextjs-turbopack@b0af0186e13a",
+   "uasl/onboarding-ux@525055bbdf31",
+   "uasl/customerio-automation@147bd2db28ea",
+   "anthropics-skills/docx@74e2b8b277a4",
+   "uasl/omnisend-automation@cac8b5f5b289",
+   "uasl/accessibility-compliance@696d2b4119ed",
+   "uasl/netsuite-automation@b615a37449c9",
+   "uasl/google-admin-automation@c0e29c39549e",
+   "uasl/flow@d1423e53e763",
+   "uasl/judge@6ea2e485149e",
+   "uasl/quickbooks-automation@bbe37470a32c",
+   "uasl/thinking-jobs-to-be-done@1b920fccd1fc",
+   "uasl/workday-automation@3e9313379197",
+   "uasl/information-architecture@52f13543ba9f",
+   "uasl/design-everyday-things@ce8daf49b316",
+   "uasl/improve-retention@f80cefef268d",
+   "uasl/scroll-experience@f1aa0edee6ad",
+   "uasl/freshbooks-automation@8508cc146d7f",
+   "uasl/sap-successfactors-automation@2bb8d7182373",
+   "uasl/survey-monkey-automation@d25fdaab9862",
+   "uasl/vibe-security@6b07d0f651a7",
+   "uasl/acceptance-testing@7f713f1566e8",
+   "uasl/inngest@fc3f33c4e97f",
+   "uasl/gong-automation@09a015febb35",
+   "uasl/hooked-ux@64362f56c26b",
+   "uasl/software-architecture@011a6d823631"
+  ]
+ },
+ "s4-t225": {
+  "order": [
+   "uasl/n8n-code-python@ba1cd974d317",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "uasl/frontend-patterns@8f659ce2a0bd",
+   "anthropics-skills/skill-creator@5d80e84222d8",
+   "uasl/frontend-design@5da82907743d",
+   "uasl/transformers@0b5f07bd96f0",
+   "uasl/taste-skill@57790089504e",
+   "anthropics-skills/pptx@4eb5e13af97f",
+   "uasl/beaconchain-automation@d3245b29cde8",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/web-perf@9063b7e5eacf",
+   "uasl/gpt-tasteskill@134558e228c5",
+   "uasl/secure-coding-practices@cc37fcd8687e",
+   "uasl/forge@a8efdfdbe817"
+  ],
+  "sources": {
+   "uasl/frontend-patterns@8f659ce2a0bd": [
+    "2a"
+   ],
+   "uasl/secure-coding-practices@cc37fcd8687e": [
+    "2a"
+   ],
+   "uasl/transformers@0b5f07bd96f0": [
+    "bm25"
+   ],
+   "uasl/forge@a8efdfdbe817": [
+    "bm25"
+   ],
+   "uasl/claude-native-claude-api@24c958899f03": [
+    "bm25"
+   ],
+   "uasl/gpt-tasteskill@134558e228c5": [
+    "bm25"
+   ],
+   "uasl/n8n-code-python@ba1cd974d317": [
+    "bm25"
+   ],
+   "uasl/web-perf@9063b7e5eacf": [
+    "bm25"
+   ],
+   "uasl/taste-skill@57790089504e": [
+    "bm25"
+   ],
+   "anthropics-skills/webapp-testing@a4b4ce82b644": [
+    "bm25"
+   ],
+   "anthropics-skills/pptx@4eb5e13af97f": [
+    "bm25"
+   ],
+   "uasl/frontend-design@5da82907743d": [
+    "bm25"
+   ],
+   "uasl/beaconchain-automation@d3245b29cde8": [
+    "random"
+   ],
+   "anthropics-skills/skill-creator@5d80e84222d8": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "uasl/transformers@0b5f07bd96f0",
+   "uasl/forge@a8efdfdbe817",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/gpt-tasteskill@134558e228c5",
+   "uasl/n8n-code-python@ba1cd974d317",
+   "uasl/web-perf@9063b7e5eacf",
+   "uasl/taste-skill@57790089504e",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "anthropics-skills/pptx@4eb5e13af97f",
+   "uasl/frontend-design@5da82907743d",
+   "uasl/replicate-automation@4053915c756a",
+   "uasl/bright-data-best-practices@15cfe1bca9b8",
+   "anthropics-skills/pdf@9bc3a6e1ff66",
+   "uasl/gsap-react@79939b61e00a",
+   "anthropics-skills/docx@74e2b8b277a4",
+   "uasl/browser-extension-builder@3240e6183c28",
+   "uasl/3d-web-experience@e1485751556b",
+   "uasl/microsoft-clarity-automation@44237e641aae",
+   "uasl/responsive-design@2cf7927ef938",
+   "uasl/vercel-react-best-practices@70f3b5aaf775",
+   "uasl/vibe-security@6b07d0f651a7",
+   "anthropics-skills/xlsx@5350d36b768c",
+   "uasl/groqcloud-automation@e4dc6956991c",
+   "uasl/n8n-workflow-patterns@c9641aab7a0b",
+   "uasl/image-to-code-skill@4f1a4537825d",
+   "uasl/component-identification-sizing@a9b4aa9f2de1",
+   "uasl/design-to-code@fae28f73cda0",
+   "uasl/integration-testing@62b51275be50",
+   "uasl/high-perf-browser@aee32087bf43",
+   "uasl/cf-crawl@77a977c31001",
+   "uasl/polyglot@11be7885bda2",
+   "uasl/x-api@f7be0ce6f0ec",
+   "uasl/statsmodels@49021b731076",
+   "uasl/segment-cdp@42e8e765d937",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/vercel-composition-patterns@a6f8be32b197",
+   "uasl/flow@d1423e53e763",
+   "uasl/web-prototype-taste-editorial@ea4a250e3329",
+   "uasl/googlephotos-automation@0b2d3403ccba",
+   "uasl/radar@a47ea6fd5f95",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/ui-audit@be637d5e2baf",
+   "uasl/claude-api@f952c765f5b0",
+   "uasl/acceptance-testing@7f713f1566e8",
+   "uasl/documentation-lookup@dee6d7478eab",
+   "uasl/gsap-performance@545d16027a95",
+   "uasl/developer-growth-analysis@4615ad8d56aa",
+   "uasl/horizon@8e6f79e4495d",
+   "uasl/landing-page@455a3c3ba6f7",
+   "uasl/systematic-debug@6b158e105823"
+  ]
+ },
+ "s4-t243": {
+  "order": [
+   "uasl/insecure-defaults@a0e826721018",
+   "uasl/firecrawl-automation@555ae9b52289",
+   "uasl/web-perf@9063b7e5eacf",
+   "uasl/bolt@c4895c710162",
+   "uasl/vibe-security@6b07d0f651a7",
+   "uasl/tally-automation@99d7124abd20",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/quill@336ba74b0e79",
+   "uasl/openapi-spec-generation@2d2c7a93b8f2",
+   "uasl/domain-name-brainstormer@f3522cb265f2",
+   "uasl/cf-crawl@77a977c31001",
+   "uasl/fastapi-templates@effcd0de0b4c"
+  ],
+  "sources": {
+   "uasl/bolt@c4895c710162": [
+    "bm25"
+   ],
+   "uasl/openapi-spec-generation@2d2c7a93b8f2": [
+    "bm25"
+   ],
+   "uasl/firecrawl-automation@555ae9b52289": [
+    "bm25"
+   ],
+   "uasl/cf-crawl@77a977c31001": [
+    "bm25"
+   ],
+   "uasl/fastapi-templates@effcd0de0b4c": [
+    "bm25"
+   ],
+   "uasl/claude-native-claude-api@24c958899f03": [
+    "bm25"
+   ],
+   "uasl/quill@336ba74b0e79": [
+    "bm25"
+   ],
+   "uasl/web-perf@9063b7e5eacf": [
+    "bm25"
+   ],
+   "uasl/insecure-defaults@a0e826721018": [
+    "bm25"
+   ],
+   "uasl/vibe-security@6b07d0f651a7": [
+    "bm25"
+   ],
+   "uasl/domain-name-brainstormer@f3522cb265f2": [
+    "random"
+   ],
+   "uasl/tally-automation@99d7124abd20": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "uasl/bolt@c4895c710162",
+   "uasl/openapi-spec-generation@2d2c7a93b8f2",
+   "uasl/firecrawl-automation@555ae9b52289",
+   "uasl/cf-crawl@77a977c31001",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/quill@336ba74b0e79",
+   "uasl/web-perf@9063b7e5eacf",
+   "uasl/insecure-defaults@a0e826721018",
+   "uasl/vibe-security@6b07d0f651a7",
+   "uasl/high-perf-browser@aee32087bf43",
+   "uasl/monorepo-management@4078df072127",
+   "uasl/perf-lighthouse@ccafe273f7d2",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "uasl/architecture-patterns@d184d1c3a346",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/product-showcase@47ddb0e168e1",
+   "uasl/setup-matt-pocock-skills@d52ac42900e6",
+   "uasl/verification-loop@39d9be23cf50",
+   "uasl/web-performance-optimization@b2b38275ed40",
+   "uasl/gateway@8350be122608",
+   "uasl/design-optimize@cbb1632043ec",
+   "uasl/tavily-web@2b69bd325cb7",
+   "uasl/navigator@8d026b4397b8",
+   "uasl/skill-seekers@d8bf1d3864b9",
+   "uasl/firecrawl-scraper@8691949c9232",
+   "uasl/segment-cdp@42e8e765d937",
+   "uasl/imagegen-frontend-mobile@d57843fce66f",
+   "uasl/gsap-core@ca474b7f6296",
+   "uasl/security-audit@0b0f681978a4",
+   "uasl/sweep@6fda55315322",
+   "uasl/ux-audit@d921ee5d8321",
+   "uasl/forge@a8efdfdbe817",
+   "uasl/design-integration@03e2661a4d5f",
+   "uasl/googledocs-automation@205a55e5ad22",
+   "uasl/api-testing@4ada9a2fac88",
+   "uasl/slack-bot-builder@ce64c6aad24e",
+   "uasl/canon@9bbebfd09bb7",
+   "uasl/contract-testing@b0f4c29940a9",
+   "uasl/responsiveness-check@d53a385e5699",
+   "uasl/n8n-expression-syntax@f1845451eb4d",
+   "uasl/content-engine@d3c510c6c4bf",
+   "uasl/perf-web-optimization@0e20e7b8cc98",
+   "uasl/vercel-cli-with-tokens@3f9c2805c482",
+   "uasl/wycheproof@8924e1e4bfb6",
+   "uasl/domain-analysis@c37c7de1017e",
+   "uasl/static-analysis@88c6f201cae0",
+   "uasl/five-agent-captain-merge-gate@de13897132dc",
+   "uasl/short-io-automation@75ba538e79f4",
+   "uasl/design-to-code@fae28f73cda0"
+  ]
+ },
+ "s4-t246": {
+  "order": [
+   "uasl/owasp-security@9847d3666f75",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/vibe-security@6b07d0f651a7",
+   "uasl/aether@06bc728c00e7",
+   "uasl/gsap-utils@a1cbf677d835",
+   "anthropics-skills/pptx@4eb5e13af97f",
+   "uasl/secure-coding-practices@cc37fcd8687e",
+   "uasl/zen@f72229d0a781",
+   "uasl/goody-automation@51e9ff1bce35",
+   "anthropics-skills/xlsx@5350d36b768c",
+   "uasl/code-security@e20eb3467925",
+   "anthropics-skills/docx@74e2b8b277a4"
+  ],
+  "sources": {
+   "uasl/owasp-security@9847d3666f75": [
+    "2a",
+    "bm25"
+   ],
+   "uasl/secure-coding-practices@cc37fcd8687e": [
+    "2a"
+   ],
+   "uasl/code-security@e20eb3467925": [
+    "bm25"
+   ],
+   "anthropics-skills/docx@74e2b8b277a4": [
+    "bm25"
+   ],
+   "uasl/gsap-utils@a1cbf677d835": [
+    "bm25"
+   ],
+   "uasl/fastapi-templates@effcd0de0b4c": [
+    "bm25"
+   ],
+   "anthropics-skills/pptx@4eb5e13af97f": [
+    "bm25"
+   ],
+   "uasl/zen@f72229d0a781": [
+    "bm25"
+   ],
+   "uasl/claude-native-claude-api@24c958899f03": [
+    "bm25"
+   ],
+   "uasl/vibe-security@6b07d0f651a7": [
+    "bm25"
+   ],
+   "anthropics-skills/xlsx@5350d36b768c": [
+    "bm25"
+   ],
+   "uasl/goody-automation@51e9ff1bce35": [
+    "random"
+   ],
+   "uasl/aether@06bc728c00e7": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "uasl/code-security@e20eb3467925",
+   "anthropics-skills/docx@74e2b8b277a4",
+   "uasl/gsap-utils@a1cbf677d835",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "anthropics-skills/pptx@4eb5e13af97f",
+   "uasl/zen@f72229d0a781",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/owasp-security@9847d3666f75",
+   "uasl/vibe-security@6b07d0f651a7",
+   "anthropics-skills/xlsx@5350d36b768c",
+   "uasl/frontend-slides@8d62c2eeef30",
+   "uasl/sweep@6fda55315322",
+   "uasl/cf-crawl@77a977c31001",
+   "uasl/security-review@fcc354bc486e",
+   "uasl/workflow-security-audit@84cc84849968",
+   "uasl/thinking-regret-minimization@f18d99ba7cec",
+   "uasl/ln-020-codegraph@4b3c5fef9457",
+   "uasl/secure-coding-practices@cc37fcd8687e",
+   "uasl/unit-testing@6c5fbb821103",
+   "uasl/architecture-patterns@d184d1c3a346",
+   "uasl/n8n-expression-syntax@f1845451eb4d",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "uasl/n8n-code-python@ba1cd974d317",
+   "uasl/ripple@620dca56eca0",
+   "uasl/landing-page@455a3c3ba6f7",
+   "uasl/product-showcase@47ddb0e168e1",
+   "uasl/high-perf-browser@aee32087bf43",
+   "uasl/imagegen-frontend-web@3c09b1b364ef",
+   "uasl/heygen-automation@a6866ec9d3eb",
+   "uasl/top-design@4ea889def6d2",
+   "uasl/executing-plans@3bfe5761e031",
+   "uasl/five-agent-state-update@d7d66be120b0",
+   "uasl/simple-deck@acfa7f4d3e22",
+   "uasl/onesignal-rest-api-automation@69760a7d8416",
+   "uasl/chaos-testing@760793a4a18b",
+   "uasl/expected-value@9a876c9200a9",
+   "uasl/frontend-design-principles@e9b2a10a43d1",
+   "uasl/semgrep-rule-variant-creator@2cea56923011",
+   "uasl/chain-spec-risk-metrics@6e706a43be19",
+   "uasl/vercel-react-native-skills@6e314641b44a",
+   "uasl/role-switch@a3dd5f7c2037",
+   "uasl/karpathy-guidelines@da897c8c3bab",
+   "uasl/replit-deck@84797e95ef8f",
+   "uasl/web-performance-optimization@b2b38275ed40",
+   "uasl/design-integration@03e2661a4d5f",
+   "uasl/jotform-automation@41d82bc651c3",
+   "uasl/web-design-builder@61ee1c248717",
+   "uasl/manim@b0a6f7da4632",
+   "uasl/design-brief@3b3646a38d3e",
+   "uasl/thinking-red-team@a351578e3c81"
+  ]
+ },
+ "s4-t248": {
+  "order": [
+   "uasl/vercel-cli-with-tokens@3f9c2805c482",
+   "uasl/scaffold-nextjs@3d1152f5d9d0",
+   "uasl/insecure-defaults@a0e826721018",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "uasl/secure-coding-practices@cc37fcd8687e",
+   "uasl/design-system-patterns@cd952cab0879",
+   "uasl/owasp-security@9847d3666f75",
+   "uasl/bolt@c4895c710162",
+   "uasl/auth-implementation-patterns@7a99b395d548",
+   "uasl/market-mechanics-betting@6463db866970",
+   "uasl/gpt-tasteskill@134558e228c5",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/vibe-security@6b07d0f651a7"
+  ],
+  "sources": {
+   "uasl/auth-implementation-patterns@7a99b395d548": [
+    "2a"
+   ],
+   "uasl/owasp-security@9847d3666f75": [
+    "2a"
+   ],
+   "uasl/secure-coding-practices@cc37fcd8687e": [
+    "2a"
+   ],
+   "uasl/vibe-security@6b07d0f651a7": [
+    "bm25"
+   ],
+   "uasl/gpt-tasteskill@134558e228c5": [
+    "bm25"
+   ],
+   "uasl/claude-native-claude-api@24c958899f03": [
+    "bm25"
+   ],
+   "uasl/fastapi-templates@effcd0de0b4c": [
+    "bm25"
+   ],
+   "uasl/vercel-cli-with-tokens@3f9c2805c482": [
+    "bm25"
+   ],
+   "uasl/bolt@c4895c710162": [
+    "bm25"
+   ],
+   "uasl/backend-patterns@3d87ff489f3e": [
+    "bm25"
+   ],
+   "uasl/insecure-defaults@a0e826721018": [
+    "bm25"
+   ],
+   "anthropics-skills/webapp-testing@a4b4ce82b644": [
+    "bm25"
+   ],
+   "uasl/design-system-patterns@cd952cab0879": [
+    "bm25"
+   ],
+   "uasl/scaffold-nextjs@3d1152f5d9d0": [
+    "random"
+   ],
+   "uasl/market-mechanics-betting@6463db866970": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "uasl/vibe-security@6b07d0f651a7",
+   "uasl/gpt-tasteskill@134558e228c5",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/vercel-cli-with-tokens@3f9c2805c482",
+   "uasl/bolt@c4895c710162",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/insecure-defaults@a0e826721018",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "uasl/design-system-patterns@cd952cab0879",
+   "uasl/forge@a8efdfdbe817",
+   "anthropics-skills/claude-api@e30e2c97f747",
+   "uasl/debugging-strategies@c55dad9c9654",
+   "uasl/auth-implementation-patterns@7a99b395d548",
+   "uasl/owasp-security@9847d3666f75",
+   "uasl/apollo-automation@61cfd7b05b07",
+   "uasl/radar@a47ea6fd5f95",
+   "uasl/domain-analysis@c37c7de1017e",
+   "uasl/tweaks@800b9d426375",
+   "uasl/next-upgrade@df465f7770a5",
+   "uasl/sweep@6fda55315322",
+   "uasl/spec-miner@cebd849612b0",
+   "uasl/similarweb-analytics@938e9f87287b",
+   "anthropics-skills/frontend-design@0a5ff23f1022",
+   "uasl/thinking-scientific-method@8b3f9fba25b4",
+   "uasl/n8n-code-python@ba1cd974d317",
+   "uasl/thinking-socratic@7c6f525da475",
+   "uasl/vercel-react-best-practices@70f3b5aaf775",
+   "uasl/coding-standards@f854e26a9529",
+   "uasl/guardian@27ad146feaed",
+   "uasl/top-100-web-vulnerabilities-reference@21b2293939a2",
+   "uasl/ux-audit@d921ee5d8321",
+   "uasl/agent-introspection-debugging@68529b68f0f1",
+   "uasl/imagegen-frontend-mobile@d57843fce66f",
+   "uasl/motion-canvas@08d879d31903",
+   "uasl/setup-pre-commit@95f6657588a0",
+   "uasl/frontend-design-principles@e9b2a10a43d1",
+   "uasl/caveman-stats@2859ce4e33a6",
+   "uasl/bright-data-best-practices@15cfe1bca9b8",
+   "uasl/thinking-ooda@2477088a5d42",
+   "uasl/constraint-based-creativity@bc35d25acb0f",
+   "uasl/openai-automation@e4810b012ee7",
+   "uasl/universal-ai-skills@0128810b6ffe",
+   "uasl/code-security@e20eb3467925",
+   "uasl/imagegen-frontend-web@3c09b1b364ef",
+   "uasl/product-showcase@47ddb0e168e1",
+   "uasl/brainstorm-diverge-converge@254540fc2cfc",
+   "uasl/design-to-code@fae28f73cda0",
+   "uasl/gsap-frameworks@13a7c7540177",
+   "uasl/static-analysis@88c6f201cae0"
+  ]
+ },
+ "s4-t250": {
+  "order": [
+   "uasl/workflow-security-audit@84cc84849968",
+   "uasl/n8n-code-python@ba1cd974d317",
+   "uasl/frontend-design@5da82907743d",
+   "uasl/vibe-security@6b07d0f651a7",
+   "uasl/agent-sort@a8e06853ada8",
+   "uasl/sourcegraph-automation@204fff1839d4",
+   "uasl/n8n-code-javascript@203459f10f1d",
+   "uasl/setup-pre-commit@95f6657588a0",
+   "uasl/auth-implementation-patterns@7a99b395d548",
+   "uasl/gpt-tasteskill@134558e228c5",
+   "uasl/taste-skill@57790089504e",
+   "uasl/design-system-patterns@cd952cab0879",
+   "uasl/tweaks@800b9d426375",
+   "uasl/owasp-security@9847d3666f75"
+  ],
+  "sources": {
+   "uasl/vibe-security@6b07d0f651a7": [
+    "2a",
+    "bm25"
+   ],
+   "uasl/owasp-security@9847d3666f75": [
+    "2a"
+   ],
+   "uasl/auth-implementation-patterns@7a99b395d548": [
+    "2a"
+   ],
+   "uasl/n8n-code-python@ba1cd974d317": [
+    "bm25"
+   ],
+   "uasl/agent-sort@a8e06853ada8": [
+    "bm25"
+   ],
+   "uasl/n8n-code-javascript@203459f10f1d": [
+    "bm25"
+   ],
+   "uasl/design-system-patterns@cd952cab0879": [
+    "bm25"
+   ],
+   "uasl/frontend-design@5da82907743d": [
+    "bm25"
+   ],
+   "uasl/gpt-tasteskill@134558e228c5": [
+    "bm25"
+   ],
+   "uasl/tweaks@800b9d426375": [
+    "bm25"
+   ],
+   "uasl/taste-skill@57790089504e": [
+    "bm25"
+   ],
+   "uasl/setup-pre-commit@95f6657588a0": [
+    "bm25"
+   ],
+   "uasl/sourcegraph-automation@204fff1839d4": [
+    "random"
+   ],
+   "uasl/workflow-security-audit@84cc84849968": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "uasl/n8n-code-python@ba1cd974d317",
+   "uasl/agent-sort@a8e06853ada8",
+   "uasl/n8n-code-javascript@203459f10f1d",
+   "uasl/design-system-patterns@cd952cab0879",
+   "uasl/frontend-design@5da82907743d",
+   "uasl/gpt-tasteskill@134558e228c5",
+   "uasl/vibe-security@6b07d0f651a7",
+   "uasl/tweaks@800b9d426375",
+   "uasl/taste-skill@57790089504e",
+   "uasl/setup-pre-commit@95f6657588a0",
+   "uasl/design-to-code@fae28f73cda0",
+   "uasl/web-design-builder@61ee1c248717",
+   "uasl/gsap-frameworks@13a7c7540177",
+   "uasl/windows-privilege-escalation@dbfda1d74f8e",
+   "uasl/using-superpowers@678eeee6c2a7",
+   "uasl/design-system-creation@ec5d23e4e974",
+   "uasl/component-identification-sizing@a9b4aa9f2de1",
+   "uasl/web-prototype-taste-editorial@ea4a250e3329",
+   "uasl/frontend-design-principles@e9b2a10a43d1",
+   "uasl/design-brief@3b3646a38d3e",
+   "uasl/frontend-patterns@8f659ce2a0bd",
+   "uasl/caveman-stats@2859ce4e33a6",
+   "uasl/radar@a47ea6fd5f95",
+   "uasl/python-design-patterns@5c0fbe0d4633",
+   "uasl/output-skill@8da7a8f7c7fc",
+   "uasl/vercel-cli-with-tokens@3f9c2805c482",
+   "uasl/cf-crawl@77a977c31001",
+   "anthropics-skills/frontend-design@0a5ff23f1022",
+   "uasl/forge@a8efdfdbe817",
+   "uasl/motion-canvas@08d879d31903",
+   "uasl/bolt@c4895c710162",
+   "uasl/googlephotos-automation@0b2d3403ccba",
+   "uasl/artisan@1e09f38ffcab",
+   "uasl/web-perf@9063b7e5eacf",
+   "uasl/google-search-console-automation@75986b6be641",
+   "uasl/template@8376f5c82e4c",
+   "uasl/component-flattening-analysis@82a0a8d664dd",
+   "anthropics-skills/skill-creator@5d80e84222d8",
+   "uasl/token-metrics-automation@6fadb79ed1c7",
+   "uasl/slack-bot-builder@ce64c6aad24e",
+   "uasl/spotify-automation@ccaa582efd70",
+   "uasl/write-a-skill@82d5bd29e631",
+   "uasl/design-system-starter@3ab04cee98bd",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "uasl/content-research-writer@f1af82e4025e",
+   "uasl/tailored-resume-generator@e1eef0b1e396",
+   "uasl/algorand-vulnerability-scanner@b4ef2e1b7b33",
+   "uasl/web-design-guidelines@b95baac579eb",
+   "uasl/vercel-react-best-practices@70f3b5aaf775",
+   "uasl/design-hook@561de9aa519a"
+  ]
+ },
+ "s4-t265": {
+  "order": [
+   "uasl/python-performance-optimization@bf455fd100bf",
+   "uasl/gsap-frameworks@13a7c7540177",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/acceptance-testing@7f713f1566e8",
+   "uasl/bolt@c4895c710162",
+   "uasl/radar@a47ea6fd5f95",
+   "uasl/variant-analysis@4e25478feb58",
+   "uasl/codeql@f2e86220e2ca",
+   "uasl/sql-optimization-patterns@389f90da7b56",
+   "uasl/tdd-workflow@6eadb0bf0ea8",
+   "uasl/supabase-postgres-best-practices@af167084fda1",
+   "uasl/constraint-based-creativity@bc35d25acb0f",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/agent-introspection-debugging@68529b68f0f1"
+  ],
+  "sources": {
+   "uasl/sql-optimization-patterns@389f90da7b56": [
+    "2a"
+   ],
+   "uasl/supabase-postgres-best-practices@af167084fda1": [
+    "2a"
+   ],
+   "uasl/python-performance-optimization@bf455fd100bf": [
+    "2a"
+   ],
+   "uasl/claude-native-claude-api@24c958899f03": [
+    "bm25"
+   ],
+   "uasl/radar@a47ea6fd5f95": [
+    "bm25"
+   ],
+   "uasl/bolt@c4895c710162": [
+    "bm25"
+   ],
+   "uasl/acceptance-testing@7f713f1566e8": [
+    "bm25"
+   ],
+   "uasl/fastapi-templates@effcd0de0b4c": [
+    "bm25"
+   ],
+   "uasl/variant-analysis@4e25478feb58": [
+    "bm25"
+   ],
+   "uasl/codeql@f2e86220e2ca": [
+    "bm25"
+   ],
+   "uasl/gsap-frameworks@13a7c7540177": [
+    "bm25"
+   ],
+   "uasl/tdd-workflow@6eadb0bf0ea8": [
+    "bm25"
+   ],
+   "uasl/backend-patterns@3d87ff489f3e": [
+    "bm25"
+   ],
+   "uasl/agent-introspection-debugging@68529b68f0f1": [
+    "random"
+   ],
+   "uasl/constraint-based-creativity@bc35d25acb0f": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/radar@a47ea6fd5f95",
+   "uasl/bolt@c4895c710162",
+   "uasl/acceptance-testing@7f713f1566e8",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/variant-analysis@4e25478feb58",
+   "uasl/codeql@f2e86220e2ca",
+   "uasl/gsap-frameworks@13a7c7540177",
+   "uasl/tdd-workflow@6eadb0bf0ea8",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/integration-testing@62b51275be50",
+   "uasl/3d-web-experience@e1485751556b",
+   "uasl/unit-testing@6c5fbb821103",
+   "uasl/n8n-code-python@ba1cd974d317",
+   "uasl/python-testing-patterns@e62d0f1ca316",
+   "uasl/wycheproof@8924e1e4bfb6",
+   "uasl/verification-loop@39d9be23cf50",
+   "uasl/n8n-code-javascript@203459f10f1d",
+   "uasl/systematic-debug@6b158e105823",
+   "uasl/design-system-creation@ec5d23e4e974",
+   "uasl/design-harden@7850aacd7d45",
+   "uasl/segment-cdp@42e8e765d937",
+   "uasl/vibe-security@6b07d0f651a7",
+   "uasl/high-perf-browser@aee32087bf43",
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/builder@8d7f0953ade3",
+   "uasl/freshbooks-automation@8508cc146d7f",
+   "uasl/error-handling-patterns@4c19ee7d7821",
+   "uasl/google-search-console-automation@75986b6be641",
+   "anthropics-skills/xlsx@5350d36b768c",
+   "uasl/perf-astro@f72360d52c4a",
+   "uasl/using-git-worktrees@b0857168cfee",
+   "uasl/architecture-patterns@d184d1c3a346",
+   "uasl/neon-automation@998078570d02",
+   "uasl/contract-testing@b0f4c29940a9",
+   "uasl/claude-api@f952c765f5b0",
+   "uasl/gsap-core@ca474b7f6296",
+   "uasl/sidetracker-automation@54e8a1f15fdb",
+   "uasl/voice-ai-development@76a8425e5865",
+   "uasl/crosspost@391532c80819",
+   "uasl/vercel-react-best-practices@70f3b5aaf775",
+   "uasl/omnisend-automation@cac8b5f5b289",
+   "uasl/api-testing@4ada9a2fac88",
+   "uasl/n8n-workflow-patterns@c9641aab7a0b",
+   "uasl/perf-web-optimization@0e20e7b8cc98",
+   "uasl/gsap-scrolltrigger@dd7bfe79efb2",
+   "uasl/bun-runtime@009ca8691cf7",
+   "uasl/quickbooks-automation@bbe37470a32c",
+   "uasl/agent-sort@a8e06853ada8",
+   "uasl/next-upgrade@df465f7770a5"
+  ]
+ },
+ "s4-t269": {
+  "order": [
+   "uasl/perf-astro@f72360d52c4a",
+   "uasl/similarweb-analytics@938e9f87287b",
+   "uasl/dadata-ru-automation@8ae263c93033",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/perf-web-optimization@0e20e7b8cc98",
+   "uasl/imagegen-frontend-web@3c09b1b364ef",
+   "uasl/debugging-strategies@c55dad9c9654",
+   "uasl/bolt@c4895c710162",
+   "uasl/high-perf-browser@aee32087bf43",
+   "uasl/segment-cdp@42e8e765d937",
+   "uasl/next-upgrade@df465f7770a5",
+   "uasl/web-performance-optimization@b2b38275ed40",
+   "anthropics-skills/webapp-testing@a4b4ce82b644"
+  ],
+  "sources": {
+   "uasl/debugging-strategies@c55dad9c9654": [
+    "2a"
+   ],
+   "uasl/perf-astro@f72360d52c4a": [
+    "bm25"
+   ],
+   "uasl/bolt@c4895c710162": [
+    "bm25"
+   ],
+   "uasl/perf-web-optimization@0e20e7b8cc98": [
+    "bm25"
+   ],
+   "uasl/next-upgrade@df465f7770a5": [
+    "bm25"
+   ],
+   "anthropics-skills/webapp-testing@a4b4ce82b644": [
+    "bm25"
+   ],
+   "uasl/similarweb-analytics@938e9f87287b": [
+    "bm25"
+   ],
+   "uasl/segment-cdp@42e8e765d937": [
+    "bm25"
+   ],
+   "uasl/fastapi-templates@effcd0de0b4c": [
+    "bm25"
+   ],
+   "uasl/web-performance-optimization@b2b38275ed40": [
+    "bm25"
+   ],
+   "uasl/high-perf-browser@aee32087bf43": [
+    "bm25"
+   ],
+   "uasl/imagegen-frontend-web@3c09b1b364ef": [
+    "random"
+   ],
+   "uasl/dadata-ru-automation@8ae263c93033": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "uasl/perf-astro@f72360d52c4a",
+   "uasl/bolt@c4895c710162",
+   "uasl/perf-web-optimization@0e20e7b8cc98",
+   "uasl/next-upgrade@df465f7770a5",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "uasl/similarweb-analytics@938e9f87287b",
+   "uasl/segment-cdp@42e8e765d937",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/web-performance-optimization@b2b38275ed40",
+   "uasl/high-perf-browser@aee32087bf43",
+   "uasl/react-patterns@73d1ecc06997",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/design-harden@7850aacd7d45",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/anvil@3a36e8410205",
+   "uasl/bright-data-best-practices@15cfe1bca9b8",
+   "uasl/python-performance-optimization@bf455fd100bf",
+   "uasl/slack-bot-builder@ce64c6aad24e",
+   "uasl/thinking-socratic@7c6f525da475",
+   "uasl/phantombuster-automation@4448a05bbdf0",
+   "uasl/chrome-devtools@6237e93b6aa2",
+   "uasl/design-optimize@cbb1632043ec",
+   "uasl/radar@a47ea6fd5f95",
+   "uasl/attio-automation@bc5c199f3a04",
+   "uasl/responsive-design@2cf7927ef938",
+   "uasl/big-data-cloud-automation@196647537ac2",
+   "uasl/browser-extension-builder@3240e6183c28",
+   "uasl/voice-ai-development@76a8425e5865",
+   "uasl/gbrain@cf3beac3a2cf",
+   "uasl/thinking-bayesian@df0e4b2e75b4",
+   "uasl/documentation-lookup@dee6d7478eab",
+   "uasl/agent-sort@a8e06853ada8",
+   "uasl/gsap-frameworks@13a7c7540177",
+   "uasl/architecture-patterns@d184d1c3a346",
+   "uasl/design-integration@03e2661a4d5f",
+   "uasl/forge@a8efdfdbe817",
+   "uasl/web-perf@9063b7e5eacf",
+   "uasl/traction-eos@2ac32559c0d7",
+   "uasl/thinking-effectuation@f26a123bc884",
+   "uasl/challenge-that@3a81f0228530",
+   "uasl/decomposition-reconstruction@c615c9eb3d97",
+   "uasl/release-it@e3e5b4710eea",
+   "uasl/n8n-code-python@ba1cd974d317",
+   "uasl/variant-analysis@4e25478feb58",
+   "uasl/write-a-skill@82d5bd29e631",
+   "uasl/thinking-lindy-effect@7a9ebd3631c7",
+   "uasl/polyglot@11be7885bda2",
+   "uasl/error-handling-patterns@4c19ee7d7821",
+   "uasl/heuristics-and-checklists@5866be43c566",
+   "uasl/magnetic-automation@1c97219cca8f"
+  ]
+ },
+ "s4-t285": {
+  "order": [
+   "uasl/interactive-portfolio@85336277b64d",
+   "uasl/design-to-code@fae28f73cda0",
+   "anthropics-skills/skill-creator@5d80e84222d8",
+   "uasl/frontend-design@5da82907743d",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "uasl/gpt-tasteskill@134558e228c5",
+   "uasl/compliance-audit@f935cdbc8ebe",
+   "uasl/better-stack-automation@d70ca30206c0",
+   "uasl/image-to-code-skill@4f1a4537825d",
+   "uasl/responsive-design@2cf7927ef938",
+   "uasl/soft-skill@4dd04c5022d2",
+   "anthropics-skills/pptx@4eb5e13af97f"
+  ],
+  "sources": {
+   "uasl/frontend-design@5da82907743d": [
+    "2a",
+    "bm25"
+   ],
+   "uasl/responsive-design@2cf7927ef938": [
+    "2a",
+    "bm25"
+   ],
+   "uasl/gpt-tasteskill@134558e228c5": [
+    "bm25"
+   ],
+   "uasl/soft-skill@4dd04c5022d2": [
+    "bm25"
+   ],
+   "anthropics-skills/pptx@4eb5e13af97f": [
+    "bm25"
+   ],
+   "anthropics-skills/webapp-testing@a4b4ce82b644": [
+    "bm25"
+   ],
+   "uasl/design-to-code@fae28f73cda0": [
+    "bm25"
+   ],
+   "anthropics-skills/skill-creator@5d80e84222d8": [
+    "bm25"
+   ],
+   "uasl/image-to-code-skill@4f1a4537825d": [
+    "bm25"
+   ],
+   "uasl/interactive-portfolio@85336277b64d": [
+    "bm25"
+   ],
+   "uasl/compliance-audit@f935cdbc8ebe": [
+    "random"
+   ],
+   "uasl/better-stack-automation@d70ca30206c0": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "uasl/responsive-design@2cf7927ef938",
+   "uasl/gpt-tasteskill@134558e228c5",
+   "uasl/soft-skill@4dd04c5022d2",
+   "anthropics-skills/pptx@4eb5e13af97f",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "uasl/design-to-code@fae28f73cda0",
+   "anthropics-skills/skill-creator@5d80e84222d8",
+   "uasl/image-to-code-skill@4f1a4537825d",
+   "uasl/frontend-design@5da82907743d",
+   "uasl/interactive-portfolio@85336277b64d",
+   "uasl/web-design-builder@61ee1c248717",
+   "uasl/motion-canvas@08d879d31903",
+   "anthropics-skills/frontend-design@0a5ff23f1022",
+   "anthropics-skills/xlsx@5350d36b768c",
+   "uasl/web-prototype-taste-editorial@ea4a250e3329",
+   "uasl/long-term-consequential-thinking@bdf03be87bf4",
+   "uasl/big-picture-thinking-engine@cb520dc8c729",
+   "uasl/gsap-performance@545d16027a95",
+   "uasl/executive-onboarding-playbook@dc89777e55ba",
+   "uasl/taste-skill@57790089504e",
+   "uasl/responsiveness-check@d53a385e5699",
+   "uasl/imagegen-frontend-web@3c09b1b364ef",
+   "uasl/frontend-slides@8d62c2eeef30",
+   "uasl/strategic-compact@7e1496f1097b",
+   "uasl/judge@6ea2e485149e",
+   "uasl/perf-web-optimization@0e20e7b8cc98",
+   "uasl/altitude-horizon-framework@447a5b07a5ee",
+   "uasl/thinking-lindy-effect@7a9ebd3631c7",
+   "uasl/kanban-board@2d1da6290ea3",
+   "uasl/frontend-design-principles@e9b2a10a43d1",
+   "uasl/n8n-code-javascript@203459f10f1d",
+   "uasl/titan@39c6080f3dfc",
+   "uasl/thinking-second-order@6a0831afa6ac",
+   "uasl/design-brief@3b3646a38d3e",
+   "uasl/write-a-skill@82d5bd29e631",
+   "anthropics-skills/pdf@9bc3a6e1ff66",
+   "uasl/template@8376f5c82e4c",
+   "uasl/netsuite-automation@b615a37449c9",
+   "uasl/replit-deck@84797e95ef8f",
+   "uasl/ui-audit@be637d5e2baf",
+   "uasl/web-perf@9063b7e5eacf",
+   "uasl/n8n-expression-syntax@f1845451eb4d",
+   "uasl/connect@77e02b4574f6",
+   "uasl/googlephotos-automation@0b2d3403ccba",
+   "uasl/grill-me@a821be519d0d",
+   "uasl/article-writing@408c77d800c4",
+   "uasl/chaos-testing@760793a4a18b",
+   "uasl/invoice@234bae53884f",
+   "uasl/apify-automation@34a14f015224",
+   "uasl/redesign-skill@2e4f7f16e367"
+  ]
+ },
+ "s4-t291": {
+  "order": [
+   "uasl/code-security@e20eb3467925",
+   "uasl/gpt-tasteskill@134558e228c5",
+   "uasl/taste-skill@57790089504e",
+   "uasl/frontend-design@5da82907743d",
+   "anthropics-skills/frontend-design@0a5ff23f1022",
+   "uasl/imagegen-frontend-web@3c09b1b364ef",
+   "uasl/cincopa-automation@6767d2098f08",
+   "uasl/writing-plans@219901eb119f",
+   "uasl/frontend-patterns@8f659ce2a0bd",
+   "uasl/frontend-design-principles@e9b2a10a43d1",
+   "uasl/vibe-security@6b07d0f651a7",
+   "anthropics-skills/docx@74e2b8b277a4",
+   "uasl/vercel-react-best-practices@70f3b5aaf775",
+   "uasl/secure-coding-practices@cc37fcd8687e"
+  ],
+  "sources": {
+   "uasl/writing-plans@219901eb119f": [
+    "2a"
+   ],
+   "uasl/frontend-patterns@8f659ce2a0bd": [
+    "2a"
+   ],
+   "uasl/gpt-tasteskill@134558e228c5": [
+    "bm25"
+   ],
+   "uasl/vibe-security@6b07d0f651a7": [
+    "bm25"
+   ],
+   "uasl/frontend-design-principles@e9b2a10a43d1": [
+    "bm25"
+   ],
+   "uasl/taste-skill@57790089504e": [
+    "bm25"
+   ],
+   "uasl/imagegen-frontend-web@3c09b1b364ef": [
+    "bm25"
+   ],
+   "uasl/frontend-design@5da82907743d": [
+    "bm25"
+   ],
+   "anthropics-skills/frontend-design@0a5ff23f1022": [
+    "bm25"
+   ],
+   "uasl/code-security@e20eb3467925": [
+    "bm25"
+   ],
+   "anthropics-skills/docx@74e2b8b277a4": [
+    "bm25"
+   ],
+   "uasl/secure-coding-practices@cc37fcd8687e": [
+    "bm25"
+   ],
+   "uasl/vercel-react-best-practices@70f3b5aaf775": [
+    "random"
+   ],
+   "uasl/cincopa-automation@6767d2098f08": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "uasl/gpt-tasteskill@134558e228c5",
+   "uasl/vibe-security@6b07d0f651a7",
+   "uasl/frontend-design-principles@e9b2a10a43d1",
+   "uasl/taste-skill@57790089504e",
+   "uasl/imagegen-frontend-web@3c09b1b364ef",
+   "uasl/frontend-design@5da82907743d",
+   "anthropics-skills/frontend-design@0a5ff23f1022",
+   "uasl/code-security@e20eb3467925",
+   "anthropics-skills/docx@74e2b8b277a4",
+   "uasl/secure-coding-practices@cc37fcd8687e",
+   "uasl/karpathy-guidelines@da897c8c3bab",
+   "uasl/image-to-code-skill@4f1a4537825d",
+   "uasl/design-to-code@fae28f73cda0",
+   "anthropics-skills/pptx@4eb5e13af97f",
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "anthropics-skills/xlsx@5350d36b768c",
+   "uasl/soft-skill@4dd04c5022d2",
+   "uasl/coding-guidelines@0ec7e45f92f2",
+   "uasl/titan@39c6080f3dfc",
+   "uasl/owasp-security@9847d3666f75",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "uasl/five-agent-preflight-check@972573c45dcf",
+   "uasl/quill@336ba74b0e79",
+   "uasl/web-design-builder@61ee1c248717",
+   "uasl/x-api@f7be0ce6f0ec",
+   "uasl/verification-loop@39d9be23cf50",
+   "uasl/n8n-workflow-patterns@c9641aab7a0b",
+   "uasl/gstack@3a23a30cf4c0",
+   "uasl/writing-plans@219901eb119f",
+   "uasl/responsive-design@2cf7927ef938",
+   "uasl/perf-web-optimization@0e20e7b8cc98",
+   "uasl/gsap-scrolltrigger@dd7bfe79efb2",
+   "uasl/forge@a8efdfdbe817",
+   "uasl/vercel-composition-patterns@a6f8be32b197",
+   "uasl/ui-audit@be637d5e2baf",
+   "uasl/guardian@27ad146feaed",
+   "uasl/component-identification-sizing@a9b4aa9f2de1",
+   "uasl/next-best-practices@ee058f89acea",
+   "uasl/coding-standards@f854e26a9529",
+   "uasl/jotform-automation@41d82bc651c3",
+   "uasl/legacy-migration-planner@462fe9f6af79",
+   "uasl/audio-jingle@a4d3695ad5fd",
+   "uasl/radar@a47ea6fd5f95",
+   "uasl/zen@f72229d0a781",
+   "uasl/component-flattening-analysis@82a0a8d664dd",
+   "uasl/n8n-node-configuration@11407cd84493",
+   "uasl/artisan@1e09f38ffcab",
+   "uasl/polyglot@11be7885bda2",
+   "uasl/motion-canvas@08d879d31903",
+   "uasl/web-prototype-taste-editorial@ea4a250e3329"
+  ]
+ },
+ "s4-t295": {
+  "order": [
+   "uasl/frontend-design-principles@e9b2a10a43d1",
+   "uasl/bench-automation@346a78d05d22",
+   "uasl/frontend-design@5da82907743d",
+   "uasl/ux-heuristics@ff940b7d8a9f",
+   "uasl/gpt-tasteskill@134558e228c5",
+   "uasl/workflow-automation@8036a9d484a3",
+   "uasl/component-identification-sizing@a9b4aa9f2de1",
+   "uasl/web-prototype-taste-editorial@ea4a250e3329",
+   "uasl/frontend-patterns@8f659ce2a0bd",
+   "uasl/taste-skill@57790089504e",
+   "uasl/google-admin-automation@c0e29c39549e",
+   "uasl/anthropic-administrator-automation@37f36f9f61d4",
+   "uasl/forge@a8efdfdbe817",
+   "uasl/design-to-code@fae28f73cda0"
+  ],
+  "sources": {
+   "uasl/ux-heuristics@ff940b7d8a9f": [
+    "2a"
+   ],
+   "uasl/frontend-patterns@8f659ce2a0bd": [
+    "2a"
+   ],
+   "uasl/frontend-design-principles@e9b2a10a43d1": [
+    "bm25"
+   ],
+   "uasl/frontend-design@5da82907743d": [
+    "bm25"
+   ],
+   "uasl/gpt-tasteskill@134558e228c5": [
+    "bm25"
+   ],
+   "uasl/taste-skill@57790089504e": [
+    "bm25"
+   ],
+   "uasl/design-to-code@fae28f73cda0": [
+    "bm25"
+   ],
+   "uasl/component-identification-sizing@a9b4aa9f2de1": [
+    "bm25"
+   ],
+   "uasl/web-prototype-taste-editorial@ea4a250e3329": [
+    "bm25"
+   ],
+   "uasl/anthropic-administrator-automation@37f36f9f61d4": [
+    "bm25"
+   ],
+   "uasl/google-admin-automation@c0e29c39549e": [
+    "bm25"
+   ],
+   "uasl/forge@a8efdfdbe817": [
+    "bm25"
+   ],
+   "uasl/workflow-automation@8036a9d484a3": [
+    "random"
+   ],
+   "uasl/bench-automation@346a78d05d22": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "uasl/frontend-design-principles@e9b2a10a43d1",
+   "uasl/frontend-design@5da82907743d",
+   "uasl/gpt-tasteskill@134558e228c5",
+   "uasl/taste-skill@57790089504e",
+   "uasl/design-to-code@fae28f73cda0",
+   "uasl/component-identification-sizing@a9b4aa9f2de1",
+   "uasl/web-prototype-taste-editorial@ea4a250e3329",
+   "uasl/anthropic-administrator-automation@37f36f9f61d4",
+   "uasl/google-admin-automation@c0e29c39549e",
+   "uasl/forge@a8efdfdbe817",
+   "uasl/motion-canvas@08d879d31903",
+   "uasl/bolt@c4895c710162",
+   "uasl/component-flattening-analysis@82a0a8d664dd",
+   "uasl/slack-bot-builder@ce64c6aad24e",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "uasl/web-design-guidelines@b95baac579eb",
+   "uasl/vercel-react-best-practices@70f3b5aaf775",
+   "uasl/design-system-creation@ec5d23e4e974",
+   "uasl/ui-audit@be637d5e2baf",
+   "uasl/web-design-builder@61ee1c248717",
+   "uasl/frontend-patterns@8f659ce2a0bd",
+   "uasl/showcase@66f46f81d885",
+   "uasl/design-system-patterns@cd952cab0879",
+   "uasl/artisan@1e09f38ffcab",
+   "uasl/imagegen-frontend-web@3c09b1b364ef",
+   "uasl/gsap-frameworks@13a7c7540177",
+   "uasl/vercel-composition-patterns@a6f8be32b197",
+   "uasl/integration-testing@62b51275be50",
+   "anthropics-skills/frontend-design@0a5ff23f1022",
+   "uasl/frontend-slides@8d62c2eeef30",
+   "uasl/python-design-patterns@5c0fbe0d4633",
+   "uasl/productboard-automation@f09c2ef332e2",
+   "uasl/react-patterns@73d1ecc06997",
+   "uasl/web-component-design@af6d16dc78dc",
+   "anthropics-skills/web-artifacts-builder@9c350d2f5f13",
+   "uasl/design-system-starter@3ab04cee98bd",
+   "uasl/shadcn-ui@8c463642324a",
+   "uasl/clean-architecture@acaac6e9e2a3",
+   "uasl/decomposition-reconstruction@c615c9eb3d97",
+   "uasl/image-to-code-skill@4f1a4537825d",
+   "uasl/banner-design@0e161f38cea1",
+   "uasl/impeccable-frontend-design@deeb3fdb9086",
+   "uasl/coding-standards@f854e26a9529",
+   "uasl/jumpcloud-automation@2c3811515d58",
+   "uasl/docker-hub-automation@271792aed33b",
+   "uasl/next-best-practices@ee058f89acea",
+   "uasl/n8n-workflow-patterns@c9641aab7a0b",
+   "uasl/voice-ai-development@76a8425e5865",
+   "uasl/dashboard@537186e4443a",
+   "uasl/agent-sort@a8e06853ada8"
+  ]
+ },
+ "s4-t297": {
+  "order": [
+   "uasl/gsap-performance@545d16027a95",
+   "uasl/design-to-code@fae28f73cda0",
+   "uasl/taste-skill@57790089504e",
+   "uasl/frontend-design@5da82907743d",
+   "anthropics-skills/frontend-design@0a5ff23f1022",
+   "uasl/google-admin-automation@c0e29c39549e",
+   "uasl/fireflies-automation@6f98a449711e",
+   "uasl/environmental-scanning-foresight@84fb5106baed",
+   "uasl/gpt-tasteskill@134558e228c5",
+   "uasl/web-prototype-taste-editorial@ea4a250e3329",
+   "uasl/frontend-slides@8d62c2eeef30",
+   "uasl/accessibility-compliance@696d2b4119ed",
+   "uasl/frontend-design-principles@e9b2a10a43d1"
+  ],
+  "sources": {
+   "uasl/frontend-design@5da82907743d": [
+    "2a",
+    "bm25"
+   ],
+   "uasl/accessibility-compliance@696d2b4119ed": [
+    "2a"
+   ],
+   "uasl/gpt-tasteskill@134558e228c5": [
+    "bm25"
+   ],
+   "uasl/web-prototype-taste-editorial@ea4a250e3329": [
+    "bm25"
+   ],
+   "uasl/frontend-design-principles@e9b2a10a43d1": [
+    "bm25"
+   ],
+   "uasl/taste-skill@57790089504e": [
+    "bm25"
+   ],
+   "uasl/frontend-slides@8d62c2eeef30": [
+    "bm25"
+   ],
+   "uasl/design-to-code@fae28f73cda0": [
+    "bm25"
+   ],
+   "uasl/gsap-performance@545d16027a95": [
+    "bm25"
+   ],
+   "uasl/google-admin-automation@c0e29c39549e": [
+    "bm25"
+   ],
+   "anthropics-skills/frontend-design@0a5ff23f1022": [
+    "bm25"
+   ],
+   "uasl/fireflies-automation@6f98a449711e": [
+    "random"
+   ],
+   "uasl/environmental-scanning-foresight@84fb5106baed": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "uasl/gpt-tasteskill@134558e228c5",
+   "uasl/frontend-design@5da82907743d",
+   "uasl/web-prototype-taste-editorial@ea4a250e3329",
+   "uasl/frontend-design-principles@e9b2a10a43d1",
+   "uasl/taste-skill@57790089504e",
+   "uasl/frontend-slides@8d62c2eeef30",
+   "uasl/design-to-code@fae28f73cda0",
+   "uasl/gsap-performance@545d16027a95",
+   "uasl/google-admin-automation@c0e29c39549e",
+   "anthropics-skills/frontend-design@0a5ff23f1022",
+   "uasl/redesign-skill@2e4f7f16e367",
+   "uasl/polyglot@11be7885bda2",
+   "uasl/imagegen-frontend-web@3c09b1b364ef",
+   "uasl/design-review@4964367926b4",
+   "uasl/top-design@4ea889def6d2",
+   "uasl/soft-skill@4dd04c5022d2",
+   "uasl/web-design-builder@61ee1c248717",
+   "uasl/ui-audit@be637d5e2baf",
+   "uasl/voice-ai-development@76a8425e5865",
+   "uasl/bolt@c4895c710162",
+   "uasl/image-to-code-skill@4f1a4537825d",
+   "anthropics-skills/xlsx@5350d36b768c",
+   "uasl/forge@a8efdfdbe817",
+   "uasl/vibe-security@6b07d0f651a7",
+   "uasl/component-identification-sizing@a9b4aa9f2de1",
+   "uasl/gsap-frameworks@13a7c7540177",
+   "uasl/replit-deck@84797e95ef8f",
+   "uasl/web-perf@9063b7e5eacf",
+   "uasl/gsap-timeline@d4acd84a00f0",
+   "uasl/n8n-code-javascript@203459f10f1d",
+   "uasl/vercel-react-best-practices@70f3b5aaf775",
+   "uasl/slack-bot-builder@ce64c6aad24e",
+   "uasl/owasp-security@9847d3666f75",
+   "uasl/tweaks@800b9d426375",
+   "uasl/kanban-board@2d1da6290ea3",
+   "uasl/universal-ai-skills@0128810b6ffe",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/design-brief@3b3646a38d3e",
+   "uasl/responsive-design@2cf7927ef938",
+   "uasl/react-patterns@73d1ecc06997",
+   "uasl/impeccable-frontend-design@deeb3fdb9086",
+   "uasl/kommo-automation@67ebbb9c7737",
+   "uasl/scroll-experience@f1aa0edee6ad",
+   "anthropics-skills/docx@74e2b8b277a4",
+   "uasl/capsule-crm-automation@97113fa8404d",
+   "uasl/integration-testing@62b51275be50",
+   "uasl/minimalist-skill@6bec0a57af30",
+   "uasl/clockify-automation@2a7df079c351",
+   "uasl/high-perf-browser@aee32087bf43",
+   "uasl/code-security@e20eb3467925"
+  ]
+ },
+ "s4-t349": {
+  "order": [
+   "uasl/next-upgrade@df465f7770a5",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/tlc-spec-driven@394ed16ecc07",
+   "uasl/design-integration@03e2661a4d5f",
+   "uasl/pdfmonkey-automation@5af88908f123",
+   "uasl/vibe-security@6b07d0f651a7",
+   "uasl/tdd-workflow@6eadb0bf0ea8",
+   "uasl/executive-onboarding-playbook@dc89777e55ba",
+   "uasl/sherpa@e80ffe2d019e",
+   "uasl/writing-plans@219901eb119f",
+   "uasl/design-sprint@4550ceb8d09f",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/data-analyst-engine@79799e01e2dd",
+   "uasl/architecture-patterns@d184d1c3a346"
+  ],
+  "sources": {
+   "uasl/writing-plans@219901eb119f": [
+    "2a"
+   ],
+   "uasl/data-analyst-engine@79799e01e2dd": [
+    "2a"
+   ],
+   "uasl/claude-native-claude-api@24c958899f03": [
+    "bm25"
+   ],
+   "uasl/vibe-security@6b07d0f651a7": [
+    "bm25"
+   ],
+   "uasl/executive-onboarding-playbook@dc89777e55ba": [
+    "bm25"
+   ],
+   "uasl/fastapi-templates@effcd0de0b4c": [
+    "bm25"
+   ],
+   "uasl/design-integration@03e2661a4d5f": [
+    "bm25"
+   ],
+   "uasl/architecture-patterns@d184d1c3a346": [
+    "bm25"
+   ],
+   "uasl/tdd-workflow@6eadb0bf0ea8": [
+    "bm25"
+   ],
+   "uasl/sherpa@e80ffe2d019e": [
+    "bm25"
+   ],
+   "uasl/design-sprint@4550ceb8d09f": [
+    "bm25"
+   ],
+   "uasl/tlc-spec-driven@394ed16ecc07": [
+    "bm25"
+   ],
+   "uasl/next-upgrade@df465f7770a5": [
+    "random"
+   ],
+   "uasl/pdfmonkey-automation@5af88908f123": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/vibe-security@6b07d0f651a7",
+   "uasl/executive-onboarding-playbook@dc89777e55ba",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/design-integration@03e2661a4d5f",
+   "uasl/architecture-patterns@d184d1c3a346",
+   "uasl/tdd-workflow@6eadb0bf0ea8",
+   "uasl/sherpa@e80ffe2d019e",
+   "uasl/design-sprint@4550ceb8d09f",
+   "uasl/tlc-spec-driven@394ed16ecc07",
+   "uasl/debugging-strategies@c55dad9c9654",
+   "uasl/coding-standards@f854e26a9529",
+   "uasl/segment-cdp@42e8e765d937",
+   "uasl/3d-web-experience@e1485751556b",
+   "uasl/unit-testing@6c5fbb821103",
+   "uasl/n8n-code-python@ba1cd974d317",
+   "uasl/codenavi@109490043377",
+   "anthropics-skills/skill-creator@5d80e84222d8",
+   "uasl/owasp-security@9847d3666f75",
+   "uasl/bright-data-best-practices@15cfe1bca9b8",
+   "uasl/radar@a47ea6fd5f95",
+   "anthropics-skills/pptx@4eb5e13af97f",
+   "uasl/thinking-regret-minimization@f18d99ba7cec",
+   "uasl/code-security@e20eb3467925",
+   "uasl/clay@6c9572941894",
+   "uasl/excel-automation@026ac73c3c63",
+   "uasl/grill-with-docs@99f1bafe73fe",
+   "uasl/coding-guidelines@0ec7e45f92f2",
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/chaos-testing@760793a4a18b",
+   "uasl/claude-api@f952c765f5b0",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "uasl/memory-retrieval-learning@fc5680ba29e1",
+   "uasl/python-error-handling@8dc34883a143",
+   "anthropics-skills/frontend-design@0a5ff23f1022",
+   "uasl/gauge@b84b3ee9b507",
+   "uasl/lean-startup@776b03bb7136",
+   "uasl/replicate-automation@4053915c756a",
+   "uasl/executing-plans@3bfe5761e031",
+   "uasl/writing-plans@219901eb119f",
+   "uasl/subagent-driven-development@c88a11afe515",
+   "uasl/ashby-automation@b9813e1a534d",
+   "anthropics-skills/xlsx@5350d36b768c",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/bolt@c4895c710162",
+   "uasl/slack-bot-builder@ce64c6aad24e",
+   "uasl/frontend-design-principles@e9b2a10a43d1",
+   "uasl/imagegen-frontend-mobile@d57843fce66f",
+   "uasl/mom-test@6f43f16a3566",
+   "uasl/thinking-jobs-to-be-done@1b920fccd1fc"
+  ]
+ },
+ "s4-t357": {
+  "order": [
+   "uasl/design-harden@7850aacd7d45",
+   "uasl/anvil@3a36e8410205",
+   "uasl/next-best-practices@ee058f89acea",
+   "uasl/figma-implement-design@6f82bf7fa5ca",
+   "uasl/accessibility-compliance@696d2b4119ed",
+   "uasl/web-design-builder@61ee1c248717",
+   "uasl/content-research-writer@f1af82e4025e",
+   "uasl/tinyurl-automation@28dfb4a2bbc1",
+   "uasl/abuselpdb-automation@762f03461a64",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/vercel-react-best-practices@70f3b5aaf775",
+   "uasl/onboarding-ux@525055bbdf31",
+   "uasl/visual-design-foundations@f7829f5da0d2"
+  ],
+  "sources": {
+   "uasl/accessibility-compliance@696d2b4119ed": [
+    "2a",
+    "bm25"
+   ],
+   "uasl/content-research-writer@f1af82e4025e": [
+    "2a"
+   ],
+   "uasl/vercel-react-best-practices@70f3b5aaf775": [
+    "bm25"
+   ],
+   "uasl/onboarding-ux@525055bbdf31": [
+    "bm25"
+   ],
+   "uasl/anvil@3a36e8410205": [
+    "bm25"
+   ],
+   "uasl/design-harden@7850aacd7d45": [
+    "bm25"
+   ],
+   "uasl/visual-design-foundations@f7829f5da0d2": [
+    "bm25"
+   ],
+   "uasl/figma-implement-design@6f82bf7fa5ca": [
+    "bm25"
+   ],
+   "uasl/next-best-practices@ee058f89acea": [
+    "bm25"
+   ],
+   "uasl/backend-patterns@3d87ff489f3e": [
+    "bm25"
+   ],
+   "uasl/web-design-builder@61ee1c248717": [
+    "bm25"
+   ],
+   "uasl/abuselpdb-automation@762f03461a64": [
+    "random"
+   ],
+   "uasl/tinyurl-automation@28dfb4a2bbc1": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "uasl/accessibility-compliance@696d2b4119ed",
+   "uasl/vercel-react-best-practices@70f3b5aaf775",
+   "uasl/onboarding-ux@525055bbdf31",
+   "uasl/anvil@3a36e8410205",
+   "uasl/design-harden@7850aacd7d45",
+   "uasl/visual-design-foundations@f7829f5da0d2",
+   "uasl/figma-implement-design@6f82bf7fa5ca",
+   "uasl/next-best-practices@ee058f89acea",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/web-design-builder@61ee1c248717",
+   "uasl/shadcn-ui@8c463642324a",
+   "uasl/quill@336ba74b0e79",
+   "uasl/redesign-skill@2e4f7f16e367",
+   "uasl/trigger-dev@d05b3d95379f",
+   "uasl/openclaw-color-palette@22baa399c5eb",
+   "uasl/artisan@1e09f38ffcab",
+   "uasl/shadcn@fb196fe88c66",
+   "uasl/frontend-patterns@8f659ce2a0bd",
+   "uasl/api-sports-automation@0461bade6799",
+   "uasl/segment-cdp@42e8e765d937",
+   "anthropics-skills/frontend-design@0a5ff23f1022",
+   "uasl/prose@bbd22d3eb9b7",
+   "uasl/navigator@8d026b4397b8",
+   "uasl/top-design@4ea889def6d2",
+   "uasl/firecrawl-automation@555ae9b52289",
+   "uasl/gsap-utils@a1cbf677d835",
+   "uasl/nextjs-turbopack@b0af0186e13a",
+   "uasl/bright-data-best-practices@15cfe1bca9b8",
+   "uasl/tweaks@800b9d426375",
+   "uasl/vibe-security@6b07d0f651a7",
+   "uasl/agent-sort@a8e06853ada8",
+   "uasl/typescript-unit-testing@6fb3561edcb3",
+   "uasl/frontend-design@5da82907743d",
+   "uasl/copywriting@67282b309ff8",
+   "uasl/product-showcase@47ddb0e168e1",
+   "uasl/taste-skill@57790089504e",
+   "uasl/polyglot@11be7885bda2",
+   "uasl/canvas@fc2071ed7429",
+   "uasl/perf-web-optimization@0e20e7b8cc98",
+   "anthropics-skills/docx@74e2b8b277a4",
+   "uasl/migrate-to-shoehorn@50bfd668fa65",
+   "uasl/showcase@66f46f81d885",
+   "anthropics-skills/claude-api@e30e2c97f747",
+   "uasl/web-component-design@af6d16dc78dc",
+   "uasl/firecrawl-scraper@8691949c9232",
+   "uasl/mcp-server-patterns@63e29e48e956",
+   "uasl/n8n-code-python@ba1cd974d317",
+   "uasl/scroll-experience@f1aa0edee6ad",
+   "uasl/landing-page@455a3c3ba6f7",
+   "uasl/imagegen-frontend-web@3c09b1b364ef"
+  ]
+ },
+ "s4-t370": {
+  "order": [
+   "uasl/gsap-utils@a1cbf677d835",
+   "anthropics-skills/pptx@4eb5e13af97f",
+   "uasl/connect-apps@9a34ce12c40c",
+   "uasl/manim@b0a6f7da4632",
+   "uasl/elorus-automation@5245b8377e5f",
+   "uasl/frontend-slides@8d62c2eeef30",
+   "uasl/connect@77e02b4574f6",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/beaconchain-automation@d3245b29cde8",
+   "uasl/vercel-react-best-practices@70f3b5aaf775",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "anthropics-skills/docx@74e2b8b277a4"
+  ],
+  "sources": {
+   "uasl/claude-native-claude-api@24c958899f03": [
+    "bm25"
+   ],
+   "anthropics-skills/pptx@4eb5e13af97f": [
+    "bm25"
+   ],
+   "uasl/gsap-utils@a1cbf677d835": [
+    "bm25"
+   ],
+   "anthropics-skills/docx@74e2b8b277a4": [
+    "bm25"
+   ],
+   "uasl/connect@77e02b4574f6": [
+    "bm25"
+   ],
+   "uasl/fastapi-templates@effcd0de0b4c": [
+    "bm25"
+   ],
+   "uasl/manim@b0a6f7da4632": [
+    "bm25"
+   ],
+   "uasl/connect-apps@9a34ce12c40c": [
+    "bm25"
+   ],
+   "uasl/frontend-slides@8d62c2eeef30": [
+    "bm25"
+   ],
+   "uasl/vercel-react-best-practices@70f3b5aaf775": [
+    "bm25"
+   ],
+   "uasl/elorus-automation@5245b8377e5f": [
+    "random"
+   ],
+   "uasl/beaconchain-automation@d3245b29cde8": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "uasl/claude-native-claude-api@24c958899f03",
+   "anthropics-skills/pptx@4eb5e13af97f",
+   "uasl/gsap-utils@a1cbf677d835",
+   "anthropics-skills/docx@74e2b8b277a4",
+   "uasl/connect@77e02b4574f6",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/manim@b0a6f7da4632",
+   "uasl/connect-apps@9a34ce12c40c",
+   "uasl/frontend-slides@8d62c2eeef30",
+   "uasl/vercel-react-best-practices@70f3b5aaf775",
+   "uasl/high-perf-browser@aee32087bf43",
+   "uasl/landing-page@455a3c3ba6f7",
+   "uasl/design-optimize@cbb1632043ec",
+   "uasl/omnisend-automation@cac8b5f5b289",
+   "anthropics-skills/pdf@9bc3a6e1ff66",
+   "uasl/pandadoc-automation@1f3c475c58e0",
+   "uasl/investor-outreach@fedb2eb4a89c",
+   "uasl/tweaks@800b9d426375",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "uasl/coding-standards@f854e26a9529",
+   "uasl/onesignal-rest-api-automation@69760a7d8416",
+   "uasl/cf-crawl@77a977c31001",
+   "anthropics-skills/xlsx@5350d36b768c",
+   "uasl/forge@a8efdfdbe817",
+   "uasl/n8n-workflow-patterns@c9641aab7a0b",
+   "uasl/bolt@c4895c710162",
+   "uasl/simple-deck@acfa7f4d3e22",
+   "uasl/visual-design-foundations@f7829f5da0d2",
+   "uasl/hunter-automation@16ca2f412367",
+   "uasl/replit-deck@84797e95ef8f",
+   "uasl/googleslides-automation@a604829ce6a2",
+   "uasl/typescript-clean-code@409278d3a61a",
+   "uasl/banner-design@0e161f38cea1",
+   "uasl/debugging-strategies@c55dad9c9654",
+   "uasl/cloudflare-browser-rendering-automation@efd929cdb7cd",
+   "uasl/architecture-patterns@d184d1c3a346",
+   "anthropics-skills/discernment-nudge@a9d2caea7e0b",
+   "uasl/domain-driven-design@0d649fab3ce3",
+   "uasl/spec-to-code-compliance@dee9b880b526",
+   "uasl/claude-api@f952c765f5b0",
+   "uasl/acceptance-testing@7f713f1566e8",
+   "uasl/predictable-revenue@fcafde23c133",
+   "uasl/component-identification-sizing@a9b4aa9f2de1",
+   "uasl/investor-materials@7b41352320eb",
+   "uasl/mailerlite-automation@45ce991e9569",
+   "uasl/thinking-scientific-method@8b3f9fba25b4",
+   "uasl/ui-audit@be637d5e2baf",
+   "uasl/owasp-security@9847d3666f75",
+   "uasl/gorgias-automation@2106c504916d",
+   "uasl/zen@f72229d0a781"
+  ]
+ }
+}

@@ -1,0 +1,324 @@
+{"task_id": "t006", "candidate_id": "c01", "grade": 0, "process": false, "reason": "Umbraco 속성 액션은 Next.js 필터 저장과 스택이 다르다."}
+{"task_id": "t006", "candidate_id": "c02", "grade": 0, "process": false, "reason": "부동산 광고 문구는 필터 기능 구현과 무관하다."}
+{"task_id": "t006", "candidate_id": "c03", "grade": 0, "process": false, "reason": "오디오 생성은 요청과 무관하다."}
+{"task_id": "t006", "candidate_id": "c04", "grade": 2, "process": false, "reason": "React 상태와 Next.js UI 패턴이 저장 필터 화면 구현에 유용하다."}
+{"task_id": "t006", "candidate_id": "c05", "grade": 0, "process": false, "reason": "Pages Router 대상이며 제공 요약에 적용 가능한 내용이 없다."}
+{"task_id": "t006", "candidate_id": "c06", "grade": 2, "process": false, "reason": "App Router 클라이언트 경계와 데이터 요청 구현에 유용하다."}
+{"task_id": "t006", "candidate_id": "c07", "grade": 2, "process": false, "reason": "App Router 전체 구조와 캐싱 지침이 저장 목록 구현에 도움 된다."}
+{"task_id": "t006", "candidate_id": "c08", "grade": 3, "process": false, "reason": "라우트 핸들러와 데이터 및 RSC 경계가 요청한 저장 API 연동을 직접 다룬다."}
+{"task_id": "t006", "candidate_id": "c09", "grade": 0, "process": false, "reason": "지하철 분실물 검색은 앱 구현과 무관하다."}
+{"task_id": "t006", "candidate_id": "c10", "grade": 1, "process": false, "reason": "일반 웹 보안 지침만 있어 필터 저장 구현에 제한적으로 도움 된다."}
+{"task_id": "t006", "candidate_id": "c11", "grade": 2, "process": false, "reason": "해당 App Router 프레임워크의 구현 예제가 유용하다."}
+{"task_id": "t006", "candidate_id": "c12", "grade": 0, "process": true, "reason": "Python 테스트 절차는 TSX 앱과 스택이 다르다."}
+{"task_id": "t006", "candidate_id": "c13", "grade": 0, "process": false, "reason": "Kibana 저장 객체 암호화는 해당 저장 API와 무관하다."}
+{"task_id": "t006", "candidate_id": "c14", "grade": 0, "process": false, "reason": "Kibana 감사 로그 설정은 요청과 무관하다."}
+{"task_id": "t006", "candidate_id": "c15", "grade": 0, "process": false, "reason": "Coralogix 온보딩은 저장 필터 기능과 무관하다."}
+{"task_id": "t006", "candidate_id": "c16", "grade": 3, "process": false, "reason": "App Router 데이터 요청과 API 패턴이 페이지와 저장 핸들러 연동을 직접 지원한다."}
+{"task_id": "t006", "candidate_id": "c17", "grade": 2, "process": false, "reason": "Next.js App Router와 API 참조가 구현에 유용하다."}
+{"task_id": "t006", "candidate_id": "c18", "grade": 0, "process": false, "reason": "관측 쿼리 언어 변환은 요청과 무관하다."}
+{"task_id": "t006", "candidate_id": "c19", "grade": 1, "process": false, "reason": "같은 프레임워크지만 번들러 선택은 이 기능과 거리가 있다."}
+{"task_id": "t006", "candidate_id": "c20", "grade": 2, "process": false, "reason": "App Router 데이터 조회와 서버 경계 지식이 유용하다."}
+{"task_id": "t006", "candidate_id": "c21", "grade": 3, "process": false, "reason": "클라이언트 경계와 라우트 핸들러 지침이 인터랙티브 저장 기능에 직접 적용된다."}
+{"task_id": "t006", "candidate_id": "c22", "grade": 2, "process": false, "reason": "App Router 서버 컴포넌트 패턴이 페이지 구성에 유용하다."}
+{"task_id": "t006", "candidate_id": "c23", "grade": 1, "process": false, "reason": "제목은 맞지만 요약이 일반적이어서 구체적 유용성 근거가 약하다."}
+{"task_id": "t006", "candidate_id": "c24", "grade": 0, "process": false, "reason": "Attio CRM 검색 자동화는 기능 구현과 무관하다."}
+{"task_id": "t006", "candidate_id": "c25", "grade": 0, "process": false, "reason": "학술 논문 검색은 요청과 무관하다."}
+{"task_id": "t006", "candidate_id": "c26", "grade": 2, "process": false, "reason": "App Router 데이터 조회와 캐싱이 저장 목록 표시에 유용하다."}
+{"task_id": "t006", "candidate_id": "c27", "grade": 0, "process": false, "reason": "법원 경매 정보 조회는 필터 UI 개발과 무관하다."}
+{"task_id": "t006", "candidate_id": "c28", "grade": 0, "process": false, "reason": "Google Ads 분석은 요청과 무관하다."}
+{"task_id": "t006", "candidate_id": "c29", "grade": 2, "process": false, "reason": "필터 상태 관리 패턴은 저장할 조건 묶음을 구성하는 데 유용하다."}
+{"task_id": "t006", "candidate_id": "c30", "grade": 1, "process": false, "reason": "App Router 제목 외에는 구현 내용이 제시되지 않았다."}
+{"task_id": "t006", "candidate_id": "c31", "grade": 1, "process": false, "reason": "App Router 패턴 제목만 관련되고 요약은 일반적이다."}
+{"task_id": "t006", "candidate_id": "c32", "grade": 2, "process": false, "reason": "해당 App Router 개발 전문 지식이 페이지 확장에 유용하다."}
+{"task_id": "t006", "candidate_id": "c33", "grade": 1, "process": false, "reason": "라우팅과 마이그레이션 중심이라 기존 페이지 기능 추가에 도움은 제한적이다."}
+{"task_id": "t006", "candidate_id": "c34", "grade": 0, "process": false, "reason": "제공 요약은 마켓플레이스 설명이며 App Router 구현 지침이 없다."}
+{"task_id": "t006", "candidate_id": "c35", "grade": 0, "process": false, "reason": "사람과 부동산 데이터 조회 API는 저장 필터 구현과 무관하다."}
+{"task_id": "t006", "candidate_id": "c36", "grade": 1, "process": true, "reason": "폼 작업 분류 절차는 일부 관련되지만 저장 API 구현은 다루지 않는다."}
+{"task_id": "t006", "candidate_id": "c37", "grade": 0, "process": true, "reason": "FastAPI 구현 절차는 Next.js 라우트 핸들러와 스택이 다르다."}
+{"task_id": "t006", "candidate_id": "c38", "grade": 0, "process": false, "reason": "ScienceDirect 검색은 앱 기능 개발과 무관하다."}
+{"task_id": "t006", "candidate_id": "c39", "grade": 2, "process": false, "reason": "App Router 데이터와 렌더링 경계 관행이 구현에 유용하다."}
+{"task_id": "t006", "candidate_id": "c40", "grade": 1, "process": false, "reason": "관련 제목이지만 요약만으로 구체적 패턴을 확인할 수 없다."}
+{"task_id": "t006", "candidate_id": "c41", "grade": 2, "process": false, "reason": "저장 필터 REST 리소스와 오류 응답 설계에 유용하다."}
+{"task_id": "t006", "candidate_id": "c42", "grade": 2, "process": false, "reason": "App Router 데이터와 모듈 구성 지식이 기능 구현에 유용하다."}
+{"task_id": "t006", "candidate_id": "c43", "grade": 0, "process": false, "reason": "칸반 보드는 부동산 검색 필터 UI와 무관하다."}
+{"task_id": "t016", "candidate_id": "c01", "grade": 0, "process": false, "reason": "Webex 관리 자동화는 Tokio 채팅 서버 개발과 무관하다."}
+{"task_id": "t016", "candidate_id": "c02", "grade": 0, "process": true, "reason": "경제학 역할 토론 절차는 서버 메시지 기록 구현과 무관하다."}
+{"task_id": "t016", "candidate_id": "c03", "grade": 1, "process": false, "reason": "이벤트 저장 개념은 인접하지만 영속 이벤트 소싱은 메모리 링버퍼보다 과하다."}
+{"task_id": "t016", "candidate_id": "c04", "grade": 0, "process": true, "reason": "Git 이력 관리 절차는 채팅 이력 구현과 무관하다."}
+{"task_id": "t016", "candidate_id": "c05", "grade": 0, "process": true, "reason": "TON 보안 감사는 Rust 서버와 무관하다."}
+{"task_id": "t016", "candidate_id": "c06", "grade": 0, "process": false, "reason": "Socket.IO는 지정된 Tokio 서버와 다른 스택이다."}
+{"task_id": "t016", "candidate_id": "c07", "grade": 2, "process": true, "reason": "동시성과 비동기 상태 위험 검토는 방 기록 추가를 안전하게 하는 데 유용하다."}
+{"task_id": "t016", "candidate_id": "c08", "grade": 0, "process": false, "reason": "비활동 시 이메일 전송 도구는 채팅 기록 재생과 무관하다."}
+{"task_id": "t016", "candidate_id": "c09", "grade": 0, "process": true, "reason": "에이전트 문맥 압축은 제품 메시지 버퍼와 무관하다."}
+{"task_id": "t016", "candidate_id": "c10", "grade": 1, "process": false, "reason": "Tokio 기반이지만 Axum 사용 여부가 없고 라우터 중심이라 제한적이다."}
+{"task_id": "t016", "candidate_id": "c11", "grade": 1, "process": true, "reason": "Tokio 코드 리뷰 제목은 관련되지만 요약은 구체적 지침을 제시하지 않는다."}
+{"task_id": "t016", "candidate_id": "c12", "grade": 0, "process": false, "reason": "Google Chat 메시지 전송은 서버 기능 개발과 무관하다."}
+{"task_id": "t016", "candidate_id": "c13", "grade": 0, "process": false, "reason": "Google Chat API 관리는 Tokio 채팅 구현과 무관하다."}
+{"task_id": "t016", "candidate_id": "c14", "grade": 2, "process": false, "reason": "실시간 서버와 이벤트 기반 통신 설계가 입장 시 이력 전달에 유용하다."}
+{"task_id": "t016", "candidate_id": "c15", "grade": 0, "process": true, "reason": "전문가 역할 대화 진행은 채팅 서버 구현과 무관하다."}
+{"task_id": "t016", "candidate_id": "c16", "grade": 0, "process": true, "reason": "에이전트 대화 압축은 사용자 채팅 이력 버퍼가 아니다."}
+{"task_id": "t016", "candidate_id": "c17", "grade": 0, "process": false, "reason": "세션 로그 검색 도구는 제품 채팅 이력 구현과 무관하다."}
+{"task_id": "t016", "candidate_id": "c18", "grade": 0, "process": false, "reason": "일반 에이전트 채팅방 설명뿐이며 구현 근거가 없다."}
+{"task_id": "t016", "candidate_id": "c19", "grade": 0, "process": false, "reason": "에이전트 과거 대화 검색은 방별 메시지 재생과 무관하다."}
+{"task_id": "t016", "candidate_id": "c20", "grade": 0, "process": false, "reason": "Discord 데이터 CLI는 Tokio 서버 구현과 무관하다."}
+{"task_id": "t016", "candidate_id": "c21", "grade": 0, "process": false, "reason": "Rivet Actors 기반 방 구현은 명시된 Tokio 구조와 다른 스택이다."}
+{"task_id": "t016", "candidate_id": "c22", "grade": 2, "process": false, "reason": "Rust와 Tokio 애플리케이션 패턴이 방별 버퍼 구현에 유용하다."}
+{"task_id": "t016", "candidate_id": "c23", "grade": 0, "process": true, "reason": "Cairo 계약 감사는 채팅 서버와 무관하다."}
+{"task_id": "t016", "candidate_id": "c24", "grade": 0, "process": false, "reason": "Chatwork 자동화는 서버 이력 기능과 무관하다."}
+{"task_id": "t016", "candidate_id": "c25", "grade": 0, "process": false, "reason": "에이전트 게시 채널 라우팅은 사용자 채팅 이력 구현과 무관하다."}
+{"task_id": "t016", "candidate_id": "c26", "grade": 2, "process": false, "reason": "Rust 소유권과 Tokio 지침이 공유 버퍼와 비동기 전달 구현에 유용하다."}
+{"task_id": "t016", "candidate_id": "c27", "grade": 3, "process": false, "reason": "Tokio 태스크와 채널 및 스트림 패턴이 동시 채팅 이력 재생 구현을 직접 이끈다."}
+{"task_id": "t016", "candidate_id": "c28", "grade": 0, "process": false, "reason": "Starchild 채팅방 참가 설정은 서버 기능 개발과 무관하다."}
+{"task_id": "t016", "candidate_id": "c29", "grade": 0, "process": false, "reason": "Socket.IO 전용 지침은 Tokio 구현과 스택이 다르다."}
+{"task_id": "t016", "candidate_id": "c30", "grade": 0, "process": false, "reason": "일반적인 도구 소개만으로 서버 이력 구현 관련성을 확인할 수 없다."}
+{"task_id": "t016", "candidate_id": "c31", "grade": 0, "process": true, "reason": "Git 이력 분석은 채팅 메시지 이력과 무관하다."}
+{"task_id": "t016", "candidate_id": "c32", "grade": 0, "process": false, "reason": "WeChat 요약 도구는 서버 이력 재생과 무관하다."}
+{"task_id": "t016", "candidate_id": "c33", "grade": 0, "process": true, "reason": "사용자 세션 행동 분석은 메시지 재생 기능과 무관하다."}
+{"task_id": "t016", "candidate_id": "c34", "grade": 2, "process": false, "reason": "방별 메시징과 연결 관리 패턴은 입장 시 이력 전달에 유용하다."}
+{"task_id": "t016", "candidate_id": "c35", "grade": 0, "process": false, "reason": "Node와 React Socket.io 구현은 Rust Tokio 스택과 다르다."}
+{"task_id": "t016", "candidate_id": "c36", "grade": 0, "process": false, "reason": "WeCom 메시지 CLI는 서버 구현과 무관하다."}
+{"task_id": "t016", "candidate_id": "c37", "grade": 0, "process": true, "reason": "경제학 역할 토론은 채팅 서버 이력과 무관하다."}
+{"task_id": "t018", "candidate_id": "c01", "grade": 1, "process": false, "reason": "도메인 모델링은 인접하지만 soft delete 쿼리 변경에는 범위가 넓다."}
+{"task_id": "t018", "candidate_id": "c02", "grade": 1, "process": false, "reason": "쿼리 도구 지식은 인접하지만 Prisma 사용 근거가 없다."}
+{"task_id": "t018", "candidate_id": "c03", "grade": 1, "process": false, "reason": "SoftDeleteModel은 관련되지만 Django 모델 계층을 사용한다는 근거가 없다."}
+{"task_id": "t018", "candidate_id": "c04", "grade": 2, "process": false, "reason": "엔티티와 리포지토리 쿼리에 맞는 JPA 패턴이 유용하나 프레임워크는 명시되지 않았다."}
+{"task_id": "t018", "candidate_id": "c05", "grade": 0, "process": false, "reason": "웹 시각 디자인은 삭제 정책과 무관하다."}
+{"task_id": "t018", "candidate_id": "c06", "grade": 1, "process": false, "reason": "일반 백엔드 패턴은 인접하지만 Node 스택 여부가 불명확하다."}
+{"task_id": "t018", "candidate_id": "c07", "grade": 1, "process": false, "reason": "스키마 설계는 인접하나 Prisma 전용이며 soft delete 내용이 없다."}
+{"task_id": "t018", "candidate_id": "c08", "grade": 0, "process": false, "reason": "기능 플래그 자동화는 삭제 처리와 무관하다."}
+{"task_id": "t018", "candidate_id": "c09", "grade": 1, "process": false, "reason": "ORM 작업은 관련되지만 Prisma 사용 여부가 없다."}
+{"task_id": "t018", "candidate_id": "c10", "grade": 0, "process": true, "reason": "독자별 번역 재구성은 데이터 삭제 기능과 무관하다."}
+{"task_id": "t018", "candidate_id": "c11", "grade": 2, "process": false, "reason": "JPA 엔티티와 매핑 지침이 유용하나 실제 ORM은 확인되지 않았다."}
+{"task_id": "t018", "candidate_id": "c12", "grade": 0, "process": false, "reason": "Excel 자동화는 요청과 무관하다."}
+{"task_id": "t018", "candidate_id": "c13", "grade": 0, "process": false, "reason": "Cloudinary 관리는 환자 데이터 삭제와 무관하다."}
+{"task_id": "t018", "candidate_id": "c14", "grade": 0, "process": true, "reason": "에이전트 설정 정리는 도메인 soft delete와 무관하다."}
+{"task_id": "t018", "candidate_id": "c15", "grade": 0, "process": false, "reason": "RAG 검색 전략은 리포지토리 삭제 필터와 무관하다."}
+{"task_id": "t018", "candidate_id": "c16", "grade": 2, "process": true, "reason": "업무 로직과 데이터 모델을 구현하는 절차가 엔티티 삭제 정책 변경에 유용하다."}
+{"task_id": "t018", "candidate_id": "c17", "grade": 0, "process": false, "reason": "BigQuery 외부 쿼리 자동화는 해당 리포지토리 변경과 무관하다."}
+{"task_id": "t021", "candidate_id": "c01", "grade": 2, "process": false, "reason": "백엔드 경계와 구조 패턴은 플래그 저장 및 접근 설계에 유용하다."}
+{"task_id": "t021", "candidate_id": "c02", "grade": 0, "process": false, "reason": "AI 메모리 시스템은 테넌트 기능 플래그와 무관하다."}
+{"task_id": "t021", "candidate_id": "c03", "grade": 1, "process": true, "reason": "코딩 규칙은 아직 코드를 쓰지 않는 짧은 제안에 실용성이 낮다."}
+{"task_id": "t021", "candidate_id": "c04", "grade": 0, "process": false, "reason": "영상 키프레임 애니메이션은 요청과 무관하다."}
+{"task_id": "t021", "candidate_id": "c05", "grade": 0, "process": false, "reason": "영상 제작 CLI는 요청과 무관하다."}
+{"task_id": "t021", "candidate_id": "c06", "grade": 0, "process": false, "reason": "영상 미디어 자산 도구는 요청과 무관하다."}
+{"task_id": "t021", "candidate_id": "c07", "grade": 2, "process": false, "reason": "SaaS 대상 플래그 타기팅과 점진 배포가 유용하나 LaunchDarkly는 정해지지 않았다."}
+{"task_id": "t021", "candidate_id": "c08", "grade": 0, "process": false, "reason": "프런트엔드 시각 설계는 백엔드 플래그 제안과 무관하다."}
+{"task_id": "t021", "candidate_id": "c09", "grade": 0, "process": false, "reason": "FastAPI 템플릿은 Ktor 스택과 다르다."}
+{"task_id": "t021", "candidate_id": "c10", "grade": 0, "process": false, "reason": "SAP HANA 관리 CLI는 플래그 설계와 무관하다."}
+{"task_id": "t021", "candidate_id": "c11", "grade": 2, "process": true, "reason": "안전한 출시와 기능 플래그 설계 절차가 단계적 고객 공개 제안에 유용하다."}
+{"task_id": "t021", "candidate_id": "c12", "grade": 1, "process": false, "reason": "플래그 도구 관리는 인접하지만 설계 전이고 LaunchDarkly 사용 근거가 없다."}
+{"task_id": "t021", "candidate_id": "c13", "grade": 0, "process": false, "reason": "SwiftUI 플래그 구현은 Ktor 백엔드와 스택이 다르다."}
+{"task_id": "t021", "candidate_id": "c14", "grade": 0, "process": false, "reason": "Laravel Pennant 전용 지침은 Ktor와 다른 스택이다."}
+{"task_id": "t021", "candidate_id": "c15", "grade": 2, "process": true, "reason": "가정과 검증 기준을 명시하고 과도한 구현을 피하는 지침이 사전 제안에 유용하다."}
+{"task_id": "t021", "candidate_id": "c16", "grade": 0, "process": false, "reason": "Node.js PostHog 구현은 지정된 Kotlin 백엔드와 다르다."}
+{"task_id": "t021", "candidate_id": "c17", "grade": 3, "process": false, "reason": "사용자 지정 플래그와 점진 공개 패턴이 요청한 시스템 제안을 직접 지원한다."}
+{"task_id": "t021", "candidate_id": "c18", "grade": 1, "process": false, "reason": "플래그 제목은 관련되지만 요약에 구체적 설계 근거가 없다."}
+{"task_id": "t021", "candidate_id": "c19", "grade": 0, "process": false, "reason": "React 자체 플래그 테스트 시스템은 Ktor SaaS 플래그와 다르다."}
+{"task_id": "t021", "candidate_id": "c20", "grade": 0, "process": true, "reason": "FastAPI 구현 계획은 지정된 Ktor 기술과 맞지 않는다."}
+{"task_id": "t021", "candidate_id": "c21", "grade": 0, "process": false, "reason": "모바일 플래그 공급자 지침은 Ktor 서버 설계와 다르다."}
+{"task_id": "t021", "candidate_id": "c22", "grade": 0, "process": false, "reason": "영상 합성은 요청과 무관하다."}
+{"task_id": "t021", "candidate_id": "c23", "grade": 3, "process": false, "reason": "사용자 지정 구현과 점진 공개를 포함한 플래그 참조가 제안의 핵심을 직접 다룬다."}
+{"task_id": "t021", "candidate_id": "c24", "grade": 1, "process": false, "reason": "백엔드 제어 설계는 인접하지만 요청은 요청량 제한이 아니다."}
+{"task_id": "t021", "candidate_id": "c25", "grade": 1, "process": true, "reason": "기존 시스템 이전 계획은 인접하나 신규 플래그 제안과 범위가 다르다."}
+{"task_id": "t021", "candidate_id": "c26", "grade": 0, "process": false, "reason": "영상 디자인 지침은 요청과 무관하다."}
+{"task_id": "t021", "candidate_id": "c27", "grade": 0, "process": false, "reason": "Prisma 전용 스키마 생성은 Ktor 설계와 맞지 않는다."}
+{"task_id": "t021", "candidate_id": "c28", "grade": 1, "process": false, "reason": "일부 일반 백엔드 개념만 이전 가능하고 주 대상은 Node 스택이다."}
+{"task_id": "t021", "candidate_id": "c29", "grade": 0, "process": false, "reason": "Rivet Actors 전용 테넌트 저장 방식은 Ktor와 다르다."}
+{"task_id": "t021", "candidate_id": "c30", "grade": 3, "process": true, "reason": "플래그 설계부터 점진 공개와 정리까지의 수명주기가 이번 제안을 직접 이끈다."}
+{"task_id": "t021", "candidate_id": "c31", "grade": 1, "process": true, "reason": "프로토타입 중심 절차는 코드 작성 전 제안만 필요한 단계에 도움은 적다."}
+{"task_id": "t021", "candidate_id": "c32", "grade": 0, "process": false, "reason": "Feishu 권한 관리는 SaaS 기능 플래그와 무관하다."}
+{"task_id": "t021", "candidate_id": "c33", "grade": 0, "process": false, "reason": "Laravel Pennant 구현은 Ktor와 다르다."}
+{"task_id": "t021", "candidate_id": "c34", "grade": 0, "process": false, "reason": "Vercel Flags SDK 설정은 Ktor 백엔드와 맞지 않는다."}
+{"task_id": "t024", "candidate_id": "c01", "grade": 3, "process": false, "reason": "Android FCM과 FirebaseMessagingService를 직접 다뤄 요청한 알림 처리에 맞다."}
+{"task_id": "t024", "candidate_id": "c02", "grade": 2, "process": true, "reason": "명세별 적대적 검증은 콜드 시작과 권한 시점 등 수용 조건 확인에 유용하다."}
+{"task_id": "t024", "candidate_id": "c03", "grade": 2, "process": true, "reason": "실행 가능한 요구사항 검증 절차는 복수 상태의 알림 동작 확인에 유용하다."}
+{"task_id": "t024", "candidate_id": "c04", "grade": 0, "process": false, "reason": "Swift iOS 알림 지침은 Android Kotlin과 다르다."}
+{"task_id": "t024", "candidate_id": "c05", "grade": 0, "process": false, "reason": "팀 업데이트 덱은 요청과 무관하다."}
+{"task_id": "t024", "candidate_id": "c06", "grade": 0, "process": false, "reason": "iOS와 macOS 딥링크 지침은 Navigation Compose와 다르다."}
+{"task_id": "t024", "candidate_id": "c07", "grade": 0, "process": false, "reason": "Tauri 알림은 네이티브 Android 앱과 스택이 다르다."}
+{"task_id": "t024", "candidate_id": "c08", "grade": 0, "process": false, "reason": "iOS 배너 시스템은 Android 푸시 알림과 다르다."}
+{"task_id": "t024", "candidate_id": "c09", "grade": 0, "process": false, "reason": "CloudWatch 경보 채널은 모바일 알림 구현과 무관하다."}
+{"task_id": "t024", "candidate_id": "c10", "grade": 0, "process": true, "reason": "특정 다섯 에이전트 자동화 사전 점검은 요청과 무관하다."}
+{"task_id": "t024", "candidate_id": "c11", "grade": 0, "process": false, "reason": "Capacitor 플러그인 구현은 Kotlin Compose 앱과 다르다."}
+{"task_id": "t024", "candidate_id": "c12", "grade": 0, "process": false, "reason": "APNs 전용 인프라는 Android FCM과 다르다."}
+{"task_id": "t024", "candidate_id": "c13", "grade": 1, "process": false, "reason": "Android FCM 채널은 겹치지만 CometChat 전용 통합이라 활용이 제한적이다."}
+{"task_id": "t024", "candidate_id": "c14", "grade": 1, "process": false, "reason": "Android FCM 개념은 관련되나 React Native 모듈 중심이다."}
+{"task_id": "t024", "candidate_id": "c15", "grade": 0, "process": false, "reason": "New Relic 관측 알림 설정은 배송 알림 구현과 무관하다."}
+{"task_id": "t024", "candidate_id": "c16", "grade": 0, "process": false, "reason": "React Native 구현은 지정된 Kotlin Compose와 다르다."}
+{"task_id": "t024", "candidate_id": "c17", "grade": 0, "process": false, "reason": "상거래 웹 푸시는 네이티브 배송 앱과 다르다."}
+{"task_id": "t024", "candidate_id": "c18", "grade": 0, "process": false, "reason": "MAUI 알림 통합은 Kotlin 앱과 스택이 다르다."}
+{"task_id": "t024", "candidate_id": "c19", "grade": 0, "process": false, "reason": "OneSignal 외부 관리 도구는 직접 FCM 서비스 구현과 다르다."}
+{"task_id": "t024", "candidate_id": "c20", "grade": 0, "process": true, "reason": "커밋과 PR 게시 요청이 없으므로 해당 전용 흐름은 무관하다."}
+{"task_id": "t024", "candidate_id": "c21", "grade": 2, "process": false, "reason": "모바일 FCM 푸시 전달 지식이 유용하지만 네이티브 화면 라우팅까지는 명확하지 않다."}
+{"task_id": "t024", "candidate_id": "c22", "grade": 0, "process": false, "reason": "Capacitor 통합은 네이티브 Kotlin 구현과 다르다."}
+{"task_id": "t024", "candidate_id": "c23", "grade": 0, "process": false, "reason": "화면 이미지 생성은 알림 동작 구현과 무관하다."}
+{"task_id": "t024", "candidate_id": "c24", "grade": 0, "process": false, "reason": "Capacitor Firebase 플러그인은 Kotlin Compose와 다르다."}
+{"task_id": "t024", "candidate_id": "c25", "grade": 1, "process": false, "reason": "일반 메시징 설계는 인접하지만 모바일 알림 수명주기는 제시되지 않았다."}
+{"task_id": "t024", "candidate_id": "c26", "grade": 0, "process": false, "reason": "MAUI 딥링크 구현은 Navigation Compose와 다르다."}
+{"task_id": "t024", "candidate_id": "c27", "grade": 1, "process": false, "reason": "FCM과 배경 딥링크는 겹치지만 CometChat 통합에 제한된다."}
+{"task_id": "t024", "candidate_id": "c28", "grade": 2, "process": true, "reason": "새 알림 기능의 단위 및 통합 테스트 절차가 명시된 수용 조건 검증에 유용하다."}
+{"task_id": "t024", "candidate_id": "c29", "grade": 3, "process": false, "reason": "Android 네이티브 FCM과 백그라운드 메시지 처리를 직접 지원한다."}
+{"task_id": "t032", "candidate_id": "c01", "grade": 2, "process": false, "reason": "쿼리 키 정의를 직접 다뤄 키 불일치 수정에 유용하나 수정 자체는 작다."}
+{"task_id": "t032", "candidate_id": "c02", "grade": 0, "process": false, "reason": "WordPress LMS는 React Query 훅과 다른 스택이다."}
+{"task_id": "t032", "candidate_id": "c03", "grade": 1, "process": false, "reason": "일반 훅과 상태 설계는 단순 키 정정에 제한적 도움만 준다."}
+{"task_id": "t032", "candidate_id": "c04", "grade": 0, "process": true, "reason": "강의 콘텐츠 작성 절차는 React Query 캐시 오류와 무관하다."}
+{"task_id": "t032", "candidate_id": "c05", "grade": 0, "process": false, "reason": "교사의 학습 진도 점검 도구는 앱 버그 수정과 무관하다."}
+{"task_id": "t032", "candidate_id": "c06", "grade": 1, "process": false, "reason": "일반 React 상태 패턴은 단순 무효화 키 수정에 한계가 있다."}
+{"task_id": "t032", "candidate_id": "c07", "grade": 0, "process": true, "reason": "연습문제 디렉터리 생성은 캐시 수정과 무관하다."}
+{"task_id": "t032", "candidate_id": "c08", "grade": 0, "process": true, "reason": "학습 진행 절차는 강의 앱 버그 수정과 무관하다."}
+{"task_id": "t032", "candidate_id": "c09", "grade": 0, "process": false, "reason": "백엔드 다단계 캐시는 클라이언트 React Query와 다르다."}
+{"task_id": "t032", "candidate_id": "c10", "grade": 1, "process": false, "reason": "같은 쿼리 도구지만 제공 요약은 이 작은 키 오류에 구체적 해결 지침이 부족하다."}
+{"task_id": "t032", "candidate_id": "c11", "grade": 0, "process": false, "reason": "국제화 문자열 키는 쿼리 캐시 키와 무관하다."}
+{"task_id": "t032", "candidate_id": "c12", "grade": 0, "process": false, "reason": "Redis와 PostgreSQL 무효화는 React Query와 다르다."}
+{"task_id": "t032", "candidate_id": "c13", "grade": 1, "process": false, "reason": "같은 React Query 상태 관리지만 작은 키 정정에 추가 실용성은 제한적이다."}
+{"task_id": "t032", "candidate_id": "c14", "grade": 0, "process": false, "reason": "비 React 애니메이션은 캐시 버그와 무관하다."}
+{"task_id": "t032", "candidate_id": "c15", "grade": 0, "process": false, "reason": "Angular 쿼리 관리는 React 훅과 다른 스택이다."}
+{"task_id": "t032", "candidate_id": "c16", "grade": 0, "process": false, "reason": "Next.js 서버 캐시 재검증은 React Query 캐시와 다르다."}
+{"task_id": "t032", "candidate_id": "c17", "grade": 0, "process": false, "reason": "디자인을 React 컴포넌트로 변환하는 작업은 훅 수정과 무관하다."}
+{"task_id": "t032", "candidate_id": "c18", "grade": 0, "process": false, "reason": "Lightspeed 플랫폼 연동은 해당 훅 버그와 무관하다."}
+{"task_id": "t032", "candidate_id": "c19", "grade": 1, "process": true, "reason": "일반 신뢰성 테스트는 인접하지만 이 작은 수정에 과하다."}
+{"task_id": "t032", "candidate_id": "c20", "grade": 1, "process": true, "reason": "성능 최적화는 관련 영역이나 문제는 속도가 아닌 무효화 정확성이다."}
+{"task_id": "t032", "candidate_id": "c21", "grade": 0, "process": true, "reason": "교육과정 구성은 앱 캐시 오류와 무관하다."}
+{"task_id": "t032", "candidate_id": "c22", "grade": 0, "process": false, "reason": "React Native 프로파일러는 웹 React Query 키 오류와 다르다."}
+{"task_id": "t032", "candidate_id": "c23", "grade": 1, "process": true, "reason": "TypeScript 테스트 지침은 회귀 확인에 일부 도움이 되나 NestJS 중심이다."}
+{"task_id": "t032", "candidate_id": "c24", "grade": 0, "process": true, "reason": "학습 개념 평가 절차는 쿼리 오류와 무관하다."}
+{"task_id": "t032", "candidate_id": "c25", "grade": 0, "process": false, "reason": "OKR 화면 생성은 강의 진도 캐시와 무관하다."}
+{"task_id": "t032", "candidate_id": "c26", "grade": 0, "process": false, "reason": "Google Classroom 자동화는 코드 수정과 무관하다."}
+{"task_id": "t040", "candidate_id": "c01", "grade": 0, "process": false, "reason": ".NET 프로파일러는 Rust Tokio와 스택이 다르다."}
+{"task_id": "t040", "candidate_id": "c02", "grade": 0, "process": true, "reason": "Apple 앱 멈춤 진단은 해당 Rust 서버와 대상이 다르다."}
+{"task_id": "t040", "candidate_id": "c03", "grade": 0, "process": false, "reason": "Python asyncio는 Rust Tokio와 다르다."}
+{"task_id": "t040", "candidate_id": "c04", "grade": 0, "process": true, "reason": "스프린트 변경 절차는 동시성 수정과 무관하다."}
+{"task_id": "t040", "candidate_id": "c05", "grade": 2, "process": false, "reason": "비동기 조정과 실패 처리 원칙이 await 경계 재구성에 유용하다."}
+{"task_id": "t040", "candidate_id": "c06", "grade": 0, "process": false, "reason": "Swift 액터 동기화는 Rust Mutex와 다른 스택이다."}
+{"task_id": "t040", "candidate_id": "c07", "grade": 0, "process": false, "reason": "Azure 자원 상태 진단은 지정된 코드 교착과 무관하다."}
+{"task_id": "t040", "candidate_id": "c08", "grade": 0, "process": false, "reason": "Azure 자원 시각화는 잠금 순서 수정과 무관하다."}
+{"task_id": "t040", "candidate_id": "c09", "grade": 1, "process": false, "reason": "같은 펌웨어 배포 영역이지만 운영 롤아웃 도구라 코드 교착 해결에 제한적이다."}
+{"task_id": "t040", "candidate_id": "c10", "grade": 0, "process": false, "reason": "Webex 관리는 요청과 무관하다."}
+{"task_id": "t040", "candidate_id": "c11", "grade": 0, "process": true, "reason": "소셜 콘텐츠 배포 절차는 요청과 무관하다."}
+{"task_id": "t040", "candidate_id": "c12", "grade": 3, "process": false, "reason": "Rust 동시성과 비동기 메커니즘은 잠금과 await 경계 수정에 직접 적용된다."}
+{"task_id": "t040", "candidate_id": "c13", "grade": 0, "process": false, "reason": "Azure 자원 검색은 요청과 무관하다."}
+{"task_id": "t040", "candidate_id": "c14", "grade": 1, "process": true, "reason": "공식 문서 검증 절차는 도움이 조금 되지만 이미 특정된 잠금 오류에 직접적이지 않다."}
+{"task_id": "t040", "candidate_id": "c15", "grade": 0, "process": true, "reason": "CLI 재생성 절차는 서버 교착 수정과 무관하다."}
+{"task_id": "t040", "candidate_id": "c16", "grade": 0, "process": true, "reason": "다중 저장소 Git 관리는 요청과 무관하다."}
+{"task_id": "t040", "candidate_id": "c17", "grade": 0, "process": false, "reason": "로그인 전환 분석은 요청과 무관하다."}
+{"task_id": "t040", "candidate_id": "c18", "grade": 0, "process": false, "reason": "Azure 아키텍처 문서화는 잠금 문제와 무관하다."}
+{"task_id": "t040", "candidate_id": "c19", "grade": 0, "process": false, "reason": "Next.js 초기 구성은 Rust 서버와 다르다."}
+{"task_id": "t040", "candidate_id": "c20", "grade": 3, "process": true, "reason": "잠금 순서 추적과 동시성 재현 절차가 교착 수정과 검증을 직접 이끈다."}
+{"task_id": "t040", "candidate_id": "c21", "grade": 3, "process": true, "reason": "Tokio 교착 진단 도구와 절차가 해당 서버 문제의 검증에 직접 맞는다."}
+{"task_id": "t040", "candidate_id": "c22", "grade": 0, "process": false, "reason": "Python 자원 관리 방식은 Rust 코드와 다르다."}
+{"task_id": "t040", "candidate_id": "c23", "grade": 0, "process": true, "reason": "코드 투어 문서화는 교착 수정에 실질적인 관련이 없다."}
+{"task_id": "t040", "candidate_id": "c24", "grade": 0, "process": true, "reason": "의존성 갱신은 명시된 잠금 결함과 무관하다."}
+{"task_id": "t040", "candidate_id": "c25", "grade": 2, "process": true, "reason": "반환하지 않는 실행을 중단해 조사하는 절차는 교착 재현 확인에 유용하다."}
+{"task_id": "t040", "candidate_id": "c26", "grade": 0, "process": false, "reason": "shadcn UI는 Rust 서버와 무관하다."}
+{"task_id": "t040", "candidate_id": "c27", "grade": 0, "process": false, "reason": "iOS 강제 업데이트 화면은 서버 잠금 문제와 다르다."}
+{"task_id": "t040", "candidate_id": "c28", "grade": 0, "process": false, "reason": "MSW 행동 트리 파일은 요청과 무관하다."}
+{"task_id": "t040", "candidate_id": "c29", "grade": 0, "process": false, "reason": "Classroom 강의 생성은 요청과 무관하다."}
+{"task_id": "t040", "candidate_id": "c30", "grade": 0, "process": true, "reason": "에이전트 페르소나 관리는 장치 잠금과 무관하다."}
+{"task_id": "t040", "candidate_id": "c31", "grade": 0, "process": false, "reason": "Cargo 잠금파일 불일치는 런타임 Mutex 교착과 다르다."}
+{"task_id": "t040", "candidate_id": "c32", "grade": 3, "process": true, "reason": "동시성 및 교착 검토 절차는 잠금 재구성의 안전성 검증을 직접 지원한다."}
+{"task_id": "t047", "candidate_id": "c01", "grade": 0, "process": true, "reason": "특정 다섯 에이전트 자동화 점검은 앱 오류와 무관하다."}
+{"task_id": "t047", "candidate_id": "c02", "grade": 2, "process": true, "reason": "재현과 원인 분리 절차는 센서 갱신 때 목록 상태가 초기화되는 원인 확인에 유용하다."}
+{"task_id": "t047", "candidate_id": "c03", "grade": 0, "process": false, "reason": "웹 CSS 스크롤 애니메이션은 Compose 목록과 다르다."}
+{"task_id": "t047", "candidate_id": "c04", "grade": 0, "process": true, "reason": "Firebase 보안 감사는 스크롤 상태 오류와 무관하다."}
+{"task_id": "t047", "candidate_id": "c05", "grade": 0, "process": false, "reason": "웹 3D 경험은 Android 목록과 무관하다."}
+{"task_id": "t047", "candidate_id": "c06", "grade": 2, "process": false, "reason": "Compose와 StateFlow 상태 관리가 센서 갱신에 따른 UI 상태 유지에 유용하다."}
+{"task_id": "t047", "candidate_id": "c07", "grade": 0, "process": false, "reason": "GSAP 성능 지침은 Android Compose와 다르다."}
+{"task_id": "t047", "candidate_id": "c08", "grade": 0, "process": false, "reason": "DOM 가상 목록은 네이티브 LazyColumn과 다른 스택이다."}
+{"task_id": "t047", "candidate_id": "c09", "grade": 2, "process": true, "reason": "Compose 코드 검토와 프로파일링은 재구성으로 인한 상태 문제 조사에 유용하다."}
+{"task_id": "t047", "candidate_id": "c10", "grade": 0, "process": false, "reason": "GSAP 플러그인은 Android UI와 다르다."}
+{"task_id": "t047", "candidate_id": "c11", "grade": 0, "process": false, "reason": "전문 에이전트 플러그인 제작 지침은 Compose 버그 자체를 다루지 않는다."}
+{"task_id": "t047", "candidate_id": "c12", "grade": 3, "process": false, "reason": "상태 호이스팅과 단방향 데이터 흐름이 갱신 시 스크롤 유지 문제를 직접 다룬다."}
+{"task_id": "t047", "candidate_id": "c13", "grade": 3, "process": false, "reason": "Compose 상태와 목록 및 부수효과 패턴이 LazyColumn 초기화를 바로잡는 데 직접 적용된다."}
+{"task_id": "t047", "candidate_id": "c14", "grade": 0, "process": false, "reason": "웹 ScrollTrigger는 Compose와 다르다."}
+{"task_id": "t047", "candidate_id": "c15", "grade": 0, "process": false, "reason": "프리미엄 웹 시각 디자인은 요청과 무관하다."}
+{"task_id": "t047", "candidate_id": "c16", "grade": 0, "process": true, "reason": "특정 개발 팀 보안 검토는 스크롤 오류와 무관하다."}
+{"task_id": "t047", "candidate_id": "c17", "grade": 1, "process": false, "reason": "Compose 제목은 관련되나 일반적인 자동화 소개만 있다."}
+{"task_id": "t047", "candidate_id": "c18", "grade": 0, "process": false, "reason": "랜딩 페이지 서사는 Android 상태 오류와 무관하다."}
+{"task_id": "t047", "candidate_id": "c19", "grade": 0, "process": false, "reason": "Expo 래퍼 API는 네이티브 Compose 구현과 다르다."}
+{"task_id": "t047", "candidate_id": "c20", "grade": 1, "process": false, "reason": "Compose 영역이지만 원격 이미지 로딩은 센서 목록 상태와 거리가 있다."}
+{"task_id": "t047", "candidate_id": "c21", "grade": 0, "process": false, "reason": "GSAP 스크롤 애니메이션은 Compose와 다르다."}
+{"task_id": "t047", "candidate_id": "c22", "grade": 0, "process": false, "reason": "Clerk 인증은 센서 목록 스크롤과 무관하다."}
+{"task_id": "t047", "candidate_id": "c23", "grade": 0, "process": false, "reason": "웹 스크롤 연출은 네이티브 목록 버그와 다르다."}
+{"task_id": "t047", "candidate_id": "c24", "grade": 2, "process": true, "reason": "Compose 재구성 측정 절차가 갱신 시 상태 손실 원인 확인에 유용하다."}
+{"task_id": "t047", "candidate_id": "c25", "grade": 0, "process": false, "reason": "웹 GSAP 및 Framer Motion은 Android Compose와 다르다."}
+{"task_id": "t047", "candidate_id": "c26", "grade": 1, "process": false, "reason": "Android 레이아웃 디자인은 관련되나 목록 상태 오류에 직접적이지 않다."}
+{"task_id": "t047", "candidate_id": "c27", "grade": 3, "process": false, "reason": "상태 호이스팅과 LazyColumn을 직접 다뤄 센서 갱신 시 스크롤 유지에 적합하다."}
+{"task_id": "t047", "candidate_id": "c28", "grade": 0, "process": false, "reason": "XR 글래스 전용 Glimmer는 일반 Compose 앱과 대상이 다르다."}
+{"task_id": "t047", "candidate_id": "c29", "grade": 1, "process": false, "reason": "Compose 제목은 맞지만 요약은 구체적 구현 지침이 없다."}
+{"task_id": "t047", "candidate_id": "c30", "grade": 0, "process": true, "reason": "XML 화면 이전은 기존 Compose 버그 수정과 다른 작업이다."}
+{"task_id": "t047", "candidate_id": "c31", "grade": 0, "process": false, "reason": "AI 글래스 제약은 일반 센서 목록 앱과 무관하다."}
+{"task_id": "t047", "candidate_id": "c32", "grade": 2, "process": false, "reason": "Compose 선언형 UI 관행이 갱신과 상태 유지 구현에 유용하다."}
+{"task_id": "t047", "candidate_id": "c33", "grade": 0, "process": false, "reason": "인프라와 개발환경 구성은 목록 상태 오류와 무관하다."}
+{"task_id": "t047", "candidate_id": "c34", "grade": 0, "process": true, "reason": "XML에서 Compose로 이전하는 절차는 기존 목록 오류와 다르다."}
+{"task_id": "t049", "candidate_id": "c01", "grade": 0, "process": true, "reason": "Alibaba 서버 크래시 진단은 iOS 메모리 오류와 다르다."}
+{"task_id": "t049", "candidate_id": "c02", "grade": 0, "process": false, "reason": "미디어 생성은 영상 방문 종료 크래시와 무관하다."}
+{"task_id": "t049", "candidate_id": "c03", "grade": 1, "process": true, "reason": "일반 실행 절차와 검증은 일부 도움되지만 모니터링 런북 중심이다."}
+{"task_id": "t049", "candidate_id": "c04", "grade": 1, "process": false, "reason": "SwiftUI 구조는 인접하지만 Observation 중심이며 iOS 16 메모리 수명 해결은 제시되지 않았다."}
+{"task_id": "t049", "candidate_id": "c05", "grade": 1, "process": false, "reason": "Crashlytics 설정은 같은 도구지만 원인이 특정된 메모리 수정에는 제한적이다."}
+{"task_id": "t049", "candidate_id": "c06", "grade": 0, "process": false, "reason": ".NET MAUI와 Mono 심볼화는 네이티브 Swift 모델과 다르다."}
+{"task_id": "t049", "candidate_id": "c07", "grade": 0, "process": true, "reason": "요약이 일반적인 개발 자동화뿐이라 메모리 오류 지침을 확인할 수 없다."}
+{"task_id": "t049", "candidate_id": "c08", "grade": 2, "process": true, "reason": "반복 재현과 원인 검증 절차는 간헐적 종료 크래시 수정에 유용하다."}
+{"task_id": "t049", "candidate_id": "c09", "grade": 2, "process": true, "reason": "재현과 영향 분석은 알림 콜백 수명 오류 확인에 유용하다."}
+{"task_id": "t049", "candidate_id": "c10", "grade": 0, "process": false, "reason": "짧은 영상 생성은 앱 크래시와 무관하다."}
+{"task_id": "t049", "candidate_id": "c11", "grade": 1, "process": false, "reason": "Crashlytics 리포트 설정은 관련 도구지만 관찰자 해제 구현을 다루지 않는다."}
+{"task_id": "t049", "candidate_id": "c12", "grade": 1, "process": false, "reason": "SwiftUI 구조 지침은 인접하지만 ViewModel 제거 방향은 요청한 수명 수정과 다르다."}
+{"task_id": "t049", "candidate_id": "c13", "grade": 1, "process": false, "reason": "iOS 크래시 분류는 인접하나 TestFlight 도구가 현재 요구된 검증은 아니다."}
+{"task_id": "t049", "candidate_id": "c14", "grade": 0, "process": true, "reason": "Power BI 모델 검토는 Swift 메모리 오류와 무관하다."}
+{"task_id": "t049", "candidate_id": "c15", "grade": 1, "process": false, "reason": "TestFlight 진단은 인접하나 Crashlytics 증거와 시뮬레이터 검증이 이미 지정됐다."}
+{"task_id": "t049", "candidate_id": "c16", "grade": 0, "process": true, "reason": "에이전트 실수 회고는 앱 크래시 수정과 무관하다."}
+{"task_id": "t049", "candidate_id": "c17", "grade": 0, "process": false, "reason": "Next.js 번들러는 iOS와 다르다."}
+{"task_id": "t049", "candidate_id": "c18", "grade": 0, "process": false, "reason": "Avalonia .NET ViewModel은 Swift 모델과 다르다."}
+{"task_id": "t049", "candidate_id": "c19", "grade": 0, "process": false, "reason": "파비콘 생성은 크래시와 무관하다."}
+{"task_id": "t049", "candidate_id": "c20", "grade": 0, "process": false, "reason": "iOS 시각 디자인 가이드는 관찰자 메모리 수명과 무관하다."}
+{"task_id": "t049", "candidate_id": "c21", "grade": 0, "process": false, "reason": "Android ViewModel 수명은 Swift iOS와 스택이 다르다."}
+{"task_id": "t049", "candidate_id": "c22", "grade": 2, "process": true, "reason": "완료 전 실제 검증을 요구해 20회 종료와 기존 테스트 수용 조건 확인에 유용하다."}
+{"task_id": "t049", "candidate_id": "c23", "grade": 1, "process": false, "reason": "같은 Crashlytics 제목이지만 요약은 일반적이라 실용 근거가 약하다."}
+{"task_id": "t049", "candidate_id": "c24", "grade": 1, "process": true, "reason": "일반 코딩 실수 방지 지침은 특정된 메모리 결함에 제한적 도움만 준다."}
+{"task_id": "t049", "candidate_id": "c25", "grade": 1, "process": true, "reason": "크래시율 분류와 개선 절차는 인접하지만 이번 원인과 검증은 이미 구체적이다."}
+{"task_id": "t049", "candidate_id": "c26", "grade": 1, "process": false, "reason": "TestFlight 조사 도구는 iOS 크래시 영역이나 요구된 수정에 직접적이지 않다."}
+{"task_id": "t049", "candidate_id": "c27", "grade": 2, "process": true, "reason": "독립 코드 검토는 weak 캡처와 관찰자 해제 누락을 확인하는 데 유용하다."}
+{"task_id": "t049", "candidate_id": "c28", "grade": 0, "process": false, "reason": "Sentry 신규 설정은 기존 Crashlytics 기반 버그 수정과 다르다."}
+{"task_id": "t049", "candidate_id": "c29", "grade": 0, "process": false, "reason": "Next.js 캐시는 Swift 크래시와 무관하다."}
+{"task_id": "t060", "candidate_id": "c01", "grade": 0, "process": true, "reason": "언론 출판 보안 점검은 Go 리팩터링과 무관하다."}
+{"task_id": "t060", "candidate_id": "c02", "grade": 0, "process": false, "reason": ".NET DI 컨테이너는 Go 생성자 주입과 다른 스택이다."}
+{"task_id": "t060", "candidate_id": "c03", "grade": 1, "process": true, "reason": "공식 문서 확인 절차는 일반적이며 단순 Go 구조 변경에 도움은 제한적이다."}
+{"task_id": "t060", "candidate_id": "c04", "grade": 0, "process": false, "reason": "CourseBuilder CLI 통합은 장치 레지스트리와 무관하다."}
+{"task_id": "t060", "candidate_id": "c05", "grade": 0, "process": false, "reason": "서비스 URL 탐색 레지스트리는 프로세스 내부 장치 맵과 다르다."}
+{"task_id": "t060", "candidate_id": "c06", "grade": 0, "process": false, "reason": "LineageOS 개발은 Go 서버 구조와 무관하다."}
+{"task_id": "t060", "candidate_id": "c07", "grade": 0, "process": false, "reason": "MAUI 컨테이너 등록은 Go 주입과 다른 스택이다."}
+{"task_id": "t060", "candidate_id": "c08", "grade": 0, "process": false, "reason": "Clarity 분석 자동화는 요청과 무관하다."}
+{"task_id": "t060", "candidate_id": "c09", "grade": 0, "process": false, "reason": "FPGA 펌웨어 도구는 서버 레지스트리 구조와 무관하다."}
+{"task_id": "t060", "candidate_id": "c10", "grade": 0, "process": false, "reason": "Next.js 초기 구성은 Go 서버와 다르다."}
+{"task_id": "t060", "candidate_id": "c11", "grade": 2, "process": true, "reason": "호출자와 의존성 영향 분석은 전역 접근을 메서드로 옮기는 변경에 유용하다."}
+{"task_id": "t060", "candidate_id": "c12", "grade": 0, "process": false, "reason": "Angular DI는 Go 주입과 다르다."}
+{"task_id": "t060", "candidate_id": "c13", "grade": 1, "process": true, "reason": "코드 경로 문서화는 구조 파악에 일부 도움되나 구현 목적과는 거리가 있다."}
+{"task_id": "t060", "candidate_id": "c14", "grade": 0, "process": true, "reason": "페르소나 레지스트리 관리는 Go 장치 레지스트리와 무관하다."}
+{"task_id": "t060", "candidate_id": "c15", "grade": 0, "process": false, "reason": "Apple 온디바이스 모델은 장치 서버 구조와 무관하다."}
+{"task_id": "t060", "candidate_id": "c16", "grade": 0, "process": false, "reason": "NestJS DI는 Go 주입과 다른 스택이다."}
+{"task_id": "t060", "candidate_id": "c17", "grade": 2, "process": true, "reason": "HTTP 엔드포인트 회귀 검증은 핸들러 주입 변경 후 동작 보존 확인에 유용하다."}
+{"task_id": "t060", "candidate_id": "c18", "grade": 0, "process": false, "reason": "Pydantic AI 주입 API는 Go HTTP 서버와 다르다."}
+{"task_id": "t060", "candidate_id": "c19", "grade": 0, "process": false, "reason": "ASP.NET 컨테이너 등록 패턴은 Go와 다른 스택이다."}
+{"task_id": "t060", "candidate_id": "c20", "grade": 0, "process": false, "reason": "shadcn UI는 Go 서버와 무관하다."}
+{"task_id": "t060", "candidate_id": "c21", "grade": 0, "process": false, "reason": "FastAPI DI는 Go 서버와 다르다."}
+{"task_id": "t060", "candidate_id": "c22", "grade": 1, "process": true, "reason": "전역 상태 제거는 인접하지만 퍼저 장애 해소가 이번 목적은 아니다."}
+{"task_id": "t060", "candidate_id": "c23", "grade": 0, "process": false, "reason": "Azure 자원 상태 분석은 프로세스 내부 구조와 무관하다."}
+{"task_id": "t060", "candidate_id": "c24", "grade": 0, "process": false, "reason": "NestJS IoC 제공자 지침은 Go 생성자 주입과 다르다."}
+{"task_id": "t060", "candidate_id": "c25", "grade": 0, "process": false, "reason": "MSW 행동 트리는 Go 레지스트리와 무관하다."}
+{"task_id": "t060", "candidate_id": "c26", "grade": 0, "process": false, "reason": "프록시 장치 운영 CLI는 서버 내부 캡슐화와 무관하다."}
+{"task_id": "t060", "candidate_id": "c27", "grade": 0, "process": false, "reason": "Spring Boot DI는 Go와 다른 스택이다."}
+{"task_id": "t060", "candidate_id": "c28", "grade": 0, "process": false, "reason": "Apple 온디바이스 모델은 Go 서버와 무관하다."}
+{"task_id": "t060", "candidate_id": "c29", "grade": 0, "process": false, "reason": "사이트 트래픽 분석은 요청과 무관하다."}
+{"task_id": "t060", "candidate_id": "c30", "grade": 0, "process": false, "reason": "Rust 웹 제약 지침은 지정된 Go 코드와 스택이 다르다."}
+{"task_id": "t060", "candidate_id": "c31", "grade": 0, "process": false, "reason": "휴대폰 제어 에이전트는 Go 레지스트리 리팩터링과 무관하다."}
+{"task_id": "t060", "candidate_id": "c32", "grade": 0, "process": false, "reason": "Azure 인프라 문서화는 요청과 무관하다."}
+{"task_id": "t060", "candidate_id": "c33", "grade": 0, "process": false, "reason": "Apple 머신러닝 기술 선택은 요청과 무관하다."}
+{"task_id": "t060", "candidate_id": "c34", "grade": 2, "process": false, "reason": "의존성 방향과 경계 지침은 전역 상태를 주입 가능한 서비스로 분리하는 데 유용하다."}
+{"task_id": "t060", "candidate_id": "c35", "grade": 0, "process": false, "reason": "MAUI 서비스 수명과 등록은 Go와 다르다."}
+{"task_id": "t060", "candidate_id": "c36", "grade": 3, "process": false, "reason": "Go 생성자와 인터페이스 주입 패턴이 Registry를 핸들러에 주입하는 요구와 직접 일치한다."}
+{"task_id": "t060", "candidate_id": "c37", "grade": 0, "process": false, "reason": "Azure 자원 목록은 로컬 레지스트리 구현과 무관하다."}
+{"task_id": "t060", "candidate_id": "c38", "grade": 0, "process": false, "reason": "iii 이벤트 트리거 통합은 Go 레지스트리 캡슐화와 무관하다."}
+{"task_id": "t060", "candidate_id": "c39", "grade": 0, "process": false, "reason": "n8n JavaScript 노드는 Go 서버와 다르다."}
+{"task_id": "t060", "candidate_id": "c40", "grade": 0, "process": false, "reason": "에이전트 지속 메모리는 장치 레지스트리와 무관하다."}
+{"task_id": "t060", "candidate_id": "c41", "grade": 0, "process": false, "reason": "TypeScript MCP 서버 구현은 Go HTTP 핸들러와 다르다."}
+{"task_id": "t060", "candidate_id": "c42", "grade": 0, "process": false, "reason": "AI 도구 설정 감사는 Go 코드 리팩터링과 무관하다."}
+{"task_id": "t060", "candidate_id": "c43", "grade": 0, "process": false, "reason": "Azure 자원 관계 시각화는 내부 장치 맵 변경과 무관하다."}

@@ -1,0 +1,91 @@
+diff --git a/backend/app/api/deps.py b/backend/app/api/deps.py
+index 5f28ec6..13bd44b 100644
+--- a/backend/app/api/deps.py
++++ b/backend/app/api/deps.py
+@@ -55,3 +55,14 @@ def get_current_active_superuser(current_user: CurrentUser) -> User:
+             status_code=403, detail="The user doesn't have enough privileges"
+         )
+     return current_user
++
++
++class Pagination:
++    """Common skip/limit query parameters."""
++
++    def __init__(self, skip: int = 0, limit: int = 100):
++        self.skip = skip
++        self.limit = limit
++
++
++PaginationDep = Annotated[Pagination, Depends()]
+diff --git a/backend/app/api/routes/items.py b/backend/app/api/routes/items.py
+index f0eb30e..d9a6a6b 100644
+--- a/backend/app/api/routes/items.py
++++ b/backend/app/api/routes/items.py
+@@ -4,7 +4,7 @@ from typing import Any
+ from fastapi import APIRouter, HTTPException
+ from sqlmodel import col, func, select
+ 
+-from app.api.deps import CurrentUser, SessionDep
++from app.api.deps import CurrentUser, PaginationDep, SessionDep
+ from app.models import Item, ItemCreate, ItemPublic, ItemsPublic, ItemUpdate, Message
+ 
+ router = APIRouter(prefix="/items", tags=["items"])
+@@ -12,7 +12,7 @@ router = APIRouter(prefix="/items", tags=["items"])
+ 
+ @router.get("/", response_model=ItemsPublic)
+ def read_items(
+-    session: SessionDep, current_user: CurrentUser, skip: int = 0, limit: int = 100
++    session: SessionDep, current_user: CurrentUser, page: PaginationDep
+ ) -> Any:
+     """
+     Retrieve items.
+@@ -22,7 +22,7 @@ def read_items(
+         count_statement = select(func.count()).select_from(Item)
+         count = session.exec(count_statement).one()
+         statement = (
+-            select(Item).order_by(col(Item.created_at).desc()).offset(skip).limit(limit)
++            select(Item).order_by(col(Item.created_at).desc()).offset(page.skip).limit(page.limit)
+         )
+         items = session.exec(statement).all()
+     else:
+@@ -36,8 +36,8 @@ def read_items(
+             select(Item)
+             .where(Item.owner_id == current_user.id)
+             .order_by(col(Item.created_at).desc())
+-            .offset(skip)
+-            .limit(limit)
++            .offset(page.skip)
++            .limit(page.limit)
+         )
+         items = session.exec(statement).all()
+ 
+diff --git a/backend/app/api/routes/users.py b/backend/app/api/routes/users.py
+index 1748f58..d2dd54b 100644
+--- a/backend/app/api/routes/users.py
++++ b/backend/app/api/routes/users.py
+@@ -7,6 +7,7 @@ from sqlmodel import col, delete, func, select
+ from app import crud
+ from app.api.deps import (
+     CurrentUser,
++    PaginationDep,
+     SessionDep,
+     get_current_active_superuser,
+ )
+@@ -34,7 +35,7 @@ router = APIRouter(prefix="/users", tags=["users"])
+     dependencies=[Depends(get_current_active_superuser)],
+     response_model=UsersPublic,
+ )
+-def read_users(session: SessionDep, skip: int = 0, limit: int = 100) -> Any:
++def read_users(session: SessionDep, page: PaginationDep) -> Any:
+     """
+     Retrieve users.
+     """
+@@ -43,7 +44,7 @@ def read_users(session: SessionDep, skip: int = 0, limit: int = 100) -> Any:
+     count = session.exec(count_statement).one()
+ 
+     statement = (
+-        select(User).order_by(col(User.created_at).desc()).offset(skip).limit(limit)
++        select(User).order_by(col(User.created_at).desc()).offset(page.skip).limit(page.limit)
+     )
+     users = session.exec(statement).all()
+ 

@@ -1,0 +1,22 @@
+1 landing-nx | query: Build a product landing page from scratch as a new /landing route in a Next.js TypeScript app with hero, three features, pricing and CTA
+   top10: 1.uasl/taste-skill, 2.uasl/landing-page, 3.uasl/next-upgrade, 4.uasl/vercel-react-best-practices, 5.uasl/gpt-tasteskill, 6.uasl/design-system-creation, 7.uasl/scaffold-nextjs, 8.uasl/next-best-practices, 9.uasl/web-design-builder, 10.uasl/3d-web-experience
+   expert anthropics-skills/frontend-design: rank not in top10
+   expert anthropics-skills/frontend-design: rank in top50 34
+2 landing-fa | query: Build a pre-login landing page from scratch as a new route in the React Vite TanStack Router shadcn frontend with hero, three features and CTA
+   top10: 1.uasl/gpt-tasteskill, 2.uasl/landing-page, 3.uasl/taste-skill, 4.uasl/frontend-design, 5.uasl/3d-web-experience, 6.uasl/imagegen-frontend-web, 7.uasl/copywriting, 8.uasl/motion-canvas, 9.anthropics-skills/frontend-design, 10.uasl/fastapi-endpoint
+   expert anthropics-skills/frontend-design: rank 9
+   expert anthropics-skills/frontend-design: rank in top50 9
+3 tags-plan | query: Add tags to items in a FastAPI SQLModel app (model, Alembic migration, API, React frontend), writing the implementation plan to PLAN.md first
+   top10: 1.uasl/fastapi-endpoint, 2.uasl/claude-native-claude-api, 3.uasl/fastapi-templates, 4.uasl/gpt-tasteskill, 5.uasl/openapi-spec-generation, 6.uasl/bolt, 7.uasl/design-system-patterns, 8.uasl/next-upgrade, 9.uasl/frontend-design, 10.uasl/tdd-workflow
+   expert uasl/writing-plans: rank not in top10
+   expert uasl/writing-plans: rank in top50 38
+4 service | query: Refactor the FastAPI items router so its business logic moves into a service layer
+   top10: 1.uasl/fastapi-templates, 2.uasl/python-design-patterns, 3.uasl/builder, 4.uasl/architecture-patterns, 5.uasl/fastapi-endpoint, 6.uasl/unit-testing, 7.uasl/refactoring-patterns, 8.uasl/openapi-spec-generation, 9.uasl/domain-analysis, 10.uasl/zen
+   expert uasl/caveman: rank not in top10
+   expert uasl/caveman: rank in top50 >50
+5 tests | query: Add pytest tests for backend/app/utils.py in a FastAPI project
+   top10: 1.uasl/fastapi-endpoint, 2.uasl/fastapi-templates, 3.uasl/unit-testing, 4.uasl/python-testing-patterns, 5.uasl/integration-testing, 6.uasl/radar, 7.uasl/wycheproof, 8.uasl/claude-native-claude-api, 9.uasl/gsap-utils, 10.uasl/using-git-worktrees
+   expert uasl/tdd: rank not in top10
+   expert uasl/test-driven-development: rank not in top10
+   expert uasl/tdd: rank in top50 44
+   expert uasl/test-driven-development: rank in top50 47

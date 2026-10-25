@@ -1,0 +1,37 @@
+{
+ "v3": {
+  "n": 284,
+  "baseline": {
+   "hit@50": 0.9296,
+   "recall@50": 0.8082
+  },
+  "staging": {
+   "hit@50": 0.8592,
+   "recall@50": 0.6432
+  },
+  "delta": {
+   "hit@50": -0.0704,
+   "recall@50": -0.165
+  }
+ },
+ "v5-ss-b": {
+  "n": 270,
+  "baseline": {
+   "hit@50": 0.9407,
+   "recall@50": 0.8222
+  },
+  "staging": {
+   "hit@50": 0.8185,
+   "recall@50": 0.5403
+  },
+  "delta": {
+   "hit@50": -0.1222,
+   "recall@50": -0.2819
+  }
+ },
+ "reject": true,
+ "baseline_matches_stage8": {
+  "v3": true,
+  "v5-ss-b": true
+ }
+}

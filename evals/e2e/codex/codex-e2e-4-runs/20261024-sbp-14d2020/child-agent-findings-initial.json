@@ -1,0 +1,1529 @@
+{
+  "schema_version": 1,
+  "run_root": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020",
+  "generated_at": "2026-10-23T18:50:17.913Z",
+  "status": "COMPLETE",
+  "no_child_isolation_status": "FAIL",
+  "primary_sessions_scanned": 57,
+  "primary_turn_start_count": 57,
+  "primary_turn_completed_count": 57,
+  "unique_primary_threads": 57,
+  "spawn_agent_call_count": 4,
+  "failed_spawn_agent_call_count": 3,
+  "child_thread_count": 1,
+  "model_created_child_thread_count": 1,
+  "metadata_only_thread_count": 0,
+  "unique_observed_runtime_threads": 58,
+  "unique_observed_runtime_turns": 58,
+  "child_mcp_event_count": 0,
+  "attempts": [
+    {
+      "replicate": "r1",
+      "task_id": "s4-t055",
+      "call_id": "call_c3a2e0261b5d4ee69f78a4c289c09522",
+      "parent_thread_id": "01a16a01-ad84-72d0-88a5-578c93636c8f",
+      "parent_turn_id": "01a16a01-b35b-7cd1-b656-f218eac38fb5",
+      "spawn": {
+        "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r1/tasks/s4-t055/transcript.jsonl",
+        "event_sequence": 153,
+        "line_number": 153,
+        "method": "rawResponseItem/completed"
+      },
+      "arguments": {
+        "readable_json": true,
+        "task_name": "extract_hook",
+        "fork_turns": null,
+        "fork_turns_explicit": false,
+        "message_characters": 952,
+        "message_sha256": "2b458524946f6ecd3c8214469bc8226881649af71fec07e3a016038e853e895d",
+        "message_plaintext_status": "NOT_OBSERVED: opaque message; no decoding attempted."
+      },
+      "outcome": "FAILED_BEFORE_OBSERVED_CHILD",
+      "outputs": [
+        {
+          "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r1/tasks/s4-t055/transcript.jsonl",
+          "event_sequence": 157,
+          "line_number": 157,
+          "method": "rawResponseItem/completed",
+          "output_sha256": "41859e6b3e3ae4310e4eb4138feded261024ef91c1a9c0ab0f1b3f5ce1a37ee9",
+          "returned_task_name": null,
+          "output_excerpt": "collab spawn failed: Fatal error: failed to load model context for thread 01a16a01-ad84-72d0-88a5-578c93636c8f: invalid thread-store request: no rollout found for thread id 01a16a01-ad84-72d0-88a5-578c93636c8f"
+        }
+      ],
+      "observed_child_thread_ids": [],
+      "activity_evidence": []
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t153",
+      "call_id": "call_feb12c4537d04408ad5949e7c611f365",
+      "parent_thread_id": "01a16a07-c584-78c2-83e9-491f89584889",
+      "parent_turn_id": "01a16a07-d5f0-7a01-82eb-8ec9862759e1",
+      "spawn": {
+        "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t153/transcript.jsonl",
+        "event_sequence": 280,
+        "line_number": 280,
+        "method": "rawResponseItem/completed"
+      },
+      "arguments": {
+        "readable_json": true,
+        "task_name": "implement",
+        "fork_turns": null,
+        "fork_turns_explicit": false,
+        "message_characters": 2188,
+        "message_sha256": "e9e485a96e6f95c8a3e9d69d74154bf499c73b741679b8ebf39fcccbfe86e994",
+        "message_plaintext_status": "NOT_OBSERVED: opaque message; no decoding attempted."
+      },
+      "outcome": "FAILED_BEFORE_OBSERVED_CHILD",
+      "outputs": [
+        {
+          "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t153/transcript.jsonl",
+          "event_sequence": 284,
+          "line_number": 284,
+          "method": "rawResponseItem/completed",
+          "output_sha256": "4f717b93f40d087de3eea3f63d28204f23dcd20522021c03d24e27ecd53e2ced",
+          "returned_task_name": null,
+          "output_excerpt": "collab spawn failed: Fatal error: failed to load model context for thread 01a16a07-c584-78c2-83e9-491f89584889: invalid thread-store request: no rollout found for thread id 01a16a07-c584-78c2-83e9-491f89584889"
+        }
+      ],
+      "observed_child_thread_ids": [],
+      "activity_evidence": []
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t055",
+      "call_id": "call_57ba851c40d54ee3ac6378d97a5195cf",
+      "parent_thread_id": "01a16a09-db41-7ac2-8d84-6fe5d5069ba3",
+      "parent_turn_id": "01a16a09-df54-7c30-ad79-0ea601137d47",
+      "spawn": {
+        "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t055/transcript.jsonl",
+        "event_sequence": 160,
+        "line_number": 160,
+        "method": "rawResponseItem/completed"
+      },
+      "arguments": {
+        "readable_json": true,
+        "task_name": "extract_hook",
+        "fork_turns": null,
+        "fork_turns_explicit": false,
+        "message_characters": 844,
+        "message_sha256": "2dba8cb3bcd2a592b9670bc106adfd4670c9f069a19534a1be0560ff4e08f0fe",
+        "message_plaintext_status": "NOT_OBSERVED: opaque message; no decoding attempted."
+      },
+      "outcome": "FAILED_BEFORE_OBSERVED_CHILD",
+      "outputs": [
+        {
+          "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t055/transcript.jsonl",
+          "event_sequence": 164,
+          "line_number": 164,
+          "method": "rawResponseItem/completed",
+          "output_sha256": "96126e8a4d365493c750f4afbdc80e1c4e2f8166f29a0ab8445c7534e93c4c77",
+          "returned_task_name": null,
+          "output_excerpt": "collab spawn failed: Fatal error: failed to load model context for thread 01a16a09-db41-7ac2-8d84-6fe5d5069ba3: invalid thread-store request: no rollout found for thread id 01a16a09-db41-7ac2-8d84-6fe5d5069ba3"
+        }
+      ],
+      "observed_child_thread_ids": [],
+      "activity_evidence": []
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t055",
+      "call_id": "call_9533ef8559754d43bf2613e5f4bd3156",
+      "parent_thread_id": "01a16a09-db41-7ac2-8d84-6fe5d5069ba3",
+      "parent_turn_id": "01a16a09-df54-7c30-ad79-0ea601137d47",
+      "spawn": {
+        "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t055/transcript.jsonl",
+        "event_sequence": 183,
+        "line_number": 183,
+        "method": "rawResponseItem/completed"
+      },
+      "arguments": {
+        "readable_json": true,
+        "task_name": "implementation",
+        "fork_turns": "none",
+        "fork_turns_explicit": true,
+        "message_characters": 804,
+        "message_sha256": "105ecff6b9a71ddb37857ecafe28351b21d957b00d474782a50987471b0fa06e",
+        "message_plaintext_status": "NOT_OBSERVED: opaque message; no decoding attempted."
+      },
+      "outcome": "OBSERVED_CHILD_EXECUTION",
+      "outputs": [
+        {
+          "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t055/transcript.jsonl",
+          "event_sequence": 191,
+          "line_number": 191,
+          "method": "rawResponseItem/completed",
+          "output_sha256": "bbf27e13a2957d7302582bb06a33b0953d816c293503443f7b2db53954d361be",
+          "returned_task_name": "/root/implementation",
+          "output_excerpt": null
+        }
+      ],
+      "observed_child_thread_ids": [
+        "01a16a0a-770b-7a62-a126-f6b0c562d4dc"
+      ],
+      "activity_evidence": [
+        {
+          "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t055/transcript.jsonl",
+          "event_sequence": 184,
+          "line_number": 184,
+          "method": "item/started"
+        },
+        {
+          "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t055/transcript.jsonl",
+          "event_sequence": 185,
+          "line_number": 185,
+          "method": "item/completed"
+        }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "replicate": "r2",
+      "task_id": "s4-t055",
+      "transcript": {
+        "path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t055/transcript.jsonl",
+        "sha256": "ba30852d7f9eb51095bd0f2028a3be846dc9cbb9fef24f6075fa3baaad96dfcc"
+      },
+      "source_classification": "MODEL_CREATED_CHILD_AGENT",
+      "execution_observed": true,
+      "spawn_call_id": "call_9533ef8559754d43bf2613e5f4bd3156",
+      "spawn_evidence": [
+        {
+          "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t055/transcript.jsonl",
+          "event_sequence": 183,
+          "line_number": 183,
+          "method": "rawResponseItem/completed"
+        }
+      ],
+      "child": {
+        "thread_id": "01a16a0a-770b-7a62-a126-f6b0c562d4dc",
+        "agent_path": "/root/implementation",
+        "model": "gpt-6-astra",
+        "reasoning_effort": "medium",
+        "model_evidence": [
+          {
+            "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t055/transcript.jsonl",
+            "event_sequence": 184,
+            "line_number": 184,
+            "method": "item/started"
+          },
+          {
+            "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t055/transcript.jsonl",
+            "event_sequence": 185,
+            "line_number": 185,
+            "method": "item/completed"
+          },
+          {
+            "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t055/transcript.jsonl",
+            "event_sequence": 248,
+            "line_number": 248,
+            "method": "item/started"
+          },
+          {
+            "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t055/transcript.jsonl",
+            "event_sequence": 249,
+            "line_number": 249,
+            "method": "item/completed"
+          },
+          {
+            "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t055/transcript.jsonl",
+            "event_sequence": 431,
+            "line_number": 431,
+            "method": "item/started"
+          },
+          {
+            "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t055/transcript.jsonl",
+            "event_sequence": 433,
+            "line_number": 433,
+            "method": "item/completed"
+          }
+        ],
+        "model_evidence_kind": "subAgentActivity metadata; no independently authenticated child thread/start response inferred"
+      },
+      "lifecycle": {
+        "events": [
+          {
+            "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t055/transcript.jsonl",
+            "event_sequence": 188,
+            "line_number": 188,
+            "method": "turn/started",
+            "thread_id": "01a16a0a-770b-7a62-a126-f6b0c562d4dc",
+            "turn_id": "01a16a0a-770d-72b0-8fb4-a9d32a33e786",
+            "root_turn_id": "01a16a09-df54-7c30-ad79-0ea601137d47",
+            "status": "inProgress",
+            "at": "2026-10-23T18:33:53.167Z"
+          },
+          {
+            "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t055/transcript.jsonl",
+            "event_sequence": 432,
+            "line_number": 432,
+            "method": "turn/completed",
+            "thread_id": "01a16a0a-770b-7a62-a126-f6b0c562d4dc",
+            "turn_id": "01a16a0a-770d-72b0-8fb4-a9d32a33e786",
+            "root_turn_id": "01a16a09-df54-7c30-ad79-0ea601137d47",
+            "status": "completed",
+            "at": "2026-10-23T18:34:24.916Z"
+          }
+        ],
+        "started_count": 1,
+        "completed_count": 1,
+        "child_event_count": 182
+      },
+      "tool_usage": {
+        "raw_tool_counts": {},
+        "raw_tool_evidence": [],
+        "mcp_event_count": 0,
+        "mcp_item_count": 0,
+        "mcp_evidence": [],
+        "command_count": 6,
+        "command_status_counts": {
+          "completed": 4,
+          "failed": 2
+        },
+        "command_cwds": [
+          "<tmp>/skillfetch-codex-e2e-owned-WZsR3x/s4-t055",
+          "<tmp>/skillfetch-codex-e2e-owned-WZsR3x/s4-t055/frontend"
+        ],
+        "command_cwd_evidence": [
+          {
+            "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t055/transcript.jsonl",
+            "event_sequence": 213,
+            "line_number": 213,
+            "method": "item/completed",
+            "cwd": "<tmp>/skillfetch-codex-e2e-owned-WZsR3x/s4-t055",
+            "status": "completed"
+          },
+          {
+            "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t055/transcript.jsonl",
+            "event_sequence": 224,
+            "line_number": 224,
+            "method": "item/completed",
+            "cwd": "<tmp>/skillfetch-codex-e2e-owned-WZsR3x/s4-t055",
+            "status": "completed"
+          },
+          {
+            "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t055/transcript.jsonl",
+            "event_sequence": 243,
+            "line_number": 243,
+            "method": "item/completed",
+            "cwd": "<tmp>/skillfetch-codex-e2e-owned-WZsR3x/s4-t055",
+            "status": "completed"
+          },
+          {
+            "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t055/transcript.jsonl",
+            "event_sequence": 272,
+            "line_number": 272,
+            "method": "item/completed",
+            "cwd": "<tmp>/skillfetch-codex-e2e-owned-WZsR3x/s4-t055/frontend",
+            "status": "failed"
+          },
+          {
+            "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t055/transcript.jsonl",
+            "event_sequence": 300,
+            "line_number": 300,
+            "method": "item/completed",
+            "cwd": "<tmp>/skillfetch-codex-e2e-owned-WZsR3x/s4-t055/frontend",
+            "status": "failed"
+          },
+          {
+            "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t055/transcript.jsonl",
+            "event_sequence": 302,
+            "line_number": 302,
+            "method": "item/completed",
+            "cwd": "<tmp>/skillfetch-codex-e2e-owned-WZsR3x/s4-t055",
+            "status": "completed"
+          }
+        ]
+      },
+      "isolation_auth_cleanup": {
+        "primary_thread_id": "01a16a09-db41-7ac2-8d84-6fe5d5069ba3",
+        "primary_turn_id": "01a16a09-df54-7c30-ad79-0ea601137d47",
+        "primary_worktree": "<tmp>/skillfetch-codex-e2e-owned-WZsR3x/s4-t055",
+        "observed_child_cwds_within_primary_worktree": true,
+        "shared_worktree_removed": true,
+        "parent_app_server_exit_evidence": [
+          {
+            "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t055/transcript.jsonl",
+            "event_sequence": 512,
+            "line_number": 512,
+            "method": "process-exit"
+          }
+        ],
+        "child_turn_completion": "VERIFIED",
+        "independent_child_authentication": "NOT_VERIFIED: no child-specific login/account evidence is inferred from parent authentication.",
+        "independent_child_process_cleanup": "NOT_VERIFIED: primary cleanup and child turn completion do not establish independent child process cleanup.",
+        "independent_child_worktree": "NOT_OBSERVED: recorded child command cwd values are within the primary worktree."
+      }
+    }
+  ],
+  "scans": [
+    {
+      "replicate": "r1",
+      "task_id": "s4-t027",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r1/tasks/s4-t027/transcript.jsonl",
+      "transcript_sha256": "67d6b650be45eb9e8aa1257d71ba1c62c54e987d61dfa185c46bae29340b3491",
+      "primary_thread_id": "01a169ff-b97c-7230-8861-f0d873dcb708",
+      "primary_turn_id": "01a169ff-c9df-7df3-844a-31ff33a8a320",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a169ff-b97c-7230-8861-f0d873dcb708"
+      ],
+      "runtime_turn_ids": [
+        "01a169ff-c9df-7df3-844a-31ff33a8a320"
+      ]
+    },
+    {
+      "replicate": "r1",
+      "task_id": "s4-t176",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r1/tasks/s4-t176/transcript.jsonl",
+      "transcript_sha256": "9b8bff9cb0f94e13e6230f1b91696674620dcf46d11661dc1f06d475edadd031",
+      "primary_thread_id": "01a169ff-b97e-79f1-8821-617eb96fdb9f",
+      "primary_turn_id": "01a169ff-c910-7391-aaa7-5b149b718b7c",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a169ff-b97e-79f1-8821-617eb96fdb9f"
+      ],
+      "runtime_turn_ids": [
+        "01a169ff-c910-7391-aaa7-5b149b718b7c"
+      ]
+    },
+    {
+      "replicate": "r1",
+      "task_id": "s4-t153",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r1/tasks/s4-t153/transcript.jsonl",
+      "transcript_sha256": "ad86cddfe36f336ff73a08e36ef104e2b9b476701f3e5b6bc417fb86be5b4744",
+      "primary_thread_id": "01a169ff-b97f-7190-84f2-abceb7f5b782",
+      "primary_turn_id": "01a169ff-c9cd-7871-acfc-d429ceaa0310",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a169ff-b97f-7190-84f2-abceb7f5b782"
+      ],
+      "runtime_turn_ids": [
+        "01a169ff-c9cd-7871-acfc-d429ceaa0310"
+      ]
+    },
+    {
+      "replicate": "r1",
+      "task_id": "s4-t253",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r1/tasks/s4-t253/transcript.jsonl",
+      "transcript_sha256": "f668ec10ed4dc80682d7e2aae306976e76d4dda0a933dc5dfbb14df01bc9b96e",
+      "primary_thread_id": "01a169ff-bbce-7201-879f-d280b410765b",
+      "primary_turn_id": "01a169ff-d2ba-7b23-84a7-fdf916d7c0fc",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a169ff-bbce-7201-879f-d280b410765b"
+      ],
+      "runtime_turn_ids": [
+        "01a169ff-d2ba-7b23-84a7-fdf916d7c0fc"
+      ]
+    },
+    {
+      "replicate": "r1",
+      "task_id": "s4-t182",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r1/tasks/s4-t182/transcript.jsonl",
+      "transcript_sha256": "01ec926194e6520018c494dc5cffdf095e126b2f835e0fc9b315fda8961cf8af",
+      "primary_thread_id": "01a16a01-8f18-7ea3-85a7-053e28e066b3",
+      "primary_turn_id": "01a16a01-9e9a-7d41-bf93-e14143641d37",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a01-8f18-7ea3-85a7-053e28e066b3"
+      ],
+      "runtime_turn_ids": [
+        "01a16a01-9e9a-7d41-bf93-e14143641d37"
+      ]
+    },
+    {
+      "replicate": "r1",
+      "task_id": "s4-t203",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r1/tasks/s4-t203/transcript.jsonl",
+      "transcript_sha256": "89765c124d706abe8974bf876682f344f0487a9cdeffcfa5803900b4edacb21d",
+      "primary_thread_id": "01a16a01-9eba-7771-9d52-3135da84494d",
+      "primary_turn_id": "01a16a01-a317-73c3-86c9-63730e13b6f8",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a01-9eba-7771-9d52-3135da84494d"
+      ],
+      "runtime_turn_ids": [
+        "01a16a01-a317-73c3-86c9-63730e13b6f8"
+      ]
+    },
+    {
+      "replicate": "r1",
+      "task_id": "s4-t055",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r1/tasks/s4-t055/transcript.jsonl",
+      "transcript_sha256": "0bcc326ebdfc82e9d438ffdb2148f37650677e0191cb2faf5010129b1d84607c",
+      "primary_thread_id": "01a16a01-ad84-72d0-88a5-578c93636c8f",
+      "primary_turn_id": "01a16a01-b35b-7cd1-b656-f218eac38fb5",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 1,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a01-ad84-72d0-88a5-578c93636c8f"
+      ],
+      "runtime_turn_ids": [
+        "01a16a01-b35b-7cd1-b656-f218eac38fb5"
+      ]
+    },
+    {
+      "replicate": "r1",
+      "task_id": "s4-t033",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r1/tasks/s4-t033/transcript.jsonl",
+      "transcript_sha256": "f73193d37f98644b539afd3622c69955d44f1c295fbc7969922aba52f0d7cf9b",
+      "primary_thread_id": "01a16a02-2b97-7573-92fc-aea539d409da",
+      "primary_turn_id": "01a16a02-314a-79c0-bb71-f35fe28d075a",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a02-2b97-7573-92fc-aea539d409da"
+      ],
+      "runtime_turn_ids": [
+        "01a16a02-314a-79c0-bb71-f35fe28d075a"
+      ]
+    },
+    {
+      "replicate": "r1",
+      "task_id": "s4-t130",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r1/tasks/s4-t130/transcript.jsonl",
+      "transcript_sha256": "9abbe4aafbf527d1f792ee1537a7476e026ddd883ab86b38c095b22f4d8c986d",
+      "primary_thread_id": "01a16a02-8d9e-7440-afd2-01b725fff95f",
+      "primary_turn_id": "01a16a02-9ade-7141-819a-c5232e3dde9e",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a02-8d9e-7440-afd2-01b725fff95f"
+      ],
+      "runtime_turn_ids": [
+        "01a16a02-9ade-7141-819a-c5232e3dde9e"
+      ]
+    },
+    {
+      "replicate": "r1",
+      "task_id": "s4-t177",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r1/tasks/s4-t177/transcript.jsonl",
+      "transcript_sha256": "191c52486572a2e15c3b077f779b91c1ed41a77896c5020c41e2bc462aa43724",
+      "primary_thread_id": "01a16a02-e916-7770-a452-888ca46923e5",
+      "primary_turn_id": "01a16a02-ee1b-7c70-89dd-54d047a1d64c",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a02-e916-7770-a452-888ca46923e5"
+      ],
+      "runtime_turn_ids": [
+        "01a16a02-ee1b-7c70-89dd-54d047a1d64c"
+      ]
+    },
+    {
+      "replicate": "r1",
+      "task_id": "s4-t229",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r1/tasks/s4-t229/transcript.jsonl",
+      "transcript_sha256": "3eb91d1b8295cfa8721337b54d09912b95da04c7070ebcafd95290a60f50ca6a",
+      "primary_thread_id": "01a16a03-1b15-7c90-8493-32971acc3fc8",
+      "primary_turn_id": "01a16a03-20d2-79b0-a303-c5baa4441721",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a03-1b15-7c90-8493-32971acc3fc8"
+      ],
+      "runtime_turn_ids": [
+        "01a16a03-20d2-79b0-a303-c5baa4441721"
+      ]
+    },
+    {
+      "replicate": "r1",
+      "task_id": "s4-t026",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r1/tasks/s4-t026/transcript.jsonl",
+      "transcript_sha256": "d0327dc1a1dc09ddddbdd50a7bbc6d5769b2f5d06b6c33b4101c5239792d2470",
+      "primary_thread_id": "01a16a03-630f-7bd1-8a17-b8591ccaf6ab",
+      "primary_turn_id": "01a16a03-7202-7292-958d-8c2617ba85d9",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a03-630f-7bd1-8a17-b8591ccaf6ab"
+      ],
+      "runtime_turn_ids": [
+        "01a16a03-7202-7292-958d-8c2617ba85d9"
+      ]
+    },
+    {
+      "replicate": "r1",
+      "task_id": "s4-t224",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r1/tasks/s4-t224/transcript.jsonl",
+      "transcript_sha256": "62bc242c2290067adc9a25df06dfc7bc4355bead25e4f8987c490fd8fe2e7327",
+      "primary_thread_id": "01a16a04-7af9-7ba3-8427-180965ea6d95",
+      "primary_turn_id": "01a16a04-8160-7012-a346-68f5f01c0c55",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a04-7af9-7ba3-8427-180965ea6d95"
+      ],
+      "runtime_turn_ids": [
+        "01a16a04-8160-7012-a346-68f5f01c0c55"
+      ]
+    },
+    {
+      "replicate": "r1",
+      "task_id": "s4-t211",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r1/tasks/s4-t211/transcript.jsonl",
+      "transcript_sha256": "a2b70d6284385bd82e436f102221d588b5cea1fbaeea6943eb411910ae8c8b32",
+      "primary_thread_id": "01a16a04-bcd4-79c1-b697-ac057821ed59",
+      "primary_turn_id": "01a16a04-c648-79d0-acc4-16ff2d8c1b9c",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a04-bcd4-79c1-b697-ac057821ed59"
+      ],
+      "runtime_turn_ids": [
+        "01a16a04-c648-79d0-acc4-16ff2d8c1b9c"
+      ]
+    },
+    {
+      "replicate": "r1",
+      "task_id": "s4-t354",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r1/tasks/s4-t354/transcript.jsonl",
+      "transcript_sha256": "a05e7f669d69a4b89eeaf3e4113d7df668c17253a4bfacfbb93e46662bc98254",
+      "primary_thread_id": "01a16a05-09ba-7140-ae7e-2b508ef89591",
+      "primary_turn_id": "01a16a05-16c4-7eb0-8244-554e46d79335",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a05-09ba-7140-ae7e-2b508ef89591"
+      ],
+      "runtime_turn_ids": [
+        "01a16a05-16c4-7eb0-8244-554e46d79335"
+      ]
+    },
+    {
+      "replicate": "r1",
+      "task_id": "s4-t101",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r1/tasks/s4-t101/transcript.jsonl",
+      "transcript_sha256": "2c8d6f9b964b2167aca2fd671eca1a44fdcacce739af1ab644cf72e5c383ac60",
+      "primary_thread_id": "01a16a05-910f-7531-a910-f9c64acc90ee",
+      "primary_turn_id": "01a16a05-965f-7542-90c6-c59be1e64ba7",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a05-910f-7531-a910-f9c64acc90ee"
+      ],
+      "runtime_turn_ids": [
+        "01a16a05-965f-7542-90c6-c59be1e64ba7"
+      ]
+    },
+    {
+      "replicate": "r1",
+      "task_id": "s4-t342",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r1/tasks/s4-t342/transcript.jsonl",
+      "transcript_sha256": "9bc336d2764a068f2e19674db8ac241414d86b143c7e54559c8c63ea0ea1d9ce",
+      "primary_thread_id": "01a16a05-ae88-7ab0-bb36-8ec903ea6a11",
+      "primary_turn_id": "01a16a05-b25d-7bf3-9c8a-5e80b72f223b",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a05-ae88-7ab0-bb36-8ec903ea6a11"
+      ],
+      "runtime_turn_ids": [
+        "01a16a05-b25d-7bf3-9c8a-5e80b72f223b"
+      ]
+    },
+    {
+      "replicate": "r1",
+      "task_id": "s4-t280",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r1/tasks/s4-t280/transcript.jsonl",
+      "transcript_sha256": "676ea608b92c64f6f32d43585c838189c7bb259b9011cdd880f9bf016ab45560",
+      "primary_thread_id": "01a16a05-f9cd-76a1-8653-2387aa6c5336",
+      "primary_turn_id": "01a16a06-08b7-7632-90c6-3c0ceac2e80a",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a05-f9cd-76a1-8653-2387aa6c5336"
+      ],
+      "runtime_turn_ids": [
+        "01a16a06-08b7-7632-90c6-3c0ceac2e80a"
+      ]
+    },
+    {
+      "replicate": "r1",
+      "task_id": "s4-t001",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r1/tasks/s4-t001/transcript.jsonl",
+      "transcript_sha256": "b45939a3540da7088df7cec345c6e63a90c553d3d3be632c3527873c8d381c29",
+      "primary_thread_id": "01a16a06-9d84-7652-85d6-30846d587c83",
+      "primary_turn_id": "01a16a06-a31d-7e71-9179-3a72f80591fb",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a06-9d84-7652-85d6-30846d587c83"
+      ],
+      "runtime_turn_ids": [
+        "01a16a06-a31d-7e71-9179-3a72f80591fb"
+      ]
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t027",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t027/transcript.jsonl",
+      "transcript_sha256": "66d2671fc053738afc1911eeb24e7883ddb39bde45db2dc925d56fdf2bd75b13",
+      "primary_thread_id": "01a16a07-c533-7251-859e-c611fee61694",
+      "primary_turn_id": "01a16a07-cccc-74e0-b068-786b5ef07c3f",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a07-c533-7251-859e-c611fee61694"
+      ],
+      "runtime_turn_ids": [
+        "01a16a07-cccc-74e0-b068-786b5ef07c3f"
+      ]
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t176",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t176/transcript.jsonl",
+      "transcript_sha256": "626a945d2af87c666c6ab64d1666c69bfdb223568c998a9585e62c585bc2b0c1",
+      "primary_thread_id": "01a16a07-c534-70d2-b180-d28f9628b721",
+      "primary_turn_id": "01a16a07-d4c0-7351-a16c-0032d40f941c",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a07-c534-70d2-b180-d28f9628b721"
+      ],
+      "runtime_turn_ids": [
+        "01a16a07-d4c0-7351-a16c-0032d40f941c"
+      ]
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t153",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t153/transcript.jsonl",
+      "transcript_sha256": "7ba5ff59c5633f7faf07942d974054774446b1442c70beea1584db3fbcce65e5",
+      "primary_thread_id": "01a16a07-c584-78c2-83e9-491f89584889",
+      "primary_turn_id": "01a16a07-d5f0-7a01-82eb-8ec9862759e1",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 1,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a07-c584-78c2-83e9-491f89584889"
+      ],
+      "runtime_turn_ids": [
+        "01a16a07-d5f0-7a01-82eb-8ec9862759e1"
+      ]
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t253",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t253/transcript.jsonl",
+      "transcript_sha256": "6f4ec967d2989589d2018d23237fc3a742bdd51761050627e3a4cf0b2518c01f",
+      "primary_thread_id": "01a16a07-c6bf-7cf1-a030-ce87b64cd7ad",
+      "primary_turn_id": "01a16a07-cfe0-72b2-9ff2-473d8befc18f",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a07-c6bf-7cf1-a030-ce87b64cd7ad"
+      ],
+      "runtime_turn_ids": [
+        "01a16a07-cfe0-72b2-9ff2-473d8befc18f"
+      ]
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t182",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t182/transcript.jsonl",
+      "transcript_sha256": "c77655c1beea639f94e4bb6530e5449815273c5c81adf69e3842c70f1886b75c",
+      "primary_thread_id": "01a16a09-320b-77a3-9637-5cbb43b4f8a9",
+      "primary_turn_id": "01a16a09-4423-7740-81bf-bec68faa5fb7",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a09-320b-77a3-9637-5cbb43b4f8a9"
+      ],
+      "runtime_turn_ids": [
+        "01a16a09-4423-7740-81bf-bec68faa5fb7"
+      ]
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t203",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t203/transcript.jsonl",
+      "transcript_sha256": "85bd233de7317a449a15d2422bde82ca4930d44a37214890228865ca709c63e8",
+      "primary_thread_id": "01a16a09-aae8-73f0-b876-0801d7dd0838",
+      "primary_turn_id": "01a16a09-bc25-7601-9c6f-3c53b2906e47",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a09-aae8-73f0-b876-0801d7dd0838"
+      ],
+      "runtime_turn_ids": [
+        "01a16a09-bc25-7601-9c6f-3c53b2906e47"
+      ]
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t055",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t055/transcript.jsonl",
+      "transcript_sha256": "ba30852d7f9eb51095bd0f2028a3be846dc9cbb9fef24f6075fa3baaad96dfcc",
+      "primary_thread_id": "01a16a09-db41-7ac2-8d84-6fe5d5069ba3",
+      "primary_turn_id": "01a16a09-df54-7c30-ad79-0ea601137d47",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 2,
+      "observed_child_thread_ids": [
+        "01a16a0a-770b-7a62-a126-f6b0c562d4dc"
+      ],
+      "runtime_thread_ids": [
+        "01a16a09-db41-7ac2-8d84-6fe5d5069ba3",
+        "01a16a0a-770b-7a62-a126-f6b0c562d4dc"
+      ],
+      "runtime_turn_ids": [
+        "01a16a09-df54-7c30-ad79-0ea601137d47",
+        "01a16a0a-770d-72b0-8fb4-a9d32a33e786"
+      ]
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t033",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t033/transcript.jsonl",
+      "transcript_sha256": "06d9ea429cc4bc6b5d864a7616ff2c2aaee9f01cdfbb9388c9c228f173c00279",
+      "primary_thread_id": "01a16a0a-18a9-7152-b6a5-bbc9d7a16509",
+      "primary_turn_id": "01a16a0a-1d75-7a00-a0c8-c31d086d6224",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a0a-18a9-7152-b6a5-bbc9d7a16509"
+      ],
+      "runtime_turn_ids": [
+        "01a16a0a-1d75-7a00-a0c8-c31d086d6224"
+      ]
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t130",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t130/transcript.jsonl",
+      "transcript_sha256": "83f2bff63e5534eb06c77809e3935729f8c1ca5bab90614c79288b1b548864d6",
+      "primary_thread_id": "01a16a0a-36b1-7150-a82e-32ce998984c1",
+      "primary_turn_id": "01a16a0a-3b7c-7b31-a6e5-e2711d548b92",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a0a-36b1-7150-a82e-32ce998984c1"
+      ],
+      "runtime_turn_ids": [
+        "01a16a0a-3b7c-7b31-a6e5-e2711d548b92"
+      ]
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t177",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t177/transcript.jsonl",
+      "transcript_sha256": "b5f5e1a2c8ae68c44e057ef01a42fef4ea7de206c24343e23fcc8960baf37f7d",
+      "primary_thread_id": "01a16a0a-cd85-73d0-8245-d9b2a99eb487",
+      "primary_turn_id": "01a16a0a-d338-7312-902f-bffa3cc7f373",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a0a-cd85-73d0-8245-d9b2a99eb487"
+      ],
+      "runtime_turn_ids": [
+        "01a16a0a-d338-7312-902f-bffa3cc7f373"
+      ]
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t229",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t229/transcript.jsonl",
+      "transcript_sha256": "4b357c5f4b3263dcb9b2ed62cddb3d94cde7f598a3cd98ab95e09c7b86ece446",
+      "primary_thread_id": "01a16a0a-f6d5-79e1-860a-1f98dbfcd5b7",
+      "primary_turn_id": "01a16a0b-03c7-7172-b700-c1f96cfea568",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a0a-f6d5-79e1-860a-1f98dbfcd5b7"
+      ],
+      "runtime_turn_ids": [
+        "01a16a0b-03c7-7172-b700-c1f96cfea568"
+      ]
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t026",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t026/transcript.jsonl",
+      "transcript_sha256": "067152de96487260063304394ea13d46e52284dc88779153f5d5428705309624",
+      "primary_thread_id": "01a16a0b-0bf5-7c81-ac0a-b318e72b54e9",
+      "primary_turn_id": "01a16a0b-184e-7ef3-8b5c-6c401b4cf939",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a0b-0bf5-7c81-ac0a-b318e72b54e9"
+      ],
+      "runtime_turn_ids": [
+        "01a16a0b-184e-7ef3-8b5c-6c401b4cf939"
+      ]
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t224",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t224/transcript.jsonl",
+      "transcript_sha256": "3affa67f3cedddf8ce041a74e318a018382e20e963a48189ddbf0dad9922ce4a",
+      "primary_thread_id": "01a16a0c-942b-7131-bce2-0c8495e050d1",
+      "primary_turn_id": "01a16a0c-9a7f-7fa1-b0dd-4b4a412d5d44",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a0c-942b-7131-bce2-0c8495e050d1"
+      ],
+      "runtime_turn_ids": [
+        "01a16a0c-9a7f-7fa1-b0dd-4b4a412d5d44"
+      ]
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t211",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t211/transcript.jsonl",
+      "transcript_sha256": "829ddc254c4f81968e14a2073bcf629b9a60430c37f7e6b175b6e0e300adf8f1",
+      "primary_thread_id": "01a16a0d-9a1f-7530-b861-8206a62fcc08",
+      "primary_turn_id": "01a16a0d-9ef0-72b1-a6f0-417aca063411",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a0d-9a1f-7530-b861-8206a62fcc08"
+      ],
+      "runtime_turn_ids": [
+        "01a16a0d-9ef0-72b1-a6f0-417aca063411"
+      ]
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t354",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t354/transcript.jsonl",
+      "transcript_sha256": "1fcb180fd2a04081a6a1bff20aa02251e96f1183313787374a24b79fd7ac8fad",
+      "primary_thread_id": "01a16a0e-0049-7e02-87ab-1f6d3c632815",
+      "primary_turn_id": "01a16a0e-0613-7fd0-a203-eedf2abad6f7",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a0e-0049-7e02-87ab-1f6d3c632815"
+      ],
+      "runtime_turn_ids": [
+        "01a16a0e-0613-7fd0-a203-eedf2abad6f7"
+      ]
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t101",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t101/transcript.jsonl",
+      "transcript_sha256": "9304e0075d67901efb9701eeaf9eafeefb33411e17b03d0f078449c3e0de3d44",
+      "primary_thread_id": "01a16a0e-1d62-7282-80df-7b8395bfda72",
+      "primary_turn_id": "01a16a0e-29f5-7270-8bd6-4a2da6b3eba3",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a0e-1d62-7282-80df-7b8395bfda72"
+      ],
+      "runtime_turn_ids": [
+        "01a16a0e-29f5-7270-8bd6-4a2da6b3eba3"
+      ]
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t342",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t342/transcript.jsonl",
+      "transcript_sha256": "5c9c874ef503778499d3d1d80a236edac368f2bb65927cbea33127fc42dec64b",
+      "primary_thread_id": "01a16a0f-5059-7ce0-9f10-5f8edbab5aaf",
+      "primary_turn_id": "01a16a0f-5f2a-7ee1-8727-3153313e601d",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a0f-5059-7ce0-9f10-5f8edbab5aaf"
+      ],
+      "runtime_turn_ids": [
+        "01a16a0f-5f2a-7ee1-8727-3153313e601d"
+      ]
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t280",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t280/transcript.jsonl",
+      "transcript_sha256": "d8c7dea0e5c568a172983056bfe5174175e1461a24929e4c03e5edb1f47bf4ed",
+      "primary_thread_id": "01a16a0f-6101-7342-b6da-87bb40f5e9f5",
+      "primary_turn_id": "01a16a0f-6733-7430-9fe9-0eace79dfc02",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a0f-6101-7342-b6da-87bb40f5e9f5"
+      ],
+      "runtime_turn_ids": [
+        "01a16a0f-6733-7430-9fe9-0eace79dfc02"
+      ]
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t001",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r2/tasks/s4-t001/transcript.jsonl",
+      "transcript_sha256": "006cff614b9661ba60a94eb977c415b8ca905dab72662908254105d500d968fa",
+      "primary_thread_id": "01a16a0f-b366-7c01-b58d-744974b51a97",
+      "primary_turn_id": "01a16a0f-b80e-7891-a0d7-7586b0a7dec3",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a0f-b366-7c01-b58d-744974b51a97"
+      ],
+      "runtime_turn_ids": [
+        "01a16a0f-b80e-7891-a0d7-7586b0a7dec3"
+      ]
+    },
+    {
+      "replicate": "r3",
+      "task_id": "s4-t027",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r3/tasks/s4-t027/transcript.jsonl",
+      "transcript_sha256": "c35df85afd4e22533645bbbe596639749981e6bf57df56e2cb4dd6ce899966ec",
+      "primary_thread_id": "01a16a10-be0b-7a11-98cd-d1265ef33378",
+      "primary_turn_id": "01a16a10-c58e-7841-9b1b-84058841d2e5",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a10-be0b-7a11-98cd-d1265ef33378"
+      ],
+      "runtime_turn_ids": [
+        "01a16a10-c58e-7841-9b1b-84058841d2e5"
+      ]
+    },
+    {
+      "replicate": "r3",
+      "task_id": "s4-t176",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r3/tasks/s4-t176/transcript.jsonl",
+      "transcript_sha256": "885790a973006479af750cd49b576774ab3b470bfdf39d11c622e590480fcbe7",
+      "primary_thread_id": "01a16a10-bdfb-7bf3-b009-3f2d07c240bb",
+      "primary_turn_id": "01a16a10-c54e-78b2-9cb5-a710bf82b0db",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a10-bdfb-7bf3-b009-3f2d07c240bb"
+      ],
+      "runtime_turn_ids": [
+        "01a16a10-c54e-78b2-9cb5-a710bf82b0db"
+      ]
+    },
+    {
+      "replicate": "r3",
+      "task_id": "s4-t153",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r3/tasks/s4-t153/transcript.jsonl",
+      "transcript_sha256": "bb9ffc2f835398159e7de0d0804495f49a1a636f1b51b5b24a2dde4385e493a4",
+      "primary_thread_id": "01a16a10-be4f-7da3-8aa5-ab9a946accd8",
+      "primary_turn_id": "01a16a10-cd2c-7db1-a1e0-0b0a42bb3214",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a10-be4f-7da3-8aa5-ab9a946accd8"
+      ],
+      "runtime_turn_ids": [
+        "01a16a10-cd2c-7db1-a1e0-0b0a42bb3214"
+      ]
+    },
+    {
+      "replicate": "r3",
+      "task_id": "s4-t253",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r3/tasks/s4-t253/transcript.jsonl",
+      "transcript_sha256": "8b94f2ba8bd5dabe82d5a7eba7a6a68e34e2cc9fa1c947d1ada1ace5fa0b1a53",
+      "primary_thread_id": "01a16a10-bfd6-7391-ae4d-a2b882e60c25",
+      "primary_turn_id": "01a16a10-cea9-7b42-8e4e-2d2420689be6",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a10-bfd6-7391-ae4d-a2b882e60c25"
+      ],
+      "runtime_turn_ids": [
+        "01a16a10-cea9-7b42-8e4e-2d2420689be6"
+      ]
+    },
+    {
+      "replicate": "r3",
+      "task_id": "s4-t182",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r3/tasks/s4-t182/transcript.jsonl",
+      "transcript_sha256": "d1cb73de11bdb32b1cf2d032e16feffb1cc6026c9c1b625554f217e93a8dd0da",
+      "primary_thread_id": "01a16a12-12b9-76c2-9dd7-772905c446fb",
+      "primary_turn_id": "01a16a12-1850-7880-8e9f-6d3419816cce",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a12-12b9-76c2-9dd7-772905c446fb"
+      ],
+      "runtime_turn_ids": [
+        "01a16a12-1850-7880-8e9f-6d3419816cce"
+      ]
+    },
+    {
+      "replicate": "r3",
+      "task_id": "s4-t203",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r3/tasks/s4-t203/transcript.jsonl",
+      "transcript_sha256": "214a3bbc7ce789e8ca7ffe161d9913e827a1eab3b7689a081f0be5627793a668",
+      "primary_thread_id": "01a16a12-4bbc-7882-8d46-d9d4df60f921",
+      "primary_turn_id": "01a16a12-51da-7443-bb1a-70675299302c",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a12-4bbc-7882-8d46-d9d4df60f921"
+      ],
+      "runtime_turn_ids": [
+        "01a16a12-51da-7443-bb1a-70675299302c"
+      ]
+    },
+    {
+      "replicate": "r3",
+      "task_id": "s4-t055",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r3/tasks/s4-t055/transcript.jsonl",
+      "transcript_sha256": "55f90c1682165e97d18c9ebfbb16f8b94bd1cb7ddfa19cde5d435995a7f189cb",
+      "primary_thread_id": "01a16a12-b4a8-7bb1-a515-811fb066c29d",
+      "primary_turn_id": "01a16a12-c1e4-7ef3-ba73-410a070336d1",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a12-b4a8-7bb1-a515-811fb066c29d"
+      ],
+      "runtime_turn_ids": [
+        "01a16a12-c1e4-7ef3-ba73-410a070336d1"
+      ]
+    },
+    {
+      "replicate": "r3",
+      "task_id": "s4-t033",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r3/tasks/s4-t033/transcript.jsonl",
+      "transcript_sha256": "f0ade0b5336a60f282aa5be13217e335e334a46d065f5230f8bad9fd4a81a18e",
+      "primary_thread_id": "01a16a13-65f6-7bf1-a431-514b387a25e5",
+      "primary_turn_id": "01a16a13-6c30-7502-9b18-60316444e5fc",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a13-65f6-7bf1-a431-514b387a25e5"
+      ],
+      "runtime_turn_ids": [
+        "01a16a13-6c30-7502-9b18-60316444e5fc"
+      ]
+    },
+    {
+      "replicate": "r3",
+      "task_id": "s4-t130",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r3/tasks/s4-t130/transcript.jsonl",
+      "transcript_sha256": "aebfd6721351f03007e3520dfb56f8100874941974143b4c2fd3047d5057e487",
+      "primary_thread_id": "01a16a13-6db7-7821-b588-ceea550bca0d",
+      "primary_turn_id": "01a16a13-7f8c-7e70-a0fd-c60d86a3a1d3",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a13-6db7-7821-b588-ceea550bca0d"
+      ],
+      "runtime_turn_ids": [
+        "01a16a13-7f8c-7e70-a0fd-c60d86a3a1d3"
+      ]
+    },
+    {
+      "replicate": "r3",
+      "task_id": "s4-t177",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r3/tasks/s4-t177/transcript.jsonl",
+      "transcript_sha256": "8a0bfc71c43fc5e1cee80c1fa299b2999047a8b4dcd01f680e19e28e1451bf71",
+      "primary_thread_id": "01a16a13-e1ba-7990-a9bb-0be92be03423",
+      "primary_turn_id": "01a16a13-e704-7f61-89d8-98881b67c5bb",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a13-e1ba-7990-a9bb-0be92be03423"
+      ],
+      "runtime_turn_ids": [
+        "01a16a13-e704-7f61-89d8-98881b67c5bb"
+      ]
+    },
+    {
+      "replicate": "r3",
+      "task_id": "s4-t229",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r3/tasks/s4-t229/transcript.jsonl",
+      "transcript_sha256": "f2847814041aa13d8862815bc1b667e874c48d7d98aa1553f84899a79a37acfe",
+      "primary_thread_id": "01a16a14-1f31-7f00-bd15-ff4717998872",
+      "primary_turn_id": "01a16a14-316a-7433-9517-620428f05080",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a14-1f31-7f00-bd15-ff4717998872"
+      ],
+      "runtime_turn_ids": [
+        "01a16a14-316a-7433-9517-620428f05080"
+      ]
+    },
+    {
+      "replicate": "r3",
+      "task_id": "s4-t026",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r3/tasks/s4-t026/transcript.jsonl",
+      "transcript_sha256": "57627c1ceb777e5c5639f2aab0baa4ee627dd846f811a3c2f81c09eb16b3505a",
+      "primary_thread_id": "01a16a14-3e1d-70c0-95ce-0cb7d5eb9539",
+      "primary_turn_id": "01a16a14-4f1c-7700-a23c-5e620c342e82",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a14-3e1d-70c0-95ce-0cb7d5eb9539"
+      ],
+      "runtime_turn_ids": [
+        "01a16a14-4f1c-7700-a23c-5e620c342e82"
+      ]
+    },
+    {
+      "replicate": "r3",
+      "task_id": "s4-t224",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r3/tasks/s4-t224/transcript.jsonl",
+      "transcript_sha256": "048bde9ec5c8d410aecb1f2e7bd37379e87ac0054d417c49cd4545d83b78ad02",
+      "primary_thread_id": "01a16a15-9e46-70e2-9140-422af086d531",
+      "primary_turn_id": "01a16a15-b0fd-78e1-81d4-d44c3208c8ca",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a15-9e46-70e2-9140-422af086d531"
+      ],
+      "runtime_turn_ids": [
+        "01a16a15-b0fd-78e1-81d4-d44c3208c8ca"
+      ]
+    },
+    {
+      "replicate": "r3",
+      "task_id": "s4-t211",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r3/tasks/s4-t211/transcript.jsonl",
+      "transcript_sha256": "0d0db512c98c39b36c566e1d8250a5e703f21fb0d665e50839c4674e6d1d346b",
+      "primary_thread_id": "01a16a15-f54e-7d13-add8-56598bc71cb1",
+      "primary_turn_id": "01a16a16-0802-7f83-8b81-6206588ccabf",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a15-f54e-7d13-add8-56598bc71cb1"
+      ],
+      "runtime_turn_ids": [
+        "01a16a16-0802-7f83-8b81-6206588ccabf"
+      ]
+    },
+    {
+      "replicate": "r3",
+      "task_id": "s4-t354",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r3/tasks/s4-t354/transcript.jsonl",
+      "transcript_sha256": "8dac11b50d2627dd716ed997f019fc29f704a49ee66e2481c374f0f7ae5a77fe",
+      "primary_thread_id": "01a16a16-b5c4-77f3-957c-ef6d366ca9be",
+      "primary_turn_id": "01a16a16-ba80-7cd0-b638-738cf15ac1c3",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a16-b5c4-77f3-957c-ef6d366ca9be"
+      ],
+      "runtime_turn_ids": [
+        "01a16a16-ba80-7cd0-b638-738cf15ac1c3"
+      ]
+    },
+    {
+      "replicate": "r3",
+      "task_id": "s4-t101",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r3/tasks/s4-t101/transcript.jsonl",
+      "transcript_sha256": "84e1fca8416c3964650b79becf734542c7a10ca9b21fb8a125d843c53259b9bb",
+      "primary_thread_id": "01a16a17-38c1-7030-b632-1cb6ccb1cd91",
+      "primary_turn_id": "01a16a17-3da8-78b3-8fe4-b1b0bee6b44f",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a17-38c1-7030-b632-1cb6ccb1cd91"
+      ],
+      "runtime_turn_ids": [
+        "01a16a17-3da8-78b3-8fe4-b1b0bee6b44f"
+      ]
+    },
+    {
+      "replicate": "r3",
+      "task_id": "s4-t342",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r3/tasks/s4-t342/transcript.jsonl",
+      "transcript_sha256": "f5968fd71520b9d9c5c00ecc83fcdf84939550e5054c0beef3227ecd3596ed15",
+      "primary_thread_id": "01a16a17-9df6-7d52-bada-b496ff56347e",
+      "primary_turn_id": "01a16a17-a955-7a00-8e5b-0d6dace01180",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a17-9df6-7d52-bada-b496ff56347e"
+      ],
+      "runtime_turn_ids": [
+        "01a16a17-a955-7a00-8e5b-0d6dace01180"
+      ]
+    },
+    {
+      "replicate": "r3",
+      "task_id": "s4-t280",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r3/tasks/s4-t280/transcript.jsonl",
+      "transcript_sha256": "58b358434f1540a8e81612279333621289f91193b343a235df6cc97fb1c943db",
+      "primary_thread_id": "01a16a17-9f73-7840-8bc6-2e37bf11abdc",
+      "primary_turn_id": "01a16a17-a44f-7e40-926a-6bda7d6e4031",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a17-9f73-7840-8bc6-2e37bf11abdc"
+      ],
+      "runtime_turn_ids": [
+        "01a16a17-a44f-7e40-926a-6bda7d6e4031"
+      ]
+    },
+    {
+      "replicate": "r3",
+      "task_id": "s4-t001",
+      "transcript_path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/r3/tasks/s4-t001/transcript.jsonl",
+      "transcript_sha256": "c14067afee4fcc007ff1821996c8b40186ec790c092f017f91b31c628a20496f",
+      "primary_thread_id": "01a16a18-1a16-7151-9623-6520125c48d7",
+      "primary_turn_id": "01a16a18-2111-7523-af2c-8624156b8a59",
+      "scan_status": "PASS",
+      "controller_turn_start_count": 1,
+      "primary_turn_started_count": 1,
+      "primary_turn_completed_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": [],
+      "runtime_thread_ids": [
+        "01a16a18-1a16-7151-9623-6520125c48d7"
+      ],
+      "runtime_turn_ids": [
+        "01a16a18-2111-7523-af2c-8624156b8a59"
+      ]
+    }
+  ],
+  "limitations": [
+    "Primary completion status is independent of observed child exceptions by the E2E4 task contract.",
+    "No child activity observed means none recorded in the supplied raw logs; it does not prove runtime prevention.",
+    "Child authentication and independent process cleanup are not inferred from primary session evidence.",
+    "Opaque delegated messages are not decoded. No model reruns, external APIs, or output-quality assessment."
+  ],
+  "configuration": {
+    "config_sha256": "69fb11307213035fce1442078304ff1891a1b4b22e5254a75d9387884bb590e1",
+    "multi_agent": false,
+    "multi_agent_v2": false,
+    "meaning": "Parsed configured flags only; observed child activity is reported separately and runtime prevention is not inferred."
+  },
+  "audit_file": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/audit-verification.json",
+  "audit_sha256": "408a86adc86d7f4db45d9ddb0c2d85644b22a031e6d7052f534b4183e3da2030",
+  "audit": {
+    "path": "<e2e>/codex-e2e-4-runs/20261024-sbp-14d2020/audit-verification.json",
+    "sha256": "408a86adc86d7f4db45d9ddb0c2d85644b22a031e6d7052f534b4183e3da2030",
+    "status": "PASS",
+    "passed": 1293,
+    "checked": 1293
+  },
+  "auditor_sha256": "fea032d441d53158157b254fa17c3a8fabdd4516c20b567d4bee488409396fb3",
+  "manifest_sha256": "985e876d4c293b1c535b1bf0407035feab2bb41767633a18a165733e16c920b1"
+}

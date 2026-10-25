@@ -1,0 +1,252 @@
+[
+ {
+  "id": "uasl/fastapi-endpoint@2a93d50c4970",
+  "title": "fastapi-endpoint",
+  "summary": "Guides the agent through exploring an existing FastAPI project, asking clarifying questions, planning an endpoint implementation for approval, and then building the endpoint and tests. It emphasizes async SQLAlchemy, Pydantic schemas, dependency-injected authentication, and API test coverage."
+ },
+ {
+  "id": "uasl/fastapi-templates@effcd0de0b4c",
+  "title": "fastapi-templates",
+  "summary": "Guides creation of structured FastAPI backend projects using async patterns, dependency injection, repository and service layers, authentication, and testing examples. Includes templates for API endpoints, database access, and user management."
+ },
+ {
+  "id": "uasl/wycheproof@8924e1e4bfb6",
+  "title": "wycheproof",
+  "summary": "Use Wycheproof test vectors to validate cryptographic implementations against known attacks and edge cases. Integrate the vectors into test harnesses and CI to check valid, invalid, and acceptable cases."
+ },
+ {
+  "id": "uasl/python-testing-patterns@e62d0f1ca316",
+  "title": "python-testing-patterns",
+  "summary": "Guides the agent in designing and implementing Python tests using pytest patterns, fixtures, mocks, and specialized testing techniques. It emphasizes focused, isolated tests and meaningful coverage of failure behavior."
+ },
+ {
+  "id": "uasl/unit-testing@6c5fbb821103",
+  "title": "unit-testing",
+  "summary": "Guides the agent to write and improve isolated unit tests using common testing patterns, test doubles, naming conventions, and language-specific frameworks. Emphasizes focused, deterministic tests and meaningful coverage."
+ },
+ {
+  "id": "uasl/token-metrics-automation@6fadb79ed1c7",
+  "title": "token-metrics-automation",
+  "summary": "Use Rube MCP to discover current Token Metrics tools and schemas, verify the Token Metrics connection, and execute workflows with schema-compliant inputs. Follow the skill’s session, memory, and pagination guidance while working."
+ },
+ {
+  "id": "uasl/integration-testing@62b51275be50",
+  "title": "integration-testing",
+  "summary": "Guides agents to write integration tests that exercise multiple components together, using real dependencies and suitable test frameworks. Covers test isolation, API testing patterns, database cleanup, and CI configuration for Testcontainers."
+ },
+ {
+  "id": "uasl/openapi-spec-generation@2d2c7a93b8f2",
+  "title": "openapi-spec-generation",
+  "summary": "Guides agents in creating and maintaining OpenAPI 3.1 specifications from design or code, validating API contracts, and generating SDKs and documentation. Includes patterns for reusable schemas, API descriptions, security, versioning, and validation tools."
+ },
+ {
+  "id": "uasl/vibe-security@6b07d0f651a7",
+  "title": "vibe-security",
+  "summary": "Apply secure-by-default practices when building or reviewing web applications, protecting access, user data, inputs, outputs, and common application attack surfaces. Choose restrictive security options while preserving functionality."
+ },
+ {
+  "id": "uasl/insecure-defaults@a0e826721018",
+  "title": "insecure-defaults",
+  "summary": "Audits production-reachable code and configuration for fail-open security defaults, then verifies runtime behavior and production impact before reporting findings with evidence. Distinguishes insecure fallbacks from fail-secure behavior."
+ },
+ {
+  "id": "uasl/api-testing@4ada9a2fac88",
+  "title": "api-testing",
+  "summary": "Guides the agent in creating and running direct HTTP API tests with tools such as .http files, Bruno, Postman/Newman, and k6. Covers assertions, environment configuration, secret handling, and CI integration."
+ },
+ {
+  "id": "uasl/algorand-vulnerability-scanner@b4ef2e1b7b33",
+  "title": "algorand-vulnerability-scanner",
+  "summary": "Guides security audits of Algorand smart contracts by identifying platform-specific vulnerabilities in TEAL and PyTeal, checking transaction validation and access controls, and using Tealer where available. It also recommends exploit-based tests and reports findings with severity and remediation guidance."
+ },
+ {
+  "id": "uasl/tdd-workflow@6eadb0bf0ea8",
+  "title": "tdd-workflow",
+  "summary": "Follow a test-driven workflow by writing tests before implementation, running tests through development, and refactoring while keeping them green. Aim for at least 80% coverage across unit, integration, and E2E tests, with attention to edge cases and errors."
+ },
+ {
+  "id": "uasl/auth-implementation-patterns@7a99b395d548",
+  "title": "auth-implementation-patterns",
+  "summary": "Provides implementation patterns for authentication and authorization, including JWTs, sessions, OAuth2, RBAC, and permission checks. Recommends security practices for passwords, tokens, cookies, rate limiting, and server-side validation."
+ },
+ {
+  "id": "uasl/security-review@fcc354bc486e",
+  "title": "security-review",
+  "summary": "Apply a security checklist when reviewing or implementing application features, with emphasis on secrets, input handling, authentication, data exposure, API protections, and deployment readiness. Validate security-sensitive behavior and tests across web, database, and blockchain code."
+ },
+ {
+  "id": "uasl/x-api@f7be0ce6f0ec",
+  "title": "x-api",
+  "summary": "Guides agents through X API authentication, posting, reading, search, and engagement tracking. It also gives a content workflow for drafting and approving X-native posts before publishing."
+ },
+ {
+  "id": "anthropics-skills/webapp-testing@a4b4ce82b644",
+  "title": "webapp-testing",
+  "summary": "Use native Python Playwright scripts to test local web applications, choosing an approach based on whether the app is static or dynamic. For dynamic apps, inspect the rendered state before acting, and use bundled helper scripts to manage servers when appropriate."
+ },
+ {
+  "id": "uasl/async-python-patterns@957ebfe54aa7",
+  "title": "async-python-patterns",
+  "summary": "Guides implementation of asynchronous Python applications using asyncio, concurrency patterns, and async I/O. It emphasizes keeping call paths consistently synchronous or asynchronous, avoiding event-loop blocking, and offloading synchronous library calls when needed."
+ },
+ {
+  "id": "uasl/tdd@ff86dad94075",
+  "title": "tdd",
+  "summary": "Follow a red-green-refactor workflow by writing focused behavior tests and implementing only enough code to pass each test. Plan around public interfaces and user-prioritized behavior, then refactor after tests pass."
+ },
+ {
+  "id": "uasl/caveman-stats@2859ce4e33a6",
+  "title": "caveman-stats",
+  "summary": "Provides real token usage and estimated savings for the current session from the Claude Code session log. A hook injects the formatted stats; the model does not calculate them."
+ },
+ {
+  "id": "uasl/perf-lighthouse@ccafe273f7d2",
+  "title": "perf-lighthouse",
+  "summary": "Guides agents in running Lighthouse audits through the CLI or Node API, interpreting reports, defining performance budgets, and integrating audits into CI. It also covers comparing builds and troubleshooting common audit issues."
+ },
+ {
+  "id": "uasl/provider-api@4da7bed47117",
+  "title": "provider-api",
+  "summary": "Use the neutral `skill-router provider-api` CLI for hosted-provider APIs, explicitly configuring the endpoint and key before making calls. Load the platform’s provider-specific documentation when exact schemas, authentication, rate limits, or provider-only behavior are needed."
+ },
+ {
+  "id": "uasl/property-based-testing@a168f6739085",
+  "title": "property-based-testing",
+  "summary": "Use property-based testing proactively when it can strengthen coverage, especially for transformations, parsers, validators, algorithms, and smart contracts. Offer it as an option when a high-value pattern is found, adapt the recommendation when the codebase already uses a PBT library, and respect a user's decline."
+ },
+ {
+  "id": "uasl/contract-testing@b0f4c29940a9",
+  "title": "contract-testing",
+  "summary": "Guides agents in choosing and implementing contract-testing approaches to verify API compatibility between services. Covers Pact workflows, provider verification, Pact Broker and deployment checks, PactFlow, and Spring Cloud Contract."
+ },
+ {
+  "id": "uasl/e2e-testing-patterns@8b25fb0b2da6",
+  "title": "e2e-testing-patterns",
+  "summary": "Guides agents in designing, implementing, and debugging reliable end-to-end test suites with Playwright and Cypress. Emphasizes independent, deterministic tests, stable selectors, user-visible behavior, and practical test data and waiting strategies."
+ },
+ {
+  "id": "uasl/vercel-cli-with-tokens@3f9c2805c482",
+  "title": "vercel-cli-with-tokens",
+  "summary": "Guides the agent through token-based Vercel CLI setup, deployment, and project management without interactive login. It prioritizes preview deployments, protects tokens, and requires approval before git pushes."
+ },
+ {
+  "id": "uasl/eversign-automation@16f10fc5588e",
+  "title": "eversign-automation",
+  "summary": "Guides the agent through Eversign operations using Rube MCP: discover current tool schemas, verify the Eversign connection, then execute schema-compliant workflows. It also covers session reuse, required execution parameters, and pagination."
+ },
+ {
+  "id": "uasl/zyte-api-automation@22b4a48968b2",
+  "title": "zyte-api-automation",
+  "summary": "Use Rube MCP to automate Zyte API operations by discovering current tool schemas, checking the connection, and executing schema-compliant calls. Reuse workflow sessions and handle paginated results until complete."
+ },
+ {
+  "id": "uasl/claude-native-claude-api@24c958899f03",
+  "title": "claude-native-claude-api",
+  "summary": "Guide the agent in building, debugging, and migrating Claude API applications using Anthropic SDKs and documented API patterns. Apply the skill’s defaults for model choice, thinking, streaming, and prompt caching, and consult the relevant language-specific and shared documentation."
+ },
+ {
+  "id": "uasl/python-design-patterns@5c0fbe0d4633",
+  "title": "python-design-patterns",
+  "summary": "Guides the agent to design and refactor Python code using simple, focused components, clear separation of concerns, composition, and dependency injection. It also recommends delaying abstractions, keeping functions focused, and testing layers in isolation."
+ },
+ {
+  "id": "uasl/acceptance-testing@7f713f1566e8",
+  "title": "acceptance-testing",
+  "summary": "Use BDD acceptance-testing practices to turn business requirements into executable specifications, step definitions, and CI-validated tests. Apply the guidance across Gherkin- and Gauge-based frameworks and keep specifications useful as living documentation."
+ },
+ {
+  "id": "uasl/migrate-to-shoehorn@50bfd668fa65",
+  "title": "migrate-to-shoehorn",
+  "summary": "Migrate test files from TypeScript `as` assertions to `@total-typescript/shoehorn`, using `fromPartial()` for partial data and `fromAny()` for intentionally incorrect data. Install the package, update imports, and run a type check to verify the migration."
+ },
+ {
+  "id": "uasl/onesignal-user-auth-automation@f86e15e6be9d",
+  "title": "onesignal-user-auth-automation",
+  "summary": "Automate OneSignal User Auth operations through Rube MCP by discovering current tool schemas, checking the connection, and executing schema-compliant tools. The skill also specifies session reuse, memory inclusion, and pagination handling."
+ },
+ {
+  "id": "uasl/radar@a47ea6fd5f95",
+  "title": "radar",
+  "summary": "Add and refine tests, diagnose flaky behavior, and improve coverage while preserving product behavior. Follow the project’s existing testing conventions and verify changes with tests and relevant references."
+ },
+ {
+  "id": "uasl/verification-loop@39d9be23cf50",
+  "title": "verification-loop",
+  "summary": "Guides the agent through build, type, lint, test, security, and diff verification. It also specifies how to handle verification failures and report results."
+ },
+ {
+  "id": "uasl/api-design@bba608f8c974",
+  "title": "api-design",
+  "summary": "Guides the agent in designing and reviewing REST API contracts, covering resource URLs, HTTP behavior, response formats, pagination, security, rate limits, and versioning. It also provides implementation patterns and a checklist for endpoint readiness."
+ },
+ {
+  "id": "uasl/slack-bot-builder@ce64c6aad24e",
+  "title": "slack-bot-builder",
+  "summary": "Guides implementation of Slack apps with Bolt, including interactive Block Kit interfaces, OAuth installation, and production-oriented handling of tokens, scopes, and request timing. Covers Python, JavaScript, and Java."
+ },
+ {
+  "id": "uasl/secure-coding-practices@cc37fcd8687e",
+  "title": "secure-coding-practices",
+  "summary": "Apply defensive security practices when designing, implementing, and reviewing applications. Validate inputs, protect sensitive data, use secure authentication and cryptography, and check dependencies and error-handling paths."
+ },
+ {
+  "id": "uasl/backend-patterns@3d87ff489f3e",
+  "title": "backend-patterns",
+  "summary": "Provides TypeScript-oriented backend patterns for API design, data access, query optimization, caching, error handling, authentication, rate limiting, background jobs, and logging. Recommends choosing patterns suited to the complexity level."
+ },
+ {
+  "id": "uasl/ux-audit@d921ee5d8321",
+  "title": "ux-audit",
+  "summary": "Guides an agent through browser-based UX audits and QA sweeps, from selecting a target and browser tool to testing workflows, resilience, layouts, and network behavior. It directs the agent to document findings in reports, with the audit depth determining how extensive and autonomous the testing should be."
+ },
+ {
+  "id": "uasl/auth0-automation@4c6deb665922",
+  "title": "auth0-automation",
+  "summary": "Use Rube MCP to automate Auth0 operations. Discover current tool schemas, verify the Auth0 connection is active, and follow the tool schemas and workflow guidance when executing operations."
+ },
+ {
+  "id": "uasl/bright-data-best-practices@15cfe1bca9b8",
+  "title": "bright-data-best-practices",
+  "summary": "Guides developers in choosing and integrating Bright Data APIs for scraping, search, structured extraction, and browser automation. Provides practical authentication, request, polling, and session guidance for Web Unlocker, SERP, Web Scraper, and Browser APIs."
+ },
+ {
+  "id": "uasl/dropbox-sign-automation@0bff2428db7a",
+  "title": "dropbox-sign-automation",
+  "summary": "Use Rube MCP to discover current Dropbox Sign tools and schemas, verify the Dropbox Sign connection, and execute workflows with schema-compliant arguments. Follow the skill’s session, memory, and pagination guidance."
+ },
+ {
+  "id": "uasl/signaturely-automation@ecf1592179f6",
+  "title": "signaturely-automation",
+  "summary": "Automate Signaturely workflows through Rube MCP by discovering current tool schemas, checking the Signaturely connection, and executing tools with schema-compliant inputs. Follow the workflow’s session, memory, and pagination guidance."
+ },
+ {
+  "id": "uasl/n8n-code-python@ba1cd974d317",
+  "title": "n8n-code-python",
+  "summary": "Guides agents writing Python for n8n Code nodes, including n8n data access and return formats, execution modes, and Python’s standard-library limitations. It recommends considering JavaScript first and using Python (Beta) for better n8n integration."
+ },
+ {
+  "id": "uasl/owasp-security@9847d3666f75",
+  "title": "owasp-security",
+  "summary": "Apply OWASP security practices when implementing or reviewing application and agent code. Check for common vulnerabilities and favor secure handling of input, authentication, authorization, data, errors, and dependencies."
+ },
+ {
+  "id": "uasl/currents-api-automation@a532da3b0b7a",
+  "title": "currents-api-automation",
+  "summary": "Automates Currents API operations through Rube MCP. It requires discovering current tool schemas, checking the connection, and following the returned schemas and workflow guidance when executing tools."
+ },
+ {
+  "id": "uasl/new-relic-automation@efeb6349c763",
+  "title": "new-relic-automation",
+  "summary": "Guides the agent in using the Composio MCP integration to manage New Relic alert policies and notification channels, and to inspect alert conditions and monitored applications. It also highlights pagination and the need to link newly created channels to policies separately."
+ },
+ {
+  "id": "uasl/test-app-automation@abdd84ebc0ec",
+  "title": "test-app-automation",
+  "summary": "Automate Test App operations through Rube MCP by discovering current tool schemas, checking the Test App connection, and executing schema-compliant tools. Reuse workflow sessions and handle pagination until results are complete."
+ },
+ {
+  "id": "uasl/verification-before-completion@134bf517af69",
+  "title": "verification-before-completion",
+  "summary": "Requires fresh verification evidence before reporting completion, success, or satisfaction. Agents must run the relevant command, inspect its output, and report the actual result."
+ }
+]

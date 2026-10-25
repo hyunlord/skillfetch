@@ -1,0 +1,35 @@
+diff --git a/pages/users/[id].tsx b/pages/users/[id].tsx
+index e8a7973..d5e4930 100644
+--- a/pages/users/[id].tsx
++++ b/pages/users/[id].tsx
+@@ -1,4 +1,5 @@
+ import { GetStaticProps, GetStaticPaths } from "next";
++import Link from "next/link";
+ 
+ import { User } from "../../interfaces";
+ import { sampleUserData } from "../../utils/sample-data";
+@@ -28,10 +29,24 @@ const StaticPropsDetail = ({ item, errors }: Props) => {
+       } | Next.js + TypeScript Example`}
+     >
+       {item && <ListDetail item={item} />}
++      {item && <Neighbours id={item.id} />}
+     </Layout>
+   );
+ };
+ 
++const Neighbours = ({ id }: { id: number }) => {
++  const i = sampleUserData.findIndex((u) => u.id === id);
++  const prev = sampleUserData[i - 1];
++  const next = sampleUserData[i + 1];
++  return (
++    <p>
++      {prev && <Link href={`/users/${prev.id}`}>Previous</Link>}{" "}
++      <Link href="/users">Back to list</Link>{" "}
++      {next && <Link href={`/users/${next.id}`}>Next</Link>}
++    </p>
++  );
++};
++
+ export default StaticPropsDetail;
+ 
+ export const getStaticPaths: GetStaticPaths = async () => {

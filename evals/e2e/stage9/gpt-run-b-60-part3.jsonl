@@ -1,0 +1,114 @@
+{"task_id": "t131", "candidate_id": "g01", "grade": 2, "process": true, "reason": "배포 후 브라우저 점검 절차는 프리뷰 검증에 유용하지만 Actions 배포 구성 자체는 다루지 않는다."}
+{"task_id": "t131", "candidate_id": "g02", "grade": 3, "process": false, "reason": "GitHub Actions와 PR 자동화는 프리뷰 배포 및 댓글 갱신 요구에 직접 맞는다."}
+{"task_id": "t131", "candidate_id": "g03", "grade": 1, "process": false, "reason": "pnpm 빌드 최적화는 인접하지만 이 작업에는 모노레포 관리 요구가 없다."}
+{"task_id": "t131", "candidate_id": "g04", "grade": 2, "process": true, "reason": "Playwright 테스트 신뢰성 지침은 배포 후 스모크 실행에 도움이 된다."}
+{"task_id": "t131", "candidate_id": "g05", "grade": 0, "process": false, "reason": "Windows 데스크톱 UI 자동화는 Next.js 웹 프리뷰 검증과 도구가 다르다."}
+{"task_id": "t131", "candidate_id": "g06", "grade": 1, "process": true, "reason": "테스트 자산 추적은 기존 스모크 파일을 실행하는 CI 구성에 실익이 작다."}
+{"task_id": "t131", "candidate_id": "g07", "grade": 2, "process": true, "reason": "배포 URL의 엔드포인트와 콘솔 점검은 프리뷰 배포 확인에 유용하다."}
+{"task_id": "t131", "candidate_id": "g08", "grade": 3, "process": false, "reason": "Playwright 설정과 CI 통합은 프리뷰 URL 대상 스모크 실행을 직접 안내한다."}
+{"task_id": "t131", "candidate_id": "g09", "grade": 3, "process": false, "reason": "GitHub Actions 빌드·테스트·배포 워크플로가 요청한 PR 파이프라인에 직접 대응한다."}
+{"task_id": "t131", "candidate_id": "g10", "grade": 3, "process": false, "reason": "GHA 트리거와 PR 자동화 및 성능 최적화는 변경 경로 필터와 댓글 갱신에 직접 맞는다."}
+{"task_id": "t132", "candidate_id": "g01", "grade": 0, "process": false, "reason": "XCTest 기반 iOS 테스트는 Storybook과 Chromatic CI 조건에 적용되지 않는다."}
+{"task_id": "t132", "candidate_id": "g02", "grade": 2, "process": false, "reason": "Storybook 비주얼 테스트 통합 지식은 도움이 되지만 변경 경로 조건이 중심은 아니다."}
+{"task_id": "t132", "candidate_id": "g03", "grade": 0, "process": false, "reason": "OpenUI 생성형 인터페이스 구현은 기존 Chromatic 실행 조건과 무관하다."}
+{"task_id": "t132", "candidate_id": "g04", "grade": 1, "process": false, "reason": "Playwright CI 통합은 인접하지만 Storybook 변경 경로 필터를 직접 다루지 않는다."}
+{"task_id": "t132", "candidate_id": "g05", "grade": 1, "process": true, "reason": "저장소 구조 점검은 이미 지정된 packages/ui 경로 조건 수정에 실익이 작다."}
+{"task_id": "t132", "candidate_id": "g06", "grade": 2, "process": false, "reason": "모노레포 빌드 최적화는 특정 패키지 변경에만 작업을 실행하는 데 유용하다."}
+{"task_id": "t132", "candidate_id": "g07", "grade": 0, "process": false, "reason": "Laravel 패키지 탐색은 Storybook CI 경로 필터와 관련이 없다."}
+{"task_id": "t132", "candidate_id": "g08", "grade": 0, "process": false, "reason": "Windows UI 자동화는 웹 컴포넌트 비주얼 테스트 실행 조건과 도구가 다르다."}
+{"task_id": "t138", "candidate_id": "g01", "grade": 1, "process": false, "reason": "Rust 의존성 시각화는 빌드 구조 파악에 조금 도움되지만 컴파일 캐시를 설정하지 않는다."}
+{"task_id": "t138", "candidate_id": "g02", "grade": 1, "process": true, "reason": "CI 통과 반복 절차는 빌드 실패가 아닌 반복 컴파일 최적화에 제한적이다."}
+{"task_id": "t138", "candidate_id": "g03", "grade": 0, "process": false, "reason": "cargo-fuzz는 퍼징 도구이며 sccache나 rust-cache 설정과 무관하다."}
+{"task_id": "t138", "candidate_id": "g04", "grade": 0, "process": true, "reason": "LLM 프롬프트 캐시는 Rust 컴파일 캐시와 전혀 다르다."}
+{"task_id": "t138", "candidate_id": "g05", "grade": 0, "process": false, "reason": "Lighthouse 웹 성능 감사는 Cargo CI 빌드 시간과 관련이 없다."}
+{"task_id": "t138", "candidate_id": "g06", "grade": 0, "process": true, "reason": "Rust 테스트 작성과 TDD는 기존 빌드 작업의 캐시 추가를 돕지 않는다."}
+{"task_id": "t138", "candidate_id": "g07", "grade": 1, "process": false, "reason": "Rust 언어 관용구는 같은 생태계지만 CI 캐시 설정에 실질적인 지침이 적다."}
+{"task_id": "t138", "candidate_id": "g08", "grade": 0, "process": true, "reason": "테스트 커버리지 개선은 전체 재컴파일을 방지하는 캐시 구성과 다르다."}
+{"task_id": "t138", "candidate_id": "g09", "grade": 0, "process": false, "reason": "Rust 동시성 및 async 오류 지식은 빌드 캐시 추가와 관련이 없다."}
+{"task_id": "t138", "candidate_id": "g10", "grade": 0, "process": false, "reason": "Next.js 런타임 캐싱은 Cargo 컴파일 캐싱과 스택이 다르다."}
+{"task_id": "t138", "candidate_id": "g11", "grade": 1, "process": true, "reason": "다단계 배포 설계는 단일 CI 빌드 캐시 추가보다 범위가 넓다."}
+{"task_id": "t138", "candidate_id": "g12", "grade": 2, "process": false, "reason": "GHA 성능 최적화 지식은 CI 캐시 구성에 유용하지만 CI 제공자는 명시되지 않았다."}
+{"task_id": "t138", "candidate_id": "g13", "grade": 1, "process": true, "reason": "프로파일링 중심 성능 최적화는 애플리케이션 실행 성능에 가까워 빌드 캐시에는 제한적이다."}
+{"task_id": "t138", "candidate_id": "g14", "grade": 1, "process": false, "reason": "Rust 크레이트 정보 탐색은 캐시 도구 확인에 약간 유용하지만 설정 방법은 제시하지 않는다."}
+{"task_id": "t143", "candidate_id": "g01", "grade": 2, "process": true, "reason": "CI 결과를 반복 확인하고 수정하는 절차는 Jenkins에서 Actions로 옮긴 단계 검증에 유용하다."}
+{"task_id": "t143", "candidate_id": "g02", "grade": 0, "process": false, "reason": "JPA 엔티티와 쿼리 설계는 Maven CI 마이그레이션과 무관하다."}
+{"task_id": "t143", "candidate_id": "g03", "grade": 0, "process": false, "reason": "Playwright 웹 E2E 도구는 요청한 JUnit 및 Testcontainers 단계와 다르다."}
+{"task_id": "t143", "candidate_id": "g04", "grade": 2, "process": true, "reason": "Spring Boot와 Testcontainers 테스트 지침은 이전 후 기존 테스트 단계 검증에 유용하다."}
+{"task_id": "t143", "candidate_id": "g05", "grade": 1, "process": false, "reason": "Spring Boot 아키텍처는 같은 서비스 영역이지만 Maven 캐시와 Actions 이전 지침은 아니다."}
+{"task_id": "t143", "candidate_id": "g06", "grade": 1, "process": false, "reason": "Java 코드 규칙은 관련 언어 지식이지만 Jenkinsfile 이전에는 실익이 작다."}
+{"task_id": "t143", "candidate_id": "g07", "grade": 2, "process": true, "reason": "Testcontainers와 Spring Boot 통합 테스트 지침은 CI에서 통합 테스트를 유지하는 데 유용하다."}
+{"task_id": "t143", "candidate_id": "g08", "grade": 3, "process": false, "reason": "GitHub Actions 빌드·테스트·배포 템플릿은 Jenkins 단계 이전을 직접 안내한다."}
+{"task_id": "t143", "candidate_id": "g09", "grade": 0, "process": true, "reason": "서비스 간 API 계약 테스트는 요청된 기존 CI 단계 이전 범위에 없다."}
+{"task_id": "t143", "candidate_id": "g10", "grade": 0, "process": true, "reason": "명시적인 커밋·푸시·PR 일괄 요청이 없어 yeet의 실행 조건을 충족하지 않는다."}
+{"task_id": "t143", "candidate_id": "g11", "grade": 3, "process": true, "reason": "Maven 빌드와 단위·Testcontainers 검증 루프는 보존해야 할 CI 단계와 직접 겹친다."}
+{"task_id": "t143", "candidate_id": "g12", "grade": 0, "process": false, "reason": "MyBatis 매퍼와 SQL 패턴은 CI 도구 이전과 관련이 없다."}
+{"task_id": "t143", "candidate_id": "g13", "grade": 0, "process": false, "reason": "pnpm 및 Nx 모노레포 관리 도구는 Maven 서비스의 CI 이전과 스택이 다르다."}
+{"task_id": "t143", "candidate_id": "g14", "grade": 1, "process": true, "reason": "정적 분석 설정은 인접한 CI 관심사지만 보존할 단계에는 포함되지 않는다."}
+{"task_id": "t158", "candidate_id": "g01", "grade": 1, "process": false, "reason": "Bun의 Vercel 지원은 인접하지만 Bun을 쓰거나 전환하는 작업이 아니다."}
+{"task_id": "t158", "candidate_id": "g02", "grade": 3, "process": false, "reason": "Turborepo의 패키지별 빌드 관리는 admin만 빌드하고 web 배포를 분리하는 요구에 직접 맞는다."}
+{"task_id": "t158", "candidate_id": "g03", "grade": 2, "process": false, "reason": "Turborepo와 Vercel 배포 지식은 유용하지만 새 프로젝트 스캐폴딩은 요청 범위를 벗어난다."}
+{"task_id": "t158", "candidate_id": "g04", "grade": 0, "process": false, "reason": "Nuxt 앱 패턴은 기존 Turborepo의 Vercel 프로젝트와 rewrites 설정을 안내하지 않는다."}
+{"task_id": "t164", "candidate_id": "g01", "grade": 0, "process": true, "reason": "레거시 시스템 현대화 계획은 지정 타깃 교차 컴파일과 scp 배포가 아니다."}
+{"task_id": "t164", "candidate_id": "g02", "grade": 2, "process": false, "reason": "Bash와 크로스플랫폼 터미널 지식은 빌드 명령 및 scp 전송 작업에 유용하다."}
+{"task_id": "t164", "candidate_id": "g03", "grade": 0, "process": true, "reason": "Quarkus와 GraalVM 검증은 aarch64 musl 타깃 교차 컴파일과 스택이 다르다."}
+{"task_id": "t164", "candidate_id": "g04", "grade": 0, "process": false, "reason": "Windows Python 설치 프로그램 제작은 Linux musl 바이너리 배포와 맞지 않는다."}
+{"task_id": "t164", "candidate_id": "g05", "grade": 2, "process": false, "reason": "재현 가능한 컴파일러와 시스템 의존성 환경은 교차 컴파일 도구체인 준비에 유용하다."}
+{"task_id": "t164", "candidate_id": "g06", "grade": 0, "process": true, "reason": "PESTLE 전략 환경 분석은 edge-agent 빌드 환경 설정과 무관하다."}
+{"task_id": "t164", "candidate_id": "g07", "grade": 1, "process": false, "reason": "CLI 빌드 도구 통합은 인접하지만 교차 컴파일과 scp 배포를 직접 다루지 않는다."}
+{"task_id": "t164", "candidate_id": "g08", "grade": 0, "process": true, "reason": "병렬 메타인지 분석은 명확한 빌드·전송 작업에 필요한 기술 지침이 아니다."}
+{"task_id": "t164", "candidate_id": "g09", "grade": 0, "process": false, "reason": "Docker Hub 조직과 저장소 관리는 scp 바이너리 전달과 도구가 다르다."}
+{"task_id": "t164", "candidate_id": "g10", "grade": 1, "process": false, "reason": "IoT와 엣지 도메인은 같지만 타깃 컴파일 및 파일 전송 지침은 없다."}
+{"task_id": "t165", "candidate_id": "g01", "grade": 1, "process": false, "reason": "Cargo 생태계 지식은 의존성 이해에 조금 유용하지만 이미지 릴리스 구성이 중심은 아니다."}
+{"task_id": "t165", "candidate_id": "g02", "grade": 1, "process": false, "reason": "의존성 그래프는 구조 파악에 제한적으로 유용하며 cargo-chef 캐시를 설정하지 않는다."}
+{"task_id": "t165", "candidate_id": "g03", "grade": 1, "process": false, "reason": "Axum 웹 서비스 지식은 같은 앱 영역이지만 태그 기반 이미지 배포에는 실익이 작다."}
+{"task_id": "t165", "candidate_id": "g04", "grade": 0, "process": false, "reason": "C/C++ 메모리 오류 퍼징은 Rust 컨테이너 릴리스 구성과 무관하다."}
+{"task_id": "t165", "candidate_id": "g05", "grade": 1, "process": true, "reason": "Rust 테스트 지침은 릴리스 검증에 조금 유용하지만 빌드 캐싱을 다루지 않는다."}
+{"task_id": "t165", "candidate_id": "g06", "grade": 3, "process": false, "reason": "GHA 트리거와 성능 최적화는 버전 태그 기반 캐시 빌드 및 GHCR 배포에 직접 맞는다."}
+{"task_id": "t165", "candidate_id": "g07", "grade": 0, "process": true, "reason": "MCP 패키지 참조 검토는 Cargo 의존성 레이어 캐싱과 관련이 없다."}
+{"task_id": "t165", "candidate_id": "g08", "grade": 0, "process": true, "reason": "Quarkus 검증 루프는 Axum Rust 서버와 스택이 다르다."}
+{"task_id": "t165", "candidate_id": "g09", "grade": 0, "process": true, "reason": "퍼징 하네스 작성은 distroless 이미지 릴리스 구성에 필요하지 않다."}
+{"task_id": "t165", "candidate_id": "g10", "grade": 3, "process": false, "reason": "GitHub Actions 빌드와 배포 워크플로는 태그 기반 이미지 발행을 직접 안내한다."}
+{"task_id": "t165", "candidate_id": "g11", "grade": 0, "process": true, "reason": "카오스 실험은 현재 요청된 의존성 빌드 캐시와 이미지 배포 범위 밖이다."}
+{"task_id": "t165", "candidate_id": "g12", "grade": 0, "process": false, "reason": "cargo-fuzz는 보안 테스트 도구이며 컨테이너 캐시나 GHCR 발행과 무관하다."}
+{"task_id": "t165", "candidate_id": "g13", "grade": 0, "process": false, "reason": "반응형 CSS 레이아웃은 서버 이미지 릴리스와 무관하다."}
+{"task_id": "t165", "candidate_id": "g14", "grade": 0, "process": false, "reason": "Turborepo·Nx·pnpm 관리 지식은 Rust cargo-chef 빌드와 스택이 다르다."}
+{"task_id": "t165", "candidate_id": "g15", "grade": 3, "process": true, "reason": "Docker 컨테이너화와 CI/CD 배포 절차는 캐시를 갖춘 서버 이미지 릴리스에 직접 맞는다."}
+{"task_id": "t165", "candidate_id": "g16", "grade": 2, "process": false, "reason": "클라우드 네이티브 컨테이너와 배포 지식은 distroless 이미지 구성에 유용하다."}
+{"task_id": "t174", "candidate_id": "g01", "grade": 1, "process": false, "reason": "React Native와 Expo 지식은 인접하지만 주어진 요약은 OTA보다 컴포넌트 성능에 집중한다."}
+{"task_id": "t174", "candidate_id": "g02", "grade": 2, "process": true, "reason": "배포 및 롤백 절차는 단계적 OTA 릴리스에 도움이 되지만 웹 컨테이너 중심이다."}
+{"task_id": "t174", "candidate_id": "g03", "grade": 3, "process": false, "reason": "Actions 테스트·배포 워크플로는 main 병합 시 staging 발행 작업에 직접 맞는다."}
+{"task_id": "t174", "candidate_id": "g04", "grade": 0, "process": false, "reason": "New Relic 알림 채널 관리는 EAS Update 배포 채널과 다르다."}
+{"task_id": "t174", "candidate_id": "g05", "grade": 0, "process": true, "reason": "알림 라우팅과 중복 제거는 OTA 앱 업데이트 배포와 무관하다."}
+{"task_id": "t174", "candidate_id": "g06", "grade": 3, "process": true, "reason": "다단계 배포와 승인 게이트 설계는 production 10% 이후 수동 승인 요구에 직접 맞는다."}
+{"task_id": "t174", "candidate_id": "g07", "grade": 0, "process": true, "reason": "Quarkus 검증은 React Native와 Expo OTA 구성과 스택이 다르다."}
+{"task_id": "t174", "candidate_id": "g08", "grade": 1, "process": false, "reason": "모바일 접근성은 About 화면에 조금 관련되지만 업데이트 ID 노출과 OTA의 핵심은 아니다."}
+{"task_id": "t174", "candidate_id": "g09", "grade": 0, "process": false, "reason": "앱 연결을 통한 메시지 전송과 외부 작업은 EAS 배포 자동화 지침이 아니다."}
+{"task_id": "t174", "candidate_id": "g10", "grade": 0, "process": false, "reason": "FCM과 APNs 푸시 알림은 EAS 코드 업데이트와 별개의 기능이다."}
+{"task_id": "t174", "candidate_id": "g11", "grade": 0, "process": true, "reason": "공유 채팅 채널 규율은 preview·staging·production 릴리스 채널과 무관하다."}
+{"task_id": "t174", "candidate_id": "g12", "grade": 3, "process": false, "reason": "GHA 트리거와 워크플로 설계는 main 병합에 맞춘 staging 업데이트 발행을 직접 돕는다."}
+{"task_id": "t174", "candidate_id": "g13", "grade": 0, "process": false, "reason": "Windows 데스크톱 E2E는 React Native OTA 검증과 플랫폼이 다르다."}
+{"task_id": "t174", "candidate_id": "g14", "grade": 1, "process": false, "reason": "Expo 앱 패턴은 About 화면 구현에 조금 유용하지만 EAS Update 정책은 요약에 없다."}
+{"task_id": "t179", "candidate_id": "g01", "grade": 0, "process": false, "reason": "Rust ML 라이브러리 지식은 Python Polars 이벤트 중복 제거와 스택이 다르다."}
+{"task_id": "t179", "candidate_id": "g02", "grade": 1, "process": false, "reason": "이벤트 데이터 거버넌스는 인접하지만 Segment 설정은 기존 Polars 중복 제거를 안내하지 않는다."}
+{"task_id": "t179", "candidate_id": "g03", "grade": 0, "process": true, "reason": "고객이 제품을 고용하는 목적 분석은 배치 데이터 정제와 무관하다."}
+{"task_id": "t179", "candidate_id": "g04", "grade": 1, "process": false, "reason": "이벤트 수집 패턴은 중복 발생 맥락에 조금 관련되지만 Polars 정제 구현은 다루지 않는다."}
+{"task_id": "t179", "candidate_id": "g05", "grade": 0, "process": false, "reason": "ClickHouse 쿼리 지식은 지정된 Polars 처리 도구와 다르다."}
+{"task_id": "t179", "candidate_id": "g06", "grade": 1, "process": true, "reason": "이벤트와 지표 설계는 같은 분석 영역이지만 기존 행의 중복 제거에는 실익이 작다."}
+{"task_id": "t179", "candidate_id": "g07", "grade": 0, "process": false, "reason": "Inngest 백그라운드 작업 도입은 기존 Python Polars 스크립트와 도구가 다르다."}
+{"task_id": "t179", "candidate_id": "g08", "grade": 0, "process": false, "reason": "Eventbrite 행사 관리는 분석 이벤트 행의 중복 제거와 무관하다."}
+{"task_id": "t179", "candidate_id": "g09", "grade": 1, "process": true, "reason": "안전한 데이터 변경 절차는 조금 유용하지만 SQL 마이그레이션은 Polars 정제 작업과 다르다."}
+{"task_id": "t179", "candidate_id": "g10", "grade": 0, "process": false, "reason": "EventKit 일정과 알림은 분석용 page_view 이벤트 처리와 무관하다."}
+{"task_id": "t179", "candidate_id": "g11", "grade": 0, "process": false, "reason": "Simple Analytics MCP 자동화는 로컬 Polars 배치 정제와 도구가 다르다."}
+{"task_id": "t179", "candidate_id": "g12", "grade": 0, "process": true, "reason": "작업 회고 로그 작성은 데이터 중복 제거 및 일별 건수 집계와 무관하다."}
+{"task_id": "t182", "candidate_id": "g01", "grade": 0, "process": false, "reason": "브라우저 확장 구현은 trips 수익 컬럼 백필과 관련이 없다."}
+{"task_id": "t182", "candidate_id": "g02", "grade": 1, "process": false, "reason": "TypeScript 실행 환경 지식은 인접하지만 Bun 사용이나 런타임 전환 요구가 없다."}
+{"task_id": "t182", "candidate_id": "g03", "grade": 3, "process": true, "reason": "안전한 배치 백필 절차는 기존 trips의 null 수익을 채우는 작업에 직접 맞는다."}
+{"task_id": "t182", "candidate_id": "g04", "grade": 0, "process": false, "reason": "Python Netmiko SSH 자동화는 TypeScript 데이터베이스 백필과 도구가 다르다."}
+{"task_id": "t182", "candidate_id": "g05", "grade": 2, "process": false, "reason": "Node.js 서버와 데이터베이스 최적화 지식은 조인을 포함한 백필 구현에 유용하다."}
+{"task_id": "t182", "candidate_id": "g06", "grade": 0, "process": false, "reason": "Java Spring Security 설정은 TypeScript 수익 백필과 스택이 다르다."}
+{"task_id": "t182", "candidate_id": "g07", "grade": 0, "process": false, "reason": "AI 3D 모델 생성은 수익 데이터 계산과 무관하다."}
+{"task_id": "t182", "candidate_id": "g08", "grade": 0, "process": false, "reason": "Kotlin SQLDelight는 지정된 TypeScript 스크립트와 스택이 다르다."}
+{"task_id": "t182", "candidate_id": "g09", "grade": 2, "process": true, "reason": "민감한 결제 기능 검토 체크리스트는 수익 데이터를 갱신하는 스크립트 안전성에 유용하다."}
+{"task_id": "t182", "candidate_id": "g10", "grade": 2, "process": true, "reason": "ETL과 데이터 품질 설계는 요금·프로모션 조인에 따른 계산 및 적재 검증에 유용하다."}
+{"task_id": "t182", "candidate_id": "g11", "grade": 1, "process": true, "reason": "백필 처리량 진단은 인접하지만 요청에는 규모나 성능 병목 문제가 제시되지 않았다."}
+{"task_id": "t182", "candidate_id": "g12", "grade": 0, "process": false, "reason": "소매 수요와 프로모션 판매 예측은 운행 수익 정산 백필과 다른 문제다."}

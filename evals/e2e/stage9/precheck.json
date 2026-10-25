@@ -1,0 +1,86 @@
+{
+ "release": "~/.skillfetch/index",
+ "staging": "<skillfetch>/data/index-staging",
+ "skills.jsonl": {
+  "release_lines": 1724,
+  "staging_lines": 2713,
+  "release_lines_missing_in_staging": 0,
+  "release_ids_with_other_bytes_in_staging": 0,
+  "duplicate_ids_in_staging": 0,
+  "new_lines": 989,
+  "examples": []
+ },
+ "rejected.jsonl": {
+  "release_lines": 107,
+  "staging_lines": 141,
+  "release_lines_missing_in_staging": 0,
+  "release_ids_with_other_bytes_in_staging": 0,
+  "duplicate_ids_in_staging": 0,
+  "new_lines": 34,
+  "examples": []
+ },
+ "constraints.jsonl": {
+  "release_rows": 29880,
+  "staging_rows": 39780,
+  "release_skills": 1692,
+  "release_skills_differing_beyond_fan_out": 0,
+  "examples": [],
+  "fan_out_changed": {
+   "False->True": 8
+  },
+  "fan_out_changed_total": 8,
+  "new_skill_rows": 9900
+ },
+ "other_files": {
+  "manifest_sources_release": [
+   "anthropics-skills",
+   "uasl"
+  ],
+  "manifest_sources_staging": [
+   "anthropics-skills",
+   "uasl",
+   "affaan-m-ecc",
+   "ahmed3elshaer-everything-claude-code-mobile",
+   "rshankras-claude-code-apple-skills",
+   "actionbook-rust-skills",
+   "dpearson2699-swift-ios-skills"
+  ],
+  "manifest_keys_changed": [
+   "built_at",
+   "counts",
+   "files",
+   "judged_pairs",
+   "license_sources",
+   "licenses",
+   "redistributable",
+   "sources"
+  ],
+  "release_sources_same_in_staging": true,
+  "dupgroups_release": 1,
+  "dupgroups_staging": 5,
+  "release_dupgroups_kept": true,
+  "pairs_release_lines": 2005,
+  "pairs_staging_lines": null
+ },
+ "new_records": {
+  "n": 989,
+  "by_repo": {
+   "affaan-m/ecc": 800,
+   "dpearson2699/swift-ios-skills": 86,
+   "ahmed3elshaer/everything-claude-code-mobile": 46,
+   "actionbook/rust-skills": 35,
+   "rshankras/claude-code-apple-skills": 22
+  },
+  "by_tier": {
+   "B": 948,
+   "C": 41
+  },
+  "by_status": {
+   "ok": 988,
+   "not_extracted": 1
+  },
+  "outside_default_tiers": 41,
+  "non_canonical": 4
+ },
+ "precondition_ok": true
+}

@@ -1,0 +1,380 @@
+{"id": "t001", "query": "python cli dry-run flag", "words": 4, "raw": "python cli dry-run flag"}
+{"id": "t002", "query": "django recurring appointments", "words": 3, "raw": "django recurring appointments"}
+{"id": "t003", "query": "fastapi alembic crud endpoints", "words": 4, "raw": "fastapi alembic crud endpoints"}
+{"id": "t004", "query": "celery periodic tasks", "words": 3, "raw": "celery periodic tasks"}
+{"id": "t005", "query": "flask test-driven development", "words": 3, "raw": "flask test-driven development"}
+{"id": "t006", "query": "nextjs app router forms", "words": 4, "raw": "nextjs app router forms"}
+{"id": "t007", "query": "trpc cursor pagination", "words": 3, "raw": "trpc cursor pagination"}
+{"id": "t008", "query": "react debounced autosave", "words": 3, "raw": "react debounced autosave"}
+{"id": "t009", "query": "accessible ARIA grid keyboard navigation", "words": 5, "raw": "accessible ARIA grid keyboard navigation"}
+{"id": "t010", "query": "go readiness health check", "words": 4, "raw": "go readiness health check"}
+{"id": "t011", "query": "go webhook retry delivery", "words": 4, "raw": "go webhook retry delivery"}
+{"id": "t012", "query": "go grpc protobuf", "words": 3, "raw": "go grpc protobuf"}
+{"id": "t013", "query": "go http etag caching", "words": 4, "raw": "go http etag caching"}
+{"id": "t014", "query": "rust cli json output", "words": 4, "raw": "rust cli json output"}
+{"id": "t015", "query": "axum batch insert endpoint", "words": 4, "raw": "axum batch insert endpoint"}
+{"id": "t016", "query": "tokio async chat server", "words": 4, "raw": "tokio async chat server"}
+{"id": "t017", "query": "rust mqtt tls", "words": 3, "raw": "rust mqtt tls"}
+{"id": "t018", "query": "JPA soft delete", "words": 3, "raw": "JPA soft delete"}
+{"id": "t019", "query": "spring boot jpa entities", "words": 4, "raw": "spring boot jpa entities"}
+{"id": "t020", "query": "spring idempotency keys", "words": 3, "raw": "spring idempotency keys"}
+{"id": "t021", "query": "ktor feature flags", "words": 3, "raw": "ktor feature flags"}
+{"id": "t022", "query": "swiftui pull to refresh", "words": 4, "raw": "swiftui pull to refresh"}
+{"id": "t023", "query": "flutter offline-first sync", "words": 3, "raw": "flutter offline-first sync"}
+{"id": "t024", "query": "android push notifications fcm", "words": 4, "raw": "android push notifications fcm"}
+{"id": "t025", "query": "react native biometric authentication", "words": 4, "raw": "react native biometric authentication"}
+{"id": "t026", "query": "celery timezone-aware scheduling", "words": 3, "raw": "celery timezone-aware scheduling"}
+{"id": "t027", "query": "python decimal money rounding", "words": 4, "raw": "python decimal money rounding"}
+{"id": "t028", "query": "celery task retry backoff", "words": 4, "raw": "celery task retry backoff"}
+{"id": "t029", "query": "pandas resample time series", "words": 4, "raw": "pandas resample time series"}
+{"id": "t030", "query": "react hydration mismatch", "words": 3, "raw": "react hydration mismatch"}
+{"id": "t031", "query": "idempotency key api", "words": 3, "raw": "idempotency key api"}
+{"id": "t032", "query": "react query cache invalidation", "words": 4, "raw": "react query cache invalidation"}
+{"id": "t033", "query": "html sanitize link allowlist", "words": 4, "raw": "html sanitize link allowlist"}
+{"id": "t034", "query": "go goroutine leak debugging", "words": 4, "raw": "go goroutine leak debugging"}
+{"id": "t035", "query": "go mutex race conditions", "words": 4, "raw": "go mutex race conditions"}
+{"id": "t036", "query": "go redis reconnect backoff", "words": 4, "raw": "go redis reconnect backoff"}
+{"id": "t037", "query": "go table driven tests", "words": 4, "raw": "go table driven tests"}
+{"id": "t038", "query": "go nil slice json", "words": 4, "raw": "go nil slice json"}
+{"id": "t039", "query": "rust utf-8 string slicing", "words": 4, "raw": "rust utf-8 string slicing"}
+{"id": "t040", "query": "tokio mutex deadlock", "words": 3, "raw": "tokio mutex deadlock"}
+{"id": "t041", "query": "order book matching engine", "words": 4, "raw": "order book matching engine"}
+{"id": "t042", "query": "rust memory leak debugging", "words": 4, "raw": "rust memory leak debugging"}
+{"id": "t043", "query": "hibernate lazy loading", "words": 3, "raw": "hibernate lazy loading"}
+{"id": "t044", "query": "java timezone date handling", "words": 4, "raw": "java timezone date handling"}
+{"id": "t045", "query": "spring batch restartable jobs", "words": 4, "raw": "spring batch restartable jobs"}
+{"id": "t046", "query": "spring optimistic locking retry", "words": 4, "raw": "spring optimistic locking retry"}
+{"id": "t047", "query": "󠁿jetpack compose lazycolumn", "words": 3, "raw": "󠁿jetpack compose lazycolumn"}
+{"id": "t048", "query": "flutter background timer", "words": 3, "raw": "flutter background timer"}
+{"id": "t049", "query": "swift notificationcenter observer lifecycle", "words": 4, "raw": "swift notificationcenter observer lifecycle"}
+{"id": "t050", "query": "react native push notifications", "words": 4, "raw": "react native push notifications"}
+{"id": "t051", "query": "python strategy pattern refactor", "words": 4, "raw": "python strategy pattern refactor"}
+{"id": "t052", "query": "django service layer refactor", "words": 4, "raw": "django service layer refactor"}
+{"id": "t053", "query": "dependency injection refactoring", "words": 3, "raw": "dependency injection refactoring"}
+{"id": "t054", "query": "pydantic v2 fastapi models", "words": 4, "raw": "pydantic v2 fastapi models"}
+{"id": "t055", "query": "react custom hook extraction", "words": 4, "raw": "react custom hook extraction"}
+{"id": "t056", "query": "typed fetch api client", "words": 4, "raw": "typed fetch api client"}
+{"id": "t057", "query": "react component refactoring", "words": 3, "raw": "react component refactoring"}
+{"id": "t058", "query": "javascript to typescript migration", "words": 4, "raw": "javascript to typescript migration"}
+{"id": "t059", "query": "go retry backoff", "words": 3, "raw": "go retry backoff"}
+{"id": "t060", "query": "go dependency injection", "words": 3, "raw": "go dependency injection"}
+{"id": "t061", "query": "go sentinel errors", "words": 3, "raw": "go sentinel errors"}
+{"id": "t062", "query": "go characterization tests", "words": 3, "raw": "go characterization tests"}
+{"id": "t063", "query": "rust error handling thiserror", "words": 4, "raw": "rust error handling thiserror"}
+{"id": "t064", "query": "quick-xml writer rust", "words": 3, "raw": "quick-xml writer rust"}
+{"id": "t065", "query": "cargo workspace crate split", "words": 4, "raw": "cargo workspace crate split"}
+{"id": "t066", "query": "rust generic lru cache", "words": 4, "raw": "rust generic lru cache"}
+{"id": "t067", "query": "lombok to java records", "words": 4, "raw": "lombok to java records"}
+{"id": "t068", "query": "spring constructor injection", "words": 3, "raw": "spring constructor injection"}
+{"id": "t069", "query": "kotlin domain state machine", "words": 4, "raw": "kotlin domain state machine"}
+{"id": "t070", "query": "spring strategy pattern refactoring", "words": 4, "raw": "spring strategy pattern refactoring"}
+{"id": "t071", "query": "spring data jdbc migration", "words": 4, "raw": "spring data jdbc migration"}
+{"id": "t072", "query": "SwiftUI view refactoring", "words": 3, "raw": "SwiftUI view refactoring"}
+{"id": "t073", "query": "android repository pattern hilt", "words": 4, "raw": "android repository pattern hilt"}
+{"id": "t074", "query": "flutter riverpod state management", "words": 4, "raw": "flutter riverpod state management"}
+{"id": "t075", "query": "react custom hook extraction", "words": 4, "raw": "react custom hook extraction"}
+{"id": "t076", "query": "pytest unit tests", "words": 3, "raw": "pytest unit tests"}
+{"id": "t077", "query": "pytest regression tests", "words": 3, "raw": "pytest regression tests"}
+{"id": "t078", "query": "pytest-django factory_boy tests", "words": 3, "raw": "pytest-django factory_boy tests"}
+{"id": "t079", "query": "fastapi testclient tests", "words": 3, "raw": "fastapi testclient tests"}
+{"id": "t080", "query": "pytest parametrized unit tests", "words": 4, "raw": "pytest parametrized unit tests"}
+{"id": "t081", "query": "vitest react hooks testing", "words": 4, "raw": "vitest react hooks testing"}
+{"id": "t082", "query": "jest msw api mocking", "words": 4, "raw": "jest msw api mocking"}
+{"id": "t083", "query": "playwright e2e tests", "words": 3, "raw": "playwright e2e tests"}
+{"id": "t084", "query": "jest test-driven development", "words": 3, "raw": "jest test-driven development"}
+{"id": "t085", "query": "go table-driven tests", "words": 3, "raw": "go table-driven tests"}
+{"id": "t086", "query": "go table-driven tests", "words": 3, "raw": "go table-driven tests"}
+{"id": "t087", "query": "go httptest handler tests", "words": 4, "raw": "go httptest handler tests"}
+{"id": "t088", "query": "go concurrency unit tests", "words": 4, "raw": "go concurrency unit tests"}
+{"id": "t089", "query": "rust proptest property testing", "words": 4, "raw": "rust proptest property testing"}
+{"id": "t090", "query": "rust unit tests", "words": 3, "raw": "rust unit tests"}
+{"id": "t091", "query": "tokio async testing", "words": 3, "raw": "tokio async testing"}
+{"id": "t092", "query": "rust integration tests", "words": 3, "raw": "rust integration tests"}
+{"id": "t093", "query": "junit5 mockito unit tests", "words": 4, "raw": "junit5 mockito unit tests"}
+{"id": "t094", "query": "DataJpaTest testcontainers postgres", "words": 3, "raw": "DataJpaTest testcontainers postgres"}
+{"id": "t095", "query": "kotlin coroutines testing", "words": 3, "raw": "kotlin coroutines testing"}
+{"id": "t096", "query": "spring webmvctest controller tests", "words": 4, "raw": "spring webmvctest controller tests"}
+{"id": "t097", "query": "xctest unit tests", "words": 3, "raw": "xctest unit tests"}
+{"id": "t098", "query": "jetpack compose ui tests", "words": 4, "raw": "jetpack compose ui tests"}
+{"id": "t099", "query": "flutter widget tests", "words": 3, "raw": "flutter widget tests"}
+{"id": "t100", "query": "react native hook testing", "words": 4, "raw": "react native hook testing"}
+{"id": "t101", "query": "python docstring conventions", "words": 3, "raw": "python docstring conventions"}
+{"id": "t102", "query": "FastAPI OpenAPI documentation", "words": 3, "raw": "FastAPI OpenAPI documentation"}
+{"id": "t103", "query": "airflow dag documentation", "words": 3, "raw": "airflow dag documentation"}
+{"id": "t104", "query": "pydantic settings docstrings", "words": 3, "raw": "pydantic settings docstrings"}
+{"id": "t105", "query": "jsdoc typescript documentation", "words": 3, "raw": "jsdoc typescript documentation"}
+{"id": "t106", "query": "nextjs on-demand revalidation", "words": 3, "raw": "nextjs on-demand revalidation"}
+{"id": "t107", "query": "tsdoc api documentation", "words": 3, "raw": "tsdoc api documentation"}
+{"id": "t108", "query": "monorepo README setup docs", "words": 4, "raw": "monorepo README setup docs"}
+{"id": "t109", "query": "go doc comments", "words": 3, "raw": "go doc comments"}
+{"id": "t110", "query": "go doc comments", "words": 3, "raw": "go doc comments"}
+{"id": "t111", "query": "service technical documentation", "words": 3, "raw": "service technical documentation"}
+{"id": "t112", "query": "kafka consumer documentation", "words": 3, "raw": "kafka consumer documentation"}
+{"id": "t113", "query": "go example tests", "words": 3, "raw": "go example tests"}
+{"id": "t114", "query": "rust crate documentation", "words": 3, "raw": "rust crate documentation"}
+{"id": "t115", "query": "rust unsafe safety comments", "words": 4, "raw": "rust unsafe safety comments"}
+{"id": "t116", "query": "rust api error docs", "words": 4, "raw": "rust api error docs"}
+{"id": "t117", "query": "rustdoc doc tests", "words": 3, "raw": "rustdoc doc tests"}
+{"id": "t118", "query": "javadoc comments", "words": 2, "raw": "javadoc comments"}
+{"id": "t119", "query": "architecture decision records", "words": 3, "raw": "architecture decision records"}
+{"id": "t120", "query": "springdoc openapi annotations", "words": 3, "raw": "springdoc openapi annotations"}
+{"id": "t121", "query": "module README documentation", "words": 3, "raw": "module README documentation"}
+{"id": "t122", "query": "ios deep link documentation", "words": 4, "raw": "ios deep link documentation"}
+{"id": "t123", "query": "riverpod state management", "words": 3, "raw": "riverpod state management"}
+{"id": "t124", "query": "jetpack compose component documentation", "words": 4, "raw": "jetpack compose component documentation"}
+{"id": "t125", "query": "fastlane mobile release", "words": 3, "raw": "fastlane mobile release"}
+{"id": "t126", "query": "github actions poetry caching", "words": 4, "raw": "github actions poetry caching"}
+{"id": "t127", "query": "python multi-stage dockerfile", "words": 3, "raw": "python multi-stage dockerfile"}
+{"id": "t128", "query": "gitlab ci python matrix", "words": 4, "raw": "gitlab ci python matrix"}
+{"id": "t129", "query": "pre-commit hooks setup", "words": 3, "raw": "pre-commit hooks setup"}
+{"id": "t130", "query": "turborepo remote caching", "words": 3, "raw": "turborepo remote caching"}
+{"id": "t131", "query": "cloudflare pages preview deploys", "words": 4, "raw": "cloudflare pages preview deploys"}
+{"id": "t132", "query": "chromatic monorepo ci", "words": 3, "raw": "chromatic monorepo ci"}
+{"id": "t133", "query": "dockerfile layer caching", "words": 3, "raw": "dockerfile layer caching"}
+{"id": "t134", "query": "golangci-lint setup", "words": 2, "raw": "golangci-lint setup"}
+{"id": "t135", "query": "goreleaser github actions release", "words": 4, "raw": "goreleaser github actions release"}
+{"id": "t136", "query": "testcontainers-go integration tests", "words": 3, "raw": "testcontainers-go integration tests"}
+{"id": "t137", "query": "terraform ecs fargate", "words": 3, "raw": "terraform ecs fargate"}
+{"id": "t138", "query": "rust ci caching", "words": 3, "raw": "rust ci caching"}
+{"id": "t139", "query": "rust ci github actions", "words": 4, "raw": "rust ci github actions"}
+{"id": "t140", "query": "rust musl cross compilation", "words": 4, "raw": "rust musl cross compilation"}
+{"id": "t141", "query": "rust docker multi-stage build", "words": 4, "raw": "rust docker multi-stage build"}
+{"id": "t142", "query": "gradle remote build cache", "words": 4, "raw": "gradle remote build cache"}
+{"id": "t143", "query": "github actions maven ci", "words": 4, "raw": "github actions maven ci"}
+{"id": "t144", "query": "gradle kotlin code quality", "words": 4, "raw": "gradle kotlin code quality"}
+{"id": "t145", "query": "helm chart spring boot", "words": 4, "raw": "helm chart spring boot"}
+{"id": "t146", "query": "OWASP dependency-check Maven", "words": 3, "raw": "OWASP dependency-check Maven"}
+{"id": "t147", "query": "fastlane match ios signing", "words": 4, "raw": "fastlane match ios signing"}
+{"id": "t148", "query": "flutter github actions ci", "words": 4, "raw": "flutter github actions ci"}
+{"id": "t149", "query": "android release github actions", "words": 4, "raw": "android release github actions"}
+{"id": "t150", "query": "detox android emulator ci", "words": 4, "raw": "detox android emulator ci"}
+{"id": "t151", "query": "fly.io deployment", "words": 2, "raw": "fly.io deployment"}
+{"id": "t152", "query": "ECS blue/green deployment", "words": 3, "raw": "ECS blue/green deployment"}
+{"id": "t153", "query": "airflow helm git-sync", "words": 3, "raw": "airflow helm git-sync"}
+{"id": "t154", "query": "feature flag rollout", "words": 3, "raw": "feature flag rollout"}
+{"id": "t155", "query": "vercel environment variables", "words": 3, "raw": "vercel environment variables"}
+{"id": "t156", "query": "nextjs standalone docker deployment", "words": 4, "raw": "nextjs standalone docker deployment"}
+{"id": "t157", "query": "opennext cloudflare deployment", "words": 3, "raw": "opennext cloudflare deployment"}
+{"id": "t158", "query": "vercel turborepo monorepo deployment", "words": 4, "raw": "vercel turborepo monorepo deployment"}
+{"id": "t159", "query": "Edge Config feature flags", "words": 4, "raw": "Edge Config feature flags"}
+{"id": "t160", "query": "ko container image build", "words": 4, "raw": "ko container image build"}
+{"id": "t161", "query": "go graceful shutdown kubernetes", "words": 4, "raw": "go graceful shutdown kubernetes"}
+{"id": "t162", "query": "goreleaser homebrew tap", "words": 3, "raw": "goreleaser homebrew tap"}
+{"id": "t163", "query": "terraform s3 iam policy", "words": 4, "raw": "terraform s3 iam policy"}
+{"id": "t164", "query": "rust musl cross-compilation", "words": 3, "raw": "rust musl cross-compilation"}
+{"id": "t165", "query": "rust docker image release", "words": 4, "raw": "rust docker image release"}
+{"id": "t166", "query": "railway rust deployment", "words": 3, "raw": "railway rust deployment"}
+{"id": "t167", "query": "systemd service hardening", "words": 3, "raw": "systemd service hardening"}
+{"id": "t168", "query": "jib container deployment", "words": 3, "raw": "jib container deployment"}
+{"id": "t169", "query": "cloud run jvm cold start", "words": 5, "raw": "cloud run jvm cold start"}
+{"id": "t170", "query": "spring boot openshift deployment", "words": 4, "raw": "spring boot openshift deployment"}
+{"id": "t171", "query": "gradle maven publishing", "words": 3, "raw": "gradle maven publishing"}
+{"id": "t172", "query": "fastlane testflight beta lane", "words": 4, "raw": "fastlane testflight beta lane"}
+{"id": "t173", "query": "gradle play publisher", "words": 3, "raw": "gradle play publisher"}
+{"id": "t174", "query": "expo eas update", "words": 3, "raw": "expo eas update"}
+{"id": "t175", "query": "codemagic flutter ios testflight", "words": 4, "raw": "codemagic flutter ios testflight"}
+{"id": "t176", "query": "latest row per group", "words": 4, "raw": "latest row per group"}
+{"id": "t177", "query": "idempotent parquet etl", "words": 3, "raw": "idempotent parquet etl"}
+{"id": "t178", "query": "pandas groupby aggregation", "words": 3, "raw": "pandas groupby aggregation"}
+{"id": "t179", "query": "polars deduplicate rows", "words": 3, "raw": "polars deduplicate rows"}
+{"id": "t180", "query": "prisma seed data", "words": 3, "raw": "prisma seed data"}
+{"id": "t181", "query": "drizzle data migration backfill", "words": 4, "raw": "drizzle data migration backfill"}
+{"id": "t182", "query": "database backfill script", "words": 3, "raw": "database backfill script"}
+{"id": "t183", "query": "csv import zod validation", "words": 4, "raw": "csv import zod validation"}
+{"id": "t184", "query": "time-series downsampling aggregation", "words": 3, "raw": "time-series downsampling aggregation"}
+{"id": "t185", "query": "go database migration", "words": 3, "raw": "go database migration"}
+{"id": "t186", "query": "payment reconciliation csv", "words": 3, "raw": "payment reconciliation csv"}
+{"id": "t187", "query": "go parquet streaming writer", "words": 4, "raw": "go parquet streaming writer"}
+{"id": "t188", "query": "nginx logs to parquet", "words": 4, "raw": "nginx logs to parquet"}
+{"id": "t189", "query": "rust fastq parsing", "words": 3, "raw": "rust fastq parsing"}
+{"id": "t190", "query": "clickhouse rust ingestion", "words": 3, "raw": "clickhouse rust ingestion"}
+{"id": "t191", "query": "record deduplication fuzzy matching", "words": 4, "raw": "record deduplication fuzzy matching"}
+{"id": "t192", "query": "rust test-driven development", "words": 3, "raw": "rust test-driven development"}
+{"id": "t193", "query": "flyway data migration", "words": 3, "raw": "flyway data migration"}
+{"id": "t194", "query": "spring batch skip listener", "words": 4, "raw": "spring batch skip listener"}
+{"id": "t195", "query": "spring boot scheduled jobs", "words": 4, "raw": "spring boot scheduled jobs"}
+{"id": "t196", "query": "data anonymization export", "words": 3, "raw": "data anonymization export"}
+{"id": "t197", "query": "room database migration", "words": 3, "raw": "room database migration"}
+{"id": "t198", "query": "Core Data SwiftData migration", "words": 4, "raw": "Core Data SwiftData migration"}
+{"id": "t199", "query": "flutter offline sync", "words": 3, "raw": "flutter offline sync"}
+{"id": "t200", "query": "react-native-mmkv migration", "words": 2, "raw": "react-native-mmkv migration"}
+{"id": "t201", "query": "time-based train validation split", "words": 4, "raw": "time-based train validation split"}
+{"id": "t202", "query": "lightgbm demand forecasting", "words": 3, "raw": "lightgbm demand forecasting"}
+{"id": "t203", "query": "class imbalance focal loss", "words": 4, "raw": "class imbalance focal loss"}
+{"id": "t204", "query": "pytorch early stopping", "words": 3, "raw": "pytorch early stopping"}
+{"id": "t205", "query": "onnxruntime-node inference", "words": 2, "raw": "onnxruntime-node inference"}
+{"id": "t206", "query": "tensorflow.js web worker inference", "words": 4, "raw": "tensorflow.js web worker inference"}
+{"id": "t207", "query": "API response validation", "words": 3, "raw": "API response validation"}
+{"id": "t208", "query": "classifier offline evaluation", "words": 3, "raw": "classifier offline evaluation"}
+{"id": "t209", "query": "go xgboost model inference", "words": 4, "raw": "go xgboost model inference"}
+{"id": "t210", "query": "isolation forest anomaly detection", "words": 4, "raw": "isolation forest anomaly detection"}
+{"id": "t211", "query": "go config validation startup", "words": 4, "raw": "go config validation startup"}
+{"id": "t212", "query": "go inference request batching", "words": 4, "raw": "go inference request batching"}
+{"id": "t213", "query": "candle bert embeddings", "words": 3, "raw": "candle bert embeddings"}
+{"id": "t214", "query": "linfa kmeans clustering", "words": 3, "raw": "linfa kmeans clustering"}
+{"id": "t215", "query": "onnx runtime rust inference", "words": 4, "raw": "onnx runtime rust inference"}
+{"id": "t216", "query": "rust gradient boosting inference", "words": 4, "raw": "rust gradient boosting inference"}
+{"id": "t217", "query": "djl pytorch inference", "words": 3, "raw": "djl pytorch inference"}
+{"id": "t218", "query": "ML model metadata tracking", "words": 4, "raw": "ML model metadata tracking"}
+{"id": "t219", "query": "xgboost model serving jvm", "words": 4, "raw": "xgboost model serving jvm"}
+{"id": "t220", "query": "spring batch job steps", "words": 4, "raw": "spring batch job steps"}
+{"id": "t221", "query": "core ml image classification", "words": 4, "raw": "core ml image classification"}
+{"id": "t222", "query": "tflite gpu delegate android", "words": 4, "raw": "tflite gpu delegate android"}
+{"id": "t223", "query": "flutter mlkit text recognition", "words": 4, "raw": "flutter mlkit text recognition"}
+{"id": "t224", "query": "react native tflite", "words": 3, "raw": "react native tflite"}
+{"id": "t225", "query": "on-device Create ML training", "words": 4, "raw": "on-device Create ML training"}
+{"id": "t226", "query": "django object-level permissions", "words": 3, "raw": "django object-level permissions"}
+{"id": "t227", "query": "secure file upload review", "words": 4, "raw": "secure file upload review"}
+{"id": "t228", "query": "python command injection review", "words": 4, "raw": "python command injection review"}
+{"id": "t229", "query": "celery json serialization", "words": 3, "raw": "celery json serialization"}
+{"id": "t230", "query": "stripe webhook signature verification", "words": 4, "raw": "stripe webhook signature verification"}
+{"id": "t231", "query": "stored XSS review", "words": 3, "raw": "stored XSS review"}
+{"id": "t232", "query": "nextauth role-based authorization", "words": 3, "raw": "nextauth role-based authorization"}
+{"id": "t233", "query": "nextjs environment variables secrets", "words": 4, "raw": "nextjs environment variables secrets"}
+{"id": "t234", "query": "prisma sql injection", "words": 3, "raw": "prisma sql injection"}
+{"id": "t235", "query": "ssrf security audit", "words": 3, "raw": "ssrf security audit"}
+{"id": "t236", "query": "go jwt validation", "words": 3, "raw": "go jwt validation"}
+{"id": "t237", "query": "go zip slip prevention", "words": 4, "raw": "go zip slip prevention"}
+{"id": "t238", "query": "constant-time token comparison", "words": 3, "raw": "constant-time token comparison"}
+{"id": "t239", "query": "rust unsafe code review", "words": 4, "raw": "rust unsafe code review"}
+{"id": "t240", "query": "rust secret zeroization", "words": 3, "raw": "rust secret zeroization"}
+{"id": "t241", "query": "rust html sanitization", "words": 3, "raw": "rust html sanitization"}
+{"id": "t242", "query": "rust tcp length-prefixed framing", "words": 4, "raw": "rust tcp length-prefixed framing"}
+{"id": "t243", "query": "spring boot actuator security", "words": 4, "raw": "spring boot actuator security"}
+{"id": "t244", "query": "jackson polymorphic deserialization security", "words": 4, "raw": "jackson polymorphic deserialization security"}
+{"id": "t245", "query": "spring security review", "words": 3, "raw": "spring security review"}
+{"id": "t246", "query": "java XXE prevention", "words": 3, "raw": "java XXE prevention"}
+{"id": "t247", "query": "android exported activities security", "words": 4, "raw": "android exported activities security"}
+{"id": "t248", "query": "ios keychain token storage", "words": 4, "raw": "ios keychain token storage"}
+{"id": "t249", "query": "react native security audit", "words": 4, "raw": "react native security audit"}
+{"id": "t250", "query": "flutter webview security", "words": 3, "raw": "flutter webview security"}
+{"id": "t251", "query": "django orm query optimization", "words": 4, "raw": "django orm query optimization"}
+{"id": "t252", "query": "pandas groupby performance optimization", "words": 4, "raw": "pandas groupby performance optimization"}
+{"id": "t253", "query": "sqlalchemy n+1 query optimization", "words": 4, "raw": "sqlalchemy n+1 query optimization"}
+{"id": "t254", "query": "python memory leak profiling", "words": 4, "raw": "python memory leak profiling"}
+{"id": "t255", "query": "nextjs bundle size optimization", "words": 4, "raw": "nextjs bundle size optimization"}
+{"id": "t256", "query": "react virtualized table", "words": 3, "raw": "react virtualized table"}
+{"id": "t257", "query": "nextjs isr data fetching", "words": 4, "raw": "nextjs isr data fetching"}
+{"id": "t258", "query": "node lru cache", "words": 3, "raw": "node lru cache"}
+{"id": "t259", "query": "go sync.Pool", "words": 2, "raw": "go sync.Pool"}
+{"id": "t260", "query": "go json decoding performance", "words": 4, "raw": "go json decoding performance"}
+{"id": "t261", "query": "pgxpool connection pool tuning", "words": 4, "raw": "pgxpool connection pool tuning"}
+{"id": "t262", "query": "go benchmark sharded map", "words": 4, "raw": "go benchmark sharded map"}
+{"id": "t263", "query": "rust zero-copy deserialization", "words": 3, "raw": "rust zero-copy deserialization"}
+{"id": "t264", "query": "spatial grid broad phase", "words": 4, "raw": "spatial grid broad phase"}
+{"id": "t265", "query": "rust parallel log processing", "words": 4, "raw": "rust parallel log processing"}
+{"id": "t266", "query": "tokio spawn_blocking semaphore", "words": 3, "raw": "tokio spawn_blocking semaphore"}
+{"id": "t267", "query": "criterion rust benchmarks", "words": 3, "raw": "criterion rust benchmarks"}
+{"id": "t268", "query": "JPA entity graph N+1", "words": 4, "raw": "JPA entity graph N+1"}
+{"id": "t269", "query": "spring boot startup performance", "words": 4, "raw": "spring boot startup performance"}
+{"id": "t270", "query": "spring kafka batch consumer", "words": 4, "raw": "spring kafka batch consumer"}
+{"id": "t271", "query": "spring caffeine caching", "words": 3, "raw": "spring caffeine caching"}
+{"id": "t272", "query": "swiftui image decoding performance", "words": 4, "raw": "swiftui image decoding performance"}
+{"id": "t273", "query": "Compose recomposition performance", "words": 3, "raw": "Compose recomposition performance"}
+{"id": "t274", "query": "react native startup performance", "words": 4, "raw": "react native startup performance"}
+{"id": "t275", "query": "flutter map marker clustering", "words": 4, "raw": "flutter map marker clustering"}
+{"id": "t276", "query": "textual tui layout", "words": 3, "raw": "textual tui layout"}
+{"id": "t277", "query": "streamlit dashboard cards", "words": 3, "raw": "streamlit dashboard cards"}
+{"id": "t278", "query": "mobile touch target accessibility", "words": 4, "raw": "mobile touch target accessibility"}
+{"id": "t279", "query": "accessible web UI design", "words": 4, "raw": "accessible web UI design"}
+{"id": "t280", "query": "react skeleton loaders", "words": 3, "raw": "react skeleton loaders"}
+{"id": "t281", "query": "tailwind responsive checkout UI", "words": 4, "raw": "tailwind responsive checkout UI"}
+{"id": "t282", "query": "calendar overlapping events layout", "words": 4, "raw": "calendar overlapping events layout"}
+{"id": "t283", "query": "css variables dark mode", "words": 4, "raw": "css variables dark mode"}
+{"id": "t284", "query": "bubbletea table styling", "words": 3, "raw": "bubbletea table styling"}
+{"id": "t285", "query": "templ htmx dashboard", "words": 3, "raw": "templ htmx dashboard"}
+{"id": "t286", "query": "fyne layout containers", "words": 3, "raw": "fyne layout containers"}
+{"id": "t287", "query": "error pages design", "words": 3, "raw": "error pages design"}
+{"id": "t288", "query": "ratatui terminal UI", "words": 3, "raw": "ratatui terminal UI"}
+{"id": "t289", "query": "egui collapsing sections tooltips", "words": 4, "raw": "egui collapsing sections tooltips"}
+{"id": "t290", "query": "leptos billing history UI", "words": 4, "raw": "leptos billing history UI"}
+{"id": "t291", "query": "iced rust gui", "words": 3, "raw": "iced rust gui"}
+{"id": "t292", "query": "vaadin grid", "words": 2, "raw": "vaadin grid"}
+{"id": "t293", "query": "compose desktop drag and drop", "words": 5, "raw": "compose desktop drag and drop"}
+{"id": "t294", "query": "javafx fxml ui layout", "words": 4, "raw": "javafx fxml ui layout"}
+{"id": "t295", "query": "multi-step form wizard", "words": 3, "raw": "multi-step form wizard"}
+{"id": "t296", "query": "swiftui sheet presentation", "words": 3, "raw": "swiftui sheet presentation"}
+{"id": "t297", "query": "jetpack compose ui", "words": 3, "raw": "jetpack compose ui"}
+{"id": "t298", "query": "flutter onboarding UI", "words": 3, "raw": "flutter onboarding UI"}
+{"id": "t299", "query": "react native ui design", "words": 4, "raw": "react native ui design"}
+{"id": "t300", "query": "SwiftUI accessibility", "words": 2, "raw": "SwiftUI accessibility"}
+{"id": "t301", "query": "pagination off-by-one bug", "words": 3, "raw": "pagination off-by-one bug"}
+{"id": "t302", "query": "typescript symbol rename refactor", "words": 4, "raw": "typescript symbol rename refactor"}
+{"id": "t303", "query": "go typo fix", "words": 3, "raw": "go typo fix"}
+{"id": "t304", "query": "rust concurrent job queue", "words": 4, "raw": "rust concurrent job queue"}
+{"id": "t305", "query": "kotlin config properties", "words": 3, "raw": "kotlin config properties"}
+{"id": "t306", "query": "swift combine viewmodel", "words": 3, "raw": "swift combine viewmodel"}
+{"id": "t307", "query": "python docstring conventions", "words": 3, "raw": "python docstring conventions"}
+{"id": "t308", "query": "nextjs dependency upgrade", "words": 3, "raw": "nextjs dependency upgrade"}
+{"id": "t309", "query": "go http response handling", "words": 4, "raw": "go http response handling"}
+{"id": "t310", "query": "serde field alias rename", "words": 4, "raw": "serde field alias rename"}
+{"id": "t311", "query": "I wouldn't load a skill for this; fixing a one-word typo in a log message is trivial and needs no recipe.", "words": 21, "raw": "I wouldn't load a skill for this; fixing a one-word typo in a log message is trivial and needs no recipe."}
+{"id": "t312", "query": "flutter widget lifecycle", "words": 3, "raw": "flutter widget lifecycle"}
+{"id": "t313", "query": "config constant update", "words": 3, "raw": "config constant update"}
+{"id": "t314", "query": "next image migration", "words": 3, "raw": "next image migration"}
+{"id": "t315", "query": "go doc comments", "words": 3, "raw": "go doc comments"}
+{"id": "t316", "query": "cargo dependency upgrade", "words": 3, "raw": "cargo dependency upgrade"}
+{"id": "t317", "query": "No skill needed. This is a one-character comparison fix (`>` → `<=`) in InventoryService.java, so I'd edit it directly rather than call the tool.", "words": 24, "raw": "No skill needed. This is a one-character comparison fix (`>` → `<=`) in InventoryService.java, so I'd edit it directly rather than call the tool."}
+{"id": "t318", "query": "jetpack compose component rename", "words": 4, "raw": "jetpack compose component rename"}
+{"id": "t319", "query": "fix csv header typo", "words": 4, "raw": "fix csv header typo"}
+{"id": "t320", "query": "nextjs fetch revalidate caching", "words": 4, "raw": "nextjs fetch revalidate caching"}
+{"id": "t321", "query": "go api pagination", "words": 3, "raw": "go api pagination"}
+{"id": "t322", "query": "tokio async read traits", "words": 4, "raw": "tokio async read traits"}
+{"id": "t323", "query": "javadoc comment conventions", "words": 3, "raw": "javadoc comment conventions"}
+{"id": "t324", "query": "react-native-reanimated upgrade", "words": 2, "raw": "react-native-reanimated upgrade"}
+{"id": "t325", "query": "python timezone-aware datetime", "words": 3, "raw": "python timezone-aware datetime"}
+{"id": "t326", "query": "react prop rename refactor", "words": 4, "raw": "react prop rename refactor"}
+{"id": "t327", "query": "I wouldn't load a skill for this; it's a one-word typo fix. If forced to query: go cli help text", "words": 20, "raw": "I wouldn't load a skill for this; it's a one-word typo fix. If forced to query: go cli help text"}
+{"id": "t328", "query": "rust lifetime elision", "words": 3, "raw": "rust lifetime elision"}
+{"id": "t329", "query": "spring hikari connection pool", "words": 4, "raw": "spring hikari connection pool"}
+{"id": "t330", "query": "I wouldn't load a skill for this. It's a one-line fix: add `import androidx.lifecycle.compose.collectAsStateWithLifecycle` to `WateringScreen.kt` and leave every other file alone.", "words": 22, "raw": "I wouldn't load a skill for this. It's a one-line fix: add `import androidx.lifecycle.compose.collectAsStateWithLifecycle` to `WateringScreen.kt` and leave every other file alone."}
+{"id": "t331", "query": "remove stale code comments", "words": 4, "raw": "remove stale code comments"}
+{"id": "t332", "query": "pnpm dependency upgrade", "words": 3, "raw": "pnpm dependency upgrade"}
+{"id": "t333", "query": "go http handler status codes", "words": 5, "raw": "go http handler status codes"}
+{"id": "t334", "query": "rust rename refactor", "words": 3, "raw": "rust rename refactor"}
+{"id": "t335", "query": "java exception unit tests", "words": 4, "raw": "java exception unit tests"}
+{"id": "t336", "query": "swift concurrency mainactor", "words": 3, "raw": "swift concurrency mainactor"}
+{"id": "t337", "query": "cache ttl configuration", "words": 3, "raw": "cache ttl configuration"}
+{"id": "t338", "query": "typescript path alias imports", "words": 4, "raw": "typescript path alias imports"}
+{"id": "t339", "query": "go code comments", "words": 3, "raw": "go code comments"}
+{"id": "t340", "query": "cargo dependency update", "words": 3, "raw": "cargo dependency update"}
+{"id": "t341", "query": "django management command testing", "words": 4, "raw": "django management command testing"}
+{"id": "t342", "query": "django management command arguments", "words": 4, "raw": "django management command arguments"}
+{"id": "t343", "query": "vercel preview deploy github actions", "words": 5, "raw": "vercel preview deploy github actions"}
+{"id": "t344", "query": "vercel preview deploy actions", "words": 4, "raw": "vercel preview deploy actions"}
+{"id": "t345", "query": "go n+1 query batching", "words": 4, "raw": "go n+1 query batching"}
+{"id": "t346", "query": "loading skeleton placeholder", "words": 3, "raw": "loading skeleton placeholder"}
+{"id": "t347", "query": "rust fuzz testing", "words": 3, "raw": "rust fuzz testing"}
+{"id": "t348", "query": "proptest property-based testing", "words": 3, "raw": "proptest property-based testing"}
+{"id": "t349", "query": "xgboost4j model retraining", "words": 3, "raw": "xgboost4j model retraining"}
+{"id": "t350", "query": "xgboost4j model retraining", "words": 3, "raw": "xgboost4j model retraining"}
+{"id": "t351", "query": "swift collection upsert", "words": 3, "raw": "swift collection upsert"}
+{"id": "t352", "query": "swift concurrency data store", "words": 4, "raw": "swift concurrency data store"}
+{"id": "t353", "query": "fabric deploy scripts", "words": 3, "raw": "fabric deploy scripts"}
+{"id": "t354", "query": "alembic migration revision check", "words": 4, "raw": "alembic migration revision check"}
+{"id": "t355", "query": "multi-step modal form", "words": 3, "raw": "multi-step modal form"}
+{"id": "t356", "query": "multi-step modal form", "words": 3, "raw": "multi-step modal form"}
+{"id": "t357", "query": "accessible README writing", "words": 3, "raw": "accessible README writing"}
+{"id": "t358", "query": "CLI README documentation", "words": 3, "raw": "CLI README documentation"}
+{"id": "t359", "query": "rust session token security", "words": 4, "raw": "rust session token security"}
+{"id": "t360", "query": "axum session security", "words": 3, "raw": "axum session security"}
+{"id": "t361", "query": "kotlin service class refactoring", "words": 4, "raw": "kotlin service class refactoring"}
+{"id": "t362", "query": "kotlin service class extraction", "words": 4, "raw": "kotlin service class extraction"}
+{"id": "t363", "query": "room database migration", "words": 3, "raw": "room database migration"}
+{"id": "t364", "query": "room database migration", "words": 3, "raw": "room database migration"}
+{"id": "t365", "query": "fastapi rate limiting", "words": 3, "raw": "fastapi rate limiting"}
+{"id": "t366", "query": "fastapi rate limiting", "words": 3, "raw": "fastapi rate limiting"}
+{"id": "t367", "query": "nextjs docker multi-stage build", "words": 4, "raw": "nextjs docker multi-stage build"}
+{"id": "t368", "query": "nextjs docker multi-stage build", "words": 4, "raw": "nextjs docker multi-stage build"}
+{"id": "t369", "query": "go buffered html rendering", "words": 4, "raw": "go buffered html rendering"}
+{"id": "t370", "query": "go html rendering performance", "words": 4, "raw": "go html rendering performance"}
+{"id": "t371", "query": "rust integration tests", "words": 3, "raw": "rust integration tests"}
+{"id": "t372", "query": "rust wiremock integration tests", "words": 4, "raw": "rust wiremock integration tests"}
+{"id": "t373", "query": "onnx runtime java inference", "words": 4, "raw": "onnx runtime java inference"}
+{"id": "t374", "query": "onnx runtime java inference", "words": 4, "raw": "onnx runtime java inference"}
+{"id": "t375", "query": "flutter local notifications", "words": 3, "raw": "flutter local notifications"}
+{"id": "t376", "query": "flutter local notifications", "words": 3, "raw": "flutter local notifications"}
+{"id": "t377", "query": "kubernetes canary rollout", "words": 3, "raw": "kubernetes canary rollout"}
+{"id": "t378", "query": "kubernetes canary rollout", "words": 3, "raw": "kubernetes canary rollout"}
+{"id": "t379", "query": "nextjs server components auth", "words": 4, "raw": "nextjs server components auth"}
+{"id": "t380", "query": "nextjs server components", "words": 3, "raw": "nextjs server components"}

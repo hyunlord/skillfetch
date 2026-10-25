@@ -1,0 +1,252 @@
+[
+ {
+  "id": "uasl/fastapi-templates@effcd0de0b4c",
+  "title": "fastapi-templates",
+  "summary": "Guides creation of structured FastAPI backend projects using async patterns, dependency injection, repository and service layers, authentication, and testing examples. Includes templates for API endpoints, database access, and user management."
+ },
+ {
+  "id": "uasl/fastapi-endpoint@2a93d50c4970",
+  "title": "fastapi-endpoint",
+  "summary": "Guides the agent through exploring an existing FastAPI project, asking clarifying questions, planning an endpoint implementation for approval, and then building the endpoint and tests. It emphasizes async SQLAlchemy, Pydantic schemas, dependency-injected authentication, and API test coverage."
+ },
+ {
+  "id": "uasl/claude-native-claude-api@24c958899f03",
+  "title": "claude-native-claude-api",
+  "summary": "Guide the agent in building, debugging, and migrating Claude API applications using Anthropic SDKs and documented API patterns. Apply the skill’s defaults for model choice, thinking, streaming, and prompt caching, and consult the relevant language-specific and shared documentation."
+ },
+ {
+  "id": "anthropics-skills/xlsx@5350d36b768c",
+  "title": "xlsx",
+  "summary": "Guides agents through creating, editing, and analyzing spreadsheet files, with rules for formulas, recalculation, formatting, and preserving existing workbook conventions. It also gives specific safeguards for financial models and common openpyxl pitfalls."
+ },
+ {
+  "id": "uasl/clay@6c9572941894",
+  "title": "clay",
+  "summary": "Produces reproducible code and operating guidance for AI 3D generation, modeling, game-asset pipelines, and quality validation. It requires safe credential handling and cost awareness, and does not execute API calls or deliver raw 3D model files."
+ },
+ {
+  "id": "uasl/vibe-security@6b07d0f651a7",
+  "title": "vibe-security",
+  "summary": "Apply secure-by-default practices when building or reviewing web applications, protecting access, user data, inputs, outputs, and common application attack surfaces. Choose restrictive security options while preserving functionality."
+ },
+ {
+  "id": "uasl/openapi-spec-generation@2d2c7a93b8f2",
+  "title": "openapi-spec-generation",
+  "summary": "Guides agents in creating and maintaining OpenAPI 3.1 specifications from design or code, validating API contracts, and generating SDKs and documentation. Includes patterns for reusable schemas, API descriptions, security, versioning, and validation tools."
+ },
+ {
+  "id": "uasl/integration-testing@62b51275be50",
+  "title": "integration-testing",
+  "summary": "Guides agents to write integration tests that exercise multiple components together, using real dependencies and suitable test frameworks. Covers test isolation, API testing patterns, database cleanup, and CI configuration for Testcontainers."
+ },
+ {
+  "id": "uasl/n8n-code-python@ba1cd974d317",
+  "title": "n8n-code-python",
+  "summary": "Guides agents writing Python for n8n Code nodes, including n8n data access and return formats, execution modes, and Python’s standard-library limitations. It recommends considering JavaScript first and using Python (Beta) for better n8n integration."
+ },
+ {
+  "id": "uasl/backend-patterns@3d87ff489f3e",
+  "title": "backend-patterns",
+  "summary": "Provides TypeScript-oriented backend patterns for API design, data access, query optimization, caching, error handling, authentication, rate limiting, background jobs, and logging. Recommends choosing patterns suited to the complexity level."
+ },
+ {
+  "id": "uasl/architecture-patterns@d184d1c3a346",
+  "title": "architecture-patterns",
+  "summary": "Guides the agent in designing or refactoring backend systems with Clean Architecture, Hexagonal Architecture, and Domain-Driven Design. It emphasizes inward dependencies, framework-independent business logic, and testability without external infrastructure."
+ },
+ {
+  "id": "uasl/n8n-code-javascript@203459f10f1d",
+  "title": "n8n-code-javascript",
+  "summary": "Guides the agent in writing and troubleshooting JavaScript for n8n Code nodes. It covers execution modes, input and webhook data access, return formats, and common implementation practices."
+ },
+ {
+  "id": "uasl/bolt@c4895c710162",
+  "title": "bolt",
+  "summary": "Bolt directs the agent to identify measurable performance improvements, follow a profiling-to-presentation workflow, and document their impact. It also sets limits on implementation, optimization scope, and when to ask for confirmation or hand off work."
+ },
+ {
+  "id": "uasl/excel-automation@026ac73c3c63",
+  "title": "excel-automation",
+  "summary": "Use the Rube MCP Excel and Google Sheets integrations to create and update workbooks, manage worksheets, format cells, and read spreadsheet data. Check for an active toolkit connection before using tools, and use the documented safeguards for writes and fallback workbook creation."
+ },
+ {
+  "id": "anthropics-skills/claude-api@e30e2c97f747",
+  "title": "claude-api",
+  "summary": ""
+ },
+ {
+  "id": "uasl/vercel-composition-patterns@a6f8be32b197",
+  "title": "vercel-composition-patterns",
+  "summary": "Guides React component design toward composition-based APIs, reusable state management, and explicit variants instead of boolean-driven customization. Includes a React 19-specific recommendation about `forwardRef`."
+ },
+ {
+  "id": "uasl/n8n-expression-syntax@f1845451eb4d",
+  "title": "n8n-expression-syntax",
+  "summary": "Guides the agent to write and troubleshoot n8n expressions, including variable access, webhook data paths, and syntax rules. It also distinguishes expression syntax from direct JavaScript access in Code nodes and identifies places where expressions should not be used."
+ },
+ {
+  "id": "anthropics-skills/docx@74e2b8b277a4",
+  "title": "docx",
+  "summary": "Use DOCX-specific workflows and helper scripts to create, read, edit, and annotate Word documents. Follow the listed docx-js and XML handling requirements, then validate or render outputs where directed."
+ },
+ {
+  "id": "uasl/sidetracker-automation@54e8a1f15fdb",
+  "title": "sidetracker-automation",
+  "summary": "Automate Sidetracker operations through Rube MCP by discovering current tool schemas, checking the Sidetracker connection, and executing schema-compliant tools. Follow the skill’s session, memory, and pagination practices during workflows."
+ },
+ {
+  "id": "uasl/data-schema-knowledge-modeling@c06f86b10d33",
+  "title": "data-schema-knowledge-modeling",
+  "summary": "Guides the agent through gathering domain requirements and creating validated models of entities, attributes, relationships, constraints, and invariants. It emphasizes use-case fit, explicit modeling decisions, and a documented schema deliverable."
+ },
+ {
+  "id": "uasl/googlephotos-automation@0b2d3403ccba",
+  "title": "googlephotos-automation",
+  "summary": "Use Rube MCP to carry out Google Photos tasks such as uploading and searching media and managing albums. Check current tool schemas first and ensure the Google Photos connection is active before running workflows."
+ },
+ {
+  "id": "uasl/forge@a8efdfdbe817",
+  "title": "forge",
+  "summary": "Use Forge to build small, runnable prototypes that validate ideas, relying on mocks where useful and keeping work ready for handoff. Prioritize learning and working demos over production polish, and report the prototype’s status, findings, debt, and next decision."
+ },
+ {
+  "id": "uasl/contract-testing@b0f4c29940a9",
+  "title": "contract-testing",
+  "summary": "Guides agents in choosing and implementing contract-testing approaches to verify API compatibility between services. Covers Pact workflows, provider verification, Pact Broker and deployment checks, PactFlow, and Spring Cloud Contract."
+ },
+ {
+  "id": "uasl/radar@a47ea6fd5f95",
+  "title": "radar",
+  "summary": "Add and refine tests, diagnose flaky behavior, and improve coverage while preserving product behavior. Follow the project’s existing testing conventions and verify changes with tests and relevant references."
+ },
+ {
+  "id": "uasl/horizon@8e6f79e4495d",
+  "title": "horizon",
+  "summary": "Horizon guides technology modernization by evaluating replacements, native APIs, and migration risks, and by creating isolated proofs of concept. It favors measured, incremental changes and requires documenting modernization decisions and their impact."
+ },
+ {
+  "id": "uasl/claude-api@f952c765f5b0",
+  "title": "claude-api",
+  "summary": "Guides agents building Claude API and Anthropic SDK integrations: choose the appropriate API or Agent SDK surface, identify the project language, and consult the relevant documentation. Sets defaults and implementation guidance for model selection, thinking, streaming, tools, and API features."
+ },
+ {
+  "id": "uasl/design-integration@03e2661a4d5f",
+  "title": "design-integration",
+  "summary": "Delegate Uniswap integration architecture design to the integration-architect agent and present a project-specific blueprint. The blueprint covers the recommended integration method, architecture, dependencies, security considerations, and an ordered implementation plan."
+ },
+ {
+  "id": "uasl/unit-testing@6c5fbb821103",
+  "title": "unit-testing",
+  "summary": "Guides the agent to write and improve isolated unit tests using common testing patterns, test doubles, naming conventions, and language-specific frameworks. Emphasizes focused, deterministic tests and meaningful coverage."
+ },
+ {
+  "id": "uasl/connect@77e02b4574f6",
+  "title": "connect",
+  "summary": "Connect Claude to external apps through Composio so it can execute actions such as sending messages, creating issues, and updating records instead of merely describing them. Supports several agent frameworks and MCP clients."
+ },
+ {
+  "id": "uasl/eol-message@05765e0a4b63",
+  "title": "eol-message",
+  "summary": "Guides the agent in drafting an empathetic, clear end-of-life announcement that explains customer impact and rationale, and gives customers a supported transition path. It emphasizes a complete transition plan, specific timelines, and customer-focused messaging."
+ },
+ {
+  "id": "uasl/api-testing@4ada9a2fac88",
+  "title": "api-testing",
+  "summary": "Guides the agent in creating and running direct HTTP API tests with tools such as .http files, Bruno, Postman/Newman, and k6. Covers assertions, environment configuration, secret handling, and CI integration."
+ },
+ {
+  "id": "uasl/gorgias-automation@2106c504916d",
+  "title": "gorgias-automation",
+  "summary": "Use the Rube MCP integration to manage Gorgias tickets, customers, tags, teams, and account activity from natural-language requests. Follow the documented API requirements and pagination, filtering, custom-field, rate-limit, and authentication guidance."
+ },
+ {
+  "id": "uasl/tdd-workflow@6eadb0bf0ea8",
+  "title": "tdd-workflow",
+  "summary": "Follow a test-driven workflow by writing tests before implementation, running tests through development, and refactoring while keeping them green. Aim for at least 80% coverage across unit, integration, and E2E tests, with attention to edge cases and errors."
+ },
+ {
+  "id": "uasl/python-error-handling@8dc34883a143",
+  "title": "python-error-handling",
+  "summary": "Guides agents to implement Python validation and error handling with meaningful exceptions, exception chaining, and resilient batch processing. It also recommends practices for domain-type conversion, progress reporting, logging, and testing error paths."
+ },
+ {
+  "id": "uasl/capsule-crm-automation@97113fa8404d",
+  "title": "capsule-crm-automation",
+  "summary": "Use the Composio MCP integration to carry out Capsule CRM operations, including managing contacts, querying records, and tracking tasks, projects, and activity. Follow the documented API field syntax and pagination requirements when retrieving or updating CRM data."
+ },
+ {
+  "id": "uasl/fp-check@36809c5d2431",
+  "title": "fp-check",
+  "summary": "Systematically verifies specific suspected security bugs and records evidence for a TRUE POSITIVE or FALSE POSITIVE verdict. Routes each bug through standard or deep verification and requires a final summary after all bugs are processed."
+ },
+ {
+  "id": "uasl/variant-analysis@4e25478feb58",
+  "title": "variant-analysis",
+  "summary": "Guides systematic searching for variants of a known vulnerability or bug, from understanding its root cause through generalizing patterns and triaging matches. Emphasizes broad codebase coverage, incremental query refinement, and checking edge cases and false positives."
+ },
+ {
+  "id": "uasl/gauge@b84b3ee9b507",
+  "title": "gauge",
+  "summary": "Gauge audits SKILL.md files against a 16-item normalization checklist, classifies violations, and produces concrete fix recommendations without editing the files itself. It also supports ecosystem reporting and safely evolving its detection patterns and checklist through web research."
+ },
+ {
+  "id": "anthropics-skills/mcp-builder@7e8426a435cb",
+  "title": "mcp-builder",
+  "summary": "Guides agents through researching, planning, implementing, testing, and evaluating MCP servers that connect LLMs to external services. It emphasizes discoverable tools, comprehensive API coverage, structured schemas and responses, and realistic evaluations."
+ },
+ {
+  "id": "uasl/next-upgrade@df465f7770a5",
+  "title": "next-upgrade",
+  "summary": "Upgrade a project to the latest Next.js version using the official migration guides and codemods. Identify the current version, apply relevant migrations and dependency updates, then verify the upgrade with a build and development testing."
+ },
+ {
+  "id": "uasl/stride-analysis-patterns@55940fc31e02",
+  "title": "stride-analysis-patterns",
+  "summary": "Use STRIDE to systematically identify and prioritize threats in system architectures and interactions. Create threat-model documentation and follow identified threats through to mitigations."
+ },
+ {
+  "id": "uasl/design-system-creation@ec5d23e4e974",
+  "title": "design-system-creation",
+  "summary": "Guides the agent through creating or refactoring a distinctive design system, from documenting its aesthetic to building tokens, typography, components, motion, and loading states. It favors custom visual choices and reusable design-system primitives over default styles."
+ },
+ {
+  "id": "uasl/quill@336ba74b0e79",
+  "title": "quill",
+  "summary": "Quill guides the agent to improve codebase documentation, type clarity, and README/API materials while preserving runtime behavior. It emphasizes accurate, useful documentation, checking links and coverage, and reporting the work and its results."
+ },
+ {
+  "id": "uasl/ubiquitous-language@0c7a6937f877",
+  "title": "ubiquitous-language",
+  "summary": "Extract domain terminology from the conversation, identify ambiguities and synonyms, and propose a consistent glossary. Save it to `UBIQUITOUS_LANGUAGE.md` and provide an inline summary; on reruns, update the existing glossary and its example dialogue."
+ },
+ {
+  "id": "uasl/coding-standards@f854e26a9529",
+  "title": "coding-standards",
+  "summary": "Applies cross-project conventions for readable, maintainable code, including simplicity, reuse, and avoiding unnecessary complexity. It is a baseline rather than a source of framework-specific patterns."
+ },
+ {
+  "id": "uasl/architecture-decision-records@715e99d0306d",
+  "title": "architecture-decision-records",
+  "summary": "Guides the agent to write and maintain Architecture Decision Records that capture technical decisions and their trade-offs. It emphasizes recording decisions early, linking related records, and keeping accepted records and their status managed appropriately."
+ },
+ {
+  "id": "uasl/leiga-automation@b1e5db446913",
+  "title": "leiga-automation",
+  "summary": "Use Rube MCP to automate Leiga operations. Discover current tool schemas first, confirm the Leiga connection is active, and follow the returned schemas and workflow guidance when executing tools."
+ },
+ {
+  "id": "uasl/output-skill@8da7a8f7c7fc",
+  "title": "output-skill",
+  "summary": "Requires complete, unabridged outputs and checks that requested deliverables are present. For long responses, it favors full-quality output up to a clean breakpoint and specifies how to continue."
+ },
+ {
+  "id": "uasl/excel-generator@9ce0c16c81a1",
+  "title": "excel-generator",
+  "summary": "Create professional Excel workbooks that are immediately useful for understanding and exploring structured data. Organize, format, and annotate workbook content so users can navigate it, interpret it, and work with it directly."
+ },
+ {
+  "id": "uasl/caveman-commit@244182e952a7",
+  "title": "caveman-commit",
+  "summary": "Generate terse, exact commit messages in Conventional Commits format. Keep subjects concise, include a body according to the stated rules, and output the message ready to paste."
+ }
+]

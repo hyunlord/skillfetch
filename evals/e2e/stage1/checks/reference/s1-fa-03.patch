@@ -1,0 +1,66 @@
+diff --git a/frontend/src/routes/_layout/index.tsx b/frontend/src/routes/_layout/index.tsx
+index 3e640cb..65f255d 100644
+--- a/frontend/src/routes/_layout/index.tsx
++++ b/frontend/src/routes/_layout/index.tsx
+@@ -1,5 +1,14 @@
++import { useQuery } from "@tanstack/react-query"
+ import { createFileRoute } from "@tanstack/react-router"
+ 
++import { ItemsService } from "@/client"
++import {
++  Card,
++  CardContent,
++  CardDescription,
++  CardHeader,
++  CardTitle,
++} from "@/components/ui/card"
+ import useAuth from "@/hooks/useAuth"
+ 
+ export const Route = createFileRoute("/_layout/")({
+@@ -13,11 +22,37 @@ export const Route = createFileRoute("/_layout/")({
+   }),
+ })
+ 
++function RecentItemsCard() {
++  const { data } = useQuery({
++    queryFn: async () =>
++      (await ItemsService.readItems({ query: { skip: 0, limit: 3 } })).data,
++    queryKey: ["items", "recent"],
++  })
++
++  return (
++    <Card className="max-w-sm">
++      <CardHeader>
++        <CardDescription>My items</CardDescription>
++        <CardTitle className="text-3xl">{data?.count ?? "-"}</CardTitle>
++      </CardHeader>
++      <CardContent>
++        <ul className="text-sm text-muted-foreground">
++          {data?.data.map((item) => (
++            <li key={item.id} className="truncate">
++              {item.title}
++            </li>
++          ))}
++        </ul>
++      </CardContent>
++    </Card>
++  )
++}
++
+ function Dashboard() {
+   const { user: currentUser } = useAuth()
+ 
+   return (
+-    <div>
++    <div className="flex flex-col gap-6">
+       <div>
+         <h1 className="text-2xl truncate max-w-sm">
+           Hi, {currentUser?.full_name || currentUser?.email} 👋
+@@ -26,6 +61,7 @@ function Dashboard() {
+           Welcome back, nice to see you again!!!
+         </p>
+       </div>
++      <RecentItemsCard />
+     </div>
+   )
+ }

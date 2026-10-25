@@ -1,0 +1,136 @@
+{"task_id": "t002", "candidate_id": "g01", "grade": 0, "process": false, "reason": "iOS 알람 구현은 Django 예약 모델의 반복 슬롯 생성과 무관하다."}
+{"task_id": "t002", "candidate_id": "g02", "grade": 0, "process": true, "reason": "개인 집중 시간 관리 방법은 진료 예약 반복 규칙 구현에 도움이 되지 않는다."}
+{"task_id": "t002", "candidate_id": "g03", "grade": 0, "process": false, "reason": "Claude API 지식은 Appointment 모델과 휴무일 처리에 필요하지 않다."}
+{"task_id": "t002", "candidate_id": "g04", "grade": 0, "process": false, "reason": "자율 에이전트 실행 환경 구축은 진료 예약 기능과 관련이 없다."}
+{"task_id": "t002", "candidate_id": "g05", "grade": 0, "process": false, "reason": "다중 에이전트 운영체제 설계는 Django 반복 예약 처리와 무관하다."}
+{"task_id": "t002", "candidate_id": "g06", "grade": 0, "process": false, "reason": "Timekit 외부 서비스 자동화는 기존 Django 예약 모델 수정과 도구가 다르다."}
+{"task_id": "t002", "candidate_id": "g07", "grade": 0, "process": false, "reason": "Anthropic SDK 앱 개발 지침은 반복 예약 생성에 쓰이지 않는다."}
+{"task_id": "t002", "candidate_id": "g08", "grade": 1, "process": true, "reason": "계약 우선 협업은 일반적인 변경 관리에는 관련되지만 모델과 뷰 내부의 반복 예약 처리에는 효용이 작다."}
+{"task_id": "t007", "candidate_id": "g01", "grade": 2, "process": true, "reason": "빈 상태와 사용자 안내 점검 절차는 지급 내역의 빈 상태 요구사항을 구현하는 데 도움이 된다."}
+{"task_id": "t007", "candidate_id": "g02", "grade": 1, "process": false, "reason": "Next.js 번들러 지침은 같은 스택이지만 지급 내역과 커서 페이지 처리에 직접 도움이 적다."}
+{"task_id": "t007", "candidate_id": "g03", "grade": 0, "process": false, "reason": "Apple 스마트카드 API는 웹 지급 내역과 운전자별 권한 분리에 관련이 없다."}
+{"task_id": "t007", "candidate_id": "g04", "grade": 0, "process": false, "reason": "React Native와 Expo 패턴은 Next.js 서버 컴포넌트 페이지와 스택이 다르다."}
+{"task_id": "t007", "candidate_id": "g05", "grade": 2, "process": true, "reason": "최신 프레임워크 문서를 확인하는 절차는 Next.js 서버 컴포넌트와 API 사용을 검증하는 데 도움이 된다."}
+{"task_id": "t007", "candidate_id": "g06", "grade": 2, "process": false, "reason": "UI 구조와 디자인 규칙은 지급 내역 표와 필터를 구성하는 데 도움이 된다."}
+{"task_id": "t007", "candidate_id": "g07", "grade": 0, "process": false, "reason": "Kotlin SQLDelight 데이터 접근은 tRPC 지급 내역 조회와 스택이 다르다."}
+{"task_id": "t007", "candidate_id": "g08", "grade": 3, "process": false, "reason": "React와 Next.js의 상태 및 UI 패턴은 지급 내역 페이지와 URL 필터 구현을 직접 이끈다."}
+{"task_id": "t007", "candidate_id": "g09", "grade": 1, "process": false, "reason": "커서 전략은 참고할 수 있으나 Android Paging 중심이라 tRPC 페이지 처리에 적용 범위가 작다."}
+{"task_id": "t007", "candidate_id": "g10", "grade": 0, "process": false, "reason": "Bright Data 수집 연동은 내부 지급 내역 조회 기능과 무관하다."}
+{"task_id": "t007", "candidate_id": "g11", "grade": 2, "process": false, "reason": "React와 Next.js 성능 지침은 지급 내역 데이터 로딩과 렌더링을 구현하는 데 도움이 된다."}
+{"task_id": "t007", "candidate_id": "g12", "grade": 1, "process": true, "reason": "Playwright 영상 제작은 같은 도구를 쓰지만 앞뒤 페이지 이동의 자동 검증 목적과 다르다."}
+{"task_id": "t007", "candidate_id": "g13", "grade": 3, "process": true, "reason": "Playwright 웹 기능 검증은 요구된 페이지 앞뒤 이동 테스트에 직접 적용된다."}
+{"task_id": "t007", "candidate_id": "g14", "grade": 3, "process": false, "reason": "RSC 경계와 데이터 처리 지침은 지정된 서버 컴포넌트 및 Suspense 페이지 구현에 직접 맞는다."}
+{"task_id": "t016", "candidate_id": "g01", "grade": 0, "process": false, "reason": "TON 계약 취약점 검사는 Tokio 채팅 기록 재생과 무관하다."}
+{"task_id": "t016", "candidate_id": "g02", "grade": 0, "process": false, "reason": "Apple 기기 무결성 검증은 Rust 방별 메시지 버퍼 구현과 관련이 없다."}
+{"task_id": "t016", "candidate_id": "g03", "grade": 3, "process": false, "reason": "Tokio 동시성과 채널 지식은 방 입장 시 기록을 안전하게 재전송하는 구현에 직접 필요하다."}
+{"task_id": "t016", "candidate_id": "g04", "grade": 0, "process": true, "reason": "문맥 압축 시점 관리가 최근 메시지 링버퍼 구현을 실질적으로 돕지는 않는다."}
+{"task_id": "t016", "candidate_id": "g05", "grade": 0, "process": false, "reason": "Android 계층 구조는 Rust Tokio 채팅 서버와 스택이 다르다."}
+{"task_id": "t016", "candidate_id": "g06", "grade": 3, "process": false, "reason": "Rust 소유권과 동시성 패턴은 VecDeque 기록 관리 및 재전송 구현을 직접 이끈다."}
+{"task_id": "t016", "candidate_id": "g07", "grade": 0, "process": true, "reason": "반복 추론 결정 장부 절차는 명확한 채팅 기록 기능 구현과 관련이 없다."}
+{"task_id": "t016", "candidate_id": "g08", "grade": 0, "process": false, "reason": "Android Room 데이터베이스는 Rust의 room.rs 및 메모리 버퍼와 무관하다."}
+{"task_id": "t016", "candidate_id": "g09", "grade": 0, "process": false, "reason": "Webex 방 관리 자동화는 자체 Tokio 채팅 서버를 수정하는 작업과 다르다."}
+{"task_id": "t016", "candidate_id": "g10", "grade": 0, "process": false, "reason": "Chatwork 서비스 자동화는 서버 내부 메시지 기록 재생과 관련이 없다."}
+{"task_id": "t016", "candidate_id": "g11", "grade": 0, "process": true, "reason": "사용자 세션 재생 분석은 채팅 메시지 기록 재전송 기능과 목적이 다르다."}
+{"task_id": "t016", "candidate_id": "g12", "grade": 0, "process": false, "reason": "StarkNet 계약의 재생 공격 검사는 채팅 기록 재생 기능과 무관하다."}
+{"task_id": "t022", "candidate_id": "g01", "grade": 0, "process": true, "reason": "다중 에이전트 상태 장부 관리는 SwiftUI 새로고침 연결과 무관하다."}
+{"task_id": "t022", "candidate_id": "g02", "grade": 0, "process": true, "reason": "웹 앱 사용자 감사는 단순한 SwiftUI 새로고침 수정과 대상이 다르다."}
+{"task_id": "t022", "candidate_id": "g03", "grade": 0, "process": false, "reason": "GSAP 웹 스크롤 애니메이션은 SwiftUI pull-to-refresh와 도구가 다르다."}
+{"task_id": "t022", "candidate_id": "g04", "grade": 1, "process": false, "reason": "SwiftUI 상태 패턴은 관련되지만 reload 호출을 연결하는 작은 수정에서 추가 가치가 제한적이다."}
+{"task_id": "t022", "candidate_id": "g05", "grade": 1, "process": false, "reason": "iOS 인터페이스 지침은 기본 새로고침 동작에 관련되지만 구현 범위가 매우 작다."}
+{"task_id": "t022", "candidate_id": "g06", "grade": 1, "process": false, "reason": "SwiftUI 뷰와 상태 소유권 지침은 관련되지만 기존 reload 메서드 연결에 큰 설계가 필요하지 않다."}
+{"task_id": "t022", "candidate_id": "g07", "grade": 1, "process": false, "reason": "로딩 피드백 설계는 새로고침과 인접하지만 기본 동작 연결에 필요한 정보는 적다."}
+{"task_id": "t022", "candidate_id": "g08", "grade": 0, "process": false, "reason": "WidgetKit 위젯 개발은 OrdersListView 새로고침과 무관하다."}
+{"task_id": "t022", "candidate_id": "g09", "grade": 1, "process": false, "reason": "SwiftUI 리스트 지식은 관련되지만 단순 새로고침 연결에서 활용 범위가 작다."}
+{"task_id": "t022", "candidate_id": "g10", "grade": 0, "process": false, "reason": "데이터 기반 디자인 산출물 갱신은 SwiftUI 목록 새로고침 구현과 다르다."}
+{"task_id": "t022", "candidate_id": "g11", "grade": 0, "process": true, "reason": "압축된 리뷰 댓글 작성법은 새로고침 기능 구현을 돕지 않는다."}
+{"task_id": "t022", "candidate_id": "g12", "grade": 1, "process": true, "reason": "iOS 테스트 지침은 reload 호출 확인에 참고되지만 이 작은 수정에는 효용이 제한적이다."}
+{"task_id": "t022", "candidate_id": "g13", "grade": 1, "process": false, "reason": "제스처 처리는 인접하지만 표준 pull-to-refresh 연결에 별도 드래그 제스처 설계는 필요하지 않다."}
+{"task_id": "t022", "candidate_id": "g14", "grade": 1, "process": false, "reason": "네트워킹은 reload 내부와 관련될 수 있으나 요청은 기존 메서드를 호출하는 뷰 수정이다."}
+{"task_id": "t022", "candidate_id": "g15", "grade": 0, "process": false, "reason": "GSAP 애니메이션 최적화는 SwiftUI 목록 새로고침과 스택이 다르다."}
+{"task_id": "t022", "candidate_id": "g16", "grade": 1, "process": false, "reason": "SwiftUI 아키텍처 지침은 관련되지만 기존 목록의 작은 새로고침 연결에 실익이 작다."}
+{"task_id": "t022", "candidate_id": "g17", "grade": 0, "process": false, "reason": "Android Ktor 클라이언트는 SwiftUI 새로고침 구현과 스택이 다르다."}
+{"task_id": "t022", "candidate_id": "g18", "grade": 0, "process": false, "reason": "Gong 통화 데이터 자동화는 주문 목록 새로고침과 무관하다."}
+{"task_id": "t030", "candidate_id": "g01", "grade": 0, "process": false, "reason": "Workday 인사 자동화는 날짜 렌더링 hydration 오류와 무관하다."}
+{"task_id": "t030", "candidate_id": "g02", "grade": 0, "process": false, "reason": "Nuxt 전용 hydration 및 데이터 API는 TSX 페이지 수정에 잘못된 스택이다."}
+{"task_id": "t030", "candidate_id": "g03", "grade": 0, "process": true, "reason": "네트워크 인터페이스 장애 진단은 서버와 브라우저 날짜 문자열 불일치와 무관하다."}
+{"task_id": "t030", "candidate_id": "g04", "grade": 0, "process": false, "reason": "Eventbrite 행사 자동화는 ListingHeader 날짜 렌더링 오류와 관련이 없다."}
+{"task_id": "t030", "candidate_id": "g05", "grade": 1, "process": true, "reason": "문서 확인 절차는 참고할 수 있지만 원인이 특정된 작은 날짜 포맷 수정에 효용이 작다."}
+{"task_id": "t030", "candidate_id": "g06", "grade": 1, "process": false, "reason": "React SSR 안전성은 인접하지만 모션 라이브러리 지침은 날짜 문자열 불일치를 직접 다루지 않는다."}
+{"task_id": "t030", "candidate_id": "g07", "grade": 1, "process": false, "reason": "Next.js RSC 지식은 관련되지만 원인이 명확한 날짜 포맷 수정에 범위가 넓다."}
+{"task_id": "t030", "candidate_id": "g08", "grade": 1, "process": false, "reason": "React 렌더링 지침은 인접하지만 성능 최적화는 날짜 hydration 불일치의 직접 해결책이 아니다."}
+{"task_id": "t036", "candidate_id": "g01", "grade": 0, "process": false, "reason": "n8n JavaScript 노드는 Go Redis 소비 루프와 다른 실행 환경이다."}
+{"task_id": "t036", "candidate_id": "g02", "grade": 0, "process": false, "reason": "Python asyncio 패턴은 Go 소비 루프 복구에 다른 언어의 구현 지침이다."}
+{"task_id": "t036", "candidate_id": "g03", "grade": 2, "process": false, "reason": "클라우드 네이티브 상태 점검과 지표 지식은 readiness 및 소비자 상태 노출에 도움이 된다."}
+{"task_id": "t036", "candidate_id": "g04", "grade": 1, "process": true, "reason": "서비스 API 호환성 계약 테스트는 Redis 장애 복구 통합 검증과 초점이 다르다."}
+{"task_id": "t036", "candidate_id": "g05", "grade": 0, "process": false, "reason": "Gumroad 웹훅 구독 자동화는 자체 Go 전달 소비자의 Redis 복구와 무관하다."}
+{"task_id": "t036", "candidate_id": "g06", "grade": 0, "process": false, "reason": "Django Celery 재시도 패턴은 Go Redis 소비자와 스택이 다르다."}
+{"task_id": "t036", "candidate_id": "g07", "grade": 1, "process": true, "reason": "테스트 자산 추적은 일반적 검증 관리에는 쓰이나 단일 장애 복구 테스트 구현에는 간접적이다."}
+{"task_id": "t036", "candidate_id": "g08", "grade": 3, "process": false, "reason": "재시도와 안정성 패턴은 Redis 장애 후 백오프 복구 및 루프 생존 요구에 직접 맞는다."}
+{"task_id": "t036", "candidate_id": "g09", "grade": 0, "process": false, "reason": "Claude 자율 에이전트 실행 환경은 Go Redis 연결 복구와 무관하다."}
+{"task_id": "t036", "candidate_id": "g10", "grade": 1, "process": true, "reason": "서비스 계약 조정은 readiness 응답 명세에 인접하지만 소비자 재접속 구현을 직접 돕지 않는다."}
+{"task_id": "t036", "candidate_id": "g11", "grade": 0, "process": false, "reason": "tinystruct Java 프레임워크는 Go webhook-dispatcher와 도구가 다르다."}
+{"task_id": "t036", "candidate_id": "g12", "grade": 2, "process": true, "reason": "회귀를 테스트부터 고정하는 절차는 Redis 재시작 후 전달 재개 검증에 도움이 된다."}
+{"task_id": "t036", "candidate_id": "g13", "grade": 0, "process": false, "reason": "n8n 워크플로 설계는 기존 Go 소비 루프 수정과 실행 환경이 다르다."}
+{"task_id": "t036", "candidate_id": "g14", "grade": 3, "process": false, "reason": "Go 오류 처리와 재시도 패턴은 BLPOP 오류 후 루프를 유지하고 복구하는 구현에 직접 맞는다."}
+{"task_id": "t036", "candidate_id": "g15", "grade": 3, "process": true, "reason": "장애 주입과 복원력 검증은 Redis 재시작 후 전달 재개라는 수용 조건에 직접 적용된다."}
+{"task_id": "t036", "candidate_id": "g16", "grade": 0, "process": true, "reason": "Spring Boot 빌드와 검증 절차는 Go 서비스에 맞지 않는다."}
+{"task_id": "t036", "candidate_id": "g17", "grade": 0, "process": false, "reason": "짧은 영상 생성은 Redis 장애 복구 구현과 무관하다."}
+{"task_id": "t036", "candidate_id": "g18", "grade": 3, "process": false, "reason": "Redis 운영 연결 관리 지식은 failover 이후 소비자 연결 복구에 직접 필요하다."}
+{"task_id": "t037", "candidate_id": "g01", "grade": 0, "process": false, "reason": "제조 생산 일정 최적화는 Go 시간대별 자정 계산 오류와 무관하다."}
+{"task_id": "t037", "candidate_id": "g02", "grade": 0, "process": false, "reason": "FreshBooks 회계 자동화는 KST 날짜 경계 계산과 관련이 없다."}
+{"task_id": "t037", "candidate_id": "g03", "grade": 0, "process": false, "reason": "메시징 및 웹훅 설계는 예약 시간의 location 처리와 무관하다."}
+{"task_id": "t037", "candidate_id": "g04", "grade": 0, "process": true, "reason": "프로젝트 위험 등록 절차는 원인이 특정된 시간 계산 수정에 도움이 되지 않는다."}
+{"task_id": "t037", "candidate_id": "g05", "grade": 0, "process": true, "reason": "Laravel 검증 절차는 Go 날짜 계산 및 테이블 테스트와 스택이 다르다."}
+{"task_id": "t037", "candidate_id": "g06", "grade": 0, "process": true, "reason": "제품 타당성 진단은 명확한 예약 시간 버그 수정과 무관하다."}
+{"task_id": "t037", "candidate_id": "g07", "grade": 0, "process": false, "reason": "Ethereum 해시 구분은 Go 시간대별 날짜 경계 계산과 관련이 없다."}
+{"task_id": "t037", "candidate_id": "g08", "grade": 0, "process": false, "reason": "Clockify 시간 기록 자동화는 Go time.Truncate 대체 구현과 무관하다."}
+{"task_id": "t037", "candidate_id": "g09", "grade": 0, "process": true, "reason": "자기 성찰 절차는 지정된 날짜 계산 버그와 테이블 테스트에 실질적 도움이 없다."}
+{"task_id": "t037", "candidate_id": "g10", "grade": 0, "process": false, "reason": "Jetpack Compose UI 패턴은 Go 예약 슬롯 계산과 관련이 없다."}
+{"task_id": "t037", "candidate_id": "g11", "grade": 0, "process": false, "reason": "기술 시장 채택 전략은 KST 예약 계산 오류와 무관하다."}
+{"task_id": "t037", "candidate_id": "g12", "grade": 0, "process": false, "reason": "Compose 멀티플랫폼 UI 지식은 Go 시간 계산 수정과 스택이 다르다."}
+{"task_id": "t037", "candidate_id": "g13", "grade": 3, "process": true, "reason": "Go 테이블 기반 테스트 지침은 KST 자정 전후 슬롯 회귀 테스트 요구에 직접 맞는다."}
+{"task_id": "t037", "candidate_id": "g14", "grade": 0, "process": false, "reason": "Harvest 근무 시간 자동화는 Go 날짜 경계 계산과 무관하다."}
+{"task_id": "t048", "candidate_id": "g01", "grade": 0, "process": false, "reason": "Clockify 시간 기록 서비스는 Flutter 타이머의 경과 시간 계산과 관련이 없다."}
+{"task_id": "t048", "candidate_id": "g02", "grade": 0, "process": false, "reason": "모바일 화면 이미지 생성은 백그라운드 타이머 로직을 수정하지 못한다."}
+{"task_id": "t048", "candidate_id": "g03", "grade": 0, "process": false, "reason": "iPhone 프레임 화면 목업은 Dart 경과 시간 계산 오류와 무관하다."}
+{"task_id": "t048", "candidate_id": "g04", "grade": 0, "process": false, "reason": "Core Motion 운동 센서는 시작 시각 기반 Flutter 타이머 수정에 필요하지 않다."}
+{"task_id": "t048", "candidate_id": "g05", "grade": 0, "process": false, "reason": "HealthKit 건강 데이터 연동은 Dart 타이머 경과 시간 계산과 별개이다."}
+{"task_id": "t048", "candidate_id": "g06", "grade": 0, "process": false, "reason": "watchOS 위젯 노출 신호는 iOS Flutter 앱의 타이머 계산과 관련이 없다."}
+{"task_id": "t048", "candidate_id": "g07", "grade": 0, "process": false, "reason": "Live Activities 구현은 기존 Flutter 카운터의 시간 산출 수정과 다른 기능이다."}
+{"task_id": "t048", "candidate_id": "g08", "grade": 0, "process": false, "reason": "실시간 메시징 설계는 운동 타이머의 백그라운드 경과 시간 오류와 무관하다."}
+{"task_id": "t048", "candidate_id": "g09", "grade": 0, "process": false, "reason": "RealityKit AR 콘텐츠는 운동 타이머 계산 수정과 관련이 없다."}
+{"task_id": "t048", "candidate_id": "g10", "grade": 0, "process": false, "reason": "Toggl 시간 기록 자동화는 앱 내부 Dart 타이머 수정과 무관하다."}
+{"task_id": "t048", "candidate_id": "g11", "grade": 1, "process": true, "reason": "Git 이력 조사는 디버깅과 관련되지만 이미 특정된 주기 카운터 원인에는 추가 가치가 작다."}
+{"task_id": "t048", "candidate_id": "g12", "grade": 0, "process": false, "reason": "네이티브 AlarmKit 알람은 Flutter의 시작 시각 기반 경과 시간 계산과 다른 도구이다."}
+{"task_id": "t048", "candidate_id": "g13", "grade": 0, "process": false, "reason": "HomeKit 기기 제어는 운동 타이머의 백그라운드 동작과 무관하다."}
+{"task_id": "t048", "candidate_id": "g14", "grade": 0, "process": false, "reason": "브라우저 자동화는 iOS Flutter 타이머의 백그라운드 계산 검증에 맞지 않는다."}
+{"task_id": "t051", "candidate_id": "g01", "grade": 1, "process": false, "reason": "REST API 설계는 공개 인터페이스 유지와 인접하지만 Python 메서드 분리에는 실용성이 작다."}
+{"task_id": "t051", "candidate_id": "g02", "grade": 0, "process": true, "reason": "전자서명 필드 배치 절차는 배송 요율 클래스 추출과 무관하다."}
+{"task_id": "t051", "candidate_id": "g03", "grade": 0, "process": false, "reason": "Swift 프로토콜과 테스트 지침은 Python CarrierRater 구현에 다른 언어를 전제한다."}
+{"task_id": "t051", "candidate_id": "g04", "grade": 0, "process": false, "reason": "운송사 계약과 협상 운영은 요율 코드의 클래스 분리와 관련이 없다."}
+{"task_id": "t051", "candidate_id": "g05", "grade": 1, "process": true, "reason": "잘못 배치된 클래스 분석은 구조 개선에 인접하지만 조건 분기를 운송사 클래스로 추출하는 목표와 다르다."}
+{"task_id": "t051", "candidate_id": "g06", "grade": 0, "process": false, "reason": "Swift API 명명 규칙은 Python calculate 시그니처 유지 작업과 스택이 다르다."}
+{"task_id": "t051", "candidate_id": "g07", "grade": 3, "process": false, "reason": "Python 구조적 인터페이스와 Protocol 지식은 CarrierRater 공통 계약 정의에 직접 맞는다."}
+{"task_id": "t051", "candidate_id": "g08", "grade": 0, "process": false, "reason": "물류 사고와 분쟁 처리 지식은 기존 요율 계산 코드 분리와 무관하다."}
+{"task_id": "t051", "candidate_id": "g09", "grade": 0, "process": true, "reason": "회사 조사 브리프 작성은 운송사 계산 구현 리팩터링과 관련이 없다."}
+{"task_id": "t051", "candidate_id": "g10", "grade": 2, "process": true, "reason": "pytest를 포함한 단위 테스트 지침은 운송사별 추출 전후 계산 결과 보존을 검증하는 데 도움이 된다."}
+{"task_id": "t051", "candidate_id": "g11", "grade": 3, "process": true, "reason": "동작을 보존하며 조건문을 분리하는 리팩터링 절차는 운송사별 클래스 추출에 직접 맞는다."}
+{"task_id": "t051", "candidate_id": "g12", "grade": 0, "process": false, "reason": "Shipengine 외부 자동화는 기존 Python 운송사 분기 리팩터링과 다른 도구이다."}
+{"task_id": "t069", "candidate_id": "g01", "grade": 3, "process": false, "reason": "도메인 모델링 지침은 예약 상태 규칙을 컨트롤러에서 Booking으로 옮기는 목표에 직접 맞는다."}
+{"task_id": "t069", "candidate_id": "g02", "grade": 0, "process": false, "reason": "비정형 데이터의 지식 그래프 구축은 예약 상태 전이 모델과 무관하다."}
+{"task_id": "t069", "candidate_id": "g03", "grade": 0, "process": false, "reason": "GPU 예약 후 학습 실행은 호텔 예약 상태 전이와 다른 도메인이다."}
+{"task_id": "t069", "candidate_id": "g04", "grade": 0, "process": true, "reason": "스킬 간 연관 탐색은 명확히 정해진 예약 상태 리팩터링에 필요하지 않다."}
+{"task_id": "t069", "candidate_id": "g05", "grade": 1, "process": false, "reason": "Mermaid 도식은 전이를 설명할 수 있으나 요청된 Kotlin 구현과 매핑 보존에는 간접적이다."}
+{"task_id": "t069", "candidate_id": "g06", "grade": 1, "process": false, "reason": "타입 상태 개념은 관련되지만 PhantomData와 sealed trait 중심의 Rust 지침은 Kotlin 구현에 제한적이다."}
+{"task_id": "t069", "candidate_id": "g07", "grade": 1, "process": false, "reason": "Kotlin 도메인 모델 지식은 인접하지만 멀티플랫폼 직렬화는 JPA 매핑 보존 목표와 다르다."}
+{"task_id": "t069", "candidate_id": "g08", "grade": 3, "process": true, "reason": "Spring Boot 테스트 우선 리팩터링은 기존 MockMvc 검증을 보존하며 예약 전이를 옮기는 작업에 직접 맞는다."}
+{"task_id": "t069", "candidate_id": "g09", "grade": 1, "process": true, "reason": "도메인 계획 검토는 인접하지만 전이 규칙과 경계가 이미 정해진 구현에서 효용이 제한적이다."}
+{"task_id": "t069", "candidate_id": "g10", "grade": 0, "process": false, "reason": "Android 수명주기 패턴은 서버의 Kotlin 예약 도메인과 실행 환경이 다르다."}
+{"task_id": "t069", "candidate_id": "g11", "grade": 3, "process": false, "reason": "Kotlin의 도메인 경계와 어댑터 분리는 컨트롤러를 HTTP 변환만 담당하게 만드는 목표에 직접 맞는다."}
+{"task_id": "t069", "candidate_id": "g12", "grade": 3, "process": false, "reason": "비즈니스 규칙과 불변식 모델링은 Booking 내부의 합법적 상태 전이 검증에 직접 적용된다."}
+{"task_id": "t069", "candidate_id": "g13", "grade": 2, "process": false, "reason": "JPA 엔티티 지식은 상태 모델을 바꾸면서 기존 컬럼 값과 매핑을 보존하는 데 도움이 된다."}
+{"task_id": "t069", "candidate_id": "g14", "grade": 2, "process": true, "reason": "테스트 우선 리팩터링 절차는 잘못된 전이와 기존 동작을 검증하며 구조를 옮기는 데 도움이 된다."}
+{"task_id": "t069", "candidate_id": "g15", "grade": 0, "process": false, "reason": "GPU 추론 서비스 예약은 호텔 Booking의 상태 전이와 무관하다."}
+{"task_id": "t069", "candidate_id": "g16", "grade": 1, "process": true, "reason": "HTTP 직접 테스트는 경계 동작에 관련되지만 기존 MockMvc를 유지하는 도메인 리팩터링에서는 보조적이다."}
+{"task_id": "t069", "candidate_id": "g17", "grade": 0, "process": false, "reason": "HTML과 JavaScript 웹 디자인 제작은 Kotlin 예약 도메인 분리와 무관하다."}
+{"task_id": "t069", "candidate_id": "g18", "grade": 2, "process": false, "reason": "타입 안전한 비즈니스 로직과 데이터 모델 구현 지침은 예약 전이 메서드를 만드는 데 도움이 된다."}

@@ -1,0 +1,47 @@
+diff --git a/backend/app/api/routes/items.py b/backend/app/api/routes/items.py
+index f0eb30e..741e2ba 100644
+--- a/backend/app/api/routes/items.py
++++ b/backend/app/api/routes/items.py
+@@ -1,5 +1,5 @@
+ import uuid
+-from typing import Any
++from typing import Any, Literal
+ 
+ from fastapi import APIRouter, HTTPException
+ from sqlmodel import col, func, select
+@@ -12,17 +12,24 @@ router = APIRouter(prefix="/items", tags=["items"])
+ 
+ @router.get("/", response_model=ItemsPublic)
+ def read_items(
+-    session: SessionDep, current_user: CurrentUser, skip: int = 0, limit: int = 100
++    session: SessionDep,
++    current_user: CurrentUser,
++    skip: int = 0,
++    limit: int = 100,
++    order_by: Literal["created_at", "title"] = "created_at",
++    order: Literal["asc", "desc"] = "desc",
+ ) -> Any:
+     """
+     Retrieve items.
+     """
++    column = col(Item.title) if order_by == "title" else col(Item.created_at)
++    ordering = column.asc() if order == "asc" else column.desc()
+ 
+     if current_user.is_superuser:
+         count_statement = select(func.count()).select_from(Item)
+         count = session.exec(count_statement).one()
+         statement = (
+-            select(Item).order_by(col(Item.created_at).desc()).offset(skip).limit(limit)
++            select(Item).order_by(ordering).offset(skip).limit(limit)
+         )
+         items = session.exec(statement).all()
+     else:
+@@ -35,7 +42,7 @@ def read_items(
+         statement = (
+             select(Item)
+             .where(Item.owner_id == current_user.id)
+-            .order_by(col(Item.created_at).desc())
++            .order_by(ordering)
+             .offset(skip)
+             .limit(limit)
+         )

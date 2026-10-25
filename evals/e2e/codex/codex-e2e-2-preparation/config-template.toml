@@ -1,0 +1,38 @@
+model = "gpt-6-astra"
+model_reasoning_effort = "medium"
+forced_login_method = "chatgpt"
+approval_policy = "never"
+sandbox_mode = "workspace-write"
+web_search = "disabled"
+
+[features]
+apps = false
+plugins = false
+remote_plugin = false
+hooks = false
+memories = false
+multi_agent = false
+multi_agent_v2 = false
+browser_use = false
+browser_use_external = false
+computer_use = false
+image_generation = false
+skill_mcp_dependency_install = false
+
+[analytics]
+enabled = false
+
+[sandbox_workspace_write]
+network_access = false
+
+[mcp_servers.skillfetch]
+default_tools_approval_mode = "approve"
+command = "<skillfetch>/.venv/bin/skillfetch"
+args = ["serve", "--index", "/tmp/skillfetch-codex-e2e-prep-20261023T224338/index"]
+startup_timeout_sec = 60
+tool_timeout_sec = 120
+
+[mcp_servers.skillfetch.env]
+PYTHONPATH = "/tmp/skillfetch-codex-e2e-prep-20261023T224338/source/src"
+PYTHONDONTWRITEBYTECODE = "1"
+HOME = "<home>"

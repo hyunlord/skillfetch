@@ -1,0 +1,2760 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-23T16:16:09.394Z",
+  "scope": "Offline oracle join; no new sessions, no new grades, no code-quality evaluation",
+  "counting_unit": "Unique (session, full skill ID) pairs; full task+ID exact match, including revision",
+  "inputs": {
+    "stage5/tasks.jsonl": "d8822df5b8afeb587fc209218ca3f81fbe9ec3153acb66348c3f6a132306e572",
+    "stage5/oracle.jsonl": "52344710c155e141a978b31f4499591581430997d69dd99bb4da7b7b5ffb55c6",
+    "codex-e2e-runs/20261024-subscription-mcp-approved-14d2020/observations.json": "37df258a2b362ed4b6e74e0f3ce5b21e4c3d21f9a6b0d7d16aaf25277090c855",
+    "codex-e2e-2-oracle-v2.json": "d1bbf581e0bb41ee07fada4e1d7c9d04f15c0063bc50a781baf6dc2491a97f69"
+  },
+  "report_before_sha256": "d5b8d8ca79f8be1e4963532eb98d16a94c60b46ee018d64010507f28735113c3",
+  "report_before_bytes": 35130,
+  "cohorts": {
+    "codex": {
+      "sessions": 19,
+      "loaded_sessions": 19,
+      "hit_sessions": 4,
+      "unresolved_no_hit_sessions": 8,
+      "known_miss_sessions": 7,
+      "loaded_pairs": 20,
+      "relevant_pairs": 4,
+      "nonrelevant_pairs": 7,
+      "ungraded_pairs": 9,
+      "graded_pairs": 11,
+      "ungraded_sessions": 8,
+      "ungraded_unique_ids": 8,
+      "hit_rate_confirmed": 0.21052631578947367,
+      "hit_rate_upper_bound": 0.631578947368421,
+      "precision_graded": 0.36363636363636365,
+      "precision_lower_bound": 0.2,
+      "precision_upper_bound": 0.65,
+      "oracle_none_sessions": 4,
+      "oracle_none_loaded_sessions": 4,
+      "oracle_none_loaded_pairs": 4,
+      "oracle_none_ungraded_pairs": 3
+    },
+    "v2_r1": {
+      "sessions": 19,
+      "loaded_sessions": 19,
+      "hit_sessions": 5,
+      "unresolved_no_hit_sessions": 8,
+      "known_miss_sessions": 6,
+      "loaded_pairs": 29,
+      "relevant_pairs": 5,
+      "nonrelevant_pairs": 10,
+      "ungraded_pairs": 14,
+      "graded_pairs": 15,
+      "ungraded_sessions": 9,
+      "ungraded_unique_ids": 10,
+      "hit_rate_confirmed": 0.2631578947368421,
+      "hit_rate_upper_bound": 0.6842105263157895,
+      "precision_graded": 0.3333333333333333,
+      "precision_lower_bound": 0.1724137931034483,
+      "precision_upper_bound": 0.6551724137931034,
+      "oracle_none_sessions": 4,
+      "oracle_none_loaded_sessions": 4,
+      "oracle_none_loaded_pairs": 7,
+      "oracle_none_ungraded_pairs": 4
+    },
+    "v2_r2": {
+      "sessions": 19,
+      "loaded_sessions": 17,
+      "hit_sessions": 10,
+      "unresolved_no_hit_sessions": 5,
+      "known_miss_sessions": 2,
+      "loaded_pairs": 25,
+      "relevant_pairs": 10,
+      "nonrelevant_pairs": 5,
+      "ungraded_pairs": 10,
+      "graded_pairs": 15,
+      "ungraded_sessions": 9,
+      "ungraded_unique_ids": 8,
+      "hit_rate_confirmed": 0.5882352941176471,
+      "hit_rate_upper_bound": 0.8823529411764706,
+      "precision_graded": 0.6666666666666666,
+      "precision_lower_bound": 0.4,
+      "precision_upper_bound": 0.8,
+      "oracle_none_sessions": 4,
+      "oracle_none_loaded_sessions": 4,
+      "oracle_none_loaded_pairs": 5,
+      "oracle_none_ungraded_pairs": 2
+    },
+    "v2_r3": {
+      "sessions": 19,
+      "loaded_sessions": 19,
+      "hit_sessions": 7,
+      "unresolved_no_hit_sessions": 10,
+      "known_miss_sessions": 2,
+      "loaded_pairs": 31,
+      "relevant_pairs": 7,
+      "nonrelevant_pairs": 6,
+      "ungraded_pairs": 18,
+      "graded_pairs": 13,
+      "ungraded_sessions": 12,
+      "ungraded_unique_ids": 14,
+      "hit_rate_confirmed": 0.3684210526315789,
+      "hit_rate_upper_bound": 0.8947368421052632,
+      "precision_graded": 0.5384615384615384,
+      "precision_lower_bound": 0.22580645161290322,
+      "precision_upper_bound": 0.8064516129032258,
+      "oracle_none_sessions": 4,
+      "oracle_none_loaded_sessions": 4,
+      "oracle_none_loaded_pairs": 7,
+      "oracle_none_ungraded_pairs": 5
+    },
+    "v2_all": {
+      "sessions": 57,
+      "loaded_sessions": 55,
+      "hit_sessions": 22,
+      "unresolved_no_hit_sessions": 23,
+      "known_miss_sessions": 10,
+      "loaded_pairs": 85,
+      "relevant_pairs": 22,
+      "nonrelevant_pairs": 21,
+      "ungraded_pairs": 42,
+      "graded_pairs": 43,
+      "ungraded_sessions": 30,
+      "ungraded_unique_ids": 18,
+      "hit_rate_confirmed": 0.4,
+      "hit_rate_upper_bound": 0.8181818181818182,
+      "precision_graded": 0.5116279069767442,
+      "precision_lower_bound": 0.25882352941176473,
+      "precision_upper_bound": 0.7529411764705882,
+      "oracle_none_sessions": 12,
+      "oracle_none_loaded_sessions": 12,
+      "oracle_none_loaded_pairs": 19,
+      "oracle_none_ungraded_pairs": 11
+    }
+  },
+  "long_task_ids": [
+    "s4-t027",
+    "s4-t033",
+    "s4-t177",
+    "s4-t026"
+  ],
+  "oracle_no_relevant_task_ids": [
+    "s4-t033",
+    "s4-t354",
+    "s4-t101",
+    "s4-t342"
+  ],
+  "query_four_matches": 19,
+  "ungraded_records": [
+    {
+      "task_id": "s4-t027",
+      "session": "Codex",
+      "skill_id": "uasl/debug-root-cause@1d7ea4a832dc"
+    },
+    {
+      "task_id": "s4-t027",
+      "session": "Codex",
+      "skill_id": "uasl/tdd@ff86dad94075"
+    },
+    {
+      "task_id": "s4-t027",
+      "session": "V2 r1",
+      "skill_id": "uasl/debug-root-cause@1d7ea4a832dc"
+    },
+    {
+      "task_id": "s4-t027",
+      "session": "V2 r1",
+      "skill_id": "uasl/coding-guidelines@0ec7e45f92f2"
+    },
+    {
+      "task_id": "s4-t027",
+      "session": "V2 r2",
+      "skill_id": "uasl/debug-root-cause@1d7ea4a832dc"
+    },
+    {
+      "task_id": "s4-t027",
+      "session": "V2 r2",
+      "skill_id": "uasl/coding-guidelines@0ec7e45f92f2"
+    },
+    {
+      "task_id": "s4-t027",
+      "session": "V2 r3",
+      "skill_id": "uasl/debug-root-cause@1d7ea4a832dc"
+    },
+    {
+      "task_id": "s4-t027",
+      "session": "V2 r3",
+      "skill_id": "uasl/tdd@ff86dad94075"
+    },
+    {
+      "task_id": "s4-t176",
+      "session": "Codex",
+      "skill_id": "uasl/debugging-strategies@c55dad9c9654"
+    },
+    {
+      "task_id": "s4-t176",
+      "session": "V2 r1",
+      "skill_id": "path:<worktrees>/s5/s5-V2-s4-t176-r1/.agents/skills/sqlmodel"
+    },
+    {
+      "task_id": "s4-t176",
+      "session": "V2 r1",
+      "skill_id": "uasl/debug-root-cause@1d7ea4a832dc"
+    },
+    {
+      "task_id": "s4-t176",
+      "session": "V2 r2",
+      "skill_id": "uasl/debug-root-cause@1d7ea4a832dc"
+    },
+    {
+      "task_id": "s4-t176",
+      "session": "V2 r3",
+      "skill_id": "uasl/debug-root-cause@1d7ea4a832dc"
+    },
+    {
+      "task_id": "s4-t253",
+      "session": "V2 r1",
+      "skill_id": "path:<worktrees>/s5/s5-V2-s4-t253-r1/.venv/lib/python3.14/site-packages/sqlmodel/.agents/skills/sqlmodel"
+    },
+    {
+      "task_id": "s4-t253",
+      "session": "V2 r1",
+      "skill_id": "uasl/python-performance-optimization@bf455fd100bf"
+    },
+    {
+      "task_id": "s4-t253",
+      "session": "V2 r2",
+      "skill_id": "path:<worktrees>/s5/s5-V2-s4-t253-r2/.claude/skills/sqlmodel"
+    },
+    {
+      "task_id": "s4-t253",
+      "session": "V2 r3",
+      "skill_id": "path:<worktrees>/s5/s5-V2-s4-t253-r3/.claude/skills/sqlmodel"
+    },
+    {
+      "task_id": "s4-t253",
+      "session": "V2 r3",
+      "skill_id": "uasl/schema@e6f260ce62e0"
+    },
+    {
+      "task_id": "s4-t182",
+      "session": "V2 r3",
+      "skill_id": "path:<worktrees>/s5/s5-V2-s4-t182-r3/.venv/lib/python3.14/site-packages/sqlmodel/.agents/skills/sqlmodel"
+    },
+    {
+      "task_id": "s4-t055",
+      "session": "V2 r2",
+      "skill_id": "uasl/verification-loop@39d9be23cf50"
+    },
+    {
+      "task_id": "s4-t055",
+      "session": "V2 r3",
+      "skill_id": "uasl/react-patterns@73d1ecc06997"
+    },
+    {
+      "task_id": "s4-t033",
+      "session": "Codex",
+      "skill_id": "uasl/debug-root-cause@1d7ea4a832dc"
+    },
+    {
+      "task_id": "s4-t033",
+      "session": "V2 r1",
+      "skill_id": "uasl/debug-root-cause@1d7ea4a832dc"
+    },
+    {
+      "task_id": "s4-t033",
+      "session": "V2 r1",
+      "skill_id": "uasl/coding-guidelines@0ec7e45f92f2"
+    },
+    {
+      "task_id": "s4-t033",
+      "session": "V2 r3",
+      "skill_id": "uasl/debug-root-cause@1d7ea4a832dc"
+    },
+    {
+      "task_id": "s4-t033",
+      "session": "V2 r3",
+      "skill_id": "uasl/coding-guidelines@0ec7e45f92f2"
+    },
+    {
+      "task_id": "s4-t177",
+      "session": "Codex",
+      "skill_id": "uasl/python-error-handling@8dc34883a143"
+    },
+    {
+      "task_id": "s4-t177",
+      "session": "V2 r1",
+      "skill_id": "uasl/python-error-handling@8dc34883a143"
+    },
+    {
+      "task_id": "s4-t177",
+      "session": "V2 r2",
+      "skill_id": "uasl/python-error-handling@8dc34883a143"
+    },
+    {
+      "task_id": "s4-t177",
+      "session": "V2 r3",
+      "skill_id": "path:<worktrees>/s5/s5-V2-s4-t177-r3/.venv/lib/python3.14/site-packages/sqlmodel/.agents/skills/sqlmodel"
+    },
+    {
+      "task_id": "s4-t177",
+      "session": "V2 r3",
+      "skill_id": "uasl/python-error-handling@8dc34883a143"
+    },
+    {
+      "task_id": "s4-t026",
+      "session": "V2 r1",
+      "skill_id": "uasl/debug-root-cause@1d7ea4a832dc"
+    },
+    {
+      "task_id": "s4-t026",
+      "session": "V2 r1",
+      "skill_id": "uasl/verification-loop@39d9be23cf50"
+    },
+    {
+      "task_id": "s4-t026",
+      "session": "V2 r2",
+      "skill_id": "uasl/debug-root-cause@1d7ea4a832dc"
+    },
+    {
+      "task_id": "s4-t026",
+      "session": "V2 r3",
+      "skill_id": "uasl/debug-root-cause@1d7ea4a832dc"
+    },
+    {
+      "task_id": "s4-t026",
+      "session": "V2 r3",
+      "skill_id": "uasl/verification-loop@39d9be23cf50"
+    },
+    {
+      "task_id": "s4-t224",
+      "session": "V2 r1",
+      "skill_id": "uasl/documentation-lookup@dee6d7478eab"
+    },
+    {
+      "task_id": "s4-t224",
+      "session": "V2 r2",
+      "skill_id": "uasl/documentation-lookup@dee6d7478eab"
+    },
+    {
+      "task_id": "s4-t224",
+      "session": "V2 r3",
+      "skill_id": "uasl/documentation-lookup@dee6d7478eab"
+    },
+    {
+      "task_id": "s4-t211",
+      "session": "Codex",
+      "skill_id": "uasl/software-architecture@011a6d823631"
+    },
+    {
+      "task_id": "s4-t101",
+      "session": "Codex",
+      "skill_id": "uasl/quill@336ba74b0e79"
+    },
+    {
+      "task_id": "s4-t101",
+      "session": "V2 r1",
+      "skill_id": "uasl/quill@336ba74b0e79"
+    },
+    {
+      "task_id": "s4-t101",
+      "session": "V2 r2",
+      "skill_id": "uasl/quill@336ba74b0e79"
+    },
+    {
+      "task_id": "s4-t101",
+      "session": "V2 r3",
+      "skill_id": "uasl/quill@336ba74b0e79"
+    },
+    {
+      "task_id": "s4-t101",
+      "session": "V2 r3",
+      "skill_id": "uasl/verification-before-completion@134bf517af69"
+    },
+    {
+      "task_id": "s4-t342",
+      "session": "Codex",
+      "skill_id": "uasl/coding-standards@f854e26a9529"
+    },
+    {
+      "task_id": "s4-t342",
+      "session": "V2 r1",
+      "skill_id": "uasl/coding-standards@f854e26a9529"
+    },
+    {
+      "task_id": "s4-t342",
+      "session": "V2 r2",
+      "skill_id": "uasl/coding-standards@f854e26a9529"
+    },
+    {
+      "task_id": "s4-t342",
+      "session": "V2 r3",
+      "skill_id": "uasl/coding-standards@f854e26a9529"
+    },
+    {
+      "task_id": "s4-t280",
+      "session": "Codex",
+      "skill_id": "uasl/interaction-design@7c9d38549c2b"
+    },
+    {
+      "task_id": "s4-t001",
+      "session": "V2 r3",
+      "skill_id": "uasl/verification-loop@39d9be23cf50"
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "s4-t027",
+      "repo": "fastapi",
+      "prompt_characters": 1219,
+      "prompt_sha256": "02a7433b8f33afcfd45f021e3d0fbbff282dd19e68de30d307983befdce19111",
+      "at_least_800_characters": true,
+      "fourth_query_exact": true,
+      "query_checks": [
+        {
+          "call_id": "exec-ee65228e-8b94-4704-bd4e-3e4d5b49eec3",
+          "event_sequence": 76,
+          "query_count": 4,
+          "matches": true
+        },
+        {
+          "call_id": "exec-ee65228e-8b94-4704-bd4e-3e4d5b49eec3",
+          "event_sequence": 77,
+          "query_count": 4,
+          "matches": true
+        }
+      ],
+      "oracle_relevant_count": 3,
+      "oracle_expect_none": false,
+      "codex": {
+        "task_id": "s4-t027",
+        "log_file": "<e2e>/codex-e2e-runs/20261024-subscription-mcp-approved-14d2020/tasks/s4-t027/transcript.jsonl",
+        "loaded_skill_ids": [
+          "uasl/debug-root-cause@1d7ea4a832dc",
+          "uasl/tdd@ff86dad94075"
+        ],
+        "items": [
+          {
+            "skill_id": "uasl/debug-root-cause@1d7ea4a832dc",
+            "grade": null,
+            "status": "UNGRADED"
+          },
+          {
+            "skill_id": "uasl/tdd@ff86dad94075",
+            "grade": null,
+            "status": "UNGRADED"
+          }
+        ],
+        "loaded": true,
+        "related": 0,
+        "nonrelated": 0,
+        "ungraded": 2,
+        "oracle_relevant_count": 3,
+        "oracle_none": false
+      },
+      "claude": [
+        {
+          "task_id": "s4-t027",
+          "tag": "r1",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t027-r1.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t027-r1.meta.json",
+          "result_status": "error_max_turns",
+          "loaded_skill_ids": [
+            "uasl/debug-root-cause@1d7ea4a832dc",
+            "uasl/coding-guidelines@0ec7e45f92f2"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/debug-root-cause@1d7ea4a832dc",
+              "grade": null,
+              "status": "UNGRADED"
+            },
+            {
+              "skill_id": "uasl/coding-guidelines@0ec7e45f92f2",
+              "grade": null,
+              "status": "UNGRADED"
+            }
+          ],
+          "loaded": true,
+          "related": 0,
+          "nonrelated": 0,
+          "ungraded": 2,
+          "oracle_relevant_count": 3,
+          "oracle_none": false
+        },
+        {
+          "task_id": "s4-t027",
+          "tag": "r2",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t027-r2.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t027-r2.meta.json",
+          "result_status": "error_max_turns",
+          "loaded_skill_ids": [
+            "uasl/debug-root-cause@1d7ea4a832dc",
+            "uasl/coding-guidelines@0ec7e45f92f2"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/debug-root-cause@1d7ea4a832dc",
+              "grade": null,
+              "status": "UNGRADED"
+            },
+            {
+              "skill_id": "uasl/coding-guidelines@0ec7e45f92f2",
+              "grade": null,
+              "status": "UNGRADED"
+            }
+          ],
+          "loaded": true,
+          "related": 0,
+          "nonrelated": 0,
+          "ungraded": 2,
+          "oracle_relevant_count": 3,
+          "oracle_none": false
+        },
+        {
+          "task_id": "s4-t027",
+          "tag": "r3",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t027-r3.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t027-r3.meta.json",
+          "result_status": "error_max_turns",
+          "loaded_skill_ids": [
+            "uasl/debug-root-cause@1d7ea4a832dc",
+            "uasl/tdd@ff86dad94075"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/debug-root-cause@1d7ea4a832dc",
+              "grade": null,
+              "status": "UNGRADED"
+            },
+            {
+              "skill_id": "uasl/tdd@ff86dad94075",
+              "grade": null,
+              "status": "UNGRADED"
+            }
+          ],
+          "loaded": true,
+          "related": 0,
+          "nonrelated": 0,
+          "ungraded": 2,
+          "oracle_relevant_count": 3,
+          "oracle_none": false
+        }
+      ]
+    },
+    {
+      "task_id": "s4-t176",
+      "repo": "fastapi",
+      "prompt_characters": 485,
+      "prompt_sha256": "8ad36732426e3af848ccb3e7b4b32eb79abb25bfa6fbc01f368df42d3fa343ef",
+      "at_least_800_characters": false,
+      "fourth_query_exact": true,
+      "query_checks": [
+        {
+          "call_id": "exec-9d89168d-3ff1-4e78-9eaf-6ad13ee746af",
+          "event_sequence": 83,
+          "query_count": 4,
+          "matches": true
+        },
+        {
+          "call_id": "exec-9d89168d-3ff1-4e78-9eaf-6ad13ee746af",
+          "event_sequence": 84,
+          "query_count": 4,
+          "matches": true
+        }
+      ],
+      "oracle_relevant_count": 1,
+      "oracle_expect_none": false,
+      "codex": {
+        "task_id": "s4-t176",
+        "log_file": "<e2e>/codex-e2e-runs/20261024-subscription-mcp-approved-14d2020/tasks/s4-t176/transcript.jsonl",
+        "loaded_skill_ids": [
+          "uasl/debugging-strategies@c55dad9c9654"
+        ],
+        "items": [
+          {
+            "skill_id": "uasl/debugging-strategies@c55dad9c9654",
+            "grade": null,
+            "status": "UNGRADED"
+          }
+        ],
+        "loaded": true,
+        "related": 0,
+        "nonrelated": 0,
+        "ungraded": 1,
+        "oracle_relevant_count": 1,
+        "oracle_none": false
+      },
+      "claude": [
+        {
+          "task_id": "s4-t176",
+          "tag": "r1",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t176-r1.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t176-r1.meta.json",
+          "result_status": "success",
+          "loaded_skill_ids": [
+            "path:<worktrees>/s5/s5-V2-s4-t176-r1/.agents/skills/sqlmodel",
+            "uasl/debug-root-cause@1d7ea4a832dc"
+          ],
+          "items": [
+            {
+              "skill_id": "path:<worktrees>/s5/s5-V2-s4-t176-r1/.agents/skills/sqlmodel",
+              "grade": null,
+              "status": "UNGRADED"
+            },
+            {
+              "skill_id": "uasl/debug-root-cause@1d7ea4a832dc",
+              "grade": null,
+              "status": "UNGRADED"
+            }
+          ],
+          "loaded": true,
+          "related": 0,
+          "nonrelated": 0,
+          "ungraded": 2,
+          "oracle_relevant_count": 1,
+          "oracle_none": false
+        },
+        {
+          "task_id": "s4-t176",
+          "tag": "r2",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t176-r2.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t176-r2.meta.json",
+          "result_status": "error_max_turns",
+          "loaded_skill_ids": [
+            "uasl/debug-root-cause@1d7ea4a832dc"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/debug-root-cause@1d7ea4a832dc",
+              "grade": null,
+              "status": "UNGRADED"
+            }
+          ],
+          "loaded": true,
+          "related": 0,
+          "nonrelated": 0,
+          "ungraded": 1,
+          "oracle_relevant_count": 1,
+          "oracle_none": false
+        },
+        {
+          "task_id": "s4-t176",
+          "tag": "r3",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t176-r3.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t176-r3.meta.json",
+          "result_status": "error_max_turns",
+          "loaded_skill_ids": [
+            "uasl/debug-root-cause@1d7ea4a832dc"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/debug-root-cause@1d7ea4a832dc",
+              "grade": null,
+              "status": "UNGRADED"
+            }
+          ],
+          "loaded": true,
+          "related": 0,
+          "nonrelated": 0,
+          "ungraded": 1,
+          "oracle_relevant_count": 1,
+          "oracle_none": false
+        }
+      ]
+    },
+    {
+      "task_id": "s4-t153",
+      "repo": "fastapi",
+      "prompt_characters": 179,
+      "prompt_sha256": "b6adb35d585184efa898f8f509712f5ca2cdc0c7d0c50d076ecfa3bfb3984676",
+      "at_least_800_characters": false,
+      "fourth_query_exact": true,
+      "query_checks": [
+        {
+          "call_id": "exec-ce67dbb9-b394-47cb-a9e3-6eec2301d01f",
+          "event_sequence": 91,
+          "query_count": 4,
+          "matches": true
+        },
+        {
+          "call_id": "exec-ce67dbb9-b394-47cb-a9e3-6eec2301d01f",
+          "event_sequence": 92,
+          "query_count": 4,
+          "matches": true
+        }
+      ],
+      "oracle_relevant_count": 2,
+      "oracle_expect_none": false,
+      "codex": {
+        "task_id": "s4-t153",
+        "log_file": "<e2e>/codex-e2e-runs/20261024-subscription-mcp-approved-14d2020/tasks/s4-t153/transcript.jsonl",
+        "loaded_skill_ids": [
+          "uasl/deployment-pipeline-design@2a89fc6f32ff"
+        ],
+        "items": [
+          {
+            "skill_id": "uasl/deployment-pipeline-design@2a89fc6f32ff",
+            "grade": 1,
+            "status": "NONRELEVANT"
+          }
+        ],
+        "loaded": true,
+        "related": 0,
+        "nonrelated": 1,
+        "ungraded": 0,
+        "oracle_relevant_count": 2,
+        "oracle_none": false
+      },
+      "claude": [
+        {
+          "task_id": "s4-t153",
+          "tag": "r1",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t153-r1.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t153-r1.meta.json",
+          "result_status": "success",
+          "loaded_skill_ids": [
+            "uasl/verification-loop@39d9be23cf50"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/verification-loop@39d9be23cf50",
+              "grade": 1,
+              "status": "NONRELEVANT"
+            }
+          ],
+          "loaded": true,
+          "related": 0,
+          "nonrelated": 1,
+          "ungraded": 0,
+          "oracle_relevant_count": 2,
+          "oracle_none": false
+        },
+        {
+          "task_id": "s4-t153",
+          "tag": "r2",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t153-r2.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t153-r2.meta.json",
+          "result_status": "success",
+          "loaded_skill_ids": [
+            "uasl/karpathy-guidelines@da897c8c3bab"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/karpathy-guidelines@da897c8c3bab",
+              "grade": 2,
+              "status": "RELEVANT"
+            }
+          ],
+          "loaded": true,
+          "related": 1,
+          "nonrelated": 0,
+          "ungraded": 0,
+          "oracle_relevant_count": 2,
+          "oracle_none": false
+        },
+        {
+          "task_id": "s4-t153",
+          "tag": "r3",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t153-r3.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t153-r3.meta.json",
+          "result_status": "success",
+          "loaded_skill_ids": [
+            "uasl/karpathy-guidelines@da897c8c3bab"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/karpathy-guidelines@da897c8c3bab",
+              "grade": 2,
+              "status": "RELEVANT"
+            }
+          ],
+          "loaded": true,
+          "related": 1,
+          "nonrelated": 0,
+          "ungraded": 0,
+          "oracle_relevant_count": 2,
+          "oracle_none": false
+        }
+      ]
+    },
+    {
+      "task_id": "s4-t253",
+      "repo": "fastapi",
+      "prompt_characters": 303,
+      "prompt_sha256": "347ca22e2354dfde63731130fcc29603bf67d08d2770ece618d5db2321f84583",
+      "at_least_800_characters": false,
+      "fourth_query_exact": true,
+      "query_checks": [
+        {
+          "call_id": "exec-9ccc5607-bb27-4922-a309-f8f76e56135a",
+          "event_sequence": 96,
+          "query_count": 4,
+          "matches": true
+        },
+        {
+          "call_id": "exec-9ccc5607-bb27-4922-a309-f8f76e56135a",
+          "event_sequence": 97,
+          "query_count": 4,
+          "matches": true
+        }
+      ],
+      "oracle_relevant_count": 4,
+      "oracle_expect_none": false,
+      "codex": {
+        "task_id": "s4-t253",
+        "log_file": "<e2e>/codex-e2e-runs/20261024-subscription-mcp-approved-14d2020/tasks/s4-t253/transcript.jsonl",
+        "loaded_skill_ids": [
+          "uasl/sql-optimization-patterns@389f90da7b56"
+        ],
+        "items": [
+          {
+            "skill_id": "uasl/sql-optimization-patterns@389f90da7b56",
+            "grade": 3,
+            "status": "RELEVANT"
+          }
+        ],
+        "loaded": true,
+        "related": 1,
+        "nonrelated": 0,
+        "ungraded": 0,
+        "oracle_relevant_count": 4,
+        "oracle_none": false
+      },
+      "claude": [
+        {
+          "task_id": "s4-t253",
+          "tag": "r1",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t253-r1.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t253-r1.meta.json",
+          "result_status": "success",
+          "loaded_skill_ids": [
+            "path:<worktrees>/s5/s5-V2-s4-t253-r1/.venv/lib/python3.14/site-packages/sqlmodel/.agents/skills/sqlmodel",
+            "uasl/python-performance-optimization@bf455fd100bf"
+          ],
+          "items": [
+            {
+              "skill_id": "path:<worktrees>/s5/s5-V2-s4-t253-r1/.venv/lib/python3.14/site-packages/sqlmodel/.agents/skills/sqlmodel",
+              "grade": null,
+              "status": "UNGRADED"
+            },
+            {
+              "skill_id": "uasl/python-performance-optimization@bf455fd100bf",
+              "grade": null,
+              "status": "UNGRADED"
+            }
+          ],
+          "loaded": true,
+          "related": 0,
+          "nonrelated": 0,
+          "ungraded": 2,
+          "oracle_relevant_count": 4,
+          "oracle_none": false
+        },
+        {
+          "task_id": "s4-t253",
+          "tag": "r2",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t253-r2.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t253-r2.meta.json",
+          "result_status": "success",
+          "loaded_skill_ids": [
+            "path:<worktrees>/s5/s5-V2-s4-t253-r2/.claude/skills/sqlmodel",
+            "uasl/sql-optimization-patterns@389f90da7b56"
+          ],
+          "items": [
+            {
+              "skill_id": "path:<worktrees>/s5/s5-V2-s4-t253-r2/.claude/skills/sqlmodel",
+              "grade": null,
+              "status": "UNGRADED"
+            },
+            {
+              "skill_id": "uasl/sql-optimization-patterns@389f90da7b56",
+              "grade": 3,
+              "status": "RELEVANT"
+            }
+          ],
+          "loaded": true,
+          "related": 1,
+          "nonrelated": 0,
+          "ungraded": 1,
+          "oracle_relevant_count": 4,
+          "oracle_none": false
+        },
+        {
+          "task_id": "s4-t253",
+          "tag": "r3",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t253-r3.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t253-r3.meta.json",
+          "result_status": "error_max_turns",
+          "loaded_skill_ids": [
+            "path:<worktrees>/s5/s5-V2-s4-t253-r3/.claude/skills/sqlmodel",
+            "uasl/schema@e6f260ce62e0"
+          ],
+          "items": [
+            {
+              "skill_id": "path:<worktrees>/s5/s5-V2-s4-t253-r3/.claude/skills/sqlmodel",
+              "grade": null,
+              "status": "UNGRADED"
+            },
+            {
+              "skill_id": "uasl/schema@e6f260ce62e0",
+              "grade": null,
+              "status": "UNGRADED"
+            }
+          ],
+          "loaded": true,
+          "related": 0,
+          "nonrelated": 0,
+          "ungraded": 2,
+          "oracle_relevant_count": 4,
+          "oracle_none": false
+        }
+      ]
+    },
+    {
+      "task_id": "s4-t182",
+      "repo": "fastapi",
+      "prompt_characters": 294,
+      "prompt_sha256": "b3aecf5336fea0a9f7b6547e7c10d4118ccf59881befae1b808e2ea48d3fb090",
+      "at_least_800_characters": false,
+      "fourth_query_exact": true,
+      "query_checks": [
+        {
+          "call_id": "exec-2d2ab2a1-0159-495b-a8d5-25e7c17f8090",
+          "event_sequence": 104,
+          "query_count": 4,
+          "matches": true
+        },
+        {
+          "call_id": "exec-2d2ab2a1-0159-495b-a8d5-25e7c17f8090",
+          "event_sequence": 106,
+          "query_count": 4,
+          "matches": true
+        }
+      ],
+      "oracle_relevant_count": 1,
+      "oracle_expect_none": false,
+      "codex": {
+        "task_id": "s4-t182",
+        "log_file": "<e2e>/codex-e2e-runs/20261024-subscription-mcp-approved-14d2020/tasks/s4-t182/transcript.jsonl",
+        "loaded_skill_ids": [
+          "uasl/stream@94a72913c590"
+        ],
+        "items": [
+          {
+            "skill_id": "uasl/stream@94a72913c590",
+            "grade": 1,
+            "status": "NONRELEVANT"
+          }
+        ],
+        "loaded": true,
+        "related": 0,
+        "nonrelated": 1,
+        "ungraded": 0,
+        "oracle_relevant_count": 1,
+        "oracle_none": false
+      },
+      "claude": [
+        {
+          "task_id": "s4-t182",
+          "tag": "r1",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t182-r1.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t182-r1.meta.json",
+          "result_status": "success",
+          "loaded_skill_ids": [
+            "uasl/python-error-handling@8dc34883a143"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/python-error-handling@8dc34883a143",
+              "grade": 1,
+              "status": "NONRELEVANT"
+            }
+          ],
+          "loaded": true,
+          "related": 0,
+          "nonrelated": 1,
+          "ungraded": 0,
+          "oracle_relevant_count": 1,
+          "oracle_none": false
+        },
+        {
+          "task_id": "s4-t182",
+          "tag": "r2",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t182-r2.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t182-r2.meta.json",
+          "result_status": "success",
+          "loaded_skill_ids": [],
+          "items": [],
+          "loaded": false,
+          "related": 0,
+          "nonrelated": 0,
+          "ungraded": 0,
+          "oracle_relevant_count": 1,
+          "oracle_none": false
+        },
+        {
+          "task_id": "s4-t182",
+          "tag": "r3",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t182-r3.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t182-r3.meta.json",
+          "result_status": "success",
+          "loaded_skill_ids": [
+            "path:<worktrees>/s5/s5-V2-s4-t182-r3/.venv/lib/python3.14/site-packages/sqlmodel/.agents/skills/sqlmodel"
+          ],
+          "items": [
+            {
+              "skill_id": "path:<worktrees>/s5/s5-V2-s4-t182-r3/.venv/lib/python3.14/site-packages/sqlmodel/.agents/skills/sqlmodel",
+              "grade": null,
+              "status": "UNGRADED"
+            }
+          ],
+          "loaded": true,
+          "related": 0,
+          "nonrelated": 0,
+          "ungraded": 1,
+          "oracle_relevant_count": 1,
+          "oracle_none": false
+        }
+      ]
+    },
+    {
+      "task_id": "s4-t203",
+      "repo": "fastapi",
+      "prompt_characters": 271,
+      "prompt_sha256": "1091e4647a39ae38db77db95002edd50ad574c79df1ee8145a0dfb53da784b3d",
+      "at_least_800_characters": false,
+      "fourth_query_exact": true,
+      "query_checks": [
+        {
+          "call_id": "exec-61efdf3d-74e3-49b3-bbed-f5c3846664d2",
+          "event_sequence": 94,
+          "query_count": 4,
+          "matches": true
+        },
+        {
+          "call_id": "exec-61efdf3d-74e3-49b3-bbed-f5c3846664d2",
+          "event_sequence": 95,
+          "query_count": 4,
+          "matches": true
+        }
+      ],
+      "oracle_relevant_count": 2,
+      "oracle_expect_none": false,
+      "codex": {
+        "task_id": "s4-t203",
+        "log_file": "<e2e>/codex-e2e-runs/20261024-subscription-mcp-approved-14d2020/tasks/s4-t203/transcript.jsonl",
+        "loaded_skill_ids": [
+          "uasl/data-analyst-engine@79799e01e2dd"
+        ],
+        "items": [
+          {
+            "skill_id": "uasl/data-analyst-engine@79799e01e2dd",
+            "grade": 2,
+            "status": "RELEVANT"
+          }
+        ],
+        "loaded": true,
+        "related": 1,
+        "nonrelated": 0,
+        "ungraded": 0,
+        "oracle_relevant_count": 2,
+        "oracle_none": false
+      },
+      "claude": [
+        {
+          "task_id": "s4-t203",
+          "tag": "r1",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t203-r1.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t203-r1.meta.json",
+          "result_status": "error_max_turns",
+          "loaded_skill_ids": [
+            "uasl/data-analyst-engine@79799e01e2dd"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/data-analyst-engine@79799e01e2dd",
+              "grade": 2,
+              "status": "RELEVANT"
+            }
+          ],
+          "loaded": true,
+          "related": 1,
+          "nonrelated": 0,
+          "ungraded": 0,
+          "oracle_relevant_count": 2,
+          "oracle_none": false
+        },
+        {
+          "task_id": "s4-t203",
+          "tag": "r2",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t203-r2.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t203-r2.meta.json",
+          "result_status": "error_max_turns",
+          "loaded_skill_ids": [
+            "uasl/data-analyst-engine@79799e01e2dd"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/data-analyst-engine@79799e01e2dd",
+              "grade": 2,
+              "status": "RELEVANT"
+            }
+          ],
+          "loaded": true,
+          "related": 1,
+          "nonrelated": 0,
+          "ungraded": 0,
+          "oracle_relevant_count": 2,
+          "oracle_none": false
+        },
+        {
+          "task_id": "s4-t203",
+          "tag": "r3",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t203-r3.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t203-r3.meta.json",
+          "result_status": "error_max_turns",
+          "loaded_skill_ids": [
+            "uasl/data-analyst-engine@79799e01e2dd"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/data-analyst-engine@79799e01e2dd",
+              "grade": 2,
+              "status": "RELEVANT"
+            }
+          ],
+          "loaded": true,
+          "related": 1,
+          "nonrelated": 0,
+          "ungraded": 0,
+          "oracle_relevant_count": 2,
+          "oracle_none": false
+        }
+      ]
+    },
+    {
+      "task_id": "s4-t055",
+      "repo": "fastapi",
+      "prompt_characters": 103,
+      "prompt_sha256": "473ee025595407a57fc4a4e19870cbac7265a4f157cb462f1911c5331d45609b",
+      "at_least_800_characters": false,
+      "fourth_query_exact": true,
+      "query_checks": [
+        {
+          "call_id": "exec-09210c14-e20f-471a-b77f-c1892670a8fb",
+          "event_sequence": 77,
+          "query_count": 4,
+          "matches": true
+        },
+        {
+          "call_id": "exec-09210c14-e20f-471a-b77f-c1892670a8fb",
+          "event_sequence": 78,
+          "query_count": 4,
+          "matches": true
+        }
+      ],
+      "oracle_relevant_count": 3,
+      "oracle_expect_none": false,
+      "codex": {
+        "task_id": "s4-t055",
+        "log_file": "<e2e>/codex-e2e-runs/20261024-subscription-mcp-approved-14d2020/tasks/s4-t055/transcript.jsonl",
+        "loaded_skill_ids": [
+          "uasl/zen@f72229d0a781"
+        ],
+        "items": [
+          {
+            "skill_id": "uasl/zen@f72229d0a781",
+            "grade": 1,
+            "status": "NONRELEVANT"
+          }
+        ],
+        "loaded": true,
+        "related": 0,
+        "nonrelated": 1,
+        "ungraded": 0,
+        "oracle_relevant_count": 3,
+        "oracle_none": false
+      },
+      "claude": [
+        {
+          "task_id": "s4-t055",
+          "tag": "r1",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t055-r1.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t055-r1.meta.json",
+          "result_status": "success",
+          "loaded_skill_ids": [
+            "uasl/refactoring-patterns@7283bad3e86e"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/refactoring-patterns@7283bad3e86e",
+              "grade": 2,
+              "status": "RELEVANT"
+            }
+          ],
+          "loaded": true,
+          "related": 1,
+          "nonrelated": 0,
+          "ungraded": 0,
+          "oracle_relevant_count": 3,
+          "oracle_none": false
+        },
+        {
+          "task_id": "s4-t055",
+          "tag": "r2",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t055-r2.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t055-r2.meta.json",
+          "result_status": "success",
+          "loaded_skill_ids": [
+            "uasl/refactoring-patterns@7283bad3e86e",
+            "uasl/verification-loop@39d9be23cf50"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/refactoring-patterns@7283bad3e86e",
+              "grade": 2,
+              "status": "RELEVANT"
+            },
+            {
+              "skill_id": "uasl/verification-loop@39d9be23cf50",
+              "grade": null,
+              "status": "UNGRADED"
+            }
+          ],
+          "loaded": true,
+          "related": 1,
+          "nonrelated": 0,
+          "ungraded": 1,
+          "oracle_relevant_count": 3,
+          "oracle_none": false
+        },
+        {
+          "task_id": "s4-t055",
+          "tag": "r3",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t055-r3.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t055-r3.meta.json",
+          "result_status": "success",
+          "loaded_skill_ids": [
+            "uasl/refactoring-patterns@7283bad3e86e",
+            "uasl/react-patterns@73d1ecc06997"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/refactoring-patterns@7283bad3e86e",
+              "grade": 2,
+              "status": "RELEVANT"
+            },
+            {
+              "skill_id": "uasl/react-patterns@73d1ecc06997",
+              "grade": null,
+              "status": "UNGRADED"
+            }
+          ],
+          "loaded": true,
+          "related": 1,
+          "nonrelated": 0,
+          "ungraded": 1,
+          "oracle_relevant_count": 3,
+          "oracle_none": false
+        }
+      ]
+    },
+    {
+      "task_id": "s4-t033",
+      "repo": "fastapi",
+      "prompt_characters": 942,
+      "prompt_sha256": "d2e6a47e0ce44499d29478d4f96dd375f0c0a47dedba354ce1c6dc33209c1ca4",
+      "at_least_800_characters": true,
+      "fourth_query_exact": true,
+      "query_checks": [
+        {
+          "call_id": "exec-aaf74601-1ca1-466f-ad11-2e1951b773c5",
+          "event_sequence": 81,
+          "query_count": 4,
+          "matches": true
+        },
+        {
+          "call_id": "exec-aaf74601-1ca1-466f-ad11-2e1951b773c5",
+          "event_sequence": 84,
+          "query_count": 4,
+          "matches": true
+        }
+      ],
+      "oracle_relevant_count": 0,
+      "oracle_expect_none": false,
+      "codex": {
+        "task_id": "s4-t033",
+        "log_file": "<e2e>/codex-e2e-runs/20261024-subscription-mcp-approved-14d2020/tasks/s4-t033/transcript.jsonl",
+        "loaded_skill_ids": [
+          "uasl/debug-root-cause@1d7ea4a832dc"
+        ],
+        "items": [
+          {
+            "skill_id": "uasl/debug-root-cause@1d7ea4a832dc",
+            "grade": null,
+            "status": "UNGRADED"
+          }
+        ],
+        "loaded": true,
+        "related": 0,
+        "nonrelated": 0,
+        "ungraded": 1,
+        "oracle_relevant_count": 0,
+        "oracle_none": true
+      },
+      "claude": [
+        {
+          "task_id": "s4-t033",
+          "tag": "r1",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t033-r1.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t033-r1.meta.json",
+          "result_status": "success",
+          "loaded_skill_ids": [
+            "uasl/debug-root-cause@1d7ea4a832dc",
+            "uasl/coding-guidelines@0ec7e45f92f2",
+            "uasl/verification-loop@39d9be23cf50"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/debug-root-cause@1d7ea4a832dc",
+              "grade": null,
+              "status": "UNGRADED"
+            },
+            {
+              "skill_id": "uasl/coding-guidelines@0ec7e45f92f2",
+              "grade": null,
+              "status": "UNGRADED"
+            },
+            {
+              "skill_id": "uasl/verification-loop@39d9be23cf50",
+              "grade": 1,
+              "status": "NONRELEVANT"
+            }
+          ],
+          "loaded": true,
+          "related": 0,
+          "nonrelated": 1,
+          "ungraded": 2,
+          "oracle_relevant_count": 0,
+          "oracle_none": true
+        },
+        {
+          "task_id": "s4-t033",
+          "tag": "r2",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t033-r2.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t033-r2.meta.json",
+          "result_status": "success",
+          "loaded_skill_ids": [
+            "uasl/verification-loop@39d9be23cf50"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/verification-loop@39d9be23cf50",
+              "grade": 1,
+              "status": "NONRELEVANT"
+            }
+          ],
+          "loaded": true,
+          "related": 0,
+          "nonrelated": 1,
+          "ungraded": 0,
+          "oracle_relevant_count": 0,
+          "oracle_none": true
+        },
+        {
+          "task_id": "s4-t033",
+          "tag": "r3",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t033-r3.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t033-r3.meta.json",
+          "result_status": "success",
+          "loaded_skill_ids": [
+            "uasl/debug-root-cause@1d7ea4a832dc",
+            "uasl/coding-guidelines@0ec7e45f92f2"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/debug-root-cause@1d7ea4a832dc",
+              "grade": null,
+              "status": "UNGRADED"
+            },
+            {
+              "skill_id": "uasl/coding-guidelines@0ec7e45f92f2",
+              "grade": null,
+              "status": "UNGRADED"
+            }
+          ],
+          "loaded": true,
+          "related": 0,
+          "nonrelated": 0,
+          "ungraded": 2,
+          "oracle_relevant_count": 0,
+          "oracle_none": true
+        }
+      ]
+    },
+    {
+      "task_id": "s4-t130",
+      "repo": "nextjs",
+      "prompt_characters": 104,
+      "prompt_sha256": "ab956665f9ee7a2223f7525d0fcbbfa2ec7c3f1f1c306b7a600a54275791f2fd",
+      "at_least_800_characters": false,
+      "fourth_query_exact": true,
+      "query_checks": [
+        {
+          "call_id": "exec-bef6e578-a014-44ae-bd14-7811f7d5a029",
+          "event_sequence": 75,
+          "query_count": 4,
+          "matches": true
+        },
+        {
+          "call_id": "exec-bef6e578-a014-44ae-bd14-7811f7d5a029",
+          "event_sequence": 76,
+          "query_count": 4,
+          "matches": true
+        }
+      ],
+      "oracle_relevant_count": 2,
+      "oracle_expect_none": false,
+      "codex": {
+        "task_id": "s4-t130",
+        "log_file": "<e2e>/codex-e2e-runs/20261024-subscription-mcp-approved-14d2020/tasks/s4-t130/transcript.jsonl",
+        "loaded_skill_ids": [
+          "uasl/github-workflow-automation@519f4ba6e482"
+        ],
+        "items": [
+          {
+            "skill_id": "uasl/github-workflow-automation@519f4ba6e482",
+            "grade": 2,
+            "status": "RELEVANT"
+          }
+        ],
+        "loaded": true,
+        "related": 1,
+        "nonrelated": 0,
+        "ungraded": 0,
+        "oracle_relevant_count": 2,
+        "oracle_none": false
+      },
+      "claude": [
+        {
+          "task_id": "s4-t130",
+          "tag": "r1",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t130-r1.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t130-r1.meta.json",
+          "result_status": "success",
+          "loaded_skill_ids": [
+            "uasl/github-actions-templates@ce03df93ccdf"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/github-actions-templates@ce03df93ccdf",
+              "grade": 2,
+              "status": "RELEVANT"
+            }
+          ],
+          "loaded": true,
+          "related": 1,
+          "nonrelated": 0,
+          "ungraded": 0,
+          "oracle_relevant_count": 2,
+          "oracle_none": false
+        },
+        {
+          "task_id": "s4-t130",
+          "tag": "r2",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t130-r2.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t130-r2.meta.json",
+          "result_status": "success",
+          "loaded_skill_ids": [
+            "uasl/github-actions-templates@ce03df93ccdf"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/github-actions-templates@ce03df93ccdf",
+              "grade": 2,
+              "status": "RELEVANT"
+            }
+          ],
+          "loaded": true,
+          "related": 1,
+          "nonrelated": 0,
+          "ungraded": 0,
+          "oracle_relevant_count": 2,
+          "oracle_none": false
+        },
+        {
+          "task_id": "s4-t130",
+          "tag": "r3",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t130-r3.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t130-r3.meta.json",
+          "result_status": "success",
+          "loaded_skill_ids": [
+            "uasl/github-actions-templates@ce03df93ccdf"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/github-actions-templates@ce03df93ccdf",
+              "grade": 2,
+              "status": "RELEVANT"
+            }
+          ],
+          "loaded": true,
+          "related": 1,
+          "nonrelated": 0,
+          "ungraded": 0,
+          "oracle_relevant_count": 2,
+          "oracle_none": false
+        }
+      ]
+    },
+    {
+      "task_id": "s4-t177",
+      "repo": "fastapi",
+      "prompt_characters": 1351,
+      "prompt_sha256": "d2be0274f81246cd4c168a92e5b6e5c2da2fdd91cd73e1855d1f894ce1691a2a",
+      "at_least_800_characters": true,
+      "fourth_query_exact": true,
+      "query_checks": [
+        {
+          "call_id": "exec-d516b05f-a3d8-4411-903f-321befe94dbb",
+          "event_sequence": 73,
+          "query_count": 4,
+          "matches": true
+        },
+        {
+          "call_id": "exec-d516b05f-a3d8-4411-903f-321befe94dbb",
+          "event_sequence": 76,
+          "query_count": 4,
+          "matches": true
+        }
+      ],
+      "oracle_relevant_count": 1,
+      "oracle_expect_none": false,
+      "codex": {
+        "task_id": "s4-t177",
+        "log_file": "<e2e>/codex-e2e-runs/20261024-subscription-mcp-approved-14d2020/tasks/s4-t177/transcript.jsonl",
+        "loaded_skill_ids": [
+          "uasl/python-error-handling@8dc34883a143"
+        ],
+        "items": [
+          {
+            "skill_id": "uasl/python-error-handling@8dc34883a143",
+            "grade": null,
+            "status": "UNGRADED"
+          }
+        ],
+        "loaded": true,
+        "related": 0,
+        "nonrelated": 0,
+        "ungraded": 1,
+        "oracle_relevant_count": 1,
+        "oracle_none": false
+      },
+      "claude": [
+        {
+          "task_id": "s4-t177",
+          "tag": "r1",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t177-r1.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t177-r1.meta.json",
+          "result_status": "error_max_turns",
+          "loaded_skill_ids": [
+            "uasl/stream@94a72913c590",
+            "uasl/python-error-handling@8dc34883a143"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/stream@94a72913c590",
+              "grade": 2,
+              "status": "RELEVANT"
+            },
+            {
+              "skill_id": "uasl/python-error-handling@8dc34883a143",
+              "grade": null,
+              "status": "UNGRADED"
+            }
+          ],
+          "loaded": true,
+          "related": 1,
+          "nonrelated": 0,
+          "ungraded": 1,
+          "oracle_relevant_count": 1,
+          "oracle_none": false
+        },
+        {
+          "task_id": "s4-t177",
+          "tag": "r2",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t177-r2.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t177-r2.meta.json",
+          "result_status": "error_max_turns",
+          "loaded_skill_ids": [
+            "uasl/stream@94a72913c590",
+            "uasl/python-error-handling@8dc34883a143"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/stream@94a72913c590",
+              "grade": 2,
+              "status": "RELEVANT"
+            },
+            {
+              "skill_id": "uasl/python-error-handling@8dc34883a143",
+              "grade": null,
+              "status": "UNGRADED"
+            }
+          ],
+          "loaded": true,
+          "related": 1,
+          "nonrelated": 0,
+          "ungraded": 1,
+          "oracle_relevant_count": 1,
+          "oracle_none": false
+        },
+        {
+          "task_id": "s4-t177",
+          "tag": "r3",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t177-r3.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t177-r3.meta.json",
+          "result_status": "error_max_turns",
+          "loaded_skill_ids": [
+            "path:<worktrees>/s5/s5-V2-s4-t177-r3/.venv/lib/python3.14/site-packages/sqlmodel/.agents/skills/sqlmodel",
+            "uasl/python-error-handling@8dc34883a143",
+            "uasl/stream@94a72913c590"
+          ],
+          "items": [
+            {
+              "skill_id": "path:<worktrees>/s5/s5-V2-s4-t177-r3/.venv/lib/python3.14/site-packages/sqlmodel/.agents/skills/sqlmodel",
+              "grade": null,
+              "status": "UNGRADED"
+            },
+            {
+              "skill_id": "uasl/python-error-handling@8dc34883a143",
+              "grade": null,
+              "status": "UNGRADED"
+            },
+            {
+              "skill_id": "uasl/stream@94a72913c590",
+              "grade": 2,
+              "status": "RELEVANT"
+            }
+          ],
+          "loaded": true,
+          "related": 1,
+          "nonrelated": 0,
+          "ungraded": 2,
+          "oracle_relevant_count": 1,
+          "oracle_none": false
+        }
+      ]
+    },
+    {
+      "task_id": "s4-t229",
+      "repo": "fastapi",
+      "prompt_characters": 731,
+      "prompt_sha256": "2ecd08648d5974e17a868d4775b802f54b4507d659be16e606ca463650df3dea",
+      "at_least_800_characters": false,
+      "fourth_query_exact": true,
+      "query_checks": [
+        {
+          "call_id": "exec-a707384f-dcaa-47d8-9e43-76efb2f6302a",
+          "event_sequence": 70,
+          "query_count": 4,
+          "matches": true
+        },
+        {
+          "call_id": "exec-a707384f-dcaa-47d8-9e43-76efb2f6302a",
+          "event_sequence": 73,
+          "query_count": 4,
+          "matches": true
+        }
+      ],
+      "oracle_relevant_count": 2,
+      "oracle_expect_none": false,
+      "codex": {
+        "task_id": "s4-t229",
+        "log_file": "<e2e>/codex-e2e-runs/20261024-subscription-mcp-approved-14d2020/tasks/s4-t229/transcript.jsonl",
+        "loaded_skill_ids": [
+          "uasl/auth-implementation-patterns@7a99b395d548"
+        ],
+        "items": [
+          {
+            "skill_id": "uasl/auth-implementation-patterns@7a99b395d548",
+            "grade": 2,
+            "status": "RELEVANT"
+          }
+        ],
+        "loaded": true,
+        "related": 1,
+        "nonrelated": 0,
+        "ungraded": 0,
+        "oracle_relevant_count": 2,
+        "oracle_none": false
+      },
+      "claude": [
+        {
+          "task_id": "s4-t229",
+          "tag": "r1",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t229-r1.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t229-r1.meta.json",
+          "result_status": "success",
+          "loaded_skill_ids": [
+            "uasl/auth-implementation-patterns@7a99b395d548",
+            "uasl/verification-loop@39d9be23cf50"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/auth-implementation-patterns@7a99b395d548",
+              "grade": 2,
+              "status": "RELEVANT"
+            },
+            {
+              "skill_id": "uasl/verification-loop@39d9be23cf50",
+              "grade": 1,
+              "status": "NONRELEVANT"
+            }
+          ],
+          "loaded": true,
+          "related": 1,
+          "nonrelated": 1,
+          "ungraded": 0,
+          "oracle_relevant_count": 2,
+          "oracle_none": false
+        },
+        {
+          "task_id": "s4-t229",
+          "tag": "r2",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t229-r2.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t229-r2.meta.json",
+          "result_status": "success",
+          "loaded_skill_ids": [
+            "uasl/auth-implementation-patterns@7a99b395d548",
+            "uasl/verification-loop@39d9be23cf50"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/auth-implementation-patterns@7a99b395d548",
+              "grade": 2,
+              "status": "RELEVANT"
+            },
+            {
+              "skill_id": "uasl/verification-loop@39d9be23cf50",
+              "grade": 1,
+              "status": "NONRELEVANT"
+            }
+          ],
+          "loaded": true,
+          "related": 1,
+          "nonrelated": 1,
+          "ungraded": 0,
+          "oracle_relevant_count": 2,
+          "oracle_none": false
+        },
+        {
+          "task_id": "s4-t229",
+          "tag": "r3",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t229-r3.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t229-r3.meta.json",
+          "result_status": "success",
+          "loaded_skill_ids": [
+            "uasl/auth-implementation-patterns@7a99b395d548",
+            "uasl/verification-loop@39d9be23cf50"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/auth-implementation-patterns@7a99b395d548",
+              "grade": 2,
+              "status": "RELEVANT"
+            },
+            {
+              "skill_id": "uasl/verification-loop@39d9be23cf50",
+              "grade": 1,
+              "status": "NONRELEVANT"
+            }
+          ],
+          "loaded": true,
+          "related": 1,
+          "nonrelated": 1,
+          "ungraded": 0,
+          "oracle_relevant_count": 2,
+          "oracle_none": false
+        }
+      ]
+    },
+    {
+      "task_id": "s4-t026",
+      "repo": "fastapi",
+      "prompt_characters": 823,
+      "prompt_sha256": "654dc0d4a5ab29d7be7b7c982afe0259e7c396a4fae70a796a6aadc9b3a3d485",
+      "at_least_800_characters": true,
+      "fourth_query_exact": true,
+      "query_checks": [
+        {
+          "call_id": "exec-7800a623-d143-4d28-84c0-a8ca416ffb2a",
+          "event_sequence": 77,
+          "query_count": 4,
+          "matches": true
+        },
+        {
+          "call_id": "exec-7800a623-d143-4d28-84c0-a8ca416ffb2a",
+          "event_sequence": 80,
+          "query_count": 4,
+          "matches": true
+        }
+      ],
+      "oracle_relevant_count": 1,
+      "oracle_expect_none": false,
+      "codex": {
+        "task_id": "s4-t026",
+        "log_file": "<e2e>/codex-e2e-runs/20261024-subscription-mcp-approved-14d2020/tasks/s4-t026/transcript.jsonl",
+        "loaded_skill_ids": [
+          "uasl/vercel-react-best-practices@70f3b5aaf775"
+        ],
+        "items": [
+          {
+            "skill_id": "uasl/vercel-react-best-practices@70f3b5aaf775",
+            "grade": 1,
+            "status": "NONRELEVANT"
+          }
+        ],
+        "loaded": true,
+        "related": 0,
+        "nonrelated": 1,
+        "ungraded": 0,
+        "oracle_relevant_count": 1,
+        "oracle_none": false
+      },
+      "claude": [
+        {
+          "task_id": "s4-t026",
+          "tag": "r1",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t026-r1.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t026-r1.meta.json",
+          "result_status": "error_max_turns",
+          "loaded_skill_ids": [
+            "uasl/debug-root-cause@1d7ea4a832dc",
+            "uasl/verification-loop@39d9be23cf50"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/debug-root-cause@1d7ea4a832dc",
+              "grade": null,
+              "status": "UNGRADED"
+            },
+            {
+              "skill_id": "uasl/verification-loop@39d9be23cf50",
+              "grade": null,
+              "status": "UNGRADED"
+            }
+          ],
+          "loaded": true,
+          "related": 0,
+          "nonrelated": 0,
+          "ungraded": 2,
+          "oracle_relevant_count": 1,
+          "oracle_none": false
+        },
+        {
+          "task_id": "s4-t026",
+          "tag": "r2",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t026-r2.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t026-r2.meta.json",
+          "result_status": "error_max_turns",
+          "loaded_skill_ids": [
+            "uasl/debug-root-cause@1d7ea4a832dc",
+            "uasl/vercel-react-best-practices@70f3b5aaf775"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/debug-root-cause@1d7ea4a832dc",
+              "grade": null,
+              "status": "UNGRADED"
+            },
+            {
+              "skill_id": "uasl/vercel-react-best-practices@70f3b5aaf775",
+              "grade": 1,
+              "status": "NONRELEVANT"
+            }
+          ],
+          "loaded": true,
+          "related": 0,
+          "nonrelated": 1,
+          "ungraded": 1,
+          "oracle_relevant_count": 1,
+          "oracle_none": false
+        },
+        {
+          "task_id": "s4-t026",
+          "tag": "r3",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t026-r3.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t026-r3.meta.json",
+          "result_status": "error_max_turns",
+          "loaded_skill_ids": [
+            "uasl/debug-root-cause@1d7ea4a832dc",
+            "uasl/verification-loop@39d9be23cf50"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/debug-root-cause@1d7ea4a832dc",
+              "grade": null,
+              "status": "UNGRADED"
+            },
+            {
+              "skill_id": "uasl/verification-loop@39d9be23cf50",
+              "grade": null,
+              "status": "UNGRADED"
+            }
+          ],
+          "loaded": true,
+          "related": 0,
+          "nonrelated": 0,
+          "ungraded": 2,
+          "oracle_relevant_count": 1,
+          "oracle_none": false
+        }
+      ]
+    },
+    {
+      "task_id": "s4-t224",
+      "repo": "nextjs",
+      "prompt_characters": 273,
+      "prompt_sha256": "7db7bd27f00c0b0481b1870888b9f4a00218e139a476ca719def71e874cd228f",
+      "at_least_800_characters": false,
+      "fourth_query_exact": true,
+      "query_checks": [
+        {
+          "call_id": "exec-2056477a-82d3-48dc-9896-5cd93d85099b",
+          "event_sequence": 89,
+          "query_count": 4,
+          "matches": true
+        },
+        {
+          "call_id": "exec-2056477a-82d3-48dc-9896-5cd93d85099b",
+          "event_sequence": 90,
+          "query_count": 4,
+          "matches": true
+        }
+      ],
+      "oracle_relevant_count": 2,
+      "oracle_expect_none": false,
+      "codex": {
+        "task_id": "s4-t224",
+        "log_file": "<e2e>/codex-e2e-runs/20261024-subscription-mcp-approved-14d2020/tasks/s4-t224/transcript.jsonl",
+        "loaded_skill_ids": [
+          "uasl/radar@a47ea6fd5f95"
+        ],
+        "items": [
+          {
+            "skill_id": "uasl/radar@a47ea6fd5f95",
+            "grade": 1,
+            "status": "NONRELEVANT"
+          }
+        ],
+        "loaded": true,
+        "related": 0,
+        "nonrelated": 1,
+        "ungraded": 0,
+        "oracle_relevant_count": 2,
+        "oracle_none": false
+      },
+      "claude": [
+        {
+          "task_id": "s4-t224",
+          "tag": "r1",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t224-r1.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t224-r1.meta.json",
+          "result_status": "success",
+          "loaded_skill_ids": [
+            "uasl/documentation-lookup@dee6d7478eab"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/documentation-lookup@dee6d7478eab",
+              "grade": null,
+              "status": "UNGRADED"
+            }
+          ],
+          "loaded": true,
+          "related": 0,
+          "nonrelated": 0,
+          "ungraded": 1,
+          "oracle_relevant_count": 2,
+          "oracle_none": false
+        },
+        {
+          "task_id": "s4-t224",
+          "tag": "r2",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t224-r2.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t224-r2.meta.json",
+          "result_status": "success",
+          "loaded_skill_ids": [
+            "uasl/documentation-lookup@dee6d7478eab",
+            "uasl/next-best-practices@ee058f89acea"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/documentation-lookup@dee6d7478eab",
+              "grade": null,
+              "status": "UNGRADED"
+            },
+            {
+              "skill_id": "uasl/next-best-practices@ee058f89acea",
+              "grade": 2,
+              "status": "RELEVANT"
+            }
+          ],
+          "loaded": true,
+          "related": 1,
+          "nonrelated": 0,
+          "ungraded": 1,
+          "oracle_relevant_count": 2,
+          "oracle_none": false
+        },
+        {
+          "task_id": "s4-t224",
+          "tag": "r3",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t224-r3.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t224-r3.meta.json",
+          "result_status": "success",
+          "loaded_skill_ids": [
+            "uasl/documentation-lookup@dee6d7478eab"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/documentation-lookup@dee6d7478eab",
+              "grade": null,
+              "status": "UNGRADED"
+            }
+          ],
+          "loaded": true,
+          "related": 0,
+          "nonrelated": 0,
+          "ungraded": 1,
+          "oracle_relevant_count": 2,
+          "oracle_none": false
+        }
+      ]
+    },
+    {
+      "task_id": "s4-t211",
+      "repo": "fastapi",
+      "prompt_characters": 263,
+      "prompt_sha256": "c938cf8d7fead288a29450197aca2c068641a9ec3c7e6f9a251c73cae5da5850",
+      "at_least_800_characters": false,
+      "fourth_query_exact": true,
+      "query_checks": [
+        {
+          "call_id": "exec-96f1d055-ecd1-413f-bc87-f35f86ad6645",
+          "event_sequence": 84,
+          "query_count": 4,
+          "matches": true
+        },
+        {
+          "call_id": "exec-96f1d055-ecd1-413f-bc87-f35f86ad6645",
+          "event_sequence": 85,
+          "query_count": 4,
+          "matches": true
+        }
+      ],
+      "oracle_relevant_count": 3,
+      "oracle_expect_none": false,
+      "codex": {
+        "task_id": "s4-t211",
+        "log_file": "<e2e>/codex-e2e-runs/20261024-subscription-mcp-approved-14d2020/tasks/s4-t211/transcript.jsonl",
+        "loaded_skill_ids": [
+          "uasl/software-architecture@011a6d823631"
+        ],
+        "items": [
+          {
+            "skill_id": "uasl/software-architecture@011a6d823631",
+            "grade": null,
+            "status": "UNGRADED"
+          }
+        ],
+        "loaded": true,
+        "related": 0,
+        "nonrelated": 0,
+        "ungraded": 1,
+        "oracle_relevant_count": 3,
+        "oracle_none": false
+      },
+      "claude": [
+        {
+          "task_id": "s4-t211",
+          "tag": "r1",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t211-r1.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t211-r1.meta.json",
+          "result_status": "success",
+          "loaded_skill_ids": [
+            "uasl/coding-standards@f854e26a9529"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/coding-standards@f854e26a9529",
+              "grade": 1,
+              "status": "NONRELEVANT"
+            }
+          ],
+          "loaded": true,
+          "related": 0,
+          "nonrelated": 1,
+          "ungraded": 0,
+          "oracle_relevant_count": 3,
+          "oracle_none": false
+        },
+        {
+          "task_id": "s4-t211",
+          "tag": "r2",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t211-r2.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t211-r2.meta.json",
+          "result_status": "success",
+          "loaded_skill_ids": [
+            "uasl/fastapi-templates@effcd0de0b4c"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/fastapi-templates@effcd0de0b4c",
+              "grade": 2,
+              "status": "RELEVANT"
+            }
+          ],
+          "loaded": true,
+          "related": 1,
+          "nonrelated": 0,
+          "ungraded": 0,
+          "oracle_relevant_count": 3,
+          "oracle_none": false
+        },
+        {
+          "task_id": "s4-t211",
+          "tag": "r3",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t211-r3.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t211-r3.meta.json",
+          "result_status": "success",
+          "loaded_skill_ids": [
+            "uasl/error-handling-patterns@4c19ee7d7821"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/error-handling-patterns@4c19ee7d7821",
+              "grade": 2,
+              "status": "RELEVANT"
+            }
+          ],
+          "loaded": true,
+          "related": 1,
+          "nonrelated": 0,
+          "ungraded": 0,
+          "oracle_relevant_count": 3,
+          "oracle_none": false
+        }
+      ]
+    },
+    {
+      "task_id": "s4-t354",
+      "repo": "fastapi",
+      "prompt_characters": 363,
+      "prompt_sha256": "18a56da306fec87f14d8dabb2148a0a61c523b909d087be83f1a22f65e5c2811",
+      "at_least_800_characters": false,
+      "fourth_query_exact": true,
+      "query_checks": [
+        {
+          "call_id": "exec-ea1b2fdd-b27d-46ee-bc33-22a1529f2fa1",
+          "event_sequence": 69,
+          "query_count": 4,
+          "matches": true
+        },
+        {
+          "call_id": "exec-ea1b2fdd-b27d-46ee-bc33-22a1529f2fa1",
+          "event_sequence": 72,
+          "query_count": 4,
+          "matches": true
+        }
+      ],
+      "oracle_relevant_count": 0,
+      "oracle_expect_none": false,
+      "codex": {
+        "task_id": "s4-t354",
+        "log_file": "<e2e>/codex-e2e-runs/20261024-subscription-mcp-approved-14d2020/tasks/s4-t354/transcript.jsonl",
+        "loaded_skill_ids": [
+          "uasl/verification-loop@39d9be23cf50"
+        ],
+        "items": [
+          {
+            "skill_id": "uasl/verification-loop@39d9be23cf50",
+            "grade": 1,
+            "status": "NONRELEVANT"
+          }
+        ],
+        "loaded": true,
+        "related": 0,
+        "nonrelated": 1,
+        "ungraded": 0,
+        "oracle_relevant_count": 0,
+        "oracle_none": true
+      },
+      "claude": [
+        {
+          "task_id": "s4-t354",
+          "tag": "r1",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t354-r1.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t354-r1.meta.json",
+          "result_status": "success",
+          "loaded_skill_ids": [
+            "uasl/verification-loop@39d9be23cf50"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/verification-loop@39d9be23cf50",
+              "grade": 1,
+              "status": "NONRELEVANT"
+            }
+          ],
+          "loaded": true,
+          "related": 0,
+          "nonrelated": 1,
+          "ungraded": 0,
+          "oracle_relevant_count": 0,
+          "oracle_none": true
+        },
+        {
+          "task_id": "s4-t354",
+          "tag": "r2",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t354-r2.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t354-r2.meta.json",
+          "result_status": "success",
+          "loaded_skill_ids": [
+            "uasl/verification-loop@39d9be23cf50"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/verification-loop@39d9be23cf50",
+              "grade": 1,
+              "status": "NONRELEVANT"
+            }
+          ],
+          "loaded": true,
+          "related": 0,
+          "nonrelated": 1,
+          "ungraded": 0,
+          "oracle_relevant_count": 0,
+          "oracle_none": true
+        },
+        {
+          "task_id": "s4-t354",
+          "tag": "r3",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t354-r3.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t354-r3.meta.json",
+          "result_status": "success",
+          "loaded_skill_ids": [
+            "uasl/verification-loop@39d9be23cf50"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/verification-loop@39d9be23cf50",
+              "grade": 1,
+              "status": "NONRELEVANT"
+            }
+          ],
+          "loaded": true,
+          "related": 0,
+          "nonrelated": 1,
+          "ungraded": 0,
+          "oracle_relevant_count": 0,
+          "oracle_none": true
+        }
+      ]
+    },
+    {
+      "task_id": "s4-t101",
+      "repo": "fastapi",
+      "prompt_characters": 333,
+      "prompt_sha256": "c92662a818efcad5ceb4f85bdcced45b056301e03a4163343b34ec5ae233e1e8",
+      "at_least_800_characters": false,
+      "fourth_query_exact": true,
+      "query_checks": [
+        {
+          "call_id": "exec-66c2675c-6018-417a-b9ad-f79081d214ef",
+          "event_sequence": 73,
+          "query_count": 4,
+          "matches": true
+        },
+        {
+          "call_id": "exec-66c2675c-6018-417a-b9ad-f79081d214ef",
+          "event_sequence": 75,
+          "query_count": 4,
+          "matches": true
+        }
+      ],
+      "oracle_relevant_count": 0,
+      "oracle_expect_none": false,
+      "codex": {
+        "task_id": "s4-t101",
+        "log_file": "<e2e>/codex-e2e-runs/20261024-subscription-mcp-approved-14d2020/tasks/s4-t101/transcript.jsonl",
+        "loaded_skill_ids": [
+          "uasl/quill@336ba74b0e79"
+        ],
+        "items": [
+          {
+            "skill_id": "uasl/quill@336ba74b0e79",
+            "grade": null,
+            "status": "UNGRADED"
+          }
+        ],
+        "loaded": true,
+        "related": 0,
+        "nonrelated": 0,
+        "ungraded": 1,
+        "oracle_relevant_count": 0,
+        "oracle_none": true
+      },
+      "claude": [
+        {
+          "task_id": "s4-t101",
+          "tag": "r1",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t101-r1.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t101-r1.meta.json",
+          "result_status": "error_max_turns",
+          "loaded_skill_ids": [
+            "uasl/quill@336ba74b0e79"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/quill@336ba74b0e79",
+              "grade": null,
+              "status": "UNGRADED"
+            }
+          ],
+          "loaded": true,
+          "related": 0,
+          "nonrelated": 0,
+          "ungraded": 1,
+          "oracle_relevant_count": 0,
+          "oracle_none": true
+        },
+        {
+          "task_id": "s4-t101",
+          "tag": "r2",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t101-r2.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t101-r2.meta.json",
+          "result_status": "success",
+          "loaded_skill_ids": [
+            "uasl/quill@336ba74b0e79"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/quill@336ba74b0e79",
+              "grade": null,
+              "status": "UNGRADED"
+            }
+          ],
+          "loaded": true,
+          "related": 0,
+          "nonrelated": 0,
+          "ungraded": 1,
+          "oracle_relevant_count": 0,
+          "oracle_none": true
+        },
+        {
+          "task_id": "s4-t101",
+          "tag": "r3",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t101-r3.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t101-r3.meta.json",
+          "result_status": "success",
+          "loaded_skill_ids": [
+            "uasl/quill@336ba74b0e79",
+            "uasl/verification-before-completion@134bf517af69"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/quill@336ba74b0e79",
+              "grade": null,
+              "status": "UNGRADED"
+            },
+            {
+              "skill_id": "uasl/verification-before-completion@134bf517af69",
+              "grade": null,
+              "status": "UNGRADED"
+            }
+          ],
+          "loaded": true,
+          "related": 0,
+          "nonrelated": 0,
+          "ungraded": 2,
+          "oracle_relevant_count": 0,
+          "oracle_none": true
+        }
+      ]
+    },
+    {
+      "task_id": "s4-t342",
+      "repo": "fastapi",
+      "prompt_characters": 463,
+      "prompt_sha256": "e9300525392d270ad1abbc6be0016238d5a4327c8184e27b77d5fc1b18534c98",
+      "at_least_800_characters": false,
+      "fourth_query_exact": true,
+      "query_checks": [
+        {
+          "call_id": "exec-bdbc4a96-1bf1-4082-ad27-d59a8541a827",
+          "event_sequence": 77,
+          "query_count": 4,
+          "matches": true
+        },
+        {
+          "call_id": "exec-bdbc4a96-1bf1-4082-ad27-d59a8541a827",
+          "event_sequence": 78,
+          "query_count": 4,
+          "matches": true
+        }
+      ],
+      "oracle_relevant_count": 0,
+      "oracle_expect_none": false,
+      "codex": {
+        "task_id": "s4-t342",
+        "log_file": "<e2e>/codex-e2e-runs/20261024-subscription-mcp-approved-14d2020/tasks/s4-t342/transcript.jsonl",
+        "loaded_skill_ids": [
+          "uasl/coding-standards@f854e26a9529"
+        ],
+        "items": [
+          {
+            "skill_id": "uasl/coding-standards@f854e26a9529",
+            "grade": null,
+            "status": "UNGRADED"
+          }
+        ],
+        "loaded": true,
+        "related": 0,
+        "nonrelated": 0,
+        "ungraded": 1,
+        "oracle_relevant_count": 0,
+        "oracle_none": true
+      },
+      "claude": [
+        {
+          "task_id": "s4-t342",
+          "tag": "r1",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t342-r1.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t342-r1.meta.json",
+          "result_status": "success",
+          "loaded_skill_ids": [
+            "uasl/verification-loop@39d9be23cf50",
+            "uasl/coding-standards@f854e26a9529"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/verification-loop@39d9be23cf50",
+              "grade": 1,
+              "status": "NONRELEVANT"
+            },
+            {
+              "skill_id": "uasl/coding-standards@f854e26a9529",
+              "grade": null,
+              "status": "UNGRADED"
+            }
+          ],
+          "loaded": true,
+          "related": 0,
+          "nonrelated": 1,
+          "ungraded": 1,
+          "oracle_relevant_count": 0,
+          "oracle_none": true
+        },
+        {
+          "task_id": "s4-t342",
+          "tag": "r2",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t342-r2.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t342-r2.meta.json",
+          "result_status": "success",
+          "loaded_skill_ids": [
+            "uasl/verification-loop@39d9be23cf50",
+            "uasl/coding-standards@f854e26a9529"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/verification-loop@39d9be23cf50",
+              "grade": 1,
+              "status": "NONRELEVANT"
+            },
+            {
+              "skill_id": "uasl/coding-standards@f854e26a9529",
+              "grade": null,
+              "status": "UNGRADED"
+            }
+          ],
+          "loaded": true,
+          "related": 0,
+          "nonrelated": 1,
+          "ungraded": 1,
+          "oracle_relevant_count": 0,
+          "oracle_none": true
+        },
+        {
+          "task_id": "s4-t342",
+          "tag": "r3",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t342-r3.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t342-r3.meta.json",
+          "result_status": "success",
+          "loaded_skill_ids": [
+            "uasl/verification-loop@39d9be23cf50",
+            "uasl/coding-standards@f854e26a9529"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/verification-loop@39d9be23cf50",
+              "grade": 1,
+              "status": "NONRELEVANT"
+            },
+            {
+              "skill_id": "uasl/coding-standards@f854e26a9529",
+              "grade": null,
+              "status": "UNGRADED"
+            }
+          ],
+          "loaded": true,
+          "related": 0,
+          "nonrelated": 1,
+          "ungraded": 1,
+          "oracle_relevant_count": 0,
+          "oracle_none": true
+        }
+      ]
+    },
+    {
+      "task_id": "s4-t280",
+      "repo": "fastapi",
+      "prompt_characters": 124,
+      "prompt_sha256": "389bd331e4db1dc83a610745529e0a044787ed1877e8ae26d6545b3b276863c3",
+      "at_least_800_characters": false,
+      "fourth_query_exact": true,
+      "query_checks": [
+        {
+          "call_id": "exec-16278445-4492-4a42-b306-9bcfee18ffb1",
+          "event_sequence": 78,
+          "query_count": 4,
+          "matches": true
+        },
+        {
+          "call_id": "exec-16278445-4492-4a42-b306-9bcfee18ffb1",
+          "event_sequence": 80,
+          "query_count": 4,
+          "matches": true
+        }
+      ],
+      "oracle_relevant_count": 1,
+      "oracle_expect_none": false,
+      "codex": {
+        "task_id": "s4-t280",
+        "log_file": "<e2e>/codex-e2e-runs/20261024-subscription-mcp-approved-14d2020/tasks/s4-t280/transcript.jsonl",
+        "loaded_skill_ids": [
+          "uasl/interaction-design@7c9d38549c2b"
+        ],
+        "items": [
+          {
+            "skill_id": "uasl/interaction-design@7c9d38549c2b",
+            "grade": null,
+            "status": "UNGRADED"
+          }
+        ],
+        "loaded": true,
+        "related": 0,
+        "nonrelated": 0,
+        "ungraded": 1,
+        "oracle_relevant_count": 1,
+        "oracle_none": false
+      },
+      "claude": [
+        {
+          "task_id": "s4-t280",
+          "tag": "r1",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t280-r1.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t280-r1.meta.json",
+          "result_status": "success",
+          "loaded_skill_ids": [
+            "uasl/react-patterns@73d1ecc06997",
+            "uasl/design-to-code@fae28f73cda0"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/react-patterns@73d1ecc06997",
+              "grade": 1,
+              "status": "NONRELEVANT"
+            },
+            {
+              "skill_id": "uasl/design-to-code@fae28f73cda0",
+              "grade": 1,
+              "status": "NONRELEVANT"
+            }
+          ],
+          "loaded": true,
+          "related": 0,
+          "nonrelated": 2,
+          "ungraded": 0,
+          "oracle_relevant_count": 1,
+          "oracle_none": false
+        },
+        {
+          "task_id": "s4-t280",
+          "tag": "r2",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t280-r2.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t280-r2.meta.json",
+          "result_status": "success",
+          "loaded_skill_ids": [
+            "uasl/artisan@1e09f38ffcab"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/artisan@1e09f38ffcab",
+              "grade": 2,
+              "status": "RELEVANT"
+            }
+          ],
+          "loaded": true,
+          "related": 1,
+          "nonrelated": 0,
+          "ungraded": 0,
+          "oracle_relevant_count": 1,
+          "oracle_none": false
+        },
+        {
+          "task_id": "s4-t280",
+          "tag": "r3",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t280-r3.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t280-r3.meta.json",
+          "result_status": "success",
+          "loaded_skill_ids": [
+            "uasl/design-to-code@fae28f73cda0",
+            "uasl/react-patterns@73d1ecc06997"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/design-to-code@fae28f73cda0",
+              "grade": 1,
+              "status": "NONRELEVANT"
+            },
+            {
+              "skill_id": "uasl/react-patterns@73d1ecc06997",
+              "grade": 1,
+              "status": "NONRELEVANT"
+            }
+          ],
+          "loaded": true,
+          "related": 0,
+          "nonrelated": 2,
+          "ungraded": 0,
+          "oracle_relevant_count": 1,
+          "oracle_none": false
+        }
+      ]
+    },
+    {
+      "task_id": "s4-t001",
+      "repo": "fastapi",
+      "prompt_characters": 97,
+      "prompt_sha256": "9231c83f5950060d40c1dc60239c3d1c82e9c97e13a4b60f8eceb201cf432d3f",
+      "at_least_800_characters": false,
+      "fourth_query_exact": true,
+      "query_checks": [
+        {
+          "call_id": "exec-ba005081-6d63-4758-aa9e-c6f8faac3e36",
+          "event_sequence": 76,
+          "query_count": 4,
+          "matches": true
+        },
+        {
+          "call_id": "exec-ba005081-6d63-4758-aa9e-c6f8faac3e36",
+          "event_sequence": 77,
+          "query_count": 4,
+          "matches": true
+        }
+      ],
+      "oracle_relevant_count": 1,
+      "oracle_expect_none": false,
+      "codex": {
+        "task_id": "s4-t001",
+        "log_file": "<e2e>/codex-e2e-runs/20261024-subscription-mcp-approved-14d2020/tasks/s4-t001/transcript.jsonl",
+        "loaded_skill_ids": [
+          "uasl/coding-standards@f854e26a9529"
+        ],
+        "items": [
+          {
+            "skill_id": "uasl/coding-standards@f854e26a9529",
+            "grade": 1,
+            "status": "NONRELEVANT"
+          }
+        ],
+        "loaded": true,
+        "related": 0,
+        "nonrelated": 1,
+        "ungraded": 0,
+        "oracle_relevant_count": 1,
+        "oracle_none": false
+      },
+      "claude": [
+        {
+          "task_id": "s4-t001",
+          "tag": "r1",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t001-r1.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t001-r1.meta.json",
+          "result_status": "success",
+          "loaded_skill_ids": [
+            "uasl/coding-standards@f854e26a9529"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/coding-standards@f854e26a9529",
+              "grade": 1,
+              "status": "NONRELEVANT"
+            }
+          ],
+          "loaded": true,
+          "related": 0,
+          "nonrelated": 1,
+          "ungraded": 0,
+          "oracle_relevant_count": 1,
+          "oracle_none": false
+        },
+        {
+          "task_id": "s4-t001",
+          "tag": "r2",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t001-r2.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t001-r2.meta.json",
+          "result_status": "success",
+          "loaded_skill_ids": [],
+          "items": [],
+          "loaded": false,
+          "related": 0,
+          "nonrelated": 0,
+          "ungraded": 0,
+          "oracle_relevant_count": 1,
+          "oracle_none": false
+        },
+        {
+          "task_id": "s4-t001",
+          "tag": "r3",
+          "log_file": "<e2e>/stage5/runs/V2/s4-t001-r3.jsonl",
+          "meta_file": "<e2e>/stage5/runs/V2/s4-t001-r3.meta.json",
+          "result_status": "success",
+          "loaded_skill_ids": [
+            "uasl/coding-standards@f854e26a9529",
+            "uasl/verification-loop@39d9be23cf50"
+          ],
+          "items": [
+            {
+              "skill_id": "uasl/coding-standards@f854e26a9529",
+              "grade": 1,
+              "status": "NONRELEVANT"
+            },
+            {
+              "skill_id": "uasl/verification-loop@39d9be23cf50",
+              "grade": null,
+              "status": "UNGRADED"
+            }
+          ],
+          "loaded": true,
+          "related": 0,
+          "nonrelated": 1,
+          "ungraded": 1,
+          "oracle_relevant_count": 1,
+          "oracle_none": false
+        }
+      ]
+    }
+  ],
+  "report_after_sha256": "a10b518824e5c0ef9ca9d40dabe3ba894e1cb1339e7c24bd259e9c8ebb6173cf",
+  "report_after_bytes": 52867
+}

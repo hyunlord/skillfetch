@@ -1,0 +1,1862 @@
+{
+  "schema_version": 1,
+  "audited_at": "2026-10-23T15:54:06.003Z",
+  "status": "FAIL",
+  "scope": "Run identity, isolation, exact-once submission and cleanup only; project output correctness is not evaluated.",
+  "run_directory": "<e2e>/codex-e2e-runs/20261024-subscription-mcp-approved-14d2020",
+  "baseline_run_directory": "<e2e>/codex-e2e-runs/20261023-subscription-14d2020",
+  "manifest_sha256": "1f0afb4465cb3a0805d3880102ec0142e4ac18681349250cb78b73ec837903d2",
+  "auditor_sha256": "80b50c667d7bf0a2e1e49af09eeba66c76661e69dddabc9793036905c4c33f03",
+  "checked": 343,
+  "passed": 324,
+  "failed": [
+    "s4-t027:config_copies_unchanged",
+    "s4-t176:config_copies_unchanged",
+    "s4-t153:config_copies_unchanged",
+    "s4-t253:config_copies_unchanged",
+    "s4-t182:config_copies_unchanged",
+    "s4-t203:config_copies_unchanged",
+    "s4-t055:config_copies_unchanged",
+    "s4-t033:config_copies_unchanged",
+    "s4-t130:config_copies_unchanged",
+    "s4-t177:config_copies_unchanged",
+    "s4-t229:config_copies_unchanged",
+    "s4-t026:config_copies_unchanged",
+    "s4-t224:config_copies_unchanged",
+    "s4-t211:config_copies_unchanged",
+    "s4-t354:config_copies_unchanged",
+    "s4-t101:config_copies_unchanged",
+    "s4-t342:config_copies_unchanged",
+    "s4-t280:config_copies_unchanged",
+    "s4-t001:config_copies_unchanged"
+  ],
+  "tasks": [
+    {
+      "id": "s4-t027",
+      "repo": "fastapi",
+      "thread_id": "01a1696d-2bac-7473-9efd-e72280ac37bb",
+      "turn_id": "01a1696d-304f-7433-8d6b-70b94543fe14",
+      "transcript_sha256": "568c7e39d842e5328328b25da452e52c5bd7b217d27edcd8051372ce80c89d73",
+      "observed_mcp_item_count": 4,
+      "turn_start_count": 1,
+      "status": "FAIL"
+    },
+    {
+      "id": "s4-t176",
+      "repo": "fastapi",
+      "thread_id": "01a1696d-2bac-7642-9511-5ee21ea76393",
+      "turn_id": "01a1696d-398a-78d1-a8a1-6337c58261d8",
+      "transcript_sha256": "481b41274c45c33316874db8e0ad919773a19df013aab8a713ae79b041bb884d",
+      "observed_mcp_item_count": 4,
+      "turn_start_count": 1,
+      "status": "FAIL"
+    },
+    {
+      "id": "s4-t153",
+      "repo": "fastapi",
+      "thread_id": "01a1696d-2c78-7920-b2fb-7ca17d1dbcf6",
+      "turn_id": "01a1696d-3a9c-7b20-a376-6754d7d58989",
+      "transcript_sha256": "1a5e728759ac23344bfc926ef672dfa6adfd1509716061533e4304fa476067c1",
+      "observed_mcp_item_count": 4,
+      "turn_start_count": 1,
+      "status": "FAIL"
+    },
+    {
+      "id": "s4-t253",
+      "repo": "fastapi",
+      "thread_id": "01a1696d-2d94-7f73-a69f-07b27cd8253e",
+      "turn_id": "01a1696d-3332-7ce2-b9d1-b2b04ef3acad",
+      "transcript_sha256": "4bb3bf7973903a4acb31cc4c641b59b6235eae29cdc876198de250da390e3c7d",
+      "observed_mcp_item_count": 4,
+      "turn_start_count": 1,
+      "status": "FAIL"
+    },
+    {
+      "id": "s4-t182",
+      "repo": "fastapi",
+      "thread_id": "01a1696f-44f2-7cb2-8090-d743463e65fc",
+      "turn_id": "01a1696f-4a23-7d60-a2d8-f3ecac37b9ce",
+      "transcript_sha256": "f93a4337703c635c1c4b99d16c5a5fe99b5f81f74b4d80b148ad77f4086748cb",
+      "observed_mcp_item_count": 4,
+      "turn_start_count": 1,
+      "status": "FAIL"
+    },
+    {
+      "id": "s4-t203",
+      "repo": "fastapi",
+      "thread_id": "01a1696f-6fc6-77b0-8140-e97ad4480287",
+      "turn_id": "01a1696f-7571-7c90-b53f-d35d213647ab",
+      "transcript_sha256": "19e5be8acbe4008eec40bb1705e8f6a4fdaad5d218509a0090c4450ed7a21e30",
+      "observed_mcp_item_count": 4,
+      "turn_start_count": 1,
+      "status": "FAIL"
+    },
+    {
+      "id": "s4-t055",
+      "repo": "fastapi",
+      "thread_id": "01a1696f-f96f-7de3-b878-382a497328b8",
+      "turn_id": "01a1696f-ff55-7e80-ac83-151d1b027a8f",
+      "transcript_sha256": "85cd69f2fc5c5f4d2006eb57a4959ec23578059294b501065891d7457e7cac50",
+      "observed_mcp_item_count": 4,
+      "turn_start_count": 1,
+      "status": "FAIL"
+    },
+    {
+      "id": "s4-t033",
+      "repo": "fastapi",
+      "thread_id": "01a16970-53f8-7570-bd0f-dbe525ee2e58",
+      "turn_id": "01a16970-590f-7920-965c-389ae560faf4",
+      "transcript_sha256": "680b83047959680151ca6a8ce57549a570dc348d5c289e8b0c77eee9d30854f5",
+      "observed_mcp_item_count": 4,
+      "turn_start_count": 1,
+      "status": "FAIL"
+    },
+    {
+      "id": "s4-t130",
+      "repo": "nextjs",
+      "thread_id": "01a16971-032a-7b90-9b6c-7b066cd24980",
+      "turn_id": "01a16971-0ff2-79a2-9944-142ca68def7c",
+      "transcript_sha256": "5ed184c5f35bb1d337aa976eb2b38383d38224a76a56770c27b44d3b75cb3ac7",
+      "observed_mcp_item_count": 4,
+      "turn_start_count": 1,
+      "status": "FAIL"
+    },
+    {
+      "id": "s4-t177",
+      "repo": "fastapi",
+      "thread_id": "01a16971-3edd-7d50-9f42-93f613d974b1",
+      "turn_id": "01a16971-42d2-7961-ae8d-784484986537",
+      "transcript_sha256": "0f67d10e57c74339c4782a0434633ffd7d9ab8caa52dd47f350cd64fbc8a7268",
+      "observed_mcp_item_count": 4,
+      "turn_start_count": 1,
+      "status": "FAIL"
+    },
+    {
+      "id": "s4-t229",
+      "repo": "fastapi",
+      "thread_id": "01a16972-08c4-75b1-a6f7-6e35ee0ab67f",
+      "turn_id": "01a16972-0c87-7423-a862-2d7695d2a545",
+      "transcript_sha256": "9ed7512897bc32fdbaefdcd930bf504c23e3c7b992d9e190c3c44c9233261e4b",
+      "observed_mcp_item_count": 4,
+      "turn_start_count": 1,
+      "status": "FAIL"
+    },
+    {
+      "id": "s4-t026",
+      "repo": "fastapi",
+      "thread_id": "01a16972-4a89-79e0-b9f2-40be37de4956",
+      "turn_id": "01a16972-4fd1-73a3-a1a9-05bd0efaa4dc",
+      "transcript_sha256": "65c5eac1332c693c7447884189d9ab407b41a1db60aab811bd1d0b5f7bc53463",
+      "observed_mcp_item_count": 4,
+      "turn_start_count": 1,
+      "status": "FAIL"
+    },
+    {
+      "id": "s4-t224",
+      "repo": "nextjs",
+      "thread_id": "01a16973-7658-73c3-ba95-bfe5b62872a8",
+      "turn_id": "01a16973-84aa-76b0-bd04-1f8e33efbf58",
+      "transcript_sha256": "07ffb517057bf910409a06cced26b9c0c0ef54c69fdb75a497624d499d02fbcc",
+      "observed_mcp_item_count": 4,
+      "turn_start_count": 1,
+      "status": "FAIL"
+    },
+    {
+      "id": "s4-t211",
+      "repo": "fastapi",
+      "thread_id": "01a16974-d813-76d0-a9f6-67e2066454d7",
+      "turn_id": "01a16974-de41-7cf1-b191-0142129608d3",
+      "transcript_sha256": "ef270dd010eefbd35ea41e036d041c3fef39460233fb23ce2032620a50ab75f2",
+      "observed_mcp_item_count": 4,
+      "turn_start_count": 1,
+      "status": "FAIL"
+    },
+    {
+      "id": "s4-t354",
+      "repo": "fastapi",
+      "thread_id": "01a16975-5521-7a40-86ca-e74cff33f57c",
+      "turn_id": "01a16975-5a65-7472-b89d-eb52856fdd81",
+      "transcript_sha256": "48b8f5daaff994df78dce272a4c7dbefae29aca0cfa445560744cbfd0feb09ee",
+      "observed_mcp_item_count": 4,
+      "turn_start_count": 1,
+      "status": "FAIL"
+    },
+    {
+      "id": "s4-t101",
+      "repo": "fastapi",
+      "thread_id": "01a16975-6026-7b90-887f-e190b9281c88",
+      "turn_id": "01a16975-6d1a-7121-bc2d-36c1c0e12673",
+      "transcript_sha256": "f6e8475ac5f6d67163aad032a1ed904ce1bf0fd48b7a5c1a6da3524460a0f4f5",
+      "observed_mcp_item_count": 4,
+      "turn_start_count": 1,
+      "status": "FAIL"
+    },
+    {
+      "id": "s4-t342",
+      "repo": "fastapi",
+      "thread_id": "01a16975-9010-7022-a732-e1f7176d911b",
+      "turn_id": "01a16975-950e-78a1-af68-63258bdbd253",
+      "transcript_sha256": "8a0f1244f2c435db9ff8f8d402ee92832170333c6e97d8ad730bcb2df91acf07",
+      "observed_mcp_item_count": 4,
+      "turn_start_count": 1,
+      "status": "FAIL"
+    },
+    {
+      "id": "s4-t280",
+      "repo": "fastapi",
+      "thread_id": "01a16976-9f53-78d0-a444-ce296a11200e",
+      "turn_id": "01a16976-a5f9-7e43-b874-b512c3ce3e83",
+      "transcript_sha256": "502ddd60a1ab680c30261d8dbedef5e2fda339f57e1e28a60402e05356032f00",
+      "observed_mcp_item_count": 4,
+      "turn_start_count": 1,
+      "status": "FAIL"
+    },
+    {
+      "id": "s4-t001",
+      "repo": "fastapi",
+      "thread_id": "01a16976-a0ca-7fb3-bb17-9bf0865b59a8",
+      "turn_id": "01a16976-b034-7160-8c23-3725a4a15600",
+      "transcript_sha256": "ec924831e085c0ad0493e20a17f0343fade38e618c358e87a2b5667d0d8d93a0",
+      "observed_mcp_item_count": 4,
+      "turn_start_count": 1,
+      "status": "FAIL"
+    }
+  ],
+  "checks": [
+    {
+      "name": "nineteen_unique_exact_inputs",
+      "status": "PASS",
+      "count": 19
+    },
+    {
+      "name": "manifest_task_identities",
+      "status": "PASS"
+    },
+    {
+      "name": "unchanged_tasks.jsonl",
+      "status": "PASS",
+      "sha256": "d8822df5b8afeb587fc209218ca3f81fbe9ec3153acb66348c3f6a132306e572"
+    },
+    {
+      "name": "unchanged_AGENTS.input.md",
+      "status": "PASS",
+      "sha256": "dca56403ca97103358387ce4683272b836710df86adcf366fe7aead40417bf59"
+    },
+    {
+      "name": "unchanged_cloud-skills.input.json",
+      "status": "PASS",
+      "sha256": "bc7b79e1b6590794a9a245ae3d8038685bad313692cbac7cbd68697c6e0d4cd4"
+    },
+    {
+      "name": "current_stage5_tasks_unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "source_preflight_unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "source_hashes",
+      "status": "PASS",
+      "checked_files": 238,
+      "mismatches": []
+    },
+    {
+      "name": "index_hashes",
+      "status": "PASS",
+      "checked_files": 6,
+      "mismatches": []
+    },
+    {
+      "name": "only_skillfetch_approval_config_changed",
+      "status": "PASS",
+      "old_sha256": "a730b036b1467e899c3402226121f3ef02c7fcbc6403851efb88c3f64a6af869",
+      "new_sha256": "69fb11307213035fce1442078304ff1891a1b4b22e5254a75d9387884bb590e1"
+    },
+    {
+      "name": "cloud_skills_empty",
+      "status": "PASS"
+    },
+    {
+      "name": "run_controls_unchanged",
+      "status": "PASS",
+      "concurrency": 4,
+      "timeout_seconds": 2700
+    },
+    {
+      "name": "requested_identity",
+      "status": "PASS"
+    },
+    {
+      "name": "cli_version_unchanged",
+      "status": "PASS",
+      "cli_version": "codex-cli 0.164.0"
+    },
+    {
+      "name": "fastapi_s5_unchanged",
+      "status": "PASS",
+      "commit": "2b38acb4586092ef0318bc6a8ab36436ba8fc09a"
+    },
+    {
+      "name": "nextjs_s5_unchanged",
+      "status": "PASS",
+      "commit": "2a1df71575f0c45a0f7a999bf77f4286d81e8706"
+    },
+    {
+      "name": "s4-t027:manifest_matches_task",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t027:transcript_order",
+      "status": "PASS",
+      "event_count": 522
+    },
+    {
+      "name": "s4-t027:single_exact_submission",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t027:single_fresh_thread",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t027:thread_policy_requested",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t027:thread_policy_effective",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t027:actual_model_auth",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t027:login_subscription_no_api_environment",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t027:isolated_launch",
+      "status": "PASS",
+      "env_keys": [
+        "CODEX_HOME",
+        "HOME",
+        "LANG",
+        "LC_ALL",
+        "PATH",
+        "TERM",
+        "TMPDIR"
+      ]
+    },
+    {
+      "name": "s4-t027:config_copies_unchanged",
+      "status": "FAIL"
+    },
+    {
+      "name": "s4-t027:runtime_mcp_approve",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t027:only_skillfetch_mcp",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t027:no_interactive_approval",
+      "status": "PASS",
+      "interactive_request_count": 0,
+      "unexpected_controller_methods": []
+    },
+    {
+      "name": "s4-t027:turn_lifecycle_complete",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t027:saved_responses_match_transcript",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t027:process_exit_recorded",
+      "status": "PASS",
+      "exit_event_count": 1
+    },
+    {
+      "name": "s4-t027:cleanup_complete",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t176:manifest_matches_task",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t176:transcript_order",
+      "status": "PASS",
+      "event_count": 531
+    },
+    {
+      "name": "s4-t176:single_exact_submission",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t176:single_fresh_thread",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t176:thread_policy_requested",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t176:thread_policy_effective",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t176:actual_model_auth",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t176:login_subscription_no_api_environment",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t176:isolated_launch",
+      "status": "PASS",
+      "env_keys": [
+        "CODEX_HOME",
+        "HOME",
+        "LANG",
+        "LC_ALL",
+        "PATH",
+        "TERM",
+        "TMPDIR"
+      ]
+    },
+    {
+      "name": "s4-t176:config_copies_unchanged",
+      "status": "FAIL"
+    },
+    {
+      "name": "s4-t176:runtime_mcp_approve",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t176:only_skillfetch_mcp",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t176:no_interactive_approval",
+      "status": "PASS",
+      "interactive_request_count": 0,
+      "unexpected_controller_methods": []
+    },
+    {
+      "name": "s4-t176:turn_lifecycle_complete",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t176:saved_responses_match_transcript",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t176:process_exit_recorded",
+      "status": "PASS",
+      "exit_event_count": 1
+    },
+    {
+      "name": "s4-t176:cleanup_complete",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t153:manifest_matches_task",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t153:transcript_order",
+      "status": "PASS",
+      "event_count": 459
+    },
+    {
+      "name": "s4-t153:single_exact_submission",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t153:single_fresh_thread",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t153:thread_policy_requested",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t153:thread_policy_effective",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t153:actual_model_auth",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t153:login_subscription_no_api_environment",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t153:isolated_launch",
+      "status": "PASS",
+      "env_keys": [
+        "CODEX_HOME",
+        "HOME",
+        "LANG",
+        "LC_ALL",
+        "PATH",
+        "TERM",
+        "TMPDIR"
+      ]
+    },
+    {
+      "name": "s4-t153:config_copies_unchanged",
+      "status": "FAIL"
+    },
+    {
+      "name": "s4-t153:runtime_mcp_approve",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t153:only_skillfetch_mcp",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t153:no_interactive_approval",
+      "status": "PASS",
+      "interactive_request_count": 0,
+      "unexpected_controller_methods": []
+    },
+    {
+      "name": "s4-t153:turn_lifecycle_complete",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t153:saved_responses_match_transcript",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t153:process_exit_recorded",
+      "status": "PASS",
+      "exit_event_count": 1
+    },
+    {
+      "name": "s4-t153:cleanup_complete",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t253:manifest_matches_task",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t253:transcript_order",
+      "status": "PASS",
+      "event_count": 584
+    },
+    {
+      "name": "s4-t253:single_exact_submission",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t253:single_fresh_thread",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t253:thread_policy_requested",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t253:thread_policy_effective",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t253:actual_model_auth",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t253:login_subscription_no_api_environment",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t253:isolated_launch",
+      "status": "PASS",
+      "env_keys": [
+        "CODEX_HOME",
+        "HOME",
+        "LANG",
+        "LC_ALL",
+        "PATH",
+        "TERM",
+        "TMPDIR"
+      ]
+    },
+    {
+      "name": "s4-t253:config_copies_unchanged",
+      "status": "FAIL"
+    },
+    {
+      "name": "s4-t253:runtime_mcp_approve",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t253:only_skillfetch_mcp",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t253:no_interactive_approval",
+      "status": "PASS",
+      "interactive_request_count": 0,
+      "unexpected_controller_methods": []
+    },
+    {
+      "name": "s4-t253:turn_lifecycle_complete",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t253:saved_responses_match_transcript",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t253:process_exit_recorded",
+      "status": "PASS",
+      "exit_event_count": 1
+    },
+    {
+      "name": "s4-t253:cleanup_complete",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t182:manifest_matches_task",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t182:transcript_order",
+      "status": "PASS",
+      "event_count": 755
+    },
+    {
+      "name": "s4-t182:single_exact_submission",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t182:single_fresh_thread",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t182:thread_policy_requested",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t182:thread_policy_effective",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t182:actual_model_auth",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t182:login_subscription_no_api_environment",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t182:isolated_launch",
+      "status": "PASS",
+      "env_keys": [
+        "CODEX_HOME",
+        "HOME",
+        "LANG",
+        "LC_ALL",
+        "PATH",
+        "TERM",
+        "TMPDIR"
+      ]
+    },
+    {
+      "name": "s4-t182:config_copies_unchanged",
+      "status": "FAIL"
+    },
+    {
+      "name": "s4-t182:runtime_mcp_approve",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t182:only_skillfetch_mcp",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t182:no_interactive_approval",
+      "status": "PASS",
+      "interactive_request_count": 0,
+      "unexpected_controller_methods": []
+    },
+    {
+      "name": "s4-t182:turn_lifecycle_complete",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t182:saved_responses_match_transcript",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t182:process_exit_recorded",
+      "status": "PASS",
+      "exit_event_count": 1
+    },
+    {
+      "name": "s4-t182:cleanup_complete",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t203:manifest_matches_task",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t203:transcript_order",
+      "status": "PASS",
+      "event_count": 942
+    },
+    {
+      "name": "s4-t203:single_exact_submission",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t203:single_fresh_thread",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t203:thread_policy_requested",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t203:thread_policy_effective",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t203:actual_model_auth",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t203:login_subscription_no_api_environment",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t203:isolated_launch",
+      "status": "PASS",
+      "env_keys": [
+        "CODEX_HOME",
+        "HOME",
+        "LANG",
+        "LC_ALL",
+        "PATH",
+        "TERM",
+        "TMPDIR"
+      ]
+    },
+    {
+      "name": "s4-t203:config_copies_unchanged",
+      "status": "FAIL"
+    },
+    {
+      "name": "s4-t203:runtime_mcp_approve",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t203:only_skillfetch_mcp",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t203:no_interactive_approval",
+      "status": "PASS",
+      "interactive_request_count": 0,
+      "unexpected_controller_methods": []
+    },
+    {
+      "name": "s4-t203:turn_lifecycle_complete",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t203:saved_responses_match_transcript",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t203:process_exit_recorded",
+      "status": "PASS",
+      "exit_event_count": 1
+    },
+    {
+      "name": "s4-t203:cleanup_complete",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t055:manifest_matches_task",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t055:transcript_order",
+      "status": "PASS",
+      "event_count": 263
+    },
+    {
+      "name": "s4-t055:single_exact_submission",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t055:single_fresh_thread",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t055:thread_policy_requested",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t055:thread_policy_effective",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t055:actual_model_auth",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t055:login_subscription_no_api_environment",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t055:isolated_launch",
+      "status": "PASS",
+      "env_keys": [
+        "CODEX_HOME",
+        "HOME",
+        "LANG",
+        "LC_ALL",
+        "PATH",
+        "TERM",
+        "TMPDIR"
+      ]
+    },
+    {
+      "name": "s4-t055:config_copies_unchanged",
+      "status": "FAIL"
+    },
+    {
+      "name": "s4-t055:runtime_mcp_approve",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t055:only_skillfetch_mcp",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t055:no_interactive_approval",
+      "status": "PASS",
+      "interactive_request_count": 0,
+      "unexpected_controller_methods": []
+    },
+    {
+      "name": "s4-t055:turn_lifecycle_complete",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t055:saved_responses_match_transcript",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t055:process_exit_recorded",
+      "status": "PASS",
+      "exit_event_count": 1
+    },
+    {
+      "name": "s4-t055:cleanup_complete",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t033:manifest_matches_task",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t033:transcript_order",
+      "status": "PASS",
+      "event_count": 254
+    },
+    {
+      "name": "s4-t033:single_exact_submission",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t033:single_fresh_thread",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t033:thread_policy_requested",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t033:thread_policy_effective",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t033:actual_model_auth",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t033:login_subscription_no_api_environment",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t033:isolated_launch",
+      "status": "PASS",
+      "env_keys": [
+        "CODEX_HOME",
+        "HOME",
+        "LANG",
+        "LC_ALL",
+        "PATH",
+        "TERM",
+        "TMPDIR"
+      ]
+    },
+    {
+      "name": "s4-t033:config_copies_unchanged",
+      "status": "FAIL"
+    },
+    {
+      "name": "s4-t033:runtime_mcp_approve",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t033:only_skillfetch_mcp",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t033:no_interactive_approval",
+      "status": "PASS",
+      "interactive_request_count": 0,
+      "unexpected_controller_methods": []
+    },
+    {
+      "name": "s4-t033:turn_lifecycle_complete",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t033:saved_responses_match_transcript",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t033:process_exit_recorded",
+      "status": "PASS",
+      "exit_event_count": 1
+    },
+    {
+      "name": "s4-t033:cleanup_complete",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t130:manifest_matches_task",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t130:transcript_order",
+      "status": "PASS",
+      "event_count": 344
+    },
+    {
+      "name": "s4-t130:single_exact_submission",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t130:single_fresh_thread",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t130:thread_policy_requested",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t130:thread_policy_effective",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t130:actual_model_auth",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t130:login_subscription_no_api_environment",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t130:isolated_launch",
+      "status": "PASS",
+      "env_keys": [
+        "CODEX_HOME",
+        "HOME",
+        "LANG",
+        "LC_ALL",
+        "PATH",
+        "TERM",
+        "TMPDIR"
+      ]
+    },
+    {
+      "name": "s4-t130:config_copies_unchanged",
+      "status": "FAIL"
+    },
+    {
+      "name": "s4-t130:runtime_mcp_approve",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t130:only_skillfetch_mcp",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t130:no_interactive_approval",
+      "status": "PASS",
+      "interactive_request_count": 0,
+      "unexpected_controller_methods": []
+    },
+    {
+      "name": "s4-t130:turn_lifecycle_complete",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t130:saved_responses_match_transcript",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t130:process_exit_recorded",
+      "status": "PASS",
+      "exit_event_count": 1
+    },
+    {
+      "name": "s4-t130:cleanup_complete",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t177:manifest_matches_task",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t177:transcript_order",
+      "status": "PASS",
+      "event_count": 540
+    },
+    {
+      "name": "s4-t177:single_exact_submission",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t177:single_fresh_thread",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t177:thread_policy_requested",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t177:thread_policy_effective",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t177:actual_model_auth",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t177:login_subscription_no_api_environment",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t177:isolated_launch",
+      "status": "PASS",
+      "env_keys": [
+        "CODEX_HOME",
+        "HOME",
+        "LANG",
+        "LC_ALL",
+        "PATH",
+        "TERM",
+        "TMPDIR"
+      ]
+    },
+    {
+      "name": "s4-t177:config_copies_unchanged",
+      "status": "FAIL"
+    },
+    {
+      "name": "s4-t177:runtime_mcp_approve",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t177:only_skillfetch_mcp",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t177:no_interactive_approval",
+      "status": "PASS",
+      "interactive_request_count": 0,
+      "unexpected_controller_methods": []
+    },
+    {
+      "name": "s4-t177:turn_lifecycle_complete",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t177:saved_responses_match_transcript",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t177:process_exit_recorded",
+      "status": "PASS",
+      "exit_event_count": 1
+    },
+    {
+      "name": "s4-t177:cleanup_complete",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t229:manifest_matches_task",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t229:transcript_order",
+      "status": "PASS",
+      "event_count": 362
+    },
+    {
+      "name": "s4-t229:single_exact_submission",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t229:single_fresh_thread",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t229:thread_policy_requested",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t229:thread_policy_effective",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t229:actual_model_auth",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t229:login_subscription_no_api_environment",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t229:isolated_launch",
+      "status": "PASS",
+      "env_keys": [
+        "CODEX_HOME",
+        "HOME",
+        "LANG",
+        "LC_ALL",
+        "PATH",
+        "TERM",
+        "TMPDIR"
+      ]
+    },
+    {
+      "name": "s4-t229:config_copies_unchanged",
+      "status": "FAIL"
+    },
+    {
+      "name": "s4-t229:runtime_mcp_approve",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t229:only_skillfetch_mcp",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t229:no_interactive_approval",
+      "status": "PASS",
+      "interactive_request_count": 0,
+      "unexpected_controller_methods": []
+    },
+    {
+      "name": "s4-t229:turn_lifecycle_complete",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t229:saved_responses_match_transcript",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t229:process_exit_recorded",
+      "status": "PASS",
+      "exit_event_count": 1
+    },
+    {
+      "name": "s4-t229:cleanup_complete",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t026:manifest_matches_task",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t026:transcript_order",
+      "status": "PASS",
+      "event_count": 572
+    },
+    {
+      "name": "s4-t026:single_exact_submission",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t026:single_fresh_thread",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t026:thread_policy_requested",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t026:thread_policy_effective",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t026:actual_model_auth",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t026:login_subscription_no_api_environment",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t026:isolated_launch",
+      "status": "PASS",
+      "env_keys": [
+        "CODEX_HOME",
+        "HOME",
+        "LANG",
+        "LC_ALL",
+        "PATH",
+        "TERM",
+        "TMPDIR"
+      ]
+    },
+    {
+      "name": "s4-t026:config_copies_unchanged",
+      "status": "FAIL"
+    },
+    {
+      "name": "s4-t026:runtime_mcp_approve",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t026:only_skillfetch_mcp",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t026:no_interactive_approval",
+      "status": "PASS",
+      "interactive_request_count": 0,
+      "unexpected_controller_methods": []
+    },
+    {
+      "name": "s4-t026:turn_lifecycle_complete",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t026:saved_responses_match_transcript",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t026:process_exit_recorded",
+      "status": "PASS",
+      "exit_event_count": 1
+    },
+    {
+      "name": "s4-t026:cleanup_complete",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t224:manifest_matches_task",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t224:transcript_order",
+      "status": "PASS",
+      "event_count": 515
+    },
+    {
+      "name": "s4-t224:single_exact_submission",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t224:single_fresh_thread",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t224:thread_policy_requested",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t224:thread_policy_effective",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t224:actual_model_auth",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t224:login_subscription_no_api_environment",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t224:isolated_launch",
+      "status": "PASS",
+      "env_keys": [
+        "CODEX_HOME",
+        "HOME",
+        "LANG",
+        "LC_ALL",
+        "PATH",
+        "TERM",
+        "TMPDIR"
+      ]
+    },
+    {
+      "name": "s4-t224:config_copies_unchanged",
+      "status": "FAIL"
+    },
+    {
+      "name": "s4-t224:runtime_mcp_approve",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t224:only_skillfetch_mcp",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t224:no_interactive_approval",
+      "status": "PASS",
+      "interactive_request_count": 0,
+      "unexpected_controller_methods": []
+    },
+    {
+      "name": "s4-t224:turn_lifecycle_complete",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t224:saved_responses_match_transcript",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t224:process_exit_recorded",
+      "status": "PASS",
+      "exit_event_count": 1
+    },
+    {
+      "name": "s4-t224:cleanup_complete",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t211:manifest_matches_task",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t211:transcript_order",
+      "status": "PASS",
+      "event_count": 540
+    },
+    {
+      "name": "s4-t211:single_exact_submission",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t211:single_fresh_thread",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t211:thread_policy_requested",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t211:thread_policy_effective",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t211:actual_model_auth",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t211:login_subscription_no_api_environment",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t211:isolated_launch",
+      "status": "PASS",
+      "env_keys": [
+        "CODEX_HOME",
+        "HOME",
+        "LANG",
+        "LC_ALL",
+        "PATH",
+        "TERM",
+        "TMPDIR"
+      ]
+    },
+    {
+      "name": "s4-t211:config_copies_unchanged",
+      "status": "FAIL"
+    },
+    {
+      "name": "s4-t211:runtime_mcp_approve",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t211:only_skillfetch_mcp",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t211:no_interactive_approval",
+      "status": "PASS",
+      "interactive_request_count": 0,
+      "unexpected_controller_methods": []
+    },
+    {
+      "name": "s4-t211:turn_lifecycle_complete",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t211:saved_responses_match_transcript",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t211:process_exit_recorded",
+      "status": "PASS",
+      "exit_event_count": 1
+    },
+    {
+      "name": "s4-t211:cleanup_complete",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t354:manifest_matches_task",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t354:transcript_order",
+      "status": "PASS",
+      "event_count": 288
+    },
+    {
+      "name": "s4-t354:single_exact_submission",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t354:single_fresh_thread",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t354:thread_policy_requested",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t354:thread_policy_effective",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t354:actual_model_auth",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t354:login_subscription_no_api_environment",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t354:isolated_launch",
+      "status": "PASS",
+      "env_keys": [
+        "CODEX_HOME",
+        "HOME",
+        "LANG",
+        "LC_ALL",
+        "PATH",
+        "TERM",
+        "TMPDIR"
+      ]
+    },
+    {
+      "name": "s4-t354:config_copies_unchanged",
+      "status": "FAIL"
+    },
+    {
+      "name": "s4-t354:runtime_mcp_approve",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t354:only_skillfetch_mcp",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t354:no_interactive_approval",
+      "status": "PASS",
+      "interactive_request_count": 0,
+      "unexpected_controller_methods": []
+    },
+    {
+      "name": "s4-t354:turn_lifecycle_complete",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t354:saved_responses_match_transcript",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t354:process_exit_recorded",
+      "status": "PASS",
+      "exit_event_count": 1
+    },
+    {
+      "name": "s4-t354:cleanup_complete",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t101:manifest_matches_task",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t101:transcript_order",
+      "status": "PASS",
+      "event_count": 290
+    },
+    {
+      "name": "s4-t101:single_exact_submission",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t101:single_fresh_thread",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t101:thread_policy_requested",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t101:thread_policy_effective",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t101:actual_model_auth",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t101:login_subscription_no_api_environment",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t101:isolated_launch",
+      "status": "PASS",
+      "env_keys": [
+        "CODEX_HOME",
+        "HOME",
+        "LANG",
+        "LC_ALL",
+        "PATH",
+        "TERM",
+        "TMPDIR"
+      ]
+    },
+    {
+      "name": "s4-t101:config_copies_unchanged",
+      "status": "FAIL"
+    },
+    {
+      "name": "s4-t101:runtime_mcp_approve",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t101:only_skillfetch_mcp",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t101:no_interactive_approval",
+      "status": "PASS",
+      "interactive_request_count": 0,
+      "unexpected_controller_methods": []
+    },
+    {
+      "name": "s4-t101:turn_lifecycle_complete",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t101:saved_responses_match_transcript",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t101:process_exit_recorded",
+      "status": "PASS",
+      "exit_event_count": 1
+    },
+    {
+      "name": "s4-t101:cleanup_complete",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t342:manifest_matches_task",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t342:transcript_order",
+      "status": "PASS",
+      "event_count": 298
+    },
+    {
+      "name": "s4-t342:single_exact_submission",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t342:single_fresh_thread",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t342:thread_policy_requested",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t342:thread_policy_effective",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t342:actual_model_auth",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t342:login_subscription_no_api_environment",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t342:isolated_launch",
+      "status": "PASS",
+      "env_keys": [
+        "CODEX_HOME",
+        "HOME",
+        "LANG",
+        "LC_ALL",
+        "PATH",
+        "TERM",
+        "TMPDIR"
+      ]
+    },
+    {
+      "name": "s4-t342:config_copies_unchanged",
+      "status": "FAIL"
+    },
+    {
+      "name": "s4-t342:runtime_mcp_approve",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t342:only_skillfetch_mcp",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t342:no_interactive_approval",
+      "status": "PASS",
+      "interactive_request_count": 0,
+      "unexpected_controller_methods": []
+    },
+    {
+      "name": "s4-t342:turn_lifecycle_complete",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t342:saved_responses_match_transcript",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t342:process_exit_recorded",
+      "status": "PASS",
+      "exit_event_count": 1
+    },
+    {
+      "name": "s4-t342:cleanup_complete",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t280:manifest_matches_task",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t280:transcript_order",
+      "status": "PASS",
+      "event_count": 268
+    },
+    {
+      "name": "s4-t280:single_exact_submission",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t280:single_fresh_thread",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t280:thread_policy_requested",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t280:thread_policy_effective",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t280:actual_model_auth",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t280:login_subscription_no_api_environment",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t280:isolated_launch",
+      "status": "PASS",
+      "env_keys": [
+        "CODEX_HOME",
+        "HOME",
+        "LANG",
+        "LC_ALL",
+        "PATH",
+        "TERM",
+        "TMPDIR"
+      ]
+    },
+    {
+      "name": "s4-t280:config_copies_unchanged",
+      "status": "FAIL"
+    },
+    {
+      "name": "s4-t280:runtime_mcp_approve",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t280:only_skillfetch_mcp",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t280:no_interactive_approval",
+      "status": "PASS",
+      "interactive_request_count": 0,
+      "unexpected_controller_methods": []
+    },
+    {
+      "name": "s4-t280:turn_lifecycle_complete",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t280:saved_responses_match_transcript",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t280:process_exit_recorded",
+      "status": "PASS",
+      "exit_event_count": 1
+    },
+    {
+      "name": "s4-t280:cleanup_complete",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t001:manifest_matches_task",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t001:transcript_order",
+      "status": "PASS",
+      "event_count": 271
+    },
+    {
+      "name": "s4-t001:single_exact_submission",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t001:single_fresh_thread",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t001:thread_policy_requested",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t001:thread_policy_effective",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t001:actual_model_auth",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t001:login_subscription_no_api_environment",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t001:isolated_launch",
+      "status": "PASS",
+      "env_keys": [
+        "CODEX_HOME",
+        "HOME",
+        "LANG",
+        "LC_ALL",
+        "PATH",
+        "TERM",
+        "TMPDIR"
+      ]
+    },
+    {
+      "name": "s4-t001:config_copies_unchanged",
+      "status": "FAIL"
+    },
+    {
+      "name": "s4-t001:runtime_mcp_approve",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t001:only_skillfetch_mcp",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t001:no_interactive_approval",
+      "status": "PASS",
+      "interactive_request_count": 0,
+      "unexpected_controller_methods": []
+    },
+    {
+      "name": "s4-t001:turn_lifecycle_complete",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t001:saved_responses_match_transcript",
+      "status": "PASS"
+    },
+    {
+      "name": "s4-t001:process_exit_recorded",
+      "status": "PASS",
+      "exit_event_count": 1
+    },
+    {
+      "name": "s4-t001:cleanup_complete",
+      "status": "PASS"
+    },
+    {
+      "name": "nineteen_distinct_fresh_threads_and_turns",
+      "status": "PASS"
+    },
+    {
+      "name": "owned_root_removed_and_unregistered",
+      "status": "PASS"
+    },
+    {
+      "name": "old_report_preserved",
+      "status": "PASS",
+      "sha256": "db5b22600f4d20048f5669a39221335d8b5f7106cd1824d4b2deb57848d139c5"
+    },
+    {
+      "name": "finished_manifest_stable_during_audit",
+      "status": "PASS"
+    }
+  ]
+}

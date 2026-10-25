@@ -1,0 +1,157 @@
+{
+  "schema_version": 1,
+  "observations_sha256": "2c34d8c67d1fdf16d5e634d9438cf0b2f771f6d859a7dc3a35715e1bb02d543e",
+  "review_method": "Manual reading of existing primary assistant messages; no model/session rerun and no skill grading",
+  "sessions": [
+    {
+      "session_key": "r1/s4-t153",
+      "verdict": "NO_LOAD_UNRESOLVED",
+      "reason": "검색 후 load 호출은 없지만, 확인한 주 세션 발화에서 스킬을 선택하지 않겠다는 명시적 설명은 찾지 못했다.",
+      "evidence": []
+    },
+    {
+      "session_key": "r1/s4-t182",
+      "verdict": "EXPLICIT_NONE",
+      "reason": "반환된 스킬이 해당 작업에 도움이 되지 않아 로드하지 않겠다는 주 세션 발화를 확인했다.",
+      "evidence": [
+        {
+          "transcript_line": 244,
+          "event_sequence": 244,
+          "quote": "검색된 스킬 중 이번 작업에 직접 맞는 것은 없어 추가 로드 없이 진행합니다."
+        }
+      ]
+    },
+    {
+      "session_key": "r1/s4-t224",
+      "verdict": "EXPLICIT_NONE",
+      "reason": "반환된 스킬이 해당 작업에 도움이 되지 않아 로드하지 않겠다는 주 세션 발화를 확인했다.",
+      "evidence": [
+        {
+          "transcript_line": 180,
+          "event_sequence": 180,
+          "quote": "검색된 스킬 중 Canvas 픽셀 전처리에 직접 맞는 것은 없어 추가 로딩 없이 진행하겠습니다."
+        }
+      ]
+    },
+    {
+      "session_key": "r1/s4-t354",
+      "verdict": "EXPLICIT_NONE",
+      "reason": "반환된 스킬이 해당 작업에 도움이 되지 않아 로드하지 않겠다는 주 세션 발화를 확인했다.",
+      "evidence": [
+        {
+          "transcript_line": 193,
+          "event_sequence": 193,
+          "quote": "None of the skill search results added useful guidance for this small change."
+        }
+      ]
+    },
+    {
+      "session_key": "r1/s4-t342",
+      "verdict": "EXPLICIT_NONE",
+      "reason": "반환된 스킬이 해당 작업에 도움이 되지 않아 로드하지 않겠다는 주 세션 발화를 확인했다.",
+      "evidence": [
+        {
+          "transcript_line": 158,
+          "event_sequence": 158,
+          "quote": "None of the returned skills adds task-specific guidance for this small change."
+        }
+      ]
+    },
+    {
+      "session_key": "r2/s4-t182",
+      "verdict": "EXPLICIT_NONE",
+      "reason": "검색된 스킬이 해당 작업에 구체적인 도움을 주지 않는다는 주 세션 발화와 미로드 기록을 확인했다.",
+      "evidence": [
+        {
+          "transcript_line": 302,
+          "event_sequence": 302,
+          "quote": "검색된 스킬 중 이번 단일 backfill에 직접 맞는 것은 없어 추가 로드 없이 진행합니다."
+        }
+      ]
+    },
+    {
+      "session_key": "r2/s4-t224",
+      "verdict": "EXPLICIT_NONE",
+      "reason": "검색된 스킬이 해당 작업에 구체적인 도움을 주지 않는다는 주 세션 발화와 미로드 기록을 확인했다.",
+      "evidence": [
+        {
+          "transcript_line": 195,
+          "event_sequence": 195,
+          "quote": "검색된 스킬 중 이번 픽셀 전처리에 직접 맞는 것은 없어 추가 로드 없이 진행하겠습니다."
+        }
+      ]
+    },
+    {
+      "session_key": "r2/s4-t342",
+      "verdict": "EXPLICIT_NONE",
+      "reason": "검색된 스킬이 해당 작업에 구체적인 도움을 주지 않는다는 주 세션 발화와 미로드 기록을 확인했다.",
+      "evidence": [
+        {
+          "transcript_line": 160,
+          "event_sequence": 160,
+          "quote": "The skill search returned no task-specific guidance needed for this small change."
+        }
+      ]
+    },
+    {
+      "session_key": "r2/s4-t001",
+      "verdict": "EXPLICIT_NONE",
+      "reason": "검색된 스킬이 해당 작업에 구체적인 도움을 주지 않는다는 주 세션 발화와 미로드 기록을 확인했다.",
+      "evidence": [
+        {
+          "transcript_line": 141,
+          "event_sequence": 141,
+          "quote": "The skill search found no guidance specific enough to add value here."
+        }
+      ]
+    },
+    {
+      "session_key": "r3/s4-t153",
+      "verdict": "EXPLICIT_NONE",
+      "reason": "검색된 스킬이 해당 작업에 구체적인 도움을 주지 않는다는 주 세션 발화와 미로드 기록을 확인했다.",
+      "evidence": [
+        {
+          "transcript_line": 157,
+          "event_sequence": 157,
+          "quote": "검색된 스킬 중 이번 Compose 설정 수정에 직접 맞는 항목은 없어 추가로 적용하지 않겠습니다."
+        }
+      ]
+    },
+    {
+      "session_key": "r3/s4-t182",
+      "verdict": "EXPLICIT_NONE",
+      "reason": "검색된 스킬이 해당 작업에 구체적인 도움을 주지 않는다는 주 세션 발화와 미로드 기록을 확인했다.",
+      "evidence": [
+        {
+          "transcript_line": 287,
+          "event_sequence": 287,
+          "quote": "검색된 스킬 중 이번 작업에 직접 맞는 것은 없어 저장소의 기존 SQLModel 방식을 따릅니다."
+        }
+      ]
+    },
+    {
+      "session_key": "r3/s4-t224",
+      "verdict": "EXPLICIT_NONE",
+      "reason": "검색된 스킬이 해당 작업에 구체적인 도움을 주지 않는다는 주 세션 발화와 미로드 기록을 확인했다.",
+      "evidence": [
+        {
+          "transcript_line": 275,
+          "event_sequence": 275,
+          "quote": "검색된 스킬 중 이번 픽셀 전처리에 직접 맞는 것은 없어 별도 적용 없이 진행하겠습니다."
+        }
+      ]
+    },
+    {
+      "session_key": "r3/s4-t342",
+      "verdict": "EXPLICIT_NONE",
+      "reason": "검색된 스킬이 해당 작업에 구체적인 도움을 주지 않는다는 주 세션 발화와 미로드 기록을 확인했다.",
+      "evidence": [
+        {
+          "transcript_line": 195,
+          "event_sequence": 195,
+          "quote": "No retrieved skill adds useful guidance for this narrow change."
+        }
+      ]
+    }
+  ]
+}

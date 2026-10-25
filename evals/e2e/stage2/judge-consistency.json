@@ -1,0 +1,82 @@
+{
+ "s2-tests": {
+  "n": 15,
+  "total_exact_agree": 14,
+  "total_mean_abs_diff": 0.07,
+  "total_max_abs_diff": 1,
+  "means": {
+   "p1": {
+    "A": 5,
+    "B": 5,
+    "C2": 5
+   },
+   "p2": {
+    "A": 4.8,
+    "B": 5,
+    "C2": 5
+   }
+  },
+  "c2_ge_b_same_in_both": true,
+  "c2_ge_a_same_in_both": true
+ },
+ "s2-api": {
+  "n": 15,
+  "total_exact_agree": 13,
+  "total_mean_abs_diff": 0.13,
+  "total_max_abs_diff": 1,
+  "means": {
+   "p1": {
+    "A": 4.2,
+    "B": 4.4,
+    "C2": 4.8
+   },
+   "p2": {
+    "A": 4.2,
+    "B": 4,
+    "C2": 4.8
+   }
+  },
+  "c2_ge_b_same_in_both": true,
+  "c2_ge_a_same_in_both": true
+ },
+ "s2-docs": {
+  "n": 15,
+  "total_exact_agree": 11,
+  "total_mean_abs_diff": 0.27,
+  "total_max_abs_diff": 1,
+  "means": {
+   "p1": {
+    "A": 4,
+    "B": 4.8,
+    "C2": 4.4
+   },
+   "p2": {
+    "A": 4.2,
+    "B": 4.6,
+    "C2": 4.4
+   }
+  },
+  "c2_ge_b_same_in_both": true,
+  "c2_ge_a_same_in_both": true
+ },
+ "s2-data": {
+  "n": 15,
+  "total_exact_agree": 8,
+  "total_mean_abs_diff": 0.47,
+  "total_max_abs_diff": 1,
+  "means": {
+   "p1": {
+    "A": 4.6,
+    "B": 5,
+    "C2": 4.6
+   },
+   "p2": {
+    "A": 4.4,
+    "B": 4,
+    "C2": 4.4
+   }
+  },
+  "c2_ge_b_same_in_both": false,
+  "c2_ge_a_same_in_both": true
+ }
+}

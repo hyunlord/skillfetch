@@ -1,0 +1,35 @@
+diff --git a/backend/README.md b/backend/README.md
+index 96276b7..5addf58 100644
+--- a/backend/README.md
++++ b/backend/README.md
+@@ -143,3 +143,30 @@ Once you are done, regenerate the templates used by the application:
+ ```console
+ $ bun run email:export
+ ```
++
++## Configuration
++
++Settings are read from the environment (and `../.env`) by `Settings` in `app/core/config.py`.
++
++| Variable | Default | Description |
++|---|---|---|
++| `API_V1_STR` | `/api/v1` | URL prefix of the v1 API |
++| `SECRET_KEY` | required | Key used to sign JWT access tokens |
++| `ACCESS_TOKEN_EXPIRE_MINUTES` | `11520` (8 days) | Access token lifetime |
++| `FRONTEND_HOST` | `http://localhost:5173` | Frontend URL, used in e-mail links |
++| `FASTAPI_ENV` | none | `development` relaxes the default-secret check |
++| `PROJECT_NAME` | required | Project name shown in docs and e-mails |
++| `SENTRY_DSN` | none | Sentry DSN; Sentry is off when unset |
++| `DATABASE_URL` | required | PostgreSQL URL (driver is switched to psycopg) |
++| `SMTP_TLS` | `True` | Use STARTTLS for SMTP |
++| `SMTP_SSL` | `False` | Use SMTP over SSL |
++| `SMTP_PORT` | `587` | SMTP port |
++| `SMTP_HOST` | none | SMTP server; e-mails are off when unset |
++| `SMTP_USER` | none | SMTP user |
++| `SMTP_PASSWORD` | none | SMTP password |
++| `EMAILS_FROM_EMAIL` | none | Sender address; e-mails are off when unset |
++| `EMAILS_FROM_NAME` | `PROJECT_NAME` | Sender name |
++| `EMAIL_RESET_TOKEN_EXPIRE_HOURS` | `48` | Password reset token lifetime |
++| `EMAIL_TEST_USER` | `test@example.com` | Recipient for test e-mails |
++| `FIRST_SUPERUSER` | required | E-mail of the initial superuser |
++| `FIRST_SUPERUSER_PASSWORD` | required | Password of the initial superuser |

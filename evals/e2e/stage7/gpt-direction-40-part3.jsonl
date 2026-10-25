@@ -1,0 +1,336 @@
+{"task_id": "t357", "candidate_id": "uasl/printing-press@9498149d380e", "grade": 1, "process": true, "reason": "CLI 생성 절차라 기존 Go CLI의 접근성 README 작성에는 주변 도움만 된다."}
+{"task_id": "t357", "candidate_id": "uasl/eng-runbook@0895fb3557f4", "grade": 1, "process": true, "reason": "운영 런북 작성 방식은 문서화에 인접하지만 명령 사용 README와 목적이 다르다."}
+{"task_id": "t357", "candidate_id": "uasl/cli-windows-powershell-mastery@88aa890eefd5", "grade": 1, "process": false, "reason": "셸 명령 예제 검토에는 주변 도움이나 README 접근성 기준은 다루지 않는다."}
+{"task_id": "t357", "candidate_id": "uasl/dot@e787e142131c", "grade": 0, "process": false, "reason": "픽셀 아트 자산 생성은 CLI README 작성과 무관하다."}
+{"task_id": "t357", "candidate_id": "uasl/teltel-automation@ce2f3797a772", "grade": 0, "process": false, "reason": "Teltel 연동 자동화는 fleetctl 문서 작업과 무관하다."}
+{"task_id": "t357", "candidate_id": "uasl/gws-best-practices@8d174ef89902", "grade": 0, "process": false, "reason": "Google Workspace 전용 CLI 사용 지식은 fleetctl과 도구가 다르다."}
+{"task_id": "t357", "candidate_id": "uasl/provider-api@4da7bed47117", "grade": 0, "process": false, "reason": "호스팅 제공자 API 호출 도구는 README 작성에 필요하지 않다."}
+{"task_id": "t357", "candidate_id": "uasl/find-skills@b7dc2a876b3e", "grade": 0, "process": true, "reason": "스킬 검색·설치 절차는 요청한 문서 내용과 접근성을 다루지 않는다."}
+{"task_id": "t357", "candidate_id": "uasl/public-param-golden@6b8109050c5c", "grade": 0, "process": false, "reason": "별개 상점 CLI 실행 지식은 fleetctl 문서에 적용되지 않는다."}
+{"task_id": "t357", "candidate_id": "uasl/agent-sort@a8e06853ada8", "grade": 0, "process": true, "reason": "ECC 구성 분류와 설치 계획은 README 작성과 무관하다."}
+{"task_id": "t357", "candidate_id": "anthropics-skills/frontend-design@0a5ff23f1022", "grade": 1, "process": false, "reason": "인터페이스 카피·접근성은 인접하지만 시각 UI 제작이 중심이다."}
+{"task_id": "t357", "candidate_id": "uasl/accessibility-compliance@696d2b4119ed", "grade": 2, "process": false, "reason": "의미 구조와 스크린리더 지원 지침은 접근성 우선 README 검토에 분명히 도움이 된다."}
+{"task_id": "t357", "candidate_id": "uasl/dungeon-fighter-online-automation@e04261ebe742", "grade": 0, "process": false, "reason": "온라인 게임 자동화는 차량 관리 CLI 문서와 무관하다."}
+{"task_id": "t357", "candidate_id": "uasl/color-palette@35b366fd9fec", "grade": 1, "process": false, "reason": "색 대비 확인은 인접하지만 팔레트 생성으로 제목·대체텍스트 요건을 해결하지 못한다."}
+{"task_id": "t357", "candidate_id": "uasl/openclaw-color-palette@22baa399c5eb", "grade": 1, "process": false, "reason": "색각·대비 점검은 샘플 출력의 주변 도움이나 전용 색상 도구가 중심이다."}
+{"task_id": "t357", "candidate_id": "uasl/output-skill@8da7a8f7c7fc", "grade": 1, "process": true, "reason": "산출물 누락 확인은 일반적인 보조이며 README 접근성 작성법은 아니다."}
+{"task_id": "t357", "candidate_id": "uasl/anvil@3a36e8410205", "grade": 2, "process": false, "reason": "CLI 명령 계약과 터미널 출력 지침은 정확한 사용 예시와 비색상 출력 설명에 유용하다."}
+{"task_id": "t357", "candidate_id": "uasl/textrazor-automation@5a5a4961c2bb", "grade": 0, "process": false, "reason": "Textrazor 자동화는 README 작성과 무관하다."}
+{"task_id": "t357", "candidate_id": "uasl/printing-press-score@7ec218523bea", "grade": 1, "process": true, "reason": "생성 CLI 평가 절차는 품질 검토에 인접하지만 문서 작성과는 다르다."}
+{"task_id": "t357", "candidate_id": "uasl/printing-press-catalog@3572c42ad04d", "grade": 0, "process": false, "reason": "외부 Go CLI 카탈로그 설치는 기존 fleetctl 문서와 무관하다."}
+{"task_id": "t357", "candidate_id": "uasl/gorgias-automation@2106c504916d", "grade": 0, "process": false, "reason": "Gorgias 고객지원 자동화는 fleetctl 문서와 무관하다."}
+{"task_id": "t357", "candidate_id": "anthropics-skills/brand-guidelines@25de6a138cd8", "grade": 0, "process": false, "reason": "Anthropic 브랜드 스타일은 이 CLI의 접근성 README 요구와 무관하다."}
+{"task_id": "t357", "candidate_id": "uasl/quill@336ba74b0e79", "grade": 3, "process": true, "reason": "README 자료의 정확성·유용성과 링크 점검을 직접 안내하여 문서 작성 방식을 결정한다."}
+{"task_id": "t357", "candidate_id": "uasl/phantombuster-automation@4448a05bbdf0", "grade": 0, "process": false, "reason": "PhantomBuster 자동화는 CLI 문서 작성과 무관하다."}
+{"task_id": "t357", "candidate_id": "uasl/printing-press-polish@b4aef54a7866", "grade": 1, "process": true, "reason": "Go CLI 품질·문서 점검은 인접하지만 생성 CLI 전체 개선 절차가 중심이다."}
+{"task_id": "t357", "candidate_id": "uasl/webex-automation@7afdcc0f0d94", "grade": 0, "process": false, "reason": "Webex 연동은 fleetctl README와 무관하다."}
+{"task_id": "t357", "candidate_id": "uasl/vercel-cli-with-tokens@3f9c2805c482", "grade": 0, "process": false, "reason": "Vercel 배포 설정은 Go CLI 문서 작업과 무관하다."}
+{"task_id": "t357", "candidate_id": "uasl/gosquared-automation@d5d3ce4678cf", "grade": 0, "process": false, "reason": "Gosquared 자동화는 fleetctl 문서와 무관하다."}
+{"task_id": "t357", "candidate_id": "uasl/yeet@7665edb92f0c", "grade": 0, "process": true, "reason": "커밋·푸시·PR 절차는 요청한 README 내용 작성에 실질적 도움을 주지 않는다."}
+{"task_id": "t357", "candidate_id": "uasl/printing-press-reprint@af02d260d0be", "grade": 1, "process": true, "reason": "기존 CLI 재생성 조율은 같은 영역이나 README만 작성하는 데는 주변적이다."}
+{"task_id": "t357", "candidate_id": "uasl/shipengine-automation@b77f30f2f345", "grade": 0, "process": false, "reason": "배송 서비스 자동화는 차량 CLI 사용 문서와 작업이 다르다."}
+{"task_id": "t357", "candidate_id": "uasl/prose@bbd22d3eb9b7", "grade": 2, "process": true, "reason": "접근성 있는 사용자 카피 작성·검토 절차는 명시된 접근성 우선 방향에 맞는다."}
+{"task_id": "t357", "candidate_id": "uasl/printing-press-output-review@35c772127bb2", "grade": 2, "process": true, "reason": "샘플 CLI 출력의 개연성과 표현을 검토하므로 명령별 예제 출력의 품질에 도움이 된다."}
+{"task_id": "t357", "candidate_id": "uasl/busybox-on-windows@8fa5a351edc2", "grade": 0, "process": false, "reason": "Windows BusyBox 설치는 지정 CLI README 요구와 무관하다."}
+{"task_id": "t357", "candidate_id": "uasl/canvas@fc2071ed7429", "grade": 1, "process": true, "reason": "명확한 다이어그램 작성은 문서에 인접하지만 이 README에 도식은 요구되지 않았다."}
+{"task_id": "t357", "candidate_id": "uasl/telnyx-automation@feee46aeb36b", "grade": 0, "process": false, "reason": "Telnyx 자동화는 fleetctl 문서와 무관하다."}
+{"task_id": "t358", "candidate_id": "uasl/printing-press-catalog@3572c42ad04d", "grade": 0, "process": false, "reason": "Go CLI 카탈로그 설치는 기존 fleetctl README 작성과 무관하다."}
+{"task_id": "t358", "candidate_id": "uasl/printing-press-polish@b4aef54a7866", "grade": 1, "process": true, "reason": "Go CLI 문서 품질 점검에 인접하지만 생성 CLI 전체 개선 절차가 중심이다."}
+{"task_id": "t358", "candidate_id": "uasl/cf-crawl@77a977c31001", "grade": 0, "process": false, "reason": "웹 크롤링은 저장소 CLI의 README 작성에 필요하지 않다."}
+{"task_id": "t358", "candidate_id": "uasl/dungeon-fighter-online-automation@e04261ebe742", "grade": 0, "process": false, "reason": "게임 자동화는 CLI 문서와 무관하다."}
+{"task_id": "t358", "candidate_id": "uasl/capsule-crm-automation@97113fa8404d", "grade": 0, "process": false, "reason": "CRM 자동화는 fleetctl README와 무관하다."}
+{"task_id": "t358", "candidate_id": "uasl/telnyx-automation@feee46aeb36b", "grade": 0, "process": false, "reason": "Telnyx 자동화는 CLI 문서 작성과 무관하다."}
+{"task_id": "t358", "candidate_id": "uasl/eng-runbook@0895fb3557f4", "grade": 1, "process": true, "reason": "운영 런북의 구성·스타일은 주변 참고이며 명령 README 작성법과 다르다."}
+{"task_id": "t358", "candidate_id": "uasl/code-review@dface80322fb", "grade": 1, "process": true, "reason": "프로덕션 코드 검토는 문서 정확성에 간접적일 뿐 문서 제작을 직접 돕지 않는다."}
+{"task_id": "t358", "candidate_id": "uasl/printing-press@9498149d380e", "grade": 1, "process": true, "reason": "CLI 생성 흐름은 같은 분야이나 기존 도구의 README 작성에는 주변적이다."}
+{"task_id": "t358", "candidate_id": "uasl/gws-best-practices@8d174ef89902", "grade": 0, "process": false, "reason": "Google Workspace 전용 작업은 fleetctl 문서와 무관하다."}
+{"task_id": "t358", "candidate_id": "uasl/printing-press-output-review@35c772127bb2", "grade": 2, "process": true, "reason": "CLI 샘플 출력의 표현과 개연성 검토는 명령별 예제 출력 작성에 유용하다."}
+{"task_id": "t358", "candidate_id": "uasl/digital-eguide@c4288adfa368", "grade": 1, "process": false, "reason": "세련된 가이드 디자인은 주변 참고이나 HTML 두 페이지 미리보기는 README 형식과 다르다."}
+{"task_id": "t358", "candidate_id": "uasl/quill@336ba74b0e79", "grade": 3, "process": true, "reason": "README와 API 문서의 정확성·유용성·링크를 직접 다루는 문서화 절차다."}
+{"task_id": "t358", "candidate_id": "uasl/gorgias-automation@2106c504916d", "grade": 0, "process": false, "reason": "고객지원 서비스 연동은 CLI README와 무관하다."}
+{"task_id": "t358", "candidate_id": "uasl/anvil@3a36e8410205", "grade": 2, "process": false, "reason": "명령 계약과 터미널 동작 지침은 명령 표와 출력 예시를 정확히 설명하는 데 도움 된다."}
+{"task_id": "t358", "candidate_id": "uasl/new-relic-automation@efeb6349c763", "grade": 0, "process": false, "reason": "New Relic 경보 관리 도구는 문서 작업과 무관하다."}
+{"task_id": "t358", "candidate_id": "uasl/github-gem-seeker@759ed0b02cdc", "grade": 0, "process": true, "reason": "외부 오픈소스 도구 탐색은 기존 CLI README 작성의 요구가 아니다."}
+{"task_id": "t358", "candidate_id": "uasl/find-skills@b7dc2a876b3e", "grade": 0, "process": true, "reason": "스킬 검색·설치는 요청 문서의 내용을 다루지 않는다."}
+{"task_id": "t358", "candidate_id": "uasl/cli-windows-powershell-mastery@88aa890eefd5", "grade": 1, "process": false, "reason": "셸 사용 지식은 예제 명령에 간접 도움이나 문서 구성·스타일에는 주변적이다."}
+{"task_id": "t358", "candidate_id": "uasl/teltel-automation@ce2f3797a772", "grade": 0, "process": false, "reason": "Teltel 자동화는 fleetctl 문서와 무관하다."}
+{"task_id": "t358", "candidate_id": "uasl/docs-page@d9c05e10601d", "grade": 1, "process": false, "reason": "문서 시각 구성은 인접하지만 고정 3열 HTML 페이지는 저장소 README와 산출물이 다르다."}
+{"task_id": "t358", "candidate_id": "uasl/printing-press-score@7ec218523bea", "grade": 1, "process": true, "reason": "CLI 평가 절차는 주변 품질 참고이며 요청한 README를 직접 다루지 않는다."}
+{"task_id": "t358", "candidate_id": "uasl/plisio-automation@343216c5fc03", "grade": 0, "process": false, "reason": "결제 자동화는 CLI README와 무관하다."}
+{"task_id": "t358", "candidate_id": "uasl/documentation-lookup@dee6d7478eab", "grade": 1, "process": true, "reason": "외부 라이브러리 문서 조회는 보조적이며 내부 CLI 명령 설명을 제공하지 않는다."}
+{"task_id": "t358", "candidate_id": "uasl/gosquared-automation@d5d3ce4678cf", "grade": 0, "process": false, "reason": "Gosquared 자동화는 문서 작성과 무관하다."}
+{"task_id": "t358", "candidate_id": "uasl/public-param-golden@6b8109050c5c", "grade": 0, "process": false, "reason": "별개 상점 CLI 사용법은 fleetctl과 도구가 다르다."}
+{"task_id": "t358", "candidate_id": "uasl/shipengine-automation@b77f30f2f345", "grade": 0, "process": false, "reason": "배송 서비스 API 자동화는 fleetctl README 작업과 다르다."}
+{"task_id": "t358", "candidate_id": "uasl/caveman-help@31fd99e3cd77", "grade": 0, "process": false, "reason": "Caveman 고정 참조 카드는 다른 도구의 README 작성에 적용되지 않는다."}
+{"task_id": "t358", "candidate_id": "uasl/busybox-on-windows@8fa5a351edc2", "grade": 0, "process": false, "reason": "BusyBox 설치 지침은 요청한 CLI 문서와 무관하다."}
+{"task_id": "t358", "candidate_id": "uasl/piloterr-automation@1e6577a7a642", "grade": 0, "process": false, "reason": "Piloterr 자동화는 fleetctl README와 무관하다."}
+{"task_id": "t359", "candidate_id": "uasl/architecture-patterns@d184d1c3a346", "grade": 1, "process": false, "reason": "백엔드 구조 패턴은 인접하지만 세션 보안의 제한된 수정에는 직접성이 낮다."}
+{"task_id": "t359", "candidate_id": "anthropics-skills/claude-api@e30e2c97f747", "grade": 0, "process": false, "reason": "Claude API 지식은 axum 세션 보안과 무관하다."}
+{"task_id": "t359", "candidate_id": "uasl/design-harden@7850aacd7d45", "grade": 0, "process": false, "reason": "프런트엔드 UI 견고성 지침은 Rust 세션 보안과 대상이 다르다."}
+{"task_id": "t359", "candidate_id": "uasl/fastapi-endpoint@2a93d50c4970", "grade": 0, "process": false, "reason": "FastAPI 구현은 axum과 프레임워크가 다르다."}
+{"task_id": "t359", "candidate_id": "uasl/token-metrics-automation@6fadb79ed1c7", "grade": 0, "process": false, "reason": "암호화폐 Token Metrics 연동은 세션 토큰 보안과 무관하다."}
+{"task_id": "t359", "candidate_id": "uasl/cairo-vulnerability-scanner@ec05b2fd95f9", "grade": 0, "process": false, "reason": "Cairo 스마트계약 취약점은 Rust 웹 세션과 플랫폼이 다르다."}
+{"task_id": "t359", "candidate_id": "uasl/sentinel@68f8e2afebcc", "grade": 1, "process": true, "reason": "한 번에 보안 이슈 하나만 수정하는 절차는 여러 명시 이슈를 모두 강화하라는 범위와 어긋난다."}
+{"task_id": "t359", "candidate_id": "uasl/ton-vulnerability-scanner@377d84553d54", "grade": 0, "process": false, "reason": "TON 계약 보안은 axum 세션과 무관하다."}
+{"task_id": "t359", "candidate_id": "uasl/constant-time-testing@6bbb97cc6cc1", "grade": 2, "process": true, "reason": "타이밍 부채널 감사·교정 절차는 토큰의 == 비교 강화에 명확히 도움 된다."}
+{"task_id": "t359", "candidate_id": "uasl/probe@e9e9e74a4225", "grade": 2, "process": true, "reason": "안전한 동적 보안 검증과 근거 확인은 세션 강화 결과를 검증하는 데 도움 된다."}
+{"task_id": "t359", "candidate_id": "uasl/security-audit@0b0f681978a4", "grade": 3, "process": true, "reason": "공격 표면과 취약점을 점검하고 검증된 결과를 보고하는 절차는 보안 리뷰 요청을 직접 다룬다."}
+{"task_id": "t359", "candidate_id": "uasl/cavecrew@6b0708483bbb", "grade": 1, "process": true, "reason": "일반 위임·검토 조율은 보조적이며 세션 보안이나 기존 크레이트 활용을 다루지 않는다."}
+{"task_id": "t359", "candidate_id": "uasl/harness-writing@b71c9af45925", "grade": 1, "process": true, "reason": "퍼징 하니스는 주변 검증 방법이나 난수·타이밍·쿠키 강화의 핵심은 아니다."}
+{"task_id": "t359", "candidate_id": "uasl/caveman@b18d7076b724", "grade": 0, "process": true, "reason": "답변 압축 방식은 보안 강화 구현에 실질적 도움을 주지 않는다."}
+{"task_id": "t359", "candidate_id": "uasl/fuzzing-dictionary@1b7491e2ab32", "grade": 1, "process": true, "reason": "퍼징 사전은 보안 시험에 인접하지만 이 세션 취약점에는 실용성이 낮다."}
+{"task_id": "t359", "candidate_id": "uasl/error-handling-patterns@4c19ee7d7821", "grade": 2, "process": false, "reason": "Rust 오류 처리·로그·검증 지식은 인증 실패 경로와 민감정보 노출 점검에 도움 된다."}
+{"task_id": "t359", "candidate_id": "uasl/caveman-stats@2859ce4e33a6", "grade": 0, "process": false, "reason": "Claude 세션 토큰 사용량 통계는 인증 토큰 보안과 다르다."}
+{"task_id": "t359", "candidate_id": "uasl/solana-vulnerability-scanner@05e33b7d1d05", "grade": 0, "process": false, "reason": "Solana 계정·CPI 취약점은 axum 웹 세션에 적용되지 않는다."}
+{"task_id": "t359", "candidate_id": "uasl/quest@2a366b046bee", "grade": 0, "process": false, "reason": "게임 디자인 기획은 게임 백엔드 인증 보안과 무관하다."}
+{"task_id": "t359", "candidate_id": "uasl/vibe-security@6b07d0f651a7", "grade": 2, "process": false, "reason": "보안 기본값과 접근 보호 원칙은 쿠키·세션 강화에 유용하며 새 의존성을 강제하지 않는다."}
+{"task_id": "t359", "candidate_id": "uasl/levy@083441b4d967", "grade": 0, "process": false, "reason": "일본 세금 신고 지침은 인증 보안과 무관하다."}
+{"task_id": "t359", "candidate_id": "uasl/owasp-security@9847d3666f75", "grade": 3, "process": false, "reason": "인증·인가·오류·의존성의 OWASP 보안 원칙은 세션 취약점 수정과 추가 점검을 직접 돕는다."}
+{"task_id": "t359", "candidate_id": "uasl/find-bugs@c3ff7d64ff9f", "grade": 1, "process": true, "reason": "파일을 바꾸지 않는 리뷰 전용 절차는 실제 강화까지 요구하는 작업을 완결하지 못한다."}
+{"task_id": "t359", "candidate_id": "uasl/auth-implementation-patterns@7a99b395d548", "grade": 2, "process": false, "reason": "토큰·세션·쿠키 보안 패턴은 유용하지만 예시는 TypeScript/Express 중심이다."}
+{"task_id": "t359", "candidate_id": "uasl/token-integration-analyzer@73f7e737c832", "grade": 0, "process": false, "reason": "ERC 토큰 통합 감사는 세션 토큰과 개념이 다르다."}
+{"task_id": "t359", "candidate_id": "uasl/printing-press-output-review@35c772127bb2", "grade": 0, "process": true, "reason": "CLI 출력 품질 검토는 웹 인증 보안과 무관하다."}
+{"task_id": "t359", "candidate_id": "uasl/onesignal-user-auth-automation@f86e15e6be9d", "grade": 0, "process": false, "reason": "OneSignal 전용 인증 자동화는 로컬 axum 세션 구현과 다르다."}
+{"task_id": "t359", "candidate_id": "uasl/facilitation-patterns@ec5ac8f56de3", "grade": 0, "process": true, "reason": "회의 진행 절차는 세션 보안 코드 작업과 무관하다."}
+{"task_id": "t359", "candidate_id": "uasl/code-security@e20eb3467925", "grade": 2, "process": true, "reason": "관련 보안 규칙을 찾고 취약 패턴을 확인하는 절차가 추가 보안 검토에 도움 된다."}
+{"task_id": "t359", "candidate_id": "uasl/insecure-defaults@a0e826721018", "grade": 3, "process": true, "reason": "실제 도달 가능한 불안전 기본값을 검증하는 감사는 SameSite 누락 등 세션 설정 점검에 직접 맞는다."}
+{"task_id": "t359", "candidate_id": "uasl/cosmos-vulnerability-scanner@15287e1284d6", "grade": 0, "process": false, "reason": "Cosmos 계약 감사는 axum 웹 세션과 플랫폼이 다르다."}
+{"task_id": "t359", "candidate_id": "uasl/cargo-fuzz@2b31cd9657f5", "grade": 1, "process": false, "reason": "cargo-fuzz 캠페인 설치·설정은 새 크레이트 금지 아래 도입할 수 없고 대상 취약점에도 주변적이다."}
+{"task_id": "t359", "candidate_id": "uasl/secure-coding-practices@cc37fcd8687e", "grade": 3, "process": false, "reason": "안전한 인증·암호·오류 처리 지침은 난수·토큰 비교와 추가 보안 강화에 직접 맞는다."}
+{"task_id": "t359", "candidate_id": "uasl/grist-automation@2cd49d6347ac", "grade": 0, "process": false, "reason": "Grist 자동화는 Rust 인증 구현과 무관하다."}
+{"task_id": "t359", "candidate_id": "uasl/x-api@f7be0ce6f0ec", "grade": 0, "process": false, "reason": "X API 인증 지식은 axum 자체 세션의 보안 강화와 다르다."}
+{"task_id": "t359", "candidate_id": "uasl/security-review@fcc354bc486e", "grade": 2, "process": true, "reason": "인증·민감정보·API 보안 체크리스트는 추가 취약점 탐색과 검증에 도움 된다."}
+{"task_id": "t359", "candidate_id": "uasl/five-agent-security-review@54653e9fa93f", "grade": 1, "process": true, "reason": "개발 에이전트 팀의 권한·운영 보안 검토는 게임 세션 구현과 범위가 다르다."}
+{"task_id": "t359", "candidate_id": "uasl/property-based-testing@a168f6739085", "grade": 1, "process": true, "reason": "속성 테스트는 보조 검증이나 이 난수·쿠키 보안 요청에 직접적인 기법은 아니다."}
+{"task_id": "t359", "candidate_id": "uasl/llm-security@be01c2d8d30b", "grade": 0, "process": false, "reason": "LLM 앱 보안은 이 게임 백엔드 세션과 대상이 다르다."}
+{"task_id": "t359", "candidate_id": "uasl/radar@a47ea6fd5f95", "grade": 2, "process": true, "reason": "기존 테스트 관례를 따르는 검증 절차는 새 크레이트 없이 회귀 검증하는 데 도움 된다."}
+{"task_id": "t359", "candidate_id": "uasl/address-sanitizer@945fe8a1ab1b", "grade": 1, "process": false, "reason": "메모리 오류 탐지는 보안에 인접하지만 명시된 세션 취약점과 성격이 다르다."}
+{"task_id": "t359", "candidate_id": "uasl/secure-workflow-guide@c1bef256dd5c", "grade": 0, "process": true, "reason": "스마트계약 전용 보안 워크플로는 axum 인증 작업과 대상이 다르다."}
+{"task_id": "t360", "candidate_id": "uasl/secure-coding-practices@cc37fcd8687e", "grade": 3, "process": false, "reason": "인증·암호·의존성·오류 경로의 안전한 구현 원칙은 세션 강화 요청을 직접 다룬다."}
+{"task_id": "t360", "candidate_id": "uasl/ln-002-session-analyzer@e1f577ca3f6a", "grade": 0, "process": true, "reason": "에이전트 대화 세션 분석은 웹 인증 세션과 개념이 다르다."}
+{"task_id": "t360", "candidate_id": "uasl/ton-vulnerability-scanner@377d84553d54", "grade": 0, "process": false, "reason": "TON 스마트계약 보안은 axum과 플랫폼이 다르다."}
+{"task_id": "t360", "candidate_id": "uasl/thinking-bounded-rationality@17d6c0bdfb95", "grade": 1, "process": true, "reason": "만족 기준을 정하는 일반 의사결정은 보조적이며 세션 보안 수정 지침은 아니다."}
+{"task_id": "t360", "candidate_id": "uasl/facilitation-patterns@ec5ac8f56de3", "grade": 0, "process": true, "reason": "회의 진행 절차는 세션 보안 코드와 무관하다."}
+{"task_id": "t360", "candidate_id": "uasl/taste-skill@57790089504e", "grade": 0, "process": false, "reason": "React UI 디자인은 Rust 백엔드 인증과 무관하다."}
+{"task_id": "t360", "candidate_id": "uasl/output-skill@8da7a8f7c7fc", "grade": 1, "process": true, "reason": "산출물 누락 방지는 일반적인 보조일 뿐 세션 보안을 다루지 않는다."}
+{"task_id": "t360", "candidate_id": "uasl/constant-time-testing@6bbb97cc6cc1", "grade": 2, "process": true, "reason": "상수시간 동작의 감사와 교정 절차는 subtle 비교로 바꾼 결과 검증에 유용하다."}
+{"task_id": "t360", "candidate_id": "uasl/radar@a47ea6fd5f95", "grade": 2, "process": true, "reason": "기존 관례에 맞는 테스트 개선은 인증 강화의 회귀 검증에 도움 된다."}
+{"task_id": "t360", "candidate_id": "uasl/api-ninjas-automation@e9437531d148", "grade": 0, "process": false, "reason": "API Ninjas 자동화는 로컬 세션 보안과 무관하다."}
+{"task_id": "t360", "candidate_id": "uasl/token-integration-analyzer@73f7e737c832", "grade": 0, "process": false, "reason": "ERC 토큰 분석은 웹 세션 토큰과 다르다."}
+{"task_id": "t360", "candidate_id": "uasl/cargo-fuzz@2b31cd9657f5", "grade": 1, "process": false, "reason": "Rust 퍼징은 주변 검증 수단이나 난수·쿠키·상수시간 수정의 핵심은 아니다."}
+{"task_id": "t360", "candidate_id": "uasl/loom@e731d9ef70c3", "grade": 0, "process": false, "reason": "Figma 입력 패키지 준비는 인증 보안과 무관하다."}
+{"task_id": "t360", "candidate_id": "uasl/top-100-web-vulnerabilities-reference@21b2293939a2", "grade": 2, "process": false, "reason": "웹 취약점 원인·영향·완화 참조는 추가 보안 문제 발견에 유용하다."}
+{"task_id": "t360", "candidate_id": "uasl/probe@e9e9e74a4225", "grade": 2, "process": true, "reason": "동적 보안 검증과 근거 보고는 세션 강화 결과의 확인에 도움 된다."}
+{"task_id": "t360", "candidate_id": "uasl/python-design-patterns@5c0fbe0d4633", "grade": 0, "process": false, "reason": "Python 설계 패턴은 Rust 인증 코드를 직접 지원하지 않는다."}
+{"task_id": "t360", "candidate_id": "uasl/backend-patterns@3d87ff489f3e", "grade": 1, "process": false, "reason": "인증 관련 백엔드 지식은 인접하지만 TypeScript 중심의 광범위한 패턴이다."}
+{"task_id": "t360", "candidate_id": "uasl/caveman@b18d7076b724", "grade": 0, "process": true, "reason": "간결한 답변 스타일은 보안 구현을 돕지 않는다."}
+{"task_id": "t360", "candidate_id": "uasl/vibe-security@6b07d0f651a7", "grade": 2, "process": false, "reason": "보안 기본값과 접근 보호 원칙은 세션·쿠키 강화에 유용하다."}
+{"task_id": "t360", "candidate_id": "uasl/solana-vulnerability-scanner@05e33b7d1d05", "grade": 0, "process": false, "reason": "Solana 프로그램 취약점은 axum 인증과 다르다."}
+{"task_id": "t360", "candidate_id": "uasl/clay@6c9572941894", "grade": 0, "process": false, "reason": "게임 3D 자산 생성은 게임 백엔드 인증과 무관하다."}
+{"task_id": "t360", "candidate_id": "uasl/abstract-automation@06003f423618", "grade": 0, "process": false, "reason": "Abstract 자동화는 세션 보안과 무관하다."}
+{"task_id": "t360", "candidate_id": "anthropics-skills/claude-api@e30e2c97f747", "grade": 0, "process": false, "reason": "Claude API 참조는 axum 세션 강화와 무관하다."}
+{"task_id": "t360", "candidate_id": "uasl/insecure-defaults@a0e826721018", "grade": 3, "process": true, "reason": "실제 보안 기본값의 실패 동작 검증은 쿠키 설정과 추가 인증 문제 점검에 직접 맞는다."}
+{"task_id": "t360", "candidate_id": "uasl/design-system-patterns@cd952cab0879", "grade": 0, "process": false, "reason": "시각 디자인 토큰은 인증 세션 토큰과 다른 개념이다."}
+{"task_id": "t360", "candidate_id": "uasl/fastapi-templates@effcd0de0b4c", "grade": 0, "process": false, "reason": "FastAPI 템플릿은 axum과 언어·프레임워크가 다르다."}
+{"task_id": "t360", "candidate_id": "uasl/flow@d1423e53e763", "grade": 0, "process": false, "reason": "UI 모션은 인증 보안과 무관하다."}
+{"task_id": "t360", "candidate_id": "uasl/printing-press-score@7ec218523bea", "grade": 0, "process": true, "reason": "생성 CLI 평가 절차는 웹 세션 보안과 무관하다."}
+{"task_id": "t360", "candidate_id": "uasl/address-sanitizer@945fe8a1ab1b", "grade": 1, "process": false, "reason": "메모리 오류 탐지는 보안에 인접하지만 요청된 세션 취약점과 다르다."}
+{"task_id": "t360", "candidate_id": "uasl/sentinel@68f8e2afebcc", "grade": 1, "process": true, "reason": "한 이슈만 교정하는 절차는 명시된 여러 취약점을 모두 고치라는 요청 범위와 어긋난다."}
+{"task_id": "t360", "candidate_id": "uasl/imagegen-frontend-mobile@d57843fce66f", "grade": 0, "process": false, "reason": "모바일 화면 이미지 생성은 Rust 보안 코드와 무관하다."}
+{"task_id": "t360", "candidate_id": "uasl/llm-security@be01c2d8d30b", "grade": 0, "process": false, "reason": "LLM 앱 보안은 게임 세션 보안과 대상이 다르다."}
+{"task_id": "t360", "candidate_id": "uasl/latch@1bd1d888e79e", "grade": 0, "process": false, "reason": "Claude Code 훅 설정은 axum 인증 구현과 무관하다."}
+{"task_id": "t360", "candidate_id": "uasl/onesignal-user-auth-automation@f86e15e6be9d", "grade": 0, "process": false, "reason": "OneSignal 인증 도구는 자체 세션 강화와 다르다."}
+{"task_id": "t360", "candidate_id": "uasl/documentation-lookup@dee6d7478eab", "grade": 2, "process": true, "reason": "현재 라이브러리 문서 확인 절차는 subtle·getrandom API를 정확히 적용하는 데 도움이 된다."}
+{"task_id": "t360", "candidate_id": "uasl/security-audit@0b0f681978a4", "grade": 3, "process": true, "reason": "공격 표면·취약점·의존성을 검증하고 보고하는 감사는 요청한 보안 리뷰에 직접 맞는다."}
+{"task_id": "t360", "candidate_id": "uasl/owasp-security@9847d3666f75", "grade": 3, "process": false, "reason": "OWASP 인증·인가·오류 보안 원칙은 세션 강화와 추가 취약점 점검을 직접 돕는다."}
+{"task_id": "t360", "candidate_id": "uasl/error-handling-patterns@4c19ee7d7821", "grade": 2, "process": false, "reason": "Rust 오류 처리 지식은 난수 생성 실패·인증 실패 경로를 안전하게 다루는 데 유용하다."}
+{"task_id": "t360", "candidate_id": "uasl/auth-implementation-patterns@7a99b395d548", "grade": 2, "process": false, "reason": "세션·토큰·쿠키의 보안 패턴은 유용하지만 구현 예시는 Express 중심이다."}
+{"task_id": "t360", "candidate_id": "uasl/token-metrics-automation@6fadb79ed1c7", "grade": 0, "process": false, "reason": "암호화폐 Token Metrics는 인증 토큰과 무관하다."}
+{"task_id": "t360", "candidate_id": "uasl/find-bugs@c3ff7d64ff9f", "grade": 1, "process": true, "reason": "변경하지 않고 보고만 하는 절차는 실제 세션 강화를 요구하는 작업과 완결 방식이 다르다."}
+{"task_id": "t360", "candidate_id": "uasl/caveman-stats@2859ce4e33a6", "grade": 0, "process": false, "reason": "대화 토큰 통계는 인증 세션과 무관하다."}
+{"task_id": "t360", "candidate_id": "uasl/dmux-workflows@d7c9aca09b0a", "grade": 1, "process": true, "reason": "병렬 에이전트 조율은 주변 작업법이며 세션 보안 구현을 직접 다루지 않는다."}
+{"task_id": "t360", "candidate_id": "uasl/specter@eeba33cf9245", "grade": 1, "process": true, "reason": "동시성·자원 검토는 추가 문제에 인접하지만 수정 금지·핸드오프 방식은 강화 구현과 다르다."}
+{"task_id": "t360", "candidate_id": "uasl/code-security@e20eb3467925", "grade": 2, "process": true, "reason": "보안 규칙 조회와 취약 패턴 검토는 추가 보안 문제를 확인하는 데 유용하다."}
+{"task_id": "t360", "candidate_id": "uasl/vercel-cli-with-tokens@3f9c2805c482", "grade": 0, "process": false, "reason": "Vercel CLI 토큰 설정은 axum 인증 토큰 구현과 다르다."}
+{"task_id": "t360", "candidate_id": "uasl/design-harden@7850aacd7d45", "grade": 0, "process": false, "reason": "프런트엔드 UI 견고성은 Rust 세션 보안과 대상이 다르다."}
+{"task_id": "t360", "candidate_id": "uasl/security-review@fcc354bc486e", "grade": 2, "process": true, "reason": "인증·민감정보·API 보안 체크리스트는 수정과 추가 검토에 도움 된다."}
+{"task_id": "t360", "candidate_id": "uasl/secure-workflow-guide@c1bef256dd5c", "grade": 0, "process": true, "reason": "스마트계약 보안 워크플로는 axum 세션과 대상이 다르다."}
+{"task_id": "t360", "candidate_id": "uasl/code-review@dface80322fb", "grade": 3, "process": true, "reason": "근거 있는 보안·실패 경로 리뷰와 원인 수정 제안은 해당 파일 검토를 직접 지원한다."}
+{"task_id": "t360", "candidate_id": "uasl/receiving-code-review@5c548774a9ad", "grade": 2, "process": true, "reason": "제시된 보안 지적을 코드와 대조하고 수정별로 검증하는 절차는 요청한 강화에 도움 된다."}
+{"task_id": "t360", "candidate_id": "uasl/cairo-vulnerability-scanner@ec05b2fd95f9", "grade": 0, "process": false, "reason": "Cairo 계약 취약점은 Rust 웹 세션과 플랫폼이 다르다."}
+{"task_id": "t361", "candidate_id": "uasl/coding-standards@f854e26a9529", "grade": 2, "process": true, "reason": "단순성·재사용·가독성 기준은 서비스 분할 계획의 적정 범위를 정하는 데 도움 된다."}
+{"task_id": "t361", "candidate_id": "uasl/architecture-patterns@d184d1c3a346", "grade": 2, "process": false, "reason": "백엔드 책임·의존성 경계 원칙은 클래스 분할 설계에 유용하다."}
+{"task_id": "t361", "candidate_id": "uasl/atlas@eeafabd38463", "grade": 3, "process": true, "reason": "구현 대신 구조 분석과 실행 가능한 제안서를 만드는 절차가 계획 먼저 검토 방향에 직접 맞는다."}
+{"task_id": "t361", "candidate_id": "uasl/subagent-driven-development@c88a11afe515", "grade": 1, "process": true, "reason": "이미 있는 계획을 하위 에이전트로 실행하는 절차라 코드 이동 전 경계 제안 단계와 다르다."}
+{"task_id": "t361", "candidate_id": "uasl/openapi-spec-generation@2d2c7a93b8f2", "grade": 1, "process": false, "reason": "API 계약 확인은 주변 도움이지만 계약을 바꾸지 않는 클래스 분할 계획의 중심은 아니다."}
+{"task_id": "t361", "candidate_id": "uasl/gpt-tasteskill@134558e228c5", "grade": 0, "process": false, "reason": "프런트엔드 디자인 계획은 Kotlin 백엔드 클래스 분할과 다르다."}
+{"task_id": "t361", "candidate_id": "uasl/forge@a8efdfdbe817", "grade": 1, "process": true, "reason": "동작 프로토타입 제작은 코드 이동 전 계획 검토 요청과 진행 방향이 다르다."}
+{"task_id": "t361", "candidate_id": "uasl/writing-plans@219901eb119f", "grade": 3, "process": true, "reason": "파일 책임과 검증을 명시하고 검토 뒤 실행을 넘기는 계획 작성법이 요청을 직접 다룬다."}
+{"task_id": "t361", "candidate_id": "uasl/reference-class-forecasting@22a3efbe5756", "grade": 0, "process": true, "reason": "역사적 기반 확률 예측은 클래스 분할 계획과 무관하다."}
+{"task_id": "t361", "candidate_id": "uasl/tdd@ff86dad94075", "grade": 2, "process": true, "reason": "공개 동작 테스트와 안전한 리팩터링 순서는 REST 동작 보존 계획에 도움 된다."}
+{"task_id": "t361", "candidate_id": "uasl/karpathy-guidelines@da897c8c3bab", "grade": 2, "process": true, "reason": "불확실성을 밝히고 범위·검증 기준을 정하는 방식은 검토 가능한 작은 분할 계획에 유용하다."}
+{"task_id": "t361", "candidate_id": "uasl/design-integration@03e2661a4d5f", "grade": 0, "process": false, "reason": "Uniswap 통합 설계는 물류 백엔드와 도메인이 다르다."}
+{"task_id": "t361", "candidate_id": "uasl/request-refactor-plan@49b853892f06", "grade": 3, "process": true, "reason": "저장소 조사 후 안전한 작은 리팩터링 계획을 만드는 절차가 코드 이동 전 검토 요청에 직접 맞는다."}
+{"task_id": "t361", "candidate_id": "uasl/domain-analysis@c37c7de1017e", "grade": 3, "process": true, "reason": "응집도·업무 능력·경계를 분석하므로 메서드의 세 서비스 배치를 직접 결정하는 데 맞는다."}
+{"task_id": "t361", "candidate_id": "uasl/cargo-fuzz@2b31cd9657f5", "grade": 0, "process": false, "reason": "Rust 퍼징은 Kotlin 클래스 분할 계획과 다르다."}
+{"task_id": "t361", "candidate_id": "uasl/weekly-update@e18ba8d591b9", "grade": 0, "process": false, "reason": "주간 업데이트 HTML 슬라이드는 리팩터링 설계안과 다르다."}
+{"task_id": "t361", "candidate_id": "uasl/to-issues@fe551bc54a09", "grade": 2, "process": true, "reason": "작업 분해를 사용자에게 검토받은 뒤 진행하는 절차는 계획 승인 단계에 도움 된다."}
+{"task_id": "t361", "candidate_id": "anthropics-skills/frontend-design@0a5ff23f1022", "grade": 0, "process": false, "reason": "UI 디자인은 Kotlin 서비스 분리와 무관하다."}
+{"task_id": "t361", "candidate_id": "uasl/legacy-modernizer@519b6311409d", "grade": 2, "process": true, "reason": "업무 동작 보존과 단계적 이전·안전성 계획은 REST 계약을 유지하는 분할에 유용하다."}
+{"task_id": "t361", "candidate_id": "uasl/thinking-dual-process@ef71f2040b15", "grade": 1, "process": true, "reason": "숙고 방식은 복잡한 판단에 주변 도움이나 클래스 경계를 직접 분석하지 않는다."}
+{"task_id": "t361", "candidate_id": "uasl/dashboard@537186e4443a", "grade": 0, "process": false, "reason": "대시보드 HTML 제작은 백엔드 클래스 분할과 무관하다."}
+{"task_id": "t361", "candidate_id": "uasl/bolt@c4895c710162", "grade": 1, "process": true, "reason": "성능 개선 절차는 주변 영역이며 이번 목표는 구조 분리다."}
+{"task_id": "t361", "candidate_id": "uasl/sendfox-automation@7502b2153453", "grade": 0, "process": false, "reason": "Sendfox 자동화는 서비스 분할과 무관하다."}
+{"task_id": "t361", "candidate_id": "uasl/shorten-rest-automation@60861026388c", "grade": 0, "process": false, "reason": "Shorten Rest 자동화는 REST 동작 보존 리팩터링과 무관하다."}
+{"task_id": "t361", "candidate_id": "uasl/microservices-patterns@40adea69dde4", "grade": 1, "process": false, "reason": "분산 마이크로서비스 설계는 클래스 단위 분할보다 범위가 크고 직접성이 낮다."}
+{"task_id": "t361", "candidate_id": "uasl/api-design@bba608f8c974", "grade": 2, "process": false, "reason": "HTTP 계약 검토 기준은 ShipmentController 동작을 보존할 경계·검증 계획에 도움 된다."}
+{"task_id": "t361", "candidate_id": "uasl/define-architecture@8ea764417825", "grade": 1, "process": false, "reason": "모듈 경계 브리프는 인접하지만 TypeScript 앱 전체 아키텍처 중심이다."}
+{"task_id": "t361", "candidate_id": "uasl/output-skill@8da7a8f7c7fc", "grade": 1, "process": true, "reason": "결과 누락 확인은 보조적이며 클래스 경계 계획을 직접 지원하지 않는다."}
+{"task_id": "t361", "candidate_id": "uasl/xero-automation@390f963c9c47", "grade": 0, "process": false, "reason": "회계 API 자동화는 Kotlin 리팩터링과 무관하다."}
+{"task_id": "t361", "candidate_id": "uasl/builder@8d7f0953ade3", "grade": 1, "process": false, "reason": "일반 비즈니스 로직 구현은 인접하지만 승인 전 클래스 분할 계획과 다른 단계다."}
+{"task_id": "t361", "candidate_id": "uasl/backend-patterns@3d87ff489f3e", "grade": 1, "process": false, "reason": "TypeScript 백엔드 패턴은 인접하나 Kotlin 서비스 분할에 직접성이 낮다."}
+{"task_id": "t361", "candidate_id": "uasl/zen@f72229d0a781", "grade": 3, "process": true, "reason": "동작 보존·범위 제한 리팩터링 검토는 세 서비스로 안전하게 분리하는 작업을 직접 지원한다."}
+{"task_id": "t361", "candidate_id": "uasl/omnisend-automation@cac8b5f5b289", "grade": 0, "process": false, "reason": "마케팅 연락처 자동화는 물류 코드 분할과 무관하다."}
+{"task_id": "t361", "candidate_id": "uasl/clean-architecture@acaac6e9e2a3", "grade": 3, "process": false, "reason": "컴포넌트 책임과 의존성 경계를 설계·검토하는 원칙이 서비스 분할 경계를 직접 돕는다."}
+{"task_id": "t361", "candidate_id": "uasl/component-flattening-analysis@82a0a8d664dd", "grade": 2, "process": true, "reason": "구조를 분석해 공유 코드의 분리·이동을 제안하는 절차는 메서드 배치 검토에 유용하다."}
+{"task_id": "t361", "candidate_id": "uasl/refactoring-patterns@7283bad3e86e", "grade": 3, "process": true, "reason": "관찰 가능한 동작을 유지하는 작은 리팩터링 단계는 REST 불변 조건 아래 클래스 분할에 직접 맞는다."}
+{"task_id": "t361", "candidate_id": "uasl/fastapi-templates@effcd0de0b4c", "grade": 0, "process": false, "reason": "FastAPI 프로젝트 템플릿은 Kotlin 서비스 구조와 프레임워크가 다르다."}
+{"task_id": "t361", "candidate_id": "uasl/gorgias-automation@2106c504916d", "grade": 0, "process": false, "reason": "고객지원 자동화는 클래스 분할과 무관하다."}
+{"task_id": "t361", "candidate_id": "uasl/user-story-splitting@2d9d6a6fd3e3", "grade": 1, "process": true, "reason": "스토리 분해는 계획에 인접하지만 클래스·메서드 책임 경계를 다루지 않는다."}
+{"task_id": "t361", "candidate_id": "uasl/eng-runbook@0895fb3557f4", "grade": 0, "process": true, "reason": "운영 런북 작성은 코드 분할 설계안과 산출물이 다르다."}
+{"task_id": "t361", "candidate_id": "uasl/gateway@8350be122608", "grade": 2, "process": true, "reason": "호환성을 중시하는 계약 검토·설계 기록은 REST 불변 조건을 계획에 명시하는 데 도움 된다."}
+{"task_id": "t361", "candidate_id": "uasl/gsap-plugins@a63cb79f853e", "grade": 0, "process": false, "reason": "GSAP 플러그인은 Kotlin 백엔드와 무관하다."}
+{"task_id": "t361", "candidate_id": "uasl/component-identification-sizing@a9b4aa9f2de1", "grade": 2, "process": true, "reason": "컴포넌트 크기와 구조 분석은 큰 클래스의 분할 근거를 정리하는 데 도움 된다."}
+{"task_id": "t361", "candidate_id": "uasl/software-design-philosophy@066bc275787f", "grade": 3, "process": false, "reason": "정보 은닉·모듈·인터페이스 설계 원칙은 새 세 서비스의 경계를 정하는 데 직접 적용된다."}
+{"task_id": "t361", "candidate_id": "uasl/api-testing@4ada9a2fac88", "grade": 2, "process": false, "reason": "HTTP API 검증 지식은 계획에 동작 보존 테스트를 포함하는 데 도움 된다."}
+{"task_id": "t361", "candidate_id": "uasl/team-okrs@7a95ee8c1302", "grade": 0, "process": false, "reason": "OKR 화면 제작은 서비스 분할과 무관하다."}
+{"task_id": "t361", "candidate_id": "anthropics-skills/webapp-testing@a4b4ce82b644", "grade": 0, "process": false, "reason": "브라우저 UI 테스트는 백엔드 내부 클래스 분할 계획과 대상이 다르다."}
+{"task_id": "t361", "candidate_id": "uasl/latch@1bd1d888e79e", "grade": 0, "process": false, "reason": "Claude Code 훅 설정은 Kotlin 리팩터링과 무관하다."}
+{"task_id": "t361", "candidate_id": "uasl/printing-press@9498149d380e", "grade": 0, "process": true, "reason": "API용 CLI 생성은 Kotlin 서비스 분리와 무관하다."}
+{"task_id": "t361", "candidate_id": "uasl/python-design-patterns@5c0fbe0d4633", "grade": 1, "process": false, "reason": "책임 분리 원칙은 인접하지만 Python 코드 패턴이라 Kotlin 분할 계획에 한계가 있다."}
+{"task_id": "t361", "candidate_id": "uasl/ticketmaster-automation@d2f0c72b5edc", "grade": 0, "process": false, "reason": "Ticketmaster 자동화는 물류 서비스 분할과 무관하다."}
+{"task_id": "t361", "candidate_id": "uasl/splitwise-automation@3b8562b5f551", "grade": 0, "process": false, "reason": "Splitwise 자동화는 클래스 분리와 무관하다."}
+{"task_id": "t362", "candidate_id": "uasl/splitwise-automation@3b8562b5f551", "grade": 0, "process": false, "reason": "Splitwise 서비스 자동화는 코드 분할과 무관하다."}
+{"task_id": "t362", "candidate_id": "uasl/user-story-splitting@2d9d6a6fd3e3", "grade": 1, "process": true, "reason": "스토리 분해는 작은 PR에 인접하지만 추출할 범위가 이미 지정되어 추가 실익이 낮다."}
+{"task_id": "t362", "candidate_id": "uasl/builder@8d7f0953ade3", "grade": 1, "process": false, "reason": "범용 비즈니스 로직 구현은 주변 도움이나 Kotlin 메서드 추출이 중심은 아니다."}
+{"task_id": "t362", "candidate_id": "uasl/omnisend-automation@cac8b5f5b289", "grade": 0, "process": false, "reason": "마케팅 자동화는 Kotlin 리팩터링과 무관하다."}
+{"task_id": "t362", "candidate_id": "uasl/refactoring-patterns@7283bad3e86e", "grade": 3, "process": true, "reason": "관찰 동작을 유지하는 작은 단계의 리팩터링이 운임 메서드만 추출하는 방향에 직접 맞는다."}
+{"task_id": "t362", "candidate_id": "uasl/architecture-patterns@d184d1c3a346", "grade": 2, "process": false, "reason": "의존성·업무 책임 경계 원칙은 CarrierRateService 추출에 도움 된다."}
+{"task_id": "t362", "candidate_id": "uasl/team-okrs@7a95ee8c1302", "grade": 0, "process": false, "reason": "OKR 화면 제작은 백엔드 리팩터링과 무관하다."}
+{"task_id": "t362", "candidate_id": "uasl/braintree-automation@6ca1049d53ee", "grade": 0, "process": false, "reason": "결제 서비스 자동화는 운임 클래스 추출과 무관하다."}
+{"task_id": "t362", "candidate_id": "uasl/define-architecture@8ea764417825", "grade": 1, "process": false, "reason": "TypeScript 앱 전체 구조 정의는 작은 Kotlin 추출에 직접성이 낮다."}
+{"task_id": "t362", "candidate_id": "anthropics-skills/claude-api@e30e2c97f747", "grade": 0, "process": false, "reason": "Claude API 참조는 Kotlin 서비스 분할과 무관하다."}
+{"task_id": "t362", "candidate_id": "uasl/piloterr-automation@1e6577a7a642", "grade": 0, "process": false, "reason": "Piloterr 자동화는 클래스 추출과 무관하다."}
+{"task_id": "t362", "candidate_id": "uasl/gagelist-automation@7041ff752ce1", "grade": 0, "process": false, "reason": "Gagelist 자동화는 클래스 추출과 무관하다."}
+{"task_id": "t362", "candidate_id": "uasl/decomposition-planning-roadmap@750bfb7d134f", "grade": 1, "process": true, "reason": "분해 로드맵·이해관계자 검증은 이미 정한 첫 추출을 지금 수행하는 작업보다 계획에 치우친다."}
+{"task_id": "t362", "candidate_id": "uasl/guardian@27ad146feaed", "grade": 1, "process": true, "reason": "읽기 전용 Git·PR 판단은 주변 검토이며 요청한 메서드 추출 구현을 수행하지 않는다."}
+{"task_id": "t362", "candidate_id": "uasl/ticketmaster-automation@d2f0c72b5edc", "grade": 0, "process": false, "reason": "Ticketmaster 자동화는 물류 코드 리팩터링과 무관하다."}
+{"task_id": "t362", "candidate_id": "uasl/gateway@8350be122608", "grade": 1, "process": true, "reason": "계약 검토는 인접하지만 구현을 다른 곳에 넘기는 방식은 지금 추출하라는 작업을 완결하지 못한다."}
+{"task_id": "t362", "candidate_id": "uasl/onesignal-rest-api-automation@69760a7d8416", "grade": 0, "process": false, "reason": "OneSignal 자동화는 REST 동작 불변 리팩터링과 무관하다."}
+{"task_id": "t362", "candidate_id": "uasl/lemon-squeezy-automation@78ae0198fdfd", "grade": 0, "process": false, "reason": "전자상거래 API 조회는 물류 서비스 코드 분할과 무관하다."}
+{"task_id": "t362", "candidate_id": "uasl/output-skill@8da7a8f7c7fc", "grade": 1, "process": true, "reason": "산출물 완결성 점검은 일반적인 보조이며 안전한 클래스 추출을 직접 다루지 않는다."}
+{"task_id": "t362", "candidate_id": "uasl/forge@a8efdfdbe817", "grade": 1, "process": true, "reason": "모의 프로토타입 우선 흐름은 실제 운영 동작을 그대로 유지하는 코드 추출과 다르다."}
+{"task_id": "t362", "candidate_id": "uasl/zen@f72229d0a781", "grade": 3, "process": true, "reason": "범위 제한·동작 보존·검증 리팩터링 절차가 운임 메서드만 추출하는 요청에 직접 맞는다."}
+{"task_id": "t362", "candidate_id": "uasl/shorten-rest-automation@60861026388c", "grade": 0, "process": false, "reason": "Shorten Rest 자동화는 Kotlin 서비스 분리와 무관하다."}
+{"task_id": "t362", "candidate_id": "uasl/improve-retention@f80cefef268d", "grade": 0, "process": false, "reason": "사용자 습관·유지율 설계는 코드의 작은 추출과 무관하다."}
+{"task_id": "t362", "candidate_id": "uasl/ko-fi-automation@56dbaba7e8b2", "grade": 0, "process": false, "reason": "Ko-fi 결제 자동화는 코드 추출과 무관하다."}
+{"task_id": "t362", "candidate_id": "uasl/gorgias-automation@2106c504916d", "grade": 0, "process": false, "reason": "고객지원 자동화는 Kotlin 서비스와 무관하다."}
+{"task_id": "t362", "candidate_id": "uasl/tdd@ff86dad94075", "grade": 2, "process": true, "reason": "행동 테스트로 보호하면서 작게 리팩터링하는 방식은 REST 동작 보존에 도움 된다."}
+{"task_id": "t362", "candidate_id": "uasl/to-issues@fe551bc54a09", "grade": 1, "process": true, "reason": "분해 승인 후 티켓을 게시하는 절차는 이미 정한 작은 구현을 바로 수행하는 방향과 다르다."}
+{"task_id": "t362", "candidate_id": "uasl/fastapi-templates@effcd0de0b4c", "grade": 0, "process": false, "reason": "FastAPI 템플릿은 Kotlin 코드와 프레임워크가 다르다."}
+{"task_id": "t362", "candidate_id": "uasl/api-design@bba608f8c974", "grade": 2, "process": false, "reason": "REST 계약 점검 기준은 추출 전후 컨트롤러 응답·상태 동작 보존에 도움 된다."}
+{"task_id": "t362", "candidate_id": "uasl/design-harden@7850aacd7d45", "grade": 0, "process": false, "reason": "프런트엔드 UI 견고성은 Kotlin 클래스 분리와 무관하다."}
+{"task_id": "t362", "candidate_id": "uasl/writing-plans@219901eb119f", "grade": 1, "process": true, "reason": "계획을 저장·검토하고 실행을 넘기는 절차는 계획보다 지정된 첫 추출을 지금 하라는 방향과 다르다."}
+{"task_id": "t362", "candidate_id": "uasl/frame@40df32596215", "grade": 0, "process": false, "reason": "Figma 설계 컨텍스트 수집은 백엔드 코드 추출과 무관하다."}
+{"task_id": "t362", "candidate_id": "uasl/printing-press@9498149d380e", "grade": 0, "process": true, "reason": "CLI 생성 절차는 Kotlin 서비스 추출과 무관하다."}
+{"task_id": "t362", "candidate_id": "uasl/backend-patterns@3d87ff489f3e", "grade": 1, "process": false, "reason": "TypeScript 백엔드 패턴은 인접하지만 지정된 Kotlin 메서드 이동의 직접 도움은 작다."}
+{"task_id": "t362", "candidate_id": "uasl/bolt@c4895c710162", "grade": 1, "process": true, "reason": "성능 최적화 절차는 관련 영역이나 이번 목표는 동작 불변 구조 개선이다."}
+{"task_id": "t362", "candidate_id": "uasl/invoice-organizer@65f04d96d07a", "grade": 0, "process": true, "reason": "청구서 파일 정리 절차는 소스 코드 분할과 무관하다."}
+{"task_id": "t362", "candidate_id": "uasl/titan@39c6080f3dfc", "grade": 2, "process": true, "reason": "범위에 맞는 최소 단계로 계획보다 구현을 우선하는 방법은 작은 첫 추출 실행 방향에 맞는다."}
+{"task_id": "t362", "candidate_id": "uasl/google-classroom-automation@2fc169e6c142", "grade": 0, "process": false, "reason": "Google Classroom 자동화는 Kotlin 리팩터링과 무관하다."}
+{"task_id": "t362", "candidate_id": "uasl/mom-test@6f43f16a3566", "grade": 0, "process": true, "reason": "고객 인터뷰 방법은 운임 메서드 추출과 무관하다."}
+{"task_id": "t362", "candidate_id": "uasl/rkvst-automation@f0f72c3326d1", "grade": 0, "process": false, "reason": "Rkvst 자동화는 물류 백엔드 코드 추출과 무관하다."}
+{"task_id": "t362", "candidate_id": "uasl/debugging-strategies@c55dad9c9654", "grade": 1, "process": true, "reason": "버그 재현·원인 조사 절차는 추출 뒤 문제 발생 시 보조이나 현재는 버그 수정 요청이 아니다."}
+{"task_id": "t363", "candidate_id": "uasl/gateway@8350be122608", "grade": 2, "process": true, "reason": "하위 호환 API 계약을 검토하는 방향은 v3.x 동기화 유지 조건을 점검하는 데 도움 된다."}
+{"task_id": "t363", "candidate_id": "uasl/horizon@8e6f79e4495d", "grade": 2, "process": true, "reason": "점진적 이전과 위험·영향 검토는 기존 컬럼을 한 릴리스 유지하는 전환에 유용하다."}
+{"task_id": "t363", "candidate_id": "uasl/dating-web@a74a01fd41b0", "grade": 0, "process": false, "reason": "데이트 대시보드 HTML은 Room 마이그레이션과 무관하다."}
+{"task_id": "t363", "candidate_id": "uasl/legacy-modernizer@519b6311409d", "grade": 3, "process": true, "reason": "기존 업무 동작을 보존하며 단계적으로 이전하는 절차가 하위 호환 전환 방향에 직접 맞는다."}
+{"task_id": "t363", "candidate_id": "uasl/adr-architecture@2794198a12ff", "grade": 1, "process": true, "reason": "기술 결정 기록은 주변 도움이나 Room 데이터 변환 자체를 안내하지 않는다."}
+{"task_id": "t363", "candidate_id": "uasl/googlemeet-automation@d25b5982718c", "grade": 0, "process": false, "reason": "회의 일정 자동화는 로컬 시간 데이터 이전과 무관하다."}
+{"task_id": "t363", "candidate_id": "uasl/migrate-to-shoehorn@50bfd668fa65", "grade": 0, "process": false, "reason": "TypeScript 테스트 캐스팅 이전은 Android DB 이전과 다르다."}
+{"task_id": "t363", "candidate_id": "uasl/design-system-patterns@cd952cab0879", "grade": 0, "process": false, "reason": "시각 디자인 토큰 이전은 시간 컬럼 이전과 무관하다."}
+{"task_id": "t363", "candidate_id": "uasl/freshbooks-automation@8508cc146d7f", "grade": 0, "process": false, "reason": "FreshBooks 회계 자동화는 Room 마이그레이션과 무관하다."}
+{"task_id": "t363", "candidate_id": "uasl/printing-press-reprint@af02d260d0be", "grade": 0, "process": true, "reason": "기존 CLI 재생성은 Android 데이터 이전과 무관하다."}
+{"task_id": "t363", "candidate_id": "uasl/timely-automation@71cef9db2e67", "grade": 0, "process": false, "reason": "Timely 자동화는 앱 내부 시간 저장 구조와 다르다."}
+{"task_id": "t363", "candidate_id": "uasl/quickbooks-automation@bbe37470a32c", "grade": 0, "process": false, "reason": "QuickBooks 회계 도구는 Room 데이터 이전과 무관하다."}
+{"task_id": "t363", "candidate_id": "uasl/clockify-automation@2a7df079c351", "grade": 0, "process": false, "reason": "Clockify 전용 타임스탬프 API는 Room 기존 행 변환을 다루지 않는다."}
+{"task_id": "t363", "candidate_id": "uasl/email-marketing@a37255743f2c", "grade": 0, "process": false, "reason": "HTML 마케팅 이메일은 Android 데이터 이전과 무관하다."}
+{"task_id": "t363", "candidate_id": "uasl/mobile-app@a9dba8039c51", "grade": 0, "process": false, "reason": "iPhone HTML 목업은 Android Room 구현과 무관하다."}
+{"task_id": "t363", "candidate_id": "uasl/caveman-commit@244182e952a7", "grade": 1, "process": true, "reason": "커밋 메시지 작성은 변경 기록에 주변 도움일 뿐 마이그레이션을 다루지 않는다."}
+{"task_id": "t363", "candidate_id": "uasl/firebase-apk-scanner@70f61dd5e15b", "grade": 0, "process": false, "reason": "Firebase APK 보안 검사는 Room 시간 컬럼 이전과 다른 작업이다."}
+{"task_id": "t363", "candidate_id": "uasl/claude-native-claude-api@24c958899f03", "grade": 0, "process": false, "reason": "Claude API 이전 지식은 Room DB 이전과 무관하다."}
+{"task_id": "t363", "candidate_id": "uasl/atlas@eeafabd38463", "grade": 1, "process": true, "reason": "상위 구조 제안은 주변 도움이나 지정된 Room 변환 구현과 직접성이 낮다."}
+{"task_id": "t363", "candidate_id": "uasl/multi-repo-git-ops@d1a9b3bcdc7d", "grade": 0, "process": true, "reason": "여러 저장소 Git 운영은 단일 DB 마이그레이션 요구와 무관하다."}
+{"task_id": "t363", "candidate_id": "uasl/prioritization-effort-impact@a1369be27fa4", "grade": 0, "process": true, "reason": "백로그 우선순위 산정은 이미 정해진 시간 데이터 이전과 무관하다."}
+{"task_id": "t363", "candidate_id": "uasl/roadmap-backcast@7cd18481befb", "grade": 1, "process": true, "reason": "단계별 로드맵은 한 릴리스 전환에 주변 도움이나 데이터 호환 구현을 다루지 않는다."}
+{"task_id": "t363", "candidate_id": "uasl/universal-ai-config@810b8c3c5958", "grade": 0, "process": false, "reason": "AI 스킬 설정은 Room 데이터 이전과 무관하다."}
+{"task_id": "t363", "candidate_id": "uasl/edit-article@50d401cdd74b", "grade": 0, "process": true, "reason": "글 편집 절차는 DB 마이그레이션과 무관하다."}
+{"task_id": "t363", "candidate_id": "uasl/insecure-defaults@a0e826721018", "grade": 1, "process": true, "reason": "보안 기본값 감사는 주변 검토이나 시간 변환·호환성 문제를 직접 다루지 않는다."}
+{"task_id": "t363", "candidate_id": "uasl/rkvst-automation@f0f72c3326d1", "grade": 0, "process": false, "reason": "Rkvst 자동화는 Android DB 이전과 무관하다."}
+{"task_id": "t363", "candidate_id": "uasl/browser-extension-builder@3240e6183c28", "grade": 0, "process": false, "reason": "브라우저 확장 저장소는 Android Room과 플랫폼이 다르다."}
+{"task_id": "t363", "candidate_id": "uasl/new-relic-automation@efeb6349c763", "grade": 0, "process": false, "reason": "New Relic 경보 관리는 데이터 변환과 무관하다."}
+{"task_id": "t363", "candidate_id": "uasl/encodian-automation@c694b3d04119", "grade": 0, "process": false, "reason": "Encodian 자동화는 Room 데이터 이전과 무관하다."}
+{"task_id": "t363", "candidate_id": "uasl/schema@e6f260ce62e0", "grade": 3, "process": false, "reason": "스키마 모델링·마이그레이션·무결성과 안전한 변경은 기존 행을 보존하며 새 시간 컬럼을 추가하는 작업에 직접 맞는다."}
+{"task_id": "t363", "candidate_id": "uasl/habitica-automation@ccd00cec596d", "grade": 0, "process": false, "reason": "Habitica 서비스 자동화는 자체 습관 앱의 Room 이전과 무관하다."}
+{"task_id": "t363", "candidate_id": "uasl/customerio-automation@147bd2db28ea", "grade": 0, "process": false, "reason": "Customer.io 마케팅 API는 로컬 시간 데이터 이전과 다르다."}
+{"task_id": "t363", "candidate_id": "uasl/live-artifact@a7e66be6fd82", "grade": 0, "process": false, "reason": "갱신 가능한 HTML 아티팩트 생성은 Room 데이터 이전과 무관하다."}
+{"task_id": "t363", "candidate_id": "uasl/docs-page@d9c05e10601d", "grade": 0, "process": false, "reason": "HTML 문서 페이지 제작은 DB 마이그레이션과 무관하다."}
+{"task_id": "t363", "candidate_id": "uasl/token-metrics-automation@6fadb79ed1c7", "grade": 0, "process": false, "reason": "암호화폐 지표 자동화는 시간 컬럼 이전과 무관하다."}
+{"task_id": "t363", "candidate_id": "uasl/instantly-automation@d8854d4a51f6", "grade": 0, "process": false, "reason": "콜드 이메일 캠페인은 Android DB 이전과 무관하다."}
+{"task_id": "t363", "candidate_id": "uasl/architecture-decision-records@715e99d0306d", "grade": 1, "process": true, "reason": "호환성 결정과 근거를 기록하는 데 주변 도움이나 변환 구현법은 아니다."}
+{"task_id": "t363", "candidate_id": "uasl/postgresql-table-design@59d09e948243", "grade": 0, "process": false, "reason": "PostgreSQL 전용 타입·DDL 지식은 SQLite 기반 Room과 DB가 다르다."}
+{"task_id": "t363", "candidate_id": "uasl/xero-automation@390f963c9c47", "grade": 0, "process": false, "reason": "Xero 회계 자동화는 Room 이전과 무관하다."}
+{"task_id": "t363", "candidate_id": "uasl/sql-optimization-patterns@389f90da7b56", "grade": 1, "process": false, "reason": "SQL 자료형·배치 지식은 주변 도움이지만 성능 최적화가 중심이다."}
+{"task_id": "t363", "candidate_id": "uasl/gamified-app@89f56442216c", "grade": 0, "process": false, "reason": "게임화 모바일 목업은 습관 앱의 Room 데이터 이전과 다르다."}
+{"task_id": "t364", "candidate_id": "uasl/next-upgrade@df465f7770a5", "grade": 0, "process": false, "reason": "Next.js 업그레이드는 Android Room 이전과 프레임워크가 다르다."}
+{"task_id": "t364", "candidate_id": "uasl/spotify-automation@ccaa582efd70", "grade": 0, "process": false, "reason": "Spotify 자동화는 DB 스키마 이전과 무관하다."}
+{"task_id": "t364", "candidate_id": "uasl/schema@e6f260ce62e0", "grade": 3, "process": false, "reason": "스키마·마이그레이션·무결성 검증은 기존 행을 UTC와 zone_id로 전환하고 컬럼을 제거하는 작업에 직접 맞는다."}
+{"task_id": "t364", "candidate_id": "uasl/bun-runtime@009ca8691cf7", "grade": 0, "process": false, "reason": "Bun 런타임 이전은 Android Room과 무관하다."}
+{"task_id": "t364", "candidate_id": "uasl/microsoft-clarity-automation@44237e641aae", "grade": 0, "process": false, "reason": "Clarity 분석 데이터 추출은 Room 시간 저장 변경과 무관하다."}
+{"task_id": "t364", "candidate_id": "uasl/compliance-audit@f935cdbc8ebe", "grade": 0, "process": true, "reason": "규제 준수 감사는 요청한 시간 컬럼 이전과 관련 근거가 없다."}
+{"task_id": "t364", "candidate_id": "uasl/habitica-automation@ccd00cec596d", "grade": 0, "process": false, "reason": "Habitica 외부 자동화는 자체 습관 앱 데이터 이전과 다르다."}
+{"task_id": "t364", "candidate_id": "uasl/clockify-automation@2a7df079c351", "grade": 0, "process": false, "reason": "Clockify 전용 시간 API는 Room 기존 행 변환에 적용되지 않는다."}
+{"task_id": "t364", "candidate_id": "uasl/freshbooks-automation@8508cc146d7f", "grade": 0, "process": false, "reason": "회계 프로젝트 데이터 조회는 Android DB 이전과 무관하다."}
+{"task_id": "t364", "candidate_id": "uasl/gateway@8350be122608", "grade": 1, "process": true, "reason": "하위 호환 우선의 계약 설계는 구 컬럼을 제거하고 v4로 전환하라는 방향과 긴장이 있다."}
+{"task_id": "t364", "candidate_id": "uasl/sql-optimization-patterns@389f90da7b56", "grade": 1, "process": false, "reason": "SQL 자료형·배치 지식은 주변 도움이나 성능 최적화가 중심이다."}
+{"task_id": "t364", "candidate_id": "uasl/customerio-automation@147bd2db28ea", "grade": 0, "process": false, "reason": "Customer.io 캠페인 API는 Room 데이터 이전과 무관하다."}
+{"task_id": "t364", "candidate_id": "uasl/timely-automation@71cef9db2e67", "grade": 0, "process": false, "reason": "Timely 연동은 앱 내부 스키마 변경과 다르다."}
+{"task_id": "t364", "candidate_id": "uasl/retain@80a5ca883d36", "grade": 0, "process": true, "reason": "사용자 유지율 분석은 습관 앱의 시간 컬럼 이전과 무관하다."}
+{"task_id": "t364", "candidate_id": "uasl/design-hook@561de9aa519a", "grade": 0, "process": false, "reason": "Uniswap V4 훅 설계는 sync API v4 전환과 전혀 다른 대상이다."}
+{"task_id": "t364", "candidate_id": "uasl/hooked-ux@64362f56c26b", "grade": 0, "process": false, "reason": "습관 형성 UX 모델은 앱 저장 데이터 마이그레이션을 다루지 않는다."}
+{"task_id": "t364", "candidate_id": "uasl/changelog-generator@f7da9390521a", "grade": 1, "process": true, "reason": "릴리스 변경 로그 작성은 API v4 변경 공지에 주변 도움이지만 구현 요구는 아니다."}
+{"task_id": "t364", "candidate_id": "uasl/new-relic-automation@efeb6349c763", "grade": 0, "process": false, "reason": "New Relic 경보 관리는 Room 스키마 변경과 무관하다."}
+{"task_id": "t364", "candidate_id": "uasl/legacy-modernizer@519b6311409d", "grade": 2, "process": true, "reason": "안전한 이전·검증·구 코드 퇴출 절차는 유용하며 업무 동작 보존은 구 API 유지 강제가 아니다."}
+{"task_id": "t364", "candidate_id": "uasl/firebase-apk-scanner@70f61dd5e15b", "grade": 0, "process": false, "reason": "Firebase APK 보안 검사는 Room 데이터 변환과 다른 작업이다."}
+{"task_id": "t364", "candidate_id": "uasl/mobile-app@a9dba8039c51", "grade": 0, "process": false, "reason": "iPhone HTML 목업은 Android Room 구현과 무관하다."}
+{"task_id": "t364", "candidate_id": "uasl/data-schema-knowledge-modeling@c06f86b10d33", "grade": 2, "process": false, "reason": "속성·제약·불변식을 명시하는 데이터 모델링은 새 시간 필드와 변환 조건을 정의하는 데 도움 된다."}
+{"task_id": "t364", "candidate_id": "uasl/dating-web@a74a01fd41b0", "grade": 0, "process": false, "reason": "데이트 대시보드 HTML은 Room 이전과 무관하다."}
+{"task_id": "t364", "candidate_id": "uasl/setup-matt-pocock-skills@d52ac42900e6", "grade": 0, "process": true, "reason": "에이전트 스킬 설정 문서 작업은 앱 DB 이전과 무관하다."}
+{"task_id": "t364", "candidate_id": "uasl/insecure-defaults@a0e826721018", "grade": 1, "process": true, "reason": "보안 기본값 감사는 주변 검토이나 시간 변환과 API 전환의 핵심은 아니다."}
+{"task_id": "t364", "candidate_id": "uasl/recallai-automation@25293bd990f3", "grade": 0, "process": false, "reason": "Recallai 자동화는 Android 데이터 이전과 무관하다."}
+{"task_id": "t364", "candidate_id": "uasl/printing-press-reprint@af02d260d0be", "grade": 0, "process": true, "reason": "CLI 재생성 조율은 Room 마이그레이션과 무관하다."}
+{"task_id": "t364", "candidate_id": "uasl/claude-native-claude-api@24c958899f03", "grade": 0, "process": false, "reason": "Claude API 이전은 앱의 v4 동기화 계약과 다르다."}
+{"task_id": "t364", "candidate_id": "uasl/integration-testing@62b51275be50", "grade": 2, "process": true, "reason": "실제 DB·API 구성요소를 함께 검증하는 통합 테스트 방법은 마이그레이션과 새 동기화 경로 검증에 도움 된다."}
+{"task_id": "t364", "candidate_id": "uasl/gamified-app@89f56442216c", "grade": 0, "process": false, "reason": "게임화 화면 목업은 습관 앱 데이터 이전과 다르다."}
+{"task_id": "t364", "candidate_id": "uasl/prioritization-effort-impact@a1369be27fa4", "grade": 0, "process": true, "reason": "백로그 우선순위는 이미 정해진 마이그레이션을 직접 돕지 않는다."}
+{"task_id": "t364", "candidate_id": "uasl/horizon@8e6f79e4495d", "grade": 2, "process": true, "reason": "이전 위험 평가와 검증·영향 기록은 UTC 스키마 전환에 유용하며 점진적 수행 자체가 v4 변경 금지는 아니다."}
+{"task_id": "t364", "candidate_id": "uasl/architecture-decision-records@715e99d0306d", "grade": 1, "process": true, "reason": "기술 결정 기록은 v4 변경 근거 보존에 주변 도움이나 변환 구현을 안내하지 않는다."}
+{"task_id": "t364", "candidate_id": "uasl/googlemeet-automation@d25b5982718c", "grade": 0, "process": false, "reason": "회의 일정 자동화는 Room 데이터 이전과 무관하다."}
+{"task_id": "t364", "candidate_id": "uasl/caveman-commit@244182e952a7", "grade": 1, "process": true, "reason": "커밋 메시지 작성은 변경 기록에 주변적이며 마이그레이션을 다루지 않는다."}
+{"task_id": "t364", "candidate_id": "uasl/pricing-page@8b72ba4d0477", "grade": 0, "process": false, "reason": "가격 페이지 HTML 제작은 Android DB 변경과 무관하다."}
+{"task_id": "t364", "candidate_id": "uasl/docs-page@d9c05e10601d", "grade": 0, "process": false, "reason": "HTML 문서 페이지 제작은 Room 마이그레이션과 무관하다."}
+{"task_id": "t364", "candidate_id": "uasl/postgresql-table-design@59d09e948243", "grade": 0, "process": false, "reason": "PostgreSQL 전용 스키마 지식은 SQLite 기반 Room과 DB가 다르다."}
+{"task_id": "t364", "candidate_id": "uasl/imagegen-frontend-mobile@d57843fce66f", "grade": 0, "process": false, "reason": "모바일 화면 이미지 생성은 Room 구현 지침이 아니다."}
+{"task_id": "t364", "candidate_id": "uasl/quickbooks-automation@bbe37470a32c", "grade": 0, "process": false, "reason": "QuickBooks 회계 연동은 DB 스키마 이전과 무관하다."}
+{"task_id": "t364", "candidate_id": "uasl/email-marketing@a37255743f2c", "grade": 0, "process": false, "reason": "마케팅 이메일 제작은 Android 데이터 변환과 무관하다."}
+{"task_id": "t364", "candidate_id": "uasl/migrate-to-shoehorn@50bfd668fa65", "grade": 0, "process": false, "reason": "TypeScript 테스트 캐스팅 이전은 Room 컬럼 이전과 언어·대상이 다르다."}

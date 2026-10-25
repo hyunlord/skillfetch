@@ -1,0 +1,31 @@
+You are a coding agent following your "skillfetch router" instructions at the start of a developer's task. The search has
+already run: for each task you get the task and the exact `search_skills` result (50 compact results, best BM25 match
+first) for your one-sentence restatement. Do only the selection step. These are the router's instructions, verbatim:
+
+## When
+
+Run the steps first, before you grep, glob or read the codebase, for:
+
+- a feature, even one that fits in a single file
+- a bug fix, even when you expect the fix to be one line
+- a refactor: splitting, moving or extracting code
+- tests: adding, extending or repairing them
+- documentation: README sections, guides, docstrings, comments across a file
+- configuration: build, lint, CI, dependency or framework config
+- a review, a migration, a new document
+
+"It looks small" is not a reason to skip. Neither is a project skill that seems to fit
+(for example one in `.claude/skills/`): run the steps and pin it (step 5).
+
+Skip only: a one-line edit in a single file (a typo, a constant, an import), a rename
+with no other change, or answering a question without editing files.
+
+4. Call `search_skills` with that sentence. It returns 50 one-line summaries, best BM25
+   match first: read all 50 and pick 1–3 that fit this task — the best fit is often not
+   near the top. Each result has a `token_estimate`: when two fit equally, take the
+   smaller, and keep the set's total under `load_skills`' budget (8000 tokens by default).
+
+For each task, choose the skill ids you would pass to `resolve_set` (1–3), or none — none when the router says to
+skip this task, or when no result fits. Use ids exactly as given. You cannot see the code.
+
+Output JSON only: [{"id": "<task id>", "skills": ["<skill id>", ...]}] in the order given; "skills": [] means none.

@@ -1,0 +1,290 @@
+{
+ "rows": 4486,
+ "returned": 4486,
+ "missing": 0,
+ "exact": 0.689,
+ "within_1": 0.975,
+ "grade_kappa": 0.353,
+ "relevant_kappa": 0.482,
+ "relevant_agree": 0.884,
+ "process_kappa": 0.798,
+ "process_agree": 0.919,
+ "confusion_opus_to_gpt": {
+  "0->0": 2732,
+  "0->1": 697,
+  "0->2": 82,
+  "1->0": 21,
+  "1->1": 220,
+  "1->2": 397,
+  "1->3": 29,
+  "2->1": 11,
+  "2->2": 93,
+  "2->3": 157,
+  "3->2": 2,
+  "3->3": 45
+ },
+ "relevant_counts": {
+  "opus": 308,
+  "gpt": 805
+ },
+ "worst_10": [
+  {
+   "task_id": "t174",
+   "task_text": "Goal: over-the-air releases for the React Native hotel check-in app using EAS Update.\n- Configure `eas.json` channels: `preview`, `staging`, `production`\n- `runtimeVersion` policy set to `fingerprint` so native changes force a store build instead of an OTA update\n- Add a GitHub Actions job that publ",
+   "sum_abs_diff": 28,
+   "opus_relevant": [
+    "uasl/deployment-pipeline-design@2a89fc6f32ff",
+    "uasl/documentation-lookup@dee6d7478eab",
+    "uasl/github-actions-templates@ce03df93ccdf",
+    "uasl/github-workflow-automation@519f4ba6e482",
+    "uasl/pipe@0f029a41f006"
+   ],
+   "gpt_relevant": [
+    "uasl/claude-native-code-review@bffd2d4fab50",
+    "uasl/deployment-pipeline-design@2a89fc6f32ff",
+    "uasl/documentation-lookup@dee6d7478eab",
+    "uasl/github-actions-templates@ce03df93ccdf",
+    "uasl/github-workflow-automation@519f4ba6e482",
+    "uasl/guardian@27ad146feaed",
+    "uasl/insecure-defaults@a0e826721018",
+    "uasl/launch@117c5509679d",
+    "uasl/pipe@0f029a41f006",
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/vercel-react-native-skills@6e314641b44a"
+   ]
+  },
+  {
+   "task_id": "t083",
+   "task_text": "Playwright로 결제 페이지 e2e 테스트 추가해줘. `/checkout`에서 쿠폰 적용하고 카드 결제 실패했을 때 에러 토스트 뜨는지, 재시도하면 주문 완료 페이지로 가는지 확인하면 돼. Stripe는 test mode 키로 mock 처리해줘.",
+   "sum_abs_diff": 27,
+   "opus_relevant": [
+    "uasl/browser-automation@49c3aed21e27",
+    "uasl/e2e-testing-patterns@8b25fb0b2da6"
+   ],
+   "gpt_relevant": [
+    "anthropics-skills/webapp-testing@a4b4ce82b644",
+    "uasl/browser-automation@49c3aed21e27",
+    "uasl/chrome-devtools@6237e93b6aa2",
+    "uasl/design-harden@7850aacd7d45",
+    "uasl/e2e-testing-patterns@8b25fb0b2da6",
+    "uasl/echo@cb69fbdef665",
+    "uasl/judge@6ea2e485149e",
+    "uasl/navigator@8d026b4397b8",
+    "uasl/siege@06245d21dd1c",
+    "uasl/stripe-best-practices@795a33f68129",
+    "uasl/systematic-debug@6b158e105823",
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/test-driven-development@0eebe2fe0e28",
+    "uasl/typescript-unit-testing@6fb3561edcb3",
+    "uasl/ux-audit@d921ee5d8321",
+    "uasl/verification-before-completion@134bf517af69",
+    "uasl/verification-loop@39d9be23cf50"
+   ]
+  },
+  {
+   "task_id": "t115",
+   "task_text": "Our soil-moisture sensor firmware crate has about 20 unsafe blocks in src/hal/adc.rs and src/dma.rs with no justification, and clippy's undocumented_unsafe_blocks lint is about to be turned on in CI. Can you add a // SAFETY: comment above each one explaining why it's actually sound? Flag any you thi",
+   "sum_abs_diff": 26,
+   "opus_relevant": [],
+   "gpt_relevant": [
+    "uasl/caveman-review@23eed6aa48dd",
+    "uasl/claude-native-code-review@bffd2d4fab50",
+    "uasl/quill@336ba74b0e79",
+    "uasl/sentinel@68f8e2afebcc",
+    "uasl/spec-miner@cebd849612b0",
+    "uasl/specter@eeba33cf9245"
+   ]
+  },
+  {
+   "task_id": "t219",
+   "task_text": "Goal: add a shipment delay classifier to the logistics backend (Kotlin, Spring Boot 3, Gradle).\n- New module `:delay-model` that loads an XGBoost4J model from S3 at startup (path from `delay.model.uri`)\n- `DelayPredictor.predict(shipment: Shipment): DelayRisk` returning LOW/MEDIUM/HIGH with probabil",
+   "sum_abs_diff": 25,
+   "opus_relevant": [
+    "uasl/unit-testing@6c5fbb821103"
+   ],
+   "gpt_relevant": [
+    "uasl/acceptance-testing@7f713f1566e8",
+    "uasl/chaos-testing@760793a4a18b",
+    "uasl/codenavi@109490043377",
+    "uasl/coding-standards@f854e26a9529",
+    "uasl/contract-testing@b0f4c29940a9",
+    "uasl/data-analyst-engine@79799e01e2dd",
+    "uasl/integration-testing@62b51275be50",
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28",
+    "uasl/thinking-scientific-method@8b3f9fba25b4",
+    "uasl/unit-testing@6c5fbb821103",
+    "uasl/writing-plans@219901eb119f"
+   ]
+  },
+  {
+   "task_id": "t236",
+   "task_text": "Harden JWT validation in our matchmaking gRPC service.\nFile: internal/auth/interceptor.go (unary + streaming interceptors, golang-jwt/jwt v5).\nRequirements:\n- reject alg=none and any alg other than RS256 explicitly\n- enforce exp, nbf, and iss=\"auth.playgrid.io\" with at most 30s clock skew\n- the publ",
+   "sum_abs_diff": 25,
+   "opus_relevant": [
+    "uasl/auth-implementation-patterns@7a99b395d548",
+    "uasl/defense-in-depth@e9a7d1415325",
+    "uasl/insecure-defaults@a0e826721018",
+    "uasl/radar@a47ea6fd5f95",
+    "uasl/secure-coding-practices@cc37fcd8687e",
+    "uasl/security-review@fcc354bc486e",
+    "uasl/unit-testing@6c5fbb821103",
+    "uasl/verification-before-completion@134bf517af69"
+   ],
+   "gpt_relevant": [
+    "uasl/acceptance-testing@7f713f1566e8",
+    "uasl/attest@3259b6f024a0",
+    "uasl/auth-implementation-patterns@7a99b395d548",
+    "uasl/builder@8d7f0953ade3",
+    "uasl/contract-testing@b0f4c29940a9",
+    "uasl/defense-in-depth@e9a7d1415325",
+    "uasl/deliberation-debate-red-teaming@3163aa9a1489",
+    "uasl/fp-check@36809c5d2431",
+    "uasl/insecure-defaults@a0e826721018",
+    "uasl/probe@e9e9e74a4225",
+    "uasl/property-based-testing@a168f6739085",
+    "uasl/radar@a47ea6fd5f95",
+    "uasl/secure-coding-practices@cc37fcd8687e",
+    "uasl/security-review@fcc354bc486e",
+    "uasl/semgrep-rule-creator@ae4d35a76948",
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/unit-testing@6c5fbb821103",
+    "uasl/verification-before-completion@134bf517af69",
+    "uasl/vibe-security@6b07d0f651a7"
+   ]
+  },
+  {
+   "task_id": "t256",
+   "task_text": "Fix input lag on the fleet tracking admin page (`app/fleet/vehicles/page.tsx`).\n- `VehicleTable` renders ~2,000 rows at once. Typing in the plate-number filter lags ~300ms per keystroke.\n- Virtualize the rows with @tanstack/react-virtual and keep the sticky header working.\n- Wrap `VehicleRow` in Rea",
+   "sum_abs_diff": 25,
+   "opus_relevant": [
+    "uasl/bolt@c4895c710162",
+    "uasl/chrome-devtools@6237e93b6aa2",
+    "uasl/design-optimize@cbb1632043ec",
+    "uasl/e2e-testing-patterns@8b25fb0b2da6",
+    "uasl/frontend-patterns@8f659ce2a0bd",
+    "uasl/react-patterns@73d1ecc06997",
+    "uasl/vercel-react-best-practices@70f3b5aaf775",
+    "uasl/web-perf@9063b7e5eacf",
+    "uasl/web-performance-optimization@b2b38275ed40"
+   ],
+   "gpt_relevant": [
+    "uasl/bolt@c4895c710162",
+    "uasl/browser-automation@49c3aed21e27",
+    "uasl/chrome-devtools@6237e93b6aa2",
+    "uasl/design-optimize@cbb1632043ec",
+    "uasl/documentation-lookup@dee6d7478eab",
+    "uasl/e2e-testing-patterns@8b25fb0b2da6",
+    "uasl/frontend-patterns@8f659ce2a0bd",
+    "uasl/navigator@8d026b4397b8",
+    "uasl/next-best-practices@ee058f89acea",
+    "uasl/radar@a47ea6fd5f95",
+    "uasl/react-patterns@73d1ecc06997",
+    "uasl/software-design-philosophy@066bc275787f",
+    "uasl/taste-skill@57790089504e",
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/typescript-unit-testing@6fb3561edcb3",
+    "uasl/vercel-composition-patterns@a6f8be32b197",
+    "uasl/vercel-react-best-practices@70f3b5aaf775",
+    "uasl/web-perf@9063b7e5eacf",
+    "uasl/web-performance-optimization@b2b38275ed40"
+   ]
+  },
+  {
+   "task_id": "t240",
+   "task_text": "Our axum wallet service keeps private keys in a struct that derives Debug, and I'm pretty sure one ended up in tracing output last week. Can you go through src/keys/ and make sure secret material is zeroized on drop, never Debug-printed, and not cloned around more than it needs to be?",
+   "sum_abs_diff": 24,
+   "opus_relevant": [
+    "uasl/secure-coding-practices@cc37fcd8687e",
+    "uasl/security-audit@0b0f681978a4",
+    "uasl/security-review@fcc354bc486e"
+   ],
+   "gpt_relevant": [
+    "uasl/code-security@e20eb3467925",
+    "uasl/debug-root-cause@1d7ea4a832dc",
+    "uasl/debugging-strategies@c55dad9c9654",
+    "uasl/defense-in-depth@e9a7d1415325",
+    "uasl/insecure-defaults@a0e826721018",
+    "uasl/lens@6fbc66f7a7bb",
+    "uasl/secure-coding-practices@cc37fcd8687e",
+    "uasl/security-audit@0b0f681978a4",
+    "uasl/security-review@fcc354bc486e",
+    "uasl/systematic-debug@6b158e105823",
+    "uasl/verification-loop@39d9be23cf50"
+   ]
+  },
+  {
+   "task_id": "t270",
+   "task_text": "Fix consumer lag on the ad-impression topic. The Kotlin consumer in `impressions-ingest` is falling ~2M messages behind during evening peaks.\n- `ImpressionListener.onMessage` currently does one JDBC insert per record. Switch to batch listening and `JdbcTemplate.batchUpdate` with chunks of 500.\n- Rai",
+   "sum_abs_diff": 23,
+   "opus_relevant": [
+    "uasl/siege@06245d21dd1c",
+    "uasl/sql-optimization-patterns@389f90da7b56",
+    "uasl/stream@94a72913c590",
+    "uasl/verification-before-completion@134bf517af69"
+   ],
+   "gpt_relevant": [
+    "uasl/bolt@c4895c710162",
+    "uasl/coding-guidelines@0ec7e45f92f2",
+    "uasl/contract-testing@b0f4c29940a9",
+    "uasl/debug-root-cause@1d7ea4a832dc",
+    "uasl/debugging-strategies@c55dad9c9654",
+    "uasl/integration-testing@62b51275be50",
+    "uasl/radar@a47ea6fd5f95",
+    "uasl/scout@97653445d7f1",
+    "uasl/siege@06245d21dd1c",
+    "uasl/specter@eeba33cf9245",
+    "uasl/sql-optimization-patterns@389f90da7b56",
+    "uasl/stream@94a72913c590",
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28",
+    "uasl/thinking-scientific-method@8b3f9fba25b4",
+    "uasl/verification-before-completion@134bf517af69"
+   ]
+  },
+  {
+   "task_id": "t282",
+   "task_text": "`src/features/tutor/LessonCalendar.tsx` 주간 뷰에서 수업이 겹치면 카드가 서로 덮어버려요. 겹치는 일정은 Google Calendar처럼 옆으로 나란히 배치되게 바꿔주고, 각 카드 위에 과목 색상 띠도 추가해 주세요.",
+   "sum_abs_diff": 23,
+   "opus_relevant": [],
+   "gpt_relevant": [
+    "uasl/accessibility-compliance@696d2b4119ed",
+    "uasl/frontend-design@5da82907743d",
+    "uasl/frontend-patterns@8f659ce2a0bd",
+    "uasl/react-patterns@73d1ecc06997",
+    "uasl/redesign-skill@2e4f7f16e367",
+    "uasl/refactoring-ui@a0c00159d43d",
+    "uasl/tailwind-design-system@7db0651a06b1",
+    "uasl/taste-skill@57790089504e",
+    "uasl/ui-design@812122996fbd",
+    "uasl/vercel-composition-patterns@a6f8be32b197",
+    "uasl/vercel-react-best-practices@70f3b5aaf775",
+    "uasl/web-component-design@af6d16dc78dc",
+    "uasl/web-design@b19d7c3f962e"
+   ]
+  },
+  {
+   "task_id": "t217",
+   "task_text": "djl pytorch model for review sentiment in ReviewScoringService, replace regex rules",
+   "sum_abs_diff": 23,
+   "opus_relevant": [],
+   "gpt_relevant": [
+    "uasl/ai-expertise-engine@902bd0b3e61f",
+    "uasl/caveman-review@23eed6aa48dd",
+    "uasl/clean-architecture@acaac6e9e2a3",
+    "uasl/code-review-excellence@ad803274d219",
+    "uasl/evaluation-rubrics@77bb2e79d3a1",
+    "uasl/judge@6ea2e485149e",
+    "uasl/pragmatic-programmer@d73a94281415",
+    "uasl/radar@a47ea6fd5f95",
+    "uasl/refactoring-patterns@7283bad3e86e",
+    "uasl/requesting-code-review@82594984f359",
+    "uasl/second-opinion@129803cad9d9",
+    "uasl/zen@f72229d0a781"
+   ]
+  }
+ ]
+}

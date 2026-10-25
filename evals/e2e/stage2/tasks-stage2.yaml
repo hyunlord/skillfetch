@@ -1,0 +1,30 @@
+# Stage 2 — domain generalisation. One large generative task per domain; the prompt is identical in A, B, C2.
+# search_sentence: the English restatement used for B selection (search_skills, k=50, profile of the repo).
+tasks:
+  - id: s2-tests
+    domain: test writing
+    repo: s2-tests
+    prompt: "`src/recur/rules.py`에는 테스트가 하나도 없어. 이 모듈에 테스트 스위트를 추가해줘 — 커버리지를 높이고 엣지케이스도 다뤄줘."
+    search_sentence: "Write a pytest test suite for the untested Python module src/recur/rules.py (recurrence rule parsing and date expansion) with high coverage and edge cases"
+  - id: s2-api
+    domain: backend API
+    repo: s2-api
+    prompt: |-
+      북마크를 저장하는 REST API를 FastAPI로 설계하고 구현해줘. 스키마, 에러 처리, 테스트까지 포함해서.
+      - 앱은 `app/main.py`의 `app`
+      - 저장은 SQLite, 파일 경로는 환경변수 `BOOKMARKS_DB` (없으면 `bookmarks.db`)
+      - 북마크: url(필수, http/https만), title(필수), tags(문자열 목록), created_at
+      - 엔드포인트: `POST /bookmarks`, `GET /bookmarks` (태그 필터 `?tag=`, 페이지네이션 `?limit=&offset=`), `GET /bookmarks/{id}`, `PATCH /bookmarks/{id}`, `DELETE /bookmarks/{id}`
+      - 같은 url은 두 번 저장할 수 없음
+      - 상태 코드는 REST 관례대로 (생성 201, 삭제 204, 없음 404, 중복 409, 검증 실패 422)
+    search_sentence: "Design and implement a bookmarks REST API with FastAPI and SQLite: Pydantic schemas, CRUD endpoints with tag filter and pagination, error handling (404, 409, 422) and pytest tests"
+  - id: s2-docs
+    domain: documentation
+    repo: s2-docs
+    prompt: "이 레포에는 README가 없어. README와 사용 문서를 써줘."
+    search_sentence: "Write a README and usage documentation for a small Next.js TypeScript example app that has no README"
+  - id: s2-data
+    domain: data script
+    repo: s2-data
+    prompt: "`data/orders.csv`가 지저분해 (결측값, 형식 불일치 등). 이걸 정리해서 깨끗한 CSV를 만들고 요약 리포트를 내는 Python 스크립트를 써줘. 스크립트는 `scripts/clean_orders.py`이고, `uv run python scripts/clean_orders.py`로 실행하면 결과를 `out/`에 쓰게 해줘."
+    search_sentence: "Write a Python script that cleans a messy orders CSV (missing values, inconsistent date, price and category formats, duplicates) and produces a summary report"

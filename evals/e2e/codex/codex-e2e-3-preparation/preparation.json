@@ -1,0 +1,33 @@
+{
+  "source_commit": "14d2020f1275e10a272eb46575c9bd6d4a2182e4",
+  "original_router_sha256": "e711bb60f5ebabfe43d22a2dab718a8f1920205f98e7d72ea574672ad33e3c12",
+  "full_agents_sha256": "4cdfac9064f4f6dda0846dff9c8fe52a90dd2e65ba09cc494c735ea9c83bfa8a",
+  "host_adaptations": [
+    "Steps 1 and 2 are exactly the approved Codex wording used in E2E-2 (applicable instructions first, known context only, host-provided tool discovery).",
+    "Local skill example changes .claude/skills/ to .agents/skills/."
+  ],
+  "preserved_sections": [
+    "YAML name and description as text",
+    "Intro",
+    "When including bug-fix and one-line skip boundaries",
+    "Steps 3 through 8 byte-identical",
+    "Rules byte-identical"
+  ],
+  "step_numbers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "config_sha256": "69fb11307213035fce1442078304ff1891a1b4b22e5254a75d9387884bb590e1",
+  "old_report_hashes": {
+    "codex-e2e.md": "db5b22600f4d20048f5669a39221335d8b5f7106cd1824d4b2deb57848d139c5",
+    "codex-e2e-2.md": "bc8e4d41b17785b3408c5cb62519d55dd32d77751eaedc751d32d019e437effc"
+  },
+  "oracle_sha256": "7db50e73c7dfd6b0b810ba65231fd1475a25a563651310592c88da23795e108c",
+  "label_data_is_controller_only": true
+}

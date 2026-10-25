@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "scope": "Artifact consistency and metric reproduction; runtime audit intentionally remains FAIL.",
+  "at": "2026-10-23T17:18:09.622Z",
+  "report_sha256": "d5e57239cbd32bda86901336ff5299f0bdb803b91ff21d4bee417848a1074cb0",
+  "report_bytes": 53434,
+  "primary_session_rows": 57,
+  "comparison_task_rows": 19,
+  "exact_query_artifacts": 57,
+  "existing_local_links": 208,
+  "old_reports_preserved": true,
+  "runtime_audit_status": "FAIL",
+  "runtime_checks_passed": 1228,
+  "runtime_checks_total": 1229,
+  "child_threads": 1,
+  "spawn_attempts": 4,
+  "oracle_sha256": "7db50e73c7dfd6b0b810ba65231fd1475a25a563651310592c88da23795e108c"
+}

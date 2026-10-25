@@ -1,0 +1,117 @@
+{
+ "gated": [
+  {
+   "repo": "BagelHole/DevOps-Security-Agent-Skills",
+   "lint_failed": 113,
+   "discovered": 163,
+   "rate": 0.693
+  },
+  {
+   "repo": "yaklang/hack-skills",
+   "lint_failed": 89,
+   "discovered": 103,
+   "rate": 0.864
+  }
+ ],
+ "picked": [
+  {
+   "repo": "affaan-m/ECC",
+   "new": 800,
+   "gain": 9,
+   "cum_requests": 800,
+   "cum_gap": 9,
+   "commit": "90606c8315ee"
+  },
+  {
+   "repo": "ahmed3elshaer/everything-claude-code-mobile",
+   "new": 46,
+   "gain": 6,
+   "cum_requests": 846,
+   "cum_gap": 15,
+   "commit": "d94b24037d71"
+  },
+  {
+   "repo": "rshankras/claude-code-apple-skills",
+   "new": 22,
+   "gain": 3,
+   "cum_requests": 868,
+   "cum_gap": 18,
+   "commit": "9ffb83138209"
+  },
+  {
+   "repo": "actionbook/rust-skills",
+   "new": 35,
+   "gain": 3,
+   "cum_requests": 903,
+   "cum_gap": 21,
+   "commit": "5c40d3ad7851"
+  },
+  {
+   "repo": "dpearson2699/swift-ios-skills",
+   "new": 86,
+   "gain": 1,
+   "cum_requests": 989,
+   "cum_gap": 22,
+   "commit": "8d90fd121a26"
+  }
+ ],
+ "covered_gap": 22,
+ "requests": 989,
+ "unpicked_with_gain": [
+  {
+   "repo": "bobmatnyc/claude-mpm-skills",
+   "new": 167,
+   "adds": 1
+  },
+  {
+   "repo": "aj-geddes/useful-ai-prompts",
+   "new": 250,
+   "adds": 2
+  },
+  {
+   "repo": "Mindrally/skills",
+   "new": 262,
+   "adds": 1
+  },
+  {
+   "repo": "davidcastagnetoa/skills",
+   "new": 230,
+   "adds": 4
+  },
+  {
+   "repo": "secondsky/claude-skills",
+   "new": 173,
+   "adds": 1
+  },
+  {
+   "repo": "sickn33/agentic-awesome-skills",
+   "new": 4869,
+   "adds": 1
+  },
+  {
+   "repo": "wshobson/agents",
+   "new": 176,
+   "adds": 3
+  },
+  {
+   "repo": "github/awesome-copilot",
+   "new": 435,
+   "adds": 1
+  },
+  {
+   "repo": "agents-inc/skills",
+   "new": 470,
+   "adds": 1
+  },
+  {
+   "repo": "davila7/claude-code-templates",
+   "new": 819,
+   "adds": 2
+  },
+  {
+   "repo": "mohitmishra786/low-level-dev-skills",
+   "new": 140,
+   "adds": 1
+  }
+ ]
+}

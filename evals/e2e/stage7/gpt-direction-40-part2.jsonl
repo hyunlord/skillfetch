@@ -1,0 +1,346 @@
+{"task_id": "t349", "candidate_id": "uasl/jobs-to-be-done@bfffa3a12f42", "grade": 0, "process": true, "reason": "고객 발견 프레임워크로 재학습 작업 설계와 무관하다."}
+{"task_id": "t349", "candidate_id": "uasl/braintree-automation@6ca1049d53ee", "grade": 0, "process": false, "reason": "결제 서비스 조작 도구이며 내부 모델 재학습과 다르다."}
+{"task_id": "t349", "candidate_id": "uasl/thinking-kepner-tregoe@2a9ddc837752", "grade": 2, "process": true, "reason": "근거 기반 위험 분석은 원자적 교체 계획의 실패 조건을 정리하는 데 도움 된다."}
+{"task_id": "t349", "candidate_id": "uasl/design-sprint@4550ceb8d09f", "grade": 0, "process": true, "reason": "고객 검증용 5일 디자인 스프린트는 이 백엔드 계획과 무관하다."}
+{"task_id": "t349", "candidate_id": "uasl/chaos-testing@760793a4a18b", "grade": 1, "process": true, "reason": "복원력 실험 방법은 주변적이며 재학습 배치 설계 자체를 다루지 않는다."}
+{"task_id": "t349", "candidate_id": "uasl/track-improve@8f83ad4ce1d4", "grade": 0, "process": true, "reason": "실수 추적 보고서 작성은 신규 재학습 기능 계획과 다르다."}
+{"task_id": "t349", "candidate_id": "uasl/coding-guidelines@0ec7e45f92f2", "grade": 2, "process": true, "reason": "범위 제한과 검증 목표 명시는 승인 전 구현 계획을 정리하는 데 도움 된다."}
+{"task_id": "t349", "candidate_id": "uasl/eng-runbook@0895fb3557f4", "grade": 1, "process": true, "reason": "운영 런북 문서화는 배치 운영과 인접하지만 구현 계획은 아니다."}
+{"task_id": "t349", "candidate_id": "uasl/mend@9ea877a21ec7", "grade": 1, "process": true, "reason": "승인된 복구 런북 실행은 배포 안전성과 인접하나 신규 기능 계획은 아니다."}
+{"task_id": "t349", "candidate_id": "uasl/ramp-automation@25b168650188", "grade": 0, "process": false, "reason": "Ramp 거래 관리 도구는 로컬 card_transactions 학습과 다르다."}
+{"task_id": "t349", "candidate_id": "uasl/debugging-strategies@c55dad9c9654", "grade": 1, "process": true, "reason": "버그 조사 절차는 신규 기능 설계에 간접적으로만 도움 된다."}
+{"task_id": "t349", "candidate_id": "uasl/thinking-jobs-to-be-done@1b920fccd1fc", "grade": 0, "process": true, "reason": "제품 고객의 진전 분석은 구체적 재학습 구현 계획과 무관하다."}
+{"task_id": "t349", "candidate_id": "uasl/printing-press-score@7ec218523bea", "grade": 0, "process": true, "reason": "CLI 품질 채점 절차는 Spring 모델 학습과 무관하다."}
+{"task_id": "t349", "candidate_id": "uasl/microservices-patterns@40adea69dde4", "grade": 1, "process": false, "reason": "분산 서비스 패턴은 기존 서비스 내부의 재학습·원자적 교체에 주변적이다."}
+{"task_id": "t349", "candidate_id": "uasl/developer-growth-analysis@4615ad8d56aa", "grade": 0, "process": true, "reason": "개발자 성장 보고서와 Slack 전송은 요청과 무관하다."}
+{"task_id": "t349", "candidate_id": "uasl/information-architecture@52f13543ba9f", "grade": 0, "process": false, "reason": "콘텐츠 탐색 구조 설계는 모델 레지스트리 설계와 다르다."}
+{"task_id": "t349", "candidate_id": "uasl/inngest@fc3f33c4e97f", "grade": 0, "process": false, "reason": "Inngest와 Next.js 작업 구현은 지정된 Spring xgboost4j 스택과 다르다."}
+{"task_id": "t349", "candidate_id": "uasl/grill-with-docs@99f1bafe73fe", "grade": 3, "process": true, "reason": "코드에 근거한 대화형 계획 검토가 구현 전 설계와 승인 대기에 직접 맞는다."}
+{"task_id": "t349", "candidate_id": "uasl/fraudlabs-pro-automation@e0573ec245f0", "grade": 0, "process": false, "reason": "Fraudlabs 외부 도구 조작은 자체 XGBoost 재학습과 다르다."}
+{"task_id": "t349", "candidate_id": "uasl/legacy-modernizer@519b6311409d", "grade": 1, "process": true, "reason": "레거시 현대화 계획은 안전한 변경과 인접하나 이 신규 배치 기능과 다르다."}
+{"task_id": "t349", "candidate_id": "uasl/integration-testing@62b51275be50", "grade": 2, "process": true, "reason": "Spring과 DB를 함께 검증하는 통합 테스트는 재학습·교체 계획의 검증 설계에 도움 된다."}
+{"task_id": "t349", "candidate_id": "uasl/tlc-spec-driven@394ed16ecc07", "grade": 2, "process": true, "reason": "명세·설계·태스크 계획 순서는 코딩 전 계획 요구에 분명히 도움 된다."}
+{"task_id": "t349", "candidate_id": "uasl/slack-bot-builder@ce64c6aad24e", "grade": 0, "process": false, "reason": "Slack Bolt 앱 구현은 모델 학습 서비스와 무관하다."}
+{"task_id": "t349", "candidate_id": "uasl/eol-message@05765e0a4b63", "grade": 0, "process": true, "reason": "제품 종료 공지 작성은 재학습 기능 계획과 무관하다."}
+{"task_id": "t349", "candidate_id": "uasl/contract-testing@b0f4c29940a9", "grade": 1, "process": true, "reason": "서비스 API 호환성 테스트는 내부 모델 교체의 검증과는 거리가 있다."}
+{"task_id": "t349", "candidate_id": "uasl/writing-stickiness@6c04707af4f0", "grade": 0, "process": true, "reason": "마케팅 메시지 개선 절차는 구현 계획과 무관하다."}
+{"task_id": "t349", "candidate_id": "uasl/retain@80a5ca883d36", "grade": 0, "process": true, "reason": "이탈 방지 분석은 사기 모델 재학습과 무관하다."}
+{"task_id": "t349", "candidate_id": "uasl/cast@5200526abf38", "grade": 0, "process": true, "reason": "페르소나 생명주기 관리는 모델 레지스트리 구현과 다르다."}
+{"task_id": "t349", "candidate_id": "uasl/executive-onboarding-playbook@dc89777e55ba", "grade": 0, "process": true, "reason": "임원 온보딩 방법은 재학습 코드 계획과 무관하다."}
+{"task_id": "t349", "candidate_id": "uasl/brandkit@be1d18f9b581", "grade": 0, "process": false, "reason": "브랜드 키트 시각 제작은 백엔드 재학습과 무관하다."}
+{"task_id": "t349", "candidate_id": "uasl/second-opinion@129803cad9d9", "grade": 1, "process": true, "reason": "외부 diff 검토는 아직 코딩하지 않는 계획 단계에서 주변적이다."}
+{"task_id": "t349", "candidate_id": "uasl/thinking-partner@80abb24d238a", "grade": 2, "process": true, "reason": "가정 검토와 다음 단계 도출은 승인 전 설계 논의를 돕는다."}
+{"task_id": "t349", "candidate_id": "uasl/writing-plans@219901eb119f", "grade": 3, "process": true, "reason": "파일 책임·검증을 포함한 구현 계획을 작성하고 실행을 인계하여 계획 후 승인 요구에 직접 맞는다."}
+{"task_id": "t349", "candidate_id": "uasl/goodbits-automation@094fd5f46bb8", "grade": 0, "process": false, "reason": "Goodbits 이메일 자동화는 재학습과 무관하다."}
+{"task_id": "t349", "candidate_id": "uasl/thinking-scientific-method@8b3f9fba25b4", "grade": 2, "process": true, "reason": "가설과 검증 방법을 분리하는 절차가 AUC 비교 및 승인 기준 설계에 도움 된다."}
+{"task_id": "t349", "candidate_id": "uasl/sherpa@e80ffe2d019e", "grade": 3, "process": true, "reason": "코드를 구현하지 않고 단계와 위험·인계를 정리하여 계획만 먼저 제시하는 요구에 직접 맞는다."}
+{"task_id": "t349", "candidate_id": "uasl/specter@eeba33cf9245", "grade": 2, "process": true, "reason": "수정 없이 동시성과 자원 위험을 분석하므로 원자적 모델 교체 설계를 돕는다."}
+{"task_id": "t349", "candidate_id": "uasl/ashby-automation@b9813e1a534d", "grade": 0, "process": false, "reason": "채용 데이터 관리의 job은 학습 배치 작업과 다르다."}
+{"task_id": "t349", "candidate_id": "uasl/xero-automation@390f963c9c47", "grade": 0, "process": false, "reason": "Xero 회계 거래 조작은 내부 학습 데이터 처리와 다르다."}
+{"task_id": "t349", "candidate_id": "uasl/replicate-automation@4053915c756a", "grade": 0, "process": false, "reason": "Replicate 추론 API는 지정된 로컬 xgboost4j 재학습과 다르다."}
+{"task_id": "t349", "candidate_id": "uasl/secure-coding-practices@cc37fcd8687e", "grade": 1, "process": false, "reason": "민감 데이터 보호 원칙은 거래 데이터에 인접하나 계획·재학습 핵심은 아니다."}
+{"task_id": "t349", "candidate_id": "uasl/claude-native-claude-api@24c958899f03", "grade": 0, "process": false, "reason": "Anthropic SDK와 LLM 구현은 XGBoost Java 학습과 다르다."}
+{"task_id": "t349", "candidate_id": "uasl/ddia-systems@d2b3af9bb043", "grade": 2, "process": false, "reason": "데이터 처리·트랜잭션·장애 허용 원리는 학습 데이터와 원자적 교체 계획에 도움 된다."}
+{"task_id": "t349", "candidate_id": "uasl/scorecard-marketing@2d025421dbdc", "grade": 0, "process": true, "reason": "마케팅 평가 퍼널 설계는 모델 AUC 평가와 다르다."}
+{"task_id": "t349", "candidate_id": "uasl/caveman-help@31fd99e3cd77", "grade": 0, "process": false, "reason": "Caveman 명령 참조는 재학습 계획과 무관하다."}
+{"task_id": "t349", "candidate_id": "uasl/hooked-ux@64362f56c26b", "grade": 0, "process": true, "reason": "습관 형성 UX 평가는 사기 모델 서비스와 무관하다."}
+{"task_id": "t349", "candidate_id": "uasl/design-integration@03e2661a4d5f", "grade": 0, "process": false, "reason": "Uniswap 통합 아키텍처는 지정된 ML 서비스와 다르다."}
+{"task_id": "t350", "candidate_id": "uasl/hooked-ux@64362f56c26b", "grade": 0, "process": true, "reason": "습관 형성 UX는 Spring 재학습 기능과 무관하다."}
+{"task_id": "t350", "candidate_id": "uasl/braintree-automation@6ca1049d53ee", "grade": 0, "process": false, "reason": "Braintree 결제 조작은 내부 모델 학습과 다르다."}
+{"task_id": "t350", "candidate_id": "uasl/replicate-automation@4053915c756a", "grade": 0, "process": false, "reason": "Replicate 추론 API는 xgboost4j 로컬 학습 스택과 다르다."}
+{"task_id": "t350", "candidate_id": "uasl/cardly-automation@726088b758ca", "grade": 0, "process": false, "reason": "Cardly 자동화는 모델 재학습과 무관하다."}
+{"task_id": "t350", "candidate_id": "uasl/facebook-automation@4a716016ccd0", "grade": 0, "process": false, "reason": "Facebook 게시 예약은 Spring 배치 예약과 다르다."}
+{"task_id": "t350", "candidate_id": "uasl/mend@9ea877a21ec7", "grade": 1, "process": true, "reason": "운영 복구 승인·런북 절차는 작은 신규 기능 변경에 주변적이다."}
+{"task_id": "t350", "candidate_id": "uasl/supply-chain-risk-auditor@e1d4cbea9ff6", "grade": 1, "process": true, "reason": "의존성 공급망 감사는 재학습 메서드 구현 핵심이 아니다."}
+{"task_id": "t350", "candidate_id": "uasl/to-prd@8ac169d69939", "grade": 1, "process": true, "reason": "PRD 발행과 모듈 기대 조율은 작은 변경을 즉시 구현하라는 방향과 맞지 않는다."}
+{"task_id": "t350", "candidate_id": "uasl/thinking-kepner-tregoe@2a9ddc837752", "grade": 1, "process": true, "reason": "일반 위험 분석은 도움 여지가 있으나 작은 Scheduled 메서드 구현을 직접 다루지 않는다."}
+{"task_id": "t350", "candidate_id": "uasl/n8n-workflow-patterns@c9641aab7a0b", "grade": 0, "process": false, "reason": "n8n 워크플로는 지정된 Spring 내부 메서드와 다른 도구다."}
+{"task_id": "t350", "candidate_id": "uasl/hr-onboarding@a215d70427b3", "grade": 0, "process": false, "reason": "HR 온보딩 HTML은 모델 학습과 무관하다."}
+{"task_id": "t350", "candidate_id": "uasl/specter@eeba33cf9245", "grade": 1, "process": true, "reason": "동시성 검토는 유관하나 코드 수정 금지와 별도 인계는 즉시 구현 방향과 다르다."}
+{"task_id": "t350", "candidate_id": "uasl/executive-onboarding-playbook@dc89777e55ba", "grade": 0, "process": true, "reason": "임원 온보딩 절차는 재학습 코드와 무관하다."}
+{"task_id": "t350", "candidate_id": "uasl/retain@80a5ca883d36", "grade": 0, "process": true, "reason": "고객 이탈 분석은 사기 모델 학습과 무관하다."}
+{"task_id": "t350", "candidate_id": "uasl/transformers@0b5f07bd96f0", "grade": 0, "process": false, "reason": "Python Transformers는 지정된 Java XGBoost와 다른 모델·스택이다."}
+{"task_id": "t350", "candidate_id": "uasl/trigger-dev@d05b3d95379f", "grade": 0, "process": false, "reason": "Trigger.dev 추가 작업 인프라는 기존 Scheduled 메서드 방식과 다르다."}
+{"task_id": "t350", "candidate_id": "uasl/lens@6fbc66f7a7bb", "grade": 1, "process": true, "reason": "코드 탐색은 유관하지만 수정하지 않는 보고 전용 절차는 직접 구현 요구와 다르다."}
+{"task_id": "t350", "candidate_id": "uasl/printing-press-score@7ec218523bea", "grade": 0, "process": true, "reason": "CLI 평가 작업은 모델 학습과 무관하다."}
+{"task_id": "t350", "candidate_id": "uasl/lemlist-automation@a31df61c312a", "grade": 0, "process": false, "reason": "Lemlist 캠페인 관리는 재학습 서비스와 무관하다."}
+{"task_id": "t350", "candidate_id": "uasl/tdd@ff86dad94075", "grade": 2, "process": true, "reason": "작고 집중된 행동 테스트와 최소 구현은 작은 변경을 안전하게 수행하는 데 도움 된다."}
+{"task_id": "t350", "candidate_id": "uasl/cast@5200526abf38", "grade": 0, "process": true, "reason": "페르소나 관리 절차는 모델 학습과 무관하다."}
+{"task_id": "t350", "candidate_id": "uasl/public-param-golden@6b8109050c5c", "grade": 0, "process": false, "reason": "특정 store CLI 사용법은 재학습 기능과 무관하다."}
+{"task_id": "t350", "candidate_id": "uasl/jobs-to-be-done@bfffa3a12f42", "grade": 0, "process": true, "reason": "고객 발견 방법론은 정해진 재학습 기능과 무관하다."}
+{"task_id": "t350", "candidate_id": "uasl/upstash-qstash@4aec8366af8b", "grade": 0, "process": false, "reason": "외부 QStash 메시징은 내부 Scheduled 메서드 구현과 다르다."}
+{"task_id": "t350", "candidate_id": "uasl/contract-testing@b0f4c29940a9", "grade": 1, "process": true, "reason": "서비스 간 API 계약 검증은 내부 모델 재학습에 주변적이다."}
+{"task_id": "t350", "candidate_id": "uasl/thinking-five-whys-plus@9d8a7d64affe", "grade": 1, "process": true, "reason": "근본 원인 조사 방법은 신규 배치 구현을 직접 돕지 않는다."}
+{"task_id": "t350", "candidate_id": "uasl/scorecard-marketing@2d025421dbdc", "grade": 0, "process": true, "reason": "마케팅 스코어카드 설계는 AUC 평가와 다르다."}
+{"task_id": "t350", "candidate_id": "uasl/chaos-testing@760793a4a18b", "grade": 1, "process": true, "reason": "카오스 실험은 운영 안전성에 인접하나 작은 메서드 추가의 직접 지침은 아니다."}
+{"task_id": "t350", "candidate_id": "uasl/microservices-patterns@40adea69dde4", "grade": 1, "process": false, "reason": "분산 아키텍처 패턴은 기존 서비스 안의 작은 변경에 실용성이 낮다."}
+{"task_id": "t350", "candidate_id": "uasl/goodbits-automation@094fd5f46bb8", "grade": 0, "process": false, "reason": "Goodbits 자동화는 학습 작업과 무관하다."}
+{"task_id": "t350", "candidate_id": "uasl/ramp-automation@25b168650188", "grade": 0, "process": false, "reason": "Ramp 카드 거래 조작은 로컬 데이터의 재학습과 다르다."}
+{"task_id": "t350", "candidate_id": "uasl/thinking-scientific-method@8b3f9fba25b4", "grade": 1, "process": true, "reason": "실험 가설 검증은 AUC 비교와 인접하나 지정된 구현 방식을 직접 다루지 않는다."}
+{"task_id": "t350", "candidate_id": "uasl/caveman-help@31fd99e3cd77", "grade": 0, "process": false, "reason": "Caveman 참조 카드는 요청과 무관하다."}
+{"task_id": "t350", "candidate_id": "uasl/eng-runbook@0895fb3557f4", "grade": 1, "process": true, "reason": "운영 런북 작성은 배치 운영의 주변 작업이다."}
+{"task_id": "t350", "candidate_id": "uasl/ddia-systems@d2b3af9bb043", "grade": 2, "process": false, "reason": "데이터 처리·트랜잭션 원리는 기존 구조에서 안전한 모델 교체를 구현하는 데 도움 된다."}
+{"task_id": "t350", "candidate_id": "uasl/inngest@fc3f33c4e97f", "grade": 0, "process": false, "reason": "Inngest 서버리스 구현은 지정된 Spring 스택과 다르다."}
+{"task_id": "t350", "candidate_id": "uasl/mboum-automation@4fe982d8eba9", "grade": 0, "process": false, "reason": "Mboum 자동화 도구는 재학습과 무관하다."}
+{"task_id": "t350", "candidate_id": "uasl/fraudlabs-pro-automation@e0573ec245f0", "grade": 0, "process": false, "reason": "Fraudlabs 도구 조작은 자체 XGBoost 학습과 다르다."}
+{"task_id": "t350", "candidate_id": "uasl/xero-automation@390f963c9c47", "grade": 0, "process": false, "reason": "Xero 회계 자동화는 내부 모델 학습과 무관하다."}
+{"task_id": "t350", "candidate_id": "uasl/timekit-automation@ca8a9faa9e8c", "grade": 0, "process": false, "reason": "Timekit 일정 API는 Spring Scheduled 작업과 다르다."}
+{"task_id": "t350", "candidate_id": "uasl/information-architecture@52f13543ba9f", "grade": 0, "process": false, "reason": "콘텐츠 정보 구조는 백엔드 모델 학습과 무관하다."}
+{"task_id": "t350", "candidate_id": "uasl/design-integration@03e2661a4d5f", "grade": 0, "process": false, "reason": "Uniswap 통합은 이 Java 서비스와 무관하다."}
+{"task_id": "t350", "candidate_id": "uasl/design-sprint@4550ceb8d09f", "grade": 0, "process": true, "reason": "고객 프로토타입 디자인 스프린트는 작은 배치 변경과 무관하다."}
+{"task_id": "t350", "candidate_id": "uasl/integration-testing@62b51275be50", "grade": 2, "process": true, "reason": "Spring·DB 통합 검증은 데이터 학습과 교체의 회귀 방지에 도움 된다."}
+{"task_id": "t350", "candidate_id": "uasl/browser-extension-builder@3240e6183c28", "grade": 0, "process": false, "reason": "브라우저 확장 구현은 Spring 서비스와 다르다."}
+{"task_id": "t351", "candidate_id": "uasl/live-artifact@a7e66be6fd82", "grade": 0, "process": false, "reason": "HTML 산출물 갱신 도구로 Swift 저장소의 중복 병합 수정과 무관하다."}
+{"task_id": "t351", "candidate_id": "uasl/imagegen-frontend-mobile@d57843fce66f", "grade": 0, "process": false, "reason": "모바일 화면 이미지를 생성하며 실제 저장소 코드를 수정하지 않는다."}
+{"task_id": "t351", "candidate_id": "uasl/gamified-app@89f56442216c", "grade": 0, "process": false, "reason": "게임화 화면 목업으로 tripId 기준 병합 오류를 다루지 않는다."}
+{"task_id": "t351", "candidate_id": "uasl/tripadvisor-content-api-automation@3ab8b1ec4df3", "grade": 0, "process": false, "reason": "여행 콘텐츠 API 자동화는 여행 이력 저장소 버그와 관계없다."}
+{"task_id": "t351", "candidate_id": "uasl/connect@77e02b4574f6", "grade": 0, "process": false, "reason": "외부 앱 연결 도구로 로컬 iOS 데이터 병합과 무관하다."}
+{"task_id": "t351", "candidate_id": "uasl/caveman-review@23eed6aa48dd", "grade": 1, "process": true, "reason": "간결한 코드 리뷰에는 쓰이나 직접 수정 없이 리뷰만 제공한다."}
+{"task_id": "t351", "candidate_id": "uasl/ticketmaster-automation@d2f0c72b5edc", "grade": 0, "process": false, "reason": "공연 예매 API 자동화로 iOS 병합 버그와 무관하다."}
+{"task_id": "t351", "candidate_id": "uasl/timekit-automation@ca8a9faa9e8c", "grade": 0, "process": false, "reason": "예약 API 자동화는 TripStore의 내부 데이터 병합과 무관하다."}
+{"task_id": "t351", "candidate_id": "uasl/debug-root-cause@1d7ea4a832dc", "grade": 3, "process": true, "reason": "재현과 원인 격리 후 최소 수정 및 검증으로 중복 병합 버그를 직접 해결하는 절차다."}
+{"task_id": "t351", "candidate_id": "uasl/team-okrs@7a95ee8c1302", "grade": 0, "process": false, "reason": "팀 목표 대시보드 제작으로 iOS 저장소 수정과 무관하다."}
+{"task_id": "t351", "candidate_id": "uasl/requesting-code-review@82594984f359", "grade": 2, "process": true, "reason": "변경 맥락에 맞는 코드 리뷰로 공개 API 호환성과 수정 누락을 확인하는 데 도움이 된다."}
+{"task_id": "t351", "candidate_id": "uasl/git-advanced-workflows@72c3e980a1f8", "grade": 1, "process": false, "reason": "Git 고급 조작은 변경 관리에 주변적으로 유용하나 병합 로직 해결을 안내하지 않는다."}
+{"task_id": "t351", "candidate_id": "uasl/finishing-a-development-branch@6d92d8cff27f", "grade": 1, "process": true, "reason": "개발 브랜치 통합 절차로 버그 수정 자체보다 완료 후 작업에 가깝다."}
+{"task_id": "t351", "candidate_id": "uasl/customer-journey-map@8b4214de125a", "grade": 0, "process": true, "reason": "고객 여정 분석은 tripId 기반 갱신 로직과 무관하다."}
+{"task_id": "t351", "candidate_id": "uasl/microsoft-clarity-automation@44237e641aae", "grade": 0, "process": false, "reason": "웹 행동 분석 서비스 자동화로 로컬 iOS 버그와 무관하다."}
+{"task_id": "t351", "candidate_id": "uasl/public-param-golden@6b8109050c5c", "grade": 0, "process": false, "reason": "CLI 파라미터 저장 도구는 Swift 공개 API 호환 수정과 무관하다."}
+{"task_id": "t351", "candidate_id": "uasl/apify-automation@34a14f015224", "grade": 0, "process": false, "reason": "웹 수집 자동화 서비스로 iOS 저장소 병합과 무관하다."}
+{"task_id": "t351", "candidate_id": "uasl/five-agent-pr-handoff@92c06031cdfe", "grade": 1, "process": true, "reason": "PR 인계 준비에는 쓰이나 요청한 작은 저장소 수정에는 주변적이다."}
+{"task_id": "t351", "candidate_id": "uasl/favicon-gen@ff315899c13f", "grade": 0, "process": false, "reason": "파비콘 생성은 iOS 데이터 중복 문제와 무관하다."}
+{"task_id": "t351", "candidate_id": "uasl/changelog-generator@f7da9390521a", "grade": 1, "process": true, "reason": "변경 이력 작성은 수정 후 전달에만 주변적으로 도움이 된다."}
+{"task_id": "t351", "candidate_id": "uasl/yeet@7665edb92f0c", "grade": 1, "process": true, "reason": "커밋과 PR 제출 절차로 중복 버그 해결에 직접 도움은 적다."}
+{"task_id": "t351", "candidate_id": "uasl/improve-retention@f80cefef268d", "grade": 0, "process": true, "reason": "사용자 유지 행동 설계는 데이터 중복 병합과 무관하다."}
+{"task_id": "t351", "candidate_id": "uasl/mobile-onboarding@dae55de6dde3", "grade": 0, "process": false, "reason": "모바일 온보딩 목업은 저장소 코드 수정과 무관하다."}
+{"task_id": "t351", "candidate_id": "uasl/tdd@ff86dad94075", "grade": 2, "process": true, "reason": "공개 인터페이스를 통한 회귀 테스트와 최소 구현이 호환성을 지키는 수정에 도움이 된다."}
+{"task_id": "t351", "candidate_id": "uasl/ios-hig-design@81a44fe68e4e", "grade": 1, "process": false, "reason": "iOS UI 지침은 관련 플랫폼 지식이지만 저장소의 upsert 오류를 다루지 않는다."}
+{"task_id": "t351", "candidate_id": "uasl/find-bugs@c3ff7d64ff9f", "grade": 2, "process": true, "reason": "변경분의 결함을 증거 중심으로 점검해 수정의 회귀와 호환성 문제를 확인할 수 있다."}
+{"task_id": "t351", "candidate_id": "uasl/user-story-mapping@f4c7115086b0", "grade": 0, "process": true, "reason": "사용자 스토리 우선순위 작업은 범위가 정해진 저장소 버그와 무관하다."}
+{"task_id": "t351", "candidate_id": "uasl/verification-before-completion@134bf517af69", "grade": 2, "process": true, "reason": "실제 검증 결과를 요구해 중복 제거와 기존 API 동작을 확인하도록 돕는다."}
+{"task_id": "t351", "candidate_id": "uasl/iterate-pr@0c545d33cef2", "grade": 1, "process": true, "reason": "PR 피드백과 CI 반복은 수정 후 단계에 가까워 직접적인 병합 해결 도움은 작다."}
+{"task_id": "t351", "candidate_id": "uasl/mobile-app@a9dba8039c51", "grade": 0, "process": false, "reason": "모바일 HTML 목업은 Swift 저장소의 동작을 고치지 않는다."}
+{"task_id": "t351", "candidate_id": "uasl/gift-up-automation@7910985aa4d5", "grade": 0, "process": false, "reason": "기프트 카드 서비스 자동화로 iOS 저장소 수정과 무관하다."}
+{"task_id": "t351", "candidate_id": "uasl/scout@97653445d7f1", "grade": 1, "process": true, "reason": "버그 조사에는 맞지만 수정하지 않고 인계하는 방식은 직접 고치라는 요청과 어긋난다."}
+{"task_id": "t351", "candidate_id": "uasl/verification-loop@39d9be23cf50", "grade": 2, "process": true, "reason": "빌드와 테스트 및 변경분 점검 절차가 공개 API를 유지한 수정 검증에 도움이 된다."}
+{"task_id": "t351", "candidate_id": "uasl/coinbase-automation@5c971806493f", "grade": 0, "process": false, "reason": "암호화폐 거래 API 자동화는 여행 이력 병합과 무관하다."}
+{"task_id": "t351", "candidate_id": "uasl/pipe@0f029a41f006", "grade": 0, "process": false, "reason": "GitHub Actions 구성은 로컬 저장소 중복 버그와 무관하다."}
+{"task_id": "t351", "candidate_id": "uasl/guardian@27ad146feaed", "grade": 1, "process": true, "reason": "변경 위험과 PR 인계를 점검하지만 실제 병합 로직 수정에는 주변적이다."}
+{"task_id": "t351", "candidate_id": "uasl/gsap-timeline@d4acd84a00f0", "grade": 0, "process": false, "reason": "웹 애니메이션 타임라인은 Swift 데이터 병합과 무관하다."}
+{"task_id": "t351", "candidate_id": "uasl/redesign-skill@2e4f7f16e367", "grade": 1, "process": true, "reason": "기능을 보존하며 작은 변경을 검증하는 원칙은 유용하나 주목적은 화면 재설계다."}
+{"task_id": "t351", "candidate_id": "uasl/hooked-ux@64362f56c26b", "grade": 0, "process": true, "reason": "습관 형성 UX 분석은 tripId 데이터 중복 문제와 무관하다."}
+{"task_id": "t351", "candidate_id": "uasl/five-agent-captain-merge-gate@de13897132dc", "grade": 1, "process": true, "reason": "통합 게이트 검토는 수정 후 절차로 작은 버그 해결에는 주변적이다."}
+{"task_id": "t351", "candidate_id": "uasl/cf-crawl@77a977c31001", "grade": 0, "process": false, "reason": "웹 크롤링 API는 iOS 저장소 병합과 무관하다."}
+{"task_id": "t351", "candidate_id": "uasl/browser-extension-builder@3240e6183c28", "grade": 0, "process": false, "reason": "브라우저 확장 개발은 iOS 위젯 확장과 다른 기술 스택이다."}
+{"task_id": "t351", "candidate_id": "uasl/formsite-automation@ee5bf0ee05e8", "grade": 0, "process": false, "reason": "폼 서비스 API 자동화는 데이터 병합 수정과 무관하다."}
+{"task_id": "t351", "candidate_id": "uasl/coding-guidelines@0ec7e45f92f2", "grade": 3, "process": true, "reason": "최소 범위의 단순한 수정과 검증 가능한 목표를 강조해 공개 API를 유지하는 버그 수정에 직접 맞는다."}
+{"task_id": "t351", "candidate_id": "uasl/polyglot@11be7885bda2", "grade": 0, "process": false, "reason": "웹 국제화 구현은 Swift 저장소 중복 오류와 무관하다."}
+{"task_id": "t351", "candidate_id": "uasl/printing-press-polish@b4aef54a7866", "grade": 0, "process": true, "reason": "생성된 Go CLI 품질 점검 절차는 iOS Swift 작업에 맞지 않는다."}
+{"task_id": "t351", "candidate_id": "anthropics-skills/claude-api@e30e2c97f747", "grade": 0, "process": false, "reason": "Claude API 사용 지식은 로컬 iOS 버그 수정에 필요하지 않다."}
+{"task_id": "t351", "candidate_id": "uasl/gsap-scrolltrigger@dd7bfe79efb2", "grade": 0, "process": false, "reason": "웹 스크롤 애니메이션은 저장소 병합과 무관하다."}
+{"task_id": "t351", "candidate_id": "uasl/gorgias-automation@2106c504916d", "grade": 0, "process": false, "reason": "고객 지원 서비스 자동화는 iOS 내부 데이터 수정과 무관하다."}
+{"task_id": "t351", "candidate_id": "uasl/five-agent-state-update@d7d66be120b0", "grade": 0, "process": true, "reason": "다중 에이전트 상태 기록은 요청한 버그 해결에 실질적 도움이 없다."}
+{"task_id": "t351", "candidate_id": "uasl/meeting-notes@da1c35784ab9", "grade": 0, "process": false, "reason": "회의록 HTML 생성은 Swift 코드 수정과 무관하다."}
+{"task_id": "t351", "candidate_id": "uasl/pre-pr@6d87559d4507", "grade": 0, "process": true, "reason": ".NET 전용 PR 품질 게이트는 iOS Swift 스택과 맞지 않는다."}
+{"task_id": "t351", "candidate_id": "uasl/mend@9ea877a21ec7", "grade": 1, "process": true, "reason": "운영 장애 복구 절차는 수정 위험 관리에 주변적이나 로컬 병합 구현과는 거리가 있다."}
+{"task_id": "t352", "candidate_id": "uasl/gamified-app@89f56442216c", "grade": 0, "process": false, "reason": "게임화 HTML 화면 제작은 Swift 병합 오류와 무관하다."}
+{"task_id": "t352", "candidate_id": "uasl/async-interview-automation@ab607c4d1b04", "grade": 0, "process": false, "reason": "채용 인터뷰 자동화 서비스는 Swift 비동기 구현과 무관하다."}
+{"task_id": "t352", "candidate_id": "uasl/brightdata-automation@63368634e323", "grade": 0, "process": false, "reason": "웹 수집 서비스 자동화는 저장소 API 교체와 무관하다."}
+{"task_id": "t352", "candidate_id": "uasl/five-agent-captain-merge-gate@de13897132dc", "grade": 1, "process": true, "reason": "병합 게이트는 변경 검증에 주변적이나 버그 수정 자체를 안내하지 않는다."}
+{"task_id": "t352", "candidate_id": "uasl/meeting-notes@da1c35784ab9", "grade": 0, "process": false, "reason": "회의록 화면 생성은 저장소 로직 수정과 무관하다."}
+{"task_id": "t352", "candidate_id": "uasl/next-upgrade@df465f7770a5", "grade": 0, "process": false, "reason": "Next.js 업그레이드는 iOS Swift와 다른 기술 스택이다."}
+{"task_id": "t352", "candidate_id": "uasl/yeet@7665edb92f0c", "grade": 1, "process": true, "reason": "Git 제출 절차는 수정 후 전달에만 주변적으로 유용하다."}
+{"task_id": "t352", "candidate_id": "uasl/five-agent-pr-handoff@92c06031cdfe", "grade": 1, "process": true, "reason": "PR 인계 절차는 전체 호출부 수정 자체에는 직접 도움이 적다."}
+{"task_id": "t352", "candidate_id": "uasl/favicon-gen@ff315899c13f", "grade": 0, "process": false, "reason": "파비콘 생성은 iOS 저장소 API 변경과 무관하다."}
+{"task_id": "t352", "candidate_id": "uasl/gorgias-automation@2106c504916d", "grade": 0, "process": false, "reason": "고객 지원 서비스 자동화는 로컬 데이터 병합과 무관하다."}
+{"task_id": "t352", "candidate_id": "uasl/jumpcloud-automation@2c3811515d58", "grade": 0, "process": false, "reason": "계정 관리 서비스 자동화는 iOS 버그와 무관하다."}
+{"task_id": "t352", "candidate_id": "uasl/polyglot@11be7885bda2", "grade": 0, "process": false, "reason": "웹 국제화 구현은 Swift 비동기 저장소와 무관하다."}
+{"task_id": "t352", "candidate_id": "uasl/similarweb-analytics@938e9f87287b", "grade": 0, "process": false, "reason": "웹 트래픽 분석은 중복 여행 이력 수정과 무관하다."}
+{"task_id": "t352", "candidate_id": "uasl/cf-crawl@77a977c31001", "grade": 0, "process": false, "reason": "웹 크롤링 API는 iOS 저장소 수정과 무관하다."}
+{"task_id": "t352", "candidate_id": "uasl/tripadvisor-content-api-automation@3ab8b1ec4df3", "grade": 0, "process": false, "reason": "여행 콘텐츠 API는 앱 내부 여행 이력 병합과 무관하다."}
+{"task_id": "t352", "candidate_id": "uasl/guardian@27ad146feaed", "grade": 1, "process": true, "reason": "변경 위험과 Git 전략 검토는 호출부 마이그레이션에 주변적으로 유용하다."}
+{"task_id": "t352", "candidate_id": "uasl/gsap-scrolltrigger@dd7bfe79efb2", "grade": 0, "process": false, "reason": "웹 스크롤 애니메이션은 Swift 저장소와 무관하다."}
+{"task_id": "t352", "candidate_id": "uasl/specter@eeba33cf9245", "grade": 1, "process": true, "reason": "비동기 위험 분석은 관련되지만 코드 수정 없이 인계하는 방식은 직접 수정 요청에 어긋난다."}
+{"task_id": "t352", "candidate_id": "uasl/user-story-mapping@f4c7115086b0", "grade": 0, "process": true, "reason": "사용자 스토리 맵은 범위가 명확한 저장소 버그와 무관하다."}
+{"task_id": "t352", "candidate_id": "uasl/cabinpanda-automation@9c470fa9352d", "grade": 0, "process": false, "reason": "폼 서비스 자동화는 iOS 데이터 수정과 무관하다."}
+{"task_id": "t352", "candidate_id": "uasl/ripple@620dca56eca0", "grade": 2, "process": true, "reason": "변경 영향과 의존 호출부를 추적하는 사전 분석은 위젯을 포함한 API 교체에 분명히 도움이 된다."}
+{"task_id": "t352", "candidate_id": "uasl/telnyx-automation@feee46aeb36b", "grade": 0, "process": false, "reason": "통신 서비스 자동화는 Swift 비동기 병합과 무관하다."}
+{"task_id": "t352", "candidate_id": "uasl/ux-audit@d921ee5d8321", "grade": 0, "process": true, "reason": "브라우저 기반 UX 감사는 네이티브 저장소 오류 검증에 맞지 않는다."}
+{"task_id": "t352", "candidate_id": "uasl/segmetrics-automation@de3f329083b9", "grade": 0, "process": false, "reason": "마케팅 분석 서비스 자동화는 여행 이력 수정과 무관하다."}
+{"task_id": "t352", "candidate_id": "uasl/weekly-update@e18ba8d591b9", "grade": 0, "process": false, "reason": "주간 보고 HTML 제작은 코드 변경과 무관하다."}
+{"task_id": "t352", "candidate_id": "uasl/verification-loop@39d9be23cf50", "grade": 2, "process": true, "reason": "빌드와 테스트 및 변경분 검증은 교체된 API의 모든 호출부가 정상인지 확인하는 데 도움이 된다."}
+{"task_id": "t352", "candidate_id": "uasl/appsflyer-automation@ecf48ef72a39", "grade": 0, "process": false, "reason": "앱 마케팅 분석 API는 로컬 저장소 중복 오류와 무관하다."}
+{"task_id": "t352", "candidate_id": "uasl/debug-root-cause@1d7ea4a832dc", "grade": 3, "process": true, "reason": "버그 재현과 원인 격리 및 수정 후 검증이 중복 이력 오류 해결을 직접 다룬다."}
+{"task_id": "t352", "candidate_id": "uasl/fastapi-templates@effcd0de0b4c", "grade": 0, "process": false, "reason": "Python FastAPI 템플릿은 iOS Swift와 다른 기술 스택이다."}
+{"task_id": "t352", "candidate_id": "uasl/pipe@0f029a41f006", "grade": 0, "process": false, "reason": "GitHub Actions 구성은 저장소 API 교체 요청과 무관하다."}
+{"task_id": "t352", "candidate_id": "uasl/mobile-onboarding@dae55de6dde3", "grade": 0, "process": false, "reason": "모바일 온보딩 HTML은 실제 Swift 구현을 다루지 않는다."}
+{"task_id": "t352", "candidate_id": "uasl/changelog-generator@f7da9390521a", "grade": 1, "process": true, "reason": "변경 이력 작성은 API 교체 후 전달에 주변적으로 유용하다."}
+{"task_id": "t352", "candidate_id": "uasl/imagegen-frontend-mobile@d57843fce66f", "grade": 0, "process": false, "reason": "모바일 이미지 생성은 실제 코드 수정을 제공하지 않는다."}
+{"task_id": "t352", "candidate_id": "uasl/gong-automation@09a015febb35", "grade": 0, "process": false, "reason": "영업 통화 분석 API는 iOS 저장소와 무관하다."}
+{"task_id": "t352", "candidate_id": "uasl/radar@a47ea6fd5f95", "grade": 2, "process": true, "reason": "기존 테스트 관례에 따른 회귀 검증이 중복 제거와 호출부 변경을 확인하는 데 도움이 된다."}
+{"task_id": "t352", "candidate_id": "uasl/tapfiliate-automation@39e9241cdd7d", "grade": 0, "process": false, "reason": "제휴 마케팅 자동화는 iOS 버그와 무관하다."}
+{"task_id": "t352", "candidate_id": "uasl/live-artifact@a7e66be6fd82", "grade": 0, "process": false, "reason": "HTML 산출물 갱신 도구는 Swift 저장소 갱신과 다른 작업이다."}
+{"task_id": "t352", "candidate_id": "uasl/five-agent-preflight-check@972573c45dcf", "grade": 1, "process": true, "reason": "저장소 사전 점검은 변경 준비에 주변적으로 유용하지만 병합 구현을 다루지 않는다."}
+{"task_id": "t352", "candidate_id": "uasl/ios-hig-design@81a44fe68e4e", "grade": 1, "process": false, "reason": "iOS UI 지침은 같은 플랫폼이나 데이터 저장소 교체와는 거리가 있다."}
+{"task_id": "t352", "candidate_id": "uasl/timekit-automation@ca8a9faa9e8c", "grade": 0, "process": false, "reason": "예약 서비스 자동화는 Swift 비동기 API 수정과 무관하다."}
+{"task_id": "t352", "candidate_id": "uasl/browser-extension-builder@3240e6183c28", "grade": 0, "process": false, "reason": "브라우저 확장은 iOS 위젯 확장과 다른 실행 환경이다."}
+{"task_id": "t352", "candidate_id": "uasl/async-python-patterns@957ebfe54aa7", "grade": 0, "process": false, "reason": "Python asyncio 패턴은 Swift 비동기 구현에 맞는 지침이 아니다."}
+{"task_id": "t352", "candidate_id": "uasl/mobile-app@a9dba8039c51", "grade": 0, "process": false, "reason": "모바일 HTML 목업은 iOS 저장소 버그를 수정하지 않는다."}
+{"task_id": "t352", "candidate_id": "uasl/atheris@5b575b7295c7", "grade": 0, "process": false, "reason": "Python 및 C 퍼징 도구는 Swift 작업에 맞지 않는다."}
+{"task_id": "t352", "candidate_id": "uasl/multi-repo-git-ops@d1a9b3bcdc7d", "grade": 1, "process": false, "reason": "다중 저장소 Git 관리는 호출부 변경 관리에 주변적이며 여러 저장소 작업도 요청되지 않았다."}
+{"task_id": "t352", "candidate_id": "uasl/redesign-skill@2e4f7f16e367", "grade": 1, "process": true, "reason": "기존 기능을 보존하는 화면 재설계는 데이터 API 교체에 직접 도움은 적다."}
+{"task_id": "t352", "candidate_id": "uasl/connect@77e02b4574f6", "grade": 0, "process": false, "reason": "외부 앱 연결 도구는 로컬 저장소 변경과 무관하다."}
+{"task_id": "t352", "candidate_id": "uasl/microsoft-clarity-automation@44237e641aae", "grade": 0, "process": false, "reason": "웹 행동 분석 서비스는 여행 이력 병합과 무관하다."}
+{"task_id": "t352", "candidate_id": "uasl/fastapi-endpoint@2a93d50c4970", "grade": 0, "process": false, "reason": "FastAPI 엔드포인트 구현은 iOS Swift 저장소와 다른 기술 스택이다."}
+{"task_id": "t352", "candidate_id": "uasl/five-agent-state-update@d7d66be120b0", "grade": 0, "process": true, "reason": "다중 에이전트 상태 기록은 요청한 저장소 수정에 실질적 도움이 없다."}
+{"task_id": "t353", "candidate_id": "uasl/magazine-poster@3d9539d9af9e", "grade": 0, "process": false, "reason": "편집형 포스터 제작은 배포 스크립트 테스트와 무관하다."}
+{"task_id": "t353", "candidate_id": "uasl/multi-repo-git-ops@d1a9b3bcdc7d", "grade": 1, "process": false, "reason": "다중 저장소 Git 관리는 변경 관리에 주변적이나 revision 검증을 다루지 않는다."}
+{"task_id": "t353", "candidate_id": "uasl/caveman-commit@244182e952a7", "grade": 1, "process": true, "reason": "커밋 문구 작성은 테스트 우선 구현 후 기록에만 주변적으로 유용하다."}
+{"task_id": "t353", "candidate_id": "uasl/five-agent-pr-handoff@92c06031cdfe", "grade": 1, "process": true, "reason": "PR 인계 검토는 구현 후 작업으로 요청한 검증 로직과 거리가 있다."}
+{"task_id": "t353", "candidate_id": "uasl/classmarker-automation@f1b6f334aa0f", "grade": 0, "process": false, "reason": "교육 시험 서비스 자동화는 pytest 테스트 작성과 무관하다."}
+{"task_id": "t353", "candidate_id": "uasl/thinking-map-territory@329a6f9a1863", "grade": 1, "process": true, "reason": "표현과 실제 상태의 일치 확인 사고법은 revision 비교와 유사하지만 구체적 구현 도움은 적다."}
+{"task_id": "t353", "candidate_id": "uasl/typescript-unit-testing@6fb3561edcb3", "grade": 0, "process": false, "reason": "TypeScript와 Jest 테스트 지침은 Python pytest 스택과 맞지 않는다."}
+{"task_id": "t353", "candidate_id": "uasl/tdd@ff86dad94075", "grade": 3, "process": true, "reason": "실패 테스트부터 작성하는 red-green-refactor가 명시된 테스트 우선 순서를 직접 따른다."}
+{"task_id": "t353", "candidate_id": "uasl/verification-before-completion@134bf517af69", "grade": 2, "process": true, "reason": "실제 테스트 결과를 확인한 뒤 완료를 보고하도록 하여 세 가지 분기 검증에 도움이 된다."}
+{"task_id": "t353", "candidate_id": "uasl/writing-revision@0a53ecc70a84", "grade": 0, "process": true, "reason": "글 초고 수정 절차는 Alembic revision 검증과 무관하다."}
+{"task_id": "t353", "candidate_id": "uasl/press-release@705776e510df", "grade": 0, "process": true, "reason": "보도자료 기반 제품 기획은 배포 스크립트 수정과 무관하다."}
+{"task_id": "t353", "candidate_id": "uasl/integration-testing@62b51275be50", "grade": 1, "process": true, "reason": "실제 의존성을 사용하는 통합 테스트는 mocked connection으로 격리하라는 방향과 어긋난다."}
+{"task_id": "t353", "candidate_id": "uasl/five-agent-preflight-check@972573c45dcf", "grade": 1, "process": true, "reason": "저장소 변경 전 상태 확인은 주변적 안전 절차이며 배포 대상 revision 비교 자체는 아니다."}
+{"task_id": "t353", "candidate_id": "uasl/python-testing-patterns@e62d0f1ca316", "grade": 3, "process": false, "reason": "pytest fixture와 mock 및 실패 분기 테스트를 직접 다뤄 요청한 세 사례 작성에 정확히 맞는다."}
+{"task_id": "t353", "candidate_id": "uasl/fastapi-endpoint@2a93d50c4970", "grade": 0, "process": false, "reason": "FastAPI 엔드포인트 신규 구현은 Fabric 릴리스 스크립트 작업과 다르다."}
+{"task_id": "t353", "candidate_id": "uasl/async-python-patterns@957ebfe54aa7", "grade": 0, "process": false, "reason": "비동기 Python 구현은 동기 배포 사전 검사에 요구되지 않는다."}
+{"task_id": "t353", "candidate_id": "uasl/github-actions-templates@ce03df93ccdf", "grade": 1, "process": false, "reason": "CI/CD 구성은 배포와 관련되지만 GitHub Actions가 아닌 Fabric 스크립트 수정에는 주변적이다."}
+{"task_id": "t353", "candidate_id": "uasl/fuzzing-obstacles@cb574f4c1b3b", "grade": 0, "process": false, "reason": "네이티브 퍼징 장애 우회는 세 가지 pytest 단위 사례와 무관하다."}
+{"task_id": "t353", "candidate_id": "uasl/tdd-workflow@6eadb0bf0ea8", "grade": 2, "process": true, "reason": "테스트 선행과 오류 사례 검증 방법은 직접 도움이 되나 예시 스택은 JavaScript 중심이다."}
+{"task_id": "t353", "candidate_id": "uasl/atheris@5b575b7295c7", "grade": 1, "process": false, "reason": "Python 퍼징은 같은 테스트 영역이지만 지정된 mock 기반 분기 사례에는 과도하고 주변적이다."}
+{"task_id": "t353", "candidate_id": "uasl/radar@a47ea6fd5f95", "grade": 2, "process": true, "reason": "기존 pytest 관례에 맞춰 실패 사례와 커버리지를 보강하는 절차가 유용하다."}
+{"task_id": "t353", "candidate_id": "uasl/launch@117c5509679d", "grade": 2, "process": true, "reason": "릴리스 안전과 rollout 및 rollback 절차는 revision 불일치 시 중단 조건을 설계하는 데 도움이 된다."}
+{"task_id": "t353", "candidate_id": "uasl/writing-pre-publish-checklist@a23d9bdf22bd", "grade": 0, "process": true, "reason": "글 출판 전 검토는 배포 전 코드 검사와 무관하다."}
+{"task_id": "t353", "candidate_id": "uasl/setup-pre-commit@95f6657588a0", "grade": 0, "process": false, "reason": "Husky와 JavaScript 커밋 훅 설정은 Python Fabric 스크립트 요청과 다르다."}
+{"task_id": "t353", "candidate_id": "uasl/wycheproof@8924e1e4bfb6", "grade": 0, "process": false, "reason": "암호학 테스트 벡터는 Alembic revision 검사와 무관하다."}
+{"task_id": "t353", "candidate_id": "uasl/test-driven-development@0eebe2fe0e28", "grade": 3, "process": true, "reason": "실패 테스트를 먼저 확인하고 최소 구현하는 절차가 명시된 pytest 선행 요구에 직접 맞는다."}
+{"task_id": "t353", "candidate_id": "uasl/systematic-debug@6b158e105823", "grade": 1, "process": true, "reason": "불명확한 버그를 단계별로 격리하는 방법은 새 검사 로직의 명확한 세 사례 작성에는 주변적이다."}
+{"task_id": "t353", "candidate_id": "uasl/unit-testing@6c5fbb821103", "grade": 3, "process": true, "reason": "mock을 이용한 격리된 결정적 단위 테스트가 요청한 연결 모의와 분기 검증을 직접 다룬다."}
+{"task_id": "t353", "candidate_id": "uasl/contract-testing@b0f4c29940a9", "grade": 1, "process": true, "reason": "서비스 API 계약 검증은 배포 안전과 관련되지만 DB revision 일치 검사는 별개다."}
+{"task_id": "t353", "candidate_id": "uasl/agent-sort@a8e06853ada8", "grade": 0, "process": false, "reason": "에이전트 구성 요소 분류와 설치 계획은 배포 스크립트와 무관하다."}
+{"task_id": "t353", "candidate_id": "uasl/finishing-a-development-branch@6d92d8cff27f", "grade": 1, "process": true, "reason": "테스트 후 브랜치 통합은 구현 종료 단계에 주변적으로 유용하다."}
+{"task_id": "t353", "candidate_id": "anthropics-skills/webapp-testing@a4b4ce82b644", "grade": 0, "process": false, "reason": "Playwright 웹 화면 테스트는 Fabric 연결을 모의하는 pytest 검사와 다르다."}
+{"task_id": "t353", "candidate_id": "uasl/vercel-cli-with-tokens@3f9c2805c482", "grade": 0, "process": false, "reason": "Vercel 배포 도구는 Fabric 기반 대상 호스트 배포와 맞지 않는다."}
+{"task_id": "t354", "candidate_id": "uasl/claude-native-claude-api@24c958899f03", "grade": 0, "process": false, "reason": "Claude API 개발은 Fabric 배포 검사와 무관하다."}
+{"task_id": "t354", "candidate_id": "uasl/press-release@705776e510df", "grade": 0, "process": true, "reason": "제품 보도자료 기획은 배포 코드 변경과 무관하다."}
+{"task_id": "t354", "candidate_id": "uasl/user-story-mapping@f4c7115086b0", "grade": 0, "process": true, "reason": "사용자 스토리 우선순위 작업은 명확한 단일 함수 추가와 무관하다."}
+{"task_id": "t354", "candidate_id": "uasl/printing-press-polish@b4aef54a7866", "grade": 0, "process": true, "reason": "Go CLI 품질 작업은 Python 배포 스크립트와 맞지 않는다."}
+{"task_id": "t354", "candidate_id": "uasl/atheris@5b575b7295c7", "grade": 1, "process": false, "reason": "Python 퍼징은 테스트 영역의 주변 도구이며 단순 revision 비교에 직접 필요하지 않다."}
+{"task_id": "t354", "candidate_id": "uasl/python-testing-patterns@e62d0f1ca316", "grade": 2, "process": false, "reason": "pytest mock으로 원격 상태를 격리해 비교와 중단 분기를 검증하는 데 도움이 된다."}
+{"task_id": "t354", "candidate_id": "uasl/systematic-debug@6b158e105823", "grade": 1, "process": true, "reason": "불명확한 버그 격리는 새 사전 검사 기능의 제한된 구현에 주변적이다."}
+{"task_id": "t354", "candidate_id": "uasl/five-agent-pr-handoff@92c06031cdfe", "grade": 1, "process": true, "reason": "PR 인계는 수정 완료 후 절차로 함수 구현에 직접 도움은 작다."}
+{"task_id": "t354", "candidate_id": "uasl/five-agent-preflight-check@972573c45dcf", "grade": 1, "process": true, "reason": "저장소 상태 점검은 주변 안전 절차이며 원격 DB revision 비교와는 다르다."}
+{"task_id": "t354", "candidate_id": "uasl/printing-press-reprint@af02d260d0be", "grade": 0, "process": true, "reason": "기존 CLI 재생성 조정은 Fabric 스크립트의 최소 변경과 무관하다."}
+{"task_id": "t354", "candidate_id": "uasl/fastapi-endpoint@2a93d50c4970", "grade": 0, "process": false, "reason": "FastAPI 엔드포인트 구현은 릴리스 스크립트 수정과 다른 작업이다."}
+{"task_id": "t354", "candidate_id": "uasl/writer-automation@1a53c0cac7b3", "grade": 0, "process": false, "reason": "Writer 서비스 자동화는 Python 배포 코드와 무관하다."}
+{"task_id": "t354", "candidate_id": "uasl/bun-runtime@009ca8691cf7", "grade": 0, "process": false, "reason": "Bun 런타임 이전은 Python Fabric 스택과 맞지 않는다."}
+{"task_id": "t354", "candidate_id": "uasl/next-cache-components@b22f6e134147", "grade": 0, "process": false, "reason": "Next.js 캐시 구성은 배포 revision 검사와 무관하다."}
+{"task_id": "t354", "candidate_id": "uasl/warden@420cd481af69", "grade": 1, "process": true, "reason": "릴리스 품질 게이트는 주변적으로 관련되나 UX 평가와 코드 수정 금지로 구현 도움은 적다."}
+{"task_id": "t354", "candidate_id": "uasl/productlane-automation@9de61e57b163", "grade": 0, "process": false, "reason": "제품 관리 서비스 자동화는 배포 스크립트와 무관하다."}
+{"task_id": "t354", "candidate_id": "uasl/github-actions-templates@ce03df93ccdf", "grade": 1, "process": false, "reason": "배포 CI 지식은 관련되지만 GitHub Actions 템플릿은 요청한 Fabric 함수와 다르다."}
+{"task_id": "t354", "candidate_id": "uasl/everything-claude-code@dad489339e1e", "grade": 0, "process": true, "reason": "JavaScript 저장소 관례를 적용하는 절차는 Python 프로젝트에 맞지 않는다."}
+{"task_id": "t354", "candidate_id": "uasl/guardian@27ad146feaed", "grade": 1, "process": true, "reason": "Git 변경 위험 검토는 주변적으로 유용하나 revision 검사 구현을 제공하지 않는다."}
+{"task_id": "t354", "candidate_id": "uasl/verification-before-completion@134bf517af69", "grade": 2, "process": true, "reason": "실제 검증 결과에 근거한 완료 확인이 최소 변경의 동작 검증에 도움이 된다."}
+{"task_id": "t354", "candidate_id": "uasl/blue-ocean-strategy@abdf6da9378d", "grade": 0, "process": true, "reason": "사업 경쟁 전략 분석은 배포 스크립트 수정과 무관하다."}
+{"task_id": "t354", "candidate_id": "uasl/contract-testing@b0f4c29940a9", "grade": 1, "process": true, "reason": "서비스 API 계약 검증은 배포 안전의 인접 주제지만 DB migration revision 비교는 아니다."}
+{"task_id": "t354", "candidate_id": "uasl/verification-loop@39d9be23cf50", "grade": 2, "process": true, "reason": "테스트 및 변경분 검토가 중단 동작과 최소 diff 범위를 확인하는 데 도움이 된다."}
+{"task_id": "t354", "candidate_id": "uasl/thinking-pre-mortem@3de61a7f85c4", "grade": 1, "process": true, "reason": "사전 실패 분석은 배포 위험 사고에 주변적으로 유용하지만 작은 함수 구현에는 과하다."}
+{"task_id": "t354", "candidate_id": "uasl/finishing-a-development-branch@6d92d8cff27f", "grade": 1, "process": true, "reason": "개발 브랜치 마무리는 구현 후 통합에만 주변적으로 유용하다."}
+{"task_id": "t354", "candidate_id": "uasl/schema@e6f260ce62e0", "grade": 2, "process": false, "reason": "안전한 데이터베이스 migration과 검증 지식이 배포 대상 revision 확인을 설계하는 데 도움이 된다."}
+{"task_id": "t354", "candidate_id": "uasl/svix-automation@f8606b42bb11", "grade": 0, "process": false, "reason": "웹훅 서비스 자동화는 Fabric 스크립트 수정과 무관하다."}
+{"task_id": "t354", "candidate_id": "uasl/vercel-cli-with-tokens@3f9c2805c482", "grade": 0, "process": false, "reason": "Vercel 배포 도구는 Fabric 대상 호스트 배포와 맞지 않는다."}
+{"task_id": "t354", "candidate_id": "uasl/multi-repo-git-ops@d1a9b3bcdc7d", "grade": 1, "process": false, "reason": "다중 저장소 Git 관리 지식은 변경 관리에 주변적이며 함수 수정과 거리가 있다."}
+{"task_id": "t354", "candidate_id": "uasl/printing-press-score@7ec218523bea", "grade": 0, "process": true, "reason": "Go CLI 점수 평가는 Python 배포 검사와 무관하다."}
+{"task_id": "t354", "candidate_id": "uasl/pm-spec@f01a5865e09d", "grade": 0, "process": false, "reason": "HTML 제품 명세 작성은 범위가 정해진 코드 수정과 무관하다."}
+{"task_id": "t354", "candidate_id": "uasl/brex-staging-automation@36f144418b9b", "grade": 0, "process": false, "reason": "금융 서비스 staging 자동화는 실제 배포 사전 검사와 무관하다."}
+{"task_id": "t354", "candidate_id": "uasl/audit-context-building@70a8e16e2385", "grade": 1, "process": true, "reason": "실행 흐름 분석은 주변적으로 유용하나 취약점 감사 준비만 하고 수정하지 않아 구현 요청과 거리가 있다."}
+{"task_id": "t354", "candidate_id": "uasl/python-performance-optimization@bf455fd100bf", "grade": 0, "process": false, "reason": "Python 성능 최적화는 revision 정확성 검사의 목표와 다르다."}
+{"task_id": "t354", "candidate_id": "uasl/agent-sort@a8e06853ada8", "grade": 0, "process": false, "reason": "에이전트 구성 분류 도구는 배포 검사 추가와 무관하다."}
+{"task_id": "t354", "candidate_id": "uasl/setup-pre-commit@95f6657588a0", "grade": 0, "process": false, "reason": "JavaScript 커밋 훅 설치는 Python Fabric 최소 수정에 맞지 않는다."}
+{"task_id": "t354", "candidate_id": "uasl/changelog-generator@f7da9390521a", "grade": 1, "process": true, "reason": "변경 이력 생성은 구현 후 문서화에만 주변적으로 유용하다."}
+{"task_id": "t354", "candidate_id": "uasl/launch@117c5509679d", "grade": 2, "process": true, "reason": "릴리스 안전과 rollout 중단 및 rollback 고려가 revision 검사 조건을 설계하는 데 도움이 된다."}
+{"task_id": "t354", "candidate_id": "uasl/find-bugs@c3ff7d64ff9f", "grade": 2, "process": true, "reason": "작은 변경의 결함과 보안 문제를 증거 중심으로 검토해 잘못된 배포 허용을 점검할 수 있다."}
+{"task_id": "t354", "candidate_id": "uasl/printing-press-catalog@3572c42ad04d", "grade": 0, "process": false, "reason": "Go CLI 카탈로그 설치는 Fabric 수정과 무관하다."}
+{"task_id": "t354", "candidate_id": "uasl/writing-pre-publish-checklist@a23d9bdf22bd", "grade": 0, "process": true, "reason": "글 출판 전 점검은 소프트웨어 배포 전 검사와 다른 작업이다."}
+{"task_id": "t355", "candidate_id": "uasl/ossfuzz@29bd6a21c586", "grade": 0, "process": false, "reason": "네이티브 퍼징 인프라는 React 등록 모달 재설계와 무관하다."}
+{"task_id": "t355", "candidate_id": "uasl/frontend-patterns@8f659ce2a0bd", "grade": 3, "process": false, "reason": "React 컴포넌트와 상태 및 폼 패턴이 두 단계 모달과 안전한 상태 처리를 직접 다룬다."}
+{"task_id": "t355", "candidate_id": "uasl/dashboard@537186e4443a", "grade": 0, "process": false, "reason": "관리 대시보드 HTML 제작은 기존 등록 모달 변경과 다른 산출물이다."}
+{"task_id": "t355", "candidate_id": "uasl/mcp-server-patterns@63e29e48e956", "grade": 0, "process": false, "reason": "MCP 서버 구조는 클라이언트 등록 모달과 무관하다."}
+{"task_id": "t355", "candidate_id": "uasl/taste-skill@57790089504e", "grade": 2, "process": false, "reason": "React 화면 구성과 상호작용 상태 지침이 진행 표시와 고정 버튼 구현에 도움이 된다."}
+{"task_id": "t355", "candidate_id": "uasl/secure-coding-practices@cc37fcd8687e", "grade": 3, "process": false, "reason": "입력과 출력 방어 및 민감 데이터 보호가 메시지 HTML 금지와 결제 토큰 노출 방지에 직접 맞는다."}
+{"task_id": "t355", "candidate_id": "uasl/feathery-automation@9e85500ddf7e", "grade": 0, "process": false, "reason": "Feathery 서비스 자동화는 기존 React 모달 구현과 무관하다."}
+{"task_id": "t355", "candidate_id": "uasl/tailwind-design-system@7db0651a06b1", "grade": 2, "process": false, "reason": "React 컴포넌트와 접근성 및 폼 스타일 패턴이 단계형 레이아웃 구축에 도움이 된다."}
+{"task_id": "t355", "candidate_id": "uasl/invoice@234bae53884f", "grade": 0, "process": false, "reason": "출력용 청구서 HTML은 결제 모달 상태와 보안 처리와 다른 작업이다."}
+{"task_id": "t355", "candidate_id": "anthropics-skills/web-artifacts-builder@9c350d2f5f13", "grade": 1, "process": false, "reason": "새 React 프로젝트를 HTML로 번들링하는 방식은 기존 TSX 모달 수정과 거리가 있다."}
+{"task_id": "t355", "candidate_id": "uasl/fuzzing-obstacles@cb574f4c1b3b", "grade": 0, "process": false, "reason": "네이티브 퍼징 장애 우회는 웹 결제 모달과 무관하다."}
+{"task_id": "t355", "candidate_id": "uasl/hr-onboarding@a215d70427b3", "grade": 0, "process": false, "reason": "인사 온보딩 계획 화면은 강좌 등록 모달과 다른 산출물이다."}
+{"task_id": "t355", "candidate_id": "uasl/meeting-notes@da1c35784ab9", "grade": 0, "process": false, "reason": "회의록 화면 제작은 등록 및 결제 흐름과 무관하다."}
+{"task_id": "t355", "candidate_id": "uasl/wireframe-sketch@715426b3232f", "grade": 1, "process": false, "reason": "저충실도 와이어프레임은 레이아웃 탐색에 주변적으로 유용하나 실제 TSX 구현은 아니다."}
+{"task_id": "t355", "candidate_id": "uasl/vercel-composition-patterns@a6f8be32b197", "grade": 2, "process": false, "reason": "React 구성과 상태 분리 패턴이 단계별 화면과 버튼의 책임을 정리하는 데 도움이 된다."}
+{"task_id": "t355", "candidate_id": "uasl/braintree-automation@6ca1049d53ee", "grade": 0, "process": false, "reason": "결제 서비스 운영 자동화는 클라이언트 모달 보안 구현을 다루지 않는다."}
+{"task_id": "t355", "candidate_id": "uasl/docs-page@d9c05e10601d", "grade": 0, "process": false, "reason": "문서 페이지 HTML 제작은 등록 모달 변경과 무관하다."}
+{"task_id": "t355", "candidate_id": "uasl/mermaid-diagrams@a50e01188b8f", "grade": 1, "process": false, "reason": "흐름도는 두 단계 상태 설명에 주변적으로 유용하지만 구현 도움은 작다."}
+{"task_id": "t355", "candidate_id": "uasl/redesign-skill@2e4f7f16e367", "grade": 3, "process": true, "reason": "기존 기능과 스택을 유지하며 상호작용을 개선하는 절차가 모달 재설계에 직접 맞는다."}
+{"task_id": "t355", "candidate_id": "uasl/kanban-board@2d1da6290ea3", "grade": 0, "process": false, "reason": "칸반 보드 제작은 등록 모달과 다른 화면이다."}
+{"task_id": "t355", "candidate_id": "uasl/react-patterns@73d1ecc06997", "grade": 2, "process": false, "reason": "React 컴포넌트 구성과 렌더링 검토가 단계별 상태를 구현하는 데 도움이 된다."}
+{"task_id": "t355", "candidate_id": "uasl/vercel-react-best-practices@70f3b5aaf775", "grade": 2, "process": false, "reason": "React 클라이언트 렌더링과 상태 관련 모범 사례가 모달 구현에 도움이 된다."}
+{"task_id": "t355", "candidate_id": "uasl/web-prototype-taste-soft@7734ae078ad9", "grade": 1, "process": false, "reason": "특정 미감의 웹 프로토타입 지침은 레이아웃 참고에 그치며 보안 중심 구현을 다루지 않는다."}
+{"task_id": "t355", "candidate_id": "uasl/artisan@1e09f38ffcab", "grade": 3, "process": false, "reason": "TypeScript React 폼과 명시적 상태 및 접근성 구현이 단계형 등록 모달을 직접 다룬다."}
+{"task_id": "t355", "candidate_id": "uasl/design-to-code@fae28f73cda0", "grade": 2, "process": true, "reason": "기존 프로젝트에 맞춘 반응형 UI와 명확한 상호작용 상태 구현 절차가 도움이 된다."}
+{"task_id": "t355", "candidate_id": "uasl/vercel-react-native-skills@6e314641b44a", "grade": 0, "process": false, "reason": "React Native 권고는 웹 TSX 모달과 다른 실행 환경이다."}
+{"task_id": "t355", "candidate_id": "uasl/vibe-security@6b07d0f651a7", "grade": 3, "process": false, "reason": "웹 입력과 출력 및 사용자 데이터 보호가 서버 메시지와 토큰을 안전하게 다루는 요구에 직접 맞는다."}
+{"task_id": "t355", "candidate_id": "uasl/google-classroom-automation@2fc169e6c142", "grade": 0, "process": false, "reason": "Google Classroom 운영 자동화는 자체 등록 모달 코드와 무관하다."}
+{"task_id": "t355", "candidate_id": "uasl/weekly-update@e18ba8d591b9", "grade": 0, "process": false, "reason": "주간 보고 HTML 슬라이드는 결제 모달과 무관하다."}
+{"task_id": "t355", "candidate_id": "uasl/next-best-practices@ee058f89acea", "grade": 1, "process": false, "reason": "Next.js 전반의 서버 및 라우팅 관례는 관련 가능성이 있으나 모달과 보안 요구를 직접 다루지 않는다."}
+{"task_id": "t355", "candidate_id": "uasl/flow@d1423e53e763", "grade": 1, "process": false, "reason": "절제된 UI 모션은 단계 전환에 주변적으로 유용하나 핵심 레이아웃과 토큰 보안은 아니다."}
+{"task_id": "t355", "candidate_id": "uasl/interaction-design@7c9d38549c2b", "grade": 2, "process": false, "reason": "전환과 피드백 및 접근성 있는 상호작용 구현이 단계 진행 표시와 탐색 버튼에 도움이 된다."}
+{"task_id": "t355", "candidate_id": "uasl/gsap-react@79939b61e00a", "grade": 1, "process": false, "reason": "GSAP React 애니메이션은 단계 전환의 선택 사항으로 보안 중심 모달 구현에는 주변적이다."}
+{"task_id": "t355", "candidate_id": "uasl/slack-bot-builder@ce64c6aad24e", "grade": 0, "process": false, "reason": "Slack 앱 토큰 처리는 웹 결제 모달과 다른 서비스와 스택이다."}
+{"task_id": "t355", "candidate_id": "uasl/security-review@fcc354bc486e", "grade": 3, "process": true, "reason": "비밀값과 입력 처리 및 데이터 노출 점검이 결제 토큰과 서버 메시지 보안 요구를 직접 다룬다."}
+{"task_id": "t355", "candidate_id": "uasl/lemlist-automation@a31df61c312a", "grade": 0, "process": false, "reason": "영업 캠페인 등록 자동화는 강좌 등록 UI와 무관하다."}
+{"task_id": "t355", "candidate_id": "uasl/mobile-onboarding@dae55de6dde3", "grade": 1, "process": false, "reason": "다단계 모바일 화면 목업은 흐름 참고에 그치며 기존 React 모달을 구현하지 않는다."}
+{"task_id": "t355", "candidate_id": "uasl/stripe-best-practices@795a33f68129", "grade": 1, "process": false, "reason": "Stripe 통합 지침은 결제와 인접하지만 사용 결제사가 명시되지 않아 직접 적용 근거가 약하다."}
+{"task_id": "t355", "candidate_id": "uasl/pricing-page@8b72ba4d0477", "grade": 0, "process": false, "reason": "가격 비교 페이지 제작은 두 단계 등록 모달과 다른 산출물이다."}
+{"task_id": "t355", "candidate_id": "uasl/setup-matt-pocock-skills@d52ac42900e6", "grade": 0, "process": false, "reason": "에이전트 스킬 설정 문서 생성은 등록 모달 구현과 무관하다."}
+{"task_id": "t356", "candidate_id": "uasl/printing-press-score@7ec218523bea", "grade": 0, "process": true, "reason": "Go CLI 평가는 React 모달의 로딩 성능과 무관하다."}
+{"task_id": "t356", "candidate_id": "uasl/image-to-code-skill@4f1a4537825d", "grade": 1, "process": true, "reason": "이미지 레퍼런스부터 만드는 절차는 시각 탐색에 주변적이며 요구된 지연 로딩 구현을 다루지 않는다."}
+{"task_id": "t356", "candidate_id": "uasl/mobile-onboarding@dae55de6dde3", "grade": 1, "process": false, "reason": "모바일 단계형 목업은 흐름 참고에 그치며 기존 TSX 모달 성능 수정은 아니다."}
+{"task_id": "t356", "candidate_id": "uasl/tailwind-design-system@7db0651a06b1", "grade": 2, "process": false, "reason": "React 폼과 구성 요소 및 레이아웃 패턴이 진행 표시와 고정 버튼 구현에 도움이 된다."}
+{"task_id": "t356", "candidate_id": "uasl/ossfuzz@29bd6a21c586", "grade": 0, "process": false, "reason": "네이티브 퍼징 인프라는 React 모달 지연 로딩과 무관하다."}
+{"task_id": "t356", "candidate_id": "uasl/team-okrs@7a95ee8c1302", "grade": 0, "process": false, "reason": "목표 관리 대시보드는 등록 모달과 다른 산출물이다."}
+{"task_id": "t356", "candidate_id": "uasl/shadcn-ui@8c463642324a", "grade": 2, "process": false, "reason": "React UI 구성 요소를 조합하는 지침이 모달과 진행 표시 및 버튼을 구현하는 데 도움이 된다."}
+{"task_id": "t356", "candidate_id": "uasl/design-optimize@cbb1632043ec", "grade": 3, "process": false, "reason": "인터페이스 로딩 병목 측정과 최적화 및 재검증이 즉시 열리는 모달 목표를 직접 다룬다."}
+{"task_id": "t356", "candidate_id": "uasl/listennotes-automation@c5a2d5bf60f9", "grade": 0, "process": false, "reason": "팟캐스트 서비스 자동화는 등록 UI 성능과 무관하다."}
+{"task_id": "t356", "candidate_id": "uasl/vercel-react-best-practices@70f3b5aaf775", "grade": 3, "process": false, "reason": "React 번들 크기와 비동기 로딩 최적화가 Stripe 청크를 두 번째 단계까지 미루는 요구에 직접 맞는다."}
+{"task_id": "t356", "candidate_id": "uasl/weekly-update@e18ba8d591b9", "grade": 0, "process": false, "reason": "주간 보고 슬라이드는 등록 모달과 무관하다."}
+{"task_id": "t356", "candidate_id": "uasl/collab-modes@cdc15bee33c0", "grade": 1, "process": true, "reason": "협업 대화 방식 설정은 구현 과정의 주변 요소이며 성능 해결책은 아니다."}
+{"task_id": "t356", "candidate_id": "uasl/decomposition-planning-roadmap@750bfb7d134f", "grade": 1, "process": true, "reason": "단계별 마이그레이션 로드맵은 작은 컴포넌트 분리에 주변적으로만 유용하다."}
+{"task_id": "t356", "candidate_id": "uasl/hr-onboarding@a215d70427b3", "grade": 0, "process": false, "reason": "인사 온보딩 계획 HTML은 강좌 등록 모달과 다른 작업이다."}
+{"task_id": "t356", "candidate_id": "uasl/lemlist-automation@a31df61c312a", "grade": 0, "process": false, "reason": "영업 리드 등록 자동화는 강좌 등록 UI와 무관하다."}
+{"task_id": "t356", "candidate_id": "uasl/frontend-patterns@8f659ce2a0bd", "grade": 3, "process": false, "reason": "React 상태와 성능 및 폼 패턴이 단계 전환과 지연 로딩을 갖춘 모달 구현에 직접 맞는다."}
+{"task_id": "t356", "candidate_id": "uasl/perf-web-optimization@0e20e7b8cc98", "grade": 2, "process": false, "reason": "웹 자산 로딩 최적화는 초기 로딩 부담을 줄이는 데 도움이 되지만 Stripe 청크 분리는 구체적이지 않다."}
+{"task_id": "t356", "candidate_id": "uasl/chaser-automation@db5458a69840", "grade": 0, "process": false, "reason": "금융 추심 자동화는 결제 UI 청크 로딩과 무관하다."}
+{"task_id": "t356", "candidate_id": "uasl/digital-eguide@c4288adfa368", "grade": 0, "process": false, "reason": "전자 가이드 HTML 제작은 등록 모달 변경과 무관하다."}
+{"task_id": "t356", "candidate_id": "uasl/meeting-notes@da1c35784ab9", "grade": 0, "process": false, "reason": "회의록 페이지 제작은 등록 및 결제 단계와 무관하다."}
+{"task_id": "t356", "candidate_id": "uasl/braintree-automation@6ca1049d53ee", "grade": 0, "process": false, "reason": "결제 서비스 운영 자동화는 Stripe Elements 클라이언트 지연 로딩을 다루지 않는다."}
+{"task_id": "t356", "candidate_id": "uasl/kanban-board@2d1da6290ea3", "grade": 0, "process": false, "reason": "칸반 보드 제작은 등록 모달과 다른 화면이다."}
+{"task_id": "t356", "candidate_id": "uasl/interaction-design@7c9d38549c2b", "grade": 2, "process": false, "reason": "성능을 고려한 전환과 피드백 구현이 단계 진행과 버튼 상호작용에 도움이 된다."}
+{"task_id": "t356", "candidate_id": "uasl/flow@d1423e53e763", "grade": 1, "process": false, "reason": "UI 모션 최적화는 전환의 주변 요소이며 핵심 청크 지연 로딩은 다루지 않는다."}
+{"task_id": "t356", "candidate_id": "uasl/decision-toolkit@00642fa89fcf", "grade": 1, "process": false, "reason": "선택 지원 도구의 접근성 원칙은 코호트 선택에 주변적이나 모달 구현과는 다르다."}
+{"task_id": "t356", "candidate_id": "uasl/artisan@1e09f38ffcab", "grade": 3, "process": false, "reason": "React TypeScript 폼과 명시적 상태 구현이 단계형 등록 모달을 직접 다룬다."}
+{"task_id": "t356", "candidate_id": "uasl/gpt-tasteskill@134558e228c5", "grade": 1, "process": false, "reason": "필수 GSAP 모션과 큰 히어로 및 bento 구성이 즉시 열리는 작은 등록 모달의 방향과 맞지 않는다."}
+{"task_id": "t356", "candidate_id": "uasl/taste-skill@57790089504e", "grade": 2, "process": false, "reason": "성능과 상호작용 상태를 고려한 React UI 지침이 재설계에 도움이 된다."}
+{"task_id": "t356", "candidate_id": "uasl/google-classroom-automation@2fc169e6c142", "grade": 0, "process": false, "reason": "교육 서비스 API 자동화는 기존 등록 모달 코드와 무관하다."}
+{"task_id": "t356", "candidate_id": "uasl/slack-bot-builder@ce64c6aad24e", "grade": 0, "process": false, "reason": "Slack 앱 개발은 웹 결제 모달과 다른 플랫폼이다."}
+{"task_id": "t356", "candidate_id": "uasl/react-patterns@73d1ecc06997", "grade": 3, "process": false, "reason": "React 번들 크기와 waterfall 우선 개선이 결제 청크 분리라는 성능 목표를 직접 다룬다."}
+{"task_id": "t356", "candidate_id": "uasl/3d-web-experience@e1485751556b", "grade": 0, "process": false, "reason": "3D 웹 경험 구현은 기존 2단계 모달 목표와 무관하다."}
+{"task_id": "t356", "candidate_id": "uasl/stripe-best-practices@795a33f68129", "grade": 2, "process": false, "reason": "Stripe SDK 및 통합 지침이 Elements의 안전한 로딩 경계를 확인하는 데 도움이 된다."}
+{"task_id": "t356", "candidate_id": "uasl/vercel-composition-patterns@a6f8be32b197", "grade": 2, "process": false, "reason": "React 컴포넌트 구성과 상태 분리 지침이 결제 단계를 독립 로딩 경계로 분리하는 데 도움이 된다."}
+{"task_id": "t356", "candidate_id": "uasl/pricing-page@8b72ba4d0477", "grade": 0, "process": false, "reason": "가격 비교 페이지는 기존 등록 모달과 다른 화면이다."}
+{"task_id": "t356", "candidate_id": "uasl/workshop-facilitation@c8ec916a4f0c", "grade": 0, "process": true, "reason": "워크숍 진행 방법은 UI의 단계 진행 구현과 무관하다."}
+{"task_id": "t356", "candidate_id": "uasl/web-performance-optimization@b2b38275ed40", "grade": 3, "process": false, "reason": "자산의 효율적 로딩과 병목 측정 및 검증이 초기 모달에서 결제 청크를 분리하는 성능 요구에 직접 맞는다."}

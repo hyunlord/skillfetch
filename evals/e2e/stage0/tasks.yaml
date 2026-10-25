@@ -1,0 +1,123 @@
+# skillfetch e2e stage 0 — 20 tasks, 10 per repo, 10 en / 10 ko.
+# kind: feature 4, refactor 4, test 4, bugfix 3, docs 2, trivial 3 (trivial = negative control: router should NOT fire)
+repos:
+  fastapi:
+    path: repos/fastapi
+    upstream: fastapi/full-stack-fastapi-template
+    upstream_commit: b1125d8839482cb7bbae603ddc6d0081bf87532e
+    baseline_commit: 9113228767947cea6f6020baedcfef3ee1ac91e6   # upstream + router skill + .mcp.json
+    test_cmd: "cd backend && uv run pytest tests/ -q"
+  nextjs:
+    path: repos/nextjs
+    upstream: vercel/next.js examples/with-typescript
+    upstream_commit: fa3830c46ed119ae9490360f0a2ad8d372de80fc   # next.js monorepo commit the example was copied from
+    import_commit: 76de3ce276127ed28b66d71c19c0d1e3fc9e6f71
+    baseline_commit: 415e48934fae1046191b0f71774c0513706f58fb
+    test_cmd: "npm run type-check && npx next build"   # example ships no test runner
+
+tasks:
+  # ---------------- fastapi ----------------
+  - id: fa-01
+    repo: fastapi
+    kind: feature
+    lang: ko
+    prompt: "로그인 엔드포인트에 rate limit 붙여줘"
+  - id: fa-02
+    repo: fastapi
+    kind: feature
+    lang: en
+    prompt: "Add a case-insensitive title search query parameter to GET /api/v1/items/."
+  - id: fa-03
+    repo: fastapi
+    kind: refactor
+    lang: en
+    prompt: "Refactor the items routes so the database queries live in crud.py instead of the route handlers."
+  - id: fa-04
+    repo: fastapi
+    kind: refactor
+    lang: ko
+    prompt: "users.py 라우트들에 반복되는 이메일 중복 체크 로직을 헬퍼 하나로 정리해줘"
+  - id: fa-05
+    repo: fastapi
+    kind: test
+    lang: en
+    prompt: "Add tests for the password reset flow."
+  - id: fa-06
+    repo: fastapi
+    kind: test
+    lang: ko
+    prompt: "아이템 목록 API의 skip/limit 페이지네이션 동작 테스트 작성해줘"
+  - id: fa-07
+    repo: fastapi
+    kind: bugfix
+    lang: en
+    prompt: "GET /api/v1/items/?limit=-1 returns a 500 instead of a validation error, fix it."
+    # verified on baseline: items limit=-1 -> 500, users skip=-5 -> 500
+  - id: fa-08
+    repo: fastapi
+    kind: bugfix
+    lang: ko
+    prompt: "슈퍼유저로 /api/v1/password-recovery-html-content/{email} 호출하면 500 에러 나는데 고쳐줘"
+    # verified on baseline: ValueError: Header field name contains invalid characters: 'subject:'
+  - id: fa-09
+    repo: fastapi
+    kind: docs
+    lang: ko
+    prompt: "backend/README.md에 Docker 없이 로컬 Postgres로 백엔드 테스트 돌리는 방법 섹션 추가해줘"
+  - id: fa-10
+    repo: fastapi
+    kind: trivial
+    lang: en
+    prompt: "Rename get_datetime_utc in backend/app/models.py to utc_now."
+
+  # ---------------- nextjs ----------------
+  - id: nx-01
+    repo: nextjs
+    kind: feature
+    lang: en
+    prompt: "Add a search box to the users list page that filters users by name."
+  - id: nx-02
+    repo: nextjs
+    kind: feature
+    lang: ko
+    prompt: "유저에 email 필드 추가해서 상세 페이지에 보여줘"
+  - id: nx-03
+    repo: nextjs
+    kind: refactor
+    lang: ko
+    prompt: "users 페이지들을 pages 라우터에서 App Router로 옮겨줘"
+  - id: nx-04
+    repo: nextjs
+    kind: refactor
+    lang: en
+    prompt: "Refactor the Layout component into separate Header and Footer components."
+  - id: nx-05
+    repo: nextjs
+    kind: test
+    lang: en
+    prompt: "Add unit tests for the List and ListItem components."
+  - id: nx-06
+    repo: nextjs
+    kind: test
+    lang: ko
+    prompt: "/api/users API 핸들러 테스트 작성해줘"
+  - id: nx-07
+    repo: nextjs
+    kind: bugfix
+    lang: en
+    prompt: "The /api/users endpoint returns 200 for POST and DELETE too; it should only allow GET and return 405 otherwise."
+  - id: nx-08
+    repo: nextjs
+    kind: docs
+    lang: en
+    prompt: "Update the README to describe the project structure and the available npm scripts."
+  - id: nx-09
+    repo: nextjs
+    kind: trivial
+    lang: ko
+    prompt: "README 오타 고쳐줘"
+  - id: nx-10
+    repo: nextjs
+    kind: trivial
+    lang: ko
+    prompt: "ListDetail 컴포넌트 이름을 UserDetail로 바꿔줘"

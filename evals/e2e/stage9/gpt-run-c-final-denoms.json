@@ -1,0 +1,73 @@
+{
+ "denominators": {
+  "run-c_opus_relevant": 54,
+  "baseline_opus_relevant": 42,
+  "run-c_intersection_relevant": 48,
+  "baseline_intersection_relevant": 35,
+  "non_trivial": 54
+ },
+ "rc_hit@10": {
+  "run-c": {
+   "hits_intersection": 41,
+   "rate_54": 0.759,
+   "rate_opus_relevant": 0.759,
+   "n_opus_relevant": 54,
+   "rate_intersection_relevant": 0.854,
+   "n_intersection_relevant": 48,
+   "opus_only_rate_opus_relevant": 0.796,
+   "opus_only_rate_54": 0.796
+  },
+  "baseline": {
+   "hits_intersection": 29,
+   "rate_54": 0.537,
+   "rate_opus_relevant": 0.69,
+   "n_opus_relevant": 42,
+   "rate_intersection_relevant": 0.829,
+   "n_intersection_relevant": 35,
+   "opus_only_rate_opus_relevant": 0.714,
+   "opus_only_rate_54": 0.556
+  }
+ },
+ "sbp_rel_load": {
+  "run-c": {
+   "hits_intersection": 44,
+   "rate_54": 0.815,
+   "rate_opus_relevant": 0.815,
+   "n_opus_relevant": 54,
+   "rate_intersection_relevant": 0.917,
+   "n_intersection_relevant": 48,
+   "opus_only_rate_opus_relevant": 0.833,
+   "opus_only_rate_54": 0.833
+  },
+  "baseline r1": {
+   "hits_intersection": 29,
+   "rate_54": 0.537,
+   "rate_opus_relevant": 0.69,
+   "n_opus_relevant": 42,
+   "rate_intersection_relevant": 0.829,
+   "n_intersection_relevant": 35,
+   "opus_only_rate_opus_relevant": 0.714,
+   "opus_only_rate_54": 0.556
+  },
+  "baseline r2": {
+   "hits_intersection": 31,
+   "rate_54": 0.574,
+   "rate_opus_relevant": 0.738,
+   "n_opus_relevant": 42,
+   "rate_intersection_relevant": 0.886,
+   "n_intersection_relevant": 35,
+   "opus_only_rate_opus_relevant": 0.762,
+   "opus_only_rate_54": 0.593
+  },
+  "baseline r3": {
+   "hits_intersection": 31,
+   "rate_54": 0.574,
+   "rate_opus_relevant": 0.738,
+   "n_opus_relevant": 42,
+   "rate_intersection_relevant": 0.886,
+   "n_intersection_relevant": 35,
+   "opus_only_rate_opus_relevant": 0.762,
+   "opus_only_rate_54": 0.593
+  }
+ }
+}

@@ -1,0 +1,890 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-23T17:14:52.720Z",
+  "run_root": "<e2e>/codex-e2e-3-runs/20261024-full-router-14d2020",
+  "status": "UNEXPECTED_CHILD_OBSERVED",
+  "audit": {
+    "path": "<e2e>/codex-e2e-3-runs/20261024-full-router-14d2020/audit-verification.json",
+    "sha256": "9e1e26506dabe3dc6b8d2ce56804361542c3c2aa28ff4da86cbffdb88ff1e5e4",
+    "status": "FAIL",
+    "passed": 1228,
+    "checked": 1229,
+    "unchanged": true
+  },
+  "primary_sessions_scanned": 57,
+  "primary_turn_start_count": 57,
+  "primary_turn_completed_count": 57,
+  "unique_primary_threads": 57,
+  "spawn_agent_call_count": 4,
+  "failed_spawn_agent_call_count": 3,
+  "child_thread_count": 1,
+  "unique_observed_runtime_threads": 58,
+  "unique_observed_runtime_turns": 58,
+  "configuration": {
+    "multi_agent": false,
+    "multi_agent_v2": false,
+    "meaning": "Both configured flags remained false; an actual native spawn_agent child still ran, so these settings did not prevent native child execution in this observed session."
+  },
+  "attempts": [
+    {
+      "replicate": "r1",
+      "task_id": "s4-t055",
+      "call_id": "call_f30839308499491eafd609fa61d92ab7",
+      "spawn": {
+        "transcript_path": "<e2e>/codex-e2e-3-runs/20261024-full-router-14d2020/r1/tasks/s4-t055/transcript.jsonl",
+        "event_sequence": 132,
+        "line_number": 132,
+        "method": "rawResponseItem/completed"
+      },
+      "arguments": {
+        "task_name": "extract_items",
+        "fork_turns": null,
+        "fork_turns_explicit": false,
+        "message_characters": 972,
+        "message_sha256": "9e483b738d29d36c0155f37b942bfe527d510ec927899edf7ad45566c8b13ad6",
+        "message_plaintext_status": "NOT_OBSERVED: opaque gAAAA-prefixed message argument; no decoding attempted."
+      },
+      "outcome": "FAILED_BEFORE_OBSERVED_CHILD",
+      "outputs": [
+        {
+          "transcript_path": "<e2e>/codex-e2e-3-runs/20261024-full-router-14d2020/r1/tasks/s4-t055/transcript.jsonl",
+          "event_sequence": 136,
+          "line_number": 136,
+          "method": "rawResponseItem/completed",
+          "output_excerpt": "collab spawn failed: Fatal error: failed to load model context for thread 01a169a0-da94-7ff0-8978-183b052022f7: invalid thread-store request: no rollout found for thread id 01a169a0-da94-7ff0-8978-183b052022f7"
+        }
+      ],
+      "observed_child_thread_ids": [],
+      "activity_evidence": []
+    },
+    {
+      "replicate": "r1",
+      "task_id": "s4-t055",
+      "call_id": "call_d19fd4b5308747f1bc9a77b943734e42",
+      "spawn": {
+        "transcript_path": "<e2e>/codex-e2e-3-runs/20261024-full-router-14d2020/r1/tasks/s4-t055/transcript.jsonl",
+        "event_sequence": 160,
+        "line_number": 160,
+        "method": "rawResponseItem/completed"
+      },
+      "arguments": {
+        "task_name": "implementation",
+        "fork_turns": "none",
+        "fork_turns_explicit": true,
+        "message_characters": 1252,
+        "message_sha256": "07bd9441f9d3359f947feb33c60ce26f13c58a80b70ca30386a6a76280dad2c7",
+        "message_plaintext_status": "NOT_OBSERVED: opaque gAAAA-prefixed message argument; no decoding attempted."
+      },
+      "outcome": "OBSERVED_CHILD_STARTED",
+      "outputs": [
+        {
+          "transcript_path": "<e2e>/codex-e2e-3-runs/20261024-full-router-14d2020/r1/tasks/s4-t055/transcript.jsonl",
+          "event_sequence": 168,
+          "line_number": 168,
+          "method": "rawResponseItem/completed",
+          "output_excerpt": "{\"task_name\":\"/root/implementation\"}"
+        }
+      ],
+      "observed_child_thread_ids": [
+        "01a169a1-85d6-7b60-bcbe-9d1486224573"
+      ],
+      "activity_evidence": [
+        {
+          "transcript_path": "<e2e>/codex-e2e-3-runs/20261024-full-router-14d2020/r1/tasks/s4-t055/transcript.jsonl",
+          "event_sequence": 161,
+          "line_number": 161,
+          "method": "item/started",
+          "model": "gpt-6-astra",
+          "reasoning_effort": "medium",
+          "kind": "started",
+          "agent_thread_id": "01a169a1-85d6-7b60-bcbe-9d1486224573",
+          "agent_path": "/root/implementation"
+        },
+        {
+          "transcript_path": "<e2e>/codex-e2e-3-runs/20261024-full-router-14d2020/r1/tasks/s4-t055/transcript.jsonl",
+          "event_sequence": 162,
+          "line_number": 162,
+          "method": "item/completed",
+          "model": "gpt-6-astra",
+          "reasoning_effort": "medium",
+          "kind": "started",
+          "agent_thread_id": "01a169a1-85d6-7b60-bcbe-9d1486224573",
+          "agent_path": "/root/implementation"
+        }
+      ]
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t055",
+      "call_id": "call_ee48c9fb3b3d4a808e394da9104dab28",
+      "spawn": {
+        "transcript_path": "<e2e>/codex-e2e-3-runs/20261024-full-router-14d2020/r2/tasks/s4-t055/transcript.jsonl",
+        "event_sequence": 143,
+        "line_number": 143,
+        "method": "rawResponseItem/completed"
+      },
+      "arguments": {
+        "task_name": "extract_items",
+        "fork_turns": null,
+        "fork_turns_explicit": false,
+        "message_characters": 996,
+        "message_sha256": "48d1b566ebdcc11bcbc184c9003c8c5faad99b4540186e2fbd809311e7757bd1",
+        "message_plaintext_status": "NOT_OBSERVED: opaque gAAAA-prefixed message argument; no decoding attempted."
+      },
+      "outcome": "FAILED_BEFORE_OBSERVED_CHILD",
+      "outputs": [
+        {
+          "transcript_path": "<e2e>/codex-e2e-3-runs/20261024-full-router-14d2020/r2/tasks/s4-t055/transcript.jsonl",
+          "event_sequence": 147,
+          "line_number": 147,
+          "method": "rawResponseItem/completed",
+          "output_excerpt": "collab spawn failed: Fatal error: failed to load model context for thread 01a169ab-c780-7e32-8045-50f5d86e90b5: invalid thread-store request: no rollout found for thread id 01a169ab-c780-7e32-8045-50f5d86e90b5"
+        }
+      ],
+      "observed_child_thread_ids": [],
+      "activity_evidence": []
+    },
+    {
+      "replicate": "r3",
+      "task_id": "s4-t055",
+      "call_id": "call_1d153c69e8ca4e39a8414062b2a2144d",
+      "spawn": {
+        "transcript_path": "<e2e>/codex-e2e-3-runs/20261024-full-router-14d2020/r3/tasks/s4-t055/transcript.jsonl",
+        "event_sequence": 132,
+        "line_number": 132,
+        "method": "rawResponseItem/completed"
+      },
+      "arguments": {
+        "task_name": "extract_hook",
+        "fork_turns": null,
+        "fork_turns_explicit": false,
+        "message_characters": 996,
+        "message_sha256": "874ab57eed5c67a1a523d706051e73dfc3d06ccc64000c4bcfbdddf0a0c975b1",
+        "message_plaintext_status": "NOT_OBSERVED: opaque gAAAA-prefixed message argument; no decoding attempted."
+      },
+      "outcome": "FAILED_BEFORE_OBSERVED_CHILD",
+      "outputs": [
+        {
+          "transcript_path": "<e2e>/codex-e2e-3-runs/20261024-full-router-14d2020/r3/tasks/s4-t055/transcript.jsonl",
+          "event_sequence": 136,
+          "line_number": 136,
+          "method": "rawResponseItem/completed",
+          "output_excerpt": "collab spawn failed: Fatal error: failed to load model context for thread 01a169b4-88ce-7fe2-8bd7-684c62ad28b8: invalid thread-store request: no rollout found for thread id 01a169b4-88ce-7fe2-8bd7-684c62ad28b8"
+        }
+      ],
+      "observed_child_thread_ids": [],
+      "activity_evidence": []
+    }
+  ],
+  "findings": [
+    {
+      "replicate": "r1",
+      "task_id": "s4-t055",
+      "transcript": {
+        "path": "<e2e>/codex-e2e-3-runs/20261024-full-router-14d2020/r1/tasks/s4-t055/transcript.jsonl",
+        "sha256": "e9011d209e003e56c27c663289b0aa92899d19914adafd5f414939c7eaf53bcc"
+      },
+      "source_classification": "MODEL_CREATED_CHILD_AGENT",
+      "spawn_call_id": "call_d19fd4b5308747f1bc9a77b943734e42",
+      "spawn_evidence": {
+        "transcript_path": "<e2e>/codex-e2e-3-runs/20261024-full-router-14d2020/r1/tasks/s4-t055/transcript.jsonl",
+        "event_sequence": 160,
+        "line_number": 160,
+        "method": "rawResponseItem/completed"
+      },
+      "child": {
+        "thread_id": "01a169a1-85d6-7b60-bcbe-9d1486224573",
+        "agent_path": "/root/implementation",
+        "model": "gpt-6-astra",
+        "reasoning_effort": "medium",
+        "model_evidence": [
+          {
+            "transcript_path": "<e2e>/codex-e2e-3-runs/20261024-full-router-14d2020/r1/tasks/s4-t055/transcript.jsonl",
+            "event_sequence": 161,
+            "line_number": 161,
+            "method": "item/started"
+          },
+          {
+            "transcript_path": "<e2e>/codex-e2e-3-runs/20261024-full-router-14d2020/r1/tasks/s4-t055/transcript.jsonl",
+            "event_sequence": 162,
+            "line_number": 162,
+            "method": "item/completed"
+          },
+          {
+            "transcript_path": "<e2e>/codex-e2e-3-runs/20261024-full-router-14d2020/r1/tasks/s4-t055/transcript.jsonl",
+            "event_sequence": 217,
+            "line_number": 217,
+            "method": "item/started"
+          },
+          {
+            "transcript_path": "<e2e>/codex-e2e-3-runs/20261024-full-router-14d2020/r1/tasks/s4-t055/transcript.jsonl",
+            "event_sequence": 218,
+            "line_number": 218,
+            "method": "item/completed"
+          },
+          {
+            "transcript_path": "<e2e>/codex-e2e-3-runs/20261024-full-router-14d2020/r1/tasks/s4-t055/transcript.jsonl",
+            "event_sequence": 494,
+            "line_number": 494,
+            "method": "item/started"
+          },
+          {
+            "transcript_path": "<e2e>/codex-e2e-3-runs/20261024-full-router-14d2020/r1/tasks/s4-t055/transcript.jsonl",
+            "event_sequence": 496,
+            "line_number": 496,
+            "method": "item/completed"
+          }
+        ],
+        "model_evidence_kind": "subAgentActivity metadata; no independent child thread/start response"
+      },
+      "lifecycle": {
+        "events": [
+          {
+            "transcript_path": "<e2e>/codex-e2e-3-runs/20261024-full-router-14d2020/r1/tasks/s4-t055/transcript.jsonl",
+            "event_sequence": 165,
+            "line_number": 165,
+            "method": "turn/started",
+            "thread_id": "01a169a1-85d6-7b60-bcbe-9d1486224573",
+            "turn_id": "01a169a1-85d7-74a3-9867-ec2a928d02be",
+            "status": "inProgress",
+            "at": "2026-10-23T16:39:15.674Z"
+          },
+          {
+            "transcript_path": "<e2e>/codex-e2e-3-runs/20261024-full-router-14d2020/r1/tasks/s4-t055/transcript.jsonl",
+            "event_sequence": 495,
+            "line_number": 495,
+            "method": "turn/completed",
+            "thread_id": "01a169a1-85d6-7b60-bcbe-9d1486224573",
+            "turn_id": "01a169a1-85d7-74a3-9867-ec2a928d02be",
+            "status": "completed",
+            "at": "2026-10-23T16:40:03.005Z"
+          }
+        ],
+        "started_count": 1,
+        "completed_count": 1,
+        "completed_status": "completed",
+        "child_event_count": 209
+      },
+      "tool_usage": {
+        "raw_tool_counts": {
+          "exec": 6,
+          "send_message": 1
+        },
+        "raw_tool_evidence": [
+          {
+            "transcript_path": "<e2e>/codex-e2e-3-runs/20261024-full-router-14d2020/r1/tasks/s4-t055/transcript.jsonl",
+            "event_sequence": 186,
+            "line_number": 186,
+            "method": "rawResponseItem/completed",
+            "tool": "exec"
+          },
+          {
+            "transcript_path": "<e2e>/codex-e2e-3-runs/20261024-full-router-14d2020/r1/tasks/s4-t055/transcript.jsonl",
+            "event_sequence": 205,
+            "line_number": 205,
+            "method": "rawResponseItem/completed",
+            "tool": "exec"
+          },
+          {
+            "transcript_path": "<e2e>/codex-e2e-3-runs/20261024-full-router-14d2020/r1/tasks/s4-t055/transcript.jsonl",
+            "event_sequence": 224,
+            "line_number": 224,
+            "method": "rawResponseItem/completed",
+            "tool": "exec"
+          },
+          {
+            "transcript_path": "<e2e>/codex-e2e-3-runs/20261024-full-router-14d2020/r1/tasks/s4-t055/transcript.jsonl",
+            "event_sequence": 237,
+            "line_number": 237,
+            "method": "rawResponseItem/completed",
+            "tool": "exec"
+          },
+          {
+            "transcript_path": "<e2e>/codex-e2e-3-runs/20261024-full-router-14d2020/r1/tasks/s4-t055/transcript.jsonl",
+            "event_sequence": 253,
+            "line_number": 253,
+            "method": "rawResponseItem/completed",
+            "tool": "send_message"
+          },
+          {
+            "transcript_path": "<e2e>/codex-e2e-3-runs/20261024-full-router-14d2020/r1/tasks/s4-t055/transcript.jsonl",
+            "event_sequence": 319,
+            "line_number": 319,
+            "method": "rawResponseItem/completed",
+            "tool": "exec"
+          },
+          {
+            "transcript_path": "<e2e>/codex-e2e-3-runs/20261024-full-router-14d2020/r1/tasks/s4-t055/transcript.jsonl",
+            "event_sequence": 329,
+            "line_number": 329,
+            "method": "rawResponseItem/completed",
+            "tool": "exec"
+          }
+        ],
+        "mcp_event_count": 0,
+        "command_count": 8,
+        "command_status_counts": {
+          "completed": 3,
+          "failed": 5
+        },
+        "command_cwds": [
+          "<tmp>/skillfetch-codex-e2e-owned-OudpVi/s4-t055",
+          "<tmp>/skillfetch-codex-e2e-owned-OudpVi/s4-t055/frontend"
+        ],
+        "command_cwd_evidence": [
+          {
+            "transcript_path": "<e2e>/codex-e2e-3-runs/20261024-full-router-14d2020/r1/tasks/s4-t055/transcript.jsonl",
+            "event_sequence": 190,
+            "line_number": 190,
+            "method": "item/completed",
+            "cwd": "<tmp>/skillfetch-codex-e2e-owned-OudpVi/s4-t055",
+            "status": "completed"
+          },
+          {
+            "transcript_path": "<e2e>/codex-e2e-3-runs/20261024-full-router-14d2020/r1/tasks/s4-t055/transcript.jsonl",
+            "event_sequence": 209,
+            "line_number": 209,
+            "method": "item/completed",
+            "cwd": "<tmp>/skillfetch-codex-e2e-owned-OudpVi/s4-t055",
+            "status": "completed"
+          },
+          {
+            "transcript_path": "<e2e>/codex-e2e-3-runs/20261024-full-router-14d2020/r1/tasks/s4-t055/transcript.jsonl",
+            "event_sequence": 228,
+            "line_number": 228,
+            "method": "item/completed",
+            "cwd": "<tmp>/skillfetch-codex-e2e-owned-OudpVi/s4-t055",
+            "status": "failed"
+          },
+          {
+            "transcript_path": "<e2e>/codex-e2e-3-runs/20261024-full-router-14d2020/r1/tasks/s4-t055/transcript.jsonl",
+            "event_sequence": 241,
+            "line_number": 241,
+            "method": "item/completed",
+            "cwd": "<tmp>/skillfetch-codex-e2e-owned-OudpVi/s4-t055/frontend",
+            "status": "failed"
+          },
+          {
+            "transcript_path": "<e2e>/codex-e2e-3-runs/20261024-full-router-14d2020/r1/tasks/s4-t055/transcript.jsonl",
+            "event_sequence": 245,
+            "line_number": 245,
+            "method": "item/completed",
+            "cwd": "<tmp>/skillfetch-codex-e2e-owned-OudpVi/s4-t055/frontend",
+            "status": "failed"
+          },
+          {
+            "transcript_path": "<e2e>/codex-e2e-3-runs/20261024-full-router-14d2020/r1/tasks/s4-t055/transcript.jsonl",
+            "event_sequence": 335,
+            "line_number": 335,
+            "method": "item/completed",
+            "cwd": "<tmp>/skillfetch-codex-e2e-owned-OudpVi/s4-t055/frontend",
+            "status": "failed"
+          },
+          {
+            "transcript_path": "<e2e>/codex-e2e-3-runs/20261024-full-router-14d2020/r1/tasks/s4-t055/transcript.jsonl",
+            "event_sequence": 337,
+            "line_number": 337,
+            "method": "item/completed",
+            "cwd": "<tmp>/skillfetch-codex-e2e-owned-OudpVi/s4-t055",
+            "status": "completed"
+          },
+          {
+            "transcript_path": "<e2e>/codex-e2e-3-runs/20261024-full-router-14d2020/r1/tasks/s4-t055/transcript.jsonl",
+            "event_sequence": 340,
+            "line_number": 340,
+            "method": "item/completed",
+            "cwd": "<tmp>/skillfetch-codex-e2e-owned-OudpVi/s4-t055/frontend",
+            "status": "failed"
+          }
+        ]
+      },
+      "isolation_auth_cleanup": {
+        "primary_thread_id": "01a169a0-da94-7ff0-8978-183b052022f7",
+        "primary_turn_id": "01a169a0-de5b-7e22-93f5-1d144347d912",
+        "primary_worktree": "<tmp>/skillfetch-codex-e2e-owned-OudpVi/s4-t055",
+        "observed_child_cwds_within_primary_worktree": true,
+        "shared_worktree_removed": true,
+        "shared_worktree_unregistered": true,
+        "parent_app_server_exit_evidence": [
+          {
+            "transcript_path": "<e2e>/codex-e2e-3-runs/20261024-full-router-14d2020/r1/tasks/s4-t055/transcript.jsonl",
+            "event_sequence": 568,
+            "line_number": 568,
+            "method": "process-exit"
+          }
+        ],
+        "child_turn_completion": "VERIFIED",
+        "independent_child_authentication": "NOT_VERIFIED: no child-specific login-status/account-read evidence; parent ChatGPT Pro evidence exists.",
+        "independent_child_process_cleanup": "NOT_VERIFIED: no separate child process identity or cleanup record; child turn completion and parent app-server exit are recorded.",
+        "independent_child_worktree": "NOT_OBSERVED: recorded child command cwd values are the primary worktree or its frontend subdirectory."
+      }
+    }
+  ],
+  "scans": [
+    {
+      "replicate": "r1",
+      "task_id": "s4-t027",
+      "transcript_sha256": "1f63c7a49bf19315cb3c0e510b482ac320dfc668f49c29f48230db6c351e3af8",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r1",
+      "task_id": "s4-t176",
+      "transcript_sha256": "00f2a07b574986df98ff7d5f53ed81c46e869f21e16b80bdb535c9ed00dd8791",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r1",
+      "task_id": "s4-t153",
+      "transcript_sha256": "94f6d9057e390575690fc780ccc2f4d1529c1c037cfb88355d6d02fec53a7db7",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r1",
+      "task_id": "s4-t253",
+      "transcript_sha256": "be3d5144164301624d3e0bdf025b217f4c6e9cb3ec1dff3bec93f8b4403ad4ad",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r1",
+      "task_id": "s4-t182",
+      "transcript_sha256": "19b486abfc54cf0ba3e9987c3881c2448798959f58917f08c1653ba4feffaca3",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r1",
+      "task_id": "s4-t203",
+      "transcript_sha256": "89e11d6c747a8283cc0f6154967b3051f3d8b765a52765cf16e951ee0ef734cd",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r1",
+      "task_id": "s4-t055",
+      "transcript_sha256": "e9011d209e003e56c27c663289b0aa92899d19914adafd5f414939c7eaf53bcc",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 2,
+      "observed_child_thread_ids": [
+        "01a169a1-85d6-7b60-bcbe-9d1486224573"
+      ]
+    },
+    {
+      "replicate": "r1",
+      "task_id": "s4-t033",
+      "transcript_sha256": "d9035534302df819c8d3a5b7d129a5715d409dfd57c21ab00de56cc355f1f286",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r1",
+      "task_id": "s4-t130",
+      "transcript_sha256": "a0c152cafc9d23221e228b997c571948ba1c66f2fd2297fb248ddeb88e071edb",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r1",
+      "task_id": "s4-t177",
+      "transcript_sha256": "2e5068806c9ca64517e8d210b761821931d8c4191ed347422198ba4e367d87e9",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r1",
+      "task_id": "s4-t229",
+      "transcript_sha256": "73f3cec13776488eb443d34a1b13cc5a06f2c790b5fb9a73a88eb2b995ecf873",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r1",
+      "task_id": "s4-t026",
+      "transcript_sha256": "0c05e7d4a961239e4e001f7ccd9d5d959b6a7006ffc737da2b091eb553792227",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r1",
+      "task_id": "s4-t224",
+      "transcript_sha256": "ea48d81188cfe36dcaacd1bbdb645b1a8ca8074c68dbb4135f15cbe75c69ae15",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r1",
+      "task_id": "s4-t211",
+      "transcript_sha256": "242eea70715dc25d5b8576655515b49ea7a72addd9b9a915e5eabd748f2e973d",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r1",
+      "task_id": "s4-t354",
+      "transcript_sha256": "02f1347d0db4f534f6af8ca5cf8895d25704403f341820bd48d295135b1f7385",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r1",
+      "task_id": "s4-t101",
+      "transcript_sha256": "5a1aef1dd5fc3b306100d44bb8e03970c27f7e0e58027bcc98ca3f0576411fa1",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r1",
+      "task_id": "s4-t342",
+      "transcript_sha256": "6652bff3bb291e451d82a916ec489c2750b951f397358da9df50027404de2ee6",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r1",
+      "task_id": "s4-t280",
+      "transcript_sha256": "b43e5f592dee311efbc3fd6e8f09b1d9d84a955807579fc0cbd9b198db95362d",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r1",
+      "task_id": "s4-t001",
+      "transcript_sha256": "8bffe075341fe548fbb9d587d30d1b5219c7a4f6d7e640070291c7e62708a4c0",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t027",
+      "transcript_sha256": "cc72c1b6bdb0ec3612238081c25742d7df75dc015b8f6a654d8443d55207d875",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t176",
+      "transcript_sha256": "3803d5913e0396042c39602bd22ad69b448993a05a11270f44404befd7179565",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t153",
+      "transcript_sha256": "009420388002635cc41d8d4996f6774cdf00c311dcd233b81f6878e561f7b48b",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t253",
+      "transcript_sha256": "25e5864b9e15f103e85f58cb5105f5e17b1c46286ddb8069282a187be99c379d",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t182",
+      "transcript_sha256": "5e015420ce314ddcaf40d6104b45a6c703f8d6c33201591026f0a58313d96767",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t203",
+      "transcript_sha256": "9519af20aa884703b7fa25c2a520a063d14771efc764097dfb302d966271ccc4",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t055",
+      "transcript_sha256": "d9a6726825403ca4b592cd9c342b663486ceac8fdea960c14a1ee63d186495a5",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 1,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t033",
+      "transcript_sha256": "f85617267d1e09c3f08bac3205a35c8e4134aef95c349ae8725e7882002f0df4",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t130",
+      "transcript_sha256": "4e1337573890a6e60f4ac131e8341464fb32ea6e0c7970c1c22b4e3f956a091e",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t177",
+      "transcript_sha256": "fd38314b90dd353a6af01a5cfec7f8b9fa6026532a050014629d0a8e57793ca0",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t229",
+      "transcript_sha256": "ccc1cd5b2fbfa84d86f368ec813588c0c6d3523512a67fb1776d170eb07acf94",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t026",
+      "transcript_sha256": "96ed20ff7800418c9b005cf3e6c8d4e69b77b73a78528ef70ef69b2e4e576422",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t224",
+      "transcript_sha256": "1ddbce5e51177239a58ee04752a8b5f2eb697fdc96bb58308c60b886c14f9489",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t211",
+      "transcript_sha256": "a6740f922b98aada372cb213e5fde0a58b9724d5381887b6188e18f220ea4ac7",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t354",
+      "transcript_sha256": "6609a9ea1cd51d19e003cdad3baf751750b11c4382d873af850480f6eb56f7b7",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t101",
+      "transcript_sha256": "e381dffd370c17762f1fced0cfd9bbd0e8e146ee486e1039f472f79d43f00221",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t342",
+      "transcript_sha256": "52e81807caf4d4fe1e263ad5916913ba699b95e4d8fbcd2fc3e9b576b909c506",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t280",
+      "transcript_sha256": "2021ff578a4c0c236aed0c7773064916f6b307f99c547fce3bbafde06f27e1ad",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r2",
+      "task_id": "s4-t001",
+      "transcript_sha256": "15a8cd971bbd63526013f8b8cd17fce2017546886531d9396c4feb0191585bd3",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r3",
+      "task_id": "s4-t027",
+      "transcript_sha256": "63f3ff27a557be28c68a524c6b74820cbb7b4a3a013ad5509199cc061970b3e6",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r3",
+      "task_id": "s4-t176",
+      "transcript_sha256": "58675405c490bb3aa621681d4181621a5b319362cad249e5de71a318c73e5a97",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r3",
+      "task_id": "s4-t153",
+      "transcript_sha256": "3acaa84d962d1844aa68ca46b8f8c718de0a8466b3e23e6e93a4ffe524f6e181",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r3",
+      "task_id": "s4-t253",
+      "transcript_sha256": "d5a1869970896faad7b5b0007a48e3f0b6cc6cf791c32a172db1e32d22c9318c",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r3",
+      "task_id": "s4-t182",
+      "transcript_sha256": "4165af0d89df51056eba9ede4cfb320d1089440247fac5915fb8223f6ea4eb92",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r3",
+      "task_id": "s4-t203",
+      "transcript_sha256": "83432b95231fc21a8dd42e4eb14fe4c2b65c7315b4432198b9d925194d8e9010",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r3",
+      "task_id": "s4-t055",
+      "transcript_sha256": "0a7426f28c509c46bf77e4cc6856348a9e11f1f2315b4a32e220943ac3582ec5",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 1,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r3",
+      "task_id": "s4-t033",
+      "transcript_sha256": "bd8cb377e3d99e3370e25d0dad3456d8d6d29a97a103686426dd573b0b511bef",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r3",
+      "task_id": "s4-t130",
+      "transcript_sha256": "c05fa82da9c24f9e37b2aa5b0ddf675f075602616fc94bc6ae2a37dc7c19a899",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r3",
+      "task_id": "s4-t177",
+      "transcript_sha256": "7e2b123a18e436507edfba372623bbab6f85a51e694d3ea7ff26941007c27f2b",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r3",
+      "task_id": "s4-t229",
+      "transcript_sha256": "15c80c588b7a27ed7f4a949c42a4cba0a89a5d2be15ac3fa59b465cb0443e7ad",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r3",
+      "task_id": "s4-t026",
+      "transcript_sha256": "709ce8c0a1c270a1eb466f70e64591c83c626fff66da10f1c74a128d36613acf",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r3",
+      "task_id": "s4-t224",
+      "transcript_sha256": "2a122e4530c63b525ef39ad9d83d59373c36015d02d8ef3b7ad4bff8a836739d",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r3",
+      "task_id": "s4-t211",
+      "transcript_sha256": "62c89d1422f91d1fc10d2e8b060a2c73fcb8b1d052faf78fec7c410cba9c57f0",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r3",
+      "task_id": "s4-t354",
+      "transcript_sha256": "05119c28d41cd5eb8eab22dd3de1659814cc36ef5ed2a38c3955d6dd23594123",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r3",
+      "task_id": "s4-t101",
+      "transcript_sha256": "f7477179a5782401affbc16d89027be37a96a730cd4a277a4f05e468616443cf",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r3",
+      "task_id": "s4-t342",
+      "transcript_sha256": "29a0b532375b1f50ba9eae9d6f6023b6aa1bc2a688a12ae279ac9541e438caba",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r3",
+      "task_id": "s4-t280",
+      "transcript_sha256": "91ec497e219f074ede7148e2cbb6931ee258370d691757cc9827a5fa5fa61426",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    },
+    {
+      "replicate": "r3",
+      "task_id": "s4-t001",
+      "transcript_sha256": "61eb0d93c444a6aebaaa3c4c313841f3179acfacc77aa86ff38b20834ac524e0",
+      "controller_turn_start_count": 1,
+      "spawn_agent_call_count": 0,
+      "observed_child_thread_ids": []
+    }
+  ],
+  "limitations": [
+    "The denominator remains 57 primary, single-submission sessions. Four spawn attempts and one observed child are additional runtime behavior, not extra controller experiment submissions.",
+    "All four message arguments are opaque gAAAA-prefixed strings; plaintext delegated prompts cannot be established from these records. No decryption was attempted.",
+    "Three spawn attempts returned fatal no-rollout-found errors and no child lifecycle was observed for those attempts.",
+    "Child model/effort are recorded in activity metadata. Child-specific authentication and independent process cleanup are not established.",
+    "No models were rerun, no external API was called, and the FAIL audit/helper/raw session evidence were not changed."
+  ]
+}

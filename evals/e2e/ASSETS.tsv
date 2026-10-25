@@ -1,0 +1,319 @@
+# release e2e-artifacts-2026-10-25, asset e2e-artifacts-2026-10-25.tar.gz, 21541347 bytes, sha256 ec54eef28bf8738ba7f4b197a76ec21a6451e038ab33f84a9c598015532f0244
+# paths are relative to evals/e2e/; scripts/fetch_e2e_assets.sh downloads, verifies and unpacks them
+path	bytes	sha256	kind	diff_of	license
+retrieval/bm25-full.json	1544481	495daf68e3d32d12f35bafee0796b78fac11862d7bc4b0272688ade076be0b7d	label or result file over 1 MB	this repository	MIT (this repository)
+retrieval/emb-docs.json	1918066	9a3929b1a2c4b41612b63a1696f725190e25e64e35106fd564d4f854a7efb8f7	label or result file over 1 MB	this repository	MIT (this repository)
+stage1b/plans-blind/s1b-fa-tags-plan/0cd645aa/impl.diff	38185	d525840e25fd67401435462c6c3fdfdcf38187c423707d0fb99f4f7282aceffa	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage1b/plans-blind/s1b-fa-tags-plan/0e62f86b/impl.diff	26448	192cad8802fed4246cf5ee06532401c45668d8ccbf113566fb5c00af8c04dcd8	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage1b/plans-blind/s1b-fa-tags-plan/829563bc/impl.diff	55674	4c8260fdf5454036b5cf43857463aecdd1e074774e70836ce77eecbf34d99765	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage1b/plans-blind/s1b-fa-tags-plan/a4618ba1/impl.diff	46491	319169971e04f6badf0b6f15088e6cc2e53e8814bdbbe108bd4d0ea96b85fae4	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage1b/plans-blind/s1b-fa-tags-plan/c92f3fba/impl.diff	39475	b988e3d972ba713fd85a86cfc195717d726efe6d8ebacd7c74a51abc6b8df771	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage1b/plans-blind/s1b-fa-tags-plan/f8953e63/impl.diff	35201	03da7675bab3bb72865495857af40430b28bcbaeee1b41ee8c0b9c1cbfc67c41	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage1b/rejudge/plans-blind/s1b-fa-tags-plan/0cc603f8/impl.diff	46491	319169971e04f6badf0b6f15088e6cc2e53e8814bdbbe108bd4d0ea96b85fae4	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage1b/rejudge/plans-blind/s1b-fa-tags-plan/13017b68/impl.diff	39475	b988e3d972ba713fd85a86cfc195717d726efe6d8ebacd7c74a51abc6b8df771	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage1b/rejudge/plans-blind/s1b-fa-tags-plan/2aaf174d/impl.diff	46314	713f06dce7866875a0bc7a7a4b2441848e0408e908a6cbb3aad96d8c50efefc2	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage1b/rejudge/plans-blind/s1b-fa-tags-plan/62d1b5d1/impl.diff	55674	4c8260fdf5454036b5cf43857463aecdd1e074774e70836ce77eecbf34d99765	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage1b/rejudge/plans-blind/s1b-fa-tags-plan/7c401036/impl.diff	26448	192cad8802fed4246cf5ee06532401c45668d8ccbf113566fb5c00af8c04dcd8	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage1b/rejudge/plans-blind/s1b-fa-tags-plan/b20215c8/impl.diff	35201	03da7675bab3bb72865495857af40430b28bcbaeee1b41ee8c0b9c1cbfc67c41	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage1b/rejudge/plans-blind/s1b-fa-tags-plan/dd79f213/impl.diff	38185	d525840e25fd67401435462c6c3fdfdcf38187c423707d0fb99f4f7282aceffa	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage1b/rejudge/plans-blind/s1b-fa-tags-plan/e5e778c5/impl.diff	51495	436a5513d4707ee7c9f5bac72cdebedb0291d2953feec5cb5a44a3be1e7f072a	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage2/blind-p1/s2-api/355539b9/diff.patch	25247	78eda03c0552f4e4bd545908b12b90f5eb96b1fbfafd91e4be2c3c6063c9917c	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-api/42a12ca5/diff.patch	22760	8492cbe129812458d2c07b0587a74a93b8d6e8f087d63adce6c5e367d60938cb	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-api/47a49ca9/diff.patch	24723	380151ffc46d31f0a7a6f8f451f0ffcee50f361fdbd8ecb9a43f752ed006e103	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-api/48207e90/diff.patch	28542	aa1540407040f304e7d45a1ead24b26b06eb080ec911db8890ded41bd97f533b	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-api/4dc95264/diff.patch	26083	0a3bbb250df60bc054e01b84e1da9cc35d48977093fea4f68eb4c55d87cb7c27	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-api/59e1ccf2/diff.patch	24095	dda0948864fb54799a8d572521317793cf30d15596f2aec513cebe93629876b5	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-api/6ba2f14e/diff.patch	23144	78025c4d14f0b809eaeeb78923364a6a5a9b1e81bda7258001a9f269c696b643	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-api/7c4d8f84/diff.patch	26307	14be805c55b69ed2fed1c96e12f244d9338bb1bfa20c1026f926a9abe08ee352	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-api/8b15cf06/diff.patch	33280	3e546ef44ee531d044454898dd2e5ee0e4594e9c41c164b9087849123cd83860	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-api/8edee18d/diff.patch	22989	30f2563e75c319fee7d08aae53ccd51133a1a87190f9d9ead90e55c7e6a005df	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-api/9f002b92/diff.patch	28540	a27b698c6acff275518738ae46ce05d599c4b734ddf7e27b54bdec156844074b	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-api/b33c4e29/diff.patch	28688	10f87b30e3876e026fd7f2c9f9717e28fff4d8ae54abe457ad1c4c5de9b11c57	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-api/be9f190a/diff.patch	28944	bf4a546121f1f075d5e3e4fb54cc8d8b2243cbe6d619372d03b8375d6b518379	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-api/df6fcde4/diff.patch	25141	6c1664e579108e59759773145acc4e385c0fc899c744d57666d67980e5460414	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-api/eda80050/diff.patch	23862	c1cce11f3e0bf53322ead2f34029ef2865a136b286b1d2f43669bf700a1e7e19	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-data/06b38889/diff.patch	16882	46c86697aed364c6d8383aec8a69f7c5e2d2692235b6c444bc21666af27add9c	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-data/2596b43e/diff.patch	14628	23b4e2fc170909001675ab0628affa3a8d486f6a48caee7b83fcc5e69ee9b53e	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-data/55deb506/diff.patch	18243	f9fd980de28c9b84692d5b516a7174e70a25abd4a138ad8daef1039dc83d6f23	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-data/69d3abee/diff.patch	12177	c7650f0ca9bb7aa0966038685275452df535930d8f29cc914856a31eeb3e4d5d	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-data/7d650861/diff.patch	15527	e47d89989115942b8ed666980cf2627ddefebcaa5d79f56e3e5de5550dfef037	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-data/849cc485/diff.patch	21570	67b065f8921e88c7cbfc509d69695717d977515484f26e4e984032d2496e8e0c	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-data/89077ad9/diff.patch	17231	b13bb4b41967f22e0348bec5407f65277b9975f32e7f71e3379d409739c50250	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-data/a754d400/diff.patch	13236	f090096f484386e95b74861ab7465deb36ef906703bcb700f5027ebb984f9e95	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-data/b0afc020/diff.patch	15573	667f0ec421ff0f8de9cb92ea240119142e73d7110f59ebd9bfdedf00cff24c9e	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-data/b4558fa9/diff.patch	20011	e2c32033c4b09f0dd02bc6eb4f8c5f5a04acbe89f8c6fd9588191d3586451195	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-data/b6c22a55/diff.patch	15791	664c9720fab6c212f660ea7eeb8c1510e425c59cf7a6e0a42706d19bf9e228a2	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-data/e1b9e48e/diff.patch	13175	ab57e3722c88a1e2c426647b4a37c4fa518d6ee0e2b59d9088e15df09d2371c7	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-data/ed3ec908/diff.patch	9748	4f88c5dc47b59b3de5abb73bc33252b11e57fd16a70de2bb947dbedbdd2dbe0b	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-data/fc31ad56/diff.patch	16070	ba783470b8ee3879d40e335c60b5c5ecf98e6677652be3a6e0d84793b6cace7e	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-data/fe7ccbff/diff.patch	14092	937d41c03c8e2256e6d3fea9d3308ff1d2531f81517b0d70e4bee5c18d47b2aa	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-docs/0ed4a79f/diff.patch	12173	9acd6261a6c6662f281a5b38655ac8ac9f5bb9ca05f0a33201d0d17adc2e2daf	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage2/blind-p1/s2-docs/2dad6746/diff.patch	14289	425ff1a6284952a7e2977dd0867743d4524cd47ac3dc8698e85b7d1a4eb48372	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage2/blind-p1/s2-docs/496ea4d3/diff.patch	12592	42f7311e155df784c21f8297aafdb3fe06201c3ddfa004278a6ed34b00e274c3	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage2/blind-p1/s2-docs/68555dea/diff.patch	10550	300e4e9aee138b3c1915573c0cc0724ede31a98aa76487955a85b8e30e422208	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage2/blind-p1/s2-docs/700f4205/diff.patch	11138	2f46d22a1b2aac079c9b894ed4abe90b66eeafcb26d3c6e6139dcc86b5a4cdd3	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage2/blind-p1/s2-docs/751dd610/diff.patch	12286	654551241881a8489f10674f10e299f433acdd1bf162a26376b51d21ee01fc94	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage2/blind-p1/s2-docs/7c0d0cd3/diff.patch	9800	d8c0b587ca88694c962b62b6676b782cf336d41c7ed8f377eaacd6c29d1383c2	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage2/blind-p1/s2-docs/805ddcac/diff.patch	12959	43ccc5b285471d03d7ae627e223b4553e591bb43d48740ee27a1ca46677bd613	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage2/blind-p1/s2-docs/9bb2ef1f/diff.patch	12213	17662df9424ac956af340b9b0a3904d0132eff190a74353dba3238ecabe87cfe	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage2/blind-p1/s2-docs/a5b65b6f/diff.patch	12326	4d4e03de63295afc16633f6cd7968e565b364b289ce64e75608f18d7435c7adf	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage2/blind-p1/s2-docs/b2e539cb/diff.patch	6834	be4b96284767798b304a269781d0c226b19d7863991c65c7c143c6676b0de188	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage2/blind-p1/s2-docs/cdd39e8c/diff.patch	9347	1bc8766053ce5d8ab46b88478ab57a5c12a060dfbd8701960ba24a7de9133bc5	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage2/blind-p1/s2-docs/d008732d/diff.patch	11427	46af8344ccb2f9bd1343589512541c8426d4aadf8bf4c04e68b6c7db84f8bc4b	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage2/blind-p1/s2-docs/d4d8e027/diff.patch	11783	f0425bc4a6e1d9896a48e0ebd8b7f5f166b68e1aec9f6aaf144b01b69bfb0440	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage2/blind-p1/s2-docs/fa46baf7/diff.patch	12171	ce7a5bb976b36d34bb919c467d7e58e4731991b2ce8e5ab7e8712ba61bfdfa84	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage2/blind-p1/s2-tests/072a1549/diff.patch	29664	3b7310436b3f275757fbc47e50621f89e21ca0f5072d3464cb0d1da28f16bc00	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-tests/088a6277/diff.patch	22934	29b30765e65b7bc0efa9203857ac82ac9f13f0cf69d90d9a56dfd3aafa8a604b	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-tests/21f8502a/diff.patch	25558	e937c4e4e46351bcef6c3db5efaaa2e8f9e41767e9a43fcaeb7a85176ce38333	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-tests/24333ee7/diff.patch	27593	4b311bccc72b2316ec37539cf2de8e06f3506bf08b3088dc9720b058f4b2e0bf	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-tests/3dae4e2a/diff.patch	28751	66f34a9616ec2b5ee5704d389bbce303ab86322cff9927b0b77e647637ce7240	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-tests/4dc855d6/diff.patch	27667	e6d9502219743d2baa4dabb18885556ea7939ae2694d5ed7e84491fee6aa7924	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-tests/73f8212c/diff.patch	26643	cb3c0d7ac36863055d155b0b34f0bc7c079b1afb9c4c10f9e7751cf8973733ae	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-tests/78c7043f/diff.patch	24530	dae9216a954a0302098050a92cc55f5ea1be7dcf9b0fc64ccf543c0e43b8f482	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-tests/917fe20d/diff.patch	29740	5414d4537811ef583fc9f52c94983994984debc09317eb4149c087d22a21e0b7	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-tests/d1cec521/diff.patch	26204	490d35e3da31b519c92e0c51d3c7ed65a2423b3a181f10b61694b0fc28c6fb67	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-tests/d38abc88/diff.patch	20532	9db315486d93018f1fa6f493c086fb0ffb1c8a9bdc8b198fcfa3a57c2a969482	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-tests/e4d7aa62/diff.patch	23049	581b08f5ca80a89e2d7f3b888b11d61c869fd2ec68c3f9ecde22c91e7866b3e9	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-tests/ea075d48/diff.patch	31990	69f731bccb36bff0994ec30cf0eaa3692a5971566044429237944c530cccfced	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-tests/fb34058b/diff.patch	29265	d6446c9c76690f97417628779010f52cc009574cab5dfa1002813cc1a260b811	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p1/s2-tests/fdd05fce/diff.patch	23295	0ca8ab8431d232f09a223783e32d4ce0076efc4d6f707b74f2726ef291dde442	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-api/081fe80d/diff.patch	28688	10f87b30e3876e026fd7f2c9f9717e28fff4d8ae54abe457ad1c4c5de9b11c57	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-api/1bab0640/diff.patch	24723	380151ffc46d31f0a7a6f8f451f0ffcee50f361fdbd8ecb9a43f752ed006e103	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-api/272d0a4b/diff.patch	23862	c1cce11f3e0bf53322ead2f34029ef2865a136b286b1d2f43669bf700a1e7e19	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-api/357c708d/diff.patch	24095	dda0948864fb54799a8d572521317793cf30d15596f2aec513cebe93629876b5	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-api/58ed1535/diff.patch	25141	6c1664e579108e59759773145acc4e385c0fc899c744d57666d67980e5460414	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-api/6e4089be/diff.patch	25247	78eda03c0552f4e4bd545908b12b90f5eb96b1fbfafd91e4be2c3c6063c9917c	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-api/713e65a1/diff.patch	33280	3e546ef44ee531d044454898dd2e5ee0e4594e9c41c164b9087849123cd83860	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-api/72989b3e/diff.patch	23144	78025c4d14f0b809eaeeb78923364a6a5a9b1e81bda7258001a9f269c696b643	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-api/914d71d5/diff.patch	28944	bf4a546121f1f075d5e3e4fb54cc8d8b2243cbe6d619372d03b8375d6b518379	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-api/a2113356/diff.patch	28540	a27b698c6acff275518738ae46ce05d599c4b734ddf7e27b54bdec156844074b	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-api/bf97b119/diff.patch	26083	0a3bbb250df60bc054e01b84e1da9cc35d48977093fea4f68eb4c55d87cb7c27	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-api/c877fbe5/diff.patch	26307	14be805c55b69ed2fed1c96e12f244d9338bb1bfa20c1026f926a9abe08ee352	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-api/cfb2caca/diff.patch	28542	aa1540407040f304e7d45a1ead24b26b06eb080ec911db8890ded41bd97f533b	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-api/e9c0ab20/diff.patch	22989	30f2563e75c319fee7d08aae53ccd51133a1a87190f9d9ead90e55c7e6a005df	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-api/f6032ba6/diff.patch	22760	8492cbe129812458d2c07b0587a74a93b8d6e8f087d63adce6c5e367d60938cb	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-data/00043363/diff.patch	9748	4f88c5dc47b59b3de5abb73bc33252b11e57fd16a70de2bb947dbedbdd2dbe0b	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-data/3d74461c/diff.patch	18243	f9fd980de28c9b84692d5b516a7174e70a25abd4a138ad8daef1039dc83d6f23	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-data/450cb7b8/diff.patch	13236	f090096f484386e95b74861ab7465deb36ef906703bcb700f5027ebb984f9e95	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-data/60e066af/diff.patch	21570	67b065f8921e88c7cbfc509d69695717d977515484f26e4e984032d2496e8e0c	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-data/60fd776d/diff.patch	13175	ab57e3722c88a1e2c426647b4a37c4fa518d6ee0e2b59d9088e15df09d2371c7	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-data/737c52e8/diff.patch	14092	937d41c03c8e2256e6d3fea9d3308ff1d2531f81517b0d70e4bee5c18d47b2aa	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-data/7a53b92f/diff.patch	16882	46c86697aed364c6d8383aec8a69f7c5e2d2692235b6c444bc21666af27add9c	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-data/949170dd/diff.patch	15527	e47d89989115942b8ed666980cf2627ddefebcaa5d79f56e3e5de5550dfef037	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-data/a1d830dd/diff.patch	12177	c7650f0ca9bb7aa0966038685275452df535930d8f29cc914856a31eeb3e4d5d	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-data/a76e350c/diff.patch	20011	e2c32033c4b09f0dd02bc6eb4f8c5f5a04acbe89f8c6fd9588191d3586451195	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-data/aab41525/diff.patch	17231	b13bb4b41967f22e0348bec5407f65277b9975f32e7f71e3379d409739c50250	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-data/e2e1ba0a/diff.patch	15791	664c9720fab6c212f660ea7eeb8c1510e425c59cf7a6e0a42706d19bf9e228a2	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-data/ecac6d58/diff.patch	16070	ba783470b8ee3879d40e335c60b5c5ecf98e6677652be3a6e0d84793b6cace7e	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-data/ef244040/diff.patch	14628	23b4e2fc170909001675ab0628affa3a8d486f6a48caee7b83fcc5e69ee9b53e	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-data/ff28ad80/diff.patch	15573	667f0ec421ff0f8de9cb92ea240119142e73d7110f59ebd9bfdedf00cff24c9e	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-docs/0968d80f/diff.patch	6834	be4b96284767798b304a269781d0c226b19d7863991c65c7c143c6676b0de188	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage2/blind-p2/s2-docs/3b930054/diff.patch	12592	42f7311e155df784c21f8297aafdb3fe06201c3ddfa004278a6ed34b00e274c3	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage2/blind-p2/s2-docs/4f795934/diff.patch	14289	425ff1a6284952a7e2977dd0867743d4524cd47ac3dc8698e85b7d1a4eb48372	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage2/blind-p2/s2-docs/547b5dae/diff.patch	10550	300e4e9aee138b3c1915573c0cc0724ede31a98aa76487955a85b8e30e422208	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage2/blind-p2/s2-docs/5eb6d7e1/diff.patch	9800	d8c0b587ca88694c962b62b6676b782cf336d41c7ed8f377eaacd6c29d1383c2	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage2/blind-p2/s2-docs/6e08ba3d/diff.patch	9347	1bc8766053ce5d8ab46b88478ab57a5c12a060dfbd8701960ba24a7de9133bc5	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage2/blind-p2/s2-docs/8e2fc040/diff.patch	11138	2f46d22a1b2aac079c9b894ed4abe90b66eeafcb26d3c6e6139dcc86b5a4cdd3	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage2/blind-p2/s2-docs/97941275/diff.patch	12286	654551241881a8489f10674f10e299f433acdd1bf162a26376b51d21ee01fc94	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage2/blind-p2/s2-docs/bae321aa/diff.patch	12173	9acd6261a6c6662f281a5b38655ac8ac9f5bb9ca05f0a33201d0d17adc2e2daf	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage2/blind-p2/s2-docs/c83bb6ad/diff.patch	12959	43ccc5b285471d03d7ae627e223b4553e591bb43d48740ee27a1ca46677bd613	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage2/blind-p2/s2-docs/cbe55220/diff.patch	11783	f0425bc4a6e1d9896a48e0ebd8b7f5f166b68e1aec9f6aaf144b01b69bfb0440	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage2/blind-p2/s2-docs/e5020c17/diff.patch	12171	ce7a5bb976b36d34bb919c467d7e58e4731991b2ce8e5ab7e8712ba61bfdfa84	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage2/blind-p2/s2-docs/eb6958b1/diff.patch	12213	17662df9424ac956af340b9b0a3904d0132eff190a74353dba3238ecabe87cfe	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage2/blind-p2/s2-docs/f788b3ce/diff.patch	12326	4d4e03de63295afc16633f6cd7968e565b364b289ce64e75608f18d7435c7adf	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage2/blind-p2/s2-docs/fc748a95/diff.patch	11427	46af8344ccb2f9bd1343589512541c8426d4aadf8bf4c04e68b6c7db84f8bc4b	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage2/blind-p2/s2-tests/46c45124/diff.patch	26204	490d35e3da31b519c92e0c51d3c7ed65a2423b3a181f10b61694b0fc28c6fb67	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-tests/556d0d9d/diff.patch	27593	4b311bccc72b2316ec37539cf2de8e06f3506bf08b3088dc9720b058f4b2e0bf	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-tests/5b5851d8/diff.patch	28751	66f34a9616ec2b5ee5704d389bbce303ab86322cff9927b0b77e647637ce7240	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-tests/5c993b3b/diff.patch	29265	d6446c9c76690f97417628779010f52cc009574cab5dfa1002813cc1a260b811	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-tests/60bd94c8/diff.patch	31990	69f731bccb36bff0994ec30cf0eaa3692a5971566044429237944c530cccfced	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-tests/663e35eb/diff.patch	23049	581b08f5ca80a89e2d7f3b888b11d61c869fd2ec68c3f9ecde22c91e7866b3e9	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-tests/77a7a9e9/diff.patch	29740	5414d4537811ef583fc9f52c94983994984debc09317eb4149c087d22a21e0b7	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-tests/7f664e8a/diff.patch	29664	3b7310436b3f275757fbc47e50621f89e21ca0f5072d3464cb0d1da28f16bc00	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-tests/8a1063ae/diff.patch	24530	dae9216a954a0302098050a92cc55f5ea1be7dcf9b0fc64ccf543c0e43b8f482	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-tests/9be399cd/diff.patch	20532	9db315486d93018f1fa6f493c086fb0ffb1c8a9bdc8b198fcfa3a57c2a969482	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-tests/b47f5a21/diff.patch	23295	0ca8ab8431d232f09a223783e32d4ce0076efc4d6f707b74f2726ef291dde442	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-tests/ba2e939e/diff.patch	27667	e6d9502219743d2baa4dabb18885556ea7939ae2694d5ed7e84491fee6aa7924	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-tests/d05929b7/diff.patch	22934	29b30765e65b7bc0efa9203857ac82ac9f13f0cf69d90d9a56dfd3aafa8a604b	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-tests/dd693d56/diff.patch	25558	e937c4e4e46351bcef6c3db5efaaa2e8f9e41767e9a43fcaeb7a85176ce38333	judge-package diff	written for this experiment	MIT (this repository)
+stage2/blind-p2/s2-tests/f8609f0b/diff.patch	26643	cb3c0d7ac36863055d155b0b34f0bc7c079b1afb9c4c10f9e7751cf8973733ae	judge-package diff	written for this experiment	MIT (this repository)
+stage3/blind-pool-120.jsonl	3978373	1e21cc31305a724cce457a6619ecfeb4088828efdeb1720f13ce5e60811eaac6	label or result file over 1 MB	this repository	MIT (this repository)
+stage3/followup/oracle-v3.jsonl	2232522	71037e9fc80978b522fd56a4f288004e12985796b582ae0eabbd9c8b8b5ac5e1	label or result file over 1 MB	this repository	MIT (this repository)
+stage3/followup/rc-rankings.json	3854529	585951237fd9fcad003e128614f8389193fbc702d45902e0e9706344f4909933	label or result file over 1 MB	this repository	MIT (this repository)
+stage3/gen/pools.json	1312866	dac25b98c2f11f5028a7d53f4f61724336c07873c7dffb07a16ae861f39e81c6	label or result file over 1 MB	this repository	MIT (this repository)
+stage3/gpt-grades-120.jsonl	1249647	61edd6d2f4c38aaadf6fc5af45bfe1edbf04d2e4c437ad1c49b8a68dedb3712e	label or result file over 1 MB	this repository	MIT (this repository)
+stage3/oracle.jsonl	1925127	7ee69deffb705d6c8c7eee305de591183214189be091e4e2b0c63eca3fe8f4c8	label or result file over 1 MB	this repository	MIT (this repository)
+stage3/rankings.json	5240440	2d409322a08becd5cfb78ad2beaa537af268a2d50e3029438128e2e4533b6b82	label or result file over 1 MB	this repository	MIT (this repository)
+stage3/repo-prep/evals/retrieval/oracle.jsonl	1859446	88b28d18b539fc0c775200509beaef0394a2619c8bc56595cc225c46d7cc2c0f	label or result file over 1 MB	this repository	MIT (this repository)
+stage6/6b/blind-p1/s2-api/02853773/diff.patch	26238	59af38ab418b229700e426a6274a08bb44825086a8e2867b7982135ead684bc5	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p1/s2-api/05dbf62b/diff.patch	18883	465743e587e5ffb7db858cb29fd1772f8165482e0627a1fff43a4014e2d493c6	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p1/s2-api/1c8dee98/diff.patch	26259	393c1bda7c660958fd0e3f4e390c9907dec60cad84daa1b7449e64d480277144	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p1/s2-api/37340454/diff.patch	28101	e5bb8730096e339b2b452fb43b61887b50df22d8275c223782071235aefd5f1a	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p1/s2-api/41dd83d6/diff.patch	19108	29fa2ca9e0a1d5a66b9ca09f60c4cfb84b508b54e57cc49e711a8eb83409f427	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p1/s2-api/59e10d7b/diff.patch	17371	67e85d1dcab9618dd3e42d8a70531cf7ddb20054b1befda684602f815cab768a	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p1/s2-api/8f40dac0/diff.patch	20147	938ac2a9d11acecde2a4ca78b9a3fa8e7d3a40f33df667b46f3bce5b7cca3c8b	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p1/s2-api/910a68c5/diff.patch	22608	7067f87f5aae2b25daf82ca225b9d510f6e2239a27036c858d06d3528201d373	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p1/s2-api/e774c9cb/diff.patch	20046	acfca2a5c4921159de6a1623272ce381527a8aad4ea3c4318600dccb027bed43	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p1/s2-data/05d95d0e/diff.patch	13779	e0d961b6de05909bbf51281fd78bd5479e48bb2074d4b03b317a1ef61ac125ab	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p1/s2-data/1c6d5f15/diff.patch	13091	29cf9af1cef1a9fb65de7b78dc05a444759c76420fdaf428983d7bfcf2a3d2a6	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p1/s2-data/35a65132/diff.patch	12270	0d806fa11d6ec91de0974d55f2db4342b5735f15af116d3939780ffb2d39f444	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p1/s2-data/86bec73c/diff.patch	13352	b409cdfb6b027b6686c11b8ddcde40a0016009d367efa948b995c032c9f7ff42	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p1/s2-data/99de335b/diff.patch	12532	cd689b8ca3434eeef4a8fcd55cf08511b28104681fb60986516ad6ceb7914665	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p1/s2-data/c02890f0/diff.patch	10737	ba7af720fcf5d90a41cd55e59dd33778b59f74d0eadff120b86ee6182a86f4da	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p1/s2-data/d466bb3f/diff.patch	12923	1b2be2de7c7131472d9fd5ac7770bc713e36b4fb4ab1b6e53b27b2cdd0b88cbc	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p1/s2-data/d6759c51/diff.patch	11932	b7379efbbb8eb6b1ccdf6577115ce62680b35bd367f1f3962ab875359ee8b916	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p1/s2-data/e3b78894/diff.patch	13289	6a865e4ae0f067805d70c98e1f856f932338473e302a2c7a3ca8ed27b914fe9f	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p1/s2-docs/20ed6178/diff.patch	6834	73771acf9d45c1ada8b14f2d88ea85191168b955658b58fe672a349b7f520bc5	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage6/6b/blind-p1/s2-docs/2d75569a/diff.patch	8049	399d4756182e69d90bf8c0610fc06c794971fa3c5d222bff27b9bd9a41d758ae	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage6/6b/blind-p1/s2-docs/5d3455ab/diff.patch	9614	5b7f5dab539ca01dfa1a16ff903b5b42d4d1061c000f1eefc2a78a65b29ace60	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage6/6b/blind-p1/s2-docs/86e55277/diff.patch	9530	5a2cc8b54d6f284377bd51f7f27b7ccc17e15c7b5e2b3d761812a05eaed4333c	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage6/6b/blind-p1/s2-docs/91e9ab25/diff.patch	6776	b56906578e3791d26bf632de63fd1af7592e097dfc99ad68dadd140ba9ac17c1	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage6/6b/blind-p1/s2-docs/a594ecbc/diff.patch	8433	c406253280dcf0676e2f28a60508b2c847fb982088312ef2b513347305c9be46	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage6/6b/blind-p1/s2-docs/ba637c74/diff.patch	8466	cb24a36b15cd7e66a84a4e012613447118434ab97d477a08d860b33a5f731b76	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage6/6b/blind-p1/s2-docs/bc70f666/diff.patch	9443	ef3c455608d7f228d06c682dc4c49e79fe7efdd572538fee88fbd9947cccac56	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage6/6b/blind-p1/s2-docs/f213784a/diff.patch	5858	bb79f9ec4387c039e2aa0274a222fbe66d0b66076dc7c6db90cc8bc24727d81d	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage6/6b/blind-p1/s2-tests/08b44092/diff.patch	29233	2241c5b9a3168b93b360c3777237e2685b23769f2c55dc8ed99688849bb43c87	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p1/s2-tests/84ae941f/diff.patch	27034	bed01d1f7939c3b909aca57b11bf820cb0b7b83484d8c99664381f4011844eee	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p1/s2-tests/96850034/diff.patch	24238	12e6d255fee83c9c7a56eb66b0087da6f3893f45b5257264a9fb98d2af14587f	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p1/s2-tests/a0a9b7a0/diff.patch	24699	29d67601218354d8faac668238b46dbd79e9477cf00006084ada788c193923f7	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p1/s2-tests/ab9b405b/diff.patch	24256	422eae9d436add0c9a2d70943f47449d2dfaaf7b3f7a1d2ce4beef1a0f74589e	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p1/s2-tests/bc376839/diff.patch	26058	f71b8bdb0f714b6addd209c36716abfb177fd354556402ad5fd22c4f0bf4b375	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p1/s2-tests/d3513acf/diff.patch	26998	efbd6e302a566689457307310307f1fa28f349ff8b5e95852f96e17bf3af634a	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p1/s2-tests/ea3597bc/diff.patch	32114	b137d587032ee7cc9df8fbbb9305d6cc3d22525e64e1653054f088bb9767a641	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p1/s2-tests/f98c881b/diff.patch	28672	24e5a0105c29b3fb1b37f9f70cd1356d4a712100a0f9133468bfaad53d8450e5	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p1/s6b-t004/2f6ab686/diff.patch	13851	728ba48a12928425a2d1d323b158df719af276c2a83f42c3ace7137eb872d275	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p1/s6b-t004/33a37583/diff.patch	12042	b0c0682c868a8eae53bcd6c63cb78c51b490b090aa036be296a7a64f83c3175b	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p1/s6b-t004/59b35b8d/diff.patch	18137	4889ac6c5189e6f4e722fab2893b0ad51cc692af05efde8ff9762c9637de4a82	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p1/s6b-t004/6df44a4a/diff.patch	15551	3024e35f5232be5261da7857e83a216726b2b8e12fe3e0ffa4fa26b69316bb30	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p1/s6b-t004/a64942e2/diff.patch	17863	2c0ba7e74edc5d5c33f40cafe01cd0039a14560bf886efd6c7f25df29dac3859	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p1/s6b-t004/f3d4b454/diff.patch	13137	72b9600658e4f7cac50e8a149290a8c20ae06c394fbdef47862531072cff03dd	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p1/s6b-t004/f6997c9a/diff.patch	16142	a6e043c744508286dfcc20c6779d61996ff4832e4ded2cd7a06d0cea8b4a86b8	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p1/s6b-t004/fb34fdf8/diff.patch	21678	317162858a258c343ceb6098f7f7a0b559d67b898a9b0574bb2fe7e64f38d053	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p1/s6b-t004/fec61524/diff.patch	17413	9002a8be3a69f2585d128a28fdf2b627d9ae4b7e9d2d1b39712a072f2e4ac23b	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p1/s6b-t133/4c95c839/diff.patch	804	fb5c150750f4703a0d27356f02ee52303dcd9e0b1dcda3daa368e0a7f4f749b7	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage6/6b/blind-p1/s6b-t133/747190bc/diff.patch	726	a0452a9cc141c6eb74fc4839ff0f0cd0fbb24a01ca6e8413da62f4155def4d91	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage6/6b/blind-p1/s6b-t133/77f00a88/diff.patch	955	bea9be42c69b21284c2a033f8d5106ae9f1998f47f421b2ebd0f8caae02b88f2	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage6/6b/blind-p1/s6b-t133/9d2de06d/diff.patch	650	e16af647f8497cfb3267e25cb23229d77e3aadd190d2dccc76b475702694c0dc	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage6/6b/blind-p1/s6b-t133/b64cfb35/diff.patch	739	ea1ed94830a9a671bc2e5c99ee3be14809f63ba9530c79515c69b994ebf83ddb	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage6/6b/blind-p1/s6b-t133/d7efa73e/diff.patch	702	c15a8d5a687215144c1a6d2d531cd9e43c2654fdd9d7c77d8f66ebb3481375fb	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage6/6b/blind-p1/s6b-t133/e7c0a985/diff.patch	700	de0d69d3a7f851e3183d98517df248d388122862902a16b9226c69a4ed250c08	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage6/6b/blind-p1/s6b-t133/e8017e36/diff.patch	689	ff63f848e00ddf0b826e85ae57ca31bc5a17e45883c05864bcc9835c3d173b20	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage6/6b/blind-p1/s6b-t133/eaf86736/diff.patch	733	5281058113c180dca33023c938fd7f9ba4dbab26f9568b0a38260573783b4337	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage6/6b/blind-p1/s6b-t179/02d8febe/diff.patch	2870	ccf51c552524ae45250cc9b46de1e982aa74a53d9b4c42abe0f4d8435216a19f	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p1/s6b-t179/339e5172/diff.patch	3480	cebd04d4ee349004035549f9440887dea60c147b06c617af28ecc40782e4ad45	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p1/s6b-t179/3495e763/diff.patch	3345	facf70159bb56c5df9dbc37d8648d4ba5144d1a9886b2ead0728c08e2974c869	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p1/s6b-t179/7dcce826/diff.patch	3230	ab231440e2b07f55df2de8ee58151d4f7f0dfdbd6434d16534a0a68d5f1c8751	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p1/s6b-t179/9549d007/diff.patch	3431	e875639d455e704dff15903a3279756f4d55eb712124f4f030c0aa78cf015215	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p1/s6b-t179/ce208202/diff.patch	3023	e467170ee9f1de40b6a741db0e4f769ea432dfb7e6f1559eb7fb64c42dc0fa15	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p1/s6b-t179/cf52b639/diff.patch	3396	05f907a94f3aab300a5b084f3bdc38680bdb8672e26e99d5cb18f5e66e283093	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p1/s6b-t179/df0b7532/diff.patch	3226	2292002629742b0a08e60af24f7ae833b3af6b996e20514127e608a30dab4d38	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p1/s6b-t179/e8f25480/diff.patch	3427	a3fbc4f657dd96b1f5ce4e568fba613f2b98968cffbd9cf633eaaf13eeb5a14a	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p1/s6b-t354/1b741e0b/diff.patch	1747	8aacf65e8c65a2e477794e145ec22e9b8a7603da9e4f5012cb3bd1eff27cb116	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p1/s6b-t354/4c9defb9/diff.patch	1740	46b0c07a786be7c756df46451bc84e0f79f08420de18418acd4f26b15c9f65bf	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p1/s6b-t354/64aabebc/diff.patch	1603	48c6a11c6ba71e66308f909e178f9fd2645ed1492f0e2b6028501f0da3b50241	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p1/s6b-t354/7aecd146/diff.patch	1790	f3b8327e14598b112d16554e23d2487b0780c83e6b86a8682b62a3158194e453	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p1/s6b-t354/891d7f5b/diff.patch	1877	f3a9075e6db0e339ded4f45c9212fae8b60de6097edd5eecb10c883f78f6dd22	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p1/s6b-t354/90edf13a/diff.patch	1737	1ff16431575dd7a6578c9cf60ef4fdbd453a669236beb7e753541ef8838cec0a	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p1/s6b-t354/d8803865/diff.patch	1747	8aacf65e8c65a2e477794e145ec22e9b8a7603da9e4f5012cb3bd1eff27cb116	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p1/s6b-t354/e27b07d0/diff.patch	1790	f3b8327e14598b112d16554e23d2487b0780c83e6b86a8682b62a3158194e453	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p1/s6b-t354/e909eebf/diff.patch	1740	621a406a61811b1bb938ea2962166f9aa7b8c2b1a13d41d0fdd10f8fbbe04eee	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p2/s2-api/39740d02/diff.patch	26238	59af38ab418b229700e426a6274a08bb44825086a8e2867b7982135ead684bc5	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p2/s2-api/7002e1d8/diff.patch	28101	e5bb8730096e339b2b452fb43b61887b50df22d8275c223782071235aefd5f1a	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p2/s2-api/86f18fcf/diff.patch	18883	465743e587e5ffb7db858cb29fd1772f8165482e0627a1fff43a4014e2d493c6	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p2/s2-api/a102d3f2/diff.patch	19108	29fa2ca9e0a1d5a66b9ca09f60c4cfb84b508b54e57cc49e711a8eb83409f427	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p2/s2-api/adc35e1d/diff.patch	22608	7067f87f5aae2b25daf82ca225b9d510f6e2239a27036c858d06d3528201d373	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p2/s2-api/b0d134b3/diff.patch	20147	938ac2a9d11acecde2a4ca78b9a3fa8e7d3a40f33df667b46f3bce5b7cca3c8b	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p2/s2-api/c693c78e/diff.patch	20046	acfca2a5c4921159de6a1623272ce381527a8aad4ea3c4318600dccb027bed43	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p2/s2-api/eacaf5c0/diff.patch	17371	67e85d1dcab9618dd3e42d8a70531cf7ddb20054b1befda684602f815cab768a	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p2/s2-api/f57c2f59/diff.patch	26259	393c1bda7c660958fd0e3f4e390c9907dec60cad84daa1b7449e64d480277144	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p2/s2-data/08eb90f2/diff.patch	10737	ba7af720fcf5d90a41cd55e59dd33778b59f74d0eadff120b86ee6182a86f4da	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p2/s2-data/3b4ddc5b/diff.patch	12532	cd689b8ca3434eeef4a8fcd55cf08511b28104681fb60986516ad6ceb7914665	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p2/s2-data/57e2d2b6/diff.patch	13091	29cf9af1cef1a9fb65de7b78dc05a444759c76420fdaf428983d7bfcf2a3d2a6	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p2/s2-data/a501ffbe/diff.patch	12923	1b2be2de7c7131472d9fd5ac7770bc713e36b4fb4ab1b6e53b27b2cdd0b88cbc	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p2/s2-data/b214cbd9/diff.patch	13779	e0d961b6de05909bbf51281fd78bd5479e48bb2074d4b03b317a1ef61ac125ab	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p2/s2-data/ba3f2b7c/diff.patch	13352	b409cdfb6b027b6686c11b8ddcde40a0016009d367efa948b995c032c9f7ff42	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p2/s2-data/ca7c9d60/diff.patch	12270	0d806fa11d6ec91de0974d55f2db4342b5735f15af116d3939780ffb2d39f444	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p2/s2-data/dadb7ef5/diff.patch	13289	6a865e4ae0f067805d70c98e1f856f932338473e302a2c7a3ca8ed27b914fe9f	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p2/s2-data/de60e983/diff.patch	11932	b7379efbbb8eb6b1ccdf6577115ce62680b35bd367f1f3962ab875359ee8b916	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p2/s2-docs/17c679d6/diff.patch	8466	cb24a36b15cd7e66a84a4e012613447118434ab97d477a08d860b33a5f731b76	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage6/6b/blind-p2/s2-docs/23c0868a/diff.patch	8433	c406253280dcf0676e2f28a60508b2c847fb982088312ef2b513347305c9be46	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage6/6b/blind-p2/s2-docs/55be082f/diff.patch	9614	5b7f5dab539ca01dfa1a16ff903b5b42d4d1061c000f1eefc2a78a65b29ace60	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage6/6b/blind-p2/s2-docs/6824c96a/diff.patch	8049	399d4756182e69d90bf8c0610fc06c794971fa3c5d222bff27b9bd9a41d758ae	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage6/6b/blind-p2/s2-docs/7830d5b2/diff.patch	6776	b56906578e3791d26bf632de63fd1af7592e097dfc99ad68dadd140ba9ac17c1	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage6/6b/blind-p2/s2-docs/99edb422/diff.patch	5858	bb79f9ec4387c039e2aa0274a222fbe66d0b66076dc7c6db90cc8bc24727d81d	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage6/6b/blind-p2/s2-docs/d368fe1f/diff.patch	6834	73771acf9d45c1ada8b14f2d88ea85191168b955658b58fe672a349b7f520bc5	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage6/6b/blind-p2/s2-docs/d7171327/diff.patch	9443	ef3c455608d7f228d06c682dc4c49e79fe7efdd572538fee88fbd9947cccac56	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage6/6b/blind-p2/s2-docs/d850b746/diff.patch	9530	5a2cc8b54d6f284377bd51f7f27b7ccc17e15c7b5e2b3d761812a05eaed4333c	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage6/6b/blind-p2/s2-tests/146a0ac7/diff.patch	29233	2241c5b9a3168b93b360c3777237e2685b23769f2c55dc8ed99688849bb43c87	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p2/s2-tests/1dcb4f98/diff.patch	32114	b137d587032ee7cc9df8fbbb9305d6cc3d22525e64e1653054f088bb9767a641	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p2/s2-tests/577bce3f/diff.patch	26058	f71b8bdb0f714b6addd209c36716abfb177fd354556402ad5fd22c4f0bf4b375	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p2/s2-tests/adcb0616/diff.patch	24699	29d67601218354d8faac668238b46dbd79e9477cf00006084ada788c193923f7	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p2/s2-tests/b549d100/diff.patch	26998	efbd6e302a566689457307310307f1fa28f349ff8b5e95852f96e17bf3af634a	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p2/s2-tests/c30ff225/diff.patch	24256	422eae9d436add0c9a2d70943f47449d2dfaaf7b3f7a1d2ce4beef1a0f74589e	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p2/s2-tests/c5bd93ce/diff.patch	28672	24e5a0105c29b3fb1b37f9f70cd1356d4a712100a0f9133468bfaad53d8450e5	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p2/s2-tests/dc309466/diff.patch	24238	12e6d255fee83c9c7a56eb66b0087da6f3893f45b5257264a9fb98d2af14587f	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p2/s2-tests/ee8f6b82/diff.patch	27034	bed01d1f7939c3b909aca57b11bf820cb0b7b83484d8c99664381f4011844eee	judge-package diff	written for this experiment	MIT (this repository)
+stage6/6b/blind-p2/s6b-t004/1301f07d/diff.patch	13137	72b9600658e4f7cac50e8a149290a8c20ae06c394fbdef47862531072cff03dd	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p2/s6b-t004/7d929a09/diff.patch	18137	4889ac6c5189e6f4e722fab2893b0ad51cc692af05efde8ff9762c9637de4a82	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p2/s6b-t004/b063f3ea/diff.patch	21678	317162858a258c343ceb6098f7f7a0b559d67b898a9b0574bb2fe7e64f38d053	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p2/s6b-t004/b52a5bd2/diff.patch	13851	728ba48a12928425a2d1d323b158df719af276c2a83f42c3ace7137eb872d275	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p2/s6b-t004/d270dc66/diff.patch	17863	2c0ba7e74edc5d5c33f40cafe01cd0039a14560bf886efd6c7f25df29dac3859	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p2/s6b-t004/e7f719b0/diff.patch	17413	9002a8be3a69f2585d128a28fdf2b627d9ae4b7e9d2d1b39712a072f2e4ac23b	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p2/s6b-t004/e861c58c/diff.patch	12042	b0c0682c868a8eae53bcd6c63cb78c51b490b090aa036be296a7a64f83c3175b	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p2/s6b-t004/fc987a32/diff.patch	15551	3024e35f5232be5261da7857e83a216726b2b8e12fe3e0ffa4fa26b69316bb30	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p2/s6b-t004/ff4c2268/diff.patch	16142	a6e043c744508286dfcc20c6779d61996ff4832e4ded2cd7a06d0cea8b4a86b8	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p2/s6b-t133/0e751839/diff.patch	804	fb5c150750f4703a0d27356f02ee52303dcd9e0b1dcda3daa368e0a7f4f749b7	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage6/6b/blind-p2/s6b-t133/1bfba0db/diff.patch	739	ea1ed94830a9a671bc2e5c99ee3be14809f63ba9530c79515c69b994ebf83ddb	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage6/6b/blind-p2/s6b-t133/2d6fddb0/diff.patch	733	5281058113c180dca33023c938fd7f9ba4dbab26f9568b0a38260573783b4337	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage6/6b/blind-p2/s6b-t133/4c9c0b9b/diff.patch	700	de0d69d3a7f851e3183d98517df248d388122862902a16b9226c69a4ed250c08	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage6/6b/blind-p2/s6b-t133/66b51318/diff.patch	689	ff63f848e00ddf0b826e85ae57ca31bc5a17e45883c05864bcc9835c3d173b20	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage6/6b/blind-p2/s6b-t133/8ea51779/diff.patch	650	e16af647f8497cfb3267e25cb23229d77e3aadd190d2dccc76b475702694c0dc	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage6/6b/blind-p2/s6b-t133/b7e70a14/diff.patch	702	c15a8d5a687215144c1a6d2d531cd9e43c2654fdd9d7c77d8f66ebb3481375fb	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage6/6b/blind-p2/s6b-t133/db9b0582/diff.patch	726	a0452a9cc141c6eb74fc4839ff0f0cd0fbb24a01ca6e8413da62f4155def4d91	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage6/6b/blind-p2/s6b-t133/f059aba1/diff.patch	955	bea9be42c69b21284c2a033f8d5106ae9f1998f47f421b2ebd0f8caae02b88f2	judge-package diff	vercel/next.js examples/with-typescript @ fa3830c4	MIT
+stage6/6b/blind-p2/s6b-t179/0aac5afa/diff.patch	3431	e875639d455e704dff15903a3279756f4d55eb712124f4f030c0aa78cf015215	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p2/s6b-t179/39ee8faf/diff.patch	2870	ccf51c552524ae45250cc9b46de1e982aa74a53d9b4c42abe0f4d8435216a19f	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p2/s6b-t179/43018254/diff.patch	3023	e467170ee9f1de40b6a741db0e4f769ea432dfb7e6f1559eb7fb64c42dc0fa15	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p2/s6b-t179/76a7c2f4/diff.patch	3396	05f907a94f3aab300a5b084f3bdc38680bdb8672e26e99d5cb18f5e66e283093	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p2/s6b-t179/8abe4942/diff.patch	3345	facf70159bb56c5df9dbc37d8648d4ba5144d1a9886b2ead0728c08e2974c869	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p2/s6b-t179/a7a43bc3/diff.patch	3226	2292002629742b0a08e60af24f7ae833b3af6b996e20514127e608a30dab4d38	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p2/s6b-t179/c1aeb18a/diff.patch	3480	cebd04d4ee349004035549f9440887dea60c147b06c617af28ecc40782e4ad45	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p2/s6b-t179/fd2b8f4b/diff.patch	3427	a3fbc4f657dd96b1f5ce4e568fba613f2b98968cffbd9cf633eaaf13eeb5a14a	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p2/s6b-t179/fd49ad16/diff.patch	3230	ab231440e2b07f55df2de8ee58151d4f7f0dfdbd6434d16534a0a68d5f1c8751	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p2/s6b-t354/020b5f87/diff.patch	1747	8aacf65e8c65a2e477794e145ec22e9b8a7603da9e4f5012cb3bd1eff27cb116	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p2/s6b-t354/0650a04d/diff.patch	1747	8aacf65e8c65a2e477794e145ec22e9b8a7603da9e4f5012cb3bd1eff27cb116	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p2/s6b-t354/2dd7e435/diff.patch	1790	f3b8327e14598b112d16554e23d2487b0780c83e6b86a8682b62a3158194e453	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p2/s6b-t354/53f6a615/diff.patch	1603	48c6a11c6ba71e66308f909e178f9fd2645ed1492f0e2b6028501f0da3b50241	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p2/s6b-t354/56b4c69d/diff.patch	1740	621a406a61811b1bb938ea2962166f9aa7b8c2b1a13d41d0fdd10f8fbbe04eee	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p2/s6b-t354/879a8f58/diff.patch	1877	f3a9075e6db0e339ded4f45c9212fae8b60de6097edd5eecb10c883f78f6dd22	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p2/s6b-t354/930d7b60/diff.patch	1790	f3b8327e14598b112d16554e23d2487b0780c83e6b86a8682b62a3158194e453	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p2/s6b-t354/c0d1ab82/diff.patch	1737	1ff16431575dd7a6578c9cf60ef4fdbd453a669236beb7e753541ef8838cec0a	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/6b/blind-p2/s6b-t354/fdfeba9e/diff.patch	1740	46b0c07a786be7c756df46451bc84e0f79f08420de18418acd4f26b15c9f65bf	judge-package diff	fastapi/full-stack-fastapi-template	MIT
+stage6/gen/results-rc.json	4941795	0fd2fa8ba81139d9a39645feb0d6cb8fa884e0c4fcf46c739b14ed4be5f7a0b4	label or result file over 1 MB	this repository	MIT (this repository)
+stage6/oracle-v4.jsonl	2301248	34d54a12e984758e01ab4aedbb3809033d5075ba327dcc5fb90f22e9dc7dd83b	label or result file over 1 MB	this repository	MIT (this repository)
+stage6/oracle-v4r.jsonl	2019525	f6b0f3333dc5a8dff182913fa15c2f495010985b515735051bdbd90eb7db5560	label or result file over 1 MB	this repository	MIT (this repository)
+stage6/oracle-v4r2.jsonl	2019814	ad9c6391da562b5be6c8027c0bb45ea278955fd61c1517795dfa451402d1e723	label or result file over 1 MB	this repository	MIT (this repository)
+stage7/blind-direction-40.jsonl	1412864	71be8d9e40cc5d39b41abe3348a6e3bdf385c6b3c0007db525f9e117bb0172e0	label or result file over 1 MB	this repository	MIT (this repository)
+stage7/oracle-v5-direction-b-inter.jsonl	2554182	ccac128023d0786d925ce6477ef6811264eb1f2056fafd572766c05f38f16bdf	label or result file over 1 MB	this repository	MIT (this repository)
+stage7/oracle-v5-direction-b.jsonl	2478083	23d3d0445f0d8f32ee5cd38ee6e79944d4be653081a0b43d09cf140182e1f43a	label or result file over 1 MB	this repository	MIT (this repository)
+stage7/oracle-v5-direction.jsonl	2072649	484e53a41251fa9f6377edb040c47fe68048f7ec6c50b45192a8fdc1eac2eb65	label or result file over 1 MB	this repository	MIT (this repository)
+stage7/oracle-v5.jsonl	2020192	f98a8468934ddeb631fadbf9d49a518c6da6f363e92164e8b04f75e35ef7991c	label or result file over 1 MB	this repository	MIT (this repository)
+stage8/blind-ss-60.jsonl	1427924	0687403e45c64ab25269be48bf72855c2bbe35f79856b9557ad2db9f0d266b02	label or result file over 1 MB	this repository	MIT (this repository)
+stage8/cands.json	5453950	ef6d5e153faf8161d2368161632153d4ab4ea3ce536c0b644504e76f5704c387	label or result file over 1 MB	this repository	MIT (this repository)
+stage8/gpt-kappa-8.json	1263837	4a38b1349407fd412553c6afef403faa7bc45c040c908eec166baa87660a4713	label or result file over 1 MB	this repository	MIT (this repository)
+stage8/grade-labels-b.json	1159161	154ed0007e7862167de26ec8192e7dec1a6a2aec966aaf65de0c16122b316dc2	label or result file over 1 MB	this repository	MIT (this repository)
+stage8/oracle-v5-ss-b.jsonl	6188008	cb046a69b4e2d7422f7964d105a685068f8159f1a37e7c87f7501a6e6b3ce1cc	label or result file over 1 MB	this repository	MIT (this repository)
+stage8/oracle-v5-ss.jsonl	2736701	bcf41f79e1d7a76d353c00da4ff869858003e30577f32cf7edf548ee5665981d	label or result file over 1 MB	this repository	MIT (this repository)
+stage8/search-kw.json	2847773	980ab5477c21b733dff1af3d21c997917edb616dde1c51fe4f486b567b022886	label or result file over 1 MB	this repository	MIT (this repository)
+stage8/validate-loads.json	1238953	8d4cf847bb42754c075bea94ec7cbac31c1d4cdf0fa04a9903eac8971df2c42c	label or result file over 1 MB	this repository	MIT (this repository)
+stage9/dry/results-rc-baseline.json	4941795	0fd2fa8ba81139d9a39645feb0d6cb8fa884e0c4fcf46c739b14ed4be5f7a0b4	label or result file over 1 MB	this repository	MIT (this repository)
+stage9/oracle-v5-ss-b-s9.jsonl	6196630	f2425af1d25f7aa3fbf7413470105b24c9dba4e26a4d927ab2e29bd7150a628b	label or result file over 1 MB	this repository	MIT (this repository)
+stage9/results-rc-staging.json	5057068	74c85658074b1d1400fa99a79708cd3f96866c4b1c86b920bda12d83541e0814	label or result file over 1 MB	this repository	MIT (this repository)
+stage9/run-b/oracle-v5-ss-b-s9.jsonl	6201855	1dad5d5070973cce34f36908661ec12d77482141cc76c38931699a70c8849803	label or result file over 1 MB	this repository	MIT (this repository)
+stage9/run-b/oracle-v5-ss-b-s9g.jsonl	7828961	afb0ab6f2457c2c17dc85ea591183b3e2ca3dc57e54ad6cbdb06e7ae81dba711	label or result file over 1 MB	this repository	MIT (this repository)
+stage9/run-b/results-rc-staging-2.json	5036539	971b9e8acc29b0203c263adb237e2d581433f1a7d555edfe4fbe9b667efb21a7	label or result file over 1 MB	this repository	MIT (this repository)
+stage9/run-c/oracle-v5-ss-b-s9.jsonl	7791226	85843199677384b6a770945a7926cffe3d6ec17c7094f443a16c578b2879afec	label or result file over 1 MB	this repository	MIT (this repository)
+stage9/run-c/oracle-v5-ss-b-s9g.jsonl	8228087	b6b2de41bcc2c075c33723220107370a8babd1323b1b3f1935fc3e2995a4e551	label or result file over 1 MB	this repository	MIT (this repository)
+stage9/run-c/results-rc-staging-3.json	5073502	c5b577d0dfa27a66f1f8c0a42d4486dd40368578f2e93afe3a76c82afa2b6335	label or result file over 1 MB	this repository	MIT (this repository)
+stage9/run-c-pre/results-rc-staging-2-no-dpearson.json	5073502	c5b577d0dfa27a66f1f8c0a42d4486dd40368578f2e93afe3a76c82afa2b6335	label or result file over 1 MB	this repository	MIT (this repository)
+staging/answer-log.jsonl	1073204	58baf4f71cb17ecc6981dc55285edcdbda6d0d0695d6300b24b1a769e8580a78	label or result file over 1 MB	this repository	MIT (this repository)

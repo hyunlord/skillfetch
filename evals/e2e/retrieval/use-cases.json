@@ -1,0 +1,4898 @@
+{
+"anthropics-skills/academy-guide@8b9f8d715b84": [
+"other"
+],
+"anthropics-skills/claude-api@e30e2c97f747": [
+"data-ai"
+],
+"anthropics-skills/frontend-design@0a5ff23f1022": [
+"ui-component",
+"landing-page"
+],
+"anthropics-skills/pptx@4eb5e13af97f": [
+"other"
+],
+"anthropics-skills/web-artifacts-builder@9c350d2f5f13": [
+"ui-component"
+],
+"uasl/2chat-automation@2f7e077d94c1": [
+"other"
+],
+"uasl/abstraction-concrete-examples@1fc651aacfd7": [
+"docs",
+"planning"
+],
+"uasl/acceptance-testing@7f713f1566e8": [
+"testing"
+],
+"uasl/acculynx-automation@1a63ad5f5f97": [
+"other"
+],
+"uasl/adobe-automation@01a548d3f6ab": [
+"other"
+],
+"uasl/aero-workflow-automation@4675b56e5f87": [
+"other"
+],
+"uasl/affinity-automation@0bf0fd2fca69": [
+"other"
+],
+"uasl/agent-sort@a8e06853ada8": [
+"other"
+],
+"uasl/agility-cms-automation@de75dca70ec8": [
+"other"
+],
+"uasl/aivoov-automation@124188c3b14c": [
+"other"
+],
+"uasl/algorand-vulnerability-scanner@b4ef2e1b7b33": [
+"security-review",
+"code-review"
+],
+"uasl/altitude-horizon-framework@447a5b07a5ee": [
+"other"
+],
+"uasl/amazon-automation@2e14389a3986": [
+"other"
+],
+"uasl/anchor-browser-automation@bdede4a536e2": [
+"other"
+],
+"uasl/apaleo-automation@67a4f79faf62": [
+"other"
+],
+"uasl/api-labz-automation@2369dca65dd9": [
+"other"
+],
+"uasl/api2pdf-automation@131bfabbf51e": [
+"other"
+],
+"uasl/apipie-ai-automation@6afa202b2cee": [
+"other"
+],
+"uasl/appcircle-automation@7296f58a1e92": [
+"devops"
+],
+"uasl/appveyor-automation@65c4b28b2076": [
+"devops"
+],
+"uasl/architecture-designer@9a54494f5c45": [
+"planning",
+"docs"
+],
+"uasl/aryn-automation@27dcdc7267da": [
+"other"
+],
+"uasl/astica-ai-automation@55ded9d581ec": [
+"other"
+],
+"uasl/atlas@eeafabd38463": [
+"planning",
+"refactor",
+"docs"
+],
+"uasl/audio-jingle@a4d3695ad5fd": [
+"other"
+],
+"uasl/auth0-automation@4c6deb665922": [
+"other"
+],
+"uasl/ayrshare-automation@a645d060fe24": [
+"other"
+],
+"uasl/bannerbear-automation@4b6b65c99e02": [
+"other"
+],
+"uasl/basin-automation@a7a3f0f6fc76": [
+"other"
+],
+"uasl/beaconchain-automation@d3245b29cde8": [
+"other"
+],
+"uasl/bench-automation@346a78d05d22": [
+"other"
+],
+"uasl/better-proposals-automation@ec7df55f5680": [
+"other"
+],
+"uasl/big-picture-thinking-engine@cb520dc8c729": [
+"other"
+],
+"uasl/bitquery-automation@d0b5fb8182e0": [
+"other"
+],
+"uasl/blocknative-automation@1dddfe0a27ee": [
+"other"
+],
+"uasl/bolna-automation@ba768287885e": [
+"other"
+],
+"uasl/bonsai-automation@4a5e93dd15b3": [
+"other"
+],
+"uasl/botbaba-automation@1b5dbda07850": [
+"other"
+],
+"uasl/bouncer-automation@ff9b7bc1c028": [
+"other"
+],
+"uasl/brand-guidelines@ae7f734e524e": [
+"ui-component"
+],
+"uasl/brandkit@be1d18f9b581": [
+"other"
+],
+"uasl/brex-staging-automation@36f144418b9b": [
+"other"
+],
+"uasl/brilliant-directories-automation@c8387780b624": [
+"other"
+],
+"uasl/browser-tool-automation@2a0d7bb98c1d": [
+"other"
+],
+"uasl/brutalist-skill@29fc0f9ccf21": [
+"ui-component"
+],
+"uasl/bugherd-automation@bbc585aff67d": [
+"other"
+],
+"uasl/builtwith-automation@f2c8ed1b5bd1": [
+"other"
+],
+"uasl/byteforms-automation@9a0960fc5e59": [
+"other"
+],
+"uasl/calendarhero-automation@f0bd16fec8b1": [
+"other"
+],
+"uasl/campaign-cleaner-automation@9090c3c56c44": [
+"other"
+],
+"uasl/canvas-automation@7ac9e832524d": [
+"other"
+],
+"uasl/carbone-automation@632e40029ef8": [
+"other"
+],
+"uasl/castingwords-automation@be8529f30296": [
+"other"
+],
+"uasl/caveman-commit@244182e952a7": [
+"concise-output"
+],
+"uasl/caveman@b18d7076b724": [
+"concise-output"
+],
+"uasl/certifier-automation@e1bfc3311601": [
+"other"
+],
+"uasl/chain-spec-risk-metrics@6e706a43be19": [
+"planning"
+],
+"uasl/chaser-automation@db5458a69840": [
+"other"
+],
+"uasl/chmeetings-automation@2ec22020953d": [
+"other"
+],
+"uasl/classmarker-automation@f1b6f334aa0f": [
+"other"
+],
+"uasl/claude-native-claude-api@24c958899f03": [
+"data-ai"
+],
+"uasl/clean-architecture@acaac6e9e2a3": [
+"refactor",
+"code-review",
+"planning"
+],
+"uasl/clickmeeting-automation@6454624a0626": [
+"other"
+],
+"uasl/cloudflare-api-key-automation@29a2ebf220f1": [
+"devops"
+],
+"uasl/cloudlayer-automation@4820b5f1081b": [
+"other"
+],
+"uasl/code-maturity-assessor@c0bd3143e45e": [
+"security-review",
+"code-review"
+],
+"uasl/codeinterpreter-automation@5a47b8815770": [
+"other"
+],
+"uasl/coding-guidelines@0ec7e45f92f2": [
+"refactor"
+],
+"uasl/coinbase-automation@5c971806493f": [
+"other"
+],
+"uasl/collab-modes@cdc15bee33c0": [
+"other"
+],
+"uasl/company-research@32017182b1af": [
+"other"
+],
+"uasl/component-flattening-analysis@82a0a8d664dd": [
+"refactor"
+],
+"uasl/connect-apps@9a34ce12c40c": [
+"other"
+],
+"uasl/constraint-based-creativity@bc35d25acb0f": [
+"planning"
+],
+"uasl/contentful-automation@3591ba90ee0a": [
+"other"
+],
+"uasl/control-d-automation@0cdab1227c49": [
+"other"
+],
+"uasl/convolo-ai-automation@3afbc78bcc09": [
+"other"
+],
+"uasl/cost-optimization@aebaccb33627": [
+"devops"
+],
+"uasl/coverage-analysis@d4d536b8cbac": [
+"testing",
+"security-review"
+],
+"uasl/crossing-the-chasm@8676ab924768": [
+"other"
+],
+"uasl/cults-automation@638b2028d775": [
+"other"
+],
+"uasl/customerio-automation@147bd2db28ea": [
+"other"
+],
+"uasl/d2lbrightspace-automation@24e9e3716d01": [
+"other"
+],
+"uasl/dailybot-automation@2109d1641adc": [
+"other"
+],
+"uasl/data-schema-knowledge-modeling@c06f86b10d33": [
+"database",
+"planning"
+],
+"uasl/ddia-systems@d2b3af9bb043": [
+"database",
+"planning"
+],
+"uasl/decision-matrix@8db205f13fe2": [
+"other"
+],
+"uasl/deel-automation@97aa95264d4f": [
+"other"
+],
+"uasl/defense-in-depth@e9a7d1415325": [
+"debugging",
+"security-review"
+],
+"uasl/deployment-pipeline-design@2a89fc6f32ff": [
+"devops"
+],
+"uasl/design-evaluation-audit@fadcf14d4d9f": [
+"ui-component",
+"code-review"
+],
+"uasl/design-integration@03e2661a4d5f": [
+"planning"
+],
+"uasl/design-sprint@4550ceb8d09f": [
+"planning"
+],
+"uasl/design-to-code@fae28f73cda0": [
+"ui-component"
+],
+"uasl/dialectical-mapping-steelmanning@14e588d042df": [
+"other"
+],
+"uasl/diffbot-automation@e158f2de0758": [
+"other"
+],
+"uasl/digital-ocean-automation@e1ed99cb4214": [
+"devops"
+],
+"uasl/dmux-workflows@d7c9aca09b0a": [
+"other"
+],
+"uasl/docmosis-automation@9d474c38d239": [
+"other"
+],
+"uasl/docsumo-automation@d1b0889dc392": [
+"other"
+],
+"uasl/documint-automation@1c53b3753f48": [
+"other"
+],
+"uasl/domain-analysis@c37c7de1017e": [
+"planning",
+"refactor"
+],
+"uasl/doppler-secretops-automation@2a767cbe6ac5": [
+"devops",
+"security-review"
+],
+"uasl/dpd2-automation@16a469ef5dc0": [
+"other"
+],
+"uasl/dripcel-automation@1eee0486d771": [
+"other"
+],
+"uasl/dropcontact-automation@4eb5784198de": [
+"other"
+],
+"uasl/e2e-testing-patterns@8b25fb0b2da6": [
+"testing",
+"debugging"
+],
+"uasl/edit-article@50d401cdd74b": [
+"docs"
+],
+"uasl/emailable-automation@fb893aee513d": [
+"other"
+],
+"uasl/emelia-automation@037981b470fd": [
+"other"
+],
+"uasl/enginemailer-automation@44ed791654f0": [
+"other"
+],
+"uasl/eodhd-apis-automation@da15380b8b64": [
+"other"
+],
+"uasl/error-handling-patterns@4c19ee7d7821": [
+"debugging",
+"refactor"
+],
+"uasl/estimation-fermi@3630339fb35e": [
+"other"
+],
+"uasl/evaluation-rubrics@77bb2e79d3a1": [
+"other"
+],
+"uasl/eventee-automation@3ffa4fd6e36a": [
+"other"
+],
+"uasl/everything-claude-code@dad489339e1e": [
+"code-review",
+"testing"
+],
+"uasl/excel-generator@9ce0c16c81a1": [
+"data-ai"
+],
+"uasl/expected-value@9a876c9200a9": [
+"other"
+],
+"uasl/facebook-automation@4a716016ccd0": [
+"other"
+],
+"uasl/fal-ai-media@1a7fc3310ea8": [
+"other"
+],
+"uasl/feathery-automation@9e85500ddf7e": [
+"other"
+],
+"uasl/fidel-api-automation@18fc4b0c75ce": [
+"other"
+],
+"uasl/finage-automation@227f695ab093": [
+"other"
+],
+"uasl/find-skills@b7dc2a876b3e": [
+"other"
+],
+"uasl/finishing-a-development-branch@6d92d8cff27f": [
+"devops",
+"code-review"
+],
+"uasl/firecrawl-automation@555ae9b52289": [
+"data-ai"
+],
+"uasl/first-principles-thinking@99ae94038a5a": [
+"planning"
+],
+"uasl/five-agent-pr-handoff@92c06031cdfe": [
+"code-review",
+"devops"
+],
+"uasl/fixer-automation@b872a24efa71": [
+"other"
+],
+"uasl/flowiseai-automation@704cdc97a9cf": [
+"data-ai"
+],
+"uasl/focus-timeboxing-8020@4317b5bf1913": [
+"other"
+],
+"uasl/forecast-premortem@dcdd0b67c70f": [
+"other"
+],
+"uasl/formdesk-automation@f5703ca4f9d2": [
+"other"
+],
+"uasl/frame@40df32596215": [
+"ui-component"
+],
+"uasl/frontend-design-principles@e9b2a10a43d1": [
+"ui-component",
+"landing-page"
+],
+"uasl/fullenrich-automation@805211deca63": [
+"other"
+],
+"uasl/gamified-app@89f56442216c": [
+"ui-component"
+],
+"uasl/gatherup-automation@888ca121a261": [
+"other"
+],
+"uasl/gender-api-automation@92aed3bb2742": [
+"other"
+],
+"uasl/geocodio-automation@62dbc5564aed": [
+"other"
+],
+"uasl/gigasheet-automation@75affec605bd": [
+"other"
+],
+"uasl/github-actions-templates@ce03df93ccdf": [
+"devops",
+"testing"
+],
+"uasl/gladia-automation@c22fbbbc7d92": [
+"other"
+],
+"uasl/godial-automation@e29440b6da31": [
+"other"
+],
+"uasl/google-address-validation-automation@334e106c4099": [
+"other"
+],
+"uasl/google-maps-automation@8d888f14d993": [
+"other"
+],
+"uasl/googlecalendar-automation@e287cc4b5124": [
+"other"
+],
+"uasl/googlephotos-automation@0b2d3403ccba": [
+"other"
+],
+"uasl/gorgias-automation@2106c504916d": [
+"other"
+],
+"uasl/graphhopper-automation@85a985282886": [
+"other"
+],
+"uasl/grill-me@a821be519d0d": [
+"planning"
+],
+"uasl/groqcloud-automation@e4dc6956991c": [
+"data-ai"
+],
+"uasl/gsap-performance@545d16027a95": [
+"ui-component"
+],
+"uasl/gsap-timeline@d4acd84a00f0": [
+"ui-component"
+],
+"uasl/guidelines-advisor@30a5870183a1": [
+"security-review",
+"code-review"
+],
+"uasl/habitica-automation@ccd00cec596d": [
+"other"
+],
+"uasl/harvest-automation@9d33356a1149": [
+"other"
+],
+"uasl/helm@85a0c2494188": [
+"other"
+],
+"uasl/heygen-automation@a6866ec9d3eb": [
+"other"
+],
+"uasl/highergov-automation@e9b3a32a875c": [
+"other"
+],
+"uasl/hookdeck-automation@1c4e7100d690": [
+"other"
+],
+"uasl/hr-onboarding@a215d70427b3": [
+"ui-component"
+],
+"uasl/humanitix-automation@eda519b09039": [
+"other"
+],
+"uasl/hypeauditor-automation@d91ef203585a": [
+"other"
+],
+"uasl/hystruct-automation@872a113bf882": [
+"other"
+],
+"uasl/idea-scale-automation@f51efe1415eb": [
+"other"
+],
+"uasl/image-poster@57a9b39c0f2f": [
+"other"
+],
+"uasl/imagekit-io-automation@1cb67e67c6b1": [
+"other"
+],
+"uasl/improve-retention@f80cefef268d": [
+"other"
+],
+"uasl/inngest@fc3f33c4e97f": [
+"api-endpoint",
+"devops"
+],
+"uasl/instacart-automation@027c6f3a29d7": [
+"other"
+],
+"uasl/interaction-design@7c9d38549c2b": [
+"ui-component"
+],
+"uasl/interzoid-automation@4d8c02fef68a": [
+"other"
+],
+"uasl/invoice-organizer@65f04d96d07a": [
+"other"
+],
+"uasl/ip2location-io-automation@649f1a4fa249": [
+"other"
+],
+"uasl/ipinfo-io-automation@c1ca5a1670ff": [
+"other"
+],
+"uasl/jigsawstack-automation@4c3c480ca311": [
+"other"
+],
+"uasl/json-canvas@909f14be9fa9": [
+"other"
+],
+"uasl/kadoa-automation@3a2eb009abd7": [
+"other"
+],
+"uasl/karpathy-guidelines@da897c8c3bab": [
+"refactor"
+],
+"uasl/kill-criteria-exit-ramps@af7f1bfad09d": [
+"other"
+],
+"uasl/ko-fi-automation@56dbaba7e8b2": [
+"other"
+],
+"uasl/kubernetes-security-policies@83bbc7f29e7e": [
+"security-review",
+"devops"
+],
+"uasl/landing-page@455a3c3ba6f7": [
+"landing-page",
+"ui-component"
+],
+"uasl/launch-darkly-automation@d0c96e8232c3": [
+"devops"
+],
+"uasl/leadfeeder-automation@b5b8225696f8": [
+"other"
+],
+"uasl/legacy-migration-planner@462fe9f6af79": [
+"planning",
+"refactor"
+],
+"uasl/lemon-squeezy-automation@78ae0198fdfd": [
+"other"
+],
+"uasl/lever-sandbox-automation@05436c5d7cae": [
+"other"
+],
+"uasl/libfuzzer@a1e2ef172192": [
+"testing",
+"security-review"
+],
+"uasl/listclean-automation@1c47934d0e09": [
+"other"
+],
+"uasl/llm-security@be01c2d8d30b": [
+"security-review",
+"data-ai"
+],
+"uasl/lodgify-automation@3cfa5e65b0b5": [
+"other"
+],
+"uasl/loomio-automation@c1eda4ab2dd3": [
+"other"
+],
+"uasl/made-to-stick@8667d5f2a5ae": [
+"landing-page"
+],
+"uasl/mailboxlayer-automation@302608a45a5a": [
+"other"
+],
+"uasl/mailersend-automation@9b079a6bd425": [
+"other"
+],
+"uasl/manim@b0a6f7da4632": [
+"other"
+],
+"uasl/mapulus-automation@b69103bc4139": [
+"other"
+],
+"uasl/mboum-automation@4fe982d8eba9": [
+"other"
+],
+"uasl/melo-automation@8c86dd9a453d": [
+"other"
+],
+"uasl/memberstack-automation@b1cf9e24f851": [
+"other"
+],
+"uasl/mermaid-diagrams@a50e01188b8f": [
+"docs"
+],
+"uasl/metaphor-automation@00e58d7921a8": [
+"other"
+],
+"uasl/microservices-patterns@40adea69dde4": [
+"planning",
+"api-endpoint"
+],
+"uasl/minerstat-automation@daa998e7d89f": [
+"other"
+],
+"uasl/mobile-app@a9dba8039c51": [
+"ui-component"
+],
+"uasl/modelry-automation@e3bfd7e6d0b1": [
+"other"
+],
+"uasl/moonclerk-automation@82572288ed32": [
+"other"
+],
+"uasl/morphological-analysis-triz@7cdfff96791e": [
+"planning"
+],
+"uasl/moz-automation@d2ce846ac03e": [
+"other"
+],
+"uasl/music-prompter@a16bc1f72ade": [
+"other"
+],
+"uasl/n8n-code-python@ba1cd974d317": [
+"other"
+],
+"uasl/n8n-validation-expert@9fd2d7e332b0": [
+"debugging"
+],
+"uasl/nasa-automation@4dfa0788c385": [
+"other"
+],
+"uasl/needle-automation@581bcfe838db": [
+"other"
+],
+"uasl/neon-automation@998078570d02": [
+"database"
+],
+"uasl/neverbounce-automation@7da133b84bcb": [
+"other"
+],
+"uasl/next-cache-components@b22f6e134147": [
+"ui-component",
+"api-endpoint"
+],
+"uasl/ngrok-automation@ee9910875d75": [
+"devops"
+],
+"uasl/obsidian-vault@9a9463853d6f": [
+"other"
+],
+"uasl/omnisend-automation@cac8b5f5b289": [
+"other"
+],
+"uasl/one-pager-prd@3613e5b1fc98": [
+"planning"
+],
+"uasl/onesignal-user-auth-automation@f86e15e6be9d": [
+"other"
+],
+"uasl/opencage-automation@6a160e893ff4": [
+"other"
+],
+"uasl/openrouter-automation@6c5a8aed430a": [
+"data-ai"
+],
+"uasl/ossfuzz@29bd6a21c586": [
+"testing",
+"security-review"
+],
+"uasl/page-x-automation@016e2bedc73a": [
+"other"
+],
+"uasl/parma-automation@fbaa82596aed": [
+"other"
+],
+"uasl/passcreator-automation@6d9eb2addab7": [
+"other"
+],
+"uasl/pdf-co-automation@83111d063ad4": [
+"other"
+],
+"uasl/peopledatalabs-automation@9716ebf37534": [
+"other"
+],
+"uasl/perigon-automation@3776a283729c": [
+"other"
+],
+"uasl/pexels-automation@85deb1fc6afd": [
+"other"
+],
+"uasl/pilvio-automation@9049da931d35": [
+"other"
+],
+"uasl/placekey-automation@8b22d06166a6": [
+"other"
+],
+"uasl/plasmic-automation@2e9b7adbd76d": [
+"other"
+],
+"uasl/polyglot@11be7885bda2": [
+"ui-component"
+],
+"uasl/portfolio-roadmapping-bets@1cf547b9fba5": [
+"planning"
+],
+"uasl/postgrid-verify-automation@1a91a2970401": [
+"other"
+],
+"uasl/precoro-automation@1d06d588ca50": [
+"other"
+],
+"uasl/pricing-page@8b72ba4d0477": [
+"landing-page",
+"ui-component"
+],
+"uasl/printing-press-polish@b4aef54a7866": [
+"code-review",
+"debugging"
+],
+"uasl/prioritization-effort-impact@a1369be27fa4": [
+"planning"
+],
+"uasl/problem-statement@aebff3acf51b": [
+"planning"
+],
+"uasl/product-showcase@47ddb0e168e1": [
+"landing-page",
+"ui-component",
+"devops"
+],
+"uasl/project-bubble-automation@b2639441a991": [
+"other"
+],
+"uasl/property-based-testing@a168f6739085": [
+"testing"
+],
+"uasl/provider-api@4da7bed47117": [
+"other"
+],
+"uasl/pushbullet-automation@95cae48edb06": [
+"other"
+],
+"uasl/python-performance-optimization@bf455fd100bf": [
+"debugging",
+"refactor"
+],
+"uasl/quaderno-automation@e16eacc47a30": [
+"other"
+],
+"uasl/quickdup@ba3af78467d1": [
+"refactor",
+"code-review"
+],
+"uasl/raffle-winner-picker@6eef98375e60": [
+"other"
+],
+"uasl/ramp-automation@25b168650188": [
+"other"
+],
+"uasl/realphonevalidation-automation@4e1c85c7907b": [
+"other"
+],
+"uasl/recommendation-canvas@fedc861cf716": [
+"planning"
+],
+"uasl/refactoring-ui@a0c00159d43d": [
+"ui-component",
+"code-review"
+],
+"uasl/release-it@e3e5b4710eea": [
+"devops",
+"code-review"
+],
+"uasl/renderform-automation@7a66d102b693": [
+"other"
+],
+"uasl/reply-automation@795f8ad31c71": [
+"other"
+],
+"uasl/research-claim-map@5f8b6e962d2a": [
+"other"
+],
+"uasl/respond-io-automation@441b2891c1d1": [
+"other"
+],
+"uasl/retain@80a5ca883d36": [
+"other"
+],
+"uasl/rev-ai-automation@d289111372e5": [
+"other"
+],
+"uasl/ring-central-automation@06c9d910bfec": [
+"other"
+],
+"uasl/rkvst-automation@f0f72c3326d1": [
+"other"
+],
+"uasl/rootly-automation@0b9987bde2cc": [
+"other"
+],
+"uasl/saas-revenue-growth-metrics@a287946f472a": [
+"data-ai"
+],
+"uasl/salesforce-marketing-cloud-automation@bda673615399": [
+"other"
+],
+"uasl/satismeter-automation@be293595117e": [
+"other"
+],
+"uasl/schema@e6f260ce62e0": [
+"database"
+],
+"uasl/scout-mindset-bias-check@9e9f4e1320f7": [
+"other"
+],
+"uasl/scrapfly-automation@9104efe9f130": [
+"other"
+],
+"uasl/screenshotone-automation@59fa81ec4f17": [
+"other"
+],
+"uasl/secure-coding-practices@cc37fcd8687e": [
+"security-review",
+"code-review"
+],
+"uasl/securitytrails-automation@ea2e0ed3f484": [
+"other"
+],
+"uasl/semanticscholar-automation@b041f7cfd10d": [
+"other"
+],
+"uasl/sendbird-ai-chabot-automation@9490501cdf5e": [
+"other"
+],
+"uasl/sendloop-automation@c4409987b493": [
+"other"
+],
+"uasl/seqera-automation@b171a74627b9": [
+"data-ai"
+],
+"uasl/servicem8-automation@2d326383fee3": [
+"other"
+],
+"uasl/shadcn-ui@8c463642324a": [
+"ui-component"
+],
+"uasl/shipengine-automation@b77f30f2f345": [
+"other"
+],
+"uasl/shorten-rest-automation@60861026388c": [
+"other"
+],
+"uasl/sidetracker-automation@54e8a1f15fdb": [
+"other"
+],
+"uasl/signwell-automation@9440033a8d01": [
+"other"
+],
+"uasl/simple-analytics-automation@743acba70ac7": [
+"other"
+],
+"uasl/sketch@2a8aac6ecc18": [
+"data-ai"
+],
+"uasl/skill-seekers@d8bf1d3864b9": [
+"other"
+],
+"uasl/slackbot-automation@ed095ad6aa14": [
+"other"
+],
+"uasl/sms-alert-automation@a07aa90a0e6d": [
+"other"
+],
+"uasl/social-carousel@ad5180e0b228": [
+"ui-component"
+],
+"uasl/software-design-philosophy@066bc275787f": [
+"refactor",
+"docs",
+"planning"
+],
+"uasl/spec-miner@cebd849612b0": [
+"docs",
+"planning"
+],
+"uasl/spoki-automation@db1fdb4341e8": [
+"other"
+],
+"uasl/sprite-animation@db7a9df9a7a3": [
+"ui-component"
+],
+"uasl/stack-exchange-automation@48277c094fb8": [
+"other"
+],
+"uasl/static-analysis@88c6f201cae0": [
+"devops",
+"code-review",
+"security-review"
+],
+"uasl/storeganise-automation@1d195448cd02": [
+"other"
+],
+"uasl/storybrand-messaging@b5d59f437b2f": [
+"landing-page"
+],
+"uasl/stratum@8dfc77ea9a69": [
+"docs",
+"planning"
+],
+"uasl/stride-analysis-patterns@55940fc31e02": [
+"security-review",
+"planning"
+],
+"uasl/supadata-automation@5f4ef16887f5": [
+"other"
+],
+"uasl/supportivekoala-automation@dbed3e9f1419": [
+"other"
+],
+"uasl/sweep@6fda55315322": [
+"refactor",
+"code-review"
+],
+"uasl/synthflow-ai-automation@0809bec7c1ca": [
+"other"
+],
+"uasl/taggun-automation@d7f63e4ce6d0": [
+"other"
+],
+"uasl/tally-automation@99d7124abd20": [
+"other"
+],
+"uasl/tavily-automation@151eda74e04c": [
+"other"
+],
+"uasl/tdd@ff86dad94075": [
+"testing",
+"refactor"
+],
+"uasl/teltel-automation@ce2f3797a772": [
+"other"
+],
+"uasl/terraform-module-library@d02b1cc84d22": [
+"devops"
+],
+"uasl/text-to-pdf-automation@9971f96ad559": [
+"other"
+],
+"uasl/thanks-io-automation@13fc6f07488f": [
+"other"
+],
+"uasl/think-tank@833fcce1b6d9": [
+"planning"
+],
+"uasl/thinking-circle-of-competence@f34b7a91d2e0": [
+"other"
+],
+"uasl/thinking-effectuation@f26a123bc884": [
+"other"
+],
+"uasl/thinking-five-whys-plus@9d8a7d64affe": [
+"debugging"
+],
+"uasl/thinking-leverage-points@be65264ca19f": [
+"other"
+],
+"uasl/thinking-model-combination@e3fb11c9e5e8": [
+"other"
+],
+"uasl/thinking-ooda@2477088a5d42": [
+"debugging"
+],
+"uasl/thinking-probabilistic@798a0444c814": [
+"other"
+],
+"uasl/thinking-scientific-method@8b3f9fba25b4": [
+"debugging"
+],
+"uasl/thinking-systems@07aec864bc94": [
+"debugging",
+"planning"
+],
+"uasl/thinking-via-negativa@cf7d1a8c76f6": [
+"refactor"
+],
+"uasl/timecamp-automation@bc7139c3aa3b": [
+"other"
+],
+"uasl/timely-automation@71cef9db2e67": [
+"other"
+],
+"uasl/tlc-spec-driven@394ed16ecc07": [
+"planning"
+],
+"uasl/token-integration-analyzer@73f7e737c832": [
+"security-review",
+"code-review"
+],
+"uasl/ton-vulnerability-scanner@377d84553d54": [
+"security-review",
+"code-review"
+],
+"uasl/tpscheck-automation@c378fdb4927a": [
+"other"
+],
+"uasl/transformers@0b5f07bd96f0": [
+"data-ai"
+],
+"uasl/triggercmd-automation@527b3934d4e6": [
+"other"
+],
+"uasl/tweaks@800b9d426375": [
+"ui-component"
+],
+"uasl/twocaptcha-automation@a8a835db6149": [
+"other"
+],
+"uasl/typless-automation@0170c46b48c7": [
+"other"
+],
+"uasl/ui-animation@8e756d76dc18": [
+"ui-component"
+],
+"uasl/unione-automation@a0a5fd89b343": [
+"other"
+],
+"uasl/universal-ai-skills@0128810b6ffe": [
+"other"
+],
+"uasl/uptimerobot-automation@d96c66b4fb4f": [
+"devops"
+],
+"uasl/using-git-worktrees@b0857168cfee": [
+"other"
+],
+"uasl/v0-automation@96762e3a7358": [
+"other"
+],
+"uasl/vercel-cli-with-tokens@3f9c2805c482": [
+"devops"
+],
+"uasl/verification-before-completion@134bf517af69": [
+"testing",
+"code-review"
+],
+"uasl/vero-automation@f5c864663c5a": [
+"other"
+],
+"uasl/video-editing@6c68b3cc7f35": [
+"other"
+],
+"uasl/visual-design-foundations@f7829f5da0d2": [
+"ui-component"
+],
+"uasl/voice-ai-development@76a8425e5865": [
+"data-ai"
+],
+"uasl/wakatime-automation@bbc6501b19fb": [
+"other"
+],
+"uasl/weathermap-automation@18aed414a29d": [
+"other"
+],
+"uasl/web-design@b19d7c3f962e": [
+"ui-component"
+],
+"uasl/web-prototype-taste-editorial@ea4a250e3329": [
+"landing-page",
+"ui-component"
+],
+"uasl/webex-automation@7afdcc0f0d94": [
+"other"
+],
+"uasl/whautomate-automation@e55e9f784bf4": [
+"other"
+],
+"uasl/wireshark-network-traffic-analysis@b11d5afe120b": [
+"debugging",
+"security-review"
+],
+"uasl/woodpecker-co-automation@9c3405bfc53e": [
+"other"
+],
+"uasl/workflow-security-audit@84cc84849968": [
+"security-review"
+],
+"uasl/write-a-skill@82d5bd29e631": [
+"other"
+],
+"uasl/writing-revision@0a53ecc70a84": [
+"docs"
+],
+"uasl/x-api@f7be0ce6f0ec": [
+"other"
+],
+"uasl/yeet@7665edb92f0c": [
+"devops"
+],
+"uasl/zapier-make-patterns@32e4bb74a0b3": [
+"other"
+],
+"uasl/zeplin-automation@20ec5846cfed": [
+"other"
+],
+"uasl/zoho-books-automation@ae607eb3779b": [
+"other"
+],
+"uasl/zoho-mail-automation@fcbe9c3568f5": [
+"other"
+],
+"uasl/zyte-api-automation@22b4a48968b2": [
+"other"
+],
+"anthropics-skills/algorithmic-art@ab9ac544953a": [
+"other",
+"ui-component"
+],
+"anthropics-skills/discernment-nudge@a9d2caea7e0b": [
+"concise-output"
+],
+"anthropics-skills/internal-comms@c544dea09136": [
+"other",
+"docs"
+],
+"anthropics-skills/skill-creator@5d80e84222d8": [
+"other"
+],
+"anthropics-skills/webapp-testing@a4b4ce82b644": [
+"testing",
+"debugging"
+],
+"uasl/3d-web-experience@e1485751556b": [
+"ui-component",
+"landing-page"
+],
+"uasl/abuselpdb-automation@762f03461a64": [
+"other"
+],
+"uasl/accessibility-compliance@696d2b4119ed": [
+"ui-component",
+"testing"
+],
+"uasl/active-campaign-automation@ce5ccdcbc1c4": [
+"other"
+],
+"uasl/adr-architecture@2794198a12ff": [
+"docs",
+"planning"
+],
+"uasl/aeroleads-automation@cf6bcf491fb0": [
+"other"
+],
+"uasl/agencyzoom-automation@92e7f0c917dd": [
+"other"
+],
+"uasl/agentql-automation@5d03f90f6529": [
+"other"
+],
+"uasl/ahrefs-automation@4a20ad8c28ef": [
+"other"
+],
+"uasl/alchemy-automation@80e19daefe7c": [
+"other"
+],
+"uasl/alignment-values-north-star@059deab885c0": [
+"other"
+],
+"uasl/altoviz-automation@bfb99e71847c": [
+"other"
+],
+"uasl/ambee-automation@a114b0099c67": [
+"other"
+],
+"uasl/anonyflow-automation@69fad9622785": [
+"other"
+],
+"uasl/apex27-automation@58df224d4535": [
+"other"
+],
+"uasl/api-ninjas-automation@e9437531d148": [
+"other"
+],
+"uasl/apiflash-automation@ec6c073bdf2b": [
+"other"
+],
+"uasl/apitemplate-io-automation@926fadac2498": [
+"other"
+],
+"uasl/appdrag-automation@61b9a4cebdf5": [
+"other"
+],
+"uasl/arc-design-review@8489bd47116c": [
+"planning",
+"docs"
+],
+"uasl/architecture-patterns@d184d1c3a346": [
+"refactor",
+"api-endpoint",
+"planning"
+],
+"uasl/ascora-automation@9e1d5fb3f522": [
+"other"
+],
+"uasl/async-interview-automation@ab607c4d1b04": [
+"other"
+],
+"uasl/atlassian-automation@71c1ed5fc114": [
+"other"
+],
+"uasl/audit-context-building@70a8e16e2385": [
+"security-review",
+"code-review"
+],
+"uasl/autobound-automation@8cc6a21cd15d": [
+"other"
+],
+"uasl/backend-patterns@3d87ff489f3e": [
+"api-endpoint",
+"database",
+"security-review"
+],
+"uasl/bart-automation@7137ebaabfde": [
+"other"
+],
+"uasl/battlenet-automation@359059b99a40": [
+"other"
+],
+"uasl/beaconstac-automation@7e64ffae4f9a": [
+"other"
+],
+"uasl/benchmark-email-automation@7e250d569f95": [
+"other"
+],
+"uasl/better-stack-automation@d70ca30206c0": [
+"other"
+],
+"uasl/bigmailer-automation@3ade519cfb52": [
+"other"
+],
+"uasl/bitwarden-automation@67c816169096": [
+"other"
+],
+"uasl/blog-post@0609b6877ec5": [
+"ui-component",
+"other"
+],
+"uasl/boloforms-automation@60598456e042": [
+"other"
+],
+"uasl/bookingmood-automation@b77576845955": [
+"other"
+],
+"uasl/botpress-automation@ce88c316a61e": [
+"other"
+],
+"uasl/boxhero-automation@175d3685f4df": [
+"other"
+],
+"uasl/brand-narrative@91e167d9ab59": [
+"other"
+],
+"uasl/breeze-automation@447deab6e096": [
+"other"
+],
+"uasl/bright-data-best-practices@15cfe1bca9b8": [
+"data-ai"
+],
+"uasl/browseai-automation@1d70757f7aeb": [
+"other"
+],
+"uasl/browserbase-tool-automation@705be45eaad1": [
+"other"
+],
+"uasl/btcpay-server-automation@14f9e115cab9": [
+"other"
+],
+"uasl/bugsnag-automation@fbae24d696cd": [
+"other"
+],
+"uasl/bun-runtime@009ca8691cf7": [
+"devops"
+],
+"uasl/cabinpanda-automation@9c470fa9352d": [
+"other"
+],
+"uasl/callerapi-automation@c6f39ca7cc03": [
+"other"
+],
+"uasl/campayn-automation@95f47d95f2bc": [
+"other"
+],
+"uasl/canvas-design@320497271570": [
+"other",
+"ui-component"
+],
+"uasl/cardly-automation@726088b758ca": [
+"other"
+],
+"uasl/cats-automation@bc5c5b627e57": [
+"other"
+],
+"uasl/caveman-help@31fd99e3cd77": [
+"concise-output"
+],
+"uasl/cdr-platform-automation@a37d95e42b06": [
+"other"
+],
+"uasl/cf-crawl@77a977c31001": [
+"data-ai"
+],
+"uasl/challenge-that@3a81f0228530": [
+"planning",
+"code-review"
+],
+"uasl/chatbotkit-automation@ea8dfdf9953f": [
+"other"
+],
+"uasl/chrome-devtools@6237e93b6aa2": [
+"debugging",
+"testing"
+],
+"uasl/claude-api@f952c765f5b0": [
+"data-ai"
+],
+"uasl/claude-native-code-review@bffd2d4fab50": [
+"code-review",
+"security-review"
+],
+"uasl/clean-code@f135cf4e9ff5": [
+"refactor",
+"code-review",
+"testing"
+],
+"uasl/clockify-automation@2a7df079c351": [
+"other"
+],
+"uasl/cloudflare-automation@6747bb6c29a3": [
+"other",
+"devops"
+],
+"uasl/cloudpress-automation@35519f747e8b": [
+"other"
+],
+"uasl/code-review-excellence@ad803274d219": [
+"code-review"
+],
+"uasl/codenavi@109490043377": [
+"other",
+"planning"
+],
+"uasl/coding-standards@f854e26a9529": [
+"refactor",
+"code-review"
+],
+"uasl/coinmarketcal-automation@5109258f3b03": [
+"other"
+],
+"uasl/college-football-data-automation@c8e0671f076c": [
+"other"
+],
+"uasl/compete@c2b41286409b": [
+"other"
+],
+"uasl/component-identification-sizing@a9b4aa9f2de1": [
+"refactor",
+"planning"
+],
+"uasl/connect@77e02b4574f6": [
+"other",
+"data-ai"
+],
+"uasl/contagious@143d3acf4fa3": [
+"other"
+],
+"uasl/contentful-graphql-automation@36b3958a90da": [
+"other"
+],
+"uasl/conversion-tools-automation@ea95dbe454df": [
+"other"
+],
+"uasl/copywriting@67282b309ff8": [
+"landing-page",
+"other"
+],
+"uasl/countdown-api-automation@1f935a92be57": [
+"other"
+],
+"uasl/craftmypdf-automation@03aa36b90b81": [
+"other"
+],
+"uasl/crosspost@391532c80819": [
+"other"
+],
+"uasl/curated-automation@410cf67b9b1b": [
+"other"
+],
+"uasl/customgpt-automation@9fbaaed68c90": [
+"other"
+],
+"uasl/d3-visualization@739528fdf78d": [
+"data-ai",
+"ui-component"
+],
+"uasl/darwin@77e74a263e71": [
+"other"
+],
+"uasl/datagma-automation@e7fb33accae5": [
+"other"
+],
+"uasl/deadline-funnel-automation@e010922b0b18": [
+"other"
+],
+"uasl/decision-toolkit@00642fa89fcf": [
+"other"
+],
+"uasl/deep-research-scholarly-analysis-engine@598adc459137": [
+"other",
+"data-ai"
+],
+"uasl/define-architecture@8ea764417825": [
+"planning",
+"refactor"
+],
+"uasl/design-an-interface@14a6b0b5787c": [
+"planning"
+],
+"uasl/design-everyday-things@ce8daf49b316": [
+"ui-component",
+"other"
+],
+"uasl/design-of-experiments@03784eef8ecb": [
+"data-ai",
+"other"
+],
+"uasl/design-system-creation@ec5d23e4e974": [
+"ui-component"
+],
+"uasl/desktime-automation@348404a4e7ee": [
+"other"
+],
+"uasl/dialmycalls-automation@95ba12094d3e": [
+"other"
+],
+"uasl/differential-review@b9d1a5a99f5e": [
+"security-review",
+"code-review"
+],
+"uasl/discordbot-automation@1971b7562cb9": [
+"other"
+],
+"uasl/dnsfilter-automation@f1416962dee1": [
+"other"
+],
+"uasl/docnify-automation@6be142bbaac2": [
+"other"
+],
+"uasl/docugenerate-automation@5d5a9219a2ea": [
+"other"
+],
+"uasl/docupilot-automation@eabd6c079c41": [
+"other"
+],
+"uasl/domain-driven-design@0d649fab3ce3": [
+"refactor",
+"planning",
+"code-review"
+],
+"uasl/dot@e787e142131c": [
+"other"
+],
+"uasl/draftable-automation@0616ca0e391d": [
+"other"
+],
+"uasl/drive-motivation@1ca80e37840e": [
+"other"
+],
+"uasl/dungeon-fighter-online-automation@e04261ebe742": [
+"other"
+],
+"uasl/ecc-source@ac3a6c8604b3": [
+"other"
+],
+"uasl/elevenlabs-automation@444b586e8ee3": [
+"other",
+"data-ai"
+],
+"uasl/emaillistverify-automation@472bebd15742": [
+"other"
+],
+"uasl/encodian-automation@c694b3d04119": [
+"other"
+],
+"uasl/enigma-automation@bf26d64e146a": [
+"other"
+],
+"uasl/eol-message@05765e0a4b63": [
+"other"
+],
+"uasl/esignatures-io-automation@d6688e856581": [
+"other"
+],
+"uasl/etermin-automation@366fa1ba82b8": [
+"other"
+],
+"uasl/evenium-automation@bceb3bb6819e": [
+"other"
+],
+"uasl/eventzilla-automation@85c65f2ab95a": [
+"other"
+],
+"uasl/exa-automation@94932c058017": [
+"other"
+],
+"uasl/executing-plans@3bfe5761e031": [
+"planning",
+"other"
+],
+"uasl/experiment@e2419a708eaf": [
+"data-ai",
+"other"
+],
+"uasl/faceup-automation@d971afa47e93": [
+"other"
+],
+"uasl/fastapi-endpoint@2a93d50c4970": [
+"api-endpoint",
+"testing",
+"database"
+],
+"uasl/feature-forge@647addfd7f07": [
+"planning"
+],
+"uasl/figma-implement-design@6f82bf7fa5ca": [
+"ui-component"
+],
+"uasl/finance-metrics-quickref@dfe896ee13a2": [
+"other"
+],
+"uasl/findymail-automation@be5ac18b44c6": [
+"other"
+],
+"uasl/finmei-automation@e8ce8ce16dce": [
+"other"
+],
+"uasl/firecrawl-scraper@8691949c9232": [
+"data-ai"
+],
+"uasl/fitbit-automation@faef282e8bb6": [
+"other"
+],
+"uasl/five-agent-preflight-check@972573c45dcf": [
+"other",
+"devops"
+],
+"uasl/fixer-io-automation@1319e819bd6c": [
+"other"
+],
+"uasl/flutterwave-automation@f68129e94e97": [
+"other"
+],
+"uasl/folk-automation@3ee411cf7fef": [
+"other"
+],
+"uasl/forge@a8efdfdbe817": [
+"other",
+"planning"
+],
+"uasl/formsite-automation@ee5bf0ee05e8": [
+"other"
+],
+"uasl/fraudlabs-pro-automation@e0573ec245f0": [
+"other"
+],
+"uasl/frontend-design@5da82907743d": [
+"ui-component",
+"landing-page"
+],
+"uasl/fuzzing-dictionary@1b7491e2ab32": [
+"testing",
+"security-review"
+],
+"uasl/gamma-automation@4130dcc3751d": [
+"other"
+],
+"uasl/gauge@b84b3ee9b507": [
+"other"
+],
+"uasl/genderapi-io-automation@870a87d382c4": [
+"other"
+],
+"uasl/geokeo-automation@910ab879c19d": [
+"other"
+],
+"uasl/giphy-automation@c2f714c1c2be": [
+"other"
+],
+"uasl/github-gem-seeker@759ed0b02cdc": [
+"other"
+],
+"uasl/gleap-automation@98bd07166e84": [
+"other"
+],
+"uasl/gong-automation@09a015febb35": [
+"other"
+],
+"uasl/google-admin-automation@c0e29c39549e": [
+"other"
+],
+"uasl/google-search-console-automation@75986b6be641": [
+"other"
+],
+"uasl/googledocs-automation@205a55e5ad22": [
+"other"
+],
+"uasl/googleslides-automation@a604829ce6a2": [
+"other"
+],
+"uasl/gosquared-automation@d5d3ce4678cf": [
+"other"
+],
+"uasl/graphic-design@6f9613f1ce55": [
+"ui-component",
+"other"
+],
+"uasl/grill-with-docs@99f1bafe73fe": [
+"planning",
+"docs"
+],
+"uasl/grove@f2d6429d9632": [
+"refactor",
+"planning",
+"docs"
+],
+"uasl/gsap-plugins@a63cb79f853e": [
+"ui-component"
+],
+"uasl/gsap-utils@a1cbf677d835": [
+"ui-component"
+],
+"uasl/guizang-ppt@169ebe37242f": [
+"other",
+"ui-component"
+],
+"uasl/hackernews-automation@37569fb4c8e3": [
+"other"
+],
+"uasl/hashnode-automation@047826289312": [
+"other"
+],
+"uasl/helpwise-automation@072865f89a2b": [
+"other"
+],
+"uasl/heyreach-automation@c4ea30de5fbe": [
+"other"
+],
+"uasl/highlevel-automation@f6998daab4ff": [
+"other"
+],
+"uasl/hooked-ux@64362f56c26b": [
+"other"
+],
+"uasl/html-ppt-taste-brutalist@d8696297ed9a": [
+"other",
+"ui-component"
+],
+"uasl/humanloop-automation@8a0e81552c78": [
+"other"
+],
+"uasl/hyperbrowser-automation@4279504eeaba": [
+"other"
+],
+"uasl/icims-talent-cloud-automation@c0d025f64f8d": [
+"other"
+],
+"uasl/identitycheck-automation@ef126df22958": [
+"other"
+],
+"uasl/image-to-code-skill@4f1a4537825d": [
+"ui-component",
+"landing-page"
+],
+"uasl/imgbb-automation@8ff55126a8f7": [
+"other"
+],
+"uasl/influence-psychology@067deadb5f17": [
+"other",
+"landing-page"
+],
+"uasl/insecure-defaults@a0e826721018": [
+"security-review"
+],
+"uasl/instantly-automation@d8854d4a51f6": [
+"other"
+],
+"uasl/interactive-portfolio@85336277b64d": [
+"landing-page",
+"ui-component"
+],
+"uasl/introspection-self-reflection-engine@d024bcbe9e28": [
+"other"
+],
+"uasl/invoice@234bae53884f": [
+"ui-component",
+"other"
+],
+"uasl/ip2proxy-automation@cdb203a99879": [
+"other"
+],
+"uasl/iqair-airvisual-automation@2d692b8e0835": [
+"other"
+],
+"uasl/jobnimbus-automation@3c681731cd3b": [
+"other"
+],
+"uasl/judge@6ea2e485149e": [
+"code-review",
+"security-review",
+"testing"
+],
+"uasl/kaggle-automation@8aa02e6647cc": [
+"other"
+],
+"uasl/keap-automation@93a64ca10830": [
+"other"
+],
+"uasl/kit-automation@f2956d04180e": [
+"other"
+],
+"uasl/kommo-automation@67ebbb9c7737": [
+"other"
+],
+"uasl/l2s-automation@aca08b62e754": [
+"other"
+],
+"uasl/langbase-automation@17945d86de36": [
+"other"
+],
+"uasl/launch@117c5509679d": [
+"devops",
+"planning"
+],
+"uasl/leadoku-automation@cb75af5ad904": [
+"other"
+],
+"uasl/legacy-modernizer@519b6311409d": [
+"refactor",
+"planning",
+"testing"
+],
+"uasl/lens@6fbc66f7a7bb": [
+"other",
+"docs"
+],
+"uasl/leverly-automation@e26ca2c38850": [
+"other"
+],
+"uasl/linguapop-automation@a5139a991d5e": [
+"other"
+],
+"uasl/listennotes-automation@c5a2d5bf60f9": [
+"other"
+],
+"uasl/lmnt-automation@bfd97d9278c9": [
+"other"
+],
+"uasl/logo-dev-automation@268ed6b2989e": [
+"other"
+],
+"uasl/lore@75372396e6f4": [
+"other"
+],
+"uasl/magazine-poster@3d9539d9af9e": [
+"ui-component",
+"other"
+],
+"uasl/mailcheck-automation@1a4df2b39df4": [
+"other"
+],
+"uasl/mails-so-automation@859d773b296f": [
+"other"
+],
+"uasl/many-chat-automation@2c738ada1eac": [
+"other"
+],
+"uasl/market-mechanics-betting@6463db866970": [
+"other",
+"data-ai"
+],
+"uasl/mcp-server-patterns@63e29e48e956": [
+"data-ai",
+"api-endpoint"
+],
+"uasl/mem-automation@ba8a2be9f0cb": [
+"other"
+],
+"uasl/membervault-automation@e96c4ce74314": [
+"other"
+],
+"uasl/meta-prompt-engineering@c01cd11b78a1": [
+"data-ai",
+"other"
+],
+"uasl/metrics-tree@e6ad44792073": [
+"other"
+],
+"uasl/microsoft-clarity-automation@44237e641aae": [
+"other"
+],
+"uasl/minimalist-skill@6bec0a57af30": [
+"ui-component",
+"landing-page"
+],
+"uasl/mobile-onboarding@dae55de6dde3": [
+"ui-component"
+],
+"uasl/mom-test@6f43f16a3566": [
+"other"
+],
+"uasl/moosend-automation@697184e66f40": [
+"other"
+],
+"uasl/motion-canvas@08d879d31903": [
+"other",
+"ui-component"
+],
+"uasl/msg91-automation@c07fa3cf21bc": [
+"other"
+],
+"uasl/mx-technologies-automation@2df24b485b9f": [
+"other"
+],
+"uasl/n8n-expression-syntax@f1845451eb4d": [
+"other",
+"debugging"
+],
+"uasl/n8n-workflow-patterns@c9641aab7a0b": [
+"other"
+],
+"uasl/nasdaq-automation@e43958c08c4f": [
+"other"
+],
+"uasl/negative-contrastive-framing@9f68ccb52774": [
+"other",
+"docs"
+],
+"uasl/netsuite-automation@b615a37449c9": [
+"other"
+],
+"uasl/new-relic-automation@efeb6349c763": [
+"devops",
+"other"
+],
+"uasl/next-upgrade@df465f7770a5": [
+"refactor",
+"devops"
+],
+"uasl/ninox-automation@5c0813b7d348": [
+"other"
+],
+"uasl/obviously-awesome@fd4c9e19ced0": [
+"other"
+],
+"uasl/onboarding-ux@525055bbdf31": [
+"ui-component"
+],
+"uasl/onedesk-automation@0bec898b583a": [
+"other"
+],
+"uasl/open-sea-automation@35da2a8c0ec9": [
+"other"
+],
+"uasl/openclaw-color-palette@22baa399c5eb": [
+"ui-component"
+],
+"uasl/openui@c3154bb34a14": [
+"ui-component",
+"data-ai"
+],
+"uasl/output-skill@8da7a8f7c7fc": [
+"concise-output"
+],
+"uasl/pandadoc-automation@1f3c475c58e0": [
+"other"
+],
+"uasl/parsehub-automation@51a9391f134a": [
+"other"
+],
+"uasl/passslot-automation@bd7e941240b9": [
+"other"
+],
+"uasl/pdf4me-automation@271df0ea6ef7": [
+"other"
+],
+"uasl/perf-astro@f72360d52c4a": [
+"ui-component",
+"landing-page"
+],
+"uasl/perplexityai-automation@408d8c2151a4": [
+"other"
+],
+"uasl/phantombuster-automation@4448a05bbdf0": [
+"other"
+],
+"uasl/pingdom-automation@be14d8244ba7": [
+"other"
+],
+"uasl/placid-automation@21c62b429074": [
+"other"
+],
+"uasl/platerecognizer-automation@4d8c6d2453ee": [
+"other"
+],
+"uasl/polygon-automation@f01da3e5197a": [
+"other"
+],
+"uasl/positioning-statement@235d6165147e": [
+"other"
+],
+"uasl/postmortem@cf2cf9722781": [
+"debugging",
+"docs"
+],
+"uasl/predictable-revenue@fcafde23c133": [
+"other"
+],
+"uasl/printautopilot-automation@2c1588a88c7e": [
+"other"
+],
+"uasl/printing-press-reprint@af02d260d0be": [
+"other"
+],
+"uasl/prisma-automation@189e1e50e8be": [
+"other",
+"database"
+],
+"uasl/process-street-automation@cd9c9ae03515": [
+"other"
+],
+"uasl/productboard-automation@f09c2ef332e2": [
+"other"
+],
+"uasl/project-risk-register@f5e560b93885": [
+"planning",
+"other"
+],
+"uasl/prose@bbd22d3eb9b7": [
+"docs",
+"ui-component"
+],
+"uasl/proxiedmail-automation@4b2f0bc1d945": [
+"other"
+],
+"uasl/pushover-automation@be8bb4b7f044": [
+"other"
+],
+"uasl/python-testing-patterns@e62d0f1ca316": [
+"testing"
+],
+"uasl/qualaroo-automation@a1019156e71e": [
+"other"
+],
+"uasl/quill@336ba74b0e79": [
+"docs"
+],
+"uasl/rafflys-automation@072f8588a132": [
+"other"
+],
+"uasl/ravenseotools-automation@4e741b977ec8": [
+"other"
+],
+"uasl/reasoning-tools-kb@c100f6d14425": [
+"other"
+],
+"uasl/recruitee-automation@cdecd2d4af4c": [
+"other"
+],
+"uasl/reference-class-forecasting@22a3efbe5756": [
+"other"
+],
+"uasl/remarkety-automation@1bfc938e448a": [
+"other"
+],
+"uasl/repairshopr-automation@9cfe48b652f0": [
+"other"
+],
+"uasl/reply-io-automation@90e72b6d3776": [
+"other"
+],
+"uasl/research-paper-review@24cd1c691cf3": [
+"other"
+],
+"uasl/responsive-design@2cf7927ef938": [
+"ui-component"
+],
+"uasl/retellai-automation@701588322543": [
+"other"
+],
+"uasl/reviews-retros-reflection@5432cc49ac73": [
+"other"
+],
+"uasl/ripple@620dca56eca0": [
+"planning",
+"code-review",
+"refactor"
+],
+"uasl/roadmap-backcast@7cd18481befb": [
+"planning"
+],
+"uasl/rosette-text-analytics-automation@2fff2fbdc7d7": [
+"other"
+],
+"uasl/safetyculture-automation@807681e356a0": [
+"other"
+],
+"uasl/salesforce-service-cloud-automation@c5dffab48cca": [
+"other"
+],
+"uasl/scaffold-exercises@95d0d91c73af": [
+"other",
+"docs"
+],
+"uasl/scientific-brainstorming@8566698c2a18": [
+"other",
+"planning"
+],
+"uasl/scout@97653445d7f1": [
+"debugging"
+],
+"uasl/scrapingant-automation@fc072b1bacd7": [
+"other"
+],
+"uasl/scroll-experience@f1aa0edee6ad": [
+"ui-component",
+"landing-page"
+],
+"uasl/secure-workflow-guide@c1bef256dd5c": [
+"security-review"
+],
+"uasl/segment-cdp@42e8e765d937": [
+"data-ai"
+],
+"uasl/semgrep-rule-creator@ae4d35a76948": [
+"security-review",
+"testing"
+],
+"uasl/sendbird-automation@1a8f436ad9dd": [
+"other"
+],
+"uasl/sendspark-automation@932029b8cfbb": [
+"other"
+],
+"uasl/serpapi-automation@93aca173056b": [
+"other"
+],
+"uasl/setup-matt-pocock-skills@d52ac42900e6": [
+"other",
+"docs"
+],
+"uasl/shadcn@fb196fe88c66": [
+"ui-component"
+],
+"uasl/short-io-automation@75ba538e79f4": [
+"other"
+],
+"uasl/shortpixel-automation@11fe5cac97f5": [
+"other"
+],
+"uasl/siege@06245d21dd1c": [
+"testing"
+],
+"uasl/similarweb-analytics@938e9f87287b": [
+"other",
+"data-ai"
+],
+"uasl/simple-deck@acfa7f4d3e22": [
+"other",
+"ui-component"
+],
+"uasl/skill-composition-protocol@b862de6f0dbf": [
+"other"
+],
+"uasl/skill-share@1399c8172d6b": [
+"other"
+],
+"uasl/slides@8f50ae3bf0c5": [
+"other",
+"ui-component"
+],
+"uasl/smtp2go-automation@280b7ef95340": [
+"other"
+],
+"uasl/socratic-teaching-scaffolds@5bfe219a5286": [
+"other"
+],
+"uasl/solana-vulnerability-scanner@05e33b7d1d05": [
+"security-review",
+"code-review"
+],
+"uasl/spec-to-code-compliance@dee9b880b526": [
+"security-review",
+"code-review"
+],
+"uasl/spondyr-automation@b334a2f8011b": [
+"other"
+],
+"uasl/sql-injection-testing@5f2e673fc46e": [
+"security-review",
+"testing"
+],
+"uasl/stakeholders-org-design@3c6550ba72b8": [
+"other"
+],
+"uasl/statsmodels@49021b731076": [
+"data-ai"
+],
+"uasl/storerocket-automation@ba05bfa74bed": [
+"other"
+],
+"uasl/strategic-compact@7e1496f1097b": [
+"other"
+],
+"uasl/strava-automation@fdd9239ffc12": [
+"other"
+],
+"uasl/stripe-best-practices@795a33f68129": [
+"api-endpoint"
+],
+"uasl/superchat-automation@e2ca88d04630": [
+"other"
+],
+"uasl/survey-monkey-automation@d25fdaab9862": [
+"other"
+],
+"uasl/sympla-automation@6392106b0526": [
+"other"
+],
+"uasl/system-design@e45b77ba7a35": [
+"planning",
+"database"
+],
+"uasl/tailored-resume-generator@e1eef0b1e396": [
+"other"
+],
+"uasl/tapfiliate-automation@39e9241cdd7d": [
+"other"
+],
+"uasl/tavily-web@2b69bd325cb7": [
+"data-ai",
+"other"
+],
+"uasl/team-okrs@7a95ee8c1302": [
+"ui-component",
+"other"
+],
+"uasl/template-skill@9235fad40e36": [
+"other"
+],
+"uasl/test-app-automation@abdd84ebc0ec": [
+"other"
+],
+"uasl/textcortex-automation@9ece88e54791": [
+"other"
+],
+"uasl/the-fool@8e65b4fb78f6": [
+"planning",
+"other"
+],
+"uasl/thinking-archetypes@48c7ccc46e1c": [
+"other",
+"debugging"
+],
+"uasl/thinking-cynefin@35c884c46e92": [
+"other"
+],
+"uasl/thinking-feedback-loops@4b1875a9c586": [
+"other"
+],
+"uasl/thinking-inversion@62fd6d820794": [
+"planning",
+"code-review"
+],
+"uasl/thinking-lindy-effect@7a9ebd3631c7": [
+"other"
+],
+"uasl/thinking-model-router@5d0c1ebb8223": [
+"other"
+],
+"uasl/thinking-opportunity-cost@30b9ba0de94f": [
+"other"
+],
+"uasl/thinking-red-team@a351578e3c81": [
+"security-review",
+"planning"
+],
+"uasl/thinking-second-order@6a0831afa6ac": [
+"other"
+],
+"uasl/thinking-theory-of-constraints@d55f9f735e58": [
+"other"
+],
+"uasl/threat-modeling-techniques@393de20182c9": [
+"security-review"
+],
+"uasl/timekit-automation@ca8a9faa9e8c": [
+"other"
+],
+"uasl/tinyurl-automation@28dfb4a2bbc1": [
+"other"
+],
+"uasl/to-issues@fe551bc54a09": [
+"planning"
+],
+"uasl/token-metrics-automation@6fadb79ed1c7": [
+"other"
+],
+"uasl/toneden-automation@83d92257c2b0": [
+"other"
+],
+"uasl/trace@5c68ce48e264": [
+"data-ai",
+"other"
+],
+"uasl/translation-reframing-audience-shift@d1a28fb19e3e": [
+"other",
+"docs"
+],
+"uasl/tripadvisor-content-api-automation@3ab8b1ec4df3": [
+"other"
+],
+"uasl/twelve-data-automation@e67e73ceb2df": [
+"other"
+],
+"uasl/typefully-automation@571daf75267b": [
+"other"
+],
+"uasl/typography-audit@c8818f3687a9": [
+"ui-component",
+"code-review"
+],
+"uasl/ui-audit@be637d5e2baf": [
+"ui-component",
+"code-review"
+],
+"uasl/unit-testing@6c5fbb821103": [
+"testing"
+],
+"uasl/updown-io-automation@9cc2a17cca7e": [
+"other",
+"devops"
+],
+"uasl/user-story-mapping@f4c7115086b0": [
+"planning"
+],
+"uasl/using-superpowers@678eeee6c2a7": [
+"other"
+],
+"uasl/variant-analysis@4e25478feb58": [
+"security-review",
+"debugging"
+],
+"uasl/vercel-composition-patterns@a6f8be32b197": [
+"ui-component",
+"refactor"
+],
+"uasl/verification-loop@39d9be23cf50": [
+"code-review",
+"testing",
+"devops"
+],
+"uasl/vestaboard-automation@bfff9c640bdb": [
+"other"
+],
+"uasl/video-shortform@6be3340d3873": [
+"other"
+],
+"uasl/visual-storytelling-design@74639e4dc5f9": [
+"data-ai",
+"other"
+],
+"uasl/waboxapp-automation@abcae0b58919": [
+"other"
+],
+"uasl/warden@420cd481af69": [
+"code-review",
+"ui-component"
+],
+"uasl/web-component-design@af6d16dc78dc": [
+"ui-component"
+],
+"uasl/web-perf@9063b7e5eacf": [
+"ui-component",
+"debugging"
+],
+"uasl/web-prototype-taste-soft@7734ae078ad9": [
+"ui-component",
+"landing-page"
+],
+"uasl/webscraping-ai-automation@fc6dd02a8756": [
+"other"
+],
+"uasl/windows-privilege-escalation@dbfda1d74f8e": [
+"security-review"
+],
+"uasl/wit-ai-automation@7eb0ab930c50": [
+"other"
+],
+"uasl/workable-automation@d4000b048c78": [
+"other"
+],
+"uasl/workiom-automation@e330f8b530bd": [
+"other"
+],
+"uasl/writer-automation@1a53c0cac7b3": [
+"other"
+],
+"uasl/writing-stickiness@6c04707af4f0": [
+"other"
+],
+"uasl/xero-automation@390f963c9c47": [
+"other"
+],
+"uasl/yelp-automation@5d121d20921b": [
+"other"
+],
+"uasl/zen@f72229d0a781": [
+"refactor",
+"code-review"
+],
+"uasl/zerobounce-automation@d3b1800d4555": [
+"other"
+],
+"uasl/zoho-desk-automation@fc28363b5a7e": [
+"other"
+],
+"uasl/zoom-out@08d3e6d20004": [
+"other",
+"docs"
+],
+"anthropics-skills/brand-guidelines@25de6a138cd8": [
+"ui-component"
+],
+"anthropics-skills/doc-coauthoring@bb40097e54fb": [
+"docs",
+"planning"
+],
+"anthropics-skills/mcp-builder@7e8426a435cb": [
+"data-ai",
+"api-endpoint",
+"testing"
+],
+"anthropics-skills/slack-gif-creator@4e04e7a9eba6": [
+"other"
+],
+"anthropics-skills/xlsx@5350d36b768c": [
+"data-ai",
+"other"
+],
+"uasl/ably-automation@808b7bf8461c": [
+"other"
+],
+"uasl/abyssale-automation@03108a6416a7": [
+"other"
+],
+"uasl/accord@7f75cd0d8980": [
+"planning"
+],
+"uasl/address-sanitizer@945fe8a1ab1b": [
+"testing",
+"debugging",
+"security-review"
+],
+"uasl/adrapid-automation@3c26556b6c4d": [
+"other"
+],
+"uasl/aether@06bc728c00e7": [
+"data-ai",
+"other"
+],
+"uasl/agent-introspection-debugging@68529b68f0f1": [
+"debugging",
+"other"
+],
+"uasl/agenty-automation@009fe3bd7773": [
+"other"
+],
+"uasl/ai-expertise-engine@902bd0b3e61f": [
+"data-ai"
+],
+"uasl/algodocs-automation@6d242abe5e83": [
+"other"
+],
+"uasl/all-images-ai-automation@184eec3c61d3": [
+"other"
+],
+"uasl/alttext-ai-automation@e1b49f48ffee": [
+"other"
+],
+"uasl/ambient-weather-automation@97d58d37f985": [
+"other"
+],
+"uasl/anthropic-administrator-automation@37f36f9f61d4": [
+"other"
+],
+"uasl/api-bible-automation@2ea9fba55a0e": [
+"other"
+],
+"uasl/api-sports-automation@0461bade6799": [
+"other"
+],
+"uasl/apify-automation@34a14f015224": [
+"data-ai",
+"other"
+],
+"uasl/apiverve-automation@bfc5a39fd66a": [
+"other"
+],
+"uasl/appointo-automation@ab117248fe68": [
+"other"
+],
+"uasl/architect@24a375e5bc92": [
+"other"
+],
+"uasl/article-writing@408c77d800c4": [
+"docs",
+"other"
+],
+"uasl/ashby-automation@b9813e1a534d": [
+"other"
+],
+"uasl/async-python-patterns@957ebfe54aa7": [
+"refactor",
+"debugging"
+],
+"uasl/attest@3259b6f024a0": [
+"code-review",
+"testing",
+"planning"
+],
+"uasl/audit-prep-assistant@6e127f2fce78": [
+"security-review",
+"code-review",
+"docs"
+],
+"uasl/autom-automation@43772e449fc1": [
+"other"
+],
+"uasl/backendless-automation@fe74bf6edc32": [
+"other"
+],
+"uasl/baselinker-automation@d5804677dbf5": [
+"other"
+],
+"uasl/bayesian-reasoning-calibration@233f17864898": [
+"other"
+],
+"uasl/beamer-automation@cc1e3111a698": [
+"other"
+],
+"uasl/benzinga-automation@378b9ce6bf36": [
+"other"
+],
+"uasl/bidsketch-automation@5d02340482ef": [
+"other"
+],
+"uasl/bigml-automation@97d9185d132d": [
+"other"
+],
+"uasl/blackbaud-automation@8c8ca051c99c": [
+"other"
+],
+"uasl/blue-ocean-strategy@abdf6da9378d": [
+"other"
+],
+"uasl/bolt-iot-automation@85e121fde6f2": [
+"other"
+],
+"uasl/booqable-automation@52e0fb940928": [
+"other"
+],
+"uasl/botsonic-automation@6ee0ff38f0b5": [
+"other"
+],
+"uasl/brainstorm-diverge-converge@254540fc2cfc": [
+"planning",
+"other"
+],
+"uasl/brand-voice@1253e24a13ab": [
+"other",
+"landing-page"
+],
+"uasl/breezy-hr-automation@27f6226c4ecc": [
+"other"
+],
+"uasl/brightdata-automation@63368634e323": [
+"other"
+],
+"uasl/browser-automation@49c3aed21e27": [
+"testing",
+"data-ai"
+],
+"uasl/browserhub-automation@b1fdb108fbac": [
+"other"
+],
+"uasl/bubble-automation@3152dc4f9eee": [
+"other"
+],
+"uasl/builder@8d7f0953ade3": [
+"api-endpoint",
+"database",
+"testing"
+],
+"uasl/bunnycdn-automation@a5dbce89f09d": [
+"other"
+],
+"uasl/cairo-vulnerability-scanner@ec05b2fd95f9": [
+"security-review",
+"code-review"
+],
+"uasl/callingly-automation@74126cf188b9": [
+"other"
+],
+"uasl/canny-automation@aa331d8fa62f": [
+"other"
+],
+"uasl/canvas@fc2071ed7429": [
+"docs"
+],
+"uasl/cargo-fuzz@2b31cd9657f5": [
+"testing",
+"security-review"
+],
+"uasl/causal-inference-root-cause@d857d3c52e7a": [
+"debugging",
+"data-ai"
+],
+"uasl/caveman-review@23eed6aa48dd": [
+"code-review",
+"concise-output"
+],
+"uasl/census-bureau-automation@33fa730c5117": [
+"other"
+],
+"uasl/chain-estimation-decision-storytelling@431c43e177d3": [
+"other",
+"planning"
+],
+"uasl/changelog-generator@f7da9390521a": [
+"docs",
+"devops"
+],
+"uasl/chatfai-automation@6aad9a049efe": [
+"other"
+],
+"uasl/cincopa-automation@6767d2098f08": [
+"other"
+],
+"uasl/claude-native-brand-guidelines@7d7cc96e7e20": [
+"ui-component"
+],
+"uasl/claude-native-theme-factory@4ef38be1dfbf": [
+"ui-component"
+],
+"uasl/clearout-automation@f57369ee9f17": [
+"other"
+],
+"uasl/cloudcart-automation@4caf7a85a528": [
+"other"
+],
+"uasl/cloudflare-browser-rendering-automation@efd929cdb7cd": [
+"other"
+],
+"uasl/coassemble-automation@3443646bafab": [
+"other"
+],
+"uasl/code-review@dface80322fb": [
+"code-review",
+"security-review"
+],
+"uasl/codeql@f2e86220e2ca": [
+"security-review"
+],
+"uasl/cognitive-design@500f57ad1492": [
+"ui-component"
+],
+"uasl/coinmarketcap-automation@761594342907": [
+"other"
+],
+"uasl/color-palette@35b366fd9fec": [
+"ui-component"
+],
+"uasl/competitive-ads-extractor@6f40d57e4b50": [
+"other"
+],
+"uasl/composio-automation@5690d4ffe77f": [
+"other"
+],
+"uasl/connecteam-automation@15c80fc0267d": [
+"other"
+],
+"uasl/content-engine@d3c510c6c4bf": [
+"other"
+],
+"uasl/continuous-discovery@6d8d38c90196": [
+"other",
+"planning"
+],
+"uasl/convertapi-automation@afb7693ed46d": [
+"other"
+],
+"uasl/corrently-automation@aa9b027effc4": [
+"other"
+],
+"uasl/coupa-automation@e5176d3d208c": [
+"other"
+],
+"uasl/creative-connections-engine@647006ec3a74": [
+"other",
+"planning"
+],
+"uasl/crowdin-automation@5ded9b07f6d5": [
+"other"
+],
+"uasl/currents-api-automation@a532da3b0b7a": [
+"other"
+],
+"uasl/customjs-automation@b27f415ba5c1": [
+"other"
+],
+"uasl/dadata-ru-automation@8ae263c93033": [
+"other"
+],
+"uasl/dashboard@537186e4443a": [
+"ui-component",
+"data-ai"
+],
+"uasl/datarobot-automation@cbf7c8582f53": [
+"other"
+],
+"uasl/debug-root-cause@1d7ea4a832dc": [
+"debugging",
+"testing"
+],
+"uasl/decomposition-planning-roadmap@750bfb7d134f": [
+"planning",
+"refactor"
+],
+"uasl/deep-research@bccf7f4afc28": [
+"other"
+],
+"uasl/deliberation-debate-red-teaming@3163aa9a1489": [
+"planning",
+"other"
+],
+"uasl/design-audit@167429859d7b": [
+"ui-component",
+"code-review"
+],
+"uasl/design-harden@7850aacd7d45": [
+"ui-component",
+"testing"
+],
+"uasl/design-optimize@cbb1632043ec": [
+"ui-component"
+],
+"uasl/design-system-patterns@cd952cab0879": [
+"ui-component",
+"docs"
+],
+"uasl/detrack-automation@1be3898b28b1": [
+"other"
+],
+"uasl/dialpad-automation@d892d76cc098": [
+"other"
+],
+"uasl/digicert-automation@bf9698523eaa": [
+"other"
+],
+"uasl/discovery-interviews-surveys@83ed98af64a9": [
+"other",
+"planning"
+],
+"uasl/dock-certs-automation@9ee460f856b1": [
+"other"
+],
+"uasl/docs-page@d9c05e10601d": [
+"docs",
+"ui-component"
+],
+"uasl/documenso-automation@4a9a956c1c1f": [
+"other"
+],
+"uasl/docupost-automation@4fe620ff92f6": [
+"other"
+],
+"uasl/domain-name-brainstormer@f3522cb265f2": [
+"other"
+],
+"uasl/dotsimple-automation@d41fef628185": [
+"other"
+],
+"uasl/dreamstudio-automation@568d7e45aab1": [
+"other"
+],
+"uasl/dromo-automation@ba18e4739056": [
+"other"
+],
+"uasl/dwarf-expert@5fcd04f042aa": [
+"debugging"
+],
+"uasl/echo@cb69fbdef665": [
+"ui-component",
+"other"
+],
+"uasl/elorus-automation@5245b8377e5f": [
+"other"
+],
+"uasl/emailoctopus-automation@c84ffa8a8056": [
+"other"
+],
+"uasl/endorsal-automation@69d376f8c9f2": [
+"other"
+],
+"uasl/entelligence-automation@340d34375ec6": [
+"other"
+],
+"uasl/epic-games-automation@407bd82aff1e": [
+"other"
+],
+"uasl/espocrm-automation@3d04f6f1ee3e": [
+"other"
+],
+"uasl/ethics-safety-impact@9bd412db5d57": [
+"other",
+"data-ai"
+],
+"uasl/event-store-design@c739ef000ad1": [
+"database"
+],
+"uasl/everhour-automation@a663f548c590": [
+"other"
+],
+"uasl/exa-search@371597562d6c": [
+"data-ai",
+"other"
+],
+"uasl/executive-onboarding-playbook@dc89777e55ba": [
+"other"
+],
+"uasl/expofp-automation@d9bd36c334c0": [
+"other"
+],
+"uasl/facilitation-patterns@ec5ac8f56de3": [
+"other"
+],
+"uasl/fastapi-templates@effcd0de0b4c": [
+"api-endpoint",
+"database",
+"testing"
+],
+"uasl/felt-automation@6bce21f68afb": [
+"other"
+],
+"uasl/files-com-automation@1456dcab2a34": [
+"other"
+],
+"uasl/finance-report@ab7b24a4526c": [
+"ui-component",
+"data-ai"
+],
+"uasl/finerworks-automation@415cb085c575": [
+"other"
+],
+"uasl/firebase-apk-scanner@70f61dd5e15b": [
+"security-review"
+],
+"uasl/fireflies-automation@6f98a449711e": [
+"other"
+],
+"uasl/five-agent-captain-merge-gate@de13897132dc": [
+"code-review",
+"devops"
+],
+"uasl/five-agent-security-review@54653e9fa93f": [
+"security-review",
+"devops"
+],
+"uasl/flexisign-automation@3a04f90fd30b": [
+"other"
+],
+"uasl/flux@c8aad16e5b86": [
+"other",
+"planning"
+],
+"uasl/fomo-automation@f22c5c96c941": [
+"other"
+],
+"uasl/formbricks-automation@ff770b48330e": [
+"other"
+],
+"uasl/foursquare-automation@f928f0704887": [
+"other"
+],
+"uasl/freshbooks-automation@8508cc146d7f": [
+"other"
+],
+"uasl/frontend-patterns@8f659ce2a0bd": [
+"ui-component"
+],
+"uasl/fuzzing-obstacles@cb574f4c1b3b": [
+"testing",
+"security-review"
+],
+"uasl/gan-ai-automation@38b688f31f0a": [
+"other"
+],
+"uasl/gbrain@cf3beac3a2cf": [
+"other",
+"data-ai"
+],
+"uasl/genderize-automation@4c6ec7476f31": [
+"other"
+],
+"uasl/getform-automation@c61ff7df6126": [
+"other"
+],
+"uasl/gist-automation@67891d4ebf53": [
+"other"
+],
+"uasl/github-workflow-automation@519f4ba6e482": [
+"devops",
+"code-review"
+],
+"uasl/globalping-automation@b88364777cf0": [
+"other"
+],
+"uasl/goodbits-automation@094fd5f46bb8": [
+"other"
+],
+"uasl/google-classroom-automation@2fc169e6c142": [
+"other"
+],
+"uasl/googleads-automation@13c0cd459708": [
+"other"
+],
+"uasl/googledrive-automation@522876388f34": [
+"other"
+],
+"uasl/googlesuper-automation@cc856af1f944": [
+"other"
+],
+"uasl/gpt-tasteskill@134558e228c5": [
+"landing-page",
+"ui-component"
+],
+"uasl/graphrag-evaluation@8feb3e56b687": [
+"data-ai",
+"testing"
+],
+"uasl/griptape-automation@dc765b4048d5": [
+"other"
+],
+"uasl/gsap-core@ca474b7f6296": [
+"ui-component"
+],
+"uasl/gsap-react@79939b61e00a": [
+"ui-component"
+],
+"uasl/gstack@3a23a30cf4c0": [
+"other"
+],
+"uasl/gumroad-automation@ee18d39c540e": [
+"other"
+],
+"uasl/happy-scribe-automation@70cdb7fcfd0e": [
+"other"
+],
+"uasl/helcim-automation@25bea546fb17": [
+"other"
+],
+"uasl/here-automation@110afe3105a2": [
+"other"
+],
+"uasl/heyzine-automation@1657333587a5": [
+"other"
+],
+"uasl/honeybadger-automation@0ccd6b7e46f5": [
+"other"
+],
+"uasl/horizon@8e6f79e4495d": [
+"refactor",
+"planning"
+],
+"uasl/html-ppt-taste-editorial@4b988f80eb3d": [
+"other",
+"ui-component"
+],
+"uasl/hundred-million-offers@709813fada50": [
+"other",
+"landing-page"
+],
+"uasl/hyperise-automation@21a47f662f5c": [
+"other"
+],
+"uasl/icon-set-generator@00c52f725f70": [
+"ui-component"
+],
+"uasl/ignisign-automation@7644fee14568": [
+"other"
+],
+"uasl/imagegen-frontend-mobile@d57843fce66f": [
+"ui-component"
+],
+"uasl/imgix-automation@6b487dcbbc24": [
+"other"
+],
+"uasl/influxdb-cloud-automation@303b971a6e74": [
+"other"
+],
+"uasl/insighto-ai-automation@bf563bb03604": [
+"other"
+],
+"uasl/integration-testing@62b51275be50": [
+"testing",
+"devops"
+],
+"uasl/internal-comms@8ad08fb91e8c": [
+"docs",
+"other"
+],
+"uasl/investor-materials@7b41352320eb": [
+"other"
+],
+"uasl/ios-hig-design@81a44fe68e4e": [
+"ui-component",
+"code-review"
+],
+"uasl/ip2whois-automation@da282eb283d8": [
+"other"
+],
+"uasl/it-infrastructure-sysadmin-engine@b170286527c0": [
+"devops",
+"debugging"
+],
+"uasl/jobs-to-be-done@bfffa3a12f42": [
+"other",
+"planning"
+],
+"uasl/jumpcloud-automation@2c3811515d58": [
+"other"
+],
+"uasl/kaleido-automation@aff66f36d2c8": [
+"other"
+],
+"uasl/keen-io-automation@42a55be32d83": [
+"other"
+],
+"uasl/klipfolio-automation@ce45aee544df": [
+"other"
+],
+"uasl/kontent-ai-automation@a23bbbf5cfac": [
+"other"
+],
+"uasl/labs64-netlicensing-automation@e2fbf7f48fbc": [
+"other"
+],
+"uasl/lastpass-automation@207fe0ad45a7": [
+"other"
+],
+"uasl/layered-reasoning@2cbc2f1f1313": [
+"planning",
+"other"
+],
+"uasl/lean-startup@776b03bb7136": [
+"other",
+"planning"
+],
+"uasl/leiga-automation@b1e5db446913": [
+"other"
+],
+"uasl/lessonspace-automation@9ff7a254cbd0": [
+"other"
+],
+"uasl/levy@083441b4d967": [
+"other"
+],
+"uasl/linkhut-automation@9b0e45eac879": [
+"other"
+],
+"uasl/live-artifact@a7e66be6fd82": [
+"ui-component",
+"data-ai"
+],
+"uasl/ln-002-session-analyzer@e1f577ca3f6a": [
+"other",
+"debugging"
+],
+"uasl/long-term-consequential-thinking@bdf03be87bf4": [
+"other",
+"planning"
+],
+"uasl/loyverse-automation@32069cd588ae": [
+"other"
+],
+"uasl/magnetic-automation@1c97219cca8f": [
+"other"
+],
+"uasl/mailcoach-automation@01c3e5ce860b": [
+"other"
+],
+"uasl/mailsoftly-automation@e6ff3843f92f": [
+"other"
+],
+"uasl/mapbox-automation@4abb5fe11f9c": [
+"other"
+],
+"uasl/market-research@e5418be3707e": [
+"other"
+],
+"uasl/meeting-insights-analyzer@76f9a6d91a8d": [
+"other"
+],
+"uasl/mem0-automation@af02451f62da": [
+"other"
+],
+"uasl/memory-retrieval-learning@fc5680ba29e1": [
+"other"
+],
+"uasl/meta-thinking-engine@b1ddd6d704ab": [
+"planning",
+"other"
+],
+"uasl/mezmo-automation@adf96cce1c8f": [
+"other"
+],
+"uasl/microsoft-tenant-automation@8dd0af2777a2": [
+"other"
+],
+"uasl/missive-automation@149494b0a21a": [
+"other"
+],
+"uasl/mocean-automation@d938db067591": [
+"other"
+],
+"uasl/moneybird-automation@02be5f2d6c27": [
+"other"
+],
+"uasl/mopinion-automation@7777542393a7": [
+"other"
+],
+"uasl/motion-frames@d5cda8fa6801": [
+"ui-component",
+"landing-page"
+],
+"uasl/multi-repo-git-ops@d1a9b3bcdc7d": [
+"devops",
+"other"
+],
+"uasl/mx-toolbox-automation@6e033c479266": [
+"other"
+],
+"uasl/n8n-mcp-tools-expert@07b0be26e0fd": [
+"other"
+],
+"uasl/nango-automation@1bf290e62d79": [
+"other"
+],
+"uasl/navigator@8d026b4397b8": [
+"testing",
+"data-ai"
+],
+"uasl/negotiation-alignment-governance@19ff299191b6": [
+"other"
+],
+"uasl/neuronwriter-automation@907ec6fab2fe": [
+"other"
+],
+"uasl/news-api-automation@230e0d07d320": [
+"other"
+],
+"uasl/nextdns-automation@8dd55e59ce22": [
+"other"
+],
+"uasl/nocrm-io-automation@e55432311fb2": [
+"other"
+],
+"uasl/ocr-web-service-automation@aa59f06fabaa": [
+"other"
+],
+"uasl/oncehub-automation@504fdb2e9edb": [
+"other"
+],
+"uasl/onepage-automation@53fcd57ce1d7": [
+"other"
+],
+"uasl/openai-automation@e4810b012ee7": [
+"data-ai"
+],
+"uasl/opengraph-io-automation@6584de8d389a": [
+"other"
+],
+"uasl/openweather-api-automation@065a8b46a4a9": [
+"other"
+],
+"uasl/owasp-security@9847d3666f75": [
+"security-review",
+"code-review"
+],
+"uasl/paradym-automation@b3588a44bce0": [
+"other"
+],
+"uasl/parsera-automation@56aabad8348f": [
+"other"
+],
+"uasl/payhip-automation@0f66e6e395fc": [
+"other"
+],
+"uasl/pdfless-automation@a26a9eea8133": [
+"other"
+],
+"uasl/perf-lighthouse@ccafe273f7d2": [
+"devops",
+"ui-component"
+],
+"uasl/persistiq-automation@a725cfc0f4bf": [
+"other"
+],
+"uasl/piggy-automation@16fa57a3ba94": [
+"other"
+],
+"uasl/pipe@0f029a41f006": [
+"devops",
+"security-review"
+],
+"uasl/plain-automation@b66aa67425f7": [
+"other"
+],
+"uasl/plisio-automation@343216c5fc03": [
+"other"
+],
+"uasl/polygon-io-automation@84190af4f220": [
+"other"
+],
+"uasl/postgresql-table-design@59d09e948243": [
+"database"
+],
+"uasl/pragmatic-programmer@d73a94281415": [
+"refactor",
+"code-review",
+"planning"
+],
+"uasl/prerender-automation@de4732227359": [
+"other"
+],
+"uasl/printing-press-catalog@3572c42ad04d": [
+"other",
+"devops"
+],
+"uasl/printing-press-score@7ec218523bea": [
+"other"
+],
+"uasl/prismic-automation@4ad566233625": [
+"other"
+],
+"uasl/procfu-automation@2ee6cc6595ec": [
+"other"
+],
+"uasl/productlane-automation@9de61e57b163": [
+"other"
+],
+"uasl/prompt-engineering@b5e0e2ec8ab3": [
+"data-ai"
+],
+"uasl/proto-persona@3f45ee751a23": [
+"other",
+"planning"
+],
+"uasl/public-param-golden@6b8109050c5c": [
+"other"
+],
+"uasl/python-design-patterns@5c0fbe0d4633": [
+"refactor",
+"testing"
+],
+"uasl/python-type-safety@60be75b4816f": [
+"refactor",
+"code-review"
+],
+"uasl/quest@2a366b046bee": [
+"planning",
+"other"
+],
+"uasl/radar-automation@a415f6a2825d": [
+"other"
+],
+"uasl/ragic-automation@139d7159048a": [
+"other"
+],
+"uasl/re-amaze-automation@30c7b9db3437": [
+"other"
+],
+"uasl/recallai-automation@25293bd990f3": [
+"other"
+],
+"uasl/redesign-skill@2e4f7f16e367": [
+"ui-component",
+"landing-page",
+"refactor"
+],
+"uasl/refiner-automation@19264f644844": [
+"other"
+],
+"uasl/remote-retrieval-automation@f436c1cfb43c": [
+"other"
+],
+"uasl/replicate-automation@4053915c756a": [
+"data-ai"
+],
+"uasl/request-refactor-plan@49b853892f06": [
+"refactor",
+"planning"
+],
+"uasl/researcher@55d55341b29b": [
+"other",
+"planning"
+],
+"uasl/responsiveness-check@d53a385e5699": [
+"ui-component",
+"testing"
+],
+"uasl/retently-automation@f8a9a74bb43f": [
+"other"
+],
+"uasl/revolt-automation@630f9af7fb3d": [
+"other"
+],
+"uasl/rippling-automation@340de76b5353": [
+"other"
+],
+"uasl/rocketlane-automation@cf5142cb57e7": [
+"other"
+],
+"uasl/route4me-automation@9bfeaede29bf": [
+"other"
+],
+"uasl/saga@fabeed82c780": [
+"other",
+"landing-page"
+],
+"uasl/salesmate-automation@a8c07346d77a": [
+"other"
+],
+"uasl/scaffold-nextjs@3d1152f5d9d0": [
+"devops",
+"ui-component"
+],
+"uasl/scientific-critical-thinking@287ce6f7d6c0": [
+"other",
+"data-ai"
+],
+"uasl/scrape-do-automation@3dba390462d7": [
+"other"
+],
+"uasl/scrapingbee-automation@9b31a323a4dc": [
+"other"
+],
+"uasl/seat-geek-automation@806a8a8943fe": [
+"other"
+],
+"uasl/security-audit@0b0f681978a4": [
+"security-review"
+],
+"uasl/segmetrics-automation@de3f329083b9": [
+"other"
+],
+"uasl/semgrep-rule-variant-creator@2cea56923011": [
+"security-review",
+"testing"
+],
+"uasl/sendfox-automation@7502b2153453": [
+"other"
+],
+"uasl/sensibo-automation@9dccf51be258": [
+"other"
+],
+"uasl/serpdog-automation@d578924e3711": [
+"other"
+],
+"uasl/setup-pre-commit@95f6657588a0": [
+"devops",
+"testing"
+],
+"uasl/share-point-automation@583c5a594ecf": [
+"other"
+],
+"uasl/short-menu-automation@35d24e0fbeb9": [
+"other"
+],
+"uasl/shotstack-automation@ed54d43a7d1d": [
+"other"
+],
+"uasl/signaturely-automation@ecf1592179f6": [
+"other"
+],
+"uasl/similarweb-digitalrank-api-automation@4d42a17eba32": [
+"other"
+],
+"uasl/simplesat-automation@9d60a87f70b6": [
+"other"
+],
+"uasl/skill-connection-map@b7d597f0981c": [
+"other"
+],
+"uasl/skyfire-automation@970a9884751c": [
+"other"
+],
+"uasl/smartproxy-automation@6e45cd54d591": [
+"other"
+],
+"uasl/smugmug-automation@9fb2647a5814": [
+"other"
+],
+"uasl/soft-skill@4dd04c5022d2": [
+"ui-component",
+"landing-page"
+],
+"uasl/sourcegraph-automation@204fff1839d4": [
+"other"
+],
+"uasl/specter@eeba33cf9245": [
+"debugging",
+"code-review",
+"testing"
+],
+"uasl/spotify-automation@ccaa582efd70": [
+"other"
+],
+"uasl/sql-optimization-patterns@389f90da7b56": [
+"database"
+],
+"uasl/stannp-automation@a5ae133b15f5": [
+"other"
+],
+"uasl/statuscake-automation@741606432c70": [
+"other"
+],
+"uasl/stormglass-io-automation@2d886444d924": [
+"other"
+],
+"uasl/strategic-planning-engine@64327bc2d012": [
+"planning"
+],
+"uasl/stream@94a72913c590": [
+"data-ai",
+"devops"
+],
+"uasl/subagent-driven-development@c88a11afe515": [
+"code-review",
+"other"
+],
+"uasl/supply-chain-risk-auditor@e1d4cbea9ff6": [
+"security-review"
+],
+"uasl/svg-logo-designer@d54de4c01dc1": [
+"ui-component",
+"other"
+],
+"uasl/sympy@c0fc68d7bcdb": [
+"data-ai",
+"other"
+],
+"uasl/systematic-debug@6b158e105823": [
+"debugging",
+"testing"
+],
+"uasl/tailwind-design-system@7db0651a06b1": [
+"ui-component"
+],
+"uasl/tapform-automation@68462250b4c5": [
+"other"
+],
+"uasl/taxjar-automation@0df1ce5a98a0": [
+"other"
+],
+"uasl/teamcamp-automation@aa48c88a793d": [
+"other"
+],
+"uasl/template@8376f5c82e4c": [
+"other"
+],
+"uasl/test-driven-development@0eebe2fe0e28": [
+"testing",
+"debugging"
+],
+"uasl/textit-automation@a81291c4a612": [
+"other"
+],
+"uasl/the-odds-api-automation@688dcc38656c": [
+"other"
+],
+"uasl/thinking-bayesian@df0e4b2e75b4": [
+"other"
+],
+"uasl/thinking-debiasing@d264900b6c92": [
+"other"
+],
+"uasl/thinking-fermi-estimation@2e78f221fd92": [
+"other",
+"planning"
+],
+"uasl/thinking-jobs-to-be-done@1b920fccd1fc": [
+"other",
+"planning"
+],
+"uasl/thinking-map-territory@329a6f9a1863": [
+"other",
+"debugging"
+],
+"uasl/thinking-model-selection@21af56b9c574": [
+"other"
+],
+"uasl/thinking-partner@80abb24d238a": [
+"other",
+"planning"
+],
+"uasl/thinking-regret-minimization@f18d99ba7cec": [
+"other"
+],
+"uasl/thinking-socratic@7c6f525da475": [
+"other",
+"planning"
+],
+"uasl/thinking-thought-experiment@da6ed475a5d8": [
+"other",
+"planning"
+],
+"uasl/ticketmaster-automation@d2f0c72b5edc": [
+"other"
+],
+"uasl/timelinesai-automation@e84924ca97c5": [
+"other"
+],
+"uasl/tisane-automation@bbb431591a98": [
+"other"
+],
+"uasl/to-prd@8ac169d69939": [
+"planning"
+],
+"uasl/tomba-automation@78e0c70c76c3": [
+"other"
+],
+"uasl/top-100-web-vulnerabilities-reference@21b2293939a2": [
+"security-review"
+],
+"uasl/track-improve@8f83ad4ce1d4": [
+"debugging",
+"other"
+],
+"uasl/triage@4f63c8a85819": [
+"debugging",
+"devops"
+],
+"uasl/turbot-pipes-automation@017dd060a792": [
+"other"
+],
+"uasl/twitch-automation@7c6a1f5fa6ec": [
+"other"
+],
+"uasl/typescript-clean-code@409278d3a61a": [
+"refactor",
+"code-review",
+"testing"
+],
+"uasl/u301-automation@c52b0ebcf5c9": [
+"other"
+],
+"uasl/ui-design@812122996fbd": [
+"ui-component",
+"code-review"
+],
+"uasl/universal-ai-config@810b8c3c5958": [
+"other"
+],
+"uasl/uploadcare-automation@e055339389ff": [
+"other"
+],
+"uasl/user-story-splitting@2d9d6a6fd3e3": [
+"planning"
+],
+"uasl/ux-audit@d921ee5d8321": [
+"testing",
+"ui-component"
+],
+"uasl/venly-automation@1bf0958de45f": [
+"other"
+],
+"uasl/vercel-react-best-practices@70f3b5aaf775": [
+"ui-component",
+"refactor",
+"code-review"
+],
+"uasl/verifiedemail-automation@c93c8da7e504": [
+"other"
+],
+"uasl/vibe-security@6b07d0f651a7": [
+"security-review",
+"code-review"
+],
+"uasl/virustotal-automation@2125283ee6e4": [
+"other"
+],
+"uasl/visualization-choice-reporting@7496a3ae2eeb": [
+"data-ai",
+"ui-component"
+],
+"uasl/wachete-automation@13e947368c16": [
+"other"
+],
+"uasl/wati-automation@ba5cc6daa0aa": [
+"other"
+],
+"uasl/web-design-builder@61ee1c248717": [
+"ui-component",
+"landing-page"
+],
+"uasl/web-performance-optimization@b2b38275ed40": [
+"ui-component"
+],
+"uasl/web-prototype@9fcfd712fe7c": [
+"landing-page",
+"ui-component"
+],
+"uasl/webvizio-automation@98d416db606f": [
+"other"
+],
+"uasl/winston-ai-automation@baa1fc233b59": [
+"other"
+],
+"uasl/wiz-automation@954a8521fd25": [
+"other"
+],
+"uasl/workday-automation@3e9313379197": [
+"other"
+],
+"uasl/workshop-facilitation@c8ec916a4f0c": [
+"other"
+],
+"uasl/writing-plans@219901eb119f": [
+"planning"
+],
+"uasl/writing-structure-planner@1d04063e15c3": [
+"docs",
+"planning"
+],
+"uasl/y-gy-automation@e58aa62fd790": [
+"other"
+],
+"uasl/ynab-automation@f9b3aba80ea2": [
+"other"
+],
+"uasl/zenrows-automation@81a66864d644": [
+"other"
+],
+"uasl/zoho-automation@f907be6b310a": [
+"other"
+],
+"uasl/zoho-inventory-automation@2f2863777368": [
+"other"
+],
+"uasl/zoominfo-automation@a2b70f895ffe": [
+"other"
+],
+"anthropics-skills/canvas-design@5866a8f274dd": [
+"other",
+"ui-component"
+],
+"anthropics-skills/docx@74e2b8b277a4": [
+"other",
+"docs"
+],
+"anthropics-skills/pdf@9bc3a6e1ff66": [
+"other",
+"data-ai"
+],
+"anthropics-skills/theme-factory@b505b234a3cd": [
+"ui-component",
+"other"
+],
+"uasl/21risk-automation@eb6e1db53979": [
+"other"
+],
+"uasl/abstract-automation@06003f423618": [
+"other"
+],
+"uasl/accelo-automation@2814337314a2": [
+"other"
+],
+"uasl/accredible-certificates-automation@aa8f7c493654": [
+"other"
+],
+"uasl/addresszen-automation@1f2396b3d148": [
+"other"
+],
+"uasl/adyntel-automation@d2cf2edc679f": [
+"other"
+],
+"uasl/affinda-automation@dcfbe3af78c6": [
+"other"
+],
+"uasl/agent-mail-automation@09d402e4344e": [
+"other"
+],
+"uasl/agiled-automation@8382dd0df794": [
+"other"
+],
+"uasl/ai-ml-api-automation@f198121938ac": [
+"data-ai",
+"other"
+],
+"uasl/algolia-automation@3f169b660062": [
+"other"
+],
+"uasl/alpha-vantage-automation@0102706e36f8": [
+"other"
+],
+"uasl/amara-automation@cf517ba0c3b4": [
+"other"
+],
+"uasl/amcards-automation@19f4adfb3ba9": [
+"other"
+],
+"uasl/anvil@3a36e8410205": [
+"other",
+"docs"
+],
+"uasl/api-design@bba608f8c974": [
+"api-endpoint",
+"code-review"
+],
+"uasl/api-testing@4ada9a2fac88": [
+"testing",
+"api-endpoint",
+"devops"
+],
+"uasl/apilio-automation@bf864787e986": [
+"other"
+],
+"uasl/apollo-automation@61cfd7b05b07": [
+"other"
+],
+"uasl/appsflyer-automation@ecf48ef72a39": [
+"other"
+],
+"uasl/architecture-decision-records@715e99d0306d": [
+"docs",
+"planning"
+],
+"uasl/artisan@1e09f38ffcab": [
+"ui-component"
+],
+"uasl/asin-data-api-automation@fa3bf5f34403": [
+"other"
+],
+"uasl/atheris@5b575b7295c7": [
+"testing",
+"security-review"
+],
+"uasl/attio-automation@bc5c199f3a04": [
+"other"
+],
+"uasl/auth-implementation-patterns@7a99b395d548": [
+"security-review",
+"api-endpoint"
+],
+"uasl/axonaut-automation@6e270447f715": [
+"other"
+],
+"uasl/banner-design@0e161f38cea1": [
+"other",
+"ui-component"
+],
+"uasl/baserow-automation@fbfa685e3f71": [
+"other"
+],
+"uasl/beacon@47f360c45fe3": [
+"devops",
+"planning"
+],
+"uasl/beeminder-automation@ae224127a7d6": [
+"other"
+],
+"uasl/bestbuy-automation@e45351b9a812": [
+"other"
+],
+"uasl/big-data-cloud-automation@196647537ac2": [
+"other"
+],
+"uasl/bigpicture-io-automation@72be3c48fc90": [
+"other"
+],
+"uasl/blackboard-automation@48cc94f2f7e0": [
+"other"
+],
+"uasl/boldsign-automation@ae8045003a85": [
+"other"
+],
+"uasl/bolt@c4895c710162": [
+"refactor",
+"debugging"
+],
+"uasl/borneo-automation@55835bb5f877": [
+"other"
+],
+"uasl/botstar-automation@d3d29c2b5c78": [
+"other"
+],
+"uasl/braintree-automation@6ca1049d53ee": [
+"other"
+],
+"uasl/brandfetch-automation@afc390e0f703": [
+"other"
+],
+"uasl/brex-automation@9fea6da19195": [
+"other"
+],
+"uasl/brightpearl-automation@1ecb8adc7ebd": [
+"other"
+],
+"uasl/browser-extension-builder@3240e6183c28": [
+"ui-component",
+"other"
+],
+"uasl/browserless-automation@67c892e13f80": [
+"other"
+],
+"uasl/bugbug-automation@e0423b470389": [
+"testing",
+"other"
+],
+"uasl/buildkite-automation@2dfebee42685": [
+"devops",
+"other"
+],
+"uasl/busybox-on-windows@8fa5a351edc2": [
+"other",
+"devops"
+],
+"uasl/cal-automation@6acae8a26cfc": [
+"other"
+],
+"uasl/callpage-automation@589a869c4071": [
+"other"
+],
+"uasl/canon@9bbebfd09bb7": [
+"code-review",
+"security-review"
+],
+"uasl/capsule-crm-automation@97113fa8404d": [
+"other"
+],
+"uasl/cast@5200526abf38": [
+"other"
+],
+"uasl/cavecrew@6b0708483bbb": [
+"other",
+"concise-output",
+"code-review"
+],
+"uasl/caveman-stats@2859ce4e33a6": [
+"other",
+"concise-output"
+],
+"uasl/centralstationcrm-automation@c54cc2e5c92e": [
+"other"
+],
+"uasl/chain-roleplay-debate-synthesis@ccf96409045f": [
+"other",
+"planning"
+],
+"uasl/chaos-testing@760793a4a18b": [
+"testing",
+"devops"
+],
+"uasl/chatwork-automation@b3ef79e7f607": [
+"other"
+],
+"uasl/claid-ai-automation@53d4ca35dbb8": [
+"other"
+],
+"uasl/claude-native-canvas-design@5728755c8eb2": [
+"other",
+"ui-component"
+],
+"uasl/clay@6c9572941894": [
+"data-ai",
+"other"
+],
+"uasl/cli-windows-powershell-mastery@88aa890eefd5": [
+"devops",
+"other"
+],
+"uasl/cloudconvert-automation@994a9a2a86c8": [
+"other"
+],
+"uasl/cloudinary-automation@279c66a5816e": [
+"other"
+],
+"uasl/codacy-automation@360b7aba6c5e": [
+"code-review",
+"other"
+],
+"uasl/code-security@e20eb3467925": [
+"security-review",
+"code-review"
+],
+"uasl/codereadr-automation@ee9a833a1fa6": [
+"other"
+],
+"uasl/cognitive-fallacies-guard@f04ba097bb61": [
+"data-ai",
+"other"
+],
+"uasl/coinranking-automation@01b525e65b7b": [
+"other"
+],
+"uasl/communication-storytelling@5152c43359f2": [
+"other"
+],
+"uasl/compliance-audit@f935cdbc8ebe": [
+"security-review",
+"other"
+],
+"uasl/composio-search-automation@d306d9cc8294": [
+"other"
+],
+"uasl/constant-time-testing@6bbb97cc6cc1": [
+"security-review",
+"testing"
+],
+"uasl/content-research-writer@f1af82e4025e": [
+"other",
+"docs"
+],
+"uasl/contract-testing@b0f4c29940a9": [
+"testing",
+"api-endpoint",
+"devops"
+],
+"uasl/conveyor-automation@bec91ec9b776": [
+"other"
+],
+"uasl/cosmos-vulnerability-scanner@15287e1284d6": [
+"security-review",
+"code-review"
+],
+"uasl/coupling-analysis@600d3107e2f9": [
+"refactor",
+"code-review"
+],
+"uasl/cro-methodology@898a4d958df2": [
+"landing-page",
+"other"
+],
+"uasl/crustdata-automation@977cf4ed8525": [
+"other"
+],
+"uasl/customer-journey-map@8b4214de125a": [
+"other"
+],
+"uasl/cutt-ly-automation@134f9385d66d": [
+"other"
+],
+"uasl/daffy-automation@bdf81de15c3e": [
+"other"
+],
+"uasl/data-analyst-engine@79799e01e2dd": [
+"data-ai"
+],
+"uasl/dating-web@a74a01fd41b0": [
+"ui-component",
+"other"
+],
+"uasl/debugging-strategies@c55dad9c9654": [
+"debugging"
+],
+"uasl/decomposition-reconstruction@c615c9eb3d97": [
+"planning",
+"refactor"
+],
+"uasl/deepgram-automation@e79d77d8a713": [
+"other"
+],
+"uasl/demio-automation@0da67228c1aa": [
+"other"
+],
+"uasl/design-brief@3b3646a38d3e": [
+"ui-component",
+"docs"
+],
+"uasl/design-hook@561de9aa519a": [
+"planning",
+"other"
+],
+"uasl/design-review@4964367926b4": [
+"ui-component",
+"code-review"
+],
+"uasl/design-system-starter@3ab04cee98bd": [
+"ui-component",
+"docs"
+],
+"uasl/developer-growth-analysis@4615ad8d56aa": [
+"other"
+],
+"uasl/dictionary-api-automation@bae158f3873b": [
+"other"
+],
+"uasl/digital-eguide@c4288adfa368": [
+"other",
+"ui-component"
+],
+"uasl/dispatching-parallel-agents@e14ed020e820": [
+"other"
+],
+"uasl/docker-hub-automation@271792aed33b": [
+"devops",
+"other"
+],
+"uasl/docsbot-ai-automation@2bdd49b25e0e": [
+"other"
+],
+"uasl/documentation-lookup@dee6d7478eab": [
+"other"
+],
+"uasl/docuseal-automation@6b9d47041e70": [
+"other"
+],
+"uasl/doppler-marketing-automation-automation@1b26aa8299a0": [
+"other"
+],
+"uasl/dovetail-automation@3eeffa898f7c": [
+"other"
+],
+"uasl/drip-jobs-automation@69dfb9d7b5e7": [
+"other"
+],
+"uasl/dropbox-sign-automation@0bff2428db7a": [
+"other"
+],
+"uasl/dynamics365-automation@03e4959eec42": [
+"other"
+],
+"uasl/echtpost-automation@a3691ba7922e": [
+"other"
+],
+"uasl/email-marketing@a37255743f2c": [
+"other",
+"ui-component"
+],
+"uasl/embedding-fusion-strategy@21173cbce66e": [
+"data-ai"
+],
+"uasl/eng-runbook@0895fb3557f4": [
+"docs",
+"devops"
+],
+"uasl/environmental-scanning-foresight@84fb5106baed": [
+"other"
+],
+"uasl/epic-hypothesis@787dd038cb63": [
+"planning",
+"other"
+],
+"uasl/esputnik-automation@d708e2f0102b": [
+"other"
+],
+"uasl/eval-harness@2a2fcc11c03a": [
+"testing",
+"data-ai"
+],
+"uasl/eventbrite-automation@3c64bf358971": [
+"other"
+],
+"uasl/eversign-automation@16f10fc5588e": [
+"other"
+],
+"uasl/excel-automation@026ac73c3c63": [
+"other"
+],
+"uasl/exist-automation@a07cb7bf00b8": [
+"other"
+],
+"uasl/extracta-ai-automation@8e238e436431": [
+"other"
+],
+"uasl/factorial-automation@2e6960395059": [
+"other"
+],
+"uasl/favicon-gen@ff315899c13f": [
+"ui-component"
+],
+"uasl/fibery-automation@8aaf36e55346": [
+"other"
+],
+"uasl/fillout-forms-automation@46e9fd78bce8": [
+"other"
+],
+"uasl/find-bugs@c3ff7d64ff9f": [
+"code-review",
+"security-review",
+"debugging"
+],
+"uasl/fingertip-automation@105b3c993e46": [
+"other"
+],
+"uasl/fireberry-automation@31bfd4fca71c": [
+"other"
+],
+"uasl/firmao-automation@0e4f47676b63": [
+"other"
+],
+"uasl/five-agent-ci-debug@66324570bafb": [
+"debugging",
+"devops"
+],
+"uasl/five-agent-state-update@d7d66be120b0": [
+"other"
+],
+"uasl/flow@d1423e53e763": [
+"ui-component"
+],
+"uasl/fluxguard-automation@2916ab16b2ac": [
+"other"
+],
+"uasl/forcemanager-automation@1e1561c4243d": [
+"other"
+],
+"uasl/formcarry-automation@3d70140935b7": [
+"other"
+],
+"uasl/fp-check@36809c5d2431": [
+"security-review"
+],
+"uasl/front-automation@0f00d70db902": [
+"other"
+],
+"uasl/frontend-slides@8d62c2eeef30": [
+"ui-component",
+"other"
+],
+"uasl/gagelist-automation@7041ff752ce1": [
+"other"
+],
+"uasl/gateway@8350be122608": [
+"api-endpoint",
+"planning",
+"docs"
+],
+"uasl/gemini-automation@a45c91d48772": [
+"data-ai",
+"other"
+],
+"uasl/geoapify-automation@6c3788e9bfd0": [
+"other"
+],
+"uasl/gift-up-automation@7910985aa4d5": [
+"other"
+],
+"uasl/git-advanced-workflows@72c3e980a1f8": [
+"other",
+"devops"
+],
+"uasl/givebutter-automation@6992aeaac6c4": [
+"other"
+],
+"uasl/go-to-webinar-automation@dae3d2a380ea": [
+"other"
+],
+"uasl/goody-automation@51e9ff1bce35": [
+"other"
+],
+"uasl/google-cloud-vision-automation@45dcbabcf748": [
+"data-ai",
+"other"
+],
+"uasl/googlebigquery-automation@b7c0a7507ef0": [
+"database",
+"data-ai"
+],
+"uasl/googlemeet-automation@d25b5982718c": [
+"other"
+],
+"uasl/googletasks-automation@ffbfcf5755b6": [
+"other"
+],
+"uasl/grafbase-automation@39b3b179190e": [
+"other",
+"api-endpoint"
+],
+"uasl/graphrag-system-design@60bb32686303": [
+"data-ai",
+"planning"
+],
+"uasl/grist-automation@2cd49d6347ac": [
+"other"
+],
+"uasl/gsap-frameworks@13a7c7540177": [
+"ui-component"
+],
+"uasl/gsap-scrolltrigger@dd7bfe79efb2": [
+"ui-component",
+"landing-page"
+],
+"uasl/guardian@27ad146feaed": [
+"code-review",
+"devops"
+],
+"uasl/gws-best-practices@8d174ef89902": [
+"other"
+],
+"uasl/harness-writing@b71c9af45925": [
+"testing",
+"security-review"
+],
+"uasl/helloleads-automation@f060aee0629f": [
+"other"
+],
+"uasl/heuristics-and-checklists@5866be43c566": [
+"other",
+"planning"
+],
+"uasl/high-perf-browser@aee32087bf43": [
+"ui-component",
+"refactor"
+],
+"uasl/honeyhive-automation@dfa406baa4b2": [
+"data-ai",
+"other"
+],
+"uasl/hotspotsystem-automation@88d95d030291": [
+"other"
+],
+"uasl/html-to-image-automation@e437046669d9": [
+"other"
+],
+"uasl/hunter-automation@16ca2f412367": [
+"other"
+],
+"uasl/hypotheticals-counterfactuals@42b6fb3cdab9": [
+"other",
+"planning"
+],
+"uasl/icypeas-automation@fb93daa62c17": [
+"other"
+],
+"uasl/image-enhancer@df8c8d454fcf": [
+"other"
+],
+"uasl/imagegen-frontend-web@3c09b1b364ef": [
+"landing-page",
+"ui-component"
+],
+"uasl/impeccable-frontend-design@deeb3fdb9086": [
+"ui-component",
+"landing-page"
+],
+"uasl/information-architecture@52f13543ba9f": [
+"ui-component",
+"planning"
+],
+"uasl/inspired-product@e73e5dbb4e9d": [
+"other",
+"planning"
+],
+"uasl/intelliprint-automation@7fd12d612656": [
+"other"
+],
+"uasl/internet-search-parsing-mastery@9b0ecf6d3c36": [
+"other"
+],
+"uasl/investor-outreach@fedb2eb4a89c": [
+"other"
+],
+"uasl/ip2location-automation@46db791decb4": [
+"other"
+],
+"uasl/ipdata-co-automation@cbde08f64007": [
+"other"
+],
+"uasl/iterate-pr@0c545d33cef2": [
+"code-review",
+"debugging",
+"devops"
+],
+"uasl/jotform-automation@41d82bc651c3": [
+"other"
+],
+"uasl/junglescout-automation@7b43f6a023b4": [
+"other"
+],
+"uasl/kanban-board@2d1da6290ea3": [
+"ui-component"
+],
+"uasl/kickbox-automation@589a80f27d79": [
+"other"
+],
+"uasl/knowledge-graph-construction@5eb99ca78465": [
+"data-ai",
+"database"
+],
+"uasl/kraken-io-automation@6138f774ae6a": [
+"other"
+],
+"uasl/landbot-automation@f8b18089db10": [
+"other"
+],
+"uasl/latch@1bd1d888e79e": [
+"other",
+"devops"
+],
+"uasl/lead-research-assistant@89deabc18ff1": [
+"other"
+],
+"uasl/lean-ux@9e67f881c94a": [
+"other",
+"planning"
+],
+"uasl/lemlist-automation@a31df61c312a": [
+"other"
+],
+"uasl/lever-automation@8903d446668f": [
+"other"
+],
+"uasl/lexoffice-automation@dab3c1b4817e": [
+"other"
+],
+"uasl/linkup-automation@ee5f526d2d4f": [
+"other"
+],
+"uasl/livesession-automation@9da59ed6843b": [
+"other"
+],
+"uasl/ln-020-codegraph@4b3c5fef9457": [
+"other",
+"refactor"
+],
+"uasl/loom@e731d9ef70c3": [
+"ui-component",
+"other"
+],
+"uasl/lyric@49d6eb64a034": [
+"other"
+],
+"uasl/mailbluster-automation@3fedd3ef82c0": [
+"other"
+],
+"uasl/mailerlite-automation@45ce991e9569": [
+"other"
+],
+"uasl/maintainx-automation@b1feb0a27fd3": [
+"other"
+],
+"uasl/mapping-visualization-scaffolds@9b55c28e3593": [
+"docs",
+"planning",
+"other"
+],
+"uasl/master-skill-orchestrator@88189d369f72": [
+"other"
+],
+"uasl/meeting-notes@da1c35784ab9": [
+"ui-component",
+"other"
+],
+"uasl/memberspot-automation@7aa056d0c94c": [
+"other"
+],
+"uasl/mend@9ea877a21ec7": [
+"devops"
+],
+"uasl/metaads-automation@60a8eeffcfb9": [
+"other"
+],
+"uasl/microinteractions@d61a5035d0f0": [
+"ui-component"
+],
+"uasl/migrate-to-shoehorn@50bfd668fa65": [
+"testing",
+"refactor"
+],
+"uasl/mistral-ai-automation@df160a2db3cd": [
+"data-ai",
+"other"
+],
+"uasl/moco-automation@340275dd712e": [
+"other"
+],
+"uasl/monorepo-management@4078df072127": [
+"devops",
+"refactor"
+],
+"uasl/more-trees-automation@3f30ba7af28a": [
+"other"
+],
+"uasl/moxie-automation@883f47607769": [
+"other"
+],
+"uasl/mural-automation@8fd9b4325942": [
+"other"
+],
+"uasl/n8n-code-javascript@203459f10f1d": [
+"other"
+],
+"uasl/n8n-node-configuration@11407cd84493": [
+"other"
+],
+"uasl/nano-nets-automation@88dce1cd7a07": [
+"other"
+],
+"uasl/ncscale-automation@1b5df6b048f6": [
+"other"
+],
+"uasl/negotiation@00a3e4e874e5": [
+"other"
+],
+"uasl/neutrino-automation@71f56bb52995": [
+"other"
+],
+"uasl/next-best-practices@ee058f89acea": [
+"ui-component",
+"code-review"
+],
+"uasl/nextjs-turbopack@b0af0186e13a": [
+"devops",
+"ui-component"
+],
+"uasl/npm-automation@cf49ea0e0c09": [
+"other",
+"devops"
+],
+"uasl/ocrspace-automation@7c9801fc34e9": [
+"other"
+],
+"uasl/one-page-marketing@d68a7fc03f08": [
+"other"
+],
+"uasl/onesignal-rest-api-automation@69760a7d8416": [
+"other"
+],
+"uasl/openapi-spec-generation@2d2c7a93b8f2": [
+"api-endpoint",
+"docs"
+],
+"uasl/openperplex-automation@262f16c08310": [
+"other"
+],
+"uasl/optimoroute-automation@f53c7b0ab906": [
+"other"
+],
+"uasl/owl-protocol-automation@8f7fc1a60c9c": [
+"other"
+],
+"uasl/parallel-automation@bf255cb84e87": [
+"other"
+],
+"uasl/parseur-automation@88c38c3fefed": [
+"other"
+],
+"uasl/pdf-api-io-automation@7b8915fb3da2": [
+"other"
+],
+"uasl/pdfmonkey-automation@5af88908f123": [
+"other"
+],
+"uasl/perf-web-optimization@0e20e7b8cc98": [
+"ui-component",
+"refactor"
+],
+"uasl/pestel-analysis@22e60a6419e7": [
+"other"
+],
+"uasl/piloterr-automation@1e6577a7a642": [
+"other"
+],
+"uasl/pipeline-crm-automation@4012cb0f86a1": [
+"other"
+],
+"uasl/planning-with-files@5da17072dc31": [
+"planning"
+],
+"uasl/pm-spec@f01a5865e09d": [
+"planning",
+"docs"
+],
+"uasl/poptin-automation@478edda6e4c1": [
+"other"
+],
+"uasl/postgrid-automation@06ff35f3d476": [
+"other"
+],
+"uasl/pre-pr@6d87559d4507": [
+"code-review",
+"testing",
+"devops"
+],
+"uasl/press-release@705776e510df": [
+"other",
+"planning"
+],
+"uasl/printing-press-output-review@35c772127bb2": [
+"code-review",
+"other"
+],
+"uasl/printing-press@9498149d380e": [
+"other"
+],
+"uasl/probe@e9e9e74a4225": [
+"security-review",
+"testing"
+],
+"uasl/product-capability@bbb08b3b6752": [
+"planning"
+],
+"uasl/profile@fa2e262077f0": [
+"debugging",
+"refactor"
+],
+"uasl/proofly-automation@b3dfdc7299da": [
+"other"
+],
+"uasl/prototyping-pretotyping@df9f5509380c": [
+"planning",
+"other"
+],
+"uasl/pulse@d691047d31fb": [
+"data-ai",
+"planning"
+],
+"uasl/python-error-handling@8dc34883a143": [
+"refactor",
+"debugging",
+"testing"
+],
+"uasl/qa@8332d48559c8": [
+"debugging",
+"other"
+],
+"uasl/quickbooks-automation@bbe37470a32c": [
+"other"
+],
+"uasl/radar@a47ea6fd5f95": [
+"testing"
+],
+"uasl/raisely-automation@50e78dda6de0": [
+"other"
+],
+"uasl/react-patterns@73d1ecc06997": [
+"ui-component",
+"code-review",
+"refactor"
+],
+"uasl/receiving-code-review@5c548774a9ad": [
+"code-review"
+],
+"uasl/refactoring-patterns@7283bad3e86e": [
+"refactor",
+"code-review"
+],
+"uasl/relay@7794e4cab2a2": [
+"api-endpoint",
+"other"
+],
+"uasl/remove-bg-automation@2d7e81e32f3c": [
+"other"
+],
+"uasl/replit-deck@84797e95ef8f": [
+"other",
+"ui-component"
+],
+"uasl/requesting-code-review@82594984f359": [
+"code-review"
+],
+"uasl/resend-automation@9ace7a41f2cb": [
+"other"
+],
+"uasl/retailed-automation@f2025c0f6849": [
+"other"
+],
+"uasl/retrieval-search-orchestration@e6462f094f82": [
+"data-ai"
+],
+"uasl/rewind@64cfc63aad18": [
+"debugging"
+],
+"uasl/ritekit-automation@2d0979932157": [
+"other"
+],
+"uasl/role-switch@a3dd5f7c2037": [
+"other",
+"planning"
+],
+"uasl/saas-economics-efficiency-metrics@b5a33fe2813c": [
+"other"
+],
+"uasl/sage-automation@1966ee009c8d": [
+"other"
+],
+"uasl/sap-successfactors-automation@2bb8d7182373": [
+"other"
+],
+"uasl/scaffold@443673063eb0": [
+"devops"
+],
+"uasl/scorecard-marketing@2d025421dbdc": [
+"landing-page",
+"other"
+],
+"uasl/scrapegraph-ai-automation@70ec97d83c62": [
+"other"
+],
+"uasl/screenshot-fyi-automation@d4d995bb392b": [
+"other"
+],
+"uasl/second-opinion@129803cad9d9": [
+"code-review"
+],
+"uasl/security-review@fcc354bc486e": [
+"security-review",
+"code-review"
+],
+"uasl/seismic-automation@9493ee03a725": [
+"other"
+],
+"uasl/semrush-automation@e0e5480c7eb1": [
+"other"
+],
+"uasl/sendlane-automation@8c7496d95622": [
+"other"
+],
+"uasl/sentinel@68f8e2afebcc": [
+"security-review"
+],
+"uasl/serply-automation@baac399be6b6": [
+"other"
+],
+"uasl/sevdesk-automation@54339172a051": [
+"other"
+],
+"uasl/sherpa@e80ffe2d019e": [
+"planning"
+],
+"uasl/shortcut-automation@c33a82382afa": [
+"other"
+],
+"uasl/showcase@66f46f81d885": [
+"ui-component",
+"testing",
+"docs"
+],
+"uasl/signpath-automation@68572f3cf513": [
+"other",
+"devops"
+],
+"uasl/simla-com-automation@5954f20472e8": [
+"other"
+],
+"uasl/sitespeakai-automation@df4050b222fd": [
+"other"
+],
+"uasl/skill-judge@fbf1f2cc412c": [
+"other"
+],
+"uasl/slack-bot-builder@ce64c6aad24e": [
+"other",
+"api-endpoint"
+],
+"uasl/smartrecruiters-automation@5647e70c7d68": [
+"other"
+],
+"uasl/snowflake-automation@8f41cfe96880": [
+"database",
+"data-ai"
+],
+"uasl/software-architecture@011a6d823631": [
+"refactor",
+"planning"
+],
+"uasl/spark@e34a95f62716": [
+"planning"
+],
+"uasl/splitwise-automation@3b8562b5f551": [
+"other"
+],
+"uasl/spotlightr-automation@4a1459795f61": [
+"other"
+],
+"uasl/sslmate-cert-spotter-api-automation@33ef5987b7da": [
+"other"
+],
+"uasl/starton-automation@c39fb27ca6ef": [
+"other"
+],
+"uasl/stitch-skill@fb65eab9580f": [
+"ui-component",
+"docs"
+],
+"uasl/storyboard@41cf0e5dc6fd": [
+"other",
+"planning"
+],
+"uasl/strategy-and-competitive-analysis@9a629ebfd512": [
+"other"
+],
+"uasl/streamtime-automation@ff63b73555da": [
+"other"
+],
+"uasl/supabase-postgres-best-practices@af167084fda1": [
+"database"
+],
+"uasl/supportbee-automation@d4ce250151d6": [
+"other"
+],
+"uasl/svix-automation@f8606b42bb11": [
+"other"
+],
+"uasl/synthesis-and-analogy@a56200297429": [
+"other"
+],
+"uasl/systems-thinking-leverage@bdfd2088d533": [
+"other",
+"planning"
+],
+"uasl/talenthr-automation@10e703dc105d": [
+"other"
+],
+"uasl/taste-skill@57790089504e": [
+"ui-component",
+"landing-page"
+],
+"uasl/tdd-workflow@6eadb0bf0ea8": [
+"testing"
+],
+"uasl/telnyx-automation@feee46aeb36b": [
+"other"
+],
+"uasl/templated-automation@efdc34d008b9": [
+"other"
+],
+"uasl/testrunner@68216aa52709": [
+"testing",
+"debugging"
+],
+"uasl/textrazor-automation@5a5a4961c2bb": [
+"other"
+],
+"uasl/theme-factory@3703d7e4f45c": [
+"ui-component",
+"other"
+],
+"uasl/thinking-bounded-rationality@17d6c0bdfb95": [
+"other",
+"planning"
+],
+"uasl/thinking-dual-process@ef71f2040b15": [
+"other"
+],
+"uasl/thinking-first-principles@96badf934096": [
+"planning",
+"other"
+],
+"uasl/thinking-kepner-tregoe@2a9ddc837752": [
+"debugging",
+"planning",
+"other"
+],
+"uasl/thinking-margin-of-safety@2336a8b814d3": [
+"planning",
+"other"
+],
+"uasl/thinking-occams-razor@326da9319f5b": [
+"debugging",
+"other"
+],
+"uasl/thinking-pre-mortem@3de61a7f85c4": [
+"planning"
+],
+"uasl/thinking-reversibility@00c6455aabae": [
+"planning",
+"other"
+],
+"uasl/thinking-steel-manning@651f80a0a704": [
+"code-review",
+"other"
+],
+"uasl/thinking-triz@005a4ebc0d5a": [
+"other",
+"planning"
+],
+"uasl/ticktick-automation@35ba033f5e3d": [
+"other"
+],
+"uasl/timelink-automation@4f0eeaa52d3e": [
+"other"
+],
+"uasl/titan@39c6080f3dfc": [
+"other"
+],
+"uasl/toggl-automation@ade179c88f7f": [
+"other"
+],
+"uasl/tomtom-automation@322cc6514570": [
+"other"
+],
+"uasl/top-design@4ea889def6d2": [
+"ui-component",
+"landing-page"
+],
+"uasl/traction-eos@2ac32559c0d7": [
+"other"
+],
+"uasl/trigger-dev@d05b3d95379f": [
+"devops",
+"data-ai"
+],
+"uasl/turso-automation@e66d4f8950c0": [
+"other",
+"database"
+],
+"uasl/twitter-algorithm-optimizer@ee2e940fffc6": [
+"other"
+],
+"uasl/typescript-unit-testing@6fb3561edcb3": [
+"testing"
+],
+"uasl/ubiquitous-language@0c7a6937f877": [
+"docs",
+"planning"
+],
+"uasl/uiux-design-review@73334ec22610": [
+"ui-component",
+"code-review"
+],
+"uasl/universal-ai-setup@c9f3fcedeec6": [
+"other"
+],
+"uasl/upstash-qstash@4aec8366af8b": [
+"api-endpoint",
+"devops"
+],
+"uasl/userlist-automation@6e87b6855534": [
+"other"
+],
+"uasl/ux-heuristics@ff940b7d8a9f": [
+"ui-component"
+],
+"uasl/veo-automation@b5fc9f7ce2ba": [
+"other"
+],
+"uasl/vercel-react-native-skills@6e314641b44a": [
+"ui-component"
+],
+"uasl/veriphone-automation@0496bea68a3f": [
+"other"
+],
+"uasl/video-downloader@e2d3a42db50d": [
+"other"
+],
+"uasl/visme-automation@7895a9ffb38c": [
+"other"
+],
+"uasl/voice-agents@40a498ca1e90": [
+"data-ai"
+],
+"uasl/waiverfile-automation@f7c90e6dc014": [
+"other"
+],
+"uasl/wave-accounting-automation@64fe0dcd40c3": [
+"other"
+],
+"uasl/web-design-guidelines@b95baac579eb": [
+"ui-component",
+"code-review"
+],
+"uasl/web-prototype-taste-brutalist@0e8bedd1ad81": [
+"ui-component",
+"landing-page"
+],
+"uasl/web-typography@9eba9455d882": [
+"ui-component"
+],
+"uasl/weekly-update@e18ba8d591b9": [
+"other",
+"ui-component"
+],
+"uasl/wireframe-sketch@715426b3232f": [
+"ui-component",
+"planning"
+],
+"uasl/wolfram-alpha-api-automation@44019919605d": [
+"other"
+],
+"uasl/workflow-automation@8036a9d484a3": [
+"other",
+"devops"
+],
+"uasl/worksnaps-automation@672243afea39": [
+"other"
+],
+"uasl/writing-pre-publish-checklist@a23d9bdf22bd": [
+"docs",
+"other"
+],
+"uasl/wycheproof@8924e1e4bfb6": [
+"security-review",
+"testing"
+],
+"uasl/yandex-automation@5a11615e1158": [
+"other"
+],
+"uasl/yousearch-automation@b9b045a9784c": [
+"other"
+],
+"uasl/zenserp-automation@f15edbb5b210": [
+"other"
+],
+"uasl/zoho-bigin-automation@aad9824151fe": [
+"other"
+],
+"uasl/zoho-invoice-automation@c7fc8fada510": [
+"other"
+],
+"uasl/zylvie-automation@0d24ad18d0c3": [
+"other"
+]
+}

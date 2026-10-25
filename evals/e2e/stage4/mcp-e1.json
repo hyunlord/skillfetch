@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "skillfetch": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": ["--from", "git+https://github.com/hyunlord/skillfetch@a1cbcd5", "skillfetch", "serve"],
+      "env": {}
+    }
+  }
+}

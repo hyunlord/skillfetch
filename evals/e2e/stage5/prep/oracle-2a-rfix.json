@@ -1,0 +1,44 @@
+{
+ "s4-t027": {
+  "skills": [
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/python-testing-patterns@e62d0f1ca316"
+  ],
+  "reason": "FastAPI/SQLModel validation fix in update routes, plus pytest cases for null and clearable fields"
+ },
+ "s4-t033": {
+  "skills": [],
+  "reason": "Small, well-specified conditional change in one frontend error handler"
+ },
+ "s4-t203": {
+  "skills": [
+   "uasl/data-analyst-engine@79799e01e2dd",
+   "uasl/ai-expertise-engine@902bd0b3e61f"
+  ],
+  "reason": "Imbalanced text classification with class weights or focal loss, and per-class F1 comparison"
+ },
+ "s4-t211": {
+  "skills": [
+   "uasl/defense-in-depth@e9a7d1415325"
+  ],
+  "reason": "Config-driven hashing bucket count with a fail-fast mismatch check at app startup"
+ },
+ "s4-t224": {
+  "skills": [],
+  "reason": "Narrow canvas pixel preprocessing for TF.js; no catalog skill covers it specifically"
+ },
+ "s4-t229": {
+  "skills": [
+   "uasl/auth-implementation-patterns@7a99b395d548",
+   "uasl/secure-coding-practices@cc37fcd8687e"
+  ],
+  "reason": "JWT token-type claim hardening and validation in deps and the reset-token verifier"
+ },
+ "s4-t253": {
+  "skills": [
+   "uasl/sql-optimization-patterns@389f90da7b56",
+   "uasl/postgresql-table-design@59d09e948243"
+  ],
+  "reason": "Combining the count and list queries with a window function, plus a composite index migration"
+ }
+}

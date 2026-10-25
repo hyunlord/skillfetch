@@ -1,0 +1,1705 @@
+{
+ "oracle": "oracle-v5-direction-b.jsonl",
+ "differ": [
+  "pair01",
+  "pair02",
+  "pair03",
+  "pair04",
+  "pair05",
+  "pair06",
+  "pair07",
+  "pair08",
+  "pair09",
+  "pair10",
+  "pair11",
+  "pair12",
+  "pair13",
+  "pair14",
+  "pair15",
+  "pair16",
+  "pair17",
+  "pair19",
+  "pair20"
+ ],
+ "n_differ": 19,
+ "denominator": [
+  "pair03",
+  "pair05",
+  "pair08",
+  "pair11",
+  "pair17",
+  "pair20"
+ ],
+ "n_den": 6,
+ "coverage_gap": [
+  "pair01",
+  "pair02",
+  "pair04",
+  "pair06",
+  "pair07",
+  "pair09",
+  "pair10",
+  "pair12",
+  "pair13",
+  "pair14",
+  "pair15",
+  "pair16",
+  "pair19"
+ ],
+ "same_sets": [
+  "pair18"
+ ],
+ "cover": {
+  "pair01": {
+   "a": [
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28"
+   ],
+   "b": []
+  },
+  "pair02": {
+   "a": [
+    "uasl/code-security@e20eb3467925",
+    "uasl/pipe@0f029a41f006"
+   ],
+   "b": []
+  },
+  "pair03": {
+   "a": [
+    "uasl/accessibility-compliance@696d2b4119ed",
+    "uasl/ui-audit@be637d5e2baf"
+   ],
+   "b": [
+    "uasl/web-design@b19d7c3f962e"
+   ]
+  },
+  "pair04": {
+   "a": [],
+   "b": []
+  },
+  "pair05": {
+   "a": [
+    "uasl/grill-with-docs@99f1bafe73fe",
+    "uasl/ripple@620dca56eca0",
+    "uasl/tlc-spec-driven@394ed16ecc07",
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "b": [
+    "uasl/coding-guidelines@0ec7e45f92f2",
+    "uasl/karpathy-guidelines@da897c8c3bab"
+   ]
+  },
+  "pair06": {
+   "a": [],
+   "b": []
+  },
+  "pair07": {
+   "a": [
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28"
+   ],
+   "b": []
+  },
+  "pair08": {
+   "a": [
+    "uasl/code-security@e20eb3467925",
+    "uasl/owasp-security@9847d3666f75",
+    "uasl/secure-coding-practices@cc37fcd8687e",
+    "uasl/security-review@fcc354bc486e",
+    "uasl/vibe-security@6b07d0f651a7"
+   ],
+   "b": [
+    "uasl/bolt@c4895c710162",
+    "uasl/design-optimize@cbb1632043ec",
+    "uasl/high-perf-browser@aee32087bf43",
+    "uasl/react-patterns@73d1ecc06997",
+    "uasl/vercel-react-best-practices@70f3b5aaf775",
+    "uasl/web-perf@9063b7e5eacf",
+    "uasl/web-performance-optimization@b2b38275ed40"
+   ]
+  },
+  "pair09": {
+   "a": [
+    "uasl/accessibility-compliance@696d2b4119ed"
+   ],
+   "b": []
+  },
+  "pair10": {
+   "a": [],
+   "b": []
+  },
+  "pair11": {
+   "a": [
+    "uasl/decomposition-planning-roadmap@750bfb7d134f",
+    "uasl/planning-with-files@5da17072dc31",
+    "uasl/request-refactor-plan@49b853892f06",
+    "uasl/ripple@620dca56eca0",
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "b": [
+    "uasl/coding-guidelines@0ec7e45f92f2",
+    "uasl/karpathy-guidelines@da897c8c3bab"
+   ]
+  },
+  "pair12": {
+   "a": [],
+   "b": []
+  },
+  "pair13": {
+   "a": [
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28"
+   ],
+   "b": []
+  },
+  "pair14": {
+   "a": [
+    "uasl/code-security@e20eb3467925",
+    "uasl/pipe@0f029a41f006"
+   ],
+   "b": []
+  },
+  "pair15": {
+   "a": [
+    "uasl/accessibility-compliance@696d2b4119ed",
+    "uasl/ui-audit@be637d5e2baf"
+   ],
+   "b": []
+  },
+  "pair16": {
+   "a": [],
+   "b": []
+  },
+  "pair17": {
+   "a": [
+    "uasl/grill-me@a821be519d0d",
+    "uasl/grill-with-docs@99f1bafe73fe",
+    "uasl/planning-with-files@5da17072dc31",
+    "uasl/ripple@620dca56eca0",
+    "uasl/system-design@e45b77ba7a35",
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "b": [
+    "uasl/coding-guidelines@0ec7e45f92f2",
+    "uasl/karpathy-guidelines@da897c8c3bab"
+   ]
+  },
+  "pair18": {
+   "a": [],
+   "b": []
+  },
+  "pair19": {
+   "a": [
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28"
+   ],
+   "b": []
+  },
+  "pair20": {
+   "a": [
+    "uasl/code-security@e20eb3467925",
+    "uasl/owasp-security@9847d3666f75",
+    "uasl/secure-coding-practices@cc37fcd8687e",
+    "uasl/security-review@fcc354bc486e",
+    "uasl/vibe-security@6b07d0f651a7"
+   ],
+   "b": [
+    "uasl/bolt@c4895c710162",
+    "uasl/design-optimize@cbb1632043ec",
+    "uasl/perf-lighthouse@ccafe273f7d2",
+    "uasl/react-patterns@73d1ecc06997",
+    "uasl/vercel-react-best-practices@70f3b5aaf775",
+    "uasl/web-perf@9063b7e5eacf",
+    "uasl/web-performance-optimization@b2b38275ed40"
+   ]
+  }
+ },
+ "M": {
+  "pair01": {
+   "a": [
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28"
+   ],
+   "b": []
+  },
+  "pair02": {
+   "a": [
+    "uasl/code-security@e20eb3467925"
+   ],
+   "b": []
+  },
+  "pair03": {
+   "a": [
+    "uasl/accessibility-compliance@696d2b4119ed",
+    "uasl/ui-audit@be637d5e2baf"
+   ],
+   "b": [
+    "uasl/web-design@b19d7c3f962e"
+   ]
+  },
+  "pair04": {
+   "a": [],
+   "b": []
+  },
+  "pair05": {
+   "a": [
+    "uasl/grill-with-docs@99f1bafe73fe",
+    "uasl/ripple@620dca56eca0",
+    "uasl/tlc-spec-driven@394ed16ecc07",
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "b": []
+  },
+  "pair06": {
+   "a": [],
+   "b": []
+  },
+  "pair07": {
+   "a": [
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28"
+   ],
+   "b": []
+  },
+  "pair08": {
+   "a": [
+    "uasl/code-security@e20eb3467925",
+    "uasl/owasp-security@9847d3666f75",
+    "uasl/secure-coding-practices@cc37fcd8687e",
+    "uasl/security-review@fcc354bc486e",
+    "uasl/vibe-security@6b07d0f651a7"
+   ],
+   "b": [
+    "uasl/bolt@c4895c710162",
+    "uasl/design-optimize@cbb1632043ec",
+    "uasl/high-perf-browser@aee32087bf43",
+    "uasl/react-patterns@73d1ecc06997",
+    "uasl/vercel-react-best-practices@70f3b5aaf775",
+    "uasl/web-perf@9063b7e5eacf",
+    "uasl/web-performance-optimization@b2b38275ed40"
+   ]
+  },
+  "pair09": {
+   "a": [
+    "uasl/accessibility-compliance@696d2b4119ed"
+   ],
+   "b": []
+  },
+  "pair10": {
+   "a": [],
+   "b": []
+  },
+  "pair11": {
+   "a": [
+    "uasl/decomposition-planning-roadmap@750bfb7d134f",
+    "uasl/planning-with-files@5da17072dc31",
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "b": []
+  },
+  "pair12": {
+   "a": [],
+   "b": []
+  },
+  "pair13": {
+   "a": [
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28"
+   ],
+   "b": []
+  },
+  "pair14": {
+   "a": [
+    "uasl/code-security@e20eb3467925"
+   ],
+   "b": []
+  },
+  "pair15": {
+   "a": [
+    "uasl/accessibility-compliance@696d2b4119ed",
+    "uasl/ui-audit@be637d5e2baf"
+   ],
+   "b": []
+  },
+  "pair16": {
+   "a": [],
+   "b": []
+  },
+  "pair17": {
+   "a": [
+    "uasl/grill-me@a821be519d0d",
+    "uasl/grill-with-docs@99f1bafe73fe",
+    "uasl/planning-with-files@5da17072dc31",
+    "uasl/ripple@620dca56eca0",
+    "uasl/system-design@e45b77ba7a35",
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "b": []
+  },
+  "pair18": {
+   "a": [],
+   "b": []
+  },
+  "pair19": {
+   "a": [
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28"
+   ],
+   "b": []
+  },
+  "pair20": {
+   "a": [
+    "uasl/code-security@e20eb3467925",
+    "uasl/owasp-security@9847d3666f75",
+    "uasl/secure-coding-practices@cc37fcd8687e",
+    "uasl/security-review@fcc354bc486e",
+    "uasl/vibe-security@6b07d0f651a7"
+   ],
+   "b": [
+    "uasl/bolt@c4895c710162",
+    "uasl/design-optimize@cbb1632043ec",
+    "uasl/perf-lighthouse@ccafe273f7d2",
+    "uasl/react-patterns@73d1ecc06997",
+    "uasl/vercel-react-best-practices@70f3b5aaf775",
+    "uasl/web-perf@9063b7e5eacf",
+    "uasl/web-performance-optimization@b2b38275ed40"
+   ]
+  }
+ },
+ "match_cost_usd": 0.46598,
+ "n_no_relevant": 84,
+ "n_cov": 289,
+ "threshold_ratio": 0.8125,
+ "S-bp": {
+  "per_generation": [
+   {
+    "moved_den": 6,
+    "moved_all_differ": 13,
+    "moved_pairs": [
+     "pair01",
+     "pair03",
+     "pair05",
+     "pair07",
+     "pair08",
+     "pair09",
+     "pair11",
+     "pair13",
+     "pair14",
+     "pair15",
+     "pair17",
+     "pair19",
+     "pair20"
+    ],
+    "none_acc": 0.845,
+    "hit": 0.789
+   },
+   {
+    "moved_den": 6,
+    "moved_all_differ": 12,
+    "moved_pairs": [
+     "pair01",
+     "pair03",
+     "pair05",
+     "pair07",
+     "pair08",
+     "pair09",
+     "pair11",
+     "pair13",
+     "pair15",
+     "pair17",
+     "pair19",
+     "pair20"
+    ],
+    "none_acc": 0.833,
+    "hit": 0.799
+   },
+   {
+    "moved_den": 6,
+    "moved_all_differ": 12,
+    "moved_pairs": [
+     "pair01",
+     "pair03",
+     "pair05",
+     "pair07",
+     "pair08",
+     "pair09",
+     "pair11",
+     "pair13",
+     "pair15",
+     "pair17",
+     "pair19",
+     "pair20"
+    ],
+    "none_acc": 0.845,
+    "hit": 0.775
+   }
+  ],
+  "mean_moved_den": 6.0,
+  "mean_ratio_den": 1.0,
+  "mean_moved_all_differ": 12.333,
+  "mean_ratio_all_differ": 0.649,
+  "mean_none_acc": 0.841,
+  "mean_hit": 0.788,
+  "counts_cases": {
+   "moved": 18
+  },
+  "by_pair": {
+   "pair03": "moved",
+   "pair05": "moved",
+   "pair08": "moved",
+   "pair11": "moved",
+   "pair17": "moved",
+   "pair20": "moved"
+  },
+  "cases": [
+   {
+    "pair": "pair03",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/sql-optimization-patterns@389f90da7b56"
+    ],
+    "sel_b": [
+     "uasl/sql-optimization-patterns@389f90da7b56",
+     "uasl/web-design@b19d7c3f962e"
+    ],
+    "M_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/ui-audit@be637d5e2baf"
+    ],
+    "M_b": [
+     "uasl/web-design@b19d7c3f962e"
+    ],
+    "M_a_rank": {
+     "uasl/accessibility-compliance@696d2b4119ed": 13,
+     "uasl/ui-audit@be637d5e2baf": 19
+    },
+    "M_b_rank": {
+     "uasl/web-design@b19d7c3f962e": 1
+    }
+   },
+   {
+    "pair": "pair05",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/grill-with-docs@99f1bafe73fe",
+     "uasl/ripple@620dca56eca0",
+     "uasl/tlc-spec-driven@394ed16ecc07",
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/grill-with-docs@99f1bafe73fe": 5,
+     "uasl/ripple@620dca56eca0": null,
+     "uasl/tlc-spec-driven@394ed16ecc07": 11,
+     "uasl/writing-plans@219901eb119f": 16
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair08",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/artisan@1e09f38ffcab",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/stripe-best-practices@795a33f68129"
+    ],
+    "sel_b": [
+     "uasl/stripe-best-practices@795a33f68129",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a": [
+     "uasl/code-security@e20eb3467925",
+     "uasl/owasp-security@9847d3666f75",
+     "uasl/secure-coding-practices@cc37fcd8687e",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "M_b": [
+     "uasl/bolt@c4895c710162",
+     "uasl/design-optimize@cbb1632043ec",
+     "uasl/high-perf-browser@aee32087bf43",
+     "uasl/react-patterns@73d1ecc06997",
+     "uasl/vercel-react-best-practices@70f3b5aaf775",
+     "uasl/web-perf@9063b7e5eacf",
+     "uasl/web-performance-optimization@b2b38275ed40"
+    ],
+    "M_a_rank": {
+     "uasl/code-security@e20eb3467925": null,
+     "uasl/owasp-security@9847d3666f75": null,
+     "uasl/secure-coding-practices@cc37fcd8687e": null,
+     "uasl/security-review@fcc354bc486e": 12,
+     "uasl/vibe-security@6b07d0f651a7": 31
+    },
+    "M_b_rank": {
+     "uasl/bolt@c4895c710162": 23,
+     "uasl/design-optimize@cbb1632043ec": null,
+     "uasl/high-perf-browser@aee32087bf43": 48,
+     "uasl/react-patterns@73d1ecc06997": 21,
+     "uasl/vercel-react-best-practices@70f3b5aaf775": 3,
+     "uasl/web-perf@9063b7e5eacf": 25,
+     "uasl/web-performance-optimization@b2b38275ed40": 6
+    }
+   },
+   {
+    "pair": "pair11",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/refactoring-patterns@7283bad3e86e",
+     "uasl/request-refactor-plan@49b853892f06",
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "sel_b": [
+     "uasl/refactoring-patterns@7283bad3e86e"
+    ],
+    "M_a": [
+     "uasl/decomposition-planning-roadmap@750bfb7d134f",
+     "uasl/planning-with-files@5da17072dc31",
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/decomposition-planning-roadmap@750bfb7d134f": null,
+     "uasl/planning-with-files@5da17072dc31": null,
+     "uasl/writing-plans@219901eb119f": 10
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair17",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/grill-me@a821be519d0d",
+     "uasl/grill-with-docs@99f1bafe73fe",
+     "uasl/planning-with-files@5da17072dc31",
+     "uasl/ripple@620dca56eca0",
+     "uasl/system-design@e45b77ba7a35",
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/grill-me@a821be519d0d": null,
+     "uasl/grill-with-docs@99f1bafe73fe": 45,
+     "uasl/planning-with-files@5da17072dc31": null,
+     "uasl/ripple@620dca56eca0": 5,
+     "uasl/system-design@e45b77ba7a35": null,
+     "uasl/writing-plans@219901eb119f": 20
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair20",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/next-best-practices@ee058f89acea",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "sel_b": [
+     "uasl/next-best-practices@ee058f89acea",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a": [
+     "uasl/code-security@e20eb3467925",
+     "uasl/owasp-security@9847d3666f75",
+     "uasl/secure-coding-practices@cc37fcd8687e",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "M_b": [
+     "uasl/bolt@c4895c710162",
+     "uasl/design-optimize@cbb1632043ec",
+     "uasl/perf-lighthouse@ccafe273f7d2",
+     "uasl/react-patterns@73d1ecc06997",
+     "uasl/vercel-react-best-practices@70f3b5aaf775",
+     "uasl/web-perf@9063b7e5eacf",
+     "uasl/web-performance-optimization@b2b38275ed40"
+    ],
+    "M_a_rank": {
+     "uasl/code-security@e20eb3467925": null,
+     "uasl/owasp-security@9847d3666f75": null,
+     "uasl/secure-coding-practices@cc37fcd8687e": null,
+     "uasl/security-review@fcc354bc486e": null,
+     "uasl/vibe-security@6b07d0f651a7": 39
+    },
+    "M_b_rank": {
+     "uasl/bolt@c4895c710162": null,
+     "uasl/design-optimize@cbb1632043ec": null,
+     "uasl/perf-lighthouse@ccafe273f7d2": null,
+     "uasl/react-patterns@73d1ecc06997": 7,
+     "uasl/vercel-react-best-practices@70f3b5aaf775": 2,
+     "uasl/web-perf@9063b7e5eacf": null,
+     "uasl/web-performance-optimization@b2b38275ed40": null
+    }
+   },
+   {
+    "pair": "pair03",
+    "gen": 2,
+    "class": "moved",
+    "sel_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/sql-optimization-patterns@389f90da7b56"
+    ],
+    "sel_b": [
+     "uasl/sql-optimization-patterns@389f90da7b56",
+     "uasl/web-design@b19d7c3f962e"
+    ],
+    "M_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/ui-audit@be637d5e2baf"
+    ],
+    "M_b": [
+     "uasl/web-design@b19d7c3f962e"
+    ],
+    "M_a_rank": {
+     "uasl/accessibility-compliance@696d2b4119ed": 13,
+     "uasl/ui-audit@be637d5e2baf": 19
+    },
+    "M_b_rank": {
+     "uasl/web-design@b19d7c3f962e": 1
+    }
+   },
+   {
+    "pair": "pair05",
+    "gen": 2,
+    "class": "moved",
+    "sel_a": [
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/grill-with-docs@99f1bafe73fe",
+     "uasl/ripple@620dca56eca0",
+     "uasl/tlc-spec-driven@394ed16ecc07",
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/grill-with-docs@99f1bafe73fe": 5,
+     "uasl/ripple@620dca56eca0": null,
+     "uasl/tlc-spec-driven@394ed16ecc07": 11,
+     "uasl/writing-plans@219901eb119f": 16
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair08",
+    "gen": 2,
+    "class": "moved",
+    "sel_a": [
+     "uasl/artisan@1e09f38ffcab",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/stripe-best-practices@795a33f68129"
+    ],
+    "sel_b": [
+     "uasl/stripe-best-practices@795a33f68129",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a": [
+     "uasl/code-security@e20eb3467925",
+     "uasl/owasp-security@9847d3666f75",
+     "uasl/secure-coding-practices@cc37fcd8687e",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "M_b": [
+     "uasl/bolt@c4895c710162",
+     "uasl/design-optimize@cbb1632043ec",
+     "uasl/high-perf-browser@aee32087bf43",
+     "uasl/react-patterns@73d1ecc06997",
+     "uasl/vercel-react-best-practices@70f3b5aaf775",
+     "uasl/web-perf@9063b7e5eacf",
+     "uasl/web-performance-optimization@b2b38275ed40"
+    ],
+    "M_a_rank": {
+     "uasl/code-security@e20eb3467925": null,
+     "uasl/owasp-security@9847d3666f75": null,
+     "uasl/secure-coding-practices@cc37fcd8687e": null,
+     "uasl/security-review@fcc354bc486e": 12,
+     "uasl/vibe-security@6b07d0f651a7": 31
+    },
+    "M_b_rank": {
+     "uasl/bolt@c4895c710162": 23,
+     "uasl/design-optimize@cbb1632043ec": null,
+     "uasl/high-perf-browser@aee32087bf43": 48,
+     "uasl/react-patterns@73d1ecc06997": 21,
+     "uasl/vercel-react-best-practices@70f3b5aaf775": 3,
+     "uasl/web-perf@9063b7e5eacf": 25,
+     "uasl/web-performance-optimization@b2b38275ed40": 6
+    }
+   },
+   {
+    "pair": "pair11",
+    "gen": 2,
+    "class": "moved",
+    "sel_a": [
+     "uasl/refactoring-patterns@7283bad3e86e",
+     "uasl/request-refactor-plan@49b853892f06"
+    ],
+    "sel_b": [
+     "uasl/refactoring-patterns@7283bad3e86e"
+    ],
+    "M_a": [
+     "uasl/decomposition-planning-roadmap@750bfb7d134f",
+     "uasl/planning-with-files@5da17072dc31",
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/decomposition-planning-roadmap@750bfb7d134f": null,
+     "uasl/planning-with-files@5da17072dc31": null,
+     "uasl/writing-plans@219901eb119f": 10
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair17",
+    "gen": 2,
+    "class": "moved",
+    "sel_a": [
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/grill-me@a821be519d0d",
+     "uasl/grill-with-docs@99f1bafe73fe",
+     "uasl/planning-with-files@5da17072dc31",
+     "uasl/ripple@620dca56eca0",
+     "uasl/system-design@e45b77ba7a35",
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/grill-me@a821be519d0d": null,
+     "uasl/grill-with-docs@99f1bafe73fe": 45,
+     "uasl/planning-with-files@5da17072dc31": null,
+     "uasl/ripple@620dca56eca0": 5,
+     "uasl/system-design@e45b77ba7a35": null,
+     "uasl/writing-plans@219901eb119f": 20
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair20",
+    "gen": 2,
+    "class": "moved",
+    "sel_a": [
+     "uasl/next-best-practices@ee058f89acea",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "sel_b": [
+     "uasl/next-best-practices@ee058f89acea",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a": [
+     "uasl/code-security@e20eb3467925",
+     "uasl/owasp-security@9847d3666f75",
+     "uasl/secure-coding-practices@cc37fcd8687e",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "M_b": [
+     "uasl/bolt@c4895c710162",
+     "uasl/design-optimize@cbb1632043ec",
+     "uasl/perf-lighthouse@ccafe273f7d2",
+     "uasl/react-patterns@73d1ecc06997",
+     "uasl/vercel-react-best-practices@70f3b5aaf775",
+     "uasl/web-perf@9063b7e5eacf",
+     "uasl/web-performance-optimization@b2b38275ed40"
+    ],
+    "M_a_rank": {
+     "uasl/code-security@e20eb3467925": null,
+     "uasl/owasp-security@9847d3666f75": null,
+     "uasl/secure-coding-practices@cc37fcd8687e": null,
+     "uasl/security-review@fcc354bc486e": null,
+     "uasl/vibe-security@6b07d0f651a7": 39
+    },
+    "M_b_rank": {
+     "uasl/bolt@c4895c710162": null,
+     "uasl/design-optimize@cbb1632043ec": null,
+     "uasl/perf-lighthouse@ccafe273f7d2": null,
+     "uasl/react-patterns@73d1ecc06997": 7,
+     "uasl/vercel-react-best-practices@70f3b5aaf775": 2,
+     "uasl/web-perf@9063b7e5eacf": null,
+     "uasl/web-performance-optimization@b2b38275ed40": null
+    }
+   },
+   {
+    "pair": "pair03",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/sql-optimization-patterns@389f90da7b56"
+    ],
+    "sel_b": [
+     "uasl/sql-optimization-patterns@389f90da7b56",
+     "uasl/web-design@b19d7c3f962e"
+    ],
+    "M_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/ui-audit@be637d5e2baf"
+    ],
+    "M_b": [
+     "uasl/web-design@b19d7c3f962e"
+    ],
+    "M_a_rank": {
+     "uasl/accessibility-compliance@696d2b4119ed": 13,
+     "uasl/ui-audit@be637d5e2baf": 19
+    },
+    "M_b_rank": {
+     "uasl/web-design@b19d7c3f962e": 1
+    }
+   },
+   {
+    "pair": "pair05",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/grill-with-docs@99f1bafe73fe",
+     "uasl/ripple@620dca56eca0",
+     "uasl/tlc-spec-driven@394ed16ecc07",
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/grill-with-docs@99f1bafe73fe": 5,
+     "uasl/ripple@620dca56eca0": null,
+     "uasl/tlc-spec-driven@394ed16ecc07": 11,
+     "uasl/writing-plans@219901eb119f": 16
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair08",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/artisan@1e09f38ffcab",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/stripe-best-practices@795a33f68129"
+    ],
+    "sel_b": [
+     "uasl/stripe-best-practices@795a33f68129",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a": [
+     "uasl/code-security@e20eb3467925",
+     "uasl/owasp-security@9847d3666f75",
+     "uasl/secure-coding-practices@cc37fcd8687e",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "M_b": [
+     "uasl/bolt@c4895c710162",
+     "uasl/design-optimize@cbb1632043ec",
+     "uasl/high-perf-browser@aee32087bf43",
+     "uasl/react-patterns@73d1ecc06997",
+     "uasl/vercel-react-best-practices@70f3b5aaf775",
+     "uasl/web-perf@9063b7e5eacf",
+     "uasl/web-performance-optimization@b2b38275ed40"
+    ],
+    "M_a_rank": {
+     "uasl/code-security@e20eb3467925": null,
+     "uasl/owasp-security@9847d3666f75": null,
+     "uasl/secure-coding-practices@cc37fcd8687e": null,
+     "uasl/security-review@fcc354bc486e": 12,
+     "uasl/vibe-security@6b07d0f651a7": 31
+    },
+    "M_b_rank": {
+     "uasl/bolt@c4895c710162": 23,
+     "uasl/design-optimize@cbb1632043ec": null,
+     "uasl/high-perf-browser@aee32087bf43": 48,
+     "uasl/react-patterns@73d1ecc06997": 21,
+     "uasl/vercel-react-best-practices@70f3b5aaf775": 3,
+     "uasl/web-perf@9063b7e5eacf": 25,
+     "uasl/web-performance-optimization@b2b38275ed40": 6
+    }
+   },
+   {
+    "pair": "pair11",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/refactoring-patterns@7283bad3e86e",
+     "uasl/request-refactor-plan@49b853892f06"
+    ],
+    "sel_b": [
+     "uasl/refactoring-patterns@7283bad3e86e"
+    ],
+    "M_a": [
+     "uasl/decomposition-planning-roadmap@750bfb7d134f",
+     "uasl/planning-with-files@5da17072dc31",
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/decomposition-planning-roadmap@750bfb7d134f": null,
+     "uasl/planning-with-files@5da17072dc31": null,
+     "uasl/writing-plans@219901eb119f": 10
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair17",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/grill-me@a821be519d0d",
+     "uasl/grill-with-docs@99f1bafe73fe",
+     "uasl/planning-with-files@5da17072dc31",
+     "uasl/ripple@620dca56eca0",
+     "uasl/system-design@e45b77ba7a35",
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/grill-me@a821be519d0d": null,
+     "uasl/grill-with-docs@99f1bafe73fe": 45,
+     "uasl/planning-with-files@5da17072dc31": null,
+     "uasl/ripple@620dca56eca0": 5,
+     "uasl/system-design@e45b77ba7a35": null,
+     "uasl/writing-plans@219901eb119f": 20
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair20",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/next-best-practices@ee058f89acea",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "sel_b": [
+     "uasl/next-best-practices@ee058f89acea",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a": [
+     "uasl/code-security@e20eb3467925",
+     "uasl/owasp-security@9847d3666f75",
+     "uasl/secure-coding-practices@cc37fcd8687e",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "M_b": [
+     "uasl/bolt@c4895c710162",
+     "uasl/design-optimize@cbb1632043ec",
+     "uasl/perf-lighthouse@ccafe273f7d2",
+     "uasl/react-patterns@73d1ecc06997",
+     "uasl/vercel-react-best-practices@70f3b5aaf775",
+     "uasl/web-perf@9063b7e5eacf",
+     "uasl/web-performance-optimization@b2b38275ed40"
+    ],
+    "M_a_rank": {
+     "uasl/code-security@e20eb3467925": null,
+     "uasl/owasp-security@9847d3666f75": null,
+     "uasl/secure-coding-practices@cc37fcd8687e": null,
+     "uasl/security-review@fcc354bc486e": null,
+     "uasl/vibe-security@6b07d0f651a7": 39
+    },
+    "M_b_rank": {
+     "uasl/bolt@c4895c710162": null,
+     "uasl/design-optimize@cbb1632043ec": null,
+     "uasl/perf-lighthouse@ccafe273f7d2": null,
+     "uasl/react-patterns@73d1ecc06997": 7,
+     "uasl/vercel-react-best-practices@70f3b5aaf775": 2,
+     "uasl/web-perf@9063b7e5eacf": null,
+     "uasl/web-performance-optimization@b2b38275ed40": null
+    }
+   }
+  ]
+ },
+ "S-b": {
+  "per_generation": [
+   {
+    "moved_den": 6,
+    "moved_all_differ": 14,
+    "moved_pairs": [
+     "pair01",
+     "pair03",
+     "pair05",
+     "pair07",
+     "pair08",
+     "pair09",
+     "pair10",
+     "pair11",
+     "pair13",
+     "pair14",
+     "pair15",
+     "pair17",
+     "pair19",
+     "pair20"
+    ],
+    "none_acc": 0.893,
+    "hit": 0.785
+   },
+   {
+    "moved_den": 5,
+    "moved_all_differ": 12,
+    "moved_pairs": [
+     "pair01",
+     "pair03",
+     "pair05",
+     "pair07",
+     "pair09",
+     "pair11",
+     "pair13",
+     "pair14",
+     "pair15",
+     "pair17",
+     "pair19",
+     "pair20"
+    ],
+    "none_acc": 0.845,
+    "hit": 0.782
+   },
+   {
+    "moved_den": 6,
+    "moved_all_differ": 13,
+    "moved_pairs": [
+     "pair01",
+     "pair03",
+     "pair05",
+     "pair07",
+     "pair08",
+     "pair09",
+     "pair11",
+     "pair13",
+     "pair14",
+     "pair15",
+     "pair17",
+     "pair19",
+     "pair20"
+    ],
+    "none_acc": 0.857,
+    "hit": 0.782
+   }
+  ],
+  "mean_moved_den": 5.667,
+  "mean_ratio_den": 0.945,
+  "mean_moved_all_differ": 13.0,
+  "mean_ratio_all_differ": 0.684,
+  "mean_none_acc": 0.865,
+  "mean_hit": 0.783,
+  "counts_cases": {
+   "moved": 17,
+   "b_select": 1
+  },
+  "by_pair": {
+   "pair03": "moved",
+   "pair05": "moved",
+   "pair08": "moved",
+   "pair11": "moved",
+   "pair17": "moved",
+   "pair20": "moved"
+  },
+  "cases": [
+   {
+    "pair": "pair03",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/sql-optimization-patterns@389f90da7b56"
+    ],
+    "sel_b": [
+     "uasl/sql-optimization-patterns@389f90da7b56",
+     "uasl/web-design@b19d7c3f962e"
+    ],
+    "M_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/ui-audit@be637d5e2baf"
+    ],
+    "M_b": [
+     "uasl/web-design@b19d7c3f962e"
+    ],
+    "M_a_rank": {
+     "uasl/accessibility-compliance@696d2b4119ed": 13,
+     "uasl/ui-audit@be637d5e2baf": 19
+    },
+    "M_b_rank": {
+     "uasl/web-design@b19d7c3f962e": 1
+    }
+   },
+   {
+    "pair": "pair05",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/grill-with-docs@99f1bafe73fe",
+     "uasl/ripple@620dca56eca0",
+     "uasl/tlc-spec-driven@394ed16ecc07",
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/grill-with-docs@99f1bafe73fe": 5,
+     "uasl/ripple@620dca56eca0": null,
+     "uasl/tlc-spec-driven@394ed16ecc07": 11,
+     "uasl/writing-plans@219901eb119f": 16
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair08",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/artisan@1e09f38ffcab",
+     "uasl/security-review@fcc354bc486e"
+    ],
+    "sel_b": [
+     "uasl/artisan@1e09f38ffcab",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a": [
+     "uasl/code-security@e20eb3467925",
+     "uasl/owasp-security@9847d3666f75",
+     "uasl/secure-coding-practices@cc37fcd8687e",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "M_b": [
+     "uasl/bolt@c4895c710162",
+     "uasl/design-optimize@cbb1632043ec",
+     "uasl/high-perf-browser@aee32087bf43",
+     "uasl/react-patterns@73d1ecc06997",
+     "uasl/vercel-react-best-practices@70f3b5aaf775",
+     "uasl/web-perf@9063b7e5eacf",
+     "uasl/web-performance-optimization@b2b38275ed40"
+    ],
+    "M_a_rank": {
+     "uasl/code-security@e20eb3467925": null,
+     "uasl/owasp-security@9847d3666f75": null,
+     "uasl/secure-coding-practices@cc37fcd8687e": null,
+     "uasl/security-review@fcc354bc486e": 12,
+     "uasl/vibe-security@6b07d0f651a7": 31
+    },
+    "M_b_rank": {
+     "uasl/bolt@c4895c710162": 23,
+     "uasl/design-optimize@cbb1632043ec": null,
+     "uasl/high-perf-browser@aee32087bf43": 48,
+     "uasl/react-patterns@73d1ecc06997": 21,
+     "uasl/vercel-react-best-practices@70f3b5aaf775": 3,
+     "uasl/web-perf@9063b7e5eacf": 25,
+     "uasl/web-performance-optimization@b2b38275ed40": 6
+    }
+   },
+   {
+    "pair": "pair11",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/refactoring-patterns@7283bad3e86e",
+     "uasl/request-refactor-plan@49b853892f06"
+    ],
+    "sel_b": [
+     "uasl/refactoring-patterns@7283bad3e86e"
+    ],
+    "M_a": [
+     "uasl/decomposition-planning-roadmap@750bfb7d134f",
+     "uasl/planning-with-files@5da17072dc31",
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/decomposition-planning-roadmap@750bfb7d134f": null,
+     "uasl/planning-with-files@5da17072dc31": null,
+     "uasl/writing-plans@219901eb119f": 10
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair17",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/grill-me@a821be519d0d",
+     "uasl/grill-with-docs@99f1bafe73fe",
+     "uasl/planning-with-files@5da17072dc31",
+     "uasl/ripple@620dca56eca0",
+     "uasl/system-design@e45b77ba7a35",
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/grill-me@a821be519d0d": null,
+     "uasl/grill-with-docs@99f1bafe73fe": 45,
+     "uasl/planning-with-files@5da17072dc31": null,
+     "uasl/ripple@620dca56eca0": 5,
+     "uasl/system-design@e45b77ba7a35": null,
+     "uasl/writing-plans@219901eb119f": 20
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair20",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/next-best-practices@ee058f89acea",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "sel_b": [
+     "uasl/next-best-practices@ee058f89acea",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a": [
+     "uasl/code-security@e20eb3467925",
+     "uasl/owasp-security@9847d3666f75",
+     "uasl/secure-coding-practices@cc37fcd8687e",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "M_b": [
+     "uasl/bolt@c4895c710162",
+     "uasl/design-optimize@cbb1632043ec",
+     "uasl/perf-lighthouse@ccafe273f7d2",
+     "uasl/react-patterns@73d1ecc06997",
+     "uasl/vercel-react-best-practices@70f3b5aaf775",
+     "uasl/web-perf@9063b7e5eacf",
+     "uasl/web-performance-optimization@b2b38275ed40"
+    ],
+    "M_a_rank": {
+     "uasl/code-security@e20eb3467925": null,
+     "uasl/owasp-security@9847d3666f75": null,
+     "uasl/secure-coding-practices@cc37fcd8687e": null,
+     "uasl/security-review@fcc354bc486e": null,
+     "uasl/vibe-security@6b07d0f651a7": 39
+    },
+    "M_b_rank": {
+     "uasl/bolt@c4895c710162": null,
+     "uasl/design-optimize@cbb1632043ec": null,
+     "uasl/perf-lighthouse@ccafe273f7d2": null,
+     "uasl/react-patterns@73d1ecc06997": 7,
+     "uasl/vercel-react-best-practices@70f3b5aaf775": 2,
+     "uasl/web-perf@9063b7e5eacf": null,
+     "uasl/web-performance-optimization@b2b38275ed40": null
+    }
+   },
+   {
+    "pair": "pair03",
+    "gen": 2,
+    "class": "moved",
+    "sel_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/sql-optimization-patterns@389f90da7b56"
+    ],
+    "sel_b": [
+     "uasl/sql-optimization-patterns@389f90da7b56",
+     "uasl/web-design@b19d7c3f962e"
+    ],
+    "M_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/ui-audit@be637d5e2baf"
+    ],
+    "M_b": [
+     "uasl/web-design@b19d7c3f962e"
+    ],
+    "M_a_rank": {
+     "uasl/accessibility-compliance@696d2b4119ed": 13,
+     "uasl/ui-audit@be637d5e2baf": 19
+    },
+    "M_b_rank": {
+     "uasl/web-design@b19d7c3f962e": 1
+    }
+   },
+   {
+    "pair": "pair05",
+    "gen": 2,
+    "class": "moved",
+    "sel_a": [
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/grill-with-docs@99f1bafe73fe",
+     "uasl/ripple@620dca56eca0",
+     "uasl/tlc-spec-driven@394ed16ecc07",
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/grill-with-docs@99f1bafe73fe": 5,
+     "uasl/ripple@620dca56eca0": null,
+     "uasl/tlc-spec-driven@394ed16ecc07": 11,
+     "uasl/writing-plans@219901eb119f": 16
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair08",
+    "gen": 2,
+    "class": "b_select",
+    "sel_a": [
+     "uasl/artisan@1e09f38ffcab",
+     "uasl/security-review@fcc354bc486e"
+    ],
+    "sel_b": [
+     "uasl/stripe-best-practices@795a33f68129",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a": [
+     "uasl/code-security@e20eb3467925",
+     "uasl/owasp-security@9847d3666f75",
+     "uasl/secure-coding-practices@cc37fcd8687e",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "M_b": [
+     "uasl/bolt@c4895c710162",
+     "uasl/design-optimize@cbb1632043ec",
+     "uasl/high-perf-browser@aee32087bf43",
+     "uasl/react-patterns@73d1ecc06997",
+     "uasl/vercel-react-best-practices@70f3b5aaf775",
+     "uasl/web-perf@9063b7e5eacf",
+     "uasl/web-performance-optimization@b2b38275ed40"
+    ],
+    "M_a_rank": {
+     "uasl/code-security@e20eb3467925": null,
+     "uasl/owasp-security@9847d3666f75": null,
+     "uasl/secure-coding-practices@cc37fcd8687e": null,
+     "uasl/security-review@fcc354bc486e": 12,
+     "uasl/vibe-security@6b07d0f651a7": 31
+    },
+    "M_b_rank": {
+     "uasl/bolt@c4895c710162": 23,
+     "uasl/design-optimize@cbb1632043ec": null,
+     "uasl/high-perf-browser@aee32087bf43": 48,
+     "uasl/react-patterns@73d1ecc06997": 21,
+     "uasl/vercel-react-best-practices@70f3b5aaf775": 3,
+     "uasl/web-perf@9063b7e5eacf": 25,
+     "uasl/web-performance-optimization@b2b38275ed40": 6
+    }
+   },
+   {
+    "pair": "pair11",
+    "gen": 2,
+    "class": "moved",
+    "sel_a": [
+     "uasl/refactoring-patterns@7283bad3e86e",
+     "uasl/request-refactor-plan@49b853892f06"
+    ],
+    "sel_b": [
+     "uasl/refactoring-patterns@7283bad3e86e"
+    ],
+    "M_a": [
+     "uasl/decomposition-planning-roadmap@750bfb7d134f",
+     "uasl/planning-with-files@5da17072dc31",
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/decomposition-planning-roadmap@750bfb7d134f": null,
+     "uasl/planning-with-files@5da17072dc31": null,
+     "uasl/writing-plans@219901eb119f": 10
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair17",
+    "gen": 2,
+    "class": "moved",
+    "sel_a": [
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/grill-me@a821be519d0d",
+     "uasl/grill-with-docs@99f1bafe73fe",
+     "uasl/planning-with-files@5da17072dc31",
+     "uasl/ripple@620dca56eca0",
+     "uasl/system-design@e45b77ba7a35",
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/grill-me@a821be519d0d": null,
+     "uasl/grill-with-docs@99f1bafe73fe": 45,
+     "uasl/planning-with-files@5da17072dc31": null,
+     "uasl/ripple@620dca56eca0": 5,
+     "uasl/system-design@e45b77ba7a35": null,
+     "uasl/writing-plans@219901eb119f": 20
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair20",
+    "gen": 2,
+    "class": "moved",
+    "sel_a": [
+     "uasl/next-best-practices@ee058f89acea",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "sel_b": [
+     "uasl/next-best-practices@ee058f89acea",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a": [
+     "uasl/code-security@e20eb3467925",
+     "uasl/owasp-security@9847d3666f75",
+     "uasl/secure-coding-practices@cc37fcd8687e",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "M_b": [
+     "uasl/bolt@c4895c710162",
+     "uasl/design-optimize@cbb1632043ec",
+     "uasl/perf-lighthouse@ccafe273f7d2",
+     "uasl/react-patterns@73d1ecc06997",
+     "uasl/vercel-react-best-practices@70f3b5aaf775",
+     "uasl/web-perf@9063b7e5eacf",
+     "uasl/web-performance-optimization@b2b38275ed40"
+    ],
+    "M_a_rank": {
+     "uasl/code-security@e20eb3467925": null,
+     "uasl/owasp-security@9847d3666f75": null,
+     "uasl/secure-coding-practices@cc37fcd8687e": null,
+     "uasl/security-review@fcc354bc486e": null,
+     "uasl/vibe-security@6b07d0f651a7": 39
+    },
+    "M_b_rank": {
+     "uasl/bolt@c4895c710162": null,
+     "uasl/design-optimize@cbb1632043ec": null,
+     "uasl/perf-lighthouse@ccafe273f7d2": null,
+     "uasl/react-patterns@73d1ecc06997": 7,
+     "uasl/vercel-react-best-practices@70f3b5aaf775": 2,
+     "uasl/web-perf@9063b7e5eacf": null,
+     "uasl/web-performance-optimization@b2b38275ed40": null
+    }
+   },
+   {
+    "pair": "pair03",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/sql-optimization-patterns@389f90da7b56"
+    ],
+    "sel_b": [
+     "uasl/sql-optimization-patterns@389f90da7b56",
+     "uasl/web-design@b19d7c3f962e"
+    ],
+    "M_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/ui-audit@be637d5e2baf"
+    ],
+    "M_b": [
+     "uasl/web-design@b19d7c3f962e"
+    ],
+    "M_a_rank": {
+     "uasl/accessibility-compliance@696d2b4119ed": 13,
+     "uasl/ui-audit@be637d5e2baf": 19
+    },
+    "M_b_rank": {
+     "uasl/web-design@b19d7c3f962e": 1
+    }
+   },
+   {
+    "pair": "pair05",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/grill-with-docs@99f1bafe73fe",
+     "uasl/ripple@620dca56eca0",
+     "uasl/tlc-spec-driven@394ed16ecc07",
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/grill-with-docs@99f1bafe73fe": 5,
+     "uasl/ripple@620dca56eca0": null,
+     "uasl/tlc-spec-driven@394ed16ecc07": 11,
+     "uasl/writing-plans@219901eb119f": 16
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair08",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/artisan@1e09f38ffcab",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/stripe-best-practices@795a33f68129"
+    ],
+    "sel_b": [
+     "uasl/artisan@1e09f38ffcab",
+     "uasl/stripe-best-practices@795a33f68129",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a": [
+     "uasl/code-security@e20eb3467925",
+     "uasl/owasp-security@9847d3666f75",
+     "uasl/secure-coding-practices@cc37fcd8687e",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "M_b": [
+     "uasl/bolt@c4895c710162",
+     "uasl/design-optimize@cbb1632043ec",
+     "uasl/high-perf-browser@aee32087bf43",
+     "uasl/react-patterns@73d1ecc06997",
+     "uasl/vercel-react-best-practices@70f3b5aaf775",
+     "uasl/web-perf@9063b7e5eacf",
+     "uasl/web-performance-optimization@b2b38275ed40"
+    ],
+    "M_a_rank": {
+     "uasl/code-security@e20eb3467925": null,
+     "uasl/owasp-security@9847d3666f75": null,
+     "uasl/secure-coding-practices@cc37fcd8687e": null,
+     "uasl/security-review@fcc354bc486e": 12,
+     "uasl/vibe-security@6b07d0f651a7": 31
+    },
+    "M_b_rank": {
+     "uasl/bolt@c4895c710162": 23,
+     "uasl/design-optimize@cbb1632043ec": null,
+     "uasl/high-perf-browser@aee32087bf43": 48,
+     "uasl/react-patterns@73d1ecc06997": 21,
+     "uasl/vercel-react-best-practices@70f3b5aaf775": 3,
+     "uasl/web-perf@9063b7e5eacf": 25,
+     "uasl/web-performance-optimization@b2b38275ed40": 6
+    }
+   },
+   {
+    "pair": "pair11",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/refactoring-patterns@7283bad3e86e",
+     "uasl/request-refactor-plan@49b853892f06"
+    ],
+    "sel_b": [
+     "uasl/refactoring-patterns@7283bad3e86e"
+    ],
+    "M_a": [
+     "uasl/decomposition-planning-roadmap@750bfb7d134f",
+     "uasl/planning-with-files@5da17072dc31",
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/decomposition-planning-roadmap@750bfb7d134f": null,
+     "uasl/planning-with-files@5da17072dc31": null,
+     "uasl/writing-plans@219901eb119f": 10
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair17",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/grill-me@a821be519d0d",
+     "uasl/grill-with-docs@99f1bafe73fe",
+     "uasl/planning-with-files@5da17072dc31",
+     "uasl/ripple@620dca56eca0",
+     "uasl/system-design@e45b77ba7a35",
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/grill-me@a821be519d0d": null,
+     "uasl/grill-with-docs@99f1bafe73fe": 45,
+     "uasl/planning-with-files@5da17072dc31": null,
+     "uasl/ripple@620dca56eca0": 5,
+     "uasl/system-design@e45b77ba7a35": null,
+     "uasl/writing-plans@219901eb119f": 20
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair20",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/next-best-practices@ee058f89acea",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "sel_b": [
+     "uasl/next-best-practices@ee058f89acea",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a": [
+     "uasl/code-security@e20eb3467925",
+     "uasl/owasp-security@9847d3666f75",
+     "uasl/secure-coding-practices@cc37fcd8687e",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "M_b": [
+     "uasl/bolt@c4895c710162",
+     "uasl/design-optimize@cbb1632043ec",
+     "uasl/perf-lighthouse@ccafe273f7d2",
+     "uasl/react-patterns@73d1ecc06997",
+     "uasl/vercel-react-best-practices@70f3b5aaf775",
+     "uasl/web-perf@9063b7e5eacf",
+     "uasl/web-performance-optimization@b2b38275ed40"
+    ],
+    "M_a_rank": {
+     "uasl/code-security@e20eb3467925": null,
+     "uasl/owasp-security@9847d3666f75": null,
+     "uasl/secure-coding-practices@cc37fcd8687e": null,
+     "uasl/security-review@fcc354bc486e": null,
+     "uasl/vibe-security@6b07d0f651a7": 39
+    },
+    "M_b_rank": {
+     "uasl/bolt@c4895c710162": null,
+     "uasl/design-optimize@cbb1632043ec": null,
+     "uasl/perf-lighthouse@ccafe273f7d2": null,
+     "uasl/react-patterns@73d1ecc06997": 7,
+     "uasl/vercel-react-best-practices@70f3b5aaf775": 2,
+     "uasl/web-perf@9063b7e5eacf": null,
+     "uasl/web-performance-optimization@b2b38275ed40": null
+    }
+   }
+  ]
+ },
+ "baseline_meets": true
+}

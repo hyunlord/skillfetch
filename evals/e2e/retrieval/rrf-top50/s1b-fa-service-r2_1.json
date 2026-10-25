@@ -1,0 +1,252 @@
+[
+ {
+  "id": "uasl/fastapi-templates@effcd0de0b4c",
+  "title": "fastapi-templates",
+  "summary": "Guides creation of structured FastAPI backend projects using async patterns, dependency injection, repository and service layers, authentication, and testing examples. Includes templates for API endpoints, database access, and user management."
+ },
+ {
+  "id": "uasl/python-design-patterns@5c0fbe0d4633",
+  "title": "python-design-patterns",
+  "summary": "Guides the agent to design and refactor Python code using simple, focused components, clear separation of concerns, composition, and dependency injection. It also recommends delaying abstractions, keeping functions focused, and testing layers in isolation."
+ },
+ {
+  "id": "uasl/fastapi-endpoint@2a93d50c4970",
+  "title": "fastapi-endpoint",
+  "summary": "Guides the agent through exploring an existing FastAPI project, asking clarifying questions, planning an endpoint implementation for approval, and then building the endpoint and tests. It emphasizes async SQLAlchemy, Pydantic schemas, dependency-injected authentication, and API test coverage."
+ },
+ {
+  "id": "uasl/n8n-code-python@ba1cd974d317",
+  "title": "n8n-code-python",
+  "summary": "Guides agents writing Python for n8n Code nodes, including n8n data access and return formats, execution modes, and Python’s standard-library limitations. It recommends considering JavaScript first and using Python (Beta) for better n8n integration."
+ },
+ {
+  "id": "uasl/openapi-spec-generation@2d2c7a93b8f2",
+  "title": "openapi-spec-generation",
+  "summary": "Guides agents in creating and maintaining OpenAPI 3.1 specifications from design or code, validating API contracts, and generating SDKs and documentation. Includes patterns for reusable schemas, API descriptions, security, versioning, and validation tools."
+ },
+ {
+  "id": "uasl/builder@8d7f0953ade3",
+  "title": "builder",
+  "summary": "Guides the agent to implement production-ready, type-safe business logic, API integrations, and data models, with validation, error handling, and test handoffs. It emphasizes TypeScript strictness, domain-appropriate patterns, and Japanese final outputs."
+ },
+ {
+  "id": "uasl/architecture-patterns@d184d1c3a346",
+  "title": "architecture-patterns",
+  "summary": "Guides the agent in designing or refactoring backend systems with Clean Architecture, Hexagonal Architecture, and Domain-Driven Design. It emphasizes inward dependencies, framework-independent business logic, and testability without external infrastructure."
+ },
+ {
+  "id": "uasl/async-python-patterns@957ebfe54aa7",
+  "title": "async-python-patterns",
+  "summary": "Guides implementation of asynchronous Python applications using asyncio, concurrency patterns, and async I/O. It emphasizes keeping call paths consistently synchronous or asynchronous, avoiding event-loop blocking, and offloading synchronous library calls when needed."
+ },
+ {
+  "id": "uasl/provider-api@4da7bed47117",
+  "title": "provider-api",
+  "summary": "Use the neutral `skill-router provider-api` CLI for hosted-provider APIs, explicitly configuring the endpoint and key before making calls. Load the platform’s provider-specific documentation when exact schemas, authentication, rate limits, or provider-only behavior are needed."
+ },
+ {
+  "id": "uasl/universal-ai-config@810b8c3c5958",
+  "title": "universal-ai-config",
+  "summary": "Audit and configure a local, cross-platform AI skill setup around the `skill-router` CLI. Keep client instructions and plugin metadata compact, and use MCP bridges only when persistent endpoint workflows need them."
+ },
+ {
+  "id": "uasl/design-an-interface@14a6b0b5787c",
+  "title": "design-an-interface",
+  "summary": "Gather module requirements, generate multiple radically different interface designs in parallel, and present and compare the options before synthesizing a direction. Keep the work focused on interface shape rather than implementation."
+ },
+ {
+  "id": "uasl/python-type-safety@60be75b4816f",
+  "title": "python-type-safety",
+  "summary": "Guides agents to use Python type annotations, generics, protocols, and type narrowing to make code statically checkable. It also recommends strict type checking and modern union syntax."
+ },
+ {
+  "id": "anthropics-skills/mcp-builder@7e8426a435cb",
+  "title": "mcp-builder",
+  "summary": "Guides agents through researching, planning, implementing, testing, and evaluating MCP servers that connect LLMs to external services. It emphasizes discoverable tools, comprehensive API coverage, structured schemas and responses, and realistic evaluations."
+ },
+ {
+  "id": "uasl/python-error-handling@8dc34883a143",
+  "title": "python-error-handling",
+  "summary": "Guides agents to implement Python validation and error handling with meaningful exceptions, exception chaining, and resilient batch processing. It also recommends practices for domain-type conversion, progress reporting, logging, and testing error paths."
+ },
+ {
+  "id": "uasl/python-testing-patterns@e62d0f1ca316",
+  "title": "python-testing-patterns",
+  "summary": "Guides the agent in designing and implementing Python tests using pytest patterns, fixtures, mocks, and specialized testing techniques. It emphasizes focused, isolated tests and meaningful coverage of failure behavior."
+ },
+ {
+  "id": "uasl/quill@336ba74b0e79",
+  "title": "quill",
+  "summary": "Quill guides the agent to improve codebase documentation, type clarity, and README/API materials while preserving runtime behavior. It emphasizes accurate, useful documentation, checking links and coverage, and reporting the work and its results."
+ },
+ {
+  "id": "uasl/apify-automation@34a14f015224",
+  "title": "apify-automation",
+  "summary": "Use the Composio Apify integration to run Actors, retrieve and manage datasets, create reusable tasks, and inspect runs and logs. Check Actor-specific input requirements and use pagination or asynchronous runs when appropriate."
+ },
+ {
+  "id": "uasl/software-design-philosophy@066bc275787f",
+  "title": "software-design-philosophy",
+  "summary": "Use software-design principles to reduce complexity through deep modules, information hiding, and deliberate interface design. When assessing or changing designs, emphasize strategic improvements and comments that capture non-obvious intent."
+ },
+ {
+  "id": "uasl/software-architecture@011a6d823631",
+  "title": "software-architecture",
+  "summary": "Apply Clean Architecture and domain-driven design principles when designing or analyzing software, and favor readable, modular code. Prefer established libraries and domain-specific naming over unnecessary custom implementations and generic modules."
+ },
+ {
+  "id": "uasl/error-handling-patterns@4c19ee7d7821",
+  "title": "error-handling-patterns",
+  "summary": "Guides agents in handling errors across Python, JavaScript/TypeScript, Rust, and Go, including validation, cleanup, logging, and typed errors. Emphasizes preserving useful error context and handling errors at an appropriate level."
+ },
+ {
+  "id": "uasl/coding-standards@f854e26a9529",
+  "title": "coding-standards",
+  "summary": "Applies cross-project conventions for readable, maintainable code, including simplicity, reuse, and avoiding unnecessary complexity. It is a baseline rather than a source of framework-specific patterns."
+ },
+ {
+  "id": "uasl/wave-accounting-automation@64fe0dcd40c3",
+  "title": "wave-accounting-automation",
+  "summary": "Automates Wave Accounting tasks through Rube MCP by discovering current tools and schemas before execution, then following connection, workflow, and data-handling requirements. Covers common operations such as invoices, customers, payments, and bulk processing."
+ },
+ {
+  "id": "uasl/refactoring-patterns@7283bad3e86e",
+  "title": "refactoring-patterns",
+  "summary": "Use named, incremental refactorings to improve code structure while preserving observable behavior. Check tests around changes and provide a structural-quality score with specific steps toward 10/10 when reviewing or refactoring code."
+ },
+ {
+  "id": "uasl/unit-testing@6c5fbb821103",
+  "title": "unit-testing",
+  "summary": "Guides the agent to write and improve isolated unit tests using common testing patterns, test doubles, naming conventions, and language-specific frameworks. Emphasizes focused, deterministic tests and meaningful coverage."
+ },
+ {
+  "id": "uasl/zen@f72229d0a781",
+  "title": "zen",
+  "summary": "Use Zen to review or refactor code for readability and maintainability while preserving behavior, staying within scope, and verifying changes. Produce structured reports or route work to the appropriate agent when needed."
+ },
+ {
+  "id": "uasl/universal-ai-skills@0128810b6ffe",
+  "title": "universal-ai-skills",
+  "summary": "Route substantive user prompts through the shared skill corpus using `skill-router`, loading a skill only when it clearly matches the task. Keep routing quiet and use the router’s commands and source integrations rather than copying the corpus into AI roots."
+ },
+ {
+  "id": "uasl/dictionary-api-automation@bae158f3873b",
+  "title": "dictionary-api-automation",
+  "summary": "Automates Dictionary API tasks through Rube MCP and Composio. The agent discovers current tool schemas, checks connection status, and follows the returned schemas and workflow guidance when executing tools."
+ },
+ {
+  "id": "uasl/loyverse-automation@32069cd588ae",
+  "title": "loyverse-automation",
+  "summary": "Use Rube MCP to automate Loyverse tasks by discovering current tool schemas, checking the Loyverse connection, and executing schema-compliant tools. Follow connection, session, memory, and pagination requirements during workflows."
+ },
+ {
+  "id": "uasl/short-io-automation@75ba538e79f4",
+  "title": "short-io-automation",
+  "summary": "Use Rube MCP to discover current Short IO tool schemas, verify the Short IO connection, and execute workflows with schema-compliant arguments. Follow the skill’s session, memory, and pagination guidance when using the tools."
+ },
+ {
+  "id": "uasl/acceptance-testing@7f713f1566e8",
+  "title": "acceptance-testing",
+  "summary": "Use BDD acceptance-testing practices to turn business requirements into executable specifications, step definitions, and CI-validated tests. Apply the guidance across Gherkin- and Gauge-based frameworks and keep specifications useful as living documentation."
+ },
+ {
+  "id": "uasl/callerapi-automation@c6f39ca7cc03",
+  "title": "callerapi-automation",
+  "summary": "Automate Callerapi operations through Rube MCP and Composio. Discover current tool schemas, verify the Callerapi connection, then execute workflows with schema-compliant inputs."
+ },
+ {
+  "id": "uasl/tripadvisor-content-api-automation@3ab8b1ec4df3",
+  "title": "tripadvisor-content-api-automation",
+  "summary": "Automate TripAdvisor content API tasks through Rube MCP and Composio. Discover current tool schemas, verify the TripAdvisor connection, and follow the skill’s execution, session, and pagination guidance."
+ },
+ {
+  "id": "uasl/everhour-automation@a663f548c590",
+  "title": "everhour-automation",
+  "summary": "Automate Everhour workflows through Rube MCP by discovering current tool schemas, checking the Everhour connection, and executing schema-compliant tools. Follow the skill’s connection, session, memory, and pagination requirements."
+ },
+ {
+  "id": "uasl/route4me-automation@9bfeaede29bf",
+  "title": "route4me-automation",
+  "summary": "Automates Route4me operations through Rube MCP. The agent discovers current tool schemas, checks the Route4me connection, then executes tools using schema-compliant arguments and workflow sessions."
+ },
+ {
+  "id": "uasl/ai-ml-api-automation@f198121938ac",
+  "title": "ai-ml-api-automation",
+  "summary": "Use Rube MCP to discover current AI ML API tools and schemas, verify an active connection, and execute API workflows. Follow the returned schemas and manage sessions, memory, and pagination as specified."
+ },
+ {
+  "id": "uasl/domain-analysis@c37c7de1017e",
+  "title": "domain-analysis",
+  "summary": "Guides strategic DDD analysis of a codebase to identify and classify subdomains, assess cohesion, and suggest bounded contexts and integration boundaries. It emphasizes business language and capabilities over technical structure."
+ },
+ {
+  "id": "uasl/component-identification-sizing@a9b4aa9f2de1",
+  "title": "component-identification-sizing",
+  "summary": "Maps codebase directory or namespace structures to identify architectural components, then measures their size using statement counts, file counts, percentages, and statistical thresholds. Produces an inventory and analysis to help prioritize component splitting or consolidation."
+ },
+ {
+  "id": "uasl/genderapi-io-automation@870a87d382c4",
+  "title": "genderapi-io-automation",
+  "summary": "Use Rube MCP to automate Genderapi IO tasks. Discover current tool schemas before execution, verify the Genderapi IO connection is active, and follow the discovered schemas and workflow guidance."
+ },
+ {
+  "id": "uasl/component-flattening-analysis@82a0a8d664dd",
+  "title": "component-flattening-analysis",
+  "summary": "Analyze component and namespace hierarchies to find orphaned classes and components nested beneath other components. Recommend or carry out flattening by consolidating, splitting, or moving shared code, then verify the refactoring."
+ },
+ {
+  "id": "uasl/python-performance-optimization@bf455fd100bf",
+  "title": "python-performance-optimization",
+  "summary": "Profile Python applications to identify CPU, memory, I/O, and database bottlenecks, then apply measured optimization techniques. Covers profiling tools, benchmarking, and implementation patterns for improving performance and memory use."
+ },
+ {
+  "id": "uasl/domain-driven-design@0d649fab3ce3",
+  "title": "domain-driven-design",
+  "summary": "Apply Domain-Driven Design principles when modeling, implementing, or reviewing software: center the code on the business domain, use bounded contexts and aggregates, and express domain concepts consistently. When reviewing or creating domain models, provide a score and specific improvements toward 10/10."
+ },
+ {
+  "id": "uasl/clean-architecture@acaac6e9e2a3",
+  "title": "clean-architecture",
+  "summary": "Apply Clean Architecture principles to design and review software boundaries, dependencies, components, and modules. Keep business rules independent of frameworks and infrastructure, and provide an architecture score with improvements when assessing an architecture."
+ },
+ {
+  "id": "uasl/pragmatic-programmer@d73a94281415",
+  "title": "pragmatic-programmer",
+  "summary": "Apply pragmatic software-craft principles when designing, reviewing, or writing software, including DRY, orthogonality, contracts, reversibility, and estimation. When scoring software work, provide its current score and specific improvements needed to reach 10/10."
+ },
+ {
+  "id": "anthropics-skills/pdf@9bc3a6e1ff66",
+  "title": "pdf",
+  "summary": "Guides the agent through PDF extraction, creation, and manipulation using Python libraries and command-line tools. For ReportLab PDFs, it specifies how to represent subscripts and superscripts without unsupported Unicode characters."
+ },
+ {
+  "id": "uasl/respond-io-automation@441b2891c1d1",
+  "title": "respond-io-automation",
+  "summary": "Automate Respond IO tasks through Rube MCP. Discover current tool schemas before workflow execution, verify the Respond IO connection, and follow the returned schemas and workflow guidance."
+ },
+ {
+  "id": "uasl/invoice-organizer@65f04d96d07a",
+  "title": "invoice-organizer",
+  "summary": "Guides the agent through extracting invoice details, choosing an organization strategy, standardizing filenames, and organizing financial files. It also directs the agent to flag unclear records and create a CSV summary."
+ },
+ {
+  "id": "uasl/agent-sort@a8e06853ada8",
+  "title": "agent-sort",
+  "summary": "Classify repository-relevant ECC components into DAILY and LIBRARY using evidence from the actual repo, then produce an install plan and verification report. Prefer keeping non-default components accessible rather than removing them, and optionally create a searchable library router."
+ },
+ {
+  "id": "uasl/microservices-patterns@40adea69dde4",
+  "title": "microservices-patterns",
+  "summary": "Guide the design and implementation of microservices using service boundaries, inter-service communication, distributed data patterns, and resilience techniques. Apply architectural patterns such as API gateways, event-driven communication, sagas, and circuit breakers."
+ },
+ {
+  "id": "uasl/lead-research-assistant@89deabc18ff1",
+  "title": "lead-research-assistant",
+  "summary": "Researches and prioritizes potential business leads based on a product or service and its ideal customer profile. Provides lead details and actionable outreach strategies."
+ },
+ {
+  "id": "uasl/atlas@eeafabd38463",
+  "title": "atlas",
+  "summary": "Atlas guides the agent through ordered system-level architecture analysis and turns findings into actionable proposals, ADRs, RFCs, or technical-debt plans. It keeps implementation with another agent and routes unrelated work appropriately."
+ }
+]

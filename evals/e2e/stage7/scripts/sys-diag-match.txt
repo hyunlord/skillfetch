@@ -1,0 +1,7 @@
+You check skill labels for a study of how a coding agent follows a working direction. Each item is one request
+written twice, with two different working directions (side a and side b). For each side you get the skills judged
+relevant to that side only, as cards. For every listed skill, answer whether the skill handles that side's working
+direction itself (for example a test-first skill for "test-first (TDD)", an accessibility skill for "accessibility
+first", a dependency-minimising skill for "no new dependencies") — not merely the task's subject.
+Output JSON only: [{"pair": "<pair id>", "side": "a" | "b", "skill": "<skill id>", "matches_direction": true | false}]
+for every listed skill, in the order given.

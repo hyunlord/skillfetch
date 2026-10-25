@@ -1,0 +1,144 @@
+{
+ "labels_staging": "oracle-v5-ss-b-s9.jsonl (no §5 grades yet)",
+ "1_index_relevant_tasks": {
+  "relevant_tasks_all": 331,
+  "baseline": 270,
+  "staging": 289
+ },
+ "2_gap56": {
+  "baseline": 17,
+  "staging": 28,
+  "recovered": 11
+ },
+ "3_rc": {
+  "own_denominator": {
+   "baseline": {
+    "n": 270,
+    "hit@10": 0.556,
+    "hit@50": 0.941,
+    "recall@50": 0.822
+   },
+   "staging": {
+    "n": 289,
+    "hit@10": 0.412,
+    "hit@50": 0.785,
+    "recall@50": 0.466
+   }
+  },
+  "baseline_270_fixed": {
+   "n": 270,
+   "staging_hit@10": 0.374,
+   "staging_hit@50": 0.77
+  },
+  "unlabeled_in_staging_top50": 13705,
+  "new_records_in_staging_top50": 13696,
+  "new_records_in_staging_top10": 2952
+ },
+ "4_select": {
+  "baseline r1": {
+   "rel_load": 0.63,
+   "precision_task": 0.742,
+   "precision_skill": 0.68,
+   "unneeded_load_rate": 0.264,
+   "nomatch_n": 110,
+   "unneeded_expect_none": "7/40",
+   "unneeded_other": "22/70",
+   "unneeded_fixed_set": "20/91",
+   "only_grade_le1_loaded_on_relevant": 59,
+   "unlabeled_picks": 0,
+   "picks_new_records": 0,
+   "none": 122
+  },
+  "baseline r2": {
+   "rel_load": 0.637,
+   "precision_task": 0.748,
+   "precision_skill": 0.687,
+   "unneeded_load_rate": 0.3,
+   "nomatch_n": 110,
+   "unneeded_expect_none": "8/40",
+   "unneeded_other": "25/70",
+   "unneeded_fixed_set": "26/91",
+   "only_grade_le1_loaded_on_relevant": 58,
+   "unlabeled_picks": 0,
+   "picks_new_records": 0,
+   "none": 117
+  },
+  "baseline r3": {
+   "rel_load": 0.637,
+   "precision_task": 0.758,
+   "precision_skill": 0.698,
+   "unneeded_load_rate": 0.291,
+   "nomatch_n": 110,
+   "unneeded_expect_none": "6/40",
+   "unneeded_other": "26/70",
+   "unneeded_fixed_set": "23/91",
+   "only_grade_le1_loaded_on_relevant": 55,
+   "unlabeled_picks": 0,
+   "picks_new_records": 0,
+   "none": 121
+  },
+  "baseline range": {
+   "rel_load": [
+    0.63,
+    0.637
+   ],
+   "precision_task": [
+    0.742,
+    0.758
+   ],
+   "precision_skill": [
+    0.68,
+    0.698
+   ],
+   "unneeded_load_rate": [
+    0.264,
+    0.3
+   ],
+   "nomatch_n": [
+    110,
+    110
+   ],
+   "only_grade_le1_loaded_on_relevant": [
+    55,
+    59
+   ],
+   "unlabeled_picks": [
+    0,
+    0
+   ],
+   "picks_new_records": [
+    0,
+    0
+   ],
+   "none": [
+    117,
+    122
+   ]
+  },
+  "staging r1": {
+   "rel_load": 0.381,
+   "precision_task": 0.442,
+   "precision_skill": 0.325,
+   "unneeded_load_rate": 0.385,
+   "nomatch_n": 91,
+   "unneeded_expect_none": "2/40",
+   "unneeded_other": "33/51",
+   "unneeded_fixed_set": "35/91",
+   "only_grade_le1_loaded_on_relevant": 139,
+   "unlabeled_picks": 267,
+   "picks_new_records": 300,
+   "none": 96
+  },
+  "staging outside baseline range": {
+   "rel_load": true,
+   "precision_task": true,
+   "precision_skill": true,
+   "unneeded_load_rate": true,
+   "nomatch_n": true,
+   "only_grade_le1_loaded_on_relevant": true,
+   "unlabeled_picks": true,
+   "picks_new_records": true,
+   "none": true
+  }
+ }
+}

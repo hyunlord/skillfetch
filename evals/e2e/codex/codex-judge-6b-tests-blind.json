@@ -1,0 +1,128 @@
+[
+  {
+    "task": "s2-tests",
+    "code": "08b44092",
+    "criteria": [
+      5,
+      5,
+      5,
+      5,
+      5
+    ],
+    "score": 5,
+    "reason": "전 공개 API·희귀 달력 경계·실제 never-match 종료를 정확한 날짜로 검증하고, 70개 조합의 독립 일별 oracle까지 포함한다; 255 통과·원본 불변.",
+    "rank": 1
+  },
+  {
+    "task": "s2-tests",
+    "code": "84ae941f",
+    "criteria": [
+      5,
+      5,
+      5,
+      5,
+      5
+    ],
+    "score": 5,
+    "reason": "정확한 날짜·에러 메시지와 1,000개 고정 seed round-trip, never-match 및 empty-streak 재설정까지 검증한다; 174 통과·원본 불변.",
+    "rank": 1
+  },
+  {
+    "task": "s2-tests",
+    "code": "96850034",
+    "criteria": [
+      5,
+      5,
+      5,
+      5,
+      5
+    ],
+    "score": 5,
+    "reason": "음수 월일 SKIP/CLAMP·세기 윤년·경계 검색·never-match와 seed별 round-trip을 빠짐없이 다룬다; 189 통과·원본 불변.",
+    "rank": 1
+  },
+  {
+    "task": "s2-tests",
+    "code": "a0a9b7a0",
+    "criteria": [
+      5,
+      5,
+      5,
+      5,
+      5
+    ],
+    "score": 5,
+    "reason": "31일·음수 월일·세기 윤년·UNTIL 경계와 never-match를 정확한 결과로 고정하고 알려진 직접 생성 Rule 문제는 strict xfail로 분리한다; 155 통과.",
+    "rank": 1
+  },
+  {
+    "task": "s2-tests",
+    "code": "ab9b405b",
+    "criteria": [
+      5,
+      5,
+      5,
+      5,
+      5
+    ],
+    "score": 5,
+    "reason": "공개 API 전체와 중복 날짜·COUNT 중간 종료·empty-streak 재설정·never-match를 명확한 클래스와 정확한 값으로 검증한다; 164 통과·원본 불변.",
+    "rank": 1
+  },
+  {
+    "task": "s2-tests",
+    "code": "bc376839",
+    "criteria": [
+      5,
+      5,
+      5,
+      5,
+      5
+    ],
+    "score": 5,
+    "reason": "파서 오류·직렬화·월말·음수 월일·윤년·범위 경계·never-match를 포괄하며 100년 간격 윤년도 정확히 검증한다; 174 통과·원본 불변.",
+    "rank": 1
+  },
+  {
+    "task": "s2-tests",
+    "code": "d3513acf",
+    "criteria": [
+      5,
+      5,
+      5,
+      5,
+      4
+    ],
+    "score": 4,
+    "reason": "주요 동작과 달력 경계·never-match는 충실하나 INTERVAL=1_0 거부를 문서에 없는 plain-digits 계약으로 가정한 xfail은 불필요한 명세 확장이다; 165 통과.",
+    "rank": 8
+  },
+  {
+    "task": "s2-tests",
+    "code": "ea3597bc",
+    "criteria": [
+      5,
+      5,
+      5,
+      5,
+      5
+    ],
+    "score": 5,
+    "reason": "공개 API·월말·음수 월일·윤년·never-match·empty-streak와 COUNT/UNTIL 경계를 정확히 검증하고 보조 함수도 분리한다; 216 통과·원본 불변.",
+    "rank": 1
+  },
+  {
+    "task": "s2-tests",
+    "code": "f98c881b",
+    "criteria": [
+      5,
+      4,
+      5,
+      5,
+      5
+    ],
+    "score": 4,
+    "reason": "정확한 공개 API·달력 경계 검증과 scan-limit 축소 테스트는 좋지만 원래 상한에서 영원히 매칭되지 않는 규칙의 종료 사례가 빠진다; 191 통과·원본 불변.",
+    "rank": 8
+  }
+]

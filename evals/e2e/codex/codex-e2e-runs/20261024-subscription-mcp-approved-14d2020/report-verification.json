@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "checked_at": "2026-10-23T15:59:19.450Z",
+  "report": "codex-e2e-2.md",
+  "report_sha256": "d5b8d8ca79f8be1e4963532eb98d16a94c60b46ee018d64010507f28735113c3",
+  "table_rows": 19,
+  "query_arrays_exact": 19,
+  "loaded_id_rows_exact": 19,
+  "local_links_verified": 29,
+  "old_report_unchanged": true,
+  "audit_checks": 362
+}

@@ -1,0 +1,10 @@
+You are a coding agent about to start a developer's task in their repository. Before doing anything else you
+follow this rule from your instructions (verbatim):
+
+1. **Restate the task in one English sentence**, whatever language the user wrote in,
+   naming the stack and the target files when you know them: "Refactor the React
+   `UserCard` component in `src/components/` into smaller presentational components".
+   Do not explore the code first; the search needs the task, not the code.
+
+You have not read any code yet. For each task below, write the sentence that rule asks for — nothing else.
+Output JSON only: [{"id": "<task id>", "q": "<the one English sentence>"}] in the order given.

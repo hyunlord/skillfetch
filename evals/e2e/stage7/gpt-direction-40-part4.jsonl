@@ -1,0 +1,302 @@
+{"task_id": "t365", "candidate_id": "uasl/integration-testing@62b51275be50", "grade": 2, "process": true, "reason": "통합 API 테스트의 격리와 실패 검증은 TestClient 테스트 작성에 분명히 도움이 된다."}
+{"task_id": "t365", "candidate_id": "uasl/security-review@fcc354bc486e", "grade": 2, "process": true, "reason": "API 보호와 보안 동작 테스트 체크리스트가 키별 요청 제한 검증에 도움이 된다."}
+{"task_id": "t365", "candidate_id": "uasl/fastapi-templates@effcd0de0b4c", "grade": 2, "process": false, "reason": "FastAPI 의존성 주입과 엔드포인트 테스트 예제가 기존 라우터의 제한 기능 구현에 도움이 된다."}
+{"task_id": "t365", "candidate_id": "uasl/neon-automation@998078570d02", "grade": 0, "process": false, "reason": "Neon 데이터베이스 관리 자동화는 FastAPI 요청 제한과 무관하다."}
+{"task_id": "t365", "candidate_id": "uasl/radar@a47ea6fd5f95", "grade": 2, "process": true, "reason": "기존 테스트 관례에 맞춘 테스트 추가와 검증 방법이 실패 테스트 작성에 도움이 된다."}
+{"task_id": "t365", "candidate_id": "uasl/backend-patterns@3d87ff489f3e", "grade": 1, "process": false, "reason": "요청 제한 패턴은 주제가 맞지만 TypeScript 백엔드 중심이라 FastAPI 적용 가치는 제한적이다."}
+{"task_id": "t365", "candidate_id": "uasl/provider-api@4da7bed47117", "grade": 0, "process": false, "reason": "외부 제공자 API CLI 호출은 자체 서버의 요청 제한 구현이 아니다."}
+{"task_id": "t365", "candidate_id": "uasl/apify-automation@34a14f015224", "grade": 0, "process": false, "reason": "Apify Actor 및 데이터셋 운영은 이 서버 변경과 무관하다."}
+{"task_id": "t365", "candidate_id": "uasl/python-testing-patterns@e62d0f1ca316", "grade": 3, "process": true, "reason": "Python pytest fixture와 mock 및 실패 동작 테스트가 지정된 테스트 파일 작성에 직접 쓰인다."}
+{"task_id": "t365", "candidate_id": "uasl/async-python-patterns@957ebfe54aa7", "grade": 2, "process": false, "reason": "FastAPI 비동기 경로에서 제한 검사를 넣을 때 블로킹과 동시성 문제를 피하는 데 도움이 된다."}
+{"task_id": "t365", "candidate_id": "uasl/gateway@8350be122608", "grade": 1, "process": true, "reason": "계약 설계와 구현 위임 중심이라 이미 정해진 제한 규칙을 테스트 우선으로 구현하는 데는 주변적이다."}
+{"task_id": "t365", "candidate_id": "uasl/api-testing@4ada9a2fac88", "grade": 1, "process": false, "reason": "직접 HTTP 테스트는 관련 있지만 Postman·Bruno 중심은 지정된 TestClient 테스트 방식과 맞지 않는다."}
+{"task_id": "t365", "candidate_id": "uasl/error-handling-patterns@4c19ee7d7821", "grade": 1, "process": false, "reason": "일반 오류 처리 지침은 429 응답의 보조 참고이지만 제한 정책 자체를 다루지 않는다."}
+{"task_id": "t365", "candidate_id": "uasl/api-design@bba608f8c974", "grade": 3, "process": false, "reason": "HTTP 동작과 요청 제한 및 엔드포인트 준비 기준이 429·Retry-After 계약 구현에 직접 맞는다."}
+{"task_id": "t365", "candidate_id": "uasl/keen-io-automation@42a55be32d83", "grade": 0, "process": false, "reason": "Keen IO 분석 자동화는 요청 제한 기능과 무관하다."}
+{"task_id": "t365", "candidate_id": "uasl/testrunner@68216aa52709", "grade": 0, "process": false, "reason": ".NET 전용 테스트 실행기는 Python TestClient 작업과 도구가 다르다."}
+{"task_id": "t365", "candidate_id": "uasl/unit-testing@6c5fbb821103", "grade": 2, "process": true, "reason": "결정적 테스트와 test double 원칙이 시간 창·키별 격리 검증에 도움이 된다."}
+{"task_id": "t365", "candidate_id": "uasl/triggercmd-automation@527b3934d4e6", "grade": 0, "process": false, "reason": "Triggercmd 자동화는 FastAPI 엔드포인트 테스트와 무관하다."}
+{"task_id": "t365", "candidate_id": "uasl/cast@5200526abf38", "grade": 0, "process": true, "reason": "페르소나 생성·감사 절차는 요청 제한 구현과 무관하다."}
+{"task_id": "t365", "candidate_id": "uasl/typescript-unit-testing@6fb3561edcb3", "grade": 0, "process": true, "reason": "NestJS/Jest 단위 테스트는 지정된 Python 스택과 다르다."}
+{"task_id": "t365", "candidate_id": "uasl/fastapi-endpoint@2a93d50c4970", "grade": 2, "process": true, "reason": "기존 FastAPI 탐색과 인증 주입·API 테스트를 안내해 변경에 도움이 되지만 실패 테스트 우선은 명시하지 않는다."}
+{"task_id": "t365", "candidate_id": "uasl/tdd@ff86dad94075", "grade": 3, "process": true, "reason": "실패하는 동작 테스트부터 최소 구현으로 진행하는 순서가 명시된 작업 방향과 정확히 맞는다."}
+{"task_id": "t365", "candidate_id": "uasl/auth-implementation-patterns@7a99b395d548", "grade": 1, "process": false, "reason": "인증·권한 및 TypeScript 패턴 중심이며 기존 기기 키의 요청 제한에는 간접 참고에 그친다."}
+{"task_id": "t365", "candidate_id": "uasl/the-odds-api-automation@688dcc38656c", "grade": 0, "process": false, "reason": "스포츠 배당 API 자동화는 이 FastAPI 변경과 무관하다."}
+{"task_id": "t365", "candidate_id": "uasl/test-driven-development@0eebe2fe0e28", "grade": 3, "process": true, "reason": "실패 확인 후 최소 코드를 작성하는 테스트 우선 사이클이 요청한 절차를 직접 다룬다."}
+{"task_id": "t365", "candidate_id": "uasl/tdd-workflow@6eadb0bf0ea8", "grade": 2, "process": true, "reason": "테스트 우선과 경계·오류 검증은 도움이 되지만 JS 도구와 광범위 커버리지 기준은 이 Python 변경보다 넓다."}
+{"task_id": "t365", "candidate_id": "uasl/thinking-scientific-method@8b3f9fba25b4", "grade": 1, "process": true, "reason": "가설 검증 조사 절차는 이미 명세가 정해진 기능의 TDD에 간접적으로만 도움이 된다."}
+{"task_id": "t365", "candidate_id": "uasl/openapi-spec-generation@2d2c7a93b8f2", "grade": 1, "process": false, "reason": "OpenAPI 명세 관리는 429 문서화에는 관련 있지만 요구된 제한 로직과 실패 테스트의 핵심은 아니다."}
+{"task_id": "t365", "candidate_id": "uasl/respond-io-automation@441b2891c1d1", "grade": 0, "process": false, "reason": "Respond IO 고객 지원 자동화는 서버 요청 제한과 무관하다."}
+{"task_id": "t366", "candidate_id": "uasl/supply-chain-risk-auditor@e1d4cbea9ff6", "grade": 0, "process": true, "reason": "의존성 공급망 감사는 라우터의 요청 제한 구현 범위 밖이다."}
+{"task_id": "t366", "candidate_id": "uasl/ambient-weather-automation@97d58d37f985", "grade": 0, "process": false, "reason": "기상 서비스 자동화는 FastAPI 변경과 무관하다."}
+{"task_id": "t366", "candidate_id": "uasl/secure-coding-practices@cc37fcd8687e", "grade": 1, "process": false, "reason": "일반 방어 코딩은 보조 참고지만 라우터 의존성이나 요청 제한 구현을 직접 다루지 않는다."}
+{"task_id": "t366", "candidate_id": "uasl/brightdata-automation@63368634e323", "grade": 0, "process": false, "reason": "Brightdata 스크래핑 도구 운영은 이 작업과 무관하다."}
+{"task_id": "t366", "candidate_id": "uasl/provider-api@4da7bed47117", "grade": 0, "process": false, "reason": "제공자 API 호출 CLI는 자체 라우터의 제한 정책 구현과 다르다."}
+{"task_id": "t366", "candidate_id": "uasl/clean-architecture@acaac6e9e2a3", "grade": 1, "process": false, "reason": "프레임워크 독립 계층 설계는 작은 라우터 의존성 변경에 과한 구조 변경을 유도할 수 있다."}
+{"task_id": "t366", "candidate_id": "uasl/x-api@f7be0ce6f0ec", "grade": 0, "process": false, "reason": "X API 게시·검색 연동은 IoT 수집 엔드포인트와 무관하다."}
+{"task_id": "t366", "candidate_id": "uasl/respond-io-automation@441b2891c1d1", "grade": 0, "process": false, "reason": "Respond IO 자동화는 요청 제한 변경과 무관하다."}
+{"task_id": "t366", "candidate_id": "uasl/error-handling-patterns@4c19ee7d7821", "grade": 1, "process": false, "reason": "일반 오류 처리 원칙은 429 처리에 주변적으로만 도움이 된다."}
+{"task_id": "t366", "candidate_id": "uasl/async-python-patterns@957ebfe54aa7", "grade": 2, "process": false, "reason": "비동기 FastAPI 의존성에서 블로킹과 동시성을 다루는 데 도움이 된다."}
+{"task_id": "t366", "candidate_id": "uasl/backend-patterns@3d87ff489f3e", "grade": 1, "process": false, "reason": "요청 제한은 다루지만 TypeScript 중심 패턴이라 Python 라우터에 직접 적용하기 어렵다."}
+{"task_id": "t366", "candidate_id": "uasl/api-design@bba608f8c974", "grade": 3, "process": false, "reason": "HTTP 응답과 요청 제한 계약 지침이 120회 한도·429·Retry-After 구현에 직접 맞는다."}
+{"task_id": "t366", "candidate_id": "uasl/thinking-scientific-method@8b3f9fba25b4", "grade": 1, "process": true, "reason": "가설 조사 절차는 이미 정해진 작은 기능 구현의 핵심과 거리가 있다."}
+{"task_id": "t366", "candidate_id": "uasl/apify-automation@34a14f015224", "grade": 0, "process": false, "reason": "Apify 데이터 수집 자동화는 이 라우터 변경과 무관하다."}
+{"task_id": "t366", "candidate_id": "uasl/onboarding-ux@525055bbdf31", "grade": 0, "process": true, "reason": "웹 온보딩 감사와 UI 작성은 서버 요청 제한과 무관하다."}
+{"task_id": "t366", "candidate_id": "uasl/bolt@c4895c710162", "grade": 1, "process": true, "reason": "성능 측정·최적화 절차는 요청 제한 기능의 작은 변경에 간접적이다."}
+{"task_id": "t366", "candidate_id": "uasl/define-architecture@8ea764417825", "grade": 0, "process": true, "reason": "TypeScript 전체 구조와 middleware 설계는 Python의 작은 의존성 변경·새 middleware 금지와 맞지 않는다."}
+{"task_id": "t366", "candidate_id": "uasl/gateway@8350be122608", "grade": 1, "process": true, "reason": "계약 설계와 구현 위임 중심이라 직접 작은 코드를 추가하는 요구에는 제한적이다."}
+{"task_id": "t366", "candidate_id": "uasl/fastapi-endpoint@2a93d50c4970", "grade": 2, "process": true, "reason": "기존 FastAPI 구조와 의존성 주입·API 테스트를 다루며 새 middleware를 요구하지 않는다."}
+{"task_id": "t366", "candidate_id": "uasl/shadcn-ui@8c463642324a", "grade": 0, "process": false, "reason": "React shadcn/ui 구성은 FastAPI 라우터와 무관하다."}
+{"task_id": "t366", "candidate_id": "uasl/python-performance-optimization@bf455fd100bf", "grade": 1, "process": false, "reason": "Python 프로파일링은 관련 언어지만 요청 제한 기능 자체를 다루지 않는다."}
+{"task_id": "t366", "candidate_id": "uasl/security-review@fcc354bc486e", "grade": 2, "process": true, "reason": "API 보호 체크리스트는 키별 제한을 보안 강화로 검증하는 데 도움이 된다."}
+{"task_id": "t366", "candidate_id": "uasl/fastapi-templates@effcd0de0b4c", "grade": 2, "process": false, "reason": "FastAPI 의존성 주입 예제는 유용하나 프로젝트 계층 템플릿 전체는 필요한 범위보다 넓다."}
+{"task_id": "t366", "candidate_id": "uasl/python-design-patterns@5c0fbe0d4633", "grade": 3, "process": false, "reason": "작은 Python 컴포넌트·의존성 주입·추상화 지연이 지정한 최소 라우터 변경 방식에 직접 맞는다."}
+{"task_id": "t366", "candidate_id": "uasl/more-trees-automation@3f30ba7af28a", "grade": 0, "process": false, "reason": "More Trees 도구 자동화는 이 변경과 무관하다."}
+{"task_id": "t366", "candidate_id": "uasl/five-agent-security-review@54653e9fa93f", "grade": 0, "process": true, "reason": "다섯 에이전트 팀의 권한·배포 보안 감사는 수집 API 구현과 무관하다."}
+{"task_id": "t366", "candidate_id": "uasl/sentinel@68f8e2afebcc", "grade": 2, "process": true, "reason": "보안 개선 한 건을 수정·검증하는 좁은 절차가 작은 요청 제한 변경에 도움이 된다."}
+{"task_id": "t366", "candidate_id": "uasl/claude-native-claude-api@24c958899f03", "grade": 0, "process": false, "reason": "Claude API SDK 구현은 자체 FastAPI 제한 기능과 다르다."}
+{"task_id": "t366", "candidate_id": "uasl/keen-io-automation@42a55be32d83", "grade": 0, "process": false, "reason": "Keen IO 분석 자동화는 해당 코드 변경과 무관하다."}
+{"task_id": "t366", "candidate_id": "uasl/caveman-review@23eed6aa48dd", "grade": 1, "process": true, "reason": "짧은 리뷰 방식은 제한적 참고지만 코드 수정을 하지 않는 절차는 구현 요청을 충족하지 못한다."}
+{"task_id": "t366", "candidate_id": "uasl/openapi-spec-generation@2d2c7a93b8f2", "grade": 1, "process": false, "reason": "명세 생성은 응답 문서화의 주변 작업이며 작은 의존성 구현의 핵심은 아니다."}
+{"task_id": "t366", "candidate_id": "uasl/auth-implementation-patterns@7a99b395d548", "grade": 1, "process": false, "reason": "TypeScript 인증 패턴의 제한 조언은 기존 FastAPI 기기 키 제한에 간접적으로만 쓰인다."}
+{"task_id": "t367", "candidate_id": "uasl/codeql@f2e86220e2ca", "grade": 1, "process": false, "reason": "CodeQL 소스 정적 분석은 컨테이너 CVE를 Trivy로 검사하는 요구와 도구·대상이 다르다."}
+{"task_id": "t367", "candidate_id": "anthropics-skills/claude-api@e30e2c97f747", "grade": 0, "process": false, "reason": "Claude API 참고 자료는 Docker 이미지와 CI 보안 개선에 무관하다."}
+{"task_id": "t367", "candidate_id": "uasl/supply-chain-risk-auditor@e1d4cbea9ff6", "grade": 2, "process": true, "reason": "의존성 위험을 우선 평가하는 감사 절차가 보안 우선 이미지 구성에 도움이 된다."}
+{"task_id": "t367", "candidate_id": "uasl/sentinel@68f8e2afebcc", "grade": 2, "process": true, "reason": "취약점 중심 수정·검증 절차는 보안 우선 이미지 강화에 도움이 되지만 Docker 구현 지식은 아니다."}
+{"task_id": "t367", "candidate_id": "uasl/github-workflow-automation@519f4ba6e482", "grade": 2, "process": false, "reason": "GitHub Actions 자동화·보안 패턴이 이미지 빌드와 스캔 단계 수정에 도움이 된다."}
+{"task_id": "t367", "candidate_id": "uasl/static-analysis@88c6f201cae0", "grade": 1, "process": false, "reason": "소스 정적 검사 통합은 관련 보안 영역이지만 Trivy 이미지 취약점 검사와는 다르다."}
+{"task_id": "t367", "candidate_id": "uasl/planning-with-files@5da17072dc31", "grade": 1, "process": true, "reason": "파일 기반 계획은 여러 설정 변경의 진행 관리에 간접적으로만 유용하다."}
+{"task_id": "t367", "candidate_id": "uasl/kubernetes-security-policies@83bbc7f29e7e", "grade": 1, "process": false, "reason": "이미지 보안 개념은 관련 있지만 Kubernetes 정책과 클러스터는 요구 범위 밖이다."}
+{"task_id": "t367", "candidate_id": "uasl/pipe@0f029a41f006", "grade": 3, "process": true, "reason": "안전한 GitHub Actions 설계·검증 절차가 보안 우선 빌드 및 실패 게이트 변경을 직접 다룬다."}
+{"task_id": "t367", "candidate_id": "uasl/clay@6c9572941894", "grade": 0, "process": false, "reason": "AI 3D 자산 생성은 컨테이너 개선과 무관하다."}
+{"task_id": "t367", "candidate_id": "uasl/yeet@7665edb92f0c", "grade": 0, "process": true, "reason": "커밋·푸시·PR 게시 절차는 요청된 Docker 및 스캔 구현이 아니다."}
+{"task_id": "t367", "candidate_id": "uasl/next-upgrade@df465f7770a5", "grade": 1, "process": true, "reason": "Next.js 업그레이드는 같은 프레임워크지만 버전 변경이 아닌 이미지 구성 개선과 거리가 있다."}
+{"task_id": "t367", "candidate_id": "uasl/security-audit@0b0f681978a4", "grade": 2, "process": true, "reason": "공격면·의존성 취약점 검사 절차가 non-root와 CVE 차단 요구를 검토하는 데 도움이 된다."}
+{"task_id": "t367", "candidate_id": "uasl/taste-skill@57790089504e", "grade": 0, "process": false, "reason": "Next.js UI 디자인은 런타임 이미지 보안 구성과 무관하다."}
+{"task_id": "t367", "candidate_id": "uasl/inngest@fc3f33c4e97f", "grade": 0, "process": false, "reason": "Inngest 배경 작업 구현은 이 이미지 빌드 변경과 무관하다."}
+{"task_id": "t367", "candidate_id": "uasl/software-design-philosophy@066bc275787f", "grade": 1, "process": false, "reason": "일반 설계 복잡도 원칙은 Docker 보안·standalone 패키징에 간접적이다."}
+{"task_id": "t367", "candidate_id": "uasl/brandkit@be1d18f9b581", "grade": 0, "process": false, "reason": "브랜드 이미지 제작은 컨테이너 작업과 무관하다."}
+{"task_id": "t367", "candidate_id": "uasl/nextjs-turbopack@b0af0186e13a", "grade": 1, "process": false, "reason": "Next 빌드 도구와 번들 분석은 관련 있지만 standalone 다단계 컨테이너를 직접 다루지 않는다."}
+{"task_id": "t367", "candidate_id": "uasl/scaffold@443673063eb0", "grade": 2, "process": true, "reason": "인프라 변경의 보안·검증 절차가 이미지와 CI 구성 변경에 도움이 된다."}
+{"task_id": "t367", "candidate_id": "uasl/five-agent-preflight-check@972573c45dcf", "grade": 1, "process": true, "reason": "저장소 사전 점검은 변경 안전성에 간접적이나 이미지 보안 구현 내용은 없다."}
+{"task_id": "t367", "candidate_id": "uasl/five-agent-captain-merge-gate@de13897132dc", "grade": 0, "process": true, "reason": "특정 다섯 에이전트 팀의 병합 게이트는 이번 작업과 무관하다."}
+{"task_id": "t367", "candidate_id": "uasl/github-actions-templates@ce03df93ccdf", "grade": 3, "process": false, "reason": "GitHub Actions 빌드·보안 스캔 워크플로 예제가 요구된 빌드 단계와 CVE 실패 게이트에 직접 맞는다."}
+{"task_id": "t367", "candidate_id": "uasl/postmortem@cf2cf9722781", "grade": 0, "process": true, "reason": "장애 사후 분석은 사고가 아닌 사전 이미지 개선과 무관하다."}
+{"task_id": "t367", "candidate_id": "uasl/deployment-pipeline-design@2a89fc6f32ff", "grade": 2, "process": false, "reason": "CI 검증·게이트·아티팩트 처리 설계가 보안 검사 포함 빌드 파이프라인에 도움이 된다."}
+{"task_id": "t367", "candidate_id": "uasl/five-agent-security-review@54653e9fa93f", "grade": 1, "process": true, "reason": "팀 권한·의존성 보안 검토는 인접하지만 컨테이너 hardening을 직접 다루지 않는다."}
+{"task_id": "t367", "candidate_id": "uasl/docker-hub-automation@271792aed33b", "grade": 0, "process": false, "reason": "Docker Hub 조직·저장소 관리 기능은 Dockerfile 작성과 무관하다."}
+{"task_id": "t367", "candidate_id": "uasl/systematic-debug@6b158e105823", "grade": 1, "process": true, "reason": "실패 파이프라인 격리 절차는 변경 후 문제 조사에 간접적인 도움만 준다."}
+{"task_id": "t367", "candidate_id": "uasl/vercel-react-best-practices@70f3b5aaf775", "grade": 1, "process": false, "reason": "React/Next 번들 성능은 인접하지만 컨테이너 크기·non-root 실행의 핵심은 아니다."}
+{"task_id": "t367", "candidate_id": "uasl/next-best-practices@ee058f89acea", "grade": 1, "process": false, "reason": "Next 라우팅·렌더링 지식은 standalone 배포 설정에 제한적인 배경 참고다."}
+{"task_id": "t367", "candidate_id": "uasl/five-agent-ci-debug@66324570bafb", "grade": 1, "process": true, "reason": "CI 실패 최소 수정 절차는 기존 실패를 고치는 작업이 아니므로 주변적이다."}
+{"task_id": "t367", "candidate_id": "uasl/monorepo-management@4078df072127", "grade": 1, "process": false, "reason": "JS 빌드·CI 최적화는 관련되나 monorepo 관리가 요청된 것은 아니다."}
+{"task_id": "t367", "candidate_id": "uasl/sprite-animation@db7a9df9a7a3", "grade": 0, "process": false, "reason": "픽셀 애니메이션 HTML은 Docker 빌드와 무관하다."}
+{"task_id": "t367", "candidate_id": "uasl/anvil@3a36e8410205", "grade": 0, "process": false, "reason": "CLI/TUI UX 설계는 이미지 보안 구성과 무관하다."}
+{"task_id": "t367", "candidate_id": "uasl/perf-lighthouse@ccafe273f7d2", "grade": 0, "process": false, "reason": "Lighthouse 페이지 성능 감사는 컨테이너 크기나 CVE를 검사하지 않는다."}
+{"task_id": "t367", "candidate_id": "uasl/scaffold-nextjs@3d1152f5d9d0", "grade": 1, "process": false, "reason": "새 Next.js turborepo 구축은 기존 이미지 교체에 필요한 범위보다 훨씬 넓다."}
+{"task_id": "t367", "candidate_id": "uasl/frontend-patterns@8f659ce2a0bd", "grade": 0, "process": false, "reason": "프런트엔드 컴포넌트 패턴은 Docker 실행 환경 보안에 무관하다."}
+{"task_id": "t368", "candidate_id": "uasl/monorepo-management@4078df072127", "grade": 2, "process": false, "reason": "pnpm 의존성 관리와 빌드·CI 최적화 지식이 lockfile 기반 캐시 개선에 도움이 된다."}
+{"task_id": "t368", "candidate_id": "uasl/pipe@0f029a41f006", "grade": 3, "process": true, "reason": "GitHub Actions 최적화와 검증 절차가 이미지 빌드 단계의 성능 중심 변경에 직접 쓰인다."}
+{"task_id": "t368", "candidate_id": "uasl/github-actions-templates@ce03df93ccdf", "grade": 2, "process": false, "reason": "Actions 빌드 워크플로 예제가 이미지 빌드 단계 수정에 분명히 도움이 된다."}
+{"task_id": "t368", "candidate_id": "uasl/taste-skill@57790089504e", "grade": 0, "process": false, "reason": "Next UI 디자인은 Docker 레이어 캐시와 무관하다."}
+{"task_id": "t368", "candidate_id": "uasl/thinking-theory-of-constraints@d55f9f735e58", "grade": 2, "process": true, "reason": "제약에 집중하고 개선 후 재측정하는 방법이 설치 캐시·이미지 크기 성능 목표에 도움이 된다."}
+{"task_id": "t368", "candidate_id": "uasl/npm-automation@cf49ea0e0c09", "grade": 0, "process": false, "reason": "원격 NPM 도구 자동화는 pnpm Docker 설치 레이어와 다르다."}
+{"task_id": "t368", "candidate_id": "uasl/five-agent-security-review@54653e9fa93f", "grade": 1, "process": true, "reason": "팀 보안 점검은 CI 주변 고려사항이지만 이번 성능 개선의 핵심이 아니다."}
+{"task_id": "t368", "candidate_id": "uasl/next-cache-components@b22f6e134147", "grade": 0, "process": false, "reason": "Next 런타임 콘텐츠 캐시는 Docker 의존성 레이어 캐시와 다르다."}
+{"task_id": "t368", "candidate_id": "uasl/image-enhancer@df8c8d454fcf", "grade": 0, "process": false, "reason": "사진 해상도 향상은 컨테이너 이미지 크기와 무관하다."}
+{"task_id": "t368", "candidate_id": "uasl/apitemplate-io-automation@926fadac2498", "grade": 0, "process": false, "reason": "Apitemplate 서비스 자동화는 Dockerfile 개선과 무관하다."}
+{"task_id": "t368", "candidate_id": "uasl/responsive-design@2cf7927ef938", "grade": 0, "process": false, "reason": "반응형 UI 디자인은 이미지 빌드 성능과 무관하다."}
+{"task_id": "t368", "candidate_id": "uasl/five-agent-ci-debug@66324570bafb", "grade": 1, "process": true, "reason": "CI 실패 조사 절차는 성능 개선 후 문제 해결에 보조적이다."}
+{"task_id": "t368", "candidate_id": "uasl/scaffold-nextjs@3d1152f5d9d0", "grade": 1, "process": false, "reason": "새 Next turborepo 배포 설정은 기존 Dockerfile 변경보다 범위가 넓다."}
+{"task_id": "t368", "candidate_id": "uasl/design-optimize@cbb1632043ec", "grade": 1, "process": true, "reason": "성능 측정 방법은 관련 있지만 UI 렌더링·네트워크 최적화가 Docker 레이어를 직접 다루지는 않는다."}
+{"task_id": "t368", "candidate_id": "uasl/vercel-react-best-practices@70f3b5aaf775", "grade": 1, "process": false, "reason": "웹 번들 크기 최적화는 인접하지만 의존성 설치 캐시와 최종 컨테이너 구성에는 제한적이다."}
+{"task_id": "t368", "candidate_id": "uasl/image-to-code-skill@4f1a4537825d", "grade": 0, "process": true, "reason": "이미지 기반 웹 디자인 구현 절차는 Docker 빌드와 무관하다."}
+{"task_id": "t368", "candidate_id": "uasl/frontend-patterns@8f659ce2a0bd", "grade": 0, "process": false, "reason": "프런트엔드 상태·폼 패턴은 Docker 성능 목표에 무관하다."}
+{"task_id": "t368", "candidate_id": "uasl/yeet@7665edb92f0c", "grade": 0, "process": true, "reason": "PR 게시 절차는 이미지 최적화 구현을 돕지 않는다."}
+{"task_id": "t368", "candidate_id": "uasl/sketch@2a8aac6ecc18", "grade": 0, "process": false, "reason": "Gemini 이미지 생성은 컨테이너 최적화와 무관하다."}
+{"task_id": "t368", "candidate_id": "uasl/next-best-practices@ee058f89acea", "grade": 1, "process": false, "reason": "일반 Next 렌더링·성능 지식은 standalone 컨테이너 작업의 주변 참고다."}
+{"task_id": "t368", "candidate_id": "uasl/gender-api-automation@92aed3bb2742", "grade": 0, "process": false, "reason": "Gender API 자동화는 Dockerfile과 무관하다."}
+{"task_id": "t368", "candidate_id": "uasl/imagegen-frontend-web@3c09b1b364ef", "grade": 0, "process": true, "reason": "웹 디자인 참고 이미지 제작 절차는 컨테이너 이미지와 무관하다."}
+{"task_id": "t368", "candidate_id": "uasl/nextjs-turbopack@b0af0186e13a", "grade": 1, "process": false, "reason": "Next 빌드 도구·번들 분석은 인접하지만 지정한 Docker 레이어 순서를 직접 다루지 않는다."}
+{"task_id": "t368", "candidate_id": "uasl/five-agent-preflight-check@972573c45dcf", "grade": 1, "process": true, "reason": "변경 전 저장소 점검은 안전성에 간접적일 뿐 성능 목표를 해결하지 않는다."}
+{"task_id": "t368", "candidate_id": "uasl/next-upgrade@df465f7770a5", "grade": 1, "process": true, "reason": "프레임워크 버전 업그레이드는 Docker 캐시 개선과 다른 작업이다."}
+{"task_id": "t368", "candidate_id": "uasl/docker-hub-automation@271792aed33b", "grade": 0, "process": false, "reason": "Docker Hub 조직·권한 관리 자동화는 Dockerfile 최적화가 아니다."}
+{"task_id": "t368", "candidate_id": "uasl/bun-runtime@009ca8691cf7", "grade": 1, "process": false, "reason": "Bun 설치로 전환하는 방향은 지정된 pnpm-lock 기반 설치 캐시와 맞지 않는다."}
+{"task_id": "t368", "candidate_id": "uasl/backend-patterns@3d87ff489f3e", "grade": 1, "process": false, "reason": "앱 백엔드 캐싱 패턴은 빌드 의존성 레이어 캐시와 다르다."}
+{"task_id": "t369", "candidate_id": "uasl/live-artifact@a7e66be6fd82", "grade": 0, "process": false, "reason": "Open Design 동적 아티팩트 계약은 기존 Go 정적 생성기의 버퍼 교체와 다르다."}
+{"task_id": "t369", "candidate_id": "uasl/responsive-design@2cf7927ef938", "grade": 1, "process": false, "reason": "반응형 CSS는 출력 UI와 인접하지만 보존할 table 의미나 Go 버퍼를 직접 다루지 않는다."}
+{"task_id": "t369", "candidate_id": "uasl/video-shortform@6be3340d3873", "grade": 0, "process": false, "reason": "영상 생성은 HTML 생성기 최적화와 무관하다."}
+{"task_id": "t369", "candidate_id": "uasl/audit-prep-assistant@6e127f2fce78", "grade": 1, "process": true, "reason": "보안 감사 준비는 Go 검증에 간접적이나 성능·접근성 보존 작업을 직접 돕지 않는다."}
+{"task_id": "t369", "candidate_id": "uasl/printing-press-output-review@35c772127bb2", "grade": 1, "process": true, "reason": "CLI 출력 육안 검토는 생성 결과 확인에 간접적이며 HTML 접근성 검증은 아니다."}
+{"task_id": "t369", "candidate_id": "uasl/meeting-notes@da1c35784ab9", "grade": 0, "process": false, "reason": "회의록 페이지 제작은 기존 상태 표 생성기와 무관하다."}
+{"task_id": "t369", "candidate_id": "uasl/eng-runbook@0895fb3557f4", "grade": 0, "process": false, "reason": "운영 runbook 페이지 작성은 상태 표 렌더러 변경과 무관하다."}
+{"task_id": "t369", "candidate_id": "uasl/writer-automation@1a53c0cac7b3", "grade": 0, "process": false, "reason": "Writer 서비스 자동화는 Go 버퍼 구현과 무관하다."}
+{"task_id": "t369", "candidate_id": "uasl/design-harden@7850aacd7d45", "grade": 2, "process": true, "reason": "접근성과 성능을 함께 검증하는 UI 보강 절차가 최적화 시 의미 보존에 도움이 된다."}
+{"task_id": "t369", "candidate_id": "uasl/roadmap-backcast@7cd18481befb", "grade": 0, "process": true, "reason": "일정 역산 로드맵은 명확한 단일 렌더러 최적화와 무관하다."}
+{"task_id": "t369", "candidate_id": "uasl/multi-repo-git-ops@d1a9b3bcdc7d", "grade": 0, "process": true, "reason": "다중 저장소 Git 운영은 이 파일 변경과 무관하다."}
+{"task_id": "t369", "candidate_id": "uasl/brightpearl-automation@1ecb8adc7ebd", "grade": 0, "process": false, "reason": "Brightpearl 재고 자동화는 상태 페이지 렌더링과 무관하다."}
+{"task_id": "t369", "candidate_id": "uasl/ui-audit@be637d5e2baf", "grade": 2, "process": true, "reason": "접근성 중심 UI 감사가 table·scope·텍스트 상태의 보존 확인에 도움이 된다."}
+{"task_id": "t369", "candidate_id": "uasl/error-handling-patterns@4c19ee7d7821", "grade": 2, "process": false, "reason": "Go writer 전환에서 쓰기·flush 오류를 적절히 전파하는 데 오류 처리 패턴이 도움이 된다."}
+{"task_id": "t369", "candidate_id": "uasl/frontend-slides@8d62c2eeef30", "grade": 0, "process": false, "reason": "HTML 발표자료 제작은 기존 상태 페이지 변경이 아니다."}
+{"task_id": "t369", "candidate_id": "uasl/accessibility-compliance@696d2b4119ed", "grade": 3, "process": false, "reason": "시맨틱 HTML과 스크린리더 지원 지침이 table·scope·상태 텍스트 유지 요구를 직접 다룬다."}
+{"task_id": "t369", "candidate_id": "uasl/finance-report@ab7b24a4526c", "grade": 0, "process": false, "reason": "재무 보고서 페이지는 서비스 상태 렌더러와 무관하다."}
+{"task_id": "t369", "candidate_id": "anthropics-skills/docx@74e2b8b277a4", "grade": 0, "process": false, "reason": "Word 문서 생성·편집 도구는 Go HTML 렌더링과 무관하다."}
+{"task_id": "t369", "candidate_id": "uasl/anvil@3a36e8410205", "grade": 1, "process": false, "reason": "Go CLI 출력 신뢰성은 인접하지만 HTML 버퍼 재사용과 접근성 요구를 직접 다루지 않는다."}
+{"task_id": "t369", "candidate_id": "uasl/navigator@8d026b4397b8", "grade": 1, "process": false, "reason": "브라우저 증거 수집은 출력 확인에 보조적이나 Go 메모리 개선의 핵심은 아니다."}
+{"task_id": "t369", "candidate_id": "uasl/wireframe-sketch@715426b3232f", "grade": 0, "process": false, "reason": "와이어프레임 디자인은 기존 HTML 의미 보존 변경과 무관하다."}
+{"task_id": "t369", "candidate_id": "uasl/api-design@bba608f8c974", "grade": 0, "process": false, "reason": "REST API 계약은 정적 HTML 작성 알고리즘과 무관하다."}
+{"task_id": "t369", "candidate_id": "uasl/printing-press-polish@b4aef54a7866", "grade": 1, "process": true, "reason": "Go CLI 검증·수정 절차는 주변적이며 특정 생성 CLI 배포 흐름이 필요하지 않다."}
+{"task_id": "t369", "candidate_id": "uasl/gosquared-automation@d5d3ce4678cf", "grade": 0, "process": false, "reason": "Gosquared 분석 자동화는 상태 페이지 생성기와 무관하다."}
+{"task_id": "t369", "candidate_id": "uasl/design-optimize@cbb1632043ec", "grade": 2, "process": true, "reason": "접근성을 희생하지 않고 성능을 측정·검증하는 방향이 명시된 우선순위에 맞는다."}
+{"task_id": "t369", "candidate_id": "uasl/cloudcart-automation@4caf7a85a528", "grade": 0, "process": false, "reason": "Cloudcart 상거래 자동화는 Go 최적화와 무관하다."}
+{"task_id": "t369", "candidate_id": "uasl/team-okrs@7a95ee8c1302", "grade": 0, "process": false, "reason": "OKR 추적 페이지 생성은 기존 상태 표 최적화와 무관하다."}
+{"task_id": "t369", "candidate_id": "uasl/evenium-automation@bceb3bb6819e", "grade": 0, "process": false, "reason": "Evenium 행사 자동화는 이 코드 변경과 무관하다."}
+{"task_id": "t369", "candidate_id": "uasl/pricing-page@8b72ba4d0477", "grade": 0, "process": false, "reason": "가격 페이지 제작은 상태 표의 버퍼 작성 변경과 무관하다."}
+{"task_id": "t369", "candidate_id": "uasl/scout-mindset-bias-check@9e9f4e1320f7", "grade": 0, "process": true, "reason": "예측 편향 교정은 정해진 성능·접근성 요구와 무관하다."}
+{"task_id": "t369", "candidate_id": "uasl/chrome-devtools@6237e93b6aa2", "grade": 1, "process": false, "reason": "브라우저 DOM 확인은 출력 보존에 보조적이나 서버 생성 시간·메모리는 측정하지 않는다."}
+{"task_id": "t369", "candidate_id": "uasl/cloudflare-browser-rendering-automation@efd929cdb7cd", "grade": 0, "process": false, "reason": "Cloudflare 원격 렌더링 자동화는 Go 버퍼 교체와 무관하다."}
+{"task_id": "t369", "candidate_id": "uasl/internal-comms@8ad08fb91e8c", "grade": 0, "process": true, "reason": "내부 커뮤니케이션 형식 선택은 생성기 구현과 무관하다."}
+{"task_id": "t369", "candidate_id": "uasl/html-ppt-taste-editorial@4b988f80eb3d", "grade": 0, "process": false, "reason": "HTML 슬라이드 스타일링은 상태 표 렌더러와 무관하다."}
+{"task_id": "t369", "candidate_id": "anthropics-skills/internal-comms@c544dea09136", "grade": 0, "process": true, "reason": "내부 소통 작성 절차는 코드 최적화와 무관하다."}
+{"task_id": "t369", "candidate_id": "uasl/perf-web-optimization@0e20e7b8cc98", "grade": 1, "process": false, "reason": "웹 에셋 최적화는 성능 영역은 같지만 서버 문자열 생성 병목과 다르다."}
+{"task_id": "t369", "candidate_id": "uasl/content-research-writer@f1af82e4025e", "grade": 0, "process": true, "reason": "연구·글쓰기 절차는 Go 렌더러 변경과 무관하다."}
+{"task_id": "t369", "candidate_id": "uasl/docs-page@d9c05e10601d", "grade": 0, "process": false, "reason": "새 문서 페이지 레이아웃은 기존 table 의미를 유지하는 작업과 다르다."}
+{"task_id": "t369", "candidate_id": "uasl/prose@bbd22d3eb9b7", "grade": 1, "process": true, "reason": "접근성 친화 UX 문구는 상태 라벨 검토에 인접하지만 라벨을 변경하지 않는 요구에는 제한적이다."}
+{"task_id": "t369", "candidate_id": "uasl/web-perf@9063b7e5eacf", "grade": 1, "process": true, "reason": "브라우저 성능·접근성 감사는 출력 검증에 보조적이며 Go 버퍼 비용을 직접 다루지 않는다."}
+{"task_id": "t369", "candidate_id": "uasl/vercel-react-best-practices@70f3b5aaf775", "grade": 0, "process": false, "reason": "React/Next 전용 성능 패턴은 Go 정적 HTML 생성기와 스택이 다르다."}
+{"task_id": "t369", "candidate_id": "uasl/statuscake-automation@741606432c70", "grade": 0, "process": false, "reason": "Statuscake 모니터링 서비스 자동화는 자체 페이지 생성기 최적화와 다르다."}
+{"task_id": "t369", "candidate_id": "uasl/mobile-onboarding@dae55de6dde3", "grade": 0, "process": false, "reason": "모바일 온보딩 화면 제작은 상태 페이지와 무관하다."}
+{"task_id": "t369", "candidate_id": "uasl/high-perf-browser@aee32087bf43", "grade": 1, "process": false, "reason": "브라우저 네트워크·로딩 성능은 서버 문서 생성 병목의 주변 영역이다."}
+{"task_id": "t369", "candidate_id": "uasl/ocr-web-service-automation@aa59f06fabaa", "grade": 0, "process": false, "reason": "OCR 서비스 자동화는 HTML 작성 코드와 무관하다."}
+{"task_id": "t369", "candidate_id": "uasl/output-skill@8da7a8f7c7fc", "grade": 1, "process": true, "reason": "완결된 산출물 점검은 일반적 보조 절차이며 버퍼·접근성 기술을 제공하지 않는다."}
+{"task_id": "t369", "candidate_id": "uasl/web-performance-optimization@b2b38275ed40", "grade": 1, "process": true, "reason": "웹 성능 측정 절차는 참고가 되지만 에셋·CWV 중심으로 Go 생성기와 거리가 있다."}
+{"task_id": "t369", "candidate_id": "uasl/bolt@c4895c710162", "grade": 2, "process": true, "reason": "프로파일링 후 측정 가능한 개선을 검증하는 절차가 9초·600MB 병목 개선에 도움이 된다."}
+{"task_id": "t369", "candidate_id": "uasl/semgrep-rule-creator@ae4d35a76948", "grade": 0, "process": false, "reason": "Semgrep 보안 규칙 제작은 HTML 버퍼 최적화와 무관하다."}
+{"task_id": "t369", "candidate_id": "uasl/gorgias-automation@2106c504916d", "grade": 0, "process": false, "reason": "Gorgias 고객지원 관리 자동화는 이 코드 변경과 무관하다."}
+{"task_id": "t370", "candidate_id": "uasl/redesign-skill@2e4f7f16e367", "grade": 1, "process": true, "reason": "시각 개선·재디자인을 지향하므로 현재 sparkline과 범례를 그대로 보존하라는 방향과 충돌할 수 있다."}
+{"task_id": "t370", "candidate_id": "uasl/image-poster@57a9b39c0f2f", "grade": 0, "process": false, "reason": "이미지 생성은 기존 Go HTML 렌더러 최적화와 무관하다."}
+{"task_id": "t370", "candidate_id": "uasl/claude-native-theme-factory@4ef38be1dfbf", "grade": 1, "process": true, "reason": "새 테마 선택·적용은 현재 모양을 정확히 유지하라는 요구와 맞지 않는다."}
+{"task_id": "t370", "candidate_id": "uasl/output-skill@8da7a8f7c7fc", "grade": 1, "process": true, "reason": "산출물 완결성 확인은 보조적이며 Go 버퍼나 시각 회귀를 직접 다루지 않는다."}
+{"task_id": "t370", "candidate_id": "uasl/cloudflare-browser-rendering-automation@efd929cdb7cd", "grade": 0, "process": false, "reason": "Cloudflare 브라우저 자동화는 로컬 Go 생성기 변경과 직접 관련이 없다."}
+{"task_id": "t370", "candidate_id": "uasl/printing-press-polish@b4aef54a7866", "grade": 1, "process": true, "reason": "Go CLI 품질 검증은 주변적이나 HTML 버퍼와 시각 보존을 직접 다루지 않는다."}
+{"task_id": "t370", "candidate_id": "uasl/web-prototype@9fcfd712fe7c", "grade": 1, "process": false, "reason": "제공된 seed로 새 웹 프로토타입을 만드는 것은 기존 출력의 정확한 보존과 다른 방향이다."}
+{"task_id": "t370", "candidate_id": "uasl/tweaks@800b9d426375", "grade": 1, "process": false, "reason": "디자인 조정 패널을 추가하는 것은 변경 없는 외관 보존 요구와 맞지 않는다."}
+{"task_id": "t370", "candidate_id": "uasl/statuscake-automation@741606432c70", "grade": 0, "process": false, "reason": "Statuscake 서비스 운영은 자체 상태 페이지 렌더러와 다르다."}
+{"task_id": "t370", "candidate_id": "uasl/agility-cms-automation@de75dca70ec8", "grade": 0, "process": false, "reason": "CMS 자동화는 상태 페이지 버퍼 최적화와 무관하다."}
+{"task_id": "t370", "candidate_id": "uasl/openui@c3154bb34a14", "grade": 0, "process": false, "reason": "OpenUI/React 생성 UI 스택은 Go 정적 생성기와 다르다."}
+{"task_id": "t370", "candidate_id": "uasl/thinking-margin-of-safety@2336a8b814d3", "grade": 1, "process": true, "reason": "자원 안전 여유 사고법은 600MB 문제의 배경 참고이나 버퍼 구현·외관 검증은 다루지 않는다."}
+{"task_id": "t370", "candidate_id": "uasl/ui-audit@be637d5e2baf", "grade": 2, "process": true, "reason": "집중적인 시각 UI 감사가 sparkline·색 범례의 회귀 확인에 도움이 된다."}
+{"task_id": "t370", "candidate_id": "uasl/gosquared-automation@d5d3ce4678cf", "grade": 0, "process": false, "reason": "Gosquared 분석 자동화는 렌더러 최적화와 무관하다."}
+{"task_id": "t370", "candidate_id": "uasl/vercel-composition-patterns@a6f8be32b197", "grade": 0, "process": false, "reason": "React 컴포넌트 합성 패턴은 Go 문자열 생성과 스택이 다르다."}
+{"task_id": "t370", "candidate_id": "uasl/firecrawl-scraper@8691949c9232", "grade": 1, "process": false, "reason": "페이지 스크린샷 기능은 비교에 보조적이나 외부 추출 도구가 이 변경의 핵심은 아니다."}
+{"task_id": "t370", "candidate_id": "uasl/navigator@8d026b4397b8", "grade": 2, "process": false, "reason": "Playwright·DevTools로 재현 가능한 브라우저 증거를 모으면 기존 모양 보존 검증에 도움이 된다."}
+{"task_id": "t370", "candidate_id": "uasl/video-shortform@6be3340d3873", "grade": 0, "process": false, "reason": "짧은 영상 생성은 HTML 작성 알고리즘과 무관하다."}
+{"task_id": "t370", "candidate_id": "uasl/html-ppt-taste-editorial@4b988f80eb3d", "grade": 0, "process": false, "reason": "HTML 발표 스타일링은 상태 페이지와 다른 산출물이다."}
+{"task_id": "t370", "candidate_id": "uasl/video-editing@6c68b3cc7f35", "grade": 0, "process": true, "reason": "실제 영상 편집 절차는 Go 렌더러와 무관하다."}
+{"task_id": "t370", "candidate_id": "uasl/perf-web-optimization@0e20e7b8cc98", "grade": 1, "process": false, "reason": "웹 에셋 성능 개선은 관련 영역이나 문자열 합치기 병목과 다르다."}
+{"task_id": "t370", "candidate_id": "anthropics-skills/docx@74e2b8b277a4", "grade": 0, "process": false, "reason": "DOCX 문서 편집은 Go HTML 생성과 무관하다."}
+{"task_id": "t370", "candidate_id": "uasl/manim@b0a6f7da4632", "grade": 0, "process": false, "reason": "Manim 수학 애니메이션은 기존 sparkline 출력 보존에 필요하지 않다."}
+{"task_id": "t370", "candidate_id": "uasl/updown-io-automation@9cc2a17cca7e", "grade": 0, "process": false, "reason": "외부 모니터링 서비스 자동화는 자체 HTML 생성기와 다르다."}
+{"task_id": "t370", "candidate_id": "uasl/web-performance-optimization@b2b38275ed40", "grade": 1, "process": true, "reason": "웹 성능 측정은 간접적이나 CWV·에셋 중심이라 Go 메모리 병목과 거리가 있다."}
+{"task_id": "t370", "candidate_id": "uasl/eng-runbook@0895fb3557f4", "grade": 0, "process": false, "reason": "엔지니어링 runbook 페이지 작성은 기존 상태 표 변경이 아니다."}
+{"task_id": "t370", "candidate_id": "anthropics-skills/canvas-design@5866a8f274dd", "grade": 0, "process": false, "reason": "새 캔버스 작품 제작은 기존 페이지를 그대로 유지하는 작업과 무관하다."}
+{"task_id": "t370", "candidate_id": "uasl/web-perf@9063b7e5eacf", "grade": 1, "process": true, "reason": "브라우저 성능 감사는 출력 확인에 보조적이나 서버 생성 비용을 직접 해결하지 않는다."}
+{"task_id": "t370", "candidate_id": "uasl/multi-repo-git-ops@d1a9b3bcdc7d", "grade": 0, "process": true, "reason": "다중 저장소 Git 절차는 렌더러 구현과 무관하다."}
+{"task_id": "t370", "candidate_id": "uasl/bun-runtime@009ca8691cf7", "grade": 0, "process": false, "reason": "Bun/Node 마이그레이션은 Go 코드와 스택이 다르다."}
+{"task_id": "t370", "candidate_id": "uasl/internal-comms@8ad08fb91e8c", "grade": 0, "process": true, "reason": "내부 소통 글쓰기 형식은 버퍼 교체와 무관하다."}
+{"task_id": "t370", "candidate_id": "uasl/vercel-react-best-practices@70f3b5aaf775", "grade": 0, "process": false, "reason": "React/Next 최적화는 Go 정적 HTML 생성과 스택이 다르다."}
+{"task_id": "t370", "candidate_id": "anthropics-skills/internal-comms@c544dea09136", "grade": 0, "process": true, "reason": "내부 커뮤니케이션 작성 절차는 코드 최적화와 무관하다."}
+{"task_id": "t370", "candidate_id": "uasl/design-optimize@cbb1632043ec", "grade": 2, "process": true, "reason": "기능을 보존하며 성능 개선을 검증하는 절차가 외관 회귀를 피하는 변경에 도움이 된다."}
+{"task_id": "t370", "candidate_id": "uasl/guizang-ppt@169ebe37242f", "grade": 0, "process": false, "reason": "HTML 슬라이드 제작은 상태 페이지 렌더링과 다른 작업이다."}
+{"task_id": "t370", "candidate_id": "uasl/team-okrs@7a95ee8c1302", "grade": 0, "process": false, "reason": "OKR 페이지 제작은 기존 상태 표의 버퍼 교체와 무관하다."}
+{"task_id": "t370", "candidate_id": "uasl/semgrep-rule-variant-creator@2cea56923011", "grade": 0, "process": false, "reason": "Semgrep 규칙 포팅은 렌더링 최적화와 무관하다."}
+{"task_id": "t370", "candidate_id": "uasl/brightpearl-automation@1ecb8adc7ebd", "grade": 0, "process": false, "reason": "Brightpearl 자동화는 Go 작성 코드와 무관하다."}
+{"task_id": "t370", "candidate_id": "uasl/frontend-slides@8d62c2eeef30", "grade": 0, "process": false, "reason": "발표자료 HTML 제작은 상태 페이지 외관 보존과 다른 작업이다."}
+{"task_id": "t370", "candidate_id": "uasl/minimalist-skill@6bec0a57af30", "grade": 1, "process": false, "reason": "새 미니멀 색상·타이포 스타일을 적용하면 현재 범례·sparkline 보존 방향을 거스른다."}
+{"task_id": "t370", "candidate_id": "uasl/gorgias-automation@2106c504916d", "grade": 0, "process": false, "reason": "Gorgias 고객지원 도구는 렌더러 최적화와 무관하다."}
+{"task_id": "t370", "candidate_id": "uasl/high-perf-browser@aee32087bf43", "grade": 1, "process": false, "reason": "브라우저 네트워크·캐시 최적화는 Go 문서 생성 비용과 다른 계층이다."}
+{"task_id": "t370", "candidate_id": "uasl/visual-design-foundations@f7829f5da0d2", "grade": 1, "process": false, "reason": "디자인 일관성 원칙은 주변 참고지만 새 토큰·스타일 가이드 수립이 필요한 작업은 아니다."}
+{"task_id": "t370", "candidate_id": "uasl/python-performance-optimization@bf455fd100bf", "grade": 0, "process": false, "reason": "Python 프로파일링 도구와 구현 패턴은 Go 스택과 다르다."}
+{"task_id": "t370", "candidate_id": "uasl/replit-deck@84797e95ef8f", "grade": 0, "process": false, "reason": "Replit HTML 발표자료 제작은 상태 페이지 최적화와 무관하다."}
+{"task_id": "t370", "candidate_id": "uasl/crosspost@391532c80819", "grade": 0, "process": true, "reason": "소셜 플랫폼용 콘텐츠 변환은 Go 코드와 무관하다."}
+{"task_id": "t370", "candidate_id": "uasl/live-artifact@a7e66be6fd82", "grade": 0, "process": false, "reason": "Open Design 아티팩트 계약으로 새 출력물을 만드는 것은 기존 생성기 변경과 다르다."}
+{"task_id": "t370", "candidate_id": "uasl/pre-pr@6d87559d4507", "grade": 0, "process": true, "reason": ".NET 전용 pre-PR 검증 절차는 Go 프로젝트와 스택이 다르다."}
+{"task_id": "t370", "candidate_id": "uasl/writer-automation@1a53c0cac7b3", "grade": 0, "process": false, "reason": "Writer API 자동화는 버퍼 교체와 무관하다."}
+{"task_id": "t370", "candidate_id": "uasl/bolt@c4895c710162", "grade": 2, "process": true, "reason": "프로파일링과 개선 효과 재측정 절차가 제한된 생성기 성능 변경에 도움이 된다."}
+{"task_id": "t371", "candidate_id": "uasl/bugherd-automation@bbc585aff67d", "grade": 0, "process": false, "reason": "Bugherd 이슈 자동화는 Rust 테스트 작성과 무관하다."}
+{"task_id": "t371", "candidate_id": "uasl/design-integration@03e2661a4d5f", "grade": 0, "process": true, "reason": "Uniswap 통합 설계 위임은 창고 API 테스트와 도메인이 다르다."}
+{"task_id": "t371", "candidate_id": "uasl/zoho-inventory-automation@2f2863777368", "grade": 0, "process": false, "reason": "Zoho Inventory 실제 서비스 자동화는 로컬 fake 서버 테스트가 아니다."}
+{"task_id": "t371", "candidate_id": "uasl/fastapi-endpoint@2a93d50c4970", "grade": 0, "process": true, "reason": "FastAPI/Python 엔드포인트 절차는 Rust crate와 스택이 다르다."}
+{"task_id": "t371", "candidate_id": "uasl/api-testing@4ada9a2fac88", "grade": 1, "process": false, "reason": "API 테스트 주제는 맞지만 Postman·Bruno 등 도구 중심은 tokio fake 서버 방식에 맞지 않는다."}
+{"task_id": "t371", "candidate_id": "uasl/fuzzing-obstacles@cb574f4c1b3b", "grade": 0, "process": true, "reason": "fuzzing 방해 요소 제거는 명시된 HTTP 통합 시나리오 테스트와 다른 작업이다."}
+{"task_id": "t371", "candidate_id": "uasl/universal-ai-setup@c9f3fcedeec6", "grade": 0, "process": true, "reason": "AI 설정 저장소 운영 절차는 inventory-sync 테스트와 무관하다."}
+{"task_id": "t371", "candidate_id": "uasl/live-artifact@a7e66be6fd82", "grade": 0, "process": false, "reason": "Open Design HTML 아티팩트는 Rust 통합 테스트와 무관하다."}
+{"task_id": "t371", "candidate_id": "uasl/tdd@ff86dad94075", "grade": 2, "process": true, "reason": "공개 인터페이스의 집중된 동작 검증 절차가 pagination·retry 사례 작성에 도움이 된다."}
+{"task_id": "t371", "candidate_id": "uasl/happy-scribe-automation@70cdb7fcfd0e", "grade": 0, "process": false, "reason": "Happy Scribe 전사 서비스 자동화는 Rust 테스트와 무관하다."}
+{"task_id": "t371", "candidate_id": "uasl/python-testing-patterns@e62d0f1ca316", "grade": 0, "process": true, "reason": "pytest·Python mock 테스트 방식은 Rust tokio 스택과 다르다."}
+{"task_id": "t371", "candidate_id": "uasl/diffbot-automation@e158f2de0758", "grade": 0, "process": false, "reason": "Diffbot 데이터 추출 자동화는 로컬 HTTP 테스트와 무관하다."}
+{"task_id": "t371", "candidate_id": "uasl/boxhero-automation@175d3685f4df", "grade": 0, "process": false, "reason": "Boxhero 실제 서비스 자동화는 fake warehouse 구현과 다르다."}
+{"task_id": "t371", "candidate_id": "uasl/coinbase-automation@5c971806493f", "grade": 0, "process": false, "reason": "Coinbase 지갑 조회는 창고 API 테스트와 무관하다."}
+{"task_id": "t371", "candidate_id": "uasl/cargo-fuzz@2b31cd9657f5", "grade": 1, "process": false, "reason": "Rust 테스트 도구지만 cargo-fuzz 추가와 fuzzing 방식은 새 의존성 없는 tokio fake 서버 요구에 맞지 않는다."}
+{"task_id": "t371", "candidate_id": "uasl/printing-press-reprint@af02d260d0be", "grade": 0, "process": true, "reason": "기존 CLI 재출력·공개 사본 조정 절차는 이 테스트와 무관하다."}
+{"task_id": "t371", "candidate_id": "uasl/snowflake-automation@8f41cfe96880", "grade": 0, "process": false, "reason": "Snowflake 데이터웨어하우스 SQL 운영은 물류 창고 API 테스트와 무관하다."}
+{"task_id": "t371", "candidate_id": "uasl/remote-retrieval-automation@f436c1cfb43c", "grade": 0, "process": false, "reason": "Remote Retrieval 도구 자동화는 테스트 서버 작성과 무관하다."}
+{"task_id": "t371", "candidate_id": "uasl/investor-materials@7b41352320eb", "grade": 0, "process": true, "reason": "투자자용 자료 작성은 Rust 테스트와 무관하다."}
+{"task_id": "t371", "candidate_id": "uasl/figma-implement-design@6f82bf7fa5ca", "grade": 0, "process": true, "reason": "Figma 디자인 구현 절차는 백엔드 통합 테스트와 무관하다."}
+{"task_id": "t371", "candidate_id": "uasl/component-identification-sizing@a9b4aa9f2de1", "grade": 0, "process": true, "reason": "아키텍처 컴포넌트 크기 분석은 정해진 reconcile 테스트에 필요하지 않다."}
+{"task_id": "t371", "candidate_id": "uasl/typescript-unit-testing@6fb3561edcb3", "grade": 0, "process": true, "reason": "NestJS/Jest 테스트 절차는 Rust 스택과 다르다."}
+{"task_id": "t371", "candidate_id": "uasl/api-ninjas-automation@e9437531d148", "grade": 0, "process": false, "reason": "API Ninjas 호출 자동화는 로컬 warehouse fake 서버가 아니다."}
+{"task_id": "t371", "candidate_id": "uasl/prototyping-pretotyping@df9f5509380c", "grade": 0, "process": true, "reason": "실사용자 대상 제품 가설 실험은 함수의 통합 테스트와 다르다."}
+{"task_id": "t371", "candidate_id": "uasl/fixer-io-automation@1319e819bd6c", "grade": 0, "process": false, "reason": "Fixer IO 외부 도구 자동화는 이 Rust 테스트와 무관하다."}
+{"task_id": "t371", "candidate_id": "uasl/respond-io-automation@441b2891c1d1", "grade": 0, "process": false, "reason": "Respond IO 고객지원 자동화는 reconcile 테스트와 무관하다."}
+{"task_id": "t371", "candidate_id": "uasl/integration-testing@62b51275be50", "grade": 1, "process": true, "reason": "통합 검증 원칙은 관련되나 실제 의존성·Testcontainers 중심은 추가 의존성 없는 fake 서버 방향과 거리가 있다."}
+{"task_id": "t371", "candidate_id": "uasl/error-handling-patterns@4c19ee7d7821", "grade": 2, "process": false, "reason": "Rust 오류·정리 패턴이 503 재시도와 잘린 응답의 실패 동작 검증에 도움이 된다."}
+{"task_id": "t371", "candidate_id": "uasl/radar@a47ea6fd5f95", "grade": 3, "process": true, "reason": "기존 관례를 지키며 제품 동작을 바꾸지 않고 테스트를 추가하는 절차가 요구된 통합 테스트 작업에 직접 맞는다."}
+{"task_id": "t371", "candidate_id": "uasl/loyverse-automation@32069cd588ae", "grade": 0, "process": false, "reason": "Loyverse 소매 운영 자동화는 Rust fake 서버 테스트와 무관하다."}
+{"task_id": "t371", "candidate_id": "uasl/tdd-workflow@6eadb0bf0ea8", "grade": 1, "process": true, "reason": "테스트 우선 원칙은 주변 참고지만 JS 중심 다층 커버리지 확대는 지정된 Rust 통합 테스트보다 넓다."}
+{"task_id": "t371", "candidate_id": "uasl/netsuite-automation@b615a37449c9", "grade": 0, "process": false, "reason": "NetSuite ERP 레코드 관리는 로컬 창고 API 테스트가 아니다."}
+{"task_id": "t371", "candidate_id": "uasl/detrack-automation@1be3898b28b1", "grade": 0, "process": false, "reason": "Detrack 물류 자동화는 구현 언어·테스트 방식과 무관하다."}
+{"task_id": "t371", "candidate_id": "uasl/builder@8d7f0953ade3", "grade": 1, "process": true, "reason": "API 비즈니스 로직 구현과 테스트 인계 중심이라 Rust 테스트만 추가하는 작업에는 주변적이다."}
+{"task_id": "t371", "candidate_id": "uasl/draftable-automation@0616ca0e391d", "grade": 0, "process": false, "reason": "Draftable 자동화는 reconcile 테스트와 무관하다."}
+{"task_id": "t371", "candidate_id": "uasl/excel-automation@026ac73c3c63", "grade": 0, "process": false, "reason": "Excel 워크북 운영은 Rust API 테스트와 무관하다."}
+{"task_id": "t371", "candidate_id": "uasl/test-driven-development@0eebe2fe0e28", "grade": 2, "process": true, "reason": "실패를 확인하고 작은 검증 단위로 진행하는 절차가 통합 실패 시나리오 테스트 작성에 도움이 된다."}
+{"task_id": "t371", "candidate_id": "uasl/digital-eguide@c4288adfa368", "grade": 0, "process": false, "reason": "디지털 가이드 HTML 제작은 Rust 테스트와 무관하다."}
+{"task_id": "t372", "candidate_id": "uasl/snowflake-automation@8f41cfe96880", "grade": 0, "process": false, "reason": "Snowflake SQL 운영은 물류 창고 API의 Rust 테스트와 무관하다."}
+{"task_id": "t372", "candidate_id": "uasl/api-bible-automation@2ea9fba55a0e", "grade": 0, "process": false, "reason": "API Bible 자동화는 warehouse mock 테스트와 무관하다."}
+{"task_id": "t372", "candidate_id": "uasl/scrapegraph-ai-automation@70ec97d83c62", "grade": 0, "process": false, "reason": "Scrapegraph 웹 추출 자동화는 이 Rust 테스트와 무관하다."}
+{"task_id": "t372", "candidate_id": "uasl/harness-writing@b71c9af45925", "grade": 1, "process": true, "reason": "Rust fuzz harness 작성은 테스트 분야는 같지만 지정된 wiremock 통합 시나리오와 다르다."}
+{"task_id": "t372", "candidate_id": "uasl/algorand-vulnerability-scanner@b4ef2e1b7b33", "grade": 0, "process": false, "reason": "Algorand 스마트계약 보안 감사는 Rust warehouse API 테스트와 도메인이 다르다."}
+{"task_id": "t372", "candidate_id": "uasl/linkhut-automation@9b0e45eac879", "grade": 0, "process": false, "reason": "Linkhut 자동화는 reconcile 통합 테스트와 무관하다."}
+{"task_id": "t372", "candidate_id": "uasl/prototyping-pretotyping@df9f5509380c", "grade": 0, "process": true, "reason": "제품 가설의 실사용자 검증은 코드 통합 테스트와 다르다."}
+{"task_id": "t372", "candidate_id": "uasl/boxhero-automation@175d3685f4df", "grade": 0, "process": false, "reason": "Boxhero 서비스 자동화는 wiremock fake 서버 작성이 아니다."}
+{"task_id": "t372", "candidate_id": "uasl/integration-testing@62b51275be50", "grade": 1, "process": true, "reason": "통합 검증·격리 원칙은 관련되나 실제 의존성 중심 방식과 도구 목록은 지정된 wiremock을 직접 돕지 않는다."}
+{"task_id": "t372", "candidate_id": "uasl/detrack-automation@1be3898b28b1", "grade": 0, "process": false, "reason": "Detrack 물류 도구 운영은 Rust 테스트 작성과 무관하다."}
+{"task_id": "t372", "candidate_id": "uasl/apiverve-automation@bfc5a39fd66a", "grade": 0, "process": false, "reason": "Apiverve 외부 API 자동화는 창고 mock 서버와 다르다."}
+{"task_id": "t372", "candidate_id": "uasl/diffbot-automation@e158f2de0758", "grade": 0, "process": false, "reason": "Diffbot 웹 추출 자동화는 통합 테스트와 무관하다."}
+{"task_id": "t372", "candidate_id": "uasl/error-handling-patterns@4c19ee7d7821", "grade": 2, "process": false, "reason": "Rust 오류 처리·정리 원칙이 503 재시도와 불완전 응답 검증에 도움이 된다."}
+{"task_id": "t372", "candidate_id": "uasl/cargo-fuzz@2b31cd9657f5", "grade": 1, "process": false, "reason": "Rust fuzzing 도구는 관련 테스트 영역이지만 wiremock 기반 통합 테스트와 방법이 다르다."}
+{"task_id": "t372", "candidate_id": "uasl/netsuite-automation@b615a37449c9", "grade": 0, "process": false, "reason": "NetSuite ERP 레코드 관리 자동화는 fake warehouse 테스트가 아니다."}
+{"task_id": "t372", "candidate_id": "uasl/api-labz-automation@2369dca65dd9", "grade": 0, "process": false, "reason": "API Labz 도구 호출 자동화는 Rust wiremock 테스트와 무관하다."}
+{"task_id": "t372", "candidate_id": "uasl/component-identification-sizing@a9b4aa9f2de1", "grade": 0, "process": true, "reason": "컴포넌트 크기·구조 분석은 명시된 함수 테스트 작성에 필요하지 않다."}
+{"task_id": "t372", "candidate_id": "uasl/mobile-onboarding@dae55de6dde3", "grade": 0, "process": false, "reason": "모바일 온보딩 UI는 reconcile 테스트와 무관하다."}
+{"task_id": "t372", "candidate_id": "uasl/builder@8d7f0953ade3", "grade": 1, "process": true, "reason": "API 비즈니스 로직 구현·테스트 인계 절차는 Rust 테스트 추가에 주변적으로만 관련된다."}
+{"task_id": "t372", "candidate_id": "uasl/radar@a47ea6fd5f95", "grade": 3, "process": true, "reason": "제품 동작을 보존하며 관례에 맞춰 테스트를 추가하는 흐름이 이 통합 테스트 요청에 직접 맞는다."}
+{"task_id": "t372", "candidate_id": "uasl/tdd@ff86dad94075", "grade": 2, "process": true, "reason": "공개 인터페이스의 집중된 동작 검증이 지정된 페이지·재시도 사례 작성에 도움이 된다."}
+{"task_id": "t372", "candidate_id": "uasl/coinbase-automation@5c971806493f", "grade": 0, "process": false, "reason": "Coinbase 지갑 운영은 창고 API 테스트와 무관하다."}
+{"task_id": "t372", "candidate_id": "uasl/agent-introspection-debugging@68529b68f0f1", "grade": 0, "process": true, "reason": "실패한 에이전트 실행 복구 절차는 테스트 대상 함수와 다른 문제다."}
+{"task_id": "t372", "candidate_id": "uasl/stream@94a72913c590", "grade": 1, "process": false, "reason": "데이터 파이프라인 신뢰성은 인접하지만 Airflow·Kafka 설계는 Rust 함수 테스트에 과하다."}
+{"task_id": "t372", "candidate_id": "uasl/python-testing-patterns@e62d0f1ca316", "grade": 0, "process": true, "reason": "Python pytest·mock 패턴은 Rust wiremock 스택과 다르다."}
+{"task_id": "t372", "candidate_id": "uasl/draftable-automation@0616ca0e391d", "grade": 0, "process": false, "reason": "Draftable 문서 비교 자동화는 API 통합 테스트와 무관하다."}
+{"task_id": "t372", "candidate_id": "uasl/investor-materials@7b41352320eb", "grade": 0, "process": true, "reason": "투자자 자료 작성은 Rust 테스트와 무관하다."}
+{"task_id": "t372", "candidate_id": "uasl/zoho-inventory-automation@2f2863777368", "grade": 0, "process": false, "reason": "Zoho Inventory 실제 연결 운영은 wiremock으로 가짜 API를 만드는 작업과 다르다."}
+{"task_id": "t372", "candidate_id": "uasl/api-testing@4ada9a2fac88", "grade": 1, "process": false, "reason": "API 검증 주제는 같지만 Postman·Bruno 중심 도구는 명시된 wiremock 방식과 맞지 않는다."}
+{"task_id": "t372", "candidate_id": "uasl/excel-automation@026ac73c3c63", "grade": 0, "process": false, "reason": "Excel 워크북 자동화는 reconcile 테스트와 무관하다."}
+{"task_id": "t372", "candidate_id": "uasl/api-design@bba608f8c974", "grade": 2, "process": false, "reason": "페이지네이션·HTTP 오류 계약 지식이 테스트 응답과 검증 조건을 설계하는 데 도움이 된다."}
+{"task_id": "t372", "candidate_id": "uasl/api-ninjas-automation@e9437531d148", "grade": 0, "process": false, "reason": "API Ninjas 자동화는 로컬 warehouse mock 구현이 아니다."}
+{"task_id": "t372", "candidate_id": "uasl/live-artifact@a7e66be6fd82", "grade": 0, "process": false, "reason": "Open Design HTML 아티팩트는 Rust 통합 테스트와 무관하다."}
+{"task_id": "t372", "candidate_id": "uasl/unit-testing@6c5fbb821103", "grade": 2, "process": true, "reason": "결정적 테스트·test double 원칙은 wiremock 시나리오 격리에 도움이 되지만 통합 테스트 전용 지침은 아니다."}
+{"task_id": "t372", "candidate_id": "uasl/universal-ai-setup@c9f3fcedeec6", "grade": 0, "process": true, "reason": "AI 설정 저장소 운영은 inventory-sync crate와 무관하다."}
+{"task_id": "t372", "candidate_id": "uasl/tdd-workflow@6eadb0bf0ea8", "grade": 1, "process": true, "reason": "테스트 우선 원칙은 주변적이고 JS 중심 광범위 커버리지 흐름은 지정된 Rust 테스트보다 넓다."}
+{"task_id": "t372", "candidate_id": "uasl/refiner-automation@19264f644844", "grade": 0, "process": false, "reason": "Refiner 서비스 자동화는 Rust 테스트와 무관하다."}
+{"task_id": "t372", "candidate_id": "uasl/contract-testing@b0f4c29940a9", "grade": 1, "process": true, "reason": "서비스 계약 테스트는 인접하지만 Pact·provider 검증 중심은 wiremock 함수 시나리오 요구와 다르다."}
+{"task_id": "t372", "candidate_id": "uasl/fixer-io-automation@1319e819bd6c", "grade": 0, "process": false, "reason": "Fixer IO API 자동화는 reconcile 테스트와 무관하다."}

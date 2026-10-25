@@ -1,0 +1,81 @@
+diff --git a/components/Layout.tsx b/components/Layout.tsx
+index 9e9b2a9..3fa15f9 100644
+--- a/components/Layout.tsx
++++ b/components/Layout.tsx
+@@ -3,10 +3,13 @@ import Link from "next/link";
+ import Head from "next/head";
+ 
+ type Props = {
++  /** Page content rendered between the header and the footer. */
+   children?: ReactNode;
++  /** Document title set in <head>. */
+   title?: string;
+ };
+ 
++/** Page shell: <head> title, top navigation, the page content and a footer. */
+ const Layout = ({ children, title = "This is the default title" }: Props) => (
+   <div>
+     <Head>
+diff --git a/components/List.tsx b/components/List.tsx
+index ead6ed5..5dc1cb4 100644
+--- a/components/List.tsx
++++ b/components/List.tsx
+@@ -3,9 +3,11 @@ import ListItem from "./ListItem";
+ import { User } from "../interfaces";
+ 
+ type Props = {
++  /** Users to list, one <li> each. */
+   items: User[];
+ };
+ 
++/** Unordered list of users, each rendered as a ListItem link. */
+ const List = ({ items }: Props) => (
+   <ul>
+     {items.map((item) => (
+diff --git a/components/ListDetail.tsx b/components/ListDetail.tsx
+index 85ccf96..b77e0f5 100644
+--- a/components/ListDetail.tsx
++++ b/components/ListDetail.tsx
+@@ -3,9 +3,11 @@ import * as React from "react";
+ import { User } from "../interfaces";
+ 
+ type ListDetailProps = {
++  /** The user to show. */
+   item: User;
+ };
+ 
++/** Detail view of one user: heading with the name and the ID. */
+ const ListDetail = ({ item: user }: ListDetailProps) => (
+   <div>
+     <h1>Detail for {user.name}</h1>
+diff --git a/components/ListItem.tsx b/components/ListItem.tsx
+index d6a6945..dd96f37 100644
+--- a/components/ListItem.tsx
++++ b/components/ListItem.tsx
+@@ -4,9 +4,11 @@ import Link from "next/link";
+ import { User } from "../interfaces";
+ 
+ type Props = {
++  /** The user this link points to. */
+   data: User;
+ };
+ 
++/** Link "id:name" to the detail page of one user. */
+ const ListItem = ({ data }: Props) => (
+   <Link href="/users/[id]" as={`/users/${data.id}`}>
+     {data.id}:{data.name}
+diff --git a/interfaces/index.ts b/interfaces/index.ts
+index 0a4f069..9071b65 100644
+--- a/interfaces/index.ts
++++ b/interfaces/index.ts
+@@ -4,7 +4,10 @@
+ //
+ // import { User } from 'path/to/interfaces';
+ 
++/** A user of the example app. */
+ export type User = {
++  /** Numeric user ID, also used in /users/[id]. */
+   id: number;
++  /** Display name. */
+   name: string;
+ };

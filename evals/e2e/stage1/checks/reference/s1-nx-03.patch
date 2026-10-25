@@ -1,0 +1,19 @@
+diff --git a/pages/404.tsx b/pages/404.tsx
+new file mode 100644
+index 0000000..bcf8ade
+--- /dev/null
++++ b/pages/404.tsx
+@@ -0,0 +1,13 @@
++import Link from "next/link";
++import Layout from "../components/Layout";
++
++const NotFoundPage = () => (
++  <Layout title="404 | Next.js + TypeScript Example">
++    <h1>페이지를 찾을 수 없습니다</h1>
++    <p>
++      <Link href="/">홈으로 가기</Link>
++    </p>
++  </Layout>
++);
++
++export default NotFoundPage;

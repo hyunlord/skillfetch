@@ -1,0 +1,226 @@
+{
+ "s4-t026": {
+  "order": [
+   "uasl/frontend-patterns@8f659ce2a0bd",
+   "uasl/vibe-security@6b07d0f651a7",
+   "uasl/helloleads-automation@f060aee0629f",
+   "uasl/bolt@c4895c710162",
+   "uasl/vercel-react-best-practices@70f3b5aaf775",
+   "anthropics-skills/pdf@9bc3a6e1ff66",
+   "uasl/n8n-code-javascript@203459f10f1d",
+   "uasl/five-agent-preflight-check@972573c45dcf",
+   "uasl/forge@a8efdfdbe817",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "anthropics-skills/docx@74e2b8b277a4",
+   "uasl/n8n-code-python@ba1cd974d317",
+   "uasl/gpt-tasteskill@134558e228c5"
+  ],
+  "sources": {
+   "uasl/frontend-patterns@8f659ce2a0bd": [
+    "2a"
+   ],
+   "uasl/bolt@c4895c710162": [
+    "bm25"
+   ],
+   "uasl/vibe-security@6b07d0f651a7": [
+    "bm25"
+   ],
+   "uasl/n8n-code-python@ba1cd974d317": [
+    "bm25"
+   ],
+   "uasl/n8n-code-javascript@203459f10f1d": [
+    "bm25"
+   ],
+   "uasl/gpt-tasteskill@134558e228c5": [
+    "bm25"
+   ],
+   "anthropics-skills/pdf@9bc3a6e1ff66": [
+    "bm25"
+   ],
+   "anthropics-skills/docx@74e2b8b277a4": [
+    "bm25"
+   ],
+   "uasl/fastapi-templates@effcd0de0b4c": [
+    "bm25"
+   ],
+   "uasl/forge@a8efdfdbe817": [
+    "bm25"
+   ],
+   "uasl/vercel-react-best-practices@70f3b5aaf775": [
+    "bm25"
+   ],
+   "uasl/five-agent-preflight-check@972573c45dcf": [
+    "random"
+   ],
+   "uasl/helloleads-automation@f060aee0629f": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "uasl/bolt@c4895c710162",
+   "uasl/vibe-security@6b07d0f651a7",
+   "uasl/n8n-code-python@ba1cd974d317",
+   "uasl/n8n-code-javascript@203459f10f1d",
+   "uasl/gpt-tasteskill@134558e228c5",
+   "anthropics-skills/pdf@9bc3a6e1ff66",
+   "anthropics-skills/docx@74e2b8b277a4",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/forge@a8efdfdbe817",
+   "uasl/vercel-react-best-practices@70f3b5aaf775",
+   "uasl/design-to-code@fae28f73cda0",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/frontend-design-principles@e9b2a10a43d1",
+   "uasl/owasp-security@9847d3666f75",
+   "uasl/frontend-design@5da82907743d",
+   "uasl/clay@6c9572941894",
+   "anthropics-skills/xlsx@5350d36b768c",
+   "anthropics-skills/claude-api@e30e2c97f747",
+   "anthropics-skills/frontend-design@0a5ff23f1022",
+   "uasl/polyglot@11be7885bda2",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "uasl/voice-ai-development@76a8425e5865",
+   "uasl/frontend-slides@8d62c2eeef30",
+   "uasl/taste-skill@57790089504e",
+   "uasl/n8n-workflow-patterns@c9641aab7a0b",
+   "uasl/anthropic-administrator-automation@37f36f9f61d4",
+   "uasl/imagegen-frontend-web@3c09b1b364ef",
+   "uasl/output-skill@8da7a8f7c7fc",
+   "uasl/backend-patterns@3d87ff489f3e",
+   "uasl/react-patterns@73d1ecc06997",
+   "uasl/segment-cdp@42e8e765d937",
+   "uasl/ui-audit@be637d5e2baf",
+   "uasl/design-review@4964367926b4",
+   "anthropics-skills/discernment-nudge@a9d2caea7e0b",
+   "uasl/gsap-performance@545d16027a95",
+   "uasl/top-100-web-vulnerabilities-reference@21b2293939a2",
+   "uasl/contract-testing@b0f4c29940a9",
+   "uasl/harvest-automation@9d33356a1149",
+   "uasl/google-admin-automation@c0e29c39549e",
+   "uasl/web-prototype-taste-editorial@ea4a250e3329",
+   "uasl/universal-ai-skills@0128810b6ffe",
+   "uasl/bright-data-best-practices@15cfe1bca9b8",
+   "uasl/n8n-expression-syntax@f1845451eb4d",
+   "uasl/onesignal-rest-api-automation@69760a7d8416",
+   "uasl/design-harden@7850aacd7d45",
+   "uasl/codenavi@109490043377",
+   "uasl/mom-test@6f43f16a3566",
+   "uasl/web-design-builder@61ee1c248717",
+   "uasl/contagious@143d3acf4fa3",
+   "uasl/soft-skill@4dd04c5022d2"
+  ]
+ },
+ "s4-t177": {
+  "order": [
+   "uasl/n8n-expression-syntax@f1845451eb4d",
+   "uasl/acceptance-testing@7f713f1566e8",
+   "uasl/anvil@3a36e8410205",
+   "uasl/clay@6c9572941894",
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/n8n-code-python@ba1cd974d317",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/netsuite-automation@b615a37449c9",
+   "uasl/stream@94a72913c590",
+   "uasl/n8n-mcp-tools-expert@07b0be26e0fd",
+   "uasl/python-testing-patterns@e62d0f1ca316",
+   "uasl/component-identification-sizing@a9b4aa9f2de1",
+   "uasl/skyfire-automation@970a9884751c",
+   "uasl/cf-crawl@77a977c31001"
+  ],
+  "sources": {
+   "uasl/stream@94a72913c590": [
+    "2a"
+   ],
+   "uasl/python-testing-patterns@e62d0f1ca316": [
+    "2a"
+   ],
+   "uasl/clay@6c9572941894": [
+    "bm25"
+   ],
+   "uasl/n8n-expression-syntax@f1845451eb4d": [
+    "bm25"
+   ],
+   "uasl/n8n-code-python@ba1cd974d317": [
+    "bm25"
+   ],
+   "uasl/fastapi-templates@effcd0de0b4c": [
+    "bm25"
+   ],
+   "uasl/component-identification-sizing@a9b4aa9f2de1": [
+    "bm25"
+   ],
+   "uasl/cf-crawl@77a977c31001": [
+    "bm25"
+   ],
+   "uasl/anvil@3a36e8410205": [
+    "bm25"
+   ],
+   "uasl/netsuite-automation@b615a37449c9": [
+    "bm25"
+   ],
+   "uasl/acceptance-testing@7f713f1566e8": [
+    "bm25"
+   ],
+   "uasl/fastapi-endpoint@2a93d50c4970": [
+    "bm25"
+   ],
+   "uasl/n8n-mcp-tools-expert@07b0be26e0fd": [
+    "random"
+   ],
+   "uasl/skyfire-automation@970a9884751c": [
+    "random"
+   ]
+  },
+  "q1_top50": [
+   "uasl/clay@6c9572941894",
+   "uasl/n8n-expression-syntax@f1845451eb4d",
+   "uasl/n8n-code-python@ba1cd974d317",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/component-identification-sizing@a9b4aa9f2de1",
+   "uasl/cf-crawl@77a977c31001",
+   "uasl/anvil@3a36e8410205",
+   "uasl/netsuite-automation@b615a37449c9",
+   "uasl/acceptance-testing@7f713f1566e8",
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/documentation-lookup@dee6d7478eab",
+   "anthropics-skills/xlsx@5350d36b768c",
+   "anthropics-skills/webapp-testing@a4b4ce82b644",
+   "anthropics-skills/pdf@9bc3a6e1ff66",
+   "anthropics-skills/pptx@4eb5e13af97f",
+   "uasl/n8n-code-javascript@203459f10f1d",
+   "uasl/forge@a8efdfdbe817",
+   "uasl/browser-extension-builder@3240e6183c28",
+   "anthropics-skills/docx@74e2b8b277a4",
+   "uasl/3d-web-experience@e1485751556b",
+   "uasl/attio-automation@bc5c199f3a04",
+   "uasl/using-git-worktrees@b0857168cfee",
+   "uasl/lemlist-automation@a31df61c312a",
+   "uasl/coding-standards@f854e26a9529",
+   "uasl/googlephotos-automation@0b2d3403ccba",
+   "uasl/public-param-golden@6b8109050c5c",
+   "uasl/claude-native-claude-api@24c958899f03",
+   "uasl/printing-press-output-review@35c772127bb2",
+   "uasl/setup-pre-commit@95f6657588a0",
+   "uasl/slack-bot-builder@ce64c6aad24e",
+   "uasl/gorgias-automation@2106c504916d",
+   "uasl/skill-seekers@d8bf1d3864b9",
+   "uasl/api-testing@4ada9a2fac88",
+   "uasl/user-story-splitting@2d9d6a6fd3e3",
+   "uasl/everything-claude-code@dad489339e1e",
+   "uasl/googledocs-automation@205a55e5ad22",
+   "uasl/dot@e787e142131c",
+   "uasl/investor-materials@7b41352320eb",
+   "uasl/thinking-partner@80abb24d238a",
+   "uasl/workday-automation@3e9313379197",
+   "uasl/skill-share@1399c8172d6b",
+   "uasl/omnisend-automation@cac8b5f5b289",
+   "uasl/invoice-organizer@65f04d96d07a",
+   "uasl/reference-class-forecasting@22a3efbe5756",
+   "uasl/universal-ai-skills@0128810b6ffe",
+   "uasl/connect@77e02b4574f6",
+   "uasl/vibe-security@6b07d0f651a7",
+   "uasl/radar@a47ea6fd5f95",
+   "uasl/atheris@5b575b7295c7",
+   "uasl/roadmap-backcast@7cd18481befb"
+  ]
+ }
+}

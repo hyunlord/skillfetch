@@ -1,0 +1,370 @@
+{"task_id": "t067", "candidate_id": "c01", "grade": 0, "process": false, "reason": "문서 파일 변환은 Java record 전환과 다르다."}
+{"task_id": "t067", "candidate_id": "c02", "grade": 0, "process": false, "reason": "청구서 화면 생성은 DTO 리팩터링과 무관하다."}
+{"task_id": "t067", "candidate_id": "c03", "grade": 0, "process": false, "reason": "PDF 변환은 Java DTO와 무관하다."}
+{"task_id": "t067", "candidate_id": "c04", "grade": 1, "process": true, "reason": "결정 기록은 부수적이며 자료형 전환 방법은 아니다."}
+{"task_id": "t067", "candidate_id": "c05", "grade": 0, "process": false, "reason": "Harvest 운영은 Java 코드 전환과 무관하다."}
+{"task_id": "t067", "candidate_id": "c06", "grade": 1, "process": false, "reason": "DTO 매핑은 인접하지만 MapStruct 사용 근거는 없다."}
+{"task_id": "t067", "candidate_id": "c07", "grade": 2, "process": false, "reason": "Lombok 생성 메서드 지식은 제거 시 대체 동작 확인에 유용하다."}
+{"task_id": "t067", "candidate_id": "c08", "grade": 1, "process": true, "reason": "매퍼 검증은 인접하지만 DTO 표현 전환이 핵심이다."}
+{"task_id": "t067", "candidate_id": "c09", "grade": 1, "process": true, "reason": "인터페이스 대안 탐색은 이미 정해진 record 전환에 실익이 작다."}
+{"task_id": "t067", "candidate_id": "c10", "grade": 0, "process": false, "reason": "CRM 레코드는 Java record와 다르다."}
+{"task_id": "t067", "candidate_id": "c11", "grade": 2, "process": true, "reason": "동작 보존 정리 절차는 DTO와 의존성 전환에 유용하다."}
+{"task_id": "t067", "candidate_id": "c12", "grade": 0, "process": false, "reason": "회계 서비스 운영은 Java 모듈 변경과 무관하다."}
+{"task_id": "t067", "candidate_id": "c13", "grade": 2, "process": false, "reason": "Java Bean 주석과 규약은 Lombok 제거 후 일관성에 도움 된다."}
+{"task_id": "t067", "candidate_id": "c14", "grade": 0, "process": false, "reason": "Markdown 변환은 Java 자료형 변경과 무관하다."}
+{"task_id": "t067", "candidate_id": "c15", "grade": 0, "process": false, "reason": "NVIDIA 데이터셋 변환은 DTO 전환과 무관하다."}
+{"task_id": "t067", "candidate_id": "c16", "grade": 3, "process": false, "reason": "Java records 지식은 목표 자료형 구현에 직접 적용된다."}
+{"task_id": "t067", "candidate_id": "c17", "grade": 1, "process": true, "reason": "일반 검증 시스템 설명만으로 전환에 구체적 도움은 제한적이다."}
+{"task_id": "t067", "candidate_id": "c18", "grade": 1, "process": false, "reason": "Spring DTO 지식은 인접하지만 Spring 사용은 명시되지 않았다."}
+{"task_id": "t067", "candidate_id": "c19", "grade": 3, "process": false, "reason": "현대 Java records 문법은 요청된 DTO 전환에 직접 쓰인다."}
+{"task_id": "t067", "candidate_id": "c20", "grade": 2, "process": true, "reason": "구조와 데이터 흐름 추적은 DTO 사용처와 영향 파악에 유용하다."}
+{"task_id": "t067", "candidate_id": "c21", "grade": 1, "process": false, "reason": "Lombok 도입 규약 중심이라 제거에는 기존 주석 해석 정도만 도움 된다."}
+{"task_id": "t067", "candidate_id": "c22", "grade": 1, "process": false, "reason": "Lombok 언어 서버 지원은 전환 방법보다 편집 보조다."}
+{"task_id": "t067", "candidate_id": "c23", "grade": 0, "process": false, "reason": "Stripe 통합은 DTO 표현 변경과 무관하다."}
+{"task_id": "t067", "candidate_id": "c24", "grade": 0, "process": false, "reason": "결제 운영 자동화는 Java 리팩터링과 무관하다."}
+{"task_id": "t067", "candidate_id": "c25", "grade": 1, "process": false, "reason": "DTO 클래스 생성은 인접하지만 record 이전 지침은 없다."}
+{"task_id": "t067", "candidate_id": "c26", "grade": 0, "process": false, "reason": "Go 매퍼는 Java 스택에 맞지 않는다."}
+{"task_id": "t070", "candidate_id": "c01", "grade": 1, "process": false, "reason": "Spring 전반 지식이나 채널 분리와 주입에 구체적 설명이 부족하다."}
+{"task_id": "t070", "candidate_id": "c02", "grade": 3, "process": true, "reason": "조건문 대체 리팩터링이 채널별 구현체 분리에 직접 맞는다."}
+{"task_id": "t070", "candidate_id": "c03", "grade": 0, "process": false, "reason": "쇼핑몰 웹 푸시 운영은 Spring 클래스 분리와 다르다."}
+{"task_id": "t070", "candidate_id": "c04", "grade": 1, "process": false, "reason": "REST 컨트롤러 지식은 내부 채널 분리에 실익이 작다."}
+{"task_id": "t070", "candidate_id": "c05", "grade": 0, "process": false, "reason": "Android 알림은 서버 Spring 구조 변경과 다르다."}
+{"task_id": "t070", "candidate_id": "c06", "grade": 3, "process": false, "reason": "의존성 주입과 서비스 설계가 구현체 목록 주입에 직접 적용된다."}
+{"task_id": "t070", "candidate_id": "c07", "grade": 2, "process": true, "reason": "Spring TDD는 분리 전후 발송 동작 보존에 유용하다."}
+{"task_id": "t070", "candidate_id": "c08", "grade": 1, "process": false, "reason": "일반 개발 설명뿐이라 구체적 패턴의 실용성을 확인하기 어렵다."}
+{"task_id": "t070", "candidate_id": "c09", "grade": 2, "process": true, "reason": "Spring 빌드와 테스트 검증은 분리 후 회귀 확인에 유용하다."}
+{"task_id": "t070", "candidate_id": "c10", "grade": 0, "process": false, "reason": "UI 스프링 모션은 Spring DI와 무관하다."}
+{"task_id": "t070", "candidate_id": "c11", "grade": 0, "process": false, "reason": "Python 설계 패턴은 요청된 Java Spring 스택과 다르다."}
+{"task_id": "t070", "candidate_id": "c12", "grade": 0, "process": true, "reason": "인증 보안 검토는 채널 구조 변경과 무관하다."}
+{"task_id": "t070", "candidate_id": "c13", "grade": 0, "process": false, "reason": "Apple 푸시 구성은 Spring 서버 리팩터링과 다르다."}
+{"task_id": "t070", "candidate_id": "c14", "grade": 1, "process": false, "reason": "SMS 운영 지식은 인접하지만 채널 추상화 방법은 아니다."}
+{"task_id": "t070", "candidate_id": "c15", "grade": 2, "process": false, "reason": "Spring 서비스 계층 지식은 채널 책임 분리에 도움 된다."}
+{"task_id": "t070", "candidate_id": "c16", "grade": 0, "process": true, "reason": "CODEOWNERS별 PR 분할은 클래스 분리와 다른 작업이다."}
+{"task_id": "t070", "candidate_id": "c17", "grade": 0, "process": true, "reason": "암호 시간 분석은 알림 채널 분리와 무관하다."}
+{"task_id": "t070", "candidate_id": "c18", "grade": 0, "process": false, "reason": "웹 시각 스타일은 서버 추상화와 무관하다."}
+{"task_id": "t070", "candidate_id": "c19", "grade": 2, "process": false, "reason": "Spring 계층 구조는 발송 책임 분리에 유용하다."}
+{"task_id": "t070", "candidate_id": "c20", "grade": 0, "process": true, "reason": "Kotlin 전용 리팩터링은 요청의 Java 형태 클래스와 맞는 근거가 없다."}
+{"task_id": "t070", "candidate_id": "c21", "grade": 1, "process": false, "reason": "푸시 전달은 한 채널과 관련되지만 구조 분리 지침은 아니다."}
+{"task_id": "t070", "candidate_id": "c22", "grade": 2, "process": false, "reason": "Spring 계층 서비스 패턴은 구현체 구조화에 도움 된다."}
+{"task_id": "t070", "candidate_id": "c23", "grade": 2, "process": false, "reason": "Spring 코드 구조 지침은 채널 책임 분리에 유용하다."}
+{"task_id": "t070", "candidate_id": "c24", "grade": 1, "process": true, "reason": "서비스 간 계약 검증은 내부 구현체 분리보다 범위가 넓다."}
+{"task_id": "t070", "candidate_id": "c25", "grade": 0, "process": false, "reason": "모바일 메시지 처리는 서버 Spring 변경과 다르다."}
+{"task_id": "t070", "candidate_id": "c26", "grade": 0, "process": false, "reason": "클라이언트 푸시 설정은 서버 채널 추상화와 다르다."}
+{"task_id": "t070", "candidate_id": "c27", "grade": 0, "process": false, "reason": "React 패널 분할은 Java 클래스 분리와 무관하다."}
+{"task_id": "t070", "candidate_id": "c28", "grade": 0, "process": false, "reason": "React Native 푸시는 Spring 구현체 주입과 다른 스택이다."}
+{"task_id": "t070", "candidate_id": "c29", "grade": 0, "process": false, "reason": "이메일 검증 자동화는 발송 클래스 구조와 무관하다."}
+{"task_id": "t070", "candidate_id": "c30", "grade": 0, "process": false, "reason": "마케팅 운영은 Spring 주입과 무관하다."}
+{"task_id": "t070", "candidate_id": "c31", "grade": 0, "process": false, "reason": "미디어 관리는 알림 리팩터링과 무관하다."}
+{"task_id": "t070", "candidate_id": "c32", "grade": 0, "process": false, "reason": "Laravel 알림은 Spring 스택과 다르다."}
+{"task_id": "t070", "candidate_id": "c33", "grade": 2, "process": true, "reason": "Spring 통합 검증은 목록 주입과 채널 선택 확인에 유용하다."}
+{"task_id": "t070", "candidate_id": "c34", "grade": 2, "process": false, "reason": "Java Spring 유지보수 지침은 서비스 분리에 도움 된다."}
+{"task_id": "t070", "candidate_id": "c35", "grade": 0, "process": false, "reason": "DSPy 알림 문구 생성은 발송 구조 변경과 다르다."}
+{"task_id": "t070", "candidate_id": "c36", "grade": 0, "process": false, "reason": "Docker Hub 운영은 채널 분리와 무관하다."}
+{"task_id": "t070", "candidate_id": "c37", "grade": 0, "process": false, "reason": "SMS MCP 운영은 Spring 코드 리팩터링이 아니다."}
+{"task_id": "t076", "candidate_id": "c01", "grade": 3, "process": false, "reason": "pytest 매개변수화는 mg와 mcg 입력 사례 작성에 직접 쓰인다."}
+{"task_id": "t076", "candidate_id": "c02", "grade": 2, "process": true, "reason": "pytest assertion과 격리 검토는 경계 테스트 품질에 도움 된다."}
+{"task_id": "t076", "candidate_id": "c03", "grade": 1, "process": false, "reason": "CI 설정은 기존 함수 테스트 추가에 부수적이다."}
+{"task_id": "t076", "candidate_id": "c04", "grade": 3, "process": false, "reason": "pytest 매개변수화와 테스트 규칙이 용량 사례에 직접 적용된다."}
+{"task_id": "t076", "candidate_id": "c05", "grade": 3, "process": false, "reason": "pytest 패턴은 단위별 파서 경계 사례 작성에 직접 맞는다."}
+{"task_id": "t076", "candidate_id": "c06", "grade": 1, "process": true, "reason": "일반 변경 리뷰는 테스트 작성에 보조적이다."}
+{"task_id": "t076", "candidate_id": "c07", "grade": 1, "process": true, "reason": "기능 E2E 생성 절차는 작은 파서 단위 테스트와 초점이 다르다."}
+{"task_id": "t076", "candidate_id": "c08", "grade": 3, "process": true, "reason": "Python pytest 전략은 파서 경계 검증에 직접 맞는다."}
+{"task_id": "t076", "candidate_id": "c09", "grade": 0, "process": true, "reason": "Java 단위 테스트 패턴은 Python 스택과 다르다."}
+{"task_id": "t076", "candidate_id": "c10", "grade": 0, "process": false, "reason": "dotnet 실행은 pytest 작업과 다르다."}
+{"task_id": "t076", "candidate_id": "c11", "grade": 0, "process": true, "reason": "특정 UI Playwright 테스트는 파서 단위 테스트와 무관하다."}
+{"task_id": "t076", "candidate_id": "c12", "grade": 2, "process": true, "reason": "pytest 백엔드 단위 테스트 절차는 파서 검증에 유용하다."}
+{"task_id": "t076", "candidate_id": "c13", "grade": 3, "process": true, "reason": "기존 코드의 pytest 경계 사례 생성은 요청에 직접 맞는다."}
+{"task_id": "t076", "candidate_id": "c14", "grade": 1, "process": false, "reason": "HTTP API 검증은 순수 파서 단위 테스트와 다르다."}
+{"task_id": "t076", "candidate_id": "c15", "grade": 2, "process": false, "reason": "커버리지 분석은 누락된 파서 분기를 찾는 데 유용하다."}
+{"task_id": "t076", "candidate_id": "c16", "grade": 3, "process": true, "reason": "Python assertion과 격리 설계는 파서 테스트에 직접 적용된다."}
+{"task_id": "t076", "candidate_id": "c17", "grade": 1, "process": true, "reason": "도메인 용어 탐색은 pytest 사례 작성보다 범위가 넓다."}
+{"task_id": "t076", "candidate_id": "c18", "grade": 1, "process": true, "reason": "특정 Agent Framework 테스트 규약은 현재 저장소에 적용 근거가 부족하다."}
+{"task_id": "t076", "candidate_id": "c19", "grade": 2, "process": true, "reason": "경계 및 오류 시나리오 정리는 용량 예외 선정에 유용하다."}
+{"task_id": "t076", "candidate_id": "c20", "grade": 2, "process": false, "reason": "매개변수화는 유용하지만 FastAPI 중심이라 정확한 작업보다 넓다."}
+{"task_id": "t076", "candidate_id": "c21", "grade": 1, "process": true, "reason": "코드 리뷰 운영은 테스트 작성 자체에 실익이 작다."}
+{"task_id": "t076", "candidate_id": "c22", "grade": 3, "process": true, "reason": "Python 경계 사례와 커버리지 보강은 요청된 작업에 직접 맞는다."}
+{"task_id": "t076", "candidate_id": "c23", "grade": 1, "process": true, "reason": "사고실험은 사례 발상에 보조적이나 pytest 구현 방법은 아니다."}
+{"task_id": "t076", "candidate_id": "c24", "grade": 3, "process": false, "reason": "pytest 매개변수화와 mock 패턴은 파서 사례 작성에 직접 쓰인다."}
+{"task_id": "t076", "candidate_id": "c25", "grade": 3, "process": true, "reason": "격리 함수 단위 테스트 절차는 parse_dosage 검증에 직접 맞는다."}
+{"task_id": "t076", "candidate_id": "c26", "grade": 0, "process": false, "reason": "암호 테스트 벡터는 용량 파서와 무관하다."}
+{"task_id": "t076", "candidate_id": "c27", "grade": 1, "process": true, "reason": "전면 TDD와 E2E 정책은 기존 함수 사례 추가에 비해 과하다."}
+{"task_id": "t076", "candidate_id": "c28", "grade": 1, "process": true, "reason": "컴포넌트 통합 검증은 파서 단위 경계 검증과 다르다."}
+{"task_id": "t076", "candidate_id": "c29", "grade": 2, "process": true, "reason": "파싱 속성 검증은 단위 변환 불변성과 조합 검증에 유용하다."}
+{"task_id": "t076", "candidate_id": "c30", "grade": 1, "process": true, "reason": "구현 전 테스트 주기는 기존 함수 사례 보강에 부수적이다."}
+{"task_id": "t076", "candidate_id": "c31", "grade": 3, "process": true, "reason": "함수 계약에서 pytest를 도출하는 절차는 요청에 직접 맞는다."}
+{"task_id": "t076", "candidate_id": "c32", "grade": 0, "process": false, "reason": "UI 복원력 개선은 용량 파서와 무관하다."}
+{"task_id": "t076", "candidate_id": "c33", "grade": 3, "process": false, "reason": "pytest 매개변수화 지침은 mg와 mcg 사례에 직접 적용된다."}
+{"task_id": "t083", "candidate_id": "c01", "grade": 0, "process": false, "reason": "Shopify 화면 변경은 Playwright 테스트와 다르다."}
+{"task_id": "t083", "candidate_id": "c02", "grade": 1, "process": false, "reason": "Symfony Panther 전용 구성은 현재 앱에 적용 근거가 부족하다."}
+{"task_id": "t083", "candidate_id": "c03", "grade": 0, "process": false, "reason": "브랜드 이미지 생성은 결제 테스트와 무관하다."}
+{"task_id": "t083", "candidate_id": "c04", "grade": 2, "process": false, "reason": "결제 오류 복구 지식은 실패 재시도 시나리오 이해에 유용하다."}
+{"task_id": "t083", "candidate_id": "c05", "grade": 1, "process": true, "reason": "전환율 감사는 같은 화면이나 회귀 검증과 목적이 다르다."}
+{"task_id": "t083", "candidate_id": "c06", "grade": 2, "process": true, "reason": "Playwright 초기화는 기반 마련에 유용하지만 앱 프레임워크는 불명확하다."}
+{"task_id": "t083", "candidate_id": "c07", "grade": 0, "process": false, "reason": "캘린더 관리는 결제 테스트와 무관하다."}
+{"task_id": "t083", "candidate_id": "c08", "grade": 0, "process": false, "reason": "시각 디자인은 기존 결제 흐름 검증과 무관하다."}
+{"task_id": "t083", "candidate_id": "c09", "grade": 1, "process": false, "reason": "결제 보안은 인접하지만 실패 재시도 검증의 핵심은 아니다."}
+{"task_id": "t083", "candidate_id": "c10", "grade": 2, "process": true, "reason": "Playwright 페이지 탐색은 실제 요소와 흐름 파악에 유용하다."}
+{"task_id": "t083", "candidate_id": "c11", "grade": 3, "process": false, "reason": "안정적인 Playwright E2E 작성 패턴은 결제 suite에 직접 쓰인다."}
+{"task_id": "t083", "candidate_id": "c12", "grade": 3, "process": true, "reason": "Playwright E2E 구축 절차가 요청된 시나리오에 직접 맞는다."}
+{"task_id": "t083", "candidate_id": "c13", "grade": 3, "process": false, "reason": "locator와 fixture 지식은 쿠폰과 토스트 assertion에 직접 쓰인다."}
+{"task_id": "t083", "candidate_id": "c14", "grade": 3, "process": false, "reason": "Playwright 구조와 fixture는 결제 테스트 추가에 직접 맞는다."}
+{"task_id": "t083", "candidate_id": "c15", "grade": 0, "process": false, "reason": "근태 조회는 결제 테스트와 무관하다."}
+{"task_id": "t083", "candidate_id": "c16", "grade": 2, "process": true, "reason": "폼 입력과 검증 절차는 카드 결제 흐름 재현에 유용하다."}
+{"task_id": "t083", "candidate_id": "c17", "grade": 2, "process": false, "reason": "Stripe API 지식은 mock 경계 이해에 도움 된다."}
+{"task_id": "t083", "candidate_id": "c18", "grade": 3, "process": true, "reason": "Playwright E2E 절차는 결제 실패와 재시도 검증에 직접 맞는다."}
+{"task_id": "t083", "candidate_id": "c19", "grade": 1, "process": true, "reason": "특정 playground 전용 절차라 현재 결제 앱 적용성은 낮다."}
+{"task_id": "t083", "candidate_id": "c20", "grade": 0, "process": false, "reason": "설정 기반 전환율 개선은 테스트 코드 작성과 다르다."}
+{"task_id": "t083", "candidate_id": "c21", "grade": 3, "process": false, "reason": "Playwright suite와 fixture는 결제 시나리오 자동화에 직접 맞는다."}
+{"task_id": "t083", "candidate_id": "c22", "grade": 2, "process": true, "reason": "범용 Playwright 자동화는 흐름 재현에 유용하나 suite 전용은 아니다."}
+{"task_id": "t083", "candidate_id": "c23", "grade": 1, "process": false, "reason": "결제 부하 검증은 기능 E2E 검증과 초점이 다르다."}
+{"task_id": "t083", "candidate_id": "c24", "grade": 3, "process": true, "reason": "시나리오에서 Playwright 테스트를 생성하는 절차가 요청과 일치한다."}
+{"task_id": "t083", "candidate_id": "c25", "grade": 0, "process": false, "reason": "Commerce Engine API 구현은 현재 Stripe 테스트와 다른 스택이다."}
+{"task_id": "t083", "candidate_id": "c26", "grade": 0, "process": false, "reason": "웹 이미지 생성은 결제 테스트와 무관하다."}
+{"task_id": "t083", "candidate_id": "c27", "grade": 0, "process": true, "reason": "Semgrep 규칙 생성은 사용자 흐름 검증과 무관하다."}
+{"task_id": "t083", "candidate_id": "c28", "grade": 0, "process": false, "reason": "브랜드 보드 생성은 결제 테스트와 무관하다."}
+{"task_id": "t083", "candidate_id": "c29", "grade": 2, "process": true, "reason": "Playwright 화면 검증과 테스트 생성은 결제 동작 확인에 유용하다."}
+{"task_id": "t083", "candidate_id": "c30", "grade": 0, "process": false, "reason": "결제 서비스 운영은 Stripe mock 테스트 작성과 다르다."}
+{"task_id": "t083", "candidate_id": "c31", "grade": 3, "process": true, "reason": "사용자 흐름 spec 작성은 쿠폰 실패 재시도 검증에 직접 맞는다."}
+{"task_id": "t083", "candidate_id": "c32", "grade": 0, "process": true, "reason": "Supabase Studio 전용 suite는 현재 결제 앱과 다르다."}
+{"task_id": "t083", "candidate_id": "c33", "grade": 0, "process": false, "reason": "모바일 이미지 생성은 브라우저 테스트와 무관하다."}
+{"task_id": "t083", "candidate_id": "c34", "grade": 3, "process": false, "reason": "Playwright 테스트 조직 패턴은 결제 E2E 작성에 직접 쓰인다."}
+{"task_id": "t083", "candidate_id": "c35", "grade": 3, "process": false, "reason": "핵심 UI 경로의 Playwright 작성 지침이 요청에 직접 맞는다."}
+{"task_id": "t083", "candidate_id": "c36", "grade": 1, "process": true, "reason": "전체 TDD 정책은 한 E2E 시나리오 추가에 부수적이다."}
+{"task_id": "t083", "candidate_id": "c37", "grade": 1, "process": false, "reason": "일반 AI 개발 설명뿐이라 구체적인 테스트 지원을 확인할 수 없다."}
+{"task_id": "t083", "candidate_id": "c38", "grade": 1, "process": false, "reason": "결제 구현 흐름은 인접하지만 mock 테스트 작성 지침은 아니다."}
+{"task_id": "t083", "candidate_id": "c39", "grade": 2, "process": true, "reason": "실행 가능한 인수 시나리오 설계는 재시도 조건 명료화에 유용하다."}
+{"task_id": "t083", "candidate_id": "c40", "grade": 3, "process": true, "reason": "체계적인 Playwright E2E 절차는 결제 흐름 검증에 직접 맞는다."}
+{"task_id": "t083", "candidate_id": "c41", "grade": 3, "process": false, "reason": "Playwright E2E 및 디버깅 지침은 결제 테스트에 직접 쓰인다."}
+{"task_id": "t083", "candidate_id": "c42", "grade": 2, "process": false, "reason": "실제 브라우저 조작은 경로 확인에 유용하나 suite 작성 전용은 아니다."}
+{"task_id": "t083", "candidate_id": "c43", "grade": 1, "process": true, "reason": "가설 검증은 이미 명확한 테스트 시나리오에 보조적이다."}
+{"task_id": "t083", "candidate_id": "c44", "grade": 3, "process": false, "reason": "네트워크 mock과 Playwright E2E 패턴은 Stripe 실패 재현에 직접 맞는다."}
+{"task_id": "t083", "candidate_id": "c45", "grade": 2, "process": false, "reason": "Playwright 로컬 앱 검증은 요소와 동작 확인에 유용하다."}
+{"task_id": "t083", "candidate_id": "c46", "grade": 3, "process": true, "reason": "결제 사용자 흐름 E2E 구현이 요청에 직접 맞는다."}
+{"task_id": "t083", "candidate_id": "c47", "grade": 0, "process": false, "reason": "Supabase Studio 실행 도구는 현재 결제 앱과 맞지 않는다."}
+{"task_id": "t083", "candidate_id": "c48", "grade": 3, "process": false, "reason": "폼과 이동 및 피드백 테스트는 토스트와 주문 완료 검증에 직접 맞는다."}
+{"task_id": "t083", "candidate_id": "c49", "grade": 0, "process": false, "reason": "자동화 탐지 검사는 결제 회귀 테스트와 무관하다."}
+{"task_id": "t083", "candidate_id": "c50", "grade": 0, "process": true, "reason": "전환율 A/B 실험은 기능 E2E와 목적이 다르다."}
+{"task_id": "t083", "candidate_id": "c51", "grade": 3, "process": true, "reason": "Playwright spec 및 assertion 작성이 결제 suite 구현에 직접 맞는다."}
+{"task_id": "t083", "candidate_id": "c52", "grade": 0, "process": false, "reason": "영상 연장은 결제 테스트와 무관하다."}
+{"task_id": "t083", "candidate_id": "c53", "grade": 3, "process": false, "reason": "selector와 fixture 및 격리 패턴은 결제 테스트에 직접 쓰인다."}
+{"task_id": "t083", "candidate_id": "c54", "grade": 3, "process": false, "reason": "Playwright assertion과 흐름 회귀 지식이 요청에 직접 맞는다."}
+{"task_id": "t083", "candidate_id": "c55", "grade": 2, "process": false, "reason": "Playwright CLI는 화면 탐색에 유용하나 spec 작성 지침은 제한적이다."}
+{"task_id": "t083", "candidate_id": "c56", "grade": 2, "process": false, "reason": "selector와 대기 전략은 E2E 안정성에 유용한 범용 지식이다."}
+{"task_id": "t083", "candidate_id": "c57", "grade": 3, "process": true, "reason": "브라우저 테스트 작성과 route mock은 Stripe mock 시나리오에 직접 맞는다."}
+{"task_id": "t083", "candidate_id": "c58", "grade": 1, "process": false, "reason": "일반 AI 개발 설명만 있어 Playwright 설정 지원을 확인할 수 없다."}
+{"task_id": "t099", "candidate_id": "c01", "grade": 1, "process": false, "reason": "위젯 미리보기는 시각 확인에 인접하지만 자동 테스트는 아니다."}
+{"task_id": "t099", "candidate_id": "c02", "grade": 0, "process": false, "reason": "JSON 직렬화는 화면 테스트 작성과 무관하다."}
+{"task_id": "t099", "candidate_id": "c03", "grade": 3, "process": false, "reason": "Flutter widget 테스트 패턴은 화면 상태와 상호작용 검증에 직접 맞는다."}
+{"task_id": "t099", "candidate_id": "c04", "grade": 0, "process": false, "reason": "iOS AlarmKit은 Flutter 테스트와 다른 스택이다."}
+{"task_id": "t099", "candidate_id": "c05", "grade": 3, "process": false, "reason": "Dart Flutter 위젯 테스트와 mocking은 저장소 mock 검증에 직접 쓰인다."}
+{"task_id": "t099", "candidate_id": "c06", "grade": 1, "process": true, "reason": "신규 구현 TDD는 기존 화면 테스트 보강에 부수적이다."}
+{"task_id": "t099", "candidate_id": "c07", "grade": 1, "process": false, "reason": "앱 통합 설정은 격리 widget 테스트보다 범위가 넓다."}
+{"task_id": "t099", "candidate_id": "c08", "grade": 0, "process": false, "reason": "TypeScript NestJS 테스트는 Flutter와 다른 스택이다."}
+{"task_id": "t099", "candidate_id": "c09", "grade": 3, "process": true, "reason": "Flutter widget 테스트 작성 절차는 화면 사례 추가에 직접 맞는다."}
+{"task_id": "t099", "candidate_id": "c10", "grade": 0, "process": false, "reason": "SwiftUI 레이아웃은 Flutter 테스트와 다르다."}
+{"task_id": "t099", "candidate_id": "c11", "grade": 0, "process": false, "reason": "WidgetKit은 Flutter UI 위젯 테스트와 다른 기술이다."}
+{"task_id": "t099", "candidate_id": "c12", "grade": 0, "process": false, "reason": "홈 화면 확장 위젯은 앱 내부 reminder 화면과 다르다."}
+{"task_id": "t099", "candidate_id": "c13", "grade": 0, "process": false, "reason": "공개 파라미터 CLI fixture는 Flutter golden과 무관하다."}
+{"task_id": "t099", "candidate_id": "c14", "grade": 0, "process": false, "reason": "Apple 앱 확장은 Flutter 화면 테스트와 다른 스택이다."}
+{"task_id": "t099", "candidate_id": "c15", "grade": 1, "process": true, "reason": "원인 불명 버그 진단은 실패 없는 현재 테스트 추가에 부수적이다."}
+{"task_id": "t099", "candidate_id": "c16", "grade": 2, "process": true, "reason": "경계 테스트와 불안정성 개선은 시간 고정 및 회귀 보강에 도움 된다."}
+{"task_id": "t099", "candidate_id": "c17", "grade": 1, "process": true, "reason": "빈 상태 UX는 관련되지만 테스트 구현 방법은 아니다."}
+{"task_id": "t099", "candidate_id": "c18", "grade": 1, "process": true, "reason": "전면 TDD 정책은 지정 화면 테스트 보강에 비해 범위가 넓다."}
+{"task_id": "t099", "candidate_id": "c19", "grade": 3, "process": false, "reason": "WidgetTester와 pump 및 finder는 렌더링과 스와이프 검증에 직접 쓰인다."}
+{"task_id": "t099", "candidate_id": "c20", "grade": 1, "process": true, "reason": "구현 전 테스트 절차는 기존 화면 보강에 제한적으로 도움 된다."}
+{"task_id": "t099", "candidate_id": "c21", "grade": 1, "process": true, "reason": "일반 단위 테스트는 Flutter widget과 golden 도구를 다루지 않는다."}
+{"task_id": "t099", "candidate_id": "c22", "grade": 1, "process": false, "reason": "대화형 preview는 시각 확인 보조이며 자동 회귀 테스트가 아니다."}
+{"task_id": "t099", "candidate_id": "c23", "grade": 0, "process": false, "reason": "go_router 설정은 지정 테스트 요구와 무관하다."}
+{"task_id": "t099", "candidate_id": "c24", "grade": 1, "process": false, "reason": "Flutter 제목 외 테스트 지원의 구체적 근거가 없다."}
+{"task_id": "t099", "candidate_id": "c25", "grade": 3, "process": false, "reason": "Dart Flutter widget 테스트 지침이 화면 suite 작성에 직접 맞는다."}
+{"task_id": "t099", "candidate_id": "c26", "grade": 3, "process": false, "reason": "WidgetTester 상호작용은 스와이프와 snooze 검증에 직접 맞는다."}
+{"task_id": "t099", "candidate_id": "c27", "grade": 2, "process": false, "reason": "Dart test lifecycle은 mock 및 시계 fixture 구성에 유용하다."}
+{"task_id": "t099", "candidate_id": "c28", "grade": 0, "process": false, "reason": "HTTP 구현은 mock repository 화면 테스트와 무관하다."}
+{"task_id": "t099", "candidate_id": "c29", "grade": 0, "process": false, "reason": "약국 재고 검색은 화면 테스트 작성과 무관하다."}
+{"task_id": "t099", "candidate_id": "c30", "grade": 1, "process": false, "reason": "Flutter preview는 시각 확인 보조이며 golden 검증은 아니다."}
+{"task_id": "t099", "candidate_id": "c31", "grade": 0, "process": false, "reason": "Husky Prettier 설정은 Flutter 테스트 추가와 무관하다."}
+{"task_id": "t099", "candidate_id": "c32", "grade": 1, "process": true, "reason": "속성 테스트는 고정 UI 시나리오와 golden 검증에 실익이 작다."}
+{"task_id": "t099", "candidate_id": "c33", "grade": 3, "process": false, "reason": "flutter_test와 WidgetTester는 화면 상호작용 검증에 직접 맞는다."}
+{"task_id": "t099", "candidate_id": "c34", "grade": 0, "process": false, "reason": "다국어 설정은 주어진 테스트 요구에 없다."}
+{"task_id": "t099", "candidate_id": "c35", "grade": 1, "process": false, "reason": "다이얼로그 모션은 인접하지만 옵션 및 golden 검증 방법은 아니다."}
+{"task_id": "t099", "candidate_id": "c36", "grade": 3, "process": true, "reason": "Flutter widget과 golden 전략은 두 검증 요구에 직접 맞는다."}
+{"task_id": "t099", "candidate_id": "c37", "grade": 0, "process": false, "reason": "WidgetKit 생성은 Flutter 내부 위젯 테스트와 다르다."}
+{"task_id": "t099", "candidate_id": "c38", "grade": 0, "process": false, "reason": "로딩 디자인은 지정된 테스트 사례에 해당하지 않는다."}
+{"task_id": "t099", "candidate_id": "c39", "grade": 1, "process": false, "reason": "적응 레이아웃은 크기와 인접하지만 테스트 작성 방법은 아니다."}
+{"task_id": "t099", "candidate_id": "c40", "grade": 2, "process": false, "reason": "Flutter 위젯과 테마 지식은 light 및 dark 테스트 환경 구성에 유용하다."}
+{"task_id": "t099", "candidate_id": "c41", "grade": 0, "process": false, "reason": "Apple WidgetKit 구현은 Flutter 화면 테스트와 다른 기술이다."}
+{"task_id": "t099", "candidate_id": "c42", "grade": 1, "process": true, "reason": "레이아웃 오류 진단은 오류 없는 테스트 추가에 부수적이다."}
+{"task_id": "t099", "candidate_id": "c43", "grade": 0, "process": false, "reason": "네이티브 홈 화면 위젯은 reminder 페이지 테스트와 다르다."}
+{"task_id": "t099", "candidate_id": "c44", "grade": 1, "process": false, "reason": "앱 구조 개선은 mock 기반 테스트 추가보다 범위가 넓다."}
+{"task_id": "t099", "candidate_id": "c45", "grade": 1, "process": true, "reason": "컴포넌트 통합 검증은 mock 기반 widget 테스트와 초점이 다르다."}
+{"task_id": "t103", "candidate_id": "c01", "grade": 1, "process": false, "reason": "DAG 생성은 기존 DAG 운영 문서 작성과 초점이 다르다."}
+{"task_id": "t103", "candidate_id": "c02", "grade": 0, "process": false, "reason": "RDS snapshot 내보내기는 지정 DAG와 관련 근거가 없다."}
+{"task_id": "t103", "candidate_id": "c03", "grade": 1, "process": false, "reason": "Airflow 배포는 인접하지만 테이블 설명과 backfill의 핵심은 아니다."}
+{"task_id": "t103", "candidate_id": "c04", "grade": 0, "process": true, "reason": "생성 CLI 출시 정리는 DAG README와 무관하다."}
+{"task_id": "t103", "candidate_id": "c05", "grade": 3, "process": true, "reason": "Airflow 상류 계보 추적은 task별 입력 테이블 파악에 직접 맞는다."}
+{"task_id": "t103", "candidate_id": "c06", "grade": 0, "process": false, "reason": "사용자 행동 분석 운영은 Airflow 설명과 무관하다."}
+{"task_id": "t103", "candidate_id": "c07", "grade": 3, "process": false, "reason": "DAG 실행과 실패 관리 지식은 온콜 복구 절차 문서에 직접 쓰인다."}
+{"task_id": "t103", "candidate_id": "c08", "grade": 3, "process": true, "reason": "독자 중심 README 작성은 온콜 인수인계 문서에 직접 맞는다."}
+{"task_id": "t103", "candidate_id": "c09", "grade": 0, "process": false, "reason": "Harvard 전용 ETL은 현재 DAG와 관련 근거가 없다."}
+{"task_id": "t103", "candidate_id": "c10", "grade": 0, "process": false, "reason": "Habitica 자동화는 DAG 문서와 무관하다."}
+{"task_id": "t103", "candidate_id": "c11", "grade": 2, "process": false, "reason": "ETL 흐름 및 Airflow 지식은 테이블 입출력 설명에 유용하다."}
+{"task_id": "t103", "candidate_id": "c12", "grade": 2, "process": false, "reason": "DAG 스케줄과 의존성 지식은 파이프라인 설명에 도움 된다."}
+{"task_id": "t103", "candidate_id": "c13", "grade": 1, "process": true, "reason": "DAG 테스트 수정은 기존 운영 설명에 부수적이다."}
+{"task_id": "t103", "candidate_id": "c14", "grade": 1, "process": true, "reason": "새 DAG 작성은 README 작성과 초점이 다르다."}
+{"task_id": "t103", "candidate_id": "c15", "grade": 0, "process": false, "reason": "Anthropic SDK 개발은 Airflow 문서와 무관하다."}
+{"task_id": "t103", "candidate_id": "c16", "grade": 2, "process": true, "reason": "README 작성 절차는 운영 문서 구조화에 유용하다."}
+{"task_id": "t103", "candidate_id": "c17", "grade": 0, "process": true, "reason": "ECC 설치 계획은 DAG 문서와 무관하다."}
+{"task_id": "t103", "candidate_id": "c18", "grade": 0, "process": false, "reason": "Harvard 박물관 ETL은 요청 파이프라인과 다른 도메인이다."}
+{"task_id": "t103", "candidate_id": "c19", "grade": 0, "process": false, "reason": "승인 DAG 연산자는 현재 사용 근거가 없다."}
+{"task_id": "t103", "candidate_id": "c20", "grade": 2, "process": false, "reason": "데이터 흐름 도식은 task와 테이블 관계 전달에 유용하다."}
+{"task_id": "t103", "candidate_id": "c21", "grade": 0, "process": false, "reason": "Airflow 플러그인 구현은 기존 DAG 문서와 다르다."}
+{"task_id": "t103", "candidate_id": "c22", "grade": 3, "process": true, "reason": "소스 검토 후 README 작성은 문서 없는 DAG 설명에 직접 맞는다."}
+{"task_id": "t103", "candidate_id": "c23", "grade": 2, "process": false, "reason": "Airflow 실패 처리 지식은 복구 운영 설명에 유용하다."}
+{"task_id": "t103", "candidate_id": "c24", "grade": 0, "process": false, "reason": "Harvard 전용 데이터 처리는 현재 DAG와 관련 근거가 없다."}
+{"task_id": "t103", "candidate_id": "c25", "grade": 1, "process": false, "reason": "DAG 구축 패턴은 운영 문서 작성에 제한적으로 도움 된다."}
+{"task_id": "t103", "candidate_id": "c26", "grade": 0, "process": true, "reason": "개인 시간 관리는 DAG 문서와 무관하다."}
+{"task_id": "t103", "candidate_id": "c27", "grade": 0, "process": false, "reason": "Harvard 데이터 수집은 지정 DAG 설명과 다르다."}
+{"task_id": "t103", "candidate_id": "c28", "grade": 0, "process": false, "reason": "Gong 통화 분석은 Airflow README와 무관하다."}
+{"task_id": "t103", "candidate_id": "c29", "grade": 2, "process": false, "reason": "Airflow 스케줄과 DAG 지식은 실행 및 의존성 설명에 유용하다."}
+{"task_id": "t103", "candidate_id": "c30", "grade": 1, "process": false, "reason": "범용 ETL 구현은 Airflow backfill 문서화에 제한적이다."}
+{"task_id": "t103", "candidate_id": "c31", "grade": 2, "process": true, "reason": "DAG 실패 진단 절차는 온콜 장애 대응 설명에 유용하다."}
+{"task_id": "t103", "candidate_id": "c32", "grade": 2, "process": false, "reason": "Airflow retries와 운영 지식은 README 운영 항목에 도움 된다."}
+{"task_id": "t103", "candidate_id": "c33", "grade": 3, "process": true, "reason": "문서 없는 코드의 명세 추출은 기존 DAG 설명에 직접 맞는다."}
+{"task_id": "t103", "candidate_id": "c34", "grade": 1, "process": true, "reason": "README 보완은 관련되지만 JavaScript 주석 중심이다."}
+{"task_id": "t103", "candidate_id": "c35", "grade": 3, "process": true, "reason": "하류 계보 추적은 출력 테이블과 영향 관계 문서화에 직접 맞는다."}
+{"task_id": "t103", "candidate_id": "c36", "grade": 0, "process": false, "reason": "게임형 앱 프로토타입은 DAG 문서와 무관하다."}
+{"task_id": "t103", "candidate_id": "c37", "grade": 1, "process": false, "reason": "DAG 생성 도구는 기존 운영 설명에는 실익이 작다."}
+{"task_id": "t103", "candidate_id": "c38", "grade": 0, "process": false, "reason": "Harvard Streamlit 분석은 현재 Airflow README와 무관하다."}
+{"task_id": "t105", "candidate_id": "c01", "grade": 2, "process": true, "reason": "JSDoc과 복잡한 주석 보완은 유용하지만 작은 단일 함수 문서 작업이다."}
+{"task_id": "t105", "candidate_id": "c02", "grade": 0, "process": false, "reason": "커밋 훅 설정은 JSDoc 추가와 무관하다."}
+{"task_id": "t105", "candidate_id": "c03", "grade": 2, "process": true, "reason": "코드 근거 문서 작성은 반올림 순서 설명에 유용하다."}
+{"task_id": "t105", "candidate_id": "c04", "grade": 1, "process": false, "reason": "특정 모노레포 TypeScript 규약은 현재 설명 추가에 실익이 작다."}
+{"task_id": "t105", "candidate_id": "c05", "grade": 1, "process": false, "reason": "React 패턴은 인접하지만 계산 순서 문서화 방법은 아니다."}
+{"task_id": "t105", "candidate_id": "c06", "grade": 2, "process": false, "reason": "JSDoc TSDoc 문법은 TypeScript 함수 설명에 도움 된다."}
+{"task_id": "t105", "candidate_id": "c07", "grade": 2, "process": true, "reason": "함수별 표준 문서화 절차는 계산 순서 주석에 유용하다."}
+{"task_id": "t105", "candidate_id": "c08", "grade": 0, "process": false, "reason": "Claude 이벤트 hook은 React hook과 다르다."}
+{"task_id": "t105", "candidate_id": "c09", "grade": 1, "process": false, "reason": "일반 JavaScript 문서 생성은 작은 TypeScript 주석 추가에 제한적이다."}
+{"task_id": "t105", "candidate_id": "c10", "grade": 0, "process": false, "reason": "청구서 화면은 계산 로직 JSDoc과 무관하다."}
+{"task_id": "t105", "candidate_id": "c11", "grade": 0, "process": true, "reason": "세션 분석은 함수 설명 추가와 무관하다."}
+{"task_id": "t105", "candidate_id": "c12", "grade": 1, "process": true, "reason": "경계 테스트는 이해 보조이나 요청은 문서 추가다."}
+{"task_id": "t105", "candidate_id": "c13", "grade": 0, "process": false, "reason": "Shopify 세금 설정은 코드 반올림 주석과 다르다."}
+{"task_id": "t105", "candidate_id": "c14", "grade": 0, "process": false, "reason": "Commerce Engine 전용 API는 현재 hook과 관련 근거가 없다."}
+{"task_id": "t105", "candidate_id": "c15", "grade": 0, "process": false, "reason": "Shopify 세금 집계는 TypeScript 문서화와 다르다."}
+{"task_id": "t105", "candidate_id": "c16", "grade": 0, "process": false, "reason": "일본 소득세 신고는 프로모션 계산 주석과 무관하다."}
+{"task_id": "t105", "candidate_id": "c17", "grade": 1, "process": true, "reason": "다중 에이전트 문서 갱신은 한 파일 주석에 과하다."}
+{"task_id": "t105", "candidate_id": "c18", "grade": 2, "process": true, "reason": "TypeScript 함수 문서화 절차는 JSDoc 보완에 유용하다."}
+{"task_id": "t105", "candidate_id": "c19", "grade": 0, "process": false, "reason": "UI 설치는 계산 주석과 무관하다."}
+{"task_id": "t105", "candidate_id": "c20", "grade": 2, "process": true, "reason": "JSDoc 작성 및 검증은 반올림 설명 정리에 유용하다."}
+{"task_id": "t105", "candidate_id": "c21", "grade": 0, "process": false, "reason": "Uniswap hook은 React 계산 hook과 다른 영역이다."}
+{"task_id": "t105", "candidate_id": "c22", "grade": 1, "process": true, "reason": "다계층 문서 생성은 짧은 인라인 설명보다 범위가 넓다."}
+{"task_id": "t117", "candidate_id": "c01", "grade": 0, "process": false, "reason": "Clerk 구독 UI는 Rust 문서와 무관하다."}
+{"task_id": "t117", "candidate_id": "c02", "grade": 2, "process": true, "reason": "검증 후 완료 주장 절차는 doctest 통과 조건에 유용하다."}
+{"task_id": "t117", "candidate_id": "c03", "grade": 0, "process": false, "reason": "사업 경제 계산은 Rust 문서와 무관하다."}
+{"task_id": "t117", "candidate_id": "c04", "grade": 0, "process": false, "reason": "수입 관세는 에너지 요금과 다른 도메인이다."}
+{"task_id": "t117", "candidate_id": "c05", "grade": 1, "process": true, "reason": "codex-rs 테스트 규약은 rustdoc 예제와 초점이 다르다."}
+{"task_id": "t117", "candidate_id": "c06", "grade": 1, "process": false, "reason": "Rust 테스트 제목 외 doctest 지원 근거가 없다."}
+{"task_id": "t117", "candidate_id": "c07", "grade": 1, "process": true, "reason": "기능 TDD는 API 변경 없는 문서 작성에 부수적이다."}
+{"task_id": "t117", "candidate_id": "c08", "grade": 1, "process": true, "reason": "구현 전 테스트는 문서 예제 추가와 직접 일치하지 않는다."}
+{"task_id": "t117", "candidate_id": "c09", "grade": 1, "process": false, "reason": "에너지 조달은 도메인 인접 지식이나 rustdoc 방법은 아니다."}
+{"task_id": "t117", "candidate_id": "c10", "grade": 2, "process": false, "reason": "Rust 테스트 구조 지식은 예제 검증을 이해하는 데 도움 된다."}
+{"task_id": "t117", "candidate_id": "c11", "grade": 0, "process": false, "reason": "대출 투자 계산은 에너지 API 문서와 무관하다."}
+{"task_id": "t117", "candidate_id": "c12", "grade": 0, "process": false, "reason": "Dodo 크레딧 구현은 Rust 요금 문서와 다르다."}
+{"task_id": "t117", "candidate_id": "c13", "grade": 1, "process": false, "reason": "에너지 용어는 설명에 보조적이나 rustdoc 작성 방법은 아니다."}
+{"task_id": "t117", "candidate_id": "c14", "grade": 1, "process": true, "reason": "대화 기반 용어집은 기존 API 실행 예제 작성에 실익이 작다."}
+{"task_id": "t117", "candidate_id": "c15", "grade": 3, "process": true, "reason": "Rust 함수와 타입 rustdoc 작성 지침은 요청에 직접 맞는다."}
+{"task_id": "t117", "candidate_id": "c16", "grade": 2, "process": true, "reason": "문서 작성 절차는 API 설명 구조화에 유용하나 rustdoc 특화는 아니다."}
+{"task_id": "t117", "candidate_id": "c17", "grade": 1, "process": true, "reason": "전면 TDD 정책은 문서 예제 추가보다 범위가 넓다."}
+{"task_id": "t117", "candidate_id": "c18", "grade": 0, "process": false, "reason": "Amazon 배송 계산은 에너지 Rust 문서와 무관하다."}
+{"task_id": "t117", "candidate_id": "c19", "grade": 1, "process": true, "reason": "Rust TDD와 단위 테스트는 rustdoc 작성에 직접성이 낮다."}
+{"task_id": "t117", "candidate_id": "c20", "grade": 0, "process": false, "reason": "퍼징은 실행 문서 예제 검증과 다른 작업이다."}
+{"task_id": "t117", "candidate_id": "c21", "grade": 1, "process": false, "reason": "에너지 조달은 인접하지만 rustdoc 방법은 아니다."}
+{"task_id": "t117", "candidate_id": "c22", "grade": 0, "process": false, "reason": "ROI 계산은 Rust API 문서와 무관하다."}
+{"task_id": "t117", "candidate_id": "c23", "grade": 0, "process": false, "reason": "Dodo SaaS 결제는 에너지 요금 crate와 다르다."}
+{"task_id": "t117", "candidate_id": "c24", "grade": 1, "process": true, "reason": "JSDoc 중심 주석 보완에는 Rust doctest 지침이 없다."}
+{"task_id": "t117", "candidate_id": "c25", "grade": 0, "process": true, "reason": "생성 CLI 재생성은 API 문서 추가와 무관하다."}
+{"task_id": "t117", "candidate_id": "c26", "grade": 1, "process": true, "reason": "통합 테스트는 rustdoc 예제 작성과 초점이 다르다."}
+{"task_id": "t117", "candidate_id": "c27", "grade": 0, "process": false, "reason": "국제 관세는 에너지 요금과 다른 도메인이다."}
+{"task_id": "t117", "candidate_id": "c28", "grade": 0, "process": false, "reason": "Word 편집은 Rust 소스 문서와 다르다."}
+{"task_id": "t117", "candidate_id": "c29", "grade": 0, "process": false, "reason": "Azure 가격 조회는 에너지 crate 문서와 무관하다."}
+{"task_id": "t117", "candidate_id": "c30", "grade": 2, "process": true, "reason": "소스 조사와 최소 변경은 시그니처 유지 및 정확한 예제에 유용하다."}
+{"task_id": "t117", "candidate_id": "c31", "grade": 0, "process": false, "reason": "시장 규모 계산은 Rust 문서와 무관하다."}
+{"task_id": "t117", "candidate_id": "c32", "grade": 0, "process": false, "reason": "Dodo 사용량 결제는 기존 Rust API 문서와 다르다."}
+{"task_id": "t117", "candidate_id": "c33", "grade": 2, "process": true, "reason": "Rust 누락 문서 보완은 유용하나 번역 중심이고 실행 예제 조건은 없다."}
+{"task_id": "t124", "candidate_id": "c01", "grade": 1, "process": false, "reason": "시각 디자인은 인접하지만 기존 문서 및 preview 추가에 실익이 작다."}
+{"task_id": "t124", "candidate_id": "c02", "grade": 0, "process": false, "reason": "XR 안경 제약은 은행 Android 디자인 시스템과 맞지 않는다."}
+{"task_id": "t124", "candidate_id": "c03", "grade": 0, "process": false, "reason": "상세정보 미리보기 UI는 Android Studio Preview와 다르다."}
+{"task_id": "t124", "candidate_id": "c04", "grade": 0, "process": false, "reason": "문서 파일 API는 Kotlin KDoc과 무관하다."}
+{"task_id": "t124", "candidate_id": "c05", "grade": 1, "process": true, "reason": "OO 구조 문서 갱신은 composable KDoc과 preview에 제한적이다."}
+{"task_id": "t124", "candidate_id": "c06", "grade": 0, "process": false, "reason": "웹 대시보드 스타일은 Android 문서와 무관하다."}
+{"task_id": "t124", "candidate_id": "c07", "grade": 2, "process": false, "reason": "Material과 Compose는 테마 및 접근성 설명에 도움 된다."}
+{"task_id": "t124", "candidate_id": "c08", "grade": 2, "process": true, "reason": "공개 API 맥락 문서화는 사용 지침 README에 유용하다."}
+{"task_id": "t124", "candidate_id": "c09", "grade": 0, "process": false, "reason": "CometChat 전용 컴포넌트는 자체 은행 컴포넌트와 다르다."}
+{"task_id": "t124", "candidate_id": "c10", "grade": 1, "process": true, "reason": "새 시스템 생성은 기존 API 유지 문서 작업보다 넓다."}
+{"task_id": "t124", "candidate_id": "c11", "grade": 1, "process": false, "reason": "Compose 제목 외 KDoc 및 preview 지식 근거가 없다."}
+{"task_id": "t124", "candidate_id": "c12", "grade": 0, "process": false, "reason": "React 웹 패턴은 Android Compose와 다르다."}
+{"task_id": "t124", "candidate_id": "c13", "grade": 0, "process": true, "reason": "디자인 brief는 구체적으로 정해진 문서 요구와 다르다."}
+{"task_id": "t124", "candidate_id": "c14", "grade": 0, "process": true, "reason": "마켓플레이스 플러그인 생성은 Compose API 문서와 다르다."}
+{"task_id": "t124", "candidate_id": "c15", "grade": 0, "process": false, "reason": "웹 컴포넌트 스택은 Kotlin Compose와 다르다."}
+{"task_id": "t124", "candidate_id": "c16", "grade": 0, "process": false, "reason": "Paperclip 웹 지침은 Android 시스템과 맞지 않는다."}
+{"task_id": "t124", "candidate_id": "c17", "grade": 2, "process": false, "reason": "Compose theme과 구조 지식은 매개변수 설명 및 preview에 유용하다."}
+{"task_id": "t124", "candidate_id": "c18", "grade": 0, "process": false, "reason": "Expo 래퍼는 네이티브 Kotlin 모듈과 맞지 않는다."}
+{"task_id": "t124", "candidate_id": "c19", "grade": 0, "process": false, "reason": "터미널 디자인은 Android 문서와 무관하다."}
+{"task_id": "t124", "candidate_id": "c20", "grade": 0, "process": false, "reason": "XR Glimmer는 일반 은행 Compose 앱과 다르다."}
+{"task_id": "t124", "candidate_id": "c21", "grade": 2, "process": true, "reason": "라이브러리 문서 확인은 preview 및 접근성 규칙 검증에 유용하다."}
+{"task_id": "t124", "candidate_id": "c22", "grade": 1, "process": false, "reason": "토큰 구조 설계는 인접하지만 문서 보완의 핵심은 아니다."}
+{"task_id": "t124", "candidate_id": "c23", "grade": 1, "process": false, "reason": "Compose 애니메이션은 요청된 문서와 preview에 실익이 작다."}
+{"task_id": "t124", "candidate_id": "c24", "grade": 1, "process": true, "reason": "OO 아키텍처 문서는 composable API 주석과 초점이 다르다."}
+{"task_id": "t124", "candidate_id": "c25", "grade": 0, "process": false, "reason": "Clerk 인증은 컴포넌트 문서와 무관하다."}
+{"task_id": "t124", "candidate_id": "c26", "grade": 0, "process": false, "reason": "Docyrus 전용 UI는 현재 Compose와 다르다."}
+{"task_id": "t124", "candidate_id": "c27", "grade": 0, "process": true, "reason": "Go 문서 규약은 Kotlin KDoc과 다르다."}
+{"task_id": "t124", "candidate_id": "c28", "grade": 0, "process": false, "reason": "Tailwind는 Android Compose와 다른 스택이다."}
+{"task_id": "t124", "candidate_id": "c29", "grade": 2, "process": false, "reason": "Compose modifier와 theme 지식은 매개변수 및 사용법 설명에 유용하다."}
+{"task_id": "t124", "candidate_id": "c30", "grade": 3, "process": true, "reason": "API 및 README 작성 절차는 요청된 문서 작업에 직접 맞는다."}
+{"task_id": "t124", "candidate_id": "c31", "grade": 0, "process": true, "reason": "XML 이전은 기존 API 유지 문서 작업과 다르다."}
+{"task_id": "t124", "candidate_id": "c32", "grade": 0, "process": false, "reason": "사무 문서 변환은 KDoc과 무관하다."}
+{"task_id": "t124", "candidate_id": "c33", "grade": 0, "process": false, "reason": "shadcn은 Android Compose와 다른 스택이다."}
+{"task_id": "t124", "candidate_id": "c34", "grade": 2, "process": false, "reason": "Compose 함수와 Material theme은 preview 및 API 설명에 유용하다."}
+{"task_id": "t124", "candidate_id": "c35", "grade": 1, "process": true, "reason": "README 보완은 관련되나 JSDoc 중심이라 KDoc 지침은 없다."}
+{"task_id": "t124", "candidate_id": "c36", "grade": 1, "process": false, "reason": "M3 일반 자동화 설명뿐이라 문서 지원 근거가 적다."}
+{"task_id": "t124", "candidate_id": "c37", "grade": 2, "process": true, "reason": "참조와 설명을 구분하는 절차는 컴포넌트 README에 유용하다."}
+{"task_id": "t124", "candidate_id": "c38", "grade": 3, "process": true, "reason": "시스템 문서 템플릿과 접근성 지침은 사용 및 접근성 설명에 직접 맞는다."}
+{"task_id": "t129", "candidate_id": "c01", "grade": 1, "process": true, "reason": "커밋 관리 제목 외 구체적인 설정 설명이 없다."}
+{"task_id": "t129", "candidate_id": "c02", "grade": 3, "process": true, "reason": "커밋 전 검사 훅 구성은 요청된 게이트 설치에 직접 맞는다."}
+{"task_id": "t129", "candidate_id": "c03", "grade": 0, "process": true, "reason": "출력 압축은 pre-commit과 무관하다."}
+{"task_id": "t129", "candidate_id": "c04", "grade": 3, "process": true, "reason": "로컬 CI 검사 일치 패턴은 핵심 제약에 직접 맞는다."}
+{"task_id": "t129", "candidate_id": "c05", "grade": 1, "process": true, "reason": "제목 외 일반 개발 설명만 있어 구체적 근거가 부족하다."}
+{"task_id": "t129", "candidate_id": "c06", "grade": 1, "process": true, "reason": "pre-commit 제목 외 설정 방법이 제시되지 않았다."}
+{"task_id": "t129", "candidate_id": "c07", "grade": 0, "process": true, "reason": "Azure 준비 평가는 Python 커밋 검사와 무관하다."}
+{"task_id": "t129", "candidate_id": "c08", "grade": 1, "process": false, "reason": "이름 외 framework나 hook 설정 설명이 없다."}
+{"task_id": "t129", "candidate_id": "c09", "grade": 1, "process": true, "reason": "커밋 메시지 규약은 lint와 env 차단 설정과 다르다."}
+{"task_id": "t129", "candidate_id": "c10", "grade": 1, "process": false, "reason": "훅 우회 금지는 관련되나 요청 검사와 CI 통합 방법은 아니다."}
+{"task_id": "t129", "candidate_id": "c11", "grade": 1, "process": true, "reason": "특정 팀 CI 진단은 신규 훅 구성과 초점이 다르다."}
+{"task_id": "t129", "candidate_id": "c12", "grade": 3, "process": true, "reason": "커밋 전 lint 구성은 요청된 설치 작업에 직접 맞는다."}
+{"task_id": "t129", "candidate_id": "c13", "grade": 0, "process": true, "reason": "API 폐기 절차는 커밋 훅 설정과 무관하다."}
+{"task_id": "t129", "candidate_id": "c14", "grade": 0, "process": false, "reason": "Slides 생성은 Python 검사와 무관하다."}
+{"task_id": "t129", "candidate_id": "c15", "grade": 3, "process": false, "reason": "Ruff mypy 정적 분석 설정이 요청 도구에 직접 맞는다."}
+{"task_id": "t129", "candidate_id": "c16", "grade": 1, "process": true, "reason": "별도 validate.py 절차는 pre-commit 단일 경로 요구와 다르다."}
+{"task_id": "t129", "candidate_id": "c17", "grade": 3, "process": true, "reason": "pre-commit과 CI 게이트 구성은 로컬 CI 일치에 직접 맞는다."}
+{"task_id": "t129", "candidate_id": "c18", "grade": 1, "process": true, "reason": "자동 리뷰는 부수적이며 ruff mypy 훅 설정은 아니다."}
+{"task_id": "t129", "candidate_id": "c19", "grade": 0, "process": true, "reason": "메모리 압축은 커밋 검사와 무관하다."}
+{"task_id": "t129", "candidate_id": "c20", "grade": 0, "process": false, "reason": "JavaScript 모노레포 도구는 Python 스택과 다르다."}
+{"task_id": "t129", "candidate_id": "c21", "grade": 0, "process": false, "reason": "회의 준비는 pre-commit과 무관하다."}
+{"task_id": "t129", "candidate_id": "c22", "grade": 0, "process": true, "reason": "교육 문제 생성은 품질 훅과 무관하다."}
+{"task_id": "t129", "candidate_id": "c23", "grade": 1, "process": true, "reason": "Cartridge 전용 검사 실행은 현재 Python 설정에 적용성이 낮다."}
+{"task_id": "t129", "candidate_id": "c24", "grade": 0, "process": false, "reason": "Husky lint-staged 전용은 Python pre-commit과 다르다."}
+{"task_id": "t129", "candidate_id": "c25", "grade": 0, "process": false, "reason": "Azure 인프라 생성은 커밋 검사와 무관하다."}
+{"task_id": "t129", "candidate_id": "c26", "grade": 0, "process": false, "reason": "Husky Prettier는 요청된 검사 도구와 다르다."}
+{"task_id": "t129", "candidate_id": "c27", "grade": 2, "process": false, "reason": "mypy strict 설정 지식은 core 경로 제한에 유용하다."}
+{"task_id": "t129", "candidate_id": "c28", "grade": 0, "process": false, "reason": "JavaScript Husky 설치는 Python 검사 스택과 다르다."}
+{"task_id": "t129", "candidate_id": "c29", "grade": 0, "process": false, "reason": "Flutter preview는 커밋 검사와 무관하다."}
+{"task_id": "t129", "candidate_id": "c30", "grade": 1, "process": true, "reason": "커밋 전략은 훅 설정에 보조적이다."}
+{"task_id": "t129", "candidate_id": "c31", "grade": 1, "process": true, "reason": "커밋 준비는 관련되지만 framework 구성 방법은 아니다."}
+{"task_id": "t129", "candidate_id": "c32", "grade": 0, "process": false, "reason": "Biome은 지정된 Ruff 및 mypy와 다르다."}
+{"task_id": "t129", "candidate_id": "c33", "grade": 3, "process": true, "reason": "도구 조사와 훅 구성 및 검증 절차는 요청에 직접 맞는다."}
+{"task_id": "t129", "candidate_id": "c34", "grade": 0, "process": false, "reason": "고객 이탈 방지는 커밋 훅과 무관하다."}
+{"task_id": "t129", "candidate_id": "c35", "grade": 3, "process": true, "reason": "pre-commit 설치와 파일별 검사 및 비밀 차단은 요청에 직접 맞는다."}
+{"task_id": "t129", "candidate_id": "c36", "grade": 1, "process": true, "reason": "PR 준비는 인접하지만 설정과 CI 단일화가 주목적은 아니다."}
+{"task_id": "t129", "candidate_id": "c37", "grade": 0, "process": false, "reason": "Husky Prettier는 Python pre-commit과 다른 스택이다."}
+{"task_id": "t129", "candidate_id": "c38", "grade": 2, "process": false, "reason": "Python pre-commit도 다뤄 유용하지만 시작 예제는 Husky 중심이다."}
+{"task_id": "t129", "candidate_id": "c39", "grade": 0, "process": false, "reason": "특정 JavaScript 관례는 Python 검사 설정과 다르다."}
+{"task_id": "t129", "candidate_id": "c40", "grade": 0, "process": true, "reason": "커밋 문구 압축은 검사 및 CI 통합과 무관하다."}

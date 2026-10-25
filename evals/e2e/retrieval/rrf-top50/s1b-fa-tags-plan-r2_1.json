@@ -1,0 +1,252 @@
+[
+ {
+  "id": "uasl/fastapi-templates@effcd0de0b4c",
+  "title": "fastapi-templates",
+  "summary": "Guides creation of structured FastAPI backend projects using async patterns, dependency injection, repository and service layers, authentication, and testing examples. Includes templates for API endpoints, database access, and user management."
+ },
+ {
+  "id": "uasl/fastapi-endpoint@2a93d50c4970",
+  "title": "fastapi-endpoint",
+  "summary": "Guides the agent through exploring an existing FastAPI project, asking clarifying questions, planning an endpoint implementation for approval, and then building the endpoint and tests. It emphasizes async SQLAlchemy, Pydantic schemas, dependency-injected authentication, and API test coverage."
+ },
+ {
+  "id": "uasl/openapi-spec-generation@2d2c7a93b8f2",
+  "title": "openapi-spec-generation",
+  "summary": "Guides agents in creating and maintaining OpenAPI 3.1 specifications from design or code, validating API contracts, and generating SDKs and documentation. Includes patterns for reusable schemas, API descriptions, security, versioning, and validation tools."
+ },
+ {
+  "id": "uasl/bolt@c4895c710162",
+  "title": "bolt",
+  "summary": "Bolt directs the agent to identify measurable performance improvements, follow a profiling-to-presentation workflow, and document their impact. It also sets limits on implementation, optimization scope, and when to ask for confirmation or hand off work."
+ },
+ {
+  "id": "uasl/backend-patterns@3d87ff489f3e",
+  "title": "backend-patterns",
+  "summary": "Provides TypeScript-oriented backend patterns for API design, data access, query optimization, caching, error handling, authentication, rate limiting, background jobs, and logging. Recommends choosing patterns suited to the complexity level."
+ },
+ {
+  "id": "uasl/design-integration@03e2661a4d5f",
+  "title": "design-integration",
+  "summary": "Delegate Uniswap integration architecture design to the integration-architect agent and present a project-specific blueprint. The blueprint covers the recommended integration method, architecture, dependencies, security considerations, and an ordered implementation plan."
+ },
+ {
+  "id": "uasl/gateway@8350be122608",
+  "title": "gateway",
+  "summary": "Designs and reviews API contracts, producing OpenAPI specifications or GraphQL SDL along with examples, error formats, versioning recommendations, and security considerations. Favors backward compatibility, routes implementation work elsewhere, and records API design decisions in project files."
+ },
+ {
+  "id": "uasl/gpt-tasteskill@134558e228c5",
+  "title": "gpt-tasteskill",
+  "summary": "Requires a randomized, AIDA-structured frontend design with wide hero typography, gapless bento grids, and GSAP motion. It also mandates a preflight design plan before UI code and bans emoji and specified meta-labels."
+ },
+ {
+  "id": "uasl/forge@a8efdfdbe817",
+  "title": "forge",
+  "summary": "Use Forge to build small, runnable prototypes that validate ideas, relying on mocks where useful and keeping work ready for handoff. Prioritize learning and working demos over production polish, and report the prototype’s status, findings, debt, and next decision."
+ },
+ {
+  "id": "uasl/documentation-lookup@dee6d7478eab",
+  "title": "documentation-lookup",
+  "summary": "For questions involving libraries, frameworks, or APIs, retrieve current documentation through Context7 rather than relying on training data. Resolve the library ID before querying, select relevant documentation, and use the fetched information in the response."
+ },
+ {
+  "id": "uasl/define-architecture@8ea764417825",
+  "title": "define-architecture",
+  "summary": "Guides the agent to define TypeScript application architecture, including repository shape, module boundaries, request context, middleware, frontend boundaries, testing, and rollout. It also prescribes an architecture brief and validation steps before finalizing recommendations."
+ },
+ {
+  "id": "uasl/frontend-design@5da82907743d",
+  "title": "frontend-design",
+  "summary": "Build distinctive, production-grade frontend interfaces by choosing a clear aesthetic direction and carrying it through implementation. Avoid generic visual choices and tailor the design and implementation complexity to the intended aesthetic."
+ },
+ {
+  "id": "uasl/gorgias-automation@2106c504916d",
+  "title": "gorgias-automation",
+  "summary": "Use the Rube MCP integration to manage Gorgias tickets, customers, tags, teams, and account activity from natural-language requests. Follow the documented API requirements and pagination, filtering, custom-field, rate-limit, and authentication guidance."
+ },
+ {
+  "id": "uasl/api-design@bba608f8c974",
+  "title": "api-design",
+  "summary": "Guides the agent in designing and reviewing REST API contracts, covering resource URLs, HTTP behavior, response formats, pagination, security, rate limits, and versioning. It also provides implementation patterns and a checklist for endpoint readiness."
+ },
+ {
+  "id": "uasl/legacy-migration-planner@462fe9f6af79",
+  "title": "legacy-migration-planner",
+  "summary": "Guides the agent to research a legacy codebase and current technology stacks before producing an evidence-based, incremental migration plan. The agent writes research and planning documents, not implementation code."
+ },
+ {
+  "id": "anthropics-skills/mcp-builder@7e8426a435cb",
+  "title": "mcp-builder",
+  "summary": "Guides agents through researching, planning, implementing, testing, and evaluating MCP servers that connect LLMs to external services. It emphasizes discoverable tools, comprehensive API coverage, structured schemas and responses, and realistic evaluations."
+ },
+ {
+  "id": "uasl/taste-skill@57790089504e",
+  "title": "taste-skill",
+  "summary": "The skill directs the agent to build distinctive, responsive React or Next.js interfaces using specified design defaults, component conventions, and motion and performance rules. It also prescribes visual patterns and interaction states, and requires a preflight review of generated UI code."
+ },
+ {
+  "id": "uasl/lever-automation@8903d446668f",
+  "title": "lever-automation",
+  "summary": "Automates recruiting workflows in Lever ATS through the Composio integration, including posting and candidate-opportunity queries and requisition management. Follow the skill’s setup, pagination, and tool-schema guidance when carrying out these workflows."
+ },
+ {
+  "id": "uasl/next-upgrade@df465f7770a5",
+  "title": "next-upgrade",
+  "summary": "Upgrade a project to the latest Next.js version using the official migration guides and codemods. Identify the current version, apply relevant migrations and dependency updates, then verify the upgrade with a build and development testing."
+ },
+ {
+  "id": "uasl/architecture-decision-records@715e99d0306d",
+  "title": "architecture-decision-records",
+  "summary": "Guides the agent to write and maintain Architecture Decision Records that capture technical decisions and their trade-offs. It emphasizes recording decisions early, linking related records, and keeping accepted records and their status managed appropriately."
+ },
+ {
+  "id": "uasl/frontend-patterns@8f659ce2a0bd",
+  "title": "frontend-patterns",
+  "summary": "Use React and Next.js frontend patterns for components, state, data fetching, performance, forms, animation, and accessibility. Keep frontend example data generic and choose patterns appropriate to project complexity."
+ },
+ {
+  "id": "uasl/architecture-patterns@d184d1c3a346",
+  "title": "architecture-patterns",
+  "summary": "Guides the agent in designing or refactoring backend systems with Clean Architecture, Hexagonal Architecture, and Domain-Driven Design. It emphasizes inward dependencies, framework-independent business logic, and testability without external infrastructure."
+ },
+ {
+  "id": "uasl/hashnode-automation@047826289312",
+  "title": "hashnode-automation",
+  "summary": "Automate Hashnode workflows through Rube MCP by discovering current tool schemas, verifying the Hashnode connection, and executing schema-compliant calls. Reuse workflow sessions, include the required memory parameter, and handle pagination until results are complete."
+ },
+ {
+  "id": "uasl/schema@e6f260ce62e0",
+  "title": "schema",
+  "summary": "Guides the agent through database schema modeling, migration planning, and validation, with an emphasis on integrity, query patterns, and safe changes. It also defines routing and handoff behavior for AUTORUN and Nexus modes."
+ },
+ {
+  "id": "uasl/toggl-automation@ade179c88f7f",
+  "title": "toggl-automation",
+  "summary": "Use Rube MCP to automate Toggl Track time-entry, project, client, tag, and workspace workflows from natural-language requests. Discover workspace IDs before other operations and include required time-entry fields."
+ },
+ {
+  "id": "uasl/builder@8d7f0953ade3",
+  "title": "builder",
+  "summary": "Guides the agent to implement production-ready, type-safe business logic, API integrations, and data models, with validation, error handling, and test handoffs. It emphasizes TypeScript strictness, domain-appropriate patterns, and Japanese final outputs."
+ },
+ {
+  "id": "uasl/shorten-rest-automation@60861026388c",
+  "title": "shorten-rest-automation",
+  "summary": "Automates Shorten Rest tasks through Rube MCP and Composio. The skill directs the agent to discover current tool schemas, verify the Shorten Rest connection, and execute schema-compliant workflows."
+ },
+ {
+  "id": "uasl/data-schema-knowledge-modeling@c06f86b10d33",
+  "title": "data-schema-knowledge-modeling",
+  "summary": "Guides the agent through gathering domain requirements and creating validated models of entities, attributes, relationships, constraints, and invariants. It emphasizes use-case fit, explicit modeling decisions, and a documented schema deliverable."
+ },
+ {
+  "id": "uasl/vercel-react-best-practices@70f3b5aaf775",
+  "title": "vercel-react-best-practices",
+  "summary": "Provides React and Next.js performance guidance for writing, reviewing, and refactoring code. It prioritizes practices for async work, bundle size, server and client performance, rendering, and JavaScript efficiency."
+ },
+ {
+  "id": "uasl/design-system-patterns@cd952cab0879",
+  "title": "design-system-patterns",
+  "summary": "Guides agents in building scalable design systems through token hierarchies, theming infrastructure, and reusable component patterns. It also recommends practices for documenting, versioning, testing, automating, and migrating design tokens."
+ },
+ {
+  "id": "uasl/to-issues@fe551bc54a09",
+  "title": "to-issues",
+  "summary": "Break plans, specs, or PRDs into independently grabbable issue-tracker tickets using thin, end-to-end vertical slices. Get user approval on the breakdown, then publish approved issues in dependency order with the required template and triage label."
+ },
+ {
+  "id": "uasl/writing-plans@219901eb119f",
+  "title": "writing-plans",
+  "summary": "Create comprehensive, bite-sized implementation plans for multi-step tasks, with explicit file responsibilities, tests, commands, and implementation details. Save and review the plan, then offer an execution handoff."
+ },
+ {
+  "id": "anthropics-skills/web-artifacts-builder@9c350d2f5f13",
+  "title": "web-artifacts-builder",
+  "summary": "Guides the agent to initialize a React frontend project, develop a multi-component web artifact, bundle it into a single HTML file, and share it with the user. It recommends postponing optional visual testing until after presenting the artifact, unless testing is requested or issues arise."
+ },
+ {
+  "id": "uasl/setup-matt-pocock-skills@d52ac42900e6",
+  "title": "setup-matt-pocock-skills",
+  "summary": "Guides the agent through exploring a repository, presenting findings and confirming setup choices, then configuring an `## Agent skills` block and supporting docs. It specifies file-selection and update rules for the generated Markdown files."
+ },
+ {
+  "id": "uasl/docs-page@d9c05e10601d",
+  "title": "docs-page",
+  "summary": "Create a single-file, three-column HTML documentation page with inline-start navigation, an article, and an inline-end table of contents. Follow the active design system, support RTL layout, and return the page in the specified artifact format."
+ },
+ {
+  "id": "uasl/shadcn-ui@8c463642324a",
+  "title": "shadcn-ui",
+  "summary": "Guides agents through selecting, installing, and customizing shadcn/ui components in themed React projects. It emphasizes dependency order, semantic theme tokens, and assembling components into common UI patterns."
+ },
+ {
+  "id": "uasl/typescript-clean-code@409278d3a61a",
+  "title": "typescript-clean-code",
+  "summary": "Use Clean Code and professional-practice workflows tailored to TypeScript, consulting the skill’s reference files before giving advice or writing code. Apply relevant rules and examples, follow task workflows, and cite the sources behind recommendations."
+ },
+ {
+  "id": "uasl/prioritization-effort-impact@a1369be27fa4",
+  "title": "prioritization-effort-impact",
+  "summary": "Use an effort-impact matrix to score and categorize backlog items, then sequence them into a prioritized roadmap. Check that scoring is differentiated, transparent, and informed by relevant stakeholders and dependencies."
+ },
+ {
+  "id": "uasl/tdd-workflow@6eadb0bf0ea8",
+  "title": "tdd-workflow",
+  "summary": "Follow a test-driven workflow by writing tests before implementation, running tests through development, and refactoring while keeping them green. Aim for at least 80% coverage across unit, integration, and E2E tests, with attention to edge cases and errors."
+ },
+ {
+  "id": "uasl/vercel-react-native-skills@6e314641b44a",
+  "title": "vercel-react-native-skills",
+  "summary": "Provides React Native and Expo recommendations for list performance, animations, navigation, UI patterns, state management, rendering, monorepos, and configuration. It directs agents to consult individual rule files for fuller guidance and examples."
+ },
+ {
+  "id": "uasl/coding-standards@f854e26a9529",
+  "title": "coding-standards",
+  "summary": "Applies cross-project conventions for readable, maintainable code, including simplicity, reuse, and avoiding unnecessary complexity. It is a baseline rather than a source of framework-specific patterns."
+ },
+ {
+  "id": "uasl/artisan@1e09f38ffcab",
+  "title": "artisan",
+  "summary": "Guides frontend work toward production-quality React, Vue, and Svelte components with TypeScript, accessibility, and explicit state handling. Defines workflow, approval boundaries, handoffs, and required deliverables."
+ },
+ {
+  "id": "uasl/decomposition-planning-roadmap@750bfb7d134f",
+  "title": "decomposition-planning-roadmap",
+  "summary": "Guides the agent to assess decomposition progress, prioritize work, and create phased migration roadmaps with milestones and tracking. It also recommends coordinating architecture stories, stakeholder validation, and progress updates."
+ },
+ {
+  "id": "uasl/claude-native-claude-api@24c958899f03",
+  "title": "claude-native-claude-api",
+  "summary": "Guide the agent in building, debugging, and migrating Claude API applications using Anthropic SDKs and documented API patterns. Apply the skill’s defaults for model choice, thinking, streaming, and prompt caching, and consult the relevant language-specific and shared documentation."
+ },
+ {
+  "id": "uasl/capsule-crm-automation@97113fa8404d",
+  "title": "capsule-crm-automation",
+  "summary": "Use the Composio MCP integration to carry out Capsule CRM operations, including managing contacts, querying records, and tracking tasks, projects, and activity. Follow the documented API field syntax and pagination requirements when retrieving or updating CRM data."
+ },
+ {
+  "id": "uasl/canny-automation@aa331d8fa62f",
+  "title": "canny-automation",
+  "summary": "Automate Canny operations through Rube MCP by discovering current tool schemas, checking the Canny connection, and executing schema-compliant tools. Follow session, memory, and pagination guidance during workflows."
+ },
+ {
+  "id": "uasl/atlas@eeafabd38463",
+  "title": "atlas",
+  "summary": "Atlas guides the agent through ordered system-level architecture analysis and turns findings into actionable proposals, ADRs, RFCs, or technical-debt plans. It keeps implementation with another agent and routes unrelated work appropriately."
+ },
+ {
+  "id": "uasl/n8n-code-javascript@203459f10f1d",
+  "title": "n8n-code-javascript",
+  "summary": "Guides the agent in writing and troubleshooting JavaScript for n8n Code nodes. It covers execution modes, input and webhook data access, return formats, and common implementation practices."
+ },
+ {
+  "id": "uasl/design-an-interface@14a6b0b5787c",
+  "title": "design-an-interface",
+  "summary": "Gather module requirements, generate multiple radically different interface designs in parallel, and present and compare the options before synthesizing a direction. Keep the work focused on interface shape rather than implementation."
+ },
+ {
+  "id": "uasl/kommo-automation@67ebbb9c7737",
+  "title": "kommo-automation",
+  "summary": "Use the Kommo CRM tools through the Composio MCP integration to manage leads, pipelines, tasks, and custom fields. Apply the documented ID, date-filter, and pagination requirements when carrying out CRM operations."
+ }
+]

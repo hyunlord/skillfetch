@@ -1,0 +1,2731 @@
+{
+ "denominator": 17,
+ "pairs": [
+  "pair01",
+  "pair03",
+  "pair04",
+  "pair05",
+  "pair06",
+  "pair07",
+  "pair08",
+  "pair09",
+  "pair10",
+  "pair11",
+  "pair13",
+  "pair14",
+  "pair15",
+  "pair16",
+  "pair17",
+  "pair19",
+  "pair20"
+ ],
+ "dropped_pairs": [
+  "pair02",
+  "pair12",
+  "pair18"
+ ],
+ "n_no_relevant": 85,
+ "n_cov": 288,
+ "T": {
+  "pair01": {
+   "a": [
+    "uasl/anvil@3a36e8410205",
+    "uasl/python-testing-patterns@e62d0f1ca316",
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28",
+    "uasl/unit-testing@6c5fbb821103"
+   ],
+   "b": [
+    "uasl/verification-before-completion@134bf517af69"
+   ]
+  },
+  "pair03": {
+   "a": [
+    "uasl/accessibility-compliance@696d2b4119ed",
+    "uasl/ui-audit@be637d5e2baf"
+   ],
+   "b": [
+    "anthropics-skills/webapp-testing@a4b4ce82b644",
+    "uasl/bolt@c4895c710162",
+    "uasl/web-design@b19d7c3f962e"
+   ]
+  },
+  "pair04": {
+   "a": [],
+   "b": [
+    "uasl/radar@a47ea6fd5f95"
+   ]
+  },
+  "pair05": {
+   "a": [
+    "uasl/coding-guidelines@0ec7e45f92f2",
+    "uasl/grill-with-docs@99f1bafe73fe",
+    "uasl/tlc-spec-driven@394ed16ecc07",
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "b": []
+  },
+  "pair06": {
+   "a": [
+    "uasl/coding-guidelines@0ec7e45f92f2",
+    "uasl/debug-root-cause@1d7ea4a832dc"
+   ],
+   "b": [
+    "uasl/ripple@620dca56eca0"
+   ]
+  },
+  "pair07": {
+   "a": [
+    "uasl/python-testing-patterns@e62d0f1ca316",
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28",
+    "uasl/unit-testing@6c5fbb821103"
+   ],
+   "b": []
+  },
+  "pair08": {
+   "a": [
+    "uasl/artisan@1e09f38ffcab",
+    "uasl/secure-coding-practices@cc37fcd8687e",
+    "uasl/security-review@fcc354bc486e",
+    "uasl/vibe-security@6b07d0f651a7"
+   ],
+   "b": [
+    "uasl/design-optimize@cbb1632043ec",
+    "uasl/react-patterns@73d1ecc06997",
+    "uasl/vercel-composition-patterns@a6f8be32b197",
+    "uasl/vercel-react-best-practices@70f3b5aaf775",
+    "uasl/web-performance-optimization@b2b38275ed40"
+   ]
+  },
+  "pair09": {
+   "a": [
+    "uasl/accessibility-compliance@696d2b4119ed",
+    "uasl/prose@bbd22d3eb9b7"
+   ],
+   "b": []
+  },
+  "pair10": {
+   "a": [],
+   "b": [
+    "uasl/code-review@dface80322fb"
+   ]
+  },
+  "pair11": {
+   "a": [
+    "uasl/karpathy-guidelines@da897c8c3bab",
+    "uasl/request-refactor-plan@49b853892f06",
+    "uasl/software-design-philosophy@066bc275787f",
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "b": []
+  },
+  "pair13": {
+   "a": [
+    "uasl/python-testing-patterns@e62d0f1ca316",
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28"
+   ],
+   "b": []
+  },
+  "pair14": {
+   "a": [
+    "uasl/github-workflow-automation@519f4ba6e482"
+   ],
+   "b": []
+  },
+  "pair15": {
+   "a": [
+    "uasl/accessibility-compliance@696d2b4119ed",
+    "uasl/ui-audit@be637d5e2baf"
+   ],
+   "b": []
+  },
+  "pair16": {
+   "a": [],
+   "b": [
+    "uasl/integration-testing@62b51275be50"
+   ]
+  },
+  "pair17": {
+   "a": [
+    "uasl/coding-guidelines@0ec7e45f92f2",
+    "uasl/grill-with-docs@99f1bafe73fe",
+    "uasl/ripple@620dca56eca0",
+    "uasl/system-design@e45b77ba7a35",
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "b": []
+  },
+  "pair19": {
+   "a": [
+    "uasl/python-testing-patterns@e62d0f1ca316",
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28",
+    "uasl/unit-testing@6c5fbb821103"
+   ],
+   "b": []
+  },
+  "pair20": {
+   "a": [
+    "uasl/auth-implementation-patterns@7a99b395d548",
+    "uasl/security-review@fcc354bc486e",
+    "uasl/vibe-security@6b07d0f651a7"
+   ],
+   "b": [
+    "uasl/react-patterns@73d1ecc06997",
+    "uasl/vercel-react-best-practices@70f3b5aaf775"
+   ]
+  }
+ },
+ "M": {
+  "pair01": {
+   "a": [
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28"
+   ],
+   "b": []
+  },
+  "pair03": {
+   "a": [
+    "uasl/accessibility-compliance@696d2b4119ed",
+    "uasl/ui-audit@be637d5e2baf"
+   ],
+   "b": [
+    "uasl/web-design@b19d7c3f962e"
+   ]
+  },
+  "pair04": {
+   "a": [],
+   "b": []
+  },
+  "pair05": {
+   "a": [
+    "uasl/grill-with-docs@99f1bafe73fe",
+    "uasl/tlc-spec-driven@394ed16ecc07",
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "b": []
+  },
+  "pair06": {
+   "a": [],
+   "b": []
+  },
+  "pair07": {
+   "a": [
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28"
+   ],
+   "b": []
+  },
+  "pair08": {
+   "a": [
+    "uasl/secure-coding-practices@cc37fcd8687e",
+    "uasl/security-review@fcc354bc486e",
+    "uasl/vibe-security@6b07d0f651a7"
+   ],
+   "b": [
+    "uasl/design-optimize@cbb1632043ec",
+    "uasl/react-patterns@73d1ecc06997",
+    "uasl/vercel-react-best-practices@70f3b5aaf775",
+    "uasl/web-performance-optimization@b2b38275ed40"
+   ]
+  },
+  "pair09": {
+   "a": [
+    "uasl/accessibility-compliance@696d2b4119ed",
+    "uasl/prose@bbd22d3eb9b7"
+   ],
+   "b": []
+  },
+  "pair10": {
+   "a": [],
+   "b": []
+  },
+  "pair11": {
+   "a": [
+    "uasl/request-refactor-plan@49b853892f06",
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "b": []
+  },
+  "pair13": {
+   "a": [
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28"
+   ],
+   "b": []
+  },
+  "pair14": {
+   "a": [],
+   "b": []
+  },
+  "pair15": {
+   "a": [
+    "uasl/accessibility-compliance@696d2b4119ed",
+    "uasl/ui-audit@be637d5e2baf"
+   ],
+   "b": []
+  },
+  "pair16": {
+   "a": [],
+   "b": []
+  },
+  "pair17": {
+   "a": [
+    "uasl/grill-with-docs@99f1bafe73fe",
+    "uasl/ripple@620dca56eca0",
+    "uasl/system-design@e45b77ba7a35",
+    "uasl/writing-plans@219901eb119f"
+   ],
+   "b": []
+  },
+  "pair19": {
+   "a": [
+    "uasl/tdd-workflow@6eadb0bf0ea8",
+    "uasl/tdd@ff86dad94075",
+    "uasl/test-driven-development@0eebe2fe0e28"
+   ],
+   "b": []
+  },
+  "pair20": {
+   "a": [
+    "uasl/auth-implementation-patterns@7a99b395d548",
+    "uasl/security-review@fcc354bc486e",
+    "uasl/vibe-security@6b07d0f651a7"
+   ],
+   "b": [
+    "uasl/react-patterns@73d1ecc06997",
+    "uasl/vercel-react-best-practices@70f3b5aaf775"
+   ]
+  }
+ },
+ "match_cost_usd": 0.193372,
+ "threshold_ratio": 0.8125,
+ "S-bp": {
+  "per_generation": [
+   {
+    "pairs_moved": 13,
+    "moved_pairs": [
+     "pair01",
+     "pair03",
+     "pair05",
+     "pair07",
+     "pair08",
+     "pair09",
+     "pair11",
+     "pair13",
+     "pair14",
+     "pair15",
+     "pair17",
+     "pair19",
+     "pair20"
+    ],
+    "none_acc": 0.847,
+    "hit": 0.792
+   },
+   {
+    "pairs_moved": 12,
+    "moved_pairs": [
+     "pair01",
+     "pair03",
+     "pair05",
+     "pair07",
+     "pair08",
+     "pair09",
+     "pair11",
+     "pair13",
+     "pair15",
+     "pair17",
+     "pair19",
+     "pair20"
+    ],
+    "none_acc": 0.835,
+    "hit": 0.802
+   },
+   {
+    "pairs_moved": 12,
+    "moved_pairs": [
+     "pair01",
+     "pair03",
+     "pair05",
+     "pair07",
+     "pair08",
+     "pair09",
+     "pair11",
+     "pair13",
+     "pair15",
+     "pair17",
+     "pair19",
+     "pair20"
+    ],
+    "none_acc": 0.847,
+    "hit": 0.778
+   }
+  ],
+  "mean_pairs_moved": 12.333,
+  "mean_ratio": 0.725,
+  "mean_none_acc": 0.843,
+  "mean_hit": 0.791,
+  "counts_cases": {
+   "moved": 37,
+   "c_label": 14
+  },
+  "counts_pairs_majority": {
+   "moved": 12,
+   "c_label": 5
+  },
+  "by_pair": {
+   "pair01": "moved",
+   "pair03": "moved",
+   "pair04": "c_label",
+   "pair05": "moved",
+   "pair06": "c_label",
+   "pair07": "moved",
+   "pair08": "moved",
+   "pair09": "moved",
+   "pair10": "c_label",
+   "pair11": "moved",
+   "pair13": "moved",
+   "pair14": "c_label",
+   "pair15": "moved",
+   "pair16": "c_label",
+   "pair17": "moved",
+   "pair19": "moved",
+   "pair20": "moved"
+  },
+  "cases": [
+   {
+    "pair": "pair01",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/python-testing-patterns@e62d0f1ca316",
+     "uasl/tdd@ff86dad94075"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/tdd-workflow@6eadb0bf0ea8",
+     "uasl/tdd@ff86dad94075",
+     "uasl/test-driven-development@0eebe2fe0e28"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/tdd-workflow@6eadb0bf0ea8": 1,
+     "uasl/tdd@ff86dad94075": 6,
+     "uasl/test-driven-development@0eebe2fe0e28": 3
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair03",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/sql-optimization-patterns@389f90da7b56"
+    ],
+    "sel_b": [
+     "uasl/sql-optimization-patterns@389f90da7b56",
+     "uasl/web-design@b19d7c3f962e"
+    ],
+    "M_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/ui-audit@be637d5e2baf"
+    ],
+    "M_b": [
+     "uasl/web-design@b19d7c3f962e"
+    ],
+    "M_a_rank": {
+     "uasl/accessibility-compliance@696d2b4119ed": 13,
+     "uasl/ui-audit@be637d5e2baf": 19
+    },
+    "M_b_rank": {
+     "uasl/web-design@b19d7c3f962e": 1
+    }
+   },
+   {
+    "pair": "pair04",
+    "gen": 1,
+    "class": "c_label",
+    "sel_a": [
+     "uasl/property-based-testing@a168f6739085"
+    ],
+    "sel_b": [
+     "uasl/property-based-testing@a168f6739085"
+    ],
+    "M_a": [],
+    "M_b": [],
+    "M_a_rank": {},
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair05",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/grill-with-docs@99f1bafe73fe",
+     "uasl/tlc-spec-driven@394ed16ecc07",
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/grill-with-docs@99f1bafe73fe": 5,
+     "uasl/tlc-spec-driven@394ed16ecc07": 11,
+     "uasl/writing-plans@219901eb119f": 16
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair06",
+    "gen": 1,
+    "class": "c_label",
+    "sel_a": [
+     "uasl/coding-guidelines@0ec7e45f92f2",
+     "uasl/debug-root-cause@1d7ea4a832dc"
+    ],
+    "sel_b": [
+     "uasl/ripple@620dca56eca0",
+     "uasl/verification-loop@39d9be23cf50"
+    ],
+    "M_a": [],
+    "M_b": [],
+    "M_a_rank": {},
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair07",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/python-testing-patterns@e62d0f1ca316",
+     "uasl/tdd@ff86dad94075"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/tdd-workflow@6eadb0bf0ea8",
+     "uasl/tdd@ff86dad94075",
+     "uasl/test-driven-development@0eebe2fe0e28"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/tdd-workflow@6eadb0bf0ea8": 15,
+     "uasl/tdd@ff86dad94075": 31,
+     "uasl/test-driven-development@0eebe2fe0e28": 22
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair08",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/artisan@1e09f38ffcab",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/stripe-best-practices@795a33f68129"
+    ],
+    "sel_b": [
+     "uasl/stripe-best-practices@795a33f68129",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a": [
+     "uasl/secure-coding-practices@cc37fcd8687e",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "M_b": [
+     "uasl/design-optimize@cbb1632043ec",
+     "uasl/react-patterns@73d1ecc06997",
+     "uasl/vercel-react-best-practices@70f3b5aaf775",
+     "uasl/web-performance-optimization@b2b38275ed40"
+    ],
+    "M_a_rank": {
+     "uasl/secure-coding-practices@cc37fcd8687e": null,
+     "uasl/security-review@fcc354bc486e": 12,
+     "uasl/vibe-security@6b07d0f651a7": 31
+    },
+    "M_b_rank": {
+     "uasl/design-optimize@cbb1632043ec": null,
+     "uasl/react-patterns@73d1ecc06997": 21,
+     "uasl/vercel-react-best-practices@70f3b5aaf775": 3,
+     "uasl/web-performance-optimization@b2b38275ed40": 6
+    }
+   },
+   {
+    "pair": "pair09",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/quill@336ba74b0e79"
+    ],
+    "sel_b": [
+     "uasl/quill@336ba74b0e79"
+    ],
+    "M_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/prose@bbd22d3eb9b7"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/accessibility-compliance@696d2b4119ed": 20,
+     "uasl/prose@bbd22d3eb9b7": 32
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair10",
+    "gen": 1,
+    "class": "c_label",
+    "sel_a": [
+     "uasl/auth-implementation-patterns@7a99b395d548",
+     "uasl/secure-coding-practices@cc37fcd8687e"
+    ],
+    "sel_b": [
+     "uasl/auth-implementation-patterns@7a99b395d548",
+     "uasl/documentation-lookup@dee6d7478eab",
+     "uasl/secure-coding-practices@cc37fcd8687e"
+    ],
+    "M_a": [],
+    "M_b": [],
+    "M_a_rank": {},
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair11",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/refactoring-patterns@7283bad3e86e",
+     "uasl/request-refactor-plan@49b853892f06",
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "sel_b": [
+     "uasl/refactoring-patterns@7283bad3e86e"
+    ],
+    "M_a": [
+     "uasl/request-refactor-plan@49b853892f06",
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/request-refactor-plan@49b853892f06": 30,
+     "uasl/writing-plans@219901eb119f": 10
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair13",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/test-driven-development@0eebe2fe0e28"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/tdd-workflow@6eadb0bf0ea8",
+     "uasl/tdd@ff86dad94075",
+     "uasl/test-driven-development@0eebe2fe0e28"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/tdd-workflow@6eadb0bf0ea8": 5,
+     "uasl/tdd@ff86dad94075": 8,
+     "uasl/test-driven-development@0eebe2fe0e28": 4
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair14",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/github-actions-templates@ce03df93ccdf"
+    ],
+    "sel_b": [
+     "uasl/pipe@0f029a41f006"
+    ],
+    "M_a": [],
+    "M_b": [],
+    "M_a_rank": {},
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair15",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/accessibility-compliance@696d2b4119ed"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/ui-audit@be637d5e2baf"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/accessibility-compliance@696d2b4119ed": 11,
+     "uasl/ui-audit@be637d5e2baf": 26
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair16",
+    "gen": 1,
+    "class": "c_label",
+    "sel_a": [
+     "uasl/integration-testing@62b51275be50"
+    ],
+    "sel_b": [
+     "uasl/integration-testing@62b51275be50"
+    ],
+    "M_a": [],
+    "M_b": [],
+    "M_a_rank": {},
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair17",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/grill-with-docs@99f1bafe73fe",
+     "uasl/ripple@620dca56eca0",
+     "uasl/system-design@e45b77ba7a35",
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/grill-with-docs@99f1bafe73fe": 45,
+     "uasl/ripple@620dca56eca0": 5,
+     "uasl/system-design@e45b77ba7a35": null,
+     "uasl/writing-plans@219901eb119f": 20
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair19",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/deployment-pipeline-design@2a89fc6f32ff",
+     "uasl/tdd@ff86dad94075"
+    ],
+    "sel_b": [
+     "uasl/deployment-pipeline-design@2a89fc6f32ff"
+    ],
+    "M_a": [
+     "uasl/tdd-workflow@6eadb0bf0ea8",
+     "uasl/tdd@ff86dad94075",
+     "uasl/test-driven-development@0eebe2fe0e28"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/tdd-workflow@6eadb0bf0ea8": 13,
+     "uasl/tdd@ff86dad94075": 29,
+     "uasl/test-driven-development@0eebe2fe0e28": 23
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair20",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/next-best-practices@ee058f89acea",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "sel_b": [
+     "uasl/next-best-practices@ee058f89acea",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a": [
+     "uasl/auth-implementation-patterns@7a99b395d548",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "M_b": [
+     "uasl/react-patterns@73d1ecc06997",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a_rank": {
+     "uasl/auth-implementation-patterns@7a99b395d548": 14,
+     "uasl/security-review@fcc354bc486e": null,
+     "uasl/vibe-security@6b07d0f651a7": 39
+    },
+    "M_b_rank": {
+     "uasl/react-patterns@73d1ecc06997": 7,
+     "uasl/vercel-react-best-practices@70f3b5aaf775": 2
+    }
+   },
+   {
+    "pair": "pair01",
+    "gen": 2,
+    "class": "moved",
+    "sel_a": [
+     "uasl/python-testing-patterns@e62d0f1ca316",
+     "uasl/tdd@ff86dad94075"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/tdd-workflow@6eadb0bf0ea8",
+     "uasl/tdd@ff86dad94075",
+     "uasl/test-driven-development@0eebe2fe0e28"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/tdd-workflow@6eadb0bf0ea8": 1,
+     "uasl/tdd@ff86dad94075": 6,
+     "uasl/test-driven-development@0eebe2fe0e28": 3
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair03",
+    "gen": 2,
+    "class": "moved",
+    "sel_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/sql-optimization-patterns@389f90da7b56"
+    ],
+    "sel_b": [
+     "uasl/sql-optimization-patterns@389f90da7b56",
+     "uasl/web-design@b19d7c3f962e"
+    ],
+    "M_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/ui-audit@be637d5e2baf"
+    ],
+    "M_b": [
+     "uasl/web-design@b19d7c3f962e"
+    ],
+    "M_a_rank": {
+     "uasl/accessibility-compliance@696d2b4119ed": 13,
+     "uasl/ui-audit@be637d5e2baf": 19
+    },
+    "M_b_rank": {
+     "uasl/web-design@b19d7c3f962e": 1
+    }
+   },
+   {
+    "pair": "pair04",
+    "gen": 2,
+    "class": "c_label",
+    "sel_a": [
+     "uasl/property-based-testing@a168f6739085"
+    ],
+    "sel_b": [
+     "uasl/property-based-testing@a168f6739085"
+    ],
+    "M_a": [],
+    "M_b": [],
+    "M_a_rank": {},
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair05",
+    "gen": 2,
+    "class": "moved",
+    "sel_a": [
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/grill-with-docs@99f1bafe73fe",
+     "uasl/tlc-spec-driven@394ed16ecc07",
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/grill-with-docs@99f1bafe73fe": 5,
+     "uasl/tlc-spec-driven@394ed16ecc07": 11,
+     "uasl/writing-plans@219901eb119f": 16
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair06",
+    "gen": 2,
+    "class": "c_label",
+    "sel_a": [
+     "uasl/coding-guidelines@0ec7e45f92f2",
+     "uasl/debug-root-cause@1d7ea4a832dc"
+    ],
+    "sel_b": [
+     "uasl/ripple@620dca56eca0",
+     "uasl/verification-loop@39d9be23cf50"
+    ],
+    "M_a": [],
+    "M_b": [],
+    "M_a_rank": {},
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair07",
+    "gen": 2,
+    "class": "moved",
+    "sel_a": [
+     "uasl/python-testing-patterns@e62d0f1ca316",
+     "uasl/tdd@ff86dad94075"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/tdd-workflow@6eadb0bf0ea8",
+     "uasl/tdd@ff86dad94075",
+     "uasl/test-driven-development@0eebe2fe0e28"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/tdd-workflow@6eadb0bf0ea8": 15,
+     "uasl/tdd@ff86dad94075": 31,
+     "uasl/test-driven-development@0eebe2fe0e28": 22
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair08",
+    "gen": 2,
+    "class": "moved",
+    "sel_a": [
+     "uasl/artisan@1e09f38ffcab",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/stripe-best-practices@795a33f68129"
+    ],
+    "sel_b": [
+     "uasl/stripe-best-practices@795a33f68129",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a": [
+     "uasl/secure-coding-practices@cc37fcd8687e",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "M_b": [
+     "uasl/design-optimize@cbb1632043ec",
+     "uasl/react-patterns@73d1ecc06997",
+     "uasl/vercel-react-best-practices@70f3b5aaf775",
+     "uasl/web-performance-optimization@b2b38275ed40"
+    ],
+    "M_a_rank": {
+     "uasl/secure-coding-practices@cc37fcd8687e": null,
+     "uasl/security-review@fcc354bc486e": 12,
+     "uasl/vibe-security@6b07d0f651a7": 31
+    },
+    "M_b_rank": {
+     "uasl/design-optimize@cbb1632043ec": null,
+     "uasl/react-patterns@73d1ecc06997": 21,
+     "uasl/vercel-react-best-practices@70f3b5aaf775": 3,
+     "uasl/web-performance-optimization@b2b38275ed40": 6
+    }
+   },
+   {
+    "pair": "pair09",
+    "gen": 2,
+    "class": "moved",
+    "sel_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/quill@336ba74b0e79"
+    ],
+    "sel_b": [
+     "uasl/quill@336ba74b0e79"
+    ],
+    "M_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/prose@bbd22d3eb9b7"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/accessibility-compliance@696d2b4119ed": 20,
+     "uasl/prose@bbd22d3eb9b7": 32
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair10",
+    "gen": 2,
+    "class": "c_label",
+    "sel_a": [
+     "uasl/auth-implementation-patterns@7a99b395d548",
+     "uasl/find-bugs@c3ff7d64ff9f",
+     "uasl/secure-coding-practices@cc37fcd8687e"
+    ],
+    "sel_b": [
+     "uasl/auth-implementation-patterns@7a99b395d548",
+     "uasl/find-bugs@c3ff7d64ff9f",
+     "uasl/secure-coding-practices@cc37fcd8687e"
+    ],
+    "M_a": [],
+    "M_b": [],
+    "M_a_rank": {},
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair11",
+    "gen": 2,
+    "class": "moved",
+    "sel_a": [
+     "uasl/refactoring-patterns@7283bad3e86e",
+     "uasl/request-refactor-plan@49b853892f06"
+    ],
+    "sel_b": [
+     "uasl/refactoring-patterns@7283bad3e86e"
+    ],
+    "M_a": [
+     "uasl/request-refactor-plan@49b853892f06",
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/request-refactor-plan@49b853892f06": 30,
+     "uasl/writing-plans@219901eb119f": 10
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair13",
+    "gen": 2,
+    "class": "moved",
+    "sel_a": [
+     "uasl/python-testing-patterns@e62d0f1ca316",
+     "uasl/tdd@ff86dad94075"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/tdd-workflow@6eadb0bf0ea8",
+     "uasl/tdd@ff86dad94075",
+     "uasl/test-driven-development@0eebe2fe0e28"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/tdd-workflow@6eadb0bf0ea8": 5,
+     "uasl/tdd@ff86dad94075": 8,
+     "uasl/test-driven-development@0eebe2fe0e28": 4
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair14",
+    "gen": 2,
+    "class": "c_label",
+    "sel_a": [
+     "uasl/github-actions-templates@ce03df93ccdf"
+    ],
+    "sel_b": [
+     "uasl/github-actions-templates@ce03df93ccdf"
+    ],
+    "M_a": [],
+    "M_b": [],
+    "M_a_rank": {},
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair15",
+    "gen": 2,
+    "class": "moved",
+    "sel_a": [
+     "uasl/accessibility-compliance@696d2b4119ed"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/ui-audit@be637d5e2baf"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/accessibility-compliance@696d2b4119ed": 11,
+     "uasl/ui-audit@be637d5e2baf": 26
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair16",
+    "gen": 2,
+    "class": "c_label",
+    "sel_a": [
+     "uasl/integration-testing@62b51275be50"
+    ],
+    "sel_b": [
+     "uasl/integration-testing@62b51275be50"
+    ],
+    "M_a": [],
+    "M_b": [],
+    "M_a_rank": {},
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair17",
+    "gen": 2,
+    "class": "moved",
+    "sel_a": [
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/grill-with-docs@99f1bafe73fe",
+     "uasl/ripple@620dca56eca0",
+     "uasl/system-design@e45b77ba7a35",
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/grill-with-docs@99f1bafe73fe": 45,
+     "uasl/ripple@620dca56eca0": 5,
+     "uasl/system-design@e45b77ba7a35": null,
+     "uasl/writing-plans@219901eb119f": 20
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair19",
+    "gen": 2,
+    "class": "moved",
+    "sel_a": [
+     "uasl/deployment-pipeline-design@2a89fc6f32ff",
+     "uasl/tdd@ff86dad94075"
+    ],
+    "sel_b": [
+     "uasl/deployment-pipeline-design@2a89fc6f32ff"
+    ],
+    "M_a": [
+     "uasl/tdd-workflow@6eadb0bf0ea8",
+     "uasl/tdd@ff86dad94075",
+     "uasl/test-driven-development@0eebe2fe0e28"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/tdd-workflow@6eadb0bf0ea8": 13,
+     "uasl/tdd@ff86dad94075": 29,
+     "uasl/test-driven-development@0eebe2fe0e28": 23
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair20",
+    "gen": 2,
+    "class": "moved",
+    "sel_a": [
+     "uasl/next-best-practices@ee058f89acea",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "sel_b": [
+     "uasl/next-best-practices@ee058f89acea",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a": [
+     "uasl/auth-implementation-patterns@7a99b395d548",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "M_b": [
+     "uasl/react-patterns@73d1ecc06997",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a_rank": {
+     "uasl/auth-implementation-patterns@7a99b395d548": 14,
+     "uasl/security-review@fcc354bc486e": null,
+     "uasl/vibe-security@6b07d0f651a7": 39
+    },
+    "M_b_rank": {
+     "uasl/react-patterns@73d1ecc06997": 7,
+     "uasl/vercel-react-best-practices@70f3b5aaf775": 2
+    }
+   },
+   {
+    "pair": "pair01",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/python-testing-patterns@e62d0f1ca316",
+     "uasl/tdd@ff86dad94075"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/tdd-workflow@6eadb0bf0ea8",
+     "uasl/tdd@ff86dad94075",
+     "uasl/test-driven-development@0eebe2fe0e28"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/tdd-workflow@6eadb0bf0ea8": 1,
+     "uasl/tdd@ff86dad94075": 6,
+     "uasl/test-driven-development@0eebe2fe0e28": 3
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair03",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/sql-optimization-patterns@389f90da7b56"
+    ],
+    "sel_b": [
+     "uasl/sql-optimization-patterns@389f90da7b56",
+     "uasl/web-design@b19d7c3f962e"
+    ],
+    "M_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/ui-audit@be637d5e2baf"
+    ],
+    "M_b": [
+     "uasl/web-design@b19d7c3f962e"
+    ],
+    "M_a_rank": {
+     "uasl/accessibility-compliance@696d2b4119ed": 13,
+     "uasl/ui-audit@be637d5e2baf": 19
+    },
+    "M_b_rank": {
+     "uasl/web-design@b19d7c3f962e": 1
+    }
+   },
+   {
+    "pair": "pair04",
+    "gen": 3,
+    "class": "c_label",
+    "sel_a": [
+     "uasl/property-based-testing@a168f6739085"
+    ],
+    "sel_b": [
+     "uasl/property-based-testing@a168f6739085"
+    ],
+    "M_a": [],
+    "M_b": [],
+    "M_a_rank": {},
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair05",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/grill-with-docs@99f1bafe73fe",
+     "uasl/tlc-spec-driven@394ed16ecc07",
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/grill-with-docs@99f1bafe73fe": 5,
+     "uasl/tlc-spec-driven@394ed16ecc07": 11,
+     "uasl/writing-plans@219901eb119f": 16
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair06",
+    "gen": 3,
+    "class": "c_label",
+    "sel_a": [
+     "uasl/coding-guidelines@0ec7e45f92f2",
+     "uasl/debug-root-cause@1d7ea4a832dc"
+    ],
+    "sel_b": [
+     "uasl/ripple@620dca56eca0",
+     "uasl/verification-loop@39d9be23cf50"
+    ],
+    "M_a": [],
+    "M_b": [],
+    "M_a_rank": {},
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair07",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/python-testing-patterns@e62d0f1ca316",
+     "uasl/tdd@ff86dad94075"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/tdd-workflow@6eadb0bf0ea8",
+     "uasl/tdd@ff86dad94075",
+     "uasl/test-driven-development@0eebe2fe0e28"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/tdd-workflow@6eadb0bf0ea8": 15,
+     "uasl/tdd@ff86dad94075": 31,
+     "uasl/test-driven-development@0eebe2fe0e28": 22
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair08",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/artisan@1e09f38ffcab",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/stripe-best-practices@795a33f68129"
+    ],
+    "sel_b": [
+     "uasl/stripe-best-practices@795a33f68129",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a": [
+     "uasl/secure-coding-practices@cc37fcd8687e",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "M_b": [
+     "uasl/design-optimize@cbb1632043ec",
+     "uasl/react-patterns@73d1ecc06997",
+     "uasl/vercel-react-best-practices@70f3b5aaf775",
+     "uasl/web-performance-optimization@b2b38275ed40"
+    ],
+    "M_a_rank": {
+     "uasl/secure-coding-practices@cc37fcd8687e": null,
+     "uasl/security-review@fcc354bc486e": 12,
+     "uasl/vibe-security@6b07d0f651a7": 31
+    },
+    "M_b_rank": {
+     "uasl/design-optimize@cbb1632043ec": null,
+     "uasl/react-patterns@73d1ecc06997": 21,
+     "uasl/vercel-react-best-practices@70f3b5aaf775": 3,
+     "uasl/web-performance-optimization@b2b38275ed40": 6
+    }
+   },
+   {
+    "pair": "pair09",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/quill@336ba74b0e79"
+    ],
+    "sel_b": [
+     "uasl/quill@336ba74b0e79"
+    ],
+    "M_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/prose@bbd22d3eb9b7"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/accessibility-compliance@696d2b4119ed": 20,
+     "uasl/prose@bbd22d3eb9b7": 32
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair10",
+    "gen": 3,
+    "class": "c_label",
+    "sel_a": [
+     "uasl/auth-implementation-patterns@7a99b395d548",
+     "uasl/find-bugs@c3ff7d64ff9f",
+     "uasl/secure-coding-practices@cc37fcd8687e"
+    ],
+    "sel_b": [
+     "uasl/auth-implementation-patterns@7a99b395d548",
+     "uasl/find-bugs@c3ff7d64ff9f",
+     "uasl/secure-coding-practices@cc37fcd8687e"
+    ],
+    "M_a": [],
+    "M_b": [],
+    "M_a_rank": {},
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair11",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/refactoring-patterns@7283bad3e86e",
+     "uasl/request-refactor-plan@49b853892f06"
+    ],
+    "sel_b": [
+     "uasl/refactoring-patterns@7283bad3e86e"
+    ],
+    "M_a": [
+     "uasl/request-refactor-plan@49b853892f06",
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/request-refactor-plan@49b853892f06": 30,
+     "uasl/writing-plans@219901eb119f": 10
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair13",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/python-testing-patterns@e62d0f1ca316",
+     "uasl/tdd@ff86dad94075"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/tdd-workflow@6eadb0bf0ea8",
+     "uasl/tdd@ff86dad94075",
+     "uasl/test-driven-development@0eebe2fe0e28"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/tdd-workflow@6eadb0bf0ea8": 5,
+     "uasl/tdd@ff86dad94075": 8,
+     "uasl/test-driven-development@0eebe2fe0e28": 4
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair14",
+    "gen": 3,
+    "class": "c_label",
+    "sel_a": [
+     "uasl/github-actions-templates@ce03df93ccdf"
+    ],
+    "sel_b": [
+     "uasl/github-actions-templates@ce03df93ccdf"
+    ],
+    "M_a": [],
+    "M_b": [],
+    "M_a_rank": {},
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair15",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/accessibility-compliance@696d2b4119ed"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/ui-audit@be637d5e2baf"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/accessibility-compliance@696d2b4119ed": 11,
+     "uasl/ui-audit@be637d5e2baf": 26
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair16",
+    "gen": 3,
+    "class": "c_label",
+    "sel_a": [
+     "uasl/integration-testing@62b51275be50"
+    ],
+    "sel_b": [
+     "uasl/integration-testing@62b51275be50"
+    ],
+    "M_a": [],
+    "M_b": [],
+    "M_a_rank": {},
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair17",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/grill-with-docs@99f1bafe73fe",
+     "uasl/ripple@620dca56eca0",
+     "uasl/system-design@e45b77ba7a35",
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/grill-with-docs@99f1bafe73fe": 45,
+     "uasl/ripple@620dca56eca0": 5,
+     "uasl/system-design@e45b77ba7a35": null,
+     "uasl/writing-plans@219901eb119f": 20
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair19",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/python-testing-patterns@e62d0f1ca316",
+     "uasl/tdd@ff86dad94075"
+    ],
+    "sel_b": [
+     "uasl/deployment-pipeline-design@2a89fc6f32ff"
+    ],
+    "M_a": [
+     "uasl/tdd-workflow@6eadb0bf0ea8",
+     "uasl/tdd@ff86dad94075",
+     "uasl/test-driven-development@0eebe2fe0e28"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/tdd-workflow@6eadb0bf0ea8": 13,
+     "uasl/tdd@ff86dad94075": 29,
+     "uasl/test-driven-development@0eebe2fe0e28": 23
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair20",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/next-best-practices@ee058f89acea",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "sel_b": [
+     "uasl/next-best-practices@ee058f89acea",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a": [
+     "uasl/auth-implementation-patterns@7a99b395d548",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "M_b": [
+     "uasl/react-patterns@73d1ecc06997",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a_rank": {
+     "uasl/auth-implementation-patterns@7a99b395d548": 14,
+     "uasl/security-review@fcc354bc486e": null,
+     "uasl/vibe-security@6b07d0f651a7": 39
+    },
+    "M_b_rank": {
+     "uasl/react-patterns@73d1ecc06997": 7,
+     "uasl/vercel-react-best-practices@70f3b5aaf775": 2
+    }
+   }
+  ]
+ },
+ "S-b": {
+  "per_generation": [
+   {
+    "pairs_moved": 14,
+    "moved_pairs": [
+     "pair01",
+     "pair03",
+     "pair05",
+     "pair07",
+     "pair08",
+     "pair09",
+     "pair10",
+     "pair11",
+     "pair13",
+     "pair14",
+     "pair15",
+     "pair17",
+     "pair19",
+     "pair20"
+    ],
+    "none_acc": 0.894,
+    "hit": 0.788
+   },
+   {
+    "pairs_moved": 12,
+    "moved_pairs": [
+     "pair01",
+     "pair03",
+     "pair05",
+     "pair07",
+     "pair09",
+     "pair11",
+     "pair13",
+     "pair14",
+     "pair15",
+     "pair17",
+     "pair19",
+     "pair20"
+    ],
+    "none_acc": 0.847,
+    "hit": 0.785
+   },
+   {
+    "pairs_moved": 13,
+    "moved_pairs": [
+     "pair01",
+     "pair03",
+     "pair05",
+     "pair07",
+     "pair08",
+     "pair09",
+     "pair11",
+     "pair13",
+     "pair14",
+     "pair15",
+     "pair17",
+     "pair19",
+     "pair20"
+    ],
+    "none_acc": 0.859,
+    "hit": 0.785
+   }
+  ],
+  "mean_pairs_moved": 13.0,
+  "mean_ratio": 0.765,
+  "mean_none_acc": 0.867,
+  "mean_hit": 0.786,
+  "counts_cases": {
+   "moved": 39,
+   "c_label": 11,
+   "b_select": 1
+  },
+  "counts_pairs_majority": {
+   "moved": 13,
+   "c_label": 4
+  },
+  "by_pair": {
+   "pair01": "moved",
+   "pair03": "moved",
+   "pair04": "c_label",
+   "pair05": "moved",
+   "pair06": "c_label",
+   "pair07": "moved",
+   "pair08": "moved",
+   "pair09": "moved",
+   "pair10": "c_label",
+   "pair11": "moved",
+   "pair13": "moved",
+   "pair14": "moved",
+   "pair15": "moved",
+   "pair16": "c_label",
+   "pair17": "moved",
+   "pair19": "moved",
+   "pair20": "moved"
+  },
+  "cases": [
+   {
+    "pair": "pair01",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/python-testing-patterns@e62d0f1ca316",
+     "uasl/tdd@ff86dad94075"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/tdd-workflow@6eadb0bf0ea8",
+     "uasl/tdd@ff86dad94075",
+     "uasl/test-driven-development@0eebe2fe0e28"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/tdd-workflow@6eadb0bf0ea8": 1,
+     "uasl/tdd@ff86dad94075": 6,
+     "uasl/test-driven-development@0eebe2fe0e28": 3
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair03",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/sql-optimization-patterns@389f90da7b56"
+    ],
+    "sel_b": [
+     "uasl/sql-optimization-patterns@389f90da7b56",
+     "uasl/web-design@b19d7c3f962e"
+    ],
+    "M_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/ui-audit@be637d5e2baf"
+    ],
+    "M_b": [
+     "uasl/web-design@b19d7c3f962e"
+    ],
+    "M_a_rank": {
+     "uasl/accessibility-compliance@696d2b4119ed": 13,
+     "uasl/ui-audit@be637d5e2baf": 19
+    },
+    "M_b_rank": {
+     "uasl/web-design@b19d7c3f962e": 1
+    }
+   },
+   {
+    "pair": "pair04",
+    "gen": 1,
+    "class": "c_label",
+    "sel_a": [
+     "uasl/property-based-testing@a168f6739085"
+    ],
+    "sel_b": [
+     "uasl/property-based-testing@a168f6739085"
+    ],
+    "M_a": [],
+    "M_b": [],
+    "M_a_rank": {},
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair05",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/grill-with-docs@99f1bafe73fe",
+     "uasl/tlc-spec-driven@394ed16ecc07",
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/grill-with-docs@99f1bafe73fe": 5,
+     "uasl/tlc-spec-driven@394ed16ecc07": 11,
+     "uasl/writing-plans@219901eb119f": 16
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair06",
+    "gen": 1,
+    "class": "c_label",
+    "sel_a": [
+     "uasl/coding-guidelines@0ec7e45f92f2",
+     "uasl/debug-root-cause@1d7ea4a832dc"
+    ],
+    "sel_b": [
+     "uasl/ripple@620dca56eca0",
+     "uasl/verification-loop@39d9be23cf50"
+    ],
+    "M_a": [],
+    "M_b": [],
+    "M_a_rank": {},
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair07",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/python-testing-patterns@e62d0f1ca316",
+     "uasl/tdd@ff86dad94075"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/tdd-workflow@6eadb0bf0ea8",
+     "uasl/tdd@ff86dad94075",
+     "uasl/test-driven-development@0eebe2fe0e28"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/tdd-workflow@6eadb0bf0ea8": 15,
+     "uasl/tdd@ff86dad94075": 31,
+     "uasl/test-driven-development@0eebe2fe0e28": 22
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair08",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/artisan@1e09f38ffcab",
+     "uasl/security-review@fcc354bc486e"
+    ],
+    "sel_b": [
+     "uasl/artisan@1e09f38ffcab",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a": [
+     "uasl/secure-coding-practices@cc37fcd8687e",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "M_b": [
+     "uasl/design-optimize@cbb1632043ec",
+     "uasl/react-patterns@73d1ecc06997",
+     "uasl/vercel-react-best-practices@70f3b5aaf775",
+     "uasl/web-performance-optimization@b2b38275ed40"
+    ],
+    "M_a_rank": {
+     "uasl/secure-coding-practices@cc37fcd8687e": null,
+     "uasl/security-review@fcc354bc486e": 12,
+     "uasl/vibe-security@6b07d0f651a7": 31
+    },
+    "M_b_rank": {
+     "uasl/design-optimize@cbb1632043ec": null,
+     "uasl/react-patterns@73d1ecc06997": 21,
+     "uasl/vercel-react-best-practices@70f3b5aaf775": 3,
+     "uasl/web-performance-optimization@b2b38275ed40": 6
+    }
+   },
+   {
+    "pair": "pair09",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/quill@336ba74b0e79"
+    ],
+    "sel_b": [
+     "uasl/quill@336ba74b0e79"
+    ],
+    "M_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/prose@bbd22d3eb9b7"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/accessibility-compliance@696d2b4119ed": 20,
+     "uasl/prose@bbd22d3eb9b7": 32
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair10",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/auth-implementation-patterns@7a99b395d548",
+     "uasl/security-review@fcc354bc486e"
+    ],
+    "sel_b": [
+     "uasl/auth-implementation-patterns@7a99b395d548",
+     "uasl/secure-coding-practices@cc37fcd8687e"
+    ],
+    "M_a": [],
+    "M_b": [],
+    "M_a_rank": {},
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair11",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/refactoring-patterns@7283bad3e86e",
+     "uasl/request-refactor-plan@49b853892f06"
+    ],
+    "sel_b": [
+     "uasl/refactoring-patterns@7283bad3e86e"
+    ],
+    "M_a": [
+     "uasl/request-refactor-plan@49b853892f06",
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/request-refactor-plan@49b853892f06": 30,
+     "uasl/writing-plans@219901eb119f": 10
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair13",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/python-testing-patterns@e62d0f1ca316",
+     "uasl/tdd@ff86dad94075"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/tdd-workflow@6eadb0bf0ea8",
+     "uasl/tdd@ff86dad94075",
+     "uasl/test-driven-development@0eebe2fe0e28"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/tdd-workflow@6eadb0bf0ea8": 5,
+     "uasl/tdd@ff86dad94075": 8,
+     "uasl/test-driven-development@0eebe2fe0e28": 4
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair14",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/github-actions-templates@ce03df93ccdf",
+     "uasl/pipe@0f029a41f006"
+    ],
+    "sel_b": [
+     "uasl/github-actions-templates@ce03df93ccdf"
+    ],
+    "M_a": [],
+    "M_b": [],
+    "M_a_rank": {},
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair15",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/accessibility-compliance@696d2b4119ed"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/ui-audit@be637d5e2baf"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/accessibility-compliance@696d2b4119ed": 11,
+     "uasl/ui-audit@be637d5e2baf": 26
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair16",
+    "gen": 1,
+    "class": "c_label",
+    "sel_a": [
+     "uasl/integration-testing@62b51275be50"
+    ],
+    "sel_b": [
+     "uasl/integration-testing@62b51275be50"
+    ],
+    "M_a": [],
+    "M_b": [],
+    "M_a_rank": {},
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair17",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/grill-with-docs@99f1bafe73fe",
+     "uasl/ripple@620dca56eca0",
+     "uasl/system-design@e45b77ba7a35",
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/grill-with-docs@99f1bafe73fe": 45,
+     "uasl/ripple@620dca56eca0": 5,
+     "uasl/system-design@e45b77ba7a35": null,
+     "uasl/writing-plans@219901eb119f": 20
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair19",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/python-testing-patterns@e62d0f1ca316",
+     "uasl/tdd@ff86dad94075"
+    ],
+    "sel_b": [
+     "uasl/deployment-pipeline-design@2a89fc6f32ff"
+    ],
+    "M_a": [
+     "uasl/tdd-workflow@6eadb0bf0ea8",
+     "uasl/tdd@ff86dad94075",
+     "uasl/test-driven-development@0eebe2fe0e28"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/tdd-workflow@6eadb0bf0ea8": 13,
+     "uasl/tdd@ff86dad94075": 29,
+     "uasl/test-driven-development@0eebe2fe0e28": 23
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair20",
+    "gen": 1,
+    "class": "moved",
+    "sel_a": [
+     "uasl/next-best-practices@ee058f89acea",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "sel_b": [
+     "uasl/next-best-practices@ee058f89acea",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a": [
+     "uasl/auth-implementation-patterns@7a99b395d548",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "M_b": [
+     "uasl/react-patterns@73d1ecc06997",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a_rank": {
+     "uasl/auth-implementation-patterns@7a99b395d548": 14,
+     "uasl/security-review@fcc354bc486e": null,
+     "uasl/vibe-security@6b07d0f651a7": 39
+    },
+    "M_b_rank": {
+     "uasl/react-patterns@73d1ecc06997": 7,
+     "uasl/vercel-react-best-practices@70f3b5aaf775": 2
+    }
+   },
+   {
+    "pair": "pair01",
+    "gen": 2,
+    "class": "moved",
+    "sel_a": [
+     "uasl/python-testing-patterns@e62d0f1ca316",
+     "uasl/tdd@ff86dad94075"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/tdd-workflow@6eadb0bf0ea8",
+     "uasl/tdd@ff86dad94075",
+     "uasl/test-driven-development@0eebe2fe0e28"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/tdd-workflow@6eadb0bf0ea8": 1,
+     "uasl/tdd@ff86dad94075": 6,
+     "uasl/test-driven-development@0eebe2fe0e28": 3
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair03",
+    "gen": 2,
+    "class": "moved",
+    "sel_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/sql-optimization-patterns@389f90da7b56"
+    ],
+    "sel_b": [
+     "uasl/sql-optimization-patterns@389f90da7b56",
+     "uasl/web-design@b19d7c3f962e"
+    ],
+    "M_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/ui-audit@be637d5e2baf"
+    ],
+    "M_b": [
+     "uasl/web-design@b19d7c3f962e"
+    ],
+    "M_a_rank": {
+     "uasl/accessibility-compliance@696d2b4119ed": 13,
+     "uasl/ui-audit@be637d5e2baf": 19
+    },
+    "M_b_rank": {
+     "uasl/web-design@b19d7c3f962e": 1
+    }
+   },
+   {
+    "pair": "pair04",
+    "gen": 2,
+    "class": "c_label",
+    "sel_a": [
+     "uasl/property-based-testing@a168f6739085"
+    ],
+    "sel_b": [
+     "uasl/property-based-testing@a168f6739085"
+    ],
+    "M_a": [],
+    "M_b": [],
+    "M_a_rank": {},
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair05",
+    "gen": 2,
+    "class": "moved",
+    "sel_a": [
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/grill-with-docs@99f1bafe73fe",
+     "uasl/tlc-spec-driven@394ed16ecc07",
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/grill-with-docs@99f1bafe73fe": 5,
+     "uasl/tlc-spec-driven@394ed16ecc07": 11,
+     "uasl/writing-plans@219901eb119f": 16
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair06",
+    "gen": 2,
+    "class": "c_label",
+    "sel_a": [
+     "uasl/coding-guidelines@0ec7e45f92f2",
+     "uasl/debug-root-cause@1d7ea4a832dc"
+    ],
+    "sel_b": [
+     "uasl/ripple@620dca56eca0",
+     "uasl/verification-loop@39d9be23cf50"
+    ],
+    "M_a": [],
+    "M_b": [],
+    "M_a_rank": {},
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair07",
+    "gen": 2,
+    "class": "moved",
+    "sel_a": [
+     "uasl/python-testing-patterns@e62d0f1ca316",
+     "uasl/tdd@ff86dad94075"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/tdd-workflow@6eadb0bf0ea8",
+     "uasl/tdd@ff86dad94075",
+     "uasl/test-driven-development@0eebe2fe0e28"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/tdd-workflow@6eadb0bf0ea8": 15,
+     "uasl/tdd@ff86dad94075": 31,
+     "uasl/test-driven-development@0eebe2fe0e28": 22
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair08",
+    "gen": 2,
+    "class": "b_select",
+    "sel_a": [
+     "uasl/artisan@1e09f38ffcab",
+     "uasl/security-review@fcc354bc486e"
+    ],
+    "sel_b": [
+     "uasl/stripe-best-practices@795a33f68129",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a": [
+     "uasl/secure-coding-practices@cc37fcd8687e",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "M_b": [
+     "uasl/design-optimize@cbb1632043ec",
+     "uasl/react-patterns@73d1ecc06997",
+     "uasl/vercel-react-best-practices@70f3b5aaf775",
+     "uasl/web-performance-optimization@b2b38275ed40"
+    ],
+    "M_a_rank": {
+     "uasl/secure-coding-practices@cc37fcd8687e": null,
+     "uasl/security-review@fcc354bc486e": 12,
+     "uasl/vibe-security@6b07d0f651a7": 31
+    },
+    "M_b_rank": {
+     "uasl/design-optimize@cbb1632043ec": null,
+     "uasl/react-patterns@73d1ecc06997": 21,
+     "uasl/vercel-react-best-practices@70f3b5aaf775": 3,
+     "uasl/web-performance-optimization@b2b38275ed40": 6
+    }
+   },
+   {
+    "pair": "pair09",
+    "gen": 2,
+    "class": "moved",
+    "sel_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/quill@336ba74b0e79"
+    ],
+    "sel_b": [
+     "uasl/quill@336ba74b0e79"
+    ],
+    "M_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/prose@bbd22d3eb9b7"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/accessibility-compliance@696d2b4119ed": 20,
+     "uasl/prose@bbd22d3eb9b7": 32
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair10",
+    "gen": 2,
+    "class": "c_label",
+    "sel_a": [
+     "uasl/auth-implementation-patterns@7a99b395d548",
+     "uasl/code-security@e20eb3467925",
+     "uasl/find-bugs@c3ff7d64ff9f"
+    ],
+    "sel_b": [
+     "uasl/auth-implementation-patterns@7a99b395d548",
+     "uasl/code-security@e20eb3467925",
+     "uasl/documentation-lookup@dee6d7478eab"
+    ],
+    "M_a": [],
+    "M_b": [],
+    "M_a_rank": {},
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair11",
+    "gen": 2,
+    "class": "moved",
+    "sel_a": [
+     "uasl/refactoring-patterns@7283bad3e86e",
+     "uasl/request-refactor-plan@49b853892f06"
+    ],
+    "sel_b": [
+     "uasl/refactoring-patterns@7283bad3e86e"
+    ],
+    "M_a": [
+     "uasl/request-refactor-plan@49b853892f06",
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/request-refactor-plan@49b853892f06": 30,
+     "uasl/writing-plans@219901eb119f": 10
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair13",
+    "gen": 2,
+    "class": "moved",
+    "sel_a": [
+     "uasl/python-testing-patterns@e62d0f1ca316",
+     "uasl/tdd@ff86dad94075"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/tdd-workflow@6eadb0bf0ea8",
+     "uasl/tdd@ff86dad94075",
+     "uasl/test-driven-development@0eebe2fe0e28"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/tdd-workflow@6eadb0bf0ea8": 5,
+     "uasl/tdd@ff86dad94075": 8,
+     "uasl/test-driven-development@0eebe2fe0e28": 4
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair14",
+    "gen": 2,
+    "class": "moved",
+    "sel_a": [
+     "uasl/github-actions-templates@ce03df93ccdf"
+    ],
+    "sel_b": [
+     "uasl/pipe@0f029a41f006"
+    ],
+    "M_a": [],
+    "M_b": [],
+    "M_a_rank": {},
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair15",
+    "gen": 2,
+    "class": "moved",
+    "sel_a": [
+     "uasl/accessibility-compliance@696d2b4119ed"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/ui-audit@be637d5e2baf"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/accessibility-compliance@696d2b4119ed": 11,
+     "uasl/ui-audit@be637d5e2baf": 26
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair16",
+    "gen": 2,
+    "class": "c_label",
+    "sel_a": [
+     "uasl/integration-testing@62b51275be50"
+    ],
+    "sel_b": [
+     "uasl/integration-testing@62b51275be50"
+    ],
+    "M_a": [],
+    "M_b": [],
+    "M_a_rank": {},
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair17",
+    "gen": 2,
+    "class": "moved",
+    "sel_a": [
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/grill-with-docs@99f1bafe73fe",
+     "uasl/ripple@620dca56eca0",
+     "uasl/system-design@e45b77ba7a35",
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/grill-with-docs@99f1bafe73fe": 45,
+     "uasl/ripple@620dca56eca0": 5,
+     "uasl/system-design@e45b77ba7a35": null,
+     "uasl/writing-plans@219901eb119f": 20
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair19",
+    "gen": 2,
+    "class": "moved",
+    "sel_a": [
+     "uasl/deployment-pipeline-design@2a89fc6f32ff",
+     "uasl/tdd@ff86dad94075"
+    ],
+    "sel_b": [
+     "uasl/deployment-pipeline-design@2a89fc6f32ff"
+    ],
+    "M_a": [
+     "uasl/tdd-workflow@6eadb0bf0ea8",
+     "uasl/tdd@ff86dad94075",
+     "uasl/test-driven-development@0eebe2fe0e28"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/tdd-workflow@6eadb0bf0ea8": 13,
+     "uasl/tdd@ff86dad94075": 29,
+     "uasl/test-driven-development@0eebe2fe0e28": 23
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair20",
+    "gen": 2,
+    "class": "moved",
+    "sel_a": [
+     "uasl/next-best-practices@ee058f89acea",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "sel_b": [
+     "uasl/next-best-practices@ee058f89acea",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a": [
+     "uasl/auth-implementation-patterns@7a99b395d548",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "M_b": [
+     "uasl/react-patterns@73d1ecc06997",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a_rank": {
+     "uasl/auth-implementation-patterns@7a99b395d548": 14,
+     "uasl/security-review@fcc354bc486e": null,
+     "uasl/vibe-security@6b07d0f651a7": 39
+    },
+    "M_b_rank": {
+     "uasl/react-patterns@73d1ecc06997": 7,
+     "uasl/vercel-react-best-practices@70f3b5aaf775": 2
+    }
+   },
+   {
+    "pair": "pair01",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/python-testing-patterns@e62d0f1ca316",
+     "uasl/tdd@ff86dad94075"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/tdd-workflow@6eadb0bf0ea8",
+     "uasl/tdd@ff86dad94075",
+     "uasl/test-driven-development@0eebe2fe0e28"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/tdd-workflow@6eadb0bf0ea8": 1,
+     "uasl/tdd@ff86dad94075": 6,
+     "uasl/test-driven-development@0eebe2fe0e28": 3
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair03",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/sql-optimization-patterns@389f90da7b56"
+    ],
+    "sel_b": [
+     "uasl/sql-optimization-patterns@389f90da7b56",
+     "uasl/web-design@b19d7c3f962e"
+    ],
+    "M_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/ui-audit@be637d5e2baf"
+    ],
+    "M_b": [
+     "uasl/web-design@b19d7c3f962e"
+    ],
+    "M_a_rank": {
+     "uasl/accessibility-compliance@696d2b4119ed": 13,
+     "uasl/ui-audit@be637d5e2baf": 19
+    },
+    "M_b_rank": {
+     "uasl/web-design@b19d7c3f962e": 1
+    }
+   },
+   {
+    "pair": "pair04",
+    "gen": 3,
+    "class": "c_label",
+    "sel_a": [
+     "uasl/property-based-testing@a168f6739085"
+    ],
+    "sel_b": [
+     "uasl/property-based-testing@a168f6739085"
+    ],
+    "M_a": [],
+    "M_b": [],
+    "M_a_rank": {},
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair05",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/grill-with-docs@99f1bafe73fe",
+     "uasl/tlc-spec-driven@394ed16ecc07",
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/grill-with-docs@99f1bafe73fe": 5,
+     "uasl/tlc-spec-driven@394ed16ecc07": 11,
+     "uasl/writing-plans@219901eb119f": 16
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair06",
+    "gen": 3,
+    "class": "c_label",
+    "sel_a": [
+     "uasl/coding-guidelines@0ec7e45f92f2",
+     "uasl/debug-root-cause@1d7ea4a832dc"
+    ],
+    "sel_b": [
+     "uasl/ripple@620dca56eca0",
+     "uasl/verification-loop@39d9be23cf50"
+    ],
+    "M_a": [],
+    "M_b": [],
+    "M_a_rank": {},
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair07",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/python-testing-patterns@e62d0f1ca316",
+     "uasl/tdd@ff86dad94075"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/tdd-workflow@6eadb0bf0ea8",
+     "uasl/tdd@ff86dad94075",
+     "uasl/test-driven-development@0eebe2fe0e28"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/tdd-workflow@6eadb0bf0ea8": 15,
+     "uasl/tdd@ff86dad94075": 31,
+     "uasl/test-driven-development@0eebe2fe0e28": 22
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair08",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/artisan@1e09f38ffcab",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/stripe-best-practices@795a33f68129"
+    ],
+    "sel_b": [
+     "uasl/artisan@1e09f38ffcab",
+     "uasl/stripe-best-practices@795a33f68129",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a": [
+     "uasl/secure-coding-practices@cc37fcd8687e",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "M_b": [
+     "uasl/design-optimize@cbb1632043ec",
+     "uasl/react-patterns@73d1ecc06997",
+     "uasl/vercel-react-best-practices@70f3b5aaf775",
+     "uasl/web-performance-optimization@b2b38275ed40"
+    ],
+    "M_a_rank": {
+     "uasl/secure-coding-practices@cc37fcd8687e": null,
+     "uasl/security-review@fcc354bc486e": 12,
+     "uasl/vibe-security@6b07d0f651a7": 31
+    },
+    "M_b_rank": {
+     "uasl/design-optimize@cbb1632043ec": null,
+     "uasl/react-patterns@73d1ecc06997": 21,
+     "uasl/vercel-react-best-practices@70f3b5aaf775": 3,
+     "uasl/web-performance-optimization@b2b38275ed40": 6
+    }
+   },
+   {
+    "pair": "pair09",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/quill@336ba74b0e79"
+    ],
+    "sel_b": [
+     "uasl/quill@336ba74b0e79"
+    ],
+    "M_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/prose@bbd22d3eb9b7"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/accessibility-compliance@696d2b4119ed": 20,
+     "uasl/prose@bbd22d3eb9b7": 32
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair10",
+    "gen": 3,
+    "class": "c_label",
+    "sel_a": [
+     "uasl/auth-implementation-patterns@7a99b395d548",
+     "uasl/secure-coding-practices@cc37fcd8687e"
+    ],
+    "sel_b": [
+     "uasl/auth-implementation-patterns@7a99b395d548",
+     "uasl/secure-coding-practices@cc37fcd8687e"
+    ],
+    "M_a": [],
+    "M_b": [],
+    "M_a_rank": {},
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair11",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/refactoring-patterns@7283bad3e86e",
+     "uasl/request-refactor-plan@49b853892f06"
+    ],
+    "sel_b": [
+     "uasl/refactoring-patterns@7283bad3e86e"
+    ],
+    "M_a": [
+     "uasl/request-refactor-plan@49b853892f06",
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/request-refactor-plan@49b853892f06": 30,
+     "uasl/writing-plans@219901eb119f": 10
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair13",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/python-testing-patterns@e62d0f1ca316",
+     "uasl/tdd@ff86dad94075"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/tdd-workflow@6eadb0bf0ea8",
+     "uasl/tdd@ff86dad94075",
+     "uasl/test-driven-development@0eebe2fe0e28"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/tdd-workflow@6eadb0bf0ea8": 5,
+     "uasl/tdd@ff86dad94075": 8,
+     "uasl/test-driven-development@0eebe2fe0e28": 4
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair14",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/github-actions-templates@ce03df93ccdf"
+    ],
+    "sel_b": [
+     "uasl/pipe@0f029a41f006"
+    ],
+    "M_a": [],
+    "M_b": [],
+    "M_a_rank": {},
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair15",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/accessibility-compliance@696d2b4119ed"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/accessibility-compliance@696d2b4119ed",
+     "uasl/ui-audit@be637d5e2baf"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/accessibility-compliance@696d2b4119ed": 11,
+     "uasl/ui-audit@be637d5e2baf": 26
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair16",
+    "gen": 3,
+    "class": "c_label",
+    "sel_a": [
+     "uasl/integration-testing@62b51275be50"
+    ],
+    "sel_b": [
+     "uasl/integration-testing@62b51275be50"
+    ],
+    "M_a": [],
+    "M_b": [],
+    "M_a_rank": {},
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair17",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/grill-with-docs@99f1bafe73fe",
+     "uasl/ripple@620dca56eca0",
+     "uasl/system-design@e45b77ba7a35",
+     "uasl/writing-plans@219901eb119f"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/grill-with-docs@99f1bafe73fe": 45,
+     "uasl/ripple@620dca56eca0": 5,
+     "uasl/system-design@e45b77ba7a35": null,
+     "uasl/writing-plans@219901eb119f": 20
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair19",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/python-testing-patterns@e62d0f1ca316",
+     "uasl/tdd@ff86dad94075"
+    ],
+    "sel_b": [],
+    "M_a": [
+     "uasl/tdd-workflow@6eadb0bf0ea8",
+     "uasl/tdd@ff86dad94075",
+     "uasl/test-driven-development@0eebe2fe0e28"
+    ],
+    "M_b": [],
+    "M_a_rank": {
+     "uasl/tdd-workflow@6eadb0bf0ea8": 13,
+     "uasl/tdd@ff86dad94075": 29,
+     "uasl/test-driven-development@0eebe2fe0e28": 23
+    },
+    "M_b_rank": {}
+   },
+   {
+    "pair": "pair20",
+    "gen": 3,
+    "class": "moved",
+    "sel_a": [
+     "uasl/next-best-practices@ee058f89acea",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "sel_b": [
+     "uasl/next-best-practices@ee058f89acea",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a": [
+     "uasl/auth-implementation-patterns@7a99b395d548",
+     "uasl/security-review@fcc354bc486e",
+     "uasl/vibe-security@6b07d0f651a7"
+    ],
+    "M_b": [
+     "uasl/react-patterns@73d1ecc06997",
+     "uasl/vercel-react-best-practices@70f3b5aaf775"
+    ],
+    "M_a_rank": {
+     "uasl/auth-implementation-patterns@7a99b395d548": 14,
+     "uasl/security-review@fcc354bc486e": null,
+     "uasl/vibe-security@6b07d0f651a7": 39
+    },
+    "M_b_rank": {
+     "uasl/react-patterns@73d1ecc06997": 7,
+     "uasl/vercel-react-best-practices@70f3b5aaf775": 2
+    }
+   }
+  ]
+ },
+ "baseline_meets_pairs": false
+}

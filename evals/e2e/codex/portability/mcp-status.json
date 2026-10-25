@@ -1,0 +1,210 @@
+{
+  "id": 3,
+  "result": {
+    "data": [
+      {
+        "name": "skillfetch",
+        "runtimeStatus": "connected",
+        "pluginId": null,
+        "httpOrigin": null,
+        "serverInfo": {
+          "name": "skillfetch",
+          "title": null,
+          "version": "0.0.1",
+          "description": null,
+          "icons": null,
+          "websiteUrl": null
+        },
+        "serverCapabilities": {
+          "prompts": {
+            "listChanged": false
+          },
+          "resources": {
+            "subscribe": false,
+            "listChanged": false
+          },
+          "tools": {
+            "listChanged": false
+          }
+        },
+        "toolListMeta": null,
+        "tools": {
+          "search_skills": {
+            "name": "search_skills",
+            "description": "Rank indexed skills for a task (BM25). Pass `queries`: 1-4 short sentences, e.g.\n        what the task builds, how the user asked to work (if they did), and the stack and\n        files; each is searched and the rankings are merged by reciprocal rank fusion (k=60).\n        `query` (one sentence) still works; `queries` wins when both are given. `profile`\n        (from profile_repo) boosts matching skills and is never part of a query.\n        Returns {results: [{id, title, summary, tier, token_estimate}]}, best first, 50 by\n        default (at most 200); `summary` is one line. verbose=true returns the full summary\n        plus tags and match_reasons. Tiers default to A and B. A query over 2,000 characters\n        is cut and the result carries truncated: true; a malformed profile returns\n        {error, details}.",
+            "inputSchema": {
+              "properties": {
+                "query": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "default": null,
+                  "title": "Query"
+                },
+                "queries": {
+                  "anyOf": [
+                    {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "default": null,
+                  "title": "Queries"
+                },
+                "profile": {
+                  "anyOf": [
+                    {
+                      "additionalProperties": true,
+                      "type": "object"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "default": null,
+                  "title": "Profile"
+                },
+                "k": {
+                  "default": 50,
+                  "title": "K",
+                  "type": "integer"
+                },
+                "tiers": {
+                  "anyOf": [
+                    {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "default": null,
+                  "title": "Tiers"
+                },
+                "verbose": {
+                  "default": false,
+                  "title": "Verbose",
+                  "type": "boolean"
+                }
+              },
+              "type": "object",
+              "title": "search_skillsArguments"
+            },
+            "outputSchema": {
+              "type": "object",
+              "additionalProperties": true,
+              "title": "search_skillsDictOutput"
+            }
+          },
+          "load_skills": {
+            "name": "load_skills",
+            "description": "Fetch (or reuse from cache) and verify the bodies of a resolved set and return\n        them concatenated in precedence order: {set_id, content, skills, errors}. A skill\n        whose files do not match the index hashes, or cannot be fetched, is refused and\n        listed in errors; the others still load. Over max_tokens (default 8000) the\n        lowest-precedence skills are dropped and listed in errors.",
+            "inputSchema": {
+              "properties": {
+                "set_id": {
+                  "title": "Set Id",
+                  "type": "string"
+                },
+                "max_tokens": {
+                  "default": 8000,
+                  "title": "Max Tokens",
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "set_id"
+              ],
+              "type": "object",
+              "title": "load_skillsArguments"
+            },
+            "outputSchema": {
+              "type": "object",
+              "additionalProperties": true,
+              "title": "load_skillsDictOutput"
+            }
+          },
+          "profile_repo": {
+            "name": "profile_repo",
+            "description": "Languages, frameworks and package managers of a repo, from its manifest files\n        only (package.json, pyproject.toml, go.mod, Cargo.toml, lockfiles, framework\n        configs); never reads source. Pass the result to search_skills as `profile`.",
+            "inputSchema": {
+              "properties": {
+                "path": {
+                  "title": "Path",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "path"
+              ],
+              "type": "object",
+              "title": "profile_repoArguments"
+            },
+            "outputSchema": {
+              "type": "object",
+              "additionalProperties": true,
+              "title": "profile_repoDictOutput"
+            }
+          },
+          "resolve_set": {
+            "name": "resolve_set",
+            "description": "Build a conflict-free set from candidate ids (in preference order, at most 20) plus\n        user-pinned ids (always kept; `path:/abs/dir` for a local skill, pinned only).\n        Returns {set_id, included, excluded[{id, reason, conflicts_with, evidence}],\n        warnings, precedence, suppressed_by_judge, notes, errors}; every exclusion and\n        warning quotes the source lines, and suppressed_by_judge counts the warnings dropped\n        because the judge called the pair independent.",
+            "inputSchema": {
+              "properties": {
+                "auto_ids": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Auto Ids",
+                  "type": "array"
+                },
+                "pinned_ids": {
+                  "anyOf": [
+                    {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "default": null,
+                  "title": "Pinned Ids"
+                }
+              },
+              "required": [
+                "auto_ids"
+              ],
+              "type": "object",
+              "title": "resolve_setArguments"
+            },
+            "outputSchema": {
+              "type": "object",
+              "additionalProperties": true,
+              "title": "resolve_setDictOutput"
+            }
+          }
+        },
+        "toolsError": null,
+        "resources": [],
+        "resourceTemplates": [],
+        "authStatus": "unsupported"
+      }
+    ],
+    "nextCursor": null
+  }
+}

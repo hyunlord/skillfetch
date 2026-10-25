@@ -1,0 +1,41 @@
+{"qid": "s1-fa-01-r1#1", "task_id": "s1-fa-01", "has_gold": true, "gold_ranks": {"uasl/api-design@bba608f8c974": 7}, "best_rank": 7, "n_hits": 745, "reproduces_recorded": true}
+{"qid": "s1-fa-02-r1#1", "task_id": "s1-fa-02", "has_gold": true, "gold_ranks": {"uasl/postgresql-table-design@59d09e948243": 685}, "best_rank": 685, "n_hits": 1301, "reproduces_recorded": true}
+{"qid": "s1-fa-02-r2#1", "task_id": "s1-fa-02", "has_gold": true, "gold_ranks": {"uasl/postgresql-table-design@59d09e948243": 495}, "best_rank": 495, "n_hits": 876, "reproduces_recorded": true}
+{"qid": "s1-fa-03-r1#1", "task_id": "s1-fa-03", "has_gold": true, "gold_ranks": {"uasl/shadcn@fb196fe88c66": 74}, "best_rank": 74, "n_hits": 1377, "reproduces_recorded": true}
+{"qid": "s1-fa-03-r2#1", "task_id": "s1-fa-03", "has_gold": true, "gold_ranks": {"uasl/shadcn@fb196fe88c66": 64}, "best_rank": 64, "n_hits": 959, "reproduces_recorded": true}
+{"qid": "s1-fa-05-r1#1", "task_id": "s1-fa-05", "has_gold": true, "gold_ranks": {"uasl/python-design-patterns@5c0fbe0d4633": 10}, "best_rank": 10, "n_hits": 1203, "reproduces_recorded": true}
+{"qid": "s1-fa-06-r1#1", "task_id": "s1-fa-06", "has_gold": true, "gold_ranks": {"uasl/integration-testing@62b51275be50": 6}, "best_rank": 6, "n_hits": 793, "reproduces_recorded": true}
+{"qid": "s1-fa-06-r2#1", "task_id": "s1-fa-06", "has_gold": true, "gold_ranks": {"uasl/integration-testing@62b51275be50": 5}, "best_rank": 5, "n_hits": 1036, "reproduces_recorded": true}
+{"qid": "s1-fa-07-r1#1", "task_id": "s1-fa-07", "has_gold": true, "gold_ranks": {"uasl/python-testing-patterns@e62d0f1ca316": 7}, "best_rank": 7, "n_hits": 1330, "reproduces_recorded": true}
+{"qid": "s1-fa-07-r2#1", "task_id": "s1-fa-07", "has_gold": true, "gold_ranks": {"uasl/python-testing-patterns@e62d0f1ca316": 7}, "best_rank": 7, "n_hits": 1314, "reproduces_recorded": true}
+{"qid": "s1-fa-08-r1#1", "task_id": "s1-fa-08", "has_gold": true, "gold_ranks": {"uasl/defense-in-depth@e9a7d1415325": 56, "uasl/api-design@bba608f8c974": 5}, "best_rank": 5, "n_hits": 733, "reproduces_recorded": true}
+{"qid": "s1-fa-08-r2#1", "task_id": "s1-fa-08", "has_gold": true, "gold_ranks": {"uasl/defense-in-depth@e9a7d1415325": 47, "uasl/api-design@bba608f8c974": 8}, "best_rank": 8, "n_hits": 696, "reproduces_recorded": true}
+{"qid": "s1-fa-10-r1#1", "task_id": "s1-fa-10", "has_gold": true, "gold_ranks": {"uasl/quill@336ba74b0e79": 7}, "best_rank": 7, "n_hits": 696, "reproduces_recorded": true}
+{"qid": "s1-nx-02-r1#1", "task_id": "s1-nx-02", "has_gold": true, "gold_ranks": {"uasl/backend-patterns@3d87ff489f3e": 1, "uasl/api-design@bba608f8c974": 8}, "best_rank": 1, "n_hits": 828, "reproduces_recorded": true}
+{"qid": "s1-nx-02-r2#1", "task_id": "s1-nx-02", "has_gold": true, "gold_ranks": {"uasl/backend-patterns@3d87ff489f3e": 1, "uasl/api-design@bba608f8c974": 8}, "best_rank": 1, "n_hits": 828, "reproduces_recorded": true}
+{"qid": "s1-nx-04-r1#1", "task_id": "s1-nx-04", "has_gold": true, "gold_ranks": {"uasl/responsive-design@2cf7927ef938": 1}, "best_rank": 1, "n_hits": 1180, "reproduces_recorded": true}
+{"qid": "s1-nx-04-r2#1", "task_id": "s1-nx-04", "has_gold": true, "gold_ranks": {"uasl/responsive-design@2cf7927ef938": 1}, "best_rank": 1, "n_hits": 1180, "reproduces_recorded": true}
+{"qid": "s1-nx-06-r1#1", "task_id": "s1-nx-06", "has_gold": true, "gold_ranks": {"uasl/refactoring-patterns@7283bad3e86e": 153}, "best_rank": 153, "n_hits": 1383, "reproduces_recorded": true}
+{"qid": "s1-nx-06-r2#1", "task_id": "s1-nx-06", "has_gold": true, "gold_ranks": {"uasl/refactoring-patterns@7283bad3e86e": 81}, "best_rank": 81, "n_hits": 1386, "reproduces_recorded": true}
+{"qid": "s1-nx-07-r1#1", "task_id": "s1-nx-07", "has_gold": true, "gold_ranks": {"uasl/tdd-workflow@6eadb0bf0ea8": 13}, "best_rank": 13, "n_hits": 1135, "reproduces_recorded": true}
+{"qid": "s1-nx-07-r2#1", "task_id": "s1-nx-07", "has_gold": true, "gold_ranks": {"uasl/tdd-workflow@6eadb0bf0ea8": 9}, "best_rank": 9, "n_hits": 1129, "reproduces_recorded": true}
+{"qid": "s1-nx-08-r1#1", "task_id": "s1-nx-08", "has_gold": true, "gold_ranks": {"uasl/unit-testing@6c5fbb821103": 1}, "best_rank": 1, "n_hits": 1033, "reproduces_recorded": true}
+{"qid": "s1-nx-08-r2#1", "task_id": "s1-nx-08", "has_gold": true, "gold_ranks": {"uasl/unit-testing@6c5fbb821103": 3}, "best_rank": 3, "n_hits": 1156, "reproduces_recorded": true}
+{"qid": "s1-nx-10-r1#1", "task_id": "s1-nx-10", "has_gold": true, "gold_ranks": {"uasl/quill@336ba74b0e79": 3}, "best_rank": 3, "n_hits": 686, "reproduces_recorded": true}
+{"qid": "s1b-fa-landing-r1#1", "task_id": "s1b-fa-landing", "has_gold": true, "gold_ranks": {"anthropics-skills/frontend-design@0a5ff23f1022": 24}, "best_rank": 24, "n_hits": 666, "reproduces_recorded": true}
+{"qid": "s1b-fa-landing-r2#1", "task_id": "s1b-fa-landing", "has_gold": true, "gold_ranks": {"anthropics-skills/frontend-design@0a5ff23f1022": 13}, "best_rank": 13, "n_hits": 939, "reproduces_recorded": true}
+{"qid": "s1b-fa-service-r1#1", "task_id": "s1b-fa-service", "has_gold": true, "gold_ranks": {"uasl/caveman@b18d7076b724": null}, "best_rank": null, "n_hits": 191, "reproduces_recorded": true}
+{"qid": "s1b-fa-service-r2#1", "task_id": "s1b-fa-service", "has_gold": true, "gold_ranks": {"uasl/caveman@b18d7076b724": null}, "best_rank": null, "n_hits": 210, "reproduces_recorded": true}
+{"qid": "s1b-fa-tags-plan-r1#1", "task_id": "s1b-fa-tags-plan", "has_gold": true, "gold_ranks": {"uasl/writing-plans@219901eb119f": 93}, "best_rank": 93, "n_hits": 678, "reproduces_recorded": true}
+{"qid": "s1b-fa-tags-plan-r2#1", "task_id": "s1b-fa-tags-plan", "has_gold": true, "gold_ranks": {"uasl/writing-plans@219901eb119f": 29}, "best_rank": 29, "n_hits": 1262, "reproduces_recorded": true}
+{"qid": "s1b-fa-utils-tests-r1#1", "task_id": "s1b-fa-utils-tests", "has_gold": true, "gold_ranks": {"uasl/tdd@ff86dad94075": 59}, "best_rank": 59, "n_hits": 321, "reproduces_recorded": true}
+{"qid": "s1b-fa-utils-tests-r2#1", "task_id": "s1b-fa-utils-tests", "has_gold": true, "gold_ranks": {"uasl/tdd@ff86dad94075": 47}, "best_rank": 47, "n_hits": 311, "reproduces_recorded": true}
+{"qid": "s1b-nx-landing-r1#1", "task_id": "s1b-nx-landing", "has_gold": true, "gold_ranks": {"anthropics-skills/frontend-design@0a5ff23f1022": 39}, "best_rank": 39, "n_hits": 711, "reproduces_recorded": true}
+{"qid": "s1b-nx-landing-r2#1", "task_id": "s1b-nx-landing", "has_gold": true, "gold_ranks": {"anthropics-skills/frontend-design@0a5ff23f1022": 41}, "best_rank": 41, "n_hits": 1196, "reproduces_recorded": true}
+{"qid": "s1-fa-09-r1#1", "task_id": "s1-fa-09", "has_gold": false, "gold_ranks": {}, "best_rank": null, "n_hits": 476, "reproduces_recorded": true}
+{"qid": "s1-fa-09-r2#1", "task_id": "s1-fa-09", "has_gold": false, "gold_ranks": {}, "best_rank": null, "n_hits": 459, "reproduces_recorded": true}
+{"qid": "s1-nx-01-r1#1", "task_id": "s1-nx-01", "has_gold": false, "gold_ranks": {}, "best_rank": null, "n_hits": 1248, "reproduces_recorded": true}
+{"qid": "s1-nx-01-r2#1", "task_id": "s1-nx-01", "has_gold": false, "gold_ranks": {}, "best_rank": null, "n_hits": 1250, "reproduces_recorded": true}
+{"qid": "s1-nx-03-r1#1", "task_id": "s1-nx-03", "has_gold": false, "gold_ranks": {}, "best_rank": null, "n_hits": 591, "reproduces_recorded": true}
+{"qid": "s1-nx-05-r1#1", "task_id": "s1-nx-05", "has_gold": false, "gold_ranks": {}, "best_rank": null, "n_hits": 1313, "reproduces_recorded": true}
+{"qid": "s1-nx-05-r2#1", "task_id": "s1-nx-05", "has_gold": false, "gold_ranks": {}, "best_rank": null, "n_hits": 1348, "reproduces_recorded": true}

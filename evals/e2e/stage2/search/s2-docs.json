@@ -1,0 +1,2043 @@
+{
+ "query": "Write a README and usage documentation for a small Next.js TypeScript example app that has no README",
+ "profile": {
+  "path": "<e2e>/repos/s2-docs",
+  "languages": [
+   "javascript",
+   "typescript"
+  ],
+  "frameworks": [
+   "nextjs",
+   "react"
+  ],
+  "package_managers": [
+   "npm"
+  ],
+  "tags": [
+   "javascript",
+   "nextjs",
+   "npm",
+   "react",
+   "typescript"
+  ],
+  "manifests": [
+   "package-lock.json",
+   "package.json",
+   "tsconfig.json"
+  ]
+ },
+ "compact": {
+  "query": "Write a README and usage documentation for a small Next.js TypeScript example app that has no README",
+  "results": [
+   {
+    "id": "uasl/next-upgrade@df465f7770a5",
+    "title": "next-upgrade",
+    "summary": "Upgrade a project to the latest Next.js version using the official migration guides and codemods.",
+    "tier": "B",
+    "token_estimate": 509
+   },
+   {
+    "id": "uasl/vercel-react-best-practices@70f3b5aaf775",
+    "title": "vercel-react-best-practices",
+    "summary": "Provides React and Next.js performance guidance for writing, reviewing, and refactoring code.",
+    "tier": "B",
+    "token_estimate": 1676
+   },
+   {
+    "id": "uasl/quill@336ba74b0e79",
+    "title": "quill",
+    "summary": "Quill guides the agent to improve codebase documentation, type clarity, and README/API materials while preserving runtime behavior.",
+    "tier": "B",
+    "token_estimate": 3199
+   },
+   {
+    "id": "uasl/next-cache-components@b22f6e134147",
+    "title": "next-cache-components",
+    "summary": "Guides implementation of Next.js 16 Cache Components, including cached, dynamic, and static content; cache lifetimes and invalidation; and migration from…",
+    "tier": "B",
+    "token_estimate": 2345
+   },
+   {
+    "id": "uasl/scaffold-nextjs@3d1152f5d9d0",
+    "title": "scaffold-nextjs",
+    "summary": "Guides the agent through gathering project details and scaffolding a Next.js turborepo with UI components, development tooling, and deployment setup.",
+    "tier": "B",
+    "token_estimate": 1309
+   },
+   {
+    "id": "uasl/frontend-patterns@8f659ce2a0bd",
+    "title": "frontend-patterns",
+    "summary": "Use React and Next.js frontend patterns for components, state, data fetching, performance, forms, animation, and accessibility.",
+    "tier": "B",
+    "token_estimate": 3849
+   },
+   {
+    "id": "uasl/next-best-practices@ee058f89acea",
+    "title": "next-best-practices",
+    "summary": "Apply Next.js best practices when writing or reviewing Next.js code, including using the optimized image component instead of plain HTML image tags.",
+    "tier": "B",
+    "token_estimate": 1008
+   },
+   {
+    "id": "uasl/backend-patterns@3d87ff489f3e",
+    "title": "backend-patterns",
+    "summary": "Provides TypeScript-oriented backend patterns for API design, data access, query optimization, caching, error handling, authentication, rate limiting…",
+    "tier": "B",
+    "token_estimate": 3456
+   },
+   {
+    "id": "uasl/documentation-lookup@dee6d7478eab",
+    "title": "documentation-lookup",
+    "summary": "For questions involving libraries, frameworks, or APIs, retrieve current documentation through Context7 rather than relying on training data.",
+    "tier": "B",
+    "token_estimate": 1222
+   },
+   {
+    "id": "uasl/design-system-creation@ec5d23e4e974",
+    "title": "design-system-creation",
+    "summary": "Guides the agent through creating or refactoring a distinctive design system, from documenting its aesthetic to building tokens, typography, components…",
+    "tier": "B",
+    "token_estimate": 1717
+   },
+   {
+    "id": "uasl/gsap-react@79939b61e00a",
+    "title": "gsap-react",
+    "summary": "Guides agents to build and review GSAP animations in React using useGSAP, scoped refs, context-safe callbacks, and reliable cleanup.",
+    "tier": "B",
+    "token_estimate": 1632
+   },
+   {
+    "id": "uasl/nextjs-turbopack@b0af0186e13a",
+    "title": "nextjs-turbopack",
+    "summary": "Guides Next.js 16+ development toward Turbopack and explains when webpack is an appropriate fallback.",
+    "tier": "B",
+    "token_estimate": 536
+   },
+   {
+    "id": "uasl/taste-skill@57790089504e",
+    "title": "taste-skill",
+    "summary": "The skill directs the agent to build distinctive, responsive React or Next.js interfaces using specified design defaults, component conventions, and motion…",
+    "tier": "B",
+    "token_estimate": 5281
+   },
+   {
+    "id": "uasl/trigger-dev@d05b3d95379f",
+    "title": "trigger-dev",
+    "summary": "Guides the agent in building reliable Trigger.dev background jobs and integrations, including scheduled, AI, long-running, and batch tasks.",
+    "tier": "B",
+    "token_estimate": 592
+   },
+   {
+    "id": "anthropics-skills/web-artifacts-builder@9c350d2f5f13",
+    "title": "web-artifacts-builder",
+    "summary": "Guides the agent to initialize a React frontend project, develop a multi-component web artifact, bundle it into a single HTML file, and share it with the user.",
+    "tier": "A",
+    "token_estimate": 768
+   },
+   {
+    "id": "uasl/typescript-clean-code@409278d3a61a",
+    "title": "typescript-clean-code",
+    "summary": "Use Clean Code and professional-practice workflows tailored to TypeScript, consulting the skill’s reference files before giving advice or writing code.",
+    "tier": "B",
+    "token_estimate": 1747
+   },
+   {
+    "id": "uasl/mcp-server-patterns@63e29e48e956",
+    "title": "mcp-server-patterns",
+    "summary": "For MCP server work, verify current SDK APIs against official documentation or Context7 and keep server logic independent of its transport.",
+    "tier": "B",
+    "token_estimate": 961
+   },
+   {
+    "id": "uasl/artisan@1e09f38ffcab",
+    "title": "artisan",
+    "summary": "Guides frontend work toward production-quality React, Vue, and Svelte components with TypeScript, accessibility, and explicit state handling.",
+    "tier": "B",
+    "token_estimate": 2908
+   },
+   {
+    "id": "uasl/claude-native-claude-api@24c958899f03",
+    "title": "claude-native-claude-api",
+    "summary": "Guide the agent in building, debugging, and migrating Claude API applications using Anthropic SDKs and documented API patterns.",
+    "tier": "B",
+    "token_estimate": 8191
+   },
+   {
+    "id": "uasl/web-design-builder@61ee1c248717",
+    "title": "web-design-builder",
+    "summary": "Guides the agent to gather web-design requirements, create responsive and accessible HTML/CSS/JavaScript designs, and verify them with Playwright MCP when…",
+    "tier": "B",
+    "token_estimate": 4447
+   },
+   {
+    "id": "uasl/shadcn@fb196fe88c66",
+    "title": "shadcn",
+    "summary": "Guides agents working in shadcn/ui projects to use project context, documentation, registries, and existing components before building or updating UI.",
+    "tier": "B",
+    "token_estimate": 4103
+   },
+   {
+    "id": "uasl/typescript-unit-testing@6fb3561edcb3",
+    "title": "typescript-unit-testing",
+    "summary": "Guides agents through TypeScript/NestJS unit-testing workflows for setup, writing, reviewing, running, debugging, and optimizing tests.",
+    "tier": "B",
+    "token_estimate": 3832
+   },
+   {
+    "id": "uasl/clay@6c9572941894",
+    "title": "clay",
+    "summary": "Produces reproducible code and operating guidance for AI 3D generation, modeling, game-asset pipelines, and quality validation.",
+    "tier": "B",
+    "token_estimate": 2997
+   },
+   {
+    "id": "uasl/scaffold-exercises@95d0d91c73af",
+    "title": "scaffold-exercises",
+    "summary": "Scaffolds course exercise directories from a plan, with variant folders and readmes that meet the repository's lint requirements.",
+    "tier": "B",
+    "token_estimate": 897
+   },
+   {
+    "id": "uasl/define-architecture@8ea764417825",
+    "title": "define-architecture",
+    "summary": "Guides the agent to define TypeScript application architecture, including repository shape, module boundaries, request context, middleware, frontend…",
+    "tier": "B",
+    "token_estimate": 1323
+   },
+   {
+    "id": "uasl/acceptance-testing@7f713f1566e8",
+    "title": "acceptance-testing",
+    "summary": "Use BDD acceptance-testing practices to turn business requirements into executable specifications, step definitions, and CI-validated tests.",
+    "tier": "B",
+    "token_estimate": 5775
+   },
+   {
+    "id": "uasl/hunter-automation@16ca2f412367",
+    "title": "hunter-automation",
+    "summary": "Use the Hunter.io toolkit through the Composio MCP integration to search for email addresses, find and verify contacts, manage leads, and check account usage.",
+    "tier": "B",
+    "token_estimate": 1511
+   },
+   {
+    "id": "uasl/monorepo-management@4078df072127",
+    "title": "monorepo-management",
+    "summary": "Guides agents in setting up and managing JavaScript/TypeScript monorepos with workspace package managers and build systems.",
+    "tier": "B",
+    "token_estimate": 3086
+   },
+   {
+    "id": "uasl/onboarding-ux@525055bbdf31",
+    "title": "onboarding-ux",
+    "summary": "Audit a web app from a new user’s perspective, then create onboarding guidance and code to address the gaps.",
+    "tier": "B",
+    "token_estimate": 3093
+   },
+   {
+    "id": "uasl/architecture-decision-records@715e99d0306d",
+    "title": "architecture-decision-records",
+    "summary": "Guides the agent to write and maintain Architecture Decision Records that capture technical decisions and their trade-offs.",
+    "tier": "B",
+    "token_estimate": 3172
+   },
+   {
+    "id": "uasl/segment-cdp@42e8e765d937",
+    "title": "segment-cdp",
+    "summary": "Apply Segment CDP patterns when implementing browser or server-side tracking and designing event schemas.",
+    "tier": "B",
+    "token_estimate": 361
+   },
+   {
+    "id": "uasl/motion-canvas@08d879d31903",
+    "title": "motion-canvas",
+    "summary": "Guides agents through setting up Motion Canvas projects and creating TypeScript animations, with particular attention to Vite configuration and ESM/CommonJS…",
+    "tier": "B",
+    "token_estimate": 2845
+   },
+   {
+    "id": "uasl/ubiquitous-language@0c7a6937f877",
+    "title": "ubiquitous-language",
+    "summary": "Extract domain terminology from the conversation, identify ambiguities and synonyms, and propose a consistent glossary.",
+    "tier": "B",
+    "token_estimate": 1220
+   },
+   {
+    "id": "uasl/judge@6ea2e485149e",
+    "title": "judge",
+    "summary": "Use the Codex review CLI to review PRs, pre-commit changes, and commits, then assess findings for correctness, security, intent alignment, consistency, and…",
+    "tier": "B",
+    "token_estimate": 3644
+   },
+   {
+    "id": "uasl/openapi-spec-generation@2d2c7a93b8f2",
+    "title": "openapi-spec-generation",
+    "summary": "Guides agents in creating and maintaining OpenAPI 3.1 specifications from design or code, validating API contracts, and generating SDKs and documentation.",
+    "tier": "B",
+    "token_estimate": 6137
+   },
+   {
+    "id": "uasl/polyglot@11be7885bda2",
+    "title": "polyglot",
+    "summary": "Guides agents through internationalization and localization work, including extracting strings, structuring translation keys, locale-aware formatting, ICU…",
+    "tier": "B",
+    "token_estimate": 3136
+   },
+   {
+    "id": "uasl/inngest@fc3f33c4e97f",
+    "title": "inngest",
+    "summary": "Guides agents building Inngest-based serverless background jobs and durable, event-driven workflows.",
+    "tier": "B",
+    "token_estimate": 662
+   },
+   {
+    "id": "uasl/visual-design-foundations@f7829f5da0d2",
+    "title": "visual-design-foundations",
+    "summary": "Establish cohesive visual design systems using typography, color, spacing, and iconography principles.",
+    "tier": "B",
+    "token_estimate": 1809
+   },
+   {
+    "id": "uasl/caveman-stats@2859ce4e33a6",
+    "title": "caveman-stats",
+    "summary": "Provides real token usage and estimated savings for the current session from the Claude Code session log.",
+    "tier": "B",
+    "token_estimate": 150
+   },
+   {
+    "id": "uasl/claude-api@f952c765f5b0",
+    "title": "claude-api",
+    "summary": "Guides agents building Claude API and Anthropic SDK integrations: choose the appropriate API or Agent SDK surface, identify the project language, and consult…",
+    "tier": "B",
+    "token_estimate": 4742
+   },
+   {
+    "id": "uasl/vibe-security@6b07d0f651a7",
+    "title": "vibe-security",
+    "summary": "Apply secure-by-default practices when building or reviewing web applications, protecting access, user data, inputs, outputs, and common application attack…",
+    "tier": "B",
+    "token_estimate": 6182
+   },
+   {
+    "id": "uasl/accessibility-compliance@696d2b4119ed",
+    "title": "accessibility-compliance",
+    "summary": "Guides implementation and auditing of accessible interfaces, with emphasis on semantic HTML, keyboard access, screen-reader support, and inclusive user…",
+    "tier": "B",
+    "token_estimate": 2962
+   },
+   {
+    "id": "uasl/component-identification-sizing@a9b4aa9f2de1",
+    "title": "component-identification-sizing",
+    "summary": "Maps codebase directory or namespace structures to identify architectural components, then measures their size using statement counts, file counts…",
+    "tier": "B",
+    "token_estimate": 3421
+   },
+   {
+    "id": "uasl/radar@a47ea6fd5f95",
+    "title": "radar",
+    "summary": "Add and refine tests, diagnose flaky behavior, and improve coverage while preserving product behavior.",
+    "tier": "B",
+    "token_estimate": 2701
+   },
+   {
+    "id": "uasl/web-component-design@af6d16dc78dc",
+    "title": "web-component-design",
+    "summary": "Guides the agent in designing reusable UI components and component APIs with React, Vue, and Svelte.",
+    "tier": "B",
+    "token_estimate": 1873
+   },
+   {
+    "id": "uasl/openui@c3154bb34a14",
+    "title": "openui",
+    "summary": "Guides agents in building generative UI apps with OpenUI and OpenUI Lang, including scaffolding, component libraries, prompts, rendering, and debugging.",
+    "tier": "B",
+    "token_estimate": 1649
+   },
+   {
+    "id": "uasl/migrate-to-shoehorn@50bfd668fa65",
+    "title": "migrate-to-shoehorn",
+    "summary": "Migrate test files from TypeScript `as` assertions to `@total-typescript/shoehorn`, using `fromPartial()` for partial data and `fromAny()` for intentionally…",
+    "tier": "B",
+    "token_estimate": 697
+   },
+   {
+    "id": "uasl/changelog-generator@f7da9390521a",
+    "title": "changelog-generator",
+    "summary": "Generate customer-friendly changelogs and release notes from Git commits, organizing changes into useful categories and filtering internal noise.",
+    "tier": "B",
+    "token_estimate": 771
+   },
+   {
+    "id": "uasl/bun-runtime@009ca8691cf7",
+    "title": "bun-runtime",
+    "summary": "Guides agents in choosing Bun or Node, migrating scripts and installs to Bun, and configuring Bun for deployment.",
+    "tier": "B",
+    "token_estimate": 646
+   },
+   {
+    "id": "uasl/n8n-code-python@ba1cd974d317",
+    "title": "n8n-code-python",
+    "summary": "Guides agents writing Python for n8n Code nodes, including n8n data access and return formats, execution modes, and Python’s standard-library limitations.",
+    "tier": "B",
+    "token_estimate": 4461
+   }
+  ]
+ },
+ "verbose": {
+  "query": "Write a README and usage documentation for a small Next.js TypeScript example app that has no README",
+  "results": [
+   {
+    "id": "uasl/next-upgrade@df465f7770a5",
+    "title": "next-upgrade",
+    "summary": "Upgrade a project to the latest Next.js version using the official migration guides and codemods. Identify the current version, apply relevant migrations and dependency updates, then verify the upgrade with a build and development testing.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "javascript",
+      "typescript"
+     ],
+     "frameworks": [
+      "next.js"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "frontend",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'next' in title, description, keywords, synthetic_queries, summary",
+     "'js' in description, keywords, synthetic_queries, summary",
+     "'typescript' in keywords, synthetic_queries",
+     "'app' in synthetic_queries",
+     "profile tag 'javascript' matches tags.languages (x1.3)",
+     "profile tag 'typescript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 509
+   },
+   {
+    "id": "uasl/vercel-react-best-practices@70f3b5aaf775",
+    "title": "vercel-react-best-practices",
+    "summary": "Provides React and Next.js performance guidance for writing, reviewing, and refactoring code. It prioritizes practices for async work, bundle size, server and client performance, rendering, and JavaScript efficiency.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "javascript",
+      "typescript"
+     ],
+     "frameworks": [
+      "react",
+      "next.js"
+     ],
+     "phase": [
+      "implement",
+      "review"
+     ],
+     "domain": [
+      "frontend",
+      "performance",
+      "web"
+     ]
+    },
+    "match_reasons": [
+     "'next' in description, keywords, synthetic_queries, summary",
+     "'js' in description, keywords, synthetic_queries, summary",
+     "'app' in synthetic_queries",
+     "profile tag 'react' matches tags.frameworks (x1.3)",
+     "profile tag 'javascript' matches tags.languages (x1.3)",
+     "profile tag 'typescript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 1676
+   },
+   {
+    "id": "uasl/quill@336ba74b0e79",
+    "title": "quill",
+    "summary": "Quill guides the agent to improve codebase documentation, type clarity, and README/API materials while preserving runtime behavior. It emphasizes accurate, useful documentation, checking links and coverage, and reporting the work and its results.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "javascript",
+      "typescript"
+     ],
+     "frameworks": [
+      "graphql",
+      "openapi"
+     ],
+     "phase": [
+      "implement",
+      "review",
+      "format"
+     ],
+     "domain": [
+      "docs",
+      "types",
+      "api",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'readme' in description, keywords, synthetic_queries, summary",
+     "'usage' in synthetic_queries",
+     "'documentation' in description, keywords, synthetic_queries, summary",
+     "profile tag 'javascript' matches tags.languages (x1.3)",
+     "profile tag 'typescript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 3199
+   },
+   {
+    "id": "uasl/next-cache-components@b22f6e134147",
+    "title": "next-cache-components",
+    "summary": "Guides implementation of Next.js 16 Cache Components, including cached, dynamic, and static content; cache lifetimes and invalidation; and migration from `unstable_cache`. It also documents the restriction on runtime APIs inside `use cache`.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "typescript"
+     ],
+     "frameworks": [
+      "next.js",
+      "react"
+     ],
+     "phase": [
+      "implement"
+     ],
+     "domain": [
+      "frontend",
+      "caching",
+      "web"
+     ]
+    },
+    "match_reasons": [
+     "'usage' in synthetic_queries",
+     "'next' in title, description, keywords, synthetic_queries, summary",
+     "'js' in description, keywords, synthetic_queries, summary",
+     "'app' in synthetic_queries",
+     "profile tag 'react' matches tags.frameworks (x1.3)",
+     "profile tag 'typescript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 2345
+   },
+   {
+    "id": "uasl/scaffold-nextjs@3d1152f5d9d0",
+    "title": "scaffold-nextjs",
+    "summary": "Guides the agent through gathering project details and scaffolding a Next.js turborepo with UI components, development tooling, and deployment setup. It specifies project structure, configuration, and several implementation constraints.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "typescript"
+     ],
+     "frameworks": [
+      "next.js",
+      "turborepo",
+      "tailwind css",
+      "shadcn/ui"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "frontend",
+      "tooling",
+      "deployment"
+     ]
+    },
+    "match_reasons": [
+     "'next' in description, keywords, synthetic_queries, summary",
+     "'js' in description, keywords, synthetic_queries, summary",
+     "'typescript' in description, keywords, synthetic_queries",
+     "'app' in description, synthetic_queries",
+     "profile tag 'typescript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 1309
+   },
+   {
+    "id": "uasl/frontend-patterns@8f659ce2a0bd",
+    "title": "frontend-patterns",
+    "summary": "Use React and Next.js frontend patterns for components, state, data fetching, performance, forms, animation, and accessibility. Keep frontend example data generic and choose patterns appropriate to project complexity.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "typescript"
+     ],
+     "frameworks": [
+      "react",
+      "next.js",
+      "zustand",
+      "swr",
+      "react query",
+      "zod",
+      "framer motion"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "review"
+     ],
+     "domain": [
+      "frontend",
+      "accessibility",
+      "performance",
+      "privacy"
+     ]
+    },
+    "match_reasons": [
+     "'next' in description, keywords, synthetic_queries, summary",
+     "'js' in description, keywords, synthetic_queries, summary",
+     "'example' in summary",
+     "profile tag 'react' matches tags.frameworks (x1.3)",
+     "profile tag 'typescript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 3849
+   },
+   {
+    "id": "uasl/next-best-practices@ee058f89acea",
+    "title": "next-best-practices",
+    "summary": "Apply Next.js best practices when writing or reviewing Next.js code, including using the optimized image component instead of plain HTML image tags. The skill covers routing, server components, data patterns, rendering, and performance optimization.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [
+      "next.js",
+      "react"
+     ],
+     "phase": [
+      "implement",
+      "review"
+     ],
+     "domain": [
+      "frontend",
+      "backend"
+     ]
+    },
+    "match_reasons": [
+     "'usage' in synthetic_queries",
+     "'next' in title, description, keywords, synthetic_queries, summary",
+     "'js' in description, keywords, synthetic_queries, summary",
+     "'app' in synthetic_queries",
+     "profile tag 'react' matches tags.frameworks (x1.3)"
+    ],
+    "token_estimate": 1008
+   },
+   {
+    "id": "uasl/backend-patterns@3d87ff489f3e",
+    "title": "backend-patterns",
+    "summary": "Provides TypeScript-oriented backend patterns for API design, data access, query optimization, caching, error handling, authentication, rate limiting, background jobs, and logging. Recommends choosing patterns suited to the complexity level.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "typescript",
+      "javascript"
+     ],
+     "frameworks": [
+      "express",
+      "next.js",
+      "supabase"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "review"
+     ],
+     "domain": [
+      "backend",
+      "api",
+      "database",
+      "authentication",
+      "caching",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'next' in description, synthetic_queries",
+     "'js' in description, synthetic_queries",
+     "'typescript' in summary",
+     "profile tag 'javascript' matches tags.languages (x1.3)",
+     "profile tag 'typescript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 3456
+   },
+   {
+    "id": "uasl/documentation-lookup@dee6d7478eab",
+    "title": "documentation-lookup",
+    "summary": "For questions involving libraries, frameworks, or APIs, retrieve current documentation through Context7 rather than relying on training data. Resolve the library ID before querying, select relevant documentation, and use the fetched information in the response.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [],
+     "domain": [
+      "docs",
+      "tooling",
+      "api"
+     ]
+    },
+    "match_reasons": [
+     "'write' in synthetic_queries",
+     "'documentation' in title, keywords, summary",
+     "'next' in description, synthetic_queries",
+     "'js' in description, synthetic_queries",
+     "'example' in synthetic_queries"
+    ],
+    "token_estimate": 1222
+   },
+   {
+    "id": "uasl/design-system-creation@ec5d23e4e974",
+    "title": "design-system-creation",
+    "summary": "Guides the agent through creating or refactoring a distinctive design system, from documenting its aesthetic to building tokens, typography, components, motion, and loading states. It favors custom visual choices and reusable design-system primitives over default styles.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "css",
+      "javascript",
+      "typescript"
+     ],
+     "frameworks": [
+      "react",
+      "tailwind",
+      "cva"
+     ],
+     "phase": [
+      "plan",
+      "implement"
+     ],
+     "domain": [
+      "design systems",
+      "frontend",
+      "styling"
+     ]
+    },
+    "match_reasons": [
+     "'documentation' in description",
+     "'typescript' in synthetic_queries",
+     "'app' in synthetic_queries",
+     "profile tag 'react' matches tags.frameworks (x1.3)",
+     "profile tag 'javascript' matches tags.languages (x1.3)",
+     "profile tag 'typescript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 1717
+   },
+   {
+    "id": "uasl/gsap-react@79939b61e00a",
+    "title": "gsap-react",
+    "summary": "Guides agents to build and review GSAP animations in React using useGSAP, scoped refs, context-safe callbacks, and reliable cleanup. It also covers keeping GSAP execution client-side to avoid server-rendering issues.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "javascript"
+     ],
+     "frameworks": [
+      "react",
+      "next.js"
+     ],
+     "phase": [
+      "implement",
+      "review"
+     ],
+     "domain": [
+      "frontend",
+      "animation",
+      "react"
+     ]
+    },
+    "match_reasons": [
+     "'next' in description, synthetic_queries",
+     "'js' in description, synthetic_queries",
+     "profile tag 'react' matches tags.domain (x1.3)",
+     "profile tag 'react' matches tags.frameworks (x1.3)",
+     "profile tag 'javascript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 1632
+   },
+   {
+    "id": "uasl/nextjs-turbopack@b0af0186e13a",
+    "title": "nextjs-turbopack",
+    "summary": "Guides Next.js 16+ development toward Turbopack and explains when webpack is an appropriate fallback. It also recommends version-aware documentation and bundle analysis for production optimization.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [
+      "next.js"
+     ],
+     "phase": [
+      "implement",
+      "review"
+     ],
+     "domain": [
+      "frontend",
+      "tooling",
+      "performance"
+     ]
+    },
+    "match_reasons": [
+     "'documentation' in summary",
+     "'next' in description, keywords, synthetic_queries, summary",
+     "'js' in description, keywords, synthetic_queries, summary",
+     "'app' in synthetic_queries"
+    ],
+    "token_estimate": 536
+   },
+   {
+    "id": "uasl/taste-skill@57790089504e",
+    "title": "taste-skill",
+    "summary": "The skill directs the agent to build distinctive, responsive React or Next.js interfaces using specified design defaults, component conventions, and motion and performance rules. It also prescribes visual patterns and interaction states, and requires a preflight review of generated UI code.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "javascript",
+      "typescript"
+     ],
+     "frameworks": [
+      "react",
+      "next.js",
+      "tailwind css",
+      "framer motion"
+     ],
+     "phase": [
+      "implement",
+      "review"
+     ],
+     "domain": [
+      "frontend",
+      "ui design",
+      "performance"
+     ]
+    },
+    "match_reasons": [
+     "'next' in synthetic_queries, summary",
+     "'js' in synthetic_queries, summary",
+     "profile tag 'react' matches tags.frameworks (x1.3)",
+     "profile tag 'javascript' matches tags.languages (x1.3)",
+     "profile tag 'typescript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 5281
+   },
+   {
+    "id": "uasl/trigger-dev@d05b3d95379f",
+    "title": "trigger-dev",
+    "summary": "Guides the agent in building reliable Trigger.dev background jobs and integrations, including scheduled, AI, long-running, and batch tasks. It emphasizes task reliability through explicit timeouts, serializable payloads, synchronized configuration and SDK versions, idempotency, and concurrency limits.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "typescript"
+     ],
+     "frameworks": [
+      "trigger.dev",
+      "next.js"
+     ],
+     "phase": [
+      "implement"
+     ],
+     "domain": [
+      "backend",
+      "background-jobs",
+      "integrations",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'next' in synthetic_queries",
+     "'js' in synthetic_queries",
+     "'typescript' in description, keywords",
+     "'app' in synthetic_queries",
+     "profile tag 'typescript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 592
+   },
+   {
+    "id": "anthropics-skills/web-artifacts-builder@9c350d2f5f13",
+    "title": "web-artifacts-builder",
+    "summary": "Guides the agent to initialize a React frontend project, develop a multi-component web artifact, bundle it into a single HTML file, and share it with the user. It recommends postponing optional visual testing until after presenting the artifact, unless testing is requested or issues arise.",
+    "tier": "A",
+    "tags": {
+     "languages": [
+      "typescript"
+     ],
+     "frameworks": [
+      "react",
+      "vite",
+      "parcel",
+      "tailwind css",
+      "shadcn/ui"
+     ],
+     "phase": [
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "frontend",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'small' in synthetic_queries",
+     "'typescript' in keywords",
+     "'app' in synthetic_queries",
+     "profile tag 'react' matches tags.frameworks (x1.3)",
+     "profile tag 'typescript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 768
+   },
+   {
+    "id": "uasl/typescript-clean-code@409278d3a61a",
+    "title": "typescript-clean-code",
+    "summary": "Use Clean Code and professional-practice workflows tailored to TypeScript, consulting the skill’s reference files before giving advice or writing code. Apply relevant rules and examples, follow task workflows, and cite the sources behind recommendations.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "typescript",
+      "javascript"
+     ],
+     "frameworks": [],
+     "phase": [
+      "plan",
+      "implement",
+      "test",
+      "review",
+      "format"
+     ],
+     "domain": [
+      "code-quality",
+      "code-review",
+      "refactoring",
+      "testing",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'write' in synthetic_queries",
+     "'typescript' in title, description, keywords, synthetic_queries, summary",
+     "profile tag 'javascript' matches tags.languages (x1.3)",
+     "profile tag 'typescript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 1747
+   },
+   {
+    "id": "uasl/mcp-server-patterns@63e29e48e956",
+    "title": "mcp-server-patterns",
+    "summary": "For MCP server work, verify current SDK APIs against official documentation or Context7 and keep server logic independent of its transport. Define and validate tool schemas, use Streamable HTTP for remote clients, and follow the listed error-handling and versioning practices.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "javascript",
+      "typescript"
+     ],
+     "frameworks": [
+      "@modelcontextprotocol/sdk",
+      "zod"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "review"
+     ],
+     "domain": [
+      "backend",
+      "tooling",
+      "integrations"
+     ]
+    },
+    "match_reasons": [
+     "'documentation' in summary",
+     "'typescript' in description, keywords, synthetic_queries",
+     "profile tag 'javascript' matches tags.languages (x1.3)",
+     "profile tag 'typescript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 961
+   },
+   {
+    "id": "uasl/artisan@1e09f38ffcab",
+    "title": "artisan",
+    "summary": "Guides frontend work toward production-quality React, Vue, and Svelte components with TypeScript, accessibility, and explicit state handling. Defines workflow, approval boundaries, handoffs, and required deliverables.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "typescript"
+     ],
+     "frameworks": [
+      "react",
+      "vue",
+      "svelte"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "test",
+      "review"
+     ],
+     "domain": [
+      "frontend",
+      "accessibility",
+      "state-management",
+      "forms"
+     ]
+    },
+    "match_reasons": [
+     "'next' in synthetic_queries",
+     "'typescript' in keywords, synthetic_queries, summary",
+     "profile tag 'react' matches tags.frameworks (x1.3)",
+     "profile tag 'typescript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 2908
+   },
+   {
+    "id": "uasl/claude-native-claude-api@24c958899f03",
+    "title": "claude-native-claude-api",
+    "summary": "Guide the agent in building, debugging, and migrating Claude API applications using Anthropic SDKs and documented API patterns. Apply the skill’s defaults for model choice, thinking, streaming, and prompt caching, and consult the relevant language-specific and shared documentation.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "c#",
+      "go",
+      "java",
+      "javascript",
+      "php",
+      "python",
+      "ruby",
+      "typescript"
+     ],
+     "frameworks": [
+      "anthropic sdk",
+      "managed agents"
+     ],
+     "phase": [
+      "plan",
+      "implement"
+     ],
+     "domain": [
+      "api",
+      "backend",
+      "llm",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'documentation' in keywords, summary",
+     "'typescript' in synthetic_queries",
+     "'app' in synthetic_queries",
+     "profile tag 'javascript' matches tags.languages (x1.3)",
+     "profile tag 'typescript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 8191
+   },
+   {
+    "id": "uasl/web-design-builder@61ee1c248717",
+    "title": "web-design-builder",
+    "summary": "Guides the agent to gather web-design requirements, create responsive and accessible HTML/CSS/JavaScript designs, and verify them with Playwright MCP when available. It also specifies what files, verification results, and guidance to deliver to the user.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "html",
+      "css",
+      "javascript"
+     ],
+     "frameworks": [
+      "tailwind css",
+      "react",
+      "vue",
+      "alpine.js"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "test",
+      "review"
+     ],
+     "domain": [
+      "frontend",
+      "accessibility",
+      "web design",
+      "testing"
+     ]
+    },
+    "match_reasons": [
+     "'small' in synthetic_queries",
+     "'js' in description",
+     "'app' in synthetic_queries",
+     "profile tag 'react' matches tags.frameworks (x1.3)",
+     "profile tag 'javascript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 4447
+   },
+   {
+    "id": "uasl/shadcn@fb196fe88c66",
+    "title": "shadcn",
+    "summary": "Guides agents working in shadcn/ui projects to use project context, documentation, registries, and existing components before building or updating UI. Enforces shadcn component composition, styling, accessibility, and CLI workflows.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "typescript"
+     ],
+     "frameworks": [
+      "react",
+      "tailwind css",
+      "shadcn/ui"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "review"
+     ],
+     "domain": [
+      "frontend",
+      "ui",
+      "tooling",
+      "design systems"
+     ]
+    },
+    "match_reasons": [
+     "'usage' in description",
+     "'documentation' in summary",
+     "'app' in description",
+     "profile tag 'react' matches tags.frameworks (x1.3)",
+     "profile tag 'typescript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 4103
+   },
+   {
+    "id": "uasl/typescript-unit-testing@6fb3561edcb3",
+    "title": "typescript-unit-testing",
+    "summary": "Guides agents through TypeScript/NestJS unit-testing workflows for setup, writing, reviewing, running, debugging, and optimizing tests. It prescribes Jest testing practices, mock usage, coverage expectations, and a focused process for resolving failures.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "typescript"
+     ],
+     "frameworks": [
+      "jest",
+      "nestjs",
+      "@golevelup/ts-jest"
+     ],
+     "phase": [
+      "implement",
+      "test",
+      "review"
+     ],
+     "domain": [
+      "testing",
+      "backend"
+     ]
+    },
+    "match_reasons": [
+     "'write' in description",
+     "'usage' in summary",
+     "'typescript' in title, description, keywords, summary",
+     "profile tag 'typescript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 3832
+   },
+   {
+    "id": "uasl/clay@6c9572941894",
+    "title": "clay",
+    "summary": "Produces reproducible code and operating guidance for AI 3D generation, modeling, game-asset pipelines, and quality validation. It requires safe credential handling and cost awareness, and does not execute API calls or deliver raw 3D model files.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python",
+      "javascript",
+      "typescript",
+      "openscad"
+     ],
+     "frameworks": [
+      "three.js",
+      "babylon.js",
+      "react three fiber",
+      "blender"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "3d",
+      "game-development",
+      "graphics",
+      "api-integration",
+      "asset-pipeline"
+     ]
+    },
+    "match_reasons": [
+     "'write' in synthetic_queries",
+     "'js' in description, synthetic_queries",
+     "profile tag 'javascript' matches tags.languages (x1.3)",
+     "profile tag 'typescript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 2997
+   },
+   {
+    "id": "uasl/scaffold-exercises@95d0d91c73af",
+    "title": "scaffold-exercises",
+    "summary": "Scaffolds course exercise directories from a plan, with variant folders and readmes that meet the repository's lint requirements. It also specifies naming conventions and how to rename or renumber exercises.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "typescript"
+     ],
+     "frameworks": [],
+     "phase": [
+      "plan",
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "tooling",
+      "education",
+      "documentation"
+     ]
+    },
+    "match_reasons": [
+     "'readme' in keywords, synthetic_queries",
+     "'next' in synthetic_queries",
+     "profile tag 'typescript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 897
+   },
+   {
+    "id": "uasl/define-architecture@8ea764417825",
+    "title": "define-architecture",
+    "summary": "Guides the agent to define TypeScript application architecture, including repository shape, module boundaries, request context, middleware, frontend boundaries, testing, and rollout. It also prescribes an architecture brief and validation steps before finalizing recommendations.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "typescript"
+     ],
+     "frameworks": [
+      "tanstack query",
+      "mobx"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "test",
+      "review"
+     ],
+     "domain": [
+      "architecture",
+      "backend",
+      "frontend",
+      "monorepo",
+      "middleware",
+      "testing",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'typescript' in description, keywords, synthetic_queries, summary",
+     "'app' in description, synthetic_queries",
+     "profile tag 'typescript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 1323
+   },
+   {
+    "id": "uasl/acceptance-testing@7f713f1566e8",
+    "title": "acceptance-testing",
+    "summary": "Use BDD acceptance-testing practices to turn business requirements into executable specifications, step definitions, and CI-validated tests. Apply the guidance across Gherkin- and Gauge-based frameworks and keep specifications useful as living documentation.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "java",
+      "javascript",
+      "typescript",
+      "ruby",
+      "c#",
+      "python",
+      "go"
+     ],
+     "frameworks": [
+      "cucumber",
+      "specflow",
+      "reqnroll",
+      "behave",
+      "gauge",
+      "godog"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "test",
+      "review"
+     ],
+     "domain": [
+      "testing",
+      "acceptance testing",
+      "bdd",
+      "ci"
+     ]
+    },
+    "match_reasons": [
+     "'documentation' in description, keywords, summary",
+     "'js' in description",
+     "profile tag 'javascript' matches tags.languages (x1.3)",
+     "profile tag 'typescript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 5775
+   },
+   {
+    "id": "uasl/hunter-automation@16ca2f412367",
+    "title": "hunter-automation",
+    "summary": "Use the Hunter.io toolkit through the Composio MCP integration to search for email addresses, find and verify contacts, manage leads, and check account usage. Follow the listed guidance for pagination, empty results, uncertain verification statuses, credentials, and domain formatting.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [],
+     "domain": [
+      "email-intelligence",
+      "sales",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'usage' in description, keywords, summary",
+     "'next' in synthetic_queries",
+     "'example' in synthetic_queries"
+    ],
+    "token_estimate": 1511
+   },
+   {
+    "id": "uasl/monorepo-management@4078df072127",
+    "title": "monorepo-management",
+    "summary": "Guides agents in setting up and managing JavaScript/TypeScript monorepos with workspace package managers and build systems. Covers shared configuration and code, build optimization, CI/CD, dependency management, and package publishing.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "javascript",
+      "typescript"
+     ],
+     "frameworks": [
+      "pnpm",
+      "turborepo",
+      "nx"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "tooling",
+      "build",
+      "testing",
+      "ci-cd",
+      "dependency-management"
+     ]
+    },
+    "match_reasons": [
+     "'typescript' in synthetic_queries, summary",
+     "'app' in synthetic_queries",
+     "profile tag 'javascript' matches tags.languages (x1.3)",
+     "profile tag 'typescript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 3086
+   },
+   {
+    "id": "uasl/onboarding-ux@525055bbdf31",
+    "title": "onboarding-ux",
+    "summary": "Audit a web app from a new user’s perspective, then create onboarding guidance and code to address the gaps. Deliver the audit and generated materials in the specified artifact locations, matching the project’s existing patterns.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "typescript"
+     ],
+     "frameworks": [
+      "react",
+      "react-joyride",
+      "shadcn/ui"
+     ],
+     "phase": [
+      "review",
+      "implement"
+     ],
+     "domain": [
+      "onboarding",
+      "ux",
+      "frontend",
+      "documentation"
+     ]
+    },
+    "match_reasons": [
+     "'write' in synthetic_queries",
+     "'app' in description, keywords, synthetic_queries, summary",
+     "profile tag 'react' matches tags.frameworks (x1.3)",
+     "profile tag 'typescript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 3093
+   },
+   {
+    "id": "uasl/architecture-decision-records@715e99d0306d",
+    "title": "architecture-decision-records",
+    "summary": "Guides the agent to write and maintain Architecture Decision Records that capture technical decisions and their trade-offs. It emphasizes recording decisions early, linking related records, and keeping accepted records and their status managed appropriately.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "plan",
+      "review"
+     ],
+     "domain": [
+      "docs",
+      "architecture"
+     ]
+    },
+    "match_reasons": [
+     "'write' in description, synthetic_queries, summary",
+     "'documentation' in description, keywords",
+     "'typescript' in synthetic_queries"
+    ],
+    "token_estimate": 3172
+   },
+   {
+    "id": "uasl/segment-cdp@42e8e765d937",
+    "title": "segment-cdp",
+    "summary": "Apply Segment CDP patterns when implementing browser or server-side tracking and designing event schemas. The skill covers Analytics.js calls, identity resolution, and Protocols-based tracking plan enforcement.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "javascript"
+     ],
+     "frameworks": [
+      "analytics.js",
+      "@segment/analytics-node",
+      "protocols"
+     ],
+     "phase": [
+      "implement",
+      "plan"
+     ],
+     "domain": [
+      "analytics",
+      "data",
+      "tracking"
+     ]
+    },
+    "match_reasons": [
+     "'js' in description, keywords, synthetic_queries, summary",
+     "'app' in synthetic_queries",
+     "profile tag 'javascript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 361
+   },
+   {
+    "id": "uasl/motion-canvas@08d879d31903",
+    "title": "motion-canvas",
+    "summary": "Guides agents through setting up Motion Canvas projects and creating TypeScript animations, with particular attention to Vite configuration and ESM/CommonJS interoperability. It also provides troubleshooting guidance for common setup and build issues.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "typescript",
+      "javascript"
+     ],
+     "frameworks": [
+      "motion-canvas",
+      "vite"
+     ],
+     "phase": [
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "video",
+      "animation",
+      "graphics",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'typescript' in description, keywords, synthetic_queries, summary",
+     "profile tag 'javascript' matches tags.languages (x1.3)",
+     "profile tag 'typescript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 2845
+   },
+   {
+    "id": "uasl/ubiquitous-language@0c7a6937f877",
+    "title": "ubiquitous-language",
+    "summary": "Extract domain terminology from the conversation, identify ambiguities and synonyms, and propose a consistent glossary. Save it to `UBIQUITOUS_LANGUAGE.md` and provide an inline summary; on reruns, update the existing glossary and its example dialogue.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "implement"
+     ],
+     "domain": [
+      "docs",
+      "domain modeling"
+     ]
+    },
+    "match_reasons": [
+     "'write' in synthetic_queries",
+     "'documentation' in keywords",
+     "'example' in synthetic_queries, summary"
+    ],
+    "token_estimate": 1220
+   },
+   {
+    "id": "uasl/judge@6ea2e485149e",
+    "title": "judge",
+    "summary": "Use the Codex review CLI to review PRs, pre-commit changes, and commits, then assess findings for correctness, security, intent alignment, consistency, and test quality. Produce evidence-based reports with severity classifications and recommended remediation routes, without modifying code.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "typescript",
+      "python",
+      "go"
+     ],
+     "frameworks": [
+      "react",
+      "next.js",
+      "express"
+     ],
+     "phase": [
+      "review"
+     ],
+     "domain": [
+      "code review",
+      "security",
+      "testing",
+      "git",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'next' in synthetic_queries",
+     "'js' in synthetic_queries",
+     "profile tag 'react' matches tags.frameworks (x1.3)",
+     "profile tag 'typescript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 3644
+   },
+   {
+    "id": "uasl/openapi-spec-generation@2d2c7a93b8f2",
+    "title": "openapi-spec-generation",
+    "summary": "Guides agents in creating and maintaining OpenAPI 3.1 specifications from design or code, validating API contracts, and generating SDKs and documentation. Includes patterns for reusable schemas, API descriptions, security, versioning, and validation tools.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python",
+      "typescript",
+      "yaml"
+     ],
+     "frameworks": [
+      "fastapi",
+      "express",
+      "tsoa"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "test",
+      "review"
+     ],
+     "domain": [
+      "api",
+      "backend",
+      "docs",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'documentation' in description, keywords, summary",
+     "'typescript' in synthetic_queries",
+     "profile tag 'typescript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 6137
+   },
+   {
+    "id": "uasl/polyglot@11be7885bda2",
+    "title": "polyglot",
+    "summary": "Guides agents through internationalization and localization work, including extracting strings, structuring translation keys, locale-aware formatting, ICU messages, and RTL support. It requires using the project's existing i18n conventions and producing a documented summary of the changes.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "javascript"
+     ],
+     "frameworks": [
+      "i18next",
+      "react-intl",
+      "vue-i18n",
+      "next.js"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "test",
+      "review"
+     ],
+     "domain": [
+      "i18n",
+      "localization",
+      "frontend",
+      "documentation"
+     ]
+    },
+    "match_reasons": [
+     "'next' in synthetic_queries",
+     "'js' in synthetic_queries",
+     "'app' in synthetic_queries",
+     "profile tag 'javascript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 3136
+   },
+   {
+    "id": "uasl/inngest@fc3f33c4e97f",
+    "title": "inngest",
+    "summary": "Guides agents building Inngest-based serverless background jobs and durable, event-driven workflows. Emphasizes keeping event payloads lean.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "typescript"
+     ],
+     "frameworks": [
+      "inngest",
+      "next.js"
+     ],
+     "phase": [
+      "implement"
+     ],
+     "domain": [
+      "backend",
+      "serverless",
+      "event-driven",
+      "background-jobs"
+     ]
+    },
+    "match_reasons": [
+     "'next' in synthetic_queries",
+     "'js' in synthetic_queries",
+     "'app' in synthetic_queries",
+     "profile tag 'typescript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 662
+   },
+   {
+    "id": "uasl/visual-design-foundations@f7829f5da0d2",
+    "title": "visual-design-foundations",
+    "summary": "Establish cohesive visual design systems using typography, color, spacing, and iconography principles. Apply accessibility and consistency practices when creating design tokens and style guides.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "css",
+      "javascript",
+      "typescript"
+     ],
+     "frameworks": [
+      "tailwind"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "review"
+     ],
+     "domain": [
+      "design",
+      "frontend",
+      "accessibility"
+     ]
+    },
+    "match_reasons": [
+     "'usage' in synthetic_queries",
+     "'app' in synthetic_queries",
+     "profile tag 'javascript' matches tags.languages (x1.3)",
+     "profile tag 'typescript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 1809
+   },
+   {
+    "id": "uasl/caveman-stats@2859ce4e33a6",
+    "title": "caveman-stats",
+    "summary": "Provides real token usage and estimated savings for the current session from the Claude Code session log. A hook injects the formatted stats; the model does not calculate them.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "javascript"
+     ],
+     "frameworks": [
+      "claude code"
+     ],
+     "phase": [],
+     "domain": [
+      "tooling",
+      "analytics"
+     ]
+    },
+    "match_reasons": [
+     "'usage' in description, keywords, synthetic_queries, summary",
+     "profile tag 'javascript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 150
+   },
+   {
+    "id": "uasl/claude-api@f952c765f5b0",
+    "title": "claude-api",
+    "summary": "Guides agents building Claude API and Anthropic SDK integrations: choose the appropriate API or Agent SDK surface, identify the project language, and consult the relevant documentation. Sets defaults and implementation guidance for model selection, thinking, streaming, tools, and API features.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python",
+      "typescript",
+      "java",
+      "go",
+      "ruby",
+      "csharp",
+      "php",
+      "curl"
+     ],
+     "frameworks": [
+      "anthropic",
+      "anthropic sdk",
+      "claude agent sdk"
+     ],
+     "phase": [
+      "plan",
+      "implement"
+     ],
+     "domain": [
+      "api",
+      "backend",
+      "llm",
+      "agents",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'documentation' in keywords, summary",
+     "'example' in synthetic_queries",
+     "profile tag 'typescript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 4742
+   },
+   {
+    "id": "uasl/vibe-security@6b07d0f651a7",
+    "title": "vibe-security",
+    "summary": "Apply secure-by-default practices when building or reviewing web applications, protecting access, user data, inputs, outputs, and common application attack surfaces. Choose restrictive security options while preserving functionality.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "java",
+      "python",
+      "php",
+      "javascript",
+      "csharp"
+     ],
+     "frameworks": [
+      "react",
+      "vue",
+      "apollo"
+     ],
+     "phase": [
+      "implement",
+      "review"
+     ],
+     "domain": [
+      "security",
+      "web",
+      "backend",
+      "frontend",
+      "api"
+     ]
+    },
+    "match_reasons": [
+     "'write' in description",
+     "'app' in synthetic_queries",
+     "profile tag 'react' matches tags.frameworks (x1.3)",
+     "profile tag 'javascript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 6182
+   },
+   {
+    "id": "uasl/accessibility-compliance@696d2b4119ed",
+    "title": "accessibility-compliance",
+    "summary": "Guides implementation and auditing of accessible interfaces, with emphasis on semantic HTML, keyboard access, screen-reader support, and inclusive user preferences. Includes React and TypeScript patterns for common accessible components.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "typescript"
+     ],
+     "frameworks": [
+      "react",
+      "tailwind css",
+      "headless ui"
+     ],
+     "phase": [
+      "implement",
+      "test",
+      "review"
+     ],
+     "domain": [
+      "accessibility",
+      "frontend",
+      "testing"
+     ]
+    },
+    "match_reasons": [
+     "'typescript' in summary",
+     "'app' in synthetic_queries",
+     "profile tag 'react' matches tags.frameworks (x1.3)",
+     "profile tag 'typescript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 2962
+   },
+   {
+    "id": "uasl/component-identification-sizing@a9b4aa9f2de1",
+    "title": "component-identification-sizing",
+    "summary": "Maps codebase directory or namespace structures to identify architectural components, then measures their size using statement counts, file counts, percentages, and statistical thresholds. Produces an inventory and analysis to help prioritize component splitting or consolidation.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "javascript",
+      "typescript",
+      "java",
+      "python"
+     ],
+     "frameworks": [
+      "express"
+     ],
+     "phase": [
+      "plan",
+      "review"
+     ],
+     "domain": [
+      "architecture",
+      "codebase-analysis",
+      "refactoring"
+     ]
+    },
+    "match_reasons": [
+     "'small' in synthetic_queries",
+     "'app' in synthetic_queries",
+     "profile tag 'javascript' matches tags.languages (x1.3)",
+     "profile tag 'typescript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 3421
+   },
+   {
+    "id": "uasl/radar@a47ea6fd5f95",
+    "title": "radar",
+    "summary": "Add and refine tests, diagnose flaky behavior, and improve coverage while preserving product behavior. Follow the project’s existing testing conventions and verify changes with tests and relevant references.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "javascript",
+      "typescript",
+      "python",
+      "go",
+      "rust",
+      "java"
+     ],
+     "frameworks": [
+      "vitest",
+      "jest",
+      "pytest",
+      "testify",
+      "junit 5"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "test",
+      "review"
+     ],
+     "domain": [
+      "testing",
+      "coverage",
+      "ci",
+      "reliability"
+     ]
+    },
+    "match_reasons": [
+     "'next' in synthetic_queries",
+     "'js' in description",
+     "profile tag 'javascript' matches tags.languages (x1.3)",
+     "profile tag 'typescript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 2701
+   },
+   {
+    "id": "uasl/web-component-design@af6d16dc78dc",
+    "title": "web-component-design",
+    "summary": "Guides the agent in designing reusable UI components and component APIs with React, Vue, and Svelte. Emphasizes composition, styling choices, accessibility, and component implementation patterns.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "typescript"
+     ],
+     "frameworks": [
+      "react",
+      "vue",
+      "svelte",
+      "tailwind css"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "test",
+      "review"
+     ],
+     "domain": [
+      "frontend",
+      "design-systems",
+      "accessibility",
+      "css"
+     ]
+    },
+    "match_reasons": [
+     "'js' in description, keywords",
+     "profile tag 'react' matches tags.frameworks (x1.3)",
+     "profile tag 'typescript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 1873
+   },
+   {
+    "id": "uasl/openui@c3154bb34a14",
+    "title": "openui",
+    "summary": "Guides agents in building generative UI apps with OpenUI and OpenUI Lang, including scaffolding, component libraries, prompts, rendering, and debugging. It also specifies how to fetch and handle OpenUI documentation and how to structure OpenUI Lang output.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "openui lang"
+     ],
+     "frameworks": [
+      "openui",
+      "react",
+      "next.js"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "frontend",
+      "generative-ui",
+      "tooling",
+      "documentation"
+     ]
+    },
+    "match_reasons": [
+     "'documentation' in keywords, synthetic_queries, summary",
+     "'next' in synthetic_queries",
+     "'js' in synthetic_queries",
+     "'app' in synthetic_queries",
+     "profile tag 'react' matches tags.frameworks (x1.3)",
+     "skill languages ['openui lang'] are not the repo's ['javascript', 'typescript'] (x0.5)"
+    ],
+    "token_estimate": 1649
+   },
+   {
+    "id": "uasl/migrate-to-shoehorn@50bfd668fa65",
+    "title": "migrate-to-shoehorn",
+    "summary": "Migrate test files from TypeScript `as` assertions to `@total-typescript/shoehorn`, using `fromPartial()` for partial data and `fromAny()` for intentionally incorrect data. Install the package, update imports, and run a type check to verify the migration.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "typescript"
+     ],
+     "frameworks": [],
+     "phase": [
+      "plan",
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "testing",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'typescript' in description, keywords, summary",
+     "profile tag 'typescript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 697
+   },
+   {
+    "id": "uasl/changelog-generator@f7da9390521a",
+    "title": "changelog-generator",
+    "summary": "Generate customer-friendly changelogs and release notes from Git commits, organizing changes into useful categories and filtering internal noise. The skill also recommends where to run the task, how to guide formatting, and what to do with the generated changelog before publishing.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "implement",
+      "review",
+      "format"
+     ],
+     "domain": [
+      "git",
+      "docs",
+      "release-management"
+     ]
+    },
+    "match_reasons": [
+     "'write' in synthetic_queries",
+     "'documentation' in keywords, synthetic_queries",
+     "'app' in synthetic_queries"
+    ],
+    "token_estimate": 771
+   },
+   {
+    "id": "uasl/bun-runtime@009ca8691cf7",
+    "title": "bun-runtime",
+    "summary": "Guides agents in choosing Bun or Node, migrating scripts and installs to Bun, and configuring Bun for deployment. It also recommends Bun-specific commands and keeping dependencies current.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "javascript",
+      "typescript"
+     ],
+     "frameworks": [],
+     "phase": [
+      "plan",
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "tooling",
+      "testing",
+      "deployment"
+     ]
+    },
+    "match_reasons": [
+     "'typescript' in keywords",
+     "profile tag 'javascript' matches tags.languages (x1.3)",
+     "profile tag 'typescript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 646
+   },
+   {
+    "id": "uasl/n8n-code-python@ba1cd974d317",
+    "title": "n8n-code-python",
+    "summary": "Guides agents writing Python for n8n Code nodes, including n8n data access and return formats, execution modes, and Python’s standard-library limitations. It recommends considering JavaScript first and using Python (Beta) for better n8n integration.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python",
+      "javascript"
+     ],
+     "frameworks": [
+      "n8n"
+     ],
+     "phase": [
+      "implement"
+     ],
+     "domain": [
+      "automation",
+      "workflow",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'write' in description, synthetic_queries",
+     "'small' in synthetic_queries",
+     "profile tag 'javascript' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 4461
+   }
+  ]
+ }
+}

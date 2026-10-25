@@ -1,0 +1,34 @@
+{
+  "created_at": "2026-10-23T18:21:42.177Z",
+  "status": "PREFLIGHT_PASS",
+  "variant": "S-b′",
+  "selected_by": "stage6/DESIGN.md §0 Cb = S-b′",
+  "agents_source": "<e2e>/stage6/select-cands/S-bp/AGENTS.md",
+  "agents_sha256": "00dcf1d460d2be692fb33b64a79d395ae567dbec9bbe44381978d877a53066b2",
+  "agents_modified": false,
+  "source_commit": "14d2020f1275e10a272eb46575c9bd6d4a2182e4",
+  "config_sha256": "69fb11307213035fce1442078304ff1891a1b4b22e5254a75d9387884bb590e1",
+  "repository_refs": {
+    "fastapi": "2b38acb4586092ef0318bc6a8ab36436ba8fc09a",
+    "nextjs": "2a1df71575f0c45a0f7a999bf77f4286d81e8706"
+  },
+  "oracle_sha256": "7db50e73c7dfd6b0b810ba65231fd1475a25a563651310592c88da23795e108c",
+  "old_report_hashes": {
+    "codex-e2e.md": "db5b22600f4d20048f5669a39221335d8b5f7106cd1824d4b2deb57848d139c5",
+    "codex-e2e-2.md": "bc8e4d41b17785b3408c5cb62519d55dd32d77751eaedc751d32d019e437effc",
+    "codex-e2e-3.md": "684106cc90d08f62af4c0bfe262e17b75cd2777fbd80a33bc5fefae65e5a49a0"
+  },
+  "baseline_wrapper_sha256": "d301ce6155855cf2c6232e306df95c777b7c29a1f54a20fd493031248ead8d3a",
+  "wrapper_sha256": "800a9194c8825d3cd1aa1f4412c95023b21dcf8d075251e491f8c6d57a6a04e8",
+  "wrapper_changes": [
+    "Usage label codex-e2e-3 -> codex-e2e-4",
+    "manifest experiment label codex-e2e-3 -> codex-e2e-4"
+  ],
+  "task_runner_reused": "<e2e>/codex-e2e-3-task-runner.cjs",
+  "task_runner_sha256": "47e29258b3bb0498abade9c9622bdd459c0df585903770f095f4f1647bf41fce",
+  "notes": [
+    "Stage6 server6b50ae6 instruction not applied: user explicitly fixes14d2020.",
+    "Sbp AGENTS copied byte-for-byte; differs from E2E3 in more than selection wording.",
+    "Metrics primary relevant hit denominator51; precision excludesungraded; avgloadcount denominator57."
+  ]
+}

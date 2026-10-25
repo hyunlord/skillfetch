@@ -1,0 +1,65 @@
+diff --git a/components/Layout.tsx b/components/Layout.tsx
+index 9e9b2a9..f8541c4 100644
+--- a/components/Layout.tsx
++++ b/components/Layout.tsx
+@@ -1,13 +1,23 @@
+ import React, { ReactNode } from "react";
+ import Link from "next/link";
+ import Head from "next/head";
++import { useRouter } from "next/router";
+ 
+ type Props = {
+   children?: ReactNode;
+   title?: string;
+ };
+ 
+-const Layout = ({ children, title = "This is the default title" }: Props) => (
++const NAV_LINKS = [
++  { href: "/", label: "Home", next: true },
++  { href: "/about", label: "About", next: true },
++  { href: "/users", label: "Users List", next: true },
++  { href: "/api/users", label: "Users API", next: false },
++];
++
++const Layout = ({ children, title = "This is the default title" }: Props) => {
++  const { pathname } = useRouter();
++  return (
+   <div>
+     <Head>
+       <title>{title}</title>
+@@ -16,9 +26,23 @@ const Layout = ({ children, title = "This is the default title" }: Props) => (
+     </Head>
+     <header>
+       <nav>
+-        <Link href="/">Home</Link> | <Link href="/about">About</Link> |{" "}
+-        <Link href="/users">Users List</Link> |{" "}
+-        <a href="/api/users">Users API</a>
++        {NAV_LINKS.map(({ href, label, next }, i) => {
++          const current = pathname === href ? "page" : undefined;
++          return (
++            <React.Fragment key={href}>
++              {i > 0 && " | "}
++              {next ? (
++                <Link href={href} aria-current={current}>
++                  {label}
++                </Link>
++              ) : (
++                <a href={href} aria-current={current}>
++                  {label}
++                </a>
++              )}
++            </React.Fragment>
++          );
++        })}
+       </nav>
+     </header>
+     {children}
+@@ -27,6 +51,7 @@ const Layout = ({ children, title = "This is the default title" }: Props) => (
+       <span>I'm here to stay (Footer)</span>
+     </footer>
+   </div>
+-);
++  );
++};
+ 
+ export default Layout;

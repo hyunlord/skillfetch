@@ -1,0 +1,398 @@
+[
+  {
+    "task": "s6b-t004",
+    "code": "2f6ab686",
+    "criteria": [
+      5,
+      4
+    ],
+    "score": 4,
+    "reason": "due_date 상속·마이그레이션, 시간별 UTC 일정과 행 잠금은 갖췄으나 신규 태스크 테스트가 없고 잠금 재조회에서 예정일을 재확인하지 않는다.",
+    "rank": 1
+  },
+  {
+    "task": "s6b-t004",
+    "code": "33a37583",
+    "criteria": [
+      5,
+      4
+    ],
+    "score": 4,
+    "reason": "15분 주기와 잠금 후 전체 조건 재검사는 좋지만 새 동작 테스트가 없고 입력 datetime의 시간대 제약이 없다.",
+    "rank": 1
+  },
+  {
+    "task": "s6b-t004",
+    "code": "59b35b8d",
+    "criteria": [
+      5,
+      4
+    ],
+    "score": 4,
+    "reason": "AwareDatetime·UTC 24시간 창·행 잠금·실패 rollback을 갖췄으나 신규 테스트가 없고 잠금 후 예정일 조건을 재검사하지 않는다.",
+    "rank": 1
+  },
+  {
+    "task": "s6b-t004",
+    "code": "6df44a4a",
+    "criteria": [
+      4,
+      3
+    ],
+    "score": 3,
+    "reason": "시간별 일정과 순차 재발송 방지 테스트는 있으나 잠금 없이 후보를 일괄 읽어 겹친 실행이 같은 메일을 중복 발송할 수 있다.",
+    "rank": 6
+  },
+  {
+    "task": "s6b-t004",
+    "code": "a64942e2",
+    "criteria": [
+      5,
+      4
+    ],
+    "score": 4,
+    "reason": "상속 필드·마이그레이션과 시간별 UTC 일정, 개별 트랜잭션 잠금은 완결됐으나 신규 테스트와 잠금 후 예정일 재검사가 없다.",
+    "rank": 1
+  },
+  {
+    "task": "s6b-t004",
+    "code": "f3d4b454",
+    "criteria": [
+      4,
+      3
+    ],
+    "score": 3,
+    "reason": "일일 일정·오늘 포함 catch-up은 있지만 잠금 없는 전송은 중복 위험이 있고 실패 항목을 같은 날 재시도하지 않으며 신규 테스트도 없다.",
+    "rank": 6
+  },
+  {
+    "task": "s6b-t004",
+    "code": "f6997c9a",
+    "criteria": [
+      4,
+      2
+    ],
+    "score": 3,
+    "reason": "필드·템플릿·기본 발송은 있으나 자정 1회 조회 후 생성된 내일 만기 항목과 SMTP 실패 항목을 놓치고 동시 실행 중복도 막지 못한다.",
+    "rank": 9
+  },
+  {
+    "task": "s6b-t004",
+    "code": "fb34fdf8",
+    "criteria": [
+      5,
+      4
+    ],
+    "score": 4,
+    "reason": "시간별 일정·행 잠금·발송 실패 시 미표시 및 날짜 변경/중복 방지 테스트가 있으나 잠금 후 예정일을 재확인하지 않는 경합 틈은 남는다.",
+    "rank": 1
+  },
+  {
+    "task": "s6b-t004",
+    "code": "fec61524",
+    "criteria": [
+      4,
+      3
+    ],
+    "score": 3,
+    "reason": "시간별 재시도와 정상 전송 후 sent 표시는 있으나 잠금 없이 일괄 조회하여 중복 발송 가능하며 신규 태스크 테스트가 없다.",
+    "rank": 6
+  },
+  {
+    "task": "s6b-t133",
+    "code": "4c95c839",
+    "criteria": [
+      5,
+      5
+    ],
+    "score": 5,
+    "reason": "manifest와 lockfile 선복사, npm ci 캐시 마운트, 소스 후복사 및 next build→npm start:3000을 모두 충족한다; Docker 실빌드는 제공 검사에서 미확인이다.",
+    "rank": 1
+  },
+  {
+    "task": "s6b-t133",
+    "code": "747190bc",
+    "criteria": [
+      5,
+      5
+    ],
+    "score": 5,
+    "reason": "manifest와 lockfile 선복사, npm ci 캐시 마운트, 소스 후복사 및 next build→npm start:3000을 모두 충족한다; Docker 실빌드는 제공 검사에서 미확인이다.",
+    "rank": 1
+  },
+  {
+    "task": "s6b-t133",
+    "code": "77f00a88",
+    "criteria": [
+      5,
+      5
+    ],
+    "score": 5,
+    "reason": "manifest와 lockfile 선복사, npm ci 캐시 마운트, 소스 후복사 및 next build→npm start:3000을 모두 충족한다; Docker 실빌드는 제공 검사에서 미확인이다.",
+    "rank": 1
+  },
+  {
+    "task": "s6b-t133",
+    "code": "9d2de06d",
+    "criteria": [
+      5,
+      5
+    ],
+    "score": 5,
+    "reason": "manifest와 lockfile 선복사, npm ci 캐시 마운트, 소스 후복사 및 next build→npm start:3000을 모두 충족한다; Docker 실빌드는 제공 검사에서 미확인이다.",
+    "rank": 1
+  },
+  {
+    "task": "s6b-t133",
+    "code": "b64cfb35",
+    "criteria": [
+      5,
+      5
+    ],
+    "score": 5,
+    "reason": "manifest와 lockfile 선복사, npm ci 캐시 마운트, 소스 후복사 및 next build→npm start:3000을 모두 충족한다; Docker 실빌드는 제공 검사에서 미확인이다.",
+    "rank": 1
+  },
+  {
+    "task": "s6b-t133",
+    "code": "d7efa73e",
+    "criteria": [
+      5,
+      5
+    ],
+    "score": 5,
+    "reason": "manifest와 lockfile 선복사, npm ci 캐시 마운트, 소스 후복사 및 next build→npm start:3000을 모두 충족한다; Docker 실빌드는 제공 검사에서 미확인이다.",
+    "rank": 1
+  },
+  {
+    "task": "s6b-t133",
+    "code": "e7c0a985",
+    "criteria": [
+      5,
+      5
+    ],
+    "score": 5,
+    "reason": "manifest와 lockfile 선복사, npm ci 캐시 마운트, 소스 후복사 및 next build→npm start:3000을 모두 충족한다; Docker 실빌드는 제공 검사에서 미확인이다.",
+    "rank": 1
+  },
+  {
+    "task": "s6b-t133",
+    "code": "e8017e36",
+    "criteria": [
+      5,
+      5
+    ],
+    "score": 5,
+    "reason": "manifest와 lockfile 선복사, npm ci 캐시 마운트, 소스 후복사 및 next build→npm start:3000을 모두 충족한다; Docker 실빌드는 제공 검사에서 미확인이다.",
+    "rank": 1
+  },
+  {
+    "task": "s6b-t133",
+    "code": "eaf86736",
+    "criteria": [
+      5,
+      5
+    ],
+    "score": 5,
+    "reason": "manifest와 lockfile 선복사, npm ci 캐시 마운트, 소스 후복사 및 next build→npm start:3000을 모두 충족한다; Docker 실빌드는 제공 검사에서 미확인이다.",
+    "rank": 1
+  },
+  {
+    "task": "s6b-t179",
+    "code": "02d8febe",
+    "criteria": [
+      5,
+      5
+    ],
+    "score": 5,
+    "reason": "기존 engine·한 트랜잭션의 row_number 삭제로 가장 이른 행을 보존하고 id 동률·NULL 처리를 명시하며 UTC 일별 전후/삭제 수를 출력한다.",
+    "rank": 1
+  },
+  {
+    "task": "s6b-t179",
+    "code": "339e5172",
+    "criteria": [
+      5,
+      5
+    ],
+    "score": 5,
+    "reason": "기존 engine·한 트랜잭션의 row_number 삭제로 가장 이른 행을 보존하고 id 동률·NULL 처리를 명시하며 UTC 일별 전후/삭제 수를 출력한다.",
+    "rank": 1
+  },
+  {
+    "task": "s6b-t179",
+    "code": "3495e763",
+    "criteria": [
+      5,
+      5
+    ],
+    "score": 5,
+    "reason": "기존 engine·한 트랜잭션의 row_number 삭제로 가장 이른 행을 보존하고 id 동률·NULL 처리를 명시하며 UTC 일별 전후/삭제 수를 출력한다.",
+    "rank": 1
+  },
+  {
+    "task": "s6b-t179",
+    "code": "7dcce826",
+    "criteria": [
+      5,
+      5
+    ],
+    "score": 5,
+    "reason": "기존 engine·한 트랜잭션의 row_number 삭제로 가장 이른 행을 보존하고 id 동률·NULL 처리를 명시하며 UTC 일별 전후/삭제 수를 출력한다.",
+    "rank": 1
+  },
+  {
+    "task": "s6b-t179",
+    "code": "9549d007",
+    "criteria": [
+      5,
+      5
+    ],
+    "score": 5,
+    "reason": "기존 engine·한 트랜잭션의 row_number 삭제로 가장 이른 행을 보존하고 id 동률·NULL 처리를 명시하며 UTC 일별 전후/삭제 수를 출력한다.",
+    "rank": 1
+  },
+  {
+    "task": "s6b-t179",
+    "code": "ce208202",
+    "criteria": [
+      5,
+      5
+    ],
+    "score": 5,
+    "reason": "기존 engine·한 트랜잭션의 row_number 삭제로 가장 이른 행을 보존하고 id 동률·NULL 처리를 명시하며 UTC 일별 전후/삭제 수를 출력한다.",
+    "rank": 1
+  },
+  {
+    "task": "s6b-t179",
+    "code": "cf52b639",
+    "criteria": [
+      5,
+      5
+    ],
+    "score": 5,
+    "reason": "기존 engine·한 트랜잭션의 row_number 삭제로 가장 이른 행을 보존하고 id 동률·NULL 처리를 명시하며 UTC 일별 전후/삭제 수를 출력한다.",
+    "rank": 1
+  },
+  {
+    "task": "s6b-t179",
+    "code": "df0b7532",
+    "criteria": [
+      5,
+      5
+    ],
+    "score": 5,
+    "reason": "기존 engine·한 트랜잭션의 row_number 삭제로 가장 이른 행을 보존하고 id 동률·NULL 처리를 명시하며 UTC 일별 전후/삭제 수를 출력한다.",
+    "rank": 1
+  },
+  {
+    "task": "s6b-t179",
+    "code": "e8f25480",
+    "criteria": [
+      5,
+      5
+    ],
+    "score": 5,
+    "reason": "기존 engine·한 트랜잭션의 row_number 삭제로 가장 이른 행을 보존하고 id 동률·NULL 처리를 명시하며 UTC 일별 전후/삭제 수를 출력한다.",
+    "rank": 1
+  },
+  {
+    "task": "s6b-t354",
+    "code": "1b741e0b",
+    "criteria": [
+      5,
+      5
+    ],
+    "score": 5,
+    "reason": "DB current_heads와 script heads의 집합을 비교하여 불일치 시 명확히 중단하며 init_db 전에 호출한다; 새 함수·호출 외 무관한 변경이 없다.",
+    "rank": 1
+  },
+  {
+    "task": "s6b-t354",
+    "code": "4c9defb9",
+    "criteria": [
+      5,
+      5
+    ],
+    "score": 5,
+    "reason": "DB current_heads와 script heads의 집합을 비교하여 불일치 시 명확히 중단하며 init_db 전에 호출한다; 새 함수·호출 외 무관한 변경이 없다.",
+    "rank": 1
+  },
+  {
+    "task": "s6b-t354",
+    "code": "64aabebc",
+    "criteria": [
+      5,
+      5
+    ],
+    "score": 5,
+    "reason": "DB current_heads와 script heads의 집합을 비교하여 불일치 시 명확히 중단하며 init_db 전에 호출한다; 새 함수·호출 외 무관한 변경이 없다.",
+    "rank": 1
+  },
+  {
+    "task": "s6b-t354",
+    "code": "7aecd146",
+    "criteria": [
+      5,
+      5
+    ],
+    "score": 5,
+    "reason": "DB current_heads와 script heads의 집합을 비교하여 불일치 시 명확히 중단하며 init_db 전에 호출한다; 새 함수·호출 외 무관한 변경이 없다.",
+    "rank": 1
+  },
+  {
+    "task": "s6b-t354",
+    "code": "891d7f5b",
+    "criteria": [
+      5,
+      5
+    ],
+    "score": 5,
+    "reason": "DB current_heads와 script heads의 집합을 비교하여 불일치 시 명확히 중단하며 init_db 전에 호출한다; 새 함수·호출 외 무관한 변경이 없다.",
+    "rank": 1
+  },
+  {
+    "task": "s6b-t354",
+    "code": "90edf13a",
+    "criteria": [
+      5,
+      5
+    ],
+    "score": 5,
+    "reason": "DB current_heads와 script heads의 집합을 비교하여 불일치 시 명확히 중단하며 init_db 전에 호출한다; 새 함수·호출 외 무관한 변경이 없다.",
+    "rank": 1
+  },
+  {
+    "task": "s6b-t354",
+    "code": "d8803865",
+    "criteria": [
+      5,
+      5
+    ],
+    "score": 5,
+    "reason": "DB current_heads와 script heads의 집합을 비교하여 불일치 시 명확히 중단하며 init_db 전에 호출한다; 새 함수·호출 외 무관한 변경이 없다.",
+    "rank": 1
+  },
+  {
+    "task": "s6b-t354",
+    "code": "e27b07d0",
+    "criteria": [
+      5,
+      5
+    ],
+    "score": 5,
+    "reason": "DB current_heads와 script heads의 집합을 비교하여 불일치 시 명확히 중단하며 init_db 전에 호출한다; 새 함수·호출 외 무관한 변경이 없다.",
+    "rank": 1
+  },
+  {
+    "task": "s6b-t354",
+    "code": "e909eebf",
+    "criteria": [
+      5,
+      5
+    ],
+    "score": 5,
+    "reason": "DB current_heads와 script heads의 집합을 비교하여 불일치 시 명확히 중단하며 init_db 전에 호출한다; 새 함수·호출 외 무관한 변경이 없다.",
+    "rank": 1
+  }
+]

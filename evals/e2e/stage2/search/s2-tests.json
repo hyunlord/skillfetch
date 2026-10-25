@@ -1,0 +1,1974 @@
+{
+ "query": "Write a pytest test suite for the untested Python module src/recur/rules.py (recurrence rule parsing and date expansion) with high coverage and edge cases",
+ "profile": {
+  "path": "<e2e>/repos/s2-tests",
+  "languages": [
+   "python"
+  ],
+  "frameworks": [
+   "pytest"
+  ],
+  "package_managers": [
+   "uv"
+  ],
+  "tags": [
+   "pytest",
+   "python",
+   "uv"
+  ],
+  "manifests": [
+   "pyproject.toml",
+   "uv.lock"
+  ]
+ },
+ "compact": {
+  "query": "Write a pytest test suite for the untested Python module src/recur/rules.py (recurrence rule parsing and date expansion) with high coverage and edge cases",
+  "results": [
+   {
+    "id": "uasl/python-testing-patterns@e62d0f1ca316",
+    "title": "python-testing-patterns",
+    "summary": "Guides the agent in designing and implementing Python tests using pytest patterns, fixtures, mocks, and specialized testing techniques.",
+    "tier": "B",
+    "token_estimate": 6281
+   },
+   {
+    "id": "uasl/unit-testing@6c5fbb821103",
+    "title": "unit-testing",
+    "summary": "Guides the agent to write and improve isolated unit tests using common testing patterns, test doubles, naming conventions, and language-specific frameworks.",
+    "tier": "B",
+    "token_estimate": 6067
+   },
+   {
+    "id": "uasl/wycheproof@8924e1e4bfb6",
+    "title": "wycheproof",
+    "summary": "Use Wycheproof test vectors to validate cryptographic implementations against known attacks and edge cases.",
+    "tier": "B",
+    "token_estimate": 4838
+   },
+   {
+    "id": "uasl/radar@a47ea6fd5f95",
+    "title": "radar",
+    "summary": "Add and refine tests, diagnose flaky behavior, and improve coverage while preserving product behavior.",
+    "tier": "B",
+    "token_estimate": 2701
+   },
+   {
+    "id": "uasl/fastapi-endpoint@2a93d50c4970",
+    "title": "fastapi-endpoint",
+    "summary": "Guides the agent through exploring an existing FastAPI project, asking clarifying questions, planning an endpoint implementation for approval, and then…",
+    "tier": "B",
+    "token_estimate": 3875
+   },
+   {
+    "id": "uasl/semgrep-rule-creator@ae4d35a76948",
+    "title": "semgrep-rule-creator",
+    "summary": "Guides the agent through creating custom Semgrep rules, from consulting documentation and designing tests to validating and optimizing rules.",
+    "tier": "B",
+    "token_estimate": 1836
+   },
+   {
+    "id": "uasl/variant-analysis@4e25478feb58",
+    "title": "variant-analysis",
+    "summary": "Guides systematic searching for variants of a known vulnerability or bug, from understanding its root cause through generalizing patterns and triaging matches.",
+    "tier": "B",
+    "token_estimate": 1414
+   },
+   {
+    "id": "uasl/semgrep-rule-variant-creator@2cea56923011",
+    "title": "semgrep-rule-variant-creator",
+    "summary": "Ports existing Semgrep rules to applicable target languages by analyzing language applicability, creating tests before rules, and validating each variant…",
+    "tier": "B",
+    "token_estimate": 2015
+   },
+   {
+    "id": "uasl/integration-testing@62b51275be50",
+    "title": "integration-testing",
+    "summary": "Guides agents to write integration tests that exercise multiple components together, using real dependencies and suitable test frameworks.",
+    "tier": "B",
+    "token_estimate": 5792
+   },
+   {
+    "id": "uasl/clean-architecture@acaac6e9e2a3",
+    "title": "clean-architecture",
+    "summary": "Apply Clean Architecture principles to design and review software boundaries, dependencies, components, and modules.",
+    "tier": "B",
+    "token_estimate": 5067
+   },
+   {
+    "id": "uasl/async-python-patterns@957ebfe54aa7",
+    "title": "async-python-patterns",
+    "summary": "Guides implementation of asynchronous Python applications using asyncio, concurrency patterns, and async I/O.",
+    "tier": "B",
+    "token_estimate": 4953
+   },
+   {
+    "id": "uasl/verification-loop@39d9be23cf50",
+    "title": "verification-loop",
+    "summary": "Guides the agent through build, type, lint, test, security, and diff verification.",
+    "tier": "B",
+    "token_estimate": 619
+   },
+   {
+    "id": "uasl/atheris@5b575b7295c7",
+    "title": "atheris",
+    "summary": "Guides agents in using Atheris to fuzz Python code and Python C extensions, including writing harnesses, configuring instrumentation and sanitizers, and…",
+    "tier": "B",
+    "token_estimate": 3612
+   },
+   {
+    "id": "anthropics-skills/mcp-builder@7e8426a435cb",
+    "title": "mcp-builder",
+    "summary": "Guides agents through researching, planning, implementing, testing, and evaluating MCP servers that connect LLMs to external services.",
+    "tier": "A",
+    "token_estimate": 2264
+   },
+   {
+    "id": "uasl/abstraction-concrete-examples@1fc651aacfd7",
+    "title": "abstraction-concrete-examples",
+    "summary": "Use an abstraction ladder to connect high-level principles with concrete, actionable examples.",
+    "tier": "B",
+    "token_estimate": 1462
+   },
+   {
+    "id": "uasl/code-review-excellence@ad803274d219",
+    "title": "code-review-excellence",
+    "summary": "Guides systematic, constructive code reviews that identify important correctness, security, performance, testing, and design concerns.",
+    "tier": "B",
+    "token_estimate": 3283
+   },
+   {
+    "id": "uasl/attest@3259b6f024a0",
+    "title": "attest",
+    "summary": "Verifies implementations against specifications by extracting acceptance criteria, generating BDD scenarios, checking evidence, and reporting compliance.",
+    "tier": "B",
+    "token_estimate": 4649
+   },
+   {
+    "id": "uasl/heuristics-and-checklists@5866be43c566",
+    "title": "heuristics-and-checklists",
+    "summary": "Use practical heuristics to simplify decisions and checklists to prevent missed steps in procedures.",
+    "tier": "B",
+    "token_estimate": 3929
+   },
+   {
+    "id": "uasl/tdd-workflow@6eadb0bf0ea8",
+    "title": "tdd-workflow",
+    "summary": "Follow a test-driven workflow by writing tests before implementation, running tests through development, and refactoring while keeping them green.",
+    "tier": "B",
+    "token_estimate": 2411
+   },
+   {
+    "id": "uasl/thinking-thought-experiment@da6ed475a5d8",
+    "title": "thinking-thought-experiment",
+    "summary": "Use structured hypothetical scenarios to evaluate ideas when empirical testing is impractical.",
+    "tier": "B",
+    "token_estimate": 2224
+   },
+   {
+    "id": "anthropics-skills/webapp-testing@a4b4ce82b644",
+    "title": "webapp-testing",
+    "summary": "Use native Python Playwright scripts to test local web applications, choosing an approach based on whether the app is static or dynamic.",
+    "tier": "A",
+    "token_estimate": 965
+   },
+   {
+    "id": "uasl/differential-review@b9d1a5a99f5e",
+    "title": "differential-review",
+    "summary": "Guides security-focused review of code changes using risk-based analysis, git history, test coverage, blast-radius assessment, and adversarial review.",
+    "tier": "B",
+    "token_estimate": 1631
+   },
+   {
+    "id": "uasl/property-based-testing@a168f6739085",
+    "title": "property-based-testing",
+    "summary": "Use property-based testing proactively when it can strengthen coverage, especially for transformations, parsers, validators, algorithms, and smart contracts.",
+    "tier": "B",
+    "token_estimate": 1520
+   },
+   {
+    "id": "uasl/systematic-debug@6b158e105823",
+    "title": "systematic-debug",
+    "summary": "Use test bombs to narrow an unclear bug to a likely component, and layered tests to isolate the failing stage in a pipeline.",
+    "tier": "B",
+    "token_estimate": 3151
+   },
+   {
+    "id": "uasl/n8n-code-python@ba1cd974d317",
+    "title": "n8n-code-python",
+    "summary": "Guides agents writing Python for n8n Code nodes, including n8n data access and return formats, execution modes, and Python’s standard-library limitations.",
+    "tier": "B",
+    "token_estimate": 4461
+   },
+   {
+    "id": "uasl/challenge-that@3a81f0228530",
+    "title": "challenge-that",
+    "summary": "When invoked, identify the proposal or decision under discussion and critique it through five adversarial perspectives.",
+    "tier": "B",
+    "token_estimate": 601
+   },
+   {
+    "id": "uasl/builder@8d7f0953ade3",
+    "title": "builder",
+    "summary": "Guides the agent to implement production-ready, type-safe business logic, API integrations, and data models, with validation, error handling, and test handoffs.",
+    "tier": "B",
+    "token_estimate": 3007
+   },
+   {
+    "id": "uasl/python-type-safety@60be75b4816f",
+    "title": "python-type-safety",
+    "summary": "Guides agents to use Python type annotations, generics, protocols, and type narrowing to make code statically checkable.",
+    "tier": "B",
+    "token_estimate": 2813
+   },
+   {
+    "id": "uasl/dynamics365-automation@03e4959eec42",
+    "title": "dynamics365-automation",
+    "summary": "Use the Dynamics 365 CRM toolkit through Rube MCP to manage CRM records, including leads, accounts, contacts, opportunities, sales orders, invoices, and…",
+    "tier": "B",
+    "token_estimate": 2053
+   },
+   {
+    "id": "uasl/microinteractions@d61a5035d0f0",
+    "title": "microinteractions",
+    "summary": "Guides agents in designing and reviewing microinteractions using triggers, rules, feedback, loops and modes, signature moments, and simplification.",
+    "tier": "B",
+    "token_estimate": 4774
+   },
+   {
+    "id": "uasl/fastapi-templates@effcd0de0b4c",
+    "title": "fastapi-templates",
+    "summary": "Guides creation of structured FastAPI backend projects using async patterns, dependency injection, repository and service layers, authentication, and testing…",
+    "tier": "B",
+    "token_estimate": 3748
+   },
+   {
+    "id": "uasl/saas-revenue-growth-metrics@a287946f472a",
+    "title": "saas-revenue-growth-metrics",
+    "summary": "Guides agents through calculating and interpreting SaaS revenue, retention, expansion, and cohort metrics.",
+    "tier": "B",
+    "token_estimate": 5773
+   },
+   {
+    "id": "uasl/python-error-handling@8dc34883a143",
+    "title": "python-error-handling",
+    "summary": "Guides agents to implement Python validation and error handling with meaningful exceptions, exception chaining, and resilient batch processing.",
+    "tier": "B",
+    "token_estimate": 2680
+   },
+   {
+    "id": "uasl/python-design-patterns@5c0fbe0d4633",
+    "title": "python-design-patterns",
+    "summary": "Guides the agent to design and refactor Python code using simple, focused components, clear separation of concerns, composition, and dependency injection.",
+    "tier": "B",
+    "token_estimate": 3093
+   },
+   {
+    "id": "uasl/probe@e9e9e74a4225",
+    "title": "probe",
+    "summary": "Use Probe for authorized, safe dynamic security testing, penetration-test planning, and runtime vulnerability verification.",
+    "tier": "B",
+    "token_estimate": 2548
+   },
+   {
+    "id": "uasl/acceptance-testing@7f713f1566e8",
+    "title": "acceptance-testing",
+    "summary": "Use BDD acceptance-testing practices to turn business requirements into executable specifications, step definitions, and CI-validated tests.",
+    "tier": "B",
+    "token_estimate": 5775
+   },
+   {
+    "id": "uasl/ripple@620dca56eca0",
+    "title": "ripple",
+    "summary": "Analyze a proposed change before implementation by tracing affected areas, checking consistency with existing patterns, and assessing risk.",
+    "tier": "B",
+    "token_estimate": 2125
+   },
+   {
+    "id": "uasl/sketch@2a8aac6ecc18",
+    "title": "sketch",
+    "summary": "Guides the agent to produce Python code for Gemini image generation, editing, prompt refinement, and batch workflows without executing API calls.",
+    "tier": "B",
+    "token_estimate": 2391
+   },
+   {
+    "id": "uasl/grill-with-docs@99f1bafe73fe",
+    "title": "grill-with-docs",
+    "summary": "Run an interactive plan review that checks terminology and design claims against the codebase, asking focused questions and recommending answers.",
+    "tier": "B",
+    "token_estimate": 853
+   },
+   {
+    "id": "uasl/big-picture-thinking-engine@cb520dc8c729",
+    "title": "big-picture-thinking-engine",
+    "summary": "Use multiple time, scale, stakeholder, causal, and recurrence perspectives to evaluate significant decisions.",
+    "tier": "B",
+    "token_estimate": 3005
+   },
+   {
+    "id": "uasl/clean-code@f135cf4e9ff5",
+    "title": "clean-code",
+    "summary": "Guide the agent to write, review, and refactor readable, maintainable code using clear names, focused functions, disciplined comments and formatting, explicit…",
+    "tier": "B",
+    "token_estimate": 4775
+   },
+   {
+    "id": "uasl/saas-economics-efficiency-metrics@b5a33fe2813c",
+    "title": "saas-economics-efficiency-metrics",
+    "summary": "Evaluate SaaS unit economics and capital efficiency to judge whether growth is financially sustainable.",
+    "tier": "B",
+    "token_estimate": 6236
+   },
+   {
+    "id": "uasl/zen@f72229d0a781",
+    "title": "zen",
+    "summary": "Use Zen to review or refactor code for readability and maintainability while preserving behavior, staying within scope, and verifying changes.",
+    "tier": "B",
+    "token_estimate": 3182
+   },
+   {
+    "id": "uasl/atlas@eeafabd38463",
+    "title": "atlas",
+    "summary": "Atlas guides the agent through ordered system-level architecture analysis and turns findings into actionable proposals, ADRs, RFCs, or technical-debt plans.",
+    "tier": "B",
+    "token_estimate": 2445
+   },
+   {
+    "id": "uasl/software-design-philosophy@066bc275787f",
+    "title": "software-design-philosophy",
+    "summary": "Use software-design principles to reduce complexity through deep modules, information hiding, and deliberate interface design.",
+    "tier": "B",
+    "token_estimate": 5135
+   },
+   {
+    "id": "uasl/thinking-margin-of-safety@2336a8b814d3",
+    "title": "thinking-margin-of-safety",
+    "summary": "Apply a margin-of-safety approach to uncertain commitments and designs by adding buffers or slack.",
+    "tier": "B",
+    "token_estimate": 1978
+   },
+   {
+    "id": "uasl/saga@fabeed82c780",
+    "title": "saga",
+    "summary": "Creates customer-centric product and feature narratives using explicit storytelling frameworks, concrete scenes, tension, and transformation arcs.",
+    "tier": "B",
+    "token_estimate": 4941
+   },
+   {
+    "id": "uasl/clay@6c9572941894",
+    "title": "clay",
+    "summary": "Produces reproducible code and operating guidance for AI 3D generation, modeling, game-asset pipelines, and quality validation.",
+    "tier": "B",
+    "token_estimate": 2997
+   },
+   {
+    "id": "uasl/lens@6fbc66f7a7bb",
+    "title": "lens",
+    "summary": "Systematically investigate a codebase to explain feature existence, execution and data flows, and module responsibilities, grounding findings in file-and-line…",
+    "tier": "B",
+    "token_estimate": 2813
+   },
+   {
+    "id": "uasl/python-performance-optimization@bf455fd100bf",
+    "title": "python-performance-optimization",
+    "summary": "Profile Python applications to identify CPU, memory, I/O, and database bottlenecks, then apply measured optimization techniques.",
+    "tier": "B",
+    "token_estimate": 5128
+   }
+  ]
+ },
+ "verbose": {
+  "query": "Write a pytest test suite for the untested Python module src/recur/rules.py (recurrence rule parsing and date expansion) with high coverage and edge cases",
+  "results": [
+   {
+    "id": "uasl/python-testing-patterns@e62d0f1ca316",
+    "title": "python-testing-patterns",
+    "summary": "Guides the agent in designing and implementing Python tests using pytest patterns, fixtures, mocks, and specialized testing techniques. It emphasizes focused, isolated tests and meaningful coverage of failure behavior.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python"
+     ],
+     "frameworks": [
+      "pytest",
+      "hypothesis",
+      "freezegun",
+      "unittest.mock"
+     ],
+     "phase": [
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "testing",
+      "backend"
+     ]
+    },
+    "match_reasons": [
+     "'write' in synthetic_queries",
+     "'pytest' in description, keywords, synthetic_queries, summary",
+     "'test' in description, keywords, synthetic_queries",
+     "'suite' in synthetic_queries",
+     "'python' in title, description, keywords, synthetic_queries, summary",
+     "'coverage' in keywords, summary",
+     "'cases' in synthetic_queries",
+     "profile tag 'pytest' matches tags.frameworks (x1.3)",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 6281
+   },
+   {
+    "id": "uasl/unit-testing@6c5fbb821103",
+    "title": "unit-testing",
+    "summary": "Guides the agent to write and improve isolated unit tests using common testing patterns, test doubles, naming conventions, and language-specific frameworks. Emphasizes focused, deterministic tests and meaningful coverage.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "c#",
+      "go",
+      "java",
+      "javascript",
+      "python",
+      "typescript"
+     ],
+     "frameworks": [
+      "autofixture",
+      "jest",
+      "junit 5",
+      "mstest",
+      "nunit",
+      "pytest",
+      "vitest",
+      "xunit"
+     ],
+     "phase": [
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "testing"
+     ]
+    },
+    "match_reasons": [
+     "'write' in synthetic_queries, summary",
+     "'pytest' in description, keywords, synthetic_queries",
+     "'test' in description, keywords, synthetic_queries, summary",
+     "'python' in synthetic_queries",
+     "'coverage' in keywords, synthetic_queries, summary",
+     "'cases' in synthetic_queries",
+     "profile tag 'pytest' matches tags.frameworks (x1.3)",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 6067
+   },
+   {
+    "id": "uasl/wycheproof@8924e1e4bfb6",
+    "title": "wycheproof",
+    "summary": "Use Wycheproof test vectors to validate cryptographic implementations against known attacks and edge cases. Integrate the vectors into test harnesses and CI to check valid, invalid, and acceptable cases.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python",
+      "javascript",
+      "java"
+     ],
+     "frameworks": [
+      "pytest",
+      "mocha"
+     ],
+     "phase": [
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "cryptography",
+      "testing",
+      "security"
+     ]
+    },
+    "match_reasons": [
+     "'pytest' in synthetic_queries",
+     "'test' in description, keywords, synthetic_queries, summary",
+     "'suite' in synthetic_queries",
+     "'edge' in description, keywords, synthetic_queries, summary",
+     "'cases' in description, keywords, synthetic_queries, summary",
+     "profile tag 'pytest' matches tags.frameworks (x1.3)",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 4838
+   },
+   {
+    "id": "uasl/radar@a47ea6fd5f95",
+    "title": "radar",
+    "summary": "Add and refine tests, diagnose flaky behavior, and improve coverage while preserving product behavior. Follow the project’s existing testing conventions and verify changes with tests and relevant references.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "javascript",
+      "typescript",
+      "python",
+      "go",
+      "rust",
+      "java"
+     ],
+     "frameworks": [
+      "vitest",
+      "jest",
+      "pytest",
+      "testify",
+      "junit 5"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "test",
+      "review"
+     ],
+     "domain": [
+      "testing",
+      "coverage",
+      "ci",
+      "reliability"
+     ]
+    },
+    "match_reasons": [
+     "'test' in description, keywords, synthetic_queries",
+     "'python' in description",
+     "'coverage' in description, keywords, synthetic_queries, summary",
+     "'edge' in description, keywords, synthetic_queries",
+     "'cases' in keywords, synthetic_queries",
+     "profile tag 'pytest' matches tags.frameworks (x1.3)",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 2701
+   },
+   {
+    "id": "uasl/fastapi-endpoint@2a93d50c4970",
+    "title": "fastapi-endpoint",
+    "summary": "Guides the agent through exploring an existing FastAPI project, asking clarifying questions, planning an endpoint implementation for approval, and then building the endpoint and tests. It emphasizes async SQLAlchemy, Pydantic schemas, dependency-injected authentication, and API test coverage.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python"
+     ],
+     "frameworks": [
+      "fastapi",
+      "pydantic",
+      "sqlalchemy",
+      "pytest"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "backend",
+      "api",
+      "database",
+      "testing"
+     ]
+    },
+    "match_reasons": [
+     "'pytest' in description, synthetic_queries",
+     "'test' in summary",
+     "'python' in keywords",
+     "'coverage' in summary",
+     "profile tag 'pytest' matches tags.frameworks (x1.3)",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 3875
+   },
+   {
+    "id": "uasl/semgrep-rule-creator@ae4d35a76948",
+    "title": "semgrep-rule-creator",
+    "summary": "Guides the agent through creating custom Semgrep rules, from consulting documentation and designing tests to validating and optimizing rules. It emphasizes specific detections, safe-case coverage, and taint mode for data-flow vulnerabilities.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [
+      "semgrep"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "security",
+      "static-analysis",
+      "tooling",
+      "testing"
+     ]
+    },
+    "match_reasons": [
+     "'write' in synthetic_queries",
+     "'test' in synthetic_queries",
+     "'rules' in description, keywords, summary",
+     "'rule' in title, synthetic_queries",
+     "'coverage' in summary",
+     "'cases' in synthetic_queries"
+    ],
+    "token_estimate": 1836
+   },
+   {
+    "id": "uasl/variant-analysis@4e25478feb58",
+    "title": "variant-analysis",
+    "summary": "Guides systematic searching for variants of a known vulnerability or bug, from understanding its root cause through generalizing patterns and triaging matches. Emphasizes broad codebase coverage, incremental query refinement, and checking edge cases and false positives.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python",
+      "javascript",
+      "java",
+      "go",
+      "cpp"
+     ],
+     "frameworks": [
+      "codeql",
+      "semgrep"
+     ],
+     "phase": [
+      "plan",
+      "test",
+      "review"
+     ],
+     "domain": [
+      "security",
+      "static-analysis",
+      "code-audit"
+     ]
+    },
+    "match_reasons": [
+     "'module' in synthetic_queries",
+     "'rule' in synthetic_queries",
+     "'coverage' in summary",
+     "'edge' in synthetic_queries, summary",
+     "'cases' in synthetic_queries, summary",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 1414
+   },
+   {
+    "id": "uasl/semgrep-rule-variant-creator@2cea56923011",
+    "title": "semgrep-rule-variant-creator",
+    "summary": "Ports existing Semgrep rules to applicable target languages by analyzing language applicability, creating tests before rules, and validating each variant independently. Produces a separate rule and annotated test file for each applicable language.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "plan",
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "security",
+      "static-analysis",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'test' in description, keywords, synthetic_queries, summary",
+     "'python' in synthetic_queries",
+     "'rules' in description, summary",
+     "'rule' in title, description, keywords, synthetic_queries, summary",
+     "'coverage' in synthetic_queries"
+    ],
+    "token_estimate": 2015
+   },
+   {
+    "id": "uasl/integration-testing@62b51275be50",
+    "title": "integration-testing",
+    "summary": "Guides agents to write integration tests that exercise multiple components together, using real dependencies and suitable test frameworks. Covers test isolation, API testing patterns, database cleanup, and CI configuration for Testcontainers.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "typescript",
+      "csharp",
+      "java",
+      "python",
+      "go"
+     ],
+     "frameworks": [
+      "testcontainers",
+      "vitest",
+      "xunit",
+      "pytest",
+      "supertest",
+      "asp.net",
+      "spring-boot"
+     ],
+     "phase": [
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "testing",
+      "backend",
+      "ci"
+     ]
+    },
+    "match_reasons": [
+     "'write' in synthetic_queries, summary",
+     "'pytest' in description, keywords",
+     "'test' in description, keywords, synthetic_queries, summary",
+     "profile tag 'pytest' matches tags.frameworks (x1.3)",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 5792
+   },
+   {
+    "id": "uasl/clean-architecture@acaac6e9e2a3",
+    "title": "clean-architecture",
+    "summary": "Apply Clean Architecture principles to design and review software boundaries, dependencies, components, and modules. Keep business rules independent of frameworks and infrastructure, and provide an architecture score with improvements when assessing an architecture.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "plan",
+      "implement",
+      "review"
+     ],
+     "domain": [
+      "software architecture",
+      "backend",
+      "design"
+     ]
+    },
+    "match_reasons": [
+     "'module' in synthetic_queries",
+     "'rules' in synthetic_queries, summary",
+     "'rule' in description, keywords",
+     "'cases' in description, keywords, synthetic_queries"
+    ],
+    "token_estimate": 5067
+   },
+   {
+    "id": "uasl/async-python-patterns@957ebfe54aa7",
+    "title": "async-python-patterns",
+    "summary": "Guides implementation of asynchronous Python applications using asyncio, concurrency patterns, and async I/O. It emphasizes keeping call paths consistently synchronous or asynchronous, avoiding event-loop blocking, and offloading synchronous library calls when needed.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python"
+     ],
+     "frameworks": [
+      "asyncio",
+      "aiohttp",
+      "fastapi",
+      "sanic",
+      "httpx",
+      "pytest-asyncio"
+     ],
+     "phase": [
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "backend",
+      "concurrency",
+      "async programming",
+      "testing"
+     ]
+    },
+    "match_reasons": [
+     "'write' in synthetic_queries",
+     "'pytest' in synthetic_queries",
+     "'python' in title, description, keywords, synthetic_queries, summary",
+     "'high' in description",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 4953
+   },
+   {
+    "id": "uasl/verification-loop@39d9be23cf50",
+    "title": "verification-loop",
+    "summary": "Guides the agent through build, type, lint, test, security, and diff verification. It also specifies how to handle verification failures and report results.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "javascript",
+      "typescript",
+      "python"
+     ],
+     "frameworks": [],
+     "phase": [
+      "test",
+      "review"
+     ],
+     "domain": [
+      "testing",
+      "tooling",
+      "security",
+      "git"
+     ]
+    },
+    "match_reasons": [
+     "'test' in summary",
+     "'coverage' in keywords, synthetic_queries",
+     "'edge' in synthetic_queries",
+     "'cases' in synthetic_queries",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 619
+   },
+   {
+    "id": "uasl/atheris@5b575b7295c7",
+    "title": "atheris",
+    "summary": "Guides agents in using Atheris to fuzz Python code and Python C extensions, including writing harnesses, configuring instrumentation and sanitizers, and managing fuzzing runs. It emphasizes harness practices and local setup for native-extension fuzzing.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python",
+      "c"
+     ],
+     "frameworks": [
+      "atheris",
+      "libfuzzer"
+     ],
+     "phase": [
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "testing",
+      "fuzzing",
+      "security",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'write' in synthetic_queries",
+     "'python' in description, keywords, synthetic_queries, summary",
+     "'coverage' in description, keywords, synthetic_queries",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 3612
+   },
+   {
+    "id": "anthropics-skills/mcp-builder@7e8426a435cb",
+    "title": "mcp-builder",
+    "summary": "Guides agents through researching, planning, implementing, testing, and evaluating MCP servers that connect LLMs to external services. It emphasizes discoverable tools, comprehensive API coverage, structured schemas and responses, and realistic evaluations.",
+    "tier": "A",
+    "tags": {
+     "languages": [
+      "python",
+      "typescript"
+     ],
+     "frameworks": [
+      "fastmcp",
+      "mcp sdk",
+      "pydantic",
+      "zod"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "test",
+      "review"
+     ],
+     "domain": [
+      "mcp",
+      "api",
+      "backend",
+      "tooling",
+      "testing"
+     ]
+    },
+    "match_reasons": [
+     "'test' in synthetic_queries",
+     "'python' in description, keywords",
+     "'high' in description",
+     "'coverage' in synthetic_queries, summary",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 2264
+   },
+   {
+    "id": "uasl/abstraction-concrete-examples@1fc651aacfd7",
+    "title": "abstraction-concrete-examples",
+    "summary": "Use an abstraction ladder to connect high-level principles with concrete, actionable examples. Gather requirements, build and validate the ladder, then deliver it with insights and applications.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "plan",
+      "implement",
+      "test",
+      "review"
+     ],
+     "domain": [
+      "documentation",
+      "communication",
+      "problem-solving"
+     ]
+    },
+    "match_reasons": [
+     "'test' in synthetic_queries",
+     "'high' in summary",
+     "'edge' in description, keywords, synthetic_queries",
+     "'cases' in description, keywords, synthetic_queries"
+    ],
+    "token_estimate": 1462
+   },
+   {
+    "id": "uasl/code-review-excellence@ad803274d219",
+    "title": "code-review-excellence",
+    "summary": "Guides systematic, constructive code reviews that identify important correctness, security, performance, testing, and design concerns. It emphasizes actionable, respectful feedback and a clear review decision.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python",
+      "javascript",
+      "typescript"
+     ],
+     "frameworks": [
+      "react"
+     ],
+     "phase": [
+      "review"
+     ],
+     "domain": [
+      "code-review",
+      "security",
+      "testing",
+      "teamwork"
+     ]
+    },
+    "match_reasons": [
+     "'python' in synthetic_queries",
+     "'coverage' in synthetic_queries",
+     "'edge' in synthetic_queries",
+     "'cases' in synthetic_queries",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 3283
+   },
+   {
+    "id": "uasl/attest@3259b6f024a0",
+    "title": "attest",
+    "summary": "Verifies implementations against specifications by extracting acceptance criteria, generating BDD scenarios, checking evidence, and reporting compliance. It does not make direct code changes and routes remediation to the appropriate agent.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "plan",
+      "test",
+      "review"
+     ],
+     "domain": [
+      "testing",
+      "quality-assurance",
+      "documentation",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'write' in description, synthetic_queries",
+     "'test' in synthetic_queries",
+     "'coverage' in synthetic_queries",
+     "'edge' in synthetic_queries",
+     "'cases' in synthetic_queries"
+    ],
+    "token_estimate": 4649
+   },
+   {
+    "id": "uasl/heuristics-and-checklists@5866be43c566",
+    "title": "heuristics-and-checklists",
+    "summary": "Use practical heuristics to simplify decisions and checklists to prevent missed steps in procedures. Select, test, and refine these tools based on the decision context, user expertise, and observed outcomes.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "plan",
+      "test",
+      "review"
+     ],
+     "domain": [
+      "decision-making",
+      "risk-management",
+      "quality-assurance",
+      "checklists"
+     ]
+    },
+    "match_reasons": [
+     "'test' in synthetic_queries, summary",
+     "'rules' in description, keywords",
+     "'rule' in synthetic_queries",
+     "'high' in synthetic_queries"
+    ],
+    "token_estimate": 3929
+   },
+   {
+    "id": "uasl/tdd-workflow@6eadb0bf0ea8",
+    "title": "tdd-workflow",
+    "summary": "Follow a test-driven workflow by writing tests before implementation, running tests through development, and refactoring while keeping them green. Aim for at least 80% coverage across unit, integration, and E2E tests, with attention to edge cases and errors.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "javascript",
+      "typescript"
+     ],
+     "frameworks": [
+      "jest",
+      "vitest",
+      "playwright",
+      "react testing library",
+      "next.js"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "test",
+      "review"
+     ],
+     "domain": [
+      "testing",
+      "frontend",
+      "backend"
+     ]
+    },
+    "match_reasons": [
+     "'write' in synthetic_queries",
+     "'test' in description, keywords, synthetic_queries, summary",
+     "'suite' in synthetic_queries",
+     "'coverage' in description, keywords, synthetic_queries, summary",
+     "'edge' in keywords, synthetic_queries, summary",
+     "'cases' in keywords, synthetic_queries, summary",
+     "skill languages ['javascript', 'typescript'] are not the repo's ['python'] (x0.5)"
+    ],
+    "token_estimate": 2411
+   },
+   {
+    "id": "uasl/thinking-thought-experiment@da6ed475a5d8",
+    "title": "thinking-thought-experiment",
+    "summary": "Use structured hypothetical scenarios to evaluate ideas when empirical testing is impractical. Define the scenario, set initial conditions, trace consequences, and derive actions from the insights.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "plan",
+      "review"
+     ],
+     "domain": [
+      "architecture",
+      "decision-making",
+      "risk-analysis",
+      "strategy"
+     ]
+    },
+    "match_reasons": [
+     "'test' in description, synthetic_queries",
+     "'edge' in description, keywords",
+     "'cases' in keywords"
+    ],
+    "token_estimate": 2224
+   },
+   {
+    "id": "anthropics-skills/webapp-testing@a4b4ce82b644",
+    "title": "webapp-testing",
+    "summary": "Use native Python Playwright scripts to test local web applications, choosing an approach based on whether the app is static or dynamic. For dynamic apps, inspect the rendered state before acting, and use bundled helper scripts to manage servers when appropriate.",
+    "tier": "A",
+    "tags": {
+     "languages": [
+      "python"
+     ],
+     "frameworks": [
+      "playwright"
+     ],
+     "phase": [
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "testing",
+      "frontend",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'write' in synthetic_queries",
+     "'test' in synthetic_queries, summary",
+     "'python' in keywords, summary",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 965
+   },
+   {
+    "id": "uasl/differential-review@b9d1a5a99f5e",
+    "title": "differential-review",
+    "summary": "Guides security-focused review of code changes using risk-based analysis, git history, test coverage, blast-radius assessment, and adversarial review. Requires findings to be evidence-based and a markdown report file to be produced.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "review"
+     ],
+     "domain": [
+      "security",
+      "code-review",
+      "git",
+      "testing"
+     ]
+    },
+    "match_reasons": [
+     "'write' in synthetic_queries",
+     "'test' in description, keywords, summary",
+     "'high' in synthetic_queries",
+     "'coverage' in description, keywords, summary"
+    ],
+    "token_estimate": 1631
+   },
+   {
+    "id": "uasl/property-based-testing@a168f6739085",
+    "title": "property-based-testing",
+    "summary": "Use property-based testing proactively when it can strengthen coverage, especially for transformations, parsers, validators, algorithms, and smart contracts. Offer it as an option when a high-value pattern is found, adapt the recommendation when the codebase already uses a PBT library, and respect a user's decline.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "solidity",
+      "vyper"
+     ],
+     "frameworks": [
+      "hypothesis",
+      "fast-check",
+      "proptest",
+      "echidna"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "test",
+      "review"
+     ],
+     "domain": [
+      "testing",
+      "smart-contracts",
+      "serialization",
+      "parsing"
+     ]
+    },
+    "match_reasons": [
+     "'write' in synthetic_queries",
+     "'test' in keywords, synthetic_queries",
+     "'parsing' in description, keywords",
+     "'high' in summary",
+     "'coverage' in description, summary",
+     "'edge' in synthetic_queries",
+     "'cases' in synthetic_queries",
+     "skill languages ['solidity', 'vyper'] are not the repo's ['python'] (x0.5)"
+    ],
+    "token_estimate": 1520
+   },
+   {
+    "id": "uasl/systematic-debug@6b158e105823",
+    "title": "systematic-debug",
+    "summary": "Use test bombs to narrow an unclear bug to a likely component, and layered tests to isolate the failing stage in a pipeline. Keep the resulting tests as regression coverage and use the identified failure to guide the fix.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "c#",
+      "go",
+      "python",
+      "typescript"
+     ],
+     "frameworks": [
+      "jest",
+      "pytest",
+      "vitest",
+      "xunit"
+     ],
+     "phase": [
+      "test",
+      "implement"
+     ],
+     "domain": [
+      "debugging",
+      "testing"
+     ]
+    },
+    "match_reasons": [
+     "'test' in description, keywords, synthetic_queries, summary",
+     "'coverage' in synthetic_queries, summary",
+     "profile tag 'pytest' matches tags.frameworks (x1.3)",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 3151
+   },
+   {
+    "id": "uasl/n8n-code-python@ba1cd974d317",
+    "title": "n8n-code-python",
+    "summary": "Guides agents writing Python for n8n Code nodes, including n8n data access and return formats, execution modes, and Python’s standard-library limitations. It recommends considering JavaScript first and using Python (Beta) for better n8n integration.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python",
+      "javascript"
+     ],
+     "frameworks": [
+      "n8n"
+     ],
+     "phase": [
+      "implement"
+     ],
+     "domain": [
+      "automation",
+      "workflow",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'write' in description, synthetic_queries",
+     "'python' in title, description, keywords, synthetic_queries, summary",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 4461
+   },
+   {
+    "id": "uasl/challenge-that@3a81f0228530",
+    "title": "challenge-that",
+    "summary": "When invoked, identify the proposal or decision under discussion and critique it through five adversarial perspectives. Synthesize actionable concerns and ask which ones to address before proceeding.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "plan",
+      "review"
+     ],
+     "domain": [
+      "decision-making",
+      "planning",
+      "review",
+      "risk-analysis"
+     ]
+    },
+    "match_reasons": [
+     "'test' in description, synthetic_queries",
+     "'edge' in keywords",
+     "'cases' in keywords"
+    ],
+    "token_estimate": 601
+   },
+   {
+    "id": "uasl/builder@8d7f0953ade3",
+    "title": "builder",
+    "summary": "Guides the agent to implement production-ready, type-safe business logic, API integrations, and data models, with validation, error handling, and test handoffs. It emphasizes TypeScript strictness, domain-appropriate patterns, and Japanese final outputs.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "typescript",
+      "go",
+      "python"
+     ],
+     "frameworks": [
+      "zod",
+      "pydantic",
+      "tanstack query",
+      "zustand",
+      "xstate"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "test",
+      "review"
+     ],
+     "domain": [
+      "backend",
+      "api",
+      "data-modeling",
+      "validation",
+      "state-management",
+      "event-sourcing"
+     ]
+    },
+    "match_reasons": [
+     "'test' in keywords, synthetic_queries, summary",
+     "'python' in synthetic_queries",
+     "'rule' in synthetic_queries",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 3007
+   },
+   {
+    "id": "uasl/python-type-safety@60be75b4816f",
+    "title": "python-type-safety",
+    "summary": "Guides agents to use Python type annotations, generics, protocols, and type narrowing to make code statically checkable. It also recommends strict type checking and modern union syntax.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python"
+     ],
+     "frameworks": [],
+     "phase": [
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "tooling",
+      "backend"
+     ]
+    },
+    "match_reasons": [
+     "'python' in title, description, keywords, synthetic_queries, summary",
+     "'module' in synthetic_queries",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 2813
+   },
+   {
+    "id": "uasl/dynamics365-automation@03e4959eec42",
+    "title": "dynamics365-automation",
+    "summary": "Use the Dynamics 365 CRM toolkit through Rube MCP to manage CRM records, including leads, accounts, contacts, opportunities, sales orders, invoices, and support cases. Check the toolkit connection before using tools and follow the documented reference and OData formats.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "implement"
+     ],
+     "domain": [
+      "crm",
+      "sales",
+      "customer-support",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'date' in synthetic_queries",
+     "'high' in synthetic_queries",
+     "'cases' in description, keywords, summary"
+    ],
+    "token_estimate": 2053
+   },
+   {
+    "id": "uasl/microinteractions@d61a5035d0f0",
+    "title": "microinteractions",
+    "summary": "Guides agents in designing and reviewing microinteractions using triggers, rules, feedback, loops and modes, signature moments, and simplification. It emphasizes discoverability, predictable behavior, honest feedback, and user-benefiting design.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "plan",
+      "implement",
+      "review"
+     ],
+     "domain": [
+      "design",
+      "frontend",
+      "product"
+     ]
+    },
+    "match_reasons": [
+     "'rules' in description, synthetic_queries, summary",
+     "'edge' in synthetic_queries",
+     "'cases' in synthetic_queries"
+    ],
+    "token_estimate": 4774
+   },
+   {
+    "id": "uasl/fastapi-templates@effcd0de0b4c",
+    "title": "fastapi-templates",
+    "summary": "Guides creation of structured FastAPI backend projects using async patterns, dependency injection, repository and service layers, authentication, and testing examples. Includes templates for API endpoints, database access, and user management.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python"
+     ],
+     "frameworks": [
+      "fastapi",
+      "sqlalchemy",
+      "pydantic",
+      "pytest"
+     ],
+     "phase": [
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "backend",
+      "api",
+      "testing"
+     ]
+    },
+    "match_reasons": [
+     "'test' in synthetic_queries",
+     "'python' in keywords, synthetic_queries",
+     "profile tag 'pytest' matches tags.frameworks (x1.3)",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 3748
+   },
+   {
+    "id": "uasl/saas-revenue-growth-metrics@a287946f472a",
+    "title": "saas-revenue-growth-metrics",
+    "summary": "Guides agents through calculating and interpreting SaaS revenue, retention, expansion, and cohort metrics. It emphasizes validating and segmenting metrics so that trends and business risks are not obscured by blended or incomplete reporting.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "plan",
+      "review"
+     ],
+     "domain": [
+      "finance",
+      "saas",
+      "analytics",
+      "business"
+     ]
+    },
+    "match_reasons": [
+     "'expansion' in description, keywords, synthetic_queries, summary"
+    ],
+    "token_estimate": 5773
+   },
+   {
+    "id": "uasl/python-error-handling@8dc34883a143",
+    "title": "python-error-handling",
+    "summary": "Guides agents to implement Python validation and error handling with meaningful exceptions, exception chaining, and resilient batch processing. It also recommends practices for domain-type conversion, progress reporting, logging, and testing error paths.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python"
+     ],
+     "frameworks": [],
+     "phase": [
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "backend",
+      "validation",
+      "error-handling",
+      "api",
+      "testing"
+     ]
+    },
+    "match_reasons": [
+     "'write' in synthetic_queries",
+     "'python' in title, description, keywords, synthetic_queries, summary",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 2680
+   },
+   {
+    "id": "uasl/python-design-patterns@5c0fbe0d4633",
+    "title": "python-design-patterns",
+    "summary": "Guides the agent to design and refactor Python code using simple, focused components, clear separation of concerns, composition, and dependency injection. It also recommends delaying abstractions, keeping functions focused, and testing layers in isolation.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python"
+     ],
+     "frameworks": [],
+     "phase": [
+      "plan",
+      "implement",
+      "review",
+      "test"
+     ],
+     "domain": [
+      "software-architecture",
+      "refactoring",
+      "code-quality",
+      "testing"
+     ]
+    },
+    "match_reasons": [
+     "'test' in synthetic_queries",
+     "'python' in title, description, keywords, synthetic_queries, summary",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 3093
+   },
+   {
+    "id": "uasl/probe@e9e9e74a4225",
+    "title": "probe",
+    "summary": "Use Probe for authorized, safe dynamic security testing, penetration-test planning, and runtime vulnerability verification. Verify findings and produce actionable security reports, following the skill’s routing, output, and safety requirements.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [
+      "owasp zap",
+      "burp suite",
+      "nuclei"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "test",
+      "review"
+     ],
+     "domain": [
+      "security",
+      "penetration-testing",
+      "vulnerability-scanning",
+      "api-security",
+      "ci-cd"
+     ]
+    },
+    "match_reasons": [
+     "'test' in description, synthetic_queries, summary",
+     "'suite' in description, keywords"
+    ],
+    "token_estimate": 2548
+   },
+   {
+    "id": "uasl/acceptance-testing@7f713f1566e8",
+    "title": "acceptance-testing",
+    "summary": "Use BDD acceptance-testing practices to turn business requirements into executable specifications, step definitions, and CI-validated tests. Apply the guidance across Gherkin- and Gauge-based frameworks and keep specifications useful as living documentation.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "java",
+      "javascript",
+      "typescript",
+      "ruby",
+      "c#",
+      "python",
+      "go"
+     ],
+     "frameworks": [
+      "cucumber",
+      "specflow",
+      "reqnroll",
+      "behave",
+      "gauge",
+      "godog"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "test",
+      "review"
+     ],
+     "domain": [
+      "testing",
+      "acceptance testing",
+      "bdd",
+      "ci"
+     ]
+    },
+    "match_reasons": [
+     "'test' in description, keywords",
+     "'python' in description",
+     "'coverage' in synthetic_queries",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 5775
+   },
+   {
+    "id": "uasl/ripple@620dca56eca0",
+    "title": "ripple",
+    "summary": "Analyze a proposed change before implementation by tracing affected areas, checking consistency with existing patterns, and assessing risk. Produce an evidence-based impact report and recommendation without modifying code.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "plan",
+      "review"
+     ],
+     "domain": [
+      "codebase analysis",
+      "dependencies",
+      "risk assessment"
+     ]
+    },
+    "match_reasons": [
+     "'write' in description",
+     "'test' in keywords, synthetic_queries",
+     "'coverage' in keywords"
+    ],
+    "token_estimate": 2125
+   },
+   {
+    "id": "uasl/sketch@2a8aac6ecc18",
+    "title": "sketch",
+    "summary": "Guides the agent to produce Python code for Gemini image generation, editing, prompt refinement, and batch workflows without executing API calls. It sets defaults for the API, prompt construction, output metadata, safety, and cost guidance.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python"
+     ],
+     "frameworks": [
+      "google-genai"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "image-generation",
+      "api",
+      "asset-generation"
+     ]
+    },
+    "match_reasons": [
+     "'write' in synthetic_queries",
+     "'python' in keywords, synthetic_queries, summary",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 2391
+   },
+   {
+    "id": "uasl/grill-with-docs@99f1bafe73fe",
+    "title": "grill-with-docs",
+    "summary": "Run an interactive plan review that checks terminology and design claims against the codebase, asking focused questions and recommending answers. Update domain documentation as terms and decisions are resolved, and create ADRs selectively.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "plan",
+      "implement",
+      "review"
+     ],
+     "domain": [
+      "planning",
+      "domain-modeling",
+      "docs",
+      "architecture",
+      "codebase"
+     ]
+    },
+    "match_reasons": [
+     "'test' in description, synthetic_queries",
+     "'edge' in synthetic_queries",
+     "'cases' in synthetic_queries"
+    ],
+    "token_estimate": 853
+   },
+   {
+    "id": "uasl/big-picture-thinking-engine@cb520dc8c729",
+    "title": "big-picture-thinking-engine",
+    "summary": "Use multiple time, scale, stakeholder, causal, and recurrence perspectives to evaluate significant decisions. Trace strategic insights back to practical actions and make the trade-offs explicit.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "plan",
+      "review"
+     ],
+     "domain": [
+      "strategy",
+      "decision-making",
+      "systems-thinking",
+      "software-architecture"
+     ]
+    },
+    "match_reasons": [
+     "'recurrence' in keywords, summary"
+    ],
+    "token_estimate": 3005
+   },
+   {
+    "id": "uasl/clean-code@f135cf4e9ff5",
+    "title": "clean-code",
+    "summary": "Guide the agent to write, review, and refactor readable, maintainable code using clear names, focused functions, disciplined comments and formatting, explicit error handling, and clean tests. It also calls for scoring code quality and identifying improvements when reviewing or writing code.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "implement",
+      "review",
+      "test",
+      "format"
+     ],
+     "domain": [
+      "code-quality",
+      "testing",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'write' in description, summary",
+     "'module' in synthetic_queries",
+     "'cases' in synthetic_queries"
+    ],
+    "token_estimate": 4775
+   },
+   {
+    "id": "uasl/saas-economics-efficiency-metrics@b5a33fe2813c",
+    "title": "saas-economics-efficiency-metrics",
+    "summary": "Evaluate SaaS unit economics and capital efficiency to judge whether growth is financially sustainable. Use the framework to assess acquisition costs, payback, cash runway, profitability, and whether to scale or optimize.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "plan",
+      "review"
+     ],
+     "domain": [
+      "finance",
+      "saas",
+      "business-analytics",
+      "product-management"
+     ]
+    },
+    "match_reasons": [
+     "'rule' in keywords, synthetic_queries",
+     "'high' in synthetic_queries"
+    ],
+    "token_estimate": 6236
+   },
+   {
+    "id": "uasl/zen@f72229d0a781",
+    "title": "zen",
+    "summary": "Use Zen to review or refactor code for readability and maintainability while preserving behavior, staying within scope, and verifying changes. Produce structured reports or route work to the appropriate agent when needed.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "typescript",
+      "javascript",
+      "python",
+      "go",
+      "rust",
+      "java"
+     ],
+     "frameworks": [
+      "react"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "test",
+      "review",
+      "format"
+     ],
+     "domain": [
+      "code-quality",
+      "refactoring",
+      "code-review",
+      "testing",
+      "tooling"
+     ]
+    },
+    "match_reasons": [
+     "'module' in synthetic_queries",
+     "'coverage' in synthetic_queries",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 3182
+   },
+   {
+    "id": "uasl/atlas@eeafabd38463",
+    "title": "atlas",
+    "summary": "Atlas guides the agent through ordered system-level architecture analysis and turns findings into actionable proposals, ADRs, RFCs, or technical-debt plans. It keeps implementation with another agent and routes unrelated work appropriately.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "plan",
+      "review"
+     ],
+     "domain": [
+      "architecture",
+      "technical debt",
+      "dependencies",
+      "documentation",
+      "modularization"
+     ]
+    },
+    "match_reasons": [
+     "'write' in synthetic_queries",
+     "'module' in description, keywords, synthetic_queries"
+    ],
+    "token_estimate": 2445
+   },
+   {
+    "id": "uasl/software-design-philosophy@066bc275787f",
+    "title": "software-design-philosophy",
+    "summary": "Use software-design principles to reduce complexity through deep modules, information hiding, and deliberate interface design. When assessing or changing designs, emphasize strategic improvements and comments that capture non-obvious intent.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "plan",
+      "implement",
+      "review"
+     ],
+     "domain": [
+      "software-design",
+      "architecture",
+      "code-quality"
+     ]
+    },
+    "match_reasons": [
+     "'module' in description, synthetic_queries",
+     "'cases' in synthetic_queries"
+    ],
+    "token_estimate": 5135
+   },
+   {
+    "id": "uasl/thinking-margin-of-safety@2336a8b814d3",
+    "title": "thinking-margin-of-safety",
+    "summary": "Apply a margin-of-safety approach to uncertain commitments and designs by adding buffers or slack. Use estimates and uncertainty to guide capacity, timeline, resource, and risk decisions.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "plan"
+     ],
+     "domain": [
+      "capacity-planning",
+      "risk-management",
+      "architecture",
+      "infrastructure",
+      "project-estimation"
+     ]
+    },
+    "match_reasons": [
+     "'date' in synthetic_queries",
+     "'edge' in description, synthetic_queries"
+    ],
+    "token_estimate": 1978
+   },
+   {
+    "id": "uasl/saga@fabeed82c780",
+    "title": "saga",
+    "summary": "Creates customer-centric product and feature narratives using explicit storytelling frameworks, concrete scenes, tension, and transformation arcs. It also requires narrative quality checks, Japanese final outputs, and structured handoffs.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [
+      "storybrand sb7",
+      "pixar story spine",
+      "hero's journey",
+      "jtbd",
+      "story mapping",
+      "car"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "review"
+     ],
+     "domain": [
+      "product",
+      "storytelling",
+      "documentation"
+     ]
+    },
+    "match_reasons": [
+     "'write' in synthetic_queries",
+     "'cases' in description, keywords"
+    ],
+    "token_estimate": 4941
+   },
+   {
+    "id": "uasl/clay@6c9572941894",
+    "title": "clay",
+    "summary": "Produces reproducible code and operating guidance for AI 3D generation, modeling, game-asset pipelines, and quality validation. It requires safe credential handling and cost awareness, and does not execute API calls or deliver raw 3D model files.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python",
+      "javascript",
+      "typescript",
+      "openscad"
+     ],
+     "frameworks": [
+      "three.js",
+      "babylon.js",
+      "react three fiber",
+      "blender"
+     ],
+     "phase": [
+      "plan",
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "3d",
+      "game-development",
+      "graphics",
+      "api-integration",
+      "asset-pipeline"
+     ]
+    },
+    "match_reasons": [
+     "'write' in synthetic_queries",
+     "'python' in description, synthetic_queries",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 2997
+   },
+   {
+    "id": "uasl/lens@6fbc66f7a7bb",
+    "title": "lens",
+    "summary": "Systematically investigate a codebase to explain feature existence, execution and data flows, and module responsibilities, grounding findings in file-and-line evidence. Produce structured reports with confidence levels and investigation gaps, without modifying code or executing it.",
+    "tier": "B",
+    "tags": {
+     "languages": [],
+     "frameworks": [],
+     "phase": [
+      "plan",
+      "review"
+     ],
+     "domain": [
+      "codebase",
+      "investigation",
+      "architecture"
+     ]
+    },
+    "match_reasons": [
+     "'write' in description",
+     "'module' in description, synthetic_queries, summary"
+    ],
+    "token_estimate": 2813
+   },
+   {
+    "id": "uasl/python-performance-optimization@bf455fd100bf",
+    "title": "python-performance-optimization",
+    "summary": "Profile Python applications to identify CPU, memory, I/O, and database bottlenecks, then apply measured optimization techniques. Covers profiling tools, benchmarking, and implementation patterns for improving performance and memory use.",
+    "tier": "B",
+    "tags": {
+     "languages": [
+      "python"
+     ],
+     "frameworks": [
+      "cprofile",
+      "line_profiler",
+      "memory_profiler",
+      "py-spy",
+      "numpy",
+      "pytest-benchmark"
+     ],
+     "phase": [
+      "implement",
+      "test"
+     ],
+     "domain": [
+      "performance",
+      "profiling",
+      "optimization",
+      "memory",
+      "database"
+     ]
+    },
+    "match_reasons": [
+     "'python' in title, description, keywords, synthetic_queries, summary",
+     "profile tag 'python' matches tags.languages (x1.3)"
+    ],
+    "token_estimate": 5128
+   }
+  ]
+ }
+}

@@ -1,0 +1,11 @@
+skillfetch
+  enabled: true
+  transport: stdio
+  command: <skillfetch>/.venv/bin/skillfetch
+  args: serve --index /tmp/skillfetch-codex-e2e-prep-20261023T224338/index
+  cwd: -
+  env: HOME=*****, PYTHONDONTWRITEBYTECODE=*****, PYTHONPATH=*****
+  startup_timeout_sec: 60
+  tool_timeout_sec: 120
+  default_tools_approval_mode: approve
+  remove: codex mcp remove skillfetch

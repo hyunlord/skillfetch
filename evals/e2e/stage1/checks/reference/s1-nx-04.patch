@@ -1,0 +1,32 @@
+diff --git a/pages/about.tsx b/pages/about.tsx
+index a3bc54c..570e0f1 100644
+--- a/pages/about.tsx
++++ b/pages/about.tsx
+@@ -1,10 +1,27 @@
+ import Link from "next/link";
+ import Layout from "../components/Layout";
++import { sampleUserData } from "../utils/sample-data";
+ 
+ const AboutPage = () => (
+   <Layout title="About | Next.js + TypeScript Example">
+     <h1>About</h1>
+     <p>This is the about page</p>
++    <h2>Our team</h2>
++    <div
++      style={{
++        display: "grid",
++        gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
++        gap: "1rem",
++      }}
++    >
++      {sampleUserData.map((user) => (
++        <div key={user.id} style={{ border: "1px solid #ccc", padding: "1rem" }}>
++          <h3>{user.name}</h3>
++          <p>ID: {user.id}</p>
++          <Link href={`/users/${user.id}`}>Details</Link>
++        </div>
++      ))}
++    </div>
+     <p>
+       <Link href="/">Go home</Link>
+     </p>

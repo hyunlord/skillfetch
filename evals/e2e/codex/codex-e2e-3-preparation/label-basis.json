@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "status": "READY_FOR_FUTURE_CALCULATION_NO_NEW_SESSIONS",
+  "created_at": "2026-10-23T16:20:55.327Z",
+  "oracle_file": "<e2e>/stage5/oracle-4-0.jsonl",
+  "oracle_relative_path": "stage5/oracle-4-0.jsonl",
+  "oracle_sha256": "7db50e73c7dfd6b0b810ba65231fd1475a25a563651310592c88da23795e108c",
+  "oracle_kind": "Complete cumulative 19-task label file; includes original labels plus 196 post-run graded task-skill pairs. Do not append old pool again or fall back to preregrade oracle.jsonl.",
+  "provenance": {
+    "stage5_report": "stage5/report-stage5.md:13",
+    "label_precedence": "stage5/scripts/eval_stage5.py:21-26",
+    "report_label_selection": "stage5/scripts/report_stage5.py:16",
+    "grading_summary": "stage5/grade-4-0.json",
+    "grading_summary_sha256": "1c257acfb5c0c26c07f7693a277a3ee70249f4cfe6476b73c625769c3ee89953"
+  },
+  "verified": {
+    "tasks": 19,
+    "related_tasks": 17,
+    "no_related_tasks": 2,
+    "original_pool_pairs": 437,
+    "cumulative_pool_pairs": 633,
+    "added_pairs": 196,
+    "added_related_pairs": 16,
+    "relevant_pairs_before": 29,
+    "relevant_pairs_after": 45
+  },
+  "related_task_ids": [
+    "s4-t027",
+    "s4-t176",
+    "s4-t153",
+    "s4-t253",
+    "s4-t182",
+    "s4-t203",
+    "s4-t055",
+    "s4-t033",
+    "s4-t130",
+    "s4-t177",
+    "s4-t229",
+    "s4-t026",
+    "s4-t224",
+    "s4-t211",
+    "s4-t101",
+    "s4-t280",
+    "s4-t001"
+  ],
+  "no_related_task_ids": [
+    "s4-t354",
+    "s4-t342"
+  ],
+  "calculation_rules": {
+    "relevant": "pool[].grade >= 2 matched by task ID and exact full skill ID including revision",
+    "hit_denominator": "Loaded sessions on tasks with at least one oracle grade >= 2; keep no-relevant-task loads separate. If all 19 tasks are loaded once, the eligible denominator is 17, not 19.",
+    "unknown": "Skills absent from this cumulative oracle, or with no grade, remain UNGRADED/null; count separately. Do not assign a grade, treat as grade 0, or reuse another task grade.",
+    "precision": "State denominators explicitly; preserve separate ungraded counts and graded-only precision. Comparing to Stage5 precision requires naming its per-session mean; do not silently equate it to micro precision.",
+    "no_new_grading": true
+  },
+  "codex_e2e_2_preservation": {
+    "file": "codex-e2e-2.md",
+    "change": "One qualifier line inserted under the existing follow-up section; every previous byte and all numbers preserved otherwise.",
+    "qualifier": "재채점 전 라벨 기준",
+    "before_sha256": "a10b518824e5c0ef9ca9d40dabe3ba894e1cb1339e7c24bd259e9c8ebb6173cf",
+    "after_sha256": "bc8e4d41b17785b3408c5cb62519d55dd32d77751eaedc751d32d019e437effc"
+  }
+}

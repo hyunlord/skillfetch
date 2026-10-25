@@ -22,6 +22,33 @@ HOME = Path.home() / ".skillfetch"
 OUT = ROOT / "docs" / "writeup" / "numbers.md"
 
 
+_E2E_FOLDERS = {"runs": "stage0/runs", "runs-0.5": "stage0.5/runs", "staging30": "staging"}
+
+
+def _published(match: re.Match) -> str:
+    rel = match.group(1)
+    first, _, rest = rel.partition("/")
+    if rest == "runs/_extract.json" or rel.endswith("/runs/_extract.json"):
+        return f"evals/e2e/{first}/derived/sessions.jsonl"
+    if first.startswith("codex-"):
+        return f"evals/e2e/codex/{rel}"
+    if first in _E2E_FOLDERS:
+        return f"evals/e2e/{_E2E_FOLDERS[first]}/{rest}".rstrip("/")
+    return f"evals/e2e/{rel}"
+
+
+def repo_paths(text: str) -> str:
+    """Source lines name the published copy of the e2e workspace (evals/e2e/, README): its
+    paths instead of e2e/..., and derived/sessions.jsonl for the unpublished runs/_extract.json."""
+    out = []
+    for line in text.split("\n"):
+        if "Source:" in line or "Sources:" in line:
+            line = line.replace("`data/e2e/router-e2e.json`", "`evals/e2e/router-e2e.json`")
+            line = re.sub(r"(?<![\w/])e2e/([\w.\-/]*[\w/])", _published, line)
+        out.append(line)
+    return "\n".join(out)
+
+
 def jsonl(path: Path) -> list[dict]:
     return [json.loads(line) for line in path.read_text().splitlines() if line.strip()]
 
@@ -1067,7 +1094,7 @@ def main() -> None:
     ):
         section(out)
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text("\n".join(out) + "\n")
+    OUT.write_text(repo_paths("\n".join(out)) + "\n")
     print(OUT)
 
 

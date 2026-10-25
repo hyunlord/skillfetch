@@ -1,0 +1,117 @@
+{
+ "unlabeled_left (top-50 + picks)": 0,
+ "verdict_rule_11": {
+  "A_fixed_label_pass": false,
+  "B_full_label_hit50_pass": true,
+  "C_unneeded_load_pass": true,
+  "pass": true
+ },
+ "B": {
+  "v3": {
+   "n": 284,
+   "baseline_hit@50": 0.9296,
+   "staging_hit@50_full": 0.9894,
+   "delta": 0.0598,
+   "baseline_hit@10": 0.7535,
+   "staging_hit@10_full": 0.8521,
+   "staging_recall@50_full": 0.7807
+  },
+  "v5-ss-b": {
+   "n": 270,
+   "baseline_hit@50": 0.9407,
+   "staging_hit@50_full": 0.9778,
+   "delta": 0.0371,
+   "baseline_hit@10": 0.5556,
+   "staging_hit@10_full": 0.8185,
+   "staging_recall@50_full": 0.7137
+  }
+ },
+ "full_label_own_denominator": {
+  "n": 328,
+  "hit@10": 0.8018,
+  "hit@50": 0.9817,
+  "recall@50": 0.7574
+ },
+ "index_relevant_tasks": {
+  "relevant_tasks_all": 337,
+  "baseline": 270,
+  "staging": 328,
+  "staging_searchable": 328
+ },
+ "gap56": {
+  "baseline": 17,
+  "staging": 49,
+  "recovered": 32
+ },
+ "sbp": {
+  "rel_load": 0.811,
+  "precision_task": 0.9172,
+  "precision_skill": 0.8578,
+  "unneeded_load_rate": 0.1346,
+  "nomatch_n": 52,
+  "unneeded_expect_none": "4/40",
+  "unneeded_other": "3/12",
+  "picks": 471,
+  "picks_new_records": 287,
+  "picks_new_records_grade_ge2": 270
+ },
+ "new_record_slots_by_repo": {
+  "affaan-m-ecc": {
+   "top50": 6308,
+   "top50_ge2": 605,
+   "top10": 1497,
+   "top10_ge2": 302,
+   "top50_g3": 118,
+   "top50_ge2_rate": 0.0959,
+   "top10_ge2_rate": 0.2017
+  },
+  "rshankras-claude-code-apple-skills": {
+   "top50": 2646,
+   "top50_ge2": 124,
+   "top10": 486,
+   "top10_ge2": 50,
+   "top50_g3": 32,
+   "top50_ge2_rate": 0.0469,
+   "top10_ge2_rate": 0.1029
+  },
+  "ahmed3elshaer-everything-claude-code-mobile": {
+   "top50": 1195,
+   "top50_ge2": 59,
+   "top10": 253,
+   "top10_ge2": 38,
+   "top50_g3": 19,
+   "top50_ge2_rate": 0.0494,
+   "top10_ge2_rate": 0.1502
+  },
+  "actionbook-rust-skills": {
+   "top50": 1131,
+   "top50_ge2": 97,
+   "top10": 304,
+   "top10_ge2": 50,
+   "top50_g3": 25,
+   "top50_ge2_rate": 0.0858,
+   "top10_ge2_rate": 0.1645
+  }
+ },
+ "new_record_slots_total": {
+  "top50": 11280,
+  "top50_ge2": 885,
+  "top10": 2540,
+  "top10_ge2": 440,
+  "top50_g3": 194,
+  "top50_ge2_rate": 0.0785,
+  "top10_ge2_rate": 0.1732
+ },
+ "baseline_record_slots": {
+  "staging_ranking": {
+   "n": 7720,
+   "labeled": 7720,
+   "ge2": 573
+  },
+  "baseline_ranking": {
+   "n": 19000,
+   "labeled": 19000,
+   "ge2": 869
+  }
+ }
+}

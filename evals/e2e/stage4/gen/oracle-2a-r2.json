@@ -1,0 +1,265 @@
+{
+ "s4-t012": {
+  "skills": [
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/api-design@bba608f8c974"
+  ],
+  "reason": "New FastAPI query parameter and filter with model change, migration and fallback logic"
+ },
+ "s4-t013": {
+  "skills": [
+   "uasl/api-design@bba608f8c974",
+   "uasl/fastapi-endpoint@2a93d50c4970"
+  ],
+  "reason": "HTTP conditional-request semantics (ETag, 304) on existing FastAPI endpoints"
+ },
+ "s4-t019": {
+  "skills": [
+   "uasl/fastapi-endpoint@2a93d50c4970"
+  ],
+  "reason": "Model field plus migration and a validation rule in a FastAPI update route"
+ },
+ "s4-t037": {
+  "skills": [
+   "uasl/python-testing-patterns@e62d0f1ca316"
+  ],
+  "reason": "Timezone bug fix plus parametrized pytest table tests"
+ },
+ "s4-t038": {
+  "skills": [],
+  "reason": "Small, routine empty-list bug fix"
+ },
+ "s4-t040": {
+  "skills": [
+   "uasl/specter@eeba33cf9245",
+   "uasl/ddia-systems@d2b3af9bb043"
+  ],
+  "reason": "Concurrency, deadlock and transaction lock-ordering restructuring"
+ },
+ "s4-t044": {
+  "skills": [
+   "uasl/python-testing-patterns@e62d0f1ca316"
+  ],
+  "reason": "Timezone-aware serialization fix with an environment-controlled pytest test"
+ },
+ "s4-t065": {
+  "skills": [
+   "uasl/refactoring-patterns@7283bad3e86e",
+   "uasl/python-design-patterns@5c0fbe0d4633"
+  ],
+  "reason": "Behavior-preserving split of a Python module into a package without circular imports"
+ },
+ "s4-t073": {
+  "skills": [
+   "uasl/frontend-patterns@8f659ce2a0bd",
+   "uasl/react-patterns@73d1ecc06997",
+   "uasl/refactoring-patterns@7283bad3e86e"
+  ],
+  "reason": "Extract React Query data logic into a custom hook while preserving behavior"
+ },
+ "s4-t091": {
+  "skills": [
+   "uasl/python-testing-patterns@e62d0f1ca316"
+  ],
+  "reason": "pytest tests with monkeypatch-controlled time"
+ },
+ "s4-t092": {
+  "skills": [
+   "uasl/python-testing-patterns@e62d0f1ca316"
+  ],
+  "reason": "Pytest tests for email rendering; reusing fixtures and checking HTML escaping are covered by pytest patterns."
+ },
+ "s4-t100": {
+  "skills": [
+   "uasl/e2e-testing-patterns@8b25fb0b2da6"
+  ],
+  "reason": "Playwright e2e tests with offline mocking and request ordering need reliable e2e patterns."
+ },
+ "s4-t118": {
+  "skills": [],
+  "reason": "Adding a Raises section to one docstring is trivial."
+ },
+ "s4-t145": {
+  "skills": [
+   "uasl/release-it@e3e5b4710eea"
+  ],
+  "reason": "Helm chart with health probes and memory-based worker sizing; the resilience and operational-readiness guidance helps with OOM limits."
+ },
+ "s4-t161": {
+  "skills": [
+   "uasl/release-it@e3e5b4710eea",
+   "uasl/deployment-pipeline-design@2a89fc6f32ff",
+   "uasl/async-python-patterns@957ebfe54aa7"
+  ],
+  "reason": "Zero-downtime rollout needs graceful shutdown, readiness draining, rolling-update strategy and async lifespan handling."
+ },
+ "s4-t167": {
+  "skills": [
+   "uasl/secure-coding-practices@cc37fcd8687e",
+   "uasl/it-infrastructure-sysadmin-engine@b170286527c0"
+  ],
+  "reason": "Hardened systemd unit, credential loading and an Ansible deploy across VMs."
+ },
+ "s4-t169": {
+  "skills": [
+   "uasl/python-performance-optimization@bf455fd100bf"
+  ],
+  "reason": "Reducing cold-start and import time needs profiling before tuning Cloud Run probes."
+ },
+ "s4-t173": {
+  "skills": [
+   "uasl/github-actions-templates@ce03df93ccdf",
+   "uasl/insecure-defaults@a0e826721018"
+  ],
+  "reason": "Adds a CI deploy step with secrets and removes insecure default credentials from production."
+ },
+ "s4-t187": {
+  "skills": [
+   "uasl/python-performance-optimization@bf455fd100bf",
+   "uasl/stream@94a72913c590"
+  ],
+  "reason": "Memory-bounded chunked export to partitioned parquet needs heap profiling and batch-pipeline design."
+ },
+ "s4-t190": {
+  "skills": [
+   "uasl/stream@94a72913c590",
+   "uasl/python-testing-patterns@e62d0f1ca316",
+   "uasl/postgresql-table-design@59d09e948243"
+  ],
+  "reason": "Batched large-CSV import with DST handling, a uniqueness constraint with ON CONFLICT, and fixture-based tests."
+ },
+ "s4-t196": {
+  "skills": [
+   "uasl/secure-coding-practices@cc37fcd8687e",
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/python-testing-patterns@e62d0f1ca316"
+  ],
+  "reason": "Anonymized FastAPI export where secret handling and protection against re-identification matter, plus a pytest test of the guarantee."
+ },
+ "s4-t211": {
+  "skills": [
+   "uasl/debug-root-cause@1d7ea4a832dc"
+  ],
+  "reason": "Train/serve mismatch bug; a root-cause workflow helps confirm the fix, and the startup check itself is routine."
+ },
+ "s4-t215": {
+  "skills": [
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/async-python-patterns@957ebfe54aa7",
+   "uasl/python-performance-optimization@bf455fd100bf"
+  ],
+  "reason": "New FastAPI route with an async detect function under tight latency and size limits on a Raspberry Pi."
+ },
+ "s4-t218": {
+  "skills": [],
+  "reason": "Writing a metadata JSON file and adding a simple read-only route is routine work."
+ },
+ "s4-t219": {
+  "skills": [
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/python-testing-patterns@e62d0f1ca316",
+   "uasl/python-performance-optimization@bf455fd100bf"
+  ],
+  "reason": "Backend ML package with config, startup and hot-reload, golden-fixture tests and a p95 latency benchmark."
+ },
+ "s4-t224": {
+  "skills": [
+   "uasl/debug-root-cause@1d7ea4a832dc"
+  ],
+  "reason": "Safari-only preprocessing discrepancy that needs systematic isolation of channel order and normalization."
+ },
+ "s4-t225": {
+  "skills": [
+   "uasl/frontend-patterns@8f659ce2a0bd",
+   "uasl/secure-coding-practices@cc37fcd8687e"
+  ],
+  "reason": "New React component with in-browser training, IndexedDB storage and strict guarantees that history data never leaves the device."
+ },
+ "s4-t243": {
+  "skills": [],
+  "reason": "Quick read of two config values to answer a yes/no question."
+ },
+ "s4-t246": {
+  "skills": [
+   "uasl/owasp-security@9847d3666f75",
+   "uasl/secure-coding-practices@cc37fcd8687e"
+  ],
+  "reason": "Audit of HTML injection and template autoescaping across every rendering site before making the fix."
+ },
+ "s4-t248": {
+  "skills": [
+   "uasl/auth-implementation-patterns@7a99b395d548",
+   "uasl/owasp-security@9847d3666f75",
+   "uasl/secure-coding-practices@cc37fcd8687e"
+  ],
+  "reason": "Moving the token into an httpOnly cookie and tightening CORS touches auth design and CSRF/CORS security."
+ },
+ "s4-t250": {
+  "skills": [
+   "uasl/vibe-security@6b07d0f651a7",
+   "uasl/owasp-security@9847d3666f75",
+   "uasl/auth-implementation-patterns@7a99b395d548"
+  ],
+  "reason": "Covers an XSS/open-redirect URL allowlist and reviewing token storage exposure in a React app."
+ },
+ "s4-t265": {
+  "skills": [
+   "uasl/sql-optimization-patterns@389f90da7b56",
+   "uasl/supabase-postgres-best-practices@af167084fda1",
+   "uasl/python-performance-optimization@bf455fd100bf"
+  ],
+  "reason": "Covers query and column selection, an index migration, and benchmarking a FastAPI/SQLModel listing."
+ },
+ "s4-t269": {
+  "skills": [
+   "uasl/debugging-strategies@c55dad9c9654"
+  ],
+  "reason": "Profiling slow container startup calls for systematic investigation of the bottleneck."
+ },
+ "s4-t285": {
+  "skills": [
+   "uasl/frontend-design@5da82907743d",
+   "uasl/responsive-design@2cf7927ef938"
+  ],
+  "reason": "Converts a table into a responsive card grid with a visual state for old items."
+ },
+ "s4-t291": {
+  "skills": [
+   "uasl/writing-plans@219901eb119f",
+   "uasl/frontend-patterns@8f659ce2a0bd"
+  ],
+  "reason": "The user wants a plan approved before coding, and the work restructures React route/components."
+ },
+ "s4-t295": {
+  "skills": [
+   "uasl/ux-heuristics@ff940b7d8a9f",
+   "uasl/frontend-patterns@8f659ce2a0bd"
+  ],
+  "reason": "A multi-step form wizard with a progress indicator to reduce abandonment."
+ },
+ "s4-t297": {
+  "skills": [
+   "uasl/frontend-design@5da82907743d",
+   "uasl/accessibility-compliance@696d2b4119ed"
+  ],
+  "reason": "Filter chips, avatars, and a disabled-state styling polish where the disabled state must stay accessible."
+ },
+ "s4-t349": {
+  "skills": [
+   "uasl/writing-plans@219901eb119f",
+   "uasl/data-analyst-engine@79799e01e2dd"
+  ],
+  "reason": "A plan-first ML retraining job with an AUC comparison and an atomic registry swap."
+ },
+ "s4-t357": {
+  "skills": [
+   "uasl/accessibility-compliance@696d2b4119ed",
+   "uasl/content-research-writer@f1af82e4025e"
+  ],
+  "reason": "An accessible README rewrite with heading order, alt text, and non-color cues."
+ },
+ "s4-t370": {
+  "skills": [],
+  "reason": "Caching Jinja templates is a routine change and needs no special skill."
+ }
+}

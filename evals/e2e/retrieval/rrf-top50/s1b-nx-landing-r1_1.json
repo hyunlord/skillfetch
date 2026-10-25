@@ -1,0 +1,252 @@
+[
+ {
+  "id": "uasl/landing-page@455a3c3ba6f7",
+  "title": "landing-page",
+  "summary": "Generate a complete, deployable landing page as a single HTML file using Tailwind CSS via CDN. Gather a brief, build a responsive and accessible page with suitable sections and interactions, then provide preview and deployment guidance."
+ },
+ {
+  "id": "uasl/taste-skill@57790089504e",
+  "title": "taste-skill",
+  "summary": "The skill directs the agent to build distinctive, responsive React or Next.js interfaces using specified design defaults, component conventions, and motion and performance rules. It also prescribes visual patterns and interaction states, and requires a preflight review of generated UI code."
+ },
+ {
+  "id": "uasl/scaffold-nextjs@3d1152f5d9d0",
+  "title": "scaffold-nextjs",
+  "summary": "Guides the agent through gathering project details and scaffolding a Next.js turborepo with UI components, development tooling, and deployment setup. It specifies project structure, configuration, and several implementation constraints."
+ },
+ {
+  "id": "uasl/next-upgrade@df465f7770a5",
+  "title": "next-upgrade",
+  "summary": "Upgrade a project to the latest Next.js version using the official migration guides and codemods. Identify the current version, apply relevant migrations and dependency updates, then verify the upgrade with a build and development testing."
+ },
+ {
+  "id": "uasl/product-showcase@47ddb0e168e1",
+  "title": "product-showcase",
+  "summary": "Generate a deployable, multi-page marketing showcase that explains a web app through real screenshots, workflow walkthroughs, and benefit-focused copy. Explore the app, capture its key features, then build and deploy a polished site with useful navigation, forms, and SEO basics."
+ },
+ {
+  "id": "uasl/next-best-practices@ee058f89acea",
+  "title": "next-best-practices",
+  "summary": "Apply Next.js best practices when writing or reviewing Next.js code, including using the optimized image component instead of plain HTML image tags. The skill covers routing, server components, data patterns, rendering, and performance optimization."
+ },
+ {
+  "id": "uasl/gpt-tasteskill@134558e228c5",
+  "title": "gpt-tasteskill",
+  "summary": "Requires a randomized, AIDA-structured frontend design with wide hero typography, gapless bento grids, and GSAP motion. It also mandates a preflight design plan before UI code and bans emoji and specified meta-labels."
+ },
+ {
+  "id": "uasl/3d-web-experience@e1485751556b",
+  "title": "3d-web-experience",
+  "summary": "Guides agents in choosing and building interactive 3D web experiences, including model integration, scrolling effects, and mobile-aware usability. Emphasizes purposeful 3D, mobile testing, fallbacks, and optimized loading."
+ },
+ {
+  "id": "uasl/copywriting@67282b309ff8",
+  "title": "copywriting",
+  "summary": "Guides the agent in gathering context and writing conversion-focused marketing copy for web pages. It emphasizes clear, specific, customer-centered messaging and gives page-structure, CTA, and output-format guidance."
+ },
+ {
+  "id": "uasl/imagegen-frontend-web@3c09b1b364ef",
+  "title": "imagegen-frontend-web",
+  "summary": "Directs the agent to create premium, implementation-friendly frontend design references with deliberate visual variety, consistent branding, and conversion-aware section design. Requires a separate horizontal image for each section and specifies how to plan, label, and deliver the image set."
+ },
+ {
+  "id": "uasl/web-design-builder@61ee1c248717",
+  "title": "web-design-builder",
+  "summary": "Guides the agent to gather web-design requirements, create responsive and accessible HTML/CSS/JavaScript designs, and verify them with Playwright MCP when available. It also specifies what files, verification results, and guidance to deliver to the user."
+ },
+ {
+  "id": "uasl/vercel-react-best-practices@70f3b5aaf775",
+  "title": "vercel-react-best-practices",
+  "summary": "Provides React and Next.js performance guidance for writing, reviewing, and refactoring code. It prioritizes practices for async work, bundle size, server and client performance, rendering, and JavaScript efficiency."
+ },
+ {
+  "id": "uasl/scroll-experience@f1aa0edee6ad",
+  "title": "scroll-experience",
+  "summary": "Guides agents in creating immersive scroll-driven web experiences with animation, parallax, sticky sections, and narrative structure. Emphasizes natural scroll behavior, restrained animation, and mobile-friendly design."
+ },
+ {
+  "id": "anthropics-skills/frontend-design@0a5ff23f1022",
+  "title": "frontend-design",
+  "summary": "Plan and build distinctive interfaces by grounding visual choices in the brief, reviewing the plan for generic defaults, and refining the result through critique. Apply the same intentionality to interface copy, accessibility, and motion."
+ },
+ {
+  "id": "uasl/storybrand-messaging@b5d59f437b2f",
+  "title": "storybrand-messaging",
+  "summary": "Apply the StoryBrand SB7 framework to create and review customer-centered brand messaging, emphasizing clear desires, problems, guidance, plans, calls to action, stakes, and success. Score marketing copy against the framework and favor honest, specific claims over fabricated desires, exaggerated problems, or unsupported promises."
+ },
+ {
+  "id": "uasl/frontend-design@5da82907743d",
+  "title": "frontend-design",
+  "summary": "Build distinctive, production-grade frontend interfaces by choosing a clear aesthetic direction and carrying it through implementation. Avoid generic visual choices and tailor the design and implementation complexity to the intended aesthetic."
+ },
+ {
+  "id": "uasl/web-prototype@9fcfd712fe7c",
+  "title": "web-prototype",
+  "summary": "Create a single-file desktop web prototype by composing the provided HTML seed and layout library rather than building the styling from scratch. Follow the specified planning, design-token, self-review, and artifact-output workflow."
+ },
+ {
+  "id": "uasl/soft-skill@4dd04c5022d2",
+  "title": "soft-skill",
+  "summary": "For UI work, create polished, premium-feeling interfaces with distinctive layouts, nested component styling, fluid motion, and responsive behavior. Avoid generic visual defaults and check the generated code against the skill’s design and performance rules."
+ },
+ {
+  "id": "uasl/next-cache-components@b22f6e134147",
+  "title": "next-cache-components",
+  "summary": "Guides implementation of Next.js 16 Cache Components, including cached, dynamic, and static content; cache lifetimes and invalidation; and migration from `unstable_cache`. It also documents the restriction on runtime APIs inside `use cache`."
+ },
+ {
+  "id": "uasl/web-prototype-taste-editorial@ea4a250e3329",
+  "title": "web-prototype-taste-editorial",
+  "summary": "Shapes single-page web prototypes into editorial-minimalist, premium marketing or documentation surfaces. It prescribes a warm monochrome palette, serif-and-grotesque typography, restrained components, and subtle motion."
+ },
+ {
+  "id": "uasl/forge@a8efdfdbe817",
+  "title": "forge",
+  "summary": "Use Forge to build small, runnable prototypes that validate ideas, relying on mocks where useful and keeping work ready for handoff. Prioritize learning and working demos over production polish, and report the prototype’s status, findings, debt, and next decision."
+ },
+ {
+  "id": "uasl/top-design@4ea889def6d2",
+  "title": "top-design",
+  "summary": "Guides the agent to plan and build distinctive, immersive web experiences using intentional typography, composition, motion, color, and performance. It also sets accessibility requirements and requires user approval before implementing custom cursors."
+ },
+ {
+  "id": "uasl/frontend-patterns@8f659ce2a0bd",
+  "title": "frontend-patterns",
+  "summary": "Use React and Next.js frontend patterns for components, state, data fetching, performance, forms, animation, and accessibility. Keep frontend example data generic and choose patterns appropriate to project complexity."
+ },
+ {
+  "id": "uasl/design-system-creation@ec5d23e4e974",
+  "title": "design-system-creation",
+  "summary": "Guides the agent through creating or refactoring a distinctive design system, from documenting its aesthetic to building tokens, typography, components, motion, and loading states. It favors custom visual choices and reusable design-system primitives over default styles."
+ },
+ {
+  "id": "uasl/backend-patterns@3d87ff489f3e",
+  "title": "backend-patterns",
+  "summary": "Provides TypeScript-oriented backend patterns for API design, data access, query optimization, caching, error handling, authentication, rate limiting, background jobs, and logging. Recommends choosing patterns suited to the complexity level."
+ },
+ {
+  "id": "uasl/define-architecture@8ea764417825",
+  "title": "define-architecture",
+  "summary": "Guides the agent to define TypeScript application architecture, including repository shape, module boundaries, request context, middleware, frontend boundaries, testing, and rollout. It also prescribes an architecture brief and validation steps before finalizing recommendations."
+ },
+ {
+  "id": "uasl/design-optimize@cbb1632043ec",
+  "title": "design-optimize",
+  "summary": "Measure interface performance, identify bottlenecks, and apply targeted optimizations across loading, rendering, animation, network use, and Core Web Vitals. Verify improvements across real devices and network conditions without sacrificing accessibility or functionality."
+ },
+ {
+  "id": "uasl/web-prototype-taste-soft@7734ae078ad9",
+  "title": "web-prototype-taste-soft",
+  "summary": "Build soft-premium web prototypes with a silver or cream canvas, nested card architecture, pill-shaped CTAs, and restrained ambient motion. Follow the specified typography, components, responsive behavior, and banned styling patterns."
+ },
+ {
+  "id": "uasl/nextjs-turbopack@b0af0186e13a",
+  "title": "nextjs-turbopack",
+  "summary": "Guides Next.js 16+ development toward Turbopack and explains when webpack is an appropriate fallback. It also recommends version-aware documentation and bundle analysis for production optimization."
+ },
+ {
+  "id": "anthropics-skills/web-artifacts-builder@9c350d2f5f13",
+  "title": "web-artifacts-builder",
+  "summary": "Guides the agent to initialize a React frontend project, develop a multi-component web artifact, bundle it into a single HTML file, and share it with the user. It recommends postponing optional visual testing until after presenting the artifact, unless testing is requested or issues arise."
+ },
+ {
+  "id": "uasl/image-to-code-skill@4f1a4537825d",
+  "title": "image-to-code-skill",
+  "summary": "For visually important website work, generate design reference images first, analyze them closely, and then implement a frontend that stays faithful to those references. Prefer clear, section-specific images and clean, readable layouts over compressed references, generic designs, and unnecessary UI clutter."
+ },
+ {
+  "id": "uasl/artisan@1e09f38ffcab",
+  "title": "artisan",
+  "summary": "Guides frontend work toward production-quality React, Vue, and Svelte components with TypeScript, accessibility, and explicit state handling. Defines workflow, approval boundaries, handoffs, and required deliverables."
+ },
+ {
+  "id": "uasl/segment-cdp@42e8e765d937",
+  "title": "segment-cdp",
+  "summary": "Apply Segment CDP patterns when implementing browser or server-side tracking and designing event schemas. The skill covers Analytics.js calls, identity resolution, and Protocols-based tracking plan enforcement."
+ },
+ {
+  "id": "uasl/frontend-design-principles@e9b2a10a43d1",
+  "title": "frontend-design-principles",
+  "summary": "Guide the agent to plan distinctive frontend interfaces before coding, then review the result against its design intent and craft standards. Avoid generic defaults and use context-specific guidance for the kind of interface being built."
+ },
+ {
+  "id": "uasl/one-pager-prd@3613e5b1fc98",
+  "title": "one-pager-prd",
+  "summary": "Guides the agent in creating concise, decision-ready one-pager PRDs or short PRDs for product and feature proposals. It emphasizes clear problem framing, measurable success metrics, explicit scope, constraints, open questions, and stakeholder sign-off."
+ },
+ {
+  "id": "uasl/spark@e34a95f62716",
+  "title": "spark",
+  "summary": "Spark guides the agent to create focused, evidence-informed feature proposals and prioritization documents rather than implementation code. It emphasizes persona fit, feasibility, validation, and clear handoffs to other agents."
+ },
+ {
+  "id": "uasl/recommendation-canvas@fedc861cf716",
+  "title": "recommendation-canvas",
+  "summary": "Use a structured recommendation canvas to evaluate AI product ideas across outcomes, problem framing, hypotheses, positioning, risks, value, and success metrics. The skill guides the agent to ground the recommendation in discovery and define experiments and next steps."
+ },
+ {
+  "id": "uasl/titan@39c6080f3dfc",
+  "title": "titan",
+  "summary": "Titan directs delivery through the smallest justified agent chain, adapting its workflow to project scope and prioritizing implementation over planning. It tracks state and forward progress, routes implementation through Nexus, and applies validation and recovery rules."
+ },
+ {
+  "id": "uasl/made-to-stick@8667d5f2a5ae",
+  "title": "made-to-stick",
+  "summary": "Use the SUCCESs framework to craft or review messaging for clarity, memorability, and action. Favor a clear core, concrete details, credibility, emotional connection, and stories, and score messaging against the framework."
+ },
+ {
+  "id": "uasl/pricing-page@8b72ba4d0477",
+  "title": "pricing-page",
+  "summary": "Create a single-screen pricing page as a self-contained HTML document, following the active DESIGN.md and the brief’s product and tier requirements. Include plan cards, a feature comparison table, an FAQ, and a footer CTA, then emit the artifact in the specified format."
+ },
+ {
+  "id": "uasl/onboarding-ux@525055bbdf31",
+  "title": "onboarding-ux",
+  "summary": "Audit a web app from a new user’s perspective, then create onboarding guidance and code to address the gaps. Deliver the audit and generated materials in the specified artifact locations, matching the project’s existing patterns."
+ },
+ {
+  "id": "uasl/prototyping-pretotyping@df9f5509380c",
+  "title": "prototyping-pretotyping",
+  "summary": "Guides the agent to validate ideas and assumptions with the cheapest suitable pretotype or prototype before committing to full development. It emphasizes matching fidelity to the question, setting success criteria in advance, and testing with real users while observing behavior."
+ },
+ {
+  "id": "uasl/mobile-onboarding@dae55de6dde3",
+  "title": "mobile-onboarding",
+  "summary": "Create a three-screen mobile onboarding flow as a single HTML page, arranged in three phone frames. Follow the workflow and include the specified phone UI elements, with the final screen focused on sign-in or continuation options."
+ },
+ {
+  "id": "uasl/pm-spec@f01a5865e09d",
+  "title": "pm-spec",
+  "summary": "Create a one-page product spec or PRD from a brief, using the active design system and a structured layout. The spec covers the problem, goals, metrics, stories, scope, and open questions."
+ },
+ {
+  "id": "uasl/email-marketing@a37255743f2c",
+  "title": "email-marketing",
+  "summary": "Produce a single-column HTML marketing email guided by the active design system and the brief. Include the specified launch-email sections and deliver the HTML inside the required artifact wrapper."
+ },
+ {
+  "id": "uasl/experiment@e2419a708eaf",
+  "title": "experiment",
+  "summary": "Designs and analyzes product experiments, from falsifiable hypotheses and sample-size planning through execution and reporting. Requires statistically sound methods, documented parameters, and attention to guardrails and valid early stopping."
+ },
+ {
+  "id": "uasl/saga@fabeed82c780",
+  "title": "saga",
+  "summary": "Creates customer-centric product and feature narratives using explicit storytelling frameworks, concrete scenes, tension, and transformation arcs. It also requires narrative quality checks, Japanese final outputs, and structured handoffs."
+ },
+ {
+  "id": "uasl/compete@c2b41286409b",
+  "title": "compete",
+  "summary": "Perform evidence-based competitive research and analysis, then turn findings into differentiated strategic recommendations and actionable handoffs. Do not write implementation code; use public, ethical sources and make uncertainty explicit."
+ },
+ {
+  "id": "uasl/clay@6c9572941894",
+  "title": "clay",
+  "summary": "Produces reproducible code and operating guidance for AI 3D generation, modeling, game-asset pipelines, and quality validation. It requires safe credential handling and cost awareness, and does not execute API calls or deliver raw 3D model files."
+ },
+ {
+  "id": "uasl/design-sprint@4550ceb8d09f",
+  "title": "design-sprint",
+  "summary": "Guides an agent through a structured five-day design sprint to map a product challenge, generate and select solutions, prototype, and test with customers. It also asks the agent to score sprint plans or execution against the method and identify improvements."
+ }
+]

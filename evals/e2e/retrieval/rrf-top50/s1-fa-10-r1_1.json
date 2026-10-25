@@ -1,0 +1,252 @@
+[
+ {
+  "id": "uasl/fastapi-endpoint@2a93d50c4970",
+  "title": "fastapi-endpoint",
+  "summary": "Guides the agent through exploring an existing FastAPI project, asking clarifying questions, planning an endpoint implementation for approval, and then building the endpoint and tests. It emphasizes async SQLAlchemy, Pydantic schemas, dependency-injected authentication, and API test coverage."
+ },
+ {
+  "id": "uasl/fastapi-templates@effcd0de0b4c",
+  "title": "fastapi-templates",
+  "summary": "Guides creation of structured FastAPI backend projects using async patterns, dependency injection, repository and service layers, authentication, and testing examples. Includes templates for API endpoints, database access, and user management."
+ },
+ {
+  "id": "uasl/openapi-spec-generation@2d2c7a93b8f2",
+  "title": "openapi-spec-generation",
+  "summary": "Guides agents in creating and maintaining OpenAPI 3.1 specifications from design or code, validating API contracts, and generating SDKs and documentation. Includes patterns for reusable schemas, API descriptions, security, versioning, and validation tools."
+ },
+ {
+  "id": "uasl/claude-native-claude-api@24c958899f03",
+  "title": "claude-native-claude-api",
+  "summary": "Guide the agent in building, debugging, and migrating Claude API applications using Anthropic SDKs and documented API patterns. Apply the skill’s defaults for model choice, thinking, streaming, and prompt caching, and consult the relevant language-specific and shared documentation."
+ },
+ {
+  "id": "uasl/atheris@5b575b7295c7",
+  "title": "atheris",
+  "summary": "Guides agents in using Atheris to fuzz Python code and Python C extensions, including writing harnesses, configuring instrumentation and sanitizers, and managing fuzzing runs. It emphasizes harness practices and local setup for native-extension fuzzing."
+ },
+ {
+  "id": "uasl/sympy@c0fc68d7bcdb",
+  "title": "sympy",
+  "summary": "Use SymPy to perform exact symbolic mathematics in Python, including algebra, calculus, equation solving, linear algebra, physics, and code generation. Apply the troubleshooting guidance for symbol definition, exact arithmetic, numerical conversion, solver selection, and simplification."
+ },
+ {
+  "id": "uasl/setup-matt-pocock-skills@d52ac42900e6",
+  "title": "setup-matt-pocock-skills",
+  "summary": "Guides the agent through exploring a repository, presenting findings and confirming setup choices, then configuring an `## Agent skills` block and supporting docs. It specifies file-selection and update rules for the generated Markdown files."
+ },
+ {
+  "id": "uasl/api-testing@4ada9a2fac88",
+  "title": "api-testing",
+  "summary": "Guides the agent in creating and running direct HTTP API tests with tools such as .http files, Bruno, Postman/Newman, and k6. Covers assertions, environment configuration, secret handling, and CI integration."
+ },
+ {
+  "id": "uasl/vercel-cli-with-tokens@3f9c2805c482",
+  "title": "vercel-cli-with-tokens",
+  "summary": "Guides the agent through token-based Vercel CLI setup, deployment, and project management without interactive login. It prioritizes preview deployments, protects tokens, and requires approval before git pushes."
+ },
+ {
+  "id": "uasl/python-testing-patterns@e62d0f1ca316",
+  "title": "python-testing-patterns",
+  "summary": "Guides the agent in designing and implementing Python tests using pytest patterns, fixtures, mocks, and specialized testing techniques. It emphasizes focused, isolated tests and meaningful coverage of failure behavior."
+ },
+ {
+  "id": "uasl/tavily-web@2b69bd325cb7",
+  "title": "tavily-web",
+  "summary": "Provides Tavily-powered web search, URL content extraction, website crawling, and research. It instructs the agent to configure Tavily API keys through environment variables."
+ },
+ {
+  "id": "uasl/quill@336ba74b0e79",
+  "title": "quill",
+  "summary": "Quill guides the agent to improve codebase documentation, type clarity, and README/API materials while preserving runtime behavior. It emphasizes accurate, useful documentation, checking links and coverage, and reporting the work and its results."
+ },
+ {
+  "id": "uasl/bolt@c4895c710162",
+  "title": "bolt",
+  "summary": "Bolt directs the agent to identify measurable performance improvements, follow a profiling-to-presentation workflow, and document their impact. It also sets limits on implementation, optimization scope, and when to ask for confirmation or hand off work."
+ },
+ {
+  "id": "uasl/clay@6c9572941894",
+  "title": "clay",
+  "summary": "Produces reproducible code and operating guidance for AI 3D generation, modeling, game-asset pipelines, and quality validation. It requires safe credential handling and cost awareness, and does not execute API calls or deliver raw 3D model files."
+ },
+ {
+  "id": "uasl/insecure-defaults@a0e826721018",
+  "title": "insecure-defaults",
+  "summary": "Audits production-reachable code and configuration for fail-open security defaults, then verifies runtime behavior and production impact before reporting findings with evidence. Distinguishes insecure fallbacks from fail-secure behavior."
+ },
+ {
+  "id": "uasl/public-param-golden@6b8109050c5c",
+  "title": "public-param-golden",
+  "summary": "Use the `public-param-golden-pp-cli` to find and run store commands and manage CLI setup. Verify the CLI before using it, and use agent mode for direct command execution."
+ },
+ {
+  "id": "uasl/api-sports-automation@0461bade6799",
+  "title": "api-sports-automation",
+  "summary": "Use Rube MCP to discover current API Sports tools and schemas, verify the API Sports connection, and execute workflows with schema-compliant arguments. Follow the skill’s guidance for session reuse, memory parameters, and pagination."
+ },
+ {
+  "id": "uasl/placid-automation@21c62b429074",
+  "title": "placid-automation",
+  "summary": "Use Rube MCP to automate Placid operations. Discover current tool schemas, verify the Placid connection, and follow the documented execution requirements."
+ },
+ {
+  "id": "anthropics-skills/docx@74e2b8b277a4",
+  "title": "docx",
+  "summary": "Use DOCX-specific workflows and helper scripts to create, read, edit, and annotate Word documents. Follow the listed docx-js and XML handling requirements, then validate or render outputs where directed."
+ },
+ {
+  "id": "uasl/claude-api@f952c765f5b0",
+  "title": "claude-api",
+  "summary": "Guides agents building Claude API and Anthropic SDK integrations: choose the appropriate API or Agent SDK surface, identify the project language, and consult the relevant documentation. Sets defaults and implementation guidance for model selection, thinking, streaming, tools, and API features."
+ },
+ {
+  "id": "uasl/convertapi-automation@afb7693ed46d",
+  "title": "convertapi-automation",
+  "summary": "Automates Convertapi operations through Rube MCP by discovering current tool schemas, checking the Convertapi connection, and executing schema-compliant tools. It also guides session reuse and handling paginated results."
+ },
+ {
+  "id": "uasl/backend-patterns@3d87ff489f3e",
+  "title": "backend-patterns",
+  "summary": "Provides TypeScript-oriented backend patterns for API design, data access, query optimization, caching, error handling, authentication, rate limiting, background jobs, and logging. Recommends choosing patterns suited to the complexity level."
+ },
+ {
+  "id": "uasl/spondyr-automation@b334a2f8011b",
+  "title": "spondyr-automation",
+  "summary": "Use Rube MCP to discover current Spondyr tools, verify the Spondyr connection, and execute workflows with the discovered schemas. Follow the skill’s guidance for session reuse, memory parameters, schema compliance, and pagination."
+ },
+ {
+  "id": "anthropics-skills/webapp-testing@a4b4ce82b644",
+  "title": "webapp-testing",
+  "summary": "Use native Python Playwright scripts to test local web applications, choosing an approach based on whether the app is static or dynamic. For dynamic apps, inspect the rendered state before acting, and use bundled helper scripts to manage servers when appropriate."
+ },
+ {
+  "id": "uasl/dictionary-api-automation@bae158f3873b",
+  "title": "dictionary-api-automation",
+  "summary": "Automates Dictionary API tasks through Rube MCP and Composio. The agent discovers current tool schemas, checks connection status, and follows the returned schemas and workflow guidance when executing tools."
+ },
+ {
+  "id": "uasl/python-error-handling@8dc34883a143",
+  "title": "python-error-handling",
+  "summary": "Guides agents to implement Python validation and error handling with meaningful exceptions, exception chaining, and resilient batch processing. It also recommends practices for domain-type conversion, progress reporting, logging, and testing error paths."
+ },
+ {
+  "id": "uasl/high-perf-browser@aee32087bf43",
+  "title": "high-perf-browser",
+  "summary": "Guide the agent to optimize browser and web-application performance by reducing network latency, improving resource loading and caching, and choosing suitable protocols. When assessing or building an application, provide a performance score and specific improvements toward 10/10."
+ },
+ {
+  "id": "uasl/printing-press-catalog@3572c42ad04d",
+  "title": "printing-press-catalog",
+  "summary": "Guides the agent to browse, search, and install pre-built Go CLIs from a catalog, including setup checks and generation workflows. The skill is deprecated and points users to the newer printing-press commands."
+ },
+ {
+  "id": "uasl/python-performance-optimization@bf455fd100bf",
+  "title": "python-performance-optimization",
+  "summary": "Profile Python applications to identify CPU, memory, I/O, and database bottlenecks, then apply measured optimization techniques. Covers profiling tools, benchmarking, and implementation patterns for improving performance and memory use."
+ },
+ {
+  "id": "uasl/boxhero-automation@175d3685f4df",
+  "title": "boxhero-automation",
+  "summary": "Automates Boxhero tasks through Rube MCP by discovering current tool schemas, checking the Boxhero connection, and executing schema-compliant operations. It also gives setup, session, memory, and pagination guidance."
+ },
+ {
+  "id": "uasl/signwell-automation@9440033a8d01",
+  "title": "signwell-automation",
+  "summary": "Automate Signwell workflows through Rube MCP by discovering current tool schemas, checking the Signwell connection, and executing tools with schema-compliant inputs. Follow the skill's connection, session, memory, and pagination requirements."
+ },
+ {
+  "id": "uasl/printing-press@9498149d380e",
+  "title": "printing-press",
+  "summary": ""
+ },
+ {
+  "id": "uasl/architecture-patterns@d184d1c3a346",
+  "title": "architecture-patterns",
+  "summary": "Guides the agent in designing or refactoring backend systems with Clean Architecture, Hexagonal Architecture, and Domain-Driven Design. It emphasizes inward dependencies, framework-independent business logic, and testability without external infrastructure."
+ },
+ {
+  "id": "uasl/sendlane-automation@8c7496d95622",
+  "title": "sendlane-automation",
+  "summary": "Use Rube MCP to discover current Sendlane tool schemas, verify an active Sendlane connection, and execute Sendlane workflows with schema-compliant inputs. Follow the skill’s session, memory, and pagination guidance while running workflows."
+ },
+ {
+  "id": "uasl/shortpixel-automation@11fe5cac97f5",
+  "title": "shortpixel-automation",
+  "summary": "Automate Shortpixel workflows through Rube MCP by discovering current tool schemas, checking the Shortpixel connection, and executing schema-compliant tools. Reuse workflow sessions and fetch paginated results until complete."
+ },
+ {
+  "id": "uasl/monorepo-management@4078df072127",
+  "title": "monorepo-management",
+  "summary": "Guides agents in setting up and managing JavaScript/TypeScript monorepos with workspace package managers and build systems. Covers shared configuration and code, build optimization, CI/CD, dependency management, and package publishing."
+ },
+ {
+  "id": "uasl/loyverse-automation@32069cd588ae",
+  "title": "loyverse-automation",
+  "summary": "Use Rube MCP to automate Loyverse tasks by discovering current tool schemas, checking the Loyverse connection, and executing schema-compliant tools. Follow connection, session, memory, and pagination requirements during workflows."
+ },
+ {
+  "id": "uasl/cf-crawl@77a977c31001",
+  "title": "cf-crawl",
+  "summary": "When asked to crawl a website, the agent uses Cloudflare Browser Rendering’s crawl API, polling jobs and saving page content as Markdown. It loads and validates credentials, handles crawl options such as incremental dates, and parses the skill’s command-line arguments."
+ },
+ {
+  "id": "uasl/web-perf@9063b7e5eacf",
+  "title": "web-perf",
+  "summary": "Audits web performance using Chrome DevTools MCP, including Core Web Vitals, network behavior, accessibility, and—when applicable—codebase optimizations. Prefers retrieval from current documentation for specific performance numbers and recommendations."
+ },
+ {
+  "id": "uasl/passslot-automation@bd7e941240b9",
+  "title": "passslot-automation",
+  "summary": "Automate Passslot operations through Rube MCP by discovering current tool schemas, checking the Passslot connection, and executing schema-compliant workflows. Follow session, memory, and pagination guidance when running tools."
+ },
+ {
+  "id": "uasl/design-integration@03e2661a4d5f",
+  "title": "design-integration",
+  "summary": "Delegate Uniswap integration architecture design to the integration-architect agent and present a project-specific blueprint. The blueprint covers the recommended integration method, architecture, dependencies, security considerations, and an ordered implementation plan."
+ },
+ {
+  "id": "uasl/n8n-expression-syntax@f1845451eb4d",
+  "title": "n8n-expression-syntax",
+  "summary": "Guides the agent to write and troubleshoot n8n expressions, including variable access, webhook data paths, and syntax rules. It also distinguishes expression syntax from direct JavaScript access in Code nodes and identifies places where expressions should not be used."
+ },
+ {
+  "id": "uasl/loom@e731d9ef70c3",
+  "title": "loom",
+  "summary": "Loom directs the agent to analyze a codebase and prepare, stage, validate, and refine Figma Make input packages. It also establishes boundaries for token ownership, Figma access, routing, and delivery requirements."
+ },
+ {
+  "id": "uasl/firecrawl-scraper@8691949c9232",
+  "title": "firecrawl-scraper",
+  "summary": "Use Firecrawl for deep web-page extraction, page interaction, screenshots, PDF parsing, and batch website crawling. Configure API keys through environment variables."
+ },
+ {
+  "id": "uasl/everhour-automation@a663f548c590",
+  "title": "everhour-automation",
+  "summary": "Automate Everhour workflows through Rube MCP by discovering current tool schemas, checking the Everhour connection, and executing schema-compliant tools. Follow the skill’s connection, session, memory, and pagination requirements."
+ },
+ {
+  "id": "uasl/raisely-automation@50e78dda6de0",
+  "title": "raisely-automation",
+  "summary": "Use Rube MCP to discover current Raisely tool schemas, check the Raisely connection, and execute Raisely operations. Follow the skill’s connection, session, schema, memory, and pagination requirements during workflows."
+ },
+ {
+  "id": "uasl/web-performance-optimization@b2b38275ed40",
+  "title": "web-performance-optimization",
+  "summary": "Guides agents to measure web performance, identify bottlenecks, prioritize improvements, and verify their impact. Emphasizes Core Web Vitals, asset optimization, efficient loading, and caching."
+ },
+ {
+  "id": "uasl/the-odds-api-automation@688dcc38656c",
+  "title": "the-odds-api-automation",
+  "summary": "Automate The Odds API operations through Rube MCP by discovering current tool schemas, checking the API connection, and executing schema-compliant tools. The skill also specifies session reuse, memory parameters, and pagination handling."
+ },
+ {
+  "id": "anthropics-skills/skill-creator@5d80e84222d8",
+  "title": "skill-creator",
+  "summary": "Guides an agent through creating, testing, evaluating, and improving skills, including optional description optimization and packaging. It specifies workflows for running evaluations and adapts those workflows for Claude.ai and Cowork environments."
+ },
+ {
+  "id": "uasl/design-optimize@cbb1632043ec",
+  "title": "design-optimize",
+  "summary": "Measure interface performance, identify bottlenecks, and apply targeted optimizations across loading, rendering, animation, network use, and Core Web Vitals. Verify improvements across real devices and network conditions without sacrificing accessibility or functionality."
+ }
+]

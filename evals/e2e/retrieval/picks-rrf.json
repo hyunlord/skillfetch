@@ -1,0 +1,245 @@
+{
+ "s1-fa-01-r1#1": {
+  "ids": [
+   "uasl/python-testing-patterns@e62d0f1ca316",
+   "uasl/api-design@bba608f8c974"
+  ],
+  "why": "pytest patterns for 422/sort tests plus REST query-param sorting conventions"
+ },
+ "s1-fa-03-r2#1": {
+  "ids": [
+   "uasl/frontend-patterns@8f659ce2a0bd",
+   "uasl/shadcn-ui@8c463642324a"
+  ],
+  "why": "React data-fetching/component patterns and matching existing themed UI components"
+ },
+ "s1-fa-07-r1#1": {
+  "ids": [
+   "uasl/python-testing-patterns@e62d0f1ca316",
+   "uasl/auth-implementation-patterns@7a99b395d548"
+  ],
+  "why": "pytest fixtures for auth failure paths and JWT validation expectations"
+ },
+ "s1-fa-10-r1#1": {
+  "ids": [
+   "uasl/quill@336ba74b0e79"
+  ],
+  "why": "README/documentation accuracy without changing behavior"
+ },
+ "s1-nx-04-r2#1": {
+  "ids": [
+   "uasl/responsive-design@2cf7927ef938",
+   "uasl/next-best-practices@ee058f89acea"
+  ],
+  "why": "responsive card grid collapsing to one column, Next.js Link/page conventions"
+ },
+ "s1-nx-07-r2#1": {
+  "ids": [
+   "uasl/unit-testing@6c5fbb821103",
+   "uasl/documentation-lookup@dee6d7478eab"
+  ],
+  "why": "component unit tests plus current Vitest/RTL setup docs"
+ },
+ "s1b-fa-landing-r1#1": {
+  "ids": [
+   "anthropics-skills/frontend-design@0a5ff23f1022",
+   "uasl/copywriting@67282b309ff8"
+  ],
+  "why": "distinctive landing UI in the React frontend plus hero/feature/CTA copy"
+ },
+ "s1b-fa-tags-plan-r1#1": {
+  "ids": [
+   "uasl/schema@e6f260ce62e0",
+   "uasl/api-design@bba608f8c974",
+   "uasl/frontend-patterns@8f659ce2a0bd"
+  ],
+  "why": "many-to-many schema+migration planning, tag REST endpoints, React UI"
+ },
+ "s1b-nx-landing-r1#1": {
+  "ids": [
+   "anthropics-skills/frontend-design@0a5ff23f1022",
+   "uasl/copywriting@67282b309ff8",
+   "uasl/next-best-practices@ee058f89acea"
+  ],
+  "why": "landing page design, marketing copy, Next.js page conventions"
+ },
+ "s1-fa-02-r1#1": {
+  "ids": [
+   "uasl/schema@e6f260ce62e0",
+   "uasl/fastapi-endpoint@2a93d50c4970"
+  ],
+  "why": "Schema change plus safe migration planning, and extending existing FastAPI endpoints/schemas"
+ },
+ "s1-fa-05-r1#1": {
+  "ids": [
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/python-design-patterns@5c0fbe0d4633"
+  ],
+  "why": "Working in an existing FastAPI project and refactoring into a shared dependency"
+ },
+ "s1-fa-07-r2#1": {
+  "ids": [
+   "uasl/python-testing-patterns@e62d0f1ca316",
+   "uasl/integration-testing@62b51275be50"
+  ],
+  "why": "pytest fixtures/patterns and API-level tests against real DB for auth failure cases"
+ },
+ "s1-nx-02-r1#1": {
+  "ids": [
+   "uasl/next-best-practices@ee058f89acea",
+   "uasl/api-design@bba608f8c974"
+  ],
+  "why": "Next.js route conventions plus REST status-code and error response design"
+ },
+ "s1-nx-06-r1#1": {
+  "ids": [
+   "uasl/next-best-practices@ee058f89acea",
+   "uasl/backend-patterns@3d87ff489f3e"
+  ],
+  "why": "Next.js data patterns and a TypeScript data-access layer refactor"
+ },
+ "s1-nx-08-r1#1": {
+  "ids": [
+   "uasl/unit-testing@6c5fbb821103",
+   "uasl/typescript-unit-testing@6fb3561edcb3"
+  ],
+  "why": "Isolated unit tests for data functions using Jest in TypeScript"
+ },
+ "s1b-fa-landing-r2#1": {
+  "ids": [
+   "anthropics-skills/frontend-design@0a5ff23f1022",
+   "uasl/copywriting@67282b309ff8"
+  ],
+  "why": "Distinctive landing UI in the existing React frontend plus hero/feature/CTA copy"
+ },
+ "s1b-fa-tags-plan-r2#1": {
+  "ids": [
+   "uasl/writing-plans@219901eb119f",
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/schema@e6f260ce62e0"
+  ],
+  "why": "Write PLAN.md first, then build FastAPI endpoints and the many-to-many schema/migration"
+ },
+ "s1b-nx-landing-r2#1": {
+  "ids": [
+   "anthropics-skills/frontend-design@0a5ff23f1022",
+   "uasl/copywriting@67282b309ff8",
+   "uasl/next-best-practices@ee058f89acea"
+  ],
+  "why": "Landing page design and conversion copy built as a Next.js pages-router route"
+ },
+ "s1-fa-02-r2#1": {
+  "ids": [
+   "uasl/schema@e6f260ce62e0",
+   "uasl/fastapi-endpoint@2a93d50c4970"
+  ],
+  "why": "Schema change plus safe migration planning; FastAPI schema/API and test coverage"
+ },
+ "s1-fa-06-r1#1": {
+  "ids": [
+   "uasl/python-testing-patterns@e62d0f1ca316",
+   "uasl/radar@a47ea6fd5f95"
+  ],
+  "why": "pytest fixtures/patterns and adding tests following existing project conventions"
+ },
+ "s1-fa-08-r1#1": {
+  "ids": [
+   "uasl/fastapi-endpoint@2a93d50c4970",
+   "uasl/defense-in-depth@e9a7d1415325"
+  ],
+  "why": "Pydantic schema validation in FastAPI endpoint plus layered validation for null input"
+ },
+ "s1-nx-02-r2#1": {
+  "ids": [
+   "uasl/next-best-practices@ee058f89acea",
+   "uasl/backend-patterns@3d87ff489f3e"
+  ],
+  "why": "Next.js routing conventions and TypeScript API error-handling patterns"
+ },
+ "s1-nx-06-r2#1": {
+  "ids": [
+   "uasl/zen@f72229d0a781",
+   "uasl/next-best-practices@ee058f89acea"
+  ],
+  "why": "Behavior-preserving scoped refactor and Next.js data patterns"
+ },
+ "s1-nx-08-r2#1": {
+  "ids": [
+   "uasl/unit-testing@6c5fbb821103",
+   "uasl/radar@a47ea6fd5f95"
+  ],
+  "why": "Isolated unit tests for data-fetching functions following repo test conventions"
+ },
+ "s1b-fa-service-r1#1": {
+  "ids": [
+   "uasl/python-design-patterns@5c0fbe0d4633",
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/refactoring-patterns@7283bad3e86e"
+  ],
+  "why": "Separation of concerns in Python, FastAPI service-layer templates, behavior-preserving refactoring"
+ },
+ "s1b-fa-utils-tests-r1#1": {
+  "ids": [
+   "uasl/python-testing-patterns@e62d0f1ca316",
+   "uasl/radar@a47ea6fd5f95"
+  ],
+  "why": "pytest unit test patterns/mocks and following existing test conventions"
+ },
+ "s1-fa-03-r1#1": {
+  "ids": [
+   "uasl/frontend-patterns@8f659ce2a0bd",
+   "uasl/shadcn-ui@8c463642324a"
+  ],
+  "why": "React data-fetching/component patterns plus assembling existing shadcn-style components consistently"
+ },
+ "s1-fa-06-r2#1": {
+  "ids": [
+   "uasl/python-testing-patterns@e62d0f1ca316",
+   "uasl/radar@a47ea6fd5f95"
+  ],
+  "why": "pytest fixture patterns and adding coverage following existing test conventions"
+ },
+ "s1-fa-08-r2#1": {
+  "ids": [
+   "uasl/debug-root-cause@1d7ea4a832dc",
+   "uasl/test-driven-development@0eebe2fe0e28",
+   "uasl/python-testing-patterns@e62d0f1ca316"
+  ],
+  "why": "reproduce the 500, minimal fix, failing regression test first in pytest"
+ },
+ "s1-nx-04-r1#1": {
+  "ids": [
+   "uasl/responsive-design@2cf7927ef938",
+   "uasl/next-best-practices@ee058f89acea"
+  ],
+  "why": "responsive card grid collapsing on narrow screens; Next.js Link/routing conventions"
+ },
+ "s1-nx-07-r1#1": {
+  "ids": [
+   "uasl/unit-testing@6c5fbb821103",
+   "uasl/documentation-lookup@dee6d7478eab"
+  ],
+  "why": "component unit test practices plus current Vitest/RTL/Next setup docs"
+ },
+ "s1-nx-10-r1#1": {
+  "ids": [
+   "uasl/quill@336ba74b0e79"
+  ],
+  "why": "documentation and type-clarity work that preserves runtime behavior"
+ },
+ "s1b-fa-service-r2#1": {
+  "ids": [
+   "uasl/fastapi-templates@effcd0de0b4c",
+   "uasl/python-design-patterns@5c0fbe0d4633",
+   "uasl/refactoring-patterns@7283bad3e86e"
+  ],
+  "why": "FastAPI service-layer structure, separation of concerns, behavior-preserving refactor"
+ },
+ "s1b-fa-utils-tests-r2#1": {
+  "ids": [
+   "uasl/python-testing-patterns@e62d0f1ca316",
+   "uasl/unit-testing@6c5fbb821103"
+  ],
+  "why": "pytest unit tests with mocks for helper functions"
+ }
+}

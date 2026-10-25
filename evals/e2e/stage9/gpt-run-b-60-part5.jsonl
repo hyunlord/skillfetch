@@ -1,0 +1,126 @@
+{"task_id": "t264", "candidate_id": "g01", "grade": 0, "process": false, "reason": "Rust ML 지식은 충돌 broad phase 공간 그리드 구현과 무관하다."}
+{"task_id": "t264", "candidate_id": "g02", "grade": 0, "process": true, "reason": "단일 공간 그리드 추가에는 다중 스킬 조합 절차가 필요하지 않다."}
+{"task_id": "t264", "candidate_id": "g03", "grade": 2, "process": true, "reason": "좁은 변경과 검증 기준을 강조해 narrow phase 보존과 16ms 예산 검증에 도움이 된다."}
+{"task_id": "t264", "candidate_id": "g04", "grade": 0, "process": false, "reason": "React 렌더링 최적화는 Rust 서버 충돌 계산에 적용되지 않는다."}
+{"task_id": "t264", "candidate_id": "g05", "grade": 1, "process": false, "reason": "Rust API 확인에는 일부 도움이 되지만 버전 정보는 공간 분할 구현의 핵심이 아니다."}
+{"task_id": "t264", "candidate_id": "g06", "grade": 0, "process": true, "reason": "스킬 문서 참조 수정은 world.rs 충돌 최적화와 무관하다."}
+{"task_id": "t264", "candidate_id": "g07", "grade": 0, "process": false, "reason": "브랜드 이미지 생성은 서버 틱 최적화와 무관하다."}
+{"task_id": "t264", "candidate_id": "g08", "grade": 0, "process": false, "reason": "Claude 훅 구성은 충돌 탐색 알고리즘을 개선하지 않는다."}
+{"task_id": "t264", "candidate_id": "g09", "grade": 0, "process": false, "reason": "SwiftUI 화면 패턴은 Rust 시뮬레이션 코드와 맞지 않는다."}
+{"task_id": "t264", "candidate_id": "g10", "grade": 1, "process": false, "reason": "크레이트 통합 지식은 보조적이나 요청에는 새 의존성 통합이 없다."}
+{"task_id": "t264", "candidate_id": "g11", "grade": 1, "process": false, "reason": "게임 시스템 설계라는 접점은 있지만 코드 작성 없이 공간 그리드를 구현하기 어렵다."}
+{"task_id": "t264", "candidate_id": "g12", "grade": 1, "process": false, "reason": "Rust 심볼 탐색은 주변 구조 파악에만 제한적으로 유용하다."}
+{"task_id": "t264", "candidate_id": "g13", "grade": 0, "process": false, "reason": "visionOS TabletopKit은 Rust 서버의 충돌 broad phase와 다른 스택이다."}
+{"task_id": "t264", "candidate_id": "g14", "grade": 0, "process": false, "reason": "Next.js 관례는 Rust 공간 그리드 구현과 무관하다."}
+{"task_id": "t266", "candidate_id": "g01", "grade": 0, "process": false, "reason": "배너 디자인은 axum 핸들러의 CPU 작업 분리와 무관하다."}
+{"task_id": "t266", "candidate_id": "g02", "grade": 1, "process": false, "reason": "Rust 심볼 조회는 핸들러 구조 파악에만 보조적으로 유용하다."}
+{"task_id": "t266", "candidate_id": "g03", "grade": 0, "process": false, "reason": "미디어 생성 API는 기존 image 리사이즈의 런타임 차단을 해결하지 않는다."}
+{"task_id": "t266", "candidate_id": "g04", "grade": 0, "process": false, "reason": "포스터 생성은 spawn_blocking과 Semaphore 구현과 무관하다."}
+{"task_id": "t266", "candidate_id": "g05", "grade": 0, "process": false, "reason": "React Native 최적화는 Rust 서버 실행기의 차단 문제와 다른 스택이다."}
+{"task_id": "t266", "candidate_id": "g06", "grade": 2, "process": false, "reason": "Rust 소유권과 동시성 패턴은 작업 이동과 오류 전달 구현에 도움이 된다."}
+{"task_id": "t266", "candidate_id": "g07", "grade": 3, "process": false, "reason": "Tokio 스폰과 비동기 동시성 지식이 blocking 작업 분리와 처리량 제한에 직접 해당한다."}
+{"task_id": "t266", "candidate_id": "g08", "grade": 0, "process": false, "reason": "이미지 선명도 개선은 이미지 처리 서버의 동시성 제어와 다른 작업이다."}
+{"task_id": "t266", "candidate_id": "g09", "grade": 2, "process": false, "reason": "axum 핸들러와 공유 상태 지식은 세마포어를 서비스에 연결하는 데 도움이 된다."}
+{"task_id": "t266", "candidate_id": "g10", "grade": 0, "process": false, "reason": "Swift 동시성 규칙은 Rust Tokio 구현에 맞지 않는다."}
+{"task_id": "t266", "candidate_id": "g11", "grade": 0, "process": false, "reason": "Python asyncio 패턴은 지정된 Rust spawn_blocking 구현과 다른 스택이다."}
+{"task_id": "t266", "candidate_id": "g12", "grade": 1, "process": true, "reason": "일반 Rust 질문 라우팅은 보조적이지만 구체적인 차단 작업 제어 지침은 드러나지 않는다."}
+{"task_id": "t268", "candidate_id": "g01", "grade": 0, "process": false, "reason": "SwiftUI 화면 패턴은 JPA 연관관계 로딩과 무관하다."}
+{"task_id": "t268", "candidate_id": "g02", "grade": 3, "process": false, "reason": "백엔드 N+1 수정 지침이 line items 개별 조회 문제에 직접 해당한다."}
+{"task_id": "t268", "candidate_id": "g03", "grade": 0, "process": true, "reason": "Claude 설정 정리는 OrderRepository 조회 수정과 무관하다."}
+{"task_id": "t268", "candidate_id": "g04", "grade": 0, "process": false, "reason": "회의록 페이지 생성은 entity graph 적용에 도움이 되지 않는다."}
+{"task_id": "t268", "candidate_id": "g05", "grade": 0, "process": false, "reason": "MyBatis 매퍼 방식은 JPA entity graph와 다른 영속성 도구다."}
+{"task_id": "t268", "candidate_id": "g06", "grade": 0, "process": false, "reason": "청구서의 항목 표시와 주문 엔티티 지연 로딩은 다른 작업이다."}
+{"task_id": "t268", "candidate_id": "g07", "grade": 1, "process": true, "reason": "간결한 리뷰 형식은 일반 보조 수단일 뿐 entity graph 수정 방법을 제공하지 않는다."}
+{"task_id": "t268", "candidate_id": "g08", "grade": 0, "process": false, "reason": "지식 그래프 구성은 JPA entity graph와 의미가 다르다."}
+{"task_id": "t268", "candidate_id": "g09", "grade": 1, "process": true, "reason": "코드 문맥 분석은 보조적이나 이미 특정된 N+1 수정에는 과도하다."}
+{"task_id": "t268", "candidate_id": "g10", "grade": 3, "process": false, "reason": "JPA 관계 및 쿼리 최적화 패턴은 entity graph로 연관 항목을 가져오는 작업에 직접 맞는다."}
+{"task_id": "t268", "candidate_id": "g11", "grade": 0, "process": false, "reason": "Rust CLI 구축은 주문 저장소 조회와 무관하다."}
+{"task_id": "t268", "candidate_id": "g12", "grade": 0, "process": false, "reason": "Swift Charts 시각화는 JPA 지연 로딩과 무관하다."}
+{"task_id": "t270", "candidate_id": "g01", "grade": 2, "process": true, "reason": "완료 전 실측 검증 원칙은 처리량과 lag 기준을 증거로 확인하는 데 도움이 된다."}
+{"task_id": "t270", "candidate_id": "g02", "grade": 3, "process": true, "reason": "Testcontainers 통합 테스트는 배치 저장과 오프셋 커밋의 결합 동작 검증에 직접 맞는다."}
+{"task_id": "t270", "candidate_id": "g03", "grade": 0, "process": true, "reason": "모바일 테스트 절차는 Kotlin 서버 소비자 부하 검증과 맞지 않는다."}
+{"task_id": "t270", "candidate_id": "g04", "grade": 1, "process": true, "reason": "다중 리뷰 통과 절차는 보조적이지만 Kafka 처리량과 커밋 의미를 검증하는 구체성은 부족하다."}
+{"task_id": "t270", "candidate_id": "g05", "grade": 3, "process": true, "reason": "Spring Boot와 Testcontainers 검증 루프는 기존 통합 테스트 통과 조건에 직접 맞는다."}
+{"task_id": "t270", "candidate_id": "g06", "grade": 0, "process": true, "reason": "커밋 메시지 압축은 Kafka 소비자 병목 해결에 필요하지 않다."}
+{"task_id": "t270", "candidate_id": "g07", "grade": 0, "process": false, "reason": "Python 비동기 패턴은 Kotlin JDBC 소비자와 다른 스택이다."}
+{"task_id": "t270", "candidate_id": "g08", "grade": 2, "process": false, "reason": "DB 성능 최적화 지식은 삽입 병목 확인에 유용하지만 Kafka 배치와 오프셋을 다루지는 않는다."}
+{"task_id": "t270", "candidate_id": "g09", "grade": 0, "process": true, "reason": "커밋 메시지 리뷰는 소비자 처리량 개선과 무관하다."}
+{"task_id": "t270", "candidate_id": "g10", "grade": 0, "process": false, "reason": "Apple 광고 어트리뷰션은 Kafka 광고 노출 로그 수집과 다른 시스템이다."}
+{"task_id": "t270", "candidate_id": "g11", "grade": 0, "process": false, "reason": "MyBatis 배치 패턴은 명시된 JdbcTemplate 구현과 다른 도구다."}
+{"task_id": "t270", "candidate_id": "g12", "grade": 3, "process": false, "reason": "Kafka와 배치 스트리밍 파이프라인 설계가 소비자 적체와 데이터 처리 방식 개선에 직접 맞는다."}
+{"task_id": "t270", "candidate_id": "g13", "grade": 2, "process": true, "reason": "재현과 원인 분리 절차는 부하 상황에서 개선 효과와 잔여 병목을 확인하는 데 유용하다."}
+{"task_id": "t270", "candidate_id": "g14", "grade": 2, "process": true, "reason": "Spring Boot 테스트 우선 절차는 배치 실패 시 재처리 회귀를 보호하는 데 도움이 된다."}
+{"task_id": "t270", "candidate_id": "g15", "grade": 0, "process": false, "reason": "Apple Core Data 배치 삽입은 서버 JDBC 처리와 다른 스택이다."}
+{"task_id": "t270", "candidate_id": "g16", "grade": 1, "process": true, "reason": "서비스 계약 테스트는 인접한 검증 영역이지만 이번 목표는 API 호환성 변경이 아니다."}
+{"task_id": "t281", "candidate_id": "g01", "grade": 2, "process": false, "reason": "UI 계층과 성능 설계 지침은 결제 요약의 반응형 배치와 레이아웃 안정성에 유용하다."}
+{"task_id": "t281", "candidate_id": "g02", "grade": 3, "process": false, "reason": "React와 Next.js 컴포넌트 및 성능 패턴이 결제 요약 사이드바 구현에 직접 맞는다."}
+{"task_id": "t287", "candidate_id": "g01", "grade": 0, "process": false, "reason": "도메인 오류 분류와 재시도 설계는 기존 오류 페이지의 HTML 디자인 변경과 다르다."}
+{"task_id": "t287", "candidate_id": "g02", "grade": 2, "process": false, "reason": "Go 관례는 표준 라이브러리 렌더링을 유지하며 템플릿을 수정하는 데 도움이 된다."}
+{"task_id": "t287", "candidate_id": "g03", "grade": 1, "process": false, "reason": "검색 최적화는 오류 페이지의 일부 품질에 관련되지만 헤더와 복귀 링크 디자인에는 제한적이다."}
+{"task_id": "t287", "candidate_id": "g04", "grade": 0, "process": false, "reason": "데이트 대시보드 템플릿은 티켓 서비스 오류 화면과 용도가 다르다."}
+{"task_id": "t287", "candidate_id": "g05", "grade": 1, "process": false, "reason": "사용자 오류 메시지 지침은 일부 유용하지만 주 작업인 HTML와 CSS 재설계를 다루지 않는다."}
+{"task_id": "t287", "candidate_id": "g06", "grade": 1, "process": false, "reason": "단일 HTML 프로토타입은 참고 가능하지만 기존 Go 템플릿과 헤더 통합을 직접 지원하지 않는다."}
+{"task_id": "t287", "candidate_id": "g07", "grade": 1, "process": false, "reason": "HTML 디자인 지식은 관련되지만 현대 프레임워크 생성 방식은 무의존성 기존 CSS 조건에 맞지 않는다."}
+{"task_id": "t287", "candidate_id": "g08", "grade": 0, "process": false, "reason": "React와 shadcn 기반 산출물은 JS 프레임워크 금지 조건을 위반한다."}
+{"task_id": "t287", "candidate_id": "g09", "grade": 1, "process": false, "reason": "오류 복구 개념은 복귀 안내에 참고되지만 오류 전파 설계는 페이지 디자인의 핵심이 아니다."}
+{"task_id": "t287", "candidate_id": "g10", "grade": 0, "process": false, "reason": "SwiftUI WebKit 임베딩은 Go 서버 HTML 렌더링과 다른 스택이다."}
+{"task_id": "t297", "candidate_id": "g01", "grade": 0, "process": true, "reason": "영상 편집 절차는 Compose 일정 화면 수정과 무관하다."}
+{"task_id": "t297", "candidate_id": "g02", "grade": 2, "process": false, "reason": "Android 접근성 지침은 비활성 클래스의 대비와 터치 의미를 설계하는 데 도움이 된다."}
+{"task_id": "t297", "candidate_id": "g03", "grade": 3, "process": false, "reason": "Compose UI와 테마 패턴은 날짜 칩과 아바타 및 비활성 카드 구현에 직접 맞는다."}
+{"task_id": "t297", "candidate_id": "g04", "grade": 0, "process": false, "reason": "모바일 온보딩 목업은 기존 일정 화면의 Compose 구현과 다른 산출물이다."}
+{"task_id": "t297", "candidate_id": "g05", "grade": 1, "process": false, "reason": "Compose 내비게이션은 같은 플랫폼이지만 이번 변경에는 화면 이동 설계가 없다."}
+{"task_id": "t297", "candidate_id": "g06", "grade": 0, "process": false, "reason": "CSS 구현 패턴은 네이티브 Compose UI와 다른 기술이다."}
+{"task_id": "t297", "candidate_id": "g07", "grade": 3, "process": false, "reason": "모바일 콘텐츠 설명과 터치 목표 및 대비 패턴이 아바타와 비활성 클래스 표현에 직접 유용하다."}
+{"task_id": "t297", "candidate_id": "g08", "grade": 2, "process": true, "reason": "Compose UI 테스트는 날짜 선택과 만석 카드 비활성 동작을 확인하는 데 도움이 된다."}
+{"task_id": "t297", "candidate_id": "g09", "grade": 0, "process": false, "reason": "iPhone 프레임 안의 HTML 목업은 Android Compose 화면 구현과 다르다."}
+{"task_id": "t297", "candidate_id": "g10", "grade": 0, "process": false, "reason": "Tailwind 컴포넌트 시스템은 Compose 스타일링에 적용되지 않는다."}
+{"task_id": "t297", "candidate_id": "g11", "grade": 0, "process": true, "reason": "장기 학습 복습 절차는 일정 화면 UI 개선과 무관하다."}
+{"task_id": "t297", "candidate_id": "g12", "grade": 0, "process": false, "reason": "신입사원 온보딩 문서는 체육관 수업 일정 화면과 무관하다."}
+{"task_id": "t297", "candidate_id": "g13", "grade": 1, "process": false, "reason": "MVI 상태 관리 원칙은 인접하지만 기존 화면의 시각적 요소 추가에는 제한적으로 유용하다."}
+{"task_id": "t297", "candidate_id": "g14", "grade": 1, "process": false, "reason": "모바일 이미지 콘셉트는 시각 참고가 되지만 Compose 칩과 카드 구현 지침은 아니다."}
+{"task_id": "t297", "candidate_id": "g15", "grade": 3, "process": false, "reason": "Jetpack Compose 테마와 UI 패턴이 요청된 일정 화면 요소를 구현하는 데 직접 맞는다."}
+{"task_id": "t297", "candidate_id": "g16", "grade": 2, "process": false, "reason": "Kotlin과 Android 기본 관례는 기존 앱 구조 안에서 UI 변경을 구현하는 데 도움이 된다."}
+{"task_id": "t299", "candidate_id": "g01", "grade": 1, "process": false, "reason": "웹 카드와 간격 미감은 참고되지만 React Native 스타일 구현을 직접 다루지 않는다."}
+{"task_id": "t299", "candidate_id": "g02", "grade": 0, "process": false, "reason": "Tailwind CSS 라이브러리 구축은 명시된 React Native 화면의 스타일 방식과 맞지 않는다."}
+{"task_id": "t299", "candidate_id": "g03", "grade": 1, "process": false, "reason": "앱 화면 이미지 콘셉트는 금액 계층의 참고가 되지만 실제 컴포넌트 수정 수단은 아니다."}
+{"task_id": "t299", "candidate_id": "g04", "grade": 0, "process": false, "reason": "Anthropic 브랜드 적용은 거래 상세 화면에 요청되지 않은 외부 스타일이다."}
+{"task_id": "t299", "candidate_id": "g05", "grade": 3, "process": false, "reason": "React Native StyleSheet와 앱 패턴은 금액 강조 및 상태 아이콘과 카드 구현에 직접 맞는다."}
+{"task_id": "t299", "candidate_id": "g06", "grade": 0, "process": false, "reason": "FinanceKit 금융 데이터 조회는 기존 거래 상세 화면의 시각 개선과 다르다."}
+{"task_id": "t299", "candidate_id": "g07", "grade": 0, "process": false, "reason": "에이전트 결제 실행은 거래 화면 스타일 수정과 무관하다."}
+{"task_id": "t299", "candidate_id": "g08", "grade": 0, "process": false, "reason": "퀘스트 중심 게임화 목업은 금융 거래 상세 화면 구현과 다른 산출물이다."}
+{"task_id": "t299", "candidate_id": "g09", "grade": 0, "process": false, "reason": "Coinbase 지갑 자동화는 거래 정보의 카드 배치와 무관하다."}
+{"task_id": "t299", "candidate_id": "g10", "grade": 0, "process": false, "reason": "트레이딩 에이전트 보안은 화면 금액과 상태 표현을 개선하는 작업이 아니다."}
+{"task_id": "t299", "candidate_id": "g11", "grade": 0, "process": false, "reason": "PassKit 결제와 패스 통합은 기존 React Native 거래 화면 스타일 변경과 다르다."}
+{"task_id": "t299", "candidate_id": "g12", "grade": 0, "process": false, "reason": "KMP 내비게이션은 React Native 화면과 다른 스택이다."}
+{"task_id": "t299", "candidate_id": "g13", "grade": 0, "process": false, "reason": "HTML과 ARIA 중심 웹 접근성은 네이티브 화면에 그대로 적용되지 않는다."}
+{"task_id": "t299", "candidate_id": "g14", "grade": 0, "process": false, "reason": "온보딩 흐름 목업은 거래 상세 화면 개편과 용도가 다르다."}
+{"task_id": "t305", "candidate_id": "g01", "grade": 1, "process": true, "reason": "변경 리뷰는 보조적이지만 지정된 상수 한 개 수정에는 버그 탐색 절차의 효용이 작다."}
+{"task_id": "t305", "candidate_id": "g02", "grade": 1, "process": true, "reason": "일반 검증은 도움이 조금 되지만 상수 변경에 포괄적 검증 체계는 과도하다."}
+{"task_id": "t305", "candidate_id": "g03", "grade": 1, "process": true, "reason": "인증 기본값 점검은 인접하지만 로그인 횟수 3이라는 정책은 이미 확정돼 있다."}
+{"task_id": "t305", "candidate_id": "g04", "grade": 0, "process": true, "reason": "커밋 메시지 생성은 상수를 5에서 3으로 바꾸는 요청에 포함되지 않는다."}
+{"task_id": "t305", "candidate_id": "g05", "grade": 0, "process": true, "reason": "다중 생성 평가 하네스는 상수 한 줄 수정에 불필요하다."}
+{"task_id": "t305", "candidate_id": "g06", "grade": 0, "process": true, "reason": "Windows UI 자동화는 Kotlin 인증 설정 변경과 다른 대상이다."}
+{"task_id": "t305", "candidate_id": "g07", "grade": 0, "process": true, "reason": "커밋 형식 검토는 로그인 제한 상수 수정에 필요하지 않다."}
+{"task_id": "t305", "candidate_id": "g08", "grade": 1, "process": true, "reason": "JUnit 테스트 지식은 관련될 수 있으나 새 테스트 우선 절차는 최소 변경 조건에 과도하다."}
+{"task_id": "t305", "candidate_id": "g09", "grade": 0, "process": false, "reason": "색상 팔레트 도구는 인증 상수와 무관하다."}
+{"task_id": "t305", "candidate_id": "g10", "grade": 0, "process": false, "reason": "Husky 훅 설치는 요청 범위를 벗어나며 Kotlin 상수 수정에 필요하지 않다."}
+{"task_id": "t305", "candidate_id": "g11", "grade": 1, "process": true, "reason": "빌드와 테스트 확인은 보조적이나 전체 Spring 검증 루프는 작은 수정에 과하다."}
+{"task_id": "t305", "candidate_id": "g12", "grade": 1, "process": true, "reason": "영향 분석은 하드코딩된 5를 찾는 데 보조적이지만 포괄적 분석까지는 필요하지 않다."}
+{"task_id": "t305", "candidate_id": "g13", "grade": 0, "process": true, "reason": "브라우저 E2E 구축은 로그인 횟수 상수만 바꾸는 작업에 필요하지 않다."}
+{"task_id": "t305", "candidate_id": "g14", "grade": 0, "process": true, "reason": "Playwright 테스트 구조화는 Kotlin 상수 한 줄 수정과 무관하다."}
+{"task_id": "t305", "candidate_id": "g15", "grade": 0, "process": true, "reason": "Quarkus 테스트 절차는 명시되지 않은 프레임워크이며 최소 상수 변경에 맞지 않는다."}
+{"task_id": "t305", "candidate_id": "g16", "grade": 0, "process": false, "reason": "소프트웨어 다이어그램은 로그인 시도 횟수 수정에 필요하지 않다."}
+{"task_id": "t309", "candidate_id": "g01", "grade": 0, "process": false, "reason": "iOS MetricKit 진단은 Go HTTP 응답 nil 접근과 다른 스택이다."}
+{"task_id": "t309", "candidate_id": "g02", "grade": 1, "process": true, "reason": "Go 검증 도구는 인접하지만 생성 CLI 전체 정리 절차는 줄 순서 수정에 과하다."}
+{"task_id": "t309", "candidate_id": "g03", "grade": 0, "process": false, "reason": "브루탈리즘 UI 디자인은 Go 오류 검사 순서와 무관하다."}
+{"task_id": "t309", "candidate_id": "g04", "grade": 0, "process": false, "reason": "IoT 도메인 지식은 telemetry 경로의 nil 응답 처리 수정에 필요하지 않다."}
+{"task_id": "t309", "candidate_id": "g05", "grade": 0, "process": true, "reason": "내부 커뮤니케이션 작성은 Go defer 위치 수정과 무관하다."}
+{"task_id": "t309", "candidate_id": "g06", "grade": 0, "process": true, "reason": "해결법이 명시된 줄 이동에는 다중 관점 의사결정 절차가 필요하지 않다."}
+{"task_id": "t309", "candidate_id": "g07", "grade": 0, "process": true, "reason": "오류 검사 뒤 defer를 두는 확정된 수정에는 의사결정 회의가 필요하지 않다."}
+{"task_id": "t309", "candidate_id": "g08", "grade": 0, "process": true, "reason": "커밋 메시지 압축은 요청된 Go 실행 순서 수정과 별개다."}
+{"task_id": "t309", "candidate_id": "g09", "grade": 0, "process": true, "reason": "외부 채널 소통 규칙은 HTTP 응답 자원 해제와 무관하다."}
+{"task_id": "t309", "candidate_id": "g10", "grade": 0, "process": false, "reason": "Go CLI 카탈로그 설치는 기존 응답 오류 검사 순서를 바꾸는 데 도움이 되지 않는다."}
+{"task_id": "t309", "candidate_id": "g11", "grade": 0, "process": false, "reason": "텔레메트리풍 슬라이드 디자인은 telemetry Go 코드의 panic 수정과 무관하다."}
+{"task_id": "t309", "candidate_id": "g12", "grade": 0, "process": false, "reason": "기술 시장 채택 전략은 Go nil pointer 수정과 무관하다."}
+{"task_id": "t309", "candidate_id": "g13", "grade": 0, "process": false, "reason": "Nasiko CLI 수명주기 관리는 HTTP 응답 오류 검사와 무관하다."}
+{"task_id": "t309", "candidate_id": "g14", "grade": 0, "process": true, "reason": "GitHub와 Linear 업무 흐름 관리는 defer 한 줄 이동에 필요하지 않다."}

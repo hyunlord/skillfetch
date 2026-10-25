@@ -1,0 +1,16 @@
+{
+  "prep_dir": "/tmp/skillfetch-codex-e2e-prep-20261023T224338",
+  "source_commit": "14d2020f1275e10a272eb46575c9bd6d4a2182e4",
+  "model_candidate": "gpt-6-astra",
+  "reasoning_effort": "medium",
+  "model_inference_authorized": true,
+  "model_sessions_started": 19,
+  "fastapi_s5": "2b38acb4586092ef0318bc6a8ab36436ba8fc09a",
+  "nextjs_s5": "2a1df71575f0c45a0f7a999bf77f4286d81e8706",
+  "auth_required": "chatgpt subscription",
+  "paid_api_key_calls_allowed": false,
+  "mcp_public_source_fetch_allowed": true,
+  "model_sessions_completed": 19,
+  "worktree_cleanup": "26/26 removed and unregistered",
+  "final_observations": "<e2e>/codex-e2e-runs/cohort-observations.json"
+}

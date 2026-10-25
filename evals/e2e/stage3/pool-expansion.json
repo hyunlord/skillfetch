@@ -1,0 +1,41 @@
+{
+ "tasks_with_new_candidates": 380,
+ "added": 9332,
+ "grade_dist_added": {
+  "0": 7768,
+  "1": 1210,
+  "2": 332,
+  "3": 22
+ },
+ "added_relevant": 354,
+ "relevant_v1": 561,
+ "relevant_v2": 915,
+ "by_method": {
+  "bm25_q2": {
+   "added": 1908,
+   "relevant": 129
+  },
+  "bm25_q3": {
+   "added": 2454,
+   "relevant": 171
+  },
+  "emb_q1": {
+   "added": 3154,
+   "relevant": 96
+  },
+  "emb_q2": {
+   "added": 3190,
+   "relevant": 117
+  },
+  "rrf_q1": {
+   "added": 2070,
+   "relevant": 111
+  },
+  "rrf_q2": {
+   "added": 2547,
+   "relevant": 176
+  }
+ },
+ "tasks_gaining_first_relevant": 30,
+ "grading_problems": []
+}

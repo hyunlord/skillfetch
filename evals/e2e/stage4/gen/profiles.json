@@ -1,0 +1,50 @@
+{
+ "fastapi": {
+  "languages": [
+   "javascript",
+   "python"
+  ],
+  "frameworks": [],
+  "package_managers": [
+   "bun",
+   "uv"
+  ],
+  "tags": [
+   "bun",
+   "javascript",
+   "python",
+   "uv"
+  ],
+  "manifests": [
+   "bun.lock",
+   "package.json",
+   "pyproject.toml",
+   "uv.lock"
+  ]
+ },
+ "nextjs": {
+  "languages": [
+   "javascript",
+   "typescript"
+  ],
+  "frameworks": [
+   "nextjs",
+   "react"
+  ],
+  "package_managers": [
+   "npm"
+  ],
+  "tags": [
+   "javascript",
+   "nextjs",
+   "npm",
+   "react",
+   "typescript"
+  ],
+  "manifests": [
+   "package-lock.json",
+   "package.json",
+   "tsconfig.json"
+  ]
+ }
+}
