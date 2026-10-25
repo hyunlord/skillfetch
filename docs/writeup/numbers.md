@@ -1862,9 +1862,8 @@ GPT judging was supplied by the author; its cost is not recorded.
 - **Scores near the ceiling:** in the remeasured bundle (3), every Claude score is 4 or 5 and 22 of GPT's 27 are 5. D shrank to 0.000 (Claude) and 0.111 (GPT), so gate (ii) turned on a few scores (two points out of 27). The verdict is kept.
 - **Bundle (3) definition:** the first definition was checked against the labels only after the run; the remeasurement replaced it under a rule recorded first.
 - **Shared git branches:** worktrees share refs. 18 branches created by E2 sessions were visible to later sessions; names only, no commits on top.
-  - Sessions whose tool output showed such a name: E2 A 25/45, E2 R1 12/45, E1 R0 1/45, other E1 0/45.
+  - Read or listed others' refs: E1 0, E2 32; another session's branch name appeared in any tool output: E1 0, E2 33; code from another session: 0.
   - The branches were deleted after the run.
-  - Stage 10 sessions were created as shared worktrees, so they could see each other's branches. Exposure: E1 0, E2 10 sessions (no code came in). Stage 11 blocked this.
 - **t115 check:** changed three times during the run.
   - Two implementation fixes (no change of definition) and one revision the user approved.
   - Both results are given: 15 of 18 main-run sessions pass under the first check, 18 of 18 under the revised one.
