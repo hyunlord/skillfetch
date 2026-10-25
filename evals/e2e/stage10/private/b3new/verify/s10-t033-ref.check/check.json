@@ -1,0 +1,31 @@
+{
+  "task": "t033",
+  "pass": true,
+  "items": [
+    {
+      "name": "typecheck",
+      "pass": true,
+      "detail": "tsc ok"
+    },
+    {
+      "name": "tests_pass",
+      "pass": true,
+      "detail": "exit 0: 26 passed (26)"
+    },
+    {
+      "name": "hidden_tests",
+      "pass": true,
+      "detail": "exit 0: 8 passed (8)"
+    },
+    {
+      "name": "no_new_packages",
+      "pass": true,
+      "detail": "deps and lockfile unchanged"
+    },
+    {
+      "name": "toolbar_untouched",
+      "pass": true,
+      "detail": "Toolbar.tsx unchanged"
+    }
+  ]
+}

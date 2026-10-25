@@ -1,0 +1,52 @@
+{
+ "s10-t001 start": {
+  "pass": null,
+  "failed": [],
+  "error": "check rc=2",
+  "status_after": []
+ },
+ "s10-t001 ref": {
+  "pass": null,
+  "failed": [],
+  "error": "check rc=2",
+  "status_after": [
+   " M payouts/ledger.py",
+   " M scripts/reconcile_payouts.py",
+   " M tests/test_reconcile.py"
+  ]
+ },
+ "s10-t033 start": {
+  "pass": false,
+  "failed": [
+   "hidden_tests"
+  ],
+  "error": null,
+  "status_after": []
+ },
+ "s10-t033 ref": {
+  "pass": true,
+  "failed": [],
+  "error": null,
+  "status_after": [
+   " M lib/sanitizeHtml.ts",
+   " M tests/sanitizeHtml.test.ts"
+  ]
+ },
+ "s10-t114 start": {
+  "pass": false,
+  "failed": [
+   "d_crate_docs_present",
+   "e_docs_explain_bytes"
+  ],
+  "error": null,
+  "status_after": []
+ },
+ "s10-t114 ref": {
+  "pass": true,
+  "failed": [],
+  "error": null,
+  "status_after": [
+   " M telemetry-codec/src/lib.rs"
+  ]
+ }
+}

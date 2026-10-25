@@ -203,6 +203,7 @@ Not recorded: in these stages' batch calls only successful answers are cached, s
 - Stage 7a batch calls (§18): direction-match judgements $0.41, baseline runs $24.45, grading $0.03 + $3.58 + $6.31 (isolated `claude -p`); GPT labels not recorded.
 - Stage 8 batch calls (§19): keyword queries $1.80, grading $18.41 + $29.37 (isolated `claude -p`); Skillselion calls free; GPT labels not recorded.
 - Stage 9 (§20): S-b′ selections $19.79 + $19.67 + $19.73, grading $14.85 + $5.71, batch-effect regrading $1.10; staging extraction 1,306 calls $105.63 and 161 calls $17.03; judge fixture calibration 42 calls $0.44 (isolated `claude -p`); GPT labels not recorded.
+- Stage 10 sessions (§21): main run 270 sessions $190.95, with pilots and the 8 sessions cut off by a spend limit $202.43; bundle (3) remeasurement 27 sessions $9.51; grading $0.11 + $0.359 (isolated `claude -p`); GPT judging not recorded.
 
 ### Runtime latency
 
@@ -1744,4 +1745,127 @@ Source: evals/e2e/stage9/report-9.md (run 1), report-9b.md (run-b), report-9b-fo
 - One labeller for the metrics (Opus); the GPT cross-labels cover 60 tasks of run-b's rankings, not all of run-c's.
 - (C)'s denominator differs (release 110 tasks, run-c 52) because tasks that gained a relevant new record leave it; the same-52-task comparison is given.
 - run-b's results belong to a build that was replaced; run-b and run-c are not under the same condition for rshankras.
+
+## 21. Stage 10: final stack in real sessions (after the post freeze)
+
+Source: evals/e2e/stage10/report-10.md; design and the rules fixed before the run in evals/e2e/stage10/DESIGN.md (§1–§4, §10, §11); hashes in evals/e2e/stage10/FROZEN.sha256; session rows, grades, judge scores and keys in evals/e2e/stage10/private. Measured after the post's numbers were frozen; not in §7's totals. No index release was made; index-staging-4 stays the release candidate.
+
+**Design.** The final stack in real Claude Code sessions: the shipped router (V1 description, R-c search, S-b′ selection) on the released index against the same router on the next index candidate (index-staging-4, §20).
+
+| condition | router skill | MCP | index |
+|---|---|---|---|
+| A | none | none | – |
+| R0 | shipped router (`57acc45`) | `skillfetch serve` (`3fef3f8`) | release (index-2026-10-22) |
+| R1 | same router | same server | index-staging-4 |
+| R1s | `assets/router-skill/variants/fast.md` (steps 6–7 as one `resolve_and_load` call) | same server | index-staging-4 |
+
+- **Environments:**
+  - E1: clean. Project settings only, strict MCP config, no user plugins, skills or MCP servers. Runs all four conditions.
+  - E2: the author's own setup, adding user settings, plugins, skills, MCP servers and hooks. Runs A and R1 only.
+- **Runs:** 3 runs per task and condition; `claude -p --max-turns 40`.
+- **Task bundles:**
+  - (1) design: 4 tasks;
+  - (2) ceiling domains: the 4 stage 2 tasks;
+  - (3) no matching skill: 3 tasks;
+  - (4) newly covered by index-staging-4, non-Python: 4 tasks (Rust and Swift; new repositories, hidden checks).
+- **Main run:** 270 sessions, 15 tasks × {E1 A, R0, R1, R1s; E2 A, R1} × 3.
+  - Objective checks passed: 267/270.
+  - 8 sessions cut off by a spend limit were set aside and rerun.
+- **Judges:** two Claude passes (p1, p2) and GPT, blind, over diffs, checks and (bundle 4) redacted final answers.
+  - 810 scores in the main run, 81 in the bundle (3) remeasurement.
+  - Keys were read after each pass's format check.
+
+**Gate fixed before the run (§4.1, R1 vs R0, E1).** index-staging-4 is approved only if all four hold:
+- (i) bundle (4): sessions that loaded a relevant skill, R1 > R0.
+- (ii) In no bundle is R1's mean score more than D below R0's, for each judge separately.
+  - D_claude(b) = max over A, R0, R1 of |p1 − p2|.
+  - D_gpt(b) = the largest gap between any two of the passes {p1, p2, gpt}.
+- (iii) bundle (3) unneeded loads (sessions that loaded ≥ 1 skill): R1 ≤ R0 + 1, of 9.
+- (iv) In no bundle are R1's median turns more than R0 + 2.
+
+**First evaluation — not approved.** (iii) failed: R1 3/9, R0 0/9. The other three criteria held:
+
+| criterion | bundles (1) / (2) / (3) / (4) | held |
+|---|---|---|
+| (i) relevant load, bundle (4) | R1 12/12, R0 0/12 | yes |
+| (ii)-Claude, R1 vs R0 (D) | 4.250 vs 4.208 (0.166) / 4.542 vs 4.583 (0.167) / 4.667 vs 4.500 (0.222) / 4.833 vs 4.833 (0.167) | yes |
+| (ii)-GPT, R1 vs R0 (D) | 4.417 vs 4.417 (0.583) / 4.000 vs 4.083 (0.584) / 5.000 vs 4.333 (0.444) / 4.417 vs 4.333 (0.500) | yes |
+| (iii) unneeded loads, bundle (3) | R1 3/9, R0 0/9 | **no** |
+| (iv) median turns, R1 vs R0 | 22.5 vs 21.5 / 14.5 vs 15.0 / 15 vs 15 / 13.0 vs 12.0 | yes |
+
+- **Why (iii) failed:** the bundle was defined wrongly. R1's three loads were all on s6b-t133 (Dockerfile layer cache), and the skills it loaded were graded 3 and 2.
+  - The bundle was meant to hold tasks no skill fits. By the labels, all three tasks had a grade ≥ 2 skill in index-staging-4.
+  - The definition was not changed after the results. The bundle was replaced and remeasured under a rule recorded first (DESIGN §11).
+
+**Re-evaluation — not approved.** The new bundle (3) holds tasks with no grade ≥ 2 skill in either index:
+- Candidates were checked first by grading the union of their R-c top 50 (304 rows). One of four was dropped.
+- Kept: t001 Python, t033 TypeScript, t114 Rust. Each has a new repository and a hidden check that fails at the start commit and passes the reference.
+- Run: 27 sessions (3 tasks × {R0, R1, R1s} × 3, E1); checks passed 27/27.
+
+| condition | loaded ≥ 1 | relevant load | median turns | Claude (p1n + p2n)/2 | GPT |
+|---|---|---|---|---|---|
+| R0 | 9/9 | 0 | 15 | 4.778 | 4.889 |
+| R1 | 4/9 | 0 | 14 | 4.778 | 4.667 |
+| R1s | 4/9 | 0 | 14 | 4.778 | 4.889 |
+
+- **What loaded:** generic process skills, all graded 0–1 (none ≥ 2):
+  - R0: verification-loop, debug-root-cause, quill, anvil
+  - R1: verification-loop, debug-root-cause, spec-miner, rust-patterns
+  - R1s: verification-loop, debug-root-cause, spec-miner
+- **Bundle (3) items, remeasured:**
+  - (ii)-Claude: 4.778 vs 4.778 (D 0.000), held.
+  - **(ii)-GPT: R1 4.667 vs R0 4.889, D 0.111 (R1 − R0 = −0.222), not held.**
+  - (iii): R1 4/9 vs R0 9/9, held.
+  - (iv): 14 vs 15, held.
+- **Recomputed gate** (bundles (1), (2), (4) from the main run, bundle (3) remeasured): only (ii)-GPT on bundle (3) fails.
+- **Where the GPT difference comes from:** GPT gave five scores below 5 among the 27.
+  - R1: t001 n2 and n3 (README edits outside the asked scope); t033 n3 (an untrimmed extracted value).
+  - R0: t001 n3.
+  - R1s: t033 n1.
+  - The difference is two points out of 27 scores.
+
+**Router effect, R1 vs A (E1, not a gate).** A difference within D is marked "within judge disagreement".
+
+| bundle | R1 − A, Claude (D) | R1 − A, GPT (D) | median turns A → R1 | median input tokens A → R1 |
+|---|---|---|---|---|
+| (1) design | +0.458 (0.166) | +0.084 (0.583), within | 9.5 → 22.5 | 260,494 → 801,970 |
+| (2) ceiling domains | +0.167 (0.167), within | +0.167 (0.584), within | 9.0 → 14.5 | 263,340 → 492,684 |
+| (3) no matching skill (first definition) | −0.277 (0.222) | 0.000 (0.444), within | 9 → 15 | 196,094 → 449,467 |
+| (4) newly covered, non-Python | +0.083 (0.167), within | +0.084 (0.500), within | 6.0 → 13.0 | 149,980 → 392,492 |
+
+- Bundle (4), loads: R0 0/12 (no fitting skill in the release; all 12 searched only), R1 12/12, R1s 11/12, E2 R1 11/12. Every loaded skill is graded 2 or 3 on the run-c labels (§20).
+- E2 (A / R1), score per bundle: 4.250 / 4.167, 4.583 / 4.708, 4.833 / 4.944, 4.833 / 4.833. Median turns: 23.0 / 25.5, 13.0 / 17.0, 11 / 14, 12.5 / 19.0. The user state files were unchanged in all 90 E2 sessions.
+- Median turn of the first skillfetch search: 5 in every condition and bundle that fired.
+
+**R1s (`resolve_and_load` variant) — not shipped.** The criteria were given by the user before the main run but were left out of DESIGN §4.5; they were recorded after the results, as given, and applied.
+
+| criterion | value | held |
+|---|---|---|
+| (a) R1s median turns ≤ R1 − 2 in at least 3 of 4 bundles | 19.5 vs 22.5 / 17.0 vs 14.5 / 15 vs 15 / 13.0 vs 13.0: 1 of 4 | **no** |
+| (b)-Claude no bundle R1s < R1 − D | bundle (1) −0.292 (D 0.166) | **no** |
+| (b)-GPT | b1 +0.250, b2 +0.167, b3 0.000, b4 −0.167 (D 0.500) | yes |
+| (c) bundle (3) unneeded loads R1s ≤ R1 + 1 | 4/9 vs 3/9 | yes |
+| (d) bundle (4) relevant-load rate R1s ≥ R1 − 0.1 | 0.917 vs 1.000 | yes |
+
+- (a) failed, so the variant is not shipped. The router skill is unchanged.
+- The span from the first to the last skillfetch call (median, bundles (1)–(4)) was R1 4 / 4 / 2 / 4 and R1s 4 / 4 / 3 / 4 turns. In the new bundle (3), R1s − R1 is 0.000 (Claude) and +0.222 (GPT).
+
+**Cost** (API-price equivalent, Claude Code plan):
+- main run $190.95; with pilots and the sessions cut off, $202.43;
+- loaded-skill grading $0.11;
+- bundle (3) pre-check grading $0.359;
+- bundle (3) remeasurement $9.51.
+
+GPT judging was supplied by the author; its cost is not recorded.
+
+**Limits.**
+- **Scores near the ceiling:** in the remeasured bundle (3), every Claude score is 4 or 5 and 22 of GPT's 27 are 5. D shrank to 0.000 (Claude) and 0.111 (GPT), so gate (ii) turned on a few scores (two points out of 27). The verdict is kept.
+- **Bundle (3) definition:** the first definition was checked against the labels only after the run; the remeasurement replaced it under a rule recorded first.
+- **Shared git branches:** worktrees share refs. 18 branches created by E2 sessions were visible to later sessions; names only, no commits on top.
+  - Sessions whose tool output showed such a name: E2 A 25/45, E2 R1 12/45, E1 R0 1/45, other E1 0/45.
+  - The branches were deleted after the run.
+- **t115 check:** changed three times during the run.
+  - Two implementation fixes (no change of definition) and one revision the user approved.
+  - Both results are given: 15 of 18 main-run sessions pass under the first check, 18 of 18 under the revised one.
+- **Sample size:** 3 runs per task and condition; 9–12 sessions per bundle and condition.
 

@@ -1,0 +1,243 @@
+{
+ "terms": [
+  "actionbook-rust-skills/domain-embedded@30ab1d9f66a4",
+  "actionbook-rust-skills/m01-ownership@5035878a4032",
+  "actionbook-rust-skills/m07-concurrency@0686c877c8a6",
+  "actionbook-rust-skills/m10-performance@c46289fecbad",
+  "actionbook-rust-skills/unsafe-checker@6544b8069b76",
+  "affaan-m-ecc/api-design@2c61753734ba",
+  "affaan-m-ecc/fastapi-patterns@419da9966f07",
+  "affaan-m-ecc/rust-testing@68e797f602f9",
+  "ahmed3elshaer-everything-claude-code-mobile/core-data@5af9586b2607",
+  "api-design",
+  "core-data",
+  "domain-embedded",
+  "fastapi-patterns",
+  "load_skills",
+  "m01-ownership",
+  "m07-concurrency",
+  "m10-performance",
+  "migration-patterns",
+  "profile_repo",
+  "resolve_and_load",
+  "resolve_set",
+  "rshankras-claude-code-apple-skills/migration-patterns@e984f66553cd",
+  "rshankras-claude-code-apple-skills/swiftdata-architecture@26d1d4982b33",
+  "rust-testing",
+  "search_skills",
+  "swiftdata-architecture",
+  "unsafe-checker"
+ ],
+ "loaded_ids": 11,
+ "by_condition": {
+  "E1 A": {
+   "sessions": 4,
+   "masked_sentences": 0,
+   "sessions_with_mask": 0,
+   "masked_per_session_median": 0.0,
+   "chars_after": {
+    "min": 963,
+    "median": 1931.0,
+    "mean": 2002,
+    "max": 3182
+   }
+  },
+  "E1 R0": {
+   "sessions": 4,
+   "masked_sentences": 4,
+   "sessions_with_mask": 4,
+   "masked_per_session_median": 1.0,
+   "chars_after": {
+    "min": 931,
+    "median": 2049.5,
+    "mean": 1950,
+    "max": 2771
+   }
+  },
+  "E1 R1": {
+   "sessions": 4,
+   "masked_sentences": 0,
+   "sessions_with_mask": 0,
+   "masked_per_session_median": 0.0,
+   "chars_after": {
+    "min": 940,
+    "median": 1861.0,
+    "mean": 2003,
+    "max": 3349
+   }
+  },
+  "E1 R1s": {
+   "sessions": 1,
+   "masked_sentences": 1,
+   "sessions_with_mask": 1,
+   "masked_per_session_median": 1,
+   "chars_after": {
+    "min": 1064,
+    "median": 1064,
+    "mean": 1064,
+    "max": 1064
+   }
+  },
+  "E2 A": {
+   "sessions": 1,
+   "masked_sentences": 0,
+   "sessions_with_mask": 0,
+   "masked_per_session_median": 0,
+   "chars_after": {
+    "min": 1028,
+    "median": 1028,
+    "mean": 1028,
+    "max": 1028
+   }
+  },
+  "E2 R1": {
+   "sessions": 1,
+   "masked_sentences": 0,
+   "sessions_with_mask": 0,
+   "masked_per_session_median": 0,
+   "chars_after": {
+    "min": 1226,
+    "median": 1226,
+    "mean": 1226,
+    "max": 1226
+   }
+  }
+ },
+ "sessions": [
+  {
+   "task": "s10-t016",
+   "env": "E1",
+   "cond": "A",
+   "tag": "p0",
+   "masked": 0,
+   "chars_before": 963,
+   "chars_after": 963
+  },
+  {
+   "task": "s10-t115",
+   "env": "E1",
+   "cond": "A",
+   "tag": "p0",
+   "masked": 0,
+   "chars_before": 3182,
+   "chars_after": 3182
+  },
+  {
+   "task": "s10-t198",
+   "env": "E1",
+   "cond": "A",
+   "tag": "p0",
+   "masked": 0,
+   "chars_before": 2154,
+   "chars_after": 2154
+  },
+  {
+   "task": "s10-t263",
+   "env": "E1",
+   "cond": "A",
+   "tag": "p0",
+   "masked": 0,
+   "chars_before": 1708,
+   "chars_after": 1708
+  },
+  {
+   "task": "s10-t016",
+   "env": "E1",
+   "cond": "R0",
+   "tag": "p0",
+   "masked": 1,
+   "chars_before": 992,
+   "chars_after": 931
+  },
+  {
+   "task": "s10-t115",
+   "env": "E1",
+   "cond": "R0",
+   "tag": "p0",
+   "masked": 1,
+   "chars_before": 2868,
+   "chars_after": 2771
+  },
+  {
+   "task": "s10-t198",
+   "env": "E1",
+   "cond": "R0",
+   "tag": "p0",
+   "masked": 1,
+   "chars_before": 2492,
+   "chars_after": 2410
+  },
+  {
+   "task": "s10-t263",
+   "env": "E1",
+   "cond": "R0",
+   "tag": "p0",
+   "masked": 1,
+   "chars_before": 1781,
+   "chars_after": 1689
+  },
+  {
+   "task": "s10-t016",
+   "env": "E1",
+   "cond": "R1",
+   "tag": "p0",
+   "masked": 0,
+   "chars_before": 940,
+   "chars_after": 940
+  },
+  {
+   "task": "s10-t115",
+   "env": "E1",
+   "cond": "R1",
+   "tag": "p0",
+   "masked": 0,
+   "chars_before": 3349,
+   "chars_after": 3349
+  },
+  {
+   "task": "s10-t198",
+   "env": "E1",
+   "cond": "R1",
+   "tag": "p0",
+   "masked": 0,
+   "chars_before": 2185,
+   "chars_after": 2185
+  },
+  {
+   "task": "s10-t263",
+   "env": "E1",
+   "cond": "R1",
+   "tag": "p0",
+   "masked": 0,
+   "chars_before": 1537,
+   "chars_after": 1537
+  },
+  {
+   "task": "s10-t016",
+   "env": "E1",
+   "cond": "R1s",
+   "tag": "p1",
+   "masked": 1,
+   "chars_before": 1148,
+   "chars_after": 1064
+  },
+  {
+   "task": "s10-t016",
+   "env": "E2",
+   "cond": "A",
+   "tag": "p0",
+   "masked": 0,
+   "chars_before": 1028,
+   "chars_after": 1028
+  },
+  {
+   "task": "s10-t016",
+   "env": "E2",
+   "cond": "R1",
+   "tag": "p0",
+   "masked": 0,
+   "chars_before": 1226,
+   "chars_after": 1226
+  }
+ ]
+}

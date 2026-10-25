@@ -1,0 +1,7 @@
+{"task": "s10-t001", "skill": "uasl/anvil@3a36e8410205", "grade": 1, "process": null, "source": "b3new-precheck"}
+{"task": "s10-t001", "skill": "uasl/verification-loop@39d9be23cf50", "grade": 0, "process": null, "source": "b3new-precheck"}
+{"task": "s10-t033", "skill": "uasl/verification-loop@39d9be23cf50", "grade": 1, "process": null, "source": "b3new-precheck"}
+{"task": "s10-t114", "skill": "affaan-m-ecc/rust-patterns@f0961b5637b0", "grade": 1, "process": null, "source": "b3new-precheck"}
+{"task": "s10-t114", "skill": "uasl/quill@336ba74b0e79", "grade": 1, "process": null, "source": "b3new-precheck"}
+{"task": "s10-t114", "skill": "uasl/spec-miner@cebd849612b0", "grade": 1, "process": null, "source": "b3new-precheck"}
+{"task": "s10-t033", "skill": "uasl/debug-root-cause@1d7ea4a832dc", "grade": 1, "process": true, "source": "s10-grade"}

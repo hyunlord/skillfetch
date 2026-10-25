@@ -1,0 +1,31 @@
+{
+ "tasks": {
+  "t001": {
+   "graded": 80,
+   "grade_ge2": [],
+   "enter_bundle": true
+  },
+  "t033": {
+   "graded": 72,
+   "grade_ge2": [],
+   "enter_bundle": true
+  },
+  "t114": {
+   "graded": 76,
+   "grade_ge2": [],
+   "enter_bundle": true
+  },
+  "t276": {
+   "graded": 76,
+   "grade_ge2": [
+    [
+     "uasl/anvil@3a36e8410205",
+     2
+    ]
+   ],
+   "enter_bundle": false
+  }
+ },
+ "problems": [],
+ "cost_usd": 0.359
+}
