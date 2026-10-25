@@ -12,7 +12,7 @@ code_search:
   size_max: 20000
   shards_per_run: 12
   pages_per_shard: 3          # 100 results a page
-  pause: 6.5                  # code search allows 10 requests a minute
+  pause: 12                   # seconds between code search requests (limit: 10 a minute)
 
 # GitHub repository search, most recently updated first.
 repo_topics:

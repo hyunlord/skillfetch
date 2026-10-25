@@ -391,26 +391,30 @@ def test_rate_limit_waits_then_retries_once():
 
 
 def test_rate_limit_retry_failure_and_long_wait():
-    replies = [limited(wait_header="5"), limited(wait_header="5")]
-    api = d.GhApi(run=lambda *a, **k: replies.pop(0), sleep=lambda s: None, clock=lambda: 0)
+    replies = [limited(wait_header="5")] * 3
+    slept = []
+    api = d.GhApi(run=lambda *a, **k: replies.pop(0), sleep=slept.append, clock=lambda: 0)
     assert api.get("p") is None
-    assert api.last_error.startswith("after one retry:") and api.retries == 1
+    assert api.last_error.startswith("after 2 retries:") and api.retries == 2
+    assert slept == [5.0, 10.0]  # the second wait is doubled
+    assert api.wait_sources == {"header": [2, 15.0]}
     msg = "gh: try again in 999.4s (HTTP 429)"  # over the 900 s limit
     long = Proc(1, "HTTP/2.0 429 Too Many Requests\r\n\r\n{}", msg)
     api = d.GhApi(run=lambda *a, **k: long, sleep=lambda s: pytest.fail("slept"), clock=lambda: 0)
     assert api.get("p") is None
-    assert api.last_error == "rate-limited, skipped (asked to wait 999 s)"
+    assert api.last_error == "rate-limited, skipped (asked to wait 999 s, message)"
     assert (api.retries, api.skipped) == (0, 1)
 
 
 def test_retry_wait_sources():
-    assert d.retry_wait(429, {}, "gh: try again in 3.5s (HTTP 429)", now=0) == 3.5
-    assert (
-        d.retry_wait(403, {"x-ratelimit-remaining": "0", "x-ratelimit-reset": "160"}, "", 100) == 60
-    )
-    assert d.retry_wait(429, {}, "", now=0) == 60.0
-    assert d.retry_wait(404, {}, "gh: Not Found (HTTP 404)", now=0) is None
-    assert d.retry_wait(403, {}, "gh: Resource not accessible (HTTP 403)", now=0) is None
+    assert d.retry_wait(429, {"retry-after": "60"}, "try again in 3s") == (60.0, "header")
+    assert d.retry_wait(429, {}, "gh: try again in 3.5s (HTTP 429)") == (3.5, "message")
+    ms = d.retry_wait(429, {}, "gh: try again in 200.881765ms (HTTP 429)")
+    assert ms == (0.200881765, "message")
+    assert d.retry_wait(403, {"x-ratelimit-remaining": "0"}, "") == (60.0, "default")
+    assert d.retry_wait(429, {}, "") == (60.0, "default")
+    assert d.retry_wait(404, {}, "gh: Not Found (HTTP 404)") is None
+    assert d.retry_wait(403, {}, "gh: Resource not accessible (HTTP 403)") is None
     api = d.GhApi(run=lambda *a, **k: Proc(1, "", "gh: Not Found (HTTP 404)"), sleep=None)
     assert api.get("repos/x/y") is None and api.last_error == "gh: Not Found (HTTP 404)"
 
@@ -431,7 +435,8 @@ def test_skipped_range_and_rate_line_in_the_report(tmp_path):
     run = d.discover(cfg, gh, lambda u: None, set(), None, None, date(2026, 1, 5))
     text = d.render_report(run)
     assert "1000..1999 (rate-limited, skipped)" in text
-    assert "- Rate limits: 2 retries after waiting 9 s in total (budget 1800 s); 1 requests" in text
+    assert "- Rate limits: 2 retries after waiting 9 s in total (budget 1800 s; waits " in text
+    assert "1 requests skipped" in text
 
 
 def test_wait_budget_skips_the_rest_of_code_search_but_not_other_channels():
@@ -455,7 +460,9 @@ def test_wait_budget_skips_the_rest_of_code_search_but_not_other_channels():
         max_checks=0,
     )
     run_ = d.discover(cfg, api, lambda u: None, set(), None, None, date(2026, 1, 5))
-    # 700 s, retried and limited again; 700 s more; the third wait (2,100 s) is over budget
+    # range 1: 700 s, then the doubled 1,400 s is over the 900 s cap (skipped); range 2 the
+    # same (1,400 s used); range 3: another 700 s would pass the 1,800 s budget; range 4 is
+    # never requested
     assert slept == [700.0, 700.0]
     assert api.budget_exhausted and run_.rate["budget_exhausted"] is True
     shards = run_.found.shards
@@ -503,3 +510,64 @@ def test_selection_failure_falls_back_to_the_raw_ranking():
     run = d.discover(cfg, gh, lambda u: None, {"c/d"}, None, None, date(2026, 1, 5))
     assert run.partial[0].startswith("selection: OSError")
     assert [r["repo"] for r in run.rows] == ["a/b"] and run.rows[0]["status"] == "not_checked"
+
+
+def test_one_wait_source_line_per_source():
+    replies = [
+        Proc(1, "HTTP/2.0 429 Too Many Requests\r\nRetry-After: 4\r\n\r\n{}", "gh: (HTTP 429)"),
+        ok(),
+        Proc(1, "HTTP/2.0 429 Too Many Requests\r\n\r\n{}", "gh: try again in 500ms (HTTP 429)"),
+        ok(),
+    ]
+    api = d.GhApi(run=lambda *a, **k: replies.pop(0), sleep=lambda s: None)
+    assert api.get("a") and api.get("b")
+    assert api.wait_sources == {"header": [1, 4.0], "message": [1, 0.5]}
+    assert d._wait_sources(api.wait_sources) == "header 1 (4 s), message 1 (0 s)"
+
+
+def cand(repo, paths=(), channels=("code",), pushed=None):
+    c = d.Candidate(repo)
+    for ch in channels:
+        c.channels[ch] += 1
+    c.skill_paths = set(paths)
+    if pushed:
+        c.meta = {"full_name": repo, "pushed_at": pushed}
+    return c
+
+
+def test_new_skills_count_names_not_in_the_index():
+    c = cand(
+        "o/repo", ["skills/a/SKILL.md", "skills/b/SKILL.md", "x/Old_Name/SKILL.md", "SKILL.md"]
+    )
+    assert c.new_skills({"old-name", "repo"}) == 2  # a, b; the root SKILL.md is "repo"
+    assert c.new_skills(None) == 4
+
+
+def test_precheck_order():
+    index = {"taken"}
+    many_new = cand("a/many", [f"s/n{i}/SKILL.md" for i in range(5)], pushed="2026-01-01T00:00:00Z")
+    old_names = cand("b/old", ["s/taken/SKILL.md", "t/taken/SKILL.md", "u/new/SKILL.md"])
+    recent = cand("c/recent", ["s/x/SKILL.md", "s/y/SKILL.md"], pushed="2026-10-20T00:00:00Z")
+    older = cand("d/older", ["s/x/SKILL.md", "s/y/SKILL.md"], pushed="2026-05-01T00:00:00Z")
+    lone_code = cand("e/lone", ["SKILL.md"], pushed="2026-10-25T00:00:00Z")
+    lone_listed = cand("f/listed", ["SKILL.md"], channels=("code", "list:skills-sh"))
+    topic_only = cand("g/topic", channels=("topic:agent-skills",))
+    pool = [lone_code, topic_only, older, old_names, lone_listed, recent, many_new]
+    order = [c.repo for c in sorted(pool, key=lambda c: c.rank(index))]
+    assert order == ["a/many", "c/recent", "d/older", "b/old", "f/listed", "g/topic", "e/lone"]
+
+
+def test_select_reads_metadata_before_ordering_by_push():
+    found = d.Found()
+    for name in ("x/one", "y/two"):
+        c = found.add(*name.split("/"), "code")
+        c.skill_paths = {"s/a/SKILL.md", "s/b/SKILL.md"}
+    gh = FakeGitHub(
+        repos={
+            "x/one": {**repo_meta("x/one"), "pushed_at": "2026-01-01T00:00:00Z"},
+            "y/two": {**repo_meta("y/two"), "pushed_at": "2026-10-01T00:00:00Z"},
+        }
+    )
+    cands, _ = d.select(found, set(), gh, d.DiscoverConfig(max_checks=1), set())
+    assert [c.repo for c in cands] == ["y/two", "x/one"]  # same new skills: latest push first
+    assert sum(p.startswith("repos/") for p in gh.calls) == 2  # read once each (3 × max_checks)
