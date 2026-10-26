@@ -1,7 +1,8 @@
 """profile_repo: languages, frameworks and package managers from manifest files only.
 
 Reads files at the repo root — package.json, pyproject.toml, requirements.txt, go.mod,
-Cargo.toml, lockfiles and framework config files. Never opens source files.
+Cargo.toml, lockfiles, framework config files and the optional `.skillfetch.yaml` (an
+organisation's source and baseline skills). Never opens source files.
 """
 
 from __future__ import annotations
@@ -10,6 +11,8 @@ import json
 import re
 import tomllib
 from pathlib import Path
+
+import yaml
 
 MAX_MANIFEST_BYTES = 1_000_000  # a larger manifest file is skipped (listed in `skipped`)
 
@@ -73,6 +76,8 @@ CONFIG_FILES = {
     "angular.json": "angular",
     "tsconfig.json": None,  # language marker, below
 }
+ORG_FILE = ".skillfetch.yaml"
+MAX_BASELINE = 20  # baseline entries read from ORG_FILE; more are cut (listed in org_errors)
 _PY_NAME = re.compile(r"^\s*([A-Za-z0-9][A-Za-z0-9._-]*)")
 
 
@@ -107,6 +112,48 @@ def _read_toml(path: Path) -> dict:
         return tomllib.loads(_read(path))
     except tomllib.TOMLDecodeError:
         return {}
+
+
+def org_config(root: Path) -> dict:
+    """`org` (an index source id) and `baseline` (names of skills to pin on every task) from
+    the repo's ORG_FILE; {} when there is none. Problems are listed in `org_errors`, and
+    what can be read is still used."""
+    path = root / ORG_FILE
+    if not path.is_file():
+        return {}
+    errors: list[str] = []
+    text = _read(path)
+    if not text and path.stat().st_size > MAX_MANIFEST_BYTES:
+        errors.append(f"{ORG_FILE}: over {MAX_MANIFEST_BYTES} bytes, not read")
+    data = {}
+    try:
+        data = yaml.safe_load(text) if text else {}
+    except yaml.YAMLError as exc:
+        errors.append(f"{ORG_FILE}: not YAML ({type(exc).__name__})")
+    if not isinstance(data, dict):
+        errors.append(f"{ORG_FILE}: expected a mapping with org and baseline")
+        data = {}
+    org = data.get("org")
+    if org is not None and not (isinstance(org, str) and org.strip()):
+        errors.append(f"{ORG_FILE}: org must be a source id (a string)")
+        org = None
+    baseline = data.get("baseline") or []
+    if not isinstance(baseline, list):
+        errors.append(f"{ORG_FILE}: baseline must be a list of skill names")
+        baseline = []
+    names: list[str] = []
+    for entry in baseline:
+        if not (isinstance(entry, str) and entry.strip()):
+            errors.append(f"{ORG_FILE}: baseline entry {entry!r} is not a skill name")
+        elif entry.strip() not in names:
+            names.append(entry.strip())
+    if len(names) > MAX_BASELINE:
+        errors.append(f"{ORG_FILE}: {len(names)} baseline names; the first {MAX_BASELINE} are used")
+        names = names[:MAX_BASELINE]
+    out: dict = {"org": org.strip() if org else None, "baseline": names}
+    if errors:
+        out["org_errors"] = errors
+    return out
 
 
 def profile_repo(path: Path) -> dict:
@@ -177,6 +224,9 @@ def profile_repo(path: Path) -> dict:
             elif name == "tsconfig.json":
                 languages.add("typescript")
     tags = sorted(languages | frameworks | managers)
+    org = org_config(root)
+    if org:
+        seen.append(ORG_FILE)
     return {
         "path": str(root),
         "languages": sorted(languages),
@@ -185,4 +235,5 @@ def profile_repo(path: Path) -> dict:
         "tags": tags,
         "manifests": sorted(set(seen)),
         **({"skipped": s} if (s := [n for n in skipped if n in set(seen)]) else {}),
+        **org,
     }

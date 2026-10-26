@@ -521,6 +521,32 @@ As built (`index/sync.py`):
     server's working directory, which is the session's repository when Claude Code
     starts the server.
 
+### 4.1 Organisation rules (`.skillfetch.yaml`, optional)
+
+An organisation that indexes its own skills as a source can ask for them in its
+repositories with a file at the repo root:
+
+```yaml
+org: acme            # an index source id (manifest.sources[].id)
+baseline:            # skills to pin on every task
+  - acme-style       # a bare name: the org's skill of that name, else the only one indexed
+  - other-src/name   # <source>/<name>, or a full skill id
+```
+
+- `profile_repo` reads it like a manifest file (≤ 1 MB, `yaml.safe_load`; at most 20
+  baseline names) and returns `org` and `baseline`. The session resolves the names
+  against the local index to canonical skill ids; a name with no match, or with several,
+  is listed in `baseline_unresolved` (with up to 10 candidates). Problems with the file,
+  and an `org` that is not a source of the index, are listed in `org_errors`. No model,
+  no network. Without the file the profile is unchanged.
+- `search_skills` with a profile that has `org` adds `org: true` to that source's results.
+  The ranking and the other fields do not change.
+- The router variant `assets/router-skill/variants/org.md` (not the shipped router)
+  pins the baseline ids on every task and, besides its 3 picks, may pick up to 3
+  `org: true` results from the top 10, each only when it can say in one sentence what
+  the skill changes in the task. `load_skills`' budget stays 8,000 tokens; over it, the
+  lowest-precedence skills are dropped as before (constraints.md §5).
+
 ## 5. Local scan mode
 
 `skillfetch scan <dir>` runs stages 1.3–1.6 on a local directory and then

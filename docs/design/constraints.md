@@ -482,6 +482,13 @@ winner) and `b` the later one. Warnings and exclusions are structured JSON
 Rationale for step 3 ordering: the host model ranked `auto`; earlier picks
 win ties. We do not re-rank. We only remove.
 
+Organisation baselines (index-format.md §4.1) arrive as ordinary pinned ids: the
+router variant `org.md` passes the profile's `baseline` ids in `pinned_ids`, so they
+are always included, come first in precedence, and are never excluded by an auto
+pick; a conflict between two baseline skills, or with a user-pinned skill, is a
+warning (step 2). Its extra org picks are ordinary auto ids. Nothing in this
+procedure changes for them.
+
 **`resolve_and_load(auto_ids, pinned_ids, max_tokens=8000)`** runs this
 procedure and then `load_skills` on the resulting set, in one tool call (#26).
 Inputs and rules are the same as the two tools': at most 20 auto ids,

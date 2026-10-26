@@ -46,6 +46,7 @@ class Profile(BaseModel):
     frameworks: list[str] = []
     package_managers: list[str] = []
     tags: list[str] = []
+    org: str | None = None  # from .skillfetch.yaml: results of this source carry org: true
 
 
 def _invalid(arg: str, exc: ValidationError) -> dict:
@@ -95,10 +96,57 @@ class Session:
     # --- profile_repo ---------------------------------------------------------------------------
 
     def profile_repo(self, path: str) -> dict:
+        """profile.profile_repo, with the baseline names of `.skillfetch.yaml` resolved to
+        index ids (`baseline`); names that resolve to no skill, or to several, are listed in
+        `baseline_unresolved`."""
         key = str(Path(path).expanduser().resolve())
         if key not in self.profiles:
-            self.profiles[key] = profile_repo(Path(key))
+            profile = profile_repo(Path(key))
+            if "baseline" in profile:
+                ids, unresolved = self._baseline_ids(profile.get("org"), profile["baseline"])
+                profile["baseline"] = ids
+                if unresolved:
+                    profile["baseline_unresolved"] = unresolved
+                sources = {src.get("id") for src in self.index.manifest.get("sources") or []}
+                if profile.get("org") and profile["org"] not in sources:
+                    profile["org_errors"] = [
+                        *profile.get("org_errors", []),
+                        f"org {profile['org']!r} is not a source of this index",
+                    ]
+            self.profiles[key] = profile
         return self.profiles[key]
+
+    def _baseline_ids(self, org: str | None, names: list[str]) -> tuple[list[str], list[dict]]:
+        """A name is a skill id, `<source>/<name>`, or a bare name: the org's skill of that
+        name, else the only indexed skill of that name. Duplicates resolve to the canonical."""
+        canon = self.index.canonical()
+        ids: list[str] = []
+        unresolved: list[dict] = []
+        for entry in names:
+            record = self.index.records.get(entry)
+            if record is not None:
+                found = [self.index.records.get(record.get("canonical_id") or entry, record)]
+            elif "/" in entry:
+                source, _, name = entry.partition("/")
+                found = [r for r in canon if r["source_id"] == source and r["name"] == name]
+            else:
+                found = [r for r in canon if r["source_id"] == org and r["name"] == entry]
+                found = found or [r for r in canon if r["name"] == entry]
+            if len(found) == 1:
+                if found[0]["id"] not in ids:
+                    ids.append(found[0]["id"])
+            elif not found:
+                unresolved.append({"name": entry, "reason": "no indexed skill with this name"})
+            else:
+                unresolved.append(
+                    {
+                        "name": entry,
+                        "reason": f"{len(found)} indexed skills have this name; write "
+                        "<source>/<name>",
+                        "candidates": sorted(r["id"] for r in found)[:10],
+                    }
+                )
+        return ids, unresolved
 
     # --- search_skills ------------------------------------------------------------------------
 
@@ -137,6 +185,9 @@ class Session:
         results = self.searcher.search_many(
             [q[:MAX_QUERY_CHARS] for q in queries], profile, min(k, MAX_K), tiers, verbose=verbose
         )
+        if profile is not None and profile.get("org"):
+            prefix = profile["org"] + "/"
+            results = [{**r, "org": True} if r["id"].startswith(prefix) else r for r in results]
         out: dict = {"results": results}
         if truncated:
             out["truncated"] = True
