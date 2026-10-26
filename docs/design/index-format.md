@@ -532,8 +532,14 @@ As built (`ingest/local_scan.py`, `cli.py`):
      fan-out flags (§3 row 14a), which a few local skills could not show;
   3. the extract cache under `--model` (default: the index's
      `extract_model`);
-  4. with `--with-api`, a fresh extraction with `--model` (cached; skills
-     that fail lint or the injection scan are never sent).
+  4. with `--claude-code`, a fresh extraction through the user's own Claude Code
+     login: one isolated `claude -p` per skill (no tools, no MCP servers, project
+     settings only, a scratch working directory; the answer is stored in the
+     claude-code queue and cached under `claude-code/<model>`). Without the
+     `claude` CLI on PATH, these skills are skipped and the report says why. Or,
+     with `--with-api`, a fresh extraction with `--model` through an API (paid).
+     Either way the result is cached, and skills that fail lint or the injection
+     scan are never sent.
   Whatever the source, every evidence quote must appear on its line of the
   local `SKILL.md`, or the skill is reported as `INVALID_CONSTRAINTS` and
   skipped. Skipped skills are listed with the reason when one is known (in
@@ -549,6 +555,18 @@ As built (`ingest/local_scan.py`, `cli.py`):
   constraint findings. Every other pair of analyzed skills gets at most one
   finding: conflict, else redundant (directional; `a` is the superset), else
   tension, else needs_review.
+- License per skill: the skill folder's LICENSE file or frontmatter `license:`
+  (§1.8 `skill_license`, `per-skill`). Otherwise it is the license of the index
+  record with the same content hash, if one is known, else `unknown` (NO_LICENSE).
+- Text report: first a one-screen summary, then details with the source lines,
+  most severe first. The summary gives:
+  - the number of problems per severity:
+    - high: SCAN_FAILED, CONFLICT;
+    - medium: LINT_FAILED, INVALID_CONSTRAINTS, SCAN_WARNING, REDUNDANT;
+    - low: DUPLICATE, TENSION (tension and needs_review), LINT_WARNING, NO_LICENSE;
+    - info: HAS_SCRIPTS;
+  - the license counts;
+  - how many skills the contradiction check covered.
 - Exit code 0 when the scan ran, 2 on usage errors. `--fail-on
   {conflict,scan,lint}` (repeatable or comma-separated) exits 1 when the scan
   finds any conflict finding, injection-scan failure or lint failure; the

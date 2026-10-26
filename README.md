@@ -5,6 +5,24 @@ task, your agent searches a vetted, pre-indexed corpus of `SKILL.md` files,
 assembles a *conflict-free* set, uses it for that task, and moves on. Nothing
 piles up in `~/.claude/skills`.
 
+## Try it
+
+```console
+$ uvx --from git+https://github.com/hyunlord/skillfetch skillfetch scan ~/.claude/skills
+```
+
+One line, no API key. It opens with a one-screen summary of the problems by severity, then
+the details, each with the line it comes from:
+- lint failures;
+- injection-scan hits;
+- licenses (stated, or missing);
+- duplicate copies.
+
+The contradiction check runs for skills that are copies of public ones once the index is
+installed (`skillfetch sync`). Add `--claude-code` to extract the others' instructions with
+your own Claude Code login (one isolated `claude -p` per skill). Without it, that part is
+skipped and the report says so.
+
 Measured: on design tasks the router matched an expert-installed skill; on process-style tasks (planning, brevity) it does not find the skill yet; it costs about seven extra turns per task. Details in the write-up, section 5.
 
 > Status: v0.1 is done: `scan`, the public index and the write-up
@@ -36,13 +54,15 @@ NEEDS_REVIEW  eval-harness ⟷ receiving-code-review
 summary: 0 conflict, 0 redundant, 0 tension, 1 needs_review, 0 duplicate, 0 lint_failed, 0 scan_failed
 ```
 
-That is a real run (excerpt) over 30 public skills picked at random from UASL
-and installed as a user has them. Every finding quotes the line from each
+That is a real run (excerpt, in the output format before 2026-10-26; the report now
+opens with a summary of the problems by severity) over 30 public skills picked at random
+from UASL and installed as a user has them. Every finding quotes the line from each
 skill. The rules are tuned for precision: a pair is a `conflict` only when the
 two instructions cannot both be followed; anything less certain is
 `needs_review`, and pairs a judge model found independent are not shown.
-Skills the index does not cover are listed as skipped; `--with-api --model
-anthropic/<model>` extracts them (calls the API, cached once per skill).
+Skills the index does not cover are listed as skipped. `--claude-code` extracts them
+through your Claude Code login; `--with-api --model anthropic/<model>` extracts them
+through the API (paid). Either way, each skill is extracted once and cached.
 
 The router, measured in real Claude Code sessions on five task types (landing page, test writing, backend API, documentation, data script): it loaded the skill an expert would pick in 23 of 24 runs. Only the design task came out differently with that skill; on the other four, no skill, the expert's skill and the router all passed every check. The router costs 1.7–2.1 times the input tokens of no skill ([numbers.md §11](docs/writeup/numbers.md#11-router-in-real-sessions-end-to-end-stages-1-1b-and-2)). Offline, on 380 synthetic tasks, the shipped router: top-50 recall 0.81 (0.75 on labels the search could not bias), up from 0.74 before this fix ([evals/retrieval](evals/retrieval/), [numbers.md §13](docs/writeup/numbers.md#13-retrieval-benchmark-380-synthetic-tasks)). With its current description it fired in 55 of 57 non-trivial sessions in a clean environment (39 of 57 with the previous one) and in 1 of 30 trivial ones ([numbers.md §15](docs/writeup/numbers.md#15-stage-5-what-makes-the-router-fire)). Its selection step now picks a skill only when it can say in one sentence what the skill changes in the task: offline, that raised none-accuracy on tasks no skill fits from 0.55 to 0.85 and lowered the share of tasks with a relevant pick from 0.88 to 0.80 ([numbers.md §17](docs/writeup/numbers.md#17-stage-6-choosing-none-after-the-post-freeze)). scan and sync are unaffected.
 
