@@ -30,7 +30,7 @@ Measured: on design tasks the router matched an expert-installed skill; on proce
 > the MCP server works end to end and the index ships as a GitHub release
 > (`skillfetch sync`). The index covers anthropics/skills, UASL and four more
 > repositories: 2,785 skills indexed (1,724 from the first two, as in the write-up, plus 1,061).
-> Index update after the launch (Stage 11): this index, built as index-staging-4, passed the
+> Index update (Stage 11): this index, built as index-staging-4, passed the
 > release gate fixed before Stage 11 ([numbers.md §20](docs/writeup/numbers.md#20-stage-9-index-expansion-after-the-post-freeze),
 > [§22](docs/writeup/numbers.md#22-stage-11-index-staging-4-release-gate-remeasured-after-the-post-freeze)).
 > Numbers: [`docs/writeup/numbers.md`](docs/writeup/numbers.md).
