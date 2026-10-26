@@ -22,6 +22,7 @@ from skillfetch.ingest.extract import Extractor
 from skillfetch.ingest.extract_cache import ExtractCache
 from skillfetch.ingest.ingest import run_extractions
 from skillfetch.ingest.injection import ScanResult, load_rules, scan_skill
+from skillfetch.ingest.licenses import skill_license
 from skillfetch.ingest.lint import LintResult, lint_skill
 from skillfetch.ingest.skillfile import (
     CONSTRAINTS_FILE,
@@ -58,6 +59,10 @@ class SkillScan(BaseModel):
     constraints_note: str | None = None  # why a skill has no constraints, when known
     index_id: str | None = None  # the indexed skill with the same content
     constraint_count: int = 0
+    # the skill folder's LICENSE file or frontmatter `license:`; else the license of the
+    # index record with the same content (a copy of a public skill); else "unknown"
+    license: str = "unknown"
+    license_origin: str = "none"  # "LICENSE" (file name), "frontmatter", "index:<id>", "none"
 
 
 class DuplicateGroup(BaseModel):
@@ -77,6 +82,9 @@ class ScanReport(BaseModel):
     # tension / needs_review pairs of two indexed skills that the judge stored as
     # independent (constraints.md §8): not shown, as in resolve_set
     suppressed_by_judge: int = 0
+    # how skills found in neither the index nor the cache were handled: the extractor's
+    # key, or a reason they were not extracted (set by the CLI)
+    extraction: str | None = None
 
 
 def _skill_id(root: Path, skill_dir: Path) -> str:
@@ -148,7 +156,9 @@ def _scan_one(root: Path, skill_dir: Path) -> tuple[SkillScan, Skill | None]:
     lint = lint_skill(skill_dir)
     scan = scan_skill(skill_dir)
     status = "lint_failed" if not lint.ok else "scan_failed" if not scan.ok else "ok"
-    name = read_skill(skill_dir).frontmatter.get("name") if lint.ok else None
+    frontmatter = read_skill(skill_dir).frontmatter if lint.ok else None
+    name = frontmatter.get("name") if frontmatter else None
+    lic = skill_license(skill_dir, frontmatter, "per-skill")
 
     source, error, constraints = "none", None, None
     if (skill_dir / CONSTRAINTS_FILE).is_file():
@@ -168,6 +178,8 @@ def _scan_one(root: Path, skill_dir: Path) -> tuple[SkillScan, Skill | None]:
         constraints_source=source,
         constraints_error=error,
         constraint_count=len(constraints or []),
+        license=lic.license,
+        license_origin=lic.origin,
     )
     return record, constraints
 
@@ -290,6 +302,11 @@ def scan_dir(root: Path, lookup: Lookup | None = None, cap: str | None = None) -
                 record.constraints_note = "fails the injection scan, so it is never extracted"
             if unresolved and lookup.extractor is not None and record.status == "ok":
                 todo.append((record, skill_dir))
+            if record.license == "unknown" and record.index_id is not None:
+                indexed = lookup.index.records[record.index_id]
+                if indexed.get("license", "unknown") != "unknown":
+                    record.license = indexed["license"]
+                    record.license_origin = f"index:{record.index_id}"
         if constraints is not None and record.status != "lint_failed":
             found[record.id] = constraints
     if todo:
@@ -387,45 +404,112 @@ def _sources(report: ScanReport) -> str:
     return f" ({', '.join(parts)})" if parts else ""
 
 
+# (severity, code, what it means); the summary lists the rows with a count, in this order
+SEVERITY_ROWS = (
+    ("high", "SCAN_FAILED", "skills that fail the injection scan"),
+    ("high", "CONFLICT", "pairs of skills that give opposite instructions"),
+    ("medium", "LINT_FAILED", "skills that fail lint (not analyzed further)"),
+    ("medium", "INVALID_CONSTRAINTS", "skills whose constraints do not match their lines"),
+    ("medium", "SCAN_WARNING", "skills with injection-scan warnings"),
+    ("medium", "REDUNDANT", "pairs where one skill covers the other"),
+    ("low", "DUPLICATE", "extra copies with identical content"),
+    ("low", "TENSION", "tension / needs_review pairs (read both)"),
+    ("low", "LINT_WARNING", "skills with lint warnings only"),
+    ("low", "NO_LICENSE", "skills that state no license"),
+    ("info", "HAS_SCRIPTS", "skills that bundle scripts"),
+)
+
+
+def problem_counts(report: ScanReport) -> dict[str, int]:
+    skills, findings = report.skills, report.findings
+    return {
+        "SCAN_FAILED": sum(not s.scan.ok for s in skills),
+        "CONFLICT": sum(f.kind == "conflict" for f in findings),
+        "LINT_FAILED": sum(not s.lint.ok for s in skills),
+        "INVALID_CONSTRAINTS": sum(s.constraints_source == "invalid" for s in skills),
+        "SCAN_WARNING": sum(bool(s.scan.warnings) for s in skills),
+        "REDUNDANT": sum(f.kind == "redundant" for f in findings),
+        "DUPLICATE": sum(len(g.ids) - 1 for g in report.duplicates),
+        "TENSION": sum(f.kind in ("tension", "needs_review") for f in findings),
+        "LINT_WARNING": sum(s.lint.ok and bool(s.lint.warnings) for s in skills),
+        "NO_LICENSE": sum(s.license == "unknown" for s in skills),
+        "HAS_SCRIPTS": sum(s.scan.has_scripts for s in skills),
+    }
+
+
+def _contradiction_line(report: ScanReport) -> list[str]:
+    n = len(report.skills)
+    lines = [
+        f"Contradiction check: {len(report.analyzed)} of {_plural(n, 'skill')} analyzed"
+        + _sources(report)
+        + (f", {len(report.skipped)} skipped" if report.skipped else "")
+        + "."
+    ]
+    unknown = [
+        s
+        for s in report.skills
+        if s.id in set(report.skipped) and not (s.constraints_note or s.constraints_error)
+    ]
+    if unknown:
+        if report.extraction:
+            lines.append(f"  {len(unknown)} not in the index or the cache: {report.extraction}.")
+        else:
+            get_index = (
+                "run `skillfetch sync` for the public index, then " if report.index is None else ""
+            )
+            lines.append(
+                f"  {len(unknown)} are not in the index or the cache, so this part was skipped; "
+                f"{get_index}add `--claude-code` to extract their instructions with your Claude "
+                "Code subscription (`claude -p`; no API key)."
+            )
+    return lines
+
+
 def render_report(report: ScanReport) -> str:
     skills = report.skills
-    # Per stage, not per status: a skill can fail both (its status is lint_failed).
-    lint_failed = [s for s in skills if not s.lint.ok]
-    scan_failed = [s for s in skills if not s.scan.ok]
-    with_warnings = [s for s in skills if s.scan.warnings]
-    with_scripts = [s for s in skills if s.scan.has_scripts]
-    out = [
+    counts = problem_counts(report)
+    head = [
         f"skillfetch scan {report.root}",
-        f"{_plural(len(skills), 'skill')} · lint: {len(skills) - len(lint_failed)} ok, "
-        f"{len(lint_failed)} failed · injection scan: {len(skills) - len(scan_failed)} ok, "
-        f"{len(scan_failed)} failed, {len(with_warnings)} with warnings · "
-        f"scripts: {len(with_scripts)}",
-        f"constraints: {len(report.analyzed)} analyzed"
-        + _sources(report)
-        + f", {len(report.skipped)} skipped",
+        f"{_plural(len(skills), 'skill')} · index: "
+        + (
+            report.index
+            or "none (run `skillfetch sync`: public copies are then checked with no model)"
+        ),
+        "",
     ]
-    if report.index is not None:
-        out.append(f"index: {report.index}")
-    blocks: list[str] = []
-
+    rows = [(sev, code, what) for sev, code, what in SEVERITY_ROWS if counts[code]]
+    if rows:
+        head.append("  severity  count  problem")
+        head += [f"  {sev:<8}  {counts[code]:>5}  {code:<19}  {what}" for sev, code, what in rows]
+    else:
+        head.append("  no problems found")
+    licenses = defaultdict(int)
     for s in skills:
-        if s.lint.errors or s.lint.warnings:
-            label = "LINT_FAILED" if s.lint.errors else "LINT_WARNING"
-            lines = [f"{label}  {s.id}"]
+        licenses[s.license] += 1
+    if licenses:
+        ordered = sorted(licenses.items(), key=lambda kv: (kv[0] == "unknown", -kv[1], kv[0]))
+        head += ["", "Licenses: " + ", ".join(f"{k} {v}" for k, v in ordered)]
+    head += ["", *_contradiction_line(report)]
+
+    blocks: list[str] = []
+    by_kind = defaultdict(list)
+    for f in report.findings:
+        by_kind[f.kind].append(f)
+    for s in skills:
+        if s.scan.failures:
+            lines = [f"SCAN_FAILED  {s.id}"]
+            lines += [
+                f'  {s.id}/{h.file}:{h.line_no}  [{h.rule_id}] "{h.line}"' for h in s.scan.failures
+            ]
+            blocks.append("\n".join(lines))
+    blocks += [render_finding(f) for f in by_kind["conflict"]]
+    for s in skills:
+        if s.lint.errors:
+            lines = [f"LINT_FAILED  {s.id}"]
             for issue in s.lint.errors + s.lint.warnings:
                 where = f"{s.id}/{issue.file}" + (f":{issue.line_no}" if issue.line_no else "")
                 lines.append(f"  {where}  [{issue.rule}] {issue.message}")
             blocks.append("\n".join(lines))
-    for s in skills:
-        for label, hits in (("SCAN_FAILED", s.scan.failures), ("SCAN_WARNING", s.scan.warnings)):
-            if hits:
-                lines = [f"{label}  {s.id}"]
-                lines += [f'  {s.id}/{h.file}:{h.line_no}  [{h.rule_id}] "{h.line}"' for h in hits]
-                blocks.append("\n".join(lines))
-    for s in with_scripts:
-        lines = [f"HAS_SCRIPTS  {s.id}  (tier capped at C unless the publisher is verified)"]
-        lines += [f"  {s.id}/{path}" for path in s.scan.scripts]
-        blocks.append("\n".join(lines))
     for s in skills:
         if s.constraints_source == "invalid":
             where = (
@@ -434,44 +518,55 @@ def render_report(report: ScanReport) -> str:
                 else (s.index_id or s.constraints_source)
             )
             blocks.append(f"INVALID_CONSTRAINTS  {s.id}\n  {where}: {s.constraints_error}")
+    for s in skills:
+        if s.scan.warnings:
+            lines = [f"SCAN_WARNING  {s.id}"]
+            lines += [
+                f'  {s.id}/{h.file}:{h.line_no}  [{h.rule_id}] "{h.line}"' for h in s.scan.warnings
+            ]
+            blocks.append("\n".join(lines))
+    blocks += [render_finding(f) for f in by_kind["redundant"]]
     for g in report.duplicates:
         first, *rest = g.ids
         for other in rest:
             blocks.append(
                 f"DUPLICATE  {first} ⟷ {other}  identical content sha256:{g.content_hash[:12]}"
             )
-    blocks += [render_finding(f) for f in report.findings]
+    blocks += [render_finding(f) for f in by_kind["tension"] + by_kind["needs_review"]]
+    for s in skills:
+        if s.lint.ok and s.lint.warnings:
+            lines = [f"LINT_WARNING  {s.id}"]
+            for issue in s.lint.warnings:
+                where = f"{s.id}/{issue.file}" + (f":{issue.line_no}" if issue.line_no else "")
+                lines.append(f"  {where}  [{issue.rule}] {issue.message}")
+            blocks.append("\n".join(lines))
+    unlicensed = [s.id for s in skills if s.license == "unknown"]
+    if unlicensed:
+        blocks.append(
+            "NO_LICENSE  no LICENSE file or frontmatter `license:`, and not a copy of an indexed "
+            "skill with one (all rights reserved by default)\n"
+            + "\n".join(f"  {sid}" for sid in unlicensed)
+        )
+    for s in skills:
+        if s.scan.has_scripts:
+            lines = [f"HAS_SCRIPTS  {s.id}  (tier capped at C unless the publisher is verified)"]
+            lines += [f"  {s.id}/{path}" for path in s.scan.scripts]
+            blocks.append("\n".join(lines))
     if report.skipped:
         by_id = {s.id: s for s in skills}
-        lines = [f"constraint analysis skipped for {_plural(len(report.skipped), 'skill')}:"]
-        unknown = False
+        lines = [f"contradiction check skipped for {_plural(len(report.skipped), 'skill')}:"]
         for sid in report.skipped:
             note = by_id[sid].constraints_note or by_id[sid].constraints_error
-            unknown |= note is None
             lines.append(
                 f"  {sid}  ({note or f'no {CONSTRAINTS_FILE}, not in the index or the cache'})"
             )
-        if unknown:
-            get_index = (
-                "get the public index with `skillfetch sync`; " if report.index is None else ""
-            )
-            lines.append(
-                f"  {get_index}extract the others with `--with-api --model anthropic/<model>` "
-                "(calls the API)"
-            )
         blocks.append("\n".join(lines))
-
     if report.suppressed_by_judge:
         blocks.append(
             f"{_plural(report.suppressed_by_judge, 'tension / needs_review pair')} not shown: "
             "the index's judge verdict for the pair is `independent`"
         )
-
-    counts = {k: sum(f.kind == k for f in report.findings) for k in _KIND_ORDER}
-    summary = (
-        f"summary: {counts['conflict']} conflict, {counts['redundant']} redundant, "
-        f"{counts['tension']} tension, {counts['needs_review']} needs_review, "
-        f"{sum(len(g.ids) - 1 for g in report.duplicates)} duplicate, "
-        f"{len(lint_failed)} lint_failed, {len(scan_failed)} scan_failed"
-    )
-    return "\n\n".join(["\n".join(out), *blocks, summary]) + "\n"
+    out = "\n".join(head)
+    if blocks:
+        out += "\n\nDetails, most severe first:\n\n" + "\n\n".join(blocks)
+    return out + "\n"

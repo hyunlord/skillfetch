@@ -1,6 +1,7 @@
 """`skillfetch scan <dir>` pipeline (index-format.md §5)."""
 
 import json
+import re
 import shutil
 
 from conftest import SKILLS_DIR, load_expected, write_skill
@@ -123,8 +124,15 @@ def test_text_report(tmp_path):
     assert "DUPLICATE  atomic-commits ⟷ atomic-copy" in text
     assert "CONFLICT  atomic-commits ⟷ commit-squash" in text
     assert '"Never squash; one logical change per commit, always."' in text
-    assert "constraint analysis skipped for 3 skills" in text
-    assert text.rstrip().splitlines()[-1].startswith("summary: 2 conflict")
+    assert "contradiction check skipped for 3 skills" in text
+    summary, details = text.split("Details, most severe first:")
+    assert re.search(r"high +1 +SCAN_FAILED", summary)
+    assert re.search(r"high +2 +CONFLICT", summary)
+    assert re.search(r"medium +1 +LINT_FAILED", summary)
+    assert re.search(r"low +1 +DUPLICATE", summary)
+    assert "Contradiction check: 3 of 7 skills analyzed (constraints.json 3), 3 skipped." in summary
+    # details are ordered by severity: the injection failure before the lint failure
+    assert details.index("SCAN_FAILED  evil") < details.index("LINT_FAILED  broken")
 
 
 def test_text_report_for_fixtures_mentions_subset_direction():
@@ -141,6 +149,37 @@ def test_stage_counts_are_per_stage_not_per_status(tmp_path):
     report = scan_dir(root)
     assert report.skills[0].status == "lint_failed"
     text = render_report(report)
-    assert "lint: 0 ok, 1 failed · injection scan: 0 ok, 1 failed" in text
+    assert re.search(r"high +1 +SCAN_FAILED", text)
+    assert re.search(r"medium +1 +LINT_FAILED", text)
     assert "SCAN_FAILED  both" in text
-    assert text.rstrip().endswith("1 lint_failed, 1 scan_failed")
+
+
+def test_license_column(tmp_path):
+    root = tmp_path / "skills"
+    write_skill(root, "with-file", "Do the thing.\n")
+    (root / "with-file" / "LICENSE").write_text(
+        "MIT License\n\nPermission is hereby granted, free of charge"
+    )
+    write_skill(root, "none", "Do another thing.\n")
+    report = scan_dir(root)
+    by_id = {s.id: s for s in report.skills}
+    assert (by_id["with-file"].license, by_id["with-file"].license_origin) == ("MIT", "LICENSE")
+    assert by_id["none"].license == "unknown"
+    text = render_report(report)
+    assert "Licenses: MIT 1, unknown 1" in text
+    assert re.search(r"low +1 +NO_LICENSE", text)
+    assert "NO_LICENSE  no LICENSE file" in text and "\n  none" in text
+
+
+def test_no_problems_found(tmp_path):
+    root = tmp_path / "skills"
+    write_skill(root, "clean", "Do the thing.\n")
+    (root / "clean" / "LICENSE").write_text("MIT License\n\nPermission is hereby granted, free")
+    text = render_report(scan_dir(root))
+    assert "  no problems found" in text and "severity  count" not in text
+    # the only detail is that the contradiction check could not run on it
+    assert (
+        text.split("Details, most severe first:")[1]
+        .strip()
+        .startswith("contradiction check skipped for 1 skill")
+    )

@@ -13,7 +13,8 @@ def test_scan_prints_text_report(capsys):
     assert main(["scan", str(SKILLS_DIR)]) == 0
     out = capsys.readouterr().out
     assert "CONFLICT  atomic-commits ⟷ commit-squash" in out
-    assert out.rstrip().splitlines()[-1].startswith("summary: 12 conflict")
+    summary = out.split("Details, most severe first:")[0]
+    assert "high         12  CONFLICT" in summary
 
 
 def test_scan_json(capsys):
@@ -36,7 +37,7 @@ def test_module_entry_point():
         check=False,
     )
     assert proc.returncode == 0, proc.stderr
-    assert "summary:" in proc.stdout
+    assert "severity  count  problem" in proc.stdout
 
 
 # --- --fail-on ------------------------------------------------------------------------------
