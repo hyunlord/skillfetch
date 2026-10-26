@@ -108,8 +108,8 @@ def test_rules_file_is_versioned_and_every_family_has_an_effect():
     rules = load_rules()
     assert rules.version >= 1
     assert {r.family for r in rules.rules} <= set(rules.effects)
-    assert set(rules.effects.values()) <= {"fail", "warn"}
-    assert {r.effect for r in rules.rules} <= {None, "fail", "warn"}
+    assert set(rules.effects.values()) <= {"fail", "warn", "info"}
+    assert {r.effect for r in rules.rules} <= {None, "fail", "warn", "info"}
     assert len({r.id for r in rules.rules}) == len(rules.rules)
 
 
@@ -118,12 +118,14 @@ def test_failures_and_warnings_are_split_by_family_effect(tmp_path):
     result = scan_skill(write_skill(tmp_path, "a", body))
     assert not result.ok
     assert [h.rule_id for h in result.failures] == ["override.ignore-previous"]
-    assert [h.rule_id for h in result.warnings] == ["network.bare-url"]
+    assert result.warnings == []
+    assert [h.rule_id for h in result.infos] == ["network.bare-url"]
 
 
 def test_warnings_alone_do_not_fail(tmp_path):
-    result = scan_skill(write_skill(tmp_path, "a", "Download https://example.com/x.zip\n"))
-    assert result.ok and len(result.warnings) == 1
+    body = "Download the rules from https://example.com/x.zip\n"
+    result = scan_skill(write_skill(tmp_path, "a", body))
+    assert result.ok and [h.rule_id for h in result.warnings] == ["network.remote-instructions"]
 
 
 def test_other_text_files_in_the_folder_are_scanned(tmp_path):
@@ -209,12 +211,12 @@ QUOTED_ADVICE = (
 )
 
 
-def test_quoted_override_phrase_only_warns(tmp_path):
+def test_quoted_override_phrase_is_only_info(tmp_path):
     # anthropics claude-api: prompt-writing advice that quotes the phrase to avoid
     result = scan_skill(write_skill(tmp_path, "a", QUOTED_ADVICE + "\n"))
-    assert result.ok
-    [hit] = result.warnings
-    assert (hit.rule_id, hit.effect, hit.quoted) == ("override.ignore-previous", "warn", True)
+    assert result.ok and result.warnings == []
+    [hit] = result.infos
+    assert (hit.rule_id, hit.effect, hit.quoted) == ("override.ignore-previous", "info", True)
 
 
 @pytest.mark.parametrize(

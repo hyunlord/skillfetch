@@ -465,8 +465,11 @@ TIER_NEUTRAL_WARNINGS = frozenset({"network.bare-url"})
 
 
 def tier_warnings(scan: dict) -> list[dict]:
-    """Scan warnings that count against an unknown publisher (§1.7)."""
-    return [w for w in scan.get("warnings", []) if w["rule_id"] not in TIER_NEUTRAL_WARNINGS]
+    """Scan warnings that count against an unknown publisher (§1.7). A quoted override
+    phrase counts too: scan rules v6 report it as info instead of a warning, but it is
+    still text the agent reads, so it keeps the tier rule it had (§1.4)."""
+    warned = [w for w in scan.get("warnings", []) if w["rule_id"] not in TIER_NEUTRAL_WARNINGS]
+    return warned + [i for i in scan.get("infos", []) if i.get("quoted")]
 
 
 def assign_tiers(skills: list[Built]) -> None:

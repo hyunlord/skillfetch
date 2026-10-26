@@ -254,6 +254,9 @@ Not recommended:
   - The fresh 160-character generation falls inside the earlier 160 range on every metric.
 - **Cost:** 186 `claude -p` calls (selection, redone tasks, grading), $36.75 API-price
   equivalent on the plan.
+- **Unplanned spending:** these 186 calls ($36.75 API-price equivalent) were run without an
+  estimate being approved first. From 2026-10-26, any model-calling work reports its call
+  count and cost estimate and waits before it starts.
 
 ## 6. Limits
 

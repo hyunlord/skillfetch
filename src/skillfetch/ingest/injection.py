@@ -36,12 +36,12 @@ class Rule(BaseModel):
     id: str
     family: str
     pattern: str
-    target: Literal["line", "outside_links", "html_comment"] = "line"
+    target: Literal["line", "outside_links", "html_comment", "line_with_lead_in"] = "line"
     allow_negated: bool = False
     allow_quoted: bool = False
     case_sensitive: bool = False
     within: str | None = None  # second stage: must match inside the `pattern` match
-    effect: Literal["fail", "warn"] | None = None  # overrides the family's effect
+    effect: Literal["fail", "warn", "info"] | None = None  # overrides the family's effect
 
     def compiled(self) -> re.Pattern[str]:
         return _compile(self.pattern, self.case_sensitive)
@@ -57,7 +57,7 @@ def _compile(pattern: str, case_sensitive: bool) -> re.Pattern[str]:
 
 class RuleSet(BaseModel):
     version: int
-    effects: dict[str, Literal["fail", "warn"]]
+    effects: dict[str, Literal["fail", "warn", "info"]]
     script_dirs: list[str]
     script_extensions: list[str]
     rules: list[Rule]
@@ -66,16 +66,17 @@ class RuleSet(BaseModel):
 class Hit(BaseModel):
     rule_id: str
     family: str
-    effect: Literal["fail", "warn"]
+    effect: Literal["fail", "warn", "info"]
     file: str
     line_no: int
     line: str
-    quoted: bool = False  # every match was inside quotation marks: downgraded to warn
+    quoted: bool = False  # every match was inside quotation marks: downgraded to info
 
 
 class ScanResult(BaseModel):
     failures: list[Hit] = []
     warnings: list[Hit] = []
+    infos: list[Hit] = []  # shown, but neither a failure nor a warning (rules v6)
     scripts: list[str] = []
 
     @property
@@ -161,8 +162,15 @@ def scan_text(text: str, file: str = SKILL_FILE, rules: RuleSet | None = None) -
             if len(line) > MAX_SCAN_LINE:
                 continue
             target = _outside_links(line) if rule.target == "outside_links" else line
+            if rule.target == "line_with_lead_in" and line_no > 1:
+                lead = lines[line_no - 2].rstrip()
+                if lead.endswith(":") and len(lead) <= MAX_SCAN_LINE:
+                    target = f"{lead} {line}"  # "Load the rules from:" / next line: the URL
             if how := _matches(rule, target):
                 hits.append(_hit(rule, rules, file, line_no, line, how))
+    # an info hit adds nothing on a line where its family already warns or fails
+    louder = {(h.line_no, h.family) for h in hits if h.effect != "info"}
+    hits = [h for h in hits if h.effect != "info" or (h.line_no, h.family) not in louder]
     return sorted(hits, key=lambda h: (h.file, h.line_no, h.rule_id))
 
 
@@ -171,7 +179,7 @@ def _hit(rule: Rule, rules: RuleSet, file: str, line_no: int, line: str, how: st
     return Hit(
         rule_id=rule.id,
         family=rule.family,
-        effect="warn" if quoted else rule.effect or rules.effects[rule.family],
+        effect="info" if quoted else rule.effect or rules.effects[rule.family],
         file=file,
         line_no=line_no,
         line=_evidence(line),
@@ -202,5 +210,7 @@ def scan_skill(skill_dir: Path, rules: RuleSet | None = None) -> ScanResult:
             hits += scan_text(read_text(path), rel, rules)
     result = ScanResult(scripts=scripts)
     for hit in hits:
-        (result.failures if hit.effect == "fail" else result.warnings).append(hit)
+        {"fail": result.failures, "warn": result.warnings, "info": result.infos}[hit.effect].append(
+            hit
+        )
     return result
