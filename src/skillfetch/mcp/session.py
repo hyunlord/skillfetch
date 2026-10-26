@@ -14,7 +14,13 @@ from pydantic import BaseModel, ConfigDict, ValidationError
 from skillfetch.index.fetch import BodyCache, FetchError
 from skillfetch.index.loader import Index
 from skillfetch.index.profile import profile_repo
-from skillfetch.index.search import DEFAULT_K, DEFAULT_TIERS, MAX_QUERIES, Searcher
+from skillfetch.index.search import (
+    DEFAULT_K,
+    DEFAULT_TIERS,
+    MAX_QUERIES,
+    ONE_LINE_CHARS,
+    Searcher,
+)
 from skillfetch.ingest.extract import DEFAULT_MODEL
 from skillfetch.ingest.extract_cache import DEFAULT_CACHE_DIR, ExtractCache
 from skillfetch.ingest.injection import scan_skill
@@ -73,12 +79,18 @@ class Session:
     resolutions: dict[str, dict] = field(default_factory=dict)  # set_id -> resolve_set output
     local: dict[str, LocalSkill] = field(default_factory=dict)
     profiles: dict[str, dict] = field(default_factory=dict)  # resolved repo path -> profile
+    # Options for #26 (docs/design/router-cost.md), off by default:
+    # profile_root: when search_skills gets no profile, use profile_repo(profile_root), so
+    # the router can skip its profile_repo call (`serve --auto-profile`: the server's cwd);
+    # summary_chars: the compact summary length (`serve --summary-chars`).
+    profile_root: Path | None = None
+    summary_chars: int = ONE_LINE_CHARS
 
     def __post_init__(self):
         if self.model is None:  # look up cached extractions made the way the index was built
             self.model = self.index.manifest.get("extract_model") or DEFAULT_MODEL
         if self.searcher is None:
-            self.searcher = Searcher(self.index)
+            self.searcher = Searcher(self.index, self.summary_chars)
 
     # --- profile_repo ---------------------------------------------------------------------------
 
@@ -113,6 +125,8 @@ class Session:
                 "error": f"invalid queries: pass query, or queries with 1-{MAX_QUERIES} "
                 "non-empty strings"
             }
+        if profile is None and self.profile_root is not None:
+            profile = self.profile_repo(str(self.profile_root))
         if profile is not None:
             try:
                 profile = Profile.model_validate(profile).model_dump()

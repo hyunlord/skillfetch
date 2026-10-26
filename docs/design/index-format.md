@@ -508,6 +508,12 @@ As built (`index/sync.py`):
   `verbose=true` adds the full summary, tags and `match_reasons`: which query
   tokens hit which field, and which profile tags boosted. This is what makes the
   result explainable; keep it.
+- Options for #26 (router-cost.md), both off by default:
+  - `serve --summary-chars N` cuts the compact summary at N characters instead of 160;
+    the ranking does not change;
+  - `serve --auto-profile`: a search without `profile` uses `profile_repo` of the
+    server's working directory, which is the session's repository when Claude Code
+    starts the server.
 
 ## 5. Local scan mode
 

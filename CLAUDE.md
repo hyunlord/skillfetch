@@ -85,7 +85,9 @@ hand-rolled BM25), `anthropic` (ingest only, optional extra), `pydantic`.
 ## MCP tool surface
 
 Built (v0.2): `profile_repo`, `search_skills`, `resolve_set`, `load_skills`. Built after v0.2
-(#26): `resolve_and_load`, both steps in one call; the router skill does not use it yet.
+(#26): `resolve_and_load`, both steps in one call; the router skill does not use it yet. Also
+for #26, off by default: `serve --auto-profile` (a search without `profile` uses the server's
+working directory) and `serve --summary-chars N` (docs/design/router-cost.md).
 Planned for v0.3, not built: `report_outcome`. `prepare_set`: not built, not planned for v0.3.
 
 | tool | input | output |

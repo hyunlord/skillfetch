@@ -175,6 +175,20 @@ def main(argv: Sequence[str] | None = None) -> int:
         default=DEFAULT_INDEX_DIR,
         help="index directory (default: %(default)s)",
     )
+    serve.add_argument(
+        "--auto-profile",
+        action="store_true",
+        help="#26 option, off by default: when search_skills gets no profile, use the "
+        "profile of the server's working directory (the repository Claude Code started it "
+        "in), so the router can skip profile_repo",
+    )
+    serve.add_argument(
+        "--summary-chars",
+        type=int,
+        default=160,
+        help="#26 option: cut each compact search summary to this many characters "
+        "(default: %(default)s)",
+    )
 
     ev = sub.add_parser("eval", help="offline benchmarks (no model calls)")
     ev_sub = ev.add_subparsers(dest="benchmark", required=True)
@@ -542,7 +556,11 @@ def _serve(args: argparse.Namespace) -> int:
     from skillfetch.mcp.server import serve
 
     try:
-        serve(args.index)
+        serve(
+            args.index,
+            profile_root=Path.cwd() if args.auto_profile else None,
+            summary_chars=args.summary_chars,
+        )
     except IndexLoadError as exc:
         print(f"skillfetch: {exc}", file=sys.stderr)
         return 2
