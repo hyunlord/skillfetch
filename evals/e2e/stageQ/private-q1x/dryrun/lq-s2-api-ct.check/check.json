@@ -1,0 +1,39 @@
+{
+ "task_id": "s2-api",
+ "pass": false,
+ "items": [
+  {
+   "name": "session's tests run and pass",
+   "pass": false,
+   "detail": "{\"tests\": 0, \"failures\": 0, \"errors\": 0, \"skipped\": 0, \"passed\": 0}"
+  },
+  {
+   "name": "contract script 0/27",
+   "pass": false,
+   "detail": "import app.main:app; import app.main:app"
+  }
+ ],
+ "metrics": {
+  "junit": {
+   "tests": 0,
+   "failures": 0,
+   "errors": 0,
+   "skipped": 0,
+   "passed": 0
+  },
+  "contract": [
+   {
+    "name": "import app.main:app",
+    "pass": false,
+    "detail": "Traceback (most recent call last):\n  File \"<e2e>/stage2/checks/api_contract.py\", line 37, in <module>\n    from app.main import app\nModuleNotFoundError: No module named 'app.main'\n"
+   },
+   {
+    "name": "import app.main:app",
+    "pass": false,
+    "detail": "Traceback (most recent call last):\n  File \"<e2e>/stage2/checks/api_contract.py\", line 37, in <module>\n    from app.main import app\nModuleNotFoundError: No module named 'app.main'\n"
+   }
+  ],
+  "contract_pass": 0,
+  "contract_total": 27
+ }
+}

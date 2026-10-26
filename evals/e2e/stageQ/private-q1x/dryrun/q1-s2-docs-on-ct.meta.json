@@ -1,0 +1,86 @@
+{
+ "job": "q1:s2-docs:on",
+ "tag": "ct",
+ "kind": "q1",
+ "task": "s2-docs",
+ "branch": "s11-r",
+ "mcp": "on",
+ "session_dir": "<worktrees>/sq/877776f9b7f2",
+ "side_dir": "<worktrees>/sq/f72020285cf6",
+ "canary": null,
+ "clone": {
+  "refs": [
+   "refs/heads/main"
+  ],
+  "head": "921ba3cdb18c5cffd9223a72e741148f400038c6",
+  "router": true,
+  "status": "",
+  "unreachable": 0
+ },
+ "prep_s": 2.5,
+ "steps": [
+  {
+   "k": 1,
+   "cmd": [
+    "claude",
+    "-p",
+    "이 레포에는 README가 없어. README와 사용 문서를 써줘.",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--include-hook-events",
+    "--max-turns",
+    "40",
+    "--allowedTools",
+    "Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*",
+    "--setting-sources",
+    "project",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "<e2e>/stageQ1x-private/dryrun/q1-s2-docs-on-ct.mcp.json"
+   ]
+  }
+ ],
+ "check": {
+  "task_id": "s2-docs",
+  "pass": false,
+  "items": [
+   {
+    "name": "README.md at the repo root",
+    "pass": false,
+    "detail": "0"
+   },
+   {
+    "name": "npm scripts named in the docs exist in package.json",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "name": "npm run build still passes",
+    "pass": true,
+    "detail": "rc=0"
+   }
+  ],
+  "metrics": {
+   "readme_words": 0,
+   "changed_files": [],
+   "doc_files": [],
+   "non_doc_changes": [],
+   "scripts_referenced": [],
+   "scripts_missing": []
+  },
+  "env_noise_removed": [],
+  "diff": {
+   "files": [],
+   "added": 0,
+   "deleted": 0
+  },
+  "graft_removed": []
+ },
+ "named": null,
+ "harness_fail": false,
+ "no_result": false,
+ "cost_usd": 0,
+ "leftover_procs": [],
+ "index_ok_after": true
+}

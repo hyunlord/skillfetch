@@ -1,0 +1,51 @@
+{
+  "task_id": "d3-dashboard",
+  "pass": false,
+  "items": [
+    {
+      "name": "npm run type-check",
+      "pass": true,
+      "detail": "rc=0"
+    },
+    {
+      "name": "npx next build",
+      "pass": true,
+      "detail": "rc=0"
+    },
+    {
+      "name": "screenshot screens /dashboard",
+      "pass": true,
+      "detail": "rc=0"
+    },
+    {
+      "name": "screens /dashboard: status 200, no page_errors",
+      "pass": false,
+      "detail": "status=404 page_errors=[] final_url=http://127.0.0.1:4100/dashboard"
+    },
+    {
+      "name": "screenshot screens-375 /dashboard",
+      "pass": true,
+      "detail": "rc=0"
+    },
+    {
+      "name": "screens-375 /dashboard: status 200, no page_errors",
+      "pass": false,
+      "detail": "status=404 page_errors=[] final_url=http://127.0.0.1:4100/dashboard"
+    },
+    {
+      "name": "visual: landing page (hero, features, CTA[, pricing]); AI-look checklist",
+      "pass": null,
+      "detail": "blind judging"
+    }
+  ],
+  "visual": [
+    "<e2e>/stageQ1x-private/dryrun/q1-d3-dashboard-on-ct.check/screens/dashboard.png",
+    "<e2e>/stageQ1x-private/dryrun/q1-d3-dashboard-on-ct.check/screens-375/dashboard.png"
+  ],
+  "info": {},
+  "duration_s": 32.4,
+  "worktree": "<worktrees>/sq/87ce0be4d154",
+  "base": "49c722a491199c12a07e525a17af56b2bfe25e4d",
+  "worktree_restored": [],
+  "git_status_unchanged": true
+}

@@ -1,0 +1,120 @@
+{
+ "job": "rf:a",
+ "tag": "dry",
+ "kind": "rf",
+ "task": "sq-mono",
+ "branch": "sq-rfa",
+ "mcp": "on",
+ "session_dir": "<worktrees>/sq/618d291d4fc1",
+ "side_dir": "<worktrees>/sq/d1b002d61b68",
+ "canary": null,
+ "clone": {
+  "refs": [
+   "refs/heads/main"
+  ],
+  "head": "329b9a5507b021b9c93e3b591a7ad5fd4de11a94",
+  "router": true,
+  "status": "",
+  "unreachable": 0
+ },
+ "prep_s": 0.0,
+ "steps": [
+  {
+   "k": 1,
+   "cmd": [
+    "claude",
+    "-p",
+    "Add a testimonials section to the landing page in `web/` (`w…",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--include-hook-events",
+    "--max-turns",
+    "40",
+    "--allowedTools",
+    "Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*",
+    "--setting-sources",
+    "project",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "<e2e>/stageRF-private/dryrun/rf-a-dry.mcp.json"
+   ]
+  },
+  {
+   "k": 2,
+   "cmd": [
+    "claude",
+    "-p",
+    "In `rust/`, add a new module `src/duration.rs` with `pub fn …",
+    "--resume",
+    "<session-id-of-request-1>",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--include-hook-events",
+    "--max-turns",
+    "40",
+    "--allowedTools",
+    "Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*",
+    "--setting-sources",
+    "project",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "<e2e>/stageRF-private/dryrun/rf-a-dry.mcp.json"
+   ]
+  },
+  {
+   "k": 3,
+   "cmd": [
+    "claude",
+    "-p",
+    "Fix the typo \"recieve\" in the top-level README.md.",
+    "--resume",
+    "<session-id-of-request-1>",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--include-hook-events",
+    "--max-turns",
+    "40",
+    "--allowedTools",
+    "Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*",
+    "--setting-sources",
+    "project",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "<e2e>/stageRF-private/dryrun/rf-a-dry.mcp.json"
+   ]
+  },
+  {
+   "k": 4,
+   "cmd": [
+    "claude",
+    "-p",
+    "Add a script `py/tools/export_csv.py` that reads the invento…",
+    "--resume",
+    "<session-id-of-request-1>",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--include-hook-events",
+    "--max-turns",
+    "40",
+    "--allowedTools",
+    "Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*",
+    "--setting-sources",
+    "project",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "<e2e>/stageRF-private/dryrun/rf-a-dry.mcp.json"
+   ]
+  }
+ ],
+ "check": null,
+ "named": null,
+ "harness_fail": false,
+ "no_result": false,
+ "cost_usd": 0,
+ "leftover_procs": [],
+ "index_ok_after": true
+}

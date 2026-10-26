@@ -1,0 +1,31 @@
+{
+  "task": "t001",
+  "pass": false,
+  "items": [
+    {
+      "name": "a_tests_pass",
+      "pass": true,
+      "detail": "rc=0: 9 passed in 0.03s"
+    },
+    {
+      "name": "b_dry_run_writes_nothing",
+      "pass": false,
+      "detail": "rc=2, db_unchanged=True, sidecars=[]: usage: reconcile_payouts.py [-h] --settlements SETTLEMENTS [--db DB]\nreconcile_payouts.py: error: unrecognized arguments: --dry-run"
+    },
+    {
+      "name": "c_dry_run_prints_diff",
+      "pass": false,
+      "detail": "rc=2; po_7f3a02: not mentioned; po_7f3a04: not mentioned; po_7f3a07: not mentioned; po_7f3a05: not mentioned; po_7f3a08: not mentioned; po_7f3a09: not mentioned; po_7f3a90: not mentioned; po_7f3a91: not mentioned | stdout:"
+    },
+    {
+      "name": "d_normal_run_unchanged",
+      "pass": true,
+      "detail": "rc=0, 8 expected rows written"
+    },
+    {
+      "name": "e_help_lists_dry_run",
+      "pass": false,
+      "detail": "rc=0: usage: reconcile_payouts.py [-h] --settlements SETTLEMENTS [--db DB]\n\nReconcile a settlement CSV against the payouts ledger and record discrepancies\nin payout_adjustments.\n\noptions:\n  -h, --help            show this help message and exit\n  --settlements SETTLEMENTS\n                        provider settlement CSV\n  --db DB               path to the ledger SQLite database (default:\n                        $LEDGER_DB)"
+    }
+  ]
+}

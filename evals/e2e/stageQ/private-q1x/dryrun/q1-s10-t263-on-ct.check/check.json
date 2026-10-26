@@ -1,0 +1,26 @@
+{
+ "task": "t263",
+ "pass": false,
+ "items": [
+  {
+   "name": "build (lib, binary, tests)",
+   "pass": true,
+   "detail": "    Blocking waiting for file lock on package cache\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.00s\n"
+  },
+  {
+   "name": "existing tests (tests/l2.rs)",
+   "pass": true,
+   "detail": "ok"
+  },
+  {
+   "name": "zero-copy: symbol, prices and sizes point into the input; values unchanged",
+   "pass": false,
+   "detail": "failed: ['fields_point_into_the_input']"
+  },
+  {
+   "name": "allocations: <= 40 for a 2,000-level snapshot",
+   "pass": false,
+   "detail": "failed: ['few_allocations_for_a_deep_book']"
+  }
+ ]
+}

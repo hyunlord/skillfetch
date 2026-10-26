@@ -1,0 +1,60 @@
+{
+ "job": "q5:named-s2-api",
+ "tag": "d0",
+ "kind": "q5n",
+ "task": "s2-api",
+ "branch": "s11-r",
+ "mcp": "on",
+ "session_dir": "<worktrees>/sq/1609b973d420",
+ "side_dir": "<worktrees>/sq/9da393b57436",
+ "canary": null,
+ "clone": {
+  "refs": [
+   "refs/heads/main"
+  ],
+  "head": "f18899f2b1a54de490241c9b4eac6b51f72e46a3",
+  "router": true,
+  "status": "",
+  "unreachable": 0
+ },
+ "prep_s": 0.0,
+ "steps": [
+  {
+   "k": 1,
+   "cmd": [
+    "claude",
+    "-p",
+    "북마크를 저장하는 REST API를 FastAPI로 설계하고 구현해줘. 스키마, 에러 처리, 테스트까지 포함…",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--include-hook-events",
+    "--max-turns",
+    "40",
+    "--allowedTools",
+    "Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*",
+    "--setting-sources",
+    "project",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "<e2e>/stageQ-private/dryrun/q5-named-s2-api-d0.mcp.json"
+   ]
+  }
+ ],
+ "check": null,
+ "named": {
+  "id": "q5-named-s2-api",
+  "base_task": "s2-api",
+  "named_skill": "fastapi-patterns",
+  "named_ids": [
+   "affaan-m-ecc/fastapi-patterns@419da9966f07",
+   "affaan-m-ecc/fastapi-patterns@5bd0ca7d3e93"
+  ],
+  "prompt": "북마크를 저장하는 REST API를 FastAPI로 설계하고 구현해줘. 스키마, 에러 처리, 테스트까지 포함해서.\n- 앱은 `app/main.py`의 `app`\n- 저장은 SQLite, 파일 경로는 환경변수 `BOOKMARKS_DB` (없으면 `bookmarks.db`)\n- 북마크: url(필수, http/https만), title(필수), tags(문자열 목록), created_at\n- 엔드포인트: `POST /bookmarks`, `GET /bookmarks` (태그 필터 `?tag=`, 페이지네이션 `?limit=&offset=`), `GET /bookmarks/{id}`, `PATCH /bookmarks/{id}`, `DELETE /bookmarks/{id}`\n- 같은 url은 두 번 저장할 수 없음\n- 상태 코드는 REST 관례대로 (생성 201, 삭제 204, 없음 404, 중복 409, 검증 실패 422)\n\nUse the fastapi-patterns skill for this."
+ },
+ "harness_fail": false,
+ "no_result": false,
+ "cost_usd": 0,
+ "leftover_procs": [],
+ "index_ok_after": true
+}

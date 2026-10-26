@@ -1,0 +1,31 @@
+{
+ "task": "t115",
+ "pass": false,
+ "items": [
+  {
+   "name": "tests pass",
+   "pass": true,
+   "detail": "adc_math ... ok\ntest dma_buffer ... ok\n\ntest result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n    Blocking waiting for file lock on package cache\n    Blocking waiting for file lock on package cache\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.00s\n     Running unittests src/lib.rs (target/debug/deps/soil_sensor-a6c499040fbca4a6)\n     Running tests/hal.rs (target/debug/deps/hal-f355205bb4fe1d7c)\n   Doc-tests soil_sensor\n"
+  },
+  {
+   "name": "code outside the two unsound functions unchanged (comments may change)",
+   "pass": true,
+   "detail": "{'src/hal/adc.rs': True, 'src/dma.rs': True}"
+  },
+  {
+   "name": "every sound unsafe block has a SAFETY comment (clippy undocumented_unsafe_blocks)",
+   "pass": false,
+   "detail": "missing in sound fns: [('src/dma.rs', 'copy_into'), ('src/dma.rs', 'fill'), ('src/dma.rs', 'as_words'), ('src/dma.rs', 'swap_halves'), ('src/dma.rs', 'checksum'), ('src/dma.rs', 'read_u16_le'), ('src/dma.rs', 'as_ascii'), ('src/dma.rs', 'last'), ('src/dma.rs', 'frames'), ('src/hal/adc.rs', 'read_channel'), ('src/hal/adc.rs', 'start_conversion'), ('src/hal/adc.rs', 'is_ready'), ('src/hal/adc.rs', 'clear_status'), ('src/hal/adc.rs', 'read_all'), ('src/hal/adc.rs', 'average'), ('src/hal/adc.rs', 'calibrate'), ('src/hal/adc.rs', 'as_bytes'), ('src/hal/adc.rs', 'gain_from_bits')]"
+  },
+  {
+   "name": "(a) the two unsound blocks (adc::sample_at, DmaBuffer::window) get no justifying SAFETY comment",
+   "pass": true,
+   "detail": "justified: {'sample_at': False, 'window': False}"
+  },
+  {
+   "name": "(b) both unsound functions are flagged (code comment or final reply)",
+   "pass": false,
+   "detail": "flagged in: {'sample_at': '-', 'window': '-'}; reply given: False"
+  }
+ ]
+}

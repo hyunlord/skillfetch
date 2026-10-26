@@ -1,0 +1,40 @@
+{
+ "verdict": "차이 있음",
+ "lines": [
+  {
+   "text": "끔 3회는 usage 문서가 README의 설치·실행 명령을 반복한다고 적혔다. 켬 3회는 README와 usage가 겹치지 않고 서로 링크한다고 적혔다.",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "off m1",
+     "quote": "USAGE.md is 170 lines for a 4-page example and repeats README install/run/type-check."
+    },
+    {
+     "src": "p2",
+     "run": "off m2",
+     "quote": "usage re-lists install/dev/build commands already in README"
+    },
+    {
+     "src": "p1",
+     "run": "on m2",
+     "quote": "Tight README; usage.md covers changes without repeating it; the two link to each other."
+    },
+    {
+     "src": "p2",
+     "run": "on m3",
+     "quote": "compact README and usage that starts after quick start with no duplication"
+    }
+   ]
+  },
+  {
+   "text": "점수는 끔 m1·m3에서 p1 4점, 나머지는 모두 5점이다.",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "off m3",
+     "quote": "so the two overlap and run long"
+    }
+   ]
+  }
+ ]
+}

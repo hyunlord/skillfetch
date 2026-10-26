@@ -1,0 +1,88 @@
+{
+ "job": "q1:s10-t001:on",
+ "tag": "ct",
+ "kind": "q1",
+ "task": "s10-t001",
+ "branch": "s11-r",
+ "mcp": "on",
+ "session_dir": "<worktrees>/sq/a5eae44b58b9",
+ "side_dir": "<worktrees>/sq/9e3fee46b203",
+ "canary": null,
+ "clone": {
+  "refs": [
+   "refs/heads/main"
+  ],
+  "head": "628d08892cbe51eab99c2e31bf1d5637466fc0f3",
+  "router": true,
+  "status": "",
+  "unreachable": 0
+ },
+ "prep_s": 0.2,
+ "steps": [
+  {
+   "k": 1,
+   "cmd": [
+    "claude",
+    "-p",
+    "add --dry-run to scripts/reconcile_payouts.py, print the diff instead of writing rows",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--include-hook-events",
+    "--max-turns",
+    "40",
+    "--allowedTools",
+    "Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*",
+    "--setting-sources",
+    "project",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "<e2e>/stageQ1x-private/dryrun/q1-s10-t001-on-ct.mcp.json"
+   ]
+  }
+ ],
+ "check": {
+  "task": "t001",
+  "pass": false,
+  "items": [
+   {
+    "name": "a_tests_pass",
+    "pass": true,
+    "detail": "rc=0: 9 passed in 0.03s"
+   },
+   {
+    "name": "b_dry_run_writes_nothing",
+    "pass": false,
+    "detail": "rc=2, db_unchanged=True, sidecars=[]: usage: reconcile_payouts.py [-h] --settlements SETTLEMENTS [--db DB]\nreconcile_payouts.py: error: unrecognized arguments: --dry-run"
+   },
+   {
+    "name": "c_dry_run_prints_diff",
+    "pass": false,
+    "detail": "rc=2; po_7f3a02: not mentioned; po_7f3a04: not mentioned; po_7f3a07: not mentioned; po_7f3a05: not mentioned; po_7f3a08: not mentioned; po_7f3a09: not mentioned; po_7f3a90: not mentioned; po_7f3a91: not mentioned | stdout:"
+   },
+   {
+    "name": "d_normal_run_unchanged",
+    "pass": true,
+    "detail": "rc=0, 8 expected rows written"
+   },
+   {
+    "name": "e_help_lists_dry_run",
+    "pass": false,
+    "detail": "rc=0: usage: reconcile_payouts.py [-h] --settlements SETTLEMENTS [--db DB]\n\nReconcile a settlement CSV against the payouts ledger and record discrepancies\nin payout_adjustments.\n\noptions:\n  -h, --help            show this help message and exit\n  --settlements SETTLEMENTS\n                        provider settlement CSV\n  --db DB               path to the ledger SQLite database (default:\n                        $LEDGER_DB)"
+   }
+  ],
+  "env_noise_removed": [],
+  "diff": {
+   "files": [],
+   "added": 0,
+   "deleted": 0
+  },
+  "graft_removed": []
+ },
+ "named": null,
+ "harness_fail": false,
+ "no_result": false,
+ "cost_usd": 0,
+ "leftover_procs": [],
+ "index_ok_after": true
+}

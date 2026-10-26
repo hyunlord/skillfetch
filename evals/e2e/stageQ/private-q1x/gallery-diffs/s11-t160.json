@@ -1,0 +1,20 @@
+{
+ "verdict": "차이 없음",
+ "lines": [
+  {
+   "text": "여섯 결과 모두 5점이고 체크를 통과했다. 공통 지적은 `.ko.yaml`이 Makefile의 ldflags를 다시 쓴다는 것 하나다.",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "off m1",
+     "quote": "same minor ldflags duplication"
+    },
+    {
+     "src": "p1",
+     "run": "on m1",
+     "quote": ".ko.yaml repeats the module path/ldflags instead of reusing MODULE/LDFLAGS"
+    }
+   ]
+  }
+ ]
+}

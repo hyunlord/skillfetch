@@ -1,0 +1,40 @@
+{
+ "verdict": "차이 있음",
+ "lines": [
+  {
+   "text": "네 결과의 핵심 변경은 같다(방마다 50개짜리 VecDeque, 입장 때 잠금 안에서 오래된 것부터 재전송). 네 결과 모두 두 판정자가 5점을 줬다. 차이는 아래 README와 테스트 수다.",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "off m2",
+     "quote": "per-room VecDeque capped at HISTORY_LEN=50, replayed oldest-first in join under the existing rooms lock"
+    },
+    {
+     "src": "p2",
+     "run": "on m1",
+     "quote": "Same core change."
+    }
+   ]
+  },
+  {
+   "text": "끔 2회는 README도 고쳤고, 켬 2회의 diff에는 README가 없다. 켬 m1은 단위 테스트 3개와 TCP 테스트를 더했고, 끔 m1은 TCP 테스트 하나다.",
+   "quotes": [
+    {
+     "src": "diff",
+     "run": "off m1",
+     "quote": "diff --git a/README.md b/README.md"
+    },
+    {
+     "src": "p1",
+     "run": "on m1",
+     "quote": "three unit tests (oldest first, 50 cap, live after replay) plus a TCP test"
+    },
+    {
+     "src": "p1",
+     "run": "off m1",
+     "quote": "one TCP test checks the exact 60→last-50 sequence"
+    }
+   ]
+  }
+ ]
+}

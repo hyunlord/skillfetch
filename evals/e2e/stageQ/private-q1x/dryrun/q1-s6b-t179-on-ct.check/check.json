@@ -1,0 +1,28 @@
+{
+  "task_id": "s6b-t179",
+  "pass": false,
+  "items": [
+    {
+      "name": "backend/app/dedupe_items.py exists",
+      "pass": false,
+      "detail": ""
+    },
+    {
+      "name": "no new dependencies in backend/pyproject.toml",
+      "pass": true,
+      "detail": "added=[]"
+    },
+    {
+      "name": "backend tests (incl. new ones): >= 58 passed, 0 failed",
+      "pass": true,
+      "detail": "passed=58 failed=0 rc=0"
+    }
+  ],
+  "visual": [],
+  "info": {},
+  "duration_s": 5.6,
+  "worktree": "<worktrees>/sq/65932955c8bc",
+  "base": "2717375aa25edd8cf6e10d829bc07bfe33b39983",
+  "worktree_restored": [],
+  "git_status_unchanged": true
+}

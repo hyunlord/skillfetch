@@ -1,0 +1,40 @@
+{
+ "verdict": "차이 있음",
+ "lines": [
+  {
+   "text": "켬 m1·m2는 앱의 4명 샘플 대신 12명의 가짜 사용자·역할·가입일을 만들어 AI 템플릿 항목 #9(가짜 통계)를 받았다. 끔 3회는 모두 실제 샘플 데이터를 썼다.",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "on m1",
+     "quote": "Item 9: invented data (12 users, emails, roles, monthly sign-ups, \"+1 vs last month\") instead of the 4 sample users."
+    },
+    {
+     "src": "p2",
+     "run": "on m2",
+     "quote": "the content does not match the app's actual 4-user id/name data"
+    },
+    {
+     "src": "p1",
+     "run": "off m2",
+     "quote": "Real sample data: 4 cards, a bar chart with a hover hint, and a table with View links, full width."
+    }
+   ]
+  },
+  {
+   "text": "쓸만함은 끔 4·4·4(두 판정자 같음), 켬은 m1 2/2, m2 3/3, m3 5/4다. 켬 m3는 실제 데이터 판본 가운데 가장 넓이를 잘 썼다고 적혔고, 켬 m1은 375px에서 가로로 넘쳤다.",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "on m3",
+     "quote": "best use of width among the real-data versions"
+    },
+    {
+     "src": "p1",
+     "run": "on m1",
+     "quote": "the page scrolls sideways (397px)"
+    }
+   ]
+  }
+ ]
+}

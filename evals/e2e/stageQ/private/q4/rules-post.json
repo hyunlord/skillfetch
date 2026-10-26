@@ -1,0 +1,46 @@
+{
+ "rules": {
+  "actionbook-rust-skills/coding-guidelines@b55d44b1bd4a": [
+   {
+    "rule": "Getter methods should be named after the property itself, without a `get_` prefix.",
+    "kept": "New or renamed accessor methods in the diff look like `fn name(&self)` or `fn config(&self)`, with no `get_` at the start.",
+    "broken": "The diff adds a method such as `fn get_name(&self)` or `fn get_id(&self) -> u32`.",
+    "not_applicable": "The diff adds or renames no methods that return a field or property."
+   },
+   {
+    "rule": "Use `expect(\"...\")` with an explanatory message instead of a bare `unwrap()` when a value is assumed to be present, and propagate errors with `?` rather than `try!()`.",
+    "kept": "Added code uses `.expect(\"reason\")` or `?` where it handles Option or Result values.",
+    "broken": "Added code includes a bare `.unwrap()` call or the `try!(...)` macro.",
+    "not_applicable": "The diff adds no code that unwraps or propagates an Option or Result."
+   },
+   {
+    "rule": "Use the modern replacements for deprecated crates and macros: `OnceLock`/`LazyLock` instead of `lazy_static!`/`once_cell::Lazy`, and `thiserror`/`anyhow` instead of `failure`/`error-chain`.",
+    "kept": "Lazy globals in the diff use `std::sync::OnceLock` or `LazyLock`, and error types derive with `thiserror` or use `anyhow`.",
+    "broken": "The diff adds `lazy_static!`, `once_cell::Lazy`, or a dependency or import of `failure` or `error-chain`.",
+    "not_applicable": "The diff adds no lazily initialized statics and no error-type infrastructure or dependencies."
+   }
+  ],
+  "affaan-m-ecc/frontend-a11y@635c71ee05ce": [
+   {
+    "rule": "Every form input, select, and textarea must have a label connected through matching htmlFor and id attributes, and a placeholder cannot stand in for that label.",
+    "kept": "Each new <input>/<select>/<textarea> in the diff has an id, and a <label htmlFor> elsewhere in the diff uses the same value.",
+    "broken": "A form control has no label, or its label lacks htmlFor or uses a different value than the control's id, or a placeholder is the only label text.",
+    "not_applicable": "The diff adds or changes no form controls."
+   },
+   {
+    "rule": "Validation error messages must be tied to their input with aria-describedby, the input must signal its invalid state with aria-invalid, and the message element must have role=\"alert\".",
+    "kept": "The input has aria-describedby pointing at the error element's id and aria-invalid bound to the error state, and the error element has role=\"alert\".",
+    "broken": "Error text is rendered with no id or link from the input, or aria-invalid is missing, or role=\"alert\" is missing.",
+    "not_applicable": "The changed code shows no field-level validation or error messages."
+   },
+   {
+    "rule": "Clickable behavior belongs on native <button> or <a> elements; a <div> or <span> with onClick must also have a role, tabIndex, and an onKeyDown handler for Enter and Space, and icon-only buttons must have an aria-label.",
+    "kept": "Click handlers sit on <button type=\"button\"> or <a href>, or non-semantic elements with onClick also carry role, tabIndex={0}, and onKeyDown. Icon-only buttons have aria-label.",
+    "broken": "A <div>/<span> has onClick but no role, tabIndex, or keyboard handler, or role=\"button\" appears without keyboard support, or an icon-only button has no accessible name.",
+    "not_applicable": "The diff adds no click handlers or interactive elements."
+   }
+  ]
+ },
+ "failed": [],
+ "cost_usd": 0.084
+}

@@ -1,0 +1,25 @@
+{
+ "verdict": "차이 있음",
+ "lines": [
+  {
+   "text": "끔 m1은 스크립트 밖 `payouts/ledger.py`를 고쳤고, 끔 m3는 금액을 단위 없는 정수 센트로 출력했다(4점). 켬 3회는 스크립트와 테스트 안에서 끝났고 모두 5점이다.",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "off m1",
+     "quote": "modifies payouts/ledger.py outside the script"
+    },
+    {
+     "src": "p1",
+     "run": "off m3",
+     "quote": "prints raw integer cents (2550) instead of currency amounts"
+    },
+    {
+     "src": "p2",
+     "run": "on m2",
+     "quote": "change confined to script and tests"
+    }
+   ]
+  }
+ ]
+}

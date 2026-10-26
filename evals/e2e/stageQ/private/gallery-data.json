@@ -1,0 +1,2066 @@
+{
+ "tasks": {
+  "d1-landing": {
+   "bundle": 1,
+   "prompt": "이 앱의 제품 랜딩 페이지를 신규 라우트 /landing에 처음부터 만들어줘 — 히어로, 기능 3개, 가격, CTA 포함"
+  },
+  "d4-email": {
+   "bundle": 1,
+   "prompt": "`packages/react-email/emails/new_account.tsx` 신규 가입 환영 이메일을 다시 디자인해줘 — 브랜드 느낌이 나고 모바일 메일 앱에서도 깨지지 않게, 기존 props는 그대로"
+  },
+  "s10-t016": {
+   "bundle": 4,
+   "prompt": "tokio 기반 채팅 서버(src/room.rs)에 방 입장 시 최근 메시지 50개를 다시 보내주는 history replay 기능 추가해줘. 메모리는 방마다 VecDeque로 링버퍼처럼 관리하면 될 것 같아."
+  },
+  "s11-t266": {
+   "bundle": 4,
+   "prompt": "`routes/media.rs`에서 `image` crate로 하는 리사이즈를 axum async 핸들러 안에서 그냥 돌리고 있어서, 동시 요청이 20개만 넘어가도 다른 CMS API까지 전부 느려져요. `spawn_blocking`으로 빼고 `Semaphore`로 동시 처리 수 제한도 걸어주세요."
+  },
+  "s2-api": {
+   "bundle": 2,
+   "prompt": "북마크를 저장하는 REST API를 FastAPI로 설계하고 구현해줘. 스키마, 에러 처리, 테스트까지 포함해서.\n- 앱은 `app/main.py`의 `app`\n- 저장은 SQLite, 파일 경로는 환경변수 `BOOKMARKS_DB` (없으면 `bookmarks.db`)\n- 북마크: url(필수, http/https만), title(필수), tags(문자열 목록), created_at\n- 엔드포인트: `POST /bookmarks`, `GET /bookmarks` (태그 필터 `?tag=`, 페이지네이션 `?limit=&offset=`), `GET /bookmarks/{id}`, `PATCH /bookmarks/{id}`, `DELETE /bookmarks/{id}`\n- 같은 url은 두 번 저장할 수 없음\n- 상태 코드는 REST 관례대로 (생성 201, 삭제 204, 없음 404, 중복 409, 검증 실패 422)"
+  },
+  "s2-data": {
+   "bundle": 2,
+   "prompt": "`data/orders.csv`가 지저분해 (결측값, 형식 불일치 등). 이걸 정리해서 깨끗한 CSV를 만들고 요약 리포트를 내는 Python 스크립트를 써줘. 스크립트는 `scripts/clean_orders.py`이고, `uv run python scripts/clean_orders.py`로 실행하면 결과를 `out/`에 쓰게 해줘."
+  }
+ },
+ "runs": [
+  {
+   "task": "d1-landing",
+   "bundle": 1,
+   "cond": "off",
+   "tag": "m1",
+   "shots": {
+    "screens": [
+     "<e2e>/stageQ-private/runs/q1-d1-landing-off-m1.check/screens/landing.png"
+    ],
+    "screens-375": [
+     "<e2e>/stageQ-private/runs/q1-d1-landing-off-m1.check/screens-375/landing.png"
+    ]
+   },
+   "diff_path": "<e2e>/stageQ-private/runs/q1-d1-landing-off-m1.diff",
+   "diff": {
+    "files": [
+     {
+      "file": "pages/landing.tsx",
+      "added": 194,
+      "deleted": 0
+     },
+     {
+      "file": "styles/Landing.module.css",
+      "added": 366,
+      "deleted": 0
+     }
+    ],
+    "added": 560,
+    "deleted": 0
+   },
+   "check_pass": true,
+   "check_items": [
+    {
+     "name": "npm run type-check",
+     "pass": true,
+     "detail": "rc=0"
+    },
+    {
+     "name": "npx next build",
+     "pass": true,
+     "detail": "rc=0"
+    },
+    {
+     "name": "screenshot screens /landing",
+     "pass": true,
+     "detail": "rc=0"
+    },
+    {
+     "name": "screens /landing: status 200, no page_errors",
+     "pass": true,
+     "detail": "status=200 page_errors=[] final_url=http://127.0.0.1:4100/landing"
+    },
+    {
+     "name": "screenshot screens-375 /landing",
+     "pass": true,
+     "detail": "rc=0"
+    },
+    {
+     "name": "screens-375 /landing: status 200, no page_errors",
+     "pass": true,
+     "detail": "status=200 page_errors=[] final_url=http://127.0.0.1:4100/landing"
+    },
+    {
+     "name": "visual: landing page (hero, features, CTA[, pricing]); AI-look checklist",
+     "pass": null,
+     "detail": "blind judging"
+    }
+   ],
+   "loaded": [],
+   "fired": false,
+   "turns": 6,
+   "wall_s": 69.3,
+   "cost_usd": 0.351413,
+   "scores": {
+    "p1": {
+     "score": 3,
+     "ai_look": 5
+    },
+    "p2": {
+     "score": 4,
+     "ai_look": 5
+    }
+   },
+   "reasons": {
+    "p1": {
+     "reason": "#1 purple gradient headline text and gradient CTA panel, #3 everything centred, #4 identical radius+shadow cards, #5 emoji icons (👥🔎⚡), #6 three-column icon feature grid; content loosely matches (directory, /api/users) but copy is generic (\"simplest way\", \"Simple, transparent pricing\"); narrow is fine"
+    },
+    "p2": {
+     "reason": "#1 purple gradient on the headline and CTA, #3 centred everything, #4 identical cards, #5 emoji icons, #6 three-column icon grid. The content fits the app (directory, detail pages, /api/users) and the narrow layout works, but it reads as a generic SaaS template."
+    }
+   }
+  },
+  {
+   "task": "d1-landing",
+   "bundle": 1,
+   "cond": "off",
+   "tag": "m2",
+   "shots": {
+    "screens": [
+     "<e2e>/stageQ-private/runs/q1-d1-landing-off-m2.check/screens/landing.png"
+    ],
+    "screens-375": [
+     "<e2e>/stageQ-private/runs/q1-d1-landing-off-m2.check/screens-375/landing.png"
+    ]
+   },
+   "diff_path": "<e2e>/stageQ-private/runs/q1-d1-landing-off-m2.diff",
+   "diff": {
+    "files": [
+     {
+      "file": "pages/landing.tsx",
+      "added": 449,
+      "deleted": 0
+     }
+    ],
+    "added": 449,
+    "deleted": 0
+   },
+   "check_pass": true,
+   "check_items": [
+    {
+     "name": "npm run type-check",
+     "pass": true,
+     "detail": "rc=0"
+    },
+    {
+     "name": "npx next build",
+     "pass": true,
+     "detail": "rc=0"
+    },
+    {
+     "name": "screenshot screens /landing",
+     "pass": true,
+     "detail": "rc=0"
+    },
+    {
+     "name": "screens /landing: status 200, no page_errors",
+     "pass": true,
+     "detail": "status=200 page_errors=[] final_url=http://127.0.0.1:4101/landing"
+    },
+    {
+     "name": "screenshot screens-375 /landing",
+     "pass": true,
+     "detail": "rc=0"
+    },
+    {
+     "name": "screens-375 /landing: status 200, no page_errors",
+     "pass": true,
+     "detail": "status=200 page_errors=[] final_url=http://127.0.0.1:4101/landing"
+    },
+    {
+     "name": "visual: landing page (hero, features, CTA[, pricing]); AI-look checklist",
+     "pass": null,
+     "detail": "blind judging"
+    }
+   ],
+   "loaded": [],
+   "fired": false,
+   "turns": 6,
+   "wall_s": 65.7,
+   "cost_usd": 0.32838199999999995,
+   "scores": {
+    "p1": {
+     "score": 2,
+     "ai_look": 5
+    },
+    "p2": {
+     "score": 3,
+     "ai_look": 5
+    }
+   },
+   "reasons": {
+    "p1": {
+     "reason": "same template look as above: #1 gradient text + gradient CTA, #3 centred, #4 uniform cards, #5 emoji icons (🛡⚡🔌), #6 three-column icon grid; pitches \"Built with Next.js + TypeScript\"/\"type-safe\" to buyers, and at 375 px the nav collides (\"RosterFeatures\", wrapped \"Open app\")"
+    },
+    "p2": {
+     "reason": "Same 5 items (#1, #3, #4, #5, #6). Developer-facing pitch (\"Built with Next.js + TypeScript\", \"Type-safe by default\") misses a product audience. At 375 px the nav collides (\"RosterFeatures\", \"Open app\" wraps)."
+    }
+   }
+  },
+  {
+   "task": "d1-landing",
+   "bundle": 1,
+   "cond": "on",
+   "tag": "m1",
+   "shots": {
+    "screens": [
+     "<e2e>/stageQ-private/runs/q1-d1-landing-on-m1.check/screens/landing.png"
+    ],
+    "screens-375": [
+     "<e2e>/stageQ-private/runs/q1-d1-landing-on-m1.check/screens-375/landing.png"
+    ]
+   },
+   "diff_path": "<e2e>/stageQ-private/runs/q1-d1-landing-on-m1.diff",
+   "diff": {
+    "files": [
+     {
+      "file": "pages/landing.tsx",
+      "added": 253,
+      "deleted": 0
+     },
+     {
+      "file": "styles/Landing.module.css",
+      "added": 413,
+      "deleted": 0
+     }
+    ],
+    "added": 666,
+    "deleted": 0
+   },
+   "check_pass": true,
+   "check_items": [
+    {
+     "name": "npm run type-check",
+     "pass": true,
+     "detail": "rc=0"
+    },
+    {
+     "name": "npx next build",
+     "pass": true,
+     "detail": "rc=0"
+    },
+    {
+     "name": "screenshot screens /landing",
+     "pass": true,
+     "detail": "rc=0"
+    },
+    {
+     "name": "screens /landing: status 200, no page_errors",
+     "pass": true,
+     "detail": "status=200 page_errors=[] final_url=http://127.0.0.1:4101/landing"
+    },
+    {
+     "name": "screenshot screens-375 /landing",
+     "pass": true,
+     "detail": "rc=0"
+    },
+    {
+     "name": "screens-375 /landing: status 200, no page_errors",
+     "pass": true,
+     "detail": "status=200 page_errors=[] final_url=http://127.0.0.1:4101/landing"
+    },
+    {
+     "name": "visual: landing page (hero, features, CTA[, pricing]); AI-look checklist",
+     "pass": null,
+     "detail": "blind judging"
+    }
+   ],
+   "loaded": [
+    "anthropics-skills/frontend-design@0a5ff23f1022",
+    "uasl/copywriting@67282b309ff8"
+   ],
+   "fired": true,
+   "turns": 27,
+   "wall_s": 165.1,
+   "cost_usd": 0.9598142000000002,
+   "scores": {
+    "p1": {
+     "score": 5,
+     "ai_look": 0
+    },
+    "p2": {
+     "score": 5,
+     "ai_look": 0
+    }
+   },
+   "reasons": {
+    "p1": {
+     "reason": "none of the checklist; left-aligned editorial hero with a page/JSON toggle mock using the app's own users, features as a two-column definition list, flat bordered pricing; specific copy (prebuilt pages, /api/users); clean narrow stack"
+    },
+    "p2": {
+     "reason": "No checklist items: left-aligned hero, rows instead of an icon grid, square buttons, no gradient or emoji. Copy matches the app (people list 101–104, /users/101, /api/users, prebuilt pages), with clear pricing and a CTA; stacks cleanly at 375 px."
+    }
+   }
+  },
+  {
+   "task": "d1-landing",
+   "bundle": 1,
+   "cond": "on",
+   "tag": "m2",
+   "shots": {
+    "screens": [
+     "<e2e>/stageQ-private/runs/q1-d1-landing-on-m2.check/screens/landing.png"
+    ],
+    "screens-375": [
+     "<e2e>/stageQ-private/runs/q1-d1-landing-on-m2.check/screens-375/landing.png"
+    ]
+   },
+   "diff_path": "<e2e>/stageQ-private/runs/q1-d1-landing-on-m2.diff",
+   "diff": {
+    "files": [
+     {
+      "file": "components/landing/Landing.module.css",
+      "added": 526,
+      "deleted": 0
+     },
+     {
+      "file": "pages/landing.tsx",
+      "added": 245,
+      "deleted": 0
+     }
+    ],
+    "added": 771,
+    "deleted": 0
+   },
+   "check_pass": true,
+   "check_items": [
+    {
+     "name": "npm run type-check",
+     "pass": true,
+     "detail": "rc=0"
+    },
+    {
+     "name": "npx next build",
+     "pass": true,
+     "detail": "rc=0"
+    },
+    {
+     "name": "screenshot screens /landing",
+     "pass": true,
+     "detail": "rc=0"
+    },
+    {
+     "name": "screens /landing: status 200, no page_errors",
+     "pass": true,
+     "detail": "status=200 page_errors=[] final_url=http://127.0.0.1:4100/landing"
+    },
+    {
+     "name": "screenshot screens-375 /landing",
+     "pass": true,
+     "detail": "rc=0"
+    },
+    {
+     "name": "screens-375 /landing: status 200, no page_errors",
+     "pass": true,
+     "detail": "status=200 page_errors=[] final_url=http://127.0.0.1:4101/landing"
+    },
+    {
+     "name": "visual: landing page (hero, features, CTA[, pricing]); AI-look checklist",
+     "pass": null,
+     "detail": "blind judging"
+    }
+   ],
+   "loaded": [
+    "anthropics-skills/frontend-design@0a5ff23f1022",
+    "uasl/next-best-practices@ee058f89acea",
+    "uasl/copywriting@67282b309ff8"
+   ],
+   "fired": true,
+   "turns": 24,
+   "wall_s": 153.4,
+   "cost_usd": 0.9271630000000001,
+   "scores": {
+    "p1": {
+     "score": 5,
+     "ai_look": 1
+    },
+    "p2": {
+     "score": 5,
+     "ai_look": 1
+    }
+   },
+   "reasons": {
+    "p1": {
+     "reason": "#8 pill buttons throughout; otherwise left-aligned hero with a real roster/API mock (Alice, Bob, /users/101, GET /api/users), code-tag feature columns without icons, distinct pricing cards and a solid CTA band; copy fits the app; narrow stacks cleanly"
+    },
+    "p2": {
+     "reason": "#8: pill buttons everywhere. Otherwise distinctive: tilted roster card, code-chip features instead of icons, solid blue band with no gradient. App-specific copy and solid pricing; works at 375 px."
+    }
+   }
+  },
+  {
+   "task": "d4-email",
+   "bundle": 1,
+   "cond": "off",
+   "tag": "m1",
+   "shots": {
+    "screens": [
+     "<e2e>/stageQ-private/runs/q1-d4-email-off-m1.check/screens/new_account.png"
+    ],
+    "screens-375": [
+     "<e2e>/stageQ-private/runs/q1-d4-email-off-m1.check/screens-375/new_account.png"
+    ]
+   },
+   "diff_path": "<e2e>/stageQ-private/runs/q1-d4-email-off-m1.diff",
+   "diff": {
+    "files": [
+     {
+      "file": "packages/react-email/emails/new_account.tsx",
+      "added": 239,
+      "deleted": 24
+     }
+    ],
+    "added": 239,
+    "deleted": 24
+   },
+   "check_pass": true,
+   "check_items": [
+    {
+     "name": "packages/react-email: npm run build",
+     "pass": true,
+     "detail": "rc=0"
+    },
+    {
+     "name": "packages/react-email: npm run export",
+     "pass": true,
+     "detail": "rc=0"
+    },
+    {
+     "name": "export wrote backend/app/email-templates/new_account.html",
+     "pass": true,
+     "detail": "True"
+    },
+    {
+     "name": "NewAccountProps fields unchanged (project_name, username, password, link)",
+     "pass": true,
+     "detail": "fields=['link', 'password', 'project_name', 'username']"
+    },
+    {
+     "name": "screens: email HTML renders at 600px, no page errors",
+     "pass": true,
+     "detail": "rc=0 page_errors=[]"
+    },
+    {
+     "name": "screens-375: email HTML renders at 375px, no page errors",
+     "pass": true,
+     "detail": "rc=0 page_errors=[]"
+    },
+    {
+     "name": "visual: welcome email; AI-look checklist",
+     "pass": null,
+     "detail": "blind judging"
+    }
+   ],
+   "loaded": [],
+   "fired": false,
+   "turns": 15,
+   "wall_s": 101.1,
+   "cost_usd": 0.5055112,
+   "scores": {
+    "p1": {
+     "score": 5,
+     "ai_look": 0
+    },
+    "p2": {
+     "score": 5,
+     "ai_look": 0
+    }
+   },
+   "reasons": {
+    "p1": {
+     "reason": "no checklist items (the pill is a small label, not buttons); clearest hierarchy: light header with status badge, tabular credentials, CTA, next steps, security callout about the password in the mail, fallback link; renders cleanly at 375 px"
+    },
+    "p2": {
+     "reason": "No checklist items: teal brand, left-aligned, rectangular button, no gradient or emoji. Has the most complete content: credential box, three next steps, a security note to change the password and delete the mail, and a fallback link. Clean at 375 px."
+    }
+   }
+  },
+  {
+   "task": "d4-email",
+   "bundle": 1,
+   "cond": "off",
+   "tag": "m2",
+   "shots": {
+    "screens": [
+     "<e2e>/stageQ-private/runs/q1-d4-email-off-m2.check/screens/new_account.png"
+    ],
+    "screens-375": [
+     "<e2e>/stageQ-private/runs/q1-d4-email-off-m2.check/screens-375/new_account.png"
+    ]
+   },
+   "diff_path": "<e2e>/stageQ-private/runs/q1-d4-email-off-m2.diff",
+   "diff": {
+    "files": [
+     {
+      "file": "backend/app/email-templates/new_account.html",
+      "added": 1,
+      "deleted": 1
+     },
+     {
+      "file": "packages/react-email/emails/new_account.tsx",
+      "added": 122,
+      "deleted": 17
+     }
+    ],
+    "added": 123,
+    "deleted": 18
+   },
+   "check_pass": true,
+   "check_items": [
+    {
+     "name": "packages/react-email: npm run build",
+     "pass": true,
+     "detail": "rc=0"
+    },
+    {
+     "name": "packages/react-email: npm run export",
+     "pass": true,
+     "detail": "rc=0"
+    },
+    {
+     "name": "export wrote backend/app/email-templates/new_account.html",
+     "pass": true,
+     "detail": "True"
+    },
+    {
+     "name": "NewAccountProps fields unchanged (project_name, username, password, link)",
+     "pass": true,
+     "detail": "fields=['link', 'password', 'project_name', 'username']"
+    },
+    {
+     "name": "screens: email HTML renders at 600px, no page errors",
+     "pass": true,
+     "detail": "rc=0 page_errors=[]"
+    },
+    {
+     "name": "screens-375: email HTML renders at 375px, no page errors",
+     "pass": true,
+     "detail": "rc=0 page_errors=[]"
+    },
+    {
+     "name": "visual: welcome email; AI-look checklist",
+     "pass": null,
+     "detail": "blind judging"
+    }
+   ],
+   "loaded": [],
+   "fired": false,
+   "turns": 19,
+   "wall_s": 79.9,
+   "cost_usd": 0.4431340000000001,
+   "scores": {
+    "p1": {
+     "score": 4,
+     "ai_look": 0
+    },
+    "p2": {
+     "score": 4,
+     "ai_look": 0
+    }
+   },
+   "reasons": {
+    "p1": {
+     "reason": "no checklist items; header band, credentials, CTA, security callout to change the password, fallback link; works at 375 px; no onboarding steps, plain brand"
+    },
+    "p2": {
+     "reason": "No checklist items. Solid teal header, credential box, full-width CTA, security note and fallback link. Clean at 375 px, but a little thinner than 38cc9eea (no onboarding steps)."
+    }
+   }
+  },
+  {
+   "task": "d4-email",
+   "bundle": 1,
+   "cond": "on",
+   "tag": "m1",
+   "shots": {
+    "screens": [
+     "<e2e>/stageQ-private/runs/q1-d4-email-on-m1.check/screens/new_account.png"
+    ],
+    "screens-375": [
+     "<e2e>/stageQ-private/runs/q1-d4-email-on-m1.check/screens-375/new_account.png"
+    ]
+   },
+   "diff_path": "<e2e>/stageQ-private/runs/q1-d4-email-on-m1.diff",
+   "diff": {
+    "files": [
+     {
+      "file": "backend/app/email-templates/new_account.html",
+      "added": 1,
+      "deleted": 1
+     },
+     {
+      "file": "packages/react-email/emails/new_account.tsx",
+      "added": 216,
+      "deleted": 25
+     }
+    ],
+    "added": 217,
+    "deleted": 26
+   },
+   "check_pass": true,
+   "check_items": [
+    {
+     "name": "packages/react-email: npm run build",
+     "pass": true,
+     "detail": "rc=0"
+    },
+    {
+     "name": "packages/react-email: npm run export",
+     "pass": true,
+     "detail": "rc=0"
+    },
+    {
+     "name": "export wrote backend/app/email-templates/new_account.html",
+     "pass": true,
+     "detail": "True"
+    },
+    {
+     "name": "NewAccountProps fields unchanged (project_name, username, password, link)",
+     "pass": true,
+     "detail": "fields=['link', 'password', 'project_name', 'username']"
+    },
+    {
+     "name": "screens: email HTML renders at 600px, no page errors",
+     "pass": true,
+     "detail": "rc=0 page_errors=[]"
+    },
+    {
+     "name": "screens-375: email HTML renders at 375px, no page errors",
+     "pass": true,
+     "detail": "rc=0 page_errors=[]"
+    },
+    {
+     "name": "visual: welcome email; AI-look checklist",
+     "pass": null,
+     "detail": "blind judging"
+    }
+   ],
+   "loaded": [
+    "uasl/email-marketing@a37255743f2c",
+    "uasl/frontend-design@5da82907743d"
+   ],
+   "fired": true,
+   "turns": 16,
+   "wall_s": 92.7,
+   "cost_usd": 0.6054852000000001,
+   "scores": {
+    "p1": {
+     "score": 4,
+     "ai_look": 0
+    },
+    "p2": {
+     "score": 4,
+     "ai_look": 0
+    }
+   },
+   "reasons": {
+    "p1": {
+     "reason": "no checklist items; teal banded header, clear credentials block, full-width CTA, fallback link, 3 next steps; holds at 375 px; brand feel is a generic teal and the \"Explore\" step is filler"
+    },
+    "p2": {
+     "reason": "No checklist items. Teal header, credentials, CTA with a centred fallback link, three next steps (the third, \"make yourself at home\", is filler). Clean at 375 px; no security note."
+    }
+   }
+  },
+  {
+   "task": "d4-email",
+   "bundle": 1,
+   "cond": "on",
+   "tag": "m2",
+   "shots": {
+    "screens": [
+     "<e2e>/stageQ-private/runs/q1-d4-email-on-m2.check/screens/new_account.png"
+    ],
+    "screens-375": [
+     "<e2e>/stageQ-private/runs/q1-d4-email-on-m2.check/screens-375/new_account.png"
+    ]
+   },
+   "diff_path": "<e2e>/stageQ-private/runs/q1-d4-email-on-m2.diff",
+   "diff": {
+    "files": [
+     {
+      "file": "backend/app/email-templates/new_account.html",
+      "added": 1,
+      "deleted": 1
+     },
+     {
+      "file": "packages/react-email/emails/new_account.tsx",
+      "added": 175,
+      "deleted": 18
+     }
+    ],
+    "added": 176,
+    "deleted": 19
+   },
+   "check_pass": true,
+   "check_items": [
+    {
+     "name": "packages/react-email: npm run build",
+     "pass": true,
+     "detail": "rc=0"
+    },
+    {
+     "name": "packages/react-email: npm run export",
+     "pass": true,
+     "detail": "rc=0"
+    },
+    {
+     "name": "export wrote backend/app/email-templates/new_account.html",
+     "pass": true,
+     "detail": "True"
+    },
+    {
+     "name": "NewAccountProps fields unchanged (project_name, username, password, link)",
+     "pass": true,
+     "detail": "fields=['link', 'password', 'project_name', 'username']"
+    },
+    {
+     "name": "screens: email HTML renders at 600px, no page errors",
+     "pass": true,
+     "detail": "rc=0 page_errors=[]"
+    },
+    {
+     "name": "screens-375: email HTML renders at 375px, no page errors",
+     "pass": true,
+     "detail": "rc=0 page_errors=[]"
+    },
+    {
+     "name": "visual: welcome email; AI-look checklist",
+     "pass": null,
+     "detail": "blind judging"
+    }
+   ],
+   "loaded": [
+    "uasl/email-marketing@a37255743f2c",
+    "anthropics-skills/frontend-design@0a5ff23f1022"
+   ],
+   "fired": true,
+   "turns": 20,
+   "wall_s": 116.1,
+   "cost_usd": 0.6930926000000002,
+   "scores": {
+    "p1": {
+     "score": 4,
+     "ai_look": 0
+    },
+    "p2": {
+     "score": 4,
+     "ai_look": 0
+    }
+   },
+   "reasons": {
+    "p1": {
+     "reason": "no checklist items; compact, credentials labelled \"Temporary password\", 2-step getting started, CTA, fallback link and \"if you weren't expecting this\" note; works at 375 px; a little plain for \"brand feel\""
+    },
+    "p2": {
+     "reason": "No checklist items. Teal header, credentials, two getting-started steps, CTA, fallback link and an \"ignore if unexpected\" note. Clean at 375 px; no security reminder about the mailed password."
+    }
+   }
+  },
+  {
+   "task": "s10-t016",
+   "bundle": 4,
+   "cond": "off",
+   "tag": "m1",
+   "shots": {},
+   "diff_path": "<e2e>/stageQ-private/runs/q1-s10-t016-off-m1.diff",
+   "diff": {
+    "files": [
+     {
+      "file": "README.md",
+      "added": 2,
+      "deleted": 1
+     },
+     {
+      "file": "src/room.rs",
+      "added": 19,
+      "deleted": 5
+     },
+     {
+      "file": "tests/broadcast.rs",
+      "added": 22,
+      "deleted": 0
+     }
+    ],
+    "added": 43,
+    "deleted": 6
+   },
+   "check_pass": true,
+   "check_items": [
+    {
+     "name": "build",
+     "pass": true,
+     "detail": "    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.05s\n"
+    },
+    {
+     "name": "existing tests (tests/broadcast.rs)",
+     "pass": true,
+     "detail": "ok"
+    },
+    {
+     "name": "history replay: last 50 in order on join, short history whole, per room, live after replay",
+     "pass": true,
+     "detail": "ok"
+    }
+   ],
+   "loaded": [],
+   "fired": false,
+   "turns": 4,
+   "wall_s": 35.1,
+   "cost_usd": 0.2207442,
+   "scores": {
+    "p1": {
+     "score": 5,
+     "ai_look": null
+    },
+    "p2": {
+     "score": 5,
+     "ai_look": null
+    }
+   },
+   "reasons": {
+    "p1": {
+     "reason": "same sound design plus README; one TCP test checks the exact 60→last-50 sequence and then a live line; reply explains the ordering guarantee and the existing never-deleted-rooms behaviour"
+    },
+    "p2": {
+     "reason": "Per-room VecDeque capped at 50, replayed oldest-first inside join under the existing room lock (sync channel sends, no await), so no gap or duplicate. A TCP test checks lines msg 10–59 in order and then a live line; README updated; reply flags that empty rooms are never removed."
+    }
+   }
+  },
+  {
+   "task": "s10-t016",
+   "bundle": 4,
+   "cond": "off",
+   "tag": "m2",
+   "shots": {},
+   "diff_path": "<e2e>/stageQ-private/runs/q1-s10-t016-off-m2.diff",
+   "diff": {
+    "files": [
+     {
+      "file": "README.md",
+      "added": 1,
+      "deleted": 1
+     },
+     {
+      "file": "src/room.rs",
+      "added": 48,
+      "deleted": 5
+     },
+     {
+      "file": "tests/broadcast.rs",
+      "added": 16,
+      "deleted": 0
+     }
+    ],
+    "added": 65,
+    "deleted": 6
+   },
+   "check_pass": true,
+   "check_items": [
+    {
+     "name": "build",
+     "pass": true,
+     "detail": "    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.05s\n"
+    },
+    {
+     "name": "existing tests (tests/broadcast.rs)",
+     "pass": true,
+     "detail": "ok"
+    },
+    {
+     "name": "history replay: last 50 in order on join, short history whole, per room, live after replay",
+     "pass": true,
+     "detail": "ok"
+    }
+   ],
+   "loaded": [],
+   "fired": false,
+   "turns": 5,
+   "wall_s": 44.1,
+   "cost_usd": 0.2381398,
+   "scores": {
+    "p1": {
+     "score": 5,
+     "ai_look": null
+    },
+    "p2": {
+     "score": 5,
+     "ai_look": null
+    }
+   },
+   "reasons": {
+    "p1": {
+     "reason": "per-room VecDeque capped at HISTORY_LEN=50, replayed oldest-first in join under the existing rooms lock (no await, unbounded sender) so there's no gap or duplicate at the boundary; unit tests for exactly the last 50 and closed-channel join, TCP late-joiner test, README line; reply flags that empty rooms keep their history"
+    },
+    "p2": {
+     "reason": "Same core change. Unit tests check the exact last-50 list and that a closed channel is not joined, plus a TCP late-joiner test; README updated; reply flags empty-room retention and that the room count is unbounded."
+    }
+   }
+  },
+  {
+   "task": "s10-t016",
+   "bundle": 4,
+   "cond": "on",
+   "tag": "m1",
+   "shots": {},
+   "diff_path": "<e2e>/stageQ-private/runs/q1-s10-t016-on-m1.diff",
+   "diff": {
+    "files": [
+     {
+      "file": "src/room.rs",
+      "added": 63,
+      "deleted": 5
+     },
+     {
+      "file": "tests/broadcast.rs",
+      "added": 17,
+      "deleted": 0
+     }
+    ],
+    "added": 80,
+    "deleted": 5
+   },
+   "check_pass": true,
+   "check_items": [
+    {
+     "name": "build",
+     "pass": true,
+     "detail": "    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.05s\n"
+    },
+    {
+     "name": "existing tests (tests/broadcast.rs)",
+     "pass": true,
+     "detail": "ok"
+    },
+    {
+     "name": "history replay: last 50 in order on join, short history whole, per room, live after replay",
+     "pass": true,
+     "detail": "ok"
+    }
+   ],
+   "loaded": [
+    "actionbook-rust-skills/m07-concurrency@0686c877c8a6",
+    "affaan-m-ecc/rust-testing@68e797f602f9"
+   ],
+   "fired": true,
+   "turns": 13,
+   "wall_s": 55.7,
+   "cost_usd": 0.47576599999999997,
+   "scores": {
+    "p1": {
+     "score": 5,
+     "ai_look": null
+    },
+    "p2": {
+     "score": 5,
+     "ai_look": null
+    }
+   },
+   "reasons": {
+    "p1": {
+     "reason": "same sound design; three unit tests (oldest first, 50 cap, live after replay) plus a TCP test; reply offers to clear history when the last member leaves"
+    },
+    "p2": {
+     "reason": "Same core change. Three unit tests (oldest-first, last 50 kept, live after replay) plus a TCP late-joiner test; reply flags empty-room retention."
+    }
+   }
+  },
+  {
+   "task": "s10-t016",
+   "bundle": 4,
+   "cond": "on",
+   "tag": "m2",
+   "shots": {},
+   "diff_path": "<e2e>/stageQ-private/runs/q1-s10-t016-on-m2.diff",
+   "diff": {
+    "files": [
+     {
+      "file": "src/room.rs",
+      "added": 53,
+      "deleted": 5
+     },
+     {
+      "file": "tests/broadcast.rs",
+      "added": 16,
+      "deleted": 0
+     }
+    ],
+    "added": 69,
+    "deleted": 5
+   },
+   "check_pass": true,
+   "check_items": [
+    {
+     "name": "build",
+     "pass": true,
+     "detail": "    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.06s\n"
+    },
+    {
+     "name": "existing tests (tests/broadcast.rs)",
+     "pass": true,
+     "detail": "ok"
+    },
+    {
+     "name": "history replay: last 50 in order on join, short history whole, per room, live after replay",
+     "pass": true,
+     "detail": "ok"
+    }
+   ],
+   "loaded": [
+    "actionbook-rust-skills/m07-concurrency@0686c877c8a6",
+    "affaan-m-ecc/rust-patterns@f0961b5637b0"
+   ],
+   "fired": true,
+   "turns": 14,
+   "wall_s": 59.7,
+   "cost_usd": 0.48740279999999997,
+   "scores": {
+    "p1": {
+     "score": 5,
+     "ai_look": null
+    },
+    "p2": {
+     "score": 5,
+     "ai_look": null
+    }
+   },
+   "reasons": {
+    "p1": {
+     "reason": "same sound design (VecDeque ring per room, replay before insert under the lock); unit tests for history-then-live order and the 50 cap plus a TCP test; reply notes memory = rooms × 50 and that replayed lines look the same as live ones"
+    },
+    "p2": {
+     "reason": "Same core change. Unit tests for history then live and for last 50 kept, plus a TCP test; reply also notes that clients cannot tell replayed lines from live ones."
+    }
+   }
+  },
+  {
+   "task": "s11-t266",
+   "bundle": 4,
+   "cond": "off",
+   "tag": "m1",
+   "shots": {},
+   "diff_path": "<e2e>/stageQ-private/runs/q1-s11-t266-off-m1.diff",
+   "diff": {
+    "files": [
+     {
+      "file": "README.md",
+      "added": 1,
+      "deleted": 1
+     },
+     {
+      "file": "src/config.rs",
+      "added": 12,
+      "deleted": 1
+     },
+     {
+      "file": "src/routes/media.rs",
+      "added": 18,
+      "deleted": 3
+     },
+     {
+      "file": "src/state.rs",
+      "added": 4,
+      "deleted": 0
+     }
+    ],
+    "added": 35,
+    "deleted": 5
+   },
+   "check_pass": true,
+   "check_items": [
+    {
+     "name": "a_cargo_test",
+     "pass": true,
+     "detail": "rc=0; 5 tests passed"
+    },
+    {
+     "name": "b_offloaded",
+     "pass": true,
+     "detail": "decodes=49, on async worker=0 (workers=2); image 0.25.10 patched (decoder_to_image)"
+    },
+    {
+     "name": "c_bounded",
+     "pass": true,
+     "detail": "max concurrent decodes=14 for a burst of 48; statuses={200: 48}; burst 1423 ms"
+    },
+    {
+     "name": "d_others_responsive",
+     "pass": true,
+     "detail": "other requests=110 failed=0 max latency=0 ms, timer lateness max=6 ms"
+    },
+    {
+     "name": "e_output_ok",
+     "pass": true,
+     "detail": "single: status=200 dims=[400, 300]; burst 200s within 400x400=True"
+    }
+   ],
+   "loaded": [],
+   "fired": false,
+   "turns": 4,
+   "wall_s": 38.2,
+   "cost_usd": 0.2637098,
+   "scores": {
+    "p1": {
+     "score": 4,
+     "ai_look": null
+    },
+    "p2": {
+     "score": 4,
+     "ai_look": null
+    }
+   },
+   "reasons": {
+    "p1": {
+     "reason": "same correct offload + permit-in-closure + 500 on panic, config and README; reply flags unbounded queue memory (20 MB bodies) and offers a 503; no test added for the limit or the offloading"
+    },
+    "p2": {
+     "reason": "Same correct design and config/README, and an honest reply about the queueing trade-off. No test was added for the limit or the offloading."
+    }
+   }
+  },
+  {
+   "task": "s11-t266",
+   "bundle": 4,
+   "cond": "off",
+   "tag": "m2",
+   "shots": {},
+   "diff_path": "<e2e>/stageQ-private/runs/q1-s11-t266-off-m2.diff",
+   "diff": {
+    "files": [
+     {
+      "file": "README.md",
+      "added": 1,
+      "deleted": 1
+     },
+     {
+      "file": "src/config.rs",
+      "added": 10,
+      "deleted": 1
+     },
+     {
+      "file": "src/routes/media.rs",
+      "added": 18,
+      "deleted": 3
+     },
+     {
+      "file": "src/state.rs",
+      "added": 4,
+      "deleted": 0
+     },
+     {
+      "file": "tests/api.rs",
+      "added": 25,
+      "deleted": 0
+     }
+    ],
+    "added": 58,
+    "deleted": 5
+   },
+   "check_pass": true,
+   "check_items": [
+    {
+     "name": "a_cargo_test",
+     "pass": true,
+     "detail": "rc=0; 6 tests passed"
+    },
+    {
+     "name": "b_offloaded",
+     "pass": true,
+     "detail": "decodes=49, on async worker=0 (workers=2); image 0.25.10 patched (decoder_to_image)"
+    },
+    {
+     "name": "c_bounded",
+     "pass": true,
+     "detail": "max concurrent decodes=14 for a burst of 48; statuses={200: 48}; burst 1429 ms"
+    },
+    {
+     "name": "d_others_responsive",
+     "pass": true,
+     "detail": "other requests=108 failed=0 max latency=0 ms, timer lateness max=10 ms"
+    },
+    {
+     "name": "e_output_ok",
+     "pass": true,
+     "detail": "single: status=200 dims=[400, 300]; burst 200s within 400x400=True"
+    }
+   ],
+   "loaded": [],
+   "fired": false,
+   "turns": 11,
+   "wall_s": 56.9,
+   "cost_usd": 0.3191846,
+   "scores": {
+    "p1": {
+     "score": 5,
+     "ai_look": null
+    },
+    "p2": {
+     "score": 5,
+     "ai_look": null
+    }
+   },
+   "reasons": {
+    "p1": {
+     "reason": "same correct offload/permit/500 design, configurable limit, README; reply explains why the permit lives in the blocking task and the queue-memory risk; test only checks 8 concurrent requests at limit 1 all return 200"
+    },
+    "p2": {
+     "reason": "Same correct design and config/README. The test queues 8 requests at limit 1 and checks they all succeed, but does not prove the bound; the reply flags the memory growth of an unbounded queue."
+    }
+   }
+  },
+  {
+   "task": "s11-t266",
+   "bundle": 4,
+   "cond": "on",
+   "tag": "m1",
+   "shots": {},
+   "diff_path": "<e2e>/stageQ-private/runs/q1-s11-t266-on-m1.diff",
+   "diff": {
+    "files": [
+     {
+      "file": "README.md",
+      "added": 2,
+      "deleted": 1
+     },
+     {
+      "file": "src/config.rs",
+      "added": 12,
+      "deleted": 1
+     },
+     {
+      "file": "src/routes/media.rs",
+      "added": 19,
+      "deleted": 3
+     },
+     {
+      "file": "src/state.rs",
+      "added": 4,
+      "deleted": 0
+     },
+     {
+      "file": "tests/api.rs",
+      "added": 24,
+      "deleted": 0
+     }
+    ],
+    "added": 61,
+    "deleted": 5
+   },
+   "check_pass": true,
+   "check_items": [
+    {
+     "name": "a_cargo_test",
+     "pass": true,
+     "detail": "rc=0; 6 tests passed"
+    },
+    {
+     "name": "b_offloaded",
+     "pass": true,
+     "detail": "decodes=49, on async worker=0 (workers=2); image 0.25.10 patched (decoder_to_image)"
+    },
+    {
+     "name": "c_bounded",
+     "pass": true,
+     "detail": "max concurrent decodes=14 for a burst of 48; statuses={200: 48}; burst 1428 ms"
+    },
+    {
+     "name": "d_others_responsive",
+     "pass": true,
+     "detail": "other requests=108 failed=0 max latency=0 ms, timer lateness max=26 ms"
+    },
+    {
+     "name": "e_output_ok",
+     "pass": true,
+     "detail": "single: status=200 dims=[400, 300]; burst 200s within 400x400=True"
+    }
+   ],
+   "loaded": [
+    "actionbook-rust-skills/domain-web@e85236f514d2",
+    "actionbook-rust-skills/m07-concurrency@0686c877c8a6"
+   ],
+   "fired": true,
+   "turns": 17,
+   "wall_s": 63.1,
+   "cost_usd": 0.48878,
+   "scores": {
+    "p1": {
+     "score": 5,
+     "ai_look": null
+    },
+    "p2": {
+     "score": 5,
+     "ai_look": null
+    }
+   },
+   "reasons": {
+    "p1": {
+     "reason": "permit acquired async, then moved into spawn_blocking so it's held for the whole decode/resize/encode even if the client disconnects; JoinError→500; waiting is a deliberate, explained choice with a 503 option offered; configurable CMS_MAX_CONCURRENT_RESIZES (default CPUs, min 1), README; new test only checks that 8 requests succeed at limit 1, which doesn't prove the bound"
+    },
+    "p2": {
+     "reason": "Same correct design and config/README. The multi-thread test queues 8 requests at limit 1 and checks output size, but does not show the cap is actually enforced."
+    }
+   }
+  },
+  {
+   "task": "s11-t266",
+   "bundle": 4,
+   "cond": "on",
+   "tag": "m2",
+   "shots": {},
+   "diff_path": "<e2e>/stageQ-private/runs/q1-s11-t266-on-m2.diff",
+   "diff": {
+    "files": [
+     {
+      "file": "README.md",
+      "added": 2,
+      "deleted": 1
+     },
+     {
+      "file": "src/config.rs",
+      "added": 10,
+      "deleted": 1
+     },
+     {
+      "file": "src/routes/media.rs",
+      "added": 14,
+      "deleted": 3
+     },
+     {
+      "file": "src/state.rs",
+      "added": 4,
+      "deleted": 0
+     },
+     {
+      "file": "tests/api.rs",
+      "added": 31,
+      "deleted": 0
+     }
+    ],
+    "added": 61,
+    "deleted": 5
+   },
+   "check_pass": true,
+   "check_items": [
+    {
+     "name": "a_cargo_test",
+     "pass": true,
+     "detail": "rc=0; 6 tests passed"
+    },
+    {
+     "name": "b_offloaded",
+     "pass": true,
+     "detail": "decodes=49, on async worker=0 (workers=2); image 0.25.10 patched (decoder_to_image)"
+    },
+    {
+     "name": "c_bounded",
+     "pass": true,
+     "detail": "max concurrent decodes=14 for a burst of 48; statuses={200: 48}; burst 1420 ms"
+    },
+    {
+     "name": "d_others_responsive",
+     "pass": true,
+     "detail": "other requests=108 failed=0 max latency=0 ms, timer lateness max=5 ms"
+    },
+    {
+     "name": "e_output_ok",
+     "pass": true,
+     "detail": "single: status=200 dims=[400, 300]; burst 200s within 400x400=True"
+    }
+   ],
+   "loaded": [
+    "actionbook-rust-skills/domain-web@e85236f514d2",
+    "actionbook-rust-skills/m07-concurrency@0686c877c8a6"
+   ],
+   "fired": true,
+   "turns": 18,
+   "wall_s": 73.2,
+   "cost_usd": 0.528434,
+   "scores": {
+    "p1": {
+     "score": 5,
+     "ai_look": null
+    },
+    "p2": {
+     "score": 5,
+     "ai_look": null
+    }
+   },
+   "reasons": {
+    "p1": {
+     "reason": "same correct design (closed semaphore→503 instead of panic); the test holds the only permit, checks the request blocks, then that requests succeed and the permit comes back, so it actually verifies the bound; config/README; reply explains the queue-memory trade-off (ends with one stray unexplained sentence)"
+    },
+    "p2": {
+     "reason": "Owned permit moved into spawn_blocking (held for the whole decode+encode); JoinError mapped to 500; waiting is deliberate and explained, with try_acquire as the 503 option. Configurable CMS_MAX_CONCURRENT_RESIZES (min 1). Its test proves the limit (blocked while the permit is held, permits returned)."
+    }
+   }
+  },
+  {
+   "task": "s2-api",
+   "bundle": 2,
+   "cond": "off",
+   "tag": "m1",
+   "shots": {},
+   "diff_path": "<e2e>/stageQ-private/runs/q1-s2-api-off-m1.diff",
+   "diff": {
+    "files": [
+     {
+      "file": "app/db.py",
+      "added": 152,
+      "deleted": 0
+     },
+     {
+      "file": "app/main.py",
+      "added": 87,
+      "deleted": 0
+     },
+     {
+      "file": "app/schemas.py",
+      "added": 56,
+      "deleted": 0
+     },
+     {
+      "file": "pyproject.toml",
+      "added": 4,
+      "deleted": 0
+     },
+     {
+      "file": "tests/conftest.py",
+      "added": 24,
+      "deleted": 0
+     },
+     {
+      "file": "tests/test_bookmarks.py",
+      "added": 261,
+      "deleted": 0
+     }
+    ],
+    "added": 584,
+    "deleted": 0
+   },
+   "check_pass": true,
+   "check_items": [
+    {
+     "name": "session's tests run and pass",
+     "pass": true,
+     "detail": "{\"tests\": 50, \"failures\": 0, \"errors\": 0, \"skipped\": 0, \"passed\": 50}"
+    },
+    {
+     "name": "contract script 27/27",
+     "pass": true,
+     "detail": ""
+    }
+   ],
+   "loaded": [],
+   "fired": false,
+   "turns": 10,
+   "wall_s": 101.6,
+   "cost_usd": 0.50659,
+   "scores": {
+    "p1": {
+     "score": 5,
+     "ai_look": null
+    },
+    "p2": {
+     "score": 5,
+     "ai_look": null
+    }
+   },
+   "reasons": {
+    "p1": {
+     "reason": "27/27, 50 tests pass; normalised tag table, ErrorResponse model, conflict test checks the record is unchanged; HttpUrl normalises the stored url (e.g. adds a trailing slash) so the returned url can differ from the one sent, and the PATCH existence check runs outside the transaction"
+    },
+    "p2": {
+     "reason": "Contract 27/27, 50 tests pass. Clean db/schemas/routes, normalised tag table, ErrorResponse documented, existence checked before PATCH. HttpUrl rewrites the stored url (adds a trailing slash), a small surprise for clients."
+    }
+   }
+  },
+  {
+   "task": "s2-api",
+   "bundle": 2,
+   "cond": "off",
+   "tag": "m2",
+   "shots": {},
+   "diff_path": "<e2e>/stageQ-private/runs/q1-s2-api-off-m2.diff",
+   "diff": {
+    "files": [
+     {
+      "file": "app/db.py",
+      "added": 108,
+      "deleted": 0
+     },
+     {
+      "file": "app/main.py",
+      "added": 67,
+      "deleted": 0
+     },
+     {
+      "file": "app/schemas.py",
+      "added": 65,
+      "deleted": 0
+     },
+     {
+      "file": "pyproject.toml",
+      "added": 4,
+      "deleted": 0
+     },
+     {
+      "file": "tests/conftest.py",
+      "added": 21,
+      "deleted": 0
+     },
+     {
+      "file": "tests/test_bookmarks.py",
+      "added": 260,
+      "deleted": 0
+     }
+    ],
+    "added": 525,
+    "deleted": 0
+   },
+   "check_pass": true,
+   "check_items": [
+    {
+     "name": "session's tests run and pass",
+     "pass": true,
+     "detail": "{\"tests\": 50, \"failures\": 0, \"errors\": 0, \"skipped\": 0, \"passed\": 50}"
+    },
+    {
+     "name": "contract script 27/27",
+     "pass": true,
+     "detail": ""
+    }
+   ],
+   "loaded": [],
+   "fired": false,
+   "turns": 10,
+   "wall_s": 82.1,
+   "cost_usd": 0.446184,
+   "scores": {
+    "p1": {
+     "score": 4,
+     "ai_look": null
+    },
+    "p2": {
+     "score": 4,
+     "ai_look": null
+    }
+   },
+   "reasons": {
+    "p1": {
+     "reason": "27/27 contract, 50 tests pass, clean create/update/read schemas with null rejected and tags deduped; but the sqlite connection from a sync yield dependency is opened without check_same_thread=False, so dependency and endpoint on different threadpool threads can raise (latent 500s); schema DDL run on every request"
+    },
+    "p2": {
+     "reason": "Contract 27/27, 50 tests pass, validation good. But the sqlite connection is opened without check_same_thread=False while the sync generator dependency and the endpoint may run on different threadpool threads, a latent ProgrammingError/500 under load that the others guard against. Same 409-before-404 PATCH ordering."
+    }
+   }
+  },
+  {
+   "task": "s2-api",
+   "bundle": 2,
+   "cond": "on",
+   "tag": "m1",
+   "shots": {},
+   "diff_path": "<e2e>/stageQ-private/runs/q1-s2-api-on-m1.diff",
+   "diff": {
+    "files": [
+     {
+      "file": "app/db.py",
+      "added": 35,
+      "deleted": 0
+     },
+     {
+      "file": "app/main.py",
+      "added": 85,
+      "deleted": 0
+     },
+     {
+      "file": "app/repository.py",
+      "added": 74,
+      "deleted": 0
+     },
+     {
+      "file": "app/schemas.py",
+      "added": 87,
+      "deleted": 0
+     },
+     {
+      "file": "pyproject.toml",
+      "added": 4,
+      "deleted": 0
+     },
+     {
+      "file": "tests/conftest.py",
+      "added": 26,
+      "deleted": 0
+     },
+     {
+      "file": "tests/test_bookmarks.py",
+      "added": 262,
+      "deleted": 0
+     }
+    ],
+    "added": 573,
+    "deleted": 0
+   },
+   "check_pass": true,
+   "check_items": [
+    {
+     "name": "session's tests run and pass",
+     "pass": true,
+     "detail": "{\"tests\": 49, \"failures\": 0, \"errors\": 0, \"skipped\": 0, \"passed\": 49}"
+    },
+    {
+     "name": "contract script 27/27",
+     "pass": true,
+     "detail": ""
+    }
+   ],
+   "loaded": [
+    "affaan-m-ecc/fastapi-patterns@419da9966f07",
+    "affaan-m-ecc/api-design@2c61753734ba"
+   ],
+   "fired": true,
+   "turns": 18,
+   "wall_s": 102.4,
+   "cost_usd": 0.7232302,
+   "scores": {
+    "p1": {
+     "score": 5,
+     "ai_look": null
+    },
+    "p2": {
+     "score": 5,
+     "ai_look": null
+    }
+   },
+   "reasons": {
+    "p1": {
+     "reason": "27/27, 49 tests pass; clear db/repository/schemas/routes split, check_same_thread handled, null rejection via model validator, tags normalised; small nits: DDL executed per connection, tags as a JSON column"
+    },
+    "p2": {
+     "reason": "Contract 27/27, 49 tests pass. Repository split, JSON tags with json_each filter, model_validator rejects explicit nulls. PATCH of a missing id with a taken url returns 409 instead of 404 (no existence check first)."
+    }
+   }
+  },
+  {
+   "task": "s2-api",
+   "bundle": 2,
+   "cond": "on",
+   "tag": "m2",
+   "shots": {},
+   "diff_path": "<e2e>/stageQ-private/runs/q1-s2-api-on-m2.diff",
+   "diff": {
+    "files": [
+     {
+      "file": "app/db.py",
+      "added": 51,
+      "deleted": 0
+     },
+     {
+      "file": "app/main.py",
+      "added": 98,
+      "deleted": 0
+     },
+     {
+      "file": "app/repository.py",
+      "added": 109,
+      "deleted": 0
+     },
+     {
+      "file": "app/schemas.py",
+      "added": 93,
+      "deleted": 0
+     },
+     {
+      "file": "pyproject.toml",
+      "added": 4,
+      "deleted": 0
+     },
+     {
+      "file": "tests/conftest.py",
+      "added": 26,
+      "deleted": 0
+     },
+     {
+      "file": "tests/test_bookmarks.py",
+      "added": 267,
+      "deleted": 0
+     }
+    ],
+    "added": 648,
+    "deleted": 0
+   },
+   "check_pass": true,
+   "check_items": [
+    {
+     "name": "session's tests run and pass",
+     "pass": true,
+     "detail": "{\"tests\": 49, \"failures\": 0, \"errors\": 0, \"skipped\": 0, \"passed\": 49}"
+    },
+    {
+     "name": "contract script 27/27",
+     "pass": true,
+     "detail": ""
+    }
+   ],
+   "loaded": [
+    "affaan-m-ecc/fastapi-patterns@419da9966f07",
+    "affaan-m-ecc/api-design@2c61753734ba"
+   ],
+   "fired": true,
+   "turns": 19,
+   "wall_s": 131.0,
+   "cost_usd": 0.8404020000000001,
+   "scores": {
+    "p1": {
+     "score": 5,
+     "ai_look": null
+    },
+    "p2": {
+     "score": 5,
+     "ai_look": null
+    }
+   },
+   "reasons": {
+    "p1": {
+     "reason": "27/27, 49 tests pass; normalised bookmark_tags table with FK cascade, schema created once in lifespan, repository class, explicit-null rejection, 409 via UNIQUE constraint inside a transaction, test that a conflicting PATCH applies nothing"
+    },
+    "p2": {
+     "reason": "Contract 27/27, 49 tests pass. Separate create/update/read schemas with explicit null rejection and URL/title/tag validation; db/repository/routes split; schema init in lifespan with check_same_thread handled; tests cover conflict-leaves-record-unchanged."
+    }
+   }
+  },
+  {
+   "task": "s2-data",
+   "bundle": 2,
+   "cond": "off",
+   "tag": "m1",
+   "shots": {},
+   "diff_path": "<e2e>/stageQ-private/runs/q1-s2-data-off-m1.diff",
+   "diff": {
+    "files": [
+     {
+      "file": "out/orders_clean.csv",
+      "added": 321,
+      "deleted": 0
+     },
+     {
+      "file": "out/orders_rejected.csv",
+      "added": 44,
+      "deleted": 0
+     },
+     {
+      "file": "out/report.md",
+      "added": 86,
+      "deleted": 0
+     },
+     {
+      "file": "scripts/clean_orders.py",
+      "added": 241,
+      "deleted": 0
+     }
+    ],
+    "added": 692,
+    "deleted": 0
+   },
+   "check_pass": true,
+   "check_items": [
+    {
+     "name": "scripts/clean_orders.py exists",
+     "pass": true,
+     "detail": ""
+    },
+    {
+     "name": "uv run python scripts/clean_orders.py exits 0",
+     "pass": true,
+     "detail": "375 input rows -> 320 clean, 43 rejected, 12 exact duplicates dropped\nWrote out/orders_clean.csv, orders_rejected.csv, report.md\n"
+    },
+    {
+     "name": "out/ has a cleaned CSV and a report",
+     "pass": true,
+     "detail": "orders_clean.csv, orders_rejected.csv, report.md"
+    },
+    {
+     "name": "data/orders.csv unchanged",
+     "pass": true,
+     "detail": ""
+    }
+   ],
+   "loaded": [],
+   "fired": false,
+   "turns": 12,
+   "wall_s": 110.1,
+   "cost_usd": 0.6015722,
+   "scores": {
+    "p1": {
+     "score": 4,
+     "ai_look": null
+    },
+    "p2": {
+     "score": 5,
+     "ai_look": null
+    }
+   },
+   "reasons": {
+    "p1": {
+     "reason": "handles all 10 (day-first rule stated in code, 12 dupes + 3 conflicting ids rejected, future dates nulled, cents prices fixed, bad qty rejected with counts); report counts rejects and value fixes but says format normalisation is \"not counted\"; revenue by category/country/month and status counts only, no units or returns/cancellation revenue; fixed export date keeps it reproducible; tidy CSV with fixes column + rejected CSV"
+    },
+    "p2": {
+     "reason": "All 10 problems handled; a fixed EXPORT_DATE makes reruns deterministic; per-row `fixes` column and a rejected CSV with reasons. The report states that format normalisation is not counted, and gives revenue only (no orders/units) by category, country and month."
+    }
+   }
+  },
+  {
+   "task": "s2-data",
+   "bundle": 2,
+   "cond": "off",
+   "tag": "m2",
+   "shots": {},
+   "diff_path": "<e2e>/stageQ-private/runs/q1-s2-data-off-m2.diff",
+   "diff": {
+    "files": [
+     {
+      "file": "out/data_issues.csv",
+      "added": 115,
+      "deleted": 0
+     },
+     {
+      "file": "out/orders_clean.csv",
+      "added": 361,
+      "deleted": 0
+     },
+     {
+      "file": "out/summary.md",
+      "added": 85,
+      "deleted": 0
+     },
+     {
+      "file": "scripts/clean_orders.py",
+      "added": 344,
+      "deleted": 0
+     }
+    ],
+    "added": 905,
+    "deleted": 0
+   },
+   "check_pass": true,
+   "check_items": [
+    {
+     "name": "scripts/clean_orders.py exists",
+     "pass": true,
+     "detail": ""
+    },
+    {
+     "name": "uv run python scripts/clean_orders.py exits 0",
+     "pass": true,
+     "detail": "375 raw rows -> 360 clean orders, 114 issues logged\nWrote <worktrees>/sq/01aa1d1be233/out/orders_clean.csv, data_issues.csv, summary.md\n"
+    },
+    {
+     "name": "out/ has a cleaned CSV and a report",
+     "pass": true,
+     "detail": "data_issues.csv, orders_clean.csv, summary.md"
+    },
+    {
+     "name": "data/orders.csv unchanged",
+     "pass": true,
+     "detail": ""
+    }
+   ],
+   "loaded": [],
+   "fired": false,
+   "turns": 13,
+   "wall_s": 129.2,
+   "cost_usd": 0.6699421999999999,
+   "scores": {
+    "p1": {
+     "score": 4,
+     "ai_look": null
+    },
+    "p2": {
+     "score": 4,
+     "ai_look": null
+    }
+   },
+   "reasons": {
+    "p1": {
+     "reason": "all 10 handled with per-row data_issues.csv (field, issue, raw value), the best audit trail; but conflicting duplicate ids are resolved by keeping the \"most advanced status\" (a guess) and rows with invalid quantity stay in the clean CSV with null amounts; normalisation counts missing from the report; row-wise Python loops"
+    },
+    "p2": {
+     "reason": "All 10 problems handled with documented rules and a per-row data_issues.csv. Rows with invalid quantity stay in the \"clean\" CSV with null quantity, and conflicting ids are resolved by picking the most advanced status (arbitrary). No counts for label normalisation; prices are written as 4.2, not 4.20."
+    }
+   }
+  },
+  {
+   "task": "s2-data",
+   "bundle": 2,
+   "cond": "on",
+   "tag": "m1",
+   "shots": {},
+   "diff_path": "<e2e>/stageQ-private/runs/q1-s2-data-on-m1.diff",
+   "diff": {
+    "files": [
+     {
+      "file": "out/orders_clean.csv",
+      "added": 321,
+      "deleted": 0
+     },
+     {
+      "file": "out/orders_rejected.csv",
+      "added": 44,
+      "deleted": 0
+     },
+     {
+      "file": "out/report.md",
+      "added": 89,
+      "deleted": 0
+     },
+     {
+      "file": "scripts/clean_orders.py",
+      "added": 259,
+      "deleted": 0
+     }
+    ],
+    "added": 713,
+    "deleted": 0
+   },
+   "check_pass": true,
+   "check_items": [
+    {
+     "name": "scripts/clean_orders.py exists",
+     "pass": true,
+     "detail": ""
+    },
+    {
+     "name": "uv run python scripts/clean_orders.py exits 0",
+     "pass": true,
+     "detail": "375 raw rows -> 320 clean, 43 rejected\nwrote out/orders_clean.csv, orders_rejected.csv, report.md\n"
+    },
+    {
+     "name": "out/ has a cleaned CSV and a report",
+     "pass": true,
+     "detail": "orders_clean.csv, orders_rejected.csv, report.md"
+    },
+    {
+     "name": "data/orders.csv unchanged",
+     "pass": true,
+     "detail": ""
+    }
+   ],
+   "loaded": [
+    "uasl/data-analyst-engine@79799e01e2dd"
+   ],
+   "fired": true,
+   "turns": 20,
+   "wall_s": 144.3,
+   "cost_usd": 0.7812514,
+   "scores": {
+    "p1": {
+     "score": 5,
+     "ai_look": null
+    },
+    "p2": {
+     "score": 5,
+     "ai_look": null
+    }
+   },
+   "reasons": {
+    "p1": {
+     "reason": "all 10 handled with rules in the docstring; report counts every rule (dupes, rejects, ISO reformatting, label normalisation, cents prices, imputations, discounts); orders/units/revenue by status, category, country, product and month; fails loudly on unmapped values; future check uses date.today() so output can drift over time"
+    },
+    "p2": {
+     "reason": "Handles all 10 problems with stated rules (day-first, list-price ×100 fix, conflicting ids rejected, future dates blanked). Every fix and rejection is counted, and the report breaks down orders, units and revenue by status, category, country, product and month. Raising on unmapped labels is brittle, and the future-date cutoff depends on date.today()."
+    }
+   }
+  },
+  {
+   "task": "s2-data",
+   "bundle": 2,
+   "cond": "on",
+   "tag": "m2",
+   "shots": {},
+   "diff_path": "<e2e>/stageQ-private/runs/q1-s2-data-on-m2.diff",
+   "diff": {
+    "files": [
+     {
+      "file": "out/orders_clean.csv",
+      "added": 321,
+      "deleted": 0
+     },
+     {
+      "file": "out/orders_rejected.csv",
+      "added": 44,
+      "deleted": 0
+     },
+     {
+      "file": "out/summary.md",
+      "added": 99,
+      "deleted": 0
+     },
+     {
+      "file": "scripts/clean_orders.py",
+      "added": 327,
+      "deleted": 0
+     }
+    ],
+    "added": 791,
+    "deleted": 0
+   },
+   "check_pass": true,
+   "check_items": [
+    {
+     "name": "scripts/clean_orders.py exists",
+     "pass": true,
+     "detail": ""
+    },
+    {
+     "name": "uv run python scripts/clean_orders.py exits 0",
+     "pass": true,
+     "detail": "375 rows in -> 320 clean, 43 rejected, 12 duplicates dropped. Wrote <worktrees>/sq/c0ccf7464057/out/\n"
+    },
+    {
+     "name": "out/ has a cleaned CSV and a report",
+     "pass": true,
+     "detail": "orders_clean.csv, orders_rejected.csv, summary.md"
+    },
+    {
+     "name": "data/orders.csv unchanged",
+     "pass": true,
+     "detail": ""
+    }
+   ],
+   "loaded": [
+    "uasl/data-analyst-engine@79799e01e2dd"
+   ],
+   "fired": true,
+   "turns": 16,
+   "wall_s": 129.4,
+   "cost_usd": 0.7879236,
+   "scores": {
+    "p1": {
+     "score": 4,
+     "ai_look": null
+    },
+    "p2": {
+     "score": 4,
+     "ai_look": null
+    }
+   },
+   "reasons": {
+    "p1": {
+     "reason": "all 10 handled, rules documented in the docstring, argparse with defaults; quality counts are taken before dedup/rejection so they don't reconcile with the 320 clean rows; \"booked revenue\" headline and breakdowns include returned orders; floats written unformatted (4.2, 1249.0)"
+    },
+    "p2": {
+     "reason": "All 10 problems handled with full counts. The headline \"booked revenue\" of 164k includes pending and returned orders, which is misleading. Quality counts are taken before dedup and rejection, so they don't reconcile with the clean rows. Prices are written as 4.2, not 4.20."
+    }
+   }
+  }
+ ]
+}

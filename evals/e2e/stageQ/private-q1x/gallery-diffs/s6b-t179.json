@@ -1,0 +1,20 @@
+{
+ "verdict": "차이 있음",
+ "lines": [
+  {
+   "text": "끔 m1만 날짜별 개수를 파이썬에서 모든 행을 읽어 셌고 손으로 확인할 SQL을 주지 않았다(p2 4점). 나머지 다섯은 SQL로 셌다.",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "off m1",
+     "quote": "per-day counts are computed by loading every created_at into Python, with no SQL given to check by hand"
+    },
+    {
+     "src": "p2",
+     "run": "on m2",
+     "quote": "per-day counts computed in SQL by UTC day with totals and hand-check SQL"
+    }
+   ]
+  }
+ ]
+}

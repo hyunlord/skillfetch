@@ -28,6 +28,10 @@ _E2E_FOLDERS = {
     "staging30": "staging",
     "stage10-private": "stage10/private",
     "stage11-private": "stage11/private",
+    "stageQ-private": "stageQ/private",
+    "stageQ1x-private": "stageQ/private-q1x",
+    "stageRF": "stageQ/refire",
+    "stageRF-private": "stageQ/refire/private",
 }
 
 
@@ -1082,6 +1086,14 @@ def stage11(out: list[str]) -> None:
     out += [path.read_text().strip() if path.is_file() else "Not run yet.", ""]
 
 
+def stage_q(out: list[str]) -> None:
+    """§23: Stage Q, the qualitative round, with its Q1 extension and the re-fire check (the
+    three reports, transcribed in data/e2e/stageQ.md)."""
+    out += ["## 23. Stage Q: qualitative round, re-fire check (after the post freeze)", ""]
+    path = DATA / "e2e" / "stageQ.md"
+    out += [path.read_text().strip() if path.is_file() else "Not run yet.", ""]
+
+
 def main() -> None:
     out = [
         "# Numbers for the write-up",
@@ -1115,6 +1127,7 @@ def main() -> None:
         stage9,
         stage10,
         stage11,
+        stage_q,
     ):
         section(out)
     OUT.parent.mkdir(parents=True, exist_ok=True)

@@ -1,0 +1,88 @@
+{
+ "job": "q1:s10-t033:on",
+ "tag": "ct",
+ "kind": "q1",
+ "task": "s10-t033",
+ "branch": "s11-r",
+ "mcp": "on",
+ "session_dir": "<worktrees>/sq/38664793cdf8",
+ "side_dir": "<worktrees>/sq/739b3a6d51c2",
+ "canary": null,
+ "clone": {
+  "refs": [
+   "refs/heads/main"
+  ],
+  "head": "9a5a2cf3c83eca9018614c9a3c3e83778cd44001",
+  "router": true,
+  "status": "",
+  "unreachable": 0
+ },
+ "prep_s": 0.5,
+ "steps": [
+  {
+   "k": 1,
+   "cmd": [
+    "claude",
+    "-p",
+    "In the CMS editor, pasting from Google Docs into `components…",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--include-hook-events",
+    "--max-turns",
+    "40",
+    "--allowedTools",
+    "Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*",
+    "--setting-sources",
+    "project",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "<e2e>/stageQ1x-private/dryrun/q1-s10-t033-on-ct.mcp.json"
+   ]
+  }
+ ],
+ "check": {
+  "task": "t033",
+  "pass": false,
+  "items": [
+   {
+    "name": "typecheck",
+    "pass": true,
+    "detail": "tsc ok"
+   },
+   {
+    "name": "tests_pass",
+    "pass": true,
+    "detail": "exit 0: 23 passed (23)"
+   },
+   {
+    "name": "hidden_tests",
+    "pass": false,
+    "detail": "exit 1: 4 failed | 4 passed (8) | failed: still removes script tags; unwraps http://google.com/url?q= wrapper to the re; unwraps https://google.com/url?q= wrapper to the r; unwraps https://www.google.com/url?q= wrapper to t"
+   },
+   {
+    "name": "no_new_packages",
+    "pass": true,
+    "detail": "deps and lockfile unchanged"
+   },
+   {
+    "name": "toolbar_untouched",
+    "pass": true,
+    "detail": "Toolbar.tsx unchanged"
+   }
+  ],
+  "env_noise_removed": [],
+  "diff": {
+   "files": [],
+   "added": 0,
+   "deleted": 0
+  },
+  "graft_removed": []
+ },
+ "named": null,
+ "harness_fail": false,
+ "no_result": false,
+ "cost_usd": 0,
+ "leftover_procs": [],
+ "index_ok_after": true
+}

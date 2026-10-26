@@ -1,0 +1,85 @@
+{
+  "kind": "nextjs",
+  "worktree": "<worktrees>/sq/47563216a260",
+  "mode": "build",
+  "routes": [
+    "/users"
+  ],
+  "git_head": "49c722a491199c12a07e525a17af56b2bfe25e4d",
+  "git_status": [],
+  "started_at": "2026-10-26T22:01:54+0900",
+  "ports": {
+    "web": 4100
+  },
+  "build": {
+    "rc": 0,
+    "s": 1.7
+  },
+  "ready_s": 0.5,
+  "base_url": "http://127.0.0.1:4100",
+  "stop_notes": [],
+  "worktree_restored": [],
+  "finished_at": "2026-10-26T22:02:01+0900",
+  "screens": [
+    {
+      "route": "/users",
+      "url": "http://127.0.0.1:4100/users",
+      "file": "users.png",
+      "status": 200,
+      "final_url": "http://127.0.0.1:4100/users",
+      "title": "Users List | Next.js + TypeScript Example",
+      "html_lang": null,
+      "text": "Home | About | Users List | Users API\nUsers List\n\nExample fetching data from inside getStaticProps().\n\nYou are currently on: /users\n\n101:Alice\n102:Bob\n103:Caroline\n104:Dave\n\nGo home\n\nI'm here to stay (Footer)",
+      "links": [
+        {
+          "href": "/",
+          "text": "Home",
+          "aria_current": null
+        },
+        {
+          "href": "/about",
+          "text": "About",
+          "aria_current": null
+        },
+        {
+          "href": "/users",
+          "text": "Users List",
+          "aria_current": null
+        },
+        {
+          "href": "/api/users",
+          "text": "Users API",
+          "aria_current": null
+        },
+        {
+          "href": "/users/101",
+          "text": "101:Alice",
+          "aria_current": null
+        },
+        {
+          "href": "/users/102",
+          "text": "102:Bob",
+          "aria_current": null
+        },
+        {
+          "href": "/users/103",
+          "text": "103:Caroline",
+          "aria_current": null
+        },
+        {
+          "href": "/users/104",
+          "text": "104:Dave",
+          "aria_current": null
+        },
+        {
+          "href": "/",
+          "text": "Go home",
+          "aria_current": null
+        }
+      ],
+      "console_errors": [],
+      "page_errors": [],
+      "http_errors": []
+    }
+  ]
+}

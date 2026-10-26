@@ -1,0 +1,25 @@
+{
+ "verdict": "차이 없음",
+ "lines": [
+  {
+   "text": "여섯 결과 모두 줄·분기 100%를 채우고 모듈을 고치지 않았다. 끔 m2만 아무것도 단언하지 않는 테스트 하나로 p1 4점이다.",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "off m3",
+     "quote": "100% coverage, module untouched"
+    },
+    {
+     "src": "p2",
+     "run": "on m2",
+     "quote": "100% coverage, module untouched"
+    },
+    {
+     "src": "p1",
+     "run": "off m2",
+     "quote": "`test_rule_accepts_boundary_values` asserts nothing"
+    }
+   ]
+  }
+ ]
+}

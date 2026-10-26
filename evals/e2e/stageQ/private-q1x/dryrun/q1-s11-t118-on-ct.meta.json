@@ -1,0 +1,83 @@
+{
+ "job": "q1:s11-t118:on",
+ "tag": "ct",
+ "kind": "q1",
+ "task": "s11-t118",
+ "branch": "s11-r",
+ "mcp": "on",
+ "session_dir": "<worktrees>/sq/5cbea2be2463",
+ "side_dir": "<worktrees>/sq/11b99c809f66",
+ "canary": null,
+ "clone": {
+  "refs": [
+   "refs/heads/main"
+  ],
+  "head": "e462c4f0776b9e68b2c4c90adae3ce0a13086d95",
+  "router": true,
+  "status": "",
+  "unreachable": 0
+ },
+ "prep_s": 0.0,
+ "steps": [
+  {
+   "k": 1,
+   "cmd": [
+    "claude",
+    "-p",
+    "javadoc for PaymentReconciliationService, reviewer flagged missing @throws on reconcileBatch",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--include-hook-events",
+    "--max-turns",
+    "40",
+    "--allowedTools",
+    "Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*",
+    "--setting-sources",
+    "project",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "<e2e>/stageQ1x-private/dryrun/q1-s11-t118-on-ct.mcp.json"
+   ]
+  }
+ ],
+ "check": {
+  "task": "t118",
+  "pass": false,
+  "items": [
+   {
+    "name": "a_build_test",
+    "pass": true,
+    "detail": "make test rc=0 | PaymentReconciliationServiceTest: all 6 tests passed"
+   },
+   {
+    "name": "b_doclint_all",
+    "pass": false,
+    "detail": "rc=1; 4 messages; src/main/java/com/acme/payments/reconciliation/PaymentReconciliationService.java:42: warning: no @throws for com.acme.payments.reconciliation.CurrencyMismatchException | src/main/java/com/acme/payments/reconciliation/PaymentReconciliationService.java:42: warning: no @throws for com.acme.payments.reconciliation.UnmatchedAmountException | src/main/java/com/acme/payments/reconciliat"
+   },
+   {
+    "name": "c_code_unchanged",
+    "pass": true,
+    "detail": "10 .java files, code identical modulo comments"
+   },
+   {
+    "name": "d_throws_complete",
+    "pass": false,
+    "detail": "documented=[]; missing=['CurrencyMismatchException', 'UnmatchedAmountException', 'DuplicateTransactionException', 'IllegalArgumentException', 'IllegalStateException']"
+   }
+  ],
+  "env_noise_removed": [],
+  "diff": {
+   "files": [],
+   "added": 0,
+   "deleted": 0
+  },
+  "graft_removed": []
+ },
+ "named": null,
+ "harness_fail": false,
+ "no_result": false,
+ "cost_usd": 0,
+ "leftover_procs": [],
+ "index_ok_after": true
+}

@@ -1,0 +1,83 @@
+{
+ "job": "q1:s2-tests:on",
+ "tag": "ct",
+ "kind": "q1",
+ "task": "s2-tests",
+ "branch": "s11-r",
+ "mcp": "on",
+ "session_dir": "<worktrees>/sq/d3ac73f23cab",
+ "side_dir": "<worktrees>/sq/a3a42782dde3",
+ "canary": null,
+ "clone": {
+  "refs": [
+   "refs/heads/main"
+  ],
+  "head": "96f4926ed8d85ca84ebd39b640772f9502d5ecec",
+  "router": true,
+  "status": "",
+  "unreachable": 0
+ },
+ "prep_s": 0.3,
+ "steps": [
+  {
+   "k": 1,
+   "cmd": [
+    "claude",
+    "-p",
+    "`src/recur/rules.py`에는 테스트가 하나도 없어. 이 모듈에 테스트 스위트를 추가해줘 — 커버리지를 높이고 엣지케이스도 다뤄줘.",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--include-hook-events",
+    "--max-turns",
+    "40",
+    "--allowedTools",
+    "Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*",
+    "--setting-sources",
+    "project",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "<e2e>/stageQ1x-private/dryrun/q1-s2-tests-on-ct.mcp.json"
+   ]
+  }
+ ],
+ "check": {
+  "task_id": "s2-tests",
+  "pass": false,
+  "items": [
+   {
+    "name": "src/recur unchanged",
+    "pass": true,
+    "detail": ""
+   },
+   {
+    "name": "session's tests run and pass",
+    "pass": false,
+    "detail": "{\"tests\": 0, \"failures\": 0, \"errors\": 0, \"skipped\": 0, \"passed\": 0}"
+   }
+  ],
+  "metrics": {
+   "module_modified": false,
+   "junit": {
+    "tests": 0,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 0
+   }
+  },
+  "env_noise_removed": [],
+  "diff": {
+   "files": [],
+   "added": 0,
+   "deleted": 0
+  },
+  "graft_removed": []
+ },
+ "named": null,
+ "harness_fail": false,
+ "no_result": false,
+ "cost_usd": 0,
+ "leftover_procs": [],
+ "index_ok_after": true
+}

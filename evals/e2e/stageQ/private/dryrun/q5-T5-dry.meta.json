@@ -1,0 +1,51 @@
+{
+ "job": "q5:T5",
+ "tag": "dry",
+ "kind": "q5t",
+ "task": "q5-T5",
+ "branch": "s11-r",
+ "mcp": "on",
+ "session_dir": "<worktrees>/sq/82fff0e8b341",
+ "side_dir": "<worktrees>/sq/ae07468ce8e4",
+ "canary": null,
+ "clone": {
+  "refs": [
+   "refs/heads/main"
+  ],
+  "head": "628d08892cbe51eab99c2e31bf1d5637466fc0f3",
+  "router": true,
+  "status": "",
+  "unreachable": 0
+ },
+ "prep_s": 0.0,
+ "steps": [
+  {
+   "k": 1,
+   "cmd": [
+    "claude",
+    "-p",
+    "Rename the constant `REASON_UNKNOWN` to `REASON_UNKNOWN_PAYOUT` in `scripts/reconcile_payouts.py`.",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--include-hook-events",
+    "--max-turns",
+    "40",
+    "--allowedTools",
+    "Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*",
+    "--setting-sources",
+    "project",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "<e2e>/stageQ-private/dryrun/q5-T5-dry.mcp.json"
+   ]
+  }
+ ],
+ "check": null,
+ "named": null,
+ "harness_fail": false,
+ "no_result": false,
+ "cost_usd": 0,
+ "leftover_procs": [],
+ "index_ok_after": true
+}

@@ -1,0 +1,55 @@
+{
+ "verdict": "차이 있음",
+ "lines": [
+  {
+   "text": "끔 2회는 두 판정자 모두 AI 템플릿 체크 항목 5개(그라데이션, 가운데 정렬, 같은 카드, 이모지 아이콘, 3열 아이콘 그리드)를 적었다. 켬은 m1이 0개, m2가 1개(알약 모양 버튼)였다.",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "off m1",
+     "quote": "#1 purple gradient headline text and gradient CTA panel, #3 everything centred"
+    },
+    {
+     "src": "p2",
+     "run": "on m1",
+     "quote": "No checklist items: left-aligned hero, rows instead of an icon grid, square buttons, no gradient or emoji."
+    },
+    {
+     "src": "p1",
+     "run": "on m2",
+     "quote": "#8 pill buttons throughout"
+    }
+   ]
+  },
+  {
+   "text": "끔 m2는 제품 구매자가 아닌 개발자 대상 문구라는 지적을 받았고, 375px에서 내비게이션이 겹쳤다.",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "off m2",
+     "quote": "Developer-facing pitch (\"Built with Next.js + TypeScript\", \"Type-safe by default\") misses a product audience."
+    },
+    {
+     "src": "p1",
+     "run": "off m2",
+     "quote": "at 375 px the nav collides (\"RosterFeatures\", wrapped \"Open app\")"
+    }
+   ]
+  },
+  {
+   "text": "켬 2회는 앱의 실제 데이터(사용자 목록, /api/users)를 쓴 화면 모형과 문구로 적혔다. 쓸만함 점수는 끔 3·2(p1)와 4·3(p2), 켬은 네 점수 모두 5였다.",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "on m1",
+     "quote": "page/JSON toggle mock using the app's own users"
+    },
+    {
+     "src": "p2",
+     "run": "on m2",
+     "quote": "App-specific copy and solid pricing"
+    }
+   ]
+  }
+ ]
+}

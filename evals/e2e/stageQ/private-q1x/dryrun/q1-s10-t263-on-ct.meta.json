@@ -1,0 +1,83 @@
+{
+ "job": "q1:s10-t263:on",
+ "tag": "ct",
+ "kind": "q1",
+ "task": "s10-t263",
+ "branch": "s11-r",
+ "mcp": "on",
+ "session_dir": "<worktrees>/sq/14c3b97bdec2",
+ "side_dir": "<worktrees>/sq/62c5871405f2",
+ "canary": null,
+ "clone": {
+  "refs": [
+   "refs/heads/main"
+  ],
+  "head": "619024c49cbb8f2d0838fb56ca9c2d1b49000f7f",
+  "router": true,
+  "status": "",
+  "unreachable": 0
+ },
+ "prep_s": 0.9,
+ "steps": [
+  {
+   "k": 1,
+   "cmd": [
+    "claude",
+    "-p",
+    "parse_order_book in feed/l2.rs clones every price level, make it zero-copy with borrowed &str",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--include-hook-events",
+    "--max-turns",
+    "40",
+    "--allowedTools",
+    "Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*",
+    "--setting-sources",
+    "project",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "<e2e>/stageQ1x-private/dryrun/q1-s10-t263-on-ct.mcp.json"
+   ]
+  }
+ ],
+ "check": {
+  "task": "t263",
+  "pass": false,
+  "items": [
+   {
+    "name": "build (lib, binary, tests)",
+    "pass": true,
+    "detail": "    Blocking waiting for file lock on package cache\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.00s\n"
+   },
+   {
+    "name": "existing tests (tests/l2.rs)",
+    "pass": true,
+    "detail": "ok"
+   },
+   {
+    "name": "zero-copy: symbol, prices and sizes point into the input; values unchanged",
+    "pass": false,
+    "detail": "failed: ['fields_point_into_the_input']"
+   },
+   {
+    "name": "allocations: <= 40 for a 2,000-level snapshot",
+    "pass": false,
+    "detail": "failed: ['few_allocations_for_a_deep_book']"
+   }
+  ],
+  "env_noise_removed": [],
+  "diff": {
+   "files": [],
+   "added": 0,
+   "deleted": 0
+  },
+  "graft_removed": []
+ },
+ "named": null,
+ "harness_fail": false,
+ "no_result": false,
+ "cost_usd": 0,
+ "leftover_procs": [],
+ "index_ok_after": true
+}
