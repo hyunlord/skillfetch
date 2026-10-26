@@ -27,6 +27,7 @@ _E2E_FOLDERS = {
     "runs-0.5": "stage0.5/runs",
     "staging30": "staging",
     "stage10-private": "stage10/private",
+    "stage11-private": "stage11/private",
 }
 
 
@@ -1073,6 +1074,14 @@ def stage10(out: list[str]) -> None:
     out += [path.read_text().strip() if path.is_file() else "Not run yet.", ""]
 
 
+def stage11(out: list[str]) -> None:
+    """§22: stage 11, the index-staging-4 release gate remeasured (the stage 11 report,
+    transcribed in data/e2e/stage11.md)."""
+    out += ["## 22. Stage 11: index-staging-4 release gate, remeasured (after the post freeze)", ""]
+    path = DATA / "e2e" / "stage11.md"
+    out += [path.read_text().strip() if path.is_file() else "Not run yet.", ""]
+
+
 def main() -> None:
     out = [
         "# Numbers for the write-up",
@@ -1105,6 +1114,7 @@ def main() -> None:
         stage8,
         stage9,
         stage10,
+        stage11,
     ):
         section(out)
     OUT.parent.mkdir(parents=True, exist_ok=True)
