@@ -1,0 +1,67 @@
+{
+ "task": "s10-t263",
+ "bundle": 4,
+ "cond": "R0",
+ "tag": "d0",
+ "session_dir": "<worktrees>/s11/71e979b17a09",
+ "preflight": {
+  "index": "index ok (12 files)",
+  "base": "4b891109acdaa60c8aabfe9a1fa173a6ff3424f8",
+  "s11_r": "619024c49cbb8f2d0838fb56ca9c2d1b49000f7f",
+  "main_checkout": {
+   "branch": "s10-a",
+   "head": "4b891109acda"
+  },
+  "leftover_processes": []
+ },
+ "clone": {
+  "branch": "s11-r",
+  "head": "619024c49cbb8f2d0838fb56ca9c2d1b49000f7f",
+  "refs": [
+   "refs/heads/main"
+  ],
+  "remotes": [],
+  "status": [],
+  "skills_files": [
+   ".claude/skills/skillfetch-router/SKILL.md"
+  ],
+  "router_sha256": "3efef1e0b7cf5181fa1911f4ebd075cb5d8b8865926d6353399221392bf8f040",
+  "commits": [
+   "619024c chore: add project skill",
+   "4b89110 market-data: L2 snapshot parser"
+  ],
+  "base_skills_files": [],
+  "unreachable_objects": 0,
+  "ok": true
+ },
+ "prep_s": 0.0,
+ "prep_status": [],
+ "cmd": [
+  "claude",
+  "-p",
+  "parse_order_book in feed/l2.rs clones every price level, make it zero-copy with borrowed &str",
+  "--output-format",
+  "stream-json",
+  "--verbose",
+  "--include-hook-events",
+  "--max-turns",
+  "40",
+  "--allowedTools",
+  "Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*",
+  "--debug-file",
+  "<e2e>/stage11-private/dryrun/R0/s10-t263-d0.debug.log",
+  "--setting-sources",
+  "project",
+  "--strict-mcp-config",
+  "--mcp-config",
+  "<e2e>/stage11/mcp/mcp-r0.json"
+ ],
+ "path_head": "/opt/homebrew/opt/openjdk/bin",
+ "index_ok_after": true,
+ "fake_server_pid": null,
+ "cleanup": {
+  "killed": [],
+  "remaining": []
+ },
+ "leftover_after": []
+}

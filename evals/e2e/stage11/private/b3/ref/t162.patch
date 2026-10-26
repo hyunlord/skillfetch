@@ -1,0 +1,85 @@
+diff --git a/.github/workflows/release.yml b/.github/workflows/release.yml
+index 3cf3913..052c2ae 100644
+--- a/.github/workflows/release.yml
++++ b/.github/workflows/release.yml
+@@ -24,3 +24,4 @@ jobs:
+           args: release --clean
+         env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
++          HOMEBREW_TAP_GITHUB_TOKEN: ${{ secrets.HOMEBREW_TAP_GITHUB_TOKEN }}
+diff --git a/.goreleaser.yaml b/.goreleaser.yaml
+index 3d1257a..6c815ab 100644
+--- a/.goreleaser.yaml
++++ b/.goreleaser.yaml
+@@ -13,13 +13,10 @@ builds:
+     binary: inventory-cli
+     env:
+       - CGO_ENABLED=0
+-    goos:
+-      - linux
+-      - darwin
+-      - windows
+-    goarch:
+-      - amd64
+-      - arm64
++    # Only the platforms we ship: Apple Silicon Macs and linux/amd64 servers.
++    targets:
++      - darwin_arm64
++      - linux_amd64_v1
+     ldflags:
+       - -s -w -X main.version={{.Version}} -X main.commit={{.ShortCommit}} -X main.date={{.Date}}
+ 
+@@ -27,9 +24,6 @@ archives:
+   - id: default
+     formats: [tar.gz]
+     name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+-    format_overrides:
+-      - goos: windows
+-        formats: [zip]
+     files:
+       - README.md
+       - LICENSE
+@@ -45,6 +39,28 @@ changelog:
+       - "^test:"
+       - "^chore:"
+ 
++homebrew_casks:
++  - name: inventory-cli
++    binaries:
++      - inventory-cli
++    repository:
++      owner: acme-retail
++      name: homebrew-tap
++      # GITHUB_TOKEN cannot push to another repo; a token with contents:write on the tap.
++      token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
++    commit_author:
++      name: acme-retail-bot
++      email: bot@acme-retail.example
++    homepage: https://github.com/acme-retail/inventory-cli
++    description: Reorder suggestions from stock-count CSV exports
++    license: MIT
++    hooks:
++      post:
++        install: |
++          if OS.mac?
++            system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{staged_path}/inventory-cli"]
++          end
++
+ release:
+   github:
+     owner: acme-retail
+diff --git a/README.md b/README.md
+index e17bed5..6be5214 100644
+--- a/README.md
++++ b/README.md
+@@ -9,4 +9,9 @@ inventory-cli stock.csv
+ ## Releasing
+ 
+ Push a `v*` tag; the `release` workflow runs GoReleaser (`.goreleaser.yaml`) and publishes the archives to the GitHub
+-release. Local dry run: `goreleaser release --snapshot --clean`.
++release (macOS arm64 and linux amd64 only), then updates the cask in
++[acme-retail/homebrew-tap](https://github.com/acme-retail/homebrew-tap). The tap push needs the
++`HOMEBREW_TAP_GITHUB_TOKEN` repository secret (fine-grained token, contents: write on the tap).
++Local dry run: `goreleaser release --snapshot --clean`.
++
++Install: `brew install acme-retail/tap/inventory-cli`.

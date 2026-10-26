@@ -1,0 +1,51 @@
+{
+ "tasks": {
+  "t284": {
+   "graded": 76,
+   "grade_ge2": [
+    [
+     "uasl/anvil@3a36e8410205",
+     2
+    ]
+   ],
+   "enter_bundle": false
+  },
+  "t160": {
+   "graded": 81,
+   "grade_ge2": [],
+   "enter_bundle": true
+  },
+  "t162": {
+   "graded": 76,
+   "grade_ge2": [],
+   "enter_bundle": true
+  },
+  "t286": {
+   "graded": 76,
+   "grade_ge2": [
+    [
+     "affaan-m-ecc/golang-patterns@57517385906f",
+     2
+    ]
+   ],
+   "enter_bundle": false
+  },
+  "t118": {
+   "graded": 73,
+   "grade_ge2": [],
+   "enter_bundle": true
+  }
+ },
+ "problems": {
+  "t284": [],
+  "t160": [],
+  "t162": [],
+  "t286": [],
+  "t118": []
+ },
+ "cost_usd": {
+  "t284+t160": 0.179,
+  "t162+t286": 0.124,
+  "t118": 0.086
+ }
+}

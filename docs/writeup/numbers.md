@@ -204,6 +204,7 @@ Not recorded: in these stages' batch calls only successful answers are cached, s
 - Stage 8 batch calls (§19): keyword queries $1.80, grading $18.41 + $29.37 (isolated `claude -p`); Skillselion calls free; GPT labels not recorded.
 - Stage 9 (§20): S-b′ selections $19.79 + $19.67 + $19.73, grading $14.85 + $5.71, batch-effect regrading $1.10; staging extraction 1,306 calls $105.63 and 161 calls $17.03; judge fixture calibration 42 calls $0.44 (isolated `claude -p`); GPT labels not recorded.
 - Stage 10 sessions (§21): main run 270 sessions $190.95, with pilots and the 8 sessions cut off by a spend limit $202.43; bundle (3) remeasurement 27 sessions $9.51; grading $0.11 + $0.359 (isolated `claude -p`); GPT judging not recorded.
+- Stage 11 sessions (§22): main run 174 sessions $88.92; pilot and smoke test 9 sessions $3.57; pre-run checks $0.68; loaded-skill grading $0.10; total $93.27; Claude judging subagents and GPT judging not recorded.
 
 ### Runtime latency
 
@@ -1862,10 +1863,127 @@ GPT judging was supplied by the author; its cost is not recorded.
 - **Scores near the ceiling:** in the remeasured bundle (3), every Claude score is 4 or 5 and 22 of GPT's 27 are 5. D shrank to 0.000 (Claude) and 0.111 (GPT), so gate (ii) turned on a few scores (two points out of 27). The verdict is kept.
 - **Bundle (3) definition:** the first definition was checked against the labels only after the run; the remeasurement replaced it under a rule recorded first.
 - **Shared git branches:** worktrees share refs. 18 branches created by E2 sessions were visible to later sessions; names only, no commits on top.
-  - Read or listed others' refs: E1 0, E2 32; another session's branch name appeared in any tool output: E1 0, E2 33; code from another session: 0.
+  - Sessions shared one repo via worktrees. Read or listed other sessions' refs: E1 0, E2 32. Another session's branch or directory name appeared in any tool output: E1 0, E2 33 (14 with a condition name). Code from another session: 0. The gate uses E1. Stage 11 uses isolated clones.
   - The branches were deleted after the run.
 - **t115 check:** changed three times during the run.
   - Two implementation fixes (no change of definition) and one revision the user approved.
   - Both results are given: 15 of 18 main-run sessions pass under the first check, 18 of 18 under the revised one.
 - **Sample size:** 3 runs per task and condition; 9–12 sessions per bundle and condition.
+
+## 22. Stage 11: index-staging-4 release gate, remeasured (after the post freeze)
+
+Source: evals/e2e/stage11/report-11.md; design and the gate fixed before the run in evals/e2e/stage11/DESIGN.md (§0–§6, run record §11); hashes in evals/e2e/stage11/FROZEN.sha256; session rows, grades, judge scores and keys in evals/e2e/stage11/private. Measured after the post's numbers were frozen; not in §7's totals.
+
+**Design.** A new measurement of the index-staging-4 release gate. Stage 10's verdict (not approved, §21) stands and is not reinterpreted. The tasks whose results Stage 10 showed (its remeasured bundle (3): t001, t033, t114) are not reused.
+- Fixed for the run:
+  - skillfetch `3fef3f8` (as in Stage 10);
+  - router: the shipped one (S-b′) for both R0 and R1;
+  - index copies: Stage 10's release and index-staging-4 copies, hash-checked before and after every session and before grading.
+- Environment: E1 only (project settings, strict MCP config, `--max-turns 40`).
+
+| condition | router | index | bundles |
+|---|---|---|---|
+| R0 | S-b′ | release copy | (1)–(4) |
+| R1 | S-b′ | index-staging-4 copy | (1)–(4) |
+| A | none | none | (4) only; reference, not used in the gate or in D |
+
+| bundle | tasks | runs | sessions per condition |
+|---|---|---|---|
+| (1) design | Stage 10 bundle (1): d1-landing, d2-redesign, d3-dashboard, d4-email | 3 | 12 |
+| (2) ceiling domains | Stage 10 bundle (2): s2-tests, s2-api, s2-docs, s2-data | 3 | 12 |
+| (3) no matching skill | t160, t162, t118 (new repositories, hidden checks) | 6 | 18 |
+| (4) newly covered, non-Python | Stage 10 bundle (4): t016, t263, t115, t198; plus t266 | 6 | 30 |
+
+- Sessions: R0 and R1 72 each, A 30; 174.
+- Harness, changed from Stage 10:
+  - each session works in its own `git clone --no-local --single-branch`, with the branch renamed `main` and `origin` removed;
+  - session directories have random names;
+  - the commit that adds the router has a neutral message.
+- Judges: two Claude passes (p1, p2; fresh subagents) and GPT, blind, 174 scores each in 16 sets. Keys were read after each pass's format check.
+
+**Gate fixed before the run (DESIGN §4, R1 vs R0, E1).** index-staging-4 is released only if all four hold:
+- (i) bundle (4): sessions that loaded a relevant (grade ≥ 2) skill, R1 > R0.
+- (ii) In every bundle R1 ≥ R0 − D, for each judge separately.
+  - D_claude(b) = max(max over R0, R1 of |p1 − p2|, 0.25).
+  - D_gpt(b) = max(the largest gap between any two of the passes {p1, p2, gpt} over R0, R1, 0.25).
+  - A is not used in D.
+  - The 0.25 floor was set after Stage 10's remeasurement was seen. With it, the Stage 10 cell that failed ((ii)-GPT on the remeasured bundle (3), 4.667 vs 4.889) would pass at 4.639. It is not applied to Stage 10's data.
+  - The report adds a reference line with D without the floor. The verdict uses the floor.
+- (iii) bundle (3) unneeded loads (sessions that loaded ≥ 1 skill, any grade): R1 ≤ R0 + 2, of 18.
+- (iv) In every bundle, R1's median turns ≤ R0 + 2.
+
+**Result: passed.** All four hold.
+
+| criterion | bundles (1) / (2) / (3) / (4) | held |
+|---|---|---|
+| (i) relevant load, bundle (4) | R1 30/30, R0 0/30 | yes |
+| (ii)-Claude, R1 vs R0 (D, floor 0.25) | 4.167 vs 4.167 (0.25) / 4.750 vs 4.792 (0.25) / 4.333 vs 4.583 (0.25) / 4.950 vs 4.850 (0.25) | yes |
+| (ii)-GPT, R1 vs R0 (D, floor 0.25) | 4.667 vs 4.500 (0.583) / 4.167 vs 4.167 (0.750) / 3.889 vs 4.056 (0.611) / 4.700 vs 4.667 (0.267) | yes |
+| (iii) unneeded loads, bundle (3) | R1 4/18, R0 6/18 | yes |
+| (iv) median turns, R1 vs R0 | 25 vs 23 / 15.5 vs 16 / 15.5 vs 16 / 14 vs 13 | yes |
+
+- D before the floor:
+  - D_claude: 0.167, 0.250, 0.222, 0.033.
+  - D_gpt: 0.583, 0.750, 0.611, 0.267. All are ≥ 0.25, so the floor does not apply.
+- **Reference line (D without the floor; not the verdict):** (ii)-Claude bundle (3) does not hold (4.333 < 4.583 − 0.222). Every other (ii) cell holds. On this line the gate would not pass.
+- Judge agreement, of 174 scores (same score / within 1):
+  - p1–p2: 151 / 174;
+  - p1–GPT: 99 / 171;
+  - p2–GPT: 111 / 174.
+
+| bundle | condition | n | loaded ≥ 1 | relevant load | checks passed | median turns | median cost | p1 | p2 | Claude | GPT |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | R0 | 12 | 12 | 12 | 12 | 23.0 | $0.726 | 4.167 | 4.167 | 4.167 | 4.500 |
+| 1 | R1 | 12 | 12 | 12 | 12 | 25.0 | $0.736 | 4.083 | 4.250 | 4.167 | 4.667 |
+| 2 | R0 | 12 | 12 | 12 | 12 | 16.0 | $0.787 | 4.917 | 4.667 | 4.792 | 4.167 |
+| 2 | R1 | 12 | 12 | 12 | 12 | 15.5 | $0.753 | 4.750 | 4.750 | 4.750 | 4.167 |
+| 3 | R0 | 18 | 6 | 0 | 16 | 16.0 | $0.398 | 4.667 | 4.500 | 4.583 | 4.056 |
+| 3 | R1 | 18 | 4 | 0 | 16 | 15.5 | $0.394 | 4.444 | 4.222 | 4.333 | 3.889 |
+| 4 | A | 30 | 0 | 0 | 30 | 7.0 | $0.311 | 4.867 | 4.900 | 4.883 | 4.600 |
+| 4 | R0 | 30 | 1 | 0 | 30 | 13.0 | $0.439 | 4.867 | 4.833 | 4.850 | 4.667 |
+| 4 | R1 | 30 | 30 | 30 | 30 | 14.0 | $0.511 | 4.967 | 4.933 | 4.950 | 4.700 |
+
+- Relevant load = sessions that loaded at least one grade ≥ 2 skill. Grades come from:
+  - bundle (4): the run-c labels (§20);
+  - bundle (3): the pre-run grading;
+  - otherwise: the 2b grading.
+- The 12 skills loaded in bundle (3) are all graded 1.
+- Bundle (4), A (reference, not in the gate): Claude 4.883, GPT 4.600, median turns 7, median cost $0.311.
+- t266 check undecidable: 0.
+
+**Bundle (3) observation** (the verdict follows the rule):
+- (ii)-Claude in exact fractions: R1 13/3, R0 55/12, D 1/4. R1 = R0 − D, so the margin is 0.
+  - With the 0.25 floor it passes. Without it (D 2/9) it does not.
+- **The same direction appeared before.** In Stage 10's remeasured bundle (3) (t001, t033, t114; 9 sessions per condition), R1 was below R0:
+  - GPT: R1 4.667 vs R0 4.889;
+  - Claude: R1 and R0 4.778 in both passes (D 0.000).
+- **Stage 11's bundle (3)** (t160, t162, t118; 18 sessions per condition): all three judges scored R1 below R0, and the verdict is within the floored D.
+  - Claude 4.333 vs 4.583 (p1 4.444 vs 4.667, p2 4.222 vs 4.500);
+  - GPT 3.889 vs 4.056.
+- This observation does not change the verdict.
+
+**Run record** (DESIGN §11):
+- 174 of 174 sessions ran. Harness failures 0, sessions without a result 0, index mismatches 0.
+- **Process check fixed during the run.** After 14 sessions the leftover-process check stopped the queue. It had counted a check server that another, still running session had started.
+  - The check was fixed to exempt processes in a live session's directory.
+  - The 3 sessions it flagged are recorded as false alarms, and their data is kept.
+- **One diff holds an `AGENTS.md`** (s2-docs, R1, m1). It was written by the session's own `next dev` and was judged as part of the output. That is 1 of 174 here; Stage 10's E1 diffs had 0.
+- **Claude judging was interrupted.** 6 subagents stopped at the organisation's monthly spend limit. 5 bundles were re-judged by new subagents with the same instructions under another account. The stopped subagents had written no files.
+
+**Cost** (API-price equivalent, Claude Code plan):
+
+| item | cost |
+|---|---:|
+| main run, 174 sessions | $88.92 |
+| pilot and smoke test, 9 sessions | $3.57 |
+| pre-run checks (bundle (3) $0.487, bundle (4) $0.195) | $0.68 |
+| loaded-skill grading | $0.10 |
+| total (limit $115) | $93.27 |
+
+The Claude judging subagents and the GPT judging are not recorded.
+
+**Limits.**
+- **The floor was set after Stage 10 was seen.** D's 0.25 floor was set after Stage 10's remeasured bundle (3) was seen. Bundle (3)'s (ii)-Claude passes with margin 0 under the floor and fails on the reference line without it.
+- **Sample size:** 3 runs per task and condition in bundles (1)–(2), 6 in (3)–(4).
+- **Judging account:** the Claude judging for 5 bundles ran under a different account after the spend limit (same instructions, fresh subagents).
 

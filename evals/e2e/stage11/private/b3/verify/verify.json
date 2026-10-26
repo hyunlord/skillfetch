@@ -1,0 +1,77 @@
+{
+ "s11-t160 start": {
+  "pass": false,
+  "failed": [
+   "b_release_runs_ko",
+   "c_registry_follows",
+   "e_ko_failure_fails"
+  ],
+  "refs": [
+   "refs/heads/main"
+  ],
+  "status_after": [],
+  "stderr": ""
+ },
+ "s11-t160 ref": {
+  "pass": true,
+  "failed": [],
+  "refs": [
+   "refs/heads/main"
+  ],
+  "status_after": [
+   " M Makefile",
+   " M README.md",
+   "?? .ko.yaml"
+  ],
+  "stderr": ""
+ },
+ "s11-t162 start": {
+  "pass": false,
+  "failed": [
+   "c_targets",
+   "d_homebrew_generated",
+   "e_tap_auto_upload"
+  ],
+  "refs": [
+   "refs/heads/main"
+  ],
+  "status_after": [],
+  "stderr": ""
+ },
+ "s11-t162 ref": {
+  "pass": true,
+  "failed": [],
+  "refs": [
+   "refs/heads/main"
+  ],
+  "status_after": [
+   " M .github/workflows/release.yml",
+   " M .goreleaser.yaml",
+   " M README.md"
+  ],
+  "stderr": ""
+ },
+ "s11-t118 start": {
+  "pass": false,
+  "failed": [
+   "b_doclint_all",
+   "d_throws_complete"
+  ],
+  "refs": [
+   "refs/heads/main"
+  ],
+  "status_after": [],
+  "stderr": ""
+ },
+ "s11-t118 ref": {
+  "pass": true,
+  "failed": [],
+  "refs": [
+   "refs/heads/main"
+  ],
+  "status_after": [
+   " M src/main/java/com/acme/payments/reconciliation/PaymentReconciliationService.java"
+  ],
+  "stderr": ""
+ }
+}

@@ -1,0 +1,64 @@
+{
+ "task": "s10-t115",
+ "bundle": 4,
+ "cond": "A",
+ "tag": "d0",
+ "session_dir": "<worktrees>/s11/f69edffd4f51",
+ "preflight": {
+  "index": "index ok (12 files)",
+  "base": "fa17ff76f22f20572d3b86d135ecd4c825295b39",
+  "s11_r": "caf70679efe0564cf1fc7b15706f6f69dd2fccc2",
+  "main_checkout": {
+   "branch": "s10-a",
+   "head": "fa17ff76f22f"
+  },
+  "leftover_processes": []
+ },
+ "clone": {
+  "branch": "s10-a",
+  "head": "fa17ff76f22f20572d3b86d135ecd4c825295b39",
+  "refs": [
+   "refs/heads/main"
+  ],
+  "remotes": [],
+  "status": [],
+  "skills_files": [],
+  "router_sha256": null,
+  "commits": [
+   "fa17ff7 soil-sensor: ADC and DMA drivers"
+  ],
+  "base_skills_files": [],
+  "unreachable_objects": 0,
+  "ok": true
+ },
+ "prep_s": 0.0,
+ "prep_status": [],
+ "cmd": [
+  "claude",
+  "-p",
+  "Our soil-moisture sensor firmware crate has about 20 unsafe blocks in src/hal/adc.rs and src/dma.rs with no justification, and clippy's undocumented_unsafe_blocks lint is about to be turned on in CI. Can you add a // SAFETY: comment above each one explaining why it's actually sound? Flag any you think aren't sound instead of making something up.",
+  "--output-format",
+  "stream-json",
+  "--verbose",
+  "--include-hook-events",
+  "--max-turns",
+  "40",
+  "--allowedTools",
+  "Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*",
+  "--debug-file",
+  "<e2e>/stage11-private/dryrun/A/s10-t115-d0.debug.log",
+  "--setting-sources",
+  "project",
+  "--strict-mcp-config",
+  "--mcp-config",
+  "<e2e>/stage11/mcp/mcp-none.json"
+ ],
+ "path_head": "/opt/homebrew/opt/openjdk/bin",
+ "index_ok_after": true,
+ "fake_server_pid": null,
+ "cleanup": {
+  "killed": [],
+  "remaining": []
+ },
+ "leftover_after": []
+}

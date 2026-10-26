@@ -1,0 +1,54 @@
+{
+ "tasks": {
+  "t288": {
+   "graded": 81,
+   "staging4_top50_ge2": [
+    [
+     "actionbook-rust-skills/domain-cli@299b233ce67e",
+     3
+    ],
+    [
+     "uasl/anvil@3a36e8410205",
+     2
+    ]
+   ],
+   "release_index_ge2": [
+    [
+     "uasl/anvil@3a36e8410205",
+     2
+    ]
+   ],
+   "enter_bundle": false
+  },
+  "t266": {
+   "graded": 84,
+   "staging4_top50_ge2": [
+    [
+     "actionbook-rust-skills/domain-web@e85236f514d2",
+     2
+    ],
+    [
+     "actionbook-rust-skills/m07-concurrency@0686c877c8a6",
+     3
+    ],
+    [
+     "actionbook-rust-skills/m10-performance@c46289fecbad",
+     2
+    ],
+    [
+     "affaan-m-ecc/rust-patterns@f0961b5637b0",
+     2
+    ]
+   ],
+   "release_index_ge2": [],
+   "enter_bundle": true
+  }
+ },
+ "problems": {
+  "t288": [],
+  "t266": []
+ },
+ "cost_usd": {
+  "t288+t266": 0.195
+ }
+}

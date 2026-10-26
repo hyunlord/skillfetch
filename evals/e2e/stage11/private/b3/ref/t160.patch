@@ -1,0 +1,59 @@
+diff --git a/.ko.yaml b/.ko.yaml
+new file mode 100644
+index 0000000..0edd997
+--- /dev/null
++++ b/.ko.yaml
+@@ -0,0 +1,8 @@
++defaultBaseImage: gcr.io/distroless/static-debian12:nonroot
++builds:
++  - id: tracker-ingest
++    main: ./cmd/tracker-ingest
++    env:
++      - CGO_ENABLED=0
++    ldflags:
++      - -s -w -X github.com/acme-fleet/tracker/internal/version.Version={{.Env.VERSION}}
+diff --git a/Makefile b/Makefile
+index 7081890..14a71be 100644
+--- a/Makefile
++++ b/Makefile
+@@ -2,9 +2,10 @@ MODULE   := github.com/acme-fleet/tracker
+ VERSION  ?= $(shell git describe --tags --always --dirty 2>/dev/null || echo dev)
+ REGISTRY ?= ghcr.io/acme-fleet
+ API_IMAGE := $(REGISTRY)/tracker-api
++INGEST_IMAGE := $(REGISTRY)/tracker-ingest
+ LDFLAGS  := -s -w -X $(MODULE)/internal/version.Version=$(VERSION)
+ 
+-.PHONY: all build test vet image-api push-api release clean
++.PHONY: all build test vet image-api push-api push-ingest release clean
+ 
+ all: build
+ 
+@@ -23,9 +24,13 @@ image-api:
+ push-api: image-api
+ 	docker push $(API_IMAGE):$(VERSION)
+ 
++# ko builds and pushes the image itself (no Dockerfile); ldflags come from .ko.yaml.
++push-ingest:
++	VERSION=$(VERSION) KO_DOCKER_REPO=$(INGEST_IMAGE) ko build --bare --tags $(VERSION) ./cmd/tracker-ingest
++
+ # Run from CI on a tag (see README "Releasing"). Needs registry credentials.
+-release: vet test push-api
+-	@echo "released $(VERSION): $(API_IMAGE):$(VERSION)"
++release: vet test push-api push-ingest
++	@echo "released $(VERSION): $(API_IMAGE):$(VERSION) $(INGEST_IMAGE):$(VERSION)"
+ 
+ clean:
+ 	rm -rf bin dist
+diff --git a/README.md b/README.md
+index a1e2446..b9cdd1c 100644
+--- a/README.md
++++ b/README.md
+@@ -25,5 +25,6 @@ Releases are cut by CI when a `v*` tag is pushed. CI logs in to the registry and
+ make release VERSION=$TAG
+ ```
+ 
+-`release` runs vet and tests, then builds and pushes the API image `$(REGISTRY)/tracker-api:$(VERSION)`
+-(`REGISTRY` defaults to `ghcr.io/acme-fleet`).
++`release` runs vet and tests, then builds and pushes the API image `$(REGISTRY)/tracker-api:$(VERSION)` (Docker) and
++the ingest image `$(REGISTRY)/tracker-ingest:$(VERSION)` ([ko](https://ko.build), config in `.ko.yaml`). CI needs `ko`
++on the PATH; it uses the same registry login as Docker. `REGISTRY` defaults to `ghcr.io/acme-fleet`.

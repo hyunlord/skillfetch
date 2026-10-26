@@ -1,0 +1,40 @@
+[
+ {
+  "tool": "go",
+  "argv": [
+   "vet",
+   "./..."
+  ],
+  "cwd": "<tmp>/s11v-aww4_zv5/w"
+ },
+ {
+  "tool": "go",
+  "argv": [
+   "test",
+   "./..."
+  ],
+  "cwd": "<tmp>/s11v-aww4_zv5/w"
+ },
+ {
+  "tool": "docker",
+  "argv": [
+   "build",
+   "-f",
+   "deploy/api.Dockerfile",
+   "--build-arg",
+   "VERSION=v9.9.9-check",
+   "-t",
+   "registry.check.local/fleet/tracker-api:v9.9.9-check",
+   "."
+  ],
+  "cwd": "<tmp>/s11v-aww4_zv5/w"
+ },
+ {
+  "tool": "docker",
+  "argv": [
+   "push",
+   "registry.check.local/fleet/tracker-api:v9.9.9-check"
+  ],
+  "cwd": "<tmp>/s11v-aww4_zv5/w"
+ }
+]

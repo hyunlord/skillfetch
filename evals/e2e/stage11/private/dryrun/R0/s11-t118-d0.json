@@ -1,0 +1,67 @@
+{
+ "task": "s11-t118",
+ "bundle": 3,
+ "cond": "R0",
+ "tag": "d0",
+ "session_dir": "<worktrees>/s11/d671452f10c0",
+ "preflight": {
+  "index": "index ok (12 files)",
+  "base": "0872447d952ca60a1ed4b4145cebd982c75e4176",
+  "s11_r": "e462c4f0776b9e68b2c4c90adae3ce0a13086d95",
+  "main_checkout": {
+   "branch": "s11-a",
+   "head": "0872447d952c"
+  },
+  "leftover_processes": []
+ },
+ "clone": {
+  "branch": "s11-r",
+  "head": "e462c4f0776b9e68b2c4c90adae3ce0a13086d95",
+  "refs": [
+   "refs/heads/main"
+  ],
+  "remotes": [],
+  "status": [],
+  "skills_files": [
+   ".claude/skills/skillfetch-router/SKILL.md"
+  ],
+  "router_sha256": "3efef1e0b7cf5181fa1911f4ebd075cb5d8b8865926d6353399221392bf8f040",
+  "commits": [
+   "e462c4f chore: add project skill",
+   "0872447 payments: batch reconciliation service"
+  ],
+  "base_skills_files": [],
+  "unreachable_objects": 0,
+  "ok": true
+ },
+ "prep_s": 0.0,
+ "prep_status": [],
+ "cmd": [
+  "claude",
+  "-p",
+  "javadoc for PaymentReconciliationService, reviewer flagged missing @throws on reconcileBatch",
+  "--output-format",
+  "stream-json",
+  "--verbose",
+  "--include-hook-events",
+  "--max-turns",
+  "40",
+  "--allowedTools",
+  "Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*",
+  "--debug-file",
+  "<e2e>/stage11-private/dryrun/R0/s11-t118-d0.debug.log",
+  "--setting-sources",
+  "project",
+  "--strict-mcp-config",
+  "--mcp-config",
+  "<e2e>/stage11/mcp/mcp-r0.json"
+ ],
+ "path_head": "/opt/homebrew/opt/openjdk/bin",
+ "index_ok_after": true,
+ "fake_server_pid": null,
+ "cleanup": {
+  "killed": [],
+  "remaining": []
+ },
+ "leftover_after": []
+}

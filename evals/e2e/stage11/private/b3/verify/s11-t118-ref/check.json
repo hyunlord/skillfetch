@@ -1,0 +1,26 @@
+{
+  "task": "t118",
+  "pass": true,
+  "items": [
+    {
+      "name": "a_build_test",
+      "pass": true,
+      "detail": "make test rc=0 | PaymentReconciliationServiceTest: all 6 tests passed"
+    },
+    {
+      "name": "b_doclint_all",
+      "pass": true,
+      "detail": "rc=0; 0 messages"
+    },
+    {
+      "name": "c_code_unchanged",
+      "pass": true,
+      "detail": "10 .java files, code identical modulo comments"
+    },
+    {
+      "name": "d_throws_complete",
+      "pass": true,
+      "detail": "documented=['CurrencyMismatchException', 'DuplicateTransactionException', 'IllegalArgumentException', 'IllegalStateException', 'NullPointerException', 'UnmatchedAmountException']"
+    }
+  ]
+}

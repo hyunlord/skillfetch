@@ -1,0 +1,46 @@
+{
+"d1-landing": {
+"m01": "uasl/copywriting@67282b309ff8",
+"m02": "uasl/next-best-practices@ee058f89acea",
+"m03": "anthropics-skills/frontend-design@0a5ff23f1022"
+},
+"d2-redesign": {
+"m01": "uasl/frontend-design@5da82907743d",
+"m02": "uasl/responsive-design@2cf7927ef938",
+"m03": "uasl/redesign-skill@2e4f7f16e367"
+},
+"d3-dashboard": {
+"m01": "uasl/frontend-design@5da82907743d",
+"m02": "uasl/artisan@1e09f38ffcab",
+"m03": "uasl/next-best-practices@ee058f89acea"
+},
+"d4-email": {
+"m01": "uasl/frontend-design@5da82907743d",
+"m02": "uasl/email-marketing@a37255743f2c",
+"m03": "anthropics-skills/frontend-design@0a5ff23f1022",
+"m04": "uasl/redesign-skill@2e4f7f16e367"
+},
+"s10-t016": {
+"m01": "uasl/coding-guidelines@0ec7e45f92f2"
+},
+"s11-t118": {
+"m01": "uasl/coding-guidelines@0ec7e45f92f2"
+},
+"s2-api": {
+"m01": "uasl/fastapi-templates@effcd0de0b4c",
+"m02": "affaan-m-ecc/fastapi-patterns@419da9966f07",
+"m03": "affaan-m-ecc/api-design@2c61753734ba",
+"m04": "uasl/api-design@bba608f8c974"
+},
+"s2-data": {
+"m01": "uasl/data-analyst-engine@79799e01e2dd"
+},
+"s2-docs": {
+"m01": "uasl/quill@336ba74b0e79"
+},
+"s2-tests": {
+"m01": "affaan-m-ecc/python-testing@b62ce0637eb1",
+"m02": "uasl/property-based-testing@a168f6739085",
+"m03": "uasl/python-testing-patterns@e62d0f1ca316"
+}
+}

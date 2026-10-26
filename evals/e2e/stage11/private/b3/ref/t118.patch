@@ -1,0 +1,83 @@
+diff --git a/src/main/java/com/acme/payments/reconciliation/PaymentReconciliationService.java b/src/main/java/com/acme/payments/reconciliation/PaymentReconciliationService.java
+index 45eabb3..cb7a188 100644
+--- a/src/main/java/com/acme/payments/reconciliation/PaymentReconciliationService.java
++++ b/src/main/java/com/acme/payments/reconciliation/PaymentReconciliationService.java
+@@ -12,7 +12,15 @@ import java.util.Objects;
+ import java.util.Set;
+ 
+ /**
+- * Reconciles payouts.
++ * Reconciles payout batches: matches each {@link LedgerEntry} against the {@link BankTransaction} lines of the bank
++ * statement and reports what is left unmatched.
++ *
++ * <p>A ledger entry matches a bank transaction with the same reference, currency and amount; each bank transaction is
++ * used at most once. A batch is accepted when the total unmatched amount is within the tolerance given at
++ * construction; otherwise {@link #reconcileBatch} throws {@link UnmatchedAmountException} with the partial report.
++ *
++ * <p>Instances are safe to share between threads: {@code reconcileBatch} keeps no state between calls. After
++ * {@link #close()} every call to {@code reconcileBatch} fails.
+  */
+ public class PaymentReconciliationService implements AutoCloseable {
+ 
+@@ -20,6 +28,13 @@ public class PaymentReconciliationService implements AutoCloseable {
+     private final int maxBatchSize;
+     private volatile boolean closed;
+ 
++    /**
++     * Creates a service.
++     *
++     * @param toleranceMinor largest total unmatched amount, in minor units, for which a batch is still accepted
++     * @param maxBatchSize   largest number of items (ledger entries plus bank transactions) in one batch
++     * @throws IllegalArgumentException if {@code toleranceMinor} is negative or {@code maxBatchSize} is less than 1
++     */
+     public PaymentReconciliationService(long toleranceMinor, int maxBatchSize) {
+         if (toleranceMinor < 0) {
+             throw new IllegalArgumentException("toleranceMinor must be >= 0");
+@@ -34,10 +49,23 @@ public class PaymentReconciliationService implements AutoCloseable {
+     /**
+      * Matches the ledger entries of a batch against the bank statement lines.
+      *
+-     * @param batchId batch id
+-     * @param ledger  ledger entries
+-     * @param bank    bank transactions
+-     * @return the report
++     * <p>Each ledger entry is paired with the first unused bank transaction that has the same reference and amount.
++     * Unpaired items on either side are reported as unmatched; their absolute amounts are summed into
++     * {@link ReconciliationReport#unmatchedAmountMinor()}.
++     *
++     * @param batchId id of the batch, used in the report and in exception messages; must not be blank
++     * @param ledger  ledger entries of the batch
++     * @param bank    bank statement lines of the batch; transaction ids must be unique
++     * @return the report of a batch whose unmatched amount is within the tolerance
++     * @throws NullPointerException           if {@code batchId}, {@code ledger} or {@code bank} is null
++     * @throws IllegalStateException          if the service has been {@linkplain #close() closed}
++     * @throws IllegalArgumentException       if {@code batchId} is blank, or the batch has more than
++     *                                        {@code maxBatchSize} items in total
++     * @throws DuplicateTransactionException  if two bank transactions have the same transaction id
++     * @throws CurrencyMismatchException      if a ledger entry and a bank transaction with the same reference are in
++     *                                        different currencies
++     * @throws UnmatchedAmountException       if the total unmatched amount exceeds the tolerance; the exception
++     *                                        carries the partial report ({@link UnmatchedAmountException#report()})
+      */
+     public ReconciliationReport reconcileBatch(String batchId, List<LedgerEntry> ledger, List<BankTransaction> bank)
+             throws CurrencyMismatchException, UnmatchedAmountException {
+@@ -104,10 +132,19 @@ public class PaymentReconciliationService implements AutoCloseable {
+         return report;
+     }
+ 
++    /**
++     * Whether {@link #close()} has been called.
++     *
++     * @return {@code true} once the service is closed
++     */
+     public boolean isClosed() {
+         return closed;
+     }
+ 
++    /**
++     * Closes the service. Later calls to {@link #reconcileBatch} throw {@link IllegalStateException}. Closing twice
++     * has no further effect.
++     */
+     @Override
+     public void close() {
+         closed = true;
