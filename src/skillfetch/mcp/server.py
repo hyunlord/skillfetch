@@ -12,7 +12,7 @@ from typing import Any
 from mcp.server.mcpserver import MCPServer
 
 from skillfetch.index.loader import DEFAULT_INDEX_DIR, Index
-from skillfetch.index.search import DEFAULT_K
+from skillfetch.index.search import DEFAULT_K, ONE_LINE_CHARS
 from skillfetch.mcp.session import DEFAULT_MAX_TOKENS, Session
 
 INSTRUCTIONS = (
@@ -101,5 +101,10 @@ def build_server(session: Session) -> MCPServer:
     return server
 
 
-def serve(index_dir: Path = DEFAULT_INDEX_DIR) -> None:
-    build_server(Session(Index.load(index_dir))).run("stdio")
+def serve(
+    index_dir: Path = DEFAULT_INDEX_DIR,
+    profile_root: Path | None = None,
+    summary_chars: int = ONE_LINE_CHARS,
+) -> None:
+    session = Session(Index.load(index_dir), profile_root=profile_root, summary_chars=summary_chars)
+    build_server(session).run("stdio")

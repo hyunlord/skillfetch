@@ -70,8 +70,11 @@ def rrf(*rankings: list[str], k: int = RRF_K) -> list[str]:
 
 
 class Searcher:
-    def __init__(self, index: Index):
+    def __init__(self, index: Index, summary_chars: int = ONE_LINE_CHARS):
+        """`summary_chars`: the length compact results cut each summary to (default 160;
+        `serve --summary-chars`, an option for #26's measurement)."""
         self.index = index
+        self.summary_chars = summary_chars
         self.bm25 = BM25()
         for record in index.canonical():
             self.bm25.add(
@@ -142,7 +145,7 @@ class Searcher:
                     {
                         "id": record["id"],
                         "title": title,
-                        "summary": one_line(summary),
+                        "summary": one_line(summary, self.summary_chars),
                         "tier": record.get("tier"),
                         "token_estimate": tokens,
                     }

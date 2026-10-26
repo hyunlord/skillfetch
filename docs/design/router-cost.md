@@ -1,6 +1,7 @@
 # Router cost: where the extra turns go, and what to cut (issue #26)
 
-Status: analysis and an e2e design. No e2e run, no change to the router or the server yet.
+Status: analysis, an e2e design and the server options it needs (off by default). No e2e
+run yet; it runs after Stage Q and before Stage 12 (§5).
 Measured 2026-10-26 with `scripts/router_cost.py` (no model calls).
 
 ## 1. Data and method
@@ -159,6 +160,19 @@ Not recommended:
 
 ## 5. e2e design (not run)
 
+- **When:** in the e2e schedule, after Stage Q and before Stage 12 runs.
+- **What it runs on:**
+  - the server options in `serve`, off by default:
+    - `--auto-profile`: when `search_skills` gets no `profile`, use `profile_repo` of the
+      server's working directory;
+    - `--summary-chars N`: the compact summary length;
+  - the router variant `assets/router-skill/variants/no-profile.md`: the shipped router
+    with step 3 telling the model not to call `profile_repo`, and "three quick MCP calls"
+    in its description; nothing else changed.
+  - P = no-profile router + `serve --auto-profile`;
+  - PS = the same + `--summary-chars 80`.
+  - The shipped router and the default `serve` are unchanged.
+
 - **Tasks:** Stage 10's four bundles, 15 tasks; for bundle (3), the remeasurement tasks
   (t001, t033, t114). Same repositories, hidden checks and harness (§21).
 - **Environment:** E1 only. Index: index-staging-4, the next release candidate.
@@ -180,12 +194,66 @@ Not recommended:
     of 12;
   - (iv) bundle (3): sessions that loaded any skill, variant ≤ C + 1, of 9;
   - (v) median turns: no bundle above C + 2.
-- **Ship rule:** ship PS if it passes all five; else P if it does; else nothing.
+- **Ship rule:** ship PS if it passes all five; else P if it does; else nothing. (PS was
+  dropped by pre-check 2, §5.2: P if it passes all five, else nothing.)
 - **Before the run:**
   - P's server change, with an offline test that the derived profile equals `profile_repo`
-    on the task repositories;
-  - the S80 selection pre-check above (if it fails, the PS arm is dropped);
+    on the task repositories (done, §5.1);
+  - the S80 selection pre-check above; if it fails, the PS arm is dropped (§5.2: it
+    failed, so the run has C and P only: 90 sessions, ≈ $49 API-price equivalent);
   - the gate and the ship rule written into the stage's DESIGN.md.
+
+### 5.1 Pre-check 1: the server-side profile equals `profile_repo` (done 2026-10-26)
+
+- **Unit test** (`tests/runtime/test_router_cost_options.py`): with `profile_root` set,
+  `search_skills` without a profile returns exactly what it returns today when the router
+  passes `profile_repo(root)`, compact and verbose. An explicit `profile` still wins.
+- **Stage 10 sessions:** all 208 `profile_repo` calls (E1 and E2; R0, R1 and R1s) passed
+  the session's own working directory, so the router always profiled that directory.
+- **Where Claude Code starts the server:** a stub stdio MCP server launched by `claude -p`
+  (with `--mcp-config`, as in Stage 10) recorded its working directory. It was the
+  session's directory. Stage 10 launched skillfetch with `uvx --from …` (no `--directory`),
+  which keeps that directory. So `--auto-profile` profiles the same directory the router
+  did.
+
+
+### 5.2 Pre-check 2: selection with 80-character summaries (done 2026-10-26; failed)
+
+- **Harness:** Stage 6a's offline selection, read only:
+  - the shipped selection step (S-b′), verbatim, as the system prompt;
+  - the 380 tasks and the exact R-c search results;
+  - 10 tasks per isolated `claude -p` call.
+- **Arms:** summaries re-cut to 80 characters (3 generations) against the three existing
+  160-character generations. Re-cutting at 160 reproduced all 19,000 summaries exactly, so
+  the summary length is the only difference.
+- **Labels:** oracle v4r2, plus the 13 new picks (12 tasks) graded with the unchanged 2b
+  prompt (v4r3).
+- **Pass rule, written down before any call:** mean hit(80) ≥ mean hit(160) − 0.03, and mean
+  none-accuracy on no-relevant tasks (80) ≥ the 160 mean. Pre-registration, script and
+  outputs: e2e workspace `precheck-26/` (README.md, scripts/precheck_80.py, results.json).
+
+| generation | none-accuracy, no relevant (85) | none-accuracy, expect_none (40) | hit (288) | unnecessary picks | picks per task |
+|---|---:|---:|---:|---:|---:|
+| 160 #1 | 0.847 | 0.825 | 0.795 | 44 | 0.987 |
+| 160 #2 | 0.835 | 0.800 | 0.806 | 51 | 1.037 |
+| 160 #3 | 0.847 | 0.850 | 0.781 | 53 | 1.000 |
+| 80 #1 | 0.859 | 0.900 | 0.774 | 59 | 0.987 |
+| 80 #2 | 0.824 | 0.825 | 0.771 | 58 | 0.974 |
+| 80 #3 | 0.835 | 0.875 | 0.778 | 51 | 0.982 |
+| 160, fresh (drift check, not in the rule) | 0.847 | 0.850 | 0.795 | 45 | 0.971 |
+
+- **Rule:**
+  - hit 0.774 against 0.794: within 0.03, passes;
+  - none-accuracy on no-relevant tasks 0.839 against 0.843: fails.
+
+  The PS arm is dropped from the e2e run.
+- **Other results:**
+  - The three 80-character hit values (0.771–0.778) all lie below the three 160-character
+    ones (0.781–0.806).
+  - Unnecessary picks: 56 against 49.3 (means).
+  - The fresh 160-character generation falls inside the earlier 160 range on every metric.
+- **Cost:** 186 `claude -p` calls (selection, redone tasks, grading), $36.75 API-price
+  equivalent on the plan.
 
 ## 6. Limits
 
