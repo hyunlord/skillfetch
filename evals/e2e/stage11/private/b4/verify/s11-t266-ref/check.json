@@ -1,0 +1,32 @@
+{
+  "task": "t266",
+  "pass": true,
+  "undecidable": [],
+  "items": [
+    {
+      "name": "a_cargo_test",
+      "pass": true,
+      "detail": "rc=0; 7 tests passed"
+    },
+    {
+      "name": "b_offloaded",
+      "pass": true,
+      "detail": "decodes=49, on async worker=0 (workers=2); image 0.25.10 patched (decoder_to_image)"
+    },
+    {
+      "name": "c_bounded",
+      "pass": true,
+      "detail": "max concurrent decodes=8 for a burst of 48; statuses={200: 48}; burst 2116 ms"
+    },
+    {
+      "name": "d_others_responsive",
+      "pass": true,
+      "detail": "other requests=160 failed=0 max latency=0 ms, timer lateness max=6 ms"
+    },
+    {
+      "name": "e_output_ok",
+      "pass": true,
+      "detail": "single: status=200 dims=[400, 300]; burst 200s within 400x400=True"
+    }
+  ]
+}

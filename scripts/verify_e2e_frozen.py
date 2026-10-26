@@ -22,7 +22,7 @@ from pathlib import Path
 
 E2E = Path(__file__).resolve().parents[1] / "evals" / "e2e"
 # workspace folders published under another path
-MOVED = {"../stage10-private/": "private/"}
+MOVED = {"../stage10-private/": "private/", "../stage11-private/": "private/"}
 
 
 def _rows(name: str) -> list[list[str]]:

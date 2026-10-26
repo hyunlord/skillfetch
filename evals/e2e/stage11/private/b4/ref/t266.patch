@@ -1,0 +1,162 @@
+diff --git a/README.md b/README.md
+index 2092167..251c17a 100644
+--- a/README.md
++++ b/README.md
+@@ -13,4 +13,5 @@ cargo test
+ | `GET/POST /api/articles`, `GET /api/articles/{id}` | articles |
+ | `POST /api/media/resize?w=&h=` | body = image; returns it scaled to fit w×h as PNG |
+ 
+-Config (env): `CMS_BIND`, `CMS_MAX_UPLOAD_BYTES`, `CMS_MAX_DIMENSION`.
++Config (env): `CMS_BIND`, `CMS_MAX_UPLOAD_BYTES`, `CMS_MAX_DIMENSION`, `CMS_MAX_CONCURRENT_RESIZES` (default: CPU
++count, at most 8). Resizes run on the blocking thread pool; requests over the limit wait for a free slot.
+diff --git a/src/config.rs b/src/config.rs
+index abe4282..c3a81f5 100644
+--- a/src/config.rs
++++ b/src/config.rs
+@@ -9,6 +9,9 @@ pub struct Config {
+     pub max_upload_bytes: usize,
+     /// Largest width/height a client may request for a resize.
+     pub max_dimension: u32,
++    /// How many image resizes may run at the same time. Resizing is CPU-bound and runs on the blocking thread pool;
++    /// without a cap a burst of uploads starts one OS thread per request and starves the rest of the API.
++    pub max_concurrent_resizes: usize,
+ }
+ 
+ impl Default for Config {
+@@ -17,6 +20,10 @@ impl Default for Config {
+             bind: "0.0.0.0:8080".into(),
+             max_upload_bytes: 20 * 1024 * 1024,
+             max_dimension: 4096,
++            max_concurrent_resizes: std::thread::available_parallelism()
++                .map(|n| n.get())
++                .unwrap_or(4)
++                .min(8),
+         }
+     }
+ }
+@@ -35,6 +42,11 @@ impl Config {
+                 .ok()
+                 .and_then(|v| v.parse().ok())
+                 .unwrap_or(d.max_dimension),
++            max_concurrent_resizes: env::var("CMS_MAX_CONCURRENT_RESIZES")
++                .ok()
++                .and_then(|v| v.parse().ok())
++                .filter(|n: &usize| *n > 0)
++                .unwrap_or(d.max_concurrent_resizes),
+         }
+     }
+ }
+diff --git a/src/routes/media.rs b/src/routes/media.rs
+index ba0f67c..139fda3 100644
+--- a/src/routes/media.rs
++++ b/src/routes/media.rs
+@@ -41,8 +41,19 @@ async fn resize(
+     if body.len() > state.config.max_upload_bytes {
+         return StatusCode::PAYLOAD_TOO_LARGE.into_response();
+     }
+-    match resize_to_fit(&body, p.w, p.h) {
+-        Ok(png) => ([(header::CONTENT_TYPE, "image/png")], png).into_response(),
+-        Err(e) => (StatusCode::BAD_REQUEST, e.to_string()).into_response(),
++    // Wait (asynchronously) for a resize slot, then run the CPU-bound work on the blocking pool so the async
++    // workers keep serving the other endpoints. The permit moves into the blocking task and is released when it ends.
++    let permit = match state.resize_permits.clone().acquire_owned().await {
++        Ok(p) => p,
++        Err(_) => return StatusCode::SERVICE_UNAVAILABLE.into_response(),
++    };
++    let job = tokio::task::spawn_blocking(move || {
++        let _permit = permit;
++        resize_to_fit(&body, p.w, p.h)
++    });
++    match job.await {
++        Ok(Ok(png)) => ([(header::CONTENT_TYPE, "image/png")], png).into_response(),
++        Ok(Err(e)) => (StatusCode::BAD_REQUEST, e.to_string()).into_response(),
++        Err(_) => (StatusCode::INTERNAL_SERVER_ERROR, "resize task failed").into_response(),
+     }
+ }
+diff --git a/src/state.rs b/src/state.rs
+index 952c4bb..558761c 100644
+--- a/src/state.rs
++++ b/src/state.rs
+@@ -1,6 +1,7 @@
+ use std::sync::{Arc, RwLock};
+ 
+ use serde::{Deserialize, Serialize};
++use tokio::sync::Semaphore;
+ 
+ use crate::config::Config;
+ 
+@@ -18,13 +19,17 @@ pub struct Article {
+ pub struct AppState {
+     pub config: Arc<Config>,
+     pub articles: Arc<RwLock<Vec<Article>>>,
++    /// Permits for concurrent image resizes (`Config::max_concurrent_resizes`).
++    pub resize_permits: Arc<Semaphore>,
+ }
+ 
+ impl AppState {
+     pub fn new(config: Config) -> Self {
++        let resize_permits = Arc::new(Semaphore::new(config.max_concurrent_resizes.max(1)));
+         AppState {
+             config: Arc::new(config),
+             articles: Arc::new(RwLock::new(Vec::new())),
++            resize_permits,
+         }
+     }
+ }
+diff --git a/tests/media_concurrency.rs b/tests/media_concurrency.rs
+new file mode 100644
+index 0000000..35ed91c
+--- /dev/null
++++ b/tests/media_concurrency.rs
+@@ -0,0 +1,51 @@
++use std::io::Cursor;
++
++use axum::{
++    body::Body,
++    http::{Request, StatusCode},
++};
++use cms_api::{app, AppState, Config};
++use image::{ImageFormat, RgbImage};
++use tower::ServiceExt;
++
++fn png(w: u32, h: u32) -> Vec<u8> {
++    let img = RgbImage::from_fn(w, h, |x, y| {
++        image::Rgb([(x % 256) as u8, (y % 256) as u8, 7])
++    });
++    let mut buf = Vec::new();
++    img.write_to(&mut Cursor::new(&mut buf), ImageFormat::Png)
++        .unwrap();
++    buf
++}
++
++#[tokio::test(flavor = "multi_thread", worker_threads = 2)]
++async fn burst_of_resizes_all_succeed_with_a_small_limit() {
++    let config = Config {
++        max_concurrent_resizes: 2,
++        ..Config::default()
++    };
++    let router = app(AppState::new(config));
++    let img = png(600, 400);
++    let mut jobs = Vec::new();
++    for _ in 0..12 {
++        let (r, body) = (router.clone(), img.clone());
++        jobs.push(tokio::spawn(async move {
++            r.oneshot(
++                Request::post("/api/media/resize?w=120&h=120")
++                    .body(Body::from(body))
++                    .unwrap(),
++            )
++            .await
++            .unwrap()
++            .status()
++        }));
++    }
++    for j in jobs {
++        assert_eq!(j.await.unwrap(), StatusCode::OK);
++    }
++}
++
++#[test]
++fn default_limit_is_positive() {
++    assert!(Config::default().max_concurrent_resizes >= 1);
++}

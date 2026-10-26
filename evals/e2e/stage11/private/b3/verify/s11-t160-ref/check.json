@@ -1,0 +1,36 @@
+{
+  "task": "t160",
+  "pass": true,
+  "items": [
+    {
+      "name": "a_go_build_vet_test",
+      "pass": true,
+      "detail": "go build ./... rc=0; go vet ./... rc=0; go test ./... rc=0"
+    },
+    {
+      "name": "b_release_runs_ko",
+      "pass": true,
+      "detail": "make release rc=0; ko calls ok=1; "
+    },
+    {
+      "name": "c_registry_follows",
+      "pass": true,
+      "detail": "KO_DOCKER_REPO=registry.check.local/fleet/tracker-ingest"
+    },
+    {
+      "name": "d_existing_steps",
+      "pass": true,
+      "detail": "docker build=True push=True; go vet=True test=True"
+    },
+    {
+      "name": "e_ko_failure_fails",
+      "pass": true,
+      "detail": "ko called=True; make release rc=2 with ko exiting 1"
+    },
+    {
+      "name": "f_no_go_changes",
+      "pass": true,
+      "detail": "no .go/go.mod changes"
+    }
+  ]
+}

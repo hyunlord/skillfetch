@@ -1,0 +1,20 @@
+{
+ "burst_ms": 8348,
+ "calls": 49,
+ "dims_ok": true,
+ "max_concurrency": 2,
+ "on_worker": 48,
+ "other_failed": 0,
+ "other_latency_max_ms": 0,
+ "other_requests": 10,
+ "single_dims": [
+  400,
+  300
+ ],
+ "single_status": 200,
+ "statuses": {
+  "200": 48
+ },
+ "timer_lateness_max_ms": 4844,
+ "workers": 2
+}

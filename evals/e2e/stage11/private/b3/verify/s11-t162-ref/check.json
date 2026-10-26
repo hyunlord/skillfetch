@@ -1,0 +1,36 @@
+{
+  "task": "t162",
+  "pass": true,
+  "items": [
+    {
+      "name": "a_go_build_vet_test",
+      "pass": true,
+      "detail": "go build ./... rc=0; go vet ./... rc=0; go test ./... rc=0"
+    },
+    {
+      "name": "b_goreleaser_check",
+      "pass": true,
+      "detail": "rc=0"
+    },
+    {
+      "name": "c_targets",
+      "pass": true,
+      "detail": "snapshot rc=0; binaries=[('darwin', 'arm64'), ('linux', 'amd64')]"
+    },
+    {
+      "name": "d_homebrew_generated",
+      "pass": true,
+      "detail": "artifacts=['Homebrew Cask']; files=['dist/homebrew/Casks/inventory-cli.rb']; repositories=[('homebrew_casks', 'acme-retail', 'homebrew-tap')]"
+    },
+    {
+      "name": "e_tap_auto_upload",
+      "pass": true,
+      "detail": "skip_upload=[('homebrew_casks', None)]"
+    },
+    {
+      "name": "f_no_go_changes",
+      "pass": true,
+      "detail": "no .go/go.mod changes"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "task": "t162",
+  "pass": false,
+  "items": [
+    {
+      "name": "a_go_build_vet_test",
+      "pass": true,
+      "detail": "go build ./... rc=0; go vet ./... rc=0; go test ./... rc=0"
+    },
+    {
+      "name": "b_goreleaser_check",
+      "pass": true,
+      "detail": "rc=0"
+    },
+    {
+      "name": "c_targets",
+      "pass": false,
+      "detail": "snapshot rc=0; binaries=[('darwin', 'amd64'), ('darwin', 'arm64'), ('linux', 'amd64'), ('linux', 'arm64'), ('windows', 'amd64'), ('windows', 'arm64')]"
+    },
+    {
+      "name": "d_homebrew_generated",
+      "pass": false,
+      "detail": "artifacts=[]; files=[]; repositories=[]"
+    },
+    {
+      "name": "e_tap_auto_upload",
+      "pass": false,
+      "detail": "no homebrew entry"
+    },
+    {
+      "name": "f_no_go_changes",
+      "pass": true,
+      "detail": "no .go/go.mod changes"
+    }
+  ]
+}
