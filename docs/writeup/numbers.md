@@ -1747,6 +1747,13 @@ Source: evals/e2e/stage9/report-9.md (run 1), report-9b.md (run-b), report-9b-fo
 - (C)'s denominator differs (release 110 tasks, run-c 52) because tasks that gained a relevant new record leave it; the same-52-task comparison is given.
 - run-b's results belong to a build that was replaced; run-b and run-c are not under the same condition for rshankras.
 
+**index-staging-4** (built 2026-10-24 UTC; the index Stage 10 and Stage 11 tested as R1):
+- Sources: run-c's (index-staging-3: the release's two plus affaan-m/ECC, ahmed3elshaer/everything-claude-code-mobile, rshankras/claude-code-apple-skills and actionbook/rust-skills), at the commits in its manifest.
+- Built with the release's judge verdicts carried (`ingest --carry-verdicts`).
+- Records: 2,785 indexed (the release's 1,724 + run-c's 1,061), 143 rejected; 2,281 canonical.
+- Pairs: 2,005 judge verdicts carried. 1,953 of its 3,958 tension / needs_review pairs have no verdict (#74).
+- Extraction: the manifest's key is `openrouter/openai/gpt-6-luna` (the 1,724 release records); the 1,061 new records carry `extract_model: claude-code/opus-5.5`. Scan rules v5.
+
 ## 21. Stage 10: final stack in real sessions (after the post freeze)
 
 Source: evals/e2e/stage10/report-10.md; design and the rules fixed before the run in evals/e2e/stage10/DESIGN.md (§1–§4, §10, §11); hashes in evals/e2e/stage10/FROZEN.sha256; session rows, grades, judge scores and keys in evals/e2e/stage10/private. Measured after the post's numbers were frozen; not in §7's totals. No index release was made; index-staging-4 stays the release candidate.
