@@ -119,7 +119,8 @@ Pattern families, each a list of regexes in `scan_rules.yaml`. A hit records
 | `exfil` (warn rules) | remote script execution from an `https://` URL: `curl … \| sh`, `sh -c "$(curl …)"`, `sh <(curl …)` | warn |
 | `privilege` | remote script execution combined with sudo, "run as root", "disable sandbox", "--dangerously" | hard fail |
 | `privilege` (warn rules) | `sudo <command>` on its own (`sudo apt-get install …`) | warn |
-| `network` | any absolute `http(s)://` in an instruction (not in a docs link) | warn |
+| `network` | `network.remote-instructions` (rules v6): a URL that names an instruction file (`SKILL.md`, `AGENTS.md`, `CLAUDE.md`, `*instructions*`/`*prompt*`/`*rules*` `.md`/`.txt`), or a fetch/curl/wget/read/follow/load/download/import verb that takes a URL in the same sentence (or after a lead-in line ending with ":") with an instruction word between them (follow, instructions, rules, prompt, skill, guidelines); negated sentences are skipped | warn |
+| `network` | `network.bare-url`: any other absolute `http(s)://` in an instruction (not in a docs link) | info (rules v6; warn before) |
 | `scripts` | folder contains executable files or `scripts/` | tag `has_scripts`; tier cap B→C unless publisher verified |
 | `hidden` | zero-width chars, HTML comments with instructions, base64 blobs > 200 chars | hard fail |
 
@@ -152,8 +153,12 @@ Implementation notes (`ingest/injection.py`, rules in `ingest/scan_rules.yaml`):
 - `scripts` = any file under `scripts/`, any file with a script extension
   (`.sh .py .js .ts …`), or any executable file. The list is recorded as
   evidence for the tag.
-- `network` ignores markdown link targets, `<autolinks>` and reference
-  definitions; a URL anywhere else (prose, inline code, code blocks) warns.
+- `network.bare-url` ignores markdown link targets, `<autolinks>` and reference
+  definitions; a URL anywhere else (prose, inline code, code blocks) is reported as
+  info. `network.remote-instructions` reads the whole line, link targets included.
+- Effects are fail, warn or info (rules v6). Info is shown (`infos`, `SCAN_INFO` in
+  `scan`) but is neither a failure nor a warning. An info hit on a line where the same
+  family warns or fails is dropped, so one URL is reported once.
 - A rule may set `effect` to override its family's effect; that is how the warn
   rules above live in the `exfil` and `privilege` families. Hits record their
   effective `effect`.
@@ -173,12 +178,13 @@ Implementation notes (`ingest/injection.py`, rules in `ingest/scan_rules.yaml`):
   override system prompts" (an OWASP table describing attacks) are
   documentation.
 - `override` rules set `allow_quoted` (rules v3): a match that lies inside
-  quotation marks (`"…"`, `“…”`) is downgraded to a warning, marked
-  `quoted: true`. Prompt-writing advice quotes the phrase it warns against
+  quotation marks (`"…"`, `“…”`) is downgraded (rules v6: to info; v3–v5: to a
+  warning), marked `quoted: true`. Prompt-writing advice quotes the phrase it warns against
   ("avoid override-style language (\"disregard the previous instruction\")"),
   which rejected anthropics' claude-api in the first public build. It is a
-  warning, not a skip: a quoted injection is still text the agent reads, so
-  it stays visible and keeps an unknown publisher's skill in tier C. A line
+  report, not a skip: a quoted injection is still text the agent reads, so
+  it stays visible and keeps an unknown publisher's skill in tier C (the tier rule
+  counts quoted infos as it counted those warnings). A line
   with any unquoted match still fails, and quotes never soften the other
   families.
 - Evidence lines show invisible characters as `<U+200B>` and are cut at 160

@@ -154,7 +154,9 @@ def test_tiers_statuses_and_rejections(world):
         "aggregator/careful-agent": ("C", "ok"),  # unknown publisher with a scan warning
     }
     tdd = _records(tmp_path)["aggregator/tdd-strict"]
-    assert [w["rule_id"] for w in tdd["scan"]["warnings"]] == ["network.bare-url"]
+    # a bare URL is information, not a warning (scan rules v6); it never touched the tier
+    assert tdd["scan"]["warnings"] == []
+    assert [w["rule_id"] for w in tdd["scan"]["infos"]] == ["network.bare-url"]
     rejected = {k: r["status"] for k, r in _records(tmp_path, "rejected.jsonl").items()}
     assert rejected == {"aggregator/broken": "lint_failed", "aggregator/evil": "scan_failed"}
 

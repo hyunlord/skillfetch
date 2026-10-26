@@ -417,6 +417,7 @@ SEVERITY_ROWS = (
     ("low", "LINT_WARNING", "skills with lint warnings only"),
     ("low", "NO_LICENSE", "skills that state no license"),
     ("info", "HAS_SCRIPTS", "skills that bundle scripts"),
+    ("info", "SCAN_INFO", "skills with injection-scan notes (links, quoted phrases)"),
 )
 
 
@@ -434,6 +435,7 @@ def problem_counts(report: ScanReport) -> dict[str, int]:
         "LINT_WARNING": sum(s.lint.ok and bool(s.lint.warnings) for s in skills),
         "NO_LICENSE": sum(s.license == "unknown" for s in skills),
         "HAS_SCRIPTS": sum(s.scan.has_scripts for s in skills),
+        "SCAN_INFO": sum(bool(s.scan.infos) for s in skills),
     }
 
 
@@ -551,6 +553,15 @@ def render_report(report: ScanReport) -> str:
         if s.scan.has_scripts:
             lines = [f"HAS_SCRIPTS  {s.id}  (tier capped at C unless the publisher is verified)"]
             lines += [f"  {s.id}/{path}" for path in s.scan.scripts]
+            blocks.append("\n".join(lines))
+    for s in skills:
+        if s.scan.infos:
+            lines = [f"SCAN_INFO  {s.id}"]
+            lines += [
+                f"  {s.id}/{h.file}:{h.line_no}  [{h.rule_id}{', quoted' if h.quoted else ''}] "
+                f'"{h.line}"'
+                for h in s.scan.infos
+            ]
             blocks.append("\n".join(lines))
     if report.skipped:
         by_id = {s.id: s for s in skills}

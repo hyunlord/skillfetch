@@ -11,18 +11,22 @@
 #   id, family, pattern   Python regex, case-insensitive unless case_sensitive: true
 #   target                line (default) | outside_links (markdown link targets,
 #                         autolinks and reference definitions removed first) |
-#                         html_comment (pattern applied to each <!-- --> body)
+#                         html_comment (pattern applied to each <!-- --> body) |
+#                         line_with_lead_in (the line, preceded by the line before it
+#                         when that one ends with ":")
 #   within                optional second regex: a `pattern` match counts only if this
 #                         one is found inside the matched text
-#   effect                fail | warn, overrides the family's effect for this rule
+#   effect                fail | warn | info, overrides the family's effect for this rule.
+#                         info is shown but is neither a failure nor a warning; an info hit
+#                         on a line where its family already warns or fails is dropped
 #   allow_negated         skip a match when a negation (not, never, n't, no, without)
 #                         appears at most two words before it: "never run sudo X"
 #                         is advice, "do not hesitate to run sudo X" is not
-#   allow_quoted          a match inside quotation marks ("…", “…”) only warns:
+#   allow_quoted          a match inside quotation marks ("…", “…”) is only info:
 #                         advice that quotes the phrase to avoid ("avoid override-style
 #                         language (\"disregard the previous instruction\")") is not an
-#                         attempt. It still warns, so the quote stays visible.
-version: 5
+#                         attempt. It is still shown (as info), so the quote stays visible.
+version: 6
 
 effects:
   override: fail
@@ -128,7 +132,20 @@ rules:
     pattern: '\b(?:ignore|disregard|you\s+(?:must|should|are|will)|assistant|claude|system\s+prompt|execute|upload|run\s+the\s+following)\b'
 
   # --- network: absolute URLs used as instructions, not as documentation links --------
+  # A URL on its own is information (rules v6): links to docs, examples, templates.
   - id: network.bare-url
     family: network
+    effect: info
     target: outside_links
     pattern: 'https?://\S+'
+  # Instructions fetched from a URL at use time can change after the skill was vetted:
+  # (a) a URL that names an instruction file (SKILL.md, AGENTS.md, CLAUDE.md, a
+  # *instructions*/*prompt*/*rules* .md or .txt), or (b) a fetch/read/follow/load verb that
+  # takes a URL in the same sentence (or after a lead-in line ending with ":") with an
+  # instruction word between them. A plain "fetch the data from <url>" stays bare-url.
+  - id: network.remote-instructions
+    family: network
+    target: line_with_lead_in
+    allow_negated: true
+    pattern: '\b(?:fetch|curl|wget|read|follow|load|download|import)\b[^.;·!?\n]{0,120}?https?://\S+|https?://\S*?/(?:SKILL|AGENTS|CLAUDE|GEMINI)\.md\b|https?://\S*?[\w-]*(?:instructions?|prompts?|rules)[\w-]*\.(?:md|txt)\b'
+    within: '\bfollow|instructions?|\brules\b|\bprompts?\b|\bskills?\b|guidelines?|(?:SKILL|AGENTS|CLAUDE|GEMINI)\.md|(?:instructions?|prompts?|rules)[\w-]*\.(?:md|txt)'
