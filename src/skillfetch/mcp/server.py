@@ -40,7 +40,10 @@ def build_server(session: Session) -> MCPServer:
     def profile_repo(path: str) -> dict[str, Any]:
         """Languages, frameworks and package managers of a repo, from its manifest files
         only (package.json, pyproject.toml, go.mod, Cargo.toml, lockfiles, framework
-        configs); never reads source. Pass the result to search_skills as `profile`."""
+        configs); never reads source. Pass the result to search_skills as `profile`.
+        When the repo root has a `.skillfetch.yaml`, the result also carries `org` (the
+        organisation's index source) and `baseline` (ids of skills to pin on every task;
+        names that match no skill, or several, are in `baseline_unresolved`)."""
         return session.profile_repo(path)
 
     @server.tool()
@@ -56,7 +59,8 @@ def build_server(session: Session) -> MCPServer:
         what the task builds, how the user asked to work (if they did), and the stack and
         files; each is searched and the rankings are merged by reciprocal rank fusion (k=60).
         `query` (one sentence) still works; `queries` wins when both are given. `profile`
-        (from profile_repo) boosts matching skills and is never part of a query.
+        (from profile_repo) boosts matching skills and is never part of a query; when it
+        has an `org`, results from that source carry org: true.
         Returns {results: [{id, title, summary, tier, token_estimate}]}, best first, 50 by
         default (at most 200); `summary` is one line. verbose=true returns the full summary
         plus tags and match_reasons. Tiers default to A and B. A query over 2,000 characters

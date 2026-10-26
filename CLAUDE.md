@@ -87,12 +87,15 @@ hand-rolled BM25), `anthropic` (ingest only, optional extra), `pydantic`.
 Built (v0.2): `profile_repo`, `search_skills`, `resolve_set`, `load_skills`. Built after v0.2
 (#26): `resolve_and_load`, both steps in one call; the router skill does not use it yet. Also
 for #26, off by default: `serve --auto-profile` (a search without `profile` uses the server's
-working directory) and `serve --summary-chars N` (docs/design/router-cost.md).
+working directory) and `serve --summary-chars N` (docs/design/router-cost.md). Organisation
+rules: an optional `.skillfetch.yaml` at the repo root, read by `profile_repo`, and `org: true`
+on search results; the router variant `assets/router-skill/variants/org.md` pins the baseline
+and may add up to 3 org skills from the top 10. The shipped router does not use them.
 Planned for v0.3, not built: `report_outcome`. `prepare_set`: not built, not planned for v0.3.
 
 | tool | input | output |
 |---|---|---|
-| `profile_repo(path)` | repo root | `{languages, frameworks, package_managers, tags[]}` from manifest files only (package.json, pyproject.toml, go.mod, Cargo.toml, framework config files). Never scans source. Cached per session. |
+| `profile_repo(path)` | repo root | `{languages, frameworks, package_managers, tags[]}` from manifest files only (package.json, pyproject.toml, go.mod, Cargo.toml, framework config files). Never scans source. Cached per session. With an optional `.skillfetch.yaml` at the root (`org`: an index source id; `baseline`: skill names to pin on every task), also `org` and `baseline` (index ids; names that match no indexed skill, or several, go in `baseline_unresolved`; problems in `org_errors`). Names are resolved against the local index, no model. |
 | `search_skills(queries[1–4] \| query, profile?, k=50, tiers=["A","B"], verbose=false)` | the task restated by the host model as 1–4 short sentences (the router sends four: what it builds, how to work, stack and files, the request word for word; each searched with BM25, rankings merged by RRF k=60), or one `query`; `queries` wins + optional profile | ranked candidates, compact: `{id, title, summary (first sentence, ≤160 chars), tier, token_estimate}` (50 fit in ~4k tokens); `verbose` adds the full summary, `tags` and `match_reasons[]` |
 | `resolve_set(auto_ids[], pinned_ids[])` | candidate ids chosen by the host model (at most 20; `path:` ids only as pinned), plus user-pinned ids | `{set_id, included[], excluded[{id, reason, conflicts_with}], warnings[], precedence[], suppressed_by_judge, notes[], errors[]}`; `suppressed_by_judge` counts the tension / needs_review warnings dropped because the judge called the pair independent |
 | `load_skills(set_id, max_tokens=8000)` | | bodies concatenated in precedence order, with no precedence header (it did not change which skill the agent follows; numbers.md §8), for injection into the current context. Each body is fetched from the skill's pinned source (unless cached), verified against the index hashes, and cached under `~/.skillfetch/cache/<content_hash>/`; a mismatch or fetch failure refuses that skill with a structured error and the others still load. Over `max_tokens` the lowest-precedence skills are dropped (listed in `errors`). |
@@ -104,7 +107,8 @@ Rules:
 
 - `search_skills` does BM25 over `title + description + keywords + synthetic_queries +
   summary` (bodies are not in the index); tokens are Unicode words, CJK runs as
-  2-grams. Profile tags are a boost/filter, never part of the query string.
+  2-grams. Profile tags are a boost/filter, never part of the query string. A profile with an
+  `org` marks that source's results `org: true`; the ranking does not change.
 - `resolve_set` follows `docs/design/constraints.md` exactly. Pinned beats auto.
   Pinned-vs-pinned conflicts are reported, never auto-resolved.
 - Pinned ids may be local paths (`path:/abs/path/to/skill`). Those are linted and
