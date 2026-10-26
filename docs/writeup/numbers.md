@@ -205,6 +205,7 @@ Not recorded: in these stages' batch calls only successful answers are cached, s
 - Stage 9 (§20): S-b′ selections $19.79 + $19.67 + $19.73, grading $14.85 + $5.71, batch-effect regrading $1.10; staging extraction 1,306 calls $105.63 and 161 calls $17.03; judge fixture calibration 42 calls $0.44 (isolated `claude -p`); GPT labels not recorded.
 - Stage 10 sessions (§21): main run 270 sessions $190.95, with pilots and the 8 sessions cut off by a spend limit $202.43; bundle (3) remeasurement 27 sessions $9.51; grading $0.11 + $0.359 (isolated `claude -p`); GPT judging not recorded.
 - Stage 11 sessions (§22): main run 174 sessions $88.92; pilot and smoke test 9 sessions $3.57; pre-run checks $0.68; loaded-skill grading $0.10; total $93.27; Claude judging subagents and GPT judging not recorded.
+- Stage Q sessions (§23): Stage Q $48.87 (preparation $6.74, pilots $4.63, main run $37.50); Q1 extension 82 sessions $38.54; re-fire check 9 sessions $28.18; Claude judging subagents not recorded.
 
 ### Runtime latency
 
@@ -1993,4 +1994,210 @@ The Claude judging subagents and the GPT judging are not recorded.
 - **The floor was set after Stage 10 was seen.** D's 0.25 floor was set after Stage 10's remeasured bundle (3) was seen. Bundle (3)'s (ii)-Claude passes with margin 0 under the floor and fails on the reference line without it.
 - **Sample size:** 3 runs per task and condition in bundles (1)–(2), 6 in (3)–(4).
 - **Judging account:** the Claude judging for 5 bundles ran under a different account after the spend limit (same instructions, fresh subagents).
+
+## 23. Stage Q: qualitative round, re-fire check (after the post freeze)
+
+Sources: evals/e2e/stageQ/report-Q.md, evals/e2e/stageQ/report-Q1x.md and evals/e2e/stageQ/refire/report-RF.md; designs fixed before each run in evals/e2e/stageQ/DESIGN.md, evals/e2e/stageQ/DESIGN-Q1x.md and evals/e2e/stageQ/refire/DESIGN.md; hashes in evals/e2e/stageQ/FROZEN.sha256, evals/e2e/stageQ/private/FROZEN.sha256 and evals/e2e/stageQ/refire/FROZEN.sha256; request rows, judge scores and keys in evals/e2e/stageQ/private, evals/e2e/stageQ/private-q1x and evals/e2e/stageQ/refire/private. Measured after the post's numbers were frozen; not in §7's totals. Stage Q has no release gate.
+
+**Conditions.**
+- On: the shipped router (S-b′) and the skillfetch MCP server (index-staging-4, 2,785 skills; server `3fef3f8`).
+- Off: no router and no MCP server.
+- Environment: E1 (project settings only).
+- Judging: two blind Claude passes (p1, p2; fresh subagents). The GPT packages were built but not judged (optional by design).
+
+| part | sessions | requests | what it measures |
+|---|---:|---:|---|
+| Q1 on / off | 24 | 24 | 6 tasks × 2 conditions × 2 runs |
+| Q2 S (one session, `--resume`) | 5 | 20 | a local skill named in request 1, then 3 more requests |
+| Q2 C (a new session per request) | 20 | 20 | the same 4 requests |
+| Q2 S-B | 0 | 0 | not run: its condition (a canary mark in S requests 2–4) did not occur |
+| Q5 trivial edits and named skills | 16 | 16 | 5 trivial edits × 2, 3 named-skill tasks × 2 |
+| Q6 skill fetch blocked | 6 | 6 | 3 tasks × 2 |
+| Q1 extension: on / off | 72 | 72 | 12 more tasks × 2 conditions × 3 runs |
+| Q1 extension: local skill, then the task | 6 | 12 | 2 tasks × 3 runs, on only |
+| Re-fire check | 7 | 28 | one session, 4 requests: shipped router 5, variant (a) 1, variant (b) 1 |
+
+Pilots (8 for Stage Q, 4 for the Q1 extension, 2 for the re-fire check) are not counted.
+
+**Q1, on vs off** (Claude mean of p1 and p2; medians per task and condition)
+
+| task | condition | Claude | p1 | p2 | checks | turns | wall s | API-price equivalent | skills loaded |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---|
+| d1-landing | off | 3.00 | 2.5 | 3.5 | 2/2 | 6 | 68 | $0.34 | – |
+| d1-landing | on | 5.00 | 5 | 5 | 2/2 | 25.5 | 159 | $0.94 | frontend-design ×2, copywriting ×2, next-best-practices |
+| d4-email | off | 4.50 | 4.5 | 4.5 | 2/2 | 17 | 91 | $0.47 | – |
+| d4-email | on | 4.00 | 4 | 4 | 2/2 | 18 | 104 | $0.65 | email-marketing ×2, frontend-design ×2 (two versions) |
+| s10-t016 | off | 5.00 | 5 | 5 | 2/2 | 4.5 | 40 | $0.23 | – |
+| s10-t016 | on | 5.00 | 5 | 5 | 2/2 | 13.5 | 58 | $0.48 | m07-concurrency ×2, rust-testing, rust-patterns |
+| s11-t266 | off | 4.50 | 4.5 | 4.5 | 2/2 | 7.5 | 48 | $0.29 | – |
+| s11-t266 | on | 5.00 | 5 | 5 | 2/2 | 17.5 | 68 | $0.51 | domain-web ×2, m07-concurrency ×2 |
+| s2-api | off | 4.50 | 4.5 | 4.5 | 2/2 | 10 | 92 | $0.48 | – |
+| s2-api | on | 5.00 | 5 | 5 | 2/2 | 18.5 | 117 | $0.78 | fastapi-patterns ×2, api-design ×2 |
+| s2-data | off | 4.25 | 4 | 4.5 | 2/2 | 12.5 | 120 | $0.64 | – |
+| s2-data | on | 4.50 | 4.5 | 4.5 | 2/2 | 18 | 137 | $0.79 | data-analyst-engine ×2 |
+
+- **Judge agreement (p1–p2):** of 24, same score 21, within 1 point 24.
+- **AI-template checklist items** in the design results (p1 / p2):
+  - d1-landing off: 5/5 and 5/5;
+  - d1-landing on: 0/0 and 1/1;
+  - d4-email: 0/0 in all four results.
+- **Median input tokens, off → on:** d1-landing 163k → 969k, d4-email 424k → 680k, s10-t016 127k → 422k, s11-t266 151k → 439k, s2-api 230k → 559k, s2-data 399k → 595k.
+- **First skillfetch call:** turn 4 in every on session.
+
+**Q1 extension, on vs off** (12 tasks × 3 runs; Claude mean of p1 and p2)
+
+| task | Claude off | Claude on | checks off / on | median turns off → on | mean API-price equivalent off → on | router fired (on) | skills loaded (on) |
+|---|---:|---:|---|---|---|---:|---|
+| d2-redesign | 4.00 | 4.33 | 3/3 / 3/3 | 9 → 16 | $0.290 → $0.582 | 3 | redesign-skill ×3, responsive-design ×3, frontend-design |
+| d3-dashboard | 4.00 | 3.17 | 3/3 / 3/3 | 15 → 25 | $0.507 → $0.897 | 3 | frontend-a11y ×2, next-best-practices ×2, vercel-react-best-practices ×2, frontend-design |
+| s10-t263 | 4.83 | 4.83 | 3/3 / 3/3 | 4 → 14 | $0.249 → $0.423 | 3 | m01-ownership ×3, m10-performance ×3 |
+| s10-t115 | 4.67 | 4.67 | 3/3 / 3/3 | 8 → 34 | $0.349 → $0.576 | 3 | domain-embedded ×3, unsafe-checker ×3 |
+| s10-t198 | 4.50 | 4.83 | 3/3 / 3/3 | 7 → 15 | $0.333 → $0.630 | 3 | core-data ×3, migration-patterns ×3 |
+| s11-t160 | 5.00 | 5.00 | 3/3 / 3/3 | 5 → 10 | $0.229 → $0.352 | 3 | – |
+| s11-t118 | 4.33 | 3.50 | 2/3 / 1/3 | 8 → 15 | $0.241 → $0.443 | 3 | java-coding-standards ×2, receiving-code-review ×2 |
+| s2-docs | 4.67 | 5.00 | 3/3 / 3/3 | 8 → 14 | $0.351 → $0.523 | 3 | quill ×3 |
+| s10-t033 | 4.83 | 5.00 | 3/3 / 3/3 | 9 → 13 | $0.273 → $0.363 | 2 | debug-root-cause |
+| s2-tests | 4.83 | 5.00 | 3/3 / 3/3 | 9 → 13 | $0.655 → $0.895 | 3 | python-testing ×3, radar ×2 |
+| s10-t001 | 4.67 | 5.00 | 3/3 / 3/3 | 10 → 16 | $0.296 → $0.428 | 3 | – |
+| s6b-t179 | 4.83 | 5.00 | 3/3 / 3/3 | 11 → 14 | $0.386 → $0.448 | 1 | sqlmodel |
+
+- **On, all 36:** Claude 4.611, checks 34/36, median turns 14.5, mean $0.547, router fired 33/36, loaded 25/36.
+- **Off, all 36:** Claude 4.597, checks 35/36, median turns 9, mean $0.347.
+- **Judge agreement (p1–p2):** of 72, same score 59, within 1 point 72.
+- **Recorded differences:**
+  - d3-dashboard: on m1 and m2 made 12 fake users instead of the app's 4-person sample (AI-template item #9). Usefulness was on 2, 3, 5 (p1) and off 4, 4, 4.
+  - s10-t115: the unsound block was marked in the code in 3/3 on runs and 1/3 off runs.
+  - s11-t118: the doclint check passed in 1/3 on runs and 2/3 off runs. On m2 and m3 added only `@throws`.
+
+**Q2, does a skill's rule carry over?** A local skill (`canary`) is named in request 1. Its rules:
+- F: a first-line `cnry-q7` comment in new files;
+- R: `cnry-q7` as the last line of the final reply.
+
+| arm | request | runs | F (marked / new files) | R | other mentions | canary re-read |
+|---|---|---:|---:|---:|---:|---:|
+| S | 2 Rust | 5 | 0 / 5 | 0 | 1 | 0 |
+| S | 3 README typo | 5 | 0 / 0 | 0 | 0 | 0 |
+| S | 4 Python | 5 | 0 / 13 | 0 | 0 | 0 |
+| C | 2 Rust | 5 | 0 / 5 | 0 | 0 | 0 |
+| C | 3 README typo | 5 | 0 / 0 | 0 | 0 | 0 |
+| C | 4 Python | 5 | 0 / 13 | 0 | 0 | 0 |
+
+- **Request 1:** all 10 runs read the canary file, and R held in 10/10. No request-1 run created a file, so F could not be checked there.
+- **The one other mention** (S m5, request 2): "I didn't apply the canary markers this time. You asked for that skill only for the landing-page task, so `duration.rs` has no `cnry-q7` line."
+
+**Q3, router calls per request** (Q2's runs)
+
+| arm | request | requests with a skillfetch call | requests that loaded | skills loaded | median turns | mean API-price equivalent |
+|---|---|---:|---:|---|---:|---:|
+| S | 1 | 0/5 | 0 | – | 7 | $0.205 |
+| S | 2 | 0/5 | 0 | – | 5 | $0.362 |
+| S | 3 | 0/5 | 0 | – | 4 | $0.411 |
+| S | 4 | 0/5 | 0 | – | 7 | $0.561 |
+| C | 1 | 0/5 | 0 | – | 7 | $0.201 |
+| C | 2 | 5/5 | 5 | m06-error-handling ×5, rust-testing ×5, rust-patterns, coding-guidelines | 12 | $0.479 |
+| C | 3 | 0/5 | 0 | – | 4 | $0.128 |
+| C | 4 | 5/5 | 5 | python-testing ×5 | 14 | $0.425 |
+
+- Reused an earlier request's skill ids: 0.
+- Mentioned an earlier request's skill without loading it: 0.
+
+**Re-fire check** (the Q2 requests in one session without the local-skill sentence; repository `sq-mono`)
+
+| request | shipped router (5 sessions): fired | skills loaded (sum) | median turns | mean API-price equivalent |
+|---|---:|---|---:|---:|
+| 1 design | 5/5 | web-design ×3, design-system ×2 | 12 | $0.348 |
+| 2 Rust | 5/5 | m06-error-handling ×5, rust-testing ×5, coding-guidelines ×2 | 8 | $0.735 |
+| 3 README typo | 0/5 | – | 4 | $0.812 |
+| 4 Python | 5/5 | python-testing ×4, python-error-handling ×2 | 9 | $1.185 |
+
+- **Fixed criteria:** the non-trivial requests 2 and 4 fired in 10/10, and the trivial request 3 did not fire in 5/5.
+- **How it fired:**
+  - Request 1 called the `skillfetch-router` skill in 5/5.
+  - Requests 2 and 4 called the skillfetch MCP tools directly in 10/10, without calling the skill again.
+- **Mean API-price equivalent per session:** $3.08, against $1.54 for Q2 S. Request 4's input was 520k–630k tokens, against 290k in Q2 S.
+- **Variants** (`assets/router-skill/variants/refire.md` = (a); (a) + `refire-CLAUDE.md` = (b)). One main session and one pilot each; recorded, not judged.
+
+| arm | session | request 1 | request 2 | request 3 | request 4 | API-price equivalent |
+|---|---|---|---|---|---|---:|
+| (a) | main m4 | fired | fired (MCP only) | not fired | fired (MCP only) | $3.24 |
+| (a) | pilot p1 | fired | fired (MCP only) | not fired | fired (MCP only) | $3.21 |
+| (b) | main m1 | fired | fired (skill) | not fired | fired (skill) | $3.08 |
+| (b) | pilot p1 | fired | fired (skill) | not fired | fired (skill) | $3.25 |
+
+- Requests 2 and 4 that called the router skill again: shipped 0/10, (a) 0/4, (b) 4/4.
+- **Q2 S's 0/20, as recorded by the user's decision:** the same four requests fired 15/15 on requests 1, 2 and 4 once the local-skill sentence was removed. So the 0/20 is recorded as this: naming a local skill in a session's first request kept the router from running for the whole session.
+
+**Local skill named, then the task** (Q1 extension; on only; 3 runs each)
+
+| task | request 1 (local skill named): router fired | request 2 (the task): router fired | request 2 checks | the same task as a single request: fired (Q1 on / #26 C) |
+|---|---|---|---|---|
+| s2-api | 0/3 | 3/3 (fastapi-patterns, api-design) | 3/3 | 2/2 / 3/3 |
+| s10-t016 | 0/3 | 1/3 (m2: m07-concurrency, rust-testing) | 3/3 | 2/2 / 3/3 |
+
+- **The two s10-t016 sessions that did not fire** (m1, m3): request 2's first tool call was a Bash look around the code (`ls src tests && cat src/lib.rs src/room.rs …`), and the request ended in 4–5 turns.
+- **Canary rules:**
+  - request 1: R 6/6, F 3/3 (only s2-api created files);
+  - request 2: new files marked 0/18.
+
+**Q4, do loaded skills' rules get followed?**
+- **Rules:** 3 per skill, extracted before the run for 140 skills and after it for 2.
+- **Items:** 76. Of these, 53 loaded on (Q1 23, Q2 C 17, Q5 named 13). The other 23 are the off baseline: the same rule sets applied to the matching Q1 off runs.
+- **Rate:** kept / (kept + broken).
+
+| group | p1 kept / broken / n/a | p1 rate | p2 kept / broken / n/a | p2 rate |
+|---|---|---:|---|---:|
+| on, all | 105 / 17 / 37 | 0.861 | 99 / 20 / 40 | 0.832 |
+| Q1 on | 41 / 13 / 15 | 0.759 | 40 / 12 / 17 | 0.769 |
+| Q1 off baseline | 32 / 17 / 20 | 0.653 | 33 / 17 / 19 | 0.660 |
+| Q2 on (C requests 2, 4) | 36 / 0 / 15 | 1.000 | 32 / 4 / 15 | 0.889 |
+| Q5 named | 28 / 4 / 7 | 0.875 | 27 / 4 / 8 | 0.871 |
+
+- **Pass agreement:** 217 of 228 rule judgements were the same.
+- **Q1 per task, on / off baseline (p1):** d1-landing 0.583 / 0.333, d4-email 0.700 / 0.600, s10-t016 0.889 / 0.800, s11-t266 0.778 / 0.750, s2-api 0.833 / 0.833, s2-data 1.000 / 1.000.
+
+**Q5, trivial edits and named skills** (on)
+- **Trivial edits:** 5 tasks × 2 runs. In all 10 runs nothing was loaded and skillfetch was never called. Turns 4–8; $0.136–$0.168 each.
+- **Named skills:** the named skill's id was in `pinned_ids` and loaded in 6/6, and the checks passed in 6/6. Every run called `search_skills` twice, once with the name.
+
+| task + named skill | also loaded | turns | API-price equivalent |
+|---|---|---|---|
+| s10-t016 + rust-testing | rust-patterns, m07-concurrency | 20, 17 | $0.69, $0.58 |
+| d1-landing + frontend-design | frontend-a11y ×2, next-best-practices | 31, 29 | $1.25, $1.13 |
+| s2-api + fastapi-patterns | api-design ×2 | 21, 27 | $0.84, $0.92 |
+
+**Q6, when bodies cannot be fetched** (blocked server; 6 sessions)
+- All 6 succeeded; time-outs 0, checks 6/6.
+- Load attempts: 1 per session, with 1–2 load errors each ("SKILL.md: fetch failed (URLError: … Connection refused)"). No session retried the load.
+- The final reply named the failure in 5 of 6.
+
+**Visibility.** 28 on requests loaded skills (Q1 12, Q2 C 10, Q5 named 6). In their final replies, before redaction:
+- a loaded skill's name appeared in 16;
+- the word "skill" or "스킬" appeared in 19.
+
+**Run record.**
+- Harness failures, usage-limit failures, results missing, index hash errors: 0 in Stage Q.
+- **Pilot fix:** the pilot found a harness bug (`collect_diff` name error) on tasks with checks. It was fixed in run_s11's order and checked with `--check-test`.
+- **Q1 extension queue stops:** the queue stopped twice on its leftover-process check. Both processes were unrelated to the sessions:
+  - the stage26b K pre-check run by the repo session;
+  - a code-index build of a user tool.
+
+  The sessions concerned passed their checks and were not rerun.
+
+**Cost** (API-price equivalent, Claude Code plan)
+
+| item | cost |
+|---|---:|
+| Stage Q: preparation (R-c queries $0.10, Q4 rules before the run $6.56, after $0.08) | $6.74 |
+| Stage Q: pilots | $4.63 |
+| Stage Q: main run (Q1 $13.19, Q2 $13.87, Q5 $6.93, Q6 $3.50) | $37.50 |
+| Stage Q total (cap $80) | $48.87 |
+| Q1 extension: pilots 4, main 72, local skill 6 sessions (cap $45) | $38.54 |
+| Re-fire check: pilots 2 ($6.46), main 7 sessions ($21.72) | $28.18 |
+
+Claude judging subagents are not recorded. The GPT judging was not run.
+
+**Limits.**
+- **Runs per task:** 2 in Q1 and Q5, 3 in the Q1 extension, 5 in Q2.
+- **Q4 rules:** extracted from the skill bodies automatically. Rules that did not fit a task were judged n/a (on: p1 37 and p2 40 of 159).
+- **Re-fire check:** the variants ran once each (plus a pilot), after the queue's projection stopped the run at a measured $3.1 per session (estimate $1.8). By the user's decision, only 3 more shipped-router sessions were run.
 
