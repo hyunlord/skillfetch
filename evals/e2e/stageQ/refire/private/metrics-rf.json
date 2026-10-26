@@ -1,0 +1,238 @@
+{
+ "arms": {
+  "cur": {
+   "sessions": 5,
+   "positions": {
+    "1": {
+     "n": 5,
+     "fired": 5,
+     "router_skill": 5,
+     "sf_any": 5,
+     "calls": {
+      "profile_repo": 5,
+      "search_skills": 5,
+      "resolve_and_load": 4
+     },
+     "loaded_any": 4,
+     "loaded": {
+      "design-system": 2,
+      "web-design": 3
+     },
+     "mention_earlier_without_load": 0,
+     "turns_med": 12,
+     "cost_mean": 0.348
+    },
+    "2": {
+     "n": 5,
+     "fired": 5,
+     "router_skill": 0,
+     "sf_any": 5,
+     "calls": {
+      "search_skills": 5,
+      "resolve_and_load": 5,
+      "profile_repo": 1
+     },
+     "loaded_any": 5,
+     "loaded": {
+      "m06-error-handling": 5,
+      "rust-testing": 5,
+      "coding-guidelines": 2
+     },
+     "mention_earlier_without_load": 0,
+     "turns_med": 8,
+     "cost_mean": 0.735
+    },
+    "3": {
+     "n": 5,
+     "fired": 0,
+     "router_skill": 0,
+     "sf_any": 0,
+     "calls": {},
+     "loaded_any": 0,
+     "loaded": {},
+     "mention_earlier_without_load": 0,
+     "turns_med": 4,
+     "cost_mean": 0.812
+    },
+    "4": {
+     "n": 5,
+     "fired": 5,
+     "router_skill": 0,
+     "sf_any": 5,
+     "calls": {
+      "search_skills": 5,
+      "resolve_and_load": 4,
+      "profile_repo": 1
+     },
+     "loaded_any": 4,
+     "loaded": {
+      "python-testing": 4,
+      "python-error-handling": 2
+     },
+     "mention_earlier_without_load": 0,
+     "turns_med": 9,
+     "cost_mean": 1.185
+    }
+   },
+   "fire_2_4": 10,
+   "n_2_4": 10,
+   "nonfire_3": 5,
+   "n_3": 5,
+   "session_cost_mean": 3.08
+  },
+  "a": {
+   "sessions": 1,
+   "positions": {
+    "1": {
+     "n": 1,
+     "fired": 1,
+     "router_skill": 1,
+     "sf_any": 1,
+     "calls": {
+      "profile_repo": 1,
+      "search_skills": 1,
+      "resolve_and_load": 1
+     },
+     "loaded_any": 1,
+     "loaded": {
+      "design-system": 1,
+      "web-design": 1
+     },
+     "mention_earlier_without_load": 0,
+     "turns_med": 13,
+     "cost_mean": 0.376
+    },
+    "2": {
+     "n": 1,
+     "fired": 1,
+     "router_skill": 0,
+     "sf_any": 1,
+     "calls": {
+      "search_skills": 1,
+      "resolve_and_load": 1
+     },
+     "loaded_any": 1,
+     "loaded": {
+      "rust-testing": 1,
+      "m06-error-handling": 1,
+      "coding-guidelines": 1
+     },
+     "mention_earlier_without_load": 0,
+     "turns_med": 9,
+     "cost_mean": 0.764
+    },
+    "3": {
+     "n": 1,
+     "fired": 0,
+     "router_skill": 0,
+     "sf_any": 0,
+     "calls": {},
+     "loaded_any": 0,
+     "loaded": {},
+     "mention_earlier_without_load": 0,
+     "turns_med": 4,
+     "cost_mean": 0.867
+    },
+    "4": {
+     "n": 1,
+     "fired": 1,
+     "router_skill": 0,
+     "sf_any": 1,
+     "calls": {
+      "search_skills": 1,
+      "resolve_and_load": 1
+     },
+     "loaded_any": 1,
+     "loaded": {
+      "python-testing": 1
+     },
+     "mention_earlier_without_load": 0,
+     "turns_med": 8,
+     "cost_mean": 1.233
+    }
+   },
+   "fire_2_4": 2,
+   "n_2_4": 2,
+   "nonfire_3": 1,
+   "n_3": 1,
+   "session_cost_mean": 3.24
+  },
+  "b": {
+   "sessions": 1,
+   "positions": {
+    "1": {
+     "n": 1,
+     "fired": 1,
+     "router_skill": 1,
+     "sf_any": 1,
+     "calls": {
+      "profile_repo": 1,
+      "search_skills": 1,
+      "resolve_and_load": 1
+     },
+     "loaded_any": 1,
+     "loaded": {
+      "web-design": 1
+     },
+     "mention_earlier_without_load": 0,
+     "turns_med": 13,
+     "cost_mean": 0.363
+    },
+    "2": {
+     "n": 1,
+     "fired": 1,
+     "router_skill": 1,
+     "sf_any": 1,
+     "calls": {
+      "search_skills": 1,
+      "resolve_and_load": 1
+     },
+     "loaded_any": 1,
+     "loaded": {
+      "m06-error-handling": 1,
+      "rust-testing": 1
+     },
+     "mention_earlier_without_load": 0,
+     "turns_med": 11,
+     "cost_mean": 0.736
+    },
+    "3": {
+     "n": 1,
+     "fired": 0,
+     "router_skill": 0,
+     "sf_any": 0,
+     "calls": {},
+     "loaded_any": 0,
+     "loaded": {},
+     "mention_earlier_without_load": 0,
+     "turns_med": 4,
+     "cost_mean": 0.813
+    },
+    "4": {
+     "n": 1,
+     "fired": 1,
+     "router_skill": 1,
+     "sf_any": 1,
+     "calls": {
+      "search_skills": 1,
+      "resolve_and_load": 1
+     },
+     "loaded_any": 1,
+     "loaded": {
+      "python-testing": 1
+     },
+     "mention_earlier_without_load": 0,
+     "turns_med": 13,
+     "cost_mean": 1.17
+    }
+   },
+   "fire_2_4": 2,
+   "n_2_4": 2,
+   "nonfire_3": 1,
+   "n_3": 1,
+   "session_cost_mean": 3.081
+  }
+ },
+ "qualifying": [],
+ "winner": null
+}

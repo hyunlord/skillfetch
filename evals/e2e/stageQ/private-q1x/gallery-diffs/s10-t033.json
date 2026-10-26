@@ -1,0 +1,20 @@
+{
+ "verdict": "차이 없음",
+ "lines": [
+  {
+   "text": "여섯 결과 모두 체크를 통과했고 p2는 모두 5점이다. 끔 m3만 대상을 http(s)로 제한해 mailto 링크가 버려진다는 이유로 p1 4점이다.",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "off m3",
+     "quote": "restricts targets to http(s) before the allowlist, so wrapped mailto: links the allowlist permits are still dropped"
+    },
+    {
+     "src": "p2",
+     "run": "on m2",
+     "quote": "Smallest diff, correct unwrap and allowlist, tests"
+    }
+   ]
+  }
+ ]
+}

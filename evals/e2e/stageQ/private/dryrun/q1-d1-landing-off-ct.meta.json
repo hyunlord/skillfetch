@@ -1,0 +1,108 @@
+{
+ "job": "q1:d1-landing:off",
+ "tag": "ct",
+ "kind": "q1",
+ "task": "d1-landing",
+ "branch": "s6b-a",
+ "mcp": "off",
+ "session_dir": "<worktrees>/sq/374c854fe09b",
+ "side_dir": "<worktrees>/sq/7a1ed73b9690",
+ "canary": null,
+ "clone": {
+  "refs": [
+   "refs/heads/main"
+  ],
+  "head": "76de3ce276127ed28b66d71c19c0d1e3fc9e6f71",
+  "router": false,
+  "status": "",
+  "unreachable": 0
+ },
+ "prep_s": 2.2,
+ "steps": [
+  {
+   "k": 1,
+   "cmd": [
+    "claude",
+    "-p",
+    "이 앱의 제품 랜딩 페이지를 신규 라우트 /landing에 처음부터 만들어줘 — 히어로, 기능 3개, 가격, CTA 포함",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--include-hook-events",
+    "--max-turns",
+    "40",
+    "--allowedTools",
+    "Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*",
+    "--setting-sources",
+    "project",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "<e2e>/stageQ-private/dryrun/q1-d1-landing-off-ct.mcp.json"
+   ]
+  }
+ ],
+ "check": {
+  "task_id": "d1-landing",
+  "pass": false,
+  "items": [
+   {
+    "name": "npm run type-check",
+    "pass": true,
+    "detail": "rc=0"
+   },
+   {
+    "name": "npx next build",
+    "pass": true,
+    "detail": "rc=0"
+   },
+   {
+    "name": "screenshot screens /landing",
+    "pass": true,
+    "detail": "rc=0"
+   },
+   {
+    "name": "screens /landing: status 200, no page_errors",
+    "pass": false,
+    "detail": "status=404 page_errors=[] final_url=http://127.0.0.1:4100/landing"
+   },
+   {
+    "name": "screenshot screens-375 /landing",
+    "pass": true,
+    "detail": "rc=0"
+   },
+   {
+    "name": "screens-375 /landing: status 200, no page_errors",
+    "pass": false,
+    "detail": "status=404 page_errors=[] final_url=http://127.0.0.1:4100/landing"
+   },
+   {
+    "name": "visual: landing page (hero, features, CTA[, pricing]); AI-look checklist",
+    "pass": null,
+    "detail": "blind judging"
+   }
+  ],
+  "visual": [
+   "<e2e>/stageQ-private/dryrun/q1-d1-landing-off-ct.check/screens/landing.png",
+   "<e2e>/stageQ-private/dryrun/q1-d1-landing-off-ct.check/screens-375/landing.png"
+  ],
+  "info": {},
+  "duration_s": 11.4,
+  "worktree": "<worktrees>/sq/374c854fe09b",
+  "base": "76de3ce276127ed28b66d71c19c0d1e3fc9e6f71",
+  "worktree_restored": [],
+  "git_status_unchanged": true,
+  "env_noise_removed": [],
+  "diff": {
+   "files": [],
+   "added": 0,
+   "deleted": 0
+  },
+  "graft_removed": []
+ },
+ "named": null,
+ "harness_fail": false,
+ "no_result": false,
+ "cost_usd": 0,
+ "leftover_procs": [],
+ "index_ok_after": true
+}

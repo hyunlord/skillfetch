@@ -1,0 +1,56 @@
+{
+  "task_id": "d2-redesign",
+  "pass": true,
+  "items": [
+    {
+      "name": "npm run type-check",
+      "pass": true,
+      "detail": "rc=0"
+    },
+    {
+      "name": "npx next build",
+      "pass": true,
+      "detail": "rc=0"
+    },
+    {
+      "name": "screenshot screens /users",
+      "pass": true,
+      "detail": "rc=0"
+    },
+    {
+      "name": "screens /users: status 200, no page_errors",
+      "pass": true,
+      "detail": "status=200 page_errors=[] final_url=http://127.0.0.1:4100/users"
+    },
+    {
+      "name": "screenshot screens-375 /users",
+      "pass": true,
+      "detail": "rc=0"
+    },
+    {
+      "name": "screens-375 /users: status 200, no page_errors",
+      "pass": true,
+      "detail": "status=200 page_errors=[] final_url=http://127.0.0.1:4100/users"
+    },
+    {
+      "name": "visual: landing page (hero, features, CTA[, pricing]); AI-look checklist",
+      "pass": null,
+      "detail": "blind judging"
+    },
+    {
+      "name": "/users links every sample user to /users/[id] (prerendered HTML)",
+      "pass": true,
+      "detail": "missing ids=[]"
+    }
+  ],
+  "visual": [
+    "<e2e>/stageQ1x-private/dryrun/q1-d2-redesign-on-ct.check/screens/users.png",
+    "<e2e>/stageQ1x-private/dryrun/q1-d2-redesign-on-ct.check/screens-375/users.png"
+  ],
+  "info": {},
+  "duration_s": 36.4,
+  "worktree": "<worktrees>/sq/47563216a260",
+  "base": "49c722a491199c12a07e525a17af56b2bfe25e4d",
+  "worktree_restored": [],
+  "git_status_unchanged": true
+}

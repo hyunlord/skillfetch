@@ -1,0 +1,96 @@
+{
+ "job": "q6:s2-api",
+ "tag": "ct",
+ "kind": "q6",
+ "task": "s2-api",
+ "branch": "s11-r",
+ "mcp": "blocked",
+ "session_dir": "<worktrees>/sq/f5ed1a5f3a64",
+ "side_dir": "<worktrees>/sq/d84288c7d30e",
+ "canary": null,
+ "clone": {
+  "refs": [
+   "refs/heads/main"
+  ],
+  "head": "f18899f2b1a54de490241c9b4eac6b51f72e46a3",
+  "router": true,
+  "status": "",
+  "unreachable": 0
+ },
+ "prep_s": 0.1,
+ "steps": [
+  {
+   "k": 1,
+   "cmd": [
+    "claude",
+    "-p",
+    "북마크를 저장하는 REST API를 FastAPI로 설계하고 구현해줘. 스키마, 에러 처리, 테스트까지 포함…",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--include-hook-events",
+    "--max-turns",
+    "40",
+    "--allowedTools",
+    "Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*",
+    "--setting-sources",
+    "project",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "<e2e>/stageQ-private/dryrun/q6-s2-api-ct.mcp.json"
+   ]
+  }
+ ],
+ "check": {
+  "task_id": "s2-api",
+  "pass": false,
+  "items": [
+   {
+    "name": "session's tests run and pass",
+    "pass": false,
+    "detail": "{\"tests\": 0, \"failures\": 0, \"errors\": 0, \"skipped\": 0, \"passed\": 0}"
+   },
+   {
+    "name": "contract script 0/27",
+    "pass": false,
+    "detail": "import app.main:app; import app.main:app"
+   }
+  ],
+  "metrics": {
+   "junit": {
+    "tests": 0,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 0
+   },
+   "contract": [
+    {
+     "name": "import app.main:app",
+     "pass": false,
+     "detail": "Traceback (most recent call last):\n  File \"<e2e>/stage2/checks/api_contract.py\", line 37, in <module>\n    from app.main import app\nModuleNotFoundError: No module named 'app.main'\n"
+    },
+    {
+     "name": "import app.main:app",
+     "pass": false,
+     "detail": "Traceback (most recent call last):\n  File \"<e2e>/stage2/checks/api_contract.py\", line 37, in <module>\n    from app.main import app\nModuleNotFoundError: No module named 'app.main'\n"
+    }
+   ],
+   "contract_pass": 0,
+   "contract_total": 27
+  },
+  "env_noise_removed": [],
+  "diff": {
+   "files": [],
+   "added": 0,
+   "deleted": 0
+  },
+  "graft_removed": []
+ },
+ "named": null,
+ "harness_fail": false,
+ "no_result": false,
+ "cost_usd": 0,
+ "leftover_procs": [],
+ "index_ok_after": true
+}

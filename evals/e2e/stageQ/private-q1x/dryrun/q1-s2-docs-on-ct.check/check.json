@@ -1,0 +1,29 @@
+{
+ "task_id": "s2-docs",
+ "pass": false,
+ "items": [
+  {
+   "name": "README.md at the repo root",
+   "pass": false,
+   "detail": "0"
+  },
+  {
+   "name": "npm scripts named in the docs exist in package.json",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "npm run build still passes",
+   "pass": true,
+   "detail": "rc=0"
+  }
+ ],
+ "metrics": {
+  "readme_words": 0,
+  "changed_files": [],
+  "doc_files": [],
+  "non_doc_changes": [],
+  "scripts_referenced": [],
+  "scripts_missing": []
+ }
+}

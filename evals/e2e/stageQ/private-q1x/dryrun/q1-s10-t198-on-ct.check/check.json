@@ -1,0 +1,21 @@
+{
+ "task": "t198",
+ "pass": false,
+ "items": [
+  {
+   "name": "build (package and tests)",
+   "pass": true,
+   "detail": "Building for debugging...\n[1\u2009/\u20095]\nBuild complete! (0.24\ucd08)\n"
+  },
+  {
+   "name": "existing tests (StoreTests)",
+   "pass": true,
+   "detail": "Tests.StoreTests testHabitStoreCheckIn]' started.\nTest Case '-[HabitTrackerTests.StoreTests testHabitStoreCheckIn]' passed (0.013 seconds).\nTest Case '-[HabitTrackerTests.StoreTests testStartupRuns]' started.\nTest Case '-[HabitTrackerTests.StoreTests testStartupRuns]' passed (0.002 seconds).\nTest Suite 'StoreTests' passed at 2026-10-26 22:01:50.804.\n\t Executed 3 tests, with 0 failures (0 unexpected) in 0.021 (0.022) seconds\nTest Suite 'HabitTrackerTests.xctest' passed at 2026-10-26 22:01:50.804.\n\t Executed 3 tests, with 0 failures (0 unexpected) in 0.021 (0.022) seconds\nTest Suite 'Selected tests' passed at 2026-10-26 22:01:50.804.\n\t Executed 3 tests, with 0 failures (0 unexpected) in 0.021 (0.024) seconds\nBuilding for debugging...\n[Planning deferred tasks]\n[1\u2009/\u20095]\nBuild complete! (0.63\ucd08)\n"
+  },
+  {
+   "name": "migration: habits, check-ins, streaks copied and saved; runs once; done flag in UserDefaults; empty store marked done",
+   "pass": false,
+   "detail": "failed: ['testCopiesHabitsCheckInsAndStreaks', 'testDoneFlagInUserDefaultsStopsRerun', 'testEmptyLegacyStoreIsMarkedDone', 'testSecondLaunchDoesNotDuplicate']"
+  }
+ ]
+}

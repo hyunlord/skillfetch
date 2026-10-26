@@ -1,0 +1,113 @@
+{
+ "queries": {
+  "q1-d1-landing": [
+   "Product landing page with hero, three features, pricing and call-to-action sections.",
+   "New UI build from scratch: design a polished, responsive layout with a clear visual hierarchy.",
+   "Web frontend of the existing app, new route `/landing`.",
+   "이 앱의 제품 랜딩 페이지를 신규 라우트 /landing에 처음부터 만들어줘 — 히어로, 기능 3개, 가격, CTA 포함"
+  ],
+  "q1-d4-email": [
+   "Branded welcome email for new account sign-up.",
+   "Redesign: keep the existing props unchanged and make the layout render reliably in mobile email clients.",
+   "React Email (TSX), `packages/react-email/emails/new_account.tsx`.",
+   "`packages/react-email/emails/new_account.tsx` 신규 가입 환영 이메일을 다시 디자인해줘 — 브랜드 느낌이 나고 모바일 메일 앱에서도 깨지지 않게, 기존 props는 그대로"
+  ],
+  "q1-s10-t016": [
+   "Chat room message history replay of the last 50 messages on join",
+   "Feature work: keep a bounded per-room VecDeque ring buffer and replay it safely under concurrency",
+   "Rust tokio async server, `src/room.rs`",
+   "tokio 기반 채팅 서버(src/room.rs)에 방 입장 시 최근 메시지 50개를 다시 보내주는 history replay 기능 추가해줘. 메모리는 방마다 VecDeque로 링버퍼처럼 관리하면 될 것 같아."
+  ],
+  "q1-s2-api": [
+   "Bookmarks REST API with create, list by tag with pagination, get, patch and delete, unique URLs and SQLite storage.",
+   "New API design and implementation: define schemas and validation, map errors to REST status codes (201, 204, 404, 409, 422), and cover it with tests.",
+   "Python FastAPI with SQLite, `app/main.py`, database path from the `BOOKMARKS_DB` env var.",
+   "북마크를 저장하는 REST API를 FastAPI로 설계하고 구현해줘. 스키마, 에러 처리, 테스트까지 포함해서.\n- 앱은 `app/main.py`의 `app`\n- 저장은 SQLite, 파일 경로는 환경변수 `BOOKMARKS_DB` (없으면 `bookmarks.db`)\n- 북마크: url(필수, http/https만), title(필수), tags(문자열 목록), created_at\n- 엔드포인트: `POST /bookmarks`, `GET /bookmarks` (태그 필터 `?tag=`, 페이지네이션 `?limit=&offset=`), `GET /bookmarks/{id}`, `PATCH /bookmarks/{id}`, `DELETE /bookmarks/{id}`\n- 같은 url은 두 번 저장할 수 없음\n- 상태 코드는 REST 관례대로 (생성 201, 삭제 204, 없음 404, 중복 409, 검증 실패 422)"
+  ],
+  "q1-s2-data": [
+   "Orders CSV data cleaning with a summary report.",
+   "Data cleaning script: profile the data first, then handle missing values and inconsistent formats explicitly.",
+   "Python run with uv, `scripts/clean_orders.py`, input `data/orders.csv`, output to `out/`.",
+   "`data/orders.csv`가 지저분해 (결측값, 형식 불일치 등). 이걸 정리해서 깨끗한 CSV를 만들고 요약 리포트를 내는 Python 스크립트를 써줘. 스크립트는 `scripts/clean_orders.py`이고, `uv run python scripts/clean_orders.py`로 실행하면 결과를 `out/`에 쓰게 해줘."
+  ],
+  "q1-s11-t266": [
+   "Offload CPU-bound image resizing from async media handlers and cap concurrent resizes",
+   "Performance fix: move blocking work to spawn_blocking and bound concurrency with a semaphore",
+   "Rust axum, tokio, image crate, `routes/media.rs`",
+   "`routes/media.rs`에서 `image` crate로 하는 리사이즈를 axum async 핸들러 안에서 그냥 돌리고 있어서, 동시 요청이 20개만 넘어가도 다른 CMS API까지 전부 느려져요. `spawn_blocking`으로 빼고 `Semaphore`로 동시 처리 수 제한도 걸어주세요."
+  ],
+  "q2-task1": [
+   "Testimonials section with three customer quotes, names and roles on the landing page, placed between features and pricing.",
+   "UI addition: match the existing visual style, using the user's local canary skill.",
+   "Static HTML/CSS, `web/index.html` and `web/styles.css`.",
+   "Add a testimonials section to the landing page in `web/` (`web/index.html`, `web/styles.css`), between the features and the pricing sections. Three short customer quotes with name and role; match the existing visual style. For this task, use my local skill at the canary skill folder."
+  ],
+  "q2-task2": [
+   "Duration string parser for formats like 1h30m, 45s, 2h and 90m, returning std::time::Duration or a ParseDurationError.",
+   "New library function: define the error type, then write unit tests for valid and invalid inputs.",
+   "Rust crate in `rust/`, new `src/duration.rs`, exported from `lib.rs`.",
+   "In `rust/`, add a new module `src/duration.rs` with `pub fn parse_duration(s: &str) -> Result<std::time::Duration, ParseDurationError>` that accepts strings like `1h30m`, `45s`, `2h` and `90m`, export it from `lib.rs`, and add unit tests for valid and invalid inputs."
+  ],
+  "q2-task3": [
+   "Fix the spelling typo \"recieve\" in the README documentation.",
+   "Trivial edit: minimal diff.",
+   "Markdown, top-level `README.md`.",
+   "Fix the typo \"recieve\" in the top-level README.md."
+  ],
+  "q2-task4": [
+   "Inventory JSON to CSV export with sku, name, quantity and unit_price columns.",
+   "New CLI script: take input and output paths as arguments and add a test.",
+   "Python, `py/tools/export_csv.py`, test under `py/tests/`, input format of `py/inventory/data/items.json`.",
+   "Add a script `py/tools/export_csv.py` that reads the inventory JSON file (same format as `py/inventory/data/items.json`) and writes a CSV with the columns sku, name, quantity, unit_price. Take the input and output paths as command-line arguments, and add a test under `py/tests/`."
+  ],
+  "q5-T1": [
+   "Default chat server address changed from 127.0.0.1:7000 to 127.0.0.1:7100.",
+   "Config tweak: minimal diff.",
+   "Rust, `src/main.rs`.",
+   "Change the default chat address in `src/main.rs` from `127.0.0.1:7000` to `127.0.0.1:7100`."
+  ],
+  "q5-T2": [
+   "Package version bump from 0.1.0 to 0.1.1.",
+   "Release metadata edit: minimal diff.",
+   "Python packaging, `pyproject.toml`.",
+   "Bump the version in `pyproject.toml` from 0.1.0 to 0.1.1."
+  ],
+  "q5-T3": [
+   "Default listen address of the tracker-ingest service changed from :8081 to :8082.",
+   "Config tweak: minimal diff.",
+   "tracker-ingest service config or entry point (stack not specified).",
+   "Change the default listen address of tracker-ingest from `:8081` to `:8082`."
+  ],
+  "q5-T4": [
+   "Home page title changed to \"Home | Example App\".",
+   "Copy change: minimal diff.",
+   "Next.js with TypeScript, home page component.",
+   "Change the page title on the home page from \"Home | Next.js + TypeScript Example\" to \"Home | Example App\"."
+  ],
+  "q5-T5": [
+   "Rename the payout reconciliation constant REASON_UNKNOWN to REASON_UNKNOWN_PAYOUT.",
+   "Refactor rename: update every reference with a minimal diff.",
+   "Python, `scripts/reconcile_payouts.py`.",
+   "Rename the constant `REASON_UNKNOWN` to `REASON_UNKNOWN_PAYOUT` in `scripts/reconcile_payouts.py`."
+  ],
+  "q5-named-s10-t016": [
+   "Chat room history replay that resends the last 50 messages when a user joins, using a per-room VecDeque ring buffer.",
+   "Feature addition: implement the bounded buffer, then add tests with the rust-testing skill.",
+   "Rust with tokio async, `src/room.rs`.",
+   "tokio 기반 채팅 서버(src/room.rs)에 방 입장 시 최근 메시지 50개를 다시 보내주는 history replay 기능 추가해줘. 메모리는 방마다 VecDeque로 링버퍼처럼 관리하면 될 것 같아.\n\nUse the rust-testing skill for the tests."
+  ],
+  "q5-named-d1-landing": [
+   "Product landing page with hero, three features, pricing and call-to-action sections.",
+   "New UI build from scratch using the frontend-design skill: a polished, responsive layout.",
+   "Web frontend of the existing app, new route `/landing`.",
+   "이 앱의 제품 랜딩 페이지를 신규 라우트 /landing에 처음부터 만들어줘 — 히어로, 기능 3개, 가격, CTA 포함\n\nUse the frontend-design skill for this."
+  ],
+  "q5-named-s2-api": [
+   "Bookmarks REST API with create, list by tag with pagination, get, patch and delete, unique URLs and SQLite storage.",
+   "New API design and implementation using the fastapi-patterns skill: schemas, validation, REST status codes (201, 204, 404, 409, 422) and tests.",
+   "Python FastAPI with SQLite, `app/main.py`, database path from the `BOOKMARKS_DB` env var.",
+   "북마크를 저장하는 REST API를 FastAPI로 설계하고 구현해줘. 스키마, 에러 처리, 테스트까지 포함해서.\n- 앱은 `app/main.py`의 `app`\n- 저장은 SQLite, 파일 경로는 환경변수 `BOOKMARKS_DB` (없으면 `bookmarks.db`)\n- 북마크: url(필수, http/https만), title(필수), tags(문자열 목록), created_at\n- 엔드포인트: `POST /bookmarks`, `GET /bookmarks` (태그 필터 `?tag=`, 페이지네이션 `?limit=&offset=`), `GET /bookmarks/{id}`, `PATCH /bookmarks/{id}`, `DELETE /bookmarks/{id}`\n- 같은 url은 두 번 저장할 수 없음\n- 상태 코드는 REST 관례대로 (생성 201, 삭제 204, 없음 404, 중복 409, 검증 실패 422)\n\nUse the fastapi-patterns skill for this."
+  ]
+ },
+ "cost_usd": 0.097948
+}

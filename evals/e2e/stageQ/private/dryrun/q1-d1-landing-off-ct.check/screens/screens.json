@@ -1,0 +1,46 @@
+{
+  "kind": "nextjs",
+  "worktree": "<worktrees>/sq/374c854fe09b",
+  "mode": "build",
+  "routes": [
+    "/landing"
+  ],
+  "git_head": "76de3ce276127ed28b66d71c19c0d1e3fc9e6f71",
+  "git_status": [],
+  "started_at": "2026-10-26T16:41:06+0900",
+  "ports": {
+    "web": 4100
+  },
+  "build": {
+    "rc": 0,
+    "s": 1.5
+  },
+  "ready_s": 0.5,
+  "base_url": "http://127.0.0.1:4100",
+  "stop_notes": [],
+  "worktree_restored": [],
+  "finished_at": "2026-10-26T16:41:10+0900",
+  "screens": [
+    {
+      "route": "/landing",
+      "url": "http://127.0.0.1:4100/landing",
+      "file": "landing.png",
+      "status": 404,
+      "final_url": "http://127.0.0.1:4100/landing",
+      "title": "404: This page could not be found",
+      "html_lang": null,
+      "text": "404\nThis page could not be found.",
+      "links": [],
+      "console_errors": [
+        "Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "page_errors": [],
+      "http_errors": [
+        {
+          "url": "http://127.0.0.1:4100/landing",
+          "status": 404
+        }
+      ]
+    }
+  ]
+}

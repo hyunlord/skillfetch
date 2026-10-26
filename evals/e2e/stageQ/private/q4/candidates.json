@@ -1,0 +1,471 @@
+{
+ "per_task": {
+  "q1-d1-landing": {
+   "top10": [
+    "uasl/web-prototype@9fcfd712fe7c",
+    "uasl/imagegen-frontend-web@3c09b1b364ef",
+    "uasl/gpt-tasteskill@134558e228c5",
+    "uasl/frontend-design-principles@e9b2a10a43d1",
+    "uasl/frontend-design@5da82907743d",
+    "uasl/impeccable-frontend-design@deeb3fdb9086",
+    "uasl/web-design-builder@61ee1c248717",
+    "uasl/landing-page@455a3c3ba6f7",
+    "uasl/copywriting@67282b309ff8",
+    "uasl/email-marketing@a37255743f2c"
+   ],
+   "loaded_before": [
+    "anthropics-skills/frontend-design@0a5ff23f1022",
+    "uasl/copywriting@67282b309ff8",
+    "uasl/next-best-practices@ee058f89acea"
+   ]
+  },
+  "q1-d4-email": {
+   "top10": [
+    "uasl/hunter-automation@16ca2f412367",
+    "uasl/email-marketing@a37255743f2c",
+    "affaan-m-ecc/mailtrap-email-integration@e2628fee38fc",
+    "uasl/connect@77e02b4574f6",
+    "affaan-m-ecc/email-ops@acdcad5b6ac0",
+    "uasl/vercel-composition-patterns@a6f8be32b197",
+    "uasl/mailerlite-automation@45ce991e9569",
+    "affaan-m-ecc/investor-outreach@66fdd54697d0",
+    "uasl/react-patterns@73d1ecc06997",
+    "uasl/investor-outreach@fedb2eb4a89c"
+   ],
+   "loaded_before": [
+    "anthropics-skills/frontend-design@0a5ff23f1022",
+    "uasl/email-marketing@a37255743f2c",
+    "uasl/frontend-design@5da82907743d",
+    "uasl/redesign-skill@2e4f7f16e367"
+   ]
+  },
+  "q1-s10-t016": {
+   "top10": [
+    "uasl/webex-automation@7afdcc0f0d94",
+    "ahmed3elshaer-everything-claude-code-mobile/room-patterns@84f8b0841b0a",
+    "affaan-m-ecc/android-clean-architecture@e7e455dec364",
+    "actionbook-rust-skills/m07-concurrency@0686c877c8a6",
+    "uasl/cairo-vulnerability-scanner@ec05b2fd95f9",
+    "affaan-m-ecc/rust-patterns@f0961b5637b0",
+    "uasl/trace@5c68ce48e264",
+    "uasl/ton-vulnerability-scanner@377d84553d54",
+    "affaan-m-ecc/recursive-decision-ledger@276d8ad51e02",
+    "actionbook-rust-skills/rust-learner@2a967e43636a"
+   ],
+   "loaded_before": [
+    "actionbook-rust-skills/m07-concurrency@0686c877c8a6",
+    "affaan-m-ecc/rust-patterns@f0961b5637b0",
+    "affaan-m-ecc/rust-testing@68e797f602f9",
+    "uasl/coding-guidelines@0ec7e45f92f2"
+   ]
+  },
+  "q1-s2-api": {
+   "top10": [
+    "uasl/fastapi-templates@effcd0de0b4c",
+    "uasl/openapi-spec-generation@2d2c7a93b8f2",
+    "affaan-m-ecc/api-design@2c61753734ba",
+    "uasl/api-design@bba608f8c974",
+    "affaan-m-ecc/kotlin-ktor-patterns@89a0ba343deb",
+    "rshankras-claude-code-apple-skills/networking-layer@9a10e0fab6f9",
+    "uasl/fastapi-endpoint@2a93d50c4970",
+    "ahmed3elshaer-everything-claude-code-mobile/room-patterns@84f8b0841b0a",
+    "affaan-m-ecc/backend-patterns@59af753c1b38",
+    "ahmed3elshaer-everything-claude-code-mobile/sqldelight-patterns@da2d7af1b6cd"
+   ],
+   "loaded_before": [
+    "affaan-m-ecc/api-design@2c61753734ba",
+    "affaan-m-ecc/fastapi-patterns@419da9966f07",
+    "uasl/api-design@bba608f8c974",
+    "uasl/fastapi-templates@effcd0de0b4c",
+    "uasl/python-error-handling@8dc34883a143"
+   ]
+  },
+  "q1-s2-data": {
+   "top10": [
+    "uasl/data-analyst-engine@79799e01e2dd",
+    "anthropics-skills/xlsx@5350d36b768c",
+    "rshankras-claude-code-apple-skills/data-export@385685877124",
+    "uasl/invoice-organizer@65f04d96d07a",
+    "uasl/n8n-code-python@ba1cd974d317",
+    "uasl/phantombuster-automation@4448a05bbdf0",
+    "uasl/python-performance-optimization@bf455fd100bf",
+    "uasl/postgresql-table-design@59d09e948243",
+    "affaan-m-ecc/cost-tracking@48cd3670e7ac",
+    "uasl/builder@8d7f0953ade3"
+   ],
+   "loaded_before": [
+    "uasl/data-analyst-engine@79799e01e2dd",
+    "uasl/python-error-handling@8dc34883a143"
+   ]
+  },
+  "q1-s11-t266": {
+   "top10": [
+    "actionbook-rust-skills/m07-concurrency@0686c877c8a6",
+    "actionbook-rust-skills/domain-web@e85236f514d2",
+    "actionbook-rust-skills/rust-router@4a05b7063eb2",
+    "uasl/async-python-patterns@957ebfe54aa7",
+    "affaan-m-ecc/rust-patterns@f0961b5637b0",
+    "uasl/fal-ai-media@1a7fc3310ea8",
+    "actionbook-rust-skills/rust-symbol-analyzer@c519d33f9d97",
+    "uasl/image-poster@57a9b39c0f2f",
+    "rshankras-claude-code-apple-skills/concurrency-patterns@1739fd5742ea",
+    "rshankras-claude-code-apple-skills/share-card@9cba2efcf948"
+   ],
+   "loaded_before": [
+    "actionbook-rust-skills/domain-web@e85236f514d2",
+    "actionbook-rust-skills/m07-concurrency@0686c877c8a6"
+   ]
+  },
+  "q2-task1": {
+   "top10": [
+    "uasl/web-prototype@9fcfd712fe7c",
+    "uasl/frontend-design@5da82907743d",
+    "uasl/landing-page@455a3c3ba6f7",
+    "uasl/taste-skill@57790089504e",
+    "uasl/image-to-code-skill@4f1a4537825d",
+    "affaan-m-ecc/design-system@67ad93eebaf7",
+    "uasl/magazine-poster@3d9539d9af9e",
+    "uasl/pricing-page@8b72ba4d0477",
+    "uasl/html-ppt-taste-brutalist@d8696297ed9a",
+    "anthropics-skills/web-artifacts-builder@9c350d2f5f13"
+   ],
+   "loaded_before": []
+  },
+  "q2-task2": {
+   "top10": [
+    "actionbook-rust-skills/rust-router@4a05b7063eb2",
+    "actionbook-rust-skills/rust-skill-creator@74c31cabe0b5",
+    "actionbook-rust-skills/rust-learner@2a967e43636a",
+    "affaan-m-ecc/rust-testing@68e797f602f9",
+    "actionbook-rust-skills/domain-embedded@30ab1d9f66a4",
+    "actionbook-rust-skills/m06-error-handling@76545e391a67",
+    "affaan-m-ecc/rust-patterns@f0961b5637b0",
+    "actionbook-rust-skills/domain-iot@91e3a350989f",
+    "uasl/harness-writing@b71c9af45925",
+    "actionbook-rust-skills/m05-type-driven@206212865a2c"
+   ],
+   "loaded_before": []
+  },
+  "q2-task3": {
+   "top10": [
+    "affaan-m-ecc/living-docs-governance@aba321acc34f",
+    "uasl/quill@336ba74b0e79",
+    "uasl/printing-press-polish@b4aef54a7866",
+    "affaan-m-ecc/token-card@66d00e0a6765",
+    "uasl/scaffold-exercises@95d0d91c73af",
+    "affaan-m-ecc/architecture-decision-records@233b5a169011",
+    "affaan-m-ecc/opensource-pipeline@cabb4ac237d2",
+    "affaan-m-ecc/context-and-decisions@4cfcc77eb45e",
+    "affaan-m-ecc/inherit-legacy-style@63967b734112",
+    "uasl/layered-reasoning@2cbc2f1f1313"
+   ],
+   "loaded_before": []
+  },
+  "q2-task4": {
+   "top10": [
+    "anthropics-skills/xlsx@5350d36b768c",
+    "uasl/typescript-unit-testing@6fb3561edcb3",
+    "rshankras-claude-code-apple-skills/data-export@385685877124",
+    "affaan-m-ecc/test-collaboration@747081661241",
+    "uasl/python-error-handling@8dc34883a143",
+    "affaan-m-ecc/python-testing@b62ce0637eb1",
+    "uasl/unit-testing@6c5fbb821103",
+    "ahmed3elshaer-everything-claude-code-mobile/ios-testing@fdec9c2c0ff8",
+    "affaan-m-ecc/tinystruct-patterns@5b08a71b403d",
+    "uasl/invoice-organizer@65f04d96d07a"
+   ],
+   "loaded_before": []
+  },
+  "q5-T1": {
+   "top10": [
+    "actionbook-rust-skills/rust-learner@2a967e43636a",
+    "affaan-m-ecc/swift-concurrency-6-2@b5a384f57738",
+    "uasl/guardian@27ad146feaed",
+    "uasl/cavecrew@6b0708483bbb",
+    "rshankras-claude-code-apple-skills/swift-concurrency-updates@283099a7a3b9",
+    "actionbook-rust-skills/rust-symbol-analyzer@c519d33f9d97",
+    "affaan-m-ecc/rails-patterns@69affc69f47b",
+    "actionbook-rust-skills/domain-ml@272bdcdb41c6",
+    "actionbook-rust-skills/core-dynamic-skills@63ab438f5c03",
+    "affaan-m-ecc/api-connector-builder@33cbfbaf46ae"
+   ],
+   "loaded_before": [
+    "actionbook-rust-skills/m07-concurrency@0686c877c8a6",
+    "affaan-m-ecc/rust-patterns@f0961b5637b0",
+    "affaan-m-ecc/rust-testing@68e797f602f9",
+    "uasl/coding-guidelines@0ec7e45f92f2"
+   ]
+  },
+  "q5-T2": {
+   "top10": [
+    "affaan-m-ecc/python-patterns@ee10659bf72b",
+    "ahmed3elshaer-everything-claude-code-mobile/gradle-patterns@16795bbadcc9",
+    "affaan-m-ecc/flox-environments@c9fa4700be34",
+    "uasl/contentful-automation@3591ba90ee0a",
+    "uasl/skill-share@1399c8172d6b",
+    "uasl/openapi-spec-generation@2d2c7a93b8f2",
+    "affaan-m-ecc/nasiko-control-plane@6f8c1ab28992",
+    "affaan-m-ecc/python-testing@b62ce0637eb1",
+    "actionbook-rust-skills/m11-ecosystem@ec78464294e9",
+    "actionbook-rust-skills/rust-learner@2a967e43636a"
+   ],
+   "loaded_before": [
+    "affaan-m-ecc/api-design@2c61753734ba",
+    "affaan-m-ecc/fastapi-patterns@419da9966f07",
+    "uasl/api-design@bba608f8c974",
+    "uasl/fastapi-templates@effcd0de0b4c",
+    "uasl/python-error-handling@8dc34883a143"
+   ]
+  },
+  "q5-T3": {
+   "top10": [
+    "uasl/team-okrs@7a95ee8c1302",
+    "uasl/to-prd@8ac169d69939",
+    "uasl/setup-matt-pocock-skills@d52ac42900e6",
+    "uasl/to-issues@fe551bc54a09",
+    "uasl/gamified-app@89f56442216c",
+    "affaan-m-ecc/knowledge-ops@c8c73f075209",
+    "uasl/guardian@27ad146feaed",
+    "affaan-m-ecc/cisco-ios-patterns@a89a1af2d0b5",
+    "affaan-m-ecc/netmiko-ssh-automation@3e574cdf6d88",
+    "actionbook-rust-skills/domain-cloud-native@078769fd2fa0"
+   ],
+   "loaded_before": []
+  },
+  "q5-T4": {
+   "top10": [
+    "affaan-m-ecc/project-guidelines-example@62db97aa195c",
+    "rshankras-claude-code-apple-skills/widget-generator@f273d14c59e0",
+    "uasl/meeting-notes@da1c35784ab9",
+    "affaan-m-ecc/homelab-network-readiness@0ac17c317514",
+    "affaan-m-ecc/motion-patterns@d31f83e96abd",
+    "affaan-m-ecc/homelab-network-setup@7e5581c80d71",
+    "uasl/documentation-lookup@dee6d7478eab",
+    "affaan-m-ecc/homelab-vlan-segmentation@bdad846e97fa",
+    "uasl/scaffold-nextjs@3d1152f5d9d0",
+    "uasl/next-upgrade@df465f7770a5"
+   ],
+   "loaded_before": []
+  },
+  "q5-T5": {
+   "top10": [
+    "uasl/contentful-automation@3591ba90ee0a",
+    "uasl/zen@f72229d0a781",
+    "rshankras-claude-code-apple-skills/tdd-refactor-guard@8dec1a504aae",
+    "uasl/migrate-to-shoehorn@50bfd668fa65",
+    "affaan-m-ecc/brand-discovery@1646daced2bc",
+    "uasl/scaffold-exercises@95d0d91c73af",
+    "uasl/schema@e6f260ce62e0",
+    "uasl/constant-time-testing@6bbb97cc6cc1",
+    "rshankras-claude-code-apple-skills/privacy-manifests@5000f9cfce0c",
+    "rshankras-claude-code-apple-skills/security@bf241b5549a7"
+   ],
+   "loaded_before": [
+    "uasl/anvil@3a36e8410205",
+    "uasl/verification-loop@39d9be23cf50"
+   ]
+  },
+  "q5-named-s10-t016": {
+   "top10": [
+    "affaan-m-ecc/rust-testing@68e797f602f9",
+    "actionbook-rust-skills/rust-skill-creator@74c31cabe0b5",
+    "actionbook-rust-skills/rust-router@4a05b7063eb2",
+    "ahmed3elshaer-everything-claude-code-mobile/room-patterns@84f8b0841b0a",
+    "uasl/radar@a47ea6fd5f95",
+    "uasl/webex-automation@7afdcc0f0d94",
+    "actionbook-rust-skills/m11-ecosystem@ec78464294e9",
+    "actionbook-rust-skills/rust-deps-visualizer@b977cba5ffb7",
+    "actionbook-rust-skills/domain-iot@91e3a350989f",
+    "actionbook-rust-skills/rust-learner@2a967e43636a"
+   ],
+   "loaded_before": [
+    "actionbook-rust-skills/m07-concurrency@0686c877c8a6",
+    "affaan-m-ecc/rust-patterns@f0961b5637b0",
+    "affaan-m-ecc/rust-testing@68e797f602f9",
+    "uasl/coding-guidelines@0ec7e45f92f2"
+   ]
+  },
+  "q5-named-d1-landing": {
+   "top10": [
+    "uasl/imagegen-frontend-web@3c09b1b364ef",
+    "uasl/impeccable-frontend-design@deeb3fdb9086",
+    "uasl/web-prototype@9fcfd712fe7c",
+    "uasl/web-prototype-taste-soft@7734ae078ad9",
+    "uasl/frontend-design-principles@e9b2a10a43d1",
+    "uasl/frontend-design@5da82907743d",
+    "uasl/web-design-builder@61ee1c248717",
+    "uasl/gpt-tasteskill@134558e228c5",
+    "uasl/landing-page@455a3c3ba6f7",
+    "uasl/image-to-code-skill@4f1a4537825d"
+   ],
+   "loaded_before": [
+    "anthropics-skills/frontend-design@0a5ff23f1022",
+    "uasl/copywriting@67282b309ff8",
+    "uasl/next-best-practices@ee058f89acea"
+   ]
+  },
+  "q5-named-s2-api": {
+   "top10": [
+    "uasl/fastapi-templates@effcd0de0b4c",
+    "uasl/openapi-spec-generation@2d2c7a93b8f2",
+    "affaan-m-ecc/api-design@2c61753734ba",
+    "affaan-m-ecc/fastapi-patterns@419da9966f07",
+    "uasl/api-design@bba608f8c974",
+    "affaan-m-ecc/project-guidelines-example@62db97aa195c",
+    "uasl/fastapi-endpoint@2a93d50c4970",
+    "affaan-m-ecc/kotlin-ktor-patterns@89a0ba343deb",
+    "affaan-m-ecc/backend-patterns@59af753c1b38",
+    "affaan-m-ecc/error-handling@f630539a5890"
+   ],
+   "loaded_before": [
+    "affaan-m-ecc/api-design@2c61753734ba",
+    "affaan-m-ecc/fastapi-patterns@419da9966f07",
+    "uasl/api-design@bba608f8c974",
+    "uasl/fastapi-templates@effcd0de0b4c",
+    "uasl/python-error-handling@8dc34883a143"
+   ]
+  }
+ },
+ "skills": [
+  "actionbook-rust-skills/core-dynamic-skills@63ab438f5c03",
+  "actionbook-rust-skills/domain-cloud-native@078769fd2fa0",
+  "actionbook-rust-skills/domain-embedded@30ab1d9f66a4",
+  "actionbook-rust-skills/domain-iot@91e3a350989f",
+  "actionbook-rust-skills/domain-ml@272bdcdb41c6",
+  "actionbook-rust-skills/domain-web@e85236f514d2",
+  "actionbook-rust-skills/m05-type-driven@206212865a2c",
+  "actionbook-rust-skills/m06-error-handling@76545e391a67",
+  "actionbook-rust-skills/m07-concurrency@0686c877c8a6",
+  "actionbook-rust-skills/m11-ecosystem@ec78464294e9",
+  "actionbook-rust-skills/rust-deps-visualizer@b977cba5ffb7",
+  "actionbook-rust-skills/rust-learner@2a967e43636a",
+  "actionbook-rust-skills/rust-router@4a05b7063eb2",
+  "actionbook-rust-skills/rust-skill-creator@74c31cabe0b5",
+  "actionbook-rust-skills/rust-symbol-analyzer@c519d33f9d97",
+  "affaan-m-ecc/android-clean-architecture@e7e455dec364",
+  "affaan-m-ecc/api-connector-builder@33cbfbaf46ae",
+  "affaan-m-ecc/api-design@2c61753734ba",
+  "affaan-m-ecc/architecture-decision-records@233b5a169011",
+  "affaan-m-ecc/backend-patterns@59af753c1b38",
+  "affaan-m-ecc/brand-discovery@1646daced2bc",
+  "affaan-m-ecc/cisco-ios-patterns@a89a1af2d0b5",
+  "affaan-m-ecc/context-and-decisions@4cfcc77eb45e",
+  "affaan-m-ecc/cost-tracking@48cd3670e7ac",
+  "affaan-m-ecc/design-system@67ad93eebaf7",
+  "affaan-m-ecc/email-ops@acdcad5b6ac0",
+  "affaan-m-ecc/error-handling@f630539a5890",
+  "affaan-m-ecc/fastapi-patterns@419da9966f07",
+  "affaan-m-ecc/flox-environments@c9fa4700be34",
+  "affaan-m-ecc/homelab-network-readiness@0ac17c317514",
+  "affaan-m-ecc/homelab-network-setup@7e5581c80d71",
+  "affaan-m-ecc/homelab-vlan-segmentation@bdad846e97fa",
+  "affaan-m-ecc/inherit-legacy-style@63967b734112",
+  "affaan-m-ecc/investor-outreach@66fdd54697d0",
+  "affaan-m-ecc/knowledge-ops@c8c73f075209",
+  "affaan-m-ecc/kotlin-ktor-patterns@89a0ba343deb",
+  "affaan-m-ecc/living-docs-governance@aba321acc34f",
+  "affaan-m-ecc/mailtrap-email-integration@e2628fee38fc",
+  "affaan-m-ecc/motion-patterns@d31f83e96abd",
+  "affaan-m-ecc/nasiko-control-plane@6f8c1ab28992",
+  "affaan-m-ecc/netmiko-ssh-automation@3e574cdf6d88",
+  "affaan-m-ecc/opensource-pipeline@cabb4ac237d2",
+  "affaan-m-ecc/project-guidelines-example@62db97aa195c",
+  "affaan-m-ecc/python-patterns@ee10659bf72b",
+  "affaan-m-ecc/python-testing@b62ce0637eb1",
+  "affaan-m-ecc/rails-patterns@69affc69f47b",
+  "affaan-m-ecc/recursive-decision-ledger@276d8ad51e02",
+  "affaan-m-ecc/rust-patterns@f0961b5637b0",
+  "affaan-m-ecc/rust-testing@68e797f602f9",
+  "affaan-m-ecc/swift-concurrency-6-2@b5a384f57738",
+  "affaan-m-ecc/test-collaboration@747081661241",
+  "affaan-m-ecc/tinystruct-patterns@5b08a71b403d",
+  "affaan-m-ecc/token-card@66d00e0a6765",
+  "ahmed3elshaer-everything-claude-code-mobile/gradle-patterns@16795bbadcc9",
+  "ahmed3elshaer-everything-claude-code-mobile/ios-testing@fdec9c2c0ff8",
+  "ahmed3elshaer-everything-claude-code-mobile/room-patterns@84f8b0841b0a",
+  "ahmed3elshaer-everything-claude-code-mobile/sqldelight-patterns@da2d7af1b6cd",
+  "anthropics-skills/frontend-design@0a5ff23f1022",
+  "anthropics-skills/web-artifacts-builder@9c350d2f5f13",
+  "anthropics-skills/xlsx@5350d36b768c",
+  "rshankras-claude-code-apple-skills/concurrency-patterns@1739fd5742ea",
+  "rshankras-claude-code-apple-skills/data-export@385685877124",
+  "rshankras-claude-code-apple-skills/networking-layer@9a10e0fab6f9",
+  "rshankras-claude-code-apple-skills/privacy-manifests@5000f9cfce0c",
+  "rshankras-claude-code-apple-skills/security@bf241b5549a7",
+  "rshankras-claude-code-apple-skills/share-card@9cba2efcf948",
+  "rshankras-claude-code-apple-skills/swift-concurrency-updates@283099a7a3b9",
+  "rshankras-claude-code-apple-skills/tdd-refactor-guard@8dec1a504aae",
+  "rshankras-claude-code-apple-skills/widget-generator@f273d14c59e0",
+  "uasl/anvil@3a36e8410205",
+  "uasl/api-design@bba608f8c974",
+  "uasl/async-python-patterns@957ebfe54aa7",
+  "uasl/builder@8d7f0953ade3",
+  "uasl/cairo-vulnerability-scanner@ec05b2fd95f9",
+  "uasl/cavecrew@6b0708483bbb",
+  "uasl/coding-guidelines@0ec7e45f92f2",
+  "uasl/connect@77e02b4574f6",
+  "uasl/constant-time-testing@6bbb97cc6cc1",
+  "uasl/contentful-automation@3591ba90ee0a",
+  "uasl/copywriting@67282b309ff8",
+  "uasl/data-analyst-engine@79799e01e2dd",
+  "uasl/documentation-lookup@dee6d7478eab",
+  "uasl/email-marketing@a37255743f2c",
+  "uasl/fal-ai-media@1a7fc3310ea8",
+  "uasl/fastapi-endpoint@2a93d50c4970",
+  "uasl/fastapi-templates@effcd0de0b4c",
+  "uasl/frontend-design-principles@e9b2a10a43d1",
+  "uasl/frontend-design@5da82907743d",
+  "uasl/gamified-app@89f56442216c",
+  "uasl/gpt-tasteskill@134558e228c5",
+  "uasl/guardian@27ad146feaed",
+  "uasl/harness-writing@b71c9af45925",
+  "uasl/html-ppt-taste-brutalist@d8696297ed9a",
+  "uasl/hunter-automation@16ca2f412367",
+  "uasl/image-poster@57a9b39c0f2f",
+  "uasl/image-to-code-skill@4f1a4537825d",
+  "uasl/imagegen-frontend-web@3c09b1b364ef",
+  "uasl/impeccable-frontend-design@deeb3fdb9086",
+  "uasl/investor-outreach@fedb2eb4a89c",
+  "uasl/invoice-organizer@65f04d96d07a",
+  "uasl/landing-page@455a3c3ba6f7",
+  "uasl/layered-reasoning@2cbc2f1f1313",
+  "uasl/magazine-poster@3d9539d9af9e",
+  "uasl/mailerlite-automation@45ce991e9569",
+  "uasl/meeting-notes@da1c35784ab9",
+  "uasl/migrate-to-shoehorn@50bfd668fa65",
+  "uasl/n8n-code-python@ba1cd974d317",
+  "uasl/next-best-practices@ee058f89acea",
+  "uasl/next-upgrade@df465f7770a5",
+  "uasl/openapi-spec-generation@2d2c7a93b8f2",
+  "uasl/phantombuster-automation@4448a05bbdf0",
+  "uasl/postgresql-table-design@59d09e948243",
+  "uasl/pricing-page@8b72ba4d0477",
+  "uasl/printing-press-polish@b4aef54a7866",
+  "uasl/python-error-handling@8dc34883a143",
+  "uasl/python-performance-optimization@bf455fd100bf",
+  "uasl/quill@336ba74b0e79",
+  "uasl/radar@a47ea6fd5f95",
+  "uasl/react-patterns@73d1ecc06997",
+  "uasl/redesign-skill@2e4f7f16e367",
+  "uasl/scaffold-exercises@95d0d91c73af",
+  "uasl/scaffold-nextjs@3d1152f5d9d0",
+  "uasl/schema@e6f260ce62e0",
+  "uasl/setup-matt-pocock-skills@d52ac42900e6",
+  "uasl/skill-share@1399c8172d6b",
+  "uasl/taste-skill@57790089504e",
+  "uasl/team-okrs@7a95ee8c1302",
+  "uasl/to-issues@fe551bc54a09",
+  "uasl/to-prd@8ac169d69939",
+  "uasl/ton-vulnerability-scanner@377d84553d54",
+  "uasl/trace@5c68ce48e264",
+  "uasl/typescript-unit-testing@6fb3561edcb3",
+  "uasl/unit-testing@6c5fbb821103",
+  "uasl/vercel-composition-patterns@a6f8be32b197",
+  "uasl/verification-loop@39d9be23cf50",
+  "uasl/web-design-builder@61ee1c248717",
+  "uasl/web-prototype-taste-soft@7734ae078ad9",
+  "uasl/web-prototype@9fcfd712fe7c",
+  "uasl/webex-automation@7afdcc0f0d94",
+  "uasl/zen@f72229d0a781"
+ ]
+}

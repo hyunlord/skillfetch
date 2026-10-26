@@ -1,0 +1,85 @@
+{
+ "job": "q1:s6b-t179:on",
+ "tag": "ct",
+ "kind": "q1",
+ "task": "s6b-t179",
+ "branch": "s11-r",
+ "mcp": "on",
+ "session_dir": "<worktrees>/sq/65932955c8bc",
+ "side_dir": "<worktrees>/sq/02f28dc8658d",
+ "canary": null,
+ "clone": {
+  "refs": [
+   "refs/heads/main"
+  ],
+  "head": "2717375aa25edd8cf6e10d829bc07bfe33b39983",
+  "router": true,
+  "status": "",
+  "unreachable": 0
+ },
+ "prep_s": 3.7,
+ "steps": [
+  {
+   "k": 1,
+   "cmd": [
+    "claude",
+    "-p",
+    "We have duplicate rows in the item table where the same owne…",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--include-hook-events",
+    "--max-turns",
+    "40",
+    "--allowedTools",
+    "Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*",
+    "--setting-sources",
+    "project",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "<e2e>/stageQ1x-private/dryrun/q1-s6b-t179-on-ct.mcp.json"
+   ]
+  }
+ ],
+ "check": {
+  "task_id": "s6b-t179",
+  "pass": false,
+  "items": [
+   {
+    "name": "backend/app/dedupe_items.py exists",
+    "pass": false,
+    "detail": ""
+   },
+   {
+    "name": "no new dependencies in backend/pyproject.toml",
+    "pass": true,
+    "detail": "added=[]"
+   },
+   {
+    "name": "backend tests (incl. new ones): >= 58 passed, 0 failed",
+    "pass": true,
+    "detail": "passed=58 failed=0 rc=0"
+   }
+  ],
+  "visual": [],
+  "info": {},
+  "duration_s": 5.6,
+  "worktree": "<worktrees>/sq/65932955c8bc",
+  "base": "2717375aa25edd8cf6e10d829bc07bfe33b39983",
+  "worktree_restored": [],
+  "git_status_unchanged": true,
+  "env_noise_removed": [],
+  "diff": {
+   "files": [],
+   "added": 0,
+   "deleted": 0
+  },
+  "graft_removed": []
+ },
+ "named": null,
+ "harness_fail": false,
+ "no_result": false,
+ "cost_usd": 0,
+ "leftover_procs": [],
+ "index_ok_after": true
+}

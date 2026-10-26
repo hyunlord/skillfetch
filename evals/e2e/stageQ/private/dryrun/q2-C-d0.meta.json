@@ -1,0 +1,114 @@
+{
+ "job": "q2:C",
+ "tag": "d0",
+ "kind": "q2",
+ "task": "sq-mono",
+ "branch": "sq-r",
+ "mcp": "on",
+ "session_dir": "<worktrees>/sq/31b810295410",
+ "side_dir": "<worktrees>/sq/7bf38e8356e0",
+ "canary": "<worktrees>/sq/7bf38e8356e0/canary",
+ "clone": {
+  "refs": [
+   "refs/heads/main"
+  ],
+  "head": "2d6acecde230438623a2c335dcee899f4623cc4f",
+  "router": true,
+  "status": "",
+  "unreachable": 0
+ },
+ "prep_s": 0.0,
+ "steps": [
+  {
+   "k": 1,
+   "cmd": [
+    "claude",
+    "-p",
+    "Add a testimonials section to the landing page in `web/` (`w…",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--include-hook-events",
+    "--max-turns",
+    "40",
+    "--allowedTools",
+    "Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*",
+    "--setting-sources",
+    "project",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "<e2e>/stageQ-private/dryrun/q2-C-d0.mcp.json"
+   ]
+  },
+  {
+   "k": 2,
+   "cmd": [
+    "claude",
+    "-p",
+    "In `rust/`, add a new module `src/duration.rs` with `pub fn …",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--include-hook-events",
+    "--max-turns",
+    "40",
+    "--allowedTools",
+    "Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*",
+    "--setting-sources",
+    "project",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "<e2e>/stageQ-private/dryrun/q2-C-d0.mcp.json"
+   ]
+  },
+  {
+   "k": 3,
+   "cmd": [
+    "claude",
+    "-p",
+    "Fix the typo \"recieve\" in the top-level README.md.",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--include-hook-events",
+    "--max-turns",
+    "40",
+    "--allowedTools",
+    "Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*",
+    "--setting-sources",
+    "project",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "<e2e>/stageQ-private/dryrun/q2-C-d0.mcp.json"
+   ]
+  },
+  {
+   "k": 4,
+   "cmd": [
+    "claude",
+    "-p",
+    "Add a script `py/tools/export_csv.py` that reads the invento…",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--include-hook-events",
+    "--max-turns",
+    "40",
+    "--allowedTools",
+    "Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*",
+    "--setting-sources",
+    "project",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "<e2e>/stageQ-private/dryrun/q2-C-d0.mcp.json"
+   ]
+  }
+ ],
+ "check": null,
+ "named": null,
+ "harness_fail": false,
+ "no_result": false,
+ "cost_usd": 0,
+ "leftover_procs": [],
+ "index_ok_after": true
+}

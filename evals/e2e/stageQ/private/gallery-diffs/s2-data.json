@@ -1,0 +1,50 @@
+{
+ "verdict": "차이 있음",
+ "lines": [
+  {
+   "text": "네 결과 모두 심어 둔 문제 10개를 다 처리했다.",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "off m1",
+     "quote": "All 10 problems handled"
+    },
+    {
+     "src": "p2",
+     "run": "on m1",
+     "quote": "Handles all 10 problems"
+    }
+   ]
+  },
+  {
+   "text": "보고서 범위는 켬 m1이 주문·수량·매출을 상태·범주·국가·제품·월별로 나눴고, 끔 m1은 매출만 냈다.",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "on m1",
+     "quote": "the report breaks down orders, units and revenue by status, category, country, product and month"
+    },
+    {
+     "src": "p2",
+     "run": "off m1",
+     "quote": "gives revenue only (no orders/units)"
+    }
+   ]
+  },
+  {
+   "text": "켬 m2는 대기·반품 주문을 포함한 매출 헤드라인을, 끔 m2는 수량이 잘못된 행을 정리본에 남긴 점을 지적받았다(둘 다 4점).",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "on m2",
+     "quote": "The headline \"booked revenue\" of 164k includes pending and returned orders, which is misleading."
+    },
+    {
+     "src": "p2",
+     "run": "off m2",
+     "quote": "Rows with invalid quantity stay in the \"clean\" CSV with null quantity"
+    }
+   ]
+  }
+ ]
+}

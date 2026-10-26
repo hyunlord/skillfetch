@@ -1,0 +1,40 @@
+{
+ "verdict": "차이 있음",
+ "lines": [
+  {
+   "text": "끔 m1은 id 없는 레거시 기록을 조용히 건너뛰었고, 끔 m3는 저장과 플래그 사이의 중단을 다루지 않았다.",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "off m1",
+     "quote": "it silently skips legacy records with no id and check-ins with no date"
+    },
+    {
+     "src": "p2",
+     "run": "off m3",
+     "quote": "there is no handling for a crash between the save and setting the flag"
+    }
+   ]
+  },
+  {
+   "text": "켬 m2는 중복 레거시 id까지 막아 두 판정자가 가장 견고하다고 적었다. 켬 m1은 플래그 유실 재실행 테스트를 넣었다. 켬 m3는 저장 뒤 개수 검증이 실제로 아무것도 확인하지 않는다는 지적(p1 4점)을 받았다.",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "on m2",
+     "quote": "also guards duplicate legacy ids against SwiftData unique upsert"
+    },
+    {
+     "src": "p1",
+     "run": "on m1",
+     "quote": "4 tests (incl. lost-flag rerun)"
+    },
+    {
+     "src": "p1",
+     "run": "on m3",
+     "quote": "the post-save count \"verification\" uses `>=` and checks nothing real"
+    }
+   ]
+  }
+ ]
+}

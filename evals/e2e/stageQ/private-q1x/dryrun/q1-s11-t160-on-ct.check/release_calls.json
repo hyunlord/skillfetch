@@ -1,0 +1,40 @@
+[
+ {
+  "tool": "go",
+  "argv": [
+   "vet",
+   "./..."
+  ],
+  "cwd": "<worktrees>/sq/5d231f0b8303"
+ },
+ {
+  "tool": "go",
+  "argv": [
+   "test",
+   "./..."
+  ],
+  "cwd": "<worktrees>/sq/5d231f0b8303"
+ },
+ {
+  "tool": "docker",
+  "argv": [
+   "build",
+   "-f",
+   "deploy/api.Dockerfile",
+   "--build-arg",
+   "VERSION=v9.9.9-check",
+   "-t",
+   "registry.check.local/fleet/tracker-api:v9.9.9-check",
+   "."
+  ],
+  "cwd": "<worktrees>/sq/5d231f0b8303"
+ },
+ {
+  "tool": "docker",
+  "argv": [
+   "push",
+   "registry.check.local/fleet/tracker-api:v9.9.9-check"
+  ],
+  "cwd": "<worktrees>/sq/5d231f0b8303"
+ }
+]

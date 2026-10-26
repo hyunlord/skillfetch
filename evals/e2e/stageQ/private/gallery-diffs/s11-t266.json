@@ -1,0 +1,40 @@
+{
+ "verdict": "차이 있음",
+ "lines": [
+  {
+   "text": "네 결과 모두 같은 구조(허가를 spawn_blocking 안으로 옮김, 패닉은 500, 설정 가능한 한도, README)로 적혔다.",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "off m1",
+     "quote": "same correct offload + permit-in-closure + 500 on panic, config and README"
+    },
+    {
+     "src": "p2",
+     "run": "on m1",
+     "quote": "Same correct design and config/README."
+    }
+   ]
+  },
+  {
+   "text": "한도가 실제로 지켜지는지 증명하는 테스트는 켬 m2에만 있다고 적혔다. 끔 m1은 테스트가 없고(4점), 끔 m2와 켬 m1은 8개 요청이 성공하는지만 본다.",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "on m2",
+     "quote": "Its test proves the limit (blocked while the permit is held, permits returned)."
+    },
+    {
+     "src": "p1",
+     "run": "off m1",
+     "quote": "no test added for the limit or the offloading"
+    },
+    {
+     "src": "p2",
+     "run": "off m2",
+     "quote": "does not prove the bound"
+    }
+   ]
+  }
+ ]
+}

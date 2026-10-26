@@ -1,0 +1,35 @@
+{
+ "verdict": "차이 있음",
+ "lines": [
+  {
+   "text": "doclint 체크 통과는 끔 2/3, 켬 1/3이다. 켬 m2·m3는 `reconcileBatch`에 @throws만 더했고, 끔 m2는 `reconcileBatch`만 자세히 문서화했다(셋 다 3점).",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "on m2",
+     "quote": "Only adds the @throws tags to reconcileBatch; class/constructor/other methods untouched and vague params kept; doclint fails"
+    },
+    {
+     "src": "p2",
+     "run": "off m2",
+     "quote": "reconcileBatch richly and precisely documented with all @throws, but class doc, constructor and isClosed left as-is; doclint fails (2 missing comments)"
+    }
+   ]
+  },
+  {
+   "text": "클래스 전체를 문서화한 결과는 끔 m1·m3와 켬 m1이다. 켬 m1은 요청에 없는 스레드 안전성 서술로 p2가 4점을 줬다.",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "off m1",
+     "quote": "Full class/constructor/method docs, matching rules explained, all @throws with precise conditions"
+    },
+    {
+     "src": "p2",
+     "run": "on m1",
+     "quote": "class doc asserts thread-safety and close() semantics beyond what the request asked"
+    }
+   ]
+  }
+ ]
+}

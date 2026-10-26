@@ -1,0 +1,25 @@
+{
+ "verdict": "차이 없음",
+ "lines": [
+  {
+   "text": "여섯 결과 모두 체크를 통과했다. 조건마다 한 번씩(끔 m2, 켬 m3) `best_bid`/`best_ask`의 수명을 덜 정밀하게 묶어 p2가 4점을 줬고, 나머지는 5점이다.",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "off m2",
+     "quote": "`best_bid`/`best_ask` tie the inner `PriceLevel` lifetime to the book borrow"
+    },
+    {
+     "src": "p2",
+     "run": "on m3",
+     "quote": "the helpers use the over-constrained `&'a OrderBook<'a>`"
+    },
+    {
+     "src": "p1",
+     "run": "off m1",
+     "quote": "all checks pass"
+    }
+   ]
+  }
+ ]
+}

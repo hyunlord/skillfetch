@@ -1,0 +1,55 @@
+{
+ "verdict": "차이 있음",
+ "lines": [
+  {
+   "text": "네 결과 모두 두 판정자가 AI 템플릿 체크 항목 0개로 적었다.",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "on m1",
+     "quote": "no checklist items; teal banded header"
+    },
+    {
+     "src": "p2",
+     "run": "off m2",
+     "quote": "No checklist items. Solid teal header"
+    }
+   ]
+  },
+  {
+   "text": "메일로 보낸 비밀번호를 바꾸라는 보안 안내는 끔 2회에 있고 켬 2회에는 없다고 적혔다.",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "off m1",
+     "quote": "a security note to change the password and delete the mail"
+    },
+    {
+     "src": "p2",
+     "run": "on m1",
+     "quote": "no security note"
+    },
+    {
+     "src": "p2",
+     "run": "on m2",
+     "quote": "no security reminder about the mailed password"
+    }
+   ]
+  },
+  {
+   "text": "시작 단계(next steps)는 켬 2회와 끔 m1에 있고 끔 m2에는 없다. 점수는 끔 5·4, 켬 4·4(두 판정자 같음).",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "on m1",
+     "quote": "3 next steps"
+    },
+    {
+     "src": "p1",
+     "run": "off m2",
+     "quote": "no onboarding steps"
+    }
+   ]
+  }
+ ]
+}

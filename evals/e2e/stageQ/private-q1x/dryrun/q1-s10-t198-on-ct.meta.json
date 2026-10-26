@@ -1,0 +1,78 @@
+{
+ "job": "q1:s10-t198:on",
+ "tag": "ct",
+ "kind": "q1",
+ "task": "s10-t198",
+ "branch": "s11-r",
+ "mcp": "on",
+ "session_dir": "<worktrees>/sq/b9dbe3f60b8d",
+ "side_dir": "<worktrees>/sq/69fba0b0a444",
+ "canary": null,
+ "clone": {
+  "refs": [
+   "refs/heads/main"
+  ],
+  "head": "37e98f2def4cbbe5f12313383c111206731105ab",
+  "router": true,
+  "status": "",
+  "unreachable": 0
+ },
+ "prep_s": 11.4,
+ "steps": [
+  {
+   "k": 1,
+   "cmd": [
+    "claude",
+    "-p",
+    "We're moving the iOS habit tracker from Core Data to SwiftDa…",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--include-hook-events",
+    "--max-turns",
+    "40",
+    "--allowedTools",
+    "Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*",
+    "--setting-sources",
+    "project",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "<e2e>/stageQ1x-private/dryrun/q1-s10-t198-on-ct.mcp.json"
+   ]
+  }
+ ],
+ "check": {
+  "task": "t198",
+  "pass": false,
+  "items": [
+   {
+    "name": "build (package and tests)",
+    "pass": true,
+    "detail": "Building for debugging...\n[1 / 5]\nBuild complete! (0.24초)\n"
+   },
+   {
+    "name": "existing tests (StoreTests)",
+    "pass": true,
+    "detail": "Tests.StoreTests testHabitStoreCheckIn]' started.\nTest Case '-[HabitTrackerTests.StoreTests testHabitStoreCheckIn]' passed (0.013 seconds).\nTest Case '-[HabitTrackerTests.StoreTests testStartupRuns]' started.\nTest Case '-[HabitTrackerTests.StoreTests testStartupRuns]' passed (0.002 seconds).\nTest Suite 'StoreTests' passed at 2026-10-26 22:01:50.804.\n\t Executed 3 tests, with 0 failures (0 unexpected) in 0.021 (0.022) seconds\nTest Suite 'HabitTrackerTests.xctest' passed at 2026-10-26 22:01:50.804.\n\t Executed 3 tests, with 0 failures (0 unexpected) in 0.021 (0.022) seconds\nTest Suite 'Selected tests' passed at 2026-10-26 22:01:50.804.\n\t Executed 3 tests, with 0 failures (0 unexpected) in 0.021 (0.024) seconds\nBuilding for debugging...\n[Planning deferred tasks]\n[1 / 5]\nBuild complete! (0.63초)\n"
+   },
+   {
+    "name": "migration: habits, check-ins, streaks copied and saved; runs once; done flag in UserDefaults; empty store marked done",
+    "pass": false,
+    "detail": "failed: ['testCopiesHabitsCheckInsAndStreaks', 'testDoneFlagInUserDefaultsStopsRerun', 'testEmptyLegacyStoreIsMarkedDone', 'testSecondLaunchDoesNotDuplicate']"
+   }
+  ],
+  "env_noise_removed": [],
+  "diff": {
+   "files": [],
+   "added": 0,
+   "deleted": 0
+  },
+  "graft_removed": []
+ },
+ "named": null,
+ "harness_fail": false,
+ "no_result": false,
+ "cost_usd": 0,
+ "leftover_procs": [],
+ "index_ok_after": true
+}

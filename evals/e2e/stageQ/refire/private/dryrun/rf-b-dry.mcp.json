@@ -1,0 +1,17 @@
+{
+ "mcpServers": {
+  "skillfetch": {
+   "type": "stdio",
+   "command": "uvx",
+   "args": [
+    "--from",
+    "<worktrees>/s10-server/3fef3f8",
+    "skillfetch",
+    "serve",
+    "--index",
+    "<e2e>/stage10/index/staging-4"
+   ],
+   "env": {}
+  }
+ }
+}

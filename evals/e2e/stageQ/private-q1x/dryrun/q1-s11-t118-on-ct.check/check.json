@@ -1,0 +1,26 @@
+{
+  "task": "t118",
+  "pass": false,
+  "items": [
+    {
+      "name": "a_build_test",
+      "pass": true,
+      "detail": "make test rc=0 | PaymentReconciliationServiceTest: all 6 tests passed"
+    },
+    {
+      "name": "b_doclint_all",
+      "pass": false,
+      "detail": "rc=1; 4 messages; src/main/java/com/acme/payments/reconciliation/PaymentReconciliationService.java:42: warning: no @throws for com.acme.payments.reconciliation.CurrencyMismatchException | src/main/java/com/acme/payments/reconciliation/PaymentReconciliationService.java:42: warning: no @throws for com.acme.payments.reconciliation.UnmatchedAmountException | src/main/java/com/acme/payments/reconciliat"
+    },
+    {
+      "name": "c_code_unchanged",
+      "pass": true,
+      "detail": "10 .java files, code identical modulo comments"
+    },
+    {
+      "name": "d_throws_complete",
+      "pass": false,
+      "detail": "documented=[]; missing=['CurrencyMismatchException', 'UnmatchedAmountException', 'DuplicateTransactionException', 'IllegalArgumentException', 'IllegalStateException']"
+    }
+  ]
+}

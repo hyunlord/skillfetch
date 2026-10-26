@@ -1,0 +1,12 @@
+You read one skill: instructions an AI coding agent loads before doing a task. List exactly 3 rules from this skill that
+a reviewer could check afterwards from the agent's code diff or its final reply to the user, without running anything
+and without knowing the skill. Prefer concrete, observable rules (naming, structure, required tests, error handling,
+output format, things to avoid) over general advice ("write clean code"). Each rule must be supported by the skill text.
+
+For each rule give:
+- "rule": one sentence, in your own words (do not copy long passages)
+- "kept": what in a diff or reply shows the rule was followed
+- "broken": what shows it was not followed
+- "not_applicable": when the rule does not apply to a task (e.g. the task creates no tests)
+
+Output JSON only: {"rules": [{"rule": "...", "kept": "...", "broken": "...", "not_applicable": "..."}, ...]} with exactly 3 items.

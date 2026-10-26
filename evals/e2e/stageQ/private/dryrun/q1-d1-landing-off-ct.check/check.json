@@ -1,0 +1,51 @@
+{
+  "task_id": "d1-landing",
+  "pass": false,
+  "items": [
+    {
+      "name": "npm run type-check",
+      "pass": true,
+      "detail": "rc=0"
+    },
+    {
+      "name": "npx next build",
+      "pass": true,
+      "detail": "rc=0"
+    },
+    {
+      "name": "screenshot screens /landing",
+      "pass": true,
+      "detail": "rc=0"
+    },
+    {
+      "name": "screens /landing: status 200, no page_errors",
+      "pass": false,
+      "detail": "status=404 page_errors=[] final_url=http://127.0.0.1:4100/landing"
+    },
+    {
+      "name": "screenshot screens-375 /landing",
+      "pass": true,
+      "detail": "rc=0"
+    },
+    {
+      "name": "screens-375 /landing: status 200, no page_errors",
+      "pass": false,
+      "detail": "status=404 page_errors=[] final_url=http://127.0.0.1:4100/landing"
+    },
+    {
+      "name": "visual: landing page (hero, features, CTA[, pricing]); AI-look checklist",
+      "pass": null,
+      "detail": "blind judging"
+    }
+  ],
+  "visual": [
+    "<e2e>/stageQ-private/dryrun/q1-d1-landing-off-ct.check/screens/landing.png",
+    "<e2e>/stageQ-private/dryrun/q1-d1-landing-off-ct.check/screens-375/landing.png"
+  ],
+  "info": {},
+  "duration_s": 11.4,
+  "worktree": "<worktrees>/sq/374c854fe09b",
+  "base": "76de3ce276127ed28b66d71c19c0d1e3fc9e6f71",
+  "worktree_restored": [],
+  "git_status_unchanged": true
+}

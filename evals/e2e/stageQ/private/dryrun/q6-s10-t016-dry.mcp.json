@@ -1,0 +1,20 @@
+{
+ "mcpServers": {
+  "skillfetch": {
+   "type": "stdio",
+   "command": "<worktrees>/q-blocked-venv/bin/skillfetch",
+   "args": [
+    "serve",
+    "--index",
+    "<e2e>/stage10/index/staging-4"
+   ],
+   "env": {
+    "HOME": "<worktrees>/sq/14b3ae58a307/home",
+    "HTTPS_PROXY": "http://127.0.0.1:9",
+    "HTTP_PROXY": "http://127.0.0.1:9",
+    "https_proxy": "http://127.0.0.1:9",
+    "http_proxy": "http://127.0.0.1:9"
+   }
+  }
+ }
+}

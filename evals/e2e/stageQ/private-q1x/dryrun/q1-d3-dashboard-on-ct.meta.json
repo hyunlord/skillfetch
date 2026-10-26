@@ -1,0 +1,108 @@
+{
+ "job": "q1:d3-dashboard:on",
+ "tag": "ct",
+ "kind": "q1",
+ "task": "d3-dashboard",
+ "branch": "s11-r",
+ "mcp": "on",
+ "session_dir": "<worktrees>/sq/87ce0be4d154",
+ "side_dir": "<worktrees>/sq/c2b80db488d6",
+ "canary": null,
+ "clone": {
+  "refs": [
+   "refs/heads/main"
+  ],
+  "head": "49c722a491199c12a07e525a17af56b2bfe25e4d",
+  "router": true,
+  "status": "",
+  "unreachable": 0
+ },
+ "prep_s": 3.5,
+ "steps": [
+  {
+   "k": 1,
+   "cmd": [
+    "claude",
+    "-p",
+    "`utils/sample-data.ts`의 사용자 데이터로 관리자 대시보드 페이지를 신규 라우트 /dashboard에 만들어줘 — 요약 카드, 차트 하나, 최근 사용자 표",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--include-hook-events",
+    "--max-turns",
+    "40",
+    "--allowedTools",
+    "Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*",
+    "--setting-sources",
+    "project",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "<e2e>/stageQ1x-private/dryrun/q1-d3-dashboard-on-ct.mcp.json"
+   ]
+  }
+ ],
+ "check": {
+  "task_id": "d3-dashboard",
+  "pass": false,
+  "items": [
+   {
+    "name": "npm run type-check",
+    "pass": true,
+    "detail": "rc=0"
+   },
+   {
+    "name": "npx next build",
+    "pass": true,
+    "detail": "rc=0"
+   },
+   {
+    "name": "screenshot screens /dashboard",
+    "pass": true,
+    "detail": "rc=0"
+   },
+   {
+    "name": "screens /dashboard: status 200, no page_errors",
+    "pass": false,
+    "detail": "status=404 page_errors=[] final_url=http://127.0.0.1:4100/dashboard"
+   },
+   {
+    "name": "screenshot screens-375 /dashboard",
+    "pass": true,
+    "detail": "rc=0"
+   },
+   {
+    "name": "screens-375 /dashboard: status 200, no page_errors",
+    "pass": false,
+    "detail": "status=404 page_errors=[] final_url=http://127.0.0.1:4100/dashboard"
+   },
+   {
+    "name": "visual: landing page (hero, features, CTA[, pricing]); AI-look checklist",
+    "pass": null,
+    "detail": "blind judging"
+   }
+  ],
+  "visual": [
+   "<e2e>/stageQ1x-private/dryrun/q1-d3-dashboard-on-ct.check/screens/dashboard.png",
+   "<e2e>/stageQ1x-private/dryrun/q1-d3-dashboard-on-ct.check/screens-375/dashboard.png"
+  ],
+  "info": {},
+  "duration_s": 32.4,
+  "worktree": "<worktrees>/sq/87ce0be4d154",
+  "base": "49c722a491199c12a07e525a17af56b2bfe25e4d",
+  "worktree_restored": [],
+  "git_status_unchanged": true,
+  "env_noise_removed": [],
+  "diff": {
+   "files": [],
+   "added": 0,
+   "deleted": 0
+  },
+  "graft_removed": []
+ },
+ "named": null,
+ "harness_fail": false,
+ "no_result": false,
+ "cost_usd": 0,
+ "leftover_procs": [],
+ "index_ok_after": true
+}

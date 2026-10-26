@@ -1,0 +1,26 @@
+{
+ "task_id": "s2-tests",
+ "pass": false,
+ "items": [
+  {
+   "name": "src/recur unchanged",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "session's tests run and pass",
+   "pass": false,
+   "detail": "{\"tests\": 0, \"failures\": 0, \"errors\": 0, \"skipped\": 0, \"passed\": 0}"
+  }
+ ],
+ "metrics": {
+  "module_modified": false,
+  "junit": {
+   "tests": 0,
+   "failures": 0,
+   "errors": 0,
+   "skipped": 0,
+   "passed": 0
+  }
+ }
+}

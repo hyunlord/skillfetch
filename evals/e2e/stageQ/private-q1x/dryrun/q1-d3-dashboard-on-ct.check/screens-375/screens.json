@@ -1,0 +1,46 @@
+{
+  "kind": "nextjs",
+  "worktree": "<worktrees>/sq/87ce0be4d154",
+  "mode": "build",
+  "routes": [
+    "/dashboard"
+  ],
+  "git_head": "49c722a491199c12a07e525a17af56b2bfe25e4d",
+  "git_status": [],
+  "started_at": "2026-10-26T22:02:01+0900",
+  "ports": {
+    "web": 4100
+  },
+  "build": {
+    "rc": 0,
+    "s": 1.7
+  },
+  "ready_s": 0.5,
+  "base_url": "http://127.0.0.1:4100",
+  "stop_notes": [],
+  "worktree_restored": [],
+  "finished_at": "2026-10-26T22:02:07+0900",
+  "screens": [
+    {
+      "route": "/dashboard",
+      "url": "http://127.0.0.1:4100/dashboard",
+      "file": "dashboard.png",
+      "status": 404,
+      "final_url": "http://127.0.0.1:4100/dashboard",
+      "title": "404: This page could not be found",
+      "html_lang": null,
+      "text": "404\nThis page could not be found.",
+      "links": [],
+      "console_errors": [
+        "Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "page_errors": [],
+      "http_errors": [
+        {
+          "url": "http://127.0.0.1:4100/dashboard",
+          "status": 404
+        }
+      ]
+    }
+  ]
+}

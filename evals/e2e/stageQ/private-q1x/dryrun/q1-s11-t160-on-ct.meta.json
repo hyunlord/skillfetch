@@ -1,0 +1,93 @@
+{
+ "job": "q1:s11-t160:on",
+ "tag": "ct",
+ "kind": "q1",
+ "task": "s11-t160",
+ "branch": "s11-r",
+ "mcp": "on",
+ "session_dir": "<worktrees>/sq/5d231f0b8303",
+ "side_dir": "<worktrees>/sq/bc7fb286538c",
+ "canary": null,
+ "clone": {
+  "refs": [
+   "refs/heads/main"
+  ],
+  "head": "cd4a016fb958e0e70b26033030a2c3ebab463ec2",
+  "router": true,
+  "status": "",
+  "unreachable": 0
+ },
+ "prep_s": 1.1,
+ "steps": [
+  {
+   "k": 1,
+   "cmd": [
+    "claude",
+    "-p",
+    "add ko build + push for cmd/tracker-ingest to the release makefile target",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--include-hook-events",
+    "--max-turns",
+    "40",
+    "--allowedTools",
+    "Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*",
+    "--setting-sources",
+    "project",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "<e2e>/stageQ1x-private/dryrun/q1-s11-t160-on-ct.mcp.json"
+   ]
+  }
+ ],
+ "check": {
+  "task": "t160",
+  "pass": false,
+  "items": [
+   {
+    "name": "a_go_build_vet_test",
+    "pass": true,
+    "detail": "go build ./... rc=0; go vet ./... rc=0; go test ./... rc=0"
+   },
+   {
+    "name": "b_release_runs_ko",
+    "pass": false,
+    "detail": "make release rc=0; ko calls ok=0; "
+   },
+   {
+    "name": "c_registry_follows",
+    "pass": false,
+    "detail": "no valid ko call"
+   },
+   {
+    "name": "d_existing_steps",
+    "pass": true,
+    "detail": "docker build=True push=True; go vet=True test=True"
+   },
+   {
+    "name": "e_ko_failure_fails",
+    "pass": false,
+    "detail": "ko called=False; make release rc=0 with ko exiting 1"
+   },
+   {
+    "name": "f_no_go_changes",
+    "pass": true,
+    "detail": "no .go/go.mod changes"
+   }
+  ],
+  "env_noise_removed": [],
+  "diff": {
+   "files": [],
+   "added": 0,
+   "deleted": 0
+  },
+  "graft_removed": []
+ },
+ "named": null,
+ "harness_fail": false,
+ "no_result": false,
+ "cost_usd": 0,
+ "leftover_procs": [],
+ "index_ok_after": true
+}

@@ -1,0 +1,51 @@
+{
+ "job": "q6:s2-data",
+ "tag": "dry",
+ "kind": "q6",
+ "task": "s2-data",
+ "branch": "s11-r",
+ "mcp": "blocked",
+ "session_dir": "<worktrees>/sq/2dc878e8fd6d",
+ "side_dir": "<worktrees>/sq/0bb064737cbe",
+ "canary": null,
+ "clone": {
+  "refs": [
+   "refs/heads/main"
+  ],
+  "head": "0e132762b102b6e4902644865bcc8ad42c79ae9c",
+  "router": true,
+  "status": "",
+  "unreachable": 0
+ },
+ "prep_s": 0.0,
+ "steps": [
+  {
+   "k": 1,
+   "cmd": [
+    "claude",
+    "-p",
+    "`data/orders.csv`가 지저분해 (결측값, 형식 불일치 등). 이걸 정리해서 깨끗한 CSV를 만들고 요약 리포트를 내는 Python 스크립트를 써줘. 스크립트는 `scripts/clean_orders.py`이고, `uv run python scripts/clean_orders.py`로 실행하면 결과를 `out/`에 쓰게 해줘.",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--include-hook-events",
+    "--max-turns",
+    "40",
+    "--allowedTools",
+    "Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*",
+    "--setting-sources",
+    "project",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "<e2e>/stageQ-private/dryrun/q6-s2-data-dry.mcp.json"
+   ]
+  }
+ ],
+ "check": null,
+ "named": null,
+ "harness_fail": false,
+ "no_result": false,
+ "cost_usd": 0,
+ "leftover_procs": [],
+ "index_ok_after": true
+}

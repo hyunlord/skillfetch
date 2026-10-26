@@ -1,0 +1,30 @@
+{
+ "verdict": "차이 있음",
+ "lines": [
+  {
+   "text": "여섯 결과 모두 p1은 AI 템플릿 항목 0개, p2는 1개(#4 같은 카드)로 적었다. 쓸만함은 켬 m2만 5점이고 나머지 다섯은 4점이다(두 판정자 같음).",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "on m2",
+     "quote": "all 4 users in one row at 1280, and a compact grouped list at 375. Best use of both widths."
+    },
+    {
+     "src": "p1",
+     "run": "off m2",
+     "quote": "little to separate it from the rest."
+    }
+   ]
+  },
+  {
+   "text": "켬 m3는 카드를 감싼 회색 패널이 군더더기라는 지적을 받았다.",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "on m3",
+     "quote": "the extra panel adds little"
+    }
+   ]
+  }
+ ]
+}

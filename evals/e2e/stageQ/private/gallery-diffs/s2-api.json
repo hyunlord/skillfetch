@@ -1,0 +1,50 @@
+{
+ "verdict": "차이 있음",
+ "lines": [
+  {
+   "text": "네 결과 모두 계약 27/27과 자체 테스트를 통과했다.",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "off m1",
+     "quote": "Contract 27/27, 50 tests pass."
+    },
+    {
+     "src": "p1",
+     "run": "on m2",
+     "quote": "27/27, 49 tests pass"
+    }
+   ]
+  },
+  {
+   "text": "켬 2회는 저장소 계층을 `app/repository.py`로 따로 뒀다. 끔 2회의 diff에는 그 파일이 없다.",
+   "quotes": [
+    {
+     "src": "diff",
+     "run": "on m1",
+     "quote": "diff --git a/app/repository.py b/app/repository.py"
+    },
+    {
+     "src": "p1",
+     "run": "on m1",
+     "quote": "clear db/repository/schemas/routes split"
+    }
+   ]
+  },
+  {
+   "text": "끔 m2는 SQLite 연결의 스레드 문제(잠재적 500)로 4점, 켬 m1은 없는 id의 PATCH가 404 대신 409를 낸다는 지적을 받았다(5점).",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "off m2",
+     "quote": "the sqlite connection is opened without check_same_thread=False"
+    },
+    {
+     "src": "p2",
+     "run": "on m1",
+     "quote": "PATCH of a missing id with a taken url returns 409 instead of 404"
+    }
+   ]
+  }
+ ]
+}
