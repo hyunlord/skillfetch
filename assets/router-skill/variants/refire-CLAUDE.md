@@ -1,0 +1,1 @@
+Before your first tool call on any coding task in this repository (anything beyond a one-line edit, a rename or a question), run the `skillfetch-router` skill and follow its steps; run it again each time a new task arrives in the same conversation, and do not reuse the skill choice from an earlier task.
