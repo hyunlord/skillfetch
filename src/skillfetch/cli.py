@@ -65,7 +65,15 @@ def main(argv: Sequence[str] | None = None) -> int:
         "(default: %(default)s, from `skillfetch sync`; skipped if absent)",
     )
     scan.add_argument("--cache-dir", type=Path, default=DEFAULT_CACHE_DIR)
-    scan.add_argument(
+    extract_how = scan.add_mutually_exclusive_group()
+    extract_how.add_argument(
+        "--claude-code",
+        action="store_true",
+        help="extract skills found in neither the index nor the cache with your Claude Code "
+        "login: one isolated `claude -p` per skill (no tools, no MCP servers; no API key). "
+        "Without it, or without the `claude` CLI, those skills skip the contradiction check",
+    )
+    extract_how.add_argument(
         "--with-api",
         action="store_true",
         help="extract skills found in neither the index nor the cache with --model "
@@ -362,7 +370,9 @@ def main(argv: Sequence[str] | None = None) -> int:
             print(f"skillfetch: not a directory: {args.dir}", file=sys.stderr)
             return 2
         try:
-            report = scan_dir(args.dir, _scan_lookup(args), args.conflict_cap)
+            lookup, how = _scan_lookup(args)
+            report = scan_dir(args.dir, lookup, args.conflict_cap)
+            report.extraction = how
         except IndexLoadError as exc:
             print(f"skillfetch: {exc}", file=sys.stderr)
             return 2
@@ -494,12 +504,28 @@ def _sync(args: argparse.Namespace) -> int:
     return 0
 
 
-def _scan_lookup(args: argparse.Namespace) -> Lookup:
-    """Index (if there is one), extract cache, and with --with-api an extractor."""
+def _scan_lookup(args: argparse.Namespace) -> tuple[Lookup, str | None]:
+    """Index (if there is one), extract cache, and with --claude-code or --with-api an
+    extractor; plus a line on how unindexed skills are handled (None: not asked)."""
     index = Index.load(args.index) if (args.index / "manifest.json").is_file() else None
     model = args.model or (index and index.manifest.get("extract_model")) or extract.DEFAULT_MODEL
-    extractor = None
-    if args.with_api:
+    extractor, how = None, None
+    if args.claude_code:
+        import shutil
+
+        from skillfetch.ingest.claude_code import ClaudeCliBackend
+
+        spec = args.model or extract.DEFAULT_MODEL
+        provider, name = backends.parse_model(spec)
+        if provider != "claude-code":
+            raise ValueError(f"--claude-code takes a claude-code/<model> --model, not {spec!r}")
+        if shutil.which("claude") is None:
+            how = "skipped: --claude-code needs the `claude` CLI on PATH"
+        else:
+            extractor = extract.Extractor(ClaudeCliBackend(name))
+            model = extractor.model
+            how = f"extracted with {model} (your Claude Code login, `claude -p`)"
+    elif args.with_api:
         backend = backends.make_backend(
             args.model or extract.DEFAULT_MODEL,
             base_url=args.base_url,
@@ -508,7 +534,8 @@ def _scan_lookup(args: argparse.Namespace) -> Lookup:
         )
         extractor = extract.Extractor(backend)
         model = extractor.model
-    return Lookup(index, ExtractCache(args.cache_dir), model, extractor, args.jobs)
+        how = f"extracted with {model} (--with-api)"
+    return Lookup(index, ExtractCache(args.cache_dir), model, extractor, args.jobs), how
 
 
 def _serve(args: argparse.Namespace) -> int:

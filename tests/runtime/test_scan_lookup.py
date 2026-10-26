@@ -53,7 +53,7 @@ def test_constraints_come_from_the_index_by_content_hash(tmp_path):
         assert f.a in by_id and f.b in by_id
     text = render_report(report)
     assert text.startswith(f"skillfetch scan {tmp_path / 'installed'}\n")
-    assert "constraints: 4 analyzed (index 4), 0 skipped" in text
+    assert "Contradiction check: 4 of 4 skills analyzed (index 4)." in text
     assert f"index: {index_dir} (4 skills" in text
 
 
@@ -129,7 +129,9 @@ def test_cli_scan_reads_the_index(tmp_path, capsys):
 
     assert main([*args, "--index", str(tmp_path / "no-index")]) == 0
     out = capsys.readouterr().out
-    assert "index:" not in out and "constraint analysis skipped for 4 skills" in out
+    assert "index: none (run `skillfetch sync`" in out
+    assert "contradiction check skipped for 4 skills" in out
+    assert "add `--claude-code`" in out
     assert "skillfetch sync" in out
 
 
