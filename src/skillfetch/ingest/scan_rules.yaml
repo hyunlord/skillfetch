@@ -16,6 +16,8 @@
 #                         when that one ends with ":")
 #   within                optional second regex: a `pattern` match counts only if this
 #                         one is found inside the matched text
+#   unless                optional regex: a `pattern` match does not count if this one is
+#                         found inside the matched text (rules v7)
 #   effect                fail | warn | info, overrides the family's effect for this rule.
 #                         info is shown but is neither a failure nor a warning; an info hit
 #                         on a line where its family already warns or fails is dropped
@@ -26,7 +28,7 @@
 #                         advice that quotes the phrase to avoid ("avoid override-style
 #                         language (\"disregard the previous instruction\")") is not an
 #                         attempt. It is still shown (as info), so the quote stays visible.
-version: 6
+version: 7
 
 effects:
   override: fail
@@ -34,6 +36,7 @@ effects:
   privilege: fail
   hidden: fail
   network: warn
+  conceal: warn
 
 scripts:
   dirs: [scripts]
@@ -53,6 +56,14 @@ rules:
     allow_negated: true
     allow_quoted: true
     pattern: '\b(?:ignore|disregard|bypass|reveal|print|repeat|leak)\b[^.\n]{0,20}\bsystem\s+prompt\b'
+  # Paraphrases of "ignore previous instructions" (rules v7, from the scan-accuracy dev set:
+  # evals/scan-accuracy/): earlier guidance declared void, the user overruled, only the skill's
+  # rules left.
+  - id: override.paraphrase
+    family: override
+    allow_quoted: true
+    allow_negated: true
+    pattern: '\b(?:earlier|previous|prior|original)\s+(?:guidance|instructions?|rules|directions)\b[^.\n]{0,60}?\b(?:no\s+longer\s+appl|do(?:es)?\s+not\s+apply|(?:is|are)\s+(?:void|cancell?ed|superseded))|\bset\s+aside\s+(?:everything|all|anything)\b[^.\n]{0,40}?\b(?:told|instructions?|said)\b|\b(?:do\s+not|don''t|never)\s+(?:follow|obey|listen\s+to)\s+the\s+user\b|\bonly\s+(?:these|this\s+skill''?s?)\s+(?:rules|instructions)\s+apply\b'
   - id: override.persona
     family: override
     allow_quoted: true
@@ -82,10 +93,14 @@ rules:
   # Piping a downloaded script into a shell is how uv, rustup, Homebrew and nvm
   # install, so on its own it only warns. It fails with sudo, or when the URL is
   # not something a reviewer can trust at a glance (http, raw IP, URL shortener).
+  # Rules v7: a negated mention ("never pipe curl into sh") is advice; the documented installers
+  # of well-known tools are only info; PowerShell's download-and-run (iwr | iex) counts too.
   - id: exfil.pipe-to-shell
     family: exfil
     effect: warn
-    pattern: '\b(?:curl|wget)\b[^\n|]*\|\s*(?:sudo\s+(?:-\w+\s+)*)?(?:ba|z|da)?sh\b|\b(?:ba|z|da)?sh\s+(?:-c\s+["'']?\$\(|<\()\s*(?:curl|wget)\b'
+    allow_negated: true
+    unless: 'https://(?:raw\.githubusercontent\.com/(?:Homebrew|nvm-sh)/|bun\.sh/install|sh\.rustup\.rs|astral\.sh/(?:uv|ruff)/|deno\.land/install|get\.pnpm\.io/|install\.python-poetry\.org|fnm\.vercel\.app/install|starship\.rs/install|ollama\.com/install\.sh|get\.docker\.com)'
+    pattern: '\b(?:curl|wget)\b[^\n|]*\|\s*(?:sudo\s+(?:-\w+\s+)*)?(?:ba|z|da)?sh\b|\b(?:ba|z|da)?sh\s+(?:-c\s+["'']?\$\(|<\()\s*(?:curl|wget)\b|\b(?:iwr|irm|Invoke-WebRequest|Invoke-RestMethod)\b[^\n|]*\|\s*(?:iex|Invoke-Expression)\b|\b(?:iex|Invoke-Expression)\s*\(\s*(?:iwr|irm|New-Object\s+Net\.WebClient)\b'
   # Two stages, so no single regex has to backtrack over a long line: `pattern` finds
   # the download piped into a shell (both forms), `within` looks for an untrusted URL
   # inside that match only (http, raw IPv4/IPv6, URL shortener).
@@ -96,11 +111,19 @@ rules:
 
   # --- privilege: escalation or disabling safety --------------------------------------
   # sudo alone is common in setup steps (apt-get install ...): warn.
+  # Rules v7: only the lowercase command ("Sudo pallet", "the `sudo` entry point" are code
+  # names), and a package-manager install is only info (privilege.sudo-package).
   - id: privilege.sudo
     family: privilege
     effect: warn
+    case_sensitive: true
     allow_negated: true
-    pattern: '\bsudo\s+(?:-\w+\s+)*[a-z]'
+    pattern: '\bsudo\s+(?:-\w+\s+)*(?!(?:apt(?:-get)?|yum|dnf|pacman|zypper|apk|port|snap|brew|pip3?|npm|gem)\s+(?:install|update|upgrade|add|-S)\b)[a-z]'
+  - id: privilege.sudo-package
+    family: privilege
+    effect: info
+    case_sensitive: true
+    pattern: '\bsudo\s+(?:-\w+\s+)*(?:apt(?:-get)?|yum|dnf|pacman|zypper|apk|port|snap|brew|pip3?|npm|gem)\s+(?:install|update|upgrade|add|-S)\b'
   - id: privilege.sudo-remote-script
     family: privilege
     pattern: '\b(?:curl|wget)\b[^\n|]*\|\s*sudo\s+(?:-\w+\s+)*(?:ba|z|da)?sh\b|\bsudo\s+(?:-\w+\s+)*(?:/\S*/)?(?:ba|z|da)?sh\s+(?:-c\s+["'']?\$\(|<\()\s*(?:curl|wget)\b|\bsudo\s+(?:-\w+\s+)*(?:curl|wget)\b[^\n|]*\|\s*(?:ba|z|da)?sh\b'
@@ -126,6 +149,11 @@ rules:
     family: hidden
     case_sensitive: true
     pattern: '[A-Za-z0-9+/]{200,}={0,2}'
+  # Rules v7: a command hidden in an encoding and run (base64 piped to a shell, eval of a
+  # decoded string, PowerShell -EncodedCommand, exec of b64decode, hex escapes into a shell).
+  - id: hidden.decode-and-run
+    family: hidden
+    pattern: '\bbase64\s+(?:-d|--decode|-D)\b[^\n|]*\|\s*(?:sudo\s+)?(?:ba|z|da)?sh\b|\beval\b[^\n]{0,20}\$\([^\n)]*\bbase64\b|-(?:EncodedCommand|enc|ec)\s+[A-Za-z0-9+/=]{16,}|\bexec\s*\(\s*(?:base64\.)?b64decode\b|\bprintf\s+[''"](?:\\x[0-9a-fA-F]{2}){4,}[^\n|]*\|\s*(?:ba|z|da)?sh\b'
   - id: hidden.html-comment-instruction
     family: hidden
     target: html_comment
@@ -147,5 +175,13 @@ rules:
     family: network
     target: line_with_lead_in
     allow_negated: true
-    pattern: '\b(?:fetch|curl|wget|read|follow|load|download|import)\b[^.;·!?\n]{0,120}?https?://\S+|https?://\S*?/(?:SKILL|AGENTS|CLAUDE|GEMINI)\.md\b|https?://\S*?[\w-]*(?:instructions?|prompts?|rules)[\w-]*\.(?:md|txt)\b'
-    within: '\bfollow|instructions?|\brules\b|\bprompts?\b|\bskills?\b|guidelines?|(?:SKILL|AGENTS|CLAUDE|GEMINI)\.md|(?:instructions?|prompts?|rules)[\w-]*\.(?:md|txt)'
+    pattern: '\b(?:fetch|curl|wget|read|follow|load|download|import)\b[^.;·!?\n]{0,120}?https?://\S+|https?://\S*?/(?:SKILL|AGENTS|CLAUDE|GEMINI)\.md\b|https?://\S*?[\w-]*(?:instructions?|prompts?|rules)[\w-]*\.(?:md|txt)\b|https?://\S*?/(?:instructions?|prompts?|rules)/\S*?\.(?:md|txt)\b'
+    # rules v7: a bare "follow" before a markdown link is a docs pointer; archives are data
+    within: '\bfollow(?![^\n]*\]\()|instructions?|\brules\b|\bprompts?\b|\bskills?\b|guidelines?|(?:SKILL|AGENTS|CLAUDE|GEMINI)\.md|(?:instructions?|prompts?|rules)[\w-]*\.(?:md|txt)'
+    unless: '\.(?:tar\.gz|tgz|zip|deb|rpm|dmg|exe|msi|whl|jar)\b'
+
+  # --- conceal: hiding what the agent does from the user (rules v7) -------------------------
+  - id: conceal.from-user
+    family: conceal
+    allow_quoted: true
+    pattern: '\b(?:do\s+not|don''t|never)\s+(?:tell|inform|notify|warn|show)\s+the\s+user\b|\bwithout\s+(?:telling|informing|notifying)\s+the\s+user\b|\bthe\s+user\s+(?:does\s+not|doesn''t|need\s+not|needn''t)\s+(?:need\s+to\s+)?know\b|\bsay\s+(?:that\s+)?(?:they|it|the\s+tests?)\s+(?:passed|succeeded|worked)\b|\bsilently\b[^.\n]{0,40}?\b(?:send|post|upload|delete|remove|transmit)\b'

@@ -1,0 +1,7 @@
+{"item_id": "c81fb1c58292", "stratum": "conceal.from-user", "split": "dev", "skill_id": "rshankras-claude-code-apple-skills/store-growth-audit@35fa53c25c7a", "locations": ["SKILL.md:15"]}
+{"item_id": "6e99a881f8e7", "stratum": "conceal.from-user", "split": "eval", "skill_id": "uasl/setup-matt-pocock-skills@d52ac42900e6", "locations": ["SKILL.md:34"]}
+{"item_id": "69bec4532485", "stratum": "conceal.from-user", "split": "dev", "skill_id": "affaan-m-ecc/agent-architecture-audit@73059e8ebeae", "locations": ["SKILL.md:103"]}
+{"item_id": "7b91d17e6e5e", "stratum": "conceal.from-user", "split": "eval", "skill_id": "rshankras-claude-code-apple-skills/growth@e73257a3e885", "locations": ["store-growth-audit/SKILL.md:15"]}
+{"item_id": "6a3e8d868261", "stratum": "conceal.from-user", "split": "dev", "skill_id": "anthropics-skills/claude-api@e30e2c97f747", "locations": ["shared/evals/build-eval.md:227"]}
+{"item_id": "f33353165f39", "stratum": "conceal.from-user", "split": "eval", "skill_id": "affaan-m-ecc/mybatis-patterns@e31dbc18477d", "locations": ["SKILL.md:219"]}
+{"item_id": "977339db0e69", "stratum": "network.remote-instructions", "split": "dev", "skill_id": "uasl/vercel-react-native-skills@6e314641b44a", "locations": ["AGENTS.md:154", "rules/rendering-no-falsy-and.md:73"]}

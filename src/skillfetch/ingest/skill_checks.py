@@ -14,7 +14,9 @@ from skillfetch.ingest.skillfile import SKILL_FILE, read_text, skill_files
 # Size warnings. A SKILL.md over MAX_SKILL_MD_TOKENS does not fit load_skills' default budget
 # on its own; a folder with many or large files is one an agent may spend its turns reading.
 MAX_SKILL_MD_TOKENS = 8000  # characters / 4, the convention of token_estimate
-MAX_FILES = 20  # SKILL.md and every other file of the skill (skill_files)
+# SKILL.md and every other file of the skill (skill_files). 50 since rules v7: in the scan-accuracy
+# sample (evals/scan-accuracy/), skills over 20 files but under 1 MB were mostly judged fine.
+MAX_FILES = 50
 MAX_TOTAL_BYTES = 1_000_000
 
 _YEAR = r"\b20[1-3]\d\b"
@@ -29,6 +31,13 @@ _PRODUCTS = (
 )
 _PRODUCT_VERSION = rf"\b(?:{_PRODUCTS})[ -]?(?:v)?\d+(?:\.\d+)*\b"
 DATED = re.compile(rf"{_YEAR}|{_VERSION}|{_PRODUCT_VERSION}")
+_YEAR_ONLY = re.compile(rf"^{_YEAR}$")
+# a minimum version ("3.8+", ">=3.0.0", "or later", "at least") is a requirement, not a claim
+# that goes stale (rules v7): version matches on such a line are dropped, years are kept
+_MIN_VERSION = re.compile(
+    r"(?:>=|≥|\^|~>?)\s*v?\d|\d(?:\.\d+)*\+|\b(?:or\s+(?:later|newer|above|higher)|minimum|at\s+least)\b",
+    re.I,
+)
 _FENCE = re.compile(r"^\s{0,3}(```|~~~)")
 DATED_NOTE = (
     "states a year or version: it may have changed since the model was trained, "
@@ -77,13 +86,19 @@ def dated_lines(skill_dir: Path) -> list[DatedLine]:
     out = []
     for path in files:
         fenced = False
-        for no, line in enumerate(read_text(path).split("\n"), 1):
+        lines = read_text(path).split("\n")
+        front = _frontmatter_end(lines)  # frontmatter is metadata (rules v7)
+        for no, line in enumerate(lines, 1):
+            if no <= front:
+                continue
             if _FENCE.match(line):
                 fenced = not fenced
                 continue
             if fenced or len(line) > 2000:
                 continue
             found = [m.group(0) for m in DATED.finditer(line)]
+            if found and _MIN_VERSION.search(line):
+                found = [f for f in found if _YEAR_ONLY.match(f)]
             if found:
                 text = line.strip()
                 out.append(
@@ -95,3 +110,13 @@ def dated_lines(skill_dir: Path) -> list[DatedLine]:
                     )
                 )
     return out
+
+
+def _frontmatter_end(lines: list[str]) -> int:
+    """The line number of the closing `---` of a leading YAML frontmatter; 0 when there is none."""
+    if not lines or lines[0].strip() != "---":
+        return 0
+    for no, line in enumerate(lines[1:], 2):
+        if line.strip() == "---":
+            return no
+    return 0

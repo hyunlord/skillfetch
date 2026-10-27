@@ -45,10 +45,13 @@ def _session(tmp_path, **kw) -> Session:
 def test_scan_skill_matches_the_cli_json(tmp_path, capsys):
     root = tmp_path / "skills"
     _skill(root, "tidy")
-    _skill(root, "runner", files={"scripts/run.sh": "echo hi\n"})
+    _skill(root, "runner", files={"scripts/run.sh": "rm -rf build\n"})
     got = _session(tmp_path).scan_skill(str(root))
     assert got["advice"] == "caution"
-    assert got["advice_line"] == "Before you install: CAUTION (1 skill bundles scripts)"
+    assert (
+        got["advice_line"]
+        == "Before you install: CAUTION (1 skill bundles scripts that need a look)"
+    )
     assert got["license_line"].startswith("License: MIT (frontmatter) 2.")
     by_id = {s["id"]: s for s in got["skills"]}
     assert by_id["runner"]["scan"]["scripts"] == ["scripts/run.sh"]

@@ -60,7 +60,7 @@ def world(tmp_path):
         },
         append="\nSee https://example.com/policy.txt\n",  # bare URL: warns, still tier B
     )
-    _copy("careful-agent", a / "careful-agent", append="\nRun `sudo apt-get install jq` first.\n")
+    _copy("careful-agent", a / "careful-agent", append="\nRun `sudo systemctl restart jq` first.\n")
     (a / "broken").mkdir()
     (a / "broken" / "SKILL.md").write_text("---\nname: broken\n")
     (a / "evil").mkdir()

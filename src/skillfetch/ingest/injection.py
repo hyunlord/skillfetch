@@ -41,6 +41,7 @@ class Rule(BaseModel):
     allow_quoted: bool = False
     case_sensitive: bool = False
     within: str | None = None  # second stage: must match inside the `pattern` match
+    unless: str | None = None  # a `pattern` match does not count if this is found inside it
     effect: Literal["fail", "warn", "info"] | None = None  # overrides the family's effect
 
     def compiled(self) -> re.Pattern[str]:
@@ -48,6 +49,9 @@ class Rule(BaseModel):
 
     def compiled_within(self) -> re.Pattern[str] | None:
         return _compile(self.within, self.case_sensitive) if self.within else None
+
+    def compiled_unless(self) -> re.Pattern[str] | None:
+        return _compile(self.unless, False) if self.unless else None
 
 
 @cache
@@ -78,6 +82,9 @@ class ScanResult(BaseModel):
     warnings: list[Hit] = []
     infos: list[Hit] = []  # shown, but neither a failure nor a warning (rules v6)
     scripts: list[str] = []
+    # scripts that use the network, run commands, delete files or read secrets: what each one
+    # does, by SCRIPT_RISKS (rules v7)
+    risky_scripts: dict[str, list[str]] = {}
 
     @property
     def ok(self) -> bool:
@@ -123,9 +130,11 @@ def _matches(rule: Rule, text: str) -> Literal["plain", "quoted"] | None:
     """How the rule matches `text`: "plain", only inside quotation marks ("quoted", for
     rules with allow_quoted), or not at all (None)."""
     quoted = False
-    within = rule.compiled_within()
+    within, unless = rule.compiled_within(), rule.compiled_unless()
     for m in rule.compiled().finditer(text):
         if within is not None and not within.search(m.group()):
+            continue
+        if unless is not None and unless.search(m.group()):
             continue
         if rule.allow_negated and _NEGATED.search(text[: m.start()]):
             continue
@@ -187,6 +196,41 @@ def _hit(rule: Rule, rules: RuleSet, file: str, line_no: int, line: str, how: st
     )
 
 
+# What makes a bundled script worth reading before install (rules v7, evals/scan-accuracy/): in the
+# sample, scripts judged worth a look called the network, ran commands, deleted files or read
+# secrets; local helpers that only compute were judged fine.
+SCRIPT_RISKS = {
+    "network": re.compile(
+        r"\b(?:requests\.(?:get|post|put|delete|patch|request)|urllib|http\.client|httpx|aiohttp|"
+        r"fetch\(|axios|XMLHttpRequest|Invoke-WebRequest|Invoke-RestMethod|boto3|"
+        r"socket\.socket|net/http|reqwest|WebClient|curl\s|wget\s)"
+    ),
+    "runs commands": re.compile(
+        r"\b(?:subprocess|os\.system|os\.popen|child_process|execSync|spawnSync|"
+        r"Popen|ShellExecute|Runtime\.getRuntime|eval\s*\(|exec\s*\(|\bsudo\s)"
+    ),
+    "deletes files": re.compile(
+        r"\b(?:os\.remove|os\.unlink|shutil\.rmtree|rmSync|rimraf|fs\.rm|fs\.unlink|"
+        r"Remove-Item|send2trash|\.unlink\(|rm\s+-[a-zA-Z]*r[a-zA-Z]*f?\b)"
+    ),
+    "reads secrets": re.compile(
+        r"(?:os\.environ|getenv|process\.env|ENV\[)[^\n]{0,40}(?:KEY|TOKEN|SECRET|PASSWORD)|"
+        r"~/\.ssh|\.aws/credentials"
+    ),
+}
+_MAX_SCRIPT_BYTES = 500_000
+
+
+def script_risks(path: Path) -> list[str]:
+    try:
+        if path.stat().st_size > _MAX_SCRIPT_BYTES:
+            return ["over 500 KB, not read"]
+        text = read_text(path)
+    except (OSError, UnicodeError):
+        return []
+    return [what for what, rx in SCRIPT_RISKS.items() if rx.search(text)]
+
+
 def _is_script(path: Path, rel: str, rules: RuleSet) -> bool:
     if rel.split("/", 1)[0] in rules.script_dirs:
         return True
@@ -201,14 +245,16 @@ def scan_skill(skill_dir: Path, rules: RuleSet | None = None) -> ScanResult:
     skill_md = skill_dir / SKILL_FILE
     if skill_md.is_file() and not skill_md.is_symlink():
         hits += scan_text(read_text(skill_md), SKILL_FILE, rules)
-    scripts = []
+    scripts, risky = [], {}
     for path in skill_files(skill_dir):
         rel = path.relative_to(skill_dir).as_posix()
         if _is_script(path, rel, rules):
             scripts.append(rel)
+            if what := script_risks(path):
+                risky[rel] = what
         elif path.suffix.lower() in TEXT_SUFFIXES and path.stem.lower() not in _LEGAL_STEMS:
             hits += scan_text(read_text(path), rel, rules)
-    result = ScanResult(scripts=scripts)
+    result = ScanResult(scripts=scripts, risky_scripts=risky)
     for hit in hits:
         {"fail": result.failures, "warn": result.warnings, "info": result.infos}[hit.effect].append(
             hit

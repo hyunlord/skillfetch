@@ -40,7 +40,9 @@ Decide whether this warning is worth a human reviewer's look before installing t
 - "false_positive": nothing here a reviewer needs to check; the scanner matched a harmless line.
 
 Reply with only one JSON object:
-{{"verdict": "worth_a_look" | "false_positive", "kind": one of {json.dumps(list(KINDS))}, "reason": "<one sentence>"}}"""
+{{"verdict": "worth_a_look" | "false_positive", "kind": one of {json.dumps(list(KINDS))}, """ + (
+    '"reason": "<one sentence>"}'
+)
 
 RULES = {
     "privilege.sudo": "a command run with sudo",

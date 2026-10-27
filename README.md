@@ -54,7 +54,8 @@ What the report says:
   - **NOT RECOMMENDED** when a skill fails the injection scan or lint, or two skills give
     opposite instructions;
   - **CAUTION** when a skill has injection-scan warnings (remote instructions among them), is
-    over a size limit, bundles scripts, or covers another skill;
+    over a size limit, bundles scripts that use the network, run commands, delete files or
+    read secrets, or covers another skill;
   - **RECOMMENDED** otherwise.
 
   The rule is in [index-format.md §5.1](docs/design/index-format.md).
@@ -65,19 +66,19 @@ What the report says:
 | check | what it reports |
 |---|---|
 | injection scan | failures (instruction overrides, exfiltration, privilege, hidden text) and warnings (`sudo`, piping a download into a shell, a URL named as instructions to follow) |
-| size | `SKILL.md` over 8,000 tokens, more than 20 files, or more than 1 MB |
-| scripts | files a skill bundles to run |
+| size | `SKILL.md` over 8,000 tokens, more than 50 files, or more than 1 MB |
+| scripts | files a skill bundles to run; the ones that use the network, run commands, delete files or read secrets are named with what they do |
 | license | the skill's LICENSE file or frontmatter; else the nearest license file up to the repository root, unless the repository is an aggregator or the skill names an upstream (the rule discover uses); else none (all rights reserved) |
 | dated claims | prose lines that state a year or a version: they may have changed since the model was trained, or be wrong; check the official docs |
 | lint | frontmatter, links, length |
 | duplicates and contradictions | identical copies; pairs of skills whose extracted instructions conflict, quoting both lines |
 
-A real run (2026-10-27, excerpt) on design-taste-frontend, a popular design skill that one
+A real run (2026-10-28, scan rules v7, excerpt) on design-taste-frontend, a popular design skill that one
 of our measured conditions installed:
 
 ```console
 $ skillfetch scan https://github.com/leonxlnx/taste-skill/tree/12af471f627f866411b4bd785b19646d3672784c/skills/taste-skill
-Before you install: CAUTION (1 skill is over a size limit; 1 skill bundles scripts)
+Before you install: CAUTION (1 skill is over a size limit; 1 skill bundles scripts that need a look)
 License: MIT (repo root). Not part of the advice: check it before you redistribute a skill.
 
 skillfetch scan https://github.com/leonxlnx/taste-skill/tree/12af471f…/skills/taste-skill@12af471f627f
@@ -85,6 +86,7 @@ skillfetch scan https://github.com/leonxlnx/taste-skill/tree/12af471f…/skills/
 
   severity  count  problem
   medium        1  SIZE_WARNING         skills over a size limit (SKILL.md tokens, files or MB)
+  medium        1  RISKY_SCRIPTS        skills whose scripts use the network, run commands, delete files or read secrets
   low           1  LINT_WARNING         skills with lint warnings only
   info          1  HAS_SCRIPTS          skills that bundle scripts
   info          1  SCAN_INFO            skills with injection-scan notes (links, quoted phrases)
@@ -93,7 +95,12 @@ skillfetch scan https://github.com/leonxlnx/taste-skill/tree/12af471f…/skills/
 […]
 
 SIZE_WARNING  taste-skill
-  SKILL.md is ~9,874 tokens (over 8,000); 39 files (over 20); 2.4 MB in total (over 1 MB)
+  SKILL.md is ~9,874 tokens (over 8,000); 2.4 MB in total (over 1 MB)
+
+RISKY_SCRIPTS  taste-skill
+  taste-skill/scripts/assets.mjs: network
+  taste-skill/scripts/inspect.mjs: network, runs commands
+  taste-skill/scripts/lib/cdp.mjs: runs commands, deletes files
 ```
 
 **Why size matters.** In Stage 13, eight popular skills (this one among them) were
@@ -447,7 +454,8 @@ default produced none. Use it when recall matters more than precision.
   relevant skill had one only outside the index, measured against Skillselion's
   catalog; 61 of 331 once our own top 50 was graded too
   ([numbers.md §19](docs/writeup/numbers.md#19-stage-8-skillselion-comparison-after-the-post-freeze)).
-- The injection scan is a blocklist, not a proof of safety.
+- The injection scan is a blocklist, not a proof of safety. How often it is wrong is measured
+  below.
 - Automated vetting rejects bad skills; it does not prove a skill is good.
 - Default mode injects skill text into the current context; true isolation
   requires a subagent runner, which is not built.
@@ -495,6 +503,25 @@ default produced none. Use it when recall matters more than precision.
   under a "Don't" heading, when its line names something narrower than its
   subject, or when it is a blanket rule about a subject outside the controlled
   vocabulary.
+
+### How often the scan is wrong
+
+Measured in [numbers.md §30](docs/writeup/numbers.md#30-scan-accuracy-precision-and-recall-of-the-scan-rules)
+(scan rules v7):
+- **Recall:** 40 hand-written test skills the rules were not tuned on.
+  - The scan caught 12 of the 20 risky ones and flagged 1 of the 20 harmless lookalikes (v6: 8 and 1).
+  - It misses `chmod -R 777 ~`, `git commit --no-verify`, download-then-run in two steps, curl output used as instructions, `scp .env` to a remote host, clearing the shell history, and word forms like "printing your system prompt".
+- **Precision:** of its warnings on the released index, two Claude judges both called these worth a reviewer's look:
+
+  | check | worth a look |
+  |---|---:|
+  | size | 5 of 8 |
+  | scripts that use the network, run commands, delete files or read secrets | 6 of 8 |
+  | remote instructions | 2 of 3 |
+  | `sudo` | 0 of 10 |
+  | pipe-to-shell | 0 of 3 |
+  | dated lines | 0 of 11 |
+  | concealment | 0 of 6 |
 
 ### Cases we get wrong
 

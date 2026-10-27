@@ -1141,6 +1141,14 @@ def router_release(out: list[str]) -> None:
     out += [path.read_text().strip() if path.is_file() else "Not written yet.", ""]
 
 
+def scan_accuracy(out: list[str]) -> None:
+    """§30: scan precision and recall, before and after scan rules v7 (evals/scan-accuracy/,
+    transcribed in data/e2e/scan_accuracy.md)."""
+    out += ["## 30. Scan accuracy: precision and recall of the scan rules", ""]
+    path = DATA / "e2e" / "scan_accuracy.md"
+    out += [path.read_text().strip() if path.is_file() else "Not run yet.", ""]
+
+
 def main() -> None:
     out = [
         "# Numbers for the write-up",
@@ -1181,6 +1189,7 @@ def main() -> None:
         stage12,
         stage14,
         router_release,
+        scan_accuracy,
     ):
         section(out)
     OUT.parent.mkdir(parents=True, exist_ok=True)

@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import json
 import sys
 import tempfile
 from pathlib import Path
@@ -37,7 +38,10 @@ def load_cases(split: str) -> list[dict]:
 def scan_case(case: dict, tmp: Path) -> tuple[bool, list[str]]:
     folder = tmp / case["id"]
     folder.mkdir()
-    front = f"---\nname: {case['id']}\ndescription: A test skill for the scan ({case['category']}).\n---\n\n"
+    front = (
+        f"---\nname: {case['id']}\n"
+        f"description: A test skill for the scan ({case['category']}).\n---\n\n"
+    )
     (folder / "SKILL.md").write_text(front + case["body"])
     result = scan_skill(folder)
     rules = sorted({h.rule_id for h in result.failures + result.warnings})
@@ -82,12 +86,49 @@ def main(argv: list[str] | None = None) -> int:
     r.add_argument(
         "--final", action="store_true", help="the rules are settled: eval cases may show"
     )
+    sub.add_parser("precision")
     args = p.parse_args(argv)
+    if args.cmd == "precision":
+        print(json.dumps(precision(), indent=1))
+        return 0
     if args.cmd == "recall":
         if args.split == "eval" and args.cases and not args.final:
             raise SystemExit("eval cases stay hidden until the rules are settled (--final)")
         recall(args.split, args.cases)
     return 0
+
+
+def precision() -> dict:
+    """Per stratum and half: items flagged under the sampled rules (before) and under the current
+    rules (after: still flagged, plus the warnings the current rules add), and how many of them
+    both judges called worth a look. Disagreements are counted apart, never as either."""
+    pre = HERE / "precision"
+    items = [json.loads(x) for x in (pre / "sample.jsonl").open()]
+    items += [json.loads(x) for x in (pre / "new.jsonl").open()]
+    now = {x["item_id"]: x["now"] for x in map(json.loads, (pre / "flagged-now.jsonl").open())}
+    verdicts: dict[str, dict[int, str]] = {}
+    for name in ("verdicts.jsonl", "verdicts-new.jsonl"):
+        for x in map(json.loads, (pre / name).open()):
+            verdicts.setdefault(x["item_id"], {})[x["judge"]] = x["verdict"]
+    new_ids = {json.loads(x)["item_id"] for x in (pre / "new.jsonl").open()}
+    out: dict = {}
+    for it in items:
+        v = verdicts.get(it["item_id"], {})
+        agree = v.get(1) if v.get(1) == v.get(2) else "split"
+        for when, flagged in (
+            ("before", it["item_id"] not in new_ids),
+            ("after", now.get(it["item_id"], it["item_id"] in new_ids)),
+        ):
+            if not flagged:
+                continue
+            c = (
+                out.setdefault(it["stratum"], {})
+                .setdefault(it["split"], {})
+                .setdefault(when, {"n": 0, "worth_a_look": 0, "false_positive": 0, "split": 0})
+            )
+            c["n"] += 1
+            c[agree] += 1
+    return out
 
 
 if __name__ == "__main__":

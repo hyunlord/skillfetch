@@ -56,12 +56,12 @@ def test_workflows_use_the_action(workflow):
 def test_markdown_comment(tmp_path):
     root = tmp_path / "skills"
     _skill(root, "tidy")
-    _skill(root, "runner", files={"scripts/run.sh": "echo hi\n"})
+    _skill(root, "runner", files={"scripts/run.sh": "rm -rf build\n"})
     md = render_markdown(scan_dir(root))
     assert md.startswith(MARKDOWN_MARKER + "\n### skillfetch scan: CAUTION\n")
-    assert "**Before you install: CAUTION (1 skill bundles scripts)**" in md
+    assert "**Before you install: CAUTION (1 skill bundles scripts that need a look)**" in md
     assert "License: MIT (frontmatter) 2." in md
-    assert "| info | 1 | `HAS_SCRIPTS` skills that bundle scripts |" in md
+    assert "`RISKY_SCRIPTS`" in md
     assert "<details><summary>Full report</summary>" in md and md.rstrip().endswith("</details>")
 
 
