@@ -6,7 +6,7 @@
 
 - **Safety**: in a public index of 2,785 skills, 1.9% trip an injection-scan warning, 9.0% bundle scripts and 2.4% are big enough to eat an agent's turns. Most warnings I read were not attacks; they are where to look before you install ([numbers.md](numbers.md) §25).
 - **Knowledge**: on 60 facts taken from 30 skills that promise knowledge a model may lack, the model without the skill answered 173 of 180 correctly. One skill cites a guideline I could not find ([numbers.md](numbers.md) §24).
-- **Effect**: with eight popular skills installed, results were the same as with none, except on one design task, where a large design skill ran the agent into its turn limit. The per-task router matched no skill at 62% more cost ([numbers.md](numbers.md) §26).
+- **Effect**: popular skills left for the model to use on its own barely changed the results: with eight installed, results were the same as with none, except on one design task, where a large design skill ran the agent into its turn limit. The per-task router matched no skill at 62% more cost ([numbers.md](numbers.md) §26).
 - **Where skills help**: rules a team wrote down and the code does not show. Given the right skills, rule checks passed went from 0.246 to 0.929; installing all 24 of the team's skills reached 0.905 ([numbers.md](numbers.md) §27).
 
 ## 1. Skills are installed, not read
@@ -78,7 +78,7 @@ Without the landing page, the three conditions are close: P 4.725, R 4.627, A 4.
 
 The other three design tasks did not repeat it: d2-redesign A 3.50, P 4.50, R 3.67; d3-dashboard 4.00, 3.67, 3.00; d4-email 4.33, 4.67, 4.00. My first post found the same shape over five task types: the expert's skill changed the result on design and nowhere else ([numbers.md](numbers.md) §11).
 
-Limits: five of the eight popular skills are web or front-end skills; design scores come from still screenshots; A and R reuse runs from another day with the same harness; 18 tasks, 3 runs, two Claude judges.
+Limits: P only installed the skills and left it to the model to pull them in, and the measure is the score of the final output. The value of workflow skills a user calls by name (tdd, for example) and of output-format or tone skills (saving tokens, for example) was not measured. Also: five of the eight popular skills are web or front-end skills; design scores come from still screenshots; A and R reuse runs from another day with the same harness; 18 tasks, 3 runs, two Claude judges.
 
 ## 5. Where skills do help: rules the code does not show
 
@@ -103,7 +103,7 @@ Limits: the company and its rules are mine, 10 tasks, 3 runs, two Claude judges.
 
 ## 6. Scan before you install
 
-What I take from this: most of what a skill can do for you is either already in the model or rarely triggered, and the rest is specific to your team. The cost side is real: context, turns, sometimes a whole session. So the useful habit is to read before you install, and to make that cheap I turned the checks into one command.
+What I take from this, within what I measured (skills installed and left for the model to pull in, judged by the final output; not workflow skills you call by name, nor output-format or tone skills): most of what a skill can do for you is either already in the model or rarely triggered, and the rest is specific to your team. The cost side is real: context, turns, sometimes a whole session. So the useful habit is to read before you install, and to make that cheap I turned the checks into one command.
 
 ```
 uvx --from git+https://github.com/hyunlord/skillfetch skillfetch scan https://github.com/<owner>/<repo>
