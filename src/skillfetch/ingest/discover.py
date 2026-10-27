@@ -39,16 +39,16 @@ from pydantic import BaseModel, ConfigDict, field_validator
 
 from skillfetch.ingest.build import _locale_paths, _norm_name
 from skillfetch.ingest.injection import load_rules, scan_skill
-from skillfetch.ingest.licenses import (
-    LICENSE_FILES,
-    REDISTRIBUTABLE,
-    classify_text,
-    root_license,
-    skill_license,
-)
+from skillfetch.ingest.licenses import REDISTRIBUTABLE, root_license, skill_license
 from skillfetch.ingest.lint import lint_skill
-from skillfetch.ingest.provenance import openskills_upstream, parse_third_party_doc
-from skillfetch.ingest.skillfile import content_hash, discover_skills, read_skill, read_text
+from skillfetch.ingest.repo_license import (  # noqa: F401  (re-exported for discover's callers)
+    AGGREGATOR_UPSTREAM_SHARE,
+    is_aggregator,
+    nearest_repo_license,
+    third_party_list,
+    upstream_marked,
+)
+from skillfetch.ingest.skillfile import content_hash, discover_skills, read_skill
 from skillfetch.ingest.sources import Source
 from skillfetch.ingest.upstream_licenses import GitHubClient, _safe_repo
 
@@ -518,61 +518,6 @@ def _share(n: int, d: int) -> float | None:
     return round(n / d, 3) if d else None
 
 
-AGGREGATOR_UPSTREAM_SHARE = 0.1  # this share of upstream-marked skills makes an aggregator
-_UPSTREAM_KEYS = ("upstream", "source", "source_url", "origin", "original", "repository")
-_THIRD_PARTY_FILE = re.compile(r"^(third[-_ ]?party|upstreams?|credits|attribution)", re.I)
-_THIRD_PARTY_HEADING = re.compile(
-    r"^#{1,6}\s.*\b(third[- ]party|upstream|credits|attribution)", re.I | re.M
-)
-_LINKED_REPO = re.compile(r"github\.com/([A-Za-z0-9-]+)/([A-Za-z0-9._-]+)")
-
-
-def upstream_marked(skill_dir: Path, frontmatter: dict | None) -> bool:
-    """The skill says it came from elsewhere: an `.openskills.json` upstream (§1.1), or a
-    frontmatter field such as `upstream:` or `source:` holding a GitHub URL."""
-    if openskills_upstream(skill_dir) is not None:
-        return True
-    fm = frontmatter or {}
-    return any(isinstance(fm.get(k), str) and "github.com/" in fm[k] for k in _UPSTREAM_KEYS)
-
-
-def third_party_list(repo_dir: Path) -> str | None:
-    """Where the repository lists third-party upstreams: a root file named like
-    THIRD_PARTY*/UPSTREAM*/CREDITS*/ATTRIBUTION*, or a README section with such a heading
-    and links to at least three other GitHub repositories, or UASL's `- Upstream:` format.
-    None when there is none."""
-    for path in sorted(repo_dir.iterdir()):
-        if path.is_file() and not path.is_symlink() and _THIRD_PARTY_FILE.match(path.name):
-            return path.name
-    for name in ("README.md", "readme.md", "README"):
-        path = repo_dir / name
-        if not path.is_file() or path.is_symlink():
-            continue
-        text = read_text(path)
-        if parse_third_party_doc(text):
-            return f"{name} (Upstream lines)"
-        if m := _THIRD_PARTY_HEADING.search(text):
-            repos = {f"{o}/{r}".lower() for o, r in _LINKED_REPO.findall(text[m.start() :])}
-            if len(repos) >= 3:
-                return f"{name} ({m.group(1).lower()} section)"
-    return None
-
-
-def nearest_repo_license(repo_dir: Path, skill_dir: Path) -> tuple[str, str] | None:
-    """(license file, license) of the nearest license file above the skill folder, up to the
-    repository root: the --upstream-licenses rule (§1.8) with the repository as the upstream."""
-    folder = skill_dir.parent if skill_dir != repo_dir else repo_dir
-    while True:
-        for name in LICENSE_FILES:
-            path = folder / name
-            if path.is_file() and not path.is_symlink():
-                rel = path.relative_to(repo_dir).as_posix()
-                return rel, classify_text(read_text(path)) or "unrecognized"
-        if folder == repo_dir or repo_dir not in folder.parents:
-            return None
-        folder = folder.parent
-
-
 def precheck(repo_dir: Path, index: IndexView | None) -> dict:
     """Model-free checks of every skill folder in a checked-out repository."""
     dirs = discover_skills(repo_dir)
@@ -615,7 +560,7 @@ def precheck(repo_dir: Path, index: IndexView | None) -> dict:
     n = len(rows)
     upstream_share = _share(sum(r["upstream"] for r in rows), n)
     third_party = third_party_list(repo_dir)
-    aggregator = bool(third_party) or (upstream_share or 0) >= AGGREGATOR_UPSTREAM_SHARE
+    aggregator = is_aggregator(third_party, upstream_share)
     from_root = 0
     if not aggregator:  # the repository is the skills' upstream: its license files apply
         for r in rows:
