@@ -20,7 +20,13 @@ from skillfetch.ingest.calibrate import calibrate, render_calibration
 from skillfetch.ingest.extract_cache import DEFAULT_CACHE_DIR, ExtractCache
 from skillfetch.ingest.holdout import load_holdout, measure_holdout, render_holdout
 from skillfetch.ingest.ingest import extract_dir, render_cost_log
-from skillfetch.ingest.local_scan import Lookup, fail_counts, render_report, scan_dir
+from skillfetch.ingest.local_scan import (
+    Lookup,
+    fail_counts,
+    render_markdown,
+    render_report,
+    scan_target,
+)
 from skillfetch.ingest.remote import RemoteError, checkout, is_remote, parse_github_url
 from skillfetch.ingest.snapshot import DEFAULT_WORK_DIR, SnapshotError
 from skillfetch.ingest.sources import load_sources
@@ -41,25 +47,15 @@ def _fail_on(value: str) -> list[str]:
 
 
 def _scan(args: argparse.Namespace):
-    """scan_dir on a local folder, or on a shallow checkout of a GitHub URL (the report then
-    names the URL and commit instead of the temporary folder, which is deleted)."""
-    if not is_remote(args.dir):
-        root = Path(args.dir)
-        if not root.is_dir():
-            raise NotADirectoryError(args.dir)
-        lookup, how = _scan_lookup(args)
-        report = scan_dir(root, lookup, args.conflict_cap)
-        report.extraction = how
-        return report
-    target = parse_github_url(args.dir)
+    """scan_target with the CLI's lookup (index, extract cache, optional extractor)."""
+    if not is_remote(args.dir) and not Path(args.dir).is_dir():
+        raise NotADirectoryError(args.dir)
+    if is_remote(args.dir):
+        parse_github_url(args.dir)  # refuse a bad URL before loading the index
     lookup, how = _scan_lookup(args)
-    with checkout(target) as (folder, commit):
-        report = scan_dir(folder, lookup, args.conflict_cap)
-        base = str(folder.resolve())
-        where = f"{target.url}@{commit[:12]}"
-        for s in report.skills:
-            s.path = where + s.path.removeprefix(base)
-    report.root = where
+    report = scan_target(
+        args.dir, lookup, args.conflict_cap, parse=parse_github_url, checkout_fn=checkout
+    )
     report.extraction = how
     return report
 
@@ -79,6 +75,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         "temporary folder, scanned and deleted; nothing is installed or run",
     )
     scan.add_argument("--json", action="store_true", help="print the report as JSON")
+    scan.add_argument(
+        "--markdown",
+        action="store_true",
+        help="print the report as a pull-request comment (Markdown; used by the GitHub Action)",
+    )
     scan.add_argument(
         "--fail-on",
         type=_fail_on,
@@ -220,6 +221,60 @@ def main(argv: Sequence[str] | None = None) -> int:
         help="#26 option: cut each compact search summary to this many characters "
         "(default: %(default)s)",
     )
+    serve.add_argument(
+        "--vet",
+        action="store_true",
+        help="serve scan_skill and find_skills only (no routing), for the vet skill "
+        "(assets/vet-skill); starts without an index, and uses it when there is one",
+    )
+
+    setup = sub.add_parser(
+        "setup",
+        help="set up Claude Code: the MCP server, the vet skill (check before install, find on "
+        "request) and the index; --auto adds per-task routing. Shows every change and asks first",
+    )
+    where = setup.add_mutually_exclusive_group()
+    where.add_argument(
+        "--user", dest="scope", action="store_const", const="user", help="~/.claude (default)"
+    )
+    where.add_argument(
+        "--project",
+        dest="scope",
+        action="store_const",
+        const="project",
+        help="this repository: .claude/skills and .mcp.json",
+    )
+    setup.set_defaults(scope="user")
+    setup.add_argument(
+        "--auto",
+        action="store_true",
+        help="also install the router skill and serve the routing tools (auto-apply; off by "
+        "default, see numbers.md §26)",
+    )
+    setup.add_argument("--remove", action="store_true", help="undo what setup installed")
+    setup.add_argument("-y", "--yes", action="store_true", help="do not ask before changing")
+    setup.add_argument("--no-sync", action="store_true", help="do not sync the index")
+    setup.add_argument(
+        "--from",
+        dest="source",
+        default="git+https://github.com/hyunlord/skillfetch",
+        help="where uvx installs skillfetch from for the MCP server (default: %(default)s)",
+    )
+
+    find = sub.add_parser(
+        "find",
+        help="search the index for a skill you want: top matches with summary, tier, size, "
+        "license and install advice (no model, nothing installed)",
+    )
+    find.add_argument("want", help='what the skill should do, e.g. "write Playwright tests"')
+    find.add_argument("-k", type=int, default=10, help="how many results (default: %(default)s)")
+    find.add_argument(
+        "--index",
+        type=Path,
+        default=DEFAULT_INDEX_DIR,
+        help="index directory (default: %(default)s)",
+    )
+    find.add_argument("--json", action="store_true", help="print the results as JSON")
 
     ev = sub.add_parser("eval", help="offline benchmarks (no model calls)")
     ev_sub = ev.add_subparsers(dest="benchmark", required=True)
@@ -428,7 +483,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         except (extract.MissingCredentials, ValueError) as exc:
             print(f"skillfetch: {exc}", file=sys.stderr)
             return 2
-        text = report.model_dump_json(indent=2) + "\n" if args.json else render_report(report)
+        if args.json:
+            text = report.model_dump_json(indent=2) + "\n"
+        elif args.markdown:
+            text = render_markdown(report)
+        else:
+            text = render_report(report)
         sys.stdout.write(text)
         counts = fail_counts(report)
         triggered = [f"{counts[k]} {k}" for k in FAIL_ON if k in args.fail_on and counts[k]]
@@ -444,6 +504,17 @@ def main(argv: Sequence[str] | None = None) -> int:
         return _obedience(args)
     if args.command == "serve":
         return _serve(args)
+    if args.command == "find":
+        return _find(args)
+    if args.command == "setup":
+        from skillfetch.setup import Setup
+        from skillfetch.setup import main as setup_main
+
+        return setup_main(
+            Setup(scope=args.scope, auto=args.auto, source=args.source, sync=not args.no_sync),
+            remove=args.remove,
+            yes=args.yes,
+        )
     if args.command == "sync":
         return _sync(args)
     if args.command == "eval":
@@ -584,9 +655,31 @@ def _scan_lookup(args: argparse.Namespace) -> tuple[Lookup, str | None]:
     return Lookup(index, ExtractCache(args.cache_dir), model, extractor, args.jobs), how
 
 
-def _serve(args: argparse.Namespace) -> int:
-    from skillfetch.mcp.server import serve
+def _find(args: argparse.Namespace) -> int:
+    from skillfetch.index.find import find_skills, render_find
+    from skillfetch.index.search import Searcher
 
+    try:
+        index = Index.load(args.index)
+    except IndexLoadError as exc:
+        print(f"skillfetch: {exc}; run `skillfetch sync` first", file=sys.stderr)
+        return 2
+    found = find_skills(index, Searcher(index), args.want, args.k)
+    if args.json:
+        import json as _json
+
+        print(_json.dumps(found, indent=2, ensure_ascii=False))
+    else:
+        sys.stdout.write(render_find(args.want, found))
+    return 2 if "error" in found else 0
+
+
+def _serve(args: argparse.Namespace) -> int:
+    from skillfetch.mcp.server import serve, serve_vet
+
+    if args.vet:
+        serve_vet(args.index)
+        return 0
     try:
         serve(
             args.index,

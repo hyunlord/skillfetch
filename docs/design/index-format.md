@@ -580,6 +580,12 @@ As built (`ingest/local_scan.py`, `cli.py`):
     - low: DUPLICATE, TENSION (tension and needs_review), LINT_WARNING, NO_LICENSE;
     - info: HAS_SCRIPTS, SCAN_INFO, DATED;
   - how many skills the contradiction check covered.
+- `--markdown` prints the report as a pull-request comment: a `<!-- skillfetch-scan -->`
+  marker, the advice and license lines, the severity summary as a table and the text report
+  in a collapsed block, cut to fit a comment (60,000 characters). The GitHub Action
+  `.github/actions/skillfetch-scan` runs it on a skills folder, keeps one comment per pull
+  request up to date, writes the job summary, and fails on NOT RECOMMENDED, which is what
+  `--fail-on conflict,scan,lint` catches (example: `examples/skillfetch-scan.yml`).
 - Exit code 0 when the scan ran, 2 on usage errors. `--fail-on
   {conflict,scan,lint}` (repeatable or comma-separated) exits 1 when the scan
   finds any conflict finding, injection-scan failure or lint failure; the
@@ -634,6 +640,33 @@ As built (`ingest/local_scan.py`, `cli.py`):
      scanned folder;
   3. the license of an indexed skill with the same content (`indexed copy`);
   4. none stated (NO_LICENSE, low): all rights reserved by default.
+- **In an agent:** the MCP tool `scan_skill(target)` returns the same JSON as `--json`,
+  with `advice_line` and `license_line` (the report's first two lines). The full server
+  (`skillfetch serve`) has it beside the routing tools; `serve --vet` serves it with
+  `find_skills` (§5.2) and no routing, and starts without an index (with one, installed
+  copies of public skills are checked for contradictions from it). It never extracts: skills
+  in neither the index nor the extract cache are left out of the contradiction check, and
+  `extraction` says so. The vet skill (`assets/vet-skill/SKILL.md`) tells the agent to call it
+  before installing a skill or writing one into `.claude/skills`, show the two lines and ask.
+
+### 5.2 Find on request (`index/find.py`)
+
+`skillfetch find "<what you want>"` and the MCP tool `find_skills(want, k=10)`: the index's
+top k (at most 50) for a request the user made, by the same BM25 as `search_skills` (one
+query, tiers A and B). Nothing is loaded; this is separate from per-task routing.
+
+- Each result: `id`, `title`, `summary`, `tier`, `token_estimate`, `files`, `has_scripts`,
+  `license` (the record's), `repo_license`, `advice`, `advice_reasons`, `scan_url`.
+- **Advice from the record**, by §5.1 without the pair checks and the license: lint errors
+  or scan failures stored at build time → not recommended; else a stored scan warning whose
+  rule is still `warn` under the current rules, `token_estimate` over 8,000, more than 20
+  files, or scripts → caution; else recommended. The size in bytes and checks added after the
+  build (remote instructions, rules v6) need the files.
+- **`scan_url`**: `https://github.com/<owner>/<repo>/tree/<commit>/<path>`, the skill at its
+  pinned commit, for `scan` / `scan_skill` before installing. The vet skill tells the agent
+  to show the candidates, scan the one the user picks, and ask.
+- Without an index the CLI exits 2 and `find_skills` returns `{error}` naming
+  `skillfetch sync`.
 
 ## 6. Discover (candidate sources, issue #60)
 

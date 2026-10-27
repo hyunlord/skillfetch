@@ -8,14 +8,28 @@ Read this file fully before touching code. It is the spec. Design details live i
 **Skill vetting before you install, plus a measured study of what skills do for coding
 agents.** Per-task routing is an experimental feature (below).
 
+`skillfetch setup` puts three features into Claude Code (`src/skillfetch/setup.py`): it
+registers the MCP server, installs the vet skill and syncs the index, after showing every change
+and asking; `--remove` undoes it.
+
+| feature | default | how |
+|---|---|---|
+| check before install | on | the vet skill (`assets/vet-skill`) calls `scan_skill` before a skill is installed or written into `.claude/skills`, shows the advice and license lines, and asks |
+| find on request | on | the vet skill calls `find_skills` when the user asks for a skill, then scans the pick |
+| auto-apply (per-task routing) | off | `setup --auto`: the router skill and the routing tools (`serve` without `--vet`) |
+
 - **`skillfetch scan <dir | GitHub URL>`** checks skills before they are installed: lint,
   injection scan (including remote instructions), size, bundled scripts, dated claims, the
   license, duplicates and contradictions between skills, each with the line it comes from. A
   GitHub URL is shallow-cloned into a temporary folder and deleted; nothing is installed or
   run. The report opens with one line of advice (RECOMMENDED / CAUTION / NOT RECOMMENDED, from
   safety and quality only) and, under it, the license with where it was found
-  (`docs/design/index-format.md` §5, §5.1). No model and no API key, except contradiction
-  extraction for skills the index does not cover (`--claude-code`, `--with-api`).
+  (`docs/design/index-format.md` §5, §5.1). The same check runs as the MCP tool `scan_skill`
+  and in CI (`.github/actions/skillfetch-scan`, `scan --markdown`). No model and no API key,
+  except contradiction extraction for skills the index does not cover (`--claude-code`,
+  `--with-api`).
+- **`skillfetch find "<what you want>"`** / `find_skills`: index matches for a request the
+  user made, with an advice from the index record and the URL to scan (§5.2).
 - **The measurement study** is everything under `evals/` and `docs/writeup/numbers.md`: real
   Claude Code sessions, blind judging, the index scanned with the scan rules. Every number in
   README or the posts comes from numbers.md.
@@ -73,8 +87,8 @@ The product has two halves that must stay decoupled:
 - No skill self-generation from task history.
 - No GUI, no web service. CLI + MCP only.
 - Runtime network access is limited to fetching skill bodies from their pinned
-  source; a hash mismatch is refused. Search and `resolve_set` read the local
-  index only.
+  source (a hash mismatch is refused) and to the shallow clone of a GitHub URL the user
+  asks `scan` / `scan_skill` to check. Search and `resolve_set` read the local index only.
 
 ## Repository layout (target)
 
@@ -132,6 +146,12 @@ Built (v0.2): `profile_repo`, `search_skills`, `resolve_set`, `load_skills`. Bui
 for #26, off by default: `serve --auto-profile` (a search without `profile` uses the server's
 working directory) and `serve --summary-chars N` (docs/design/router-cost.md).
 Planned for v0.3, not built: `report_outcome`. `prepare_set`: not built, not planned for v0.3.
+Not part of routing: `scan_skill(target)` (a local folder or GitHub URL; the same JSON as
+`skillfetch scan --json`, no model) and `find_skills(want, k=10)` (index matches for a request
+the user made, with an advice from the record; index-format.md §5.2). Both are served with the
+router tools and, without routing, by `serve --vet`, for the vet skill
+`assets/vet-skill/SKILL.md` (install it without the router: it scans before a skill is
+installed and asks, and finds skills when the user asks).
 
 | tool | input | output |
 |---|---|---|
@@ -218,6 +238,13 @@ this mode; default injection mode leaves skill text in the transcript.
   source, by discover's rule (nearest license file up to the repository root, outside an
   aggregator).
 - The scan rules over the released index (numbers.md §25), and README led by `scan`.
+
+**v0.5 — one setup, three features** (2026-10-27, PRs #105–#108)
+- `scan_skill` MCP tool and the vet skill (`assets/vet-skill`): check before install.
+- `skillfetch find` / `find_skills`: find on request, with an advice from the index record.
+- GitHub Action and `scan --markdown`: the check in CI, one PR comment, fail on NOT RECOMMENDED.
+- `skillfetch setup [--auto] [--project | --user] [--remove]`: MCP server, vet skill and index
+  in one command; auto-apply (the router) off by default.
 
 ## Working rules for Claude Code in this repo
 

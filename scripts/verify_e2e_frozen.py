@@ -29,6 +29,7 @@ ROOT_MOVED = {
     "stage12b/": "stage12/12b/",
     "stage12c/": "stage12/12c/",
     "stage13-private/": "stage13/private/",
+    "stage14-private/": "stage14/private/",
     "stageRF/": "stageQ/refire/",
     "stageRF-private/": "stageQ/refire/private/",
 }

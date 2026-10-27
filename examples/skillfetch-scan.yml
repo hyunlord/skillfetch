@@ -1,0 +1,22 @@
+# Copy to .github/workflows/skillfetch-scan.yml in a repository that keeps agent skills.
+# Every pull request that changes a skill gets one comment with the scan summary (updated on
+# each push), and the check fails when the advice is NOT RECOMMENDED.
+name: skillfetch scan
+
+on:
+  pull_request:
+    paths:
+      - ".claude/skills/**"
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: hyunlord/skillfetch/.github/actions/skillfetch-scan@main
+        with:
+          path: .claude/skills

@@ -1,0 +1,45 @@
+{
+ "verdict": "차이 있음",
+ "lines": [
+  {
+   "text": "여섯 결과 모두 계약 27/27이다. R 두 결과는 5/5이고, 두 판정자가 하나로 통일된 에러 형태와 url UNIQUE만 409로 바꾼 점을 적었다. 두 세션 모두 api-design과 fastapi-patterns를 로드했다.",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "R B",
+     "quote": "errors.py with typed ApiError hierarchy, uniform envelope incl. a logged, non-leaking 500 handler"
+    },
+    {
+     "src": "p1",
+     "run": "R F",
+     "quote": "404/405/422 포함 일관된 에러 형태, url 제약 위반만 409로 매핑"
+    }
+   ]
+  },
+  {
+   "text": "P 두 결과(4/4, 5/4)에 대해 두 판정자는 모든 IntegrityError를 409로 바꾼다고 적었다. P 스킬은 쓰지 않았다.",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "P F",
+     "quote": "every IntegrityError becomes 409, URLs not normalised (trailing-slash variants can both be saved)"
+    },
+    {
+     "src": "p2",
+     "run": "P B",
+     "quote": "create/update map any IntegrityError to 409 and errors use default FastAPI shape"
+    }
+   ]
+  },
+  {
+   "text": "A 두 결과(5/4, 5/4)는 FastAPI 기본 `{\"detail\"}` 에러 형태이거나, 부분 수정에 `type: ignore` 기본값을 썼다는 지적을 받았다.",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "A B",
+     "quote": "BookmarkUpdate uses `Url = None  # type: ignore` instead of an explicit null check, errors keep FastAPI's default {\"detail\"} shape"
+    }
+   ]
+  }
+ ]
+}

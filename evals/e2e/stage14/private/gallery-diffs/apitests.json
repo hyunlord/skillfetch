@@ -1,0 +1,45 @@
+{
+ "verdict": "차이 있음",
+ "lines": [
+  {
+   "text": "여섯 결과 모두 변이 8/8을 잡았고 테스트를 139–167개로 늘렸다. 여섯 세션 모두 앞 요청의 API에서 id·offset이 2^63 이상일 때 500이 나는 버그를 찾았다. 처리 방식은 갈렸다.",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "A B",
+     "quote": "only API change is the int64 bound fixing a real overflow 500"
+    }
+   ]
+  },
+  {
+   "text": "P 두 결과(4/4, 4/4)는 overflow 수정에 더해 계약에 없는 동작도 바꿨다고 두 판정자가 적었다(id 0/-1이 404 대신 422).",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "P B",
+     "quote": "it also changes behaviour the contract does not require (id 0/-1 now 422 instead of 404"
+    },
+    {
+     "src": "p2",
+     "run": "P F",
+     "quote": "API edited beyond the overflow 500 fix: ids 0/-1 now 422"
+    }
+   ]
+  },
+  {
+   "text": "R 두 결과(5/5, 4/5)는 API를 고치지 않고 버그를 strict xfail로 남겼다. 두 세션 모두 python-testing과 radar를 로드했다. 정순은 `api/.coverage` 파일을 커밋했다.",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "R B",
+     "quote": "overflow bug pinned with a strict xfail marker instead of editing the API"
+    },
+    {
+     "src": "p2",
+     "run": "R F",
+     "quote": "Committed a stray binary `api/.coverage`"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,55 @@
+{
+ "verdict": "차이 없음",
+ "lines": [
+  {
+   "text": "세 조건 모두 정순(6번째 요청)과 역순(1번째 요청)의 차이가 크다. 정순 A·P는 5/5이고 테스트 97·101개를 넣었다. 역순 A·P·R은 4/4다. 정순 R은 4/5이고 86개 테스트를 넣었다.",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "A F",
+     "quote": "97 tests incl. end-to-end"
+    },
+    {
+     "src": "p2",
+     "run": "P F",
+     "quote": "101 tests, --today for reproducibility"
+    },
+    {
+     "src": "p2",
+     "run": "R F",
+     "quote": "both stated; 86 tests"
+    }
+   ]
+  },
+  {
+   "text": "R은 두 세션 모두 data-analyst-engine을 로드했다. 정순 R은 빈 가격을 채우지 않아 출고 32줄이 매출에서 빠졌고, 충돌하는 order_id 두 행을 모두 남겼다고 두 판정자가 적었다.",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "R F",
+     "quote": "the 3 conflicting order_ids stay in the clean CSV (both rows), so they count twice in revenue"
+    },
+    {
+     "src": "p2",
+     "run": "R F",
+     "quote": "does not impute blank prices (32 shipped lines left out of revenue)"
+    }
+   ]
+  },
+  {
+   "text": "역순(첫 요청) 세 결과는 테스트를 넣지 않았거나 리포트 범위가 좁다는 지적을 받았다.",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "R B",
+     "quote": "report shipped-only by country/category/month, no units or product view, no tests"
+    },
+    {
+     "src": "p2",
+     "run": "P B",
+     "quote": "script aborts on any unknown value; no tests"
+    }
+   ]
+  }
+ ]
+}

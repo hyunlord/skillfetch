@@ -1,0 +1,50 @@
+{
+ "verdict": "차이 있음",
+ "lines": [
+  {
+   "text": "A·R 네 결과는 모두 5/5다. P 역순(2번째 요청)은 3/4로, 테스트가 없는 api에서 pytest를 돌리라고 적었다는 지적을 받았다. P 정순은 5/5다.",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "P B",
+     "quote": "tells you to run `uv run pytest` in an api with no tests"
+    },
+    {
+     "src": "p2",
+     "run": "P B",
+     "quote": "odd `.claude/` entry in layout"
+    }
+   ]
+  },
+  {
+   "text": "정순(5번째 요청) 결과들은 앞서 만든 API·랜딩까지 다뤘고, 길이와 반복이 지적됐다. 역순(2번째 요청) A·R은 api가 아직 없다고 밝혔다.",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "R F",
+     "quote": "README is long (681 words) and repeats some config"
+    },
+    {
+     "src": "p1",
+     "run": "A B",
+     "quote": "api is honestly called unimplemented"
+    },
+    {
+     "src": "p2",
+     "run": "R B",
+     "quote": "api honestly skeleton-only"
+    }
+   ]
+  },
+  {
+   "text": "A 정순은 CSV의 빈 이메일 수를 22로 적었다(실제 19).",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "A F",
+     "quote": "data doc says 22 empty emails (CSV has 19)"
+    }
+   ]
+  }
+ ]
+}

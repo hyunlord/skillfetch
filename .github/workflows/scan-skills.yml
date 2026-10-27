@@ -1,0 +1,24 @@
+# This repository's skills (assets/: the router skill and the vet skill), scanned on every pull
+# request that changes them, with the action in .github/actions/.
+name: scan-skills
+
+on:
+  pull_request:
+    paths:
+      - "assets/**"
+      - ".github/actions/skillfetch-scan/**"
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: ./.github/actions/skillfetch-scan
+        with:
+          path: assets
+          skillfetch: .
+          sync-index: "false"

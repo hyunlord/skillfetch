@@ -209,6 +209,7 @@ Not recorded: in these stages' batch calls only successful answers are cached, s
 - Knowledge-gap probe (§24): 180 isolated `claude -p` calls, $0.88.
 - Stage 13 sessions (§26): P main run $34.66, P pilot $2.12, A and R third runs $7.01; total $43.79; Claude judging subagents not recorded.
 - Stage 12 and 12b sessions (§27): Stage 12 $34.97 (main run $30.89, pilot $2.21, spend-limit cutoffs $0.77, index-nw extraction $1.05, search check $0.05); Stage 12b $40.94 (main run $38.18, pilot $2.76); Claude judging subagents not recorded.
+- Stage 14 sessions (§28): main run $87.13, pilot $43.02; total $130.15; Claude judging subagents not recorded.
 
 ### Runtime latency
 
@@ -2394,4 +2395,70 @@ Source: the Stage 12 report [`evals/e2e/stage12/report-12.md`](../../evals/e2e/s
 - R′ differs from R in three things: the router variant, the `.skillfetch.yaml` and the server build (unmerged PR #97).
 - Two Claude judges.
 - A known false negative in a functional check: T8-F1 does not recognise `fetchApi<T>(…)` calls.
+
+## 28. Stage 14: consecutive tasks in one session
+
+Source: the Stage 14 report [`evals/e2e/stage14/report-14.md`](../../evals/e2e/stage14/report-14.md); design `evals/e2e/stage14/DESIGN.md` (criteria §5, log §9), hashes `evals/e2e/stage14/private/FROZEN-14.sha256`, derived session rows `evals/e2e/stage14/derived/sessions.jsonl`, gallery `evals/e2e/stage14/gallery/stage14-gallery.html`, judge diffs and gallery data in the release asset (`scripts/fetch_e2e_assets.sh`). Measured after the post's numbers were frozen; not in §7's totals.
+
+**Design.** Six requests in one Claude Code session, on one repository (`s14-mono`: a Next.js web app, a FastAPI service, a Rust media module, a data script), environment E1:
+- **Requests:** a landing page, an API endpoint, API tests, Rust concurrency, a README, a data script. Each session takes all six, in forward or reverse order.
+- **Conditions:** as in Stage 13 (§26).
+  - A: no skills.
+  - P: Stage 13's eight popular skills installed.
+  - R: the shipped router and the skillfetch MCP server.
+- **Runs:** 1 per order, so 2 sessions and 12 requests per condition: 6 sessions and 36 requests in all.
+- **Judging:** blind, by two Claude judges (p1, p2). The score is (p1 + p2) / 2.
+
+**Criteria fixed before the run** (DESIGN §5):
+- D = 0.25, the largest per-condition mean gap between the two judges, with a floor of 0.25.
+- "Within judge noise" is a label, not a gate.
+
+| criterion | R | compared with | difference | against D = 0.25 |
+|---|---:|---:|---:|---|
+| (i) mean of the 6 requests, R − P | 4.708 | P 3.833 | +0.875 | outside judge noise |
+| (ii) mean of the 6 requests, R − A | 4.708 | A 4.458 | +0.250 | within judge noise |
+| (iii) the request right after the domain changes, R − P | 4.812 | P 4.125 | +0.687 | outside judge noise |
+| (iii) for reference, R − A | 4.812 | A 4.625 | +0.187 | within judge noise |
+| (iv) mean API-price equivalent per session | $18.65 | P $12.33 / A $12.58 | +$6.32 / +$6.07 | – |
+
+- **Reference, after the fact, not a criterion:** without the landing page (5 requests), R 4.70, P 4.30, A 4.70, so R − P +0.40 and R − A 0.00.
+- **The landing page alone:** A 3.25, P 1.5, R 4.75 (mean of the two orders).
+  - P forward ended with a question and no page.
+  - P reverse ended at the 40-turn limit, $6.75.
+- **Checks passed:** A 12/12, P 11/12, R 12/12.
+- **40-turn limit:** P 1 request, A and R none.
+- **Skills used:**
+  - P used one of its eight skills in 2 of 12 requests, both the landing page (design-taste-frontend);
+  - R loaded 1–3 skills in all 12 requests;
+  - A made no Skill calls.
+
+**Earlier skills left in later work** (requests that had a skill earlier in the session: P 5, R 10):
+- (a) an earlier skill's name in the answer or diff: P 0, R 1. The R case is a request that loaded the same skill again; without such cases, R 0.
+- (c) a judge's "trace" verdict, checked against a quote from the diff: P 0 of 5 skill pairs, R 0 of 57.
+- (b) files changed outside the request's area: A 4, P 4, R 4 of 36 requests, all docs that earlier requests had written.
+
+**Context.** At the start of the sixth request (forward / reverse): A 122.5k / 174.4k tokens, P 118.8k / 132.6k, R 215.3k / 220.7k.
+
+**Cost** (API-price equivalent): main run $87.13, pilot $43.02 (3 sessions, not in the results), total $130.15. Per session:
+- A $12.44 / $12.72;
+- P $10.58 / $14.08;
+- R $19.79 / $17.52.
+
+**Limits.**
+- 1 run per order: 2 sessions per condition and 2 outputs per request.
+- R − P in (i) and (iii) is driven by P's two landing-page results (1.0 and 2.0); see the reference line.
+- One repository, six request types, one model. Two Claude judges.
+- The MCP server is the build Stages 11, Q and 13 used, without `find_skills` and `scan_skill`.
+- The judge package left out one rubric line ("reply.md 설명도 반영"); the 1–5 scale text was the same.
+
+## 29. The released router and the router the sessions ran
+
+Source: `assets/router-skill/SKILL.md` (released as 1.0.1) and the FROZEN files and run scripts of each stage under `evals/e2e/`, which record the router bytes each run used.
+
+- **The release and S-b′ differ only in the frontmatter.** The released router 1.0.1 (sha256 `d540297a71b557e8175f7cb6a6a8aab753285488640a724ccacb8f2e212100b6`) differs from S-b′ (sha256 `3efef1e0b7cf5181fa1911f4ebd075cb5d8b8865926d6353399221392bf8f040`) in exactly two places:
+  - the description is wrapped in double quotes, because strict YAML rejected the unquoted ": " inside it (`lint.frontmatter-invalid`);
+  - a `metadata.version: "1.0.1"` line is added.
+- **Nothing else changed.** The description as YAML reads it is the same string, and the body after the frontmatter is byte-identical.
+- **S-b′ is the router these sessions ran:** the end-to-end sessions of Stages 10, 11, Q (with the re-fire check), 12 (condition R), 13 (R) and 14 (R), whose files record `3efef1e0…`. Stages 6 and 9 used it offline (`stage6/select-cands/S-bp/SKILL.md`).
+- **Earlier stages ran earlier routers:** Stages 0–5 ran earlier router versions, recorded in their own FROZEN files. Stage 12b's R′ ran the org variant (PR #97).
 

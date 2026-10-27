@@ -1,0 +1,50 @@
+{
+ "verdict": "차이 있음",
+ "lines": [
+  {
+   "text": "P 두 결과는 1.0(정순, 첫 요청)과 2.0(역순, 마지막 요청)이다. 둘 다 design-taste-frontend를 불렀다. 정순은 6턴에서 페이지 없이 질문으로 끝났고(`/landing` 404), 역순은 41턴 한도에서 끝났다($6.75).",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "P F",
+     "quote": "/landing returns the Next.js 404 page at both widths; no landing page rendered"
+    },
+    {
+     "src": "p2",
+     "run": "P B",
+     "quote": "the pricing section is blank (no prices visible); hero is a huge empty green slab"
+    }
+   ]
+  },
+  {
+   "text": "R 두 결과는 4.5(정순)와 5.0(역순)이다. 역순은 북마크 제품 목업을 히어로에 넣었고, 정순은 같은 레포의 media CMS를 제품으로 잡았다고 p2가 적었다.",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "R B",
+     "quote": "hero shows a working tag-filtered bookmark list mock that sells the product directly"
+    },
+    {
+     "src": "p2",
+     "run": "R F",
+     "quote": "it markets the repo's media CMS rather than the web app's own content"
+    }
+   ]
+  },
+  {
+   "text": "A 두 결과는 2.5(정순, 첫 요청)와 4.0(역순, 마지막 요청)이다. 정순은 AI 템플릿 항목 4–5개와 일반 문구를, 역순은 북마크 앱 내용을 적었다.",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "A F",
+     "quote": "copy is generic \"build faster, grow easier / secure data / scalable\" placeholder for a product called \"S14\", not this app"
+    },
+    {
+     "src": "p1",
+     "run": "A B",
+     "quote": "북마크 앱(\"Shelf\") 내용과 맞음(태그, 중복 감지, REST API)"
+    }
+   ]
+  }
+ ]
+}

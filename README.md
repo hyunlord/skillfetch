@@ -1,24 +1,49 @@
 # skillfetch
 
-**Check a skill before you install it.** `skillfetch scan` reads a skills folder, or a GitHub
-repository without installing anything, and tells you in one line whether to install it.
-It checks:
-- injection patterns and remote instructions;
-- size;
-- bundled scripts;
-- the license;
-- lines that state a version or a year;
-- skills that contradict each other.
+**Check a skill before you install it.**
+
+```console
+$ uvx --from git+https://github.com/hyunlord/skillfetch skillfetch setup
+```
+
+`setup` registers skillfetch's MCP server in Claude Code, installs a short vet skill and
+downloads the index. It shows every path, file and command first and asks; it overwrites
+nothing (a file or entry that differs is shown as a diff), and `skillfetch setup --remove`
+undoes it. `--project` installs into this repository instead of `~/.claude`.
+
+| feature | default | what happens |
+|---|---|---|
+| check before install | on | when you ask the agent to install a skill, or it is about to write one into `.claude/skills`, it calls `scan_skill` first, shows you the advice and license lines, and asks |
+| find on request | on | ask the agent to find a skill for something: it calls `find_skills`, shows candidates with size and advice, scans the one you pick, and asks |
+| auto-apply (per-task routing) | off | `setup --auto` adds the router skill, which searches and loads skills for every task. Measured: no average effect, +62% cost per session, clearly better only on a design task ([numbers.md §26](docs/writeup/numbers.md#26-stage-13-popular-skills-installed-the-router-or-neither)) |
 
 No model and no API key. The rest of this repository is the measurement study behind it:
 what skills do for coding agents in real sessions ([numbers.md](docs/writeup/numbers.md)).
 
 ## Before you install a skill, scan it
 
-```console
-$ uvx --from git+https://github.com/hyunlord/skillfetch skillfetch scan https://github.com/<owner>/<repo>
-$ uvx --from git+https://github.com/hyunlord/skillfetch skillfetch scan ~/.claude/skills
-```
+Three ways to run the same check:
+
+- **Command line:**
+  ```console
+  $ uvx --from git+https://github.com/hyunlord/skillfetch skillfetch scan https://github.com/<owner>/<repo>
+  $ uvx --from git+https://github.com/hyunlord/skillfetch skillfetch scan ~/.claude/skills
+  $ uvx --from git+https://github.com/hyunlord/skillfetch skillfetch find "write Playwright tests"
+  ```
+- **In your agent (MCP):** `skillfetch setup` gives Claude Code the `scan_skill` and
+  `find_skills` tools (`skillfetch serve --vet`, no routing) and the vet skill
+  ([`assets/vet-skill/SKILL.md`](assets/vet-skill/SKILL.md)) that tells it when to call them.
+  Other MCP clients can run `skillfetch serve --vet` directly.
+- **In your team's CI:** the GitHub Action scans the skills a pull request changes, keeps one
+  comment with the summary up to date, and fails on NOT RECOMMENDED
+  ([example workflow](examples/skillfetch-scan.yml)):
+  ```yaml
+  - uses: hyunlord/skillfetch/.github/actions/skillfetch-scan@main
+    with:
+      path: .claude/skills
+  ```
+
+What the report says:
 
 - **A GitHub URL** (optionally `/tree/<ref>/<path>`):
   - It is cloned at depth 1 into a temporary folder, scanned there, and deleted.
@@ -287,9 +312,9 @@ helped.
 
 ## Experiment artifacts (`evals/e2e/`)
 
-The end-to-end experiments behind [numbers.md](docs/writeup/numbers.md) §11–§23 and §26:
-stages 0–13 and Q. Stage 12 has no numbers.md section; its reports are in its folder. Each
-stage folder holds what was fixed before the run and what came out of it:
+The end-to-end experiments behind [numbers.md](docs/writeup/numbers.md) §11–§23 and §26–§28:
+stages 0–14 and Q. Each stage folder holds what was fixed before the run and what came out of
+it:
 
 - **Before the run:** `DESIGN.md`, `FROZEN*.sha256`, task definitions (`tasks*.jsonl`,
   `tasks*.yaml`) and rubrics.
@@ -311,8 +336,9 @@ stage folder holds what was fixed before the run and what came out of it:
 | `stage10` | final stack in real sessions | §21 |
 | `stage11` | index-staging-4 release gate, remeasured | §22 |
 | `stageQ` | qualitative round, re-fire check | §23 |
-| `stage12` | rule skills of a fictional company team (Northwind: 24 skills, 2 repositories, 10 tasks); `12b`: org baseline vs all 24 installed; `12c`: design only, cancelled | `report-12.md`, `12b/report-12b.md` |
+| `stage12` | rule skills of a fictional company team (Northwind: 24 skills, 2 repositories, 10 tasks); `12b`: org baseline vs all 24 installed; `12c`: design only, cancelled | §27 |
 | `stage13` | popular skills installed, the router, or neither | §26 |
+| `stage14` | six consecutive requests in one session: popular skills installed, the router, or neither | §28 |
 | `router-e2e.json` | the export numbers.md §11–§12 read | §11, §12 |
 
 **Not here, and why.**

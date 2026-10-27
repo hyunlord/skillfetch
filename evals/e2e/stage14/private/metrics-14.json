@@ -1,0 +1,2062 @@
+{
+ "D": 0.25,
+ "judge_gap": {
+  "A": 0.25,
+  "P": 0.167,
+  "R": 0.25
+ },
+ "criteria": {
+  "i_R_minus_P": {
+   "a": 4.708,
+   "b": 3.833,
+   "diff": 0.875,
+   "noise": false
+  },
+  "ii_R_minus_A": {
+   "a": 4.708,
+   "b": 4.458,
+   "diff": 0.25,
+   "noise": true
+  },
+  "iii_R_minus_P_after_domain_change": {
+   "a": 4.812,
+   "b": 4.125,
+   "diff": 0.687,
+   "noise": false
+  },
+  "iii_ref_R_minus_A_after_domain_change": {
+   "a": 4.812,
+   "b": 4.625,
+   "diff": 0.187,
+   "noise": true
+  }
+ },
+ "cost_session_mean": {
+  "A": 12.583,
+  "P": 12.332,
+  "R": 18.653
+ },
+ "efficiency": {
+  "R_vs_P": {
+   "score_diff": 0.875,
+   "cost_diff_per_session": 6.321,
+   "score_per_dollar": 0.1384
+  },
+  "R_vs_A": {
+   "score_diff": 0.25,
+   "cost_diff_per_session": 6.07,
+   "score_per_dollar": 0.0412
+  }
+ },
+ "per_order": {
+  "F": {
+   "R_minus_P": {
+    "a": 4.75,
+    "b": 4.0,
+    "diff": 0.75,
+    "noise": false
+   },
+   "R_minus_A": {
+    "a": 4.75,
+    "b": 4.5,
+    "diff": 0.25,
+    "noise": true
+   }
+  },
+  "B": {
+   "R_minus_P": {
+    "a": 4.667,
+    "b": 3.667,
+    "diff": 1.0,
+    "noise": false
+   },
+   "R_minus_A": {
+    "a": 4.667,
+    "b": 4.417,
+    "diff": 0.25,
+    "noise": true
+   }
+  }
+ },
+ "per_judge": {
+  "p1": {
+   "R_minus_P": {
+    "a": 4.667,
+    "b": 3.833,
+    "diff": 0.834,
+    "noise": false
+   },
+   "R_minus_A": {
+    "a": 4.667,
+    "b": 4.583,
+    "diff": 0.084,
+    "noise": true
+   }
+  },
+  "p2": {
+   "R_minus_P": {
+    "a": 4.75,
+    "b": 3.833,
+    "diff": 0.917,
+    "noise": false
+   },
+   "R_minus_A": {
+    "a": 4.75,
+    "b": 4.333,
+    "diff": 0.417,
+    "noise": false
+   }
+  }
+ },
+ "per_task": {
+  "landing": {
+   "A": {
+    "score": 3.25,
+    "check": 2,
+    "turns": [
+     17,
+     8
+    ],
+    "cost": [
+     4.22,
+     0.36
+    ],
+    "skills": [
+     [],
+     []
+    ]
+   },
+   "P": {
+    "score": 1.5,
+    "check": 1,
+    "turns": [
+     41,
+     6
+    ],
+    "cost": [
+     6.75,
+     0.34
+    ],
+    "skills": [
+     [
+      "design-taste-frontend"
+     ],
+     [
+      "design-taste-frontend"
+     ]
+    ]
+   },
+   "R": {
+    "score": 4.75,
+    "check": 2,
+    "turns": [
+     42,
+     26
+    ],
+    "cost": [
+     6.17,
+     0.94
+    ],
+    "skills": [
+     [
+      "frontend-design",
+      "ui-design"
+     ],
+     [
+      "copywriting",
+      "frontend-design"
+     ]
+    ]
+   }
+  },
+  "api": {
+   "A": {
+    "score": 4.5,
+    "check": 2,
+    "turns": [
+     15,
+     16
+    ],
+    "cost": [
+     2.29,
+     0.96
+    ],
+    "skills": [
+     [],
+     []
+    ]
+   },
+   "P": {
+    "score": 4.25,
+    "check": 2,
+    "turns": [
+     17,
+     12
+    ],
+    "cost": [
+     1.99,
+     0.81
+    ],
+    "skills": [
+     [],
+     []
+    ]
+   },
+   "R": {
+    "score": 5.0,
+    "check": 2,
+    "turns": [
+     23,
+     18
+    ],
+    "cost": [
+     3.11,
+     1.77
+    ],
+    "skills": [
+     [
+      "api-design",
+      "fastapi-patterns"
+     ],
+     [
+      "api-design",
+      "fastapi-patterns"
+     ]
+    ]
+   }
+  },
+  "apitests": {
+   "A": {
+    "score": 5.0,
+    "check": 2,
+    "turns": [
+     15,
+     13
+    ],
+    "cost": [
+     3.38,
+     1.69
+    ],
+    "skills": [
+     [],
+     []
+    ]
+   },
+   "P": {
+    "score": 4.0,
+    "check": 2,
+    "turns": [
+     16,
+     14
+    ],
+    "cost": [
+     2.87,
+     1.49
+    ],
+    "skills": [
+     [],
+     []
+    ]
+   },
+   "R": {
+    "score": 4.75,
+    "check": 2,
+    "turns": [
+     17,
+     17
+    ],
+    "cost": [
+     4.37,
+     2.75
+    ],
+    "skills": [
+     [
+      "python-testing",
+      "radar"
+     ],
+     [
+      "python-testing",
+      "radar"
+     ]
+    ]
+   }
+  },
+  "rust": {
+   "A": {
+    "score": 4.5,
+    "check": 2,
+    "turns": [
+     10,
+     11
+    ],
+    "cost": [
+     1.4,
+     2.24
+    ],
+    "skills": [
+     [],
+     []
+    ]
+   },
+   "P": {
+    "score": 4.5,
+    "check": 2,
+    "turns": [
+     12,
+     11
+    ],
+    "cost": [
+     1.17,
+     1.88
+    ],
+    "skills": [
+     [],
+     []
+    ]
+   },
+   "R": {
+    "score": 4.5,
+    "check": 2,
+    "turns": [
+     21,
+     16
+    ],
+    "cost": [
+     2.0,
+     3.57
+    ],
+    "skills": [
+     [
+      "domain-web",
+      "m07-concurrency"
+     ],
+     [
+      "domain-web",
+      "m07-concurrency",
+      "rust-testing"
+     ]
+    ]
+   }
+  },
+  "docs": {
+   "A": {
+    "score": 5.0,
+    "check": 2,
+    "turns": [
+     10,
+     13
+    ],
+    "cost": [
+     0.92,
+     2.9
+    ],
+    "skills": [
+     [],
+     []
+    ]
+   },
+   "P": {
+    "score": 4.25,
+    "check": 2,
+    "turns": [
+     10,
+     10
+    ],
+    "cost": [
+     0.8,
+     2.39
+    ],
+    "skills": [
+     [],
+     []
+    ]
+   },
+   "R": {
+    "score": 5.0,
+    "check": 2,
+    "turns": [
+     12,
+     9
+    ],
+    "cost": [
+     1.23,
+     4.41
+    ],
+    "skills": [
+     [
+      "codebase-onboarding",
+      "quill"
+     ],
+     [
+      "quill",
+      "spec-miner"
+     ]
+    ]
+   }
+  },
+  "data": {
+   "A": {
+    "score": 4.5,
+    "check": 2,
+    "turns": [
+     10,
+     15
+    ],
+    "cost": [
+     0.52,
+     4.29
+    ],
+    "skills": [
+     [],
+     []
+    ]
+   },
+   "P": {
+    "score": 4.5,
+    "check": 2,
+    "turns": [
+     6,
+     19
+    ],
+    "cost": [
+     0.5,
+     3.68
+    ],
+    "skills": [
+     [],
+     []
+    ]
+   },
+   "R": {
+    "score": 4.25,
+    "check": 2,
+    "turns": [
+     16,
+     33
+    ],
+    "cost": [
+     0.65,
+     6.35
+    ],
+    "skills": [
+     [
+      "data-analyst-engine"
+     ],
+     [
+      "data-analyst-engine",
+      "python-testing"
+     ]
+    ]
+   }
+  }
+ },
+ "per_condition": {
+  "A": {
+   "score": 4.458,
+   "checks": "12/12",
+   "max_turns_hits": 0,
+   "turns_session": [
+    77,
+    76
+   ],
+   "cost_session": [
+    12.72,
+    12.44
+   ],
+   "context_start_by_position": {
+    "1": [
+     25702,
+     25609
+    ],
+    "2": [
+     46612,
+     35904
+    ],
+    "3": [
+     64231,
+     56024
+    ],
+    "4": [
+     88558,
+     81773
+    ],
+    "5": [
+     126044,
+     101692
+    ],
+    "6": [
+     174425,
+     122533
+    ]
+   },
+   "requests_with_skill": 0,
+   "trace_a_names": 0,
+   "trace_a_not_reloaded": 0,
+   "trace_b_out_of_area": 4,
+   "mutants_killed": [
+    8,
+    8
+   ]
+  },
+  "P": {
+   "score": 3.833,
+   "checks": "11/12",
+   "max_turns_hits": 1,
+   "turns_session": [
+    102,
+    72
+   ],
+   "cost_session": [
+    14.08,
+    10.58
+   ],
+   "context_start_by_position": {
+    "1": [
+     26521,
+     26432
+    ],
+    "2": [
+     45245,
+     47720
+    ],
+    "3": [
+     56966,
+     62758
+    ],
+    "4": [
+     71668,
+     87742
+    ],
+    "5": [
+     100942,
+     103046
+    ],
+    "6": [
+     132621,
+     118826
+    ]
+   },
+   "requests_with_skill": 2,
+   "trace_a_names": 0,
+   "trace_a_not_reloaded": 0,
+   "trace_b_out_of_area": 4,
+   "mutants_killed": [
+    8,
+    8
+   ]
+  },
+  "R": {
+   "score": 4.708,
+   "checks": "12/12",
+   "max_turns_hits": 0,
+   "turns_session": [
+    131,
+    119
+   ],
+   "cost_session": [
+    17.52,
+    19.79
+   ],
+   "context_start_by_position": {
+    "1": [
+     26138,
+     26041
+    ],
+    "2": [
+     56402,
+     67579
+    ],
+    "3": [
+     87523,
+     106421
+    ],
+    "4": [
+     119532,
+     150130
+    ],
+    "5": [
+     165406,
+     185140
+    ],
+    "6": [
+     220681,
+     215262
+    ]
+   },
+   "requests_with_skill": 12,
+   "trace_a_names": 1,
+   "trace_a_not_reloaded": 0,
+   "trace_b_out_of_area": 4,
+   "mutants_killed": [
+    8,
+    8
+   ]
+  }
+ },
+ "rows": [
+  {
+   "session": "A-B-m1",
+   "cond": "A",
+   "order": "B",
+   "tag": "m1",
+   "k": 1,
+   "task": "data",
+   "area": "data",
+   "after_domain_change": false,
+   "turns": 10,
+   "result": "success",
+   "cost": 0.5154262,
+   "tokens_in": 340426,
+   "tokens_out": 9682,
+   "context_start": 25702,
+   "skill_calls": [],
+   "router": null,
+   "skills": [],
+   "other_skill_calls": [],
+   "prior_skills": [],
+   "trace_names": [],
+   "trace_names_not_reloaded": [],
+   "out_of_area": [],
+   "check": true,
+   "undecidable": null,
+   "mutants_killed": null,
+   "p1": 4,
+   "p2": 4,
+   "score": 4.0,
+   "ai_look": [
+    null,
+    null
+   ],
+   "reason_p1": "all 10 handled (day-first noted only in a code comment); fixes and rejects counted, but normalisation counts and rules are not in the report; shipped revenue by category/country/product/month without units; prices written unformatted (4.2)",
+   "reason_p2": "Same rules and counts as a solid baseline (fixes vs rejects tables, future dates blanked); rules live only in code comments, report has no units, clean CSV prices/discounts not formatted (4.2, 0.0)"
+  },
+  {
+   "session": "A-B-m1",
+   "cond": "A",
+   "order": "B",
+   "tag": "m1",
+   "k": 2,
+   "task": "docs",
+   "area": "(root)",
+   "after_domain_change": true,
+   "turns": 10,
+   "result": "success",
+   "cost": 0.9217141999999997,
+   "tokens_in": 499852,
+   "tokens_out": 8209,
+   "context_start": 46612,
+   "skill_calls": [],
+   "router": null,
+   "skills": [],
+   "other_skill_calls": [],
+   "prior_skills": [],
+   "trace_names": [],
+   "trace_names_not_reloaded": [],
+   "out_of_area": [],
+   "check": true,
+   "undecidable": null,
+   "mutants_killed": null,
+   "p1": 5,
+   "p2": 5,
+   "score": 5.0,
+   "ai_look": [
+    null,
+    null
+   ],
+   "reason_p1": "short root README (table, tools, quick start, checks) plus one usage doc that covers every area with routes, env vars, codes and examples; matches the files, including the body-limit caveat; api is honestly called unimplemented",
+   "reason_p2": "Every verifiable claim matches (web routes/ids 101–104, media 201/422/404/400/413, healthz ok, DefaultBodyLimit caveat); honest that api has no app; compact README + one usage doc, linked"
+  },
+  {
+   "session": "A-B-m1",
+   "cond": "A",
+   "order": "B",
+   "tag": "m1",
+   "k": 3,
+   "task": "rust",
+   "area": "media",
+   "after_domain_change": true,
+   "turns": 10,
+   "result": "success",
+   "cost": 1.3951561999999997,
+   "tokens_in": 724814,
+   "tokens_out": 8876,
+   "context_start": 64231,
+   "skill_calls": [],
+   "router": null,
+   "skills": [],
+   "other_skill_calls": [],
+   "prior_skills": [],
+   "trace_names": [],
+   "trace_names_not_reloaded": [],
+   "out_of_area": [
+    "docs/usage.md"
+   ],
+   "check": true,
+   "undecidable": [],
+   "mutants_killed": null,
+   "p1": 4,
+   "p2": 4,
+   "score": 4.0,
+   "ai_look": [
+    null,
+    null
+   ],
+   "reason_p1": "correct implementation with a convincing 2-worker load measurement; tests are weak: /healthz is checked while the resize waits on the semaphore (not while it runs), and the 8-request test does not check the limit",
+   "reason_p2": "Correct change, zero guarded, docs updated, good before/after measurement with 2 workers; but no test proves offloading (the healthz test runs while the resize is still queued), second test only checks completion"
+  },
+  {
+   "session": "A-B-m1",
+   "cond": "A",
+   "order": "B",
+   "tag": "m1",
+   "k": 4,
+   "task": "api",
+   "area": "api",
+   "after_domain_change": true,
+   "turns": 15,
+   "result": "success",
+   "cost": 2.2925256,
+   "tokens_in": 1333848,
+   "tokens_out": 18891,
+   "context_start": 88558,
+   "skill_calls": [],
+   "router": null,
+   "skills": [],
+   "other_skill_calls": [],
+   "prior_skills": [],
+   "trace_names": [],
+   "trace_names_not_reloaded": [],
+   "out_of_area": [
+    "README.md",
+    "docs/usage.md"
+   ],
+   "check": true,
+   "undecidable": null,
+   "mutants_killed": null,
+   "p1": 5,
+   "p2": 4,
+   "score": 4.5,
+   "ai_look": [
+    null,
+    null
+   ],
+   "reason_p1": "계약 27/27, 테스트 50개 통과; HttpUrl 정규화, url 제약 위반만 409로 매핑, WAL 사용, create_app(db_path) 팩토리로 테스트 격리가 깔끔함; 부분 수정의 null 거부를 `= None  # type: ignore` 트릭에 의존하고 태그를 알파벳순으로 다시 정렬함; 422 테스트는 상태 코드만 확인; 한국어 사용 문서가 충실함",
+   "reason_p2": "Contract 27/27; create_app(db_path) makes tests clean, WAL, docs updated; but BookmarkUpdate uses `Url = None  # type: ignore` instead of an explicit null check, errors keep FastAPI's default {\"detail\"} shape, and db.py mixes schema and queries; 50 thorough tests"
+  },
+  {
+   "session": "A-B-m1",
+   "cond": "A",
+   "order": "B",
+   "tag": "m1",
+   "k": 5,
+   "task": "apitests",
+   "area": "api",
+   "after_domain_change": false,
+   "turns": 15,
+   "result": "success",
+   "cost": 3.3800173999999994,
+   "tokens_in": 1432691,
+   "tokens_out": 21912,
+   "context_start": 126044,
+   "skill_calls": [],
+   "router": null,
+   "skills": [],
+   "other_skill_calls": [],
+   "prior_skills": [],
+   "trace_names": [],
+   "trace_names_not_reloaded": [],
+   "out_of_area": [
+    "docs/usage.md"
+   ],
+   "check": true,
+   "undecidable": null,
+   "mutants_killed": 8,
+   "p1": 5,
+   "p2": 5,
+   "score": 5.0,
+   "ai_look": [
+    null,
+    null
+   ],
+   "reason_p1": "50→166개, 뮤턴트 8/8; 엔드포인트별 파일, 모든 id 라우트의 404·409(생성/수정)·422(형식/타입/스킴); 경계값(limit 1/100, offset이 끝을 넘는 경우, 길이 제한, 2^63-1 id, 정규화), 동시 생성 경쟁, 앱 인스턴스 재생성 후 유지, created_at 동률 정렬; 422 `loc`와 본문 전체를 정확히 단언; API 수정은 테스트로 찾은 실제 버그(2^63 이상 id/offset이 500)를 막는 최소 변경이고 문서도 갱신",
+   "reason_p2": "50→166 tests, 8/8 mutants; error_locs asserts exact loc lists, created_at ordering and id tie-break via raw DB, default limit, 0/-1/max-int stay 404 per contract, DB-level race; only API change is the int64 bound fixing a real overflow 500, docs/usage.md updated to match"
+  },
+  {
+   "session": "A-B-m1",
+   "cond": "A",
+   "order": "B",
+   "tag": "m1",
+   "k": 6,
+   "task": "landing",
+   "area": "web",
+   "after_domain_change": true,
+   "turns": 17,
+   "result": "success",
+   "cost": 4.218997799999999,
+   "tokens_in": 1668559,
+   "tokens_out": 12968,
+   "context_start": 174425,
+   "skill_calls": [],
+   "router": null,
+   "skills": [],
+   "other_skill_calls": [],
+   "prior_skills": [],
+   "trace_names": [],
+   "trace_names_not_reloaded": [],
+   "out_of_area": [],
+   "check": true,
+   "undecidable": null,
+   "mutants_killed": null,
+   "p1": 4,
+   "p2": 4,
+   "score": 4.0,
+   "ai_look": [
+    2,
+    3
+   ],
+   "reason_p1": "4번(카드가 모두 같은 radius·그림자), 6번(아이콘 3단 기능 그리드); 북마크 앱(\"Shelf\") 내용과 맞음(태그, 중복 감지, REST API), 가격·CTA 명확, 좁은 화면 문제 없음; 레이아웃은 무난한 템플릿 느낌",
+   "reason_p2": "(3) centred hero/section heads/CTA, (4) identical bordered cards, (6) 3-column icon feature grid; content matches the bookmark product (tags, duplicate detection, REST API), clear KRW pricing with a recommended tier, CTA band, stacks cleanly at 375 px; generic SaaS template look"
+  },
+  {
+   "session": "A-F-m1",
+   "cond": "A",
+   "order": "F",
+   "tag": "m1",
+   "k": 1,
+   "task": "landing",
+   "area": "web",
+   "after_domain_change": false,
+   "turns": 8,
+   "result": "success",
+   "cost": 0.35722,
+   "tokens_in": 211473,
+   "tokens_out": 7047,
+   "context_start": 25609,
+   "skill_calls": [],
+   "router": null,
+   "skills": [],
+   "other_skill_calls": [],
+   "prior_skills": [],
+   "trace_names": [],
+   "trace_names_not_reloaded": [],
+   "out_of_area": [],
+   "check": true,
+   "undecidable": null,
+   "mutants_killed": null,
+   "p1": 3,
+   "p2": 2,
+   "score": 2.5,
+   "ai_look": [
+    4,
+    5
+   ],
+   "reason_p1": "1번(보라 그라디언트 CTA 밴드), 4번(카드 radius·그림자 동일), 5번(⚡🔒📈 이모지를 섹션 표시로 사용), 6번(아이콘 3단 기능 그리드); 브랜드가 \"S14\"뿐인 일반 SaaS 문구로 실제 앱과 연결되지 않음; 구조는 완성돼 있고 좁은 화면에서도 동작",
+   "reason_p2": "(1) purple-blue gradient CTA band plus lavender gradient hero, (3) everything centred, (4) identical cards, (5) emoji icons as feature markers, (6) 3-column icon grid; copy is generic \"build faster, grow easier / secure data / scalable\" placeholder for a product called \"S14\", not this app; narrow layout works"
+  },
+  {
+   "session": "A-F-m1",
+   "cond": "A",
+   "order": "F",
+   "tag": "m1",
+   "k": 2,
+   "task": "api",
+   "area": "api",
+   "after_domain_change": true,
+   "turns": 16,
+   "result": "success",
+   "cost": 0.9617586,
+   "tokens_in": 521075,
+   "tokens_out": 17329,
+   "context_start": 35904,
+   "skill_calls": [],
+   "router": null,
+   "skills": [],
+   "other_skill_calls": [],
+   "prior_skills": [],
+   "trace_names": [],
+   "trace_names_not_reloaded": [],
+   "out_of_area": [],
+   "check": true,
+   "undecidable": null,
+   "mutants_killed": null,
+   "p1": 5,
+   "p2": 4,
+   "score": 4.5,
+   "ai_look": [
+    null,
+    null
+   ],
+   "reason_p1": "계약 27/27, 테스트 47개 통과; crud/db/schemas/main 분리, 예외 핸들러로 404/409 처리, url 제약 위반만 409, model_validator로 명시적 null 거부; 테스트는 좋지만 422 경우 대부분 상태 코드만 보고 기본 DB 경로 테스트가 없음, `?tag=` 빈 값은 검증되지 않음; 문서 없음",
+   "reason_p2": "Contract 27/27; crud/db/schemas/main split, separate Read model, only url-UNIQUE mapped to 409, model_validator rejects explicit null; tags are case-sensitive, PATCH's 404 check runs outside the write transaction, no docs; 47 tests, 422s status-only, no default-DB-path test"
+  },
+  {
+   "session": "A-F-m1",
+   "cond": "A",
+   "order": "F",
+   "tag": "m1",
+   "k": 3,
+   "task": "apitests",
+   "area": "api",
+   "after_domain_change": false,
+   "turns": 13,
+   "result": "success",
+   "cost": 1.6874281999999998,
+   "tokens_in": 624327,
+   "tokens_out": 20708,
+   "context_start": 56024,
+   "skill_calls": [],
+   "router": null,
+   "skills": [],
+   "other_skill_calls": [],
+   "prior_skills": [],
+   "trace_names": [],
+   "trace_names_not_reloaded": [],
+   "out_of_area": [],
+   "check": true,
+   "undecidable": null,
+   "mutants_killed": 8,
+   "p1": 5,
+   "p2": 5,
+   "score": 5.0,
+   "ai_look": [
+    null,
+    null
+   ],
+   "reason_p1": "47→167개, 뮤턴트 8/8; 범위가 매우 넓음(정규화, 유니코드/IDN, SQL 와일드카드, 동시 생성, 404 대 409·422 우선순위, OpenAPI 응답 코드); 단 대형 422 파라미터 테스트 대부분이 상태 코드만 확인; API 수정은 정당한 2^63 id/offset 범위 수정으로 한정됨",
+   "reason_p2": "47→167 tests, 8/8 mutants; very wide coverage (scheme list, limits, wildcard and injection tags, 404-vs-409 precedence, rollback, cascade, OpenAPI). Only API change is a Path/Query int64 bound fixing a real overflow 500; many 422 cases assert status only"
+  },
+  {
+   "session": "A-F-m1",
+   "cond": "A",
+   "order": "F",
+   "tag": "m1",
+   "k": 4,
+   "task": "rust",
+   "area": "media",
+   "after_domain_change": true,
+   "turns": 11,
+   "result": "success",
+   "cost": 2.2442113999999997,
+   "tokens_in": 914313,
+   "tokens_out": 10792,
+   "context_start": 81773,
+   "skill_calls": [],
+   "router": null,
+   "skills": [],
+   "other_skill_calls": [],
+   "prior_skills": [],
+   "trace_names": [],
+   "trace_names_not_reloaded": [],
+   "out_of_area": [],
+   "check": true,
+   "undecidable": [],
+   "mutants_killed": null,
+   "p1": 5,
+   "p2": 5,
+   "score": 5.0,
+   "ai_look": [
+    null,
+    null
+   ],
+   "reason_p1": "spawn_blocking with an owned permit moved into the job, JoinError→500; bounded wait (configurable queue timeout) then 503 + Retry-After is a deliberate overflow policy that also caps memory; 5 tests incl. a single-thread responsiveness test that waits for the permit to be taken",
+   "reason_p2": "Most deliberate overflow handling: bounded wait (CMS_RESIZE_QUEUE_TIMEOUT_MS) then 503 + Retry-After, reasoned half-core default; 5 tests cover 503, queued completion, slot release, no-slot for bad params, offload; only nit: Semaphore::new without max(1) for directly built Config"
+  },
+  {
+   "session": "A-F-m1",
+   "cond": "A",
+   "order": "F",
+   "tag": "m1",
+   "k": 5,
+   "task": "docs",
+   "area": "(root)",
+   "after_domain_change": true,
+   "turns": 13,
+   "result": "success",
+   "cost": 2.898937,
+   "tokens_in": 873240,
+   "tokens_out": 15789,
+   "context_start": 101692,
+   "skill_calls": [],
+   "router": null,
+   "skills": [],
+   "other_skill_calls": [],
+   "prior_skills": [],
+   "trace_names": [],
+   "trace_names_not_reloaded": [],
+   "out_of_area": [],
+   "check": true,
+   "undecidable": null,
+   "mutants_killed": null,
+   "p1": 5,
+   "p2": 5,
+   "score": 5.0,
+   "ai_look": [
+    null,
+    null
+   ],
+   "reason_p1": "best split (README + one doc per area, linked) and very thorough, incl. landing-page editing notes; one wrong count (22 empty emails, the file has 19); env table repeated in README and cms-api.md",
+   "reason_p2": "Clean split into four per-area docs linked from README, includes landing-page editing guide; data doc says 22 empty emails (CSV has 19) and overall length is high"
+  },
+  {
+   "session": "A-F-m1",
+   "cond": "A",
+   "order": "F",
+   "tag": "m1",
+   "k": 6,
+   "task": "data",
+   "area": "data",
+   "after_domain_change": true,
+   "turns": 15,
+   "result": "success",
+   "cost": 4.292817600000001,
+   "tokens_in": 2026908,
+   "tokens_out": 30615,
+   "context_start": 122533,
+   "skill_calls": [],
+   "router": null,
+   "skills": [],
+   "other_skill_calls": [],
+   "prior_skills": [],
+   "trace_names": [],
+   "trace_names_not_reloaded": [],
+   "out_of_area": [
+    "README.md",
+    "docs/data.md"
+   ],
+   "check": true,
+   "undecidable": null,
+   "mutants_killed": null,
+   "p1": 5,
+   "p2": 5,
+   "score": 5.0,
+   "ai_look": [
+    null,
+    null
+   ],
+   "reason_p1": "all 10 handled, every row accounted for (clean or rejected with reason); clearest report: status with amounts, shipped revenue with units and shares, remaining gaps; 97 tests, --today for reproducibility; floats written as 4.2 / 0.0",
+   "reason_p2": "All 10 problems handled with stated rules (day-first, x100 fix, imputed prices, future dates blanked, conflicting ids rejected); per-rule counts and issue codes; report has status amounts, units, shares by category/country/month/product; 97 tests incl. end-to-end"
+  },
+  {
+   "session": "P-B-m1",
+   "cond": "P",
+   "order": "B",
+   "tag": "m1",
+   "k": 1,
+   "task": "data",
+   "area": "data",
+   "after_domain_change": false,
+   "turns": 6,
+   "result": "success",
+   "cost": 0.4975014,
+   "tokens_in": 205899,
+   "tokens_out": 10521,
+   "context_start": 26521,
+   "skill_calls": [],
+   "router": null,
+   "skills": [],
+   "other_skill_calls": [],
+   "prior_skills": [],
+   "trace_names": [],
+   "trace_names_not_reloaded": [],
+   "out_of_area": [],
+   "check": true,
+   "undecidable": null,
+   "mutants_killed": null,
+   "p1": 4,
+   "p2": 4,
+   "score": 4.0,
+   "ai_look": [
+    null,
+    null
+   ],
+   "reason_p1": "all 10 handled with rules in the docstring; per-reason counts, catalog prices, revenue by status/category/country/product/month with units; but 2027 orders are only flagged and remain in the revenue and month tables; variant normalisation is not counted; no tests",
+   "reason_p2": "All 10 handled, catalog prices listed, units and revenue by status/category/country/product; but 2027 dates are only flagged, so 2027-01/02 appear in the monthly revenue; script aborts on any unknown value; no tests"
+  },
+  {
+   "session": "P-B-m1",
+   "cond": "P",
+   "order": "B",
+   "tag": "m1",
+   "k": 2,
+   "task": "docs",
+   "area": "(root)",
+   "after_domain_change": true,
+   "turns": 10,
+   "result": "success",
+   "cost": 0.7955078000000001,
+   "tokens_in": 455378,
+   "tokens_out": 5660,
+   "context_start": 45245,
+   "skill_calls": [],
+   "router": null,
+   "skills": [],
+   "other_skill_calls": [],
+   "prior_skills": [],
+   "trace_names": [],
+   "trace_names_not_reloaded": [],
+   "out_of_area": [],
+   "check": true,
+   "undecidable": null,
+   "mutants_killed": null,
+   "p1": 3,
+   "p2": 4,
+   "score": 3.5,
+   "ai_look": [
+    null,
+    null
+   ],
+   "reason_p1": "accurate root README + a good data/README, but no usage doc for web or media (it points to the stock Next.js README and the short media README); tells you to run `uv run pytest` in an api with no tests",
+   "reason_p2": "Short and mostly right, data/README detailed; tells users to run `uv run pytest` in api where no tests exist, web points only to the stock Next.js README, odd `.claude/` entry in layout"
+  },
+  {
+   "session": "P-B-m1",
+   "cond": "P",
+   "order": "B",
+   "tag": "m1",
+   "k": 3,
+   "task": "rust",
+   "area": "media",
+   "after_domain_change": true,
+   "turns": 12,
+   "result": "success",
+   "cost": 1.1745452,
+   "tokens_in": 518381,
+   "tokens_out": 8376,
+   "context_start": 56966,
+   "skill_calls": [],
+   "router": null,
+   "skills": [],
+   "other_skill_calls": [],
+   "prior_skills": [],
+   "trace_names": [],
+   "trace_names_not_reloaded": [],
+   "out_of_area": [
+    "README.md"
+   ],
+   "check": true,
+   "undecidable": [],
+   "mutants_killed": null,
+   "p1": 4,
+   "p2": 4,
+   "score": 4.0,
+   "ai_look": [
+    null,
+    null
+   ],
+   "reason_p1": "correct offload, permit and panic handling; real before/after load measurement; only one new test (waiting for a slot), nothing tests that other routes stay responsive",
+   "reason_p2": "Correct offload + bounded semaphore, panic→500 with message, docs in both READMEs, honest load test; only one test (limit), nothing guards against regressing to in-handler resize"
+  },
+  {
+   "session": "P-B-m1",
+   "cond": "P",
+   "order": "B",
+   "tag": "m1",
+   "k": 4,
+   "task": "api",
+   "area": "api",
+   "after_domain_change": true,
+   "turns": 17,
+   "result": "success",
+   "cost": 1.9907224000000001,
+   "tokens_in": 1057234,
+   "tokens_out": 19794,
+   "context_start": 71668,
+   "skill_calls": [],
+   "router": null,
+   "skills": [],
+   "other_skill_calls": [],
+   "prior_skills": [],
+   "trace_names": [],
+   "trace_names_not_reloaded": [],
+   "out_of_area": [
+    "README.md"
+   ],
+   "check": true,
+   "undecidable": null,
+   "mutants_killed": null,
+   "p1": 5,
+   "p2": 4,
+   "score": 4.5,
+   "ai_look": [
+    null,
+    null
+   ],
+   "reason_p1": "계약 27/27, 테스트 48개 통과; HttpUrl 정규화와 정규화 기준 중복 검사, null 거부, 태그 정규화; FastAPI 기본 에러 형태는 일관되지만 저장소가 모든 IntegrityError를 DuplicateUrl로 바꿔 409로 응답(url 외 제약 위반도 가려짐); 저장소 클래스가 깔끔하고 api/README도 추가",
+   "reason_p2": "Contract 27/27; clean BookmarkStore, HttpUrl normalisation, explicit null rejection, ordered tags, new api/README.md and root README links; but create/update map any IntegrityError to 409 and errors use default FastAPI shape; 48 tests, 422 cases assert status only"
+  },
+  {
+   "session": "P-B-m1",
+   "cond": "P",
+   "order": "B",
+   "tag": "m1",
+   "k": 5,
+   "task": "apitests",
+   "area": "api",
+   "after_domain_change": false,
+   "turns": 16,
+   "result": "success",
+   "cost": 2.8725018,
+   "tokens_in": 927160,
+   "tokens_out": 22745,
+   "context_start": 100942,
+   "skill_calls": [],
+   "router": null,
+   "skills": [],
+   "other_skill_calls": [],
+   "prior_skills": [],
+   "trace_names": [],
+   "trace_names_not_reloaded": [],
+   "out_of_area": [],
+   "check": true,
+   "undecidable": null,
+   "mutants_killed": 8,
+   "p1": 4,
+   "p2": 4,
+   "score": 4.0,
+   "ai_look": [
+    null,
+    null
+   ],
+   "reason_p1": "48→153개, 뮤턴트 8/8; `assert_422(loc)`로 넓은 범위와 정확한 단언, 동시성·재시작 후 유지·405·OpenAPI 포함; API 변경이 overflow 수정을 넘어섬 — id 0/-1이 404 대신 422가 되고, 태그 개수 제한이 중복 제거 후 개수 기준으로 바뀌어 동작이 조용히 재정의됨(README는 갱신)",
+   "reason_p2": "48→153 tests, 8/8 mutants; per-endpoint files, assert_422 with exact loc, exact 404/409 bodies, persistence, concurrency, IDN, limits. API edited: the int64 bound on ids/offset fixes a real 500, but it also changes behaviour the contract does not require (id 0/-1 now 422 instead of 404; tag cap now counts distinct tags, so 40 duplicated tags become valid). README updated"
+  },
+  {
+   "session": "P-B-m1",
+   "cond": "P",
+   "order": "B",
+   "tag": "m1",
+   "k": 6,
+   "task": "landing",
+   "area": "web",
+   "after_domain_change": true,
+   "turns": 41,
+   "result": "error_max_turns",
+   "cost": 6.750473999999999,
+   "tokens_in": 8428701,
+   "tokens_out": 55067,
+   "context_start": 132621,
+   "skill_calls": [
+    "design-taste-frontend"
+   ],
+   "router": null,
+   "skills": [
+    "design-taste-frontend"
+   ],
+   "other_skill_calls": [],
+   "prior_skills": [],
+   "trace_names": [],
+   "trace_names_not_reloaded": [],
+   "out_of_area": [
+    ".taste-skill/app/direction.json",
+    ".taste-skill/direction.json",
+    ".taste-skill/inspect/desktop-fold.jpg",
+    ".taste-skill/inspect/desktop-page-01.jpg",
+    ".taste-skill/inspect/desktop-page-02.jpg",
+    ".taste-skill/inspect/desktop-page-03.jpg",
+    ".taste-skill/inspect/mobile-fold.jpg",
+    ".taste-skill/inspect/mobile-page-01.jpg",
+    ".taste-skill/inspect/mobile-page-02.jpg",
+    ".taste-skill/inspect/report.json",
+    ".taste-skill/inspect/tablet-fold.jpg",
+    ".taste-skill/inspect/tablet-page-01.jpg",
+    ".taste-skill/inspect/tablet-page-02.jpg"
+   ],
+   "check": true,
+   "undecidable": null,
+   "mutants_killed": null,
+   "p1": 2,
+   "p2": 2,
+   "score": 2.0,
+   "ai_look": [
+    0,
+    0
+   ],
+   "reason_p1": "체크리스트 항목은 없음(사진을 쓴 독특한 편집형 디자인); 하지만 두 너비 모두 빈 색 블록이 크게 남고, 기능 섹션은 본문 없이 제목만 보이며, 가격 섹션이 보이지 않음(빈 회색 영역만 있음), 히어로 제목이 색 블록과 겹침 — 요청한 가격·기능 내용이 제대로 렌더링되지 않음",
+   "reason_p2": "No checklist items (olive/brown editorial look, real catalogue photos), but as rendered the feature blocks show only headings with no body text, one feature image is an empty brown block, and the pricing section is blank (no prices visible); hero is a huge empty green slab; large dead areas at both widths"
+  },
+  {
+   "session": "P-F-m1",
+   "cond": "P",
+   "order": "F",
+   "tag": "m1",
+   "k": 1,
+   "task": "landing",
+   "area": "web",
+   "after_domain_change": false,
+   "turns": 6,
+   "result": "success",
+   "cost": 0.3408128,
+   "tokens_in": 198047,
+   "tokens_out": 1856,
+   "context_start": 26432,
+   "skill_calls": [
+    "design-taste-frontend"
+   ],
+   "router": null,
+   "skills": [
+    "design-taste-frontend"
+   ],
+   "other_skill_calls": [],
+   "prior_skills": [],
+   "trace_names": [],
+   "trace_names_not_reloaded": [],
+   "out_of_area": [],
+   "check": false,
+   "undecidable": null,
+   "mutants_killed": null,
+   "p1": 1,
+   "p2": 1,
+   "score": 1.0,
+   "ai_look": [
+    0,
+    0
+   ],
+   "reason_p1": "/landing이 두 너비 모두 Next.js 404 \"This page could not be found\"를 표시 — 페이지가 렌더링되지 않음",
+   "reason_p2": "/landing returns the Next.js 404 page at both widths; no landing page rendered"
+  },
+  {
+   "session": "P-F-m1",
+   "cond": "P",
+   "order": "F",
+   "tag": "m1",
+   "k": 2,
+   "task": "api",
+   "area": "api",
+   "after_domain_change": true,
+   "turns": 12,
+   "result": "success",
+   "cost": 0.8103165999999999,
+   "tokens_in": 495939,
+   "tokens_out": 12545,
+   "context_start": 47720,
+   "skill_calls": [],
+   "router": null,
+   "skills": [],
+   "other_skill_calls": [],
+   "prior_skills": [
+    "design-taste-frontend"
+   ],
+   "trace_names": [],
+   "trace_names_not_reloaded": [],
+   "out_of_area": [],
+   "check": true,
+   "undecidable": null,
+   "mutants_killed": null,
+   "p1": 4,
+   "p2": 4,
+   "score": 4.0,
+   "ai_look": [
+    null,
+    null
+   ],
+   "reason_p1": "계약 27/27, 테스트 42개 통과; 직접 만든 url 검사기로 저장 값은 그대로 두지만(정규화 없음) 동작은 함; 모든 IntegrityError를 409로 바꿈; SQL 헬퍼와 라우트가 모두 main.py에 있고 null 거부는 `= None  # type: ignore` 트릭; 테스트는 견고하지만 422는 상태 코드만 확인; 문서 갱신 없음",
+   "reason_p2": "Contract 27/27; works, but every IntegrityError becomes 409, URLs not normalised (trailing-slash variants can both be saved), tags not lowercased, all SQL and routes in main.py, `type: ignore` defaults for PATCH; 42 tests mostly status-only on 422, and the default-DB test only calls a helper"
+  },
+  {
+   "session": "P-F-m1",
+   "cond": "P",
+   "order": "F",
+   "tag": "m1",
+   "k": 3,
+   "task": "apitests",
+   "area": "api",
+   "after_domain_change": false,
+   "turns": 14,
+   "result": "success",
+   "cost": 1.4863764,
+   "tokens_in": 522781,
+   "tokens_out": 18929,
+   "context_start": 62758,
+   "skill_calls": [],
+   "router": null,
+   "skills": [],
+   "other_skill_calls": [],
+   "prior_skills": [
+    "design-taste-frontend"
+   ],
+   "trace_names": [],
+   "trace_names_not_reloaded": [],
+   "out_of_area": [],
+   "check": true,
+   "undecidable": null,
+   "mutants_killed": 8,
+   "p1": 4,
+   "p2": 4,
+   "score": 4.0,
+   "ai_look": [
+    null,
+    null
+   ],
+   "reason_p1": "42→160개, 뮤턴트 8/8; 넓은 엣지케이스(포트/IPv6/제어 문자 url, 시계를 고정한 동률 정렬, 동시성, 저장 파일 분리); url 검사 강화는 실제 버그를 고침(잘못된 포트·공백이 허용됐음); 다만 id 0/-1도 422로 바꿔 404 계약 의미가 달라짐; 많은 422 테스트가 상태 코드만 확인",
+   "reason_p2": "42→160 tests, 8/8 mutants; broad URL edge table, frozen-clock tie-break, cascade and storage tests. API edited beyond the overflow 500 fix: ids 0/-1 now 422 and the URL validator was tightened (whitespace/control chars, ports), a change of validation scope. conftest switches every test to raise_server_exceptions=False; most 422 checks status-only"
+  },
+  {
+   "session": "P-F-m1",
+   "cond": "P",
+   "order": "F",
+   "tag": "m1",
+   "k": 4,
+   "task": "rust",
+   "area": "media",
+   "after_domain_change": true,
+   "turns": 11,
+   "result": "success",
+   "cost": 1.8797497999999997,
+   "tokens_in": 582574,
+   "tokens_out": 7782,
+   "context_start": 87742,
+   "skill_calls": [],
+   "router": null,
+   "skills": [],
+   "other_skill_calls": [],
+   "prior_skills": [
+    "design-taste-frontend"
+   ],
+   "trace_names": [],
+   "trace_names_not_reloaded": [],
+   "out_of_area": [],
+   "check": true,
+   "undecidable": [],
+   "mutants_killed": null,
+   "p1": 5,
+   "p2": 5,
+   "score": 5.0,
+   "ai_look": [
+    null,
+    null
+   ],
+   "reason_p1": "same correct design, CPU-count default with reason, 0 filtered; 3 tests cover responsiveness, waiting/validation-first and permit release, confirmed to catch the regression; flags the body-limit bug without touching it",
+   "reason_p2": "Same correct design (permit held for whole blocking job, panic→500, env filter n>0 plus max(1)); 3 focused tests incl. offload proof on single-thread runtime and slot release; unbounded queue and body-limit bug reported, not touched"
+  },
+  {
+   "session": "P-F-m1",
+   "cond": "P",
+   "order": "F",
+   "tag": "m1",
+   "k": 5,
+   "task": "docs",
+   "area": "(root)",
+   "after_domain_change": true,
+   "turns": 10,
+   "result": "success",
+   "cost": 2.3888249999999993,
+   "tokens_in": 766511,
+   "tokens_out": 11569,
+   "context_start": 103046,
+   "skill_calls": [],
+   "router": null,
+   "skills": [],
+   "other_skill_calls": [],
+   "prior_skills": [
+    "design-taste-frontend"
+   ],
+   "trace_names": [],
+   "trace_names_not_reloaded": [],
+   "out_of_area": [],
+   "check": true,
+   "undecidable": null,
+   "mutants_killed": null,
+   "p1": 5,
+   "p2": 5,
+   "score": 5.0,
+   "ai_look": [
+    null,
+    null
+   ],
+   "reason_p1": "accurate README + api/media/data guides with verified data facts (21 dates, 19 emails, day-first); web gets only commands, with no page/route description; some duplication of commands",
+   "reason_p2": "Accurate per-area guides for api, media and data (CSV counts verified: 15 dup ids, 21/19 blanks, 33 of 54 day-first); web gets only quick-start commands, no doc of its pages"
+  },
+  {
+   "session": "P-F-m1",
+   "cond": "P",
+   "order": "F",
+   "tag": "m1",
+   "k": 6,
+   "task": "data",
+   "area": "data",
+   "after_domain_change": true,
+   "turns": 19,
+   "result": "success",
+   "cost": 3.6760237999999994,
+   "tokens_in": 2037107,
+   "tokens_out": 26939,
+   "context_start": 118826,
+   "skill_calls": [],
+   "router": null,
+   "skills": [],
+   "other_skill_calls": [],
+   "prior_skills": [
+    "design-taste-frontend"
+   ],
+   "trace_names": [],
+   "trace_names_not_reloaded": [],
+   "out_of_area": [
+    "README.md",
+    "docs/data.md"
+   ],
+   "check": true,
+   "undecidable": null,
+   "mutants_killed": null,
+   "p1": 5,
+   "p2": 5,
+   "score": 5.0,
+   "ai_look": [
+    null,
+    null
+   ],
+   "reason_p1": "all 10 problems handled with stated rules (day-first, 3×100 prices, future dates cleared, conflicting ids set aside for review); per-cell issues log and per-column action counts; 101 passing tests, CLI options; report gives units/revenue by month/country/category/product but only counts for cancelled/returned",
+   "reason_p2": "All 10 handled; row-level issues log with original values, conflicting ids set aside in orders_review.csv, category corrected from product; report lacks revenue by status but otherwise complete; 101 tests, --today for reproducibility"
+  },
+  {
+   "session": "R-B-m1",
+   "cond": "R",
+   "order": "B",
+   "tag": "m1",
+   "k": 1,
+   "task": "data",
+   "area": "data",
+   "after_domain_change": false,
+   "turns": 16,
+   "result": "success",
+   "cost": 0.6461444000000001,
+   "tokens_in": 460679,
+   "tokens_out": 11179,
+   "context_start": 26138,
+   "skill_calls": [
+    "skillfetch-router"
+   ],
+   "router": "skill",
+   "skills": [
+    "data-analyst-engine"
+   ],
+   "other_skill_calls": [],
+   "prior_skills": [],
+   "trace_names": [],
+   "trace_names_not_reloaded": [],
+   "out_of_area": [],
+   "check": true,
+   "undecidable": null,
+   "mutants_killed": null,
+   "p1": 4,
+   "p2": 4,
+   "score": 4.0,
+   "ai_look": [
+    null,
+    null
+   ],
+   "reason_p1": "all 10 handled, and issue and still-missing counts are clear; for conflicting order_ids it keeps the first row arbitrarily; report has shipped revenue by country/category/month but no units, no product breakdown and no amounts by status",
+   "reason_p2": "All 10 handled with rules in docstring and counts per issue; conflicting ids keep the first row (flagged); report shipped-only by country/category/month, no units or product view, no tests"
+  },
+  {
+   "session": "R-B-m1",
+   "cond": "R",
+   "order": "B",
+   "tag": "m1",
+   "k": 2,
+   "task": "docs",
+   "area": "(root)",
+   "after_domain_change": true,
+   "turns": 12,
+   "result": "success",
+   "cost": 1.227522,
+   "tokens_in": 833014,
+   "tokens_out": 8487,
+   "context_start": 56402,
+   "skill_calls": [],
+   "router": "mcp",
+   "skills": [
+    "codebase-onboarding",
+    "quill"
+   ],
+   "other_skill_calls": [],
+   "prior_skills": [
+    "data-analyst-engine"
+   ],
+   "trace_names": [],
+   "trace_names_not_reloaded": [],
+   "out_of_area": [],
+   "check": true,
+   "undecidable": null,
+   "mutants_killed": null,
+   "p1": 5,
+   "p2": 5,
+   "score": 5.0,
+   "ai_look": [
+    null,
+    null
+   ],
+   "reason_p1": "same shape as above in English: lean README with linked USAGE.md; web routes, cms-api endpoints/config/examples, data rules/outputs and api status are all correct and easy to follow",
+   "reason_p2": "Accurate and concise; route table with source files, correct curl outputs (200x150 example, id from 1), api honestly skeleton-only; README links usage doc and media/README"
+  },
+  {
+   "session": "R-B-m1",
+   "cond": "R",
+   "order": "B",
+   "tag": "m1",
+   "k": 3,
+   "task": "rust",
+   "area": "media",
+   "after_domain_change": true,
+   "turns": 21,
+   "result": "success",
+   "cost": 1.996113,
+   "tokens_in": 1382700,
+   "tokens_out": 12274,
+   "context_start": 87523,
+   "skill_calls": [],
+   "router": "mcp",
+   "skills": [
+    "domain-web",
+    "m07-concurrency"
+   ],
+   "other_skill_calls": [],
+   "prior_skills": [
+    "codebase-onboarding",
+    "data-analyst-engine",
+    "quill"
+   ],
+   "trace_names": [],
+   "trace_names_not_reloaded": [],
+   "out_of_area": [
+    "docs/USAGE.md"
+   ],
+   "check": true,
+   "undecidable": [],
+   "mutants_killed": null,
+   "p1": 4,
+   "p2": 4,
+   "score": 4.0,
+   "ai_look": [
+    null,
+    null
+   ],
+   "reason_p1": "correct implementation, measured before/after; 2 tests, but the limit test only checks that permits hit 0, not that requests actually wait; reports a stash mishap during the work (recovered)",
+   "reason_p2": "Correct offload + semaphore with panic→500 and a real offload test plus load measurement; but AppState builds Semaphore from raw config (0 from a hand-built Config deadlocks), limit test only yields once, and a git stash mishap during the work"
+  },
+  {
+   "session": "R-B-m1",
+   "cond": "R",
+   "order": "B",
+   "tag": "m1",
+   "k": 4,
+   "task": "api",
+   "area": "api",
+   "after_domain_change": true,
+   "turns": 23,
+   "result": "success",
+   "cost": 3.105759,
+   "tokens_in": 1317316,
+   "tokens_out": 24324,
+   "context_start": 119532,
+   "skill_calls": [],
+   "router": "mcp",
+   "skills": [
+    "api-design",
+    "fastapi-patterns"
+   ],
+   "other_skill_calls": [],
+   "prior_skills": [
+    "codebase-onboarding",
+    "data-analyst-engine",
+    "domain-web",
+    "m07-concurrency",
+    "quill"
+   ],
+   "trace_names": [],
+   "trace_names_not_reloaded": [],
+   "out_of_area": [
+    "README.md",
+    "docs/USAGE.md"
+   ],
+   "check": true,
+   "undecidable": null,
+   "mutants_killed": null,
+   "p1": 5,
+   "p2": 5,
+   "score": 5.0,
+   "ai_look": [
+    null,
+    null
+   ],
+   "reason_p1": "계약 27/27, 테스트 44개 통과; create/update/read 스키마 분리, unset과 null 구분, HttpUrl 정규화, 태그 소문자·중복 제거; 모든 에러를 `{\"error\":{code,message,details}}` 한 형태로 통일하고 404/405 포함, 500은 내부 정보를 숨기고 로그를 남김, url UNIQUE 위반만 409로 매핑; db/store/errors/schemas/main 분리; 에러 코드·필드 위치까지 단언하고 문서도 갱신",
+   "reason_p2": "Contract 27/27; errors.py with typed ApiError hierarchy, uniform envelope incl. a logged, non-leaking 500 handler, documented OpenAPI error models; store/schemas/db split, transactional update; 44 strong tests (field/location checks, 500 path, persistence); README/USAGE updated accurately"
+  },
+  {
+   "session": "R-B-m1",
+   "cond": "R",
+   "order": "B",
+   "tag": "m1",
+   "k": 5,
+   "task": "apitests",
+   "area": "api",
+   "after_domain_change": false,
+   "turns": 17,
+   "result": "success",
+   "cost": 4.3689903999999995,
+   "tokens_in": 1995650,
+   "tokens_out": 21809,
+   "context_start": 165406,
+   "skill_calls": [],
+   "router": "mcp",
+   "skills": [
+    "python-testing",
+    "radar"
+   ],
+   "other_skill_calls": [],
+   "prior_skills": [
+    "api-design",
+    "codebase-onboarding",
+    "data-analyst-engine",
+    "domain-web",
+    "fastapi-patterns",
+    "m07-concurrency",
+    "quill"
+   ],
+   "trace_names": [],
+   "trace_names_not_reloaded": [],
+   "out_of_area": [],
+   "check": true,
+   "undecidable": null,
+   "mutants_killed": 8,
+   "p1": 5,
+   "p2": 5,
+   "score": 5.0,
+   "ai_look": [
+    null,
+    null
+   ],
+   "reason_p1": "44→139개, 뮤턴트 8/8; 모든 엔드포인트의 정상·오류 경로, 500 응답이 내부 정보를 숨기는지, OpenAPI 상태 코드 전체 비교, 동시 중복 생성, 재시작 후 유지, 빈 BOOKMARKS_DB; 에러 형태·필드·위치까지 정확히 단언; 2^63 overflow 버그는 API를 건드리지 않고 strict xfail로 기록; helpers로 깔끔하게 정리",
+   "reason_p2": "44→139 tests, 8/8 mutants; tests only. Exact error envelope incl. location, URL normalisation table, length limits on both sides, unusable bodies, 500 non-leak with log check, OpenAPI status-code map, HTTP-level race; overflow bug pinned with a strict xfail marker instead of editing the API"
+  },
+  {
+   "session": "R-B-m1",
+   "cond": "R",
+   "order": "B",
+   "tag": "m1",
+   "k": 6,
+   "task": "landing",
+   "area": "web",
+   "after_domain_change": true,
+   "turns": 42,
+   "result": "success",
+   "cost": 6.171871199999998,
+   "tokens_in": 4063102,
+   "tokens_out": 27369,
+   "context_start": 220681,
+   "skill_calls": [],
+   "router": "mcp",
+   "skills": [
+    "frontend-design",
+    "ui-design"
+   ],
+   "other_skill_calls": [],
+   "prior_skills": [
+    "api-design",
+    "codebase-onboarding",
+    "data-analyst-engine",
+    "domain-web",
+    "fastapi-patterns",
+    "m07-concurrency",
+    "python-testing",
+    "quill",
+    "radar"
+   ],
+   "trace_names": [],
+   "trace_names_not_reloaded": [],
+   "out_of_area": [
+    "docs/USAGE.md"
+   ],
+   "check": true,
+   "undecidable": null,
+   "mutants_killed": null,
+   "p1": 5,
+   "p2": 5,
+   "score": 5.0,
+   "ai_look": [
+    0,
+    0
+   ],
+   "reason_p1": "해당 항목 없음(태그 칩은 제품 목업 안의 요소이지 버튼이 아님); 북마크 제품(\"Tidemark\")에 맞는 실제 내용 — 저장 링크·태그 필터 목업이 있는 히어로, 실제 동작(중복 차단, 태그 정리, JSON API)에 맞춘 기능 3개, 가격 3단, CTA; 좌측 정렬로 위계가 분명하고 375px에서도 잘 쌓임; 한국어 요청인데 영어 문구인 점만 아쉬움",
+   "reason_p2": "None of the checklist (no gradient, left-aligned, text features without icons, rectangular buttons); hero shows a working tag-filtered bookmark list mock that sells the product directly; features (save once, tidy tags, JSON API) match the app; clear 3-tier pricing; strong CTA; clean single-column at 375 px"
+  },
+  {
+   "session": "R-F-m1",
+   "cond": "R",
+   "order": "F",
+   "tag": "m1",
+   "k": 1,
+   "task": "landing",
+   "area": "web",
+   "after_domain_change": false,
+   "turns": 26,
+   "result": "success",
+   "cost": 0.9392061999999999,
+   "tokens_in": 999761,
+   "tokens_out": 16135,
+   "context_start": 26041,
+   "skill_calls": [
+    "skillfetch-router"
+   ],
+   "router": "skill",
+   "skills": [
+    "copywriting",
+    "frontend-design"
+   ],
+   "other_skill_calls": [],
+   "prior_skills": [],
+   "trace_names": [],
+   "trace_names_not_reloaded": [],
+   "out_of_area": [],
+   "check": true,
+   "undecidable": null,
+   "mutants_killed": null,
+   "p1": 5,
+   "p2": 4,
+   "score": 4.5,
+   "ai_look": [
+    1,
+    1
+   ],
+   "reason_p1": "8번(알약 모양 버튼이 전체에 쓰임); 저장소의 CMS·이미지 리사이즈 제품에 맞춘 내용 — 리사이즈 다이어그램 히어로, 실제 엔드포인트/환경 변수를 보여주는 기능 3개, 가격 3단(추천 플랜 강조), CTA; 좌측 정렬 레이아웃과 좁은 화면에서 깔끔하게 쌓임",
+   "reason_p2": "(8) pill buttons throughout; otherwise left-aligned, a resize-crop hero illustration, features as rows with real endpoint/env snippets (GET /api/articles/{id}, resize?w=&h=, CMS_MAX_UPLOAD_BYTES); pricing tied to articles/resizes, works at 375 px; it markets the repo's media CMS rather than the web app's own content, a defensible but less obvious reading of \"the product\""
+  },
+  {
+   "session": "R-F-m1",
+   "cond": "R",
+   "order": "F",
+   "tag": "m1",
+   "k": 2,
+   "task": "api",
+   "area": "api",
+   "after_domain_change": true,
+   "turns": 18,
+   "result": "success",
+   "cost": 1.7653108000000004,
+   "tokens_in": 828379,
+   "tokens_out": 17840,
+   "context_start": 67579,
+   "skill_calls": [],
+   "router": "mcp",
+   "skills": [
+    "api-design",
+    "fastapi-patterns"
+   ],
+   "other_skill_calls": [],
+   "prior_skills": [
+    "copywriting",
+    "frontend-design"
+   ],
+   "trace_names": [],
+   "trace_names_not_reloaded": [],
+   "out_of_area": [],
+   "check": true,
+   "undecidable": null,
+   "mutants_killed": null,
+   "p1": 5,
+   "p2": 5,
+   "score": 5.0,
+   "ai_look": [
+    null,
+    null
+   ],
+   "reason_p1": "계약 27/27, 테스트 51개 통과; 같은 수준의 스키마(HttpUrl, null 거부, 태그 정규화); 404/405/422 포함 일관된 에러 형태, url 제약 위반만 409로 매핑; repository/routes/db/schemas 분리와 create_app 팩토리; 테스트가 에러 코드와 필드를 단언하고 잘못된 JSON·기본 DB 경로까지 다룸; 문서 갱신은 없음",
+   "reason_p2": "Contract 27/27; db/repository/routes/schemas split, HttpUrl normalisation, null-rejecting partial update, tag normalisation in ordered tag table, one error envelope incl. 404/405/422, only url-UNIQUE mapped to 409; 51 isolated tests asserting error codes and fields, incl. rollback, default DB path and persistence"
+  },
+  {
+   "session": "R-F-m1",
+   "cond": "R",
+   "order": "F",
+   "tag": "m1",
+   "k": 3,
+   "task": "apitests",
+   "area": "api",
+   "after_domain_change": false,
+   "turns": 17,
+   "result": "success",
+   "cost": 2.7504394000000008,
+   "tokens_in": 1046212,
+   "tokens_out": 22063,
+   "context_start": 106421,
+   "skill_calls": [],
+   "router": "mcp",
+   "skills": [
+    "python-testing",
+    "radar"
+   ],
+   "other_skill_calls": [],
+   "prior_skills": [
+    "api-design",
+    "copywriting",
+    "fastapi-patterns",
+    "frontend-design"
+   ],
+   "trace_names": [],
+   "trace_names_not_reloaded": [],
+   "out_of_area": [],
+   "check": true,
+   "undecidable": null,
+   "mutants_killed": 8,
+   "p1": 4,
+   "p2": 5,
+   "score": 4.5,
+   "ai_look": [
+    null,
+    null
+   ],
+   "reason_p1": "51→153개, 뮤턴트 8/8; 에러 형태·필드 목록을 정확히 단언, 저장소 경쟁 테스트, 정규화, 빈 BOOKMARKS_DB 대체 경로, 알려진 overflow 버그는 strict xfail로 기록하고 API는 그대로 둠; 하지만 바이너리 `api/.coverage` 파일을 커밋해 리뷰어가 제거를 요청할 것",
+   "reason_p2": "51→153 tests, 8/8 mutants; exact envelope/code/field assertions, boundaries, non-ASCII, concurrency through the repository, OpenAPI, idempotent schema. API untouched; the int64-overflow 500 is recorded as strict xfail rather than fixed. Committed a stray binary `api/.coverage`"
+  },
+  {
+   "session": "R-F-m1",
+   "cond": "R",
+   "order": "F",
+   "tag": "m1",
+   "k": 4,
+   "task": "rust",
+   "area": "media",
+   "after_domain_change": true,
+   "turns": 16,
+   "result": "success",
+   "cost": 3.567311400000001,
+   "tokens_in": 1536430,
+   "tokens_out": 11556,
+   "context_start": 150130,
+   "skill_calls": [],
+   "router": "mcp",
+   "skills": [
+    "domain-web",
+    "m07-concurrency",
+    "rust-testing"
+   ],
+   "other_skill_calls": [],
+   "prior_skills": [
+    "api-design",
+    "copywriting",
+    "fastapi-patterns",
+    "frontend-design",
+    "python-testing",
+    "radar"
+   ],
+   "trace_names": [],
+   "trace_names_not_reloaded": [],
+   "out_of_area": [],
+   "check": true,
+   "undecidable": [],
+   "mutants_killed": null,
+   "p1": 5,
+   "p2": 5,
+   "score": 5.0,
+   "ai_look": [
+    null,
+    null
+   ],
+   "reason_p1": "correct offload + owned permit + panic→500; unbounded wait is documented and raised with the user; 5 focused tests (responsiveness, waiting, release after failure, validation before queueing, 0→1), confirmed to fail on the old code",
+   "reason_p2": "Validation before acquire_owned, permit moved into spawn_blocking, JoinError→500, limit configurable (CPU cores, min 1); 5 tests incl. current_thread offload proof, slot release, validation not queued, zero-limit; unbounded wait flagged to user"
+  },
+  {
+   "session": "R-F-m1",
+   "cond": "R",
+   "order": "F",
+   "tag": "m1",
+   "k": 5,
+   "task": "docs",
+   "area": "(root)",
+   "after_domain_change": true,
+   "turns": 9,
+   "result": "success",
+   "cost": 4.414853600000001,
+   "tokens_in": 1607985,
+   "tokens_out": 14634,
+   "context_start": 185140,
+   "skill_calls": [],
+   "router": "mcp",
+   "skills": [
+    "quill",
+    "spec-miner"
+   ],
+   "other_skill_calls": [],
+   "prior_skills": [
+    "api-design",
+    "copywriting",
+    "domain-web",
+    "fastapi-patterns",
+    "frontend-design",
+    "m07-concurrency",
+    "python-testing",
+    "radar",
+    "rust-testing"
+   ],
+   "trace_names": [],
+   "trace_names_not_reloaded": [],
+   "out_of_area": [],
+   "check": true,
+   "undecidable": null,
+   "mutants_killed": null,
+   "p1": 5,
+   "p2": 5,
+   "score": 5.0,
+   "ai_look": [
+    null,
+    null
+   ],
+   "reason_p1": "complete and accurate (data counts check out, API and resize behaviour described in depth), but long: the README alone repeats config, layout and caveats that docs/usage.md covers again",
+   "reason_p2": "Most thorough: accurate media details (415/400/422 JSON errors, 1067x800 example, startup line), data counts match the CSV, known issues listed; README is long (681 words) and repeats some config"
+  },
+  {
+   "session": "R-F-m1",
+   "cond": "R",
+   "order": "F",
+   "tag": "m1",
+   "k": 6,
+   "task": "data",
+   "area": "data",
+   "after_domain_change": true,
+   "turns": 33,
+   "result": "success",
+   "cost": 6.353350600000001,
+   "tokens_in": 4252922,
+   "tokens_out": 31316,
+   "context_start": 215262,
+   "skill_calls": [],
+   "router": "mcp",
+   "skills": [
+    "data-analyst-engine",
+    "python-testing"
+   ],
+   "other_skill_calls": [],
+   "prior_skills": [
+    "api-design",
+    "copywriting",
+    "domain-web",
+    "fastapi-patterns",
+    "frontend-design",
+    "m07-concurrency",
+    "python-testing",
+    "quill",
+    "radar",
+    "rust-testing",
+    "spec-miner"
+   ],
+   "trace_names": [
+    "python-testing"
+   ],
+   "trace_names_not_reloaded": [],
+   "out_of_area": [
+    "README.md",
+    "docs/usage.md"
+   ],
+   "check": true,
+   "undecidable": null,
+   "mutants_killed": null,
+   "p1": 4,
+   "p2": 5,
+   "score": 4.5,
+   "ai_look": [
+    null,
+    null
+   ],
+   "reason_p1": "all 10 detected with a per-column rules table and an issues log; but the 3 conflicting order_ids stay in the clean CSV (both rows), so they count twice in revenue, and missing prices are left blank, which removes 32 shipped lines from revenue",
+   "reason_p2": "All 10 detected; per-column action table plus issues log with source_row; does not impute blank prices (32 shipped lines left out of revenue) and keeps both conflicting rows in totals, both stated; 86 tests"
+  }
+ ]
+}
