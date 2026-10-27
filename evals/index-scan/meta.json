@@ -1,0 +1,12 @@
+{
+  "index_built_at": "2026-10-24T15:58:48Z",
+  "records": 2785,
+  "rows": 2785,
+  "missing_snapshot": 0,
+  "scan_rules_version": 6,
+  "rejected_at_build": {
+    "lint_failed": 110,
+    "scan_failed": 33
+  },
+  "build_scan_rules_version": 5
+}
