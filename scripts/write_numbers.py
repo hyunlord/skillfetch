@@ -1094,6 +1094,14 @@ def stage_q(out: list[str]) -> None:
     out += [path.read_text().strip() if path.is_file() else "Not run yet.", ""]
 
 
+def knowledge_gap(out: list[str]) -> None:
+    """§24: what the model answers without the skill, for 30 skills that promise knowledge it
+    may lack (evals/knowledge-gap/, transcribed in data/e2e/knowledge_gap.md)."""
+    out += ["## 24. Knowledge gap: what the model answers without the skill", ""]
+    path = DATA / "e2e" / "knowledge_gap.md"
+    out += [path.read_text().strip() if path.is_file() else "Not run yet.", ""]
+
+
 def main() -> None:
     out = [
         "# Numbers for the write-up",
@@ -1128,6 +1136,7 @@ def main() -> None:
         stage10,
         stage11,
         stage_q,
+        knowledge_gap,
     ):
         section(out)
     OUT.parent.mkdir(parents=True, exist_ok=True)
