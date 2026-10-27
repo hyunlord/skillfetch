@@ -12,8 +12,9 @@ from typing import Any
 
 from mcp.server.mcpserver import MCPServer
 
+from skillfetch.index.find import DEFAULT_FIND_K, find_skills
 from skillfetch.index.loader import DEFAULT_INDEX_DIR, Index, IndexLoadError
-from skillfetch.index.search import DEFAULT_K, ONE_LINE_CHARS
+from skillfetch.index.search import DEFAULT_K, ONE_LINE_CHARS, Searcher
 from skillfetch.ingest.extract import DEFAULT_MODEL
 from skillfetch.ingest.extract_cache import DEFAULT_CACHE_DIR, ExtractCache
 from skillfetch.ingest.local_scan import Lookup
@@ -37,11 +38,18 @@ def _version() -> str:
         return "0+unknown"
 
 
-SCAN_INSTRUCTIONS = (
+VET_INSTRUCTIONS = (
     "skillfetch checks agent skills before they are installed. Call scan_skill with the "
     "skill's local folder or GitHub URL, show the user its advice_line and license_line, "
-    "and ask before installing."
+    "and ask before installing. When the user asks you to find a skill, call find_skills "
+    "and show the candidates; scan the one they pick before installing it."
 )
+FIND_DOC = """Find skills in the skillfetch index for something the user asked for (search on
+request; nothing is loaded). `want`: what the skill should do, in a sentence. Returns
+{results: [{id, title, summary, tier, token_estimate, files, has_scripts, license, advice,
+advice_reasons, scan_url}], advice_note}, best first, 10 by default (at most 50). The advice
+comes from the index record; call scan_skill on scan_url for the full check before installing.
+Uses no model."""
 SCAN_DOC = """Check a skill (or a folder of skills) before installing it: a local path or a
 GitHub URL (https://github.com/<owner>/<repo>[/tree/<ref>[/<path>]], shallow-cloned into a
 temporary folder and deleted; nothing is installed or run). The same JSON as
@@ -59,20 +67,37 @@ def _add_scan_tool(server: MCPServer, scan: Callable[[str], dict]) -> None:
     server.tool()(scan_skill)
 
 
-def build_scan_server(index: Index | None, extract_cache: ExtractCache | None = None) -> MCPServer:
-    """`serve --scan-only`: scan_skill alone, for the vet skill (assets/vet-skill). The index
-    is optional: with one, installed copies of public skills are checked for contradictions
-    from it."""
-    server = MCPServer("skillfetch", instructions=SCAN_INSTRUCTIONS, version=_version())
+def _add_find_tool(server: MCPServer, find: Callable[[str, int], dict]) -> None:
+    def find_skills(want: str, k: int = DEFAULT_FIND_K) -> dict[str, Any]:
+        return find(want, k)
+
+    find_skills.__doc__ = FIND_DOC
+    server.tool()(find_skills)
+
+
+NO_INDEX = {"error": "no skillfetch index: run `skillfetch sync` (or `skillfetch setup`)"}
+
+
+def build_vet_server(index: Index | None, extract_cache: ExtractCache | None = None) -> MCPServer:
+    """`serve --vet`: scan_skill and find_skills, no routing, for the vet skill
+    (assets/vet-skill). The index is optional: without one find_skills returns an error and
+    scan_skill skips the index lookup for contradictions."""
+    server = MCPServer("skillfetch", instructions=VET_INSTRUCTIONS, version=_version())
     model = (index.manifest.get("extract_model") if index else None) or DEFAULT_MODEL
     lookup = Lookup(index, extract_cache or ExtractCache(DEFAULT_CACHE_DIR), model)
     _add_scan_tool(server, lambda target: scan_json(target, lookup))
+    searcher = Searcher(index) if index is not None else None
+    _add_find_tool(
+        server,
+        lambda want, k: find_skills(index, searcher, want, k) if index is not None else NO_INDEX,
+    )
     return server
 
 
 def build_server(session: Session) -> MCPServer:
     server = MCPServer("skillfetch", instructions=INSTRUCTIONS, version=_version())
     _add_scan_tool(server, session.scan_skill)
+    _add_find_tool(server, session.find_skills)
 
     @server.tool()
     def profile_repo(path: str) -> dict[str, Any]:
@@ -148,9 +173,9 @@ def serve(
     build_server(session).run("stdio")
 
 
-def serve_scan_only(index_dir: Path = DEFAULT_INDEX_DIR) -> None:
+def serve_vet(index_dir: Path = DEFAULT_INDEX_DIR) -> None:
     try:
         index = Index.load(index_dir)
-    except IndexLoadError:  # scanning needs no index; contradictions then use the cache only
+    except IndexLoadError:  # scanning needs no index; find_skills then says to sync
         index = None
-    build_scan_server(index).run("stdio")
+    build_vet_server(index).run("stdio")

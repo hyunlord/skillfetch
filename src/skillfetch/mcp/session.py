@@ -12,6 +12,7 @@ from pathlib import Path
 from pydantic import BaseModel, ConfigDict, ValidationError
 
 from skillfetch.index.fetch import BodyCache, FetchError
+from skillfetch.index.find import DEFAULT_FIND_K, find_skills
 from skillfetch.index.loader import Index
 from skillfetch.index.profile import profile_repo
 from skillfetch.index.search import (
@@ -135,6 +136,12 @@ class Session:
         """The scan_skill tool: scan_json with this session's index and extract cache."""
         lookup = Lookup(self.index, self.extract_cache, self.model)
         return scan_json(target, lookup, self.scan_parse, self.scan_checkout)
+
+    # --- find_skills ----------------------------------------------------------------------------
+
+    def find_skills(self, want: str, k: int = DEFAULT_FIND_K) -> dict:
+        """The index's top matches for a request the user made (index/find.py)."""
+        return find_skills(self.index, self.searcher, want, k)
 
     # --- search_skills ------------------------------------------------------------------------
 

@@ -133,9 +133,11 @@ for #26, off by default: `serve --auto-profile` (a search without `profile` uses
 working directory) and `serve --summary-chars N` (docs/design/router-cost.md).
 Planned for v0.3, not built: `report_outcome`. `prepare_set`: not built, not planned for v0.3.
 Not part of routing: `scan_skill(target)` (a local folder or GitHub URL; the same JSON as
-`skillfetch scan --json`, no model), served with the router tools and alone by
-`serve --scan-only`, for the vet skill `assets/vet-skill/SKILL.md` (install it without the
-router: it asks before installing a skill, after showing the scan's advice and license lines).
+`skillfetch scan --json`, no model) and `find_skills(want, k=10)` (index matches for a request
+the user made, with an advice from the record; index-format.md §5.2). Both are served with the
+router tools and, without routing, by `serve --vet`, for the vet skill
+`assets/vet-skill/SKILL.md` (install it without the router: it scans before a skill is
+installed and asks, and finds skills when the user asks).
 
 | tool | input | output |
 |---|---|---|
