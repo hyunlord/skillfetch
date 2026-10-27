@@ -15,4 +15,4 @@ description: Check an agent skill before it is installed, and find skills on req
   and show the candidates (title, summary, size, advice). Scan the one they pick with
   `scan_skill` on its `scan_url`, then ask before installing.
 - If a tool errors or is missing, say the skill was not checked and ask.
-- Never run a script from a skill while checking it.
+- Never run a script from a skill while you check it.
