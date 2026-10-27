@@ -688,3 +688,45 @@ def render_report(report: ScanReport) -> str:
     if blocks:
         out += "\n\nDetails, most severe first:\n\n" + "\n\n".join(blocks)
     return out + "\n"
+
+
+MARKDOWN_MARKER = "<!-- skillfetch-scan -->"
+MAX_MARKDOWN_CHARS = 60_000  # a GitHub comment holds 65,536
+
+
+def render_markdown(report: ScanReport, max_chars: int = MAX_MARKDOWN_CHARS) -> str:
+    """The report as a pull-request comment: the advice and license lines, the severity
+    summary as a table, and the text report in a collapsed block (cut to fit a comment).
+    Starts with MARKDOWN_MARKER so a workflow can find and update its earlier comment."""
+    counts = problem_counts(report)
+    advice, reasons = (
+        (report.advice, report.advice_reasons) if report.advice else install_advice(report)
+    )
+    first = f"Before you install: {ADVICE_TEXT[advice]}" + (
+        f" ({'; '.join(reasons)})" if reasons else " (no failures or warnings)"
+    )
+    out = [
+        MARKDOWN_MARKER,
+        f"### skillfetch scan: {ADVICE_TEXT[advice]}",
+        "",
+        f"`{report.root}` · {_plural(len(report.skills), 'skill')}",
+        "",
+        f"**{first}**",
+        "",
+        license_line(report),
+        "",
+    ]
+    rows = [(sev, code, what) for sev, code, what in SEVERITY_ROWS if counts[code]]
+    if rows:
+        out += ["| severity | count | problem |", "|---|---:|---|"]
+        out += [f"| {sev} | {counts[code]} | `{code}` {what} |" for sev, code, what in rows]
+    else:
+        out.append("No problems found.")
+    text = render_report(report).replace("```", "``\u200b`")
+    budget = max_chars - sum(len(x) + 1 for x in out) - 200
+    if len(text) > budget:
+        cut = "\n… (cut to fit a comment; run `skillfetch scan` for all)\n"
+        text = text[: max(0, budget)] + cut
+    out += ["", "<details><summary>Full report</summary>", "", "```text", text.rstrip("\n"), "```"]
+    out += ["", "</details>"]
+    return "\n".join(out) + "\n"

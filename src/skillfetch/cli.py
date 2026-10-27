@@ -20,7 +20,13 @@ from skillfetch.ingest.calibrate import calibrate, render_calibration
 from skillfetch.ingest.extract_cache import DEFAULT_CACHE_DIR, ExtractCache
 from skillfetch.ingest.holdout import load_holdout, measure_holdout, render_holdout
 from skillfetch.ingest.ingest import extract_dir, render_cost_log
-from skillfetch.ingest.local_scan import Lookup, fail_counts, render_report, scan_dir
+from skillfetch.ingest.local_scan import (
+    Lookup,
+    fail_counts,
+    render_markdown,
+    render_report,
+    scan_dir,
+)
 from skillfetch.ingest.remote import RemoteError, checkout, is_remote, parse_github_url
 from skillfetch.ingest.snapshot import DEFAULT_WORK_DIR, SnapshotError
 from skillfetch.ingest.sources import load_sources
@@ -79,6 +85,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         "temporary folder, scanned and deleted; nothing is installed or run",
     )
     scan.add_argument("--json", action="store_true", help="print the report as JSON")
+    scan.add_argument(
+        "--markdown",
+        action="store_true",
+        help="print the report as a pull-request comment (Markdown; used by the GitHub Action)",
+    )
     scan.add_argument(
         "--fail-on",
         type=_fail_on,
@@ -428,7 +439,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         except (extract.MissingCredentials, ValueError) as exc:
             print(f"skillfetch: {exc}", file=sys.stderr)
             return 2
-        text = report.model_dump_json(indent=2) + "\n" if args.json else render_report(report)
+        if args.json:
+            text = report.model_dump_json(indent=2) + "\n"
+        elif args.markdown:
+            text = render_markdown(report)
+        else:
+            text = render_report(report)
         sys.stdout.write(text)
         counts = fail_counts(report)
         triggered = [f"{counts[k]} {k}" for k in FAIL_ON if k in args.fail_on and counts[k]]

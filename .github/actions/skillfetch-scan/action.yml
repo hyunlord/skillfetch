@@ -1,0 +1,89 @@
+# Scan agent skills in a pull request with `skillfetch scan` (docs/design/index-format.md §5,
+# §5.1): put the summary on the pull request as one comment (updated on each run) and in the
+# job summary, and fail when the advice is NOT RECOMMENDED (a skill fails the injection scan or
+# lint, or two skills contradict each other). No model and no API key.
+name: skillfetch scan
+description: Scan the agent skills (SKILL.md folders) a pull request adds or changes, comment the summary and fail on NOT RECOMMENDED.
+branding:
+  icon: shield
+  color: blue
+
+inputs:
+  path:
+    description: Folder of skills to scan (a skills directory or a single skill folder).
+    default: .claude/skills
+  comment:
+    description: Post or update a pull-request comment with the summary (needs pull-requests write).
+    default: "true"
+  fail-on-not-recommended:
+    description: Fail the step when the advice is NOT RECOMMENDED.
+    default: "true"
+  sync-index:
+    description: Download the public index first, so installed copies of public skills are checked for contradictions without a model.
+    default: "true"
+  skillfetch:
+    description: Where uvx installs skillfetch from.
+    default: git+https://github.com/hyunlord/skillfetch@main
+  github-token:
+    description: Token for the comment.
+    default: ${{ github.token }}
+
+outputs:
+  advice:
+    description: RECOMMENDED, CAUTION, NOT RECOMMENDED, or none when the folder does not exist.
+    value: ${{ steps.scan.outputs.advice }}
+
+runs:
+  using: composite
+  steps:
+    - uses: astral-sh/setup-uv@v6
+
+    - id: scan
+      shell: bash
+      env:
+        SKILLS_PATH: ${{ inputs.path }}
+        FROM: ${{ inputs.skillfetch }}
+        SYNC: ${{ inputs.sync-index }}
+      run: |
+        if [ ! -d "$SKILLS_PATH" ]; then
+          echo "skillfetch scan: no folder $SKILLS_PATH, nothing to scan"
+          echo "advice=none" >> "$GITHUB_OUTPUT"
+          exit 0
+        fi
+        if [ "$SYNC" = "true" ]; then
+          uvx --from "$FROM" skillfetch sync \
+            || echo "::warning::skillfetch sync failed; contradictions are checked without the index"
+        fi
+        set +e
+        uvx --from "$FROM" skillfetch scan "$SKILLS_PATH" --markdown > "$RUNNER_TEMP/skillfetch-scan.md"
+        code=$?
+        set -e
+        if [ "$code" -ne 0 ]; then
+          echo "::error::skillfetch scan exited with $code"
+          exit "$code"
+        fi
+        cat "$RUNNER_TEMP/skillfetch-scan.md" >> "$GITHUB_STEP_SUMMARY"
+        echo "advice=$(sed -n 's/^### skillfetch scan: //p' "$RUNNER_TEMP/skillfetch-scan.md")" >> "$GITHUB_OUTPUT"
+
+    - if: inputs.comment == 'true' && github.event.pull_request.number && steps.scan.outputs.advice != 'none'
+      shell: bash
+      continue-on-error: true # a fork's pull request gets a read-only token
+      env:
+        GH_TOKEN: ${{ inputs.github-token }}
+        PR: ${{ github.event.pull_request.number }}
+        REPO: ${{ github.repository }}
+      run: |
+        body="$RUNNER_TEMP/skillfetch-scan.md"
+        id=$(gh api "repos/$REPO/issues/$PR/comments" --paginate \
+          --jq '.[] | select(.body | startswith("<!-- skillfetch-scan -->")) | .id' | tail -1)
+        if [ -n "$id" ]; then
+          gh api -X PATCH "repos/$REPO/issues/comments/$id" -F "body=@$body" > /dev/null
+        else
+          gh api -X POST "repos/$REPO/issues/$PR/comments" -F "body=@$body" > /dev/null
+        fi
+
+    - if: inputs.fail-on-not-recommended == 'true' && steps.scan.outputs.advice == 'NOT RECOMMENDED'
+      shell: bash
+      run: |
+        echo "::error::skillfetch scan: NOT RECOMMENDED (see the pull-request comment or the job summary)"
+        exit 1
