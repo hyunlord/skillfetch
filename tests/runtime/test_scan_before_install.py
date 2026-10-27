@@ -89,6 +89,8 @@ def test_advice_levels(tmp_path):
     assert install_advice(report) == ("recommended", [])
     assert render_report(report).startswith(
         "Before you install: RECOMMENDED (no failures or warnings)\n"
+        "License: MIT (frontmatter). Not part of the advice: check it before you redistribute "
+        "a skill.\n"
     )
 
     scripted = tmp_path / "scripted"
@@ -100,6 +102,72 @@ def test_advice_levels(tmp_path):
     _skill(bad, "runner", files={"scripts/run.sh": "echo hi\n"})
     level, reasons = install_advice(scan_dir(bad))
     assert (level, reasons) == ("not_recommended", ["1 skill fails the injection scan"])
+
+
+def test_the_license_does_not_change_the_advice(tmp_path):
+    root = tmp_path / "r"
+    write_skill(root, "unlicensed", "Keep functions short.\n")
+    report = scan_dir(root)
+    assert report.advice == "recommended" and report.skills[0].license == "unknown"
+    text = render_report(report)
+    assert text.splitlines()[1].startswith(
+        "License: none stated (none stated: all rights reserved by default). Not part of"
+    )
+    assert "NO_LICENSE" in text
+
+
+MIT = "MIT License\n\nPermission is hereby granted, free of charge"
+
+
+def test_the_nearest_license_file_up_to_the_repo_root_applies(tmp_path):
+    repo = tmp_path / "repo"
+    (repo / ".git").mkdir(parents=True)
+    (repo / "LICENSE").write_text(MIT)
+    write_skill(repo / "skills", "plain", "Keep functions short.\n")
+    write_skill(repo / "skills", "named", "Keep functions short.\n")
+    (repo / "skills" / "named" / "LICENSE").write_text(MIT)
+    write_skill(repo / "skills" / "sub", "deep", "Keep functions short.\n")
+    (repo / "skills" / "sub" / "LICENSE").write_text(
+        "Apache License\nVersion 2.0, January 2004\nhttp://www.apache.org/licenses/"
+    )
+    report = scan_dir(repo / "skills")  # a folder inside the repository: its root still counts
+    by_id = {s.id: s for s in report.skills}
+    assert (by_id["plain"].license, by_id["plain"].license_origin) == ("MIT", "repo:LICENSE")
+    assert by_id["named"].license_origin == "LICENSE"
+    assert (by_id["sub/deep"].license, by_id["sub/deep"].license_origin) == (
+        "Apache-2.0",
+        "repo:skills/sub/LICENSE",
+    )
+    line = render_report(report).splitlines()[1]
+    assert line.startswith(
+        "License: Apache-2.0 (repo: skills/sub/LICENSE) 1, MIT (repo root) 1, MIT (skill folder) 1."
+    )
+
+
+def test_an_aggregator_or_a_skill_naming_an_upstream_inherits_nothing(tmp_path):
+    repo = tmp_path / "agg"
+    (repo / ".git").mkdir(parents=True)
+    (repo / "LICENSE").write_text(MIT)
+    (repo / "THIRD_PARTY.md").write_text("Skills copied from other repositories.\n")
+    write_skill(repo, "copied", "Keep functions short.\n")
+    assert scan_dir(repo).skills[0].license == "unknown"
+
+    own = tmp_path / "own"
+    (own / ".git").mkdir(parents=True)
+    (own / "LICENSE").write_text(MIT)
+    write_skill(own, "mine", "Keep functions short.\n")
+    for i in range(9):
+        write_skill(own, f"also-mine-{i}", "Keep functions short.\n")
+    write_skill(
+        own,
+        "theirs",
+        "Keep functions short.\n",
+        frontmatter="---\nname: theirs\ndescription: A test skill.\n"
+        "source: https://github.com/someone/else\n---\n",
+    )
+    by_id = {s.id: s for s in scan_dir(own).skills}  # 1 of 11 names an upstream: under 10%
+    assert by_id["mine"].license_origin == "repo:LICENSE"
+    assert by_id["theirs"].license == "unknown"
 
 
 def test_dated_lines_do_not_change_the_advice(tmp_path):
