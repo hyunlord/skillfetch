@@ -209,3 +209,105 @@ sq-mono(web 정적 HTML, py CLI, Rust 포맷 라이브러리)는 영역별 숨�
 - **2026-10-27 본 실행 완료**: 6/6세션, 36요청, API 단가 환산 $87.13(파일럿 포함 $130.15, 상한 $140). 판정은 새 판정자 4명(p1·p2, 세트마다 6개)이고, 흔적 (c)는 본 실행·파일럿 판정자 각 1명이다. 보고 `stage14/report-14.md`, 갤러리 `stage14/gallery/stage14-gallery.html`.
   - 흔적 (a)에 "같은 요청이 그 스킬을 다시 로드한 경우를 뺀 수" 열을 본 실행 뒤에 더했다. R 정순 데이터 요청의 python-testing 1건이 이 경우다.
   - 하네스가 요청 diff를 `str.strip()`으로 저장해, 마지막 줄이 빈 문맥 줄(" ")이면 빠진다. 갤러리 재구성은 이 줄을 되살려 다시 적용한다(`assemble_14.py`). 판정 재료에서는 마지막 문맥 한 줄이 빠졌을 수 있다.
+- 2026-10-27 고정 뒤 바뀐 파일 두 개(`usage_14.py`, `trace_14.py`)의 기록과 두 버전 비교를 §11에 적었다(사용자 지시).
+
+## 11. 고정(FROZEN-14) 뒤에 바뀐 파일 (2026-10-27 정리, 사용자 지시)
+
+`stage14-private/FROZEN-14.sha256`(24개, 18:00:50 작성)의 항목을 다시 대조했다. 22개는 그대로다. 두 파일이 본 실행이 끝난 직후(18:51) 18:52:37에 바뀌었다. 체크, 하네스, 큐, 판정 패키지·키 스크립트는 바뀌지 않았다.
+
+| 파일 | 고정 sha256 | 지금 sha256 | 언제 | 무엇을 | 왜 |
+|---|---|---|---|---|---|
+| `stage14/scripts/usage_14.py` | 502aae3cda7c6adb… | 01ec44cf6f67c34d… | 2026-10-27 18:52(본 실행 뒤, 판정 패키지 만들기 전) | 행마다 `trace_names_not_reloaded` 필드를 더했다. 흔적 (a) 이름 목록에서 그 요청이 스스로 다시 적용·로드한 스킬을 뺀 것이다. 문서 문자열 두 줄도 고쳤다. 기존 필드는 그대로다 | R 정순 데이터 요청에서 앞 요청의 python-testing이 이름으로 나왔다. 그런데 그 요청이 python-testing을 스스로 다시 로드했으므로, 앞 요청의 흔적과 구분하려고 더했다 |
+| `stage14/scripts/trace_14.py` | 7a782659777fde5b… | 00d9af233b9ace24… | 같은 시각 | 두 번째 인자 `m|p`를 받아 파일럿용 경로(`usage-14-p.json`, `trace-package-p/`, `trace-p/`, `trace-key-p.jsonl`, `trace-14-p.json`)를 쓰게 했다. 기본값 `m`의 경로와 동작은 고정본과 같다 | 사용자 결정("판정은 본 실행과 함께 한다")에 따라 파일럿의 흔적 (c)도 따로 판정하려고 |
+
+- **고정본 복원**: 두 파일의 고정본을 지금 파일에서 위 변경을 되돌려 만들었다. sha256이 FROZEN-14와 일치한다. `stage14-private/frozen-versions/usage_14.py`, `trace_14.py`에 있고, diff는 같은 폴더의 `usage_14.diff`, `trace_14.diff`다.
+- **두 버전 비교**(`stage14-private/frozen-versions/compare.json`):
+  - `usage_14.py`: 본 실행 36행과 파일럿 18행에서 다른 필드는 새 필드 `trace_names_not_reloaded` 하나뿐이다. 나머지 모든 필드가 행마다 같다. 스킬, 흔적 (a)(b), 비용, 턴, 컨텍스트, 체크, 라우터 경로, 영역 전환 표시가 모두 해당한다.
+  - 조건별 통계도 모두 같다. 본 실행: 스킬 적용 요청 A 0 / P 2 / R 12, 흔적 (a) 0 / 0 / 1, 흔적 (b) 4 / 4 / 4, 40턴 한도 0 / 1 / 0, 체크 12 / 11 / 12. 새 필드만 있는 통계는 "(a) 다시 로드 제외" A 0 / P 0 / R 0이다.
+  - `trace_14.py verify`(본 실행): 고정본과 지금 버전의 출력 `trace-14.json`이 바이트 단위가 아니라 내용(JSON)으로 같다. 파일럿 흔적 (c)는 지금 버전으로만 계산할 수 있다(고정본에는 파일럿 경로가 없다).
+- 이 정리 때 고정본에 없던 분석·갤러리 스크립트(`metrics_14.py`, `gallery/assemble_14.py`, `gallery/build_gallery_14.py`)는 본 실행 뒤에 처음 썼다. 고정 대상이 아니었다.
+
+```diff
+--- usage_14.py	2026-10-27 21:45:09
++++ ../../stage14/scripts/usage_14.py	2026-10-27 18:52:37
+@@ -10,7 +10,8 @@
+   conditions: every Skill tool call name; R also: router via the Skill tool ("skill") or skillfetch MCP only ("mcp") or not.
+   trace (a) names: skills applied/loaded in requests 1..k-1 of the same session (P skills used, R loaded, other Skill
+   calls; not the router) whose name appears in request k's final reply or diff (new files included), case-insensitive,
+-  word-bounded.
++  word-bounded; trace_names_not_reloaded = the same without skills that request k also used or loaded itself
++  (added after the main run, 2026-10-27: a skill re-loaded by request k explains its own mention).
+   trace (b) out_of_area: files changed by request k outside its area (web/, api/, media/, data/; for the README task:
+   files that are not .md/.mdx/.txt).
+ Writes stage14-private/usage-14.json and prints a table.
+@@ -100,7 +101,8 @@
+                          "after_domain_change": k > 1 and area != prev_area,
+                          **{x: r[x] for x in ("turns", "result", "cost", "tokens_in", "tokens_out", "context_start", "skill_calls", "router")},
+                          "skills": used, "other_skill_calls": others, "prior_skills": sorted(prior),
+-                         "trace_names": named, "out_of_area": out_of_area(task, diff),
++                         "trace_names": named, "trace_names_not_reloaded": sorted(set(named) - set(used) - set(others)),
++                         "out_of_area": out_of_area(task, diff),
+                          "check": chk.get("pass"), "undecidable": chk.get("undecidable"),
+                          "mutants_killed": (chk.get("metrics") or {}).get("mutants_killed") if task == "apitests" else None})
+             prior |= set(used) | set(others)
+```
+
+```diff
+--- trace_14.py	2026-10-27 21:45:09
++++ ../../stage14/scripts/trace_14.py	2026-10-27 18:52:37
+@@ -10,7 +10,7 @@
+   verify  stage14-private/trace/<id>.json from the judge: {"skills": [{"name", "trace": "yes"|"no", "quote": "..."}]}.
+           A "yes" counts only if its quote is a substring of that item's diff.patch (else counted as "no", listed as
+           unverified). Writes stage14-private/trace-14.json (per item and per condition × task).
+-usage: trace_14.py build | verify"""
++usage: trace_14.py build|verify [m|p]"""
+ import json
+ import re
+ import secrets
+@@ -24,7 +24,9 @@
+ from build_blind_s2 import clean_diff  # noqa: E402
+ 
+ WT = re.compile(r"/\S*?skillfetch-e2e-wt/sq/[A-Za-z0-9_.-]+")
+-PKG, OUT = PRIV / "trace-package", PRIV / "trace"
++PRE = sys.argv[2] if len(sys.argv) > 2 else "m"  # m = main runs, p = pilot (reported apart)
++SUF = "" if PRE == "m" else f"-{PRE}"
++PKG, OUT = PRIV / f"trace-package{SUF}", PRIV / f"trace{SUF}"
+ 
+ 
+ def descriptions():
+@@ -40,7 +42,7 @@
+ 
+ def build():
+     assert not PKG.exists(), "trace package already built"
+-    rows = json.loads((PRIV / "usage-14.json").read_text())
++    rows = json.loads((PRIV / f"usage-14{SUF}.json").read_text())
+     desc = descriptions()
+     reqs = (S14 / "requests.md").read_text()
+     keys = []
+@@ -59,7 +61,7 @@
+         keys.append({"id": iid, "session": r["session"], "cond": r["cond"], "order": r["order"], "tag": r["tag"], "k": r["k"],
+                      "task": r["task"], "skills": r["prior_skills"]})
+     (PRIV / "keys").mkdir(exist_ok=True)
+-    (PRIV / "keys" / "trace-key.jsonl").write_text("".join(json.dumps(k) + "\n" for k in keys))
++    (PRIV / "keys" / f"trace-key{SUF}.jsonl").write_text("".join(json.dumps(k) + "\n" for k in keys))
+     (PKG / "README.md").write_text(README)
+     print(f"{len(keys)} items")
+ 
+@@ -81,7 +83,7 @@
+ 
+ 
+ def verify():
+-    keys = {json.loads(l)["id"]: json.loads(l) for l in (PRIV / "keys" / "trace-key.jsonl").open()}
++    keys = {json.loads(l)["id"]: json.loads(l) for l in (PRIV / "keys" / f"trace-key{SUF}.jsonl").open()}
+     items, problems = [], []
+     for iid, k in keys.items():
+         f = OUT / f"{iid}.json"
+@@ -110,7 +112,7 @@
+         a["skill_pairs"] += len(it["results"])
+         a["traces"] += sum(x["trace"] for x in it["results"])
+         a["unverified"] += sum(x["unverified"] for x in it["results"])
+-    (PRIV / "trace-14.json").write_text(json.dumps({"by_condition": agg, "items": items}, indent=1, ensure_ascii=False))
++    (PRIV / f"trace-14{SUF}.json").write_text(json.dumps({"by_condition": agg, "items": items}, indent=1, ensure_ascii=False))
+     print(json.dumps(agg, indent=1))
+```
+

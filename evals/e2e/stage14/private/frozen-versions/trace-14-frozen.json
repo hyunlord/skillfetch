@@ -1,0 +1,726 @@
+{
+ "by_condition": {
+  "P": {
+   "items": 5,
+   "with_trace": 0,
+   "skill_pairs": 5,
+   "traces": 0,
+   "unverified": 0
+  },
+  "R": {
+   "items": 10,
+   "with_trace": 0,
+   "skill_pairs": 57,
+   "traces": 0,
+   "unverified": 0
+  }
+ },
+ "items": [
+  {
+   "id": "a67909a7",
+   "session": "P-F-m1",
+   "cond": "P",
+   "order": "F",
+   "tag": "m1",
+   "k": 2,
+   "task": "api",
+   "skills": [
+    "design-taste-frontend"
+   ],
+   "results": [
+    {
+     "skill": "design-taste-frontend",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    }
+   ],
+   "any_trace": false
+  },
+  {
+   "id": "009f8b19",
+   "session": "P-F-m1",
+   "cond": "P",
+   "order": "F",
+   "tag": "m1",
+   "k": 3,
+   "task": "apitests",
+   "skills": [
+    "design-taste-frontend"
+   ],
+   "results": [
+    {
+     "skill": "design-taste-frontend",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    }
+   ],
+   "any_trace": false
+  },
+  {
+   "id": "5cb621c0",
+   "session": "P-F-m1",
+   "cond": "P",
+   "order": "F",
+   "tag": "m1",
+   "k": 4,
+   "task": "rust",
+   "skills": [
+    "design-taste-frontend"
+   ],
+   "results": [
+    {
+     "skill": "design-taste-frontend",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    }
+   ],
+   "any_trace": false
+  },
+  {
+   "id": "8e7a762f",
+   "session": "P-F-m1",
+   "cond": "P",
+   "order": "F",
+   "tag": "m1",
+   "k": 5,
+   "task": "docs",
+   "skills": [
+    "design-taste-frontend"
+   ],
+   "results": [
+    {
+     "skill": "design-taste-frontend",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    }
+   ],
+   "any_trace": false
+  },
+  {
+   "id": "dd5e1fbc",
+   "session": "P-F-m1",
+   "cond": "P",
+   "order": "F",
+   "tag": "m1",
+   "k": 6,
+   "task": "data",
+   "skills": [
+    "design-taste-frontend"
+   ],
+   "results": [
+    {
+     "skill": "design-taste-frontend",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    }
+   ],
+   "any_trace": false
+  },
+  {
+   "id": "bfb7bd68",
+   "session": "R-B-m1",
+   "cond": "R",
+   "order": "B",
+   "tag": "m1",
+   "k": 2,
+   "task": "docs",
+   "skills": [
+    "data-analyst-engine"
+   ],
+   "results": [
+    {
+     "skill": "data-analyst-engine",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    }
+   ],
+   "any_trace": false
+  },
+  {
+   "id": "f0198f37",
+   "session": "R-B-m1",
+   "cond": "R",
+   "order": "B",
+   "tag": "m1",
+   "k": 3,
+   "task": "rust",
+   "skills": [
+    "codebase-onboarding",
+    "data-analyst-engine",
+    "quill"
+   ],
+   "results": [
+    {
+     "skill": "codebase-onboarding",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "data-analyst-engine",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "quill",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    }
+   ],
+   "any_trace": false
+  },
+  {
+   "id": "fa10fed7",
+   "session": "R-B-m1",
+   "cond": "R",
+   "order": "B",
+   "tag": "m1",
+   "k": 4,
+   "task": "api",
+   "skills": [
+    "codebase-onboarding",
+    "data-analyst-engine",
+    "domain-web",
+    "m07-concurrency",
+    "quill"
+   ],
+   "results": [
+    {
+     "skill": "codebase-onboarding",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "data-analyst-engine",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "domain-web",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "m07-concurrency",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "quill",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    }
+   ],
+   "any_trace": false
+  },
+  {
+   "id": "6691787f",
+   "session": "R-B-m1",
+   "cond": "R",
+   "order": "B",
+   "tag": "m1",
+   "k": 5,
+   "task": "apitests",
+   "skills": [
+    "api-design",
+    "codebase-onboarding",
+    "data-analyst-engine",
+    "domain-web",
+    "fastapi-patterns",
+    "m07-concurrency",
+    "quill"
+   ],
+   "results": [
+    {
+     "skill": "api-design",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "codebase-onboarding",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "data-analyst-engine",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "domain-web",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "fastapi-patterns",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "m07-concurrency",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "quill",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    }
+   ],
+   "any_trace": false
+  },
+  {
+   "id": "bb4d00f5",
+   "session": "R-B-m1",
+   "cond": "R",
+   "order": "B",
+   "tag": "m1",
+   "k": 6,
+   "task": "landing",
+   "skills": [
+    "api-design",
+    "codebase-onboarding",
+    "data-analyst-engine",
+    "domain-web",
+    "fastapi-patterns",
+    "m07-concurrency",
+    "python-testing",
+    "quill",
+    "radar"
+   ],
+   "results": [
+    {
+     "skill": "api-design",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "codebase-onboarding",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "data-analyst-engine",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "domain-web",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "fastapi-patterns",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "m07-concurrency",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "python-testing",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "quill",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "radar",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    }
+   ],
+   "any_trace": false
+  },
+  {
+   "id": "a6b6d59b",
+   "session": "R-F-m1",
+   "cond": "R",
+   "order": "F",
+   "tag": "m1",
+   "k": 2,
+   "task": "api",
+   "skills": [
+    "copywriting",
+    "frontend-design"
+   ],
+   "results": [
+    {
+     "skill": "copywriting",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "frontend-design",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    }
+   ],
+   "any_trace": false
+  },
+  {
+   "id": "48647d35",
+   "session": "R-F-m1",
+   "cond": "R",
+   "order": "F",
+   "tag": "m1",
+   "k": 3,
+   "task": "apitests",
+   "skills": [
+    "api-design",
+    "copywriting",
+    "fastapi-patterns",
+    "frontend-design"
+   ],
+   "results": [
+    {
+     "skill": "api-design",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "copywriting",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "fastapi-patterns",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "frontend-design",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    }
+   ],
+   "any_trace": false
+  },
+  {
+   "id": "c6cdf259",
+   "session": "R-F-m1",
+   "cond": "R",
+   "order": "F",
+   "tag": "m1",
+   "k": 4,
+   "task": "rust",
+   "skills": [
+    "api-design",
+    "copywriting",
+    "fastapi-patterns",
+    "frontend-design",
+    "python-testing",
+    "radar"
+   ],
+   "results": [
+    {
+     "skill": "api-design",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "copywriting",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "fastapi-patterns",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "frontend-design",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "python-testing",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "radar",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    }
+   ],
+   "any_trace": false
+  },
+  {
+   "id": "2d2a04ab",
+   "session": "R-F-m1",
+   "cond": "R",
+   "order": "F",
+   "tag": "m1",
+   "k": 5,
+   "task": "docs",
+   "skills": [
+    "api-design",
+    "copywriting",
+    "domain-web",
+    "fastapi-patterns",
+    "frontend-design",
+    "m07-concurrency",
+    "python-testing",
+    "radar",
+    "rust-testing"
+   ],
+   "results": [
+    {
+     "skill": "api-design",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "copywriting",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "domain-web",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "fastapi-patterns",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "frontend-design",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "m07-concurrency",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "python-testing",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "radar",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "rust-testing",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    }
+   ],
+   "any_trace": false
+  },
+  {
+   "id": "66300f88",
+   "session": "R-F-m1",
+   "cond": "R",
+   "order": "F",
+   "tag": "m1",
+   "k": 6,
+   "task": "data",
+   "skills": [
+    "api-design",
+    "copywriting",
+    "domain-web",
+    "fastapi-patterns",
+    "frontend-design",
+    "m07-concurrency",
+    "python-testing",
+    "quill",
+    "radar",
+    "rust-testing",
+    "spec-miner"
+   ],
+   "results": [
+    {
+     "skill": "api-design",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "copywriting",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "domain-web",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "fastapi-patterns",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "frontend-design",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "m07-concurrency",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "python-testing",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "quill",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "radar",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "rust-testing",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "spec-miner",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    }
+   ],
+   "any_trace": false
+  }
+ ]
+}

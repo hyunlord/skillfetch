@@ -1,0 +1,58 @@
+--- trace_14.py	2026-10-27 21:45:09
++++ ../../stage14/scripts/trace_14.py	2026-10-27 18:52:37
+@@ -10,7 +10,7 @@
+   verify  stage14-private/trace/<id>.json from the judge: {"skills": [{"name", "trace": "yes"|"no", "quote": "..."}]}.
+           A "yes" counts only if its quote is a substring of that item's diff.patch (else counted as "no", listed as
+           unverified). Writes stage14-private/trace-14.json (per item and per condition × task).
+-usage: trace_14.py build | verify"""
++usage: trace_14.py build|verify [m|p]"""
+ import json
+ import re
+ import secrets
+@@ -24,7 +24,9 @@
+ from build_blind_s2 import clean_diff  # noqa: E402
+ 
+ WT = re.compile(r"/\S*?skillfetch-e2e-wt/sq/[A-Za-z0-9_.-]+")
+-PKG, OUT = PRIV / "trace-package", PRIV / "trace"
++PRE = sys.argv[2] if len(sys.argv) > 2 else "m"  # m = main runs, p = pilot (reported apart)
++SUF = "" if PRE == "m" else f"-{PRE}"
++PKG, OUT = PRIV / f"trace-package{SUF}", PRIV / f"trace{SUF}"
+ 
+ 
+ def descriptions():
+@@ -40,7 +42,7 @@
+ 
+ def build():
+     assert not PKG.exists(), "trace package already built"
+-    rows = json.loads((PRIV / "usage-14.json").read_text())
++    rows = json.loads((PRIV / f"usage-14{SUF}.json").read_text())
+     desc = descriptions()
+     reqs = (S14 / "requests.md").read_text()
+     keys = []
+@@ -59,7 +61,7 @@
+         keys.append({"id": iid, "session": r["session"], "cond": r["cond"], "order": r["order"], "tag": r["tag"], "k": r["k"],
+                      "task": r["task"], "skills": r["prior_skills"]})
+     (PRIV / "keys").mkdir(exist_ok=True)
+-    (PRIV / "keys" / "trace-key.jsonl").write_text("".join(json.dumps(k) + "\n" for k in keys))
++    (PRIV / "keys" / f"trace-key{SUF}.jsonl").write_text("".join(json.dumps(k) + "\n" for k in keys))
+     (PKG / "README.md").write_text(README)
+     print(f"{len(keys)} items")
+ 
+@@ -81,7 +83,7 @@
+ 
+ 
+ def verify():
+-    keys = {json.loads(l)["id"]: json.loads(l) for l in (PRIV / "keys" / "trace-key.jsonl").open()}
++    keys = {json.loads(l)["id"]: json.loads(l) for l in (PRIV / "keys" / f"trace-key{SUF}.jsonl").open()}
+     items, problems = [], []
+     for iid, k in keys.items():
+         f = OUT / f"{iid}.json"
+@@ -110,7 +112,7 @@
+         a["skill_pairs"] += len(it["results"])
+         a["traces"] += sum(x["trace"] for x in it["results"])
+         a["unverified"] += sum(x["unverified"] for x in it["results"])
+-    (PRIV / "trace-14.json").write_text(json.dumps({"by_condition": agg, "items": items}, indent=1, ensure_ascii=False))
++    (PRIV / f"trace-14{SUF}.json").write_text(json.dumps({"by_condition": agg, "items": items}, indent=1, ensure_ascii=False))
+     print(json.dumps(agg, indent=1))
+ 
+ 

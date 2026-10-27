@@ -2450,6 +2450,7 @@ Source: the Stage 14 report [`evals/e2e/stage14/report-14.md`](../../evals/e2e/s
 - One repository, six request types, one model. Two Claude judges.
 - The MCP server is the build Stages 11, Q and 13 used, without `find_skills` and `scan_skill`.
 - The judge package left out one rubric line ("reply.md 설명도 반영"); the 1–5 scale text was the same.
+- Two analysis scripts (`usage_14.py`, `trace_14.py`) changed after they were frozen, right after the main run and before judging (DESIGN §11). Their frozen copies (`private/frozen-versions/`) give the same statistics; only the "excluding re-loads" count above (R 0) needs the changed version.
 
 ## 29. The released router and the router the sessions ran
 
