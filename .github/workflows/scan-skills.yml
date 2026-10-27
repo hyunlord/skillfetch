@@ -1,0 +1,26 @@
+# This repository's vet skill, scanned on every pull request that changes it, with the action
+# in .github/actions/. The router skill is left out: its frontmatter description has a bare
+# ": " that strict YAML rejects (lint.frontmatter-invalid), and its bytes are pinned for the
+# experiments, so it is not edited here.
+name: scan-skills
+
+on:
+  pull_request:
+    paths:
+      - "assets/vet-skill/**"
+      - ".github/actions/skillfetch-scan/**"
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/skillfetch-scan
+        with:
+          path: assets/vet-skill
+          skillfetch: .
+          sync-index: "false"

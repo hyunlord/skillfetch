@@ -580,6 +580,12 @@ As built (`ingest/local_scan.py`, `cli.py`):
     - low: DUPLICATE, TENSION (tension and needs_review), LINT_WARNING, NO_LICENSE;
     - info: HAS_SCRIPTS, SCAN_INFO, DATED;
   - how many skills the contradiction check covered.
+- `--markdown` prints the report as a pull-request comment: a `<!-- skillfetch-scan -->`
+  marker, the advice and license lines, the severity summary as a table and the text report
+  in a collapsed block, cut to fit a comment (60,000 characters). The GitHub Action
+  `.github/actions/skillfetch-scan` runs it on a skills folder, keeps one comment per pull
+  request up to date, writes the job summary, and fails on NOT RECOMMENDED, which is what
+  `--fail-on conflict,scan,lint` catches (example: `examples/skillfetch-scan.yml`).
 - Exit code 0 when the scan ran, 2 on usage errors. `--fail-on
   {conflict,scan,lint}` (repeatable or comma-separated) exits 1 when the scan
   finds any conflict finding, injection-scan failure or lint failure; the
