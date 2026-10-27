@@ -1,0 +1,143 @@
+{"item_id": "fbfbf1dd6a8c", "stratum": "dated", "split": "dev", "skill_id": "uasl/motion-canvas@08d879d31903", "locations": ["SKILL.md:6", "SKILL.md:22", "SKILL.md:23", "SKILL.md:24", "SKILL.md:25"]}
+{"item_id": "0e27ef1edb85", "stratum": "dated", "split": "eval", "skill_id": "rshankras-claude-code-apple-skills/foundation@b765c383d54a", "locations": ["SKILL.md:5", "SKILL.md:6", "attributed-string/SKILL.md:5", "attributed-string/SKILL.md:6", "attributed-string/SKILL.md:7"]}
+{"item_id": "110094b36d46", "stratum": "dated", "split": "dev", "skill_id": "affaan-m-ecc/continuous-agent-loop@74861f90a9f2", "locations": ["SKILL.md:10"]}
+{"item_id": "32a8f4961fcc", "stratum": "dated", "split": "eval", "skill_id": "rshankras-claude-code-apple-skills/subscription-offers@38b4a1183e9e", "locations": ["SKILL.md:5", "SKILL.md:6", "SKILL.md:7", "SKILL.md:27", "SKILL.md:66"]}
+{"item_id": "eb3a9725a540", "stratum": "dated", "split": "dev", "skill_id": "uasl/implementing-digital-signatures-with-ed25519@69331d5a1a80", "locations": ["SKILL.md:35"]}
+{"item_id": "d4f41b4d32a9", "stratum": "dated", "split": "eval", "skill_id": "affaan-m-ecc/nodejs-keccak256@ffc3759434bc", "locations": ["SKILL.md:5"]}
+{"item_id": "1dcd99411f2f", "stratum": "dated", "split": "dev", "skill_id": "uasl/harvest@0a6d85904f37", "locations": ["samples/pr-summary-2026-01-31.md:3", "samples/pr-summary-2026-01-31.md:5", "samples/pr-summary-2026-01-31.md:63", "samples/pr-summary-2026-01-31.md:64", "samples/pr-summary-2026-01-31.md:65"]}
+{"item_id": "4d5e00a6a610", "stratum": "dated", "split": "eval", "skill_id": "ahmed3elshaer-everything-claude-code-mobile/accessibility-patterns@eb127d28916a", "locations": ["SKILL.md:278"]}
+{"item_id": "2de7fcdedd3f", "stratum": "dated", "split": "dev", "skill_id": "uasl/excel-generator@9ce0c16c81a1", "locations": ["SKILL.md:200", "SKILL.md:201", "SKILL.md:202"]}
+{"item_id": "23e7e3d1b836", "stratum": "dated", "split": "eval", "skill_id": "uasl/solana-vulnerability-scanner@05e33b7d1d05", "locations": ["SKILL.md:104", "SKILL.md:112", "SKILL.md:168", "SKILL.md:271", "SKILL.md:376"]}
+{"item_id": "fa4bb4143a6e", "stratum": "dated", "split": "dev", "skill_id": "uasl/quest@2a366b046bee", "locations": ["references/economy-design.md:163", "references/economy-design.md:165", "references/economy-design.md:168", "references/economy-design.md:173"]}
+{"item_id": "dcb56ef13a2b", "stratum": "dated", "split": "eval", "skill_id": "uasl/ai-model-privacy-audit@193d9eed8d55", "locations": ["SKILL.md:197", "assets/template.md:11", "references/standards.md:20", "references/standards.md:28", "references/standards.md:33"]}
+{"item_id": "d6ead0318b11", "stratum": "dated", "split": "dev", "skill_id": "uasl/implementing-continuous-security-validation-with-bas@04140643b214", "locations": ["SKILL.md:23", "references/standards.md:15", "references/standards.md:17", "references/standards.md:18", "references/standards.md:19"]}
+{"item_id": "f007bde0b77e", "stratum": "dated", "split": "eval", "skill_id": "uasl/quill@336ba74b0e79", "locations": ["references/documentation-patterns.md:86"]}
+{"item_id": "7492a7a148ba", "stratum": "dated", "split": "dev", "skill_id": "rshankras-claude-code-apple-skills/implementation-spec@994b245336b8", "locations": ["SKILL.md:5", "SKILL.md:6", "SKILL.md:7", "SKILL.md:16"]}
+{"item_id": "562f6e1ae6a7", "stratum": "dated", "split": "eval", "skill_id": "uasl/gsap-frameworks@13a7c7540177", "locations": ["SKILL.md:20", "SKILL.md:55", "SKILL.md:91"]}
+{"item_id": "4cbd98c0a329", "stratum": "dated", "split": "dev", "skill_id": "uasl/beacon@47f360c45fe3", "locations": ["references/incident-learning-postmortem.md:134", "references/opentelemetry-best-practices.md:397"]}
+{"item_id": "f3f906fbce23", "stratum": "dated", "split": "eval", "skill_id": "uasl/security-testing-patterns@defb9096ec72", "locations": ["references/penetration-testing.md:213", "references/penetration-testing.md:214", "references/penetration-testing.md:215", "references/penetration-testing.md:247", "references/penetration-testing.md:296"]}
+{"item_id": "84413f8ace30", "stratum": "dated", "split": "dev", "skill_id": "uasl/stripe-best-practices@795a33f68129", "locations": ["SKILL.md:6"]}
+{"item_id": "1713616951a9", "stratum": "dated", "split": "eval", "skill_id": "uasl/research-claim-map@5f8b6e962d2a", "locations": ["resources/template.md:155"]}
+{"item_id": "c69c05e5ccd1", "stratum": "dated", "split": "dev", "skill_id": "uasl/bcr-establishment@70eac3a4ccf7", "locations": ["SKILL.md:60", "assets/template.md:10", "assets/template.md:45", "assets/template.md:58", "assets/template.md:59"]}
+{"item_id": "6e63166c38b0", "stratum": "dated", "split": "eval", "skill_id": "uasl/gong-automation@09a015febb35", "locations": ["SKILL.md:37", "SKILL.md:40", "SKILL.md:41", "SKILL.md:76", "SKILL.md:77"]}
+{"item_id": "ce8f4857a51c", "stratum": "dated", "split": "dev", "skill_id": "rshankras-claude-code-apple-skills/lapsed-user@6d5b063ed626", "locations": ["SKILL.md:5", "SKILL.md:6", "SKILL.md:7", "SKILL.md:27", "SKILL.md:28"]}
+{"item_id": "7f21cd2721f9", "stratum": "dated", "split": "eval", "skill_id": "rshankras-claude-code-apple-skills/streak-tracker@5e9737188984", "locations": ["SKILL.md:5", "SKILL.md:6", "SKILL.md:7", "SKILL.md:27", "SKILL.md:28"]}
+{"item_id": "4b40dbd7486d", "stratum": "dated", "split": "dev", "skill_id": "uasl/implementing-end-to-end-encryption-for-messaging@856909ca1a07", "locations": ["SKILL.md:35"]}
+{"item_id": "a8017509bd15", "stratum": "dated", "split": "eval", "skill_id": "uasl/brazil-lgpd@70de486368fd", "locations": ["SKILL.md:4", "SKILL.md:13", "SKILL.md:17", "SKILL.md:112", "SKILL.md:135"]}
+{"item_id": "4d78b22811bf", "stratum": "dated", "split": "dev", "skill_id": "rshankras-claude-code-apple-skills/swiftui@ab239a07f6d0", "locations": ["SKILL.md:5", "SKILL.md:6", "SKILL.md:7", "SKILL.md:35", "alarmkit/SKILL.md:3"]}
+{"item_id": "9443b3238f20", "stratum": "dated", "split": "eval", "skill_id": "uasl/googlemeet-automation@d25b5982718c", "locations": ["SKILL.md:92"]}
+{"item_id": "73e83c04aa50", "stratum": "dated", "split": "dev", "skill_id": "rshankras-claude-code-apple-skills/keyword-optimizer@76b8000f953c", "locations": ["SKILL.md:5", "SKILL.md:6", "SKILL.md:360", "advanced-tactics.md:106", "advanced-tactics.md:342"]}
+{"item_id": "6d54640d75de", "stratum": "dated", "split": "eval", "skill_id": "uasl/research-paper-review@24cd1c691cf3", "locations": ["SKILL.md:25"]}
+{"item_id": "81f8399a0181", "stratum": "exfil.pipe-to-shell", "split": "dev", "skill_id": "uasl/awesome-design-md@ea336fdd43cd", "locations": ["design-md/ollama/DESIGN.md:420", "design-md/opencode.ai/DESIGN.md:409"]}
+{"item_id": "f156e0af3824", "stratum": "exfil.pipe-to-shell", "split": "eval", "skill_id": "affaan-m-ecc/tdd-workflow@b3bd0675873c", "locations": ["SKILL.md:35"]}
+{"item_id": "78be01ff4628", "stratum": "exfil.pipe-to-shell", "split": "dev", "skill_id": "uasl/hearth@4d9d1deb349e", "locations": ["references/dotfile-management.md:153"]}
+{"item_id": "e18f697f37a7", "stratum": "exfil.pipe-to-shell", "split": "eval", "skill_id": "uasl/using-neon@8e2a4301a971", "locations": ["references/neon-cli.md:22"]}
+{"item_id": "ce914ce9c21b", "stratum": "exfil.pipe-to-shell", "split": "dev", "skill_id": "uasl/gear@59d50b1c79d3", "locations": ["references/dependency-management.md:139"]}
+{"item_id": "f7846554521f", "stratum": "exfil.pipe-to-shell", "split": "eval", "skill_id": "anthropics-skills/claude-api@e30e2c97f747", "locations": ["shared/managed-agents-onboarding-from-url.md:30"]}
+{"item_id": "b9198c47426a", "stratum": "exfil.pipe-to-shell", "split": "dev", "skill_id": "affaan-m-ecc/github-ops@9b60d1551940", "locations": ["SKILL.md:33"]}
+{"item_id": "7b5553ceb203", "stratum": "network.remote-instructions", "split": "dev", "skill_id": "uasl/semgrep-rule-creator@ae4d35a76948", "locations": ["SKILL.md:169"]}
+{"item_id": "f1ba2286ca01", "stratum": "network.remote-instructions", "split": "eval", "skill_id": "uasl/claude-api@f952c765f5b0", "locations": ["shared/live-sources.md:30"]}
+{"item_id": "611f1cef5e65", "stratum": "network.remote-instructions", "split": "dev", "skill_id": "rshankras-claude-code-apple-skills/shared@f1a9223ab3f7", "locations": ["skill-auditor/SKILL.md:266"]}
+{"item_id": "30ece9e0bc35", "stratum": "network.remote-instructions", "split": "eval", "skill_id": "rshankras-claude-code-apple-skills/skill-auditor@0699a3a537b7", "locations": ["SKILL.md:266"]}
+{"item_id": "355f8a82758c", "stratum": "network.remote-instructions", "split": "dev", "skill_id": "anthropics-skills/claude-api@e30e2c97f747", "locations": ["shared/live-sources.md:33"]}
+{"item_id": "b41ab4915580", "stratum": "network.remote-instructions", "split": "eval", "skill_id": "uasl/multi-repo-git-ops@d1a9b3bcdc7d", "locations": ["SKILL.md:249"]}
+{"item_id": "41cc828ab9b5", "stratum": "network.remote-instructions", "split": "dev", "skill_id": "uasl/claude-native-claude-api@24c958899f03", "locations": ["shared/live-sources.md:31"]}
+{"item_id": "03d2ae9d5d71", "stratum": "network.remote-instructions", "split": "eval", "skill_id": "uasl/lightpanda-browser@c286602dc189", "locations": ["UPSTREAM_README.md:14"]}
+{"item_id": "b594543c15b0", "stratum": "network.remote-instructions", "split": "dev", "skill_id": "affaan-m-ecc/codehealth-mcp@df37cc35c77d", "locations": ["SKILL.md:21"]}
+{"item_id": "6484a80e1b82", "stratum": "network.remote-instructions", "split": "eval", "skill_id": "uasl/ln-002-session-analyzer@e1f577ca3f6a", "locations": ["SKILL.md:8"]}
+{"item_id": "0c8d4e82924d", "stratum": "network.remote-instructions", "split": "dev", "skill_id": "uasl/configuring-snort-ids-for-intrusion-detection@7768daa836f4", "locations": ["SKILL.md:194"]}
+{"item_id": "f1cf38084e63", "stratum": "privilege.sudo", "split": "dev", "skill_id": "uasl/hardening-docker-daemon-configuration@bda3d1a9919f", "locations": ["SKILL.md:35", "SKILL.md:189", "SKILL.md:190", "SKILL.md:220", "SKILL.md:221"]}
+{"item_id": "cb26cc6b8a46", "stratum": "privilege.sudo", "split": "eval", "skill_id": "rshankras-claude-code-apple-skills/test-spec@349dd765044d", "locations": ["SKILL.md:1004"]}
+{"item_id": "5315f5c1c441", "stratum": "privilege.sudo", "split": "dev", "skill_id": "uasl/substrate-vulnerability-scanner@ce70afb34d42", "locations": ["SKILL.md:281", "resources/VULNERABILITY_PATTERNS.md:692", "resources/VULNERABILITY_PATTERNS.md:774"]}
+{"item_id": "6979dd200d03", "stratum": "privilege.sudo", "split": "eval", "skill_id": "uasl/analyzing-network-traffic-with-wireshark@919bae340c57", "locations": ["SKILL.md:32"]}
+{"item_id": "9433a6a8091d", "stratum": "privilege.sudo", "split": "dev", "skill_id": "uasl/conducting-internal-network-penetration-test@8ee3d5b8750a", "locations": ["SKILL.md:129", "SKILL.md:135"]}
+{"item_id": "6d19fc4f1821", "stratum": "privilege.sudo", "split": "eval", "skill_id": "uasl/aflpp@30ff5cb9b85d", "locations": ["SKILL.md:570"]}
+{"item_id": "8a13049769b1", "stratum": "privilege.sudo", "split": "dev", "skill_id": "uasl/persistent-computing@e124aa5f9105", "locations": ["references/cloud-computer-reference.md:66"]}
+{"item_id": "32e396a68484", "stratum": "privilege.sudo", "split": "eval", "skill_id": "rshankras-claude-code-apple-skills/product-development@618fcfd05e46", "locations": ["release-spec/SKILL.md:1018", "test-spec/SKILL.md:1004"]}
+{"item_id": "c73429fb29a5", "stratum": "privilege.sudo", "split": "dev", "skill_id": "uasl/pptx@f6656f3654c8", "locations": ["SKILL.md:482", "SKILL.md:483"]}
+{"item_id": "c875efa3a0a4", "stratum": "privilege.sudo", "split": "eval", "skill_id": "uasl/lightpanda-browser@c286602dc189", "locations": ["UPSTREAM_README.md:219", "UPSTREAM_README.md:304"]}
+{"item_id": "4053276ad8fb", "stratum": "privilege.sudo", "split": "dev", "skill_id": "uasl/director@c4e09d407403", "locations": ["references/playwright-config.md:344"]}
+{"item_id": "7f16e30afd4e", "stratum": "privilege.sudo", "split": "eval", "skill_id": "ahmed3elshaer-everything-claude-code-mobile/ci-cd-patterns@c095ca1dd50c", "locations": ["SKILL.md:133"]}
+{"item_id": "f84b22279dcb", "stratum": "privilege.sudo", "split": "dev", "skill_id": "uasl/constant-time-analysis@328dbde1ca35", "locations": ["references/kotlin.md:209", "references/php.md:34", "references/php.md:37", "references/php.md:55", "references/vm-compiled.md:236"]}
+{"item_id": "a22c9bc621cc", "stratum": "privilege.sudo", "split": "eval", "skill_id": "affaan-m-ecc/homelab-wireguard-vpn@a8c7b86614c1", "locations": ["SKILL.md:47", "SKILL.md:50", "SKILL.md:51", "SKILL.md:52", "SKILL.md:56"]}
+{"item_id": "b89719b323b9", "stratum": "privilege.sudo", "split": "dev", "skill_id": "uasl/implementing-ebpf-security-monitoring@fcbcddef8c93", "locations": ["SKILL.md:68", "SKILL.md:69", "SKILL.md:72", "references/api-reference.md:18"]}
+{"item_id": "cdabbddacb5e", "stratum": "privilege.sudo", "split": "eval", "skill_id": "uasl/security-testing-patterns@defb9096ec72", "locations": ["references/penetration-testing.md:272"]}
+{"item_id": "c942b7671896", "stratum": "privilege.sudo", "split": "dev", "skill_id": "uasl/implementing-file-integrity-monitoring-with-aide@30f8ddaa80b1", "locations": ["SKILL.md:36"]}
+{"item_id": "9bbcebc06ad2", "stratum": "privilege.sudo", "split": "eval", "skill_id": "uasl/debugging-code@b7ef0ac6e7b2", "locations": ["references/installing-debuggers.md:23"]}
+{"item_id": "a856bbba650c", "stratum": "privilege.sudo", "split": "dev", "skill_id": "uasl/entry-point-analyzer@e587ef9b8313", "locations": ["references/cosmwasm.md:172"]}
+{"item_id": "2bf7c14badb5", "stratum": "privilege.sudo", "split": "eval", "skill_id": "uasl/configuring-snort-ids-for-intrusion-detection@7768daa836f4", "locations": ["SKILL.md:44", "SKILL.md:52", "SKILL.md:57", "SKILL.md:58", "SKILL.md:68"]}
+{"item_id": "378b7114b31a", "stratum": "privilege.sudo", "split": "dev", "skill_id": "rshankras-claude-code-apple-skills/release-spec@2b83364406e1", "locations": ["SKILL.md:1018"]}
+{"item_id": "f04c8b80e946", "stratum": "privilege.sudo", "split": "eval", "skill_id": "affaan-m-ecc/homelab-pihole-dns@7bfaffdc5543", "locations": ["SKILL.md:84", "SKILL.md:118", "SKILL.md:168", "SKILL.md:169", "SKILL.md:172"]}
+{"item_id": "a18b03ffaf90", "stratum": "privilege.sudo", "split": "dev", "skill_id": "uasl/cloc@a2b7f28aaa38", "locations": ["SKILL.md:19", "SKILL.md:20"]}
+{"item_id": "7160b5dd5e6b", "stratum": "privilege.sudo", "split": "eval", "skill_id": "uasl/network-101@5a5bf6982dca", "locations": ["SKILL.md:48", "SKILL.md:51", "SKILL.md:52", "SKILL.md:55", "SKILL.md:65"]}
+{"item_id": "653ab9614788", "stratum": "privilege.sudo", "split": "dev", "skill_id": "affaan-m-ecc/safety-guard@263b5dfa9052", "locations": ["SKILL.md:35"]}
+{"item_id": "269e471a3264", "stratum": "privilege.sudo", "split": "eval", "skill_id": "uasl/spreadsheet@552eb801e36a", "locations": ["SKILL.md:66"]}
+{"item_id": "47d4d8481392", "stratum": "privilege.sudo", "split": "dev", "skill_id": "uasl/conducting-social-engineering-penetration-test@aecb94daf529", "locations": ["SKILL.md:95"]}
+{"item_id": "10d6dabfbe7e", "stratum": "privilege.sudo", "split": "eval", "skill_id": "uasl/tone@27044f9239b0", "locations": ["references/model-setup.md:464", "references/model-setup.md:720", "references/model-setup.md:753", "references/model-setup.md:756", "references/model-setup.md:757"]}
+{"item_id": "27679e4ef866", "stratum": "privilege.sudo", "split": "dev", "skill_id": "anthropics-skills/claude-api@e30e2c97f747", "locations": ["shared/anthropic-cli.md:25", "shared/managed-agents-self-hosted-sandboxes.md:187"]}
+{"item_id": "373f61b1c967", "stratum": "privilege.sudo", "split": "eval", "skill_id": "uasl/ui-ux-pro-max@9dcc2465cd85", "locations": ["SKILL.md:325"]}
+{"item_id": "a9946fc072e6", "stratum": "privilege.sudo", "split": "dev", "skill_id": "uasl/reel@a99ede7241fa", "locations": ["references/ci-integration.md:42", "references/ci-integration.md:43", "references/ci-integration.md:216", "references/ci-integration.md:217"]}
+{"item_id": "c3e6f9b8448d", "stratum": "privilege.sudo", "split": "eval", "skill_id": "uasl/smtp-penetration-testing@7372c0e0e6c8", "locations": ["SKILL.md:21", "SKILL.md:24", "SKILL.md:27", "SKILL.md:30"]}
+{"item_id": "4ba902849ed4", "stratum": "privilege.sudo", "split": "dev", "skill_id": "uasl/deploying-edr-agent-with-crowdstrike@76fba4f09457", "locations": ["SKILL.md:95", "SKILL.md:97", "SKILL.md:98", "SKILL.md:101", "SKILL.md:103"]}
+{"item_id": "3ab26bb6584e", "stratum": "scan.line-too-long", "split": "dev", "skill_id": "anthropics-skills/claude-api@e30e2c97f747", "locations": ["shared/evals/build-eval.md:116", "shared/evals/build-eval.md:203", "shared/evals/eval-hillclimb.md:13", "shared/evals/eval-hillclimb.md:265", "shared/managed-agents-multiagent.md:225"]}
+{"item_id": "14524f60cdf5", "stratum": "scan.line-too-long", "split": "eval", "skill_id": "uasl/typescript-e2e-testing@a6c116657757", "locations": ["SKILL.md:3"]}
+{"item_id": "f2a1eb0b975a", "stratum": "scripts", "split": "dev", "skill_id": "uasl/gdpr-gap-analysis@4ed8904df2d3", "scripts": 1}
+{"item_id": "6d04df8b17f8", "stratum": "scripts", "split": "eval", "skill_id": "uasl/statistical-analysis@a45cce393e37", "scripts": 1}
+{"item_id": "c0964a2b33f6", "stratum": "scripts", "split": "dev", "skill_id": "uasl/breach-forensics@10ac09fb1d59", "scripts": 1}
+{"item_id": "58fedba7435f", "stratum": "scripts", "split": "eval", "skill_id": "uasl/mcp-builder@ab308a7d6372", "scripts": 4}
+{"item_id": "61b04e0db987", "stratum": "scripts", "split": "dev", "skill_id": "anthropics-skills/slack-gif-creator@4e04e7a9eba6", "scripts": 4}
+{"item_id": "26d3f66292d1", "stratum": "scripts", "split": "eval", "skill_id": "uasl/multi-model-oracle@dffe65b0cf36", "scripts": 1}
+{"item_id": "e84497bf4bf0", "stratum": "scripts", "split": "dev", "skill_id": "affaan-m-ecc/frontend-design-direction@e7e81f651216", "scripts": 1}
+{"item_id": "1b45d6565b82", "stratum": "scripts", "split": "eval", "skill_id": "uasl/ui-design-system@29acd16fa414", "scripts": 1}
+{"item_id": "4ed7efefa1c9", "stratum": "scripts", "split": "dev", "skill_id": "uasl/caveman-compress@392333ae0d7c", "scripts": 7}
+{"item_id": "919a91af429b", "stratum": "scripts", "split": "eval", "skill_id": "anthropics-skills/claude-api@e30e2c97f747", "scripts": 4}
+{"item_id": "072c7466aa40", "stratum": "scripts", "split": "dev", "skill_id": "uasl/implementing-end-to-end-encryption-for-messaging@856909ca1a07", "scripts": 2}
+{"item_id": "c28b8e3ea994", "stratum": "scripts", "split": "eval", "skill_id": "uasl/impeccable@3001d33c5a27", "scripts": 20}
+{"item_id": "1c1ad3237c67", "stratum": "scripts", "split": "dev", "skill_id": "uasl/file-organizer@febe08b4c410", "scripts": 9}
+{"item_id": "2868aacd4205", "stratum": "scripts", "split": "eval", "skill_id": "affaan-m-ecc/taste-distillation@44bf2849ef6a", "scripts": 14}
+{"item_id": "d1e0a6513133", "stratum": "scripts", "split": "dev", "skill_id": "uasl/claude-native-algorithmic-art@f9655f5ae6f2", "scripts": 1}
+{"item_id": "3871a9bbd017", "stratum": "scripts", "split": "eval", "skill_id": "uasl/implementing-secure-multi-party-computation@d8c5d4998860", "scripts": 1}
+{"item_id": "0be663f598aa", "stratum": "scripts", "split": "dev", "skill_id": "uasl/implementing-cloud-workload-protection@94907f2038a1", "scripts": 1}
+{"item_id": "a7d33d3a6563", "stratum": "scripts", "split": "eval", "skill_id": "rshankras-claude-code-apple-skills/testing@187d348e052e", "scripts": 2}
+{"item_id": "3417de7f3fd4", "stratum": "scripts", "split": "dev", "skill_id": "uasl/sora@316f043c57fc", "scripts": 1}
+{"item_id": "d6427909ff5d", "stratum": "scripts", "split": "eval", "skill_id": "uasl/context-anchor@6803c477c511", "scripts": 1}
+{"item_id": "8535e6bc04b1", "stratum": "scripts", "split": "dev", "skill_id": "uasl/transcribe@242ba8bf18ac", "scripts": 1}
+{"item_id": "e856184c5815", "stratum": "scripts", "split": "eval", "skill_id": "uasl/classification-policy@480d47b8d158", "scripts": 1}
+{"item_id": "d8625e6c1455", "stratum": "scripts", "split": "dev", "skill_id": "uasl/breach-72h-notification@3729f30de47b", "scripts": 1}
+{"item_id": "44e41856bee8", "stratum": "scripts", "split": "eval", "skill_id": "anthropics-skills/pptx@4eb5e13af97f", "scripts": 20}
+{"item_id": "145d726be92e", "stratum": "scripts", "split": "dev", "skill_id": "anthropics-skills/xlsx@5350d36b768c", "scripts": 20}
+{"item_id": "ea19faa1e6ff", "stratum": "scripts", "split": "eval", "skill_id": "uasl/privacy-metrics-dashboard@9990637a012a", "scripts": 1}
+{"item_id": "58c2a53266c5", "stratum": "scripts", "split": "dev", "skill_id": "uasl/implementing-ddos-mitigation-with-cloudflare@6b01c1c327c5", "scripts": 1}
+{"item_id": "e7cd487386d3", "stratum": "scripts", "split": "eval", "skill_id": "uasl/ui-styling@4f5f0010a451", "scripts": 7}
+{"item_id": "a3a33e6979e5", "stratum": "scripts", "split": "dev", "skill_id": "uasl/skill-debugger@7162193702f6", "scripts": 1}
+{"item_id": "bf739f05ae16", "stratum": "scripts", "split": "eval", "skill_id": "uasl/imagegen@89cf88d0651b", "scripts": 1}
+{"item_id": "7b93197543b7", "stratum": "size", "split": "dev", "skill_id": "uasl/api-testing@4ada9a2fac88", "warnings": ["31 files (over 20)"], "files": 31, "total_bytes": 43582, "skill_md_tokens": 3729}
+{"item_id": "7e2cec91ce0a", "stratum": "size", "split": "eval", "skill_id": "uasl/ui-ux-pro-max@9dcc2465cd85", "warnings": ["SKILL.md is ~11,176 tokens (over 8,000)"], "files": 1, "total_bytes": 44795, "skill_md_tokens": 11176}
+{"item_id": "417c55da2794", "stratum": "size", "split": "dev", "skill_id": "actionbook-rust-skills/unsafe-checker@6544b8069b76", "warnings": ["57 files (over 20)"], "files": 57, "total_bytes": 186551, "skill_md_tokens": 603}
+{"item_id": "a1b291c2cf34", "stratum": "size", "split": "eval", "skill_id": "uasl/docx@4f952b24cb2a", "warnings": ["61 files (over 20)", "1.1 MB in total (over 1 MB)"], "files": 61, "total_bytes": 1121316, "skill_md_tokens": 5017}
+{"item_id": "e2a82ddcbaa7", "stratum": "size", "split": "dev", "skill_id": "affaan-m-ecc/angular-developer@4ca59a6056b8", "warnings": ["36 files (over 20)"], "files": 36, "total_bytes": 131192, "skill_md_tokens": 2751}
+{"item_id": "be52f0b1b9e6", "stratum": "size", "split": "eval", "skill_id": "uasl/slack-gif-creator@8c76678e15b5", "warnings": ["23 files (over 20)"], "files": 23, "total_bytes": 213368, "skill_md_tokens": 4264}
+{"item_id": "3397c7364ca3", "stratum": "size", "split": "dev", "skill_id": "uasl/html-ppt@1b804d5da138", "warnings": ["225 files (over 20)", "10.9 MB in total (over 1 MB)"], "files": 225, "total_bytes": 10874468, "skill_md_tokens": 3386}
+{"item_id": "0b20ea7fdc7c", "stratum": "size", "split": "eval", "skill_id": "uasl/xlsx@718d6748b658", "warnings": ["55 files (over 20)", "1.1 MB in total (over 1 MB)"], "files": 55, "total_bytes": 1099468, "skill_md_tokens": 2863}
+{"item_id": "9b8da5c02d06", "stratum": "size", "split": "dev", "skill_id": "uasl/awesome-design-md@ea336fdd43cd", "warnings": ["144 files (over 20)", "1.9 MB in total (over 1 MB)"], "files": 144, "total_bytes": 1877166, "skill_md_tokens": 366}
+{"item_id": "285c1c63fc14", "stratum": "size", "split": "eval", "skill_id": "affaan-m-ecc/remotion-video-creation@7ea621e468b0", "warnings": ["32 files (over 20)"], "files": 32, "total_bytes": 78059, "skill_md_tokens": 910}
+{"item_id": "2bb9e03f219e", "stratum": "size", "split": "dev", "skill_id": "rshankras-claude-code-apple-skills/implementation-guide@5b206c172efe", "warnings": ["SKILL.md is ~13,680 tokens (over 8,000)"], "files": 1, "total_bytes": 55627, "skill_md_tokens": 13680}
+{"item_id": "6ec611e79946", "stratum": "size", "split": "eval", "skill_id": "rshankras-claude-code-apple-skills/ux-spec@edda1f6065e3", "warnings": ["SKILL.md is ~13,918 tokens (over 8,000)"], "files": 1, "total_bytes": 61932, "skill_md_tokens": 13918}
+{"item_id": "eef783457c9a", "stratum": "size", "split": "dev", "skill_id": "anthropics-skills/canvas-design@5866a8f274dd", "warnings": ["83 files (over 20)", "5.6 MB in total (over 1 MB)"], "files": 83, "total_bytes": 5554003, "skill_md_tokens": 2984}
+{"item_id": "cd3064936084", "stratum": "size", "split": "eval", "skill_id": "uasl/claude-native-canvas-design@5728755c8eb2", "warnings": ["83 files (over 20)", "5.6 MB in total (over 1 MB)"], "files": 83, "total_bytes": 5554017, "skill_md_tokens": 2987}
+{"item_id": "4f5f251f1d78", "stratum": "size", "split": "dev", "skill_id": "uasl/ui-audit@be637d5e2baf", "warnings": ["31 files (over 20)"], "files": 31, "total_bytes": 41720, "skill_md_tokens": 839}
+{"item_id": "d54aebbfd3a6", "stratum": "size", "split": "eval", "skill_id": "affaan-m-ecc/skill-comply@686e367d98f7", "warnings": ["22 files (over 20)"], "files": 22, "total_bytes": 95938, "skill_md_tokens": 623}
+{"item_id": "7e7d50ec3fb4", "stratum": "size", "split": "dev", "skill_id": "uasl/ckmdesign-system@13f7e923082c", "warnings": ["26 files (over 20)"], "files": 26, "total_bytes": 176712, "skill_md_tokens": 1712}
+{"item_id": "76ef0c35e7de", "stratum": "size", "split": "eval", "skill_id": "uasl/openui@c3154bb34a14", "warnings": ["46 files (over 20)"], "files": 46, "total_bytes": 183275, "skill_md_tokens": 1649}
+{"item_id": "88b22bf0cf4b", "stratum": "size", "split": "dev", "skill_id": "uasl/reasoning-tools-kb@c100f6d14425", "warnings": ["72 files (over 20)", "1.9 MB in total (over 1 MB)"], "files": 72, "total_bytes": 1923095, "skill_md_tokens": 556}
+{"item_id": "3897adb5f045", "stratum": "size", "split": "eval", "skill_id": "uasl/supabase-postgres-best-practices@af167084fda1", "warnings": ["37 files (over 20)"], "files": 37, "total_bytes": 101267, "skill_md_tokens": 475}
+{"item_id": "4141d43bebd9", "stratum": "size", "split": "dev", "skill_id": "uasl/top-design@4ea889def6d2", "warnings": ["SKILL.md is ~9,548 tokens (over 8,000)"], "files": 6, "total_bytes": 94047, "skill_md_tokens": 9548}
+{"item_id": "320fffeb2bf1", "stratum": "size", "split": "eval", "skill_id": "rshankras-claude-code-apple-skills/app-store@55e2567bbdf5", "warnings": ["22 files (over 20)"], "files": 22, "total_bytes": 193877, "skill_md_tokens": 1572}
+{"item_id": "d476ef8b9a5b", "stratum": "size", "split": "dev", "skill_id": "uasl/code-security@e20eb3467925", "warnings": ["34 files (over 20)"], "files": 34, "total_bytes": 257737, "skill_md_tokens": 1256}
+{"item_id": "707ca694d2d2", "stratum": "size", "split": "eval", "skill_id": "affaan-m-ecc/taste-application@963aae8a29bc", "warnings": ["80 files (over 20)"], "files": 80, "total_bytes": 774016, "skill_md_tokens": 4931}
+{"item_id": "fd92cca968f2", "stratum": "size", "split": "dev", "skill_id": "uasl/acceptance-testing@7f713f1566e8", "warnings": ["30 files (over 20)"], "files": 30, "total_bytes": 60558, "skill_md_tokens": 5775}
+{"item_id": "5e16ff346d68", "stratum": "size", "split": "eval", "skill_id": "uasl/design-system@7e51ebdd60da", "warnings": ["26 files (over 20)"], "files": 26, "total_bytes": 176694, "skill_md_tokens": 1708}
+{"item_id": "5dce32bea925", "stratum": "size", "split": "dev", "skill_id": "anthropics-skills/docx@74e2b8b277a4", "warnings": ["61 files (over 20)", "1.1 MB in total (over 1 MB)"], "files": 61, "total_bytes": 1128695, "skill_md_tokens": 1717}
+{"item_id": "5196ce90393a", "stratum": "size", "split": "eval", "skill_id": "rshankras-claude-code-apple-skills/release-spec@2b83364406e1", "warnings": ["SKILL.md is ~12,990 tokens (over 8,000)"], "files": 1, "total_bytes": 52193, "skill_md_tokens": 12990}
+{"item_id": "aaf69b7613b3", "stratum": "size", "split": "dev", "skill_id": "uasl/claude-native-docx@da77bd3e44ea", "warnings": ["61 files (over 20)", "1.1 MB in total (over 1 MB)"], "files": 61, "total_bytes": 1121317, "skill_md_tokens": 5017}
+{"item_id": "5d71d3eca87c", "stratum": "size", "split": "eval", "skill_id": "uasl/claude-native-claude-api@24c958899f03", "warnings": ["SKILL.md is ~8,191 tokens (over 8,000)", "44 files (over 20)"], "files": 44, "total_bytes": 529806, "skill_md_tokens": 8191}
