@@ -73,8 +73,8 @@ The product has two halves that must stay decoupled:
 - No skill self-generation from task history.
 - No GUI, no web service. CLI + MCP only.
 - Runtime network access is limited to fetching skill bodies from their pinned
-  source; a hash mismatch is refused. Search and `resolve_set` read the local
-  index only.
+  source (a hash mismatch is refused) and to the shallow clone of a GitHub URL the user
+  asks `scan` / `scan_skill` to check. Search and `resolve_set` read the local index only.
 
 ## Repository layout (target)
 
@@ -132,6 +132,10 @@ Built (v0.2): `profile_repo`, `search_skills`, `resolve_set`, `load_skills`. Bui
 for #26, off by default: `serve --auto-profile` (a search without `profile` uses the server's
 working directory) and `serve --summary-chars N` (docs/design/router-cost.md).
 Planned for v0.3, not built: `report_outcome`. `prepare_set`: not built, not planned for v0.3.
+Not part of routing: `scan_skill(target)` (a local folder or GitHub URL; the same JSON as
+`skillfetch scan --json`, no model), served with the router tools and alone by
+`serve --scan-only`, for the vet skill `assets/vet-skill/SKILL.md` (install it without the
+router: it asks before installing a skill, after showing the scan's advice and license lines).
 
 | tool | input | output |
 |---|---|---|

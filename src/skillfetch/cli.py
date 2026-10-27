@@ -20,7 +20,7 @@ from skillfetch.ingest.calibrate import calibrate, render_calibration
 from skillfetch.ingest.extract_cache import DEFAULT_CACHE_DIR, ExtractCache
 from skillfetch.ingest.holdout import load_holdout, measure_holdout, render_holdout
 from skillfetch.ingest.ingest import extract_dir, render_cost_log
-from skillfetch.ingest.local_scan import Lookup, fail_counts, render_report, scan_dir
+from skillfetch.ingest.local_scan import Lookup, fail_counts, render_report, scan_target
 from skillfetch.ingest.remote import RemoteError, checkout, is_remote, parse_github_url
 from skillfetch.ingest.snapshot import DEFAULT_WORK_DIR, SnapshotError
 from skillfetch.ingest.sources import load_sources
@@ -41,25 +41,15 @@ def _fail_on(value: str) -> list[str]:
 
 
 def _scan(args: argparse.Namespace):
-    """scan_dir on a local folder, or on a shallow checkout of a GitHub URL (the report then
-    names the URL and commit instead of the temporary folder, which is deleted)."""
-    if not is_remote(args.dir):
-        root = Path(args.dir)
-        if not root.is_dir():
-            raise NotADirectoryError(args.dir)
-        lookup, how = _scan_lookup(args)
-        report = scan_dir(root, lookup, args.conflict_cap)
-        report.extraction = how
-        return report
-    target = parse_github_url(args.dir)
+    """scan_target with the CLI's lookup (index, extract cache, optional extractor)."""
+    if not is_remote(args.dir) and not Path(args.dir).is_dir():
+        raise NotADirectoryError(args.dir)
+    if is_remote(args.dir):
+        parse_github_url(args.dir)  # refuse a bad URL before loading the index
     lookup, how = _scan_lookup(args)
-    with checkout(target) as (folder, commit):
-        report = scan_dir(folder, lookup, args.conflict_cap)
-        base = str(folder.resolve())
-        where = f"{target.url}@{commit[:12]}"
-        for s in report.skills:
-            s.path = where + s.path.removeprefix(base)
-    report.root = where
+    report = scan_target(
+        args.dir, lookup, args.conflict_cap, parse=parse_github_url, checkout_fn=checkout
+    )
     report.extraction = how
     return report
 
@@ -219,6 +209,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         default=160,
         help="#26 option: cut each compact search summary to this many characters "
         "(default: %(default)s)",
+    )
+    serve.add_argument(
+        "--scan-only",
+        action="store_true",
+        help="serve scan_skill alone, for the vet skill (assets/vet-skill); runs without an "
+        "index, and uses it when there is one",
     )
 
     ev = sub.add_parser("eval", help="offline benchmarks (no model calls)")
@@ -585,8 +581,11 @@ def _scan_lookup(args: argparse.Namespace) -> tuple[Lookup, str | None]:
 
 
 def _serve(args: argparse.Namespace) -> int:
-    from skillfetch.mcp.server import serve
+    from skillfetch.mcp.server import serve, serve_scan_only
 
+    if args.scan_only:
+        serve_scan_only(args.index)
+        return 0
     try:
         serve(
             args.index,

@@ -634,6 +634,14 @@ As built (`ingest/local_scan.py`, `cli.py`):
      scanned folder;
   3. the license of an indexed skill with the same content (`indexed copy`);
   4. none stated (NO_LICENSE, low): all rights reserved by default.
+- **In an agent:** the MCP tool `scan_skill(target)` returns the same JSON as `--json`,
+  with `advice_line` and `license_line` (the report's first two lines). The full server
+  (`skillfetch serve`) has it beside the routing tools; `serve --scan-only` serves it alone
+  and starts without an index (with one, installed copies of public skills are checked for
+  contradictions from it). It never extracts: skills in neither the index nor the extract
+  cache are left out of the contradiction check, and `extraction` says so. The vet skill
+  (`assets/vet-skill/SKILL.md`) tells the agent to call it before installing a skill, show
+  the two lines and ask.
 
 ## 6. Discover (candidate sources, issue #60)
 
