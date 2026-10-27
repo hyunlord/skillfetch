@@ -1,0 +1,64 @@
+{
+ "task": "T1",
+ "bundle": 4,
+ "cond": "A",
+ "tag": "d1",
+ "session_dir": "<worktrees>/s12/1b37924a3044",
+ "preflight": {
+  "index": "index ok (12 files)",
+  "base": "b3e1eecd7e3dd87c57313bfaf6dfd39b9f4581ad",
+  "s11_r": "c718405545a36e72d197e66e3672eb2f99567ad2",
+  "main_checkout": {
+   "branch": "nw-a",
+   "head": "b3e1eecd7e3d"
+  },
+  "leftover_processes": []
+ },
+ "clone": {
+  "branch": "nw-a",
+  "head": "b3e1eecd7e3dd87c57313bfaf6dfd39b9f4581ad",
+  "refs": [
+   "refs/heads/main"
+  ],
+  "remotes": [],
+  "status": [],
+  "skills_files": [],
+  "router_sha256": null,
+  "commits": [
+   "b3e1eec initial: nw-orders service"
+  ],
+  "base_skills_files": [],
+  "unreachable_objects": 0,
+  "ok": true
+ },
+ "prep_s": 0.1,
+ "prep_status": [],
+ "cmd": [
+  "claude",
+  "-p",
+  "환불 엔드포인트 `POST /refunds`를 추가해 주세요. 요청에 order_id, 금액, 사유를 받고, 주문이 없으면 404를 돌려주세요. 환불 데이터는 DB에 저장합니다.",
+  "--output-format",
+  "stream-json",
+  "--verbose",
+  "--include-hook-events",
+  "--max-turns",
+  "40",
+  "--allowedTools",
+  "Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*",
+  "--debug-file",
+  "<e2e>/stage12-private/dryrun/A/T1-d1.debug.log",
+  "--setting-sources",
+  "project",
+  "--strict-mcp-config",
+  "--mcp-config",
+  "<e2e>/stage12/mcp/mcp-none.json"
+ ],
+ "path_head": "/opt/homebrew/opt/openjdk/bin",
+ "index_ok_after": true,
+ "fake_server_pid": null,
+ "cleanup": {
+  "killed": [],
+  "remaining": []
+ },
+ "leftover_after": []
+}

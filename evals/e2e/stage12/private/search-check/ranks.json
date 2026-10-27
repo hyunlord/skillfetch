@@ -1,0 +1,195 @@
+{
+ "T1": {
+  "required": {
+   "nw-error-responses": 5,
+   "nw-structured-logging": 6,
+   "nw-endpoint-registry": 4,
+   "nw-money": 14,
+   "nw-public-ids": 10,
+   "nw-changelog": 8
+  },
+  "n_results": 50,
+  "top10": 5,
+  "top50": 6,
+  "northwind_in_top50": {
+   "northwind/nw-migrations": 1,
+   "northwind/nw-legacy-migrations": 2,
+   "northwind/nw-endpoint-registry": 4,
+   "northwind/nw-error-responses": 5,
+   "northwind/nw-structured-logging": 6,
+   "northwind/nw-python-tests": 7,
+   "northwind/nw-changelog": 8,
+   "northwind/nw-public-ids": 10,
+   "northwind/nw-money": 14,
+   "northwind/nw-payments-ids": 15,
+   "northwind/nw-timestamps": 30
+  }
+ },
+ "T2": {
+  "required": {
+   "nw-endpoint-registry": 9,
+   "nw-timestamps": 22,
+   "nw-pagination": 3,
+   "nw-changelog": null
+  },
+  "n_results": 50,
+  "top10": 2,
+  "top50": 3,
+  "northwind_in_top50": {
+   "northwind/nw-pagination": 3,
+   "northwind/nw-error-responses": 5,
+   "northwind/nw-endpoint-registry": 9,
+   "northwind/nw-public-ids": 10,
+   "northwind/nw-config": 17,
+   "northwind/nw-timestamps": 22,
+   "northwind/nw-web-analytics": 27,
+   "northwind/nw-python-tests": 28,
+   "northwind/nw-mobile-strings": 29,
+   "northwind/nw-migrations": 35,
+   "northwind/nw-legacy-migrations": 36,
+   "northwind/nw-deploy-checklist": 38
+  }
+ },
+ "T3": {
+  "required": {
+   "nw-migrations": 1,
+   "nw-deploy-checklist": 3,
+   "nw-changelog": null
+  },
+  "n_results": 50,
+  "top10": 2,
+  "top50": 2,
+  "northwind_in_top50": {
+   "northwind/nw-migrations": 1,
+   "northwind/nw-legacy-migrations": 2,
+   "northwind/nw-deploy-checklist": 3,
+   "northwind/nw-public-ids": 4,
+   "northwind/nw-money": 5,
+   "northwind/nw-timestamps": 9,
+   "northwind/nw-error-responses": 13,
+   "northwind/nw-pagination": 16,
+   "northwind/nw-web-analytics": 17,
+   "northwind/nw-python-tests": 23,
+   "northwind/nw-mobile-strings": 27,
+   "northwind/nw-config": 31,
+   "northwind/nw-structured-logging": 35,
+   "northwind/nw-web-i18n": 42
+  }
+ },
+ "T4": {
+  "required": {
+   "nw-deploy-checklist": 2,
+   "nw-config": 1,
+   "nw-changelog": null
+  },
+  "n_results": 50,
+  "top10": 2,
+  "top50": 2,
+  "northwind_in_top50": {
+   "northwind/nw-config": 1,
+   "northwind/nw-deploy-checklist": 2,
+   "northwind/nw-error-responses": 3,
+   "northwind/nw-mobile-strings": 20,
+   "northwind/nw-structured-logging": 41
+  }
+ },
+ "T5": {
+  "required": {
+   "nw-structured-logging": null,
+   "nw-feature-flags": 1,
+   "nw-changelog": null
+  },
+  "n_results": 50,
+  "top10": 1,
+  "top50": 1,
+  "northwind_in_top50": {
+   "northwind/nw-feature-flags": 1
+  }
+ },
+ "T6": {
+  "required": {
+   "nw-python-tests": 16
+  },
+  "n_results": 50,
+  "top10": 0,
+  "top50": 1,
+  "northwind_in_top50": {
+   "northwind/nw-python-tests": 16,
+   "northwind/nw-money": 23,
+   "northwind/nw-legacy-migrations": 48
+  }
+ },
+ "T7": {
+  "required": {
+   "nw-web-i18n": 1,
+   "nw-ui-tokens": null,
+   "nw-changelog": null
+  },
+  "n_results": 50,
+  "top10": 1,
+  "top50": 1,
+  "northwind_in_top50": {
+   "northwind/nw-web-i18n": 1,
+   "northwind/nw-web-analytics": 2,
+   "northwind/nw-endpoint-registry": 3,
+   "northwind/nw-error-responses": 11,
+   "northwind/nw-pagination": 14,
+   "northwind/nw-mobile-strings": 18,
+   "northwind/nw-config": 19,
+   "northwind/nw-public-ids": 31
+  }
+ },
+ "T8": {
+  "required": {
+   "nw-web-i18n": 34,
+   "nw-web-analytics": 25,
+   "nw-ui-tokens": null
+  },
+  "n_results": 50,
+  "top10": 0,
+  "top50": 2,
+  "northwind_in_top50": {
+   "northwind/nw-error-responses": 1,
+   "northwind/nw-public-ids": 5,
+   "northwind/nw-mobile-strings": 21,
+   "northwind/nw-web-analytics": 25,
+   "northwind/nw-web-i18n": 34,
+   "northwind/nw-payments-errors": 44
+  }
+ },
+ "C1": {
+  "required": {
+   "nw-error-responses": 1,
+   "nw-endpoint-registry": 20,
+   "nw-public-ids": 4,
+   "nw-timestamps": 29
+  },
+  "n_results": 50,
+  "top10": 2,
+  "top50": 4,
+  "northwind_in_top50": {
+   "northwind/nw-error-responses": 1,
+   "northwind/nw-payments-errors": 2,
+   "northwind/nw-public-ids": 4,
+   "northwind/nw-endpoint-registry": 20,
+   "northwind/nw-timestamps": 29,
+   "northwind/nw-pagination": 44
+  }
+ },
+ "C2": {
+  "required": {
+   "nw-web-i18n": 1,
+   "nw-ui-tokens": 31
+  },
+  "n_results": 50,
+  "top10": 1,
+  "top50": 2,
+  "northwind_in_top50": {
+   "northwind/nw-web-i18n": 1,
+   "northwind/nw-web-analytics": 3,
+   "northwind/nw-config": 4,
+   "northwind/nw-ui-tokens": 31,
+   "northwind/nw-deploy-checklist": 32
+  }
+ }
+}

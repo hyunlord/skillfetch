@@ -1,0 +1,6 @@
+T1 Rp p1
+T1 N p1
+T1 F p1
+T7 Rp p1
+T7 N p1
+T7 F p1

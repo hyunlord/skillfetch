@@ -1,0 +1,105 @@
+{
+ "verdict": "차이 있음",
+ "lines": [
+  {
+   "text": "P 세 결과는 쓸만함 1·1·2점(p1·p2 같음)이다. 두 판정자 모두 기능·가격 자리가 두 폭 모두 비어 있다고 적었다. 세 세션 모두 design-taste-frontend를 불렀고 40턴 한도(error_max_turns)에서 끝났다. 세션당 API 단가 환산은 $3.09–3.28이다.",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "P m1",
+     "quote": "features and pricing areas are blank blocks at both widths, so two of the four requested sections are missing"
+    },
+    {
+     "src": "p1",
+     "run": "P m3",
+     "quote": "at 1280 px roughly 3500 px of empty dark space where features/pricing should be"
+    },
+    {
+     "src": "p2",
+     "run": "P m2",
+     "quote": "collage hero half-renders (captions with no images), then a large blank"
+    }
+   ]
+  },
+  {
+   "text": "P의 섹션은 처음에 opacity 0으로 숨겼다가 IntersectionObserver가 화면에 들어온 요소를 보이게 하는 방식이다. 정지 화면 캡처에서는 이 섹션들이 빈칸으로 남았다. IntersectionObserver는 P 세 결과의 diff에만 있고 A·R 여섯 결과의 diff에는 없다.",
+   "quotes": [
+    {
+     "src": "diff",
+     "run": "P m1",
+     "quote": ".ready [data-reveal] {"
+    },
+    {
+     "src": "diff",
+     "run": "P m2",
+     "quote": "const io = new IntersectionObserver("
+    },
+    {
+     "src": "diff",
+     "run": "P m3",
+     "quote": ":global(html.js) .page [data-reveal] {"
+    }
+   ]
+  },
+  {
+   "text": "P는 페이지 말고도 바뀐 파일이 18–22개다. 스킬이 만든 점검 캡처(.taste-skill/inspect/)와 외부에서 받은 사진·영상(public/landing/, credits.json의 출처는 Wikimedia Commons·Internet Archive)이 들어 있다. A·R은 파일 1–2개다.",
+   "quotes": [
+    {
+     "src": "diff",
+     "run": "P m1",
+     "quote": "diff --git a/.taste-skill/inspect/desktop-page-01.jpg b/.taste-skill/inspect/desktop-page-01.jpg"
+    },
+    {
+     "src": "diff",
+     "run": "P m1",
+     "quote": "\"via\": \"Wikimedia Commons\","
+    },
+    {
+     "src": "diff",
+     "run": "P m1",
+     "quote": "\"via\": \"Internet Archive\""
+    },
+    {
+     "src": "diff",
+     "run": "P m3",
+     "quote": "diff --git a/public/landing/directory-008.mp4 b/public/landing/directory-008.mp4"
+    }
+   ]
+  },
+  {
+   "text": "R 세 결과는 4·5·5점이다. 라우터가 copywriting과 frontend-design을 불러왔다(m2는 next-best-practices도). 판정 근거에는 앱의 실제 사용자 데이터(sample-data)를 히어로와 기능에 쓴 점이 나온다. 턴은 24–28, 세션당 API 단가 환산은 $0.93–1.00이다.",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "R m2",
+     "quote": "hero shows the app's real users (Alice–Dave, IDs) with page/API toggle, 3 features tied to /users/101 and /api/users"
+    },
+    {
+     "src": "p2",
+     "run": "R m3",
+     "quote": "product framed from the app's real users/pages/API, all four requested sections"
+    },
+    {
+     "src": "diff",
+     "run": "R m3",
+     "quote": "import { sampleUserData } from \"../utils/sample-data\";"
+    }
+   ]
+  },
+  {
+   "text": "A 세 결과는 모두 3점이다. 두 판정자가 AI 템플릿 항목을 5–6개 적었다(보라 그라데이션, 이모지 아이콘, 3열 아이콘 그리드 등). 네 섹션은 다 있다. 턴은 6–8, 세션당 API 단가 환산은 $0.33–0.37이다.",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "A m1",
+     "quote": "#1 purple gradient (headline and CTA band), #2 Inter look, #3 centred, #4 identical cards, #5 emoji icons"
+    },
+    {
+     "src": "p2",
+     "run": "A m3",
+     "quote": "complete and responsive but generic copy"
+    }
+   ]
+  }
+ ]
+}

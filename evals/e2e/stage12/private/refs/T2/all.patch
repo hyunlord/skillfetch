@@ -1,0 +1,66 @@
+diff --git a/api/routes.toml b/api/routes.toml
+index 2a30ed8..478a876 100644
+--- a/api/routes.toml
++++ b/api/routes.toml
+@@ -1 +1,7 @@
+ # API routes
++
++[[routes]]
++method = "GET"
++path = "/orders"
++owner = "orders"
++rate_limit = 200
+diff --git a/changes/feat-order-list.md b/changes/feat-order-list.md
+new file mode 100644
+index 0000000..003701e
+--- /dev/null
++++ b/changes/feat-order-list.md
+@@ -0,0 +1 @@
++Added GET /orders endpoint with cursor pagination and status filter.
+diff --git a/orders/routes.py b/orders/routes.py
+index 3cf94d8..327b01b 100644
+--- a/orders/routes.py
++++ b/orders/routes.py
+@@ -1,7 +1,7 @@
+ """Order API routes."""
+-from datetime import datetime
++from datetime import datetime, timezone
+ 
+-from fastapi import APIRouter, HTTPException
++from fastapi import APIRouter, HTTPException, Query
+ 
+ from .database import get_db
+ from .pricing import calculate_total
+@@ -36,3 +36,32 @@ def get_order(order_id: int):
+     if not row:
+         raise HTTPException(status_code=404, detail="Order not found")
+     return dict(row)
++
++
++@router.get("/orders")
++def list_orders(
++    status: str | None = None,
++    cursor: str | None = None,
++    limit: int = Query(default=20, le=100),
++):
++    db = get_db()
++    if cursor:
++        if status:
++            rows = db.execute("SELECT * FROM orders WHERE id > ? AND status = ? ORDER BY id LIMIT ?", (int(cursor), status, limit)).fetchall()
++        else:
++            rows = db.execute("SELECT * FROM orders WHERE id > ? ORDER BY id LIMIT ?", (int(cursor), limit)).fetchall()
++    else:
++        if status:
++            rows = db.execute("SELECT * FROM orders WHERE status = ? ORDER BY id LIMIT ?", (status, limit)).fetchall()
++        else:
++            rows = db.execute("SELECT * FROM orders ORDER BY id LIMIT ?", (limit,)).fetchall()
++    db.close()
++    def fmt(r):
++        d = dict(r)
++        for k in ("created_at", "updated_at"):
++            if k in d and isinstance(d[k], str) and not d[k].endswith("Z"):
++                d[k] = d[k] + "Z" if "T" in d[k] else d[k]
++        return d
++    items = [fmt(r) for r in rows]
++    next_cursor = str(rows[-1]["id"]) if len(rows) == limit else None
++    return {"data": items, "next_cursor": next_cursor}

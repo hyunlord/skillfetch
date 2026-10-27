@@ -1,0 +1,42 @@
+{
+  "task_id": "C2",
+  "rule_pass": 0,
+  "rule_total": 4,
+  "rule_undecidable": 0,
+  "func_pass": 2,
+  "func_total": 2,
+  "rule_items": [
+    {
+      "id": "C2-R1",
+      "pass": false,
+      "detail": "No t() calls (imported from lib/i18n) in added JSX"
+    },
+    {
+      "id": "C2-R2",
+      "pass": false,
+      "detail": "No t() keys in added code"
+    },
+    {
+      "id": "C2-R3",
+      "pass": false,
+      "detail": "Raw hex colors: ['#212529']"
+    },
+    {
+      "id": "C2-R4",
+      "pass": false,
+      "detail": "Raw spacing: [\"marginBottom: '24px\", \"padding: '16px\", \"marginBottom: '16px\", \"marginLeft: '8px\", \"padding: '4px\"]"
+    }
+  ],
+  "functional_items": [
+    {
+      "id": "C2-F1",
+      "pass": true,
+      "detail": "settings page=pages/settings.tsx language=True notifications=True"
+    },
+    {
+      "id": "C2-F2",
+      "pass": true,
+      "detail": "npm run build exit=0 | s\n└ ○ /settings\n\n○  (Static)   prerendered as static content\nƒ  (Dynamic)  server-rendered on demand\n\n⚠ React 18 support is deprecated in Next.js 16 and will be removed in Next.js 17. Please upgrade to React 19. Learn more: https://nextjs.org/docs/messages/react-version\n⚠ Mini"
+    }
+  ]
+}

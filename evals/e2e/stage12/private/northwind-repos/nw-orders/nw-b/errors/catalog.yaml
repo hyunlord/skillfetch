@@ -1,0 +1,8 @@
+# Error codes
+codes:
+  NW-PROD-001:
+    message: "Product not found"
+    http_status: 404
+  NW-PROD-002:
+    message: "Invalid product query"
+    http_status: 400

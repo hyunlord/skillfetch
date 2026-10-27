@@ -1,0 +1,65 @@
+{
+ "task": "C2",
+ "bundle": 4,
+ "cond": "O",
+ "tag": "d1",
+ "session_dir": "<worktrees>/s12/2148f072e62e",
+ "preflight": {
+  "index": "index ok (12 files)",
+  "base": "82e624262f543647f70e781114c0da65767a8cc4",
+  "s11_r": "30bed8e9a2d46767d8307a321e2b0e052be6b3d4",
+  "main_checkout": {
+   "branch": "nw-a",
+   "head": "ef31a68ab0c7"
+  },
+  "leftover_processes": []
+ },
+ "clone": {
+  "branch": "nw-b",
+  "head": "82e624262f543647f70e781114c0da65767a8cc4",
+  "refs": [
+   "refs/heads/main"
+  ],
+  "remotes": [],
+  "status": [],
+  "skills_files": [],
+  "router_sha256": null,
+  "commits": [
+   "82e6242 add products page",
+   "ef31a68 initial: nw-web app"
+  ],
+  "base_skills_files": [],
+  "unreachable_objects": 0,
+  "ok": true
+ },
+ "prep_s": 2.1,
+ "prep_status": [],
+ "cmd": [
+  "claude",
+  "-p",
+  "## 1. nw-web-i18n (northwind/nw-web-i18n@8f4b35c04bd7)\n\n# Web Internationalization\n\nAll user-visible strings in web pages must use the `t()` helper instead of hardcoded text:\n\n```tsx\nimport { t } from '@/lib/i18n'\n\n<h1>{t('orders.heading')}</h1>\n```\n\n- Key format: `<page>.<key>` (e.g. `orders.heading`, `settings.save_button`).\n- Every key must exist in BOTH `locales/en.json` and `locales/ko.json`.\n- No hardcoded user-visible strings in JSX.\n\n## Good Example\n\n```tsx\nimport { t } from '../lib/i18n'\n\n<h1>{t('orders.heading')}</h1>\n<p>{t('orders.empty_state')}</p>\n```\n\nlocales/en.json: `{ \"orders\": { \"heading\": \"Orders\", \"empty_state\": \"No orders yet.\" } }`\nlocales/ko.json: `{ \"orders\": { \"heading\": \"주문\", \"empty_state\": \"주문이 없습니다.\" } }`\n\n## Bad Example\n\n```tsx\n<h1>Orders</h1>\n<p>No orders yet.</p>\n```\n\nHardcoded English strings that cannot be localized.\n\n## Why\nAll Northwind web products must support English and Korean for our dual-market user base.\n\n## 2. nw-ui-tokens (northwind/nw-ui-tokens@005cc5740010)\n\n# UI Design Tokens\n\nAll colors and spacing in new or modified styles must use `var(--nw-*)` CSS custom properties:\n\n```css\ncolor: var(--nw-color-primary);\npadding: var(--nw-spacing-md);\n```\n\n- No raw hex color values (e.g. `#0066cc`).\n- No raw pixel spacing values (e.g. `16px` for layout spacing). Use `--nw-spacing-*` tokens.\n- Token definitions are in `styles/tokens.css`.\n\n## Good Example\n\n```tsx\n<div style={{ color: 'var(--nw-color-text)', padding: 'var(--nw-spacing-md)' }}>\n```\n\n## Bad Example\n\n```tsx\n<div style={{ color: '#212529', padding: '16px' }}>\n```\n\n## Why\nDesign tokens enable theme-wide changes from a single source and ensure visual consistency across the application.\n\n사용자 설정 페이지를 추가해 주세요. /settings 경로에서 언어 선택과 알림 설정을 보여줍니다.",
+  "--output-format",
+  "stream-json",
+  "--verbose",
+  "--include-hook-events",
+  "--max-turns",
+  "40",
+  "--allowedTools",
+  "Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*",
+  "--debug-file",
+  "<e2e>/stage12-private/dryrun/O/C2-d1.debug.log",
+  "--setting-sources",
+  "project",
+  "--strict-mcp-config",
+  "--mcp-config",
+  "<e2e>/stage12/mcp/mcp-none.json"
+ ],
+ "path_head": "/opt/homebrew/opt/openjdk/bin",
+ "index_ok_after": true,
+ "fake_server_pid": null,
+ "cleanup": {
+  "killed": [],
+  "remaining": []
+ },
+ "leftover_after": []
+}

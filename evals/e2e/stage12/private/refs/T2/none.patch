@@ -1,0 +1,22 @@
+diff --git a/orders/routes.py b/orders/routes.py
+index 3cf94d8..f1748ba 100644
+--- a/orders/routes.py
++++ b/orders/routes.py
+@@ -36,3 +36,17 @@ def get_order(order_id: int):
+     if not row:
+         raise HTTPException(status_code=404, detail="Order not found")
+     return dict(row)
++
++
++@router.get("/orders")
++def list_orders(status: str | None = None, page: int = 1, per_page: int = 20):
++    db = get_db()
++    offset = (page - 1) * per_page
++    if status:
++        rows = db.execute("SELECT * FROM orders WHERE status = ? ORDER BY id LIMIT ? OFFSET ?", (status, per_page, offset)).fetchall()
++        total = db.execute("SELECT COUNT(*) FROM orders WHERE status = ?", (status,)).fetchone()[0]
++    else:
++        rows = db.execute("SELECT * FROM orders ORDER BY id LIMIT ? OFFSET ?", (per_page, offset)).fetchall()
++        total = db.execute("SELECT COUNT(*) FROM orders").fetchone()[0]
++    db.close()
++    return {"orders": [dict(r) for r in rows], "total": total, "page": page}

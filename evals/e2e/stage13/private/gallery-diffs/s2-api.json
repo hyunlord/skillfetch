@@ -1,0 +1,75 @@
+{
+ "verdict": "차이 있음",
+ "lines": [
+  {
+   "text": "아홉 결과 모두 계약 검사 27/27을 통과했다. 총점은 A 4/5·4/4·5/5, P 4/5·5/5·5/5, R 5/5·5/5·5/5다. 추가된 테스트 함수(자동 측정)는 A 28–29개, P 26–31개, R 28–34개다.",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "A m3",
+     "quote": "27/27, 53개 테스트"
+    },
+    {
+     "src": "p1",
+     "run": "R m3",
+     "quote": "계약 27/27, 자체 테스트 52개 통과"
+    }
+   ]
+  },
+  {
+   "text": "A 세 결과는 모두 부분 수정(PATCH) 스키마의 필드를 `= None  # type: ignore`로 선언했고, 두 판정자가 세 결과 모두에서 이 점을 적었다. A m2에 대해서는 sqlite 연결에 check_same_thread=False가 없다고도 적었다. A의 턴은 10, 세션당 API 단가 환산은 $0.45–0.53이다.",
+   "quotes": [
+    {
+     "src": "diff",
+     "run": "A m1",
+     "quote": "title: Title = None  # type: ignore[assignment]"
+    },
+    {
+     "src": "p2",
+     "run": "A m3",
+     "quote": "부분 수정은 `= None` 타입 우회"
+    },
+    {
+     "src": "p2",
+     "run": "A m2",
+     "quote": "sqlite 연결에 check_same_thread=False가 없어"
+    }
+   ]
+  },
+  {
+   "text": "P의 P 스킬 사용은 m1의 tdd 하나다. P m1은 판정자가 테스트가 가장 적다고 적었고, P m2·m3에 대해서는 트랜잭션 롤백을 테스트로 검증했다고 적었다. P 세 결과에는 A의 `type: ignore` 부분 수정 방식이 없다. P의 턴은 12–14, 세션당 API 단가 환산은 $0.60–0.62다.",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "P m1",
+     "quote": "테스트 46개로 가장 적고 PATCH 실패 후 무변경 확인이 약함"
+    },
+    {
+     "src": "p1",
+     "run": "P m2",
+     "quote": "하나의 트랜잭션이라 PATCH 409 때 태그 변경까지 롤백되고 이를 테스트로 검증"
+    }
+   ]
+  },
+  {
+   "text": "R은 세 세션 모두 라우터가 api-design과 fastapi-patterns를 불러왔다. R m2·m3는 BookmarkRepository 클래스를 두었고, R m3는 code/message/details 형식의 통일된 오류 응답과 catch-all 500 핸들러를 넣었다. R의 턴은 18–24, 세션당 API 단가 환산은 $0.72–1.01이다.",
+   "quotes": [
+    {
+     "src": "diff",
+     "run": "R m3",
+     "quote": "error: dict[str, Any] = {\"code\": code, \"message\": message}"
+    },
+    {
+     "src": "p1",
+     "run": "R m3",
+     "quote": "code/message/details로 통일된 오류 응답과 catch-all 500 핸들러"
+    },
+    {
+     "src": "p2",
+     "run": "R m2",
+     "quote": "repository 클래스·lifespan 초기화·배치 태그 조회"
+    }
+   ]
+  }
+ ]
+}

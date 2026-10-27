@@ -1,0 +1,57 @@
+{
+  "task_id": "T2",
+  "rule_pass": 0,
+  "rule_total": 6,
+  "rule_undecidable": 0,
+  "func_pass": 3,
+  "func_total": 3,
+  "rule_items": [
+    {
+      "id": "T2-R1",
+      "pass": false,
+      "detail": "No GET /orders entry in api/routes.toml"
+    },
+    {
+      "id": "T2-R2",
+      "pass": false,
+      "detail": "limit=101 -> [200, 20]"
+    },
+    {
+      "id": "T2-R3",
+      "pass": false,
+      "detail": "Not UTC RFC 3339 with Z: ['created_at=2026-10-26T15:54:43.069783', 'updated_at=2026-10-26T15:54:43.069783']"
+    },
+    {
+      "id": "T2-R4",
+      "pass": false,
+      "detail": "limit1=3 next=None cursor_in_src=False"
+    },
+    {
+      "id": "T2-R5",
+      "pass": false,
+      "detail": "keys=['orders', 'total', 'page']"
+    },
+    {
+      "id": "T2-R6",
+      "pass": false,
+      "detail": "No changes/<feat|fix|chore>-<slug>.md fragment"
+    }
+  ],
+  "functional_items": [
+    {
+      "id": "T2-F1",
+      "pass": true,
+      "detail": "GET /orders -> [200, {'orders': [{'id': 1, 'customer_id': 1, 'product': 'P0', 'quantity': 1, 'unit_price': 5.0, 'total': 5.0, 'currency': 'USD', 'status': 'pending', 'created_at': '2026-10-26T15:54:43.069783', 'upda"
+    },
+    {
+      "id": "T2-F2",
+      "pass": true,
+      "detail": "pending=2 cancelled=1"
+    },
+    {
+      "id": "T2-F3",
+      "pass": true,
+      "detail": "4 passed, 3 warnings in 0.04s |  is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).\n    now = datetime.utcnow().isoformat()\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.htm"
+    }
+  ]
+}

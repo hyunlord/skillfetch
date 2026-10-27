@@ -1,0 +1,697 @@
+[
+ {
+  "case": "fx-T7-wrapper",
+  "task": "T7",
+  "expected": {
+   "T7-R1": true,
+   "T7-R2": true
+  },
+  "holds": true,
+  "items": {
+   "T7-R1": true,
+   "T7-R2": true,
+   "T7-R3": true,
+   "T7-R4": true,
+   "T7-R5": true,
+   "T7-F1": true,
+   "T7-F2": true
+  },
+  "details": {
+   "T7-R1": "t() used, no hardcoded user-visible strings",
+   "T7-R2": "All 4 keys in both locales",
+   "T7-R3": "Colors use tokens, no raw hex",
+   "T7-R4": "Spacing uses tokens",
+   "T7-R5": "Found changes/feat-order-history.md"
+  },
+  "error": null
+ },
+ {
+  "case": "fx-T7-wrapper-fn",
+  "task": "T7",
+  "expected": {
+   "T7-R1": true,
+   "T7-R2": true
+  },
+  "holds": true,
+  "items": {
+   "T7-R1": true,
+   "T7-R2": true,
+   "T7-R3": true,
+   "T7-R4": true,
+   "T7-R5": true,
+   "T7-F1": true,
+   "T7-F2": true
+  },
+  "details": {
+   "T7-R1": "t() used, no hardcoded user-visible strings",
+   "T7-R2": "All 4 keys in both locales",
+   "T7-R3": "Colors use tokens, no raw hex",
+   "T7-R4": "Spacing uses tokens",
+   "T7-R5": "Found changes/feat-order-history.md"
+  },
+  "error": null
+ },
+ {
+  "case": "fx-T7-alias",
+  "task": "T7",
+  "expected": {
+   "T7-R1": true,
+   "T7-R2": true
+  },
+  "holds": true,
+  "items": {
+   "T7-R1": true,
+   "T7-R2": true,
+   "T7-R3": true,
+   "T7-R4": true,
+   "T7-R5": true,
+   "T7-F1": true,
+   "T7-F2": true
+  },
+  "details": {
+   "T7-R1": "t() used, no hardcoded user-visible strings",
+   "T7-R2": "All 4 keys in both locales",
+   "T7-R3": "Colors use tokens, no raw hex",
+   "T7-R4": "Spacing uses tokens",
+   "T7-R5": "Found changes/feat-order-history.md"
+  },
+  "error": null
+ },
+ {
+  "case": "fx-T7-neg-wrapper-ignores-key",
+  "task": "T7",
+  "expected": {
+   "T7-R1": false
+  },
+  "holds": true,
+  "items": {
+   "T7-R1": false,
+   "T7-R2": false,
+   "T7-R3": true,
+   "T7-R4": true,
+   "T7-R5": true,
+   "T7-F1": true,
+   "T7-F2": true
+  },
+  "details": {
+   "T7-R1": "No t() calls (imported from lib/i18n) in added JSX",
+   "T7-R2": "No t() keys in added code",
+   "T7-R3": "Colors use tokens, no raw hex",
+   "T7-R4": "Spacing uses tokens",
+   "T7-R5": "Found changes/feat-order-history.md"
+  },
+  "error": null
+ },
+ {
+  "case": "fx-T7-neg-local-t",
+  "task": "T7",
+  "expected": {
+   "T7-R1": false
+  },
+  "holds": true,
+  "items": {
+   "T7-R1": false,
+   "T7-R2": false,
+   "T7-R3": true,
+   "T7-R4": true,
+   "T7-R5": true,
+   "T7-F1": true,
+   "T7-F2": true
+  },
+  "details": {
+   "T7-R1": "No t() calls (imported from lib/i18n) in added JSX",
+   "T7-R2": "No t() keys in added code",
+   "T7-R3": "Colors use tokens, no raw hex",
+   "T7-R4": "Spacing uses tokens",
+   "T7-R5": "Found changes/feat-order-history.md"
+  },
+  "error": null
+ },
+ {
+  "case": "fx-T7-neg-hardcoded",
+  "task": "T7",
+  "expected": {
+   "T7-R1": false
+  },
+  "holds": true,
+  "items": {
+   "T7-R1": false,
+   "T7-R2": true,
+   "T7-R3": true,
+   "T7-R4": true,
+   "T7-R5": true,
+   "T7-F1": true,
+   "T7-F2": true
+  },
+  "details": {
+   "T7-R1": "Hardcoded user-visible strings: ['No orders found.']",
+   "T7-R2": "All 3 keys in both locales",
+   "T7-R3": "Colors use tokens, no raw hex",
+   "T7-R4": "Spacing uses tokens",
+   "T7-R5": "Found changes/feat-order-history.md"
+  },
+  "error": null
+ },
+ {
+  "case": "fx-T1-log-multiline",
+  "task": "T1",
+  "expected": {
+   "T1-R3": true
+  },
+  "holds": true,
+  "items": {
+   "T1-R1": true,
+   "T1-R2": true,
+   "T1-R3": true,
+   "T1-R4": true,
+   "T1-R5": true,
+   "T1-R6": true,
+   "T1-R7": true,
+   "T1-R8": true,
+   "T1-F1": true,
+   "T1-F2": true,
+   "T1-F3": true
+  },
+  "details": {
+   "T1-R1": "status=404 body={'error': {'code': 'NW-RFND-001', 'message': 'Order not found', 'trace_id': '38bee100-27ad-4235-a978-032ebe0a3a94'}}",
+   "T1-R2": "New codes: ['NW-RFND-001']",
+   "T1-R3": "Found in orders/refund_routes.py (multi-line): nwlog_event( \"refunds.created\"",
+   "T1-R4": "No print/logging in added app code",
+   "T1-R5": "Found POST /refunds with owner and rate_limit",
+   "T1-R6": "response amount_minor=500 currency='USD'; amount_minor and currency in added code",
+   "T1-R7": "response id='rfnd_01a178eb8c44b10bfe49594441cf'; Found in orders/refund_routes.py: from lib.nwids import new as nwids_new",
+   "T1-R8": "Found changes/feat-refund-endpoint.md"
+  },
+  "error": null
+ },
+ {
+  "case": "fx-T1-neg-log-multiline-badname",
+  "task": "T1",
+  "expected": {
+   "T1-R3": false
+  },
+  "holds": true,
+  "items": {
+   "T1-R1": true,
+   "T1-R2": true,
+   "T1-R3": false,
+   "T1-R4": true,
+   "T1-R5": true,
+   "T1-R6": true,
+   "T1-R7": true,
+   "T1-R8": true,
+   "T1-F1": true,
+   "T1-F2": true,
+   "T1-F3": true
+  },
+  "details": {
+   "T1-R1": "status=404 body={'error': {'code': 'NW-RFND-001', 'message': 'Order not found', 'trace_id': 'aaebdf1d-f91e-454b-9dc4-e8005c19d76e'}}",
+   "T1-R2": "New codes: ['NW-RFND-001']",
+   "T1-R3": "Not found in added lines",
+   "T1-R4": "No print/logging in added app code",
+   "T1-R5": "Found POST /refunds with owner and rate_limit",
+   "T1-R6": "response amount_minor=500 currency='USD'; amount_minor and currency in added code",
+   "T1-R7": "response id='rfnd_01a178eb947e7d19e030fe8d4310'; Found in orders/refund_routes.py: from lib.nwids import new as nwids_new",
+   "T1-R8": "Found changes/feat-refund-endpoint.md"
+  },
+  "error": null
+ },
+ {
+  "case": "T1/all",
+  "task": "T1",
+  "expected": "all",
+  "holds": true,
+  "items": {
+   "T1-R1": true,
+   "T1-R2": true,
+   "T1-R3": true,
+   "T1-R4": true,
+   "T1-R5": true,
+   "T1-R6": true,
+   "T1-R7": true,
+   "T1-R8": true,
+   "T1-F1": true,
+   "T1-F2": true,
+   "T1-F3": true
+  },
+  "details": {
+   "T1-R1": "status=404 body={'error': {'code': 'NW-RFND-001', 'message': 'Order not found', 'trace_id': 'e0c523f0-1792-4a37-b8c6-0da787ceb39f'}}",
+   "T1-R2": "New codes: ['NW-RFND-001']",
+   "T1-R3": "Found in orders/refund_routes.py: nwlog_event(\"refunds.created\", tenant_id=\"default\", trace_id=trace_id, refund_id",
+   "T1-R4": "No print/logging in added app code",
+   "T1-R5": "Found POST /refunds with owner and rate_limit",
+   "T1-R6": "response amount_minor=500 currency='USD'; amount_minor and currency in added code",
+   "T1-R7": "response id='rfnd_01a178ebb9648d04f33c7d1c479c'; Found in orders/refund_routes.py: from lib.nwids import new as nwids_new",
+   "T1-R8": "Found changes/feat-refund-endpoint.md"
+  },
+  "error": null
+ },
+ {
+  "case": "T1/none",
+  "task": "T1",
+  "expected": "none",
+  "holds": true,
+  "items": {
+   "T1-R1": false,
+   "T1-R2": false,
+   "T1-R3": false,
+   "T1-R4": false,
+   "T1-R5": false,
+   "T1-R6": false,
+   "T1-R7": false,
+   "T1-R8": false,
+   "T1-F1": true,
+   "T1-F2": true,
+   "T1-F3": true
+  },
+  "details": {
+   "T1-R1": "status=404 body={'detail': 'Order not found'}",
+   "T1-R2": "No new NW-<AREA>-<NNN> code in errors/catalog.yaml",
+   "T1-R3": "lib.nwlog not imported in added code",
+   "T1-R4": "orders/refund_routes.py: print() in added line",
+   "T1-R5": "No POST /refunds entry in api/routes.toml",
+   "T1-R6": "response amount_minor=None currency=None; No amount_minor + currency in added code",
+   "T1-R7": "response id=1; Not found in added lines",
+   "T1-R8": "No changes/<feat|fix|chore>-<slug>.md fragment"
+  },
+  "error": null
+ },
+ {
+  "case": "T2/all",
+  "task": "T2",
+  "expected": "all",
+  "holds": true,
+  "items": {
+   "T2-R1": true,
+   "T2-R2": true,
+   "T2-R3": true,
+   "T2-R4": true,
+   "T2-R5": true,
+   "T2-R6": true,
+   "T2-F1": true,
+   "T2-F2": true,
+   "T2-F3": true
+  },
+  "details": {
+   "T2-R1": "Found GET /orders with owner and rate_limit",
+   "T2-R2": "limit=101 -> [422, {'detail': [{'type': 'less_than_equal', 'loc': ['query', 'limit'], 'msg': 'Input should be less than or equal to 100', 'input': '101', 'ctx': {'le': 100}}]}]",
+   "T2-R3": "RFC 3339 Z: ['created_at', 'updated_at']",
+   "T2-R4": "limit1=1 next=1 cursor_in_src=True",
+   "T2-R5": "keys=['data', 'next_cursor']",
+   "T2-R6": "Found changes/feat-order-list.md"
+  },
+  "error": null
+ },
+ {
+  "case": "T2/none",
+  "task": "T2",
+  "expected": "none",
+  "holds": true,
+  "items": {
+   "T2-R1": false,
+   "T2-R2": false,
+   "T2-R3": false,
+   "T2-R4": false,
+   "T2-R5": false,
+   "T2-R6": false,
+   "T2-F1": true,
+   "T2-F2": true,
+   "T2-F3": true
+  },
+  "details": {
+   "T2-R1": "No GET /orders entry in api/routes.toml",
+   "T2-R2": "limit=101 -> [200, 20]",
+   "T2-R3": "Not UTC RFC 3339 with Z: ['created_at=2026-10-26T15:54:43.069783', 'updated_at=2026-10-26T15:54:43.069783']",
+   "T2-R4": "limit1=3 next=None cursor_in_src=False",
+   "T2-R5": "keys=['orders', 'total', 'page']",
+   "T2-R6": "No changes/<feat|fix|chore>-<slug>.md fragment"
+  },
+  "error": null
+ },
+ {
+  "case": "T3/all",
+  "task": "T3",
+  "expected": "all",
+  "holds": true,
+  "items": {
+   "T3-R1": true,
+   "T3-R2": true,
+   "T3-R3": true,
+   "T3-R4": true,
+   "T3-R5": true,
+   "T3-F1": true,
+   "T3-F2": true
+  },
+  "details": {
+   "T3-R1": "Found db/migrations/V20261026_01__add_refund_reason.sql",
+   "T3-R2": "Rollback section at end of db/migrations/V20261026_01__add_refund_reason.sql",
+   "T3-R3": "- Run migration V20261026_01__add_refund_reason before deploy",
+   "T3-R4": "Found changes/feat-refund-reason.md",
+   "T3-R5": "db/migrations/V20261026_01__add_refund_reason.sql"
+  },
+  "error": null
+ },
+ {
+  "case": "T3/none",
+  "task": "T3",
+  "expected": "none",
+  "holds": true,
+  "items": {
+   "T3-R1": false,
+   "T3-R2": false,
+   "T3-R3": false,
+   "T3-R4": false,
+   "T3-R5": false,
+   "T3-F1": true,
+   "T3-F2": true
+  },
+  "details": {
+   "T3-R1": "No migration named V<YYYYMMDD>_<NN>__<snake>.sql",
+   "T3-R2": "No '-- rollback:' section with reverse SQL at the end of a migration",
+   "T3-R3": "No '## Unreleased' section in deploy/CHECKLIST.md",
+   "T3-R4": "No changes/<feat|fix|chore>-<slug>.md fragment",
+   "T3-R5": "No new .sql file under db/migrations/"
+  },
+  "error": null
+ },
+ {
+  "case": "T4/all",
+  "task": "T4",
+  "expected": "all",
+  "holds": true,
+  "items": {
+   "T4-R1": true,
+   "T4-R2": true,
+   "T4-R3": true,
+   "T4-R4": true,
+   "T4-R5": true,
+   "T4-F1": true,
+   "T4-F2": true
+  },
+  "details": {
+   "T4-R1": "Found in orders/routes.py: payment_timeout = int(settings_get(\"PAYMENT_TIMEOUT\", \"30\"))",
+   "T4-R2": "| `NW_ORDERS_PAYMENT_TIMEOUT` | Payment processing timeout in seconds | `30` |",
+   "T4-R3": "- Set NW_ORDERS_PAYMENT_TIMEOUT env var (default 30s)",
+   "T4-R4": "Found changes/feat-payment-timeout.md",
+   "T4-R5": "lib.settings imported=True; No direct environment access in added app code"
+  },
+  "error": null
+ },
+ {
+  "case": "T4/none",
+  "task": "T4",
+  "expected": "none",
+  "holds": true,
+  "items": {
+   "T4-R1": false,
+   "T4-R2": false,
+   "T4-R3": false,
+   "T4-R4": false,
+   "T4-R5": false,
+   "T4-F1": true,
+   "T4-F2": true
+  },
+  "details": {
+   "T4-R1": "No settings.get('<KEY>') call through lib.settings",
+   "T4-R2": "No NW_ORDERS_ entry added to config/ENV.md",
+   "T4-R3": "No '## Unreleased' section in deploy/CHECKLIST.md",
+   "T4-R4": "No changes/<feat|fix|chore>-<slug>.md fragment",
+   "T4-R5": "lib.settings imported=False; orders/routes.py: direct environment access"
+  },
+  "error": null
+ },
+ {
+  "case": "T5/all",
+  "task": "T5",
+  "expected": "all",
+  "holds": true,
+  "items": {
+   "T5-R1": true,
+   "T5-R2": true,
+   "T5-R3": true,
+   "T5-R4": true,
+   "T5-R5": true,
+   "T5-F1": true,
+   "T5-F2": true,
+   "T5-F3": true
+  },
+  "details": {
+   "T5-R1": "Found in orders/pricing.py: use_new = is_on(\"orders.new_discount\", tenant)",
+   "T5-R2": "Flag orders.new_discount with owner and expires",
+   "T5-R3": "Found in orders/pricing.py: nwlog_event(\"pricing.discount_evaluated\", tenant_id=tenant, trace_id=\"\", flag_va",
+   "T5-R4": "No print/logging in added app code",
+   "T5-R5": "Found changes/feat-tiered-discount.md"
+  },
+  "error": null
+ },
+ {
+  "case": "T5/none",
+  "task": "T5",
+  "expected": "none",
+  "holds": true,
+  "items": {
+   "T5-R1": false,
+   "T5-R2": false,
+   "T5-R3": false,
+   "T5-R4": false,
+   "T5-R5": false,
+   "T5-F1": true,
+   "T5-F2": true,
+   "T5-F3": true
+  },
+  "details": {
+   "T5-R1": "lib.flags not imported in added code",
+   "T5-R2": "No new [[flags]] entry with <team>.<flag> name, owner and expires",
+   "T5-R3": "lib.nwlog not imported in added code",
+   "T5-R4": "orders/pricing.py: print() in added line",
+   "T5-R5": "No changes/<feat|fix|chore>-<slug>.md fragment"
+  },
+  "error": null
+ },
+ {
+  "case": "T6/all",
+  "task": "T6",
+  "expected": "all",
+  "holds": true,
+  "items": {
+   "T6-R1": true,
+   "T6-R2": true,
+   "T6-R3": true,
+   "T6-F1": true,
+   "T6-F2": true,
+   "T6-F3": true
+  },
+  "details": {
+   "T6-R1": "Found tests/test_pricing__calculate.py",
+   "T6-R2": "nw_factory fixture requested in tests/test_pricing__calculate.py",
+   "T6-R3": "@pytest.mark.contract in tests/test_pricing__calculate.py"
+  },
+  "error": null
+ },
+ {
+  "case": "T6/none",
+  "task": "T6",
+  "expected": "none",
+  "holds": true,
+  "items": {
+   "T6-R1": false,
+   "T6-R2": false,
+   "T6-R3": false,
+   "T6-F1": true,
+   "T6-F2": true,
+   "T6-F3": true
+  },
+  "details": {
+   "T6-R1": "No test file named test_<module>__<behavior>.py",
+   "T6-R2": "No new test requests the nw_factory fixture",
+   "T6-R3": "No @pytest.mark.contract in new tests"
+  },
+  "error": null
+ },
+ {
+  "case": "T7/all",
+  "task": "T7",
+  "expected": "all",
+  "holds": true,
+  "items": {
+   "T7-R1": true,
+   "T7-R2": true,
+   "T7-R3": true,
+   "T7-R4": true,
+   "T7-R5": true,
+   "T7-F1": true,
+   "T7-F2": true
+  },
+  "details": {
+   "T7-R1": "t() used, no hardcoded user-visible strings",
+   "T7-R2": "All 4 keys in both locales",
+   "T7-R3": "Colors use tokens, no raw hex",
+   "T7-R4": "Spacing uses tokens",
+   "T7-R5": "Found changes/feat-order-history.md"
+  },
+  "error": null
+ },
+ {
+  "case": "T7/none",
+  "task": "T7",
+  "expected": "none",
+  "holds": true,
+  "items": {
+   "T7-R1": false,
+   "T7-R2": false,
+   "T7-R3": false,
+   "T7-R4": false,
+   "T7-R5": false,
+   "T7-F1": true,
+   "T7-F2": true
+  },
+  "details": {
+   "T7-R1": "No t() calls (imported from lib/i18n) in added JSX",
+   "T7-R2": "No t() keys in added code",
+   "T7-R3": "Raw hex colors: ['#212529', '#6c757d', '#dee2e6', '#eee', '#f8f9fa']",
+   "T7-R4": "Raw spacing: [\"marginBottom: '24px\", \"padding: '16px\", \"padding: '8px\"]",
+   "T7-R5": "No changes/<feat|fix|chore>-<slug>.md fragment"
+  },
+  "error": null
+ },
+ {
+  "case": "T8/all",
+  "task": "T8",
+  "expected": "all",
+  "holds": true,
+  "items": {
+   "T8-R1": true,
+   "T8-R2": true,
+   "T8-R3": true,
+   "T8-R4": true,
+   "T8-R5": true,
+   "T8-F1": true,
+   "T8-F2": true
+  },
+  "details": {
+   "T8-R1": "t() used, no hardcoded user-visible strings",
+   "T8-R2": "All 7 keys in both locales",
+   "T8-R3": "track() events: ['orders_cancel']",
+   "T8-R4": "All events declared: ['orders_cancel']",
+   "T8-R5": "color: Colors use tokens, no raw hex; spacing: Spacing uses tokens"
+  },
+  "error": null
+ },
+ {
+  "case": "T8/none",
+  "task": "T8",
+  "expected": "none",
+  "holds": true,
+  "items": {
+   "T8-R1": false,
+   "T8-R2": false,
+   "T8-R3": false,
+   "T8-R4": false,
+   "T8-R5": false,
+   "T8-F1": true,
+   "T8-F2": true
+  },
+  "details": {
+   "T8-R1": "No t() calls (imported from lib/i18n) in added JSX",
+   "T8-R2": "No t() keys in added code",
+   "T8-R3": "No track() call imported from lib/analytics",
+   "T8-R4": "No track() events in added code",
+   "T8-R5": "color: Raw hex colors: ['#212529', '#6c757d', '#cc3333', '#fff']; spacing: Raw spacing: [\"marginBottom: '24px\", \"padding: '16px\", \"padding: '8px\", \"padding: '24px\", \"marginBottom: '16px\"]"
+  },
+  "error": null
+ },
+ {
+  "case": "C1/all",
+  "task": "C1",
+  "expected": "all",
+  "holds": true,
+  "items": {
+   "C1-R1": true,
+   "C1-R2": true,
+   "C1-R3": true,
+   "C1-R4": true,
+   "C1-R5": true,
+   "C1-R6": true,
+   "C1-F1": true,
+   "C1-F2": true,
+   "C1-F3": true
+  },
+  "details": {
+   "C1-R1": "status=404 body={'error': {'code': 'NW-CUST-001', 'message': 'Customer not found', 'trace_id': 'ab1f9976-bb73-4f73-b1d0-86888f196838'}}",
+   "C1-R2": "New codes: ['NW-CUST-001']",
+   "C1-R3": "Found GET /customers/{id} with owner and rate_limit",
+   "C1-R4": "response id='cust_01a178ec7b4587a5661cc00247d1'; Found in orders/database.py: from lib.nwids import new as nwids_new",
+   "C1-R5": "All timestamp fields use _at: ['joined_at', 'updated_at']",
+   "C1-R6": "RFC 3339 Z: ['joined_at', 'updated_at']"
+  },
+  "error": null
+ },
+ {
+  "case": "C1/none",
+  "task": "C1",
+  "expected": "none",
+  "holds": true,
+  "items": {
+   "C1-R1": false,
+   "C1-R2": false,
+   "C1-R3": false,
+   "C1-R4": false,
+   "C1-R5": false,
+   "C1-R6": false,
+   "C1-F1": true,
+   "C1-F2": true,
+   "C1-F3": true
+  },
+  "details": {
+   "C1-R1": "status=404 body={'detail': 'Customer not found'}",
+   "C1-R2": "No new NW-<AREA>-<NNN> code in errors/catalog.yaml",
+   "C1-R3": "No GET /customers/{id} entry in api/routes.toml",
+   "C1-R4": "response id=1; Not found in added lines",
+   "C1-R5": "Timestamp fields without _at: ['created']",
+   "C1-R6": "Not UTC RFC 3339 with Z: ['created=2026-10-26T15:55:28.502720']"
+  },
+  "error": null
+ },
+ {
+  "case": "C2/all",
+  "task": "C2",
+  "expected": "all",
+  "holds": true,
+  "items": {
+   "C2-R1": true,
+   "C2-R2": true,
+   "C2-R3": true,
+   "C2-R4": true,
+   "C2-F1": true,
+   "C2-F2": true
+  },
+  "details": {
+   "C2-R1": "t() used, no hardcoded user-visible strings",
+   "C2-R2": "All 6 keys in both locales",
+   "C2-R3": "Colors use tokens, no raw hex",
+   "C2-R4": "Spacing uses tokens"
+  },
+  "error": null
+ },
+ {
+  "case": "C2/none",
+  "task": "C2",
+  "expected": "none",
+  "holds": true,
+  "items": {
+   "C2-R1": false,
+   "C2-R2": false,
+   "C2-R3": false,
+   "C2-R4": false,
+   "C2-F1": true,
+   "C2-F2": true
+  },
+  "details": {
+   "C2-R1": "No t() calls (imported from lib/i18n) in added JSX",
+   "C2-R2": "No t() keys in added code",
+   "C2-R3": "Raw hex colors: ['#212529']",
+   "C2-R4": "Raw spacing: [\"marginBottom: '24px\", \"padding: '16px\", \"marginBottom: '16px\", \"marginLeft: '8px\", \"padding: '4px\"]"
+  },
+  "error": null
+ }
+]

@@ -1,0 +1,67 @@
+{
+ "task": "T1",
+ "bundle": 4,
+ "cond": "Rp",
+ "tag": "d1",
+ "session_dir": "<worktrees>/s12/27ffa6cc4a3b",
+ "preflight": {
+  "index": "index ok (12 files)",
+  "base": "b3e1eecd7e3dd87c57313bfaf6dfd39b9f4581ad",
+  "s11_r": "b055c5d2e490197777ba963b11f18d610adcdc19",
+  "main_checkout": {
+   "branch": "nw-a",
+   "head": "b3e1eecd7e3d"
+  },
+  "leftover_processes": []
+ },
+ "clone": {
+  "branch": "s12b-rp-nw-a",
+  "head": "b055c5d2e490197777ba963b11f18d610adcdc19",
+  "refs": [
+   "refs/heads/main"
+  ],
+  "remotes": [],
+  "status": [],
+  "skills_files": [
+   ".claude/skills/skillfetch-router/SKILL.md"
+  ],
+  "router_sha256": "3fbc33adac90304235a4407bfcd6420d468ad39b66090c4a7fee3b9eb74ecc27",
+  "commits": [
+   "b055c5d chore: add project skill",
+   "b3e1eec initial: nw-orders service"
+  ],
+  "base_skills_files": [],
+  "unreachable_objects": 0,
+  "ok": true
+ },
+ "prep_s": 0.1,
+ "prep_status": [],
+ "cmd": [
+  "claude",
+  "-p",
+  "환불 엔드포인트 `POST /refunds`를 추가해 주세요. 요청에 order_id, 금액, 사유를 받고, 주문이 없으면 404를 돌려주세요. 환불 데이터는 DB에 저장합니다.",
+  "--output-format",
+  "stream-json",
+  "--verbose",
+  "--include-hook-events",
+  "--max-turns",
+  "40",
+  "--allowedTools",
+  "Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*",
+  "--debug-file",
+  "<e2e>/stage12-private/dryrun/Rp/T1-d1.debug.log",
+  "--setting-sources",
+  "project",
+  "--strict-mcp-config",
+  "--mcp-config",
+  "<e2e>/stage12/mcp/mcp-rp.json"
+ ],
+ "path_head": "/opt/homebrew/opt/openjdk/bin",
+ "index_ok_after": true,
+ "fake_server_pid": null,
+ "cleanup": {
+  "killed": [],
+  "remaining": []
+ },
+ "leftover_after": []
+}

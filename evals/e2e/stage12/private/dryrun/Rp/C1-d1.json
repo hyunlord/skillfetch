@@ -1,0 +1,68 @@
+{
+ "task": "C1",
+ "bundle": 4,
+ "cond": "Rp",
+ "tag": "d1",
+ "session_dir": "<worktrees>/s12/13de604fa60f",
+ "preflight": {
+  "index": "index ok (12 files)",
+  "base": "34adcb391b0ef302d2335dcaa671646fc938364c",
+  "s11_r": "e13e0c088210185ed7a6034e40432730e043a33e",
+  "main_checkout": {
+   "branch": "nw-a",
+   "head": "b3e1eecd7e3d"
+  },
+  "leftover_processes": []
+ },
+ "clone": {
+  "branch": "s12b-rp-nw-b",
+  "head": "e13e0c088210185ed7a6034e40432730e043a33e",
+  "refs": [
+   "refs/heads/main"
+  ],
+  "remotes": [],
+  "status": [],
+  "skills_files": [
+   ".claude/skills/skillfetch-router/SKILL.md"
+  ],
+  "router_sha256": "3fbc33adac90304235a4407bfcd6420d468ad39b66090c4a7fee3b9eb74ecc27",
+  "commits": [
+   "e13e0c0 chore: add project skill",
+   "34adcb3 add product endpoints",
+   "b3e1eec initial: nw-orders service"
+  ],
+  "base_skills_files": [],
+  "unreachable_objects": 0,
+  "ok": true
+ },
+ "prep_s": 0.1,
+ "prep_status": [],
+ "cmd": [
+  "claude",
+  "-p",
+  "고객 조회 API `GET /customers/{id}`를 추가해 주세요. 고객 정보(이름, 이메일, 가입일)를 돌려줍니다. 고객이 없으면 적절한 오류를 돌려주세요.",
+  "--output-format",
+  "stream-json",
+  "--verbose",
+  "--include-hook-events",
+  "--max-turns",
+  "40",
+  "--allowedTools",
+  "Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*",
+  "--debug-file",
+  "<e2e>/stage12-private/dryrun/Rp/C1-d1.debug.log",
+  "--setting-sources",
+  "project",
+  "--strict-mcp-config",
+  "--mcp-config",
+  "<e2e>/stage12/mcp/mcp-rp.json"
+ ],
+ "path_head": "/opt/homebrew/opt/openjdk/bin",
+ "index_ok_after": true,
+ "fake_server_pid": null,
+ "cleanup": {
+  "killed": [],
+  "remaining": []
+ },
+ "leftover_after": []
+}

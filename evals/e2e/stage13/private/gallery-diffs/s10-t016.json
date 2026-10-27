@@ -1,0 +1,75 @@
+{
+ "verdict": "차이 없음",
+ "lines": [
+  {
+   "text": "아홉 결과 모두 p1·p2 5점이고 자동 점검을 통과했다. 세 조건 모두 src/room.rs의 Room에 VecDeque 50칸 이력을 두고, 가득 차면 가장 오래된 줄을 pop_front로 버리고, join에서 이력을 먼저 보낸 뒤 실시간 줄을 받게 했다.",
+   "quotes": [
+    {
+     "src": "diff",
+     "run": "A m1",
+     "quote": "history: VecDeque<String>,"
+    },
+    {
+     "src": "diff",
+     "run": "P m1",
+     "quote": "if self.history.len() == HISTORY_LEN {"
+    },
+    {
+     "src": "diff",
+     "run": "R m1",
+     "quote": "self.history.push_back(line);"
+    }
+   ]
+  },
+  {
+   "text": "P는 세 세션 모두 P 스킬을 하나도 쓰지 않았다(Skill 호출 0). 턴 4–6, 세션당 API 단가 환산 $0.267–0.301, 추가 테스트 2·3·3개이고 세 결과 모두 README를 고쳤다. 판정자는 room.rs 안 단위 테스트와 TCP 테스트를 함께 적었고, p2는 m2의 테스트 전용 pub history() 접근자를 적었다.",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "P m1",
+     "quote": "unit test covers cap, order and live-after; TCP test"
+    },
+    {
+     "src": "p2",
+     "run": "P m2",
+     "quote": "pub test-only `history()` accessor"
+    }
+   ]
+  },
+  {
+   "text": "A는 턴 4–5, 세션당 API 단가 환산 $0.221–0.239, 추가 테스트 1·3·1개이고 세 결과 모두 README를 고쳤다. m1·m3는 TCP 테스트 하나로 마지막 50줄의 순서와 이후 실시간 줄을 확인했다. A와 P 사이에 점수 차이는 없고 판정 근거도 같은 설계를 적었다.",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "A m1",
+     "quote": "TCP test covers 60→last 50 in order then live"
+    },
+    {
+     "src": "p1",
+     "run": "A m3",
+     "quote": "points out unbounded line length as a memory caveat"
+    }
+   ]
+  },
+  {
+   "text": "R은 라우터가 m07-concurrency와 rust-testing(m1) 또는 rust-patterns(m2·m3)를 불러왔다. 턴 13–15, 세션당 API 단가 환산 $0.476–0.504, 추가 테스트 4·3·3개이고 세 결과 모두 README를 고치지 않았다(바뀐 파일 2개). m3는 테스트 파일을 새로 만들었고, 두 판정자가 start() 도우미 중복과 테스트 전용 pub history()를 적었다.",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "R m1",
+     "quote": "the most thorough tests (oldest-first, cap, replay→live, TCP)"
+    },
+    {
+     "src": "p1",
+     "run": "R m3",
+     "quote": "a new test file duplicating the start() helper"
+    },
+    {
+     "src": "diff",
+     "run": "R m3",
+     "quote": "diff --git a/tests/history.rs b/tests/history.rs"
+    }
+   ]
+  }
+ ]
+}

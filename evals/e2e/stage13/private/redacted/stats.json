@@ -1,0 +1,362 @@
+{
+ "trace_terms": [
+  "core-data",
+  "design-taste-frontend",
+  "domain-embedded",
+  "domain-modeling",
+  "domain-web",
+  "frontend-design",
+  "improve-codebase-architecture",
+  "load_skills",
+  "m01-ownership",
+  "m07-concurrency",
+  "m10-performance",
+  "migration-patterns",
+  "p/design-taste-frontend@0",
+  "p/domain-modeling@0",
+  "p/frontend-design@0",
+  "p/improve-codebase-architecture@0",
+  "p/tdd@0",
+  "p/vercel-composition-patterns@0",
+  "p/vercel-react-best-practices@0",
+  "p/web-design-guidelines@0",
+  "profile_repo",
+  "resolve_and_load",
+  "resolve_set",
+  "rust-patterns",
+  "rust-testing",
+  "search_skills",
+  "tdd",
+  "unsafe-checker",
+  "vercel-composition-patterns",
+  "vercel-react-best-practices",
+  "web-design-guidelines",
+  "x/core-data@0",
+  "x/domain-embedded@0",
+  "x/domain-web@0",
+  "x/m01-ownership@0",
+  "x/m07-concurrency@0",
+  "x/m10-performance@0",
+  "x/migration-patterns@0",
+  "x/rust-patterns@0",
+  "x/rust-testing@0",
+  "x/unsafe-checker@0"
+ ],
+ "sessions": [
+  {
+   "task": "s10-t016",
+   "cond": "A",
+   "tag": "m1",
+   "removed": 0,
+   "trimmed": 0
+  },
+  {
+   "task": "s10-t016",
+   "cond": "A",
+   "tag": "m2",
+   "removed": 0,
+   "trimmed": 0
+  },
+  {
+   "task": "s10-t016",
+   "cond": "A",
+   "tag": "m3",
+   "removed": 0,
+   "trimmed": 0
+  },
+  {
+   "task": "s10-t016",
+   "cond": "P",
+   "tag": "m1",
+   "removed": 0,
+   "trimmed": 0
+  },
+  {
+   "task": "s10-t016",
+   "cond": "P",
+   "tag": "m2",
+   "removed": 0,
+   "trimmed": 0
+  },
+  {
+   "task": "s10-t016",
+   "cond": "P",
+   "tag": "m3",
+   "removed": 0,
+   "trimmed": 0
+  },
+  {
+   "task": "s10-t016",
+   "cond": "R",
+   "tag": "m1",
+   "removed": 0,
+   "trimmed": 0
+  },
+  {
+   "task": "s10-t016",
+   "cond": "R",
+   "tag": "m2",
+   "removed": 1,
+   "trimmed": 0
+  },
+  {
+   "task": "s10-t016",
+   "cond": "R",
+   "tag": "m3",
+   "removed": 1,
+   "trimmed": 0
+  },
+  {
+   "task": "s10-t263",
+   "cond": "A",
+   "tag": "m1",
+   "removed": 0,
+   "trimmed": 0
+  },
+  {
+   "task": "s10-t263",
+   "cond": "A",
+   "tag": "m2",
+   "removed": 0,
+   "trimmed": 0
+  },
+  {
+   "task": "s10-t263",
+   "cond": "A",
+   "tag": "m3",
+   "removed": 0,
+   "trimmed": 0
+  },
+  {
+   "task": "s10-t263",
+   "cond": "P",
+   "tag": "m1",
+   "removed": 0,
+   "trimmed": 0
+  },
+  {
+   "task": "s10-t263",
+   "cond": "P",
+   "tag": "m2",
+   "removed": 0,
+   "trimmed": 0
+  },
+  {
+   "task": "s10-t263",
+   "cond": "P",
+   "tag": "m3",
+   "removed": 0,
+   "trimmed": 0
+  },
+  {
+   "task": "s10-t263",
+   "cond": "R",
+   "tag": "m1",
+   "removed": 1,
+   "trimmed": 0
+  },
+  {
+   "task": "s10-t263",
+   "cond": "R",
+   "tag": "m2",
+   "removed": 0,
+   "trimmed": 0
+  },
+  {
+   "task": "s10-t263",
+   "cond": "R",
+   "tag": "m3",
+   "removed": 1,
+   "trimmed": 0
+  },
+  {
+   "task": "s10-t115",
+   "cond": "A",
+   "tag": "m1",
+   "removed": 0,
+   "trimmed": 0
+  },
+  {
+   "task": "s10-t115",
+   "cond": "A",
+   "tag": "m2",
+   "removed": 0,
+   "trimmed": 0
+  },
+  {
+   "task": "s10-t115",
+   "cond": "A",
+   "tag": "m3",
+   "removed": 0,
+   "trimmed": 0
+  },
+  {
+   "task": "s10-t115",
+   "cond": "P",
+   "tag": "m1",
+   "removed": 0,
+   "trimmed": 0
+  },
+  {
+   "task": "s10-t115",
+   "cond": "P",
+   "tag": "m2",
+   "removed": 0,
+   "trimmed": 0
+  },
+  {
+   "task": "s10-t115",
+   "cond": "P",
+   "tag": "m3",
+   "removed": 0,
+   "trimmed": 0
+  },
+  {
+   "task": "s10-t115",
+   "cond": "R",
+   "tag": "m1",
+   "removed": 0,
+   "trimmed": 0
+  },
+  {
+   "task": "s10-t115",
+   "cond": "R",
+   "tag": "m2",
+   "removed": 0,
+   "trimmed": 0
+  },
+  {
+   "task": "s10-t115",
+   "cond": "R",
+   "tag": "m3",
+   "removed": 0,
+   "trimmed": 0
+  },
+  {
+   "task": "s10-t198",
+   "cond": "A",
+   "tag": "m1",
+   "removed": 0,
+   "trimmed": 0
+  },
+  {
+   "task": "s10-t198",
+   "cond": "A",
+   "tag": "m2",
+   "removed": 0,
+   "trimmed": 0
+  },
+  {
+   "task": "s10-t198",
+   "cond": "A",
+   "tag": "m3",
+   "removed": 0,
+   "trimmed": 0
+  },
+  {
+   "task": "s10-t198",
+   "cond": "P",
+   "tag": "m1",
+   "removed": 0,
+   "trimmed": 0
+  },
+  {
+   "task": "s10-t198",
+   "cond": "P",
+   "tag": "m2",
+   "removed": 0,
+   "trimmed": 0
+  },
+  {
+   "task": "s10-t198",
+   "cond": "P",
+   "tag": "m3",
+   "removed": 0,
+   "trimmed": 0
+  },
+  {
+   "task": "s10-t198",
+   "cond": "R",
+   "tag": "m1",
+   "removed": 0,
+   "trimmed": 0
+  },
+  {
+   "task": "s10-t198",
+   "cond": "R",
+   "tag": "m2",
+   "removed": 0,
+   "trimmed": 0
+  },
+  {
+   "task": "s10-t198",
+   "cond": "R",
+   "tag": "m3",
+   "removed": 0,
+   "trimmed": 0
+  },
+  {
+   "task": "s11-t266",
+   "cond": "A",
+   "tag": "m1",
+   "removed": 0,
+   "trimmed": 0
+  },
+  {
+   "task": "s11-t266",
+   "cond": "A",
+   "tag": "m2",
+   "removed": 0,
+   "trimmed": 0
+  },
+  {
+   "task": "s11-t266",
+   "cond": "A",
+   "tag": "m3",
+   "removed": 0,
+   "trimmed": 0
+  },
+  {
+   "task": "s11-t266",
+   "cond": "P",
+   "tag": "m1",
+   "removed": 0,
+   "trimmed": 0
+  },
+  {
+   "task": "s11-t266",
+   "cond": "P",
+   "tag": "m2",
+   "removed": 0,
+   "trimmed": 0
+  },
+  {
+   "task": "s11-t266",
+   "cond": "P",
+   "tag": "m3",
+   "removed": 0,
+   "trimmed": 0
+  },
+  {
+   "task": "s11-t266",
+   "cond": "R",
+   "tag": "m1",
+   "removed": 0,
+   "trimmed": 0
+  },
+  {
+   "task": "s11-t266",
+   "cond": "R",
+   "tag": "m2",
+   "removed": 1,
+   "trimmed": 0
+  },
+  {
+   "task": "s11-t266",
+   "cond": "R",
+   "tag": "m3",
+   "removed": 0,
+   "trimmed": 0
+  }
+ ]
+}

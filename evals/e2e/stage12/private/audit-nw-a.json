@@ -1,0 +1,281 @@
+{
+ "description": "Stage 12 nw-a audit: tree, history, shell files, helper docstrings/comments (run 2026-10-27).",
+ "repos": {
+  "nw-orders": {
+   "branches": [
+    "nw-a b3e1eec",
+    "nw-b 34adcb3"
+   ],
+   "nw_a_head": "b3e1eec",
+   "nw_a_commits": [
+    "b3e1eec initial: nw-orders service"
+   ],
+   "nw_b_commits": [
+    "34adcb3 add product endpoints",
+    "b3e1eec initial: nw-orders service"
+   ],
+   "nw_b_minus_nw_a_files": [
+    "api/routes.toml",
+    "changes/feat-products.md",
+    "db/migrations/V20261015_01__add_products.sql",
+    "deploy/CHECKLIST.md",
+    "errors/catalog.yaml",
+    "orders/app.py",
+    "orders/database.py",
+    "orders/product_routes.py",
+    "pyproject.toml",
+    "tests/test_products__list.py"
+   ],
+   "nw_b_parent_is_nw_a": true,
+   "shell_files": {
+    "api/routes.toml": "# API routes\n",
+    "errors/catalog.yaml": "# Error codes\n",
+    "flags/registry.toml": "# Feature flags\n",
+    "deploy/CHECKLIST.md": "# Deploy Checklist\n",
+    "changes/.gitkeep": "",
+    "db/migrations/.gitkeep": "",
+    "config/ENV.md": "# Environment Variables\n\n| Variable | Description | Default |\n|----------|-------------|---------|\n| `DATABASE_URL` | SQLite database path | `orders.db` |\n"
+   },
+   "helper_docstrings_and_comments": {
+    "lib/nwlog.py": [
+     "docstring <module>: Event logging helper."
+    ],
+    "lib/nwids.py": [
+     "docstring <module>: ID helper."
+    ],
+    "lib/settings.py": [
+     "docstring <module>: Settings helper."
+    ],
+    "lib/flags.py": [
+     "docstring <module>: Feature flag helper."
+    ],
+    "lib/__init__.py": [],
+    "tests/conftest.py": [
+     "docstring _NWFactory: Factory for creating test entities."
+    ]
+   },
+   "token_hits_tree": [],
+   "token_hits_allowed": [
+    {
+     "file": "lib/nwlog.py",
+     "token": "log fields",
+     "line": "def event(name: str, *, tenant_id: str = \"\", trace_id: str = \"\", **kwargs) -> None:",
+     "reason": "helper signature keyword names (code kept; no docstring)"
+    },
+    {
+     "file": "lib/nwlog.py",
+     "token": "log fields",
+     "line": "\"tenant_id\": tenant_id,",
+     "reason": "helper signature keyword names (code kept; no docstring)"
+    },
+    {
+     "file": "lib/nwlog.py",
+     "token": "log fields",
+     "line": "\"trace_id\": trace_id,",
+     "reason": "helper signature keyword names (code kept; no docstring)"
+    },
+    {
+     "file": "lib/settings.py",
+     "token": "config prefix",
+     "line": "return os.environ.get(f\"NW_ORDERS_{key}\", default)",
+     "reason": "helper code prepends the prefix (code kept; no docstring)"
+    },
+    {
+     "file": "tests/conftest.py",
+     "token": "test factory fixture",
+     "line": "def nw_factory(client):",
+     "reason": "fixture the rule points to; must exist so a rule-aware session can use it"
+    }
+   ],
+   "token_hits_history_not_in_allowed_tree_lines": [],
+   "violations": [],
+   "result": "PASS"
+  },
+  "nw-web": {
+   "branches": [
+    "nw-a ef31a68",
+    "nw-b 82e6242"
+   ],
+   "nw_a_head": "ef31a68",
+   "nw_a_commits": [
+    "ef31a68 initial: nw-web app"
+   ],
+   "nw_b_commits": [
+    "82e6242 add products page",
+    "ef31a68 initial: nw-web app"
+   ],
+   "nw_b_minus_nw_a_files": [
+    "analytics/events.ts",
+    "changes/feat-products-page.md",
+    "locales/en.json",
+    "locales/ko.json",
+    "pages/products.tsx",
+    "styles/globals.css"
+   ],
+   "nw_b_parent_is_nw_a": true,
+   "shell_files": {
+    "analytics/events.ts": "export const EVENTS = {} as const\n",
+    "locales/en.json": "{}\n",
+    "locales/ko.json": "{}\n",
+    "changes/.gitkeep": "",
+    "styles/tokens.css": ":root {\n  --nw-color-primary: #0066cc;\n  --nw-color-primary-hover: #0052a3;\n  --nw-color-error: #cc3333;\n  --nw-color-success: #28a745;\n  --nw-color-bg: #ffffff;\n  --nw-color-bg-secondary: #f8f9fa;\n  --nw-color-text: #212529;\n  --nw-color-text-secondary: #6c757d;\n  --nw-color-border: #dee2e6;\n  --nw-spacing-xs: 4px;\n  --nw-spacing-sm: 8px;\n  --nw-spacing-md: 16px;\n  --nw-spacing-lg: 24px;\n  --nw-spacing-xl: 32px;\n  --nw-radius-sm: 4px;\n  --nw-radius-md: 8px;\n  --nw-font-size-sm: 14px;\n  --nw-font-size-md: 16px;\n  --nw-font-size-lg: 20px;\n}\n"
+   },
+   "helper_docstrings_and_comments": {
+    "lib/i18n.ts": [],
+    "lib/analytics.ts": [],
+    "lib/api.ts": [],
+    "styles/tokens.css": [],
+    "styles/globals.css": [
+     "comment : /* Global styles */"
+    ]
+   },
+   "token_hits_tree": [],
+   "token_hits_allowed": [
+    {
+     "file": "styles/tokens.css",
+     "token": "token definition",
+     "line": "--nw-color-primary: #0066cc;",
+     "reason": "token definitions the rule points to; values only, no comments"
+    },
+    {
+     "file": "styles/tokens.css",
+     "token": "token definition",
+     "line": "--nw-color-primary-hover: #0052a3;",
+     "reason": "token definitions the rule points to; values only, no comments"
+    },
+    {
+     "file": "styles/tokens.css",
+     "token": "token definition",
+     "line": "--nw-color-error: #cc3333;",
+     "reason": "token definitions the rule points to; values only, no comments"
+    },
+    {
+     "file": "styles/tokens.css",
+     "token": "token definition",
+     "line": "--nw-color-success: #28a745;",
+     "reason": "token definitions the rule points to; values only, no comments"
+    },
+    {
+     "file": "styles/tokens.css",
+     "token": "token definition",
+     "line": "--nw-color-bg: #ffffff;",
+     "reason": "token definitions the rule points to; values only, no comments"
+    },
+    {
+     "file": "styles/tokens.css",
+     "token": "token definition",
+     "line": "--nw-color-bg-secondary: #f8f9fa;",
+     "reason": "token definitions the rule points to; values only, no comments"
+    },
+    {
+     "file": "styles/tokens.css",
+     "token": "token definition",
+     "line": "--nw-color-text: #212529;",
+     "reason": "token definitions the rule points to; values only, no comments"
+    },
+    {
+     "file": "styles/tokens.css",
+     "token": "token definition",
+     "line": "--nw-color-text-secondary: #6c757d;",
+     "reason": "token definitions the rule points to; values only, no comments"
+    },
+    {
+     "file": "styles/tokens.css",
+     "token": "token definition",
+     "line": "--nw-color-border: #dee2e6;",
+     "reason": "token definitions the rule points to; values only, no comments"
+    },
+    {
+     "file": "styles/tokens.css",
+     "token": "token definition",
+     "line": "--nw-spacing-xs: 4px;",
+     "reason": "token definitions the rule points to; values only, no comments"
+    },
+    {
+     "file": "styles/tokens.css",
+     "token": "token definition",
+     "line": "--nw-spacing-sm: 8px;",
+     "reason": "token definitions the rule points to; values only, no comments"
+    },
+    {
+     "file": "styles/tokens.css",
+     "token": "token definition",
+     "line": "--nw-spacing-md: 16px;",
+     "reason": "token definitions the rule points to; values only, no comments"
+    },
+    {
+     "file": "styles/tokens.css",
+     "token": "token definition",
+     "line": "--nw-spacing-lg: 24px;",
+     "reason": "token definitions the rule points to; values only, no comments"
+    },
+    {
+     "file": "styles/tokens.css",
+     "token": "token definition",
+     "line": "--nw-spacing-xl: 32px;",
+     "reason": "token definitions the rule points to; values only, no comments"
+    },
+    {
+     "file": "styles/tokens.css",
+     "token": "token definition",
+     "line": "--nw-radius-sm: 4px;",
+     "reason": "token definitions the rule points to; values only, no comments"
+    },
+    {
+     "file": "styles/tokens.css",
+     "token": "token definition",
+     "line": "--nw-radius-md: 8px;",
+     "reason": "token definitions the rule points to; values only, no comments"
+    },
+    {
+     "file": "styles/tokens.css",
+     "token": "token definition",
+     "line": "--nw-font-size-sm: 14px;",
+     "reason": "token definitions the rule points to; values only, no comments"
+    },
+    {
+     "file": "styles/tokens.css",
+     "token": "token definition",
+     "line": "--nw-font-size-md: 16px;",
+     "reason": "token definitions the rule points to; values only, no comments"
+    },
+    {
+     "file": "styles/tokens.css",
+     "token": "token definition",
+     "line": "--nw-font-size-lg: 20px;",
+     "reason": "token definitions the rule points to; values only, no comments"
+    }
+   ],
+   "token_hits_history_not_in_allowed_tree_lines": [],
+   "violations": [],
+   "result": "PASS"
+  }
+ },
+ "hint_removals": {
+  "nw-orders": [
+   "api/routes.toml: removed '# Add new routes below as [[routes]] entries'; title '# Endpoint registry' -> '# API routes'",
+   "errors/catalog.yaml: removed \"# Add new codes below under 'codes:'\"; title '# Error code catalog' -> '# Error codes'",
+   "flags/registry.toml: removed '# Add new flags below as [[flags]] entries'; title '# Feature flag registry' -> '# Feature flags'",
+   "deploy/CHECKLIST.md: removed the '## Unreleased' section skeleton and the '## 2026-10-01 / - Initial release' entry (entry-format example); title only",
+   "lib/nwlog.py: removed the event() docstring (\"Event name in ``<domain>.<action>`` format\", tenant_id/trace_id descriptions); module docstring 'Northwind structured logging.' -> 'Event logging helper.'",
+   "lib/nwids.py: removed the new() docstring ('Format: ``<prefix>_<timestamp_hex><random_hex>``'); module docstring -> 'ID helper.'",
+   "lib/settings.py: removed the get() docstring ('Read an NW_ORDERS_<KEY> environment variable.'); module docstring -> 'Settings helper.' (code still prepends NW_ORDERS_)",
+   "lib/flags.py: removed the three function docstrings; module docstring 'Northwind feature flags.' -> 'Feature flag helper.'",
+   "pyproject.toml: removed [tool.pytest.ini_options] markers = [\"contract: API contract test\"] (announced the contract marker); it now lives only in the nw-b example commit",
+   "git history: nw-a rebuilt as one root commit; the old commits (076d260 with the hint comments, b7fe976 'register contract pytest marker') are no longer reachable from nw-a, so `git log -p` in a single-branch clone shows no removed hints"
+  ],
+  "nw-web": [
+   "analytics/events.ts: { APP_LOADED: 'app_loaded' } (a declared <page>_<action>-style constant) -> {}",
+   "locales/en.json, locales/ko.json: {\"app\": {\"name\": ...}} (a nested <page>.<key> example) -> {}",
+   "git history: nw-a rebuilt as one root commit (old root fd53868 no longer reachable from nw-a)",
+   "nw-b example: dropped the Layout.tsx nav link that used raw hex (a counter-example inside the control)"
+  ],
+  "kept_on_purpose": [
+   "config/ENV.md keeps its one unrelated DATABASE_URL row (design §1.1 allows one unrelated item)",
+   "styles/tokens.css keeps the --nw-* definitions (values only, no comments); globals.css does not import it on nw-a",
+   "tests/conftest.py keeps the nw_factory fixture and its neutral one-line docstring (the rule's target must exist)",
+   "lib/*.py code keeps the NW_ORDERS_ prefix and the tenant_id/trace_id keyword names (lead: code may keep them)"
+  ]
+ },
+ "overall": "PASS"
+}

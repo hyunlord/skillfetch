@@ -1,0 +1,70 @@
+{
+ "verdict": "차이 있음",
+ "lines": [
+  {
+   "text": "아홉 결과 모두 p1·p2 5점이고 자동 점검을 통과했다. 모두 src/dma.rs와 src/hal/adc.rs에 주석만 더했다(삭제 0줄, 추가 28–38줄). 조건 사이의 차이는 건전하지 않은 두 블록을 코드 안에 표시했는지에 있다.",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "P m3",
+     "quote": "18 specific SAFETY comments (bounds, alignment, aliasing, validity)"
+    },
+    {
+     "src": "diff",
+     "run": "P m3",
+     "quote": "// SAFETY: `split_at_mut` yields disjoint slices of lengths `len - half >= half` and `half`"
+    }
+   ]
+  },
+  {
+   "text": "P는 세 세션 모두 P 스킬을 쓰지 않았다. P 세 결과는 건전하지 않은 두 블록을 답변에서만 짚었고 코드에는 표시를 남기지 않았다. 턴 7·5·25, 세션당 API 단가 환산 $0.313–0.416이다.",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "P m3",
+     "quote": "both unsound blocks explained in the reply only, nothing in code at the blocks"
+    },
+    {
+     "src": "p2",
+     "run": "P m1",
+     "quote": "unsound blocks flagged in the reply only"
+    }
+   ]
+  },
+  {
+   "text": "A는 m2만 두 블록 위에 FIXME(unsound) 주석을 달았고 m1·m3는 답변에서만 짚었다. 턴 8·10·6, 세션당 API 단가 환산 $0.308–0.393이다.",
+   "quotes": [
+    {
+     "src": "diff",
+     "run": "A m2",
+     "quote": "// FIXME(unsound): `idx` is caller-controlled and never checked against `buf.len()`"
+    },
+    {
+     "src": "p1",
+     "run": "A m1",
+     "quote": "unsound blocks flagged in the reply only; MMIO caveat stated"
+    }
+   ]
+  },
+  {
+   "text": "R은 라우터가 domain-embedded와 unsafe-checker를 불러왔다. R 세 결과 모두 두 블록 위에 UNSOUND(m1) 또는 FIXME(unsound)(m2·m3) 주석을 코드에 달았다. 턴 35·14·34, 세션당 API 단가 환산 $0.504–0.618이다.",
+   "quotes": [
+    {
+     "src": "diff",
+     "run": "R m1",
+     "quote": "// UNSOUND: nothing checks `idx < buf.len()`"
+    },
+    {
+     "src": "diff",
+     "run": "R m3",
+     "quote": "// FIXME(unsound): `idx` is never checked against `buf.len()`"
+    },
+    {
+     "src": "p2",
+     "run": "R m2",
+     "quote": "both unsound blocks marked in code with `FIXME(unsound)` plus reason and fix"
+    }
+   ]
+  }
+ ]
+}

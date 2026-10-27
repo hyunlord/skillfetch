@@ -1,0 +1,91 @@
+{
+ "task": "C1",
+ "bundle": 4,
+ "cond": "N",
+ "tag": "d1",
+ "session_dir": "<worktrees>/s12/6290305bd6d2",
+ "preflight": {
+  "index": "index ok (12 files)",
+  "base": "34adcb391b0ef302d2335dcaa671646fc938364c",
+  "s11_r": "deadcfc3ffe134c5b06c250fdde8f41f05835049",
+  "main_checkout": {
+   "branch": "nw-a",
+   "head": "b3e1eecd7e3d"
+  },
+  "leftover_processes": []
+ },
+ "clone": {
+  "branch": "s12b-n-nw-b",
+  "head": "d2dc72ca13fafdc60f96dfdc490dc9292efe1557",
+  "refs": [
+   "refs/heads/main"
+  ],
+  "remotes": [],
+  "status": [],
+  "skills_files": [
+   ".claude/skills/nw-changelog/SKILL.md",
+   ".claude/skills/nw-config/SKILL.md",
+   ".claude/skills/nw-data-logging/SKILL.md",
+   ".claude/skills/nw-deploy-checklist/SKILL.md",
+   ".claude/skills/nw-endpoint-registry/SKILL.md",
+   ".claude/skills/nw-error-responses/SKILL.md",
+   ".claude/skills/nw-feature-flags/SKILL.md",
+   ".claude/skills/nw-infra-runbooks/SKILL.md",
+   ".claude/skills/nw-legacy-migrations/SKILL.md",
+   ".claude/skills/nw-marketing-analytics/SKILL.md",
+   ".claude/skills/nw-migrations/SKILL.md",
+   ".claude/skills/nw-ml-experiments/SKILL.md",
+   ".claude/skills/nw-mobile-strings/SKILL.md",
+   ".claude/skills/nw-money/SKILL.md",
+   ".claude/skills/nw-pagination/SKILL.md",
+   ".claude/skills/nw-payments-errors/SKILL.md",
+   ".claude/skills/nw-payments-ids/SKILL.md",
+   ".claude/skills/nw-public-ids/SKILL.md",
+   ".claude/skills/nw-python-tests/SKILL.md",
+   ".claude/skills/nw-structured-logging/SKILL.md",
+   ".claude/skills/nw-timestamps/SKILL.md",
+   ".claude/skills/nw-ui-tokens/SKILL.md",
+   ".claude/skills/nw-web-analytics/SKILL.md",
+   ".claude/skills/nw-web-i18n/SKILL.md"
+  ],
+  "router_sha256": null,
+  "commits": [
+   "d2dc72c chore: add project skills",
+   "34adcb3 add product endpoints",
+   "b3e1eec initial: nw-orders service"
+  ],
+  "base_skills_files": [],
+  "unreachable_objects": 0,
+  "ok": true
+ },
+ "prep_s": 0.0,
+ "prep_status": [],
+ "cmd": [
+  "claude",
+  "-p",
+  "고객 조회 API `GET /customers/{id}`를 추가해 주세요. 고객 정보(이름, 이메일, 가입일)를 돌려줍니다. 고객이 없으면 적절한 오류를 돌려주세요.",
+  "--output-format",
+  "stream-json",
+  "--verbose",
+  "--include-hook-events",
+  "--max-turns",
+  "40",
+  "--allowedTools",
+  "Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*",
+  "--debug-file",
+  "<e2e>/stage12-private/dryrun/N/C1-d1.debug.log",
+  "--setting-sources",
+  "project",
+  "--strict-mcp-config",
+  "--mcp-config",
+  "<e2e>/stage12/mcp/mcp-none.json"
+ ],
+ "path_head": "/opt/homebrew/opt/openjdk/bin",
+ "index_ok_after": true,
+ "fake_server_pid": null,
+ "cleanup": {
+  "killed": [],
+  "remaining": []
+ },
+ "leftover_after": []
+}

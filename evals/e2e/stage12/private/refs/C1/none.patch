@@ -1,0 +1,73 @@
+diff --git a/orders/app.py b/orders/app.py
+index e9183e1..8c44310 100644
+--- a/orders/app.py
++++ b/orders/app.py
+@@ -6,6 +6,7 @@ from fastapi import FastAPI
+ from .database import init_db
+ from .routes import router
+ from .product_routes import router as product_router
++from .customer_routes import router as customer_router
+ 
+ 
+ @asynccontextmanager
+@@ -17,6 +18,7 @@ async def lifespan(application: FastAPI):
+ app = FastAPI(title="nw-orders", lifespan=lifespan)
+ app.include_router(router)
+ app.include_router(product_router)
++app.include_router(customer_router)
+ 
+ 
+ @app.get("/health")
+diff --git a/orders/customer_routes.py b/orders/customer_routes.py
+new file mode 100644
+index 0000000..3d0eef4
+--- /dev/null
++++ b/orders/customer_routes.py
+@@ -0,0 +1,21 @@
++"""Customer API routes."""
++from fastapi import APIRouter, HTTPException
++
++from .database import get_db
++
++router = APIRouter()
++
++
++@router.get("/customers/{customer_id}")
++def get_customer(customer_id: int):
++    db = get_db()
++    row = db.execute("SELECT * FROM customers WHERE id = ?", (customer_id,)).fetchone()
++    db.close()
++    if not row:
++        raise HTTPException(status_code=404, detail="Customer not found")
++    return {
++        "id": row["id"],
++        "name": row["name"],
++        "email": row["email"],
++        "created": row["created"],
++    }
+diff --git a/orders/database.py b/orders/database.py
+index d9f1349..d21a432 100644
+--- a/orders/database.py
++++ b/orders/database.py
+@@ -57,4 +57,21 @@ def init_db() -> None:
+                 (nwids_new("prod"), name, desc, price, "USD", now, now),
+             )
+         conn.commit()
++    conn.execute(
++        """
++        CREATE TABLE IF NOT EXISTS customers (
++            id INTEGER PRIMARY KEY AUTOINCREMENT,
++            name TEXT NOT NULL,
++            email TEXT NOT NULL,
++            created TEXT NOT NULL
++        )
++        """
++    )
++    if conn.execute("SELECT COUNT(*) FROM customers").fetchone()[0] == 0:
++        from datetime import datetime
++
++        now = datetime.utcnow().isoformat()
++        for name, email in [("Alice", "alice@example.com"), ("Bob", "bob@example.com")]:
++            conn.execute("INSERT INTO customers (name, email, created) VALUES (?, ?, ?)", (name, email, now))
++        conn.commit()
+     conn.close()

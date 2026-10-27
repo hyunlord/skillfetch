@@ -1,0 +1,126 @@
+diff --git a/api/routes.toml b/api/routes.toml
+index 6734149..f53a131 100644
+--- a/api/routes.toml
++++ b/api/routes.toml
+@@ -11,3 +11,9 @@ method = "GET"
+ path = "/products/{public_id}"
+ owner = "catalog"
+ rate_limit = 500
++
++[[routes]]
++method = "GET"
++path = "/customers/{customer_id}"
++owner = "customers"
++rate_limit = 300
+diff --git a/errors/catalog.yaml b/errors/catalog.yaml
+index f77f070..18b0eb9 100644
+--- a/errors/catalog.yaml
++++ b/errors/catalog.yaml
+@@ -6,3 +6,6 @@ codes:
+   NW-PROD-002:
+     message: "Invalid product query"
+     http_status: 400
++  NW-CUST-001:
++    message: "Customer not found"
++    http_status: 404
+diff --git a/orders/app.py b/orders/app.py
+index e9183e1..8c44310 100644
+--- a/orders/app.py
++++ b/orders/app.py
+@@ -6,6 +6,7 @@ from fastapi import FastAPI
+ from .database import init_db
+ from .routes import router
+ from .product_routes import router as product_router
++from .customer_routes import router as customer_router
+ 
+ 
+ @asynccontextmanager
+@@ -17,6 +18,7 @@ async def lifespan(application: FastAPI):
+ app = FastAPI(title="nw-orders", lifespan=lifespan)
+ app.include_router(router)
+ app.include_router(product_router)
++app.include_router(customer_router)
+ 
+ 
+ @app.get("/health")
+diff --git a/orders/customer_routes.py b/orders/customer_routes.py
+new file mode 100644
+index 0000000..7aaa548
+--- /dev/null
++++ b/orders/customer_routes.py
+@@ -0,0 +1,42 @@
++"""Customer API routes."""
++from uuid import uuid4
++
++from fastapi import APIRouter
++from fastapi.responses import JSONResponse
++
++from lib.nwlog import event as nwlog_event
++from orders.database import get_db
++
++router = APIRouter()
++
++
++@router.get("/customers/{customer_id}")
++def get_customer(customer_id: str):
++    trace_id = str(uuid4())
++    db = get_db()
++    try:
++        row = db.execute(
++            "SELECT * FROM customers WHERE public_id = ?", (customer_id,)
++        ).fetchone()
++        if not row:
++            nwlog_event("customers.not_found", tenant_id="", trace_id=trace_id, customer_id=customer_id)
++            return JSONResponse(
++                status_code=404,
++                content={
++                    "error": {
++                        "code": "NW-CUST-001",
++                        "message": "Customer not found",
++                        "trace_id": trace_id,
++                    }
++                },
++            )
++        nwlog_event("customers.retrieved", tenant_id="", trace_id=trace_id, customer_id=customer_id)
++        return {
++            "id": row["public_id"],
++            "name": row["name"],
++            "email": row["email"],
++            "joined_at": row["joined_at"],
++            "updated_at": row["updated_at"],
++        }
++    finally:
++        db.close()
+diff --git a/orders/database.py b/orders/database.py
+index d9f1349..0c309d4 100644
+--- a/orders/database.py
++++ b/orders/database.py
+@@ -57,4 +57,28 @@ def init_db() -> None:
+                 (nwids_new("prod"), name, desc, price, "USD", now, now),
+             )
+         conn.commit()
++    conn.execute(
++        """
++        CREATE TABLE IF NOT EXISTS customers (
++            id INTEGER PRIMARY KEY AUTOINCREMENT,
++            public_id TEXT NOT NULL UNIQUE,
++            name TEXT NOT NULL,
++            email TEXT NOT NULL,
++            joined_at TEXT NOT NULL,
++            updated_at TEXT NOT NULL
++        )
++        """
++    )
++    if conn.execute("SELECT COUNT(*) FROM customers").fetchone()[0] == 0:
++        from datetime import datetime, timezone
++
++        from lib.nwids import new as nwids_new
++
++        now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
++        for name, email in [("Alice Kim", "alice@example.com"), ("Bob Park", "bob@example.com")]:
++            conn.execute(
++                "INSERT INTO customers (public_id, name, email, joined_at, updated_at) VALUES (?, ?, ?, ?, ?)",
++                (nwids_new("cust"), name, email, now, now),
++            )
++        conn.commit()
+     conn.close()

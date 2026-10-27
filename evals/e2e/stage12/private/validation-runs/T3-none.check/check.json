@@ -1,0 +1,47 @@
+{
+  "task_id": "T3",
+  "rule_pass": 0,
+  "rule_total": 5,
+  "rule_undecidable": 0,
+  "func_pass": 2,
+  "func_total": 2,
+  "rule_items": [
+    {
+      "id": "T3-R1",
+      "pass": false,
+      "detail": "No migration named V<YYYYMMDD>_<NN>__<snake>.sql"
+    },
+    {
+      "id": "T3-R2",
+      "pass": false,
+      "detail": "No '-- rollback:' section with reverse SQL at the end of a migration"
+    },
+    {
+      "id": "T3-R3",
+      "pass": false,
+      "detail": "No '## Unreleased' section in deploy/CHECKLIST.md"
+    },
+    {
+      "id": "T3-R4",
+      "pass": false,
+      "detail": "No changes/<feat|fix|chore>-<slug>.md fragment"
+    },
+    {
+      "id": "T3-R5",
+      "pass": false,
+      "detail": "No new .sql file under db/migrations/"
+    }
+  ],
+  "functional_items": [
+    {
+      "id": "T3-F1",
+      "pass": true,
+      "detail": "GET /orders/{id} -> [200, {'id': 1, 'customer_id': 1, 'product': 'A', 'quantity': 1, 'unit_price': 5.0, 'total': 5.0, 'currency': 'USD', 'status': 'pending', 'created_at': '2026-10-26T15:54:47.363923', 'updated_at': '2026-10-26T15:54:47.363923', 'refund_reason': None}]; columns=['id', 'customer_id',"
+    },
+    {
+      "id": "T3-F2",
+      "pass": true,
+      "detail": "4 passed, 3 warnings in 0.04s |  is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).\n    now = datetime.utcnow().isoformat()\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.htm"
+    }
+  ]
+}

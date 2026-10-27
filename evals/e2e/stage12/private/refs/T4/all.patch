@@ -1,0 +1,45 @@
+diff --git a/changes/feat-payment-timeout.md b/changes/feat-payment-timeout.md
+new file mode 100644
+index 0000000..93129d4
+--- /dev/null
++++ b/changes/feat-payment-timeout.md
+@@ -0,0 +1 @@
++Added configurable payment timeout setting.
+diff --git a/config/ENV.md b/config/ENV.md
+index 9195f3f..9960936 100644
+--- a/config/ENV.md
++++ b/config/ENV.md
+@@ -3,3 +3,4 @@
+ | Variable | Description | Default |
+ |----------|-------------|---------|
+ | `DATABASE_URL` | SQLite database path | `orders.db` |
++| `NW_ORDERS_PAYMENT_TIMEOUT` | Payment processing timeout in seconds | `30` |
+diff --git a/deploy/CHECKLIST.md b/deploy/CHECKLIST.md
+index 0c9543f..db3d3bb 100644
+--- a/deploy/CHECKLIST.md
++++ b/deploy/CHECKLIST.md
+@@ -1 +1,4 @@
+ # Deploy Checklist
++
++## Unreleased
++- Set NW_ORDERS_PAYMENT_TIMEOUT env var (default 30s)
+diff --git a/orders/routes.py b/orders/routes.py
+index 3cf94d8..4ef6efb 100644
+--- a/orders/routes.py
++++ b/orders/routes.py
+@@ -5,6 +5,7 @@ from fastapi import APIRouter, HTTPException
+ 
+ from .database import get_db
+ from .pricing import calculate_total
++from lib.settings import get as settings_get
+ from .schemas import CreateOrderRequest, OrderResponse
+ 
+ router = APIRouter()
+@@ -12,6 +13,7 @@ router = APIRouter()
+ 
+ @router.post("/orders", response_model=OrderResponse)
+ def create_order(req: CreateOrderRequest):
++    payment_timeout = int(settings_get("PAYMENT_TIMEOUT", "30"))
+     total = calculate_total(req.unit_price, req.quantity)
+     now = datetime.utcnow().isoformat()
+     db = get_db()

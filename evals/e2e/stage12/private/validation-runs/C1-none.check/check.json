@@ -1,0 +1,57 @@
+{
+  "task_id": "C1",
+  "rule_pass": 0,
+  "rule_total": 6,
+  "rule_undecidable": 0,
+  "func_pass": 3,
+  "func_total": 3,
+  "rule_items": [
+    {
+      "id": "C1-R1",
+      "pass": false,
+      "detail": "status=404 body={'detail': 'Customer not found'}"
+    },
+    {
+      "id": "C1-R2",
+      "pass": false,
+      "detail": "No new NW-<AREA>-<NNN> code in errors/catalog.yaml"
+    },
+    {
+      "id": "C1-R3",
+      "pass": false,
+      "detail": "No GET /customers/{id} entry in api/routes.toml"
+    },
+    {
+      "id": "C1-R4",
+      "pass": false,
+      "detail": "response id=1; Not found in added lines"
+    },
+    {
+      "id": "C1-R5",
+      "pass": false,
+      "detail": "Timestamp fields without _at: ['created']"
+    },
+    {
+      "id": "C1-R6",
+      "pass": false,
+      "detail": "Not UTC RFC 3339 with Z: ['created=2026-10-26T15:55:28.502720']"
+    }
+  ],
+  "functional_items": [
+    {
+      "id": "C1-F1",
+      "pass": true,
+      "detail": "source=app data found=[200, {'id': 1, 'name': 'Alice', 'email': 'alice@example.com', 'created': '2026-10-26T15:55:28.502720'}, 1]"
+    },
+    {
+      "id": "C1-F2",
+      "pass": true,
+      "detail": "missing customer -> [404, {'detail': 'Customer not found'}]"
+    },
+    {
+      "id": "C1-F3",
+      "pass": true,
+      "detail": "7 passed, 10 warnings in 0.07s | is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).\n    now = datetime.utcnow().isoformat()\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.htm"
+    }
+  ]
+}

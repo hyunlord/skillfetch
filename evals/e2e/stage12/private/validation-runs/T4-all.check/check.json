@@ -1,0 +1,47 @@
+{
+  "task_id": "T4",
+  "rule_pass": 5,
+  "rule_total": 5,
+  "rule_undecidable": 0,
+  "func_pass": 2,
+  "func_total": 2,
+  "rule_items": [
+    {
+      "id": "T4-R1",
+      "pass": true,
+      "detail": "Found in orders/routes.py: payment_timeout = int(settings_get(\"PAYMENT_TIMEOUT\", \"30\"))"
+    },
+    {
+      "id": "T4-R2",
+      "pass": true,
+      "detail": "| `NW_ORDERS_PAYMENT_TIMEOUT` | Payment processing timeout in seconds | `30` |"
+    },
+    {
+      "id": "T4-R3",
+      "pass": true,
+      "detail": "- Set NW_ORDERS_PAYMENT_TIMEOUT env var (default 30s)"
+    },
+    {
+      "id": "T4-R4",
+      "pass": true,
+      "detail": "Found changes/feat-payment-timeout.md"
+    },
+    {
+      "id": "T4-R5",
+      "pass": true,
+      "detail": "lib.settings imported=True; No direct environment access in added app code"
+    }
+  ],
+  "functional_items": [
+    {
+      "id": "T4-F1",
+      "pass": true,
+      "detail": "timeout+30 in added app code=True; POST /orders -> 200"
+    },
+    {
+      "id": "T4-F2",
+      "pass": true,
+      "detail": "4 passed, 3 warnings in 0.04s |  is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).\n    now = datetime.utcnow().isoformat()\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.htm"
+    }
+  ]
+}

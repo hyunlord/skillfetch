@@ -1,0 +1,2467 @@
+{
+ "prefixes": [
+  "m"
+ ],
+ "summary": {
+  "sessions": 30,
+  "required_total": 96,
+  "required_by_class": {
+   "loaded": 44,
+   "not_found": 35,
+   "not_chosen": 17
+  },
+  "loaded_required_rate": 0.458,
+  "failed_rule_items_by_class": {
+   "not_chosen": 17,
+   "not_found": 32,
+   "loaded_failed": 9
+  },
+  "passed_rule_items_by_class": {
+   "loaded": 77,
+   "not_found": 15,
+   "not_chosen": 3
+  },
+  "per_rule_item": {
+   "C1-R1": {
+    "pass": 3
+   },
+   "C1-R2": {
+    "pass": 3
+   },
+   "C1-R3": {
+    "pass": 3
+   },
+   "C1-R4": {
+    "not_chosen": 3
+   },
+   "C1-R5": {
+    "pass": 3
+   },
+   "C1-R6": {
+    "undecidable": 3
+   },
+   "C2-R1": {
+    "pass": 3
+   },
+   "C2-R2": {
+    "pass": 3
+   },
+   "C2-R3": {
+    "pass": 3
+   },
+   "C2-R4": {
+    "pass": 3
+   },
+   "T1-R1": {
+    "pass": 3
+   },
+   "T1-R2": {
+    "pass": 3
+   },
+   "T1-R3": {
+    "not_chosen": 3
+   },
+   "T1-R4": {
+    "pass": 3
+   },
+   "T1-R5": {
+    "pass": 2,
+    "not_chosen": 1
+   },
+   "T1-R6": {
+    "pass": 3
+   },
+   "T1-R7": {
+    "not_chosen": 3
+   },
+   "T1-R8": {
+    "not_found": 2,
+    "not_chosen": 1
+   },
+   "T2-R1": {
+    "not_found": 3
+   },
+   "T2-R2": {
+    "pass": 3
+   },
+   "T2-R3": {
+    "not_chosen": 3
+   },
+   "T2-R4": {
+    "pass": 3
+   },
+   "T2-R5": {
+    "pass": 3
+   },
+   "T2-R6": {
+    "not_found": 3
+   },
+   "T3-R1": {
+    "pass": 3
+   },
+   "T3-R2": {
+    "pass": 3
+   },
+   "T3-R3": {
+    "not_chosen": 3
+   },
+   "T3-R4": {
+    "pass": 3
+   },
+   "T3-R5": {
+    "pass": 3
+   },
+   "T4-R1": {
+    "pass": 3
+   },
+   "T4-R2": {
+    "pass": 3
+   },
+   "T4-R3": {
+    "pass": 3
+   },
+   "T4-R4": {
+    "not_found": 3
+   },
+   "T4-R5": {
+    "pass": 3
+   },
+   "T5-R1": {
+    "loaded_failed": 3
+   },
+   "T5-R2": {
+    "pass": 3
+   },
+   "T5-R3": {
+    "not_found": 3
+   },
+   "T5-R4": {
+    "pass": 3
+   },
+   "T5-R5": {
+    "not_found": 3
+   },
+   "T6-R1": {
+    "pass": 3
+   },
+   "T6-R2": {
+    "loaded_failed": 3
+   },
+   "T6-R3": {
+    "loaded_failed": 3
+   },
+   "T7-R1": {
+    "pass": 3
+   },
+   "T7-R2": {
+    "pass": 3
+   },
+   "T7-R3": {
+    "not_found": 3
+   },
+   "T7-R4": {
+    "not_found": 3
+   },
+   "T7-R5": {
+    "not_found": 3
+   },
+   "T8-R1": {
+    "not_found": 3
+   },
+   "T8-R2": {
+    "pass": 3
+   },
+   "T8-R3": {
+    "pass": 3
+   },
+   "T8-R4": {
+    "pass": 3
+   },
+   "T8-R5": {
+    "not_found": 3
+   }
+  },
+  "distractor_loads": 1
+ },
+ "sessions": [
+  {
+   "task": "C1",
+   "tag": "m1",
+   "required": [
+    "nw-error-responses",
+    "nw-endpoint-registry",
+    "nw-public-ids",
+    "nw-timestamps"
+   ],
+   "loaded": [
+    "nw-error-responses",
+    "nw-python-tests",
+    "nw-timestamps"
+   ],
+   "loaded_required": [
+    "nw-error-responses",
+    "nw-timestamps"
+   ],
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-python-tests"
+   ],
+   "searches": 1,
+   "required_class": {
+    "nw-error-responses": "loaded",
+    "nw-endpoint-registry": "not_found",
+    "nw-public-ids": "not_chosen",
+    "nw-timestamps": "loaded"
+   },
+   "required_ranks": {
+    "nw-error-responses": [
+     [
+      1,
+      2
+     ]
+    ],
+    "nw-endpoint-registry": null,
+    "nw-public-ids": [
+     [
+      1,
+      4
+     ]
+    ],
+    "nw-timestamps": [
+     [
+      1,
+      26
+     ]
+    ]
+   },
+   "rule_items": [
+    {
+     "id": "C1-R1",
+     "skill": "nw-error-responses",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "C1-R2",
+     "skill": "nw-error-responses",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "C1-R3",
+     "skill": "nw-endpoint-registry",
+     "pass": true,
+     "class": "not_found"
+    },
+    {
+     "id": "C1-R4",
+     "skill": "nw-public-ids",
+     "pass": false,
+     "class": "not_chosen"
+    },
+    {
+     "id": "C1-R5",
+     "skill": "nw-timestamps",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "C1-R6",
+     "skill": "nw-timestamps",
+     "pass": null,
+     "class": "undecidable"
+    }
+   ]
+  },
+  {
+   "task": "C1",
+   "tag": "m2",
+   "required": [
+    "nw-error-responses",
+    "nw-endpoint-registry",
+    "nw-public-ids",
+    "nw-timestamps"
+   ],
+   "loaded": [
+    "nw-error-responses",
+    "nw-python-tests",
+    "nw-timestamps"
+   ],
+   "loaded_required": [
+    "nw-error-responses",
+    "nw-timestamps"
+   ],
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-python-tests"
+   ],
+   "searches": 1,
+   "required_class": {
+    "nw-error-responses": "loaded",
+    "nw-endpoint-registry": "not_found",
+    "nw-public-ids": "not_chosen",
+    "nw-timestamps": "loaded"
+   },
+   "required_ranks": {
+    "nw-error-responses": [
+     [
+      1,
+      2
+     ]
+    ],
+    "nw-endpoint-registry": null,
+    "nw-public-ids": [
+     [
+      1,
+      8
+     ]
+    ],
+    "nw-timestamps": [
+     [
+      1,
+      13
+     ]
+    ]
+   },
+   "rule_items": [
+    {
+     "id": "C1-R1",
+     "skill": "nw-error-responses",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "C1-R2",
+     "skill": "nw-error-responses",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "C1-R3",
+     "skill": "nw-endpoint-registry",
+     "pass": true,
+     "class": "not_found"
+    },
+    {
+     "id": "C1-R4",
+     "skill": "nw-public-ids",
+     "pass": false,
+     "class": "not_chosen"
+    },
+    {
+     "id": "C1-R5",
+     "skill": "nw-timestamps",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "C1-R6",
+     "skill": "nw-timestamps",
+     "pass": null,
+     "class": "undecidable"
+    }
+   ]
+  },
+  {
+   "task": "C1",
+   "tag": "m3",
+   "required": [
+    "nw-error-responses",
+    "nw-endpoint-registry",
+    "nw-public-ids",
+    "nw-timestamps"
+   ],
+   "loaded": [
+    "nw-error-responses",
+    "nw-python-tests",
+    "nw-timestamps"
+   ],
+   "loaded_required": [
+    "nw-error-responses",
+    "nw-timestamps"
+   ],
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-python-tests"
+   ],
+   "searches": 1,
+   "required_class": {
+    "nw-error-responses": "loaded",
+    "nw-endpoint-registry": "not_found",
+    "nw-public-ids": "not_chosen",
+    "nw-timestamps": "loaded"
+   },
+   "required_ranks": {
+    "nw-error-responses": [
+     [
+      1,
+      2
+     ]
+    ],
+    "nw-endpoint-registry": null,
+    "nw-public-ids": [
+     [
+      1,
+      8
+     ]
+    ],
+    "nw-timestamps": [
+     [
+      1,
+      26
+     ]
+    ]
+   },
+   "rule_items": [
+    {
+     "id": "C1-R1",
+     "skill": "nw-error-responses",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "C1-R2",
+     "skill": "nw-error-responses",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "C1-R3",
+     "skill": "nw-endpoint-registry",
+     "pass": true,
+     "class": "not_found"
+    },
+    {
+     "id": "C1-R4",
+     "skill": "nw-public-ids",
+     "pass": false,
+     "class": "not_chosen"
+    },
+    {
+     "id": "C1-R5",
+     "skill": "nw-timestamps",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "C1-R6",
+     "skill": "nw-timestamps",
+     "pass": null,
+     "class": "undecidable"
+    }
+   ]
+  },
+  {
+   "task": "C2",
+   "tag": "m1",
+   "required": [
+    "nw-web-i18n",
+    "nw-ui-tokens"
+   ],
+   "loaded": [
+    "nw-web-analytics",
+    "nw-web-i18n"
+   ],
+   "loaded_required": [
+    "nw-web-i18n"
+   ],
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-web-analytics"
+   ],
+   "searches": 1,
+   "required_class": {
+    "nw-web-i18n": "loaded",
+    "nw-ui-tokens": "not_found"
+   },
+   "required_ranks": {
+    "nw-web-i18n": [
+     [
+      1,
+      1
+     ]
+    ],
+    "nw-ui-tokens": null
+   },
+   "rule_items": [
+    {
+     "id": "C2-R1",
+     "skill": "nw-web-i18n",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "C2-R2",
+     "skill": "nw-web-i18n",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "C2-R3",
+     "skill": "nw-ui-tokens",
+     "pass": true,
+     "class": "not_found"
+    },
+    {
+     "id": "C2-R4",
+     "skill": "nw-ui-tokens",
+     "pass": true,
+     "class": "not_found"
+    }
+   ]
+  },
+  {
+   "task": "C2",
+   "tag": "m2",
+   "required": [
+    "nw-web-i18n",
+    "nw-ui-tokens"
+   ],
+   "loaded": [
+    "nw-web-analytics",
+    "nw-web-i18n"
+   ],
+   "loaded_required": [
+    "nw-web-i18n"
+   ],
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-web-analytics"
+   ],
+   "searches": 1,
+   "required_class": {
+    "nw-web-i18n": "loaded",
+    "nw-ui-tokens": "not_found"
+   },
+   "required_ranks": {
+    "nw-web-i18n": [
+     [
+      1,
+      2
+     ]
+    ],
+    "nw-ui-tokens": null
+   },
+   "rule_items": [
+    {
+     "id": "C2-R1",
+     "skill": "nw-web-i18n",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "C2-R2",
+     "skill": "nw-web-i18n",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "C2-R3",
+     "skill": "nw-ui-tokens",
+     "pass": true,
+     "class": "not_found"
+    },
+    {
+     "id": "C2-R4",
+     "skill": "nw-ui-tokens",
+     "pass": true,
+     "class": "not_found"
+    }
+   ]
+  },
+  {
+   "task": "C2",
+   "tag": "m3",
+   "required": [
+    "nw-web-i18n",
+    "nw-ui-tokens"
+   ],
+   "loaded": [
+    "nw-web-analytics",
+    "nw-web-i18n"
+   ],
+   "loaded_required": [
+    "nw-web-i18n"
+   ],
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-web-analytics"
+   ],
+   "searches": 1,
+   "required_class": {
+    "nw-web-i18n": "loaded",
+    "nw-ui-tokens": "not_found"
+   },
+   "required_ranks": {
+    "nw-web-i18n": [
+     [
+      1,
+      1
+     ]
+    ],
+    "nw-ui-tokens": null
+   },
+   "rule_items": [
+    {
+     "id": "C2-R1",
+     "skill": "nw-web-i18n",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "C2-R2",
+     "skill": "nw-web-i18n",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "C2-R3",
+     "skill": "nw-ui-tokens",
+     "pass": true,
+     "class": "not_found"
+    },
+    {
+     "id": "C2-R4",
+     "skill": "nw-ui-tokens",
+     "pass": true,
+     "class": "not_found"
+    }
+   ]
+  },
+  {
+   "task": "T1",
+   "tag": "m1",
+   "required": [
+    "nw-error-responses",
+    "nw-structured-logging",
+    "nw-endpoint-registry",
+    "nw-money",
+    "nw-public-ids",
+    "nw-changelog"
+   ],
+   "loaded": [
+    "nw-endpoint-registry",
+    "nw-error-responses",
+    "nw-money"
+   ],
+   "loaded_required": [
+    "nw-endpoint-registry",
+    "nw-error-responses",
+    "nw-money"
+   ],
+   "loaded_distractor": [],
+   "loaded_other_nw": [],
+   "searches": 1,
+   "required_class": {
+    "nw-error-responses": "loaded",
+    "nw-structured-logging": "not_chosen",
+    "nw-endpoint-registry": "loaded",
+    "nw-money": "loaded",
+    "nw-public-ids": "not_chosen",
+    "nw-changelog": "not_found"
+   },
+   "required_ranks": {
+    "nw-error-responses": [
+     [
+      1,
+      1
+     ]
+    ],
+    "nw-structured-logging": [
+     [
+      1,
+      17
+     ]
+    ],
+    "nw-endpoint-registry": [
+     [
+      1,
+      35
+     ]
+    ],
+    "nw-money": [
+     [
+      1,
+      5
+     ]
+    ],
+    "nw-public-ids": [
+     [
+      1,
+      4
+     ]
+    ],
+    "nw-changelog": null
+   },
+   "rule_items": [
+    {
+     "id": "T1-R1",
+     "skill": "nw-error-responses",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T1-R2",
+     "skill": "nw-error-responses",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T1-R3",
+     "skill": "nw-structured-logging",
+     "pass": false,
+     "class": "not_chosen"
+    },
+    {
+     "id": "T1-R4",
+     "skill": "nw-structured-logging",
+     "pass": true,
+     "class": "not_chosen"
+    },
+    {
+     "id": "T1-R5",
+     "skill": "nw-endpoint-registry",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T1-R6",
+     "skill": "nw-money",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T1-R7",
+     "skill": "nw-public-ids",
+     "pass": false,
+     "class": "not_chosen"
+    },
+    {
+     "id": "T1-R8",
+     "skill": "nw-changelog",
+     "pass": false,
+     "class": "not_found"
+    }
+   ]
+  },
+  {
+   "task": "T1",
+   "tag": "m2",
+   "required": [
+    "nw-error-responses",
+    "nw-structured-logging",
+    "nw-endpoint-registry",
+    "nw-money",
+    "nw-public-ids",
+    "nw-changelog"
+   ],
+   "loaded": [
+    "nw-error-responses",
+    "nw-migrations",
+    "nw-money"
+   ],
+   "loaded_required": [
+    "nw-error-responses",
+    "nw-money"
+   ],
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-migrations"
+   ],
+   "searches": 1,
+   "required_class": {
+    "nw-error-responses": "loaded",
+    "nw-structured-logging": "not_chosen",
+    "nw-endpoint-registry": "not_chosen",
+    "nw-money": "loaded",
+    "nw-public-ids": "not_chosen",
+    "nw-changelog": "not_chosen"
+   },
+   "required_ranks": {
+    "nw-error-responses": [
+     [
+      1,
+      3
+     ]
+    ],
+    "nw-structured-logging": [
+     [
+      1,
+      25
+     ]
+    ],
+    "nw-endpoint-registry": [
+     [
+      1,
+      18
+     ]
+    ],
+    "nw-money": [
+     [
+      1,
+      6
+     ]
+    ],
+    "nw-public-ids": [
+     [
+      1,
+      5
+     ]
+    ],
+    "nw-changelog": [
+     [
+      1,
+      47
+     ]
+    ]
+   },
+   "rule_items": [
+    {
+     "id": "T1-R1",
+     "skill": "nw-error-responses",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T1-R2",
+     "skill": "nw-error-responses",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T1-R3",
+     "skill": "nw-structured-logging",
+     "pass": false,
+     "class": "not_chosen"
+    },
+    {
+     "id": "T1-R4",
+     "skill": "nw-structured-logging",
+     "pass": true,
+     "class": "not_chosen"
+    },
+    {
+     "id": "T1-R5",
+     "skill": "nw-endpoint-registry",
+     "pass": false,
+     "class": "not_chosen"
+    },
+    {
+     "id": "T1-R6",
+     "skill": "nw-money",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T1-R7",
+     "skill": "nw-public-ids",
+     "pass": false,
+     "class": "not_chosen"
+    },
+    {
+     "id": "T1-R8",
+     "skill": "nw-changelog",
+     "pass": false,
+     "class": "not_chosen"
+    }
+   ]
+  },
+  {
+   "task": "T1",
+   "tag": "m3",
+   "required": [
+    "nw-error-responses",
+    "nw-structured-logging",
+    "nw-endpoint-registry",
+    "nw-money",
+    "nw-public-ids",
+    "nw-changelog"
+   ],
+   "loaded": [
+    "nw-endpoint-registry",
+    "nw-error-responses",
+    "nw-money"
+   ],
+   "loaded_required": [
+    "nw-endpoint-registry",
+    "nw-error-responses",
+    "nw-money"
+   ],
+   "loaded_distractor": [],
+   "loaded_other_nw": [],
+   "searches": 1,
+   "required_class": {
+    "nw-error-responses": "loaded",
+    "nw-structured-logging": "not_chosen",
+    "nw-endpoint-registry": "loaded",
+    "nw-money": "loaded",
+    "nw-public-ids": "not_chosen",
+    "nw-changelog": "not_found"
+   },
+   "required_ranks": {
+    "nw-error-responses": [
+     [
+      1,
+      2
+     ]
+    ],
+    "nw-structured-logging": [
+     [
+      1,
+      26
+     ]
+    ],
+    "nw-endpoint-registry": [
+     [
+      1,
+      16
+     ]
+    ],
+    "nw-money": [
+     [
+      1,
+      10
+     ]
+    ],
+    "nw-public-ids": [
+     [
+      1,
+      9
+     ]
+    ],
+    "nw-changelog": null
+   },
+   "rule_items": [
+    {
+     "id": "T1-R1",
+     "skill": "nw-error-responses",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T1-R2",
+     "skill": "nw-error-responses",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T1-R3",
+     "skill": "nw-structured-logging",
+     "pass": false,
+     "class": "not_chosen"
+    },
+    {
+     "id": "T1-R4",
+     "skill": "nw-structured-logging",
+     "pass": true,
+     "class": "not_chosen"
+    },
+    {
+     "id": "T1-R5",
+     "skill": "nw-endpoint-registry",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T1-R6",
+     "skill": "nw-money",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T1-R7",
+     "skill": "nw-public-ids",
+     "pass": false,
+     "class": "not_chosen"
+    },
+    {
+     "id": "T1-R8",
+     "skill": "nw-changelog",
+     "pass": false,
+     "class": "not_found"
+    }
+   ]
+  },
+  {
+   "task": "T2",
+   "tag": "m1",
+   "required": [
+    "nw-endpoint-registry",
+    "nw-timestamps",
+    "nw-pagination",
+    "nw-changelog"
+   ],
+   "loaded": [
+    "nw-error-responses",
+    "nw-pagination",
+    "nw-python-tests"
+   ],
+   "loaded_required": [
+    "nw-pagination"
+   ],
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-error-responses",
+    "nw-python-tests"
+   ],
+   "searches": 1,
+   "required_class": {
+    "nw-endpoint-registry": "not_found",
+    "nw-timestamps": "not_chosen",
+    "nw-pagination": "loaded",
+    "nw-changelog": "not_found"
+   },
+   "required_ranks": {
+    "nw-endpoint-registry": null,
+    "nw-timestamps": [
+     [
+      1,
+      14
+     ]
+    ],
+    "nw-pagination": [
+     [
+      1,
+      5
+     ]
+    ],
+    "nw-changelog": null
+   },
+   "rule_items": [
+    {
+     "id": "T2-R1",
+     "skill": "nw-endpoint-registry",
+     "pass": false,
+     "class": "not_found"
+    },
+    {
+     "id": "T2-R2",
+     "skill": "nw-pagination",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T2-R3",
+     "skill": "nw-timestamps",
+     "pass": false,
+     "class": "not_chosen"
+    },
+    {
+     "id": "T2-R4",
+     "skill": "nw-pagination",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T2-R5",
+     "skill": "nw-pagination",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T2-R6",
+     "skill": "nw-changelog",
+     "pass": false,
+     "class": "not_found"
+    }
+   ]
+  },
+  {
+   "task": "T2",
+   "tag": "m2",
+   "required": [
+    "nw-endpoint-registry",
+    "nw-timestamps",
+    "nw-pagination",
+    "nw-changelog"
+   ],
+   "loaded": [
+    "nw-error-responses",
+    "nw-pagination",
+    "nw-python-tests"
+   ],
+   "loaded_required": [
+    "nw-pagination"
+   ],
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-error-responses",
+    "nw-python-tests"
+   ],
+   "searches": 1,
+   "required_class": {
+    "nw-endpoint-registry": "not_found",
+    "nw-timestamps": "not_chosen",
+    "nw-pagination": "loaded",
+    "nw-changelog": "not_found"
+   },
+   "required_ranks": {
+    "nw-endpoint-registry": null,
+    "nw-timestamps": [
+     [
+      1,
+      7
+     ]
+    ],
+    "nw-pagination": [
+     [
+      1,
+      6
+     ]
+    ],
+    "nw-changelog": null
+   },
+   "rule_items": [
+    {
+     "id": "T2-R1",
+     "skill": "nw-endpoint-registry",
+     "pass": false,
+     "class": "not_found"
+    },
+    {
+     "id": "T2-R2",
+     "skill": "nw-pagination",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T2-R3",
+     "skill": "nw-timestamps",
+     "pass": false,
+     "class": "not_chosen"
+    },
+    {
+     "id": "T2-R4",
+     "skill": "nw-pagination",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T2-R5",
+     "skill": "nw-pagination",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T2-R6",
+     "skill": "nw-changelog",
+     "pass": false,
+     "class": "not_found"
+    }
+   ]
+  },
+  {
+   "task": "T2",
+   "tag": "m3",
+   "required": [
+    "nw-endpoint-registry",
+    "nw-timestamps",
+    "nw-pagination",
+    "nw-changelog"
+   ],
+   "loaded": [
+    "nw-error-responses",
+    "nw-pagination",
+    "nw-python-tests"
+   ],
+   "loaded_required": [
+    "nw-pagination"
+   ],
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-error-responses",
+    "nw-python-tests"
+   ],
+   "searches": 1,
+   "required_class": {
+    "nw-endpoint-registry": "not_found",
+    "nw-timestamps": "not_chosen",
+    "nw-pagination": "loaded",
+    "nw-changelog": "not_found"
+   },
+   "required_ranks": {
+    "nw-endpoint-registry": null,
+    "nw-timestamps": [
+     [
+      1,
+      12
+     ]
+    ],
+    "nw-pagination": [
+     [
+      1,
+      6
+     ]
+    ],
+    "nw-changelog": null
+   },
+   "rule_items": [
+    {
+     "id": "T2-R1",
+     "skill": "nw-endpoint-registry",
+     "pass": false,
+     "class": "not_found"
+    },
+    {
+     "id": "T2-R2",
+     "skill": "nw-pagination",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T2-R3",
+     "skill": "nw-timestamps",
+     "pass": false,
+     "class": "not_chosen"
+    },
+    {
+     "id": "T2-R4",
+     "skill": "nw-pagination",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T2-R5",
+     "skill": "nw-pagination",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T2-R6",
+     "skill": "nw-changelog",
+     "pass": false,
+     "class": "not_found"
+    }
+   ]
+  },
+  {
+   "task": "T3",
+   "tag": "m1",
+   "required": [
+    "nw-migrations",
+    "nw-deploy-checklist",
+    "nw-changelog"
+   ],
+   "loaded": [
+    "nw-changelog",
+    "nw-migrations",
+    "nw-python-tests"
+   ],
+   "loaded_required": [
+    "nw-changelog",
+    "nw-migrations"
+   ],
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-python-tests"
+   ],
+   "searches": 1,
+   "required_class": {
+    "nw-migrations": "loaded",
+    "nw-deploy-checklist": "not_chosen",
+    "nw-changelog": "loaded"
+   },
+   "required_ranks": {
+    "nw-migrations": [
+     [
+      1,
+      10
+     ]
+    ],
+    "nw-deploy-checklist": [
+     [
+      1,
+      5
+     ]
+    ],
+    "nw-changelog": [
+     [
+      1,
+      33
+     ]
+    ]
+   },
+   "rule_items": [
+    {
+     "id": "T3-R1",
+     "skill": "nw-migrations",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T3-R2",
+     "skill": "nw-migrations",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T3-R3",
+     "skill": "nw-deploy-checklist",
+     "pass": false,
+     "class": "not_chosen"
+    },
+    {
+     "id": "T3-R4",
+     "skill": "nw-changelog",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T3-R5",
+     "skill": "nw-migrations",
+     "pass": true,
+     "class": "loaded"
+    }
+   ]
+  },
+  {
+   "task": "T3",
+   "tag": "m2",
+   "required": [
+    "nw-migrations",
+    "nw-deploy-checklist",
+    "nw-changelog"
+   ],
+   "loaded": [
+    "nw-changelog",
+    "nw-migrations",
+    "nw-python-tests"
+   ],
+   "loaded_required": [
+    "nw-changelog",
+    "nw-migrations"
+   ],
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-python-tests"
+   ],
+   "searches": 1,
+   "required_class": {
+    "nw-migrations": "loaded",
+    "nw-deploy-checklist": "not_chosen",
+    "nw-changelog": "loaded"
+   },
+   "required_ranks": {
+    "nw-migrations": [
+     [
+      1,
+      13
+     ]
+    ],
+    "nw-deploy-checklist": [
+     [
+      1,
+      6
+     ]
+    ],
+    "nw-changelog": [
+     [
+      1,
+      36
+     ]
+    ]
+   },
+   "rule_items": [
+    {
+     "id": "T3-R1",
+     "skill": "nw-migrations",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T3-R2",
+     "skill": "nw-migrations",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T3-R3",
+     "skill": "nw-deploy-checklist",
+     "pass": false,
+     "class": "not_chosen"
+    },
+    {
+     "id": "T3-R4",
+     "skill": "nw-changelog",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T3-R5",
+     "skill": "nw-migrations",
+     "pass": true,
+     "class": "loaded"
+    }
+   ]
+  },
+  {
+   "task": "T3",
+   "tag": "m3",
+   "required": [
+    "nw-migrations",
+    "nw-deploy-checklist",
+    "nw-changelog"
+   ],
+   "loaded": [
+    "nw-changelog",
+    "nw-legacy-migrations",
+    "nw-migrations",
+    "nw-python-tests"
+   ],
+   "loaded_required": [
+    "nw-changelog",
+    "nw-migrations"
+   ],
+   "loaded_distractor": [
+    "nw-legacy-migrations"
+   ],
+   "loaded_other_nw": [
+    "nw-python-tests"
+   ],
+   "searches": 1,
+   "required_class": {
+    "nw-migrations": "loaded",
+    "nw-deploy-checklist": "not_chosen",
+    "nw-changelog": "loaded"
+   },
+   "required_ranks": {
+    "nw-migrations": [
+     [
+      1,
+      23
+     ]
+    ],
+    "nw-deploy-checklist": [
+     [
+      1,
+      5
+     ]
+    ],
+    "nw-changelog": [
+     [
+      1,
+      39
+     ]
+    ]
+   },
+   "rule_items": [
+    {
+     "id": "T3-R1",
+     "skill": "nw-migrations",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T3-R2",
+     "skill": "nw-migrations",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T3-R3",
+     "skill": "nw-deploy-checklist",
+     "pass": false,
+     "class": "not_chosen"
+    },
+    {
+     "id": "T3-R4",
+     "skill": "nw-changelog",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T3-R5",
+     "skill": "nw-migrations",
+     "pass": true,
+     "class": "loaded"
+    }
+   ]
+  },
+  {
+   "task": "T4",
+   "tag": "m1",
+   "required": [
+    "nw-deploy-checklist",
+    "nw-config",
+    "nw-changelog"
+   ],
+   "loaded": [
+    "nw-config",
+    "nw-deploy-checklist",
+    "nw-python-tests"
+   ],
+   "loaded_required": [
+    "nw-config",
+    "nw-deploy-checklist"
+   ],
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-python-tests"
+   ],
+   "searches": 1,
+   "required_class": {
+    "nw-deploy-checklist": "loaded",
+    "nw-config": "loaded",
+    "nw-changelog": "not_found"
+   },
+   "required_ranks": {
+    "nw-deploy-checklist": [
+     [
+      1,
+      4
+     ]
+    ],
+    "nw-config": [
+     [
+      1,
+      1
+     ]
+    ],
+    "nw-changelog": null
+   },
+   "rule_items": [
+    {
+     "id": "T4-R1",
+     "skill": "nw-config",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T4-R2",
+     "skill": "nw-config",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T4-R3",
+     "skill": "nw-deploy-checklist",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T4-R4",
+     "skill": "nw-changelog",
+     "pass": false,
+     "class": "not_found"
+    },
+    {
+     "id": "T4-R5",
+     "skill": "nw-config",
+     "pass": true,
+     "class": "loaded"
+    }
+   ]
+  },
+  {
+   "task": "T4",
+   "tag": "m2",
+   "required": [
+    "nw-deploy-checklist",
+    "nw-config",
+    "nw-changelog"
+   ],
+   "loaded": [
+    "nw-config",
+    "nw-deploy-checklist",
+    "nw-python-tests"
+   ],
+   "loaded_required": [
+    "nw-config",
+    "nw-deploy-checklist"
+   ],
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-python-tests"
+   ],
+   "searches": 1,
+   "required_class": {
+    "nw-deploy-checklist": "loaded",
+    "nw-config": "loaded",
+    "nw-changelog": "not_found"
+   },
+   "required_ranks": {
+    "nw-deploy-checklist": [
+     [
+      1,
+      4
+     ]
+    ],
+    "nw-config": [
+     [
+      1,
+      1
+     ]
+    ],
+    "nw-changelog": null
+   },
+   "rule_items": [
+    {
+     "id": "T4-R1",
+     "skill": "nw-config",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T4-R2",
+     "skill": "nw-config",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T4-R3",
+     "skill": "nw-deploy-checklist",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T4-R4",
+     "skill": "nw-changelog",
+     "pass": false,
+     "class": "not_found"
+    },
+    {
+     "id": "T4-R5",
+     "skill": "nw-config",
+     "pass": true,
+     "class": "loaded"
+    }
+   ]
+  },
+  {
+   "task": "T4",
+   "tag": "m3",
+   "required": [
+    "nw-deploy-checklist",
+    "nw-config",
+    "nw-changelog"
+   ],
+   "loaded": [
+    "nw-config",
+    "nw-deploy-checklist",
+    "nw-python-tests"
+   ],
+   "loaded_required": [
+    "nw-config",
+    "nw-deploy-checklist"
+   ],
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-python-tests"
+   ],
+   "searches": 1,
+   "required_class": {
+    "nw-deploy-checklist": "loaded",
+    "nw-config": "loaded",
+    "nw-changelog": "not_found"
+   },
+   "required_ranks": {
+    "nw-deploy-checklist": [
+     [
+      1,
+      9
+     ]
+    ],
+    "nw-config": [
+     [
+      1,
+      1
+     ]
+    ],
+    "nw-changelog": null
+   },
+   "rule_items": [
+    {
+     "id": "T4-R1",
+     "skill": "nw-config",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T4-R2",
+     "skill": "nw-config",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T4-R3",
+     "skill": "nw-deploy-checklist",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T4-R4",
+     "skill": "nw-changelog",
+     "pass": false,
+     "class": "not_found"
+    },
+    {
+     "id": "T4-R5",
+     "skill": "nw-config",
+     "pass": true,
+     "class": "loaded"
+    }
+   ]
+  },
+  {
+   "task": "T5",
+   "tag": "m1",
+   "required": [
+    "nw-structured-logging",
+    "nw-feature-flags",
+    "nw-changelog"
+   ],
+   "loaded": [
+    "nw-feature-flags",
+    "nw-money",
+    "nw-python-tests"
+   ],
+   "loaded_required": [
+    "nw-feature-flags"
+   ],
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-money",
+    "nw-python-tests"
+   ],
+   "searches": 1,
+   "required_class": {
+    "nw-structured-logging": "not_found",
+    "nw-feature-flags": "loaded",
+    "nw-changelog": "not_found"
+   },
+   "required_ranks": {
+    "nw-structured-logging": null,
+    "nw-feature-flags": [
+     [
+      1,
+      3
+     ]
+    ],
+    "nw-changelog": null
+   },
+   "rule_items": [
+    {
+     "id": "T5-R1",
+     "skill": "nw-feature-flags",
+     "pass": false,
+     "class": "loaded_failed"
+    },
+    {
+     "id": "T5-R2",
+     "skill": "nw-feature-flags",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T5-R3",
+     "skill": "nw-structured-logging",
+     "pass": false,
+     "class": "not_found"
+    },
+    {
+     "id": "T5-R4",
+     "skill": "nw-structured-logging",
+     "pass": true,
+     "class": "not_found"
+    },
+    {
+     "id": "T5-R5",
+     "skill": "nw-changelog",
+     "pass": false,
+     "class": "not_found"
+    }
+   ]
+  },
+  {
+   "task": "T5",
+   "tag": "m2",
+   "required": [
+    "nw-structured-logging",
+    "nw-feature-flags",
+    "nw-changelog"
+   ],
+   "loaded": [
+    "nw-deploy-checklist",
+    "nw-feature-flags",
+    "nw-python-tests"
+   ],
+   "loaded_required": [
+    "nw-feature-flags"
+   ],
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-deploy-checklist",
+    "nw-python-tests"
+   ],
+   "searches": 1,
+   "required_class": {
+    "nw-structured-logging": "not_found",
+    "nw-feature-flags": "loaded",
+    "nw-changelog": "not_found"
+   },
+   "required_ranks": {
+    "nw-structured-logging": null,
+    "nw-feature-flags": [
+     [
+      1,
+      2
+     ]
+    ],
+    "nw-changelog": null
+   },
+   "rule_items": [
+    {
+     "id": "T5-R1",
+     "skill": "nw-feature-flags",
+     "pass": false,
+     "class": "loaded_failed"
+    },
+    {
+     "id": "T5-R2",
+     "skill": "nw-feature-flags",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T5-R3",
+     "skill": "nw-structured-logging",
+     "pass": false,
+     "class": "not_found"
+    },
+    {
+     "id": "T5-R4",
+     "skill": "nw-structured-logging",
+     "pass": true,
+     "class": "not_found"
+    },
+    {
+     "id": "T5-R5",
+     "skill": "nw-changelog",
+     "pass": false,
+     "class": "not_found"
+    }
+   ]
+  },
+  {
+   "task": "T5",
+   "tag": "m3",
+   "required": [
+    "nw-structured-logging",
+    "nw-feature-flags",
+    "nw-changelog"
+   ],
+   "loaded": [
+    "nw-feature-flags",
+    "nw-money",
+    "nw-python-tests"
+   ],
+   "loaded_required": [
+    "nw-feature-flags"
+   ],
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-money",
+    "nw-python-tests"
+   ],
+   "searches": 1,
+   "required_class": {
+    "nw-structured-logging": "not_found",
+    "nw-feature-flags": "loaded",
+    "nw-changelog": "not_found"
+   },
+   "required_ranks": {
+    "nw-structured-logging": null,
+    "nw-feature-flags": [
+     [
+      1,
+      2
+     ]
+    ],
+    "nw-changelog": null
+   },
+   "rule_items": [
+    {
+     "id": "T5-R1",
+     "skill": "nw-feature-flags",
+     "pass": false,
+     "class": "loaded_failed"
+    },
+    {
+     "id": "T5-R2",
+     "skill": "nw-feature-flags",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T5-R3",
+     "skill": "nw-structured-logging",
+     "pass": false,
+     "class": "not_found"
+    },
+    {
+     "id": "T5-R4",
+     "skill": "nw-structured-logging",
+     "pass": true,
+     "class": "not_found"
+    },
+    {
+     "id": "T5-R5",
+     "skill": "nw-changelog",
+     "pass": false,
+     "class": "not_found"
+    }
+   ]
+  },
+  {
+   "task": "T6",
+   "tag": "m1",
+   "required": [
+    "nw-python-tests"
+   ],
+   "loaded": [
+    "nw-money",
+    "nw-python-tests"
+   ],
+   "loaded_required": [
+    "nw-python-tests"
+   ],
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-money"
+   ],
+   "searches": 1,
+   "required_class": {
+    "nw-python-tests": "loaded"
+   },
+   "required_ranks": {
+    "nw-python-tests": [
+     [
+      1,
+      7
+     ]
+    ]
+   },
+   "rule_items": [
+    {
+     "id": "T6-R1",
+     "skill": "nw-python-tests",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T6-R2",
+     "skill": "nw-python-tests",
+     "pass": false,
+     "class": "loaded_failed"
+    },
+    {
+     "id": "T6-R3",
+     "skill": "nw-python-tests",
+     "pass": false,
+     "class": "loaded_failed"
+    }
+   ]
+  },
+  {
+   "task": "T6",
+   "tag": "m2",
+   "required": [
+    "nw-python-tests"
+   ],
+   "loaded": [
+    "nw-money",
+    "nw-python-tests"
+   ],
+   "loaded_required": [
+    "nw-python-tests"
+   ],
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-money"
+   ],
+   "searches": 1,
+   "required_class": {
+    "nw-python-tests": "loaded"
+   },
+   "required_ranks": {
+    "nw-python-tests": [
+     [
+      1,
+      7
+     ]
+    ]
+   },
+   "rule_items": [
+    {
+     "id": "T6-R1",
+     "skill": "nw-python-tests",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T6-R2",
+     "skill": "nw-python-tests",
+     "pass": false,
+     "class": "loaded_failed"
+    },
+    {
+     "id": "T6-R3",
+     "skill": "nw-python-tests",
+     "pass": false,
+     "class": "loaded_failed"
+    }
+   ]
+  },
+  {
+   "task": "T6",
+   "tag": "m3",
+   "required": [
+    "nw-python-tests"
+   ],
+   "loaded": [
+    "nw-money",
+    "nw-python-tests"
+   ],
+   "loaded_required": [
+    "nw-python-tests"
+   ],
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-money"
+   ],
+   "searches": 1,
+   "required_class": {
+    "nw-python-tests": "loaded"
+   },
+   "required_ranks": {
+    "nw-python-tests": [
+     [
+      1,
+      7
+     ]
+    ]
+   },
+   "rule_items": [
+    {
+     "id": "T6-R1",
+     "skill": "nw-python-tests",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T6-R2",
+     "skill": "nw-python-tests",
+     "pass": false,
+     "class": "loaded_failed"
+    },
+    {
+     "id": "T6-R3",
+     "skill": "nw-python-tests",
+     "pass": false,
+     "class": "loaded_failed"
+    }
+   ]
+  },
+  {
+   "task": "T7",
+   "tag": "m1",
+   "required": [
+    "nw-web-i18n",
+    "nw-ui-tokens",
+    "nw-changelog"
+   ],
+   "loaded": [
+    "nw-web-analytics",
+    "nw-web-i18n"
+   ],
+   "loaded_required": [
+    "nw-web-i18n"
+   ],
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-web-analytics"
+   ],
+   "searches": 1,
+   "required_class": {
+    "nw-web-i18n": "loaded",
+    "nw-ui-tokens": "not_found",
+    "nw-changelog": "not_found"
+   },
+   "required_ranks": {
+    "nw-web-i18n": [
+     [
+      1,
+      1
+     ]
+    ],
+    "nw-ui-tokens": null,
+    "nw-changelog": null
+   },
+   "rule_items": [
+    {
+     "id": "T7-R1",
+     "skill": "nw-web-i18n",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T7-R2",
+     "skill": "nw-web-i18n",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T7-R3",
+     "skill": "nw-ui-tokens",
+     "pass": false,
+     "class": "not_found"
+    },
+    {
+     "id": "T7-R4",
+     "skill": "nw-ui-tokens",
+     "pass": false,
+     "class": "not_found"
+    },
+    {
+     "id": "T7-R5",
+     "skill": "nw-changelog",
+     "pass": false,
+     "class": "not_found"
+    }
+   ]
+  },
+  {
+   "task": "T7",
+   "tag": "m2",
+   "required": [
+    "nw-web-i18n",
+    "nw-ui-tokens",
+    "nw-changelog"
+   ],
+   "loaded": [
+    "nw-pagination",
+    "nw-web-analytics",
+    "nw-web-i18n"
+   ],
+   "loaded_required": [
+    "nw-web-i18n"
+   ],
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-pagination",
+    "nw-web-analytics"
+   ],
+   "searches": 1,
+   "required_class": {
+    "nw-web-i18n": "loaded",
+    "nw-ui-tokens": "not_found",
+    "nw-changelog": "not_found"
+   },
+   "required_ranks": {
+    "nw-web-i18n": [
+     [
+      1,
+      2
+     ]
+    ],
+    "nw-ui-tokens": null,
+    "nw-changelog": null
+   },
+   "rule_items": [
+    {
+     "id": "T7-R1",
+     "skill": "nw-web-i18n",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T7-R2",
+     "skill": "nw-web-i18n",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T7-R3",
+     "skill": "nw-ui-tokens",
+     "pass": false,
+     "class": "not_found"
+    },
+    {
+     "id": "T7-R4",
+     "skill": "nw-ui-tokens",
+     "pass": false,
+     "class": "not_found"
+    },
+    {
+     "id": "T7-R5",
+     "skill": "nw-changelog",
+     "pass": false,
+     "class": "not_found"
+    }
+   ]
+  },
+  {
+   "task": "T7",
+   "tag": "m3",
+   "required": [
+    "nw-web-i18n",
+    "nw-ui-tokens",
+    "nw-changelog"
+   ],
+   "loaded": [
+    "nw-web-analytics",
+    "nw-web-i18n"
+   ],
+   "loaded_required": [
+    "nw-web-i18n"
+   ],
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-web-analytics"
+   ],
+   "searches": 1,
+   "required_class": {
+    "nw-web-i18n": "loaded",
+    "nw-ui-tokens": "not_found",
+    "nw-changelog": "not_found"
+   },
+   "required_ranks": {
+    "nw-web-i18n": [
+     [
+      1,
+      2
+     ]
+    ],
+    "nw-ui-tokens": null,
+    "nw-changelog": null
+   },
+   "rule_items": [
+    {
+     "id": "T7-R1",
+     "skill": "nw-web-i18n",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T7-R2",
+     "skill": "nw-web-i18n",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T7-R3",
+     "skill": "nw-ui-tokens",
+     "pass": false,
+     "class": "not_found"
+    },
+    {
+     "id": "T7-R4",
+     "skill": "nw-ui-tokens",
+     "pass": false,
+     "class": "not_found"
+    },
+    {
+     "id": "T7-R5",
+     "skill": "nw-changelog",
+     "pass": false,
+     "class": "not_found"
+    }
+   ]
+  },
+  {
+   "task": "T8",
+   "tag": "m1",
+   "required": [
+    "nw-web-i18n",
+    "nw-web-analytics",
+    "nw-ui-tokens"
+   ],
+   "loaded": [
+    "nw-web-analytics"
+   ],
+   "loaded_required": [
+    "nw-web-analytics"
+   ],
+   "loaded_distractor": [],
+   "loaded_other_nw": [],
+   "searches": 1,
+   "required_class": {
+    "nw-web-i18n": "not_found",
+    "nw-web-analytics": "loaded",
+    "nw-ui-tokens": "not_found"
+   },
+   "required_ranks": {
+    "nw-web-i18n": null,
+    "nw-web-analytics": [
+     [
+      1,
+      45
+     ]
+    ],
+    "nw-ui-tokens": null
+   },
+   "rule_items": [
+    {
+     "id": "T8-R1",
+     "skill": "nw-web-i18n",
+     "pass": false,
+     "class": "not_found"
+    },
+    {
+     "id": "T8-R2",
+     "skill": "nw-web-i18n",
+     "pass": true,
+     "class": "not_found"
+    },
+    {
+     "id": "T8-R3",
+     "skill": "nw-web-analytics",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T8-R4",
+     "skill": "nw-web-analytics",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T8-R5",
+     "skill": "nw-ui-tokens",
+     "pass": false,
+     "class": "not_found"
+    }
+   ]
+  },
+  {
+   "task": "T8",
+   "tag": "m2",
+   "required": [
+    "nw-web-i18n",
+    "nw-web-analytics",
+    "nw-ui-tokens"
+   ],
+   "loaded": [
+    "nw-web-analytics"
+   ],
+   "loaded_required": [
+    "nw-web-analytics"
+   ],
+   "loaded_distractor": [],
+   "loaded_other_nw": [],
+   "searches": 1,
+   "required_class": {
+    "nw-web-i18n": "not_found",
+    "nw-web-analytics": "loaded",
+    "nw-ui-tokens": "not_found"
+   },
+   "required_ranks": {
+    "nw-web-i18n": null,
+    "nw-web-analytics": [
+     [
+      1,
+      34
+     ]
+    ],
+    "nw-ui-tokens": null
+   },
+   "rule_items": [
+    {
+     "id": "T8-R1",
+     "skill": "nw-web-i18n",
+     "pass": false,
+     "class": "not_found"
+    },
+    {
+     "id": "T8-R2",
+     "skill": "nw-web-i18n",
+     "pass": true,
+     "class": "not_found"
+    },
+    {
+     "id": "T8-R3",
+     "skill": "nw-web-analytics",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T8-R4",
+     "skill": "nw-web-analytics",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T8-R5",
+     "skill": "nw-ui-tokens",
+     "pass": false,
+     "class": "not_found"
+    }
+   ]
+  },
+  {
+   "task": "T8",
+   "tag": "m3",
+   "required": [
+    "nw-web-i18n",
+    "nw-web-analytics",
+    "nw-ui-tokens"
+   ],
+   "loaded": [
+    "nw-web-analytics"
+   ],
+   "loaded_required": [
+    "nw-web-analytics"
+   ],
+   "loaded_distractor": [],
+   "loaded_other_nw": [],
+   "searches": 1,
+   "required_class": {
+    "nw-web-i18n": "not_found",
+    "nw-web-analytics": "loaded",
+    "nw-ui-tokens": "not_found"
+   },
+   "required_ranks": {
+    "nw-web-i18n": null,
+    "nw-web-analytics": [
+     [
+      1,
+      31
+     ]
+    ],
+    "nw-ui-tokens": null
+   },
+   "rule_items": [
+    {
+     "id": "T8-R1",
+     "skill": "nw-web-i18n",
+     "pass": false,
+     "class": "not_found"
+    },
+    {
+     "id": "T8-R2",
+     "skill": "nw-web-i18n",
+     "pass": true,
+     "class": "not_found"
+    },
+    {
+     "id": "T8-R3",
+     "skill": "nw-web-analytics",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T8-R4",
+     "skill": "nw-web-analytics",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T8-R5",
+     "skill": "nw-ui-tokens",
+     "pass": false,
+     "class": "not_found"
+    }
+   ]
+  }
+ ]
+}

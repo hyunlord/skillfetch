@@ -1,0 +1,2332 @@
+{
+ "summary": {
+  "sessions": 30,
+  "required_by_class_T": {
+   "loaded": 37,
+   "pinned": 36,
+   "not_chosen": 2,
+   "not_found": 3
+  },
+  "required_by_class_all": {
+   "loaded": 49,
+   "pinned": 42,
+   "not_chosen": 2,
+   "not_found": 3
+  },
+  "failed_T_by_class": {
+   "loaded_failed": 13,
+   "not_chosen": 2,
+   "pinned_failed": 3,
+   "not_found": 1
+  },
+  "passed_T_by_class": {
+   "loaded": 60,
+   "pinned": 42,
+   "not_found": 5
+  },
+  "distractor_loads": 1,
+  "sessions_with_distractor": 1,
+  "other_platform_loads": 44,
+  "N_sessions_with_skill_tool": null,
+  "N_sessions_with_file_read": null,
+  "per_rule_item": {
+   "C1-R1": {
+    "pass": 3
+   },
+   "C1-R2": {
+    "pass": 3
+   },
+   "C1-R3": {
+    "pass": 3
+   },
+   "C1-R4": {
+    "loaded_failed": 3
+   },
+   "C1-R5": {
+    "pass": 3
+   },
+   "C1-R6": {
+    "undecidable": 3
+   },
+   "C2-R1": {
+    "pass": 3
+   },
+   "C2-R2": {
+    "pass": 3
+   },
+   "C2-R3": {
+    "pass": 3
+   },
+   "C2-R4": {
+    "pass": 3
+   },
+   "T1-R1": {
+    "pass": 3
+   },
+   "T1-R2": {
+    "pass": 3
+   },
+   "T1-R3": {
+    "pass": 3
+   },
+   "T1-R4": {
+    "pass": 3
+   },
+   "T1-R5": {
+    "pass": 3
+   },
+   "T1-R6": {
+    "pass": 3
+   },
+   "T1-R7": {
+    "pass": 3
+   },
+   "T1-R8": {
+    "pass": 3
+   },
+   "T2-R1": {
+    "pass": 3
+   },
+   "T2-R2": {
+    "pass": 3
+   },
+   "T2-R3": {
+    "loaded_failed": 3
+   },
+   "T2-R4": {
+    "pass": 3
+   },
+   "T2-R5": {
+    "pass": 3
+   },
+   "T2-R6": {
+    "pass": 3
+   },
+   "T3-R1": {
+    "pass": 3
+   },
+   "T3-R2": {
+    "pass": 3
+   },
+   "T3-R3": {
+    "not_chosen": 2,
+    "pass": 1
+   },
+   "T3-R4": {
+    "pass": 3
+   },
+   "T3-R5": {
+    "pass": 3
+   },
+   "T4-R1": {
+    "loaded_failed": 2,
+    "pass": 1
+   },
+   "T4-R2": {
+    "pass": 3
+   },
+   "T4-R3": {
+    "pass": 3
+   },
+   "T4-R4": {
+    "pass": 3
+   },
+   "T4-R5": {
+    "pass": 3
+   },
+   "T5-R1": {
+    "loaded_failed": 3
+   },
+   "T5-R2": {
+    "pass": 3
+   },
+   "T5-R3": {
+    "pinned_failed": 3
+   },
+   "T5-R4": {
+    "pass": 3
+   },
+   "T5-R5": {
+    "pass": 3
+   },
+   "T6-R1": {
+    "pass": 3
+   },
+   "T6-R2": {
+    "loaded_failed": 2,
+    "pass": 1
+   },
+   "T6-R3": {
+    "loaded_failed": 3
+   },
+   "T7-R1": {
+    "pass": 3
+   },
+   "T7-R2": {
+    "pass": 3
+   },
+   "T7-R3": {
+    "pass": 3
+   },
+   "T7-R4": {
+    "pass": 3
+   },
+   "T7-R5": {
+    "pass": 3
+   },
+   "T8-R1": {
+    "pass": 3
+   },
+   "T8-R2": {
+    "pass": 3
+   },
+   "T8-R3": {
+    "pass": 2,
+    "not_found": 1
+   },
+   "T8-R4": {
+    "pass": 3
+   },
+   "T8-R5": {
+    "pass": 3
+   }
+  }
+ },
+ "sessions": [
+  {
+   "task": "C1",
+   "tag": "m1",
+   "required": [
+    "nw-error-responses",
+    "nw-endpoint-registry",
+    "nw-public-ids",
+    "nw-timestamps"
+   ],
+   "loaded": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-error-responses",
+    "nw-public-ids",
+    "nw-python-tests",
+    "nw-structured-logging",
+    "nw-timestamps",
+    "nw-ui-tokens"
+   ],
+   "pinned": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "skill_calls": null,
+   "via_skill_tool": null,
+   "via_file_read": null,
+   "searches": 1,
+   "required_class": {
+    "nw-error-responses": "loaded",
+    "nw-endpoint-registry": "pinned",
+    "nw-public-ids": "loaded",
+    "nw-timestamps": "loaded"
+   },
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-python-tests"
+   ],
+   "rule_items": [
+    {
+     "id": "C1-R1",
+     "skill": "nw-error-responses",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "C1-R2",
+     "skill": "nw-error-responses",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "C1-R3",
+     "skill": "nw-endpoint-registry",
+     "pass": true,
+     "class": "pinned"
+    },
+    {
+     "id": "C1-R4",
+     "skill": "nw-public-ids",
+     "pass": false,
+     "class": "loaded_failed"
+    },
+    {
+     "id": "C1-R5",
+     "skill": "nw-timestamps",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "C1-R6",
+     "skill": "nw-timestamps",
+     "pass": null,
+     "class": "undecidable"
+    }
+   ]
+  },
+  {
+   "task": "C1",
+   "tag": "m2",
+   "required": [
+    "nw-error-responses",
+    "nw-endpoint-registry",
+    "nw-public-ids",
+    "nw-timestamps"
+   ],
+   "loaded": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-error-responses",
+    "nw-public-ids",
+    "nw-python-tests",
+    "nw-structured-logging",
+    "nw-timestamps",
+    "nw-ui-tokens"
+   ],
+   "pinned": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "skill_calls": null,
+   "via_skill_tool": null,
+   "via_file_read": null,
+   "searches": 1,
+   "required_class": {
+    "nw-error-responses": "loaded",
+    "nw-endpoint-registry": "pinned",
+    "nw-public-ids": "loaded",
+    "nw-timestamps": "loaded"
+   },
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-python-tests"
+   ],
+   "rule_items": [
+    {
+     "id": "C1-R1",
+     "skill": "nw-error-responses",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "C1-R2",
+     "skill": "nw-error-responses",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "C1-R3",
+     "skill": "nw-endpoint-registry",
+     "pass": true,
+     "class": "pinned"
+    },
+    {
+     "id": "C1-R4",
+     "skill": "nw-public-ids",
+     "pass": false,
+     "class": "loaded_failed"
+    },
+    {
+     "id": "C1-R5",
+     "skill": "nw-timestamps",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "C1-R6",
+     "skill": "nw-timestamps",
+     "pass": null,
+     "class": "undecidable"
+    }
+   ]
+  },
+  {
+   "task": "C1",
+   "tag": "m3",
+   "required": [
+    "nw-error-responses",
+    "nw-endpoint-registry",
+    "nw-public-ids",
+    "nw-timestamps"
+   ],
+   "loaded": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-error-responses",
+    "nw-public-ids",
+    "nw-python-tests",
+    "nw-structured-logging",
+    "nw-timestamps",
+    "nw-ui-tokens"
+   ],
+   "pinned": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "skill_calls": null,
+   "via_skill_tool": null,
+   "via_file_read": null,
+   "searches": 1,
+   "required_class": {
+    "nw-error-responses": "loaded",
+    "nw-endpoint-registry": "pinned",
+    "nw-public-ids": "loaded",
+    "nw-timestamps": "loaded"
+   },
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-python-tests"
+   ],
+   "rule_items": [
+    {
+     "id": "C1-R1",
+     "skill": "nw-error-responses",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "C1-R2",
+     "skill": "nw-error-responses",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "C1-R3",
+     "skill": "nw-endpoint-registry",
+     "pass": true,
+     "class": "pinned"
+    },
+    {
+     "id": "C1-R4",
+     "skill": "nw-public-ids",
+     "pass": false,
+     "class": "loaded_failed"
+    },
+    {
+     "id": "C1-R5",
+     "skill": "nw-timestamps",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "C1-R6",
+     "skill": "nw-timestamps",
+     "pass": null,
+     "class": "undecidable"
+    }
+   ]
+  },
+  {
+   "task": "C2",
+   "tag": "m1",
+   "required": [
+    "nw-web-i18n",
+    "nw-ui-tokens"
+   ],
+   "loaded": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-structured-logging",
+    "nw-ui-tokens",
+    "nw-web-analytics",
+    "nw-web-i18n"
+   ],
+   "pinned": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "skill_calls": null,
+   "via_skill_tool": null,
+   "via_file_read": null,
+   "searches": 1,
+   "required_class": {
+    "nw-web-i18n": "loaded",
+    "nw-ui-tokens": "pinned"
+   },
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-web-analytics"
+   ],
+   "rule_items": [
+    {
+     "id": "C2-R1",
+     "skill": "nw-web-i18n",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "C2-R2",
+     "skill": "nw-web-i18n",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "C2-R3",
+     "skill": "nw-ui-tokens",
+     "pass": true,
+     "class": "pinned"
+    },
+    {
+     "id": "C2-R4",
+     "skill": "nw-ui-tokens",
+     "pass": true,
+     "class": "pinned"
+    }
+   ]
+  },
+  {
+   "task": "C2",
+   "tag": "m2",
+   "required": [
+    "nw-web-i18n",
+    "nw-ui-tokens"
+   ],
+   "loaded": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-structured-logging",
+    "nw-ui-tokens",
+    "nw-web-analytics",
+    "nw-web-i18n"
+   ],
+   "pinned": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "skill_calls": null,
+   "via_skill_tool": null,
+   "via_file_read": null,
+   "searches": 1,
+   "required_class": {
+    "nw-web-i18n": "loaded",
+    "nw-ui-tokens": "pinned"
+   },
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-web-analytics"
+   ],
+   "rule_items": [
+    {
+     "id": "C2-R1",
+     "skill": "nw-web-i18n",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "C2-R2",
+     "skill": "nw-web-i18n",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "C2-R3",
+     "skill": "nw-ui-tokens",
+     "pass": true,
+     "class": "pinned"
+    },
+    {
+     "id": "C2-R4",
+     "skill": "nw-ui-tokens",
+     "pass": true,
+     "class": "pinned"
+    }
+   ]
+  },
+  {
+   "task": "C2",
+   "tag": "m3",
+   "required": [
+    "nw-web-i18n",
+    "nw-ui-tokens"
+   ],
+   "loaded": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-structured-logging",
+    "nw-ui-tokens",
+    "nw-web-analytics",
+    "nw-web-i18n"
+   ],
+   "pinned": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "skill_calls": null,
+   "via_skill_tool": null,
+   "via_file_read": null,
+   "searches": 1,
+   "required_class": {
+    "nw-web-i18n": "loaded",
+    "nw-ui-tokens": "pinned"
+   },
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-web-analytics"
+   ],
+   "rule_items": [
+    {
+     "id": "C2-R1",
+     "skill": "nw-web-i18n",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "C2-R2",
+     "skill": "nw-web-i18n",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "C2-R3",
+     "skill": "nw-ui-tokens",
+     "pass": true,
+     "class": "pinned"
+    },
+    {
+     "id": "C2-R4",
+     "skill": "nw-ui-tokens",
+     "pass": true,
+     "class": "pinned"
+    }
+   ]
+  },
+  {
+   "task": "T1",
+   "tag": "m1",
+   "required": [
+    "nw-error-responses",
+    "nw-structured-logging",
+    "nw-endpoint-registry",
+    "nw-money",
+    "nw-public-ids",
+    "nw-changelog"
+   ],
+   "loaded": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-error-responses",
+    "nw-money",
+    "nw-public-ids",
+    "nw-python-tests",
+    "nw-structured-logging",
+    "nw-timestamps",
+    "nw-ui-tokens"
+   ],
+   "pinned": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "skill_calls": null,
+   "via_skill_tool": null,
+   "via_file_read": null,
+   "searches": 1,
+   "required_class": {
+    "nw-error-responses": "loaded",
+    "nw-structured-logging": "pinned",
+    "nw-endpoint-registry": "pinned",
+    "nw-money": "loaded",
+    "nw-public-ids": "loaded",
+    "nw-changelog": "pinned"
+   },
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-python-tests",
+    "nw-timestamps"
+   ],
+   "rule_items": [
+    {
+     "id": "T1-R1",
+     "skill": "nw-error-responses",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T1-R2",
+     "skill": "nw-error-responses",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T1-R3",
+     "skill": "nw-structured-logging",
+     "pass": true,
+     "class": "pinned"
+    },
+    {
+     "id": "T1-R4",
+     "skill": "nw-structured-logging",
+     "pass": true,
+     "class": "pinned"
+    },
+    {
+     "id": "T1-R5",
+     "skill": "nw-endpoint-registry",
+     "pass": true,
+     "class": "pinned"
+    },
+    {
+     "id": "T1-R6",
+     "skill": "nw-money",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T1-R7",
+     "skill": "nw-public-ids",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T1-R8",
+     "skill": "nw-changelog",
+     "pass": true,
+     "class": "pinned"
+    }
+   ]
+  },
+  {
+   "task": "T1",
+   "tag": "m2",
+   "required": [
+    "nw-error-responses",
+    "nw-structured-logging",
+    "nw-endpoint-registry",
+    "nw-money",
+    "nw-public-ids",
+    "nw-changelog"
+   ],
+   "loaded": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-error-responses",
+    "nw-migrations",
+    "nw-money",
+    "nw-public-ids",
+    "nw-python-tests",
+    "nw-structured-logging",
+    "nw-timestamps",
+    "nw-ui-tokens"
+   ],
+   "pinned": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "skill_calls": null,
+   "via_skill_tool": null,
+   "via_file_read": null,
+   "searches": 1,
+   "required_class": {
+    "nw-error-responses": "loaded",
+    "nw-structured-logging": "pinned",
+    "nw-endpoint-registry": "pinned",
+    "nw-money": "loaded",
+    "nw-public-ids": "loaded",
+    "nw-changelog": "pinned"
+   },
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-migrations",
+    "nw-python-tests",
+    "nw-timestamps"
+   ],
+   "rule_items": [
+    {
+     "id": "T1-R1",
+     "skill": "nw-error-responses",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T1-R2",
+     "skill": "nw-error-responses",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T1-R3",
+     "skill": "nw-structured-logging",
+     "pass": true,
+     "class": "pinned"
+    },
+    {
+     "id": "T1-R4",
+     "skill": "nw-structured-logging",
+     "pass": true,
+     "class": "pinned"
+    },
+    {
+     "id": "T1-R5",
+     "skill": "nw-endpoint-registry",
+     "pass": true,
+     "class": "pinned"
+    },
+    {
+     "id": "T1-R6",
+     "skill": "nw-money",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T1-R7",
+     "skill": "nw-public-ids",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T1-R8",
+     "skill": "nw-changelog",
+     "pass": true,
+     "class": "pinned"
+    }
+   ]
+  },
+  {
+   "task": "T1",
+   "tag": "m3",
+   "required": [
+    "nw-error-responses",
+    "nw-structured-logging",
+    "nw-endpoint-registry",
+    "nw-money",
+    "nw-public-ids",
+    "nw-changelog"
+   ],
+   "loaded": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-error-responses",
+    "nw-migrations",
+    "nw-money",
+    "nw-public-ids",
+    "nw-python-tests",
+    "nw-structured-logging",
+    "nw-timestamps",
+    "nw-ui-tokens"
+   ],
+   "pinned": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "skill_calls": null,
+   "via_skill_tool": null,
+   "via_file_read": null,
+   "searches": 1,
+   "required_class": {
+    "nw-error-responses": "loaded",
+    "nw-structured-logging": "pinned",
+    "nw-endpoint-registry": "pinned",
+    "nw-money": "loaded",
+    "nw-public-ids": "loaded",
+    "nw-changelog": "pinned"
+   },
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-migrations",
+    "nw-python-tests",
+    "nw-timestamps"
+   ],
+   "rule_items": [
+    {
+     "id": "T1-R1",
+     "skill": "nw-error-responses",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T1-R2",
+     "skill": "nw-error-responses",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T1-R3",
+     "skill": "nw-structured-logging",
+     "pass": true,
+     "class": "pinned"
+    },
+    {
+     "id": "T1-R4",
+     "skill": "nw-structured-logging",
+     "pass": true,
+     "class": "pinned"
+    },
+    {
+     "id": "T1-R5",
+     "skill": "nw-endpoint-registry",
+     "pass": true,
+     "class": "pinned"
+    },
+    {
+     "id": "T1-R6",
+     "skill": "nw-money",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T1-R7",
+     "skill": "nw-public-ids",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T1-R8",
+     "skill": "nw-changelog",
+     "pass": true,
+     "class": "pinned"
+    }
+   ]
+  },
+  {
+   "task": "T2",
+   "tag": "m1",
+   "required": [
+    "nw-endpoint-registry",
+    "nw-timestamps",
+    "nw-pagination",
+    "nw-changelog"
+   ],
+   "loaded": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-error-responses",
+    "nw-pagination",
+    "nw-python-tests",
+    "nw-structured-logging",
+    "nw-timestamps",
+    "nw-ui-tokens"
+   ],
+   "pinned": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "skill_calls": null,
+   "via_skill_tool": null,
+   "via_file_read": null,
+   "searches": 1,
+   "required_class": {
+    "nw-endpoint-registry": "pinned",
+    "nw-timestamps": "loaded",
+    "nw-pagination": "loaded",
+    "nw-changelog": "pinned"
+   },
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-error-responses",
+    "nw-python-tests"
+   ],
+   "rule_items": [
+    {
+     "id": "T2-R1",
+     "skill": "nw-endpoint-registry",
+     "pass": true,
+     "class": "pinned"
+    },
+    {
+     "id": "T2-R2",
+     "skill": "nw-pagination",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T2-R3",
+     "skill": "nw-timestamps",
+     "pass": false,
+     "class": "loaded_failed"
+    },
+    {
+     "id": "T2-R4",
+     "skill": "nw-pagination",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T2-R5",
+     "skill": "nw-pagination",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T2-R6",
+     "skill": "nw-changelog",
+     "pass": true,
+     "class": "pinned"
+    }
+   ]
+  },
+  {
+   "task": "T2",
+   "tag": "m2",
+   "required": [
+    "nw-endpoint-registry",
+    "nw-timestamps",
+    "nw-pagination",
+    "nw-changelog"
+   ],
+   "loaded": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-error-responses",
+    "nw-pagination",
+    "nw-python-tests",
+    "nw-structured-logging",
+    "nw-timestamps",
+    "nw-ui-tokens"
+   ],
+   "pinned": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "skill_calls": null,
+   "via_skill_tool": null,
+   "via_file_read": null,
+   "searches": 1,
+   "required_class": {
+    "nw-endpoint-registry": "pinned",
+    "nw-timestamps": "loaded",
+    "nw-pagination": "loaded",
+    "nw-changelog": "pinned"
+   },
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-error-responses",
+    "nw-python-tests"
+   ],
+   "rule_items": [
+    {
+     "id": "T2-R1",
+     "skill": "nw-endpoint-registry",
+     "pass": true,
+     "class": "pinned"
+    },
+    {
+     "id": "T2-R2",
+     "skill": "nw-pagination",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T2-R3",
+     "skill": "nw-timestamps",
+     "pass": false,
+     "class": "loaded_failed"
+    },
+    {
+     "id": "T2-R4",
+     "skill": "nw-pagination",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T2-R5",
+     "skill": "nw-pagination",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T2-R6",
+     "skill": "nw-changelog",
+     "pass": true,
+     "class": "pinned"
+    }
+   ]
+  },
+  {
+   "task": "T2",
+   "tag": "m3",
+   "required": [
+    "nw-endpoint-registry",
+    "nw-timestamps",
+    "nw-pagination",
+    "nw-changelog"
+   ],
+   "loaded": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-error-responses",
+    "nw-money",
+    "nw-pagination",
+    "nw-public-ids",
+    "nw-python-tests",
+    "nw-structured-logging",
+    "nw-timestamps",
+    "nw-ui-tokens"
+   ],
+   "pinned": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "skill_calls": null,
+   "via_skill_tool": null,
+   "via_file_read": null,
+   "searches": 1,
+   "required_class": {
+    "nw-endpoint-registry": "pinned",
+    "nw-timestamps": "loaded",
+    "nw-pagination": "loaded",
+    "nw-changelog": "pinned"
+   },
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-error-responses",
+    "nw-money",
+    "nw-public-ids",
+    "nw-python-tests"
+   ],
+   "rule_items": [
+    {
+     "id": "T2-R1",
+     "skill": "nw-endpoint-registry",
+     "pass": true,
+     "class": "pinned"
+    },
+    {
+     "id": "T2-R2",
+     "skill": "nw-pagination",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T2-R3",
+     "skill": "nw-timestamps",
+     "pass": false,
+     "class": "loaded_failed"
+    },
+    {
+     "id": "T2-R4",
+     "skill": "nw-pagination",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T2-R5",
+     "skill": "nw-pagination",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T2-R6",
+     "skill": "nw-changelog",
+     "pass": true,
+     "class": "pinned"
+    }
+   ]
+  },
+  {
+   "task": "T3",
+   "tag": "m1",
+   "required": [
+    "nw-migrations",
+    "nw-deploy-checklist",
+    "nw-changelog"
+   ],
+   "loaded": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-migrations",
+    "nw-python-tests",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "pinned": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "skill_calls": null,
+   "via_skill_tool": null,
+   "via_file_read": null,
+   "searches": 1,
+   "required_class": {
+    "nw-migrations": "loaded",
+    "nw-deploy-checklist": "not_chosen",
+    "nw-changelog": "pinned"
+   },
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-python-tests"
+   ],
+   "rule_items": [
+    {
+     "id": "T3-R1",
+     "skill": "nw-migrations",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T3-R2",
+     "skill": "nw-migrations",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T3-R3",
+     "skill": "nw-deploy-checklist",
+     "pass": false,
+     "class": "not_chosen"
+    },
+    {
+     "id": "T3-R4",
+     "skill": "nw-changelog",
+     "pass": true,
+     "class": "pinned"
+    },
+    {
+     "id": "T3-R5",
+     "skill": "nw-migrations",
+     "pass": true,
+     "class": "loaded"
+    }
+   ]
+  },
+  {
+   "task": "T3",
+   "tag": "m2",
+   "required": [
+    "nw-migrations",
+    "nw-deploy-checklist",
+    "nw-changelog"
+   ],
+   "loaded": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-legacy-migrations",
+    "nw-migrations",
+    "nw-python-tests",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "pinned": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "skill_calls": null,
+   "via_skill_tool": null,
+   "via_file_read": null,
+   "searches": 1,
+   "required_class": {
+    "nw-migrations": "loaded",
+    "nw-deploy-checklist": "not_chosen",
+    "nw-changelog": "pinned"
+   },
+   "loaded_distractor": [
+    "nw-legacy-migrations"
+   ],
+   "loaded_other_nw": [
+    "nw-python-tests"
+   ],
+   "rule_items": [
+    {
+     "id": "T3-R1",
+     "skill": "nw-migrations",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T3-R2",
+     "skill": "nw-migrations",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T3-R3",
+     "skill": "nw-deploy-checklist",
+     "pass": false,
+     "class": "not_chosen"
+    },
+    {
+     "id": "T3-R4",
+     "skill": "nw-changelog",
+     "pass": true,
+     "class": "pinned"
+    },
+    {
+     "id": "T3-R5",
+     "skill": "nw-migrations",
+     "pass": true,
+     "class": "loaded"
+    }
+   ]
+  },
+  {
+   "task": "T3",
+   "tag": "m3",
+   "required": [
+    "nw-migrations",
+    "nw-deploy-checklist",
+    "nw-changelog"
+   ],
+   "loaded": [
+    "nw-changelog",
+    "nw-deploy-checklist",
+    "nw-endpoint-registry",
+    "nw-migrations",
+    "nw-python-tests",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "pinned": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "skill_calls": null,
+   "via_skill_tool": null,
+   "via_file_read": null,
+   "searches": 1,
+   "required_class": {
+    "nw-migrations": "loaded",
+    "nw-deploy-checklist": "loaded",
+    "nw-changelog": "pinned"
+   },
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-python-tests"
+   ],
+   "rule_items": [
+    {
+     "id": "T3-R1",
+     "skill": "nw-migrations",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T3-R2",
+     "skill": "nw-migrations",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T3-R3",
+     "skill": "nw-deploy-checklist",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T3-R4",
+     "skill": "nw-changelog",
+     "pass": true,
+     "class": "pinned"
+    },
+    {
+     "id": "T3-R5",
+     "skill": "nw-migrations",
+     "pass": true,
+     "class": "loaded"
+    }
+   ]
+  },
+  {
+   "task": "T4",
+   "tag": "m1",
+   "required": [
+    "nw-deploy-checklist",
+    "nw-config",
+    "nw-changelog"
+   ],
+   "loaded": [
+    "nw-changelog",
+    "nw-config",
+    "nw-deploy-checklist",
+    "nw-endpoint-registry",
+    "nw-python-tests",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "pinned": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "skill_calls": null,
+   "via_skill_tool": null,
+   "via_file_read": null,
+   "searches": 1,
+   "required_class": {
+    "nw-deploy-checklist": "loaded",
+    "nw-config": "loaded",
+    "nw-changelog": "pinned"
+   },
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-python-tests"
+   ],
+   "rule_items": [
+    {
+     "id": "T4-R1",
+     "skill": "nw-config",
+     "pass": false,
+     "class": "loaded_failed"
+    },
+    {
+     "id": "T4-R2",
+     "skill": "nw-config",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T4-R3",
+     "skill": "nw-deploy-checklist",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T4-R4",
+     "skill": "nw-changelog",
+     "pass": true,
+     "class": "pinned"
+    },
+    {
+     "id": "T4-R5",
+     "skill": "nw-config",
+     "pass": true,
+     "class": "loaded"
+    }
+   ]
+  },
+  {
+   "task": "T4",
+   "tag": "m2",
+   "required": [
+    "nw-deploy-checklist",
+    "nw-config",
+    "nw-changelog"
+   ],
+   "loaded": [
+    "nw-changelog",
+    "nw-config",
+    "nw-deploy-checklist",
+    "nw-endpoint-registry",
+    "nw-python-tests",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "pinned": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "skill_calls": null,
+   "via_skill_tool": null,
+   "via_file_read": null,
+   "searches": 1,
+   "required_class": {
+    "nw-deploy-checklist": "loaded",
+    "nw-config": "loaded",
+    "nw-changelog": "pinned"
+   },
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-python-tests"
+   ],
+   "rule_items": [
+    {
+     "id": "T4-R1",
+     "skill": "nw-config",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T4-R2",
+     "skill": "nw-config",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T4-R3",
+     "skill": "nw-deploy-checklist",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T4-R4",
+     "skill": "nw-changelog",
+     "pass": true,
+     "class": "pinned"
+    },
+    {
+     "id": "T4-R5",
+     "skill": "nw-config",
+     "pass": true,
+     "class": "loaded"
+    }
+   ]
+  },
+  {
+   "task": "T4",
+   "tag": "m3",
+   "required": [
+    "nw-deploy-checklist",
+    "nw-config",
+    "nw-changelog"
+   ],
+   "loaded": [
+    "nw-changelog",
+    "nw-config",
+    "nw-deploy-checklist",
+    "nw-endpoint-registry",
+    "nw-python-tests",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "pinned": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "skill_calls": null,
+   "via_skill_tool": null,
+   "via_file_read": null,
+   "searches": 1,
+   "required_class": {
+    "nw-deploy-checklist": "loaded",
+    "nw-config": "loaded",
+    "nw-changelog": "pinned"
+   },
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-python-tests"
+   ],
+   "rule_items": [
+    {
+     "id": "T4-R1",
+     "skill": "nw-config",
+     "pass": false,
+     "class": "loaded_failed"
+    },
+    {
+     "id": "T4-R2",
+     "skill": "nw-config",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T4-R3",
+     "skill": "nw-deploy-checklist",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T4-R4",
+     "skill": "nw-changelog",
+     "pass": true,
+     "class": "pinned"
+    },
+    {
+     "id": "T4-R5",
+     "skill": "nw-config",
+     "pass": true,
+     "class": "loaded"
+    }
+   ]
+  },
+  {
+   "task": "T5",
+   "tag": "m1",
+   "required": [
+    "nw-structured-logging",
+    "nw-feature-flags",
+    "nw-changelog"
+   ],
+   "loaded": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-feature-flags",
+    "nw-money",
+    "nw-python-tests",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "pinned": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "skill_calls": null,
+   "via_skill_tool": null,
+   "via_file_read": null,
+   "searches": 1,
+   "required_class": {
+    "nw-structured-logging": "pinned",
+    "nw-feature-flags": "loaded",
+    "nw-changelog": "pinned"
+   },
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-money",
+    "nw-python-tests"
+   ],
+   "rule_items": [
+    {
+     "id": "T5-R1",
+     "skill": "nw-feature-flags",
+     "pass": false,
+     "class": "loaded_failed"
+    },
+    {
+     "id": "T5-R2",
+     "skill": "nw-feature-flags",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T5-R3",
+     "skill": "nw-structured-logging",
+     "pass": false,
+     "class": "pinned_failed"
+    },
+    {
+     "id": "T5-R4",
+     "skill": "nw-structured-logging",
+     "pass": true,
+     "class": "pinned"
+    },
+    {
+     "id": "T5-R5",
+     "skill": "nw-changelog",
+     "pass": true,
+     "class": "pinned"
+    }
+   ]
+  },
+  {
+   "task": "T5",
+   "tag": "m2",
+   "required": [
+    "nw-structured-logging",
+    "nw-feature-flags",
+    "nw-changelog"
+   ],
+   "loaded": [
+    "nw-changelog",
+    "nw-deploy-checklist",
+    "nw-endpoint-registry",
+    "nw-feature-flags",
+    "nw-money",
+    "nw-python-tests",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "pinned": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "skill_calls": null,
+   "via_skill_tool": null,
+   "via_file_read": null,
+   "searches": 1,
+   "required_class": {
+    "nw-structured-logging": "pinned",
+    "nw-feature-flags": "loaded",
+    "nw-changelog": "pinned"
+   },
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-deploy-checklist",
+    "nw-money",
+    "nw-python-tests"
+   ],
+   "rule_items": [
+    {
+     "id": "T5-R1",
+     "skill": "nw-feature-flags",
+     "pass": false,
+     "class": "loaded_failed"
+    },
+    {
+     "id": "T5-R2",
+     "skill": "nw-feature-flags",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T5-R3",
+     "skill": "nw-structured-logging",
+     "pass": false,
+     "class": "pinned_failed"
+    },
+    {
+     "id": "T5-R4",
+     "skill": "nw-structured-logging",
+     "pass": true,
+     "class": "pinned"
+    },
+    {
+     "id": "T5-R5",
+     "skill": "nw-changelog",
+     "pass": true,
+     "class": "pinned"
+    }
+   ]
+  },
+  {
+   "task": "T5",
+   "tag": "m3",
+   "required": [
+    "nw-structured-logging",
+    "nw-feature-flags",
+    "nw-changelog"
+   ],
+   "loaded": [
+    "nw-changelog",
+    "nw-deploy-checklist",
+    "nw-endpoint-registry",
+    "nw-feature-flags",
+    "nw-python-tests",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "pinned": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "skill_calls": null,
+   "via_skill_tool": null,
+   "via_file_read": null,
+   "searches": 1,
+   "required_class": {
+    "nw-structured-logging": "pinned",
+    "nw-feature-flags": "loaded",
+    "nw-changelog": "pinned"
+   },
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-deploy-checklist",
+    "nw-python-tests"
+   ],
+   "rule_items": [
+    {
+     "id": "T5-R1",
+     "skill": "nw-feature-flags",
+     "pass": false,
+     "class": "loaded_failed"
+    },
+    {
+     "id": "T5-R2",
+     "skill": "nw-feature-flags",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T5-R3",
+     "skill": "nw-structured-logging",
+     "pass": false,
+     "class": "pinned_failed"
+    },
+    {
+     "id": "T5-R4",
+     "skill": "nw-structured-logging",
+     "pass": true,
+     "class": "pinned"
+    },
+    {
+     "id": "T5-R5",
+     "skill": "nw-changelog",
+     "pass": true,
+     "class": "pinned"
+    }
+   ]
+  },
+  {
+   "task": "T6",
+   "tag": "m1",
+   "required": [
+    "nw-python-tests"
+   ],
+   "loaded": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-money",
+    "nw-python-tests",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "pinned": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "skill_calls": null,
+   "via_skill_tool": null,
+   "via_file_read": null,
+   "searches": 1,
+   "required_class": {
+    "nw-python-tests": "loaded"
+   },
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-money"
+   ],
+   "rule_items": [
+    {
+     "id": "T6-R1",
+     "skill": "nw-python-tests",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T6-R2",
+     "skill": "nw-python-tests",
+     "pass": false,
+     "class": "loaded_failed"
+    },
+    {
+     "id": "T6-R3",
+     "skill": "nw-python-tests",
+     "pass": false,
+     "class": "loaded_failed"
+    }
+   ]
+  },
+  {
+   "task": "T6",
+   "tag": "m2",
+   "required": [
+    "nw-python-tests"
+   ],
+   "loaded": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-money",
+    "nw-python-tests",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "pinned": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "skill_calls": null,
+   "via_skill_tool": null,
+   "via_file_read": null,
+   "searches": 1,
+   "required_class": {
+    "nw-python-tests": "loaded"
+   },
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-money"
+   ],
+   "rule_items": [
+    {
+     "id": "T6-R1",
+     "skill": "nw-python-tests",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T6-R2",
+     "skill": "nw-python-tests",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T6-R3",
+     "skill": "nw-python-tests",
+     "pass": false,
+     "class": "loaded_failed"
+    }
+   ]
+  },
+  {
+   "task": "T6",
+   "tag": "m3",
+   "required": [
+    "nw-python-tests"
+   ],
+   "loaded": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-money",
+    "nw-python-tests",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "pinned": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "skill_calls": null,
+   "via_skill_tool": null,
+   "via_file_read": null,
+   "searches": 1,
+   "required_class": {
+    "nw-python-tests": "loaded"
+   },
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-money"
+   ],
+   "rule_items": [
+    {
+     "id": "T6-R1",
+     "skill": "nw-python-tests",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T6-R2",
+     "skill": "nw-python-tests",
+     "pass": false,
+     "class": "loaded_failed"
+    },
+    {
+     "id": "T6-R3",
+     "skill": "nw-python-tests",
+     "pass": false,
+     "class": "loaded_failed"
+    }
+   ]
+  },
+  {
+   "task": "T7",
+   "tag": "m1",
+   "required": [
+    "nw-web-i18n",
+    "nw-ui-tokens",
+    "nw-changelog"
+   ],
+   "loaded": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-pagination",
+    "nw-structured-logging",
+    "nw-ui-tokens",
+    "nw-web-analytics",
+    "nw-web-i18n"
+   ],
+   "pinned": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "skill_calls": null,
+   "via_skill_tool": null,
+   "via_file_read": null,
+   "searches": 1,
+   "required_class": {
+    "nw-web-i18n": "loaded",
+    "nw-ui-tokens": "pinned",
+    "nw-changelog": "pinned"
+   },
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-pagination",
+    "nw-web-analytics"
+   ],
+   "rule_items": [
+    {
+     "id": "T7-R1",
+     "skill": "nw-web-i18n",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T7-R2",
+     "skill": "nw-web-i18n",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T7-R3",
+     "skill": "nw-ui-tokens",
+     "pass": true,
+     "class": "pinned"
+    },
+    {
+     "id": "T7-R4",
+     "skill": "nw-ui-tokens",
+     "pass": true,
+     "class": "pinned"
+    },
+    {
+     "id": "T7-R5",
+     "skill": "nw-changelog",
+     "pass": true,
+     "class": "pinned"
+    }
+   ]
+  },
+  {
+   "task": "T7",
+   "tag": "m2",
+   "required": [
+    "nw-web-i18n",
+    "nw-ui-tokens",
+    "nw-changelog"
+   ],
+   "loaded": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-pagination",
+    "nw-structured-logging",
+    "nw-ui-tokens",
+    "nw-web-analytics",
+    "nw-web-i18n"
+   ],
+   "pinned": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "skill_calls": null,
+   "via_skill_tool": null,
+   "via_file_read": null,
+   "searches": 1,
+   "required_class": {
+    "nw-web-i18n": "loaded",
+    "nw-ui-tokens": "pinned",
+    "nw-changelog": "pinned"
+   },
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-pagination",
+    "nw-web-analytics"
+   ],
+   "rule_items": [
+    {
+     "id": "T7-R1",
+     "skill": "nw-web-i18n",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T7-R2",
+     "skill": "nw-web-i18n",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T7-R3",
+     "skill": "nw-ui-tokens",
+     "pass": true,
+     "class": "pinned"
+    },
+    {
+     "id": "T7-R4",
+     "skill": "nw-ui-tokens",
+     "pass": true,
+     "class": "pinned"
+    },
+    {
+     "id": "T7-R5",
+     "skill": "nw-changelog",
+     "pass": true,
+     "class": "pinned"
+    }
+   ]
+  },
+  {
+   "task": "T7",
+   "tag": "m3",
+   "required": [
+    "nw-web-i18n",
+    "nw-ui-tokens",
+    "nw-changelog"
+   ],
+   "loaded": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-pagination",
+    "nw-structured-logging",
+    "nw-ui-tokens",
+    "nw-web-analytics",
+    "nw-web-i18n"
+   ],
+   "pinned": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "skill_calls": null,
+   "via_skill_tool": null,
+   "via_file_read": null,
+   "searches": 1,
+   "required_class": {
+    "nw-web-i18n": "loaded",
+    "nw-ui-tokens": "pinned",
+    "nw-changelog": "pinned"
+   },
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-pagination",
+    "nw-web-analytics"
+   ],
+   "rule_items": [
+    {
+     "id": "T7-R1",
+     "skill": "nw-web-i18n",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T7-R2",
+     "skill": "nw-web-i18n",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T7-R3",
+     "skill": "nw-ui-tokens",
+     "pass": true,
+     "class": "pinned"
+    },
+    {
+     "id": "T7-R4",
+     "skill": "nw-ui-tokens",
+     "pass": true,
+     "class": "pinned"
+    },
+    {
+     "id": "T7-R5",
+     "skill": "nw-changelog",
+     "pass": true,
+     "class": "pinned"
+    }
+   ]
+  },
+  {
+   "task": "T8",
+   "tag": "m1",
+   "required": [
+    "nw-web-i18n",
+    "nw-web-analytics",
+    "nw-ui-tokens"
+   ],
+   "loaded": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-structured-logging",
+    "nw-ui-tokens",
+    "nw-web-analytics"
+   ],
+   "pinned": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "skill_calls": null,
+   "via_skill_tool": null,
+   "via_file_read": null,
+   "searches": 1,
+   "required_class": {
+    "nw-web-i18n": "not_found",
+    "nw-web-analytics": "loaded",
+    "nw-ui-tokens": "pinned"
+   },
+   "loaded_distractor": [],
+   "loaded_other_nw": [],
+   "rule_items": [
+    {
+     "id": "T8-R1",
+     "skill": "nw-web-i18n",
+     "pass": true,
+     "class": "not_found"
+    },
+    {
+     "id": "T8-R2",
+     "skill": "nw-web-i18n",
+     "pass": true,
+     "class": "not_found"
+    },
+    {
+     "id": "T8-R3",
+     "skill": "nw-web-analytics",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T8-R4",
+     "skill": "nw-web-analytics",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T8-R5",
+     "skill": "nw-ui-tokens",
+     "pass": true,
+     "class": "pinned"
+    }
+   ]
+  },
+  {
+   "task": "T8",
+   "tag": "m2",
+   "required": [
+    "nw-web-i18n",
+    "nw-web-analytics",
+    "nw-ui-tokens"
+   ],
+   "loaded": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-structured-logging",
+    "nw-ui-tokens",
+    "nw-web-analytics",
+    "nw-web-i18n"
+   ],
+   "pinned": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "skill_calls": null,
+   "via_skill_tool": null,
+   "via_file_read": null,
+   "searches": 1,
+   "required_class": {
+    "nw-web-i18n": "loaded",
+    "nw-web-analytics": "loaded",
+    "nw-ui-tokens": "pinned"
+   },
+   "loaded_distractor": [],
+   "loaded_other_nw": [],
+   "rule_items": [
+    {
+     "id": "T8-R1",
+     "skill": "nw-web-i18n",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T8-R2",
+     "skill": "nw-web-i18n",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T8-R3",
+     "skill": "nw-web-analytics",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T8-R4",
+     "skill": "nw-web-analytics",
+     "pass": true,
+     "class": "loaded"
+    },
+    {
+     "id": "T8-R5",
+     "skill": "nw-ui-tokens",
+     "pass": true,
+     "class": "pinned"
+    }
+   ]
+  },
+  {
+   "task": "T8",
+   "tag": "m3",
+   "required": [
+    "nw-web-i18n",
+    "nw-web-analytics",
+    "nw-ui-tokens"
+   ],
+   "loaded": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "pinned": [
+    "nw-changelog",
+    "nw-endpoint-registry",
+    "nw-structured-logging",
+    "nw-ui-tokens"
+   ],
+   "skill_calls": null,
+   "via_skill_tool": null,
+   "via_file_read": null,
+   "searches": 1,
+   "required_class": {
+    "nw-web-i18n": "not_found",
+    "nw-web-analytics": "not_found",
+    "nw-ui-tokens": "pinned"
+   },
+   "loaded_distractor": [],
+   "loaded_other_nw": [],
+   "rule_items": [
+    {
+     "id": "T8-R1",
+     "skill": "nw-web-i18n",
+     "pass": true,
+     "class": "not_found"
+    },
+    {
+     "id": "T8-R2",
+     "skill": "nw-web-i18n",
+     "pass": true,
+     "class": "not_found"
+    },
+    {
+     "id": "T8-R3",
+     "skill": "nw-web-analytics",
+     "pass": false,
+     "class": "not_found"
+    },
+    {
+     "id": "T8-R4",
+     "skill": "nw-web-analytics",
+     "pass": true,
+     "class": "not_found"
+    },
+    {
+     "id": "T8-R5",
+     "skill": "nw-ui-tokens",
+     "pass": true,
+     "class": "pinned"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,52 @@
+{
+  "task_id": "T5",
+  "rule_pass": 5,
+  "rule_total": 5,
+  "rule_undecidable": 0,
+  "func_pass": 3,
+  "func_total": 3,
+  "rule_items": [
+    {
+      "id": "T5-R1",
+      "pass": true,
+      "detail": "Found in orders/pricing.py: use_new = is_on(\"orders.new_discount\", tenant)"
+    },
+    {
+      "id": "T5-R2",
+      "pass": true,
+      "detail": "Flag orders.new_discount with owner and expires"
+    },
+    {
+      "id": "T5-R3",
+      "pass": true,
+      "detail": "Found in orders/pricing.py: nwlog_event(\"pricing.discount_evaluated\", tenant_id=tenant, trace_id=\"\", flag_va"
+    },
+    {
+      "id": "T5-R4",
+      "pass": true,
+      "detail": "No print/logging in added app code"
+    },
+    {
+      "id": "T5-R5",
+      "pass": true,
+      "detail": "Found changes/feat-tiered-discount.md"
+    }
+  ],
+  "functional_items": [
+    {
+      "id": "T5-F1",
+      "pass": true,
+      "detail": "default path: calculate_total(10,2,10)=18.0 apply_tax(100)=110.0 order total=10.0 "
+    },
+    {
+      "id": "T5-F2",
+      "pass": true,
+      "detail": "switch branch in added app code=True; tests pass=True"
+    },
+    {
+      "id": "T5-F3",
+      "pass": true,
+      "detail": "4 passed, 3 warnings in 0.04s |  is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).\n    now = datetime.utcnow().isoformat()\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.htm"
+    }
+  ]
+}

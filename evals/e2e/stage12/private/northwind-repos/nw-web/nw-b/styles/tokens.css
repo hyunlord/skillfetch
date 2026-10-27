@@ -1,0 +1,21 @@
+:root {
+  --nw-color-primary: #0066cc;
+  --nw-color-primary-hover: #0052a3;
+  --nw-color-error: #cc3333;
+  --nw-color-success: #28a745;
+  --nw-color-bg: #ffffff;
+  --nw-color-bg-secondary: #f8f9fa;
+  --nw-color-text: #212529;
+  --nw-color-text-secondary: #6c757d;
+  --nw-color-border: #dee2e6;
+  --nw-spacing-xs: 4px;
+  --nw-spacing-sm: 8px;
+  --nw-spacing-md: 16px;
+  --nw-spacing-lg: 24px;
+  --nw-spacing-xl: 32px;
+  --nw-radius-sm: 4px;
+  --nw-radius-md: 8px;
+  --nw-font-size-sm: 14px;
+  --nw-font-size-md: 16px;
+  --nw-font-size-lg: 20px;
+}

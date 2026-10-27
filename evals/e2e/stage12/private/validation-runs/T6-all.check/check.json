@@ -1,0 +1,42 @@
+{
+  "task_id": "T6",
+  "rule_pass": 3,
+  "rule_total": 3,
+  "rule_undecidable": 0,
+  "func_pass": 3,
+  "func_total": 3,
+  "rule_items": [
+    {
+      "id": "T6-R1",
+      "pass": true,
+      "detail": "Found tests/test_pricing__calculate.py"
+    },
+    {
+      "id": "T6-R2",
+      "pass": true,
+      "detail": "nw_factory fixture requested in tests/test_pricing__calculate.py"
+    },
+    {
+      "id": "T6-R3",
+      "pass": true,
+      "detail": "@pytest.mark.contract in tests/test_pricing__calculate.py"
+    }
+  ],
+  "functional_items": [
+    {
+      "id": "T6-F1",
+      "pass": true,
+      "detail": "calculate_total called in new tests"
+    },
+    {
+      "id": "T6-F2",
+      "pass": true,
+      "detail": "apply_tax called in new tests"
+    },
+    {
+      "id": "T6-F3",
+      "pass": true,
+      "detail": "9 passed, 8 warnings in 0.11s |  is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).\n    now = datetime.utcnow().isoformat()\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.htm"
+    }
+  ]
+}

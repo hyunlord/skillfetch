@@ -1,0 +1,47 @@
+{
+  "task_id": "T7",
+  "rule_pass": 4,
+  "rule_total": 5,
+  "rule_undecidable": 0,
+  "func_pass": 2,
+  "func_total": 2,
+  "rule_items": [
+    {
+      "id": "T7-R1",
+      "pass": false,
+      "detail": "Hardcoded user-visible strings: ['No orders found.']"
+    },
+    {
+      "id": "T7-R2",
+      "pass": true,
+      "detail": "All 3 keys in both locales"
+    },
+    {
+      "id": "T7-R3",
+      "pass": true,
+      "detail": "Colors use tokens, no raw hex"
+    },
+    {
+      "id": "T7-R4",
+      "pass": true,
+      "detail": "Spacing uses tokens"
+    },
+    {
+      "id": "T7-R5",
+      "pass": true,
+      "detail": "Found changes/feat-order-history.md"
+    }
+  ],
+  "functional_items": [
+    {
+      "id": "T7-F1",
+      "pass": true,
+      "detail": "orders page=pages/orders.tsx"
+    },
+    {
+      "id": "T7-F2",
+      "pass": true,
+      "detail": "npm run build exit=0 | lth\n└ ○ /orders\n\n○  (Static)   prerendered as static content\nƒ  (Dynamic)  server-rendered on demand\n\n⚠ React 18 support is deprecated in Next.js 16 and will be removed in Next.js 17. Please upgrade to React 19. Learn more: https://nextjs.org/docs/messages/react-version\n⚠ Mini"
+    }
+  ]
+}

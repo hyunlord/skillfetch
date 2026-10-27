@@ -1,0 +1,67 @@
+{
+ "task": "T7",
+ "bundle": 4,
+ "cond": "Rp",
+ "tag": "d1",
+ "session_dir": "<worktrees>/s12/abc66b02efbc",
+ "preflight": {
+  "index": "index ok (12 files)",
+  "base": "ef31a68ab0c7715a9ec1a5e2919881e71e8c1d84",
+  "s11_r": "6c93fe177dc748dfe73b6cfe1cedc43844eb3086",
+  "main_checkout": {
+   "branch": "nw-a",
+   "head": "ef31a68ab0c7"
+  },
+  "leftover_processes": []
+ },
+ "clone": {
+  "branch": "s12b-rp-nw-a",
+  "head": "6c93fe177dc748dfe73b6cfe1cedc43844eb3086",
+  "refs": [
+   "refs/heads/main"
+  ],
+  "remotes": [],
+  "status": [],
+  "skills_files": [
+   ".claude/skills/skillfetch-router/SKILL.md"
+  ],
+  "router_sha256": "3fbc33adac90304235a4407bfcd6420d468ad39b66090c4a7fee3b9eb74ecc27",
+  "commits": [
+   "6c93fe1 chore: add project skill",
+   "ef31a68 initial: nw-web app"
+  ],
+  "base_skills_files": [],
+  "unreachable_objects": 0,
+  "ok": true
+ },
+ "prep_s": 2.3,
+ "prep_status": [],
+ "cmd": [
+  "claude",
+  "-p",
+  "주문 내역 페이지를 추가해 주세요. /orders 경로에서 주문 목록을 보여주는 페이지입니다.",
+  "--output-format",
+  "stream-json",
+  "--verbose",
+  "--include-hook-events",
+  "--max-turns",
+  "40",
+  "--allowedTools",
+  "Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*",
+  "--debug-file",
+  "<e2e>/stage12-private/dryrun/Rp/T7-d1.debug.log",
+  "--setting-sources",
+  "project",
+  "--strict-mcp-config",
+  "--mcp-config",
+  "<e2e>/stage12/mcp/mcp-rp.json"
+ ],
+ "path_head": "/opt/homebrew/opt/openjdk/bin",
+ "index_ok_after": true,
+ "fake_server_pid": null,
+ "cleanup": {
+  "killed": [],
+  "remaining": []
+ },
+ "leftover_after": []
+}

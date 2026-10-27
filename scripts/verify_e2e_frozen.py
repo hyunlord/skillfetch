@@ -23,6 +23,15 @@ from pathlib import Path
 E2E = Path(__file__).resolve().parents[1] / "evals" / "e2e"
 # workspace folders published under another path
 MOVED = {"../stage10-private/": "private/", "../stage11-private/": "private/"}
+# FROZEN files from Stage 12 on list paths from the workspace root; where those folders went
+ROOT_MOVED = {
+    "stage12-private/": "stage12/private/",
+    "stage12b/": "stage12/12b/",
+    "stage12c/": "stage12/12c/",
+    "stage13-private/": "stage13/private/",
+    "stageRF/": "stageQ/refire/",
+    "stageRF-private/": "stageQ/refire/private/",
+}
 
 
 def _rows(name: str) -> list[list[str]]:
@@ -50,7 +59,19 @@ def main() -> int:
             rel = rel.lstrip("*")
             for old, new in MOVED.items():
                 rel = rel.replace(old, new) if rel.startswith(old) else rel
-            candidates = [(frozen.parent / rel).resolve(), (E2E / stage / rel).resolve()]
+            from_root = next(
+                (
+                    new + rel.removeprefix(old)
+                    for old, new in ROOT_MOVED.items()
+                    if rel.startswith(old)
+                ),
+                rel,
+            )
+            candidates = [
+                (frozen.parent / rel).resolve(),
+                (E2E / stage / rel).resolve(),
+                (E2E / from_root).resolve(),
+            ]
             path = next((p for p in candidates if p.is_file()), None)
             key = next((str(p.relative_to(E2E)) for p in candidates if p.is_relative_to(E2E)), rel)
             if path is None:

@@ -1,0 +1,64 @@
+{
+ "task": "T7",
+ "bundle": 4,
+ "cond": "O",
+ "tag": "d1",
+ "session_dir": "<worktrees>/s12/d2b4cf00a184",
+ "preflight": {
+  "index": "index ok (12 files)",
+  "base": "ef31a68ab0c7715a9ec1a5e2919881e71e8c1d84",
+  "s11_r": "74407d10b75fdb08df3459e02385667d1e3e91da",
+  "main_checkout": {
+   "branch": "nw-a",
+   "head": "ef31a68ab0c7"
+  },
+  "leftover_processes": []
+ },
+ "clone": {
+  "branch": "nw-a",
+  "head": "ef31a68ab0c7715a9ec1a5e2919881e71e8c1d84",
+  "refs": [
+   "refs/heads/main"
+  ],
+  "remotes": [],
+  "status": [],
+  "skills_files": [],
+  "router_sha256": null,
+  "commits": [
+   "ef31a68 initial: nw-web app"
+  ],
+  "base_skills_files": [],
+  "unreachable_objects": 0,
+  "ok": true
+ },
+ "prep_s": 2.0,
+ "prep_status": [],
+ "cmd": [
+  "claude",
+  "-p",
+  "## 1. nw-web-i18n (northwind/nw-web-i18n@8f4b35c04bd7)\n\n# Web Internationalization\n\nAll user-visible strings in web pages must use the `t()` helper instead of hardcoded text:\n\n```tsx\nimport { t } from '@/lib/i18n'\n\n<h1>{t('orders.heading')}</h1>\n```\n\n- Key format: `<page>.<key>` (e.g. `orders.heading`, `settings.save_button`).\n- Every key must exist in BOTH `locales/en.json` and `locales/ko.json`.\n- No hardcoded user-visible strings in JSX.\n\n## Good Example\n\n```tsx\nimport { t } from '../lib/i18n'\n\n<h1>{t('orders.heading')}</h1>\n<p>{t('orders.empty_state')}</p>\n```\n\nlocales/en.json: `{ \"orders\": { \"heading\": \"Orders\", \"empty_state\": \"No orders yet.\" } }`\nlocales/ko.json: `{ \"orders\": { \"heading\": \"주문\", \"empty_state\": \"주문이 없습니다.\" } }`\n\n## Bad Example\n\n```tsx\n<h1>Orders</h1>\n<p>No orders yet.</p>\n```\n\nHardcoded English strings that cannot be localized.\n\n## Why\nAll Northwind web products must support English and Korean for our dual-market user base.\n\n## 2. nw-ui-tokens (northwind/nw-ui-tokens@005cc5740010)\n\n# UI Design Tokens\n\nAll colors and spacing in new or modified styles must use `var(--nw-*)` CSS custom properties:\n\n```css\ncolor: var(--nw-color-primary);\npadding: var(--nw-spacing-md);\n```\n\n- No raw hex color values (e.g. `#0066cc`).\n- No raw pixel spacing values (e.g. `16px` for layout spacing). Use `--nw-spacing-*` tokens.\n- Token definitions are in `styles/tokens.css`.\n\n## Good Example\n\n```tsx\n<div style={{ color: 'var(--nw-color-text)', padding: 'var(--nw-spacing-md)' }}>\n```\n\n## Bad Example\n\n```tsx\n<div style={{ color: '#212529', padding: '16px' }}>\n```\n\n## Why\nDesign tokens enable theme-wide changes from a single source and ensure visual consistency across the application.\n\n## 3. nw-changelog (northwind/nw-changelog@72d8f1872e37)\n\n# Changelog Fragments\n\nEvery user-facing change must create a changelog fragment file:\n\n    changes/<type>-<slug>.md\n\n- `<type>` is one of: `feat`, `fix`, `chore`.\n- `<slug>` is a short kebab-case identifier for the change.\n- The file body is a one-line description of the change.\n\n## Good Example\n\n`changes/feat-refund-endpoint.md`:\n```markdown\nAdded POST /refunds endpoint for processing order refunds.\n```\n\n## Bad Example\n\nCommitting a new feature without creating a changelog fragment.\n\n## Why\nFragment-based changelogs prevent merge conflicts and enable automated release note generation.\n\n주문 내역 페이지를 추가해 주세요. /orders 경로에서 주문 목록을 보여주는 페이지입니다.",
+  "--output-format",
+  "stream-json",
+  "--verbose",
+  "--include-hook-events",
+  "--max-turns",
+  "40",
+  "--allowedTools",
+  "Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*",
+  "--debug-file",
+  "<e2e>/stage12-private/dryrun/O/T7-d1.debug.log",
+  "--setting-sources",
+  "project",
+  "--strict-mcp-config",
+  "--mcp-config",
+  "<e2e>/stage12/mcp/mcp-none.json"
+ ],
+ "path_head": "/opt/homebrew/opt/openjdk/bin",
+ "index_ok_after": true,
+ "fake_server_pid": null,
+ "cleanup": {
+  "killed": [],
+  "remaining": []
+ },
+ "leftover_after": []
+}
