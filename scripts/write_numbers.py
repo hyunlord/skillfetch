@@ -1102,6 +1102,14 @@ def knowledge_gap(out: list[str]) -> None:
     out += [path.read_text().strip() if path.is_file() else "Not run yet.", ""]
 
 
+def index_scan(out: list[str]) -> None:
+    """§25: the scan rules over every skill of the released index (scripts/index_scan.py,
+    transcribed in data/e2e/index_scan.md)."""
+    out += ["## 25. Index scan: the scan rules over the released index", ""]
+    path = DATA / "e2e" / "index_scan.md"
+    out += [path.read_text().strip() if path.is_file() else "Not run yet.", ""]
+
+
 def main() -> None:
     out = [
         "# Numbers for the write-up",
@@ -1137,6 +1145,7 @@ def main() -> None:
         stage11,
         stage_q,
         knowledge_gap,
+        index_scan,
     ):
         section(out)
     OUT.parent.mkdir(parents=True, exist_ok=True)

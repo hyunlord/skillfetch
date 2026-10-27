@@ -2236,3 +2236,57 @@ Source: evals/knowledge-gap/report.md; questions and accepted answers in evals/k
 - These are short factual questions. They do not measure whether the model applies a fact while coding.
 - One model, 3 runs per question, 2 questions per candidate. Skills outside the 30 candidates were not asked about.
 
+## 25. Index scan: the scan rules over the released index
+
+Source: `uv run python scripts/index_scan.py report` over evals/index-scan/rows.jsonl (one derived row per skill: flags and counts, no skill text) and evals/index-scan/meta.json; the checks are those of `skillfetch scan` (index-format.md §5, §5.1). Measured after the post's numbers were frozen; not in §7's totals. No model calls.
+
+**What was scanned.**
+- **The index:** the released index (index-2026-10-24, built 2026-10-24): 2,785 indexed skills, 2,281 of them canonical.
+- **The files:** each skill's folder from the source snapshots the index was built from, at the pinned commits (0 missing).
+- **Rules:** injection-scan rules v6. The index was built with v5.
+- **Already rejected:** before indexing, the build rejected 143 more skills (lint 110, injection scan 33, under rules v5). They are not in the rows.
+
+| check | all indexed (n = 2,785) | canonical (n = 2,281) |
+|---|---:|---:|
+| fails the injection scan | 0 (0.0%) | 0 (0.0%) |
+| injection-scan warning (any) | 52 (1.9%) | 48 (2.1%) |
+| of which remote instructions (`network.remote-instructions`) | 11 (0.4%) | 11 (0.5%) |
+| size warning (any) | 67 (2.4%) | 67 (2.9%) |
+| of which SKILL.md over 8,000 tokens | 20 (0.7%) | 20 (0.9%) |
+| of which more than 20 files | 49 (1.8%) | 49 (2.1%) |
+| of which more than 1 MB | 17 (0.6%) | 17 (0.7%) |
+| bundles scripts | 252 (9.0%) | 252 (11.0%) |
+| no license in the skill itself (folder LICENSE or frontmatter) | 2,486 (89.3%) | 1,995 (87.5%) |
+| no license after the repo-root rule | 1,491 (53.5%) | 1,490 (65.3%) |
+| states a year or version (DATED) | 890 (32.0%) | 767 (33.6%) |
+| fails lint | 0 (0.0%) | 0 (0.0%) |
+
+- **Injection-scan warnings by rule (all indexed):**
+  - `privilege.sudo` 37;
+  - `network.remote-instructions` 11;
+  - `exfil.pipe-to-shell` 7;
+  - `scan.line-too-long` 2.
+- **Size:** the largest skill is 10.9 MB in 225 files.
+- **License:** the rule of `skillfetch scan` (index-format.md §5.1), the same as discover's.
+  - First the skill's own LICENSE file or frontmatter.
+  - Else the nearest license file above the skill folder, up to the repository root. This step is skipped in an aggregator (a third-party list, or at least 10% of its skills naming an upstream) and for a skill that names an upstream.
+  - The scan's last step, an indexed copy's license, is left out: every skill here is in the index.
+  - **The repo-root step gave 995 skills a license, all MIT,** from 3 sources (769 + 180 + 46 skills; none of the 3 is an aggregator).
+  - **The 1,491 left with none:**
+    - 1,455 come from the UASL snapshot and 1 from anthropics/skills. Both count as aggregators: UASL's skills record their upstreams, and anthropics/skills has a third-party notices file.
+    - The other 35 come from a repository with no license file.
+  - **Not the index's own license field.** This is not the `license` field of the index records. That field also counts a license declared for the source in sources.yaml and, for aggregated skills, the upstream repository's license (§1.8). By that field, 2,410 skills (86.5%) have none.
+- **Dated lines:** median 3 per skill with any, max 696.
+
+**Advice per skill** (index-format.md §5.1: safety and quality only, the license is not part of it; without the pair checks, which need a set of skills):
+
+| advice | all indexed | canonical |
+|---|---:|---:|
+| recommended | 2,459 (88.3%) | 1,959 (85.9%) |
+| caution (injection-scan warning, size or scripts) | 326 (11.7%) | 322 (14.1%) |
+| not recommended | 0 (0.0%) | 0 (0.0%) |
+
+**Limits.**
+- **Pre-filtered population:** indexed skills already passed lint and the build's injection scan, so the failure rates are 0 by construction. The 143 rejected skills are counted separately above.
+- **DATED is a pattern match:** a year, a version number, or a named product with a version, in prose. It does not judge whether the claim is out of date.
+
