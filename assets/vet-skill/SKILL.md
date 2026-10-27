@@ -6,7 +6,7 @@ description: Check an agent skill before it is installed, and find skills on req
 # Check skills before installing them
 
 - **Before installing:** when the user asks to install a skill, or before you write a skill
-  into `.claude/skills/` or `~/.claude/skills/`, call `scan_skill` (skillfetch MCP server)
+  into `.claude/skills/` or `~/.claude/skills/`, call `scan_skill` (the skillfetch MCP server)
   with its GitHub URL (`https://github.com/<owner>/<repo>/tree/<ref>/<path>`) or local folder.
   Show `advice_line` and `license_line` exactly as returned; for CAUTION or NOT RECOMMENDED,
   list the reasons with file, line number and quoted line (at most five). Ask whether to go
