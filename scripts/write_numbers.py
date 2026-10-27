@@ -1134,6 +1134,13 @@ def stage14(out: list[str]) -> None:
     out += [path.read_text().strip() if path.is_file() else "Not run yet.", ""]
 
 
+def router_release(out: list[str]) -> None:
+    """§29: the released router against the bytes the sessions ran (data/e2e/router_release.md)."""
+    out += ["## 29. The released router and the router the sessions ran", ""]
+    path = DATA / "e2e" / "router_release.md"
+    out += [path.read_text().strip() if path.is_file() else "Not written yet.", ""]
+
+
 def main() -> None:
     out = [
         "# Numbers for the write-up",
@@ -1173,6 +1180,7 @@ def main() -> None:
         stage13,
         stage12,
         stage14,
+        router_release,
     ):
         section(out)
     OUT.parent.mkdir(parents=True, exist_ok=True)

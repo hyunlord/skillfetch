@@ -1,6 +1,8 @@
 ---
 name: skillfetch-router
-description: Run this before your first tool call — before git status, Read, Grep, Glob or ls — whenever the user asks for a code change: a feature, a bug fix, a refactor, tests, docs, config, CI or deploy work, even if it looks small. It loads the skills for the task in four quick MCP calls. Skip it only for a one-line edit in one file, a rename, or a question with no edits.
+description: "Run this before your first tool call — before git status, Read, Grep, Glob or ls — whenever the user asks for a code change: a feature, a bug fix, a refactor, tests, docs, config, CI or deploy work, even if it looks small. It loads the skills for the task in four quick MCP calls. Skip it only for a one-line edit in one file, a rename, or a question with no edits."
+metadata:
+  version: "1.0.1"
 ---
 
 # skillfetch router

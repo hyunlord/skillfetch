@@ -2451,3 +2451,14 @@ Source: the Stage 14 report [`evals/e2e/stage14/report-14.md`](../../evals/e2e/s
 - The MCP server is the build Stages 11, Q and 13 used, without `find_skills` and `scan_skill`.
 - The judge package left out one rubric line ("reply.md 설명도 반영"); the 1–5 scale text was the same.
 
+## 29. The released router and the router the sessions ran
+
+Source: `assets/router-skill/SKILL.md` (released as 1.0.1) and the FROZEN files and run scripts of each stage under `evals/e2e/`, which record the router bytes each run used.
+
+- **The release and S-b′ differ only in the frontmatter.** The released router 1.0.1 (sha256 `d540297a71b557e8175f7cb6a6a8aab753285488640a724ccacb8f2e212100b6`) differs from S-b′ (sha256 `3efef1e0b7cf5181fa1911f4ebd075cb5d8b8865926d6353399221392bf8f040`) in exactly two places:
+  - the description is wrapped in double quotes, because strict YAML rejected the unquoted ": " inside it (`lint.frontmatter-invalid`);
+  - a `metadata.version: "1.0.1"` line is added.
+- **Nothing else changed.** The description as YAML reads it is the same string, and the body after the frontmatter is byte-identical.
+- **S-b′ is the router these sessions ran:** the end-to-end sessions of Stages 10, 11, Q (with the re-fire check), 12 (condition R), 13 (R) and 14 (R), whose files record `3efef1e0…`. Stages 6 and 9 used it offline (`stage6/select-cands/S-bp/SKILL.md`).
+- **Earlier stages ran earlier routers:** Stages 0–5 ran earlier router versions, recorded in their own FROZEN files. Stage 12b's R′ ran the org variant (PR #97).
+
