@@ -523,7 +523,8 @@ As built (`index/sync.py`):
 
 ## 5. Local scan mode
 
-`skillfetch scan <dir>` runs stages 1.3–1.6 on a local directory and then
+`skillfetch scan <dir|GitHub URL>` runs stages 1.3–1.6 on a local directory (or a
+shallow checkout of a GitHub repository, §5.1) and then
 `resolve_set` over **all** pairs in it (N is small locally). Output is a
 human-readable report plus `--json`. Constraints come from the index first (an
 installed copy of a public skill has the same content hash as its index record),
@@ -570,13 +571,13 @@ As built (`ingest/local_scan.py`, `cli.py`):
 - License per skill: the skill folder's LICENSE file or frontmatter `license:`
   (§1.8 `skill_license`, `per-skill`). Otherwise it is the license of the index
   record with the same content hash, if one is known, else `unknown` (NO_LICENSE).
-- Text report: first a one-screen summary, then details with the source lines,
-  most severe first. The summary gives:
+- Text report: first the before-install advice (§5.1), then a one-screen summary, then
+  details with the source lines, most severe first. The summary gives:
   - the number of problems per severity:
     - high: SCAN_FAILED, CONFLICT;
-    - medium: LINT_FAILED, INVALID_CONSTRAINTS, SCAN_WARNING, REDUNDANT;
+    - medium: LINT_FAILED, INVALID_CONSTRAINTS, SCAN_WARNING, SIZE_WARNING, REDUNDANT;
     - low: DUPLICATE, TENSION (tension and needs_review), LINT_WARNING, NO_LICENSE;
-    - info: HAS_SCRIPTS;
+    - info: HAS_SCRIPTS, SCAN_INFO, DATED;
   - the license counts;
   - how many skills the contradiction check covered.
 - Exit code 0 when the scan ran, 2 on usage errors. `--fail-on
@@ -585,6 +586,38 @@ As built (`ingest/local_scan.py`, `cli.py`):
   reason goes to stderr so `--json` output stays parseable. Warnings,
   `tension`, `needs_review` and `redundant` never fail the run. Stage counts
   are per stage: a skill failing both lint and the scan counts for both.
+
+### 5.1 Before you install (`ingest/skill_checks.py`, `ingest/remote.py`)
+
+- **Size** (`SIZE_WARNING`, medium), per skill. Each limit warns on its own:
+  - `SKILL.md` over 8,000 tokens (characters / 4), the default budget of `load_skills`;
+  - more than 20 files: `SKILL.md` plus every other file of the skill (`skill_files`: no
+    hidden files, caches or symbolic links);
+  - more than 1 MB (1,000,000 bytes) for those files together.
+  A large skill is one an agent may spend its turns reading; the README gives the measured
+  case.
+- **Dated claims** (`DATED`, info): prose lines of the skill's Markdown files that state a
+  year (2010–2039), a version number (`v1.2`, `1.2.3`) or a named product with a version
+  (`React 19`, `Swift 6.2`, `iOS 26`, `OWASP Top 10:2025`). Lines in fenced code blocks are
+  skipped. Each is marked "may have changed since the model was trained, or be wrong; check
+  the official docs". The report shows five per skill; `--json` lists all.
+- **Remote scan**: `skillfetch scan https://github.com/<owner>/<repo>[/tree/<ref>[/<path>]]`.
+  - The repository is cloned at depth 1 into a temporary folder, which is deleted after the
+    scan. `<ref>` is a branch, a tag or a full commit sha; a ref containing `/` is not
+    supported.
+  - The clone runs with `core.symlinks=false` (links become plain files), no hooks
+    (`core.hooksPath=/dev/null`), no submodules, `GIT_LFS_SKIP_SMUDGE=1`, no system git
+    config, `protocol.file.allow=never` and no terminal prompt. Nothing is installed or run.
+  - Only `https://github.com/` URLs are accepted. The report names the URL and the commit
+    (`<url>@<sha12>`) instead of the temporary folder.
+- **Advice** (`advice`, `advice_reasons` in `--json`; the first line of the text report):
+  - **not recommended** if any skill fails the injection scan (SCAN_FAILED) or lint
+    (LINT_FAILED), or any pair conflicts (CONFLICT);
+  - else **caution** if any of: SCAN_WARNING, SIZE_WARNING, HAS_SCRIPTS, NO_LICENSE,
+    INVALID_CONSTRAINTS, REDUNDANT;
+  - else **recommended**.
+  - TENSION, DUPLICATE, LINT_WARNING, SCAN_INFO and DATED are shown but do not change the
+    advice. The reasons list the counts behind the level.
 
 ## 6. Discover (candidate sources, issue #60)
 

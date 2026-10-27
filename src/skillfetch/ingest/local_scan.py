@@ -24,6 +24,7 @@ from skillfetch.ingest.ingest import run_extractions
 from skillfetch.ingest.injection import ScanResult, load_rules, scan_skill
 from skillfetch.ingest.licenses import skill_license
 from skillfetch.ingest.lint import LintResult, lint_skill
+from skillfetch.ingest.skill_checks import DATED_NOTE, DatedLine, SkillSize, dated_lines, skill_size
 from skillfetch.ingest.skillfile import (
     CONSTRAINTS_FILE,
     SKILL_FILE,
@@ -63,6 +64,8 @@ class SkillScan(BaseModel):
     # index record with the same content (a copy of a public skill); else "unknown"
     license: str = "unknown"
     license_origin: str = "none"  # "LICENSE" (file name), "frontmatter", "index:<id>", "none"
+    size: SkillSize | None = None  # index-format.md §5.1
+    dated: list[DatedLine] = []  # prose lines stating a year or version (§5.1)
 
 
 class DuplicateGroup(BaseModel):
@@ -85,6 +88,9 @@ class ScanReport(BaseModel):
     # how skills found in neither the index nor the cache were handled: the extractor's
     # key, or a reason they were not extracted (set by the CLI)
     extraction: str | None = None
+    # before-install advice (index-format.md §5.1): recommended / caution / not_recommended
+    advice: Literal["recommended", "caution", "not_recommended"] | None = None
+    advice_reasons: list[str] = []
 
 
 def _skill_id(root: Path, skill_dir: Path) -> str:
@@ -180,6 +186,8 @@ def _scan_one(root: Path, skill_dir: Path) -> tuple[SkillScan, Skill | None]:
         constraint_count=len(constraints or []),
         license=lic.license,
         license_origin=lic.origin,
+        size=skill_size(skill_dir),
+        dated=dated_lines(skill_dir),
     )
     return record, constraints
 
@@ -358,7 +366,7 @@ def scan_dir(root: Path, lookup: Lookup | None = None, cap: str | None = None) -
             f"{tilde(idx.root)} ({len(idx.records)} skills, extraction "
             f"{idx.manifest.get('extract_model', '?')})"
         )
-    return ScanReport(
+    report = ScanReport(
         root=str(root),
         index=index,
         scan_rules_version=load_rules().version,
@@ -369,6 +377,8 @@ def scan_dir(root: Path, lookup: Lookup | None = None, cap: str | None = None) -
         suppressed_by_judge=suppressed,
         skipped=sorted(r.id for r in records if r.status != "lint_failed" and r.id not in analyzed),
     )
+    report.advice, report.advice_reasons = install_advice(report)
+    return report
 
 
 def fail_counts(report: ScanReport) -> dict[str, int]:
@@ -411,6 +421,7 @@ SEVERITY_ROWS = (
     ("medium", "LINT_FAILED", "skills that fail lint (not analyzed further)"),
     ("medium", "INVALID_CONSTRAINTS", "skills whose constraints do not match their lines"),
     ("medium", "SCAN_WARNING", "skills with injection-scan warnings"),
+    ("medium", "SIZE_WARNING", "skills over a size limit (SKILL.md tokens, files or MB)"),
     ("medium", "REDUNDANT", "pairs where one skill covers the other"),
     ("low", "DUPLICATE", "extra copies with identical content"),
     ("low", "TENSION", "tension / needs_review pairs (read both)"),
@@ -418,7 +429,37 @@ SEVERITY_ROWS = (
     ("low", "NO_LICENSE", "skills that state no license"),
     ("info", "HAS_SCRIPTS", "skills that bundle scripts"),
     ("info", "SCAN_INFO", "skills with injection-scan notes (links, quoted phrases)"),
+    ("info", "DATED", "skills with lines that state a year or version (check them)"),
 )
+
+# Before-install advice (index-format.md §5.1): any of NOT_RECOMMENDED -> not recommended;
+# else any of CAUTION -> caution; else recommended. TENSION, DUPLICATE, LINT_WARNING,
+# SCAN_INFO and DATED are shown but do not change the advice.
+NOT_RECOMMENDED = ("SCAN_FAILED", "CONFLICT", "LINT_FAILED")
+CAUTION = (
+    "SCAN_WARNING",
+    "SIZE_WARNING",
+    "HAS_SCRIPTS",
+    "NO_LICENSE",
+    "INVALID_CONSTRAINTS",
+    "REDUNDANT",
+)
+ADVICE_PHRASES = {  # (one, several)
+    "SCAN_FAILED": ("skill fails the injection scan", "skills fail the injection scan"),
+    "CONFLICT": ("pair of skills gives opposite instructions", "pairs give opposite instructions"),
+    "LINT_FAILED": ("skill fails lint", "skills fail lint"),
+    "SCAN_WARNING": ("skill has injection-scan warnings", "skills have injection-scan warnings"),
+    "SIZE_WARNING": ("skill is over a size limit", "skills are over a size limit"),
+    "HAS_SCRIPTS": ("skill bundles scripts", "skills bundle scripts"),
+    "NO_LICENSE": ("skill states no license", "skills state no license"),
+    "INVALID_CONSTRAINTS": ("skill has invalid constraints", "skills have invalid constraints"),
+    "REDUNDANT": ("pair where one skill covers the other", "pairs where one covers the other"),
+}
+ADVICE_TEXT = {
+    "not_recommended": "NOT RECOMMENDED",
+    "caution": "CAUTION",
+    "recommended": "RECOMMENDED",
+}
 
 
 def problem_counts(report: ScanReport) -> dict[str, int]:
@@ -436,7 +477,19 @@ def problem_counts(report: ScanReport) -> dict[str, int]:
         "NO_LICENSE": sum(s.license == "unknown" for s in skills),
         "HAS_SCRIPTS": sum(s.scan.has_scripts for s in skills),
         "SCAN_INFO": sum(bool(s.scan.infos) for s in skills),
+        "SIZE_WARNING": sum(bool(s.size and s.size.warnings) for s in skills),
+        "DATED": sum(bool(s.dated) for s in skills),
     }
+
+
+def install_advice(report: ScanReport) -> tuple[str, list[str]]:
+    """The one-line advice and its reasons ("<count> <what>"), most severe first."""
+    counts = problem_counts(report)
+    for level, codes in (("not_recommended", NOT_RECOMMENDED), ("caution", CAUTION)):
+        reasons = [f"{counts[c]} {ADVICE_PHRASES[c][counts[c] != 1]}" for c in codes if counts[c]]
+        if reasons:
+            return level, reasons
+    return "recommended", []
 
 
 def _contradiction_line(report: ScanReport) -> list[str]:
@@ -470,7 +523,12 @@ def _contradiction_line(report: ScanReport) -> list[str]:
 def render_report(report: ScanReport) -> str:
     skills = report.skills
     counts = problem_counts(report)
+    advice = report.advice or install_advice(report)[0]
+    reasons = report.advice_reasons if report.advice else install_advice(report)[1]
     head = [
+        f"Before you install: {ADVICE_TEXT[advice]}"
+        + (f" ({'; '.join(reasons)})" if reasons else " (no failures or warnings)"),
+        "",
         f"skillfetch scan {report.root}",
         f"{_plural(len(skills), 'skill')} · index: "
         + (
@@ -527,6 +585,14 @@ def render_report(report: ScanReport) -> str:
                 f'  {s.id}/{h.file}:{h.line_no}  [{h.rule_id}] "{h.line}"' for h in s.scan.warnings
             ]
             blocks.append("\n".join(lines))
+    for s in skills:
+        if s.size and s.size.warnings:
+            blocks.append(
+                f"SIZE_WARNING  {s.id}\n  "
+                + "; ".join(s.size.warnings)
+                + "\n  an agent may spend its turns reading it; load_skills' default budget is "
+                "8,000 tokens"
+            )
     blocks += [render_finding(f) for f in by_kind["redundant"]]
     for g in report.duplicates:
         first, *rest = g.ids
@@ -562,6 +628,13 @@ def render_report(report: ScanReport) -> str:
                 f'"{h.line}"'
                 for h in s.scan.infos
             ]
+            blocks.append("\n".join(lines))
+    for s in skills:
+        if s.dated:
+            lines = [f"DATED  {s.id}  ({DATED_NOTE})"]
+            lines += [f'  {s.id}/{d.file}:{d.line_no}  "{d.line}"' for d in s.dated[:5]]
+            if len(s.dated) > 5:
+                lines.append(f"  … and {len(s.dated) - 5} more (--json lists them all)")
             blocks.append("\n".join(lines))
     if report.skipped:
         by_id = {s.id: s for s in skills}
