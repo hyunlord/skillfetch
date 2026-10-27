@@ -1,85 +1,173 @@
 # skillfetch
 
-**Zero-install skills for coding agents.** Install one MCP server. For every
-task, your agent searches a vetted, pre-indexed corpus of `SKILL.md` files,
-assembles a *conflict-free* set, uses it for that task, and moves on. Nothing
-piles up in `~/.claude/skills`.
+**Check a skill before you install it.** `skillfetch scan` reads a skills folder, or a GitHub
+repository without installing anything, and tells you in one line whether to install it.
+It checks:
+- injection patterns and remote instructions;
+- size;
+- bundled scripts;
+- the license;
+- lines that state a version or a year;
+- skills that contradict each other.
 
-## Try it
+No model and no API key. The rest of this repository is the measurement study behind it:
+what skills do for coding agents in real sessions ([numbers.md](docs/writeup/numbers.md)).
+
+## Before you install a skill, scan it
 
 ```console
+$ uvx --from git+https://github.com/hyunlord/skillfetch skillfetch scan https://github.com/<owner>/<repo>
 $ uvx --from git+https://github.com/hyunlord/skillfetch skillfetch scan ~/.claude/skills
 ```
 
-One line, no API key. It opens with a one-screen summary of the problems by severity, then
-the details, each with the line it comes from:
-- lint failures;
-- injection-scan hits;
-- licenses (stated, or missing);
-- duplicate copies.
+- **A GitHub URL** (optionally `/tree/<ref>/<path>`):
+  - It is cloned at depth 1 into a temporary folder, scanned there, and deleted.
+  - Nothing is installed or run: no hooks, submodules or LFS, and symbolic links become plain
+    files.
+  - The report names the URL and the commit.
+- **The first line** is the advice, from safety and quality checks only:
+  - **NOT RECOMMENDED** when a skill fails the injection scan or lint, or two skills give
+    opposite instructions;
+  - **CAUTION** when a skill has injection-scan warnings (remote instructions among them), is
+    over a size limit, bundles scripts, or covers another skill;
+  - **RECOMMENDED** otherwise.
 
-The contradiction check runs for skills that are copies of public ones once the index is
-installed (`skillfetch sync`). Add `--claude-code` to extract the others' instructions with
-your own Claude Code login (one isolated `claude -p` per skill). Without it, that part is
-skipped and the report says so.
+  The rule is in [index-format.md §5.1](docs/design/index-format.md).
+- **The second line** is the license, with where it was found (`MIT (repo root)`). It is not
+  part of the advice: check it before you redistribute a skill.
+- **Then** a summary by severity, then the details, each with the line it comes from.
 
-Measured: on design tasks the router matched an expert-installed skill; on process-style tasks (planning, brevity) it does not find the skill yet; it costs about seven extra turns per task. Details in the write-up, section 5.
+| check | what it reports |
+|---|---|
+| injection scan | failures (instruction overrides, exfiltration, privilege, hidden text) and warnings (`sudo`, piping a download into a shell, a URL named as instructions to follow) |
+| size | `SKILL.md` over 8,000 tokens, more than 20 files, or more than 1 MB |
+| scripts | files a skill bundles to run |
+| license | the skill's LICENSE file or frontmatter; else the nearest license file up to the repository root, unless the repository is an aggregator or the skill names an upstream (the rule discover uses); else none (all rights reserved) |
+| dated claims | prose lines that state a year or a version: they may have changed since the model was trained, or be wrong; check the official docs |
+| lint | frontmatter, links, length |
+| duplicates and contradictions | identical copies; pairs of skills whose extracted instructions conflict, quoting both lines |
 
-> Status: v0.1 is done: `scan`, the public index and the write-up
-> ([English](docs/writeup/post-en.md), [한국어](docs/writeup/post-ko.md)). v0.2:
-> the MCP server works end to end and the index ships as a GitHub release
-> (`skillfetch sync`). The index covers anthropics/skills, UASL and four more
-> repositories: 2,785 skills indexed (1,724 from the first two, as in the write-up, plus 1,061).
-> Index update (Stage 11): this index, built as index-staging-4, passed the
-> release gate fixed before Stage 11 ([numbers.md §20](docs/writeup/numbers.md#20-stage-9-index-expansion-after-the-post-freeze),
-> [§22](docs/writeup/numbers.md#22-stage-11-index-staging-4-release-gate-remeasured-after-the-post-freeze)).
-> Numbers: [`docs/writeup/numbers.md`](docs/writeup/numbers.md).
-
-Check the skills you already have. `sync` downloads the index (metadata and
-extracted constraints, no skill bodies; a 3 MB download); `scan` matches each installed
-skill to the index by content hash, so it needs no model and no API key:
+A real run (2026-10-27, excerpt) on design-taste-frontend, a popular design skill that one
+of our measured conditions installed:
 
 ```console
-$ uvx --from git+https://github.com/hyunlord/skillfetch skillfetch sync
-installed: ~/.skillfetch/index from hyunlord/skillfetch@index-2026-10-22 (skillfetch-index-20261022T061543Z.tar.gz) · 1724 skills · built 2026-10-22T06:15:43Z · extraction openrouter/openai/gpt-6-luna
-$ uvx --from git+https://github.com/hyunlord/skillfetch skillfetch scan .claude/skills
-skillfetch scan .claude/skills
-30 skills · lint: 30 ok, 0 failed · injection scan: 30 ok, 0 failed, 21 with warnings · scripts: 4
-constraints: 30 analyzed (index 30), 0 skipped
-index: ~/.skillfetch/index (1724 skills, extraction openrouter/openai/gpt-6-luna)
+$ skillfetch scan https://github.com/leonxlnx/taste-skill/tree/12af471f627f866411b4bd785b19646d3672784c/skills/taste-skill
+Before you install: CAUTION (1 skill is over a size limit; 1 skill bundles scripts)
+License: MIT (repo root). Not part of the advice: check it before you redistribute a skill.
 
-[… 2 LINT_WARNING, 21 SCAN_WARNING (bare URLs) and 4 HAS_SCRIPTS blocks …]
+skillfetch scan https://github.com/leonxlnx/taste-skill/tree/12af471f…/skills/taste-skill@12af471f627f
+1 skill · index: ~/.skillfetch/index (2785 skills, extraction openrouter/openai/gpt-6-luna)
 
-NEEDS_REVIEW  eval-harness ⟷ receiving-code-review
-  subject: implementation   scope: code / implement
-  eval-harness:127         "Write code to pass the defined evals."
-  receiving-code-review:44 "STOP - do not implement anything yet"
+  severity  count  problem
+  medium        1  SIZE_WARNING         skills over a size limit (SKILL.md tokens, files or MB)
+  low           1  LINT_WARNING         skills with lint warnings only
+  info          1  HAS_SCRIPTS          skills that bundle scripts
+  info          1  SCAN_INFO            skills with injection-scan notes (links, quoted phrases)
+  info          1  DATED                skills with lines that state a year or version (check them)
 
-summary: 0 conflict, 0 redundant, 0 tension, 1 needs_review, 0 duplicate, 0 lint_failed, 0 scan_failed
+[…]
+
+SIZE_WARNING  taste-skill
+  SKILL.md is ~9,874 tokens (over 8,000); 39 files (over 20); 2.4 MB in total (over 1 MB)
 ```
 
-That is a real run (excerpt, in the output format before 2026-10-26; the report now
-opens with a summary of the problems by severity) over 30 public skills picked at random
-from UASL and installed as a user has them. Every finding quotes the line from each
-skill. The rules are tuned for precision: a pair is a `conflict` only when the
-two instructions cannot both be followed; anything less certain is
-`needs_review`, and pairs a judge model found independent are not shown.
-Skills the index does not cover are listed as skipped. `--claude-code` extracts them
-through your Claude Code login; `--with-api --model anthropic/<model>` extracts them
-through the API (paid). Either way, each skill is extracted once and cached.
+**Why size matters.** In Stage 13, eight popular skills (this one among them) were
+installed in `.claude/skills`. All three sessions on the landing-page task ended at the
+40-turn limit with an empty final answer, at $3.09–$3.28 each. In one of them, 26 tool calls
+read files of this skill (39 files, 2.4 MB). Details:
+[numbers.md §26](docs/writeup/numbers.md#26-stage-13-popular-skills-installed-the-router-or-neither).
 
-The router, measured in real Claude Code sessions on five task types (landing page, test writing, backend API, documentation, data script): it loaded the skill an expert would pick in 23 of 24 runs. Only the design task came out differently with that skill; on the other four, no skill, the expert's skill and the router all passed every check. The router costs 1.7–2.1 times the input tokens of no skill ([numbers.md §11](docs/writeup/numbers.md#11-router-in-real-sessions-end-to-end-stages-1-1b-and-2)). Offline, on 380 synthetic tasks, the shipped router: top-50 recall 0.81 (0.75 on labels the search could not bias), up from 0.74 before this fix ([evals/retrieval](evals/retrieval/), [numbers.md §13](docs/writeup/numbers.md#13-retrieval-benchmark-380-synthetic-tasks)). With its current description it fired in 55 of 57 non-trivial sessions in a clean environment (39 of 57 with the previous one) and in 1 of 30 trivial ones ([numbers.md §15](docs/writeup/numbers.md#15-stage-5-what-makes-the-router-fire)). Its selection step now picks a skill only when it can say in one sentence what the skill changes in the task: offline, that raised none-accuracy on tasks no skill fits from 0.55 to 0.85 and lowered the share of tasks with a relevant pick from 0.88 to 0.80 ([numbers.md §17](docs/writeup/numbers.md#17-stage-6-choosing-none-after-the-post-freeze)). scan and sync are unaffected.
+**The released index, scanned** (2,785 skills, 2,281 canonical;
+[numbers.md §25](docs/writeup/numbers.md#25-index-scan-the-scan-rules-over-the-released-index)).
+The index admitted only skills that pass lint and its injection scan; its build rejected
+143 more (lint 110, injection scan 33).
+
+| check | all indexed | canonical |
+|---|---:|---:|
+| injection-scan warning | 1.9% | 2.1% |
+| of which remote instructions | 0.4% | 0.5% |
+| size warning | 2.4% | 2.9% |
+| bundles scripts | 9.0% | 11.0% |
+| no license in the skill itself | 89.3% | 87.5% |
+| no license after the repo-root rule | 53.5% | 65.3% |
+| states a year or version | 32.0% | 33.6% |
+
+The advice for each skill on its own (no pair checks): RECOMMENDED for 88.3% (85.9%
+canonical), CAUTION for 11.7% (14.1%), NOT RECOMMENDED for none. Most skills with no license
+after the rule come from UASL, an aggregator, whose root license does not apply to the skills
+it copies.
+
+**Contradictions.**
+- **Public copies:** the check runs once the index is installed (`skillfetch sync`: metadata
+  and extracted constraints, no skill bodies). `scan` then matches each installed skill to
+  the index by content hash, so it needs no model.
+- **Other skills:** `--claude-code` extracts their instructions with your own Claude Code
+  login (one isolated `claude -p` per skill); `--with-api --model anthropic/<model>` uses
+  the API (paid). Without either, that part is skipped and the report says so.
+- **Precision:** a pair is a `conflict` only when the two instructions cannot both be
+  followed. Anything less certain is `needs_review`, and pairs a judge model found
+  independent are not shown.
 
 ```console
-$ skillfetch scan path/to/skills --json                   # machine-readable
+$ skillfetch scan path/to/skills --json                   # machine-readable, with the advice
 $ skillfetch scan path/to/skills --fail-on conflict,scan  # exit 1 for CI
 $ skillfetch scan tests/fixtures/skills                   # the labelled fixture corpus
+```
+
+> Status: `scan` and the measurements are the product. v0.1 shipped `scan`, the public
+> index and the write-up ([English](docs/writeup/post-en.md), [한국어](docs/writeup/post-ko.md)).
+> The index covers anthropics/skills, UASL and four more repositories: 2,785 skills indexed
+> (1,724 from the first two, as in the write-up, plus 1,061). Index update (Stage 11): this
+> index, built as index-staging-4, passed the release gate fixed before Stage 11
+> ([numbers.md §20](docs/writeup/numbers.md#20-stage-9-index-expansion-after-the-post-freeze),
+> [§22](docs/writeup/numbers.md#22-stage-11-index-staging-4-release-gate-remeasured-after-the-post-freeze)).
+> The per-task router below is experimental. Numbers: [`docs/writeup/numbers.md`](docs/writeup/numbers.md).
+
+## Experimental: per-task routing
+
+skillfetch can also serve skills per task. You install one MCP server and one router
+skill. For every task, the agent:
+1. searches the pre-indexed corpus;
+2. assembles a conflict-free set;
+3. uses it for that task;
+4. moves on.
+
+Nothing piles up in `~/.claude/skills`.
+
+**Measured** in Stage 13: 18 tasks × 3 runs, judged blind
+([numbers.md §26](docs/writeup/numbers.md#26-stage-13-popular-skills-installed-the-router-or-neither)).
+- **Overall:** the router's results were the same as no skill: mean score 4.627 vs 4.618
+  without the landing page, checks passed 52/54 vs 53/54.
+- **Cost:** 62% more per session ($0.599 vs $0.370).
+- **Where it was clearly better:** only on the landing-page design task (4.67 vs 3.00).
+- **Popular skills installed:** with eight popular skills installed instead, the mean was
+  4.725 without the landing page, and 1.33 on it.
+
+```console
 $ skillfetch serve                                        # MCP server over stdio
 $ claude mcp add skillfetch -- uvx --from git+https://github.com/hyunlord/skillfetch skillfetch serve
 ```
 
 The server loads the index once, at start. After `skillfetch sync` installs a new
 index, restart the MCP server (in Claude Code: `/mcp`, or a new session) to use it.
+
+Earlier measurements:
+- **Stages 1–2, five task types** (landing page, test writing, backend API, documentation,
+  data script): the router loaded the skill an expert would pick in 23 of 24 runs.
+  - Only the design task came out differently with that skill. On the other four, no skill,
+    the expert's skill and the router all passed every check.
+  - The router cost 1.7–2.1 times the input tokens of no skill
+    ([numbers.md §11](docs/writeup/numbers.md#11-router-in-real-sessions-end-to-end-stages-1-1b-and-2)).
+- **Offline, 380 synthetic tasks:** top-50 recall 0.81 for the shipped router (0.75 on
+  labels the search could not bias), up from 0.74 before this fix
+  ([evals/retrieval](evals/retrieval/), [numbers.md §13](docs/writeup/numbers.md#13-retrieval-benchmark-380-synthetic-tasks)).
+- **Firing:** with its current description it fired in 55 of 57 non-trivial sessions in a
+  clean environment (39 of 57 with the previous one) and in 1 of 30 trivial ones
+  ([numbers.md §15](docs/writeup/numbers.md#15-stage-5-what-makes-the-router-fire)).
+- **Selection:** it picks a skill only when it can say in one sentence what the skill
+  changes in the task. Offline, that raised none-accuracy on tasks no skill fits from 0.55
+  to 0.85, and lowered the share of tasks with a relevant pick from 0.88 to 0.80
+  ([numbers.md §17](docs/writeup/numbers.md#17-stage-6-choosing-none-after-the-post-freeze)).
 
 Building the index yourself: `skillfetch ingest --sources sources.yaml --out
 data/index --upstream-licenses`, then `skillfetch sync --pack data/index` for a
@@ -90,7 +178,7 @@ Claude Code session to answer; `--model openrouter/<vendor>/<model>`,
 'skillfetch[ingest]'`). Every skill is extracted once and cached in
 `~/.skillfetch/extract-cache/`.
 
-## Always fire
+### Always fire
 
 In a repository you control, one line in the project's `CLAUDE.md` made the router fire
 in 57 of 57 non-trivial sessions (39 of 57 without it, mean session cost $0.533 vs $0.396).
@@ -101,7 +189,7 @@ it is not measured ([numbers.md §15](docs/writeup/numbers.md#15-stage-5-what-ma
 Before your first tool call on any coding task in this repository (anything beyond a one-line edit, a rename or a question), run the `skillfetch-router` skill and follow its steps.
 ```
 
-## Other MCP clients
+### Other MCP clients
 
 `skillfetch serve` is a stdio MCP server. In Codex, register the command and its
 arguments (`codex mcp add`, or `~/.codex/config.toml`):
@@ -129,6 +217,15 @@ was loaded in 26 of 51 sessions on the 17 tasks that have one (Claude Code on th
 and labels: 37 of 51). With the shipped S-b′ router, Codex loaded nothing in 4 of the 6
 sessions on the two tasks no skill fits (6 of 6 before) and a relevant skill in 22 of 51.
 
+### How routing works
+
+| | |
+|---|---|
+| **Vetted corpus** | Public skills are snapshotted, linted, scanned for prompt-injection patterns, and tiered. Ranking is by vetting, not install count. |
+| **Pre-extracted constraints** | Each skill's instructions are extracted once, offline, into typed constraints with polarity and scope — "forbid emoji in headers", not a bag of keywords. |
+| **Conflict-free sets** | `resolve_set` drops candidates that contradict or duplicate each other. Every exclusion comes with the two quoted source lines that caused it. Skills you name yourself are always kept. |
+| **Per-task, no model at runtime** | BM25 over the index; your host model is the reranker. |
+
 ## The problem
 
 Skills are great until you have thirty of them. Then two of them disagree —
@@ -143,15 +240,6 @@ by skills.sh install counts (a measured comparison is in
 index (automated vetting: lint, injection scan, license, not install counts), a
 conflict check on the set it loads, and published measurements of whether loading
 helped.
-
-## What skillfetch does
-
-| | |
-|---|---|
-| **Vetted corpus** | Public skills are snapshotted, linted, scanned for prompt-injection patterns, and tiered. Ranking is by vetting, not install count. |
-| **Pre-extracted constraints** | Each skill's instructions are extracted once, offline, into typed constraints with polarity and scope — "forbid emoji in headers", not a bag of keywords. |
-| **Conflict-free sets** | `resolve_set` drops candidates that contradict or duplicate each other. Every exclusion comes with the two quoted source lines that caused it. Skills you name yourself are always kept. |
-| **Per-task, no model at runtime** | BM25 over the index; your host model is the reranker. |
 
 ## Roadmap
 

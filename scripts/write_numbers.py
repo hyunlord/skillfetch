@@ -1110,6 +1110,14 @@ def index_scan(out: list[str]) -> None:
     out += [path.read_text().strip() if path.is_file() else "Not run yet.", ""]
 
 
+def stage13(out: list[str]) -> None:
+    """§26: Stage 13, popular skills installed vs the router vs neither (the Stage 13 report,
+    transcribed in data/e2e/stage13.md)."""
+    out += ["## 26. Stage 13: popular skills installed, the router, or neither", ""]
+    path = DATA / "e2e" / "stage13.md"
+    out += [path.read_text().strip() if path.is_file() else "Not run yet.", ""]
+
+
 def main() -> None:
     out = [
         "# Numbers for the write-up",
@@ -1146,6 +1154,7 @@ def main() -> None:
         stage_q,
         knowledge_gap,
         index_scan,
+        stage13,
     ):
         section(out)
     OUT.parent.mkdir(parents=True, exist_ok=True)
