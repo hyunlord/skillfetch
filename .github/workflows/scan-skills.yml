@@ -8,7 +8,6 @@ on:
   pull_request:
     paths:
       - "assets/vet-skill/**"
-      - "ci-test-skills/**"
       - ".github/actions/skillfetch-scan/**"
 
 permissions:
@@ -22,6 +21,6 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/skillfetch-scan
         with:
-          path: ci-test-skills
+          path: assets/vet-skill
           skillfetch: .
           sync-index: "false"
