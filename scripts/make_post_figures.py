@@ -1,10 +1,12 @@
-"""Draw the four figures of the launch post (docs/writeup/post-ko.md, post-en.md) into
-docs/writeup/img/ as PNG (white background, 200 dpi), Korean and English labels separately.
+"""Draw the figures of the posts into docs/writeup/img/ as PNG (white background, 200 dpi),
+Korean and English labels separately: figures 1–4 for the 2026-10-22 post
+(docs/writeup/post-2026-10-22-{ko,en}.md), figures 5–7 for the current one (post-{ko,en}.md).
 
 Every number drawn comes from the tables below. Each entry gives the number as written in its
-source, the source (`§N` = docs/writeup/numbers.md section N; `post` = both posts) and a line
-fragment that holds it; tests/test_post_figures.py checks that each fragment is in that source.
-Figures do not change any number; derived values (sums, shares, 30 − fired) are computed here.
+source, the source (`§N` = docs/writeup/numbers.md section N; `post-2026-10-22` = both posts of
+that date) and a line fragment that holds it; tests/test_post_figures.py checks that each
+fragment is in that source. Figures do not change any number; derived values (sums, shares,
+30 − fired, ratios) are computed here.
 
 Run from the repo root:  uv run --with matplotlib python scripts/make_post_figures.py
 """
@@ -21,13 +23,13 @@ LANGS = ("ko", "en")
 
 class Num(NamedTuple):
     raw: str  # the number as written in the source
-    src: str  # "§N" (numbers.md section) or "post"
-    where: str  # fragment of the source that contains raw (for "post": post-ko.md)
-    where_en: str = ""  # "post" only: fragment of post-en.md
+    src: str  # "§N" (numbers.md section) or "post-2026-10-22"
+    where: str  # fragment of the source that contains raw (for a post: the Korean one)
+    where_en: str = ""  # a post only: fragment of the English one
 
 
 def val(n: Num) -> float:
-    return float(n.raw.rstrip("%").replace(",", "").split("/")[0])
+    return float(n.raw.lstrip("$").rstrip("%").replace(",", "").split("/")[0])
 
 
 def frac(n: Num) -> tuple[int, int]:
@@ -89,7 +91,9 @@ WINNER = [  # (key, controlled runs per order: A named, B named)
         ],
     ),
 ]
-WINNER_RANGE = Num("43–56%", "post", "지정한 스킬을 따른 실행은 43–56%다", "43–56% of runs")
+WINNER_RANGE = Num(
+    "43–56%", "post-2026-10-22", "지정한 스킬을 따른 실행은 43–56%다", "43–56% of runs"
+)
 
 # (3) task types: score per condition and median turns, numbers.md §11 (stage 2; design =
 # landing pages in the 1b rejudge; router = C2, after the search fix)
@@ -155,7 +159,7 @@ TASKS = [  # (key, score A / B / router, median turns A, router)
         ],
     ),
 ]
-TASKS_SCORE_GAP = Num("0.6", "post", "조건 간 점수 차이(0.6 이하)", "(0.6 or less)")
+TASKS_SCORE_GAP = Num("0.6", "post-2026-10-22", "조건 간 점수 차이(0.6 이하)", "(0.6 or less)")
 
 # (4) router, before -> now, per step
 ROUTER = [  # (key, before, now, kind): kind "frac" = a/b, "pct" = share as %, "dec" = 2 decimals
@@ -202,13 +206,118 @@ ROUTER = [  # (key, before, now, kind): kind "frac" = a/b, "pct" = share as %, "
     ),
 ]
 ROUTER_POST = [  # the same before/now as the posts print them
-    Num("39/57", "post", "39/57", "39/57"),
-    Num("55/57", "post", "96%(55/57)", "96% (55/57)"),
-    Num("89%", "post", "수정 전 89%", "89% before"),
-    Num("93%", "post", "93%다(수정 전", "93% of them"),
-    Num("0.55", "post", "0.55에서 0.85로", "from 0.55 to 0.85"),
-    Num("0.88", "post", "0.88에서 0.80으로", "from 0.88 to 0.80"),
+    Num("39/57", "post-2026-10-22", "39/57", "39/57"),
+    Num("55/57", "post-2026-10-22", "96%(55/57)", "96% (55/57)"),
+    Num("89%", "post-2026-10-22", "수정 전 89%", "89% before"),
+    Num("93%", "post-2026-10-22", "93%다(수정 전", "93% of them"),
+    Num("0.55", "post-2026-10-22", "0.55에서 0.85로", "from 0.55 to 0.85"),
+    Num("0.88", "post-2026-10-22", "0.88에서 0.80으로", "from 0.88 to 0.80"),
 ]
+
+
+# (5) Stage 13: no skill (A), eight popular skills installed (P), the router (R); numbers.md §26
+STAGE13 = [  # (key, mean score without d1-landing, d1-landing score, checks, cost per session)
+    (
+        "A",
+        Num("4.618", "§26", "| mean score, without d1-landing (17) | 4.618 |"),
+        Num("3.00", "§26", "R scored 4.67, A 3.00 and P 1.33"),
+        Num("53/54", "§26", "| checks passed | 53/54 |"),
+        Num("$0.370", "§26", "| mean API-price equivalent per session | $0.370 |"),
+    ),
+    (
+        "P",
+        Num("4.725", "§26", "| mean score, without d1-landing (17) | 4.618 | 4.725 |"),
+        Num("1.33", "§26", "R scored 4.67, A 3.00 and P 1.33"),
+        Num("51/54", "§26", "| checks passed | 53/54 | 51/54 |"),
+        Num("$0.642", "§26", "| mean API-price equivalent per session | $0.370 | $0.642 |"),
+    ),
+    (
+        "R",
+        Num("4.627", "§26", "| mean score, without d1-landing (17) | 4.618 | 4.725 | 4.627 |"),
+        Num("4.67", "§26", "R scored 4.67, A 3.00 and P 1.33"),
+        Num("52/54", "§26", "| checks passed | 53/54 | 51/54 | 52/54 |"),
+        Num("$0.599", "§26", "| $0.370 | $0.642 | $0.599 |"),
+    ),
+]
+STAGE13_COST_UP = Num("62%", "§26", "R's mean cost per session was 62% higher")
+
+# (6) knowledge gap, numbers.md §24
+KG_TOTAL = Num("180", "§24", "173 of 180 answers were correct")
+KG_CORRECT = Num("173", "§24", "173 of 180 answers were correct")
+KG_QUESTIONS = Num("60", "§24", "2 per candidate (60)")
+KG_MISSED = [  # (key, wrong runs out of 3)
+    ("price", Num("3 of 3", "§24", "| Claude Opus 5.5 input price per million tokens | 3 of 3 |")),
+    (
+        "ios",
+        Num(
+            "1 of 3", "§24", "| iOS version that added AdAttributionKit conversion tags | 1 of 3 |"
+        ),
+    ),
+    ("edpb", Num("3 of 3", "§24", "processing personal data through AI systems | 3 of 3 |")),
+]
+KG_OFFICIAL = [  # (key, answers)
+    ("confirmed", Num("47", "§24", "confirmed 47, partial 12")),
+    ("partial", Num("12", "§24", "confirmed 47, partial 12")),
+    ("not_confirmed", Num("1", "§24", "not confirmed 1.")),
+]
+
+# (7) the scan rules over the released index, numbers.md §25 (all 2,785 indexed skills)
+SCAN_TOTAL = Num("2,785", "§25", "| check | all indexed (n = 2,785) |")
+SCAN = [  # (key, skills, share)
+    (
+        "scan_warning",
+        Num("52", "§25", "| injection-scan warning (any) | 52 (1.9%) |"),
+        Num("1.9%", "§25", "| injection-scan warning (any) | 52 (1.9%) |"),
+    ),
+    (
+        "remote",
+        Num("11", "§25", "(`network.remote-instructions`) | 11 (0.4%) |"),
+        Num("0.4%", "§25", "(`network.remote-instructions`) | 11 (0.4%) |"),
+    ),
+    (
+        "size",
+        Num("67", "§25", "| size warning (any) | 67 (2.4%) |"),
+        Num("2.4%", "§25", "| size warning (any) | 67 (2.4%) |"),
+    ),
+    (
+        "scripts",
+        Num("252", "§25", "| bundles scripts | 252 (9.0%) |"),
+        Num("9.0%", "§25", "| bundles scripts | 252 (9.0%) |"),
+    ),
+    (
+        "dated",
+        Num("890", "§25", "| states a year or version (DATED) | 890 (32.0%) |"),
+        Num("32.0%", "§25", "| states a year or version (DATED) | 890 (32.0%) |"),
+    ),
+    (
+        "no_own_license",
+        Num("2,486", "§25", "(folder LICENSE or frontmatter) | 2,486 (89.3%) |"),
+        Num("89.3%", "§25", "(folder LICENSE or frontmatter) | 2,486 (89.3%) |"),
+    ),
+    (
+        "no_license",
+        Num("1,491", "§25", "| no license after the repo-root rule | 1,491 (53.5%) |"),
+        Num("53.5%", "§25", "| no license after the repo-root rule | 1,491 (53.5%) |"),
+    ),
+]
+SCAN_ADVICE = [  # (key, skills, share)
+    (
+        "recommended",
+        Num("2,459", "§25", "| recommended | 2,459 (88.3%) |"),
+        Num("88.3%", "§25", "| recommended | 2,459 (88.3%) |"),
+    ),
+    (
+        "caution",
+        Num("326", "§25", "size or scripts) | 326 (11.7%) |"),
+        Num("11.7%", "§25", "size or scripts) | 326 (11.7%) |"),
+    ),
+    (
+        "not_recommended",
+        Num("0", "§25", "| not recommended | 0 (0.0%) |"),
+        Num("0.0%", "§25", "| not recommended | 0 (0.0%) |"),
+    ),
+]
+SCAN_REJECTED = Num("143", "§25", "the build rejected 143 more skills")
 
 
 def all_numbers() -> list[Num]:
@@ -230,6 +339,12 @@ def all_numbers() -> list[Num]:
         out += scores + turns
     for _, before, now, _ in ROUTER:
         out += [before, now]
+    for _, *nums in STAGE13:
+        out += nums
+    out += [STAGE13_COST_UP, KG_TOTAL, KG_CORRECT, KG_QUESTIONS, SCAN_TOTAL, SCAN_REJECTED]
+    out += [n for _, n in KG_MISSED + KG_OFFICIAL]
+    for _, count, share in SCAN + SCAN_ADVICE:
+        out += [count, share]
     return out
 
 
@@ -289,6 +404,45 @@ TEXT = {
         "before": "이전",
         "now": "지금",
         "down": "내려간 항목",
+        "s13_cond": {"A": "스킬 없음", "P": "인기 스킬 8개 설치", "R": "라우터"},
+        "s13_score": "평균 점수, d1-landing 뺀 17개",
+        "s13_d1": "d1-landing (제품 랜딩 페이지)",
+        "s13_cost": "세션당 평균 비용 (API 단가 환산)",
+        "s13_checks": "체크 통과 {c}",
+        "s13_foot": "18개 태스크 × 3회, 블라인드 판정(Claude 2명, 1–5). "
+        "P의 d1-landing 3세션은 모두 40턴 한도에서 끝났다.",
+        "kg_title": "스킬 없이 답한 사실 질문 {total}개 (질문 {q}개 × 3회)",
+        "kg_correct": "맞음 {n}",
+        "kg_wrong": "틀림 {n}",
+        "kg_missed_title": "틀린 답이 나온 질문, 3회 중 맞은 횟수",
+        "kg_missed": {
+            "price": "Claude Opus 5.5 입력 단가",
+            "ios": "AdAttributionKit 전환 태그가\n추가된 iOS 버전",
+            "edpb": "AI 시스템의 개인정보 처리에 관한\nEDPB 문서",
+        },
+        "kg_others": "나머지 질문 {n}개는 3회 모두 맞음",
+        "kg_official_title": "정답 {q}개를 공식 문서로 대조",
+        "kg_official": {"confirmed": "확인", "partial": "부분", "not_confirmed": "미확인"},
+        "runs3": "{n}/3",
+        "scan_title": "공개 index {total}개 스킬에 scan 규칙을 돌린 결과",
+        "scan": {
+            "scan_warning": "인젝션 점검 경고",
+            "remote": "  그중 원격 지시",
+            "size": "크기 경고",
+            "scripts": "스크립트 포함",
+            "dated": "연도·버전을 단정하는 줄",
+            "no_own_license": "스킬 자체에 라이선스 없음",
+            "no_license": "레포 루트 규칙 적용 후에도 없음",
+        },
+        "skills": "개",
+        "advice_title": "스킬 하나씩 본 설치 권고 (라이선스는 권고에 넣지 않음)",
+        "advice": {
+            "recommended": "설치 권장",
+            "caution": "주의",
+            "not_recommended": "비권장",
+        },
+        "scan_foot": "index는 린트와 인젝션 점검을 통과한 스킬만 받았다. "
+        "빌드에서 {n}개가 더 걸러졌다.",
     },
     "en": {
         "lic_title": "License status of {total:,} skills",
@@ -346,6 +500,50 @@ TEXT = {
         "before": "before",
         "now": "now",
         "down": "went down",
+        "s13_cond": {"A": "No skill", "P": "8 popular skills installed", "R": "Router"},
+        "s13_score": "Mean score, 17 tasks without d1-landing",
+        "s13_d1": "d1-landing (a product landing page)",
+        "s13_cost": "Mean cost per session (API-price equivalent)",
+        "s13_checks": "checks {c}",
+        "s13_foot": "18 tasks × 3 runs, judged blind (two Claude judges, 1–5). "
+        "All three P sessions on d1-landing ended at the 40-turn limit.",
+        "kg_title": "{total} answers to factual questions without the skill "
+        "({q} questions × 3 runs)",
+        "kg_correct": "correct {n}",
+        "kg_wrong": "wrong {n}",
+        "kg_missed_title": "Questions with a wrong answer: runs answered correctly, of 3",
+        "kg_missed": {
+            "price": "Claude Opus 5.5 input price",
+            "ios": "iOS version that added\nAdAttributionKit conversion tags",
+            "edpb": "EDPB document on processing\npersonal data through AI systems",
+        },
+        "kg_others": "The other {n} questions: 3 of 3 correct",
+        "kg_official_title": "The {q} accepted answers, checked against official sources",
+        "kg_official": {
+            "confirmed": "confirmed",
+            "partial": "partial",
+            "not_confirmed": "not confirmed",
+        },
+        "runs3": "{n}/3",
+        "scan_title": "The scan rules over the {total} skills of the public index",
+        "scan": {
+            "scan_warning": "Injection-scan warning",
+            "remote": "  of which remote instructions",
+            "size": "Size warning",
+            "scripts": "Bundles scripts",
+            "dated": "States a year or version",
+            "no_own_license": "No license in the skill itself",
+            "no_license": "None after the repo-root rule",
+        },
+        "skills": "skills",
+        "advice_title": "Advice per skill (the license is not part of it)",
+        "advice": {
+            "recommended": "recommended",
+            "caution": "caution",
+            "not_recommended": "not recommended",
+        },
+        "scan_foot": "The index admitted only skills that pass lint and the injection scan; "
+        "its build rejected {n} more.",
     },
 }
 
@@ -613,10 +811,184 @@ def fig_router(plt, lang: str) -> Path:
     return _save(plt, fig, f"fig4-router-{lang}.png")
 
 
+def _hbar_labels(ax, ys, widths, labels, xmax):
+    for y, w, label in zip(ys, widths, labels, strict=True):
+        ax.text(w + xmax * 0.012, y, label, va="center", fontsize=9.5, color=INK)
+
+
+def fig_stage13(plt, lang: str) -> Path:
+    t = TEXT[lang]
+    fig, axes = plt.subplots(1, 3, figsize=(11, 3.4), gridspec_kw={"wspace": 0.55})
+    keys = [k for k, *_ in STAGE13]
+    colors = [GRAY, AMBER, BLUE]
+    ys = list(range(len(keys)))[::-1]
+    panels = (
+        (axes[0], 1, t["s13_score"], 5),
+        (axes[1], 2, t["s13_d1"], 5),
+        (axes[2], 4, t["s13_cost"], None),
+    )
+    for ax, col, title, top in panels:
+        nums = [row[col] for row in STAGE13]
+        vals = [val(n) for n in nums]
+        if top:  # score: bars from 1
+            ax.barh(ys, [v - 1 for v in vals], left=1, color=colors, height=0.6)
+            ax.set_xlim(1, 5.6)
+            ax.set_xticks([1, 2, 3, 4, 5])
+            for y, n, v in zip(ys, nums, vals, strict=True):
+                ax.text(v + 0.06, y, n.raw, va="center", fontsize=10, color=INK)
+        else:
+            xmax = max(vals) * 1.35
+            ax.barh(ys, vals, color=colors, height=0.6)
+            ax.set_xlim(0, xmax)
+            ax.set_xticks([0, 0.2, 0.4, 0.6], ["$0", "$0.2", "$0.4", "$0.6"])
+            for y, n, v in zip(ys, nums, vals, strict=True):
+                ax.text(v + xmax * 0.02, y, n.raw, va="center", fontsize=10, color=INK)
+        ax.set_title(title, loc="left", fontsize=10.5, color=INK)
+        _clean(ax, left=True)
+    axes[0].set_yticks(
+        ys,
+        [
+            f"{t['s13_cond'][k]}\n{t['s13_checks'].format(c=row[3].raw)}"
+            for k, row in zip(keys, STAGE13, strict=True)
+        ],
+    )
+    for ax in axes[1:]:
+        ax.set_yticks(ys, [""] * len(ys))
+        ax.tick_params(axis="y", length=0)
+    fig.text(0.125, -0.06, t["s13_foot"], fontsize=8.5, color=MUTED)
+    return _save(plt, fig, f"fig5-stage13-{lang}.png")
+
+
+def fig_knowledge(plt, lang: str) -> Path:
+    t = TEXT[lang]
+    fig, (top, mid, bottom) = plt.subplots(
+        3, 1, figsize=(9, 5.6), gridspec_kw={"height_ratios": [1, 2.6, 1], "hspace": 0.9}
+    )
+    total, correct = int(val(KG_TOTAL)), int(val(KG_CORRECT))
+    top.barh(0, correct, color=GREEN, height=0.6)
+    top.barh(0, total - correct, left=correct, color=RED, height=0.6)
+    top.text(
+        correct / 2,
+        0,
+        t["kg_correct"].format(n=correct),
+        ha="center",
+        va="center",
+        color="white",
+        fontsize=10.5,
+        fontweight="bold",
+    )
+    top.text(
+        total + 2, 0, t["kg_wrong"].format(n=total - correct), va="center", fontsize=10, color=RED
+    )
+    top.set_xlim(0, total * 1.12)
+    top.set_yticks([])
+    top.xaxis.set_visible(False)
+    _clean(top)
+    q = int(val(KG_QUESTIONS))
+    top.set_title(t["kg_title"].format(total=total, q=q), loc="left", fontsize=11.5, color=INK)
+
+    ys = list(range(len(KG_MISSED)))[::-1]
+    right = [3 - int(n.raw.split(" of ")[0]) for _, n in KG_MISSED]
+    mid.barh(ys, [3] * len(ys), color=GRID, height=0.55)
+    mid.barh(ys, right, color=GREEN, height=0.55)
+    for y, r in zip(ys, right, strict=True):
+        mid.text(
+            3.06, y, t["runs3"].format(n=r), va="center", fontsize=10, color=RED if r < 3 else INK
+        )
+    mid.set_xlim(0, 3.5)
+    mid.set_xticks([0, 1, 2, 3])
+    mid.set_yticks(ys, [t["kg_missed"][k] for k, _ in KG_MISSED])
+    _clean(mid, left=True)
+    mid.set_title(t["kg_missed_title"], loc="left", fontsize=11, color=INK)
+    mid.set_xlabel(t["kg_others"].format(n=q - len(KG_MISSED)), loc="left", fontsize=9, color=MUTED)
+
+    left = 0
+    colors = [GREEN, AMBER, GRAY]
+    for (key, n), c in zip(KG_OFFICIAL, colors, strict=True):
+        w = val(n)
+        bottom.barh(0, w, left=left, color=c, height=0.6)
+        label = f"{t['kg_official'][key]} {n.raw}"
+        if w >= 8:
+            bottom.text(
+                left + w / 2,
+                0,
+                label,
+                ha="center",
+                va="center",
+                fontsize=10,
+                color="white" if c != GRAY else INK,
+            )
+        else:
+            bottom.text(left + w + 0.8, 0, label, va="center", fontsize=9.5, color=INK)
+        left += w
+    bottom.set_xlim(0, q * 1.25)
+    bottom.set_yticks([])
+    bottom.xaxis.set_visible(False)
+    _clean(bottom)
+    bottom.set_title(t["kg_official_title"].format(q=q), loc="left", fontsize=11, color=INK)
+    return _save(plt, fig, f"fig6-knowledge-{lang}.png")
+
+
+def fig_index_scan(plt, lang: str) -> Path:
+    t = TEXT[lang]
+    fig, (ax, adv) = plt.subplots(
+        2, 1, figsize=(9, 5.6), gridspec_kw={"height_ratios": [len(SCAN), 1.2], "hspace": 0.55}
+    )
+    total = val(SCAN_TOTAL)
+    ys = list(range(len(SCAN)))[::-1]
+    shares = [val(c) / total * 100 for _, c, _ in SCAN]
+    colors = [RED, RED, AMBER, AMBER, BLUE, GRAY, GRAY]
+    ax.barh(ys, shares, color=colors, height=0.62)
+    sep = "" if lang == "ko" else " "
+    _hbar_labels(ax, ys, shares, [f"{s.raw} ({c.raw}{sep}{t['skills']})" for _, c, s in SCAN], 100)
+    ax.set_xlim(0, 118)
+    ax.set_xticks([0, 25, 50, 75, 100], ["0%", "25%", "50%", "75%", "100%"])
+    ax.set_yticks(ys, [t["scan"][k] for k, _, _ in SCAN])
+    _clean(ax, left=True)
+    ax.set_title(t["scan_title"].format(total=SCAN_TOTAL.raw), loc="left", fontsize=12, color=INK)
+
+    left, outside = 0.0, []
+    for (key, count, share), c in zip(SCAN_ADVICE, [GREEN, AMBER, RED], strict=True):
+        w = val(count) / total * 100
+        label = f"{t['advice'][key]} {share.raw}"
+        if w:
+            adv.barh(0, w, left=left, color=c, height=0.6)
+        if w >= 30:
+            adv.text(
+                left + w / 2,
+                0,
+                label,
+                ha="center",
+                va="center",
+                fontsize=10,
+                color="white",
+                fontweight="bold",
+            )
+        else:
+            outside.append(label)
+        left += w
+    adv.text(left + 1, 0, " · ".join(outside), va="center", fontsize=9.5, color=INK)
+    adv.set_xlim(0, 118)
+    adv.set_yticks([])
+    adv.xaxis.set_visible(False)
+    _clean(adv)
+    adv.set_title(t["advice_title"], loc="left", fontsize=11, color=INK)
+    fig.text(0.125, 0.0, t["scan_foot"].format(n=SCAN_REJECTED.raw), fontsize=8.5, color=MUTED)
+    return _save(plt, fig, f"fig7-index-scan-{lang}.png")
+
+
 def main() -> None:
     plt = _setup()
     for lang in LANGS:
-        for draw in (fig_license, fig_conflicts, fig_tasks, fig_router):
+        for draw in (
+            fig_license,
+            fig_conflicts,
+            fig_tasks,
+            fig_router,
+            fig_stage13,
+            fig_knowledge,
+            fig_index_scan,
+        ):
             print(draw(plt, lang).relative_to(ROOT))
 
 
