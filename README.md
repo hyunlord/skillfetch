@@ -25,14 +25,16 @@ $ uvx --from git+https://github.com/hyunlord/skillfetch skillfetch scan ~/.claud
   - Nothing is installed or run: no hooks, submodules or LFS, and symbolic links become plain
     files.
   - The report names the URL and the commit.
-- **The first line** is the advice:
+- **The first line** is the advice, from safety and quality checks only:
   - **NOT RECOMMENDED** when a skill fails the injection scan or lint, or two skills give
     opposite instructions;
-  - **CAUTION** when a skill has injection-scan warnings, is over a size limit, bundles scripts,
-    states no license, or covers another skill;
+  - **CAUTION** when a skill has injection-scan warnings (remote instructions among them), is
+    over a size limit, bundles scripts, or covers another skill;
   - **RECOMMENDED** otherwise.
 
   The rule is in [index-format.md §5.1](docs/design/index-format.md).
+- **The second line** is the license, with where it was found (`MIT (repo root)`). It is not
+  part of the advice: check it before you redistribute a skill.
 - **Then** a summary by severity, then the details, each with the line it comes from.
 
 | check | what it reports |
@@ -40,7 +42,7 @@ $ uvx --from git+https://github.com/hyunlord/skillfetch skillfetch scan ~/.claud
 | injection scan | failures (instruction overrides, exfiltration, privilege, hidden text) and warnings (`sudo`, piping a download into a shell, a URL named as instructions to follow) |
 | size | `SKILL.md` over 8,000 tokens, more than 20 files, or more than 1 MB |
 | scripts | files a skill bundles to run |
-| license | the skill's LICENSE file or frontmatter, else none (all rights reserved) |
+| license | the skill's LICENSE file or frontmatter; else the nearest license file up to the repository root, unless the repository is an aggregator or the skill names an upstream (the rule discover uses); else none (all rights reserved) |
 | dated claims | prose lines that state a year or a version: they may have changed since the model was trained, or be wrong; check the official docs |
 | lint | frontmatter, links, length |
 | duplicates and contradictions | identical copies; pairs of skills whose extracted instructions conflict, quoting both lines |
@@ -50,7 +52,8 @@ of our measured conditions installed:
 
 ```console
 $ skillfetch scan https://github.com/leonxlnx/taste-skill/tree/12af471f627f866411b4bd785b19646d3672784c/skills/taste-skill
-Before you install: CAUTION (1 skill is over a size limit; 1 skill bundles scripts; 1 skill states no license)
+Before you install: CAUTION (1 skill is over a size limit; 1 skill bundles scripts)
+License: MIT (repo root). Not part of the advice: check it before you redistribute a skill.
 
 skillfetch scan https://github.com/leonxlnx/taste-skill/tree/12af471f…/skills/taste-skill@12af471f627f
 1 skill · index: ~/.skillfetch/index (2785 skills, extraction openrouter/openai/gpt-6-luna)
@@ -58,7 +61,6 @@ skillfetch scan https://github.com/leonxlnx/taste-skill/tree/12af471f…/skills/
   severity  count  problem
   medium        1  SIZE_WARNING         skills over a size limit (SKILL.md tokens, files or MB)
   low           1  LINT_WARNING         skills with lint warnings only
-  low           1  NO_LICENSE           skills that state no license
   info          1  HAS_SCRIPTS          skills that bundle scripts
   info          1  SCAN_INFO            skills with injection-scan notes (links, quoted phrases)
   info          1  DATED                skills with lines that state a year or version (check them)
@@ -86,8 +88,14 @@ The index admitted only skills that pass lint and its injection scan; its build 
 | of which remote instructions | 0.4% | 0.5% |
 | size warning | 2.4% | 2.9% |
 | bundles scripts | 9.0% | 11.0% |
-| no license | 86.5% | 84.1% |
+| no license in the skill itself | 89.3% | 87.5% |
+| no license after the repo-root rule | 53.5% | 65.3% |
 | states a year or version | 32.0% | 33.6% |
+
+The advice for each skill on its own (no pair checks): RECOMMENDED for 88.3% (85.9%
+canonical), CAUTION for 11.7% (14.1%), NOT RECOMMENDED for none. Most skills with no license
+after the rule come from UASL, an aggregator, whose root license does not apply to the skills
+it copies.
 
 **Contradictions.**
 - **Public copies:** the check runs once the index is installed (`skillfetch sync`: metadata
