@@ -154,7 +154,7 @@ Position 1 was 0/5 in C as well.
 
 **(a) `assets/router-skill/variants/refire.md`**
 - sha256 `e3402ffbda29a64b8e026662f315ac91968c467caa2a51fdde38d8bbc9f2d9aa`.
-- This is the shipped router (sha256 `3efef1e0…f040`, S-b′) with one change. The description
+- This is the router the sessions ran (sha256 `3efef1e0…f040`, S-b′; released as 1.0.1 with its description quoted, numbers.md §29) with one change. The description
   and the body's first line both say: "Run it again each time a new task arrives in the same
   conversation; do not reuse the skill choice from an earlier task."
 - No other byte differs; the file is 60 lines.
