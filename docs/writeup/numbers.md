@@ -206,6 +206,7 @@ Not recorded: in these stages' batch calls only successful answers are cached, s
 - Stage 10 sessions (§21): main run 270 sessions $190.95, with pilots and the 8 sessions cut off by a spend limit $202.43; bundle (3) remeasurement 27 sessions $9.51; grading $0.11 + $0.359 (isolated `claude -p`); GPT judging not recorded.
 - Stage 11 sessions (§22): main run 174 sessions $88.92; pilot and smoke test 9 sessions $3.57; pre-run checks $0.68; loaded-skill grading $0.10; total $93.27; Claude judging subagents and GPT judging not recorded.
 - Stage Q sessions (§23): Stage Q $48.87 (preparation $6.74, pilots $4.63, main run $37.50); Q1 extension 82 sessions $38.54; re-fire check 9 sessions $28.18; Claude judging subagents not recorded.
+- Knowledge-gap probe (§24): 180 isolated `claude -p` calls, $0.88.
 
 ### Runtime latency
 
@@ -2200,4 +2201,38 @@ Claude judging subagents are not recorded. The GPT judging was not run.
 - **Runs per task:** 2 in Q1 and Q5, 3 in the Q1 extension, 5 in Q2.
 - **Q4 rules:** extracted from the skill bodies automatically. Rules that did not fit a task were judged n/a (on: p1 37 and p2 40 of 159).
 - **Re-fire check:** the variants ran once each (plus a pilot), after the queue's projection stopped the run at a measured $3.1 per session (estimate $1.8). By the user's decision, only 3 more shipped-router sessions were run.
+
+## 24. Knowledge gap: what the model answers without the skill
+
+Source: evals/knowledge-gap/report.md; questions and accepted answers in evals/knowledge-gap/questions.py, official checks in evals/knowledge-gap/verified.py, candidates in evals/knowledge-gap/candidates.jsonl, answers in evals/knowledge-gap/answers.jsonl. Measured after the post's numbers were frozen; not in §7's totals.
+
+**Question.** For skills in the released index whose descriptions promise knowledge a model may lack (a library version or a 2025–2026 change, an external service or API, a public spec's detailed rules), does the model already know the facts without the skill?
+
+**Method.**
+- **Candidates:** 30 skills from the released index (2,281 canonical), picked by keyword scoring of descriptions and then by reading. Each skill's file was checked for the fact its description promises.
+- **Questions:** 2 per candidate (60), each with a short answer taken from the skill's file.
+- **Official check:** each answer was compared with official documentation, the spec or the npm registry: confirmed 47, partial 12 (consistent, but not confirmed by an official page), not confirmed 1.
+- **Calls:** each question 3 times, one isolated `claude -p` per call (`claude-opus-5-5`, no tools, no MCP servers, no skill). 180 calls, 0 errors.
+
+**Result: 173 of 180 answers were correct.** 28 of the 30 candidates were answered 6/6.
+
+| wrong answers | runs | the model's answer | official answer |
+|---|---|---|---|
+| Claude Opus 5.5 input price per million tokens | 3 of 3 | $5 (confidence 0.3) | $4 |
+| iOS version that added AdAttributionKit conversion tags | 1 of 3 | iOS 18.0 (confidence 0.6) | iOS 18.4 |
+| EDPB document on processing personal data through AI systems | 3 of 3 | EDPB Opinion 28/2024 (confidence 0.3) | see below |
+
+- **What the model did not know:**
+  - the Opus 5.5 price, wrong in all 3 runs. The `anthropics-skills/claude-api` skill lists the confirmed price ($4);
+  - in 1 run of 3, the AdAttributionKit iOS version, which the `ad-attribution` skill gives as 18.4.
+  - No question was asked with the skill loaded.
+- **A skill that may be wrong:** `uasl/ai-dpia` cites "EDPB Guidelines 04/2025 on processing personal data through AI systems".
+  - That document was not found in the EDPB's list of guidelines, which shows 01/2025, 02/2025 and 3/2025.
+  - The model named the EDPB's Opinion 28/2024 on AI models instead.
+
+**Cost** (API-price equivalent, Claude Code plan): 180 calls, $0.88.
+
+**Limits.**
+- These are short factual questions. They do not measure whether the model applies a fact while coding.
+- One model, 3 runs per question, 2 questions per candidate. Skills outside the 30 candidates were not asked about.
 
