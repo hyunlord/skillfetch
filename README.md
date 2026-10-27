@@ -340,6 +340,13 @@ it:
 | `stage12` | rule skills of a fictional company team (Northwind: 24 skills, 2 repositories, 10 tasks); `12b`: org baseline vs all 24 installed; `12c`: design only, cancelled | §27 |
 | `stage13` | popular skills installed, the router, or neither | §26 |
 | `stage14` | six consecutive requests in one session: popular skills installed, the router, or neither | §28 |
+
+The galleries put every output side by side, as the blind judges saw them, and open in a
+browser at [hyunlord.github.io/skillfetch](https://hyunlord.github.io/skillfetch/) (in Korean):
+[Stage 10](https://hyunlord.github.io/skillfetch/stage10/stage10-gallery.html),
+[Stage Q](https://hyunlord.github.io/skillfetch/stageQ/stageQ-gallery-v2.html),
+[Stage 13](https://hyunlord.github.io/skillfetch/stage13/stage13-gallery.html),
+[Stage 14](https://hyunlord.github.io/skillfetch/stage14/stage14-gallery.html).
 | `router-e2e.json` | the export numbers.md §11–§12 read | §11, §12 |
 
 **Not here, and why.**

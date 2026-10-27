@@ -80,6 +80,8 @@ The other three design tasks did not repeat it: d2-redesign A 3.50, P 4.50, R 3.
 
 Limits: P only installed the skills and left it to the model to pull them in, and the measure is the score of the final output. The value of workflow skills a user calls by name (tdd, for example) and of output-format or tone skills (saving tokens, for example) was not measured. Also: five of the eight popular skills are web or front-end skills; design scores come from still screenshots; A and R reuse runs from another day with the same harness; 18 tasks, 3 runs, two Claude judges.
 
+See every output side by side: [the Stage 13 gallery](https://hyunlord.github.io/skillfetch/stage13/stage13-gallery.html) (in Korean).
+
 **Six requests in one session.** People do not open a new session for every task, so I also ran the three conditions through six different requests in one session (a landing page, an API endpoint, API tests, Rust concurrency, a README, a data script), in two orders ([numbers.md](numbers.md) §28).
 - **Scores over the six:** the router 4.708, the installed popular skills 3.833, no skill 4.458.
 - **Against the installed skills:** the router's lead, +0.875, comes mostly from the landing page again (P 1.5, the router 4.75). Without it the lead is +0.40.
@@ -88,6 +90,8 @@ Limits: P only installed the skills and left it to the model to pull them in, an
 - **Leftovers:** skills loaded for earlier requests did not carry over. The judges found no trace of an earlier skill in a later result: 0 of 57 skill pairs for the router, 0 of 5 for P.
 
 This is one run per order, two sessions per condition.
+
+See every output side by side: [the Stage 14 gallery](https://hyunlord.github.io/skillfetch/stage14/stage14-gallery.html) (in Korean).
 
 ## 5. Where skills do help: rules the code does not show
 
