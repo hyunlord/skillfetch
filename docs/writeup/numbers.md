@@ -2299,7 +2299,11 @@ Source: the Stage 13 report [`evals/e2e/stage13/report-13.md`](../../evals/e2e/s
 **Design.** 18 tasks (Stage Q's Q1 and its extension) × 3 runs, environment E1. Three conditions:
 - **A:** no router and no MCP server.
 - **P:** eight popular skills installed in `.claude/skills`, with no router.
-  - The rule fixed before the run: top 200 of the skills.sh all-time ranking (snapshot 2026-10-27) or official Anthropic skills, in rank order.
+  - The rule fixed before the run (`evals/e2e/stage13/DESIGN.md` §1.2), applied in rank order:
+    1. top 200 of the skills.sh all-time ranking (snapshot 2026-10-27) or official Anthropic skills;
+    2. left out: non-coding domains (video, image and audio generation; document and collaboration tools; marketing and social automation), single cloud or database vendors, meta, setup and session skills, skills that need an external binary or account, skills whose main action is interviewing the user, issue and PR workflows, throwaway prototypes, and skills described as opt-in or retired;
+    3. at most 3 per publisher;
+    4. the first 8 that remain, by rank.
   - The eight: improve-codebase-architecture, tdd, frontend-design, domain-modeling, vercel-react-best-practices, web-design-guidelines, design-taste-frontend, vercel-composition-patterns.
 - **R:** the shipped router (S-b′) and the skillfetch MCP server on index-staging-4.
 

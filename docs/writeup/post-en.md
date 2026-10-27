@@ -1,4 +1,4 @@
-# Skills get installed, not read. I scanned 2,785 and measured what they change.
+# Agent skills get installed, not read. I measured what they change
 
 *Draft · Kwan Hyeon · numbers as of 2026-10-27*
 
@@ -42,7 +42,7 @@ None of the hits I read was an attack. That is the point of a warning: it tells 
 
 Many skills sell knowledge: a library's new API, a service's limits, a regulation's details. If the model already knows it, the skill costs context and adds nothing; if the skill is wrong, it does harm. So I asked the model first ([numbers.md](numbers.md) §24).
 
-I picked 30 skills from the index whose descriptions promise knowledge a model may lack, took 2 short factual questions from each skill's own files (60 questions), checked each accepted answer against official documentation, and asked each question 3 times in an isolated session with no tools and no skill. 180 calls cost $0.88.
+I picked 30 skills from the index whose descriptions promise knowledge a model may lack, took 2 short factual questions from each skill's own files (60 questions), checked each accepted answer against official documentation, and asked each question 3 times to Claude Opus 5.5, Claude Code's default model, in an isolated session with no tools and no skills. 180 calls cost $0.88.
 
 ![Figure 2. Top: 180 answers to factual questions without the skill (60 questions × 3 runs): correct 173, wrong 7. Middle: the three questions with a wrong answer, runs answered correctly out of 3: Claude Opus 5.5 input price 0/3; iOS version that added AdAttributionKit conversion tags 2/3; EDPB document on processing personal data through AI systems 0/3. The other 57 questions: 3 of 3 correct. Bottom: the 60 accepted answers checked against official sources: confirmed 47, partial 12, not confirmed 1.](img/fig6-knowledge-en.png)
 
@@ -58,7 +58,7 @@ The limits are real: these are short factual questions, one model, three runs ea
 
 The direct test ([numbers.md](numbers.md) §26): 18 tasks, four of them design tasks, 3 runs each, in three conditions, judged blind by two Claude judges.
 - **A:** no skills.
-- **P:** eight popular skills installed in `.claude/skills`. The rule, fixed before the run: top 200 of the skills.sh all-time ranking or official Anthropic skills, in rank order. The eight: improve-codebase-architecture, tdd, frontend-design, domain-modeling, vercel-react-best-practices, web-design-guidelines, design-taste-frontend, vercel-composition-patterns.
+- **P:** eight popular skills installed in `.claude/skills`. The rule, fixed before the run: from the top 200 of the skills.sh all-time ranking and the official Anthropic skills, leave out non-coding domains (video and image, document tools, marketing and the like) and a few other kinds that cannot run in these sessions, keep at most 3 per publisher, then take the first 8 by rank. The eight: improve-codebase-architecture, tdd, frontend-design, domain-modeling, vercel-react-best-practices, web-design-guidelines, design-taste-frontend, vercel-composition-patterns.
 - **R:** skillfetch's per-task router, which searches the index for each task and loads up to three skills.
 
 ![Figure 3. Stage 13. Mean score on the 17 tasks without d1-landing: no skill 4.618 (checks 53/54), 8 popular skills installed 4.725 (51/54), router 4.627 (52/54). d1-landing, a product landing page: 3.00, 1.33, 4.67. Mean cost per session, API-price equivalent: $0.370, $0.642, $0.599. All three P sessions on d1-landing ended at the 40-turn limit.](img/fig5-stage13-en.png)

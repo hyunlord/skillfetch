@@ -1,4 +1,4 @@
-# 스킬은 읽지 않고 설치된다. 2,785개를 점검하고, 바뀌는 것을 재 봤다
+# 에이전트 스킬은 읽지 않고 설치된다. 그래서 무엇이 바뀌는지 재 봤다
 
 *초안 · Kwan Hyeon · 숫자 기준 2026-10-27*
 
@@ -42,7 +42,7 @@
 
 많은 스킬이 지식을 판다. 라이브러리의 새 API, 서비스의 한도, 규제의 세부 내용 같은 것이다. 모델이 이미 알면 스킬은 컨텍스트만 쓰고 보태는 게 없다. 스킬이 틀리면 해가 된다. 그래서 모델에게 먼저 물었다([numbers.md](numbers.md) §24).
 
-index에서 모델이 모를 수 있는 지식을 설명에 내세운 스킬 30개를 골랐다. 스킬마다 그 스킬의 파일에서 짧은 사실 질문 2개를 뽑고(질문 60개), 정답을 공식 문서와 대조했다. 각 질문을 도구도 스킬도 없는 격리 세션에서 3번씩 물었다. 180번 호출에 $0.88이 들었다.
+index에서 모델이 모를 수 있는 지식을 설명에 내세운 스킬 30개를 골랐다. 스킬마다 그 스킬의 파일에서 짧은 사실 질문 2개를 뽑고(질문 60개), 정답을 공식 문서와 대조했다. 각 질문을 Claude Code의 기본 모델인 Claude Opus 5.5에게, 도구도 스킬도 없는 격리 세션에서 3번씩 물었다. 180번 호출에 $0.88이 들었다.
 
 ![그림 2. 위: 스킬 없이 답한 사실 질문 180개(질문 60개 × 3회): 맞음 173, 틀림 7. 가운데: 틀린 답이 나온 질문 세 개, 3회 중 맞은 횟수: Claude Opus 5.5 입력 단가 0/3, AdAttributionKit 전환 태그가 추가된 iOS 버전 2/3, AI 시스템의 개인정보 처리에 관한 EDPB 문서 0/3. 나머지 질문 57개는 3회 모두 맞음. 아래: 정답 60개를 공식 문서로 대조: 확인 47, 부분 12, 미확인 1.](img/fig6-knowledge-ko.png)
 
@@ -58,7 +58,7 @@ index에서 모델이 모를 수 있는 지식을 설명에 내세운 스킬 30�
 
 직접 잰 실험이다([numbers.md](numbers.md) §26). 18개 태스크(그중 디자인 4개)를 세 조건에서 3번씩 돌리고, Claude 판정자 두 명이 블라인드로 판정했다.
 - **A:** 스킬 없음.
-- **P:** 인기 스킬 8개를 `.claude/skills`에 설치. 실행 전에 정한 규칙은 skills.sh 전체 기간 순위 상위 200위 안이거나 Anthropic 공식 스킬, 순위 순서다. 8개: improve-codebase-architecture, tdd, frontend-design, domain-modeling, vercel-react-best-practices, web-design-guidelines, design-taste-frontend, vercel-composition-patterns.
+- **P:** 인기 스킬 8개를 `.claude/skills`에 설치. 실행 전에 정한 규칙은 이렇다. skills.sh 전체 기간 순위 상위 200위와 Anthropic 공식 스킬에서 비코딩 분야(영상·이미지, 문서 도구, 마케팅 등)와 이 세션에서 돌 수 없는 몇 가지 종류를 빼고, 출판자당 최대 3개로 제한한 다음, 순위 순서로 8개를 고른다. 8개: improve-codebase-architecture, tdd, frontend-design, domain-modeling, vercel-react-best-practices, web-design-guidelines, design-taste-frontend, vercel-composition-patterns.
 - **R:** skillfetch의 태스크별 라우터. 태스크마다 index를 검색해 스킬을 최대 3개 로드한다.
 
 ![그림 3. Stage 13. d1-landing을 뺀 17개 태스크의 평균 점수: 스킬 없음 4.618(체크 53/54), 인기 스킬 8개 설치 4.725(51/54), 라우터 4.627(52/54). 제품 랜딩 페이지 d1-landing: 3.00, 1.33, 4.67. 세션당 평균 비용(API 단가 환산): $0.370, $0.642, $0.599. P의 d1-landing 3세션은 모두 40턴 한도에서 끝났다.](img/fig5-stage13-ko.png)
