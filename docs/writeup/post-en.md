@@ -1,6 +1,6 @@
 # Agent skills get installed, not read. I measured what they change
 
-*Draft · Kwan Hyeon · numbers as of 2026-10-27*
+*2026-10-28 · Kwan Hyeon*
 
 **At a glance**
 

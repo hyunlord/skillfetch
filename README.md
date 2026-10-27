@@ -141,8 +141,9 @@ $ skillfetch scan tests/fixtures/skills                   # the labelled fixture
 
 > Status: `scan` and the measurements are the product. v0.1 shipped `scan`, the public
 > index and the 2026-10-22 write-up ([English](docs/writeup/post-2026-10-22-en.md),
-> [한국어](docs/writeup/post-2026-10-22-ko.md)); its successor is in draft
-> ([`post-en.md`](docs/writeup/post-en.md), [`post-ko.md`](docs/writeup/post-ko.md)).
+> [한국어](docs/writeup/post-2026-10-22-ko.md)). The 2026-10-28 write-up covers scan, the
+> knowledge probe and the session experiments ([English](docs/writeup/post-en.md),
+> [한국어](docs/writeup/post-ko.md)).
 > The index covers anthropics/skills, UASL and four more repositories: 2,785 skills indexed
 > (1,724 from the first two, as in the write-up, plus 1,061). Index update (Stage 11): this
 > index, built as index-staging-4, passed the release gate fixed before Stage 11
