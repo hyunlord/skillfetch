@@ -42,7 +42,7 @@ addopts = "-q"
 line-length = 100
 target-version = "py311"
 # published experiment scripts are kept byte-for-byte (their hashes are frozen)
-extend-exclude = ["evals/e2e"]
+extend-exclude = ["evals/e2e", "evals/knowledge-gap"]
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "UP", "B", "SIM"]

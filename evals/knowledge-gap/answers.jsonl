@@ -1,0 +1,180 @@
+{"candidate": 1, "qid": "1a", "run": 1, "answer": "updateTag", "confidence": 0.95, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.005148}
+{"candidate": 1, "qid": "1a", "run": 2, "answer": "updateTag", "confidence": 0.95, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.000585}
+{"candidate": 1, "qid": "1a", "run": 3, "answer": "updateTag", "confidence": 0.95, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.000585}
+{"candidate": 1, "qid": "1b", "run": 1, "answer": "cacheComponents: true", "confidence": 0.93, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.005052}
+{"candidate": 1, "qid": "1b", "run": 2, "answer": "cacheComponents (set `cacheComponents: true` at the top level of next.config)", "confidence": 0.93, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.005432}
+{"candidate": 1, "qid": "1b", "run": 3, "answer": "cacheComponents: true", "confidence": 0.93, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.005052}
+{"candidate": 2, "qid": "2a", "run": 1, "answer": "proxy.ts", "confidence": 0.93, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0049239999999999996}
+{"candidate": 2, "qid": "2a", "run": 2, "answer": "proxy.ts", "confidence": 0.93, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0006184}
+{"candidate": 2, "qid": "2a", "run": 3, "answer": "proxy.ts", "confidence": 0.93, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0006184}
+{"candidate": 2, "qid": "2b", "run": 1, "answer": "Turbopack", "confidence": 0.95, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.004791999999999999}
+{"candidate": 2, "qid": "2b", "run": 2, "answer": "Turbopack", "confidence": 0.95, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.004791999999999999}
+{"candidate": 2, "qid": "2b", "run": 3, "answer": "Turbopack", "confidence": 0.95, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.004791999999999999}
+{"candidate": 3, "qid": "3a", "run": 1, "answer": "@theme inline", "confidence": 0.93, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.005136}
+{"candidate": 3, "qid": "3a", "run": 2, "answer": "@theme inline { --color-background: var(--background); ... }", "confidence": 0.9, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0008842}
+{"candidate": 3, "qid": "3a", "run": 3, "answer": "@theme inline { --color-background: var(--background); ... }", "confidence": 0.93, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0008842}
+{"candidate": 3, "qid": "3b", "run": 1, "answer": "tw-animate-css", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0049759999999999995}
+{"candidate": 3, "qid": "3b", "run": 2, "answer": "tw-animate-css", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0049759999999999995}
+{"candidate": 3, "qid": "3b", "run": 3, "answer": "tw-animate-css", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0049759999999999995}
+{"candidate": 4, "qid": "4a", "run": 1, "answer": "hydrate-on-visible", "confidence": 0.95, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.005088}
+{"candidate": 4, "qid": "4a", "run": 2, "answer": "hydrate-on-visible", "confidence": 0.95, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.000681}
+{"candidate": 4, "qid": "4a", "run": 3, "answer": "hydrate-on-visible", "confidence": 0.95, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.000681}
+{"candidate": 4, "qid": "4b", "run": 1, "answer": "'pending'", "confidence": 0.95, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0005782}
+{"candidate": 4, "qid": "4b", "run": 2, "answer": "'pending'", "confidence": 0.95, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0005782}
+{"candidate": 4, "qid": "4b", "run": 3, "answer": "'pending'", "confidence": 0.95, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.004875999999999999}
+{"candidate": 5, "qid": "5a", "run": 1, "answer": "Solid Queue", "confidence": 0.98, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.004843999999999999}
+{"candidate": 5, "qid": "5a", "run": 2, "answer": "Solid Queue", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.004843999999999999}
+{"candidate": 5, "qid": "5a", "run": 3, "answer": "Solid Queue", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0006164}
+{"candidate": 5, "qid": "5b", "run": 1, "answer": "Solid Cable", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0049}
+{"candidate": 5, "qid": "5b", "run": 2, "answer": "Solid Cable", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0006178}
+{"candidate": 5, "qid": "5b", "run": 3, "answer": "Solid Cable", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0006178}
+{"candidate": 6, "qid": "6a", "run": 1, "answer": "@concurrent", "confidence": 0.95, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0049759999999999995}
+{"candidate": 6, "qid": "6a", "run": 2, "answer": "@concurrent", "confidence": 0.95, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0049759999999999995}
+{"candidate": 6, "qid": "6a", "run": 3, "answer": "@concurrent", "confidence": 0.95, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0006002}
+{"candidate": 6, "qid": "6b", "run": 1, "answer": "SE-0466", "confidence": 0.9, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.005492}
+{"candidate": 6, "qid": "6b", "run": 2, "answer": "SE-0466", "confidence": 0.93, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.005432}
+{"candidate": 6, "qid": "6b", "run": 3, "answer": "SE-0466", "confidence": 0.9, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.005332}
+{"candidate": 7, "qid": "7a", "run": 1, "answer": "SE-0470 isolated conformances: `extension StickerModel: @MainActor Exportable {}`\n\n{\"answer\": \"extension StickerModel: @MainActor Exportable {}\", \"confidence\": 0.93}", "confidence": null, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.006148}
+{"candidate": 7, "qid": "7a", "run": 2, "answer": "SE-0470 isolated conformances syntax: `extension StickerModel: @MainActor Exportable {}`\n\n{\"answer\": \"extension StickerModel: @MainActor Exportable {}\", \"confidence\": 0.93}", "confidence": null, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.006208}
+{"candidate": 7, "qid": "7a", "run": 3, "answer": "SE-0470 isolated conformances syntax: `extension StickerModel: @MainActor Exportable {}`\n\n{\"answer\": \"extension StickerModel: @MainActor Exportable {}\", \"confidence\": 0.95}", "confidence": null, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.001645}
+{"candidate": 7, "qid": "7b", "run": 1, "answer": "NonisolatedNonsendingByDefault", "confidence": 0.93, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.005144}
+{"candidate": 7, "qid": "7b", "run": 2, "answer": "NonisolatedNonsendingByDefault", "confidence": 0.93, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.005144}
+{"candidate": 7, "qid": "7b", "run": 3, "answer": "NonisolatedNonsendingByDefault", "confidence": 0.93, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.005144}
+{"candidate": 8, "qid": "8a", "run": 1, "answer": "InlineArray<4, Int> (sugar: [4 of Int])", "confidence": 0.93, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.005376}
+{"candidate": 8, "qid": "8a", "run": 2, "answer": "InlineArray<4, Int>  (sugar: [4 of Int])", "confidence": 0.9, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.005396}
+{"candidate": 8, "qid": "8a", "run": 3, "answer": "InlineArray<4, Int>", "confidence": 0.95, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0012611999999999999}
+{"candidate": 8, "qid": "8b", "run": 1, "answer": "span", "confidence": 0.93, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.004808000000000001}
+{"candidate": 8, "qid": "8b", "run": 2, "answer": "span", "confidence": 0.93, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.004808000000000001}
+{"candidate": 8, "qid": "8b", "run": 3, "answer": "span", "confidence": 0.93, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.004808000000000001}
+{"candidate": 9, "qid": "9a", "run": 1, "answer": ".glassEffect()", "confidence": 0.95, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.004984}
+{"candidate": 9, "qid": "9a", "run": 2, "answer": ".glassEffect()", "confidence": 0.95, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0006393999999999999}
+{"candidate": 9, "qid": "9a", "run": 3, "answer": ".glassEffect()", "confidence": 0.95, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0006393999999999999}
+{"candidate": 9, "qid": "9b", "run": 1, "answer": "GlassEffectContainer", "confidence": 0.96, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.005016}
+{"candidate": 9, "qid": "9b", "run": 2, "answer": "GlassEffectContainer", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.005016}
+{"candidate": 9, "qid": "9b", "run": 3, "answer": "GlassEffectContainer", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.005016}
+{"candidate": 10, "qid": "10a", "run": 1, "answer": "@Generable (with @Guide for property constraints)", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.005259999999999999}
+{"candidate": 10, "qid": "10a", "run": 2, "answer": "@Generable", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.005019999999999999}
+{"candidate": 10, "qid": "10a", "run": 3, "answer": "@Generable", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0005817999999999999}
+{"candidate": 10, "qid": "10b", "run": 1, "answer": "LanguageModelSession", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.004996}
+{"candidate": 10, "qid": "10b", "run": 2, "answer": "LanguageModelSession", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0006592}
+{"candidate": 10, "qid": "10b", "run": 3, "answer": "LanguageModelSession", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0006592}
+{"candidate": 11, "qid": "11a", "run": 1, "answer": "authorizationState", "confidence": 0.85, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.006808}
+{"candidate": 11, "qid": "11a", "run": 2, "answer": "authorizationState", "confidence": 0.85, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.006128}
+{"candidate": 11, "qid": "11a", "run": 3, "answer": "authorizationState", "confidence": 0.85, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0024400000000000003}
+{"candidate": 11, "qid": "11b", "run": 1, "answer": "Alarm.CountdownDuration (init(preAlert:postAlert:))", "confidence": 0.88, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.006580000000000001}
+{"candidate": 11, "qid": "11b", "run": 2, "answer": "Alarm.CountdownDuration (init(preAlert:postAlert:))", "confidence": 0.88, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0023988}
+{"candidate": 11, "qid": "11b", "run": 3, "answer": "Alarm.CountdownDuration (its preAlert and postAlert TimeInterval properties, passed as countdownDuration in AlarmManager.AlarmConfiguration)", "confidence": 0.88, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0031788000000000003}
+{"candidate": 12, "qid": "12a", "run": 1, "answer": "MaterialExpressiveTheme", "confidence": 0.9, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.005108}
+{"candidate": 12, "qid": "12a", "run": 2, "answer": "MaterialExpressiveTheme", "confidence": 0.9, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.005108}
+{"candidate": 12, "qid": "12a", "run": 3, "answer": "MaterialExpressiveTheme", "confidence": 0.9, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.005108}
+{"candidate": 12, "qid": "12b", "run": 1, "answer": "MotionScheme.expressive()", "confidence": 0.9, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.006504}
+{"candidate": 12, "qid": "12b", "run": 2, "answer": "MotionScheme.expressive()", "confidence": 0.9, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0022394}
+{"candidate": 12, "qid": "12b", "run": 3, "answer": "MotionScheme.expressive()", "confidence": 0.9, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0016394}
+{"candidate": 13, "qid": "13a", "run": 1, "answer": "The API rejects it with a 400 invalid_request_error. Opus 4.7 does not support manual extended thinking with budget_tokens; you must use thinking: {type: \"adaptive\"}, optionally with the effort parameter.", "confidence": 0.6, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.009424000000000002}
+{"candidate": 13, "qid": "13a", "run": 2, "answer": "The request is rejected with a 400 invalid_request_error. Opus 4.7 does not support manual extended thinking with budget_tokens; you must use thinking: {type: \"adaptive\"}, optionally with the effort parameter.", "confidence": 0.72, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.009104000000000001}
+{"candidate": 13, "qid": "13a", "run": 3, "answer": "It is rejected with a 400 invalid_request_error. Opus 4.7 no longer supports manual extended-thinking budgets; use thinking: {type: \"adaptive\"} instead, with the effort parameter to control depth.", "confidence": 0.72, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0049804}
+{"candidate": 13, "qid": "13b", "run": 1, "answer": "output_config", "confidence": 0.85, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.00492}
+{"candidate": 13, "qid": "13b", "run": 2, "answer": "output_config", "confidence": 0.85, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0063}
+{"candidate": 13, "qid": "13b", "run": 3, "answer": "output_config", "confidence": 0.85, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0005598}
+{"candidate": 14, "qid": "14a", "run": 1, "answer": "claude-opus-5-5", "confidence": 0.8, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.006208}
+{"candidate": 14, "qid": "14a", "run": 2, "answer": "claude-opus-5-5", "confidence": 0.8, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.006208}
+{"candidate": 14, "qid": "14a", "run": 3, "answer": "claude-opus-5-5", "confidence": 0.72, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.006188}
+{"candidate": 14, "qid": "14b", "run": 1, "answer": "$5 per million input tokens (best guess: Opus 4.5 was priced at $5, and I have no reliable pricing data for Opus 5.5)", "confidence": 0.3, "correct": false, "model": "claude-opus-5-5[1m]", "cost_usd": 0.006752}
+{"candidate": 14, "qid": "14b", "run": 2, "answer": "$5 per million input tokens (best guess, based on Opus 4.5 pricing; I don't have confirmed Opus 5.5 pricing)", "confidence": 0.3, "correct": false, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0068520000000000005}
+{"candidate": 14, "qid": "14b", "run": 3, "answer": "$5 per million input tokens (best guess, based on Opus 4.5 pricing; I can't confirm Opus 5.5 pricing)", "confidence": 0.3, "correct": false, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0023976}
+{"candidate": 15, "qid": "15a", "run": 1, "answer": "POST /v2/core/accounts", "confidence": 0.85, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.004944}
+{"candidate": 15, "qid": "15a", "run": 2, "answer": "POST /v2/core/accounts", "confidence": 0.85, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.005523999999999999}
+{"candidate": 15, "qid": "15a", "run": 3, "answer": "POST /v2/core/accounts", "confidence": 0.85, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.005463999999999999}
+{"candidate": 15, "qid": "15b", "run": 1, "answer": "The Checkout Sessions API (Stripe Checkout, hosted or embedded, or with Elements)", "confidence": 0.8, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.006644000000000001}
+{"candidate": 15, "qid": "15b", "run": 2, "answer": "The Checkout Sessions API (Stripe Checkout, hosted or embedded)", "confidence": 0.8, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.006584}
+{"candidate": 15, "qid": "15b", "run": 3, "answer": "The Checkout Sessions API (Stripe Checkout)", "confidence": 0.82, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0027594000000000004}
+{"candidate": 16, "qid": "16a", "run": 1, "answer": "com.apple.developer.storekit.external-purchase-link", "confidence": 0.8, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.009284}
+{"candidate": 16, "qid": "16a", "run": 2, "answer": "com.apple.developer.storekit.external-purchase-link", "confidence": 0.85, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.008064}
+{"candidate": 16, "qid": "16a", "run": 3, "answer": "com.apple.developer.storekit.external-purchase-link", "confidence": 0.85, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.007724}
+{"candidate": 16, "qid": "16b", "run": 1, "answer": "ExternalPurchaseLink (e.g. ExternalPurchaseLink.open())", "confidence": 0.85, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.007392}
+{"candidate": 16, "qid": "16b", "run": 2, "answer": "ExternalPurchaseLink (e.g., ExternalPurchaseLink.open())", "confidence": 0.85, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.007112}
+{"candidate": 16, "qid": "16b", "run": 3, "answer": "ExternalPurchaseLink (call ExternalPurchaseLink.open())", "confidence": 0.85, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0025766000000000005}
+{"candidate": 17, "qid": "17a", "run": 1, "answer": "AdServices framework (AAAttribution.attributionToken())", "confidence": 0.9, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.005252}
+{"candidate": 17, "qid": "17a", "run": 2, "answer": "AdServices framework (AAAttribution attribution token API)", "confidence": 0.9, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0052320000000000005}
+{"candidate": 17, "qid": "17a", "run": 3, "answer": "AdServices framework (AAAttribution attribution token API)", "confidence": 0.9, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0052320000000000005}
+{"candidate": 17, "qid": "17b", "run": 1, "answer": "iOS 18.0", "confidence": 0.6, "correct": false, "model": "claude-opus-5-5[1m]", "cost_usd": 0.012596}
+{"candidate": 17, "qid": "17b", "run": 2, "answer": "iOS 18.4", "confidence": 0.72, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.008536}
+{"candidate": 17, "qid": "17b", "run": 3, "answer": "iOS 18.4", "confidence": 0.6, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0056592}
+{"candidate": 18, "qid": "18a", "run": 1, "answer": "POST /v1/inAppPurchasePriceSchedules", "confidence": 0.9, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.005203999999999999}
+{"candidate": 18, "qid": "18a", "run": 2, "answer": "POST /v1/inAppPurchasePriceSchedules", "confidence": 0.9, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.005203999999999999}
+{"candidate": 18, "qid": "18a", "run": 3, "answer": "POST /v1/inAppPurchasePriceSchedules", "confidence": 0.88, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0008983999999999999}
+{"candidate": 18, "qid": "18b", "run": 1, "answer": "MISSING_METADATA", "confidence": 0.92, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.008844000000000001}
+{"candidate": 18, "qid": "18b", "run": 2, "answer": "MISSING_METADATA", "confidence": 0.92, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.008844000000000001}
+{"candidate": 18, "qid": "18b", "run": 3, "answer": "MISSING_METADATA", "confidence": 0.9, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.004538400000000001}
+{"candidate": 19, "qid": "19a", "run": 1, "answer": "preferredSubscriptionOffer(_:)", "confidence": 0.8, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.008208}
+{"candidate": 19, "qid": "19a", "run": 2, "answer": "preferredSubscriptionOffer(_:)", "confidence": 0.85, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.007868}
+{"candidate": 19, "qid": "19a", "run": 3, "answer": "preferredSubscriptionOffer(_:) — e.g. .preferredSubscriptionOffer { product, subscription, eligibleOffers in … } (iOS 18.4+). For older OS versions, .subscriptionPromotionalOffer(offer:signature:) applies a promotional offer.", "confidence": 0.72, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0064990000000000004}
+{"candidate": 19, "qid": "19b", "run": 1, "answer": "winBackOffers", "confidence": 0.93, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.00568}
+{"candidate": 19, "qid": "19b", "run": 2, "answer": "winBackOffers (Product.SubscriptionInfo.winBackOffers, an array of Product.SubscriptionOffer)", "confidence": 0.93, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0013568}
+{"candidate": 19, "qid": "19b", "run": 3, "answer": "winBackOffers", "confidence": 0.93, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0016568000000000002}
+{"candidate": 20, "qid": "20a", "run": 1, "answer": "CA92.1", "confidence": 0.95, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.004967999999999999}
+{"candidate": 20, "qid": "20a", "run": 2, "answer": "CA92.1", "confidence": 0.95, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0006}
+{"candidate": 20, "qid": "20a", "run": 3, "answer": "CA92.1", "confidence": 0.95, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0006}
+{"candidate": 20, "qid": "20b", "run": 1, "answer": "35F9.1", "confidence": 0.93, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.00702}
+{"candidate": 20, "qid": "20b", "run": 2, "answer": "35F9.1", "confidence": 0.93, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0022798000000000002}
+{"candidate": 20, "qid": "20b", "run": 3, "answer": "35F9.1", "confidence": 0.93, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.006280000000000001}
+{"candidate": 21, "qid": "21a", "run": 1, "answer": "@neondatabase/serverless", "confidence": 0.98, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.005052}
+{"candidate": 21, "qid": "21a", "run": 2, "answer": "@neondatabase/serverless", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0006996}
+{"candidate": 21, "qid": "21a", "run": 3, "answer": "@neondatabase/serverless", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0006996}
+{"candidate": 21, "qid": "21b", "run": 1, "answer": "@neondatabase/auth", "confidence": 0.72, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.007516}
+{"candidate": 21, "qid": "21b", "run": 2, "answer": "@neondatabase/auth", "confidence": 0.75, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.007096}
+{"candidate": 21, "qid": "21b", "run": 3, "answer": "@neondatabase/auth", "confidence": 0.8, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.007056}
+{"candidate": 22, "qid": "22a", "run": 1, "answer": "browser-rendering/crawl", "confidence": 0.72, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.007572000000000001}
+{"candidate": 22, "qid": "22a", "run": 2, "answer": "browser-rendering/crawl", "confidence": 0.72, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.007492}
+{"candidate": 22, "qid": "22a", "run": 3, "answer": "browser-rendering/crawl", "confidence": 0.6, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0035016}
+{"candidate": 22, "qid": "22b", "run": 1, "answer": "job", "confidence": 0.8, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.006448}
+{"candidate": 22, "qid": "22b", "run": 2, "answer": "job", "confidence": 0.8, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.005008}
+{"candidate": 22, "qid": "22b", "run": 3, "answer": "job", "confidence": 0.8, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.006448}
+{"candidate": 23, "qid": "23a", "run": 1, "answer": "Streamable HTTP", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.004996}
+{"candidate": 23, "qid": "23a", "run": 2, "answer": "Streamable HTTP", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.004996}
+{"candidate": 23, "qid": "23a", "run": 3, "answer": "Streamable HTTP", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.004996}
+{"candidate": 23, "qid": "23b", "run": 1, "answer": "McpServer", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.004972}
+{"candidate": 23, "qid": "23b", "run": 2, "answer": "McpServer", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.004972}
+{"candidate": 23, "qid": "23b", "run": 3, "answer": "McpServer", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.004972}
+{"candidate": 24, "qid": "24a", "run": 1, "answer": "A03:2025 - Software Supply Chain Failures", "confidence": 0.88, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.008108}
+{"candidate": 24, "qid": "24a", "run": 2, "answer": "A03:2025 – Software Supply Chain Failures", "confidence": 0.9, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.008048}
+{"candidate": 24, "qid": "24a", "run": 3, "answer": "Software Supply Chain Failures", "confidence": 0.88, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.007968}
+{"candidate": 24, "qid": "24b", "run": 1, "answer": "A10:2025 - Mishandling of Exceptional Conditions", "confidence": 0.9, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.008128}
+{"candidate": 24, "qid": "24b", "run": 2, "answer": "A10:2025 – Mishandling of Exceptional Conditions", "confidence": 0.9, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.008128}
+{"candidate": 24, "qid": "24b", "run": 3, "answer": "A10:2025 – Mishandling of Exceptional Conditions", "confidence": 0.9, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.008128}
+{"candidate": 25, "qid": "25a", "run": 1, "answer": "System Prompt Leakage", "confidence": 0.95, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.004968}
+{"candidate": 25, "qid": "25a", "run": 2, "answer": "System Prompt Leakage", "confidence": 0.95, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.008168}
+{"candidate": 25, "qid": "25a", "run": 3, "answer": "System Prompt Leakage", "confidence": 0.95, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.004968}
+{"candidate": 25, "qid": "25b", "run": 1, "answer": "Vector and Embedding Weaknesses", "confidence": 0.95, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.005828}
+{"candidate": 25, "qid": "25b", "run": 2, "answer": "Vector and Embedding Weaknesses", "confidence": 0.95, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.008228000000000001}
+{"candidate": 25, "qid": "25b", "run": 3, "answer": "Vector and Embedding Weaknesses", "confidence": 0.93, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.000778}
+{"candidate": 26, "qid": "26a", "run": 1, "answer": "24 by 24 CSS pixels (with exceptions such as spacing, equivalent, inline, user-agent control, essential)", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.005656}
+{"candidate": 26, "qid": "26a", "run": 2, "answer": "24 by 24 CSS pixels", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.005076}
+{"candidate": 26, "qid": "26a", "run": 3, "answer": "24 by 24 CSS pixels", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.005076}
+{"candidate": 26, "qid": "26b", "run": 1, "answer": "2.4.11", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.004912}
+{"candidate": 26, "qid": "26b", "run": 2, "answer": "2.4.11", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.004912}
+{"candidate": 26, "qid": "26b", "run": 3, "answer": "2.4.11", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.004912}
+{"candidate": 27, "qid": "27a", "run": 1, "answer": "Sec-GPC: 1", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.004972}
+{"candidate": 27, "qid": "27a", "run": 2, "answer": "Sec-GPC: 1", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0006976}
+{"candidate": 27, "qid": "27a", "run": 3, "answer": "Sec-GPC: 1", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0006976}
+{"candidate": 27, "qid": "27b", "run": 1, "answer": "navigator.globalPrivacyControl", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.004992}
+{"candidate": 27, "qid": "27b", "run": 2, "answer": "navigator.globalPrivacyControl", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.004992}
+{"candidate": 27, "qid": "27b", "run": 3, "answer": "navigator.globalPrivacyControl", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.004992}
+{"candidate": 28, "qid": "28a", "run": 1, "answer": "Without unreasonable delay and no later than 60 calendar days after discovery of the breach", "confidence": 0.95, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.00542}
+{"candidate": 28, "qid": "28a", "run": 2, "answer": "Without unreasonable delay and no later than 60 calendar days after discovery of the breach", "confidence": 0.96, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.00542}
+{"candidate": 28, "qid": "28a", "run": 3, "answer": "Without unreasonable delay and no later than 60 calendar days after discovery of the breach", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.00542}
+{"candidate": 28, "qid": "28b", "run": 1, "answer": "Within 60 days after the end of the calendar year in which the breach was discovered (annual log submission to HHS)", "confidence": 0.95, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.005568}
+{"candidate": 28, "qid": "28b", "run": 2, "answer": "Within 60 days after the end of the calendar year in which the breach was discovered (annual log submission, i.e., by ~March 1)", "confidence": 0.95, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0057079999999999995}
+{"candidate": 28, "qid": "28b", "run": 3, "answer": "Within 60 days after the end of the calendar year in which the breach was discovered (annual log submission to HHS)", "confidence": 0.95, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.005568}
+{"candidate": 29, "qid": "29a", "run": 1, "answer": "no", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.004904}
+{"candidate": 29, "qid": "29a", "run": 2, "answer": "no", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0005204}
+{"candidate": 29, "qid": "29a", "run": 3, "answer": "no", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0005204}
+{"candidate": 29, "qid": "29b", "run": 1, "answer": "ethers.solidityPackedKeccak256(types, values)", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.005324}
+{"candidate": 29, "qid": "29b", "run": 2, "answer": "ethers.solidityPackedKeccak256(types, values)", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.005324}
+{"candidate": 29, "qid": "29b", "run": 3, "answer": "ethers.solidityPackedKeccak256(types, values)", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.005324}
+{"candidate": 30, "qid": "30a", "run": 1, "answer": "EDPB Opinion 28/2024 on data protection aspects of processing personal data in the context of AI models. It was adopted in December 2024; I don't know of a 2025 EDPB guidelines document specifically on AI systems.", "confidence": 0.3, "correct": false, "model": "claude-opus-5-5[1m]", "cost_usd": 0.016288}
+{"candidate": 30, "qid": "30a", "run": 2, "answer": "Probably EDPB Opinion 28/2024 on processing personal data in the context of AI models. It was adopted in December 2024, not 2025, and I don't recall a 2025 EDPB guideline specifically on AI systems.", "confidence": 0.3, "correct": false, "model": "claude-opus-5-5[1m]", "cost_usd": 0.013808}
+{"candidate": 30, "qid": "30a", "run": 3, "answer": "Likely EDPB Opinion 28/2024 on AI models (an opinion adopted December 2024, not 2025 guidelines); I don't know of separate 2025 EDPB guidelines on AI", "confidence": 0.3, "correct": false, "model": "claude-opus-5-5[1m]", "cost_usd": 0.009219}
+{"candidate": 30, "qid": "30b", "run": 1, "answer": "Point (c) — Article 35(3)(c)", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.005235999999999999}
+{"candidate": 30, "qid": "30b", "run": 2, "answer": "(c)", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.0049759999999999995}
+{"candidate": 30, "qid": "30b", "run": 3, "answer": "Point (c) — Article 35(3)(c)", "confidence": 0.97, "correct": true, "model": "claude-opus-5-5[1m]", "cost_usd": 0.005235999999999999}
