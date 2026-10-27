@@ -208,6 +208,7 @@ Not recorded: in these stages' batch calls only successful answers are cached, s
 - Stage Q sessions (§23): Stage Q $48.87 (preparation $6.74, pilots $4.63, main run $37.50); Q1 extension 82 sessions $38.54; re-fire check 9 sessions $28.18; Claude judging subagents not recorded.
 - Knowledge-gap probe (§24): 180 isolated `claude -p` calls, $0.88.
 - Stage 13 sessions (§26): P main run $34.66, P pilot $2.12, A and R third runs $7.01; total $43.79; Claude judging subagents not recorded.
+- Stage 12 and 12b sessions (§27): Stage 12 $34.97 (main run $30.89, pilot $2.21, spend-limit cutoffs $0.77, index-nw extraction $1.05, search check $0.05); Stage 12b $40.94 (main run $38.18, pilot $2.76); Claude judging subagents not recorded.
 
 ### Runtime latency
 
@@ -2336,4 +2337,57 @@ A and R reuse the Stage Q runs; the third run of Q1's six tasks was new. A, P an
 - Design scores come from still screenshots.
 - A and R reuse runs from another day, with the same harness, server, index and checks.
 - 18 tasks, 3 runs each; two Claude judges.
+
+## 27. Stage 12 and 12b: a fictional team's rule skills
+
+Source: the Stage 12 report [`evals/e2e/stage12/report-12.md`](../../evals/e2e/stage12/report-12.md) and the Stage 12b report [`evals/e2e/stage12/12b/report-12b.md`](../../evals/e2e/stage12/12b/report-12b.md); designs `evals/e2e/stage12/DESIGN.md` and `evals/e2e/stage12/12b/DESIGN.md`, hashes `evals/e2e/stage12/private/FROZEN.sha256` and `FROZEN-12b.sha256`, derived session rows `evals/e2e/stage12/derived/sessions.jsonl`, the fictional skills, repositories and tasks in `evals/e2e/stage12/private/`. Measured after the post's numbers were frozen; not in §7's totals.
+
+**Design.**
+- **A fictional team:** Northwind, written for this experiment. 24 SKILL.md files hold team rules that cannot be inferred from its two repositories; 8 of the 24 are distractors with rules that look similar.
+- **Tasks:** T1–T8 need team rules, C1–C2 are controls. 10 tasks × 3 runs per condition, environment E1.
+- **Main metric:** rule items of the hidden checks passed on T1–T8, 126 items per condition. Items that could not be judged are left out.
+- **Conditions:**
+  - **A:** no router and no MCP server.
+  - **R:** the shipped router (S-b′) and the skillfetch MCP server on index-nw (index-staging-4's 2,785 skills plus the 24).
+  - **O:** the skills each task needs, put before the first user message in `load_skills` format.
+  - **R′** (12b): the org-mode router variant (PR #97, not merged) with a `.skillfetch.yaml` baseline of 4 skills (changelog, ui-tokens, structured-logging, endpoint-registry).
+  - **N** (12b): all 24 installed in `.claude/skills`, no router and no MCP server.
+  - **F** (12b): all 24 bodies before the first user message (about 5,040 tokens).
+- A, R and O are the Stage 12 main run; R′, N and F the Stage 12b run, with the same tasks and the same frozen checks.
+
+| condition | rule items passed (T1–T8) | rate | median turns | mean API-price equivalent per session | functional checks |
+|---|---:|---:|---:|---:|---:|
+| A | 31/126 | 0.246 | 8 | $0.283 | 72/75 |
+| R | 71/126 | 0.563 | 16 | $0.463 | 72/75 |
+| O | 117/126 | 0.929 | 9 | $0.284 | 74/75 |
+| R′ | 107/126 | 0.849 | 17.5 | $0.526 | 72/75 |
+| N | 114/126 | 0.905 | 13 | $0.345 | 70/75 |
+| F | 106/126 | 0.841 | 9 | $0.401 | 61/75 |
+
+- **Controls:** C1–C2 passed 24/27 rule items in all six conditions.
+- **Where R missed** (55 failed rule items):
+  - not in its top 50: 32;
+  - in the top 50 but not picked: 14;
+  - picked but not followed: 9.
+  - The 32 not found are rules the request does not point at: changelog 14, ui-tokens 9, structured-logging 3, endpoint-registry 3, web-i18n 3.
+  - The first four are R′'s baseline, chosen after seeing this result.
+- **Where R′ missed** (19): picked by search but not followed 13; pinned by the baseline but not followed 3; not picked 2; not found 1.
+- **N:**
+  - It loaded 72 of the 78 needed skills; none was missing from its list.
+  - Its 12 misses: not picked 6, picked but not followed 6.
+- **Distractors:** distractor rules were followed 0 times in all six conditions (30 sessions each). R′ loaded a distractor once, N never, R once.
+- **N and F functional failures:** new endpoints put behind a default-off feature flag, as the platform rules say, returned 404 in the functional checks (N 70/75, F 61/75).
+- **Blind judging** (overall quality, two Claude judges; mean score on T1–T8):
+  - Stage 12, without the team's rules: A 4.646, R 4.250, O 4.021;
+  - Stage 12b, with a summary of the team's rules given to new judges: A 4.375, R 4.354, O 4.125, R′ 4.479, N 4.354, F 4.438.
+
+**Cost** (API-price equivalent):
+- Stage 12 $34.97 (main run $30.89, pilot $2.21, 4 sessions cut off by a spend limit $0.77, index-nw extraction $1.05, search check $0.05);
+- Stage 12b $40.94 (main run $38.18, pilot $2.76).
+
+**Limits.**
+- The company and its rules were written by us. 10 tasks, 3 runs each.
+- R′ differs from R in three things: the router variant, the `.skillfetch.yaml` and the server build (unmerged PR #97).
+- Two Claude judges.
+- A known false negative in a functional check: T8-F1 does not recognise `fetchApi<T>(…)` calls.
 

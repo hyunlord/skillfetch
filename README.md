@@ -115,7 +115,9 @@ $ skillfetch scan tests/fixtures/skills                   # the labelled fixture
 ```
 
 > Status: `scan` and the measurements are the product. v0.1 shipped `scan`, the public
-> index and the write-up ([English](docs/writeup/post-en.md), [한국어](docs/writeup/post-ko.md)).
+> index and the 2026-10-22 write-up ([English](docs/writeup/post-2026-10-22-en.md),
+> [한국어](docs/writeup/post-2026-10-22-ko.md)); its successor is in draft
+> ([`post-en.md`](docs/writeup/post-en.md), [`post-ko.md`](docs/writeup/post-ko.md)).
 > The index covers anthropics/skills, UASL and four more repositories: 2,785 skills indexed
 > (1,724 from the first two, as in the write-up, plus 1,061). Index update (Stage 11): this
 > index, built as index-staging-4, passed the release gate fixed before Stage 11
@@ -257,8 +259,9 @@ helped.
   - [x] let `scan` use the index and cached extractions instead of `constraints.json`
   - [x] public corpus ingest (`skillfetch ingest --sources sources.yaml`,
         snapshots, licenses, upstreams): anthropics/skills + all 1812 UASL skills
-  - [x] write-up of the public-corpus scan ([`docs/writeup/post-en.md`](docs/writeup/post-en.md),
-        [`post-ko.md`](docs/writeup/post-ko.md))
+  - [x] write-up of the public-corpus scan
+        ([`docs/writeup/post-2026-10-22-en.md`](docs/writeup/post-2026-10-22-en.md),
+        [`post-2026-10-22-ko.md`](docs/writeup/post-2026-10-22-ko.md))
   - [x] keyword-Jaccard dedup groups, tiers A/B/C, index layout and manifest
         (index-format §1.6–§2)
 - [ ] **v0.2** `skillfetch serve` — MCP server (`search_skills`, `resolve_set`,
