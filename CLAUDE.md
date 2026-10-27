@@ -5,25 +5,31 @@ Read this file fully before touching code. It is the spec. Design details live i
 
 ## What this is
 
-**Zero-install skills for coding agents.** The user installs nothing but this MCP
-server. For each task, the agent:
+**Skill vetting before you install, plus a measured study of what skills do for coding
+agents.** Per-task routing is an experimental feature (below).
 
-1. describes the task (what it is, which stack, which files) and searches a
-   curated, pre-indexed corpus of SKILL.md files,
-2. picks candidate skills, then asks `resolve_set` to drop the ones that
-   contradict or duplicate each other (and always keep the ones the user pinned),
-3. loads the resulting set into the main context and does the work (isolation
-   mode, a fresh subagent per task: not built, not planned for v0.3),
-4. moves on. The next task searches again. Nothing accumulates in
-   `~/.claude/skills`.
+- **`skillfetch scan <dir | GitHub URL>`** checks skills before they are installed: lint,
+  injection scan (including remote instructions), size, bundled scripts, dated claims, the
+  license, duplicates and contradictions between skills, each with the line it comes from. A
+  GitHub URL is shallow-cloned into a temporary folder and deleted; nothing is installed or
+  run. The report opens with one line of advice (RECOMMENDED / CAUTION / NOT RECOMMENDED, from
+  safety and quality only) and, under it, the license with where it was found
+  (`docs/design/index-format.md` §5, §5.1). No model and no API key, except contradiction
+  extraction for skills the index does not cover (`--claude-code`, `--with-api`).
+- **The measurement study** is everything under `evals/` and `docs/writeup/numbers.md`: real
+  Claude Code sessions, blind judging, the index scanned with the scan rules. Every number in
+  README or the posts comes from numbers.md.
+- **Per-task routing** (an MCP server plus one router skill that searches, resolves and
+  loads skills for each task) is kept as an experimental feature; its spec is in
+  "Experimental: per-task routing".
 
 The product has two halves that must stay decoupled:
 
 - **Offline ingestion** (runs on CI / cron, uses the Claude API): snapshot public
   skill sources → lint → injection scan → extract constraints, keywords,
   synthetic queries → assign trust tier → emit a versioned index.
-- **Runtime MCP server** (runs on the user's machine, uses **no model**): BM25
-  over the index, conflict resolution over pre-extracted constraints, body
+- **Runtime** (`scan` and the MCP server, on the user's machine, **no model**): the checks
+  above, BM25 over the index, conflict resolution over pre-extracted constraints, body
   fetch. The index holds metadata, constraints and content hashes only; bodies
   are fetched by `load_skills` from each skill's source repo at the pinned
   commit, verified against the per-file sha256 in the index, and cached under
@@ -34,12 +40,29 @@ The product has two halves that must stay decoupled:
 ## Positioning (why this exists — keep README consistent with this)
 
 - Existing `skill-lint`-style tools check frontmatter, links, token counts.
-  **They do not check whether two skills give opposite instructions.** We do.
-- Existing routers (UASL, skill-search, Skillselion) load one skill, or hand Claude a list.
-  **They do not build a conflict-free *set*, scope it to one task, or record
-  whether it helped.** We do.
+  **They do not check whether two skills give opposite instructions.** We do. `scan` also
+  flags remote instructions, size, bundled scripts and dated claims, and checks a GitHub
+  repository without installing it.
 - Existing registries rank by install count. **We gate by automated vetting.**
-- We do NOT claim to be the first per-prompt skill router. We are not.
+- **What the measurements say about routing** (numbers.md §26, Stage 13: 18 tasks × 3 runs,
+  judged blind):
+  - the router's results were the same as no skill: mean 4.627 vs 4.618 without the
+    landing-page task, checks 52/54 vs 53/54;
+  - it cost 62% more per session ($0.599 vs $0.370);
+  - it was clearly better only on the landing-page design task (4.67 vs 3.00);
+  - with eight popular skills installed instead, the mean was 4.725 without the landing page
+    and 1.33 on it.
+
+  So we do not claim that routing improves results. It stays experimental.
+- **What the measurements say about knowledge in skills** (numbers.md §24): without any
+  skill, the model answered 173 of 180 short factual questions taken from 30 skills that
+  promise knowledge it may lack. It did not know the Opus 5.5 price, and one skill
+  (`uasl/ai-dpia`) cites an EDPB document that was not found in the EDPB's list of
+  guidelines. A skill's facts can be out of date or wrong, which is why `scan` marks dated
+  claims.
+- Existing routers (UASL, skill-search, Skillselion) load one skill, or hand Claude a list.
+  The experimental router builds a conflict-free *set* per task. We do NOT claim to be the
+  first per-prompt skill router. We are not.
 
 ## Non-goals for v0.1 (do not build these, even if they seem small)
 
@@ -63,16 +86,22 @@ skillfetch/
     index-format.md             ingestion pipeline, skill record schema, manifest, tiers
     constraints.md              claim schema, extraction prompt, conflict rules, resolve_set
   src/skillfetch/
-    ingest/                     offline: sources, lint, scan, extract, index build
+    ingest/                     offline: sources, lint, scan, extract, index build;
+                                also scan's checks (local_scan, skill_checks, remote,
+                                repo_license)
     index/                      index loading, BM25 search, tag filters
     resolve/                    conflict/redundancy resolution
     mcp/                        MCP server exposing the tool surface below
     cli.py                      `skillfetch scan|ingest|judge|obedience|sync|serve|eval|discover`
+                                (`scan` takes a folder or a GitHub URL)
     evals.py                    `skillfetch eval retrieval` over evals/retrieval/
   assets/
     router-skill/SKILL.md       the one always-on skill the user installs
     runner-agent.md             the subagent definition for isolation mode (not built, not planned for v0.3)
   evals/retrieval/              380 synthetic tasks, oracle labels, frozen queries
+  evals/e2e/                    published end-to-end experiments (stages 0–13, Q)
+  evals/index-scan/             the scan rules over the released index (numbers.md §25)
+  evals/knowledge-gap/          what the model answers without the skill (§24)
   tests/
     fixtures/skills/            small hand-written SKILL.md corpus with known conflicts
   data/                         gitignored; local mirror lives in ~/.skillfetch/
@@ -82,7 +111,21 @@ Python 3.11+, `uv` for env, `ruff` for lint, `pytest`. Single package, no
 monorepo. Keep dependencies minimal: `mcp`, `pyyaml`, `rank-bm25` (or a tiny
 hand-rolled BM25), `anthropic` (ingest only, optional extra), `pydantic`.
 
-## MCP tool surface
+## Experimental: per-task routing
+
+Kept as an experimental feature (see Positioning for the Stage 13 result). The user installs
+nothing but the MCP server and the router skill. For each task, the agent:
+
+1. describes the task (what it is, which stack, which files) and searches a
+   curated, pre-indexed corpus of SKILL.md files,
+2. picks candidate skills, then asks `resolve_set` to drop the ones that
+   contradict or duplicate each other (and always keep the ones the user pinned),
+3. loads the resulting set into the main context and does the work (isolation
+   mode, a fresh subagent per task: not built, not planned for v0.3),
+4. moves on. The next task searches again. Nothing accumulates in
+   `~/.claude/skills`.
+
+### MCP tool surface
 
 Built (v0.2): `profile_repo`, `search_skills`, `resolve_set`, `load_skills`. Built after v0.2
 (#26): `resolve_and_load`, both steps in one call; the router skill does not use it yet. Also
@@ -115,7 +158,7 @@ Rules:
 - `resolve_set` uses the conflict cap the index was built with (`manifest.conflict_cap`).
 - Every tool returns JSON. No prose in tool results.
 
-## Router skill (`assets/router-skill/SKILL.md`)
+### Router skill (`assets/router-skill/SKILL.md`)
 
 The only skill a user installs. Short (≤ 60 lines). It tells the host model:
 
@@ -135,7 +178,7 @@ The only skill a user installs. Short (≤ 60 lines). It tells the host model:
 5. Skip the search only for trivial edits: a one-line edit in a single file, a rename,
    or answering a question. Bug fixes, docs and config changes are not trivial.
 
-## Runner agent (`assets/runner-agent.md`) — not built, not planned for v0.3
+### Runner agent (`assets/runner-agent.md`) — not built, not planned for v0.3
 
 One static subagent definition, installed once into `~/.claude/agents/`. No
 `skills:` field. System prompt: follow the skill instructions passed in the
@@ -155,15 +198,26 @@ this mode; default injection mode leaves skill text in the transcript.
   precision = 1.0 on fixtures (we optimize precision over recall in v0.1).
 - Deliverable for launch: a scan of the top-N public skills + a short write-up.
 
-**v0.2 — `serve`** (+1 week)
+**v0.2 — `serve`** (+1 week; per-task routing, now experimental)
 - MCP server with the four tools, router skill, `sync` command for the index.
 - End-to-end demo in Claude Code: search → resolve → load → work.
 
-**v0.3 — process-skill retrieval, shorter chain, outcome log**
+**v0.3 — process-skill retrieval, shorter chain, outcome log** (experimental routing)
 - Process-skill retrieval: a domain query and a how-to-work query, searched
   separately (#25).
 - A shorter chain: search, resolve and load in fewer calls (#26).
 - `report_outcome`.
+
+**v0.4 — scan before you install** (shipped 2026-10-27, PRs #99–#101)
+- Size warning: `SKILL.md` over 8,000 tokens, more than 20 files, more than 1 MB.
+- Dated claims (info): prose lines that state a year or a version, marked "check the
+  official docs".
+- `scan https://github.com/<owner>/<repo>[/tree/<ref>[/<path>]]`: shallow clone, nothing
+  installed or run.
+- One-line advice from safety and quality checks only; the license on its own line with its
+  source, by discover's rule (nearest license file up to the repository root, outside an
+  aggregator).
+- The scan rules over the released index (numbers.md §25), and README led by `scan`.
 
 ## Working rules for Claude Code in this repo
 
