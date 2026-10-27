@@ -207,6 +207,7 @@ Not recorded: in these stages' batch calls only successful answers are cached, s
 - Stage 11 sessions (§22): main run 174 sessions $88.92; pilot and smoke test 9 sessions $3.57; pre-run checks $0.68; loaded-skill grading $0.10; total $93.27; Claude judging subagents and GPT judging not recorded.
 - Stage Q sessions (§23): Stage Q $48.87 (preparation $6.74, pilots $4.63, main run $37.50); Q1 extension 82 sessions $38.54; re-fire check 9 sessions $28.18; Claude judging subagents not recorded.
 - Knowledge-gap probe (§24): 180 isolated `claude -p` calls, $0.88.
+- Stage 13 sessions (§26): P main run $34.66, P pilot $2.12, A and R third runs $7.01; total $43.79; Claude judging subagents not recorded.
 
 ### Runtime latency
 
@@ -2283,4 +2284,50 @@ Source: `uv run python scripts/index_scan.py report` over evals/index-scan/rows.
 **Limits.**
 - **Pre-filtered population:** indexed skills already passed lint and the build's injection scan, so the failure rates are 0 by construction. The 143 rejected skills are counted separately above.
 - **DATED is a pattern match:** a year, a version number, or a named product with a version, in prose. It does not judge whether the claim is out of date.
+
+## 26. Stage 13: popular skills installed, the router, or neither
+
+Source: the Stage 13 report (`stage13/report-13.md` in the experiment workspace; design `stage13/DESIGN.md`, hashes `stage13-private/FROZEN-13.sha256`; not yet published under evals/e2e/). Measured after the post's numbers were frozen; not in §7's totals.
+
+**Design.** 18 tasks (Stage Q's Q1 and its extension) × 3 runs, environment E1. Three conditions:
+- **A:** no router and no MCP server.
+- **P:** eight popular skills installed in `.claude/skills`, with no router.
+  - The rule fixed before the run: top 200 of the skills.sh all-time ranking (snapshot 2026-10-27) or official Anthropic skills, in rank order.
+  - The eight: improve-codebase-architecture, tdd, frontend-design, domain-modeling, vercel-react-best-practices, web-design-guidelines, design-taste-frontend, vercel-composition-patterns.
+- **R:** the shipped router (S-b′) and the skillfetch MCP server on index-staging-4.
+
+A and R reuse the Stage Q runs; the third run of Q1's six tasks was new. A, P and R results were judged blind in one set by two Claude judges (162 pairs: same score 137, within 1 point 162).
+
+| total | A | P | R |
+|---|---:|---:|---:|
+| mean score, 18 tasks | 4.528 | 4.537 | 4.630 |
+| mean score, without d1-landing (17) | 4.618 | 4.725 | 4.627 |
+| checks passed | 53/54 | 51/54 | 52/54 |
+| mean API-price equivalent per session | $0.370 | $0.642 | $0.599 |
+
+**R against A.**
+- R's mean cost per session was 62% higher ($0.599 / $0.370).
+- The mean score without d1-landing was 4.627 against 4.618.
+- On d1-landing (a product landing page) R scored 4.67, A 3.00 and P 1.33.
+- The other design tasks:
+  - d2-redesign: A 3.50, P 4.50, R 3.67;
+  - d3-dashboard: A 4.00, P 3.67, R 3.00;
+  - d4-email: A 4.33, P 4.67, R 4.00.
+
+**P on d1-landing.**
+- All three sessions ended at the 40-turn limit with an empty final answer: result `error_max_turns`, 41 turns, $3.09–$3.28 each.
+- In m1, 26 tool calls read files of the design-taste-frontend skill. That skill has 39 files and 2.4 MB.
+- The pages hid their sections behind a scroll animation, so the still screenshots the judges scored showed them blank. The checks passed.
+
+**What P used.**
+- 11 of the 54 P sessions used one of the eight skills: 9 design sessions and 2 Python ones. None of the Rust, Swift, Go, Java or TypeScript sessions did.
+- Five of the eight were never used.
+
+**Cost:** $43.79 API-price equivalent in all: P main run $34.66, P pilot $2.12, the new A and R runs $7.01.
+
+**Limits.**
+- Five of the eight popular skills are web or front-end skills.
+- Design scores come from still screenshots.
+- A and R reuse runs from another day, with the same harness, server, index and checks.
+- 18 tasks, 3 runs each; two Claude judges.
 
