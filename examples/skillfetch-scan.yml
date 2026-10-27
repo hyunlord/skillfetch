@@ -16,7 +16,7 @@ jobs:
   scan:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: hyunlord/skillfetch/.github/actions/skillfetch-scan@main
         with:
           path: .claude/skills
