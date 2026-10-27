@@ -78,6 +78,7 @@ def test_auto_adds_the_router_and_says_what_it_costs(tmp_path):
     s, out, runner, _ = _setup(tmp_path, auto=True)
     assert main(s, remove=False, yes=True) == 0
     assert AUTO_NOTE in out[0] and "numbers.md §26" in AUTO_NOTE and "+62%" in AUTO_NOTE
+    assert "§28" in AUTO_NOTE and "not better than no skill" in AUTO_NOTE
     skills = tmp_path / "home" / ".claude" / "skills"
     assert (skills / "skillfetch-router" / "SKILL.md").read_text() == asset_skill("router")
     assert runner.calls[0][-2:] == ["skillfetch", "serve"]  # routing tools too, no --vet

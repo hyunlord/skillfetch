@@ -31,8 +31,9 @@ DEFAULT_FROM = "git+https://github.com/hyunlord/skillfetch"
 SKILLS = {"vet": "skillfetch-vet", "router": "skillfetch-router"}
 _ASSET_DIRS = {"vet": "vet-skill", "router": "router-skill"}
 AUTO_NOTE = (
-    "Auto-apply (per-task routing) is on. Measured: no average effect on results, +62% cost "
-    "per session, clearly better only on a design task (numbers.md §26)."
+    "Auto-apply (per-task routing) is on. Measured: better than popular skills installed for "
+    "good, not better than no skill; +62% cost per session on single tasks (numbers.md §26) "
+    "and about 1.5x over six requests in one session (§28); clearly better only on a design task."
 )
 DEFAULTS_LINE = (
     "Defaults: check before install = on · find = on request · auto-apply (per-task routing) = "
