@@ -21,3 +21,6 @@ graft/
 !evals/e2e/**/data/
 !evals/e2e/retrieval/
 !evals/e2e/**/retrieval/
+
+# GitHub Pages build output (scripts/build_pages.py)
+_site/
