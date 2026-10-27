@@ -15,7 +15,7 @@ undoes it. `--project` installs into this repository instead of `~/.claude`.
 |---|---|---|
 | check before install | on | when you ask the agent to install a skill, or it is about to write one into `.claude/skills`, it calls `scan_skill` first, shows you the advice and license lines, and asks |
 | find on request | on | ask the agent to find a skill for something: it calls `find_skills`, shows candidates with size and advice, scans the one you pick, and asks |
-| auto-apply (per-task routing) | off | `setup --auto` adds the router skill, which searches and loads skills for every task. Measured: no average effect, +62% cost per session, clearly better only on a design task ([numbers.md §26](docs/writeup/numbers.md#26-stage-13-popular-skills-installed-the-router-or-neither)) |
+| auto-apply (per-task routing) | off | `setup --auto` adds the router skill, which searches and loads skills for every task. Measured: better than popular skills installed for good, not better than no skill; +62% cost per session on single tasks ([numbers.md §26](docs/writeup/numbers.md#26-stage-13-popular-skills-installed-the-router-or-neither)) and about 1.5 times over six requests in one session ([§28](docs/writeup/numbers.md#28-stage-14-consecutive-tasks-in-one-session)); clearly better only on a design task |
 
 No model and no API key. The rest of this repository is the measurement study behind it:
 what skills do for coding agents in real sessions ([numbers.md](docs/writeup/numbers.md)).

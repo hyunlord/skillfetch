@@ -113,7 +113,7 @@ skillfetch/
     router-skill/SKILL.md       the one always-on skill the user installs
     runner-agent.md             the subagent definition for isolation mode (not built, not planned for v0.3)
   evals/retrieval/              380 synthetic tasks, oracle labels, frozen queries
-  evals/e2e/                    published end-to-end experiments (stages 0–13, Q)
+  evals/e2e/                    published end-to-end experiments (stages 0–14, Q)
   evals/index-scan/             the scan rules over the released index (numbers.md §25)
   evals/knowledge-gap/          what the model answers without the skill (§24)
   tests/

@@ -40,6 +40,11 @@ def _rows(name: str) -> list[list[str]]:
     return [x.split("\t") for x in lines if x and not x.startswith("#")][1:]
 
 
+def _kept(path: Path, digest: str) -> bool:
+    """A copy of the frozen bytes kept next to the FROZEN file (frozen-versions/)."""
+    return path.is_file() and hashlib.sha256(path.read_bytes()).hexdigest() == digest
+
+
 def main() -> int:
     sanitized = {r[0]: (r[1], r[2]) for r in _rows("sanitized.tsv")}
     assets = {r[0] for r in _rows("ASSETS.tsv")}
@@ -90,6 +95,8 @@ def main() -> int:
                     bad.append(f"{frozen.relative_to(E2E)}: {rel}")
                 elif (original or now) in listed[stage]:
                     status = "superseded (a later FROZEN file lists the current hash)"
+                elif _kept(frozen.parent / "frozen-versions" / Path(rel).name, digest):
+                    status = "changed after freezing; the frozen bytes are in frozen-versions/"
                 else:
                     status = "changed in the workspace after freezing (not by publishing)"
                     later.append(f"{frozen.relative_to(E2E)}: {rel}")
