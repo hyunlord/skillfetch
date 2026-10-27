@@ -1,18 +1,18 @@
 ---
 name: skillfetch-vet
-description: Check an agent skill before installing it. Use whenever the user asks to install, add, copy or download a skill (a SKILL.md folder, or a GitHub repo of skills) into .claude/skills or ~/.claude/skills.
+description: Check an agent skill before it is installed, and find skills on request. Use when the user asks to install, add or download a skill, before you write any skill into .claude/skills or ~/.claude/skills, and when the user asks you to find a skill for something.
 ---
 
-# Check a skill before installing it
+# Check skills before installing them
 
-When the user asks you to install a skill, before copying or cloning anything:
-
-1. Call `scan_skill` (skillfetch MCP server) with the skill's GitHub URL
-   (`https://github.com/<owner>/<repo>/tree/<ref>/<path>`) or its local folder.
-2. Show the user `advice_line` and `license_line` exactly as returned. For CAUTION or
-   NOT RECOMMENDED, list each reason with the file, line number and quoted line (at most five).
-3. Ask whether to go ahead, and install only after they say yes. On NOT RECOMMENDED, say
-   plainly that the scan advises against it.
-4. If `scan_skill` returns an error or is not available, say the skill was not checked and ask.
-
-Never run a script from the skill while checking it.
+- **Before installing:** when the user asks to install a skill, or before you write a skill
+  into `.claude/skills/` or `~/.claude/skills/`, call `scan_skill` (skillfetch MCP server)
+  with its GitHub URL (`https://github.com/<owner>/<repo>/tree/<ref>/<path>`) or local folder.
+  Show `advice_line` and `license_line` exactly as returned; for CAUTION or NOT RECOMMENDED,
+  list the reasons with file, line number and quoted line (at most five). Ask whether to go
+  ahead and install only after a yes; on NOT RECOMMENDED, say the scan advises against it.
+- **Finding:** when the user asks you to find a skill, call `find_skills` with what they want
+  and show the candidates (title, summary, size, advice). Scan the one they pick with
+  `scan_skill` on its `scan_url`, then ask before installing.
+- If a tool errors or is missing, say the skill was not checked and ask.
+- Never run a script from a skill while checking it.

@@ -211,11 +211,26 @@ def main(argv: Sequence[str] | None = None) -> int:
         "(default: %(default)s)",
     )
     serve.add_argument(
-        "--scan-only",
+        "--vet",
         action="store_true",
-        help="serve scan_skill alone, for the vet skill (assets/vet-skill); runs without an "
-        "index, and uses it when there is one",
+        help="serve scan_skill and find_skills only (no routing), for the vet skill "
+        "(assets/vet-skill); starts without an index, and uses it when there is one",
     )
+
+    find = sub.add_parser(
+        "find",
+        help="search the index for a skill you want: top matches with summary, tier, size, "
+        "license and install advice (no model, nothing installed)",
+    )
+    find.add_argument("want", help='what the skill should do, e.g. "write Playwright tests"')
+    find.add_argument("-k", type=int, default=10, help="how many results (default: %(default)s)")
+    find.add_argument(
+        "--index",
+        type=Path,
+        default=DEFAULT_INDEX_DIR,
+        help="index directory (default: %(default)s)",
+    )
+    find.add_argument("--json", action="store_true", help="print the results as JSON")
 
     ev = sub.add_parser("eval", help="offline benchmarks (no model calls)")
     ev_sub = ev.add_subparsers(dest="benchmark", required=True)
@@ -440,6 +455,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         return _obedience(args)
     if args.command == "serve":
         return _serve(args)
+    if args.command == "find":
+        return _find(args)
     if args.command == "sync":
         return _sync(args)
     if args.command == "eval":
@@ -580,11 +597,30 @@ def _scan_lookup(args: argparse.Namespace) -> tuple[Lookup, str | None]:
     return Lookup(index, ExtractCache(args.cache_dir), model, extractor, args.jobs), how
 
 
-def _serve(args: argparse.Namespace) -> int:
-    from skillfetch.mcp.server import serve, serve_scan_only
+def _find(args: argparse.Namespace) -> int:
+    from skillfetch.index.find import find_skills, render_find
+    from skillfetch.index.search import Searcher
 
-    if args.scan_only:
-        serve_scan_only(args.index)
+    try:
+        index = Index.load(args.index)
+    except IndexLoadError as exc:
+        print(f"skillfetch: {exc}; run `skillfetch sync` first", file=sys.stderr)
+        return 2
+    found = find_skills(index, Searcher(index), args.want, args.k)
+    if args.json:
+        import json as _json
+
+        print(_json.dumps(found, indent=2, ensure_ascii=False))
+    else:
+        sys.stdout.write(render_find(args.want, found))
+    return 2 if "error" in found else 0
+
+
+def _serve(args: argparse.Namespace) -> int:
+    from skillfetch.mcp.server import serve, serve_vet
+
+    if args.vet:
+        serve_vet(args.index)
         return 0
     try:
         serve(

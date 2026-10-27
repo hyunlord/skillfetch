@@ -17,7 +17,7 @@ from skillfetch.index.loader import Index
 from skillfetch.ingest import remote
 from skillfetch.ingest.extract_cache import ExtractCache
 from skillfetch.ingest.remote import RemoteTarget
-from skillfetch.mcp.server import build_scan_server, build_server
+from skillfetch.mcp.server import build_server, build_vet_server
 from skillfetch.mcp.session import SCAN_EXTRACTION, Session
 
 LICENSED = "---\nname: {name}\ndescription: A test skill.\nlicense: MIT\n---\n"
@@ -104,27 +104,29 @@ def test_scan_skill_is_a_tool_of_both_servers(tmp_path):
     names, got = asyncio.run(run(build_server(_session(tmp_path))))
     assert "scan_skill" in names and "search_skills" in names
     assert got["advice"] == "recommended"
-    names, got = asyncio.run(run(build_scan_server(None, ExtractCache(tmp_path / "xc"))))
-    assert names == {"scan_skill"}
+    names, got = asyncio.run(run(build_vet_server(None, ExtractCache(tmp_path / "xc"))))
+    assert names == {"scan_skill", "find_skills"}
     assert got["advice_line"] == "Before you install: RECOMMENDED (no failures or warnings)"
 
 
-def test_serve_scan_only_runs_without_an_index(tmp_path):
+def test_serve_vet_runs_without_an_index(tmp_path):
     root = tmp_path / "skills"
     _skill(root, "tidy")
     params = StdioServerParameters(
         command=sys.executable,
-        args=["-m", "skillfetch.cli", "serve", "--scan-only", "--index", str(tmp_path / "nope")],
+        args=["-m", "skillfetch.cli", "serve", "--vet", "--index", str(tmp_path / "nope")],
     )
 
     async def run():
         async with Client(params) as client:
             names = {t.name for t in (await client.list_tools()).tools}
             got = _payload(await client.call_tool("scan_skill", {"target": str(root)}))
-            return names, got
+            found = _payload(await client.call_tool("find_skills", {"want": "squash commits"}))
+            return names, got, found
 
-    names, got = asyncio.run(run())
-    assert names == {"scan_skill"} and got["advice"] == "recommended"
+    names, got, found = asyncio.run(run())
+    assert names == {"scan_skill", "find_skills"} and got["advice"] == "recommended"
+    assert "skillfetch sync" in found["error"]
 
 
 def test_vet_skill_is_short_and_passes_its_own_scan():
@@ -137,4 +139,5 @@ def test_vet_skill_is_short_and_passes_its_own_scan():
     text = (vet / "SKILL.md").read_text()
     assert len(text.splitlines()) <= 20
     assert "scan_skill" in text and "advice_line" in text and "license_line" in text
+    assert "find_skills" in text and ".claude/skills" in text
     assert lint_skill(vet).ok and scan_skill(vet).ok and not scan_skill(vet).warnings
