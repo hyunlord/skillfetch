@@ -166,7 +166,7 @@ def test_license_column(tmp_path):
     assert (by_id["with-file"].license, by_id["with-file"].license_origin) == ("MIT", "LICENSE")
     assert by_id["none"].license == "unknown"
     text = render_report(report)
-    assert "Licenses: MIT 1, unknown 1" in text
+    assert "License: MIT (skill folder) 1, none stated 1 (none stated: all rights" in text
     assert re.search(r"low +1 +NO_LICENSE", text)
     assert "NO_LICENSE  no LICENSE file" in text and "\n  none" in text
 

@@ -568,17 +568,17 @@ As built (`ingest/local_scan.py`, `cli.py`):
   constraint findings. Every other pair of analyzed skills gets at most one
   finding: conflict, else redundant (directional; `a` is the superset), else
   tension, else needs_review.
-- License per skill: the skill folder's LICENSE file or frontmatter `license:`
-  (§1.8 `skill_license`, `per-skill`). Otherwise it is the license of the index
-  record with the same content hash, if one is known, else `unknown` (NO_LICENSE).
-- Text report: first the before-install advice (§5.1), then a one-screen summary, then
+- License per skill: the skill folder's own license, else the nearest license file up
+  to the repository root (outside an aggregator), else an indexed copy's, else `unknown`
+  (NO_LICENSE); §5.1 gives the rule.
+- Text report: first the before-install advice and the license line (§5.1), then a
+  one-screen summary, then
   details with the source lines, most severe first. The summary gives:
   - the number of problems per severity:
     - high: SCAN_FAILED, CONFLICT;
     - medium: LINT_FAILED, INVALID_CONSTRAINTS, SCAN_WARNING, SIZE_WARNING, REDUNDANT;
     - low: DUPLICATE, TENSION (tension and needs_review), LINT_WARNING, NO_LICENSE;
     - info: HAS_SCRIPTS, SCAN_INFO, DATED;
-  - the license counts;
   - how many skills the contradiction check covered.
 - Exit code 0 when the scan ran, 2 on usage errors. `--fail-on
   {conflict,scan,lint}` (repeatable or comma-separated) exits 1 when the scan
@@ -587,7 +587,7 @@ As built (`ingest/local_scan.py`, `cli.py`):
   `tension`, `needs_review` and `redundant` never fail the run. Stage counts
   are per stage: a skill failing both lint and the scan counts for both.
 
-### 5.1 Before you install (`ingest/skill_checks.py`, `ingest/remote.py`)
+### 5.1 Before you install (`ingest/skill_checks.py`, `ingest/remote.py`, `ingest/repo_license.py`)
 
 - **Size** (`SIZE_WARNING`, medium), per skill. Each limit warns on its own:
   - `SKILL.md` over 8,000 tokens (characters / 4), the default budget of `load_skills`;
@@ -610,14 +610,30 @@ As built (`ingest/local_scan.py`, `cli.py`):
     config, `protocol.file.allow=never` and no terminal prompt. Nothing is installed or run.
   - Only `https://github.com/` URLs are accepted. The report names the URL and the commit
     (`<url>@<sha12>`) instead of the temporary folder.
-- **Advice** (`advice`, `advice_reasons` in `--json`; the first line of the text report):
+- **Advice** (`advice`, `advice_reasons` in `--json`; the first line of the text report),
+  from safety and quality only:
   - **not recommended** if any skill fails the injection scan (SCAN_FAILED) or lint
     (LINT_FAILED), or any pair conflicts (CONFLICT);
-  - else **caution** if any of: SCAN_WARNING, SIZE_WARNING, HAS_SCRIPTS, NO_LICENSE,
-    INVALID_CONSTRAINTS, REDUNDANT;
+  - else **caution** if any of: SCAN_WARNING (which includes remote instructions),
+    SIZE_WARNING, HAS_SCRIPTS, INVALID_CONSTRAINTS, REDUNDANT;
   - else **recommended**.
   - TENSION, DUPLICATE, LINT_WARNING, SCAN_INFO and DATED are shown but do not change the
     advice. The reasons list the counts behind the level.
+- **License** (the second line of the text report; `license`, `license_origin` per skill in
+  `--json`). It is not part of the advice: a license decides what you may redistribute, not
+  whether a skill is safe to use. Each license is shown with where it was found, e.g.
+  `MIT (repo root)`. Per skill, the first that applies:
+  1. the skill folder's own LICENSE file or frontmatter `license:` (`skill folder`,
+     `frontmatter`);
+  2. the nearest license file above the skill folder, up to the repository root, unless the
+     repository is an aggregator or the skill names an upstream: the rule discover's
+     pre-check uses (§6), from `ingest/repo_license.py` (`repo root`, or `repo: <path>` for a
+     license file below the root). An aggregator has a third-party list or at least 10% of
+     its SKILL.md folders naming an upstream. The repository root is the nearest folder with
+     a `.git` at or above the scanned folder (the checkout of a remote scan), else the
+     scanned folder;
+  3. the license of an indexed skill with the same content (`indexed copy`);
+  4. none stated (NO_LICENSE, low): all rights reserved by default.
 
 ## 6. Discover (candidate sources, issue #60)
 

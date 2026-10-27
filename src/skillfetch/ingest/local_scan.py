@@ -24,6 +24,7 @@ from skillfetch.ingest.ingest import run_extractions
 from skillfetch.ingest.injection import ScanResult, load_rules, scan_skill
 from skillfetch.ingest.licenses import skill_license
 from skillfetch.ingest.lint import LintResult, lint_skill
+from skillfetch.ingest.repo_license import RepoLicenses, repo_root
 from skillfetch.ingest.skill_checks import DATED_NOTE, DatedLine, SkillSize, dated_lines, skill_size
 from skillfetch.ingest.skillfile import (
     CONSTRAINTS_FILE,
@@ -60,10 +61,14 @@ class SkillScan(BaseModel):
     constraints_note: str | None = None  # why a skill has no constraints, when known
     index_id: str | None = None  # the indexed skill with the same content
     constraint_count: int = 0
-    # the skill folder's LICENSE file or frontmatter `license:`; else the license of the
-    # index record with the same content (a copy of a public skill); else "unknown"
+    # the skill folder's LICENSE file or frontmatter `license:`; else, outside an aggregator
+    # and for a skill naming no upstream, the nearest license file up to the repository root
+    # (discover's rule, §1.8); else the license of the index record with the same content (a
+    # copy of a public skill); else "unknown". Not part of the advice (§5.1).
     license: str = "unknown"
-    license_origin: str = "none"  # "LICENSE" (file name), "frontmatter", "index:<id>", "none"
+    # "LICENSE" (file name), "frontmatter", "repo:<file from the repository root>",
+    # "index:<id>", "none"
+    license_origin: str = "none"
     size: SkillSize | None = None  # index-format.md §5.1
     dated: list[DatedLine] = []  # prose lines stating a year or version (§5.1)
 
@@ -157,7 +162,9 @@ class Lookup:
         return f"in the index as {rid}, not extracted: {reason}"
 
 
-def _scan_one(root: Path, skill_dir: Path) -> tuple[SkillScan, Skill | None]:
+def _scan_one(
+    root: Path, skill_dir: Path, repo: RepoLicenses | None = None
+) -> tuple[SkillScan, Skill | None]:
     skill_id = _skill_id(root, skill_dir)
     lint = lint_skill(skill_dir)
     scan = scan_skill(skill_dir)
@@ -165,6 +172,10 @@ def _scan_one(root: Path, skill_dir: Path) -> tuple[SkillScan, Skill | None]:
     frontmatter = read_skill(skill_dir).frontmatter if lint.ok else None
     name = frontmatter.get("name") if frontmatter else None
     lic = skill_license(skill_dir, frontmatter, "per-skill")
+    license, origin = lic.license, lic.origin
+    found = repo.inherited(skill_dir, frontmatter) if origin == "none" and repo else None
+    if found is not None:
+        license, origin = found[1], f"repo:{found[0]}"
 
     source, error, constraints = "none", None, None
     if (skill_dir / CONSTRAINTS_FILE).is_file():
@@ -184,8 +195,8 @@ def _scan_one(root: Path, skill_dir: Path) -> tuple[SkillScan, Skill | None]:
         constraints_source=source,
         constraints_error=error,
         constraint_count=len(constraints or []),
-        license=lic.license,
-        license_origin=lic.origin,
+        license=license,
+        license_origin=origin,
         size=skill_size(skill_dir),
         dated=dated_lines(skill_dir),
     )
@@ -300,8 +311,9 @@ def scan_dir(root: Path, lookup: Lookup | None = None, cap: str | None = None) -
     records: list[SkillScan] = []
     found: dict[str, list[Constraint]] = {}
     todo: list[tuple[SkillScan, Path]] = []
+    repo = RepoLicenses(repo_root(root))
     for skill_dir in discover_skills(root):
-        record, constraints = _scan_one(root, skill_dir)
+        record, constraints = _scan_one(root, skill_dir, repo)
         records.append(record)
         if constraints is None and lookup is not None and record.constraints_source == "none":
             constraints = _lookup(lookup, record, skill_dir)
@@ -432,18 +444,12 @@ SEVERITY_ROWS = (
     ("info", "DATED", "skills with lines that state a year or version (check them)"),
 )
 
-# Before-install advice (index-format.md §5.1): any of NOT_RECOMMENDED -> not recommended;
-# else any of CAUTION -> caution; else recommended. TENSION, DUPLICATE, LINT_WARNING,
-# SCAN_INFO and DATED are shown but do not change the advice.
+# Before-install advice (index-format.md §5.1), from safety and quality only: any of
+# NOT_RECOMMENDED -> not recommended; else any of CAUTION -> caution; else recommended.
+# TENSION, DUPLICATE, LINT_WARNING, SCAN_INFO and DATED are shown but do not change the
+# advice; neither does the license (NO_LICENSE), shown on its own line under the advice.
 NOT_RECOMMENDED = ("SCAN_FAILED", "CONFLICT", "LINT_FAILED")
-CAUTION = (
-    "SCAN_WARNING",
-    "SIZE_WARNING",
-    "HAS_SCRIPTS",
-    "NO_LICENSE",
-    "INVALID_CONSTRAINTS",
-    "REDUNDANT",
-)
+CAUTION = ("SCAN_WARNING", "SIZE_WARNING", "HAS_SCRIPTS", "INVALID_CONSTRAINTS", "REDUNDANT")
 ADVICE_PHRASES = {  # (one, several)
     "SCAN_FAILED": ("skill fails the injection scan", "skills fail the injection scan"),
     "CONFLICT": ("pair of skills gives opposite instructions", "pairs give opposite instructions"),
@@ -451,7 +457,6 @@ ADVICE_PHRASES = {  # (one, several)
     "SCAN_WARNING": ("skill has injection-scan warnings", "skills have injection-scan warnings"),
     "SIZE_WARNING": ("skill is over a size limit", "skills are over a size limit"),
     "HAS_SCRIPTS": ("skill bundles scripts", "skills bundle scripts"),
-    "NO_LICENSE": ("skill states no license", "skills state no license"),
     "INVALID_CONSTRAINTS": ("skill has invalid constraints", "skills have invalid constraints"),
     "REDUNDANT": ("pair where one skill covers the other", "pairs where one covers the other"),
 }
@@ -480,6 +485,39 @@ def problem_counts(report: ScanReport) -> dict[str, int]:
         "SIZE_WARNING": sum(bool(s.size and s.size.warnings) for s in skills),
         "DATED": sum(bool(s.dated) for s in skills),
     }
+
+
+def license_label(s: SkillScan) -> str:
+    """ "MIT (repo root)": the license and where it was found."""
+    origin = s.license_origin
+    if s.license == "unknown":
+        return "none stated"
+    if origin.startswith("repo:"):
+        where = origin.removeprefix("repo:")
+        where = "repo root" if "/" not in where else f"repo: {where}"
+    elif origin.startswith("index:"):
+        where = "indexed copy"
+    elif origin == "frontmatter":
+        where = "frontmatter"
+    else:
+        where = "skill folder"
+    return f"{s.license} ({where})"
+
+
+def license_line(report: ScanReport) -> str:
+    """The line under the advice: each license with where it came from (and a count when
+    several skills were scanned). Not part of the advice."""
+    labels = defaultdict(int)
+    for s in report.skills:
+        labels[license_label(s)] += 1
+    ordered = sorted(labels.items(), key=lambda kv: (kv[0] == "none stated", -kv[1], kv[0]))
+    if len(report.skills) == 1:
+        text = ordered[0][0]
+    else:
+        text = ", ".join(f"{k} {v}" for k, v in ordered) or "no skills"
+    if "none stated" in labels:
+        text += " (none stated: all rights reserved by default)"
+    return f"License: {text}. Not part of the advice: check it before you redistribute a skill."
 
 
 def install_advice(report: ScanReport) -> tuple[str, list[str]]:
@@ -528,6 +566,7 @@ def render_report(report: ScanReport) -> str:
     head = [
         f"Before you install: {ADVICE_TEXT[advice]}"
         + (f" ({'; '.join(reasons)})" if reasons else " (no failures or warnings)"),
+        license_line(report),
         "",
         f"skillfetch scan {report.root}",
         f"{_plural(len(skills), 'skill')} · index: "
@@ -543,12 +582,6 @@ def render_report(report: ScanReport) -> str:
         head += [f"  {sev:<8}  {counts[code]:>5}  {code:<19}  {what}" for sev, code, what in rows]
     else:
         head.append("  no problems found")
-    licenses = defaultdict(int)
-    for s in skills:
-        licenses[s.license] += 1
-    if licenses:
-        ordered = sorted(licenses.items(), key=lambda kv: (kv[0] == "unknown", -kv[1], kv[0]))
-        head += ["", "Licenses: " + ", ".join(f"{k} {v}" for k, v in ordered)]
     head += ["", *_contradiction_line(report)]
 
     blocks: list[str] = []
@@ -611,8 +644,9 @@ def render_report(report: ScanReport) -> str:
     unlicensed = [s.id for s in skills if s.license == "unknown"]
     if unlicensed:
         blocks.append(
-            "NO_LICENSE  no LICENSE file or frontmatter `license:`, and not a copy of an indexed "
-            "skill with one (all rights reserved by default)\n"
+            "NO_LICENSE  no LICENSE file or frontmatter `license:`, no license file above it in "
+            "the repository (or the repository is an aggregator), and not a copy of an indexed "
+            "skill with one (all rights reserved by default; not part of the advice)\n"
             + "\n".join(f"  {sid}" for sid in unlicensed)
         )
     for s in skills:

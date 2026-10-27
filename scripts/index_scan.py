@@ -8,11 +8,13 @@
       The rates of numbers.md §25, for all indexed skills and for canonical ones only.
 
 Per skill: lint (lint_skill), the injection scan (scan_skill, current rules), size
-(skill_size), dated lines (dated_lines), scripts (the scan's has_scripts) and license (the
-index record's `license`: the skill's LICENSE file or frontmatter, or the license its source
-declares; a repository-level LICENSE alone is `repo_license`, not counted here). Advice per
-skill uses index-format.md §5.1 without the pair checks (CONFLICT, REDUNDANT), which need a
-set of skills.
+(skill_size), dated lines (dated_lines), scripts (the scan's has_scripts) and license as
+`skillfetch scan` decides it on the snapshot (index-format.md §5.1): the skill folder's own
+LICENSE file or frontmatter (`no_own_license` when neither), else the nearest license file up
+to the repository root outside an aggregator (`no_license` when that finds none either). The
+scan's last step, an indexed copy's license, is left out: every skill here is in the index.
+Advice per skill uses §5.1 (safety and quality only; the license is not part of it) without
+the pair checks (CONFLICT, REDUNDANT), which need a set of skills.
 """
 
 from __future__ import annotations
@@ -25,24 +27,29 @@ from pathlib import Path
 
 from skillfetch.index.loader import DEFAULT_INDEX_DIR
 from skillfetch.ingest.injection import load_rules, scan_skill
+from skillfetch.ingest.licenses import skill_license
 from skillfetch.ingest.lint import lint_skill
+from skillfetch.ingest.repo_license import RepoLicenses
 from skillfetch.ingest.skill_checks import dated_lines, skill_size
+from skillfetch.ingest.skillfile import read_skill
 from skillfetch.ingest.snapshot import DEFAULT_WORK_DIR
 
 ROOT = Path(__file__).resolve().parent.parent
 ROWS = ROOT / "evals" / "index-scan" / "rows.jsonl"
 
 
-def skill_row(record: dict, folder: Path) -> dict:
+def skill_row(record: dict, folder: Path, repo: RepoLicenses) -> dict:
     lint = lint_skill(folder)
     scan = scan_skill(folder)
     size = skill_size(folder)
     dated = dated_lines(folder)
     warn_rules = sorted({h.rule_id for h in scan.warnings})
-    no_license = record.get("license", "unknown") == "unknown"
+    frontmatter = read_skill(folder).frontmatter if lint.ok else None
+    own = skill_license(folder, frontmatter, "per-skill")
+    inherited = repo.inherited(folder, frontmatter) if own.origin == "none" else None
     if not lint.ok or not scan.ok:
         advice = "not_recommended"
-    elif scan.warnings or size.warnings or scan.has_scripts or no_license:
+    elif scan.warnings or size.warnings or scan.has_scripts:
         advice = "caution"
     else:
         advice = "recommended"
@@ -65,8 +72,11 @@ def skill_row(record: dict, folder: Path) -> dict:
         "over_files": any(w.endswith(" files (over 20)") for w in size.warnings),
         "over_bytes": any(" MB in total" in w for w in size.warnings),
         "has_scripts": scan.has_scripts,
-        "no_license": no_license,
-        "repo_license": record.get("repo_license"),
+        "no_own_license": own.origin == "none",
+        "no_license": own.origin == "none" and inherited is None,
+        "license": own.license if inherited is None else inherited[1],
+        "license_from_repo": inherited[0] if inherited else None,
+        "aggregator": repo.aggregator,
         "dated": bool(dated),
         "dated_lines": len(dated),
         "advice": advice,
@@ -76,12 +86,15 @@ def skill_row(record: dict, folder: Path) -> dict:
 def rows(index: Path, work: Path, out: Path) -> None:
     records = [json.loads(line) for line in (index / "skills.jsonl").open()]
     result, missing = [], 0
+    repos: dict[Path, RepoLicenses] = {}
     for r in records:
-        folder = work / r["source_id"] / r["commit"] / r["path"]
+        root = work / r["source_id"] / r["commit"]
+        folder = root / r["path"]
         if not (folder / "SKILL.md").is_file():
             missing += 1
             continue
-        result.append(skill_row(r, folder))
+        repo = repos.setdefault(root, RepoLicenses(root))
+        result.append(skill_row(r, folder, repo))
     out.parent.mkdir(parents=True, exist_ok=True)
     # compact rows: false flags, empty lists and nulls are left out (read as false / empty)
     out.write_text(
@@ -119,7 +132,8 @@ FLAGS = (
     ("over_files", "  more than 20 files"),
     ("over_bytes", "  more than 1 MB"),
     ("has_scripts", "bundles scripts"),
-    ("no_license", "no license"),
+    ("no_own_license", "no license in the skill itself (folder LICENSE or frontmatter)"),
+    ("no_license", "no license after the repo-root rule"),
     ("dated", "states a year or version (DATED)"),
     ("lint_failed", "fails lint"),
 )
@@ -139,10 +153,12 @@ def report(rows_path: Path) -> None:
         "over_files",
         "over_bytes",
         "has_scripts",
+        "no_own_license",
         "no_license",
         "dated",
         "lint_failed",
         "canonical",
+        "aggregator",
     )
     data = []
     for line in rows_path.open():
@@ -152,7 +168,8 @@ def report(rows_path: Path) -> None:
                 **{k: False for k in keys},
                 "warn_rules": [],
                 "fail_rules": [],
-                "repo_license": None,
+                "license_from_repo": None,
+                "license": "unknown",
                 **x,
             }
         )
@@ -170,25 +187,11 @@ def report(rows_path: Path) -> None:
         cells = [_pct(sum(x["advice"] == level for x in g), len(g)) for g in groups.values()]
         print(f"| {level.replace('_', ' ')} | {cells[0]} | {cells[1]} |")
     print()
-    print("| advice, not counting the license | all indexed | canonical |")
-    print("|---|---:|---:|")
-    for level in ("recommended", "caution"):
-        cells = []
-        for g in groups.values():
-            caution = [
-                x
-                for x in g
-                if x["advice"] == "caution"
-                and (x["scan_warning"] or x["size_warning"] or x["has_scripts"])
-            ]
-            k = len(caution) if level == "caution" else len(g) - len(caution)
-            cells.append(_pct(k, len(g)))
-        print(f"| {level} | {cells[0]} | {cells[1]} |")
-    print()
     for name, g in groups.items():
-        nolic = [x for x in g if x["no_license"]]
-        repo = Counter(x["repo_license"] or "none recorded" for x in nolic)
-        print(f"{name}: no-license skills by repo_license {dict(repo.most_common())}")
+        inherited = Counter(x["license"] for x in g if x["license_from_repo"])
+        print(f"{name}: licenses taken from the repository {dict(inherited.most_common())}")
+        lic = Counter(x["license"] for x in g)
+        print(f"{name}: licenses after the rule {dict(lic.most_common())}")
         warn = Counter(r for x in g for r in x["warn_rules"])
         fail = Counter(r for x in g for r in x["fail_rules"])
         print(f"{name}: warning rules {dict(warn.most_common())}; failure rules {dict(fail)}")
@@ -198,10 +201,12 @@ def report(rows_path: Path) -> None:
                 f"  dated lines per dated skill: median {dated[len(dated) // 2]}, max {dated[-1]}"
             )
         print(
-            "  by source: "
+            "  by source (skills, no own license, no license after the rule, aggregator): "
             + ", ".join(
-                f"{s} {sum(1 for x in g if x['source_id'] == s)}"
+                f"{s} {len(xs)}/{sum(x['no_own_license'] for x in xs)}/"
+                f"{sum(x['no_license'] for x in xs)}/{xs[0]['aggregator']}"
                 for s in sorted({x["source_id"] for x in g})
+                if (xs := [x for x in g if x["source_id"] == s])
             )
         )
 
