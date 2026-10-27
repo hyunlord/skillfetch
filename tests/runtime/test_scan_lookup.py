@@ -52,7 +52,8 @@ def test_constraints_come_from_the_index_by_content_hash(tmp_path):
     for f in report.findings:
         assert f.a in by_id and f.b in by_id
     text = render_report(report)
-    assert text.startswith(f"skillfetch scan {tmp_path / 'installed'}\n")
+    assert text.startswith("Before you install: NOT RECOMMENDED (1 pair of skills gives opposite")
+    assert f"\n\nskillfetch scan {tmp_path / 'installed'}\n" in text
     assert "Contradiction check: 4 of 4 skills analyzed (index 4)." in text
     assert f"index: {index_dir} (4 skills" in text
 

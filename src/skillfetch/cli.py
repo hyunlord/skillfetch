@@ -21,6 +21,7 @@ from skillfetch.ingest.extract_cache import DEFAULT_CACHE_DIR, ExtractCache
 from skillfetch.ingest.holdout import load_holdout, measure_holdout, render_holdout
 from skillfetch.ingest.ingest import extract_dir, render_cost_log
 from skillfetch.ingest.local_scan import Lookup, fail_counts, render_report, scan_dir
+from skillfetch.ingest.remote import RemoteError, checkout, is_remote, parse_github_url
 from skillfetch.ingest.snapshot import DEFAULT_WORK_DIR, SnapshotError
 from skillfetch.ingest.sources import load_sources
 from skillfetch.ingest.upstream_licenses import GhCli
@@ -39,14 +40,44 @@ def _fail_on(value: str) -> list[str]:
     return parts
 
 
+def _scan(args: argparse.Namespace):
+    """scan_dir on a local folder, or on a shallow checkout of a GitHub URL (the report then
+    names the URL and commit instead of the temporary folder, which is deleted)."""
+    if not is_remote(args.dir):
+        root = Path(args.dir)
+        if not root.is_dir():
+            raise NotADirectoryError(args.dir)
+        lookup, how = _scan_lookup(args)
+        report = scan_dir(root, lookup, args.conflict_cap)
+        report.extraction = how
+        return report
+    target = parse_github_url(args.dir)
+    lookup, how = _scan_lookup(args)
+    with checkout(target) as (folder, commit):
+        report = scan_dir(folder, lookup, args.conflict_cap)
+        base = str(folder.resolve())
+        where = f"{target.url}@{commit[:12]}"
+        for s in report.skills:
+            s.path = where + s.path.removeprefix(base)
+    report.root = where
+    report.extraction = how
+    return report
+
+
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="skillfetch", description="Zero-install skills.")
     sub = parser.add_subparsers(dest="command", required=True)
     scan = sub.add_parser(
         "scan",
-        help="lint, injection-scan and conflict-check a local skills directory",
+        help="check skills before you install them: lint, injection scan, size, dated claims, "
+        "license and contradictions, for a local folder or a GitHub repository",
     )
-    scan.add_argument("dir", type=Path, help="a skills directory or a single skill folder")
+    scan.add_argument(
+        "dir",
+        help="a skills directory or a single skill folder, or a GitHub URL "
+        "(https://github.com/<owner>/<repo>[/tree/<ref>[/<path>]]): shallow-cloned into a "
+        "temporary folder, scanned and deleted; nothing is installed or run",
+    )
     scan.add_argument("--json", action="store_true", help="print the report as JSON")
     scan.add_argument(
         "--fail-on",
@@ -380,13 +411,14 @@ def main(argv: Sequence[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     if args.command == "scan":
-        if not args.dir.is_dir():
+        try:
+            report = _scan(args)
+        except RemoteError as exc:
+            print(f"skillfetch: {exc}", file=sys.stderr)
+            return 2
+        except NotADirectoryError:
             print(f"skillfetch: not a directory: {args.dir}", file=sys.stderr)
             return 2
-        try:
-            lookup, how = _scan_lookup(args)
-            report = scan_dir(args.dir, lookup, args.conflict_cap)
-            report.extraction = how
         except IndexLoadError as exc:
             print(f"skillfetch: {exc}", file=sys.stderr)
             return 2

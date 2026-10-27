@@ -523,7 +523,8 @@ As built (`index/sync.py`):
 
 ## 5. Local scan mode
 
-`skillfetch scan <dir>` runs stages 1.3–1.6 on a local directory and then
+`skillfetch scan <dir|GitHub URL>` runs stages 1.3–1.6 on a local directory (or a
+shallow checkout of a GitHub repository, §5.1) and then
 `resolve_set` over **all** pairs in it (N is small locally). Output is a
 human-readable report plus `--json`. Constraints come from the index first (an
 installed copy of a public skill has the same content hash as its index record),
@@ -567,17 +568,17 @@ As built (`ingest/local_scan.py`, `cli.py`):
   constraint findings. Every other pair of analyzed skills gets at most one
   finding: conflict, else redundant (directional; `a` is the superset), else
   tension, else needs_review.
-- License per skill: the skill folder's LICENSE file or frontmatter `license:`
-  (§1.8 `skill_license`, `per-skill`). Otherwise it is the license of the index
-  record with the same content hash, if one is known, else `unknown` (NO_LICENSE).
-- Text report: first a one-screen summary, then details with the source lines,
-  most severe first. The summary gives:
+- License per skill: the skill folder's own license, else the nearest license file up
+  to the repository root (outside an aggregator), else an indexed copy's, else `unknown`
+  (NO_LICENSE); §5.1 gives the rule.
+- Text report: first the before-install advice and the license line (§5.1), then a
+  one-screen summary, then
+  details with the source lines, most severe first. The summary gives:
   - the number of problems per severity:
     - high: SCAN_FAILED, CONFLICT;
-    - medium: LINT_FAILED, INVALID_CONSTRAINTS, SCAN_WARNING, REDUNDANT;
+    - medium: LINT_FAILED, INVALID_CONSTRAINTS, SCAN_WARNING, SIZE_WARNING, REDUNDANT;
     - low: DUPLICATE, TENSION (tension and needs_review), LINT_WARNING, NO_LICENSE;
-    - info: HAS_SCRIPTS;
-  - the license counts;
+    - info: HAS_SCRIPTS, SCAN_INFO, DATED;
   - how many skills the contradiction check covered.
 - Exit code 0 when the scan ran, 2 on usage errors. `--fail-on
   {conflict,scan,lint}` (repeatable or comma-separated) exits 1 when the scan
@@ -585,6 +586,54 @@ As built (`ingest/local_scan.py`, `cli.py`):
   reason goes to stderr so `--json` output stays parseable. Warnings,
   `tension`, `needs_review` and `redundant` never fail the run. Stage counts
   are per stage: a skill failing both lint and the scan counts for both.
+
+### 5.1 Before you install (`ingest/skill_checks.py`, `ingest/remote.py`, `ingest/repo_license.py`)
+
+- **Size** (`SIZE_WARNING`, medium), per skill. Each limit warns on its own:
+  - `SKILL.md` over 8,000 tokens (characters / 4), the default budget of `load_skills`;
+  - more than 20 files: `SKILL.md` plus every other file of the skill (`skill_files`: no
+    hidden files, caches or symbolic links);
+  - more than 1 MB (1,000,000 bytes) for those files together.
+  A large skill is one an agent may spend its turns reading; the README gives the measured
+  case.
+- **Dated claims** (`DATED`, info): prose lines of the skill's Markdown files that state a
+  year (2010–2039), a version number (`v1.2`, `1.2.3`) or a named product with a version
+  (`React 19`, `Swift 6.2`, `iOS 26`, `OWASP Top 10:2025`). Lines in fenced code blocks are
+  skipped. Each is marked "may have changed since the model was trained, or be wrong; check
+  the official docs". The report shows five per skill; `--json` lists all.
+- **Remote scan**: `skillfetch scan https://github.com/<owner>/<repo>[/tree/<ref>[/<path>]]`.
+  - The repository is cloned at depth 1 into a temporary folder, which is deleted after the
+    scan. `<ref>` is a branch, a tag or a full commit sha; a ref containing `/` is not
+    supported.
+  - The clone runs with `core.symlinks=false` (links become plain files), no hooks
+    (`core.hooksPath=/dev/null`), no submodules, `GIT_LFS_SKIP_SMUDGE=1`, no system git
+    config, `protocol.file.allow=never` and no terminal prompt. Nothing is installed or run.
+  - Only `https://github.com/` URLs are accepted. The report names the URL and the commit
+    (`<url>@<sha12>`) instead of the temporary folder.
+- **Advice** (`advice`, `advice_reasons` in `--json`; the first line of the text report),
+  from safety and quality only:
+  - **not recommended** if any skill fails the injection scan (SCAN_FAILED) or lint
+    (LINT_FAILED), or any pair conflicts (CONFLICT);
+  - else **caution** if any of: SCAN_WARNING (which includes remote instructions),
+    SIZE_WARNING, HAS_SCRIPTS, INVALID_CONSTRAINTS, REDUNDANT;
+  - else **recommended**.
+  - TENSION, DUPLICATE, LINT_WARNING, SCAN_INFO and DATED are shown but do not change the
+    advice. The reasons list the counts behind the level.
+- **License** (the second line of the text report; `license`, `license_origin` per skill in
+  `--json`). It is not part of the advice: a license decides what you may redistribute, not
+  whether a skill is safe to use. Each license is shown with where it was found, e.g.
+  `MIT (repo root)`. Per skill, the first that applies:
+  1. the skill folder's own LICENSE file or frontmatter `license:` (`skill folder`,
+     `frontmatter`);
+  2. the nearest license file above the skill folder, up to the repository root, unless the
+     repository is an aggregator or the skill names an upstream: the rule discover's
+     pre-check uses (§6), from `ingest/repo_license.py` (`repo root`, or `repo: <path>` for a
+     license file below the root). An aggregator has a third-party list or at least 10% of
+     its SKILL.md folders naming an upstream. The repository root is the nearest folder with
+     a `.git` at or above the scanned folder (the checkout of a remote scan), else the
+     scanned folder;
+  3. the license of an indexed skill with the same content (`indexed copy`);
+  4. none stated (NO_LICENSE, low): all rights reserved by default.
 
 ## 6. Discover (candidate sources, issue #60)
 
