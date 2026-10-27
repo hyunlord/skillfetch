@@ -217,6 +217,39 @@ def main(argv: Sequence[str] | None = None) -> int:
         "(assets/vet-skill); starts without an index, and uses it when there is one",
     )
 
+    setup = sub.add_parser(
+        "setup",
+        help="set up Claude Code: the MCP server, the vet skill (check before install, find on "
+        "request) and the index; --auto adds per-task routing. Shows every change and asks first",
+    )
+    where = setup.add_mutually_exclusive_group()
+    where.add_argument(
+        "--user", dest="scope", action="store_const", const="user", help="~/.claude (default)"
+    )
+    where.add_argument(
+        "--project",
+        dest="scope",
+        action="store_const",
+        const="project",
+        help="this repository: .claude/skills and .mcp.json",
+    )
+    setup.set_defaults(scope="user")
+    setup.add_argument(
+        "--auto",
+        action="store_true",
+        help="also install the router skill and serve the routing tools (auto-apply; off by "
+        "default, see numbers.md §26)",
+    )
+    setup.add_argument("--remove", action="store_true", help="undo what setup installed")
+    setup.add_argument("-y", "--yes", action="store_true", help="do not ask before changing")
+    setup.add_argument("--no-sync", action="store_true", help="do not sync the index")
+    setup.add_argument(
+        "--from",
+        dest="source",
+        default="git+https://github.com/hyunlord/skillfetch",
+        help="where uvx installs skillfetch from for the MCP server (default: %(default)s)",
+    )
+
     find = sub.add_parser(
         "find",
         help="search the index for a skill you want: top matches with summary, tier, size, "
@@ -457,6 +490,15 @@ def main(argv: Sequence[str] | None = None) -> int:
         return _serve(args)
     if args.command == "find":
         return _find(args)
+    if args.command == "setup":
+        from skillfetch.setup import Setup
+        from skillfetch.setup import main as setup_main
+
+        return setup_main(
+            Setup(scope=args.scope, auto=args.auto, source=args.source, sync=not args.no_sync),
+            remove=args.remove,
+            yes=args.yes,
+        )
     if args.command == "sync":
         return _sync(args)
     if args.command == "eval":

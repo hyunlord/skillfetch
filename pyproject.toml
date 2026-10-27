@@ -34,6 +34,12 @@ build-backend = "hatchling.build"
 [tool.hatch.build.targets.wheel]
 packages = ["src/skillfetch"]
 
+# the skills `skillfetch setup` installs (src/skillfetch/setup.py reads them from here in a
+# wheel, from assets/ in a source checkout)
+[tool.hatch.build.targets.wheel.force-include]
+"assets/vet-skill/SKILL.md" = "skillfetch/_assets/vet-skill/SKILL.md"
+"assets/router-skill/SKILL.md" = "skillfetch/_assets/router-skill/SKILL.md"
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-q"
