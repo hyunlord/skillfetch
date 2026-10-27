@@ -1,0 +1,339 @@
+{
+ "by_condition": {
+  "R": {
+   "items": 5,
+   "with_trace": 0,
+   "skill_pairs": 32,
+   "traces": 0,
+   "unverified": 0
+  }
+ },
+ "items": [
+  {
+   "id": "2aac7566",
+   "session": "R-F-p1",
+   "cond": "R",
+   "order": "F",
+   "tag": "p1",
+   "k": 2,
+   "task": "api",
+   "skills": [
+    "copywriting",
+    "frontend-design"
+   ],
+   "results": [
+    {
+     "skill": "copywriting",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "frontend-design",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    }
+   ],
+   "any_trace": false
+  },
+  {
+   "id": "7fe9afbf",
+   "session": "R-F-p1",
+   "cond": "R",
+   "order": "F",
+   "tag": "p1",
+   "k": 3,
+   "task": "apitests",
+   "skills": [
+    "api-design",
+    "copywriting",
+    "fastapi-patterns",
+    "frontend-design"
+   ],
+   "results": [
+    {
+     "skill": "api-design",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "copywriting",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "fastapi-patterns",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "frontend-design",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    }
+   ],
+   "any_trace": false
+  },
+  {
+   "id": "d2494dc3",
+   "session": "R-F-p1",
+   "cond": "R",
+   "order": "F",
+   "tag": "p1",
+   "k": 4,
+   "task": "rust",
+   "skills": [
+    "api-design",
+    "copywriting",
+    "fastapi-patterns",
+    "frontend-design",
+    "python-testing",
+    "radar"
+   ],
+   "results": [
+    {
+     "skill": "api-design",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "copywriting",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "fastapi-patterns",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "frontend-design",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "python-testing",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "radar",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    }
+   ],
+   "any_trace": false
+  },
+  {
+   "id": "844fbda9",
+   "session": "R-F-p1",
+   "cond": "R",
+   "order": "F",
+   "tag": "p1",
+   "k": 5,
+   "task": "docs",
+   "skills": [
+    "api-design",
+    "copywriting",
+    "domain-web",
+    "fastapi-patterns",
+    "frontend-design",
+    "m07-concurrency",
+    "python-testing",
+    "radar",
+    "rust-testing"
+   ],
+   "results": [
+    {
+     "skill": "api-design",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "copywriting",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "domain-web",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "fastapi-patterns",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "frontend-design",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "m07-concurrency",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "python-testing",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "radar",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "rust-testing",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    }
+   ],
+   "any_trace": false
+  },
+  {
+   "id": "ffea89ad",
+   "session": "R-F-p1",
+   "cond": "R",
+   "order": "F",
+   "tag": "p1",
+   "k": 6,
+   "task": "data",
+   "skills": [
+    "api-design",
+    "copywriting",
+    "domain-web",
+    "fastapi-patterns",
+    "frontend-design",
+    "m07-concurrency",
+    "python-testing",
+    "quill",
+    "radar",
+    "rust-testing",
+    "spec-miner"
+   ],
+   "results": [
+    {
+     "skill": "api-design",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "copywriting",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "domain-web",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "fastapi-patterns",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "frontend-design",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "m07-concurrency",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "python-testing",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "quill",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "radar",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "rust-testing",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    },
+    {
+     "skill": "spec-miner",
+     "trace": false,
+     "claimed": false,
+     "unverified": false,
+     "quote": ""
+    }
+   ],
+   "any_trace": false
+  }
+ ]
+}

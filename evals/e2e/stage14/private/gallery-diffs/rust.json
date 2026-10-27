@@ -1,0 +1,40 @@
+{
+ "verdict": "차이 없음",
+ "lines": [
+  {
+   "text": "세 조건 모두 정순(4번째 요청)이 5/5, 역순(3번째 요청)이 4/4다. 여섯 결과 모두 체크를 통과했다. 역순 결과들에 대한 지적은 공통으로 테스트였다.",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "A B",
+     "quote": "no test proves offloading (the healthz test runs while the resize is still queued)"
+    },
+    {
+     "src": "p1",
+     "run": "P B",
+     "quote": "only one new test (waiting for a slot), nothing tests that other routes stay responsive"
+    },
+    {
+     "src": "p1",
+     "run": "R B",
+     "quote": "the limit test only checks that permits hit 0, not that requests actually wait"
+    }
+   ]
+  },
+  {
+   "text": "R은 두 세션 모두 domain-web과 m07-concurrency를 로드했다(정순은 rust-testing도). 정순 R과 정순 P는 단일 스레드 런타임으로 오프로드를 증명하는 테스트를 넣었다고 p2가 적었다.",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "R F",
+     "quote": "5 tests incl. current_thread offload proof, slot release, validation not queued, zero-limit"
+    },
+    {
+     "src": "p2",
+     "run": "P F",
+     "quote": "3 focused tests incl. offload proof on single-thread runtime and slot release"
+    }
+   ]
+  }
+ ]
+}

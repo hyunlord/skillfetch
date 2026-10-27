@@ -309,9 +309,9 @@ helped.
 
 ## Experiment artifacts (`evals/e2e/`)
 
-The end-to-end experiments behind [numbers.md](docs/writeup/numbers.md) §11–§23 and §26:
-stages 0–13 and Q. Stage 12 has no numbers.md section; its reports are in its folder. Each
-stage folder holds what was fixed before the run and what came out of it:
+The end-to-end experiments behind [numbers.md](docs/writeup/numbers.md) §11–§23 and §26–§28:
+stages 0–14 and Q. Each stage folder holds what was fixed before the run and what came out of
+it:
 
 - **Before the run:** `DESIGN.md`, `FROZEN*.sha256`, task definitions (`tasks*.jsonl`,
   `tasks*.yaml`) and rubrics.
@@ -333,8 +333,9 @@ stage folder holds what was fixed before the run and what came out of it:
 | `stage10` | final stack in real sessions | §21 |
 | `stage11` | index-staging-4 release gate, remeasured | §22 |
 | `stageQ` | qualitative round, re-fire check | §23 |
-| `stage12` | rule skills of a fictional company team (Northwind: 24 skills, 2 repositories, 10 tasks); `12b`: org baseline vs all 24 installed; `12c`: design only, cancelled | `report-12.md`, `12b/report-12b.md` |
+| `stage12` | rule skills of a fictional company team (Northwind: 24 skills, 2 repositories, 10 tasks); `12b`: org baseline vs all 24 installed; `12c`: design only, cancelled | §27 |
 | `stage13` | popular skills installed, the router, or neither | §26 |
+| `stage14` | six consecutive requests in one session: popular skills installed, the router, or neither | §28 |
 | `router-e2e.json` | the export numbers.md §11–§12 read | §11, §12 |
 
 **Not here, and why.**
