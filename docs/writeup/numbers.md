@@ -2256,7 +2256,8 @@ Source: `uv run python scripts/index_scan.py report` over evals/index-scan/rows.
 | of which more than 20 files | 49 (1.8%) | 49 (2.1%) |
 | of which more than 1 MB | 17 (0.6%) | 17 (0.7%) |
 | bundles scripts | 252 (9.0%) | 252 (11.0%) |
-| no license | 2,410 (86.5%) | 1,919 (84.1%) |
+| no license in the skill itself (folder LICENSE or frontmatter) | 2,486 (89.3%) | 1,995 (87.5%) |
+| no license after the repo-root rule | 1,491 (53.5%) | 1,490 (65.3%) |
 | states a year or version (DATED) | 890 (32.0%) | 767 (33.6%) |
 | fails lint | 0 (0.0%) | 0 (0.0%) |
 
@@ -2266,19 +2267,24 @@ Source: `uv run python scripts/index_scan.py report` over evals/index-scan/rows.
   - `exfil.pipe-to-shell` 7;
   - `scan.line-too-long` 2.
 - **Size:** the largest skill is 10.9 MB in 225 files.
-- **License:** a skill's license is its own LICENSE file or frontmatter, or the license its source declares.
-  - Of the 2,410 indexed skills with none, 995 come from a repository whose root LICENSE is MIT (`repo_license`), 35 from one with no root LICENSE, and 1,380 have no repository license recorded.
-  - A repository-level LICENSE alone is not counted as the skill's license.
+- **License:** the rule of `skillfetch scan` (index-format.md §5.1), the same as discover's.
+  - First the skill's own LICENSE file or frontmatter.
+  - Else the nearest license file above the skill folder, up to the repository root. This step is skipped in an aggregator (a third-party list, or at least 10% of its skills naming an upstream) and for a skill that names an upstream.
+  - The scan's last step, an indexed copy's license, is left out: every skill here is in the index.
+  - **The repo-root step gave 995 skills a license, all MIT,** from 3 sources (769 + 180 + 46 skills; none of the 3 is an aggregator).
+  - **The 1,491 left with none:**
+    - 1,455 come from the UASL snapshot and 1 from anthropics/skills. Both count as aggregators: UASL's skills record their upstreams, and anthropics/skills has a third-party notices file.
+    - The other 35 come from a repository with no license file.
+  - **Not the index's own license field.** This is not the `license` field of the index records. That field also counts a license declared for the source in sources.yaml and, for aggregated skills, the upstream repository's license (§1.8). By that field, 2,410 skills (86.5%) have none.
 - **Dated lines:** median 3 per skill with any, max 696.
 
-**Advice per skill** (index-format.md §5.1, without the pair checks, which need a set of skills):
+**Advice per skill** (index-format.md §5.1: safety and quality only, the license is not part of it; without the pair checks, which need a set of skills):
 
 | advice | all indexed | canonical |
 |---|---:|---:|
-| recommended | 183 (6.6%) | 170 (7.5%) |
-| caution | 2,602 (93.4%) | 2,111 (92.5%) |
+| recommended | 2,459 (88.3%) | 1,959 (85.9%) |
+| caution (injection-scan warning, size or scripts) | 326 (11.7%) | 322 (14.1%) |
 | not recommended | 0 (0.0%) | 0 (0.0%) |
-| caution, not counting the license (scan warning, size or scripts) | 326 (11.7%) | 322 (14.1%) |
 
 **Limits.**
 - **Pre-filtered population:** indexed skills already passed lint and the build's injection scan, so the failure rates are 0 by construction. The 143 rejected skills are counted separately above.
