@@ -1,0 +1,170 @@
+{
+ "job": "s14:A:B",
+ "tag": "d0",
+ "cond": "A",
+ "order": "B",
+ "branch": "s14-a",
+ "session_dir": "<worktrees>/sq/aec1de36577c",
+ "clone": {
+  "refs": [
+   "refs/heads/main"
+  ],
+  "head": "7e143b2c7379cb3b3e7c895c8f3f1f0392a57a8c",
+  "router": false,
+  "status": "",
+  "unreachable": 0
+ },
+ "prep_s": 0.0,
+ "steps": [
+  {
+   "k": 1,
+   "task": "data",
+   "cmd": [
+    "claude",
+    "-p",
+    "`data/data/orders.csv`가 지저분해 (결측값, 형식 불일치 등). 이걸 정리해서 깨끗한 CS…",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--include-hook-events",
+    "--max-turns",
+    "40",
+    "--allowedTools",
+    "Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*",
+    "--setting-sources",
+    "project",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "<e2e>/stage14-private/dryrun/A-B-d0.mcp.json"
+   ]
+  },
+  {
+   "k": 2,
+   "task": "docs",
+   "cmd": [
+    "claude",
+    "-p",
+    "이 레포 루트에는 README가 없어. README와 사용 문서를 써줘.",
+    "--resume",
+    "<session-id-of-request-1>",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--include-hook-events",
+    "--max-turns",
+    "40",
+    "--allowedTools",
+    "Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*",
+    "--setting-sources",
+    "project",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "<e2e>/stage14-private/dryrun/A-B-d0.mcp.json"
+   ]
+  },
+  {
+   "k": 3,
+   "task": "rust",
+   "cmd": [
+    "claude",
+    "-p",
+    "`media/src/routes/media.rs`에서 `image` crate로 하는 리사이즈를 axum async 핸들러 안에서 그냥 돌리고 있어서, 동시 요청이 20개만 넘어가도 다른 CMS API까지 전부 느려져요. `spawn_blocking`으로 빼고 `Semaphore`로 동시 처리 수 제한도 걸어주세요.",
+    "--resume",
+    "<session-id-of-request-1>",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--include-hook-events",
+    "--max-turns",
+    "40",
+    "--allowedTools",
+    "Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*",
+    "--setting-sources",
+    "project",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "<e2e>/stage14-private/dryrun/A-B-d0.mcp.json"
+   ]
+  },
+  {
+   "k": 4,
+   "task": "api",
+   "cmd": [
+    "claude",
+    "-p",
+    "`api/` 디렉터리에 북마크를 저장하는 REST API를 FastAPI로 설계하고 구현해줘. 스키마, 에러…",
+    "--resume",
+    "<session-id-of-request-1>",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--include-hook-events",
+    "--max-turns",
+    "40",
+    "--allowedTools",
+    "Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*",
+    "--setting-sources",
+    "project",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "<e2e>/stage14-private/dryrun/A-B-d0.mcp.json"
+   ]
+  },
+  {
+   "k": 5,
+   "task": "apitests",
+   "cmd": [
+    "claude",
+    "-p",
+    "`api/`의 북마크 API에 테스트를 보강해줘 — 엔드포인트별 정상·오류 경로와 엣지케이스까지 다뤄줘.",
+    "--resume",
+    "<session-id-of-request-1>",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--include-hook-events",
+    "--max-turns",
+    "40",
+    "--allowedTools",
+    "Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*",
+    "--setting-sources",
+    "project",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "<e2e>/stage14-private/dryrun/A-B-d0.mcp.json"
+   ]
+  },
+  {
+   "k": 6,
+   "task": "landing",
+   "cmd": [
+    "claude",
+    "-p",
+    "`web/` 앱의 제품 랜딩 페이지를 신규 라우트 /landing에 처음부터 만들어줘 — 히어로, 기능 3개, 가격, CTA 포함",
+    "--resume",
+    "<session-id-of-request-1>",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--include-hook-events",
+    "--max-turns",
+    "40",
+    "--allowedTools",
+    "Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*",
+    "--setting-sources",
+    "project",
+    "--strict-mcp-config",
+    "--mcp-config",
+    "<e2e>/stage14-private/dryrun/A-B-d0.mcp.json"
+   ]
+  }
+ ],
+ "checks": {},
+ "session_id": null,
+ "harness_fail": false,
+ "no_result": false,
+ "complete": true,
+ "cost_usd": 0,
+ "leftover_procs": [],
+ "index_ok_after": true
+}

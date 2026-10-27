@@ -1,0 +1,34 @@
+{
+  "skills": [
+    {
+      "name": "api-design",
+      "trace": "no",
+      "quote": ""
+    },
+    {
+      "name": "copywriting",
+      "trace": "no",
+      "quote": ""
+    },
+    {
+      "name": "fastapi-patterns",
+      "trace": "no",
+      "quote": ""
+    },
+    {
+      "name": "frontend-design",
+      "trace": "no",
+      "quote": ""
+    },
+    {
+      "name": "python-testing",
+      "trace": "no",
+      "quote": ""
+    },
+    {
+      "name": "radar",
+      "trace": "no",
+      "quote": ""
+    }
+  ]
+}

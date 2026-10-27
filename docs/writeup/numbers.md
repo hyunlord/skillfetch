@@ -208,6 +208,8 @@ Not recorded: in these stages' batch calls only successful answers are cached, s
 - Stage Q sessions (§23): Stage Q $48.87 (preparation $6.74, pilots $4.63, main run $37.50); Q1 extension 82 sessions $38.54; re-fire check 9 sessions $28.18; Claude judging subagents not recorded.
 - Knowledge-gap probe (§24): 180 isolated `claude -p` calls, $0.88.
 - Stage 13 sessions (§26): P main run $34.66, P pilot $2.12, A and R third runs $7.01; total $43.79; Claude judging subagents not recorded.
+- Stage 12 and 12b sessions (§27): Stage 12 $34.97 (main run $30.89, pilot $2.21, spend-limit cutoffs $0.77, index-nw extraction $1.05, search check $0.05); Stage 12b $40.94 (main run $38.18, pilot $2.76); Claude judging subagents not recorded.
+- Stage 14 sessions (§28): main run $87.13, pilot $43.02; total $130.15; Claude judging subagents not recorded.
 
 ### Runtime latency
 
@@ -2298,7 +2300,11 @@ Source: the Stage 13 report [`evals/e2e/stage13/report-13.md`](../../evals/e2e/s
 **Design.** 18 tasks (Stage Q's Q1 and its extension) × 3 runs, environment E1. Three conditions:
 - **A:** no router and no MCP server.
 - **P:** eight popular skills installed in `.claude/skills`, with no router.
-  - The rule fixed before the run: top 200 of the skills.sh all-time ranking (snapshot 2026-10-27) or official Anthropic skills, in rank order.
+  - The rule fixed before the run (`evals/e2e/stage13/DESIGN.md` §1.2), applied in rank order:
+    1. top 200 of the skills.sh all-time ranking (snapshot 2026-10-27) or official Anthropic skills;
+    2. left out: non-coding domains (video, image and audio generation; document and collaboration tools; marketing and social automation), single cloud or database vendors, meta, setup and session skills, skills that need an external binary or account, skills whose main action is interviewing the user, issue and PR workflows, throwaway prototypes, and skills described as opt-in or retired;
+    3. at most 3 per publisher;
+    4. the first 8 that remain, by rank.
   - The eight: improve-codebase-architecture, tdd, frontend-design, domain-modeling, vercel-react-best-practices, web-design-guidelines, design-taste-frontend, vercel-composition-patterns.
 - **R:** the shipped router (S-b′) and the skillfetch MCP server on index-staging-4.
 
@@ -2336,4 +2342,112 @@ A and R reuse the Stage Q runs; the third run of Q1's six tasks was new. A, P an
 - Design scores come from still screenshots.
 - A and R reuse runs from another day, with the same harness, server, index and checks.
 - 18 tasks, 3 runs each; two Claude judges.
+
+## 27. Stage 12 and 12b: a fictional team's rule skills
+
+Source: the Stage 12 report [`evals/e2e/stage12/report-12.md`](../../evals/e2e/stage12/report-12.md) and the Stage 12b report [`evals/e2e/stage12/12b/report-12b.md`](../../evals/e2e/stage12/12b/report-12b.md); designs `evals/e2e/stage12/DESIGN.md` and `evals/e2e/stage12/12b/DESIGN.md`, hashes `evals/e2e/stage12/private/FROZEN.sha256` and `FROZEN-12b.sha256`, derived session rows `evals/e2e/stage12/derived/sessions.jsonl`, the fictional skills, repositories and tasks in `evals/e2e/stage12/private/`. Measured after the post's numbers were frozen; not in §7's totals.
+
+**Design.**
+- **A fictional team:** Northwind, written for this experiment. 24 SKILL.md files hold team rules that cannot be inferred from its two repositories; 8 of the 24 are distractors with rules that look similar.
+- **Tasks:** T1–T8 need team rules, C1–C2 are controls. 10 tasks × 3 runs per condition, environment E1.
+- **Main metric:** rule items of the hidden checks passed on T1–T8, 126 items per condition. Items that could not be judged are left out.
+- **Conditions:**
+  - **A:** no router and no MCP server.
+  - **R:** the shipped router (S-b′) and the skillfetch MCP server on index-nw (index-staging-4's 2,785 skills plus the 24).
+  - **O:** the skills each task needs, put before the first user message in `load_skills` format.
+  - **R′** (12b): the org-mode router variant (PR #97, not merged) with a `.skillfetch.yaml` baseline of 4 skills (changelog, ui-tokens, structured-logging, endpoint-registry).
+  - **N** (12b): all 24 installed in `.claude/skills`, no router and no MCP server.
+  - **F** (12b): all 24 bodies before the first user message (about 5,040 tokens).
+- A, R and O are the Stage 12 main run; R′, N and F the Stage 12b run, with the same tasks and the same frozen checks.
+
+| condition | rule items passed (T1–T8) | rate | median turns | mean API-price equivalent per session | functional checks |
+|---|---:|---:|---:|---:|---:|
+| A | 31/126 | 0.246 | 8 | $0.283 | 72/75 |
+| R | 71/126 | 0.563 | 16 | $0.463 | 72/75 |
+| O | 117/126 | 0.929 | 9 | $0.284 | 74/75 |
+| R′ | 107/126 | 0.849 | 17.5 | $0.526 | 72/75 |
+| N | 114/126 | 0.905 | 13 | $0.345 | 70/75 |
+| F | 106/126 | 0.841 | 9 | $0.401 | 61/75 |
+
+- **Controls:** C1–C2 passed 24/27 rule items in all six conditions.
+- **Where R missed** (55 failed rule items):
+  - not in its top 50: 32;
+  - in the top 50 but not picked: 14;
+  - picked but not followed: 9.
+  - The 32 not found are rules the request does not point at: changelog 14, ui-tokens 9, structured-logging 3, endpoint-registry 3, web-i18n 3.
+  - The first four are R′'s baseline, chosen after seeing this result.
+- **Where R′ missed** (19): picked by search but not followed 13; pinned by the baseline but not followed 3; not picked 2; not found 1.
+- **N:**
+  - It loaded 72 of the 78 needed skills; none was missing from its list.
+  - Its 12 misses: not picked 6, picked but not followed 6.
+- **Distractors:** distractor rules were followed 0 times in all six conditions (30 sessions each). R′ loaded a distractor once, N never, R once.
+- **N and F functional failures:** new endpoints put behind a default-off feature flag, as the platform rules say, returned 404 in the functional checks (N 70/75, F 61/75).
+- **Blind judging** (overall quality, two Claude judges; mean score on T1–T8):
+  - Stage 12, without the team's rules: A 4.646, R 4.250, O 4.021;
+  - Stage 12b, with a summary of the team's rules given to new judges: A 4.375, R 4.354, O 4.125, R′ 4.479, N 4.354, F 4.438.
+
+**Cost** (API-price equivalent):
+- Stage 12 $34.97 (main run $30.89, pilot $2.21, 4 sessions cut off by a spend limit $0.77, index-nw extraction $1.05, search check $0.05);
+- Stage 12b $40.94 (main run $38.18, pilot $2.76).
+
+**Limits.**
+- The company and its rules were written by us. 10 tasks, 3 runs each.
+- R′ differs from R in three things: the router variant, the `.skillfetch.yaml` and the server build (unmerged PR #97).
+- Two Claude judges.
+- A known false negative in a functional check: T8-F1 does not recognise `fetchApi<T>(…)` calls.
+
+## 28. Stage 14: consecutive tasks in one session
+
+Source: the Stage 14 report [`evals/e2e/stage14/report-14.md`](../../evals/e2e/stage14/report-14.md); design `evals/e2e/stage14/DESIGN.md` (criteria §5, log §9), hashes `evals/e2e/stage14/private/FROZEN-14.sha256`, derived session rows `evals/e2e/stage14/derived/sessions.jsonl`, gallery `evals/e2e/stage14/gallery/stage14-gallery.html`, judge diffs and gallery data in the release asset (`scripts/fetch_e2e_assets.sh`). Measured after the post's numbers were frozen; not in §7's totals.
+
+**Design.** Six requests in one Claude Code session, on one repository (`s14-mono`: a Next.js web app, a FastAPI service, a Rust media module, a data script), environment E1:
+- **Requests:** a landing page, an API endpoint, API tests, Rust concurrency, a README, a data script. Each session takes all six, in forward or reverse order.
+- **Conditions:** as in Stage 13 (§26).
+  - A: no skills.
+  - P: Stage 13's eight popular skills installed.
+  - R: the shipped router and the skillfetch MCP server.
+- **Runs:** 1 per order, so 2 sessions and 12 requests per condition: 6 sessions and 36 requests in all.
+- **Judging:** blind, by two Claude judges (p1, p2). The score is (p1 + p2) / 2.
+
+**Criteria fixed before the run** (DESIGN §5):
+- D = 0.25, the largest per-condition mean gap between the two judges, with a floor of 0.25.
+- "Within judge noise" is a label, not a gate.
+
+| criterion | R | compared with | difference | against D = 0.25 |
+|---|---:|---:|---:|---|
+| (i) mean of the 6 requests, R − P | 4.708 | P 3.833 | +0.875 | outside judge noise |
+| (ii) mean of the 6 requests, R − A | 4.708 | A 4.458 | +0.250 | within judge noise |
+| (iii) the request right after the domain changes, R − P | 4.812 | P 4.125 | +0.687 | outside judge noise |
+| (iii) for reference, R − A | 4.812 | A 4.625 | +0.187 | within judge noise |
+| (iv) mean API-price equivalent per session | $18.65 | P $12.33 / A $12.58 | +$6.32 / +$6.07 | – |
+
+- **Reference, after the fact, not a criterion:** without the landing page (5 requests), R 4.70, P 4.30, A 4.70, so R − P +0.40 and R − A 0.00.
+- **The landing page alone:** A 3.25, P 1.5, R 4.75 (mean of the two orders).
+  - P forward ended with a question and no page.
+  - P reverse ended at the 40-turn limit, $6.75.
+- **Checks passed:** A 12/12, P 11/12, R 12/12.
+- **40-turn limit:** P 1 request, A and R none.
+- **Skills used:**
+  - P used one of its eight skills in 2 of 12 requests, both the landing page (design-taste-frontend);
+  - R loaded 1–3 skills in all 12 requests;
+  - A made no Skill calls.
+
+**Earlier skills left in later work** (requests that had a skill earlier in the session: P 5, R 10):
+- (a) an earlier skill's name in the answer or diff: P 0, R 1. The R case is a request that loaded the same skill again; without such cases, R 0.
+- (c) a judge's "trace" verdict, checked against a quote from the diff: P 0 of 5 skill pairs, R 0 of 57.
+- (b) files changed outside the request's area: A 4, P 4, R 4 of 36 requests, all docs that earlier requests had written.
+
+**Context.** At the start of the sixth request (forward / reverse): A 122.5k / 174.4k tokens, P 118.8k / 132.6k, R 215.3k / 220.7k.
+
+**Cost** (API-price equivalent): main run $87.13, pilot $43.02 (3 sessions, not in the results), total $130.15. Per session:
+- A $12.44 / $12.72;
+- P $10.58 / $14.08;
+- R $19.79 / $17.52.
+
+**Limits.**
+- 1 run per order: 2 sessions per condition and 2 outputs per request.
+- R − P in (i) and (iii) is driven by P's two landing-page results (1.0 and 2.0); see the reference line.
+- One repository, six request types, one model. Two Claude judges.
+- The MCP server is the build Stages 11, Q and 13 used, without `find_skills` and `scan_skill`.
+- The judge package left out one rubric line ("reply.md 설명도 반영"); the 1–5 scale text was the same.
 
