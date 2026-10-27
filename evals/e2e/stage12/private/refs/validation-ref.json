@@ -1,0 +1,43 @@
+{
+ "T8-all": {
+  "expected": "all",
+  "holds": true,
+  "items": {
+   "T8-R1": true,
+   "T8-R2": true,
+   "T8-R3": true,
+   "T8-R4": true,
+   "T8-R5": true,
+   "T8-F1": true,
+   "T8-F2": true
+  }
+ },
+ "T8-none": {
+  "expected": "none",
+  "holds": true,
+  "items": {
+   "T8-R1": false,
+   "T8-R2": false,
+   "T8-R3": false,
+   "T8-R4": false,
+   "T8-R5": false,
+   "T8-F1": true,
+   "T8-F2": true
+  }
+ },
+ "fx-T8-cancel-in-lib": {
+  "expected": {
+   "T8-F1": true
+  },
+  "holds": true,
+  "items": {
+   "T8-R1": true,
+   "T8-R2": true,
+   "T8-R3": true,
+   "T8-R4": true,
+   "T8-R5": true,
+   "T8-F1": true,
+   "T8-F2": true
+  }
+ }
+}

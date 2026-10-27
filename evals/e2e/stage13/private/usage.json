@@ -1,0 +1,1175 @@
+{
+ "d1-landing": {
+  "P": {
+   "p-d1-landing-m1.jsonl": {
+    "via_skill_tool": [
+     "design-taste-frontend"
+    ],
+    "via_file_read": [
+     "design-taste-frontend"
+    ],
+    "used": [
+     "design-taste-frontend"
+    ],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   },
+   "p-d1-landing-m2.jsonl": {
+    "via_skill_tool": [
+     "design-taste-frontend"
+    ],
+    "via_file_read": [
+     "design-taste-frontend"
+    ],
+    "used": [
+     "design-taste-frontend"
+    ],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   },
+   "p-d1-landing-m3.jsonl": {
+    "via_skill_tool": [
+     "design-taste-frontend"
+    ],
+    "via_file_read": [
+     "design-taste-frontend"
+    ],
+    "used": [
+     "design-taste-frontend"
+    ],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   }
+  },
+  "R": {
+   "q1-d1-landing-on-m1.jsonl": [
+    "copywriting",
+    "frontend-design"
+   ],
+   "q1-d1-landing-on-m2.jsonl": [
+    "copywriting",
+    "frontend-design",
+    "next-best-practices"
+   ],
+   "q1-d1-landing-on-m3.jsonl": [
+    "copywriting",
+    "frontend-design"
+   ]
+  }
+ },
+ "d4-email": {
+  "P": {
+   "p-d4-email-m1.jsonl": {
+    "via_skill_tool": [
+     "frontend-design"
+    ],
+    "via_file_read": [],
+    "used": [
+     "frontend-design"
+    ],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   },
+   "p-d4-email-m2.jsonl": {
+    "via_skill_tool": [
+     "frontend-design"
+    ],
+    "via_file_read": [],
+    "used": [
+     "frontend-design"
+    ],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   },
+   "p-d4-email-m3.jsonl": {
+    "via_skill_tool": [],
+    "via_file_read": [],
+    "used": [],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   }
+  },
+  "R": {
+   "q1-d4-email-on-m1.jsonl": [
+    "email-marketing",
+    "frontend-design"
+   ],
+   "q1-d4-email-on-m2.jsonl": [
+    "email-marketing",
+    "frontend-design"
+   ],
+   "q1-d4-email-on-m3.jsonl": [
+    "email-marketing",
+    "redesign-skill"
+   ]
+  }
+ },
+ "s10-t016": {
+  "P": {
+   "p-s10-t016-m1.jsonl": {
+    "via_skill_tool": [],
+    "via_file_read": [],
+    "used": [],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   },
+   "p-s10-t016-m2.jsonl": {
+    "via_skill_tool": [],
+    "via_file_read": [],
+    "used": [],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   },
+   "p-s10-t016-m3.jsonl": {
+    "via_skill_tool": [],
+    "via_file_read": [],
+    "used": [],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   }
+  },
+  "R": {
+   "q1-s10-t016-on-m1.jsonl": [
+    "m07-concurrency",
+    "rust-testing"
+   ],
+   "q1-s10-t016-on-m2.jsonl": [
+    "m07-concurrency",
+    "rust-patterns"
+   ],
+   "q1-s10-t016-on-m3.jsonl": [
+    "m07-concurrency",
+    "rust-patterns"
+   ]
+  }
+ },
+ "s11-t266": {
+  "P": {
+   "p-s11-t266-m1.jsonl": {
+    "via_skill_tool": [],
+    "via_file_read": [],
+    "used": [],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   },
+   "p-s11-t266-m2.jsonl": {
+    "via_skill_tool": [],
+    "via_file_read": [],
+    "used": [],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   },
+   "p-s11-t266-m3.jsonl": {
+    "via_skill_tool": [],
+    "via_file_read": [],
+    "used": [],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   }
+  },
+  "R": {
+   "q1-s11-t266-on-m1.jsonl": [
+    "domain-web",
+    "m07-concurrency"
+   ],
+   "q1-s11-t266-on-m2.jsonl": [
+    "domain-web",
+    "m07-concurrency"
+   ],
+   "q1-s11-t266-on-m3.jsonl": [
+    "domain-web",
+    "m07-concurrency"
+   ]
+  }
+ },
+ "s2-api": {
+  "P": {
+   "p-s2-api-m1.jsonl": {
+    "via_skill_tool": [],
+    "via_file_read": [
+     "tdd"
+    ],
+    "used": [
+     "tdd"
+    ],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   },
+   "p-s2-api-m2.jsonl": {
+    "via_skill_tool": [],
+    "via_file_read": [],
+    "used": [],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   },
+   "p-s2-api-m3.jsonl": {
+    "via_skill_tool": [],
+    "via_file_read": [],
+    "used": [],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   }
+  },
+  "R": {
+   "q1-s2-api-on-m1.jsonl": [
+    "api-design",
+    "fastapi-patterns"
+   ],
+   "q1-s2-api-on-m2.jsonl": [
+    "api-design",
+    "fastapi-patterns"
+   ],
+   "q1-s2-api-on-m3.jsonl": [
+    "api-design",
+    "fastapi-patterns"
+   ]
+  }
+ },
+ "s2-data": {
+  "P": {
+   "p-s2-data-m1.jsonl": {
+    "via_skill_tool": [],
+    "via_file_read": [],
+    "used": [],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   },
+   "p-s2-data-m2.jsonl": {
+    "via_skill_tool": [],
+    "via_file_read": [],
+    "used": [],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   },
+   "p-s2-data-m3.jsonl": {
+    "via_skill_tool": [],
+    "via_file_read": [],
+    "used": [],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   }
+  },
+  "R": {
+   "q1-s2-data-on-m1.jsonl": [
+    "data-analyst-engine"
+   ],
+   "q1-s2-data-on-m2.jsonl": [
+    "data-analyst-engine"
+   ],
+   "q1-s2-data-on-m3.jsonl": [
+    "data-analyst-engine"
+   ]
+  }
+ },
+ "d2-redesign": {
+  "P": {
+   "p-d2-redesign-m1.jsonl": {
+    "via_skill_tool": [
+     "design-taste-frontend"
+    ],
+    "via_file_read": [
+     "design-taste-frontend"
+    ],
+    "used": [
+     "design-taste-frontend"
+    ],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   },
+   "p-d2-redesign-m2.jsonl": {
+    "via_skill_tool": [
+     "frontend-design"
+    ],
+    "via_file_read": [],
+    "used": [
+     "frontend-design"
+    ],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   },
+   "p-d2-redesign-m3.jsonl": {
+    "via_skill_tool": [
+     "design-taste-frontend"
+    ],
+    "via_file_read": [
+     "design-taste-frontend"
+    ],
+    "used": [
+     "design-taste-frontend"
+    ],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   }
+  },
+  "R": {
+   "q1-d2-redesign-on-m1.jsonl": [
+    "frontend-design",
+    "redesign-skill",
+    "responsive-design"
+   ],
+   "q1-d2-redesign-on-m2.jsonl": [
+    "redesign-skill",
+    "responsive-design"
+   ],
+   "q1-d2-redesign-on-m3.jsonl": [
+    "redesign-skill",
+    "responsive-design"
+   ]
+  }
+ },
+ "d3-dashboard": {
+  "P": {
+   "p-d3-dashboard-m1.jsonl": {
+    "via_skill_tool": [
+     "dataviz"
+    ],
+    "via_file_read": [],
+    "used": [
+     "dataviz"
+    ],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   },
+   "p-d3-dashboard-m2.jsonl": {
+    "via_skill_tool": [
+     "dataviz",
+     "design-taste-frontend"
+    ],
+    "via_file_read": [
+     "design-taste-frontend"
+    ],
+    "used": [
+     "dataviz",
+     "design-taste-frontend"
+    ],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   },
+   "p-d3-dashboard-m3.jsonl": {
+    "via_skill_tool": [
+     "dataviz"
+    ],
+    "via_file_read": [],
+    "used": [
+     "dataviz"
+    ],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   }
+  },
+  "R": {
+   "q1-d3-dashboard-on-m1.jsonl": [
+    "frontend-design",
+    "next-best-practices"
+   ],
+   "q1-d3-dashboard-on-m2.jsonl": [
+    "frontend-a11y",
+    "next-best-practices",
+    "vercel-react-best-practices"
+   ],
+   "q1-d3-dashboard-on-m3.jsonl": [
+    "frontend-a11y",
+    "vercel-react-best-practices"
+   ]
+  }
+ },
+ "s10-t263": {
+  "P": {
+   "p-s10-t263-m1.jsonl": {
+    "via_skill_tool": [],
+    "via_file_read": [],
+    "used": [],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   },
+   "p-s10-t263-m2.jsonl": {
+    "via_skill_tool": [],
+    "via_file_read": [],
+    "used": [],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   },
+   "p-s10-t263-m3.jsonl": {
+    "via_skill_tool": [],
+    "via_file_read": [],
+    "used": [],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   }
+  },
+  "R": {
+   "q1-s10-t263-on-m1.jsonl": [
+    "m01-ownership",
+    "m10-performance"
+   ],
+   "q1-s10-t263-on-m2.jsonl": [
+    "m01-ownership",
+    "m10-performance"
+   ],
+   "q1-s10-t263-on-m3.jsonl": [
+    "m01-ownership",
+    "m10-performance"
+   ]
+  }
+ },
+ "s10-t115": {
+  "P": {
+   "p-s10-t115-m1.jsonl": {
+    "via_skill_tool": [],
+    "via_file_read": [],
+    "used": [],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   },
+   "p-s10-t115-m2.jsonl": {
+    "via_skill_tool": [],
+    "via_file_read": [],
+    "used": [],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   },
+   "p-s10-t115-m3.jsonl": {
+    "via_skill_tool": [],
+    "via_file_read": [],
+    "used": [],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   }
+  },
+  "R": {
+   "q1-s10-t115-on-m1.jsonl": [
+    "domain-embedded",
+    "unsafe-checker"
+   ],
+   "q1-s10-t115-on-m2.jsonl": [
+    "domain-embedded",
+    "unsafe-checker"
+   ],
+   "q1-s10-t115-on-m3.jsonl": [
+    "domain-embedded",
+    "unsafe-checker"
+   ]
+  }
+ },
+ "s10-t198": {
+  "P": {
+   "p-s10-t198-m1.jsonl": {
+    "via_skill_tool": [],
+    "via_file_read": [],
+    "used": [],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   },
+   "p-s10-t198-m2.jsonl": {
+    "via_skill_tool": [],
+    "via_file_read": [],
+    "used": [],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   },
+   "p-s10-t198-m3.jsonl": {
+    "via_skill_tool": [],
+    "via_file_read": [],
+    "used": [],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   }
+  },
+  "R": {
+   "q1-s10-t198-on-m1.jsonl": [
+    "core-data",
+    "migration-patterns"
+   ],
+   "q1-s10-t198-on-m2.jsonl": [
+    "core-data",
+    "migration-patterns"
+   ],
+   "q1-s10-t198-on-m3.jsonl": [
+    "core-data",
+    "migration-patterns"
+   ]
+  }
+ },
+ "s11-t160": {
+  "P": {
+   "p-s11-t160-m1.jsonl": {
+    "via_skill_tool": [],
+    "via_file_read": [],
+    "used": [],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   },
+   "p-s11-t160-m2.jsonl": {
+    "via_skill_tool": [],
+    "via_file_read": [],
+    "used": [],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   },
+   "p-s11-t160-m3.jsonl": {
+    "via_skill_tool": [],
+    "via_file_read": [],
+    "used": [],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   }
+  },
+  "R": {
+   "q1-s11-t160-on-m1.jsonl": [],
+   "q1-s11-t160-on-m2.jsonl": [],
+   "q1-s11-t160-on-m3.jsonl": []
+  }
+ },
+ "s11-t118": {
+  "P": {
+   "p-s11-t118-m1.jsonl": {
+    "via_skill_tool": [],
+    "via_file_read": [],
+    "used": [],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   },
+   "p-s11-t118-m2.jsonl": {
+    "via_skill_tool": [],
+    "via_file_read": [],
+    "used": [],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   },
+   "p-s11-t118-m3.jsonl": {
+    "via_skill_tool": [],
+    "via_file_read": [],
+    "used": [],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   }
+  },
+  "R": {
+   "q1-s11-t118-on-m1.jsonl": [
+    "java-coding-standards",
+    "receiving-code-review"
+   ],
+   "q1-s11-t118-on-m2.jsonl": [
+    "java-coding-standards",
+    "receiving-code-review"
+   ],
+   "q1-s11-t118-on-m3.jsonl": []
+  }
+ },
+ "s2-docs": {
+  "P": {
+   "p-s2-docs-m1.jsonl": {
+    "via_skill_tool": [],
+    "via_file_read": [],
+    "used": [],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   },
+   "p-s2-docs-m2.jsonl": {
+    "via_skill_tool": [],
+    "via_file_read": [],
+    "used": [],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   },
+   "p-s2-docs-m3.jsonl": {
+    "via_skill_tool": [],
+    "via_file_read": [],
+    "used": [],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   }
+  },
+  "R": {
+   "q1-s2-docs-on-m1.jsonl": [
+    "quill"
+   ],
+   "q1-s2-docs-on-m2.jsonl": [
+    "quill"
+   ],
+   "q1-s2-docs-on-m3.jsonl": [
+    "quill"
+   ]
+  }
+ },
+ "s10-t033": {
+  "P": {
+   "p-s10-t033-m1.jsonl": {
+    "via_skill_tool": [],
+    "via_file_read": [],
+    "used": [],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   },
+   "p-s10-t033-m2.jsonl": {
+    "via_skill_tool": [],
+    "via_file_read": [],
+    "used": [],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   },
+   "p-s10-t033-m3.jsonl": {
+    "via_skill_tool": [],
+    "via_file_read": [],
+    "used": [],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   }
+  },
+  "R": {
+   "q1-s10-t033-on-m1.jsonl": [],
+   "q1-s10-t033-on-m2.jsonl": [
+    "debug-root-cause"
+   ],
+   "q1-s10-t033-on-m3.jsonl": []
+  }
+ },
+ "s2-tests": {
+  "P": {
+   "p-s2-tests-m1.jsonl": {
+    "via_skill_tool": [],
+    "via_file_read": [],
+    "used": [],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   },
+   "p-s2-tests-m2.jsonl": {
+    "via_skill_tool": [],
+    "via_file_read": [],
+    "used": [],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   },
+   "p-s2-tests-m3.jsonl": {
+    "via_skill_tool": [],
+    "via_file_read": [
+     "tdd"
+    ],
+    "used": [
+     "tdd"
+    ],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   }
+  },
+  "R": {
+   "q1-s2-tests-on-m1.jsonl": [
+    "python-testing"
+   ],
+   "q1-s2-tests-on-m2.jsonl": [
+    "python-testing",
+    "radar"
+   ],
+   "q1-s2-tests-on-m3.jsonl": [
+    "python-testing",
+    "radar"
+   ]
+  }
+ },
+ "s10-t001": {
+  "P": {
+   "p-s10-t001-m1.jsonl": {
+    "via_skill_tool": [],
+    "via_file_read": [],
+    "used": [],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   },
+   "p-s10-t001-m2.jsonl": {
+    "via_skill_tool": [],
+    "via_file_read": [],
+    "used": [],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   },
+   "p-s10-t001-m3.jsonl": {
+    "via_skill_tool": [],
+    "via_file_read": [],
+    "used": [],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   }
+  },
+  "R": {
+   "q1-s10-t001-on-m1.jsonl": [],
+   "q1-s10-t001-on-m2.jsonl": [],
+   "q1-s10-t001-on-m3.jsonl": []
+  }
+ },
+ "s6b-t179": {
+  "P": {
+   "p-s6b-t179-m1.jsonl": {
+    "via_skill_tool": [
+     "sqlmodel"
+    ],
+    "via_file_read": [],
+    "used": [
+     "sqlmodel"
+    ],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   },
+   "p-s6b-t179-m2.jsonl": {
+    "via_skill_tool": [
+     "sqlmodel"
+    ],
+    "via_file_read": [],
+    "used": [
+     "sqlmodel"
+    ],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   },
+   "p-s6b-t179-m3.jsonl": {
+    "via_skill_tool": [
+     "sqlmodel"
+    ],
+    "via_file_read": [],
+    "used": [
+     "sqlmodel"
+    ],
+    "init_p_skills": [
+     "design-taste-frontend",
+     "domain-modeling",
+     "frontend-design",
+     "improve-codebase-architecture",
+     "tdd",
+     "vercel-composition-patterns",
+     "vercel-react-best-practices",
+     "web-design-guidelines"
+    ]
+   }
+  },
+  "R": {
+   "q1-s6b-t179-on-m1.jsonl": [],
+   "q1-s6b-t179-on-m2.jsonl": [
+    "<worktrees>/sq/d44f088ffadb/.claude/skills/sqlmodel"
+   ],
+   "q1-s6b-t179-on-m3.jsonl": []
+  }
+ }
+}

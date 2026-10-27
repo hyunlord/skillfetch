@@ -1,0 +1,13 @@
+# API routes
+
+[[routes]]
+method = "GET"
+path = "/products"
+owner = "catalog"
+rate_limit = 200
+
+[[routes]]
+method = "GET"
+path = "/products/{public_id}"
+owner = "catalog"
+rate_limit = 500

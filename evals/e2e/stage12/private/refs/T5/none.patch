@@ -1,0 +1,33 @@
+diff --git a/orders/pricing.py b/orders/pricing.py
+index 3bc52d9..763e0ff 100644
+--- a/orders/pricing.py
++++ b/orders/pricing.py
+@@ -1,5 +1,7 @@
+ """Pricing calculations."""
+ 
++USE_NEW_DISCOUNT = True
++
+ 
+ def calculate_total(
+     unit_price: float, quantity: int, discount_pct: float = 0.0
+@@ -10,6 +12,20 @@ def calculate_total(
+     return round(subtotal - discount, 2)
+ 
+ 
++def calculate_total_v2(
++    unit_price: float, quantity: int, discount_pct: float = 0.0
++) -> float:
++    """Calculate with tiered discount."""
++    print(f"Using new discount: {USE_NEW_DISCOUNT}")
++    if USE_NEW_DISCOUNT:
++        tiers = [(10, 5), (50, 10), (100, 15)]
++        for threshold, pct in reversed(tiers):
++            if quantity >= threshold:
++                discount_pct = max(discount_pct, pct)
++                break
++    return calculate_total(unit_price, quantity, discount_pct)
++
++
+ def apply_tax(amount: float, tax_rate: float = 0.1) -> float:
+     """Apply tax rate to amount."""
+     return round(amount * (1 + tax_rate), 2)

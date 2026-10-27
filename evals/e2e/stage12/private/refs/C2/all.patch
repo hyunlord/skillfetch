@@ -1,0 +1,84 @@
+diff --git a/locales/en.json b/locales/en.json
+index ffda9de..292ef2c 100644
+--- a/locales/en.json
++++ b/locales/en.json
+@@ -3,5 +3,13 @@
+     "page_title": "Products - Northwind",
+     "heading": "Products",
+     "empty_state": "No products found."
++  },
++  "settings": {
++    "page_title": "Settings - Northwind",
++    "heading": "Settings",
++    "language_label": "Language",
++    "lang_en": "English",
++    "lang_ko": "Korean",
++    "notifications_label": "Enable notifications"
+   }
+ }
+diff --git a/locales/ko.json b/locales/ko.json
+index 13ad231..96fd5da 100644
+--- a/locales/ko.json
++++ b/locales/ko.json
+@@ -3,5 +3,13 @@
+     "page_title": "상품 - 노스윈드",
+     "heading": "상품",
+     "empty_state": "상품이 없습니다."
++  },
++  "settings": {
++    "page_title": "설정 - 노스윈드",
++    "heading": "설정",
++    "language_label": "언어",
++    "lang_en": "영어",
++    "lang_ko": "한국어",
++    "notifications_label": "알림 활성화"
+   }
+ }
+diff --git a/pages/settings.tsx b/pages/settings.tsx
+new file mode 100644
+index 0000000..59986f3
+--- /dev/null
++++ b/pages/settings.tsx
+@@ -0,0 +1,42 @@
++import Layout from '../components/Layout'
++import { t } from '../lib/i18n'
++import { useState } from 'react'
++
++export default function SettingsPage() {
++  const [language, setLanguage] = useState('en')
++  const [notifications, setNotifications] = useState(true)
++
++  return (
++    <Layout title={t('settings.page_title')}>
++      <h1 style={{
++        color: 'var(--nw-color-text)',
++        marginBottom: 'var(--nw-spacing-lg)',
++        fontSize: 'var(--nw-font-size-lg)'
++      }}>
++        {t('settings.heading')}
++      </h1>
++      <div style={{ padding: 'var(--nw-spacing-md)' }}>
++        <label style={{ display: 'block', marginBottom: 'var(--nw-spacing-md)', color: 'var(--nw-color-text)' }}>
++          {t('settings.language_label')}
++          <select
++            value={language}
++            onChange={(e) => setLanguage(e.target.value)}
++            style={{ marginLeft: 'var(--nw-spacing-sm)', padding: 'var(--nw-spacing-xs)' }}
++          >
++            <option value="en">{t('settings.lang_en')}</option>
++            <option value="ko">{t('settings.lang_ko')}</option>
++          </select>
++        </label>
++        <label style={{ display: 'block', color: 'var(--nw-color-text)' }}>
++          <input
++            type="checkbox"
++            checked={notifications}
++            onChange={(e) => setNotifications(e.target.checked)}
++            style={{ marginRight: 'var(--nw-spacing-xs)' }}
++          />
++          {t('settings.notifications_label')}
++        </label>
++      </div>
++    </Layout>
++  )
++}

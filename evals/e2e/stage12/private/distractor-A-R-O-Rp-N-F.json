@@ -1,0 +1,1122 @@
+{
+ "summary": {
+  "A": {
+   "sessions": 30,
+   "sessions_following_any": 0,
+   "rules_followed": 0,
+   "by_skill": {}
+  },
+  "R": {
+   "sessions": 30,
+   "sessions_following_any": 0,
+   "rules_followed": 0,
+   "by_skill": {}
+  },
+  "O": {
+   "sessions": 30,
+   "sessions_following_any": 0,
+   "rules_followed": 0,
+   "by_skill": {}
+  },
+  "Rp": {
+   "sessions": 30,
+   "sessions_following_any": 0,
+   "rules_followed": 0,
+   "by_skill": {}
+  },
+  "N": {
+   "sessions": 30,
+   "sessions_following_any": 0,
+   "rules_followed": 0,
+   "by_skill": {}
+  },
+  "F": {
+   "sessions": 30,
+   "sessions_following_any": 0,
+   "rules_followed": 0,
+   "by_skill": {}
+  }
+ },
+ "rows": [
+  {
+   "cond": "A",
+   "task": "C1",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "A",
+   "task": "C1",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "A",
+   "task": "C1",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "A",
+   "task": "C2",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "A",
+   "task": "C2",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "A",
+   "task": "C2",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "A",
+   "task": "T1",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "A",
+   "task": "T1",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "A",
+   "task": "T1",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "A",
+   "task": "T2",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "A",
+   "task": "T2",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "A",
+   "task": "T2",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "A",
+   "task": "T3",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "A",
+   "task": "T3",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "A",
+   "task": "T3",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "A",
+   "task": "T4",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "A",
+   "task": "T4",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "A",
+   "task": "T4",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "A",
+   "task": "T5",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "A",
+   "task": "T5",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "A",
+   "task": "T5",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "A",
+   "task": "T6",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "A",
+   "task": "T6",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "A",
+   "task": "T6",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "A",
+   "task": "T7",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "A",
+   "task": "T7",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "A",
+   "task": "T7",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "A",
+   "task": "T8",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "A",
+   "task": "T8",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "A",
+   "task": "T8",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "R",
+   "task": "C1",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "R",
+   "task": "C1",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "R",
+   "task": "C1",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "R",
+   "task": "C2",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "R",
+   "task": "C2",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "R",
+   "task": "C2",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "R",
+   "task": "T1",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "R",
+   "task": "T1",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "R",
+   "task": "T1",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "R",
+   "task": "T2",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "R",
+   "task": "T2",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "R",
+   "task": "T2",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "R",
+   "task": "T3",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "R",
+   "task": "T3",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "R",
+   "task": "T3",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "R",
+   "task": "T4",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "R",
+   "task": "T4",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "R",
+   "task": "T4",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "R",
+   "task": "T5",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "R",
+   "task": "T5",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "R",
+   "task": "T5",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "R",
+   "task": "T6",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "R",
+   "task": "T6",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "R",
+   "task": "T6",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "R",
+   "task": "T7",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "R",
+   "task": "T7",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "R",
+   "task": "T7",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "R",
+   "task": "T8",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "R",
+   "task": "T8",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "R",
+   "task": "T8",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "O",
+   "task": "C1",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "O",
+   "task": "C1",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "O",
+   "task": "C1",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "O",
+   "task": "C2",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "O",
+   "task": "C2",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "O",
+   "task": "C2",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "O",
+   "task": "T1",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "O",
+   "task": "T1",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "O",
+   "task": "T1",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "O",
+   "task": "T2",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "O",
+   "task": "T2",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "O",
+   "task": "T2",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "O",
+   "task": "T3",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "O",
+   "task": "T3",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "O",
+   "task": "T3",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "O",
+   "task": "T4",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "O",
+   "task": "T4",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "O",
+   "task": "T4",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "O",
+   "task": "T5",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "O",
+   "task": "T5",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "O",
+   "task": "T5",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "O",
+   "task": "T6",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "O",
+   "task": "T6",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "O",
+   "task": "T6",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "O",
+   "task": "T7",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "O",
+   "task": "T7",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "O",
+   "task": "T7",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "O",
+   "task": "T8",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "O",
+   "task": "T8",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "O",
+   "task": "T8",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "Rp",
+   "task": "C1",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "Rp",
+   "task": "C1",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "Rp",
+   "task": "C1",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "Rp",
+   "task": "C2",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "Rp",
+   "task": "C2",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "Rp",
+   "task": "C2",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "Rp",
+   "task": "T1",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "Rp",
+   "task": "T1",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "Rp",
+   "task": "T1",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "Rp",
+   "task": "T2",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "Rp",
+   "task": "T2",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "Rp",
+   "task": "T2",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "Rp",
+   "task": "T3",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "Rp",
+   "task": "T3",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "Rp",
+   "task": "T3",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "Rp",
+   "task": "T4",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "Rp",
+   "task": "T4",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "Rp",
+   "task": "T4",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "Rp",
+   "task": "T5",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "Rp",
+   "task": "T5",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "Rp",
+   "task": "T5",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "Rp",
+   "task": "T6",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "Rp",
+   "task": "T6",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "Rp",
+   "task": "T6",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "Rp",
+   "task": "T7",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "Rp",
+   "task": "T7",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "Rp",
+   "task": "T7",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "Rp",
+   "task": "T8",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "Rp",
+   "task": "T8",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "Rp",
+   "task": "T8",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "N",
+   "task": "C1",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "N",
+   "task": "C1",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "N",
+   "task": "C1",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "N",
+   "task": "C2",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "N",
+   "task": "C2",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "N",
+   "task": "C2",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "N",
+   "task": "T1",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "N",
+   "task": "T1",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "N",
+   "task": "T1",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "N",
+   "task": "T2",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "N",
+   "task": "T2",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "N",
+   "task": "T2",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "N",
+   "task": "T3",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "N",
+   "task": "T3",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "N",
+   "task": "T3",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "N",
+   "task": "T4",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "N",
+   "task": "T4",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "N",
+   "task": "T4",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "N",
+   "task": "T5",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "N",
+   "task": "T5",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "N",
+   "task": "T5",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "N",
+   "task": "T6",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "N",
+   "task": "T6",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "N",
+   "task": "T6",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "N",
+   "task": "T7",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "N",
+   "task": "T7",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "N",
+   "task": "T7",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "N",
+   "task": "T8",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "N",
+   "task": "T8",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "N",
+   "task": "T8",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "F",
+   "task": "C1",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "F",
+   "task": "C1",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "F",
+   "task": "C1",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "F",
+   "task": "C2",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "F",
+   "task": "C2",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "F",
+   "task": "C2",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "F",
+   "task": "T1",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "F",
+   "task": "T1",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "F",
+   "task": "T1",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "F",
+   "task": "T2",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "F",
+   "task": "T2",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "F",
+   "task": "T2",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "F",
+   "task": "T3",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "F",
+   "task": "T3",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "F",
+   "task": "T3",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "F",
+   "task": "T4",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "F",
+   "task": "T4",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "F",
+   "task": "T4",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "F",
+   "task": "T5",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "F",
+   "task": "T5",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "F",
+   "task": "T5",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "F",
+   "task": "T6",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "F",
+   "task": "T6",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "F",
+   "task": "T6",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "F",
+   "task": "T7",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "F",
+   "task": "T7",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "F",
+   "task": "T7",
+   "tag": "m3",
+   "hits": {}
+  },
+  {
+   "cond": "F",
+   "task": "T8",
+   "tag": "m1",
+   "hits": {}
+  },
+  {
+   "cond": "F",
+   "task": "T8",
+   "tag": "m2",
+   "hits": {}
+  },
+  {
+   "cond": "F",
+   "task": "T8",
+   "tag": "m3",
+   "hits": {}
+  }
+ ]
+}

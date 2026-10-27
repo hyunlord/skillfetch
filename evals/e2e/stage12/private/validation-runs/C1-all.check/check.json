@@ -1,0 +1,57 @@
+{
+  "task_id": "C1",
+  "rule_pass": 6,
+  "rule_total": 6,
+  "rule_undecidable": 0,
+  "func_pass": 3,
+  "func_total": 3,
+  "rule_items": [
+    {
+      "id": "C1-R1",
+      "pass": true,
+      "detail": "status=404 body={'error': {'code': 'NW-CUST-001', 'message': 'Customer not found', 'trace_id': 'ab1f9976-bb73-4f73-b1d0-86888f196838'}}"
+    },
+    {
+      "id": "C1-R2",
+      "pass": true,
+      "detail": "New codes: ['NW-CUST-001']"
+    },
+    {
+      "id": "C1-R3",
+      "pass": true,
+      "detail": "Found GET /customers/{id} with owner and rate_limit"
+    },
+    {
+      "id": "C1-R4",
+      "pass": true,
+      "detail": "response id='cust_01a178ec7b4587a5661cc00247d1'; Found in orders/database.py: from lib.nwids import new as nwids_new"
+    },
+    {
+      "id": "C1-R5",
+      "pass": true,
+      "detail": "All timestamp fields use _at: ['joined_at', 'updated_at']"
+    },
+    {
+      "id": "C1-R6",
+      "pass": true,
+      "detail": "RFC 3339 Z: ['joined_at', 'updated_at']"
+    }
+  ],
+  "functional_items": [
+    {
+      "id": "C1-F1",
+      "pass": true,
+      "detail": "source=app data found=[200, {'id': 'cust_01a178ec7b4587a5661cc00247d1', 'name': 'Alice Kim', 'email': 'alice@example.com', 'joined_at': '2026-10-26T15:55:26Z', 'updated_at': '2026-10-26T15:55:26Z'}, 'cust_01a178ec7b4587a5661cc00247d1']"
+    },
+    {
+      "id": "C1-F2",
+      "pass": true,
+      "detail": "missing customer -> [404, {'error': {'code': 'NW-CUST-001', 'message': 'Customer not found', 'trace_id': 'ab1f9976-bb73-4f73-b1d0-86888f196838'}}]"
+    },
+    {
+      "id": "C1-F3",
+      "pass": true,
+      "detail": "7 passed, 3 warnings in 0.07s |  is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).\n    now = datetime.utcnow().isoformat()\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.htm"
+    }
+  ]
+}

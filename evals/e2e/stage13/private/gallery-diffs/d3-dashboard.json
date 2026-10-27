@@ -1,0 +1,90 @@
+{
+ "verdict": "차이 있음",
+ "lines": [
+  {
+   "text": "A 세 결과는 모두 4/4점이고 AI 템플릿 항목은 #4 하나씩이다. 세 결과 모두 앱의 사용자 4명(sampleUserData)으로 요약 카드·차트·표를 만들었다. 바뀐 파일 2–3개, 턴 13–15, 세션당 API 단가 환산은 $0.44–0.54다. 세 조건 아홉 세션 모두 Skill 도구로 dataviz를 불렀다.",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "A m1",
+     "quote": "4 summary cards, name-length bar chart, recent-users table, all from the app's 4 users"
+    },
+    {
+     "src": "diff",
+     "run": "A m2",
+     "quote": "const items: User[] = sampleUserData;"
+    }
+   ]
+  },
+  {
+   "text": "P m1·m2와 R m1·m2는 utils/sample-data.ts를 고쳐 사용자를 14명·12명으로 늘리고 이메일·역할·가입일 같은 필드를 지어 넣었다. 판정자는 이 네 결과에 #9(지어낸 수치)를 더해 AI 템플릿 항목 2개를 적었고, 점수는 P m1 3/3, P m2 4/3, R m1 2/2, R m2 3/3이다.",
+   "quotes": [
+    {
+     "src": "diff",
+     "run": "P m1",
+     "quote": "{ id: 105, name: \"Erin\", email: \"erin@example.com\", role: \"member\", status: \"active\", joinedAt: \"2026-07-08\" },"
+    },
+    {
+     "src": "p1",
+     "run": "P m1",
+     "quote": "#9 invented 14-user dataset (active/pending/joined)"
+    },
+    {
+     "src": "p2",
+     "run": "R m2",
+     "quote": "does not use the app's data as asked"
+    }
+   ]
+  },
+  {
+   "text": "P m2는 dataviz와 design-taste-frontend를 불렀고 40턴에서 끝났다. 바뀐 파일 15개 중 8개가 .taste-skill/ 캡처이고, API 단가 환산은 $1.97이다. p2는 사이드바·강조된 월·상태 배지가 있는 레이아웃이지만 데이터가 앱의 것이 아니라고 적었다.",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "P m2",
+     "quote": "most polished layout (sidebar, highlighted month, status badges, good mobile), but the data is not the app's"
+    },
+    {
+     "src": "p1",
+     "run": "P m2",
+     "quote": "swaps in its own sidebar layout"
+    }
+   ]
+  },
+  {
+   "text": "P m3(dataviz만 사용)와 R m3는 A처럼 앱의 사용자 4명을 썼고 점수는 5/4, 4/4다. 판정자는 P m3의 차트가 모바일에서도 읽힌다고, R m3의 차트 글자는 모바일에서 작아진다고 적었다. P m3는 바뀐 파일 2개, 턴 18, API 단가 환산 $0.62다.",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "P m3",
+     "quote": "the chart stays readable on mobile"
+    },
+    {
+     "src": "p1",
+     "run": "R m3",
+     "quote": "mobile stacks but chart text becomes tiny"
+    },
+    {
+     "src": "diff",
+     "run": "P m3",
+     "quote": "const items: User[] = sampleUserData;"
+    }
+   ]
+  },
+  {
+   "text": "R은 라우터가 frontend-design·next-best-practices·frontend-a11y·vercel-react-best-practices 중 2–3개를 불러왔다. R m1은 2/2점으로 아홉 결과 중 가장 낮고, 판정자는 375px에서 표가 화면을 넘친다고 적었다. R의 턴은 22–27, 세션당 API 단가 환산은 $0.80–1.00이다.",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "R m1",
+     "quote": "table overflows the 375 viewport and dates wrap badly"
+    },
+    {
+     "src": "p1",
+     "run": "R m1",
+     "quote": "#9 invented 12-user dataset with emails/roles/dates"
+    }
+   ]
+  }
+ ]
+}

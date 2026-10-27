@@ -1,0 +1,19 @@
+diff --git a/orders/routes.py b/orders/routes.py
+index 3cf94d8..b9a2ff9 100644
+--- a/orders/routes.py
++++ b/orders/routes.py
+@@ -1,5 +1,6 @@
+ """Order API routes."""
+ from datetime import datetime
++import os
+ 
+ from fastapi import APIRouter, HTTPException
+ 
+@@ -12,6 +13,7 @@ router = APIRouter()
+ 
+ @router.post("/orders", response_model=OrderResponse)
+ def create_order(req: CreateOrderRequest):
++    payment_timeout = int(os.environ.get("PAYMENT_TIMEOUT", "30"))
+     total = calculate_total(req.unit_price, req.quantity)
+     now = datetime.utcnow().isoformat()
+     db = get_db()

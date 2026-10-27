@@ -1,0 +1,114 @@
+[
+ {
+  "repo": "nw-orders",
+  "branch": "nw-a",
+  "commit": "b3e1eecd7e3dd87c57313bfaf6dfd39b9f4581ad",
+  "tree": "9806bc005213aa7019fa74bf0553ddb4bb699f17",
+  "subject": "initial: nw-orders service"
+ },
+ {
+  "repo": "nw-orders",
+  "branch": "nw-b",
+  "commit": "34adcb391b0ef302d2335dcaa671646fc938364c",
+  "tree": "f2da825a09d3bbeaa410aca8b3a08136a3f7baa7",
+  "subject": "add product endpoints"
+ },
+ {
+  "repo": "nw-orders",
+  "branch": "s12-r-nw-a",
+  "commit": "c718405545a36e72d197e66e3672eb2f99567ad2",
+  "tree": "c0acf3d018d2311d6f20cd8141a3f57bfba61259",
+  "subject": "chore: add project skill"
+ },
+ {
+  "repo": "nw-orders",
+  "branch": "s12-r-nw-b",
+  "commit": "deadcfc3ffe134c5b06c250fdde8f41f05835049",
+  "tree": "63bcf06cd772c13f4bae1a3ec81d9490a44cb69f",
+  "subject": "chore: add project skill"
+ },
+ {
+  "repo": "nw-orders",
+  "branch": "s12b-rp-nw-a",
+  "commit": "b055c5d2e490197777ba963b11f18d610adcdc19",
+  "tree": "52f77dae0623363e6cc485e4f9d381b81fd86671",
+  "subject": "chore: add project skill"
+ },
+ {
+  "repo": "nw-orders",
+  "branch": "s12b-rp-nw-b",
+  "commit": "e13e0c088210185ed7a6034e40432730e043a33e",
+  "tree": "82fa73a1ac83d612785ef138bd9b1df9863b0958",
+  "subject": "chore: add project skill"
+ },
+ {
+  "repo": "nw-orders",
+  "branch": "s12b-n-nw-a",
+  "commit": "6cfb1a2ac68adade63821a1e2f53d8875760c71b",
+  "tree": "cba63fbfcdc36a8f7c0373217ef4e22b7347e0da",
+  "subject": "chore: add project skills"
+ },
+ {
+  "repo": "nw-orders",
+  "branch": "s12b-n-nw-b",
+  "commit": "d2dc72ca13fafdc60f96dfdc490dc9292efe1557",
+  "tree": "4a95885ba9b57e6702567fb33fe31dcc6a1fec1f",
+  "subject": "chore: add project skills"
+ },
+ {
+  "repo": "nw-web",
+  "branch": "nw-a",
+  "commit": "ef31a68ab0c7715a9ec1a5e2919881e71e8c1d84",
+  "tree": "5787f08dd9308887c4a684124364458b55db5a2f",
+  "subject": "initial: nw-web app"
+ },
+ {
+  "repo": "nw-web",
+  "branch": "nw-b",
+  "commit": "82e624262f543647f70e781114c0da65767a8cc4",
+  "tree": "3ed1a4e677d039a67bc719b53100944d37d31ebf",
+  "subject": "add products page"
+ },
+ {
+  "repo": "nw-web",
+  "branch": "s12-r-nw-a",
+  "commit": "74407d10b75fdb08df3459e02385667d1e3e91da",
+  "tree": "fc5b58b70d563ecdae2879782bfe21a64059b45f",
+  "subject": "chore: add project skill"
+ },
+ {
+  "repo": "nw-web",
+  "branch": "s12-r-nw-b",
+  "commit": "30bed8e9a2d46767d8307a321e2b0e052be6b3d4",
+  "tree": "dc3c625e8eaba786359f27ee6adfc8d14872fe6f",
+  "subject": "chore: add project skill"
+ },
+ {
+  "repo": "nw-web",
+  "branch": "s12b-rp-nw-a",
+  "commit": "6c93fe177dc748dfe73b6cfe1cedc43844eb3086",
+  "tree": "3910ca305bc65f336b265f28c326b577afc673cc",
+  "subject": "chore: add project skill"
+ },
+ {
+  "repo": "nw-web",
+  "branch": "s12b-rp-nw-b",
+  "commit": "448c18cbac16155688cf351f793529569e85a6ee",
+  "tree": "0e7c933430638da2cd37ff7372f74105082dc74c",
+  "subject": "chore: add project skill"
+ },
+ {
+  "repo": "nw-web",
+  "branch": "s12b-n-nw-a",
+  "commit": "639f8c97c947c398da56649601c4d76d3da0ddca",
+  "tree": "ce8d6ad7032d4edc4859c73931da5937ca960731",
+  "subject": "chore: add project skills"
+ },
+ {
+  "repo": "nw-web",
+  "branch": "s12b-n-nw-b",
+  "commit": "95f1934dd1e217929469442b3fce857a15ad4b52",
+  "tree": "6d2035f3c6a6021a9e04b1dbcbe1eadde6f4f7de",
+  "subject": "chore: add project skills"
+ }
+]

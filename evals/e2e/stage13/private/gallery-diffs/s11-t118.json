@@ -1,0 +1,85 @@
+{
+ "verdict": "차이 있음",
+ "lines": [
+  {
+   "text": "P 세 결과는 모두 4점(p1·p2 같음)이고, 세 번 모두 doclint 점검에서 \"no comment\" 경고 2건으로 실패했다. 8개 P 스킬은 한 번도 쓰지 않았다. 턴은 6–7, 세션당 API 단가 환산은 $0.218–0.265다. 두 판정자 모두 클래스·생성자·isClosed가 문서화되지 않았다고 적었다.",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "P m2",
+     "quote": "클래스·생성자·isClosed 문서는 그대로라 doclint 경고 2건"
+    },
+    {
+     "src": "p2",
+     "run": "P m1",
+     "quote": "rest of the class untouched; doclint warnings"
+    }
+   ]
+  },
+  {
+   "text": "P의 diff는 세 번 모두 reconcileBatch 한 메서드의 Javadoc만 바꿨다. @param·@return 설명을 다시 쓰고 @throws 6개를 붙였으며 추가 15–17줄이다. p1은 P m1의 'partial report' 표현이 모호하다고 적었다.",
+   "quotes": [
+    {
+     "src": "diff",
+     "run": "P m2",
+     "quote": "* @param batchId batch id, used in the report and in exception messages"
+    },
+    {
+     "src": "diff",
+     "run": "P m1",
+     "quote": "partial report"
+    },
+    {
+     "src": "p1",
+     "run": "P m1",
+     "quote": "'partial report' 표현 모호"
+    }
+   ]
+  },
+  {
+   "text": "A 세 결과는 5·4·5점이고 점검 실패는 3번 중 1번(A m2, 같은 doclint 경고)이다. A m1·m3는 클래스 설명, 생성자, isClosed, close까지 Javadoc을 달았다(추가 37–38줄). 턴은 6–10, 세션당 API 단가 환산은 $0.214–0.266이다.",
+   "quotes": [
+    {
+     "src": "diff",
+     "run": "A m1",
+     "quote": "* Reconciles batches of ledger entries against bank transactions."
+    },
+    {
+     "src": "p2",
+     "run": "A m3",
+     "quote": "Whole public API documented (class, constructor, reconcileBatch, isClosed, close) with complete @throws; doclint clean"
+    }
+   ]
+  },
+  {
+   "text": "R 세 결과는 5·3·3점이고 점검 실패는 3번 중 2번(R m2·m3)이다. R m2·m3는 기존 @param·@return을 그대로 두고 @throws만 덧붙였다(추가 9–10줄, 삭제 0줄). 라우터는 m1·m2에서 java-coding-standards와 receiving-code-review를 불러왔고 m3에서는 아무것도 불러오지 않았다. 턴은 14–17, 세션당 API 단가 환산은 $0.373–0.482다.",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "R m2",
+     "quote": "Only appends the @throws tags (accurate, complete)"
+    },
+    {
+     "src": "p1",
+     "run": "R m3",
+     "quote": "지적된 @throws만 추가(내용은 정확); @param/@return은 빈약한 그대로"
+    }
+   ]
+  },
+  {
+   "text": "R m1은 전체 public 멤버를 문서화해 점검을 통과했다. p1은 클래스 문서에 스레드 안전성 같은 검증되지 않은 계약이 새로 들어갔다고 적었다.",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "R m1",
+     "quote": "스레드 안전성 같은 검증되지 않은 계약을 클래스 문서에 새로 약속"
+    },
+    {
+     "src": "diff",
+     "run": "R m1",
+     "quote": "so one instance can reconcile batches from several threads"
+    }
+   ]
+  }
+ ]
+}

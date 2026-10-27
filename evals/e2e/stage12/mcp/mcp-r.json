@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "skillfetch": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": [
+        "--from",
+        "<worktrees>/s26-server/c55d561",
+        "skillfetch",
+        "serve",
+        "--index",
+        "<e2e>/stage12-private/index-nw"
+      ],
+      "env": {}
+    }
+  }
+}

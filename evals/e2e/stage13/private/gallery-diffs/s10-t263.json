@@ -1,0 +1,90 @@
+{
+ "verdict": "차이 없음",
+ "lines": [
+  {
+   "text": "점수(p1/p2)는 A 5/5·4/5·5/5, P 5/5·4/5·5/5, R 5/5·5/5·4/5이고 아홉 결과 모두 자동 점검을 통과했으며 테스트는 추가하지 않았다(바뀐 파일 2개). 조건마다 한 결과에서 p1이 도우미 함수가 책 빌림과 입력 수명을 묶었다고 적고 4점을 줬다(A m2·P m2·R m3).",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "A m2",
+     "quote": "helpers return `PriceLevel<'a>` bound to the book borrow"
+    },
+    {
+     "src": "p1",
+     "run": "P m2",
+     "quote": "tying the book borrow to the input lifetime"
+    },
+    {
+     "src": "p1",
+     "run": "R m3",
+     "quote": "helpers use `&'a OrderBook<'a>`, coupling the two lifetimes"
+    }
+   ]
+  },
+  {
+   "text": "나머지 여섯 결과는 책 빌림과 입력 수명을 나눈 두 수명 시그니처를 썼다. A·R 여섯 결과는 PriceLevel의 derive에 Copy를 더했고, P 세 결과는 derive 줄을 바꾸지 않았다.",
+   "quotes": [
+    {
+     "src": "diff",
+     "run": "P m1",
+     "quote": "pub fn best_bid<'b, 'a>(book: &'b OrderBook<'a>) -> Option<&'b PriceLevel<'a>> {"
+    },
+    {
+     "src": "diff",
+     "run": "R m2",
+     "quote": "#[derive(Debug, Clone, Copy, PartialEq)]"
+    },
+    {
+     "src": "diff",
+     "run": "P m3",
+     "quote": "#[derive(Debug, Clone, PartialEq)]"
+    }
+   ]
+  },
+  {
+   "text": "P는 세 세션 모두 P 스킬을 쓰지 않았다. 턴 4·4·7, 세션당 API 단가 환산 $0.247–0.264다. p1은 m1에 오류 타입 BadLevel이 소유값으로 남는다는 설명을, m3에 parse_order_book 문서 주석을 적었다.",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "P m1",
+     "quote": "explains BadLevel stays owned"
+    },
+    {
+     "src": "p1",
+     "run": "P m3",
+     "quote": "doc comment on parse_order_book; good caller notes"
+    }
+   ]
+  },
+  {
+   "text": "A는 턴 4·4·12, 세션당 API 단가 환산 $0.206–0.313이다. p1은 m1이 남은 Vec 할당에 대해 parse_into를 제안했다고 적었다.",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "A m1",
+     "quote": "suggests parse_into for remaining Vec allocations"
+    },
+    {
+     "src": "p2",
+     "run": "A m3",
+     "quote": "clear note on the breaking change"
+    }
+   ]
+  },
+  {
+   "text": "R은 라우터가 m01-ownership과 m10-performance를 불러왔다. 턴 11·14·20, 세션당 API 단가 환산 $0.398–0.468이다. 판정자는 R 답변에 API 변경과 남은 Vec·오류 할당 설명이 있다고 적었다.",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "R m2",
+     "quote": "reply covers API break, error allocation and the remaining Vecs"
+    },
+    {
+     "src": "p1",
+     "run": "R m1",
+     "quote": "docs noting the book cannot outlive the line"
+    }
+   ]
+  }
+ ]
+}

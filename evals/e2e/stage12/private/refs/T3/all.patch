@@ -1,0 +1,48 @@
+diff --git a/changes/feat-refund-reason.md b/changes/feat-refund-reason.md
+new file mode 100644
+index 0000000..3c067a3
+--- /dev/null
++++ b/changes/feat-refund-reason.md
+@@ -0,0 +1 @@
++Added refund_reason column to orders table.
+diff --git a/db/migrations/V20261026_01__add_refund_reason.sql b/db/migrations/V20261026_01__add_refund_reason.sql
+new file mode 100644
+index 0000000..e664521
+--- /dev/null
++++ b/db/migrations/V20261026_01__add_refund_reason.sql
+@@ -0,0 +1,4 @@
++ALTER TABLE orders ADD COLUMN refund_reason TEXT;
++
++-- rollback:
++-- ALTER TABLE orders DROP COLUMN refund_reason;
+diff --git a/deploy/CHECKLIST.md b/deploy/CHECKLIST.md
+index 0c9543f..fd8314d 100644
+--- a/deploy/CHECKLIST.md
++++ b/deploy/CHECKLIST.md
+@@ -1 +1,4 @@
+ # Deploy Checklist
++
++## Unreleased
++- Run migration V20261026_01__add_refund_reason before deploy
+diff --git a/orders/database.py b/orders/database.py
+index b6d5914..0a71bfc 100644
+--- a/orders/database.py
++++ b/orders/database.py
+@@ -29,4 +29,8 @@ def init_db() -> None:
+         );
+         """
+     )
++    try:
++        conn.execute("ALTER TABLE orders ADD COLUMN refund_reason TEXT")
++    except Exception:
++        pass
+     conn.close()
+diff --git a/orders/schemas.py b/orders/schemas.py
+index c0391ea..ed2f607 100644
+--- a/orders/schemas.py
++++ b/orders/schemas.py
+@@ -20,3 +20,4 @@ class OrderResponse(BaseModel):
+     status: str
+     created_at: str
+     updated_at: str
++    refund_reason: str | None = None

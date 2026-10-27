@@ -1,0 +1,130 @@
+diff --git a/api/routes.toml b/api/routes.toml
+index 2a30ed8..fe1e28b 100644
+--- a/api/routes.toml
++++ b/api/routes.toml
+@@ -1 +1,7 @@
+ # API routes
++
++[[routes]]
++method = "POST"
++path = "/refunds"
++owner = "orders"
++rate_limit = 100
+diff --git a/changes/feat-refund-endpoint.md b/changes/feat-refund-endpoint.md
+new file mode 100644
+index 0000000..5d10529
+--- /dev/null
++++ b/changes/feat-refund-endpoint.md
+@@ -0,0 +1 @@
++Added POST /refunds endpoint for processing order refunds.
+diff --git a/errors/catalog.yaml b/errors/catalog.yaml
+index 3eba076..1d519be 100644
+--- a/errors/catalog.yaml
++++ b/errors/catalog.yaml
+@@ -1 +1,5 @@
+ # Error codes
++codes:
++  NW-RFND-001:
++    message: "Order not found"
++    http_status: 404
+diff --git a/orders/app.py b/orders/app.py
+index 6d9c10a..aac6e85 100644
+--- a/orders/app.py
++++ b/orders/app.py
+@@ -5,6 +5,7 @@ from fastapi import FastAPI
+ 
+ from .database import init_db
+ from .routes import router
++from .refund_routes import router as refund_router
+ 
+ 
+ @asynccontextmanager
+@@ -15,6 +16,7 @@ async def lifespan(application: FastAPI):
+ 
+ app = FastAPI(title="nw-orders", lifespan=lifespan)
+ app.include_router(router)
++app.include_router(refund_router)
+ 
+ 
+ @app.get("/health")
+diff --git a/orders/database.py b/orders/database.py
+index b6d5914..de7ff69 100644
+--- a/orders/database.py
++++ b/orders/database.py
+@@ -27,6 +27,16 @@ def init_db() -> None:
+             created_at TEXT NOT NULL,
+             updated_at TEXT NOT NULL
+         );
++
++        CREATE TABLE IF NOT EXISTS refunds (
++            id INTEGER PRIMARY KEY AUTOINCREMENT,
++            public_id TEXT NOT NULL UNIQUE,
++            order_id INTEGER NOT NULL REFERENCES orders(id),
++            amount_minor INTEGER NOT NULL,
++            currency TEXT NOT NULL DEFAULT 'USD',
++            reason TEXT DEFAULT '',
++            created_at TEXT NOT NULL
++        );
+         """
+     )
+     conn.close()
+diff --git a/orders/refund_routes.py b/orders/refund_routes.py
+new file mode 100644
+index 0000000..5c5ef76
+--- /dev/null
++++ b/orders/refund_routes.py
+@@ -0,0 +1,54 @@
++"""Refund endpoints."""
++from datetime import datetime, timezone
++from uuid import uuid4
++
++from fastapi import APIRouter
++from fastapi.responses import JSONResponse
++from pydantic import BaseModel
++
++from lib.nwids import new as nwids_new
++from lib.nwlog import event as nwlog_event
++from orders.database import get_db
++
++router = APIRouter()
++
++
++class CreateRefundRequest(BaseModel):
++    order_id: int
++    amount_minor: int
++    currency: str = "USD"
++    reason: str = ""
++
++
++@router.post("/refunds")
++def create_refund(req: CreateRefundRequest):
++    trace_id = str(uuid4())
++    db = get_db()
++    order = db.execute("SELECT * FROM orders WHERE id = ?", (req.order_id,)).fetchone()
++    if not order:
++        db.close()
++        return JSONResponse(status_code=404, content={
++            "error": {"code": "NW-RFND-001", "message": "Order not found", "trace_id": trace_id}
++        })
++    refund_id = nwids_new("rfnd")
++    now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
++    db.execute(
++        "INSERT INTO refunds (public_id, order_id, amount_minor, currency, reason, created_at) VALUES (?, ?, ?, ?, ?, ?)",
++        (refund_id, req.order_id, req.amount_minor, req.currency, req.reason, now),
++    )
++    db.commit()
++    db.close()
++    nwlog_event(
++        "Refund created",
++        tenant_id="default",
++        trace_id=trace_id,
++        refund_id=refund_id,
++    )
++    return {
++        "id": refund_id,
++        "order_id": req.order_id,
++        "amount_minor": req.amount_minor,
++        "currency": req.currency,
++        "reason": req.reason,
++        "created_at": now,
++    }

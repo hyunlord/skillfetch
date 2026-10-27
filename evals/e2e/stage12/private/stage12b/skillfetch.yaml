@@ -1,0 +1,6 @@
+org: northwind
+baseline:
+  - nw-changelog
+  - nw-ui-tokens
+  - nw-structured-logging
+  - nw-endpoint-registry

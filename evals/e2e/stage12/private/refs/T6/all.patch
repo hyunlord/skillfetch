@@ -1,0 +1,39 @@
+diff --git a/tests/test_pricing__calculate.py b/tests/test_pricing__calculate.py
+new file mode 100644
+index 0000000..22721ec
+--- /dev/null
++++ b/tests/test_pricing__calculate.py
+@@ -0,0 +1,33 @@
++"""Tests for pricing module - calculation behavior."""
++import pytest
++from orders.pricing import calculate_total, apply_tax
++
++
++@pytest.mark.contract
++def test_calculate_total_basic(client, nw_factory):
++    result = calculate_total(10.0, 2)
++    assert result == 20.0
++
++
++@pytest.mark.contract
++def test_calculate_total_with_discount(client, nw_factory):
++    result = calculate_total(10.0, 2, discount_pct=10.0)
++    assert result == 18.0
++
++
++@pytest.mark.contract
++def test_calculate_total_zero_quantity(client, nw_factory):
++    result = calculate_total(10.0, 0)
++    assert result == 0.0
++
++
++@pytest.mark.contract
++def test_apply_tax_default(client, nw_factory):
++    result = apply_tax(100.0)
++    assert result == 110.0
++
++
++@pytest.mark.contract
++def test_apply_tax_custom_rate(client, nw_factory):
++    result = apply_tax(100.0, tax_rate=0.2)
++    assert result == 120.0

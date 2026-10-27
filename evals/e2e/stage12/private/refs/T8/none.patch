@@ -1,0 +1,60 @@
+diff --git a/pages/orders.tsx b/pages/orders.tsx
+new file mode 100644
+index 0000000..6764bd6
+--- /dev/null
++++ b/pages/orders.tsx
+@@ -0,0 +1,54 @@
++import Layout from '../components/Layout'
++import { useState } from 'react'
++import { fetchApi } from '../lib/api'
++
++export default function OrdersPage() {
++  const [orders] = useState<any[]>([])
++  const [showCancel, setShowCancel] = useState(false)
++  const [cancelTarget, setCancelTarget] = useState<string | null>(null)
++
++  const handleCancel = (orderId: string) => {
++    setCancelTarget(orderId)
++    setShowCancel(true)
++  }
++
++  const confirmCancel = async () => {
++    await fetchApi(`/orders/${cancelTarget}/cancel`, { method: 'POST' })
++    console.log('Order cancelled:', cancelTarget)
++    setShowCancel(false)
++    setCancelTarget(null)
++  }
++
++  return (
++    <Layout title="Order History">
++      <h1 style={{ color: '#212529', marginBottom: '24px' }}>Order History</h1>
++      <p style={{ color: '#6c757d', padding: '16px' }}>No orders found.</p>
++      <button
++        onClick={() => handleCancel('sample')}
++        style={{
++          backgroundColor: '#cc3333',
++          color: '#fff',
++          padding: '8px 16px',
++          borderRadius: '4px',
++          border: 'none',
++          cursor: 'pointer'
++        }}
++      >
++        Cancel Order
++      </button>
++      {showCancel && (
++        <div style={{
++          position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
++          backgroundColor: 'rgba(0,0,0,0.5)',
++          display: 'flex', alignItems: 'center', justifyContent: 'center'
++        }}>
++          <div style={{ backgroundColor: '#fff', padding: '24px', borderRadius: '8px' }}>
++            <p style={{ marginBottom: '16px' }}>Are you sure you want to cancel this order?</p>
++            <button onClick={confirmCancel} style={{ marginRight: '8px' }}>Yes, cancel</button>
++            <button onClick={() => setShowCancel(false)}>No, keep it</button>
++          </div>
++        </div>
++      )}
++    </Layout>
++  )
++}

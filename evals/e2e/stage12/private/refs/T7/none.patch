@@ -1,0 +1,38 @@
+diff --git a/pages/orders.tsx b/pages/orders.tsx
+new file mode 100644
+index 0000000..43c3034
+--- /dev/null
++++ b/pages/orders.tsx
+@@ -0,0 +1,32 @@
++import Layout from '../components/Layout'
++import { useState } from 'react'
++
++export default function OrdersPage() {
++  const [orders] = useState<any[]>([])
++
++  return (
++    <Layout title="Order History">
++      <h1 style={{ color: '#212529', marginBottom: '24px', fontSize: '20px' }}>
++        Order History
++      </h1>
++      {orders.length === 0 ? (
++        <div style={{
++          padding: '16px',
++          backgroundColor: '#f8f9fa',
++          borderRadius: '8px',
++          border: '1px solid #dee2e6'
++        }}>
++          <p style={{ color: '#6c757d', fontSize: '16px' }}>No orders found.</p>
++        </div>
++      ) : (
++        <ul>
++          {orders.map((o: any) => (
++            <li key={o.id} style={{ padding: '8px', borderBottom: '1px solid #eee' }}>
++              Order: {o.id}
++            </li>
++          ))}
++        </ul>
++      )}
++    </Layout>
++  )
++}

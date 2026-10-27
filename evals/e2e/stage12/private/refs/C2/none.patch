@@ -1,0 +1,43 @@
+diff --git a/pages/settings.tsx b/pages/settings.tsx
+new file mode 100644
+index 0000000..245ab4c
+--- /dev/null
++++ b/pages/settings.tsx
+@@ -0,0 +1,37 @@
++import Layout from '../components/Layout'
++import { useState } from 'react'
++
++export default function SettingsPage() {
++  const [language, setLanguage] = useState('en')
++  const [notifications, setNotifications] = useState(true)
++
++  return (
++    <Layout title="Settings">
++      <h1 style={{ color: '#212529', marginBottom: '24px', fontSize: '20px' }}>
++        Settings
++      </h1>
++      <div style={{ padding: '16px' }}>
++        <label style={{ display: 'block', marginBottom: '16px', color: '#212529' }}>
++          Language
++          <select
++            value={language}
++            onChange={(e) => setLanguage(e.target.value)}
++            style={{ marginLeft: '8px', padding: '4px' }}
++          >
++            <option value="en">English</option>
++            <option value="ko">Korean</option>
++          </select>
++        </label>
++        <label style={{ display: 'block', color: '#212529' }}>
++          <input
++            type="checkbox"
++            checked={notifications}
++            onChange={(e) => setNotifications(e.target.checked)}
++            style={{ marginRight: '4px' }}
++          />
++          Enable notifications
++        </label>
++      </div>
++    </Layout>
++  )
++}

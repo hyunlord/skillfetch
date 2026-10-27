@@ -1,0 +1,55 @@
+{
+ "verdict": "차이 없음",
+ "lines": [
+  {
+   "text": "아홉 결과 모두 쓸만함 4–5점이고 AI 템플릿 항목은 두 판정자 모두 0개로 적었다. 점수는 A 4/5·4/4·4/5, P 4/4·5/5·5/5, R 4/4·4/4·4/4다. A m1을 뺀 여덟 결과가 react-email 템플릿과 backend HTML 템플릿 두 파일을 바꿨다.",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "A m1",
+     "quote": "teal brand header, credentials block, CTA, next steps, security note, fallback link; reflows cleanly at 375"
+    },
+    {
+     "src": "diff",
+     "run": "A m3",
+     "quote": "const brandColor = \"#009688\""
+    }
+   ]
+  },
+  {
+   "text": "P m1·m2는 frontend-design을 불렀고 m3은 P 스킬을 쓰지 않았다. 5/5점은 m2와 스킬을 쓰지 않은 m3이 받았고, m1(4/4)에 대해서는 두 판정자가 환영·브랜드 느낌이 적다고 적었다. P의 턴은 14–19, 세션당 API 단가 환산은 $0.51–0.57이다.",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "P m1",
+     "quote": "fine at 375 px, but little welcome/brand feel"
+    },
+    {
+     "src": "diff",
+     "run": "P m1",
+     "quote": "<Heading>Your {project_name} account is ready</Heading>"
+    },
+    {
+     "src": "p1",
+     "run": "P m3",
+     "quote": "brand header band, personal greeting, temporary-password credentials, 2 concrete steps, CTA"
+    }
+   ]
+  },
+  {
+   "text": "R은 세 세션 모두 라우터가 email-marketing을 불러왔다(m1·m2는 frontend-design, m3은 redesign-skill도). p2는 R m1에 보안 안내가 없다고, m3에는 CTA가 덜 눈에 띈다고 적었다. R의 턴은 16–20, 세션당 API 단가 환산은 $0.60–0.69이고 A는 15–19턴, $0.44–0.52다.",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "R m1",
+     "quote": "some filler copy and no security note"
+    },
+    {
+     "src": "p2",
+     "run": "R m3",
+     "quote": "CTA less prominent"
+    }
+   ]
+  }
+ ]
+}

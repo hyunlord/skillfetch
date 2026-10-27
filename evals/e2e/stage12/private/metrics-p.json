@@ -1,0 +1,171 @@
+{
+ "prefixes": [
+  "p"
+ ],
+ "sessions": [
+  {
+   "task": "T1",
+   "cond": "A",
+   "tag": "p1",
+   "rule_pass": 1,
+   "rule_total": 8,
+   "rule_undecidable": 0,
+   "func_pass": 3,
+   "func_total": 3,
+   "check_error": null,
+   "turns": 9,
+   "cost_usd": 0.29840940000000005,
+   "harness_fail": false,
+   "fired": false,
+   "skillfetch_calls": 0,
+   "loaded_required": [],
+   "loaded_distractor": [],
+   "loaded_other_nw": [],
+   "loaded_non_nw": 0
+  },
+  {
+   "task": "T7",
+   "cond": "A",
+   "tag": "p1",
+   "rule_pass": 1,
+   "rule_total": 5,
+   "rule_undecidable": 0,
+   "func_pass": 2,
+   "func_total": 2,
+   "check_error": null,
+   "turns": 13,
+   "cost_usd": 0.3364324,
+   "harness_fail": false,
+   "fired": false,
+   "skillfetch_calls": 0,
+   "loaded_required": [],
+   "loaded_distractor": [],
+   "loaded_other_nw": [],
+   "loaded_non_nw": 0
+  },
+  {
+   "task": "T1",
+   "cond": "O",
+   "tag": "p1",
+   "rule_pass": 7,
+   "rule_total": 8,
+   "rule_undecidable": 0,
+   "func_pass": 3,
+   "func_total": 3,
+   "check_error": null,
+   "turns": 11,
+   "cost_usd": 0.39362480000000005,
+   "harness_fail": false,
+   "fired": false,
+   "skillfetch_calls": 0,
+   "loaded_required": [],
+   "loaded_distractor": [],
+   "loaded_other_nw": [],
+   "loaded_non_nw": 0
+  },
+  {
+   "task": "T7",
+   "cond": "O",
+   "tag": "p1",
+   "rule_pass": 3,
+   "rule_total": 5,
+   "rule_undecidable": 0,
+   "func_pass": 2,
+   "func_total": 2,
+   "check_error": null,
+   "turns": 10,
+   "cost_usd": 0.2622654,
+   "harness_fail": false,
+   "fired": false,
+   "skillfetch_calls": 0,
+   "loaded_required": [],
+   "loaded_distractor": [],
+   "loaded_other_nw": [],
+   "loaded_non_nw": 0
+  },
+  {
+   "task": "T1",
+   "cond": "R",
+   "tag": "p1",
+   "rule_pass": 5,
+   "rule_total": 8,
+   "rule_undecidable": 0,
+   "func_pass": 3,
+   "func_total": 3,
+   "check_error": null,
+   "turns": 16,
+   "cost_usd": 0.4586334000000001,
+   "harness_fail": false,
+   "fired": true,
+   "skillfetch_calls": 3,
+   "loaded_required": [
+    "nw-endpoint-registry",
+    "nw-error-responses",
+    "nw-money"
+   ],
+   "loaded_distractor": [],
+   "loaded_other_nw": [],
+   "loaded_non_nw": 0
+  },
+  {
+   "task": "T7",
+   "cond": "R",
+   "tag": "p1",
+   "rule_pass": 2,
+   "rule_total": 5,
+   "rule_undecidable": 0,
+   "func_pass": 2,
+   "func_total": 2,
+   "check_error": null,
+   "turns": 18,
+   "cost_usd": 0.46025119999999997,
+   "harness_fail": false,
+   "fired": true,
+   "skillfetch_calls": 3,
+   "loaded_required": [
+    "nw-web-i18n"
+   ],
+   "loaded_distractor": [],
+   "loaded_other_nw": [
+    "nw-pagination",
+    "nw-web-analytics"
+   ],
+   "loaded_non_nw": 0
+  }
+ ],
+ "by_cond": {
+  "A": {
+   "sessions": 2.0,
+   "rule_pass": 2.0,
+   "rule_decided": 13.0,
+   "rule_undecidable": 0.0,
+   "func_pass": 5.0,
+   "func_total": 5.0,
+   "cost_usd": 0.635,
+   "fired": 0.0,
+   "rule_rate": 0.154
+  },
+  "O": {
+   "sessions": 2.0,
+   "rule_pass": 10.0,
+   "rule_decided": 13.0,
+   "rule_undecidable": 0.0,
+   "func_pass": 5.0,
+   "func_total": 5.0,
+   "cost_usd": 0.656,
+   "fired": 0.0,
+   "rule_rate": 0.769
+  },
+  "R": {
+   "sessions": 2.0,
+   "rule_pass": 7.0,
+   "rule_decided": 13.0,
+   "rule_undecidable": 0.0,
+   "func_pass": 5.0,
+   "func_total": 5.0,
+   "cost_usd": 0.919,
+   "fired": 2.0,
+   "rule_rate": 0.538
+  }
+ }
+}

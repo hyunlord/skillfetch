@@ -1,0 +1,47 @@
+{
+  "task_id": "T8",
+  "rule_pass": 0,
+  "rule_total": 5,
+  "rule_undecidable": 0,
+  "func_pass": 2,
+  "func_total": 2,
+  "rule_items": [
+    {
+      "id": "T8-R1",
+      "pass": false,
+      "detail": "No t() calls (imported from lib/i18n) in added JSX"
+    },
+    {
+      "id": "T8-R2",
+      "pass": false,
+      "detail": "No t() keys in added code"
+    },
+    {
+      "id": "T8-R3",
+      "pass": false,
+      "detail": "No track() call imported from lib/analytics"
+    },
+    {
+      "id": "T8-R4",
+      "pass": false,
+      "detail": "No track() events in added code"
+    },
+    {
+      "id": "T8-R5",
+      "pass": false,
+      "detail": "color: Raw hex colors: ['#212529', '#6c757d', '#cc3333', '#fff']; spacing: Raw spacing: [\"marginBottom: '24px\", \"padding: '16px\", \"padding: '8px\", \"padding: '24px\", \"marginBottom: '16px\"]"
+    }
+  ],
+  "functional_items": [
+    {
+      "id": "T8-F1",
+      "pass": true,
+      "detail": "button=True cancel=True confirm=True api_call=True"
+    },
+    {
+      "id": "T8-F2",
+      "pass": true,
+      "detail": "npm run build exit=0 | lth\n└ ○ /orders\n\n○  (Static)   prerendered as static content\nƒ  (Dynamic)  server-rendered on demand\n\n⚠ React 18 support is deprecated in Next.js 16 and will be removed in Next.js 17. Please upgrade to React 19. Learn more: https://nextjs.org/docs/messages/react-version\n⚠ Mini"
+    }
+  ]
+}

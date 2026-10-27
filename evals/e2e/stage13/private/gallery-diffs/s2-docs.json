@@ -1,0 +1,75 @@
+{
+ "verdict": "차이 있음",
+ "lines": [
+  {
+   "text": "P 세 결과는 p1 5·4·5점, p2 5·5·5점이다. 8개 P 스킬은 한 번도 쓰지 않았다. 세 번 모두 README.md와 docs/usage.md(m3는 USAGE.md) 두 파일을 만들었고 추가 163–202줄이다. 턴은 7–8, 세션당 API 단가 환산은 $0.295–0.341이다.",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "P m1",
+     "quote": "컴포넌트 표·데이터 흐름도·`<a>` 사용 이유까지 정확"
+    },
+    {
+     "src": "p1",
+     "run": "P m3",
+     "quote": "짧은 README와 라우트·데이터 흐름·API 응답(200/500)·확장법을 담은 USAGE의 분리가 깔끔하고 오류 없음"
+    }
+   ]
+  },
+  {
+   "text": "P m1·m2에 대해 두 판정자 모두 usage 문서가 README의 설치·실행 절차를 되풀이한다고 적었다. P m2의 usage.md는 1장에서 npm install·npm run dev를 다시 적었고, 두 판정자는 README로 가는 링크가 없다고 적었다. P m3는 usage에서 설치를 README로 넘겼다.",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "P m2",
+     "quote": "usage.md에 README로 가는 링크가 없고 실행·빌드·타입검사 절차를 README와 거의 그대로 중복"
+    },
+    {
+     "src": "diff",
+     "run": "P m2",
+     "quote": "## 1. 개발 환경 실행"
+    },
+    {
+     "src": "diff",
+     "run": "P m3",
+     "quote": "설치와 실행은 [README](../README.md)를 참고하세요."
+    }
+   ]
+  },
+  {
+   "text": "A 세 결과는 p1 4·4·5점, p2 5·5·5점이다. 두 판정자는 세 결과 모두에서 usage가 설치·빌드 절차를 README와 반복한다고 적었다. 추가 193–227줄, 턴은 8–11, 세션당 API 단가 환산은 $0.331–0.383이다.",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "A m2",
+     "quote": "usage가 README를 보라고 한 뒤 설치를 반복"
+    },
+    {
+     "src": "p2",
+     "run": "A m1",
+     "quote": "USAGE가 길고 설치·스크립트를 README와 중복"
+    }
+   ]
+  },
+  {
+   "text": "R 세 결과는 모두 5점(p1·p2 같음)이다. 라우터가 세 번 모두 quill 스킬을 불러왔다. 두 판정자는 세 결과 모두에서 README와 usage의 역할이 나뉘어 중복이 없다고 적었고, API 데이터도 번들에 들어가 재빌드가 필요하다는 점 같은 코드 근거를 짚었다. 추가 166–174줄, 턴은 14–15, 세션당 API 단가 환산은 $0.501–0.537이다.",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "R m1",
+     "quote": "usage는 설치를 README로 넘겨 중복이 없음"
+    },
+    {
+     "src": "p2",
+     "run": "R m2",
+     "quote": "API도 재빌드 필요, ListItem의 구식 `as` 사용 등 코드 근거가 정확하고 README/usage 중복 없이 상호 링크"
+    },
+    {
+     "src": "diff",
+     "run": "R m1",
+     "quote": "설치와 스크립트 목록은 [README](../README.md)를 보세요."
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,75 @@
+{
+ "verdict": "차이 없음",
+ "lines": [
+  {
+   "text": "점수는 A 5·5·4, P 5·5·5, R 5·5·5점(p1·p2 같음)이고 아홉 결과 모두 자동 점검을 통과했다. 4점인 A m3에 대해 두 판정자는 저장 뒤 완료 표시 전에 멈추면 재실행 때 모든 레코드를 다시 넣는다고 적었다. A는 테스트 4·4·4개, 턴 8·7·7, 세션당 API 단가 환산 $0.322–0.340이다.",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "A m3",
+     "quote": "a retry after save with a lost flag re-inserts every record"
+    },
+    {
+     "src": "p1",
+     "run": "A m1",
+     "quote": "Correct copy, flag after save, idempotent"
+    }
+   ]
+  },
+  {
+   "text": "P는 세 세션 모두 P 스킬을 쓰지 않았다. 세 결과 모두 테스트 5개를 더했고 턴 8·9·9, 세션당 API 단가 환산 $0.390–0.563이다. m1·m3는 습관이 없는 체크인도 남겼고, m2는 중복된 레거시 id를 처리하고 테스트했다.",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "P m1",
+     "quote": "keeps orphan check-ins (tested)"
+    },
+    {
+     "src": "diff",
+     "run": "P m2",
+     "quote": "// Core Data never enforced unique ids. A duplicate would make SwiftData merge two records into one,"
+    },
+    {
+     "src": "diff",
+     "run": "P m2",
+     "quote": "func testDuplicateLegacyIDsAreNotMerged() throws {"
+    }
+   ]
+  },
+  {
+   "text": "R은 라우터가 core-data와 migration-patterns를 불러왔다. 테스트 4·5·4개, 턴 14·15·15, 세션당 API 단가 환산 $0.600–0.681이다. m2는 중복된 레거시 UUID에 새 id를 주었고, m3는 저장 뒤 개수 확인을 더했다.",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "R m2",
+     "quote": "gives duplicate legacy UUIDs fresh ids"
+    },
+    {
+     "src": "diff",
+     "run": "R m3",
+     "quote": "case countMismatch(entity: String, expected: Int, actual: Int)"
+    },
+    {
+     "src": "p1",
+     "run": "R m3",
+     "quote": "plus a post-save count check"
+    }
+   ]
+  },
+  {
+   "text": "중복 id 처리는 P m2와 R m2 한 결과씩에서 판정 근거에 나오고, A 세 결과의 근거에는 나오지 않는다. 완료 표시를 저장 뒤에 두고 재실행해도 중복되지 않는다는 점은 A m3를 뺀 여덟 결과의 근거에 모두 있다.",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "P m2",
+     "quote": "Handles duplicate and missing ids"
+    },
+    {
+     "src": "p1",
+     "run": "R m2",
+     "quote": "Also handles duplicate legacy ids by objectID linking"
+    }
+   ]
+  }
+ ]
+}

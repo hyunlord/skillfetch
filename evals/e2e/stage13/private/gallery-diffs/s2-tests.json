@@ -1,0 +1,55 @@
+{
+ "verdict": "차이 없음",
+ "lines": [
+  {
+   "text": "아홉 결과 모두 두 판정자에게 5점을 받았고, 판정 근거의 라인·브랜치 커버리지는 모두 100%다. 바뀐 파일은 모두 tests/test_rules.py 하나다. 세 조건 모두 알려진 결함을 strict xfail로 분리했다는 판정 근거가 있다.",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "A m1",
+     "quote": "알려진 결함은 strict xfail로 분리"
+    },
+    {
+     "src": "p2",
+     "run": "P m3",
+     "quote": "date.max 결함을 strict xfail로 분리"
+    },
+    {
+     "src": "p2",
+     "run": "R m1",
+     "quote": "결함은 strict xfail"
+    }
+   ]
+  },
+  {
+   "text": "추가된 테스트 함수(자동 측정)는 A 67–101개, P 56–91개, R 69–79개다. P 스킬은 m3에서 tdd 하나만 쓰였다. 판정자는 P m1의 테스트 수가 가장 적다고(105개 통과), P m2는 private 헬퍼를 직접 테스트한다고 적었다.",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "P m1",
+     "quote": "평면 함수 나열에 테스트 수가 가장 적고(105)"
+    },
+    {
+     "src": "p1",
+     "run": "P m2",
+     "quote": "_ordinal·_add_months 같은 private 헬퍼를 직접 테스트"
+    }
+   ]
+  },
+  {
+   "text": "R은 세 세션 모두 라우터가 python-testing을 불러왔다(m2·m3은 radar도). p1은 R m2가 BYMONTHDAY 중복 round trip 결함을 찾았다고, R m1은 긴 줄이 가독성을 해친다고 적었다. 턴과 세션당 API 단가 환산은 A 7–10턴·$0.60–0.71, P 6–7턴·$0.57–0.72, R 12–14턴·$0.87–0.93이다.",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "R m2",
+     "quote": "BYMONTHDAY 중복 round trip 결함 발견"
+    },
+    {
+     "src": "p1",
+     "run": "R m1",
+     "quote": "D 별칭과 120자를 넘는 긴 줄이 가독성을 해침"
+    }
+   ]
+  }
+ ]
+}

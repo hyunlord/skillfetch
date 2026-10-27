@@ -1,0 +1,90 @@
+{
+ "note": "index-nw = experiment-only copy (never in a release, sync or sources.yaml). Published here: the 24 Northwind records and their constraint rows; the other files are not republished.",
+ "files_sha256": {
+  "constraints.jsonl": "e0416fed5b7d242f4b5e314e7e8247675cc573e72fa329bd5030284cef87a402",
+  "dupgroups.json": "6c3dc39afccc4def161056c2825a8466bd237eb5795d354057454299bbf484ec",
+  "manifest.json": "d7156093b7ecac532f469926223c91e16566d91769b59dd7a07e2c9fafc8cdb5",
+  "pairs.jsonl": "1ec67b12030b39b823b8f078f3320f46496652bd8f397e32b9ab2842c1fba976",
+  "rejected.jsonl": "a6dfb1f6f6abb357d6890c0ffdd3853ac920b409a322587d5723d6580b468ef6",
+  "skills.jsonl": "bce0855da3410f2e74a4160d87d70c5a1c4733d3c1b5ee26244541b998e44416"
+ },
+ "skills_lines": {
+  "total": 2809,
+  "northwind": 24,
+  "base": 2785
+ },
+ "base_lines_equal_index_staging_4_in_order": true,
+ "manifest_top": {
+  "schema_version": 1,
+  "built_at": "2026-10-24T15:58:48Z",
+  "extract_version": 6,
+  "extract_model": "openrouter/openai/gpt-6-luna",
+  "postprocess": "448c53dc2dd24b32",
+  "scan_rules_version": 5,
+  "conflict_cap": "all",
+  "counts": {
+   "A": 19,
+   "B": 2514,
+   "C": 276,
+   "lint_failed": 110,
+   "scan_failed": 33,
+   "extract_failed": 0,
+   "too_large": 7,
+   "not_extracted": 0,
+   "api_errors": 0,
+   "pending_answers": 0
+  },
+  "licenses": {
+   "Apache-2.0": 260,
+   "CC-BY-4.0": 3,
+   "MIT": 135,
+   "proprietary": 10,
+   "unknown": 2544
+  },
+  "license_sources": {
+   "explicit": 408,
+   "upstream_no_license": 824,
+   "upstream_unknown": 1720
+  },
+  "redistributable": 365,
+  "signature": null,
+  "judged_pairs": 2005,
+  "files": {
+   "constraints.jsonl": "e0416fed5b7d242f4b5e314e7e8247675cc573e72fa329bd5030284cef87a402",
+   "dupgroups.json": "6c3dc39afccc4def161056c2825a8466bd237eb5795d354057454299bbf484ec",
+   "pairs.jsonl": "1ec67b12030b39b823b8f078f3320f46496652bd8f397e32b9ab2842c1fba976",
+   "rejected.jsonl": "a6dfb1f6f6abb357d6890c0ffdd3853ac920b409a322587d5723d6580b468ef6",
+   "skills.jsonl": "bce0855da3410f2e74a4160d87d70c5a1c4733d3c1b5ee26244541b998e44416"
+  },
+  "experimental": "Stage 12 index-nw: staging-4 + northwind (private; never released)"
+ },
+ "manifest_sources": [
+  "anthropics-skills",
+  "uasl",
+  "affaan-m-ecc",
+  "ahmed3elshaer-everything-claude-code-mobile",
+  "rshankras-claude-code-apple-skills",
+  "actionbook-rust-skills",
+  "northwind"
+ ],
+ "northwind_source": [
+  {
+   "id": "northwind",
+   "kind": "dir",
+   "url": "<e2e>/stage12-private/northwind-skills",
+   "ref": null,
+   "commit": "local",
+   "commit_date": null,
+   "publisher_trust": "known",
+   "discovered": 24,
+   "sampled": 24,
+   "sample_seed": null,
+   "third_party_upstreams": [],
+   "skills": 24
+  }
+ ],
+ "constraint_rows": {
+  "total": 40103,
+  "northwind": 64
+ }
+}

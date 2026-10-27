@@ -1,0 +1,130 @@
+diff --git a/analytics/events.ts b/analytics/events.ts
+index 941a322..aaa96a8 100644
+--- a/analytics/events.ts
++++ b/analytics/events.ts
+@@ -1 +1,3 @@
+-export const EVENTS = {} as const
++export const EVENTS = {
++  ORDERS_CANCEL: 'orders_cancel',
++} as const
+diff --git a/locales/en.json b/locales/en.json
+index 0967ef4..97054cb 100644
+--- a/locales/en.json
++++ b/locales/en.json
+@@ -1 +1,11 @@
+-{}
++{
++  "orders": {
++    "page_title": "Order History - Northwind",
++    "heading": "Order History",
++    "empty_state": "No orders found.",
++    "cancel_button": "Cancel Order",
++    "cancel_confirm": "Are you sure you want to cancel this order?",
++    "cancel_yes": "Yes, cancel",
++    "cancel_no": "No, keep it"
++  }
++}
+diff --git a/locales/ko.json b/locales/ko.json
+index 0967ef4..7fa7d8f 100644
+--- a/locales/ko.json
++++ b/locales/ko.json
+@@ -1 +1,11 @@
+-{}
++{
++  "orders": {
++    "page_title": "주문 내역 - 노스윈드",
++    "heading": "주문 내역",
++    "empty_state": "주문이 없습니다.",
++    "cancel_button": "주문 취소",
++    "cancel_confirm": "이 주문을 취소하시겠습니까?",
++    "cancel_yes": "네, 취소",
++    "cancel_no": "아니오"
++  }
++}
+diff --git a/pages/orders.tsx b/pages/orders.tsx
+new file mode 100644
+index 0000000..9cf0639
+--- /dev/null
++++ b/pages/orders.tsx
+@@ -0,0 +1,72 @@
++import Layout from '../components/Layout'
++import { t } from '../lib/i18n'
++import { track } from '../lib/analytics'
++import { fetchApi } from '../lib/api'
++import { useState } from 'react'
++
++export default function OrdersPage() {
++  const [orders] = useState<any[]>([])
++  const [showCancel, setShowCancel] = useState(false)
++  const [cancelTarget, setCancelTarget] = useState<string | null>(null)
++
++  const handleCancel = (orderId: string) => {
++    setCancelTarget(orderId)
++    setShowCancel(true)
++  }
++
++  const confirmCancel = async () => {
++    await fetchApi(`/orders/${cancelTarget}/cancel`, { method: 'POST' })
++    track('orders_cancel', { order_id: cancelTarget })
++    setShowCancel(false)
++    setCancelTarget(null)
++  }
++
++  return (
++    <Layout title={t('orders.page_title')}>
++      <h1 style={{
++        color: 'var(--nw-color-text)',
++        marginBottom: 'var(--nw-spacing-lg)',
++        fontSize: 'var(--nw-font-size-lg)'
++      }}>
++        {t('orders.heading')}
++      </h1>
++      <p style={{ color: 'var(--nw-color-text-secondary)', padding: 'var(--nw-spacing-md)' }}>
++        {t('orders.empty_state')}
++      </p>
++      <button
++        onClick={() => handleCancel('sample')}
++        style={{
++          backgroundColor: 'var(--nw-color-error)',
++          color: 'var(--nw-color-bg)',
++          padding: 'var(--nw-spacing-sm) var(--nw-spacing-md)',
++          borderRadius: 'var(--nw-radius-sm)',
++          border: 'none',
++          cursor: 'pointer'
++        }}
++      >
++        {t('orders.cancel_button')}
++      </button>
++      {showCancel && (
++        <div style={{
++          position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
++          backgroundColor: 'rgba(0,0,0,0.5)',
++          display: 'flex', alignItems: 'center', justifyContent: 'center'
++        }}>
++          <div style={{
++            backgroundColor: 'var(--nw-color-bg)',
++            padding: 'var(--nw-spacing-lg)',
++            borderRadius: 'var(--nw-radius-md)'
++          }}>
++            <p style={{ marginBottom: 'var(--nw-spacing-md)' }}>{t('orders.cancel_confirm')}</p>
++            <button onClick={confirmCancel} style={{ marginRight: 'var(--nw-spacing-sm)' }}>
++              {t('orders.cancel_yes')}
++            </button>
++            <button onClick={() => setShowCancel(false)}>
++              {t('orders.cancel_no')}
++            </button>
++          </div>
++        </div>
++      )}
++    </Layout>
++  )
++}
+diff --git a/styles/globals.css b/styles/globals.css
+index e3f6f79..60a573f 100644
+--- a/styles/globals.css
++++ b/styles/globals.css
+@@ -1,3 +1,4 @@
++@import './tokens.css';
+ /* Global styles */
+ * { margin: 0; padding: 0; box-sizing: border-box; }
+ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }

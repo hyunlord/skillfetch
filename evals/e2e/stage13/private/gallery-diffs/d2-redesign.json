@@ -1,0 +1,90 @@
+{
+ "verdict": "차이 있음",
+ "lines": [
+  {
+   "text": "A 세 결과는 쓸만함 p1 4·4·4점, p2 3·3·3점이고, 두 판정자 모두 AI 템플릿 항목 #4(똑같은 사용자 카드)를 1개씩 적었다. 세 결과 모두 화면 폭에 따라 1·2·3열로 늘어나는 카드 그리드다. 턴은 5–10, 세션당 API 단가 환산은 $0.26–0.32이다.",
+   "quotes": [
+    {
+     "src": "diff",
+     "run": "A m1",
+     "quote": "grid-template-columns: repeat(3, minmax(0, 1fr));"
+    },
+    {
+     "src": "p2",
+     "run": "A m1",
+     "quote": "3-up card grid for name+ID only"
+    }
+   ]
+  },
+  {
+   "text": "P m1·m3는 design-taste-frontend를 불렀고 점수는 5/5, 5/4다. 두 결과 모두 카드 대신 검색창과 표(이름·ID·경로)를 만들었고, 두 판정자는 AI 템플릿 항목을 0개로 적었다.",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "P m1",
+     "quote": "search, table with ID and page path; on mobile rows turn into name + meta lines"
+    },
+    {
+     "src": "diff",
+     "run": "P m1",
+     "quote": "placeholder=\"Search by name or ID\""
+    },
+    {
+     "src": "diff",
+     "run": "P m3",
+     "quote": "<table className={styles.table}>"
+    }
+   ]
+  },
+  {
+   "text": "P m1·m3는 바뀐 파일이 30개·19개이고, 그중 22개·15개가 스킬이 만든 점검 캡처와 설정 파일(.taste-skill/)이다. 추가된 줄은 4,228·3,200줄, 턴은 37·24, 세션당 API 단가 환산은 $1.83·$1.26이다.",
+   "quotes": [
+    {
+     "src": "diff",
+     "run": "P m1",
+     "quote": "diff --git a/.taste-skill/before/mobile-fold.jpg b/.taste-skill/before/mobile-fold.jpg"
+    },
+    {
+     "src": "diff",
+     "run": "P m3",
+     "quote": "b/.taste-skill/direction.json"
+    }
+   ]
+  },
+  {
+   "text": "P m2는 frontend-design을 불렀고 4/4점, AI 템플릿 항목 0개다. 카드 그리드가 아니라 하나로 묶인 목록이고, 판정자는 검색이나 추가 정보가 없다고 적었다. 바뀐 파일 4개, 턴 16, API 단가 환산 $0.47이다.",
+   "quotes": [
+    {
+     "src": "p2",
+     "run": "P m2",
+     "quote": "single grouped list with count, avatar, ID and chevron"
+    },
+    {
+     "src": "p1",
+     "run": "P m2",
+     "quote": "simple, no search or extra context"
+    }
+   ]
+  },
+  {
+   "text": "R 세 결과는 p1 4·4·4점, p2 3·4·3점이고 AI 템플릿 항목 #4를 1개씩 받았다. 라우터는 redesign-skill과 responsive-design을 불러왔다(m1은 frontend-design도). A와 같은 카드 그리드이고, m2만 모바일에서 묶인 목록으로 바뀐다. 턴은 14–16, 세션당 API 단가 환산은 $0.55–0.61이다.",
+   "quotes": [
+    {
+     "src": "diff",
+     "run": "R m1",
+     "quote": "grid-template-columns: repeat(3, minmax(0, 1fr));"
+    },
+    {
+     "src": "p1",
+     "run": "R m2",
+     "quote": "#4 identical cards at wide (four in a row); on mobile a grouped list"
+    },
+    {
+     "src": "p2",
+     "run": "R m3",
+     "quote": "4 identical cards inside a large grey panel"
+    }
+   ]
+  }
+ ]
+}

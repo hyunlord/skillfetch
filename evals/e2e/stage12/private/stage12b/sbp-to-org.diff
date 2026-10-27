@@ -1,0 +1,26 @@
+--- <skillfetch>/assets/router-skill/SKILL.md	2026-10-24 04:08:33
++++ router-org.md	2026-10-27 02:11:42
+@@ -40,15 +40,17 @@
+ 3. Call `profile_repo` with the repository root once per session (it reads manifest files
+    only) and pass the result as `profile` to `search_skills`. Search once per task.
+ 4. Call `search_skills` with (a)–(d) as `queries`. It returns 50 one-line summaries, best
+-   first: read all 50 and pick up to 3 that fit this task — the best fit is often not
+-   near the top. Do not pick a skill unless you can say in one sentence what its summary
+-   changes in this task; often none fits, and then you skip steps 6–7. Each result has a
+-   `token_estimate`: when two fit equally, take the smaller, and keep the set's total
+-   under `load_skills`' budget (8000 tokens by default).
++   first: read all 50 and pick up to 3 that fit this task — the best fit is often not near
++   the top. Do not pick a skill unless you can say in one sentence what its summary
++   changes in this task; often none fits, and then, unless there are baseline ids, skip
++   steps 6–7. `org: true` results (your organisation's) in the top 10 may add up to 3 more
++   picks, by the same test. Each result has a `token_estimate`: when two fit equally, take
++   the smaller, and keep the set's total under `load_skills`' budget (8000 tokens by
++   default).
+ 5. If the user named a skill ("use the pdf skill"), call `search_skills` with that name,
+    take the id of the result whose title matches, and put it in `pinned_ids`. A local
+    skill folder (one the user named, or a project skill that fits) is pinned as
+-   `path:/absolute/path`. If nothing matches, say so.
++   `path:/absolute/path`. If nothing matches, say so. Pin the profile's `baseline` ids.
+ 6. Call `resolve_set` with your picks as `auto_ids` (in order of preference) and the
+    pinned skills as `pinned_ids`. Respect `excluded`; read every warning's two quoted
+    lines and decide whether they matter for this task.

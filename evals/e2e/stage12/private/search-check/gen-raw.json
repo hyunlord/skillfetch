@@ -1,0 +1,38 @@
+{
+ "result": "```json\n[\n  {\"id\": \"T1\", \"queries\": [\n    \"Refund creation endpoint POST /refunds storing order_id, amount and reason, returning 404 when the order does not exist\",\n    \"Feature addition: validate input, persist the refund in the database, and test the not-found error path\",\n    \"Backend web API; refund route handler, refund model, and database migration\",\n    \"환불 엔드포인트 `POST /refunds`를 추가해 주세요. 요청에 order_id, 금액, 사유를 받고, 주문이 없으면 404를 돌려주세요. 환불 데이터는 DB에 저장합니다.\"\n  ]},\n  {\"id\": \"T2\", \"queries\": [\n    \"Order listing API GET /orders with status filtering and pagination\",\n    \"Feature addition: design the query parameters and paginated response shape, then test filtering and page boundaries\",\n    \"Backend web API; orders route handler and order database query layer\",\n    \"주문 목록 API `GET /orders`를 만들어 주세요. 상태(status)로 필터링할 수 있고, 페이지네이션을 지원해야 합니다.\"\n  ]},\n  {\"id\": \"T3\", \"queries\": [\n    \"refund_reason text column on the orders table, included in the order detail response\",\n    \"Schema change: write a backward-compatible database migration, then update the model and response serializer\",\n    \"Backend web API with a relational database; orders migration, order model, and order response schema\",\n    \"orders 테이블에 `refund_reason` 텍스트 컬럼을 추가하고, 주문 조회 응답에 포함시켜 주세요.\"\n  ]},\n  {\"id\": \"T4\", \"queries\": [\n    \"Configurable payment wait timeout with a 30-second default, used when creating orders\",\n    \"Configuration change: add a setting with a safe default and validation, and inject it into order creation instead of hardcoding\",\n    \"Backend service; application config/settings module and order creation logic\",\n    \"결제 대기 시간 제한을 설정으로 관리할 수 있게 해주세요. 기본값은 30초이고, 주문 생성 시 이 값을 사용합니다.\"\n  ]},\n  {\"id\": \"T5\", \"queries\": [\n    \"Switchable discount calculation that lets the new logic be rolled out gradually alongside the existing logic\",\n    \"Gradual rollout: put the new logic behind a feature flag with fallback to the old logic, and test both paths\",\n    \"Backend service; discount/pricing calculation module and feature flag configuration\",\n    \"할인 계산 로직을 변경하려고 합니다. 새 로직을 단계적으로 배포할 수 있게 기존 로직과 전환 가능하도록 만들어 주세요.\"\n  ]},\n  {\"id\": \"T6\", \"queries\": [\n    \"Unit tests for the pricing module's calculate_total and apply_tax functions\",\n    \"Test writing: cover normal cases, edge cases, and rounding without changing production code\",\n    \"Likely Python; pricing module and its test files\",\n    \"pricing 모듈의 테스트를 작성해 주세요. calculate_total과 apply_tax 함수를 커버해야 합니다.\"\n  ]},\n  {\"id\": \"T7\", \"queries\": [\n    \"Order history page at the /orders route showing the list of orders\",\n    \"Frontend feature: add the route and page component, fetch orders, and handle loading, empty, and error states\",\n    \"Web frontend; routing config and order history page component\",\n    \"주문 내역 페이지를 추가해 주세요. /orders 경로에서 주문 목록을 보여주는 페이지입니다.\"\n  ]},\n  {\"id\": \"T8\", \"queries\": [\n    \"Cancel button in the order history with a confirmation modal that calls the order cancellation API\",\n    \"Frontend feature: accessible confirmation modal, API call with pending and error handling, and list update after cancellation\",\n    \"Web frontend; order history component, modal component, and orders API client\",\n    \"주문 내역에 취소 버튼을 추가해 주세요. 버튼을 누르면 확인 모달이 뜨고, 확인하면 취소 API를 호출합니다.\"\n  ]},\n  {\"id\": \"C1\", \"queries\": [\n    \"Customer lookup API GET /customers/{id} returning name, email, and signup date, with an error when the customer is not found\",\n    \"Feature addition: define the response schema, return a proper not-found error, and test both paths\",\n    \"Backend web API; customer route handler and customer data access layer\",\n    \"고객 조회 API `GET /customers/{id}`를 추가해 주세요. 고객 정보(이름, 이메일, 가입일)를 돌려줍니다. 고객이 없으면 적절한 오류를 돌려주세요.\"\n  ]},\n  {\"id\": \"C2\", \"queries\": [\n    \"User settings page at /settings with language selection and notification preferences\",\n    \"Frontend feature: add the route and form components, load and save settings, and handle loading and error states\",\n    \"Web frontend; routing config and settings page component\",\n    \"사용자 설정 페이지를 추가해 주세요. /settings 경로에서 언어 선택과 알림 설정을 보여줍니다.\"\n  ]}\n]\n```",
+ "usage": {
+  "input_tokens": 2,
+  "cache_creation_input_tokens": 1474,
+  "cache_read_input_tokens": 0,
+  "output_tokens": 1827,
+  "output_tokens_details": {
+   "thinking_tokens": 108
+  },
+  "server_tool_use": {
+   "web_search_requests": 0,
+   "web_fetch_requests": 0
+  },
+  "service_tier": "standard",
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 1474,
+   "ephemeral_5m_input_tokens": 0
+  },
+  "inference_geo": "global",
+  "iterations": [
+   {
+    "input_tokens": 2,
+    "output_tokens": 1827,
+    "cache_read_input_tokens": 0,
+    "cache_creation_input_tokens": 1474,
+    "cache_creation": {
+     "ephemeral_5m_input_tokens": 0,
+     "ephemeral_1h_input_tokens": 1474
+    },
+    "type": "message"
+   }
+  ],
+  "speed": "standard"
+ },
+ "cost_usd": 0.04834000000000001,
+ "is_error": false
+}

@@ -1,0 +1,95 @@
+{
+ "verdict": "차이 없음",
+ "lines": [
+  {
+   "text": "점수는 A 4·5·5, P 5·5·4, R 5·5·4점(p1·p2 같음)이고 아홉 결과 모두 자동 점검을 통과했다. 세 조건 모두 4점 결과는 테스트를 추가하지 않은 한 건이다(A m1·P m3·R m3). p1은 A m1과 P m3에 같은 문장을 적었다.",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "A m1",
+     "quote": "Correct offload, permit and limit config, but no new test"
+    },
+    {
+     "src": "p1",
+     "run": "P m3",
+     "quote": "Correct offload, permit and limit config, but no new test"
+    },
+    {
+     "src": "p2",
+     "run": "R m3",
+     "quote": "no automated test; manual load test honestly reported as not reproducing the slowdown"
+    }
+   ]
+  },
+  {
+   "text": "아홉 결과의 src/routes/media.rs는 모두 Semaphore 허가를 받은 뒤 그 허가를 spawn_blocking 클로저 안으로 옮겨 리사이즈를 돌린다. 세마포어가 닫힌 경우 P 세 결과는 expect로 처리했고, 503을 돌려주는 결과는 A m3·R m2 두 개다.",
+   "quotes": [
+    {
+     "src": "diff",
+     "run": "P m2",
+     "quote": "let result = tokio::task::spawn_blocking(move || {"
+    },
+    {
+     "src": "diff",
+     "run": "P m3",
+     "quote": ".expect(\"resize semaphore is never closed\");"
+    },
+    {
+     "src": "diff",
+     "run": "A m3",
+     "quote": "Err(_) => return StatusCode::SERVICE_UNAVAILABLE.into_response(),"
+    }
+   ]
+  },
+  {
+   "text": "P는 세 세션 모두 P 스킬을 쓰지 않았다. 턴 11·5·7, 세션당 API 단가 환산 $0.329–0.379, 추가 테스트 1·2·0개다. m2는 큰 리사이즈 중에 /healthz가 응답하는지 보는 테스트를 넣었고 p1은 수정 전 코드에서 실패하는 것을 확인했다고 적었다. p2는 m1의 테스트가 수정 없이도 통과한다고 적었다.",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "P m2",
+     "quote": "healthz answers during a big resize, checked to fail on old code"
+    },
+    {
+     "src": "p2",
+     "run": "P m1",
+     "quote": "would pass without the fix (reply says so)"
+    }
+   ]
+  },
+  {
+   "text": "A는 턴 4·11·6, 세션당 API 단가 환산 $0.264–0.325, 추가 테스트 0·1·1개다. m3는 기본 동시 처리 수를 코어 절반으로 두고 단일 스레드 런타임 테스트를 넣었다. p2는 m2의 테스트가 성공 여부만 본다고 적었다.",
+   "quotes": [
+    {
+     "src": "diff",
+     "run": "A m3",
+     "quote": "// Half the cores, so resizes can't starve the threads serving the rest of the API."
+    },
+    {
+     "src": "p2",
+     "run": "A m3",
+     "quote": "single-thread test shown to fail on the old handler"
+    },
+    {
+     "src": "p2",
+     "run": "A m2",
+     "quote": "only checks success, so it would not catch a regression"
+    }
+   ]
+  },
+  {
+   "text": "R은 라우터가 domain-web과 m07-concurrency를 불러왔다. 턴 17·18·14, 세션당 API 단가 환산 $0.489–0.544, 추가 테스트 1·1·0개다. m2는 유일한 허가를 쥔 채 요청이 기다리는지 확인하는 테스트를 넣었다. p1은 m1의 답변이 한국어 요청에 영어로 쓰였다고 적었다.",
+   "quotes": [
+    {
+     "src": "p1",
+     "run": "R m2",
+     "quote": "test holds the only permit and shows the request waits"
+    },
+    {
+     "src": "p1",
+     "run": "R m1",
+     "quote": "reply is in English although the request was in Korean"
+    }
+   ]
+  }
+ ]
+}

@@ -2293,7 +2293,7 @@ Source: `uv run python scripts/index_scan.py report` over evals/index-scan/rows.
 
 ## 26. Stage 13: popular skills installed, the router, or neither
 
-Source: the Stage 13 report (`stage13/report-13.md` in the experiment workspace; design `stage13/DESIGN.md`, hashes `stage13-private/FROZEN-13.sha256`; not yet published under evals/e2e/). Measured after the post's numbers were frozen; not in §7's totals.
+Source: the Stage 13 report [`evals/e2e/stage13/report-13.md`](../../evals/e2e/stage13/report-13.md); design `evals/e2e/stage13/DESIGN.md`, hashes `evals/e2e/stage13/private/FROZEN-13.sha256`, derived session rows `evals/e2e/stage13/derived/sessions.jsonl`, judge diffs in the release asset (`scripts/fetch_e2e_assets.sh`). Measured after the post's numbers were frozen; not in §7's totals.
 
 **Design.** 18 tasks (Stage Q's Q1 and its extension) × 3 runs, environment E1. Three conditions:
 - **A:** no router and no MCP server.

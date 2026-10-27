@@ -1,0 +1,90 @@
+{
+ "task": "T1",
+ "bundle": 4,
+ "cond": "N",
+ "tag": "d1",
+ "session_dir": "<worktrees>/s12/d74000a0e26a",
+ "preflight": {
+  "index": "index ok (12 files)",
+  "base": "b3e1eecd7e3dd87c57313bfaf6dfd39b9f4581ad",
+  "s11_r": "c718405545a36e72d197e66e3672eb2f99567ad2",
+  "main_checkout": {
+   "branch": "nw-a",
+   "head": "b3e1eecd7e3d"
+  },
+  "leftover_processes": []
+ },
+ "clone": {
+  "branch": "s12b-n-nw-a",
+  "head": "6cfb1a2ac68adade63821a1e2f53d8875760c71b",
+  "refs": [
+   "refs/heads/main"
+  ],
+  "remotes": [],
+  "status": [],
+  "skills_files": [
+   ".claude/skills/nw-changelog/SKILL.md",
+   ".claude/skills/nw-config/SKILL.md",
+   ".claude/skills/nw-data-logging/SKILL.md",
+   ".claude/skills/nw-deploy-checklist/SKILL.md",
+   ".claude/skills/nw-endpoint-registry/SKILL.md",
+   ".claude/skills/nw-error-responses/SKILL.md",
+   ".claude/skills/nw-feature-flags/SKILL.md",
+   ".claude/skills/nw-infra-runbooks/SKILL.md",
+   ".claude/skills/nw-legacy-migrations/SKILL.md",
+   ".claude/skills/nw-marketing-analytics/SKILL.md",
+   ".claude/skills/nw-migrations/SKILL.md",
+   ".claude/skills/nw-ml-experiments/SKILL.md",
+   ".claude/skills/nw-mobile-strings/SKILL.md",
+   ".claude/skills/nw-money/SKILL.md",
+   ".claude/skills/nw-pagination/SKILL.md",
+   ".claude/skills/nw-payments-errors/SKILL.md",
+   ".claude/skills/nw-payments-ids/SKILL.md",
+   ".claude/skills/nw-public-ids/SKILL.md",
+   ".claude/skills/nw-python-tests/SKILL.md",
+   ".claude/skills/nw-structured-logging/SKILL.md",
+   ".claude/skills/nw-timestamps/SKILL.md",
+   ".claude/skills/nw-ui-tokens/SKILL.md",
+   ".claude/skills/nw-web-analytics/SKILL.md",
+   ".claude/skills/nw-web-i18n/SKILL.md"
+  ],
+  "router_sha256": null,
+  "commits": [
+   "6cfb1a2 chore: add project skills",
+   "b3e1eec initial: nw-orders service"
+  ],
+  "base_skills_files": [],
+  "unreachable_objects": 0,
+  "ok": true
+ },
+ "prep_s": 0.1,
+ "prep_status": [],
+ "cmd": [
+  "claude",
+  "-p",
+  "환불 엔드포인트 `POST /refunds`를 추가해 주세요. 요청에 order_id, 금액, 사유를 받고, 주문이 없으면 404를 돌려주세요. 환불 데이터는 DB에 저장합니다.",
+  "--output-format",
+  "stream-json",
+  "--verbose",
+  "--include-hook-events",
+  "--max-turns",
+  "40",
+  "--allowedTools",
+  "Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*",
+  "--debug-file",
+  "<e2e>/stage12-private/dryrun/N/T1-d1.debug.log",
+  "--setting-sources",
+  "project",
+  "--strict-mcp-config",
+  "--mcp-config",
+  "<e2e>/stage12/mcp/mcp-none.json"
+ ],
+ "path_head": "/opt/homebrew/opt/openjdk/bin",
+ "index_ok_after": true,
+ "fake_server_pid": null,
+ "cleanup": {
+  "killed": [],
+  "remaining": []
+ },
+ "leftover_after": []
+}

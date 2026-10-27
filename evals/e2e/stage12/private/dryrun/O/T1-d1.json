@@ -1,0 +1,64 @@
+{
+ "task": "T1",
+ "bundle": 4,
+ "cond": "O",
+ "tag": "d1",
+ "session_dir": "<worktrees>/s12/0db5219bfc15",
+ "preflight": {
+  "index": "index ok (12 files)",
+  "base": "b3e1eecd7e3dd87c57313bfaf6dfd39b9f4581ad",
+  "s11_r": "c718405545a36e72d197e66e3672eb2f99567ad2",
+  "main_checkout": {
+   "branch": "nw-a",
+   "head": "b3e1eecd7e3d"
+  },
+  "leftover_processes": []
+ },
+ "clone": {
+  "branch": "nw-a",
+  "head": "b3e1eecd7e3dd87c57313bfaf6dfd39b9f4581ad",
+  "refs": [
+   "refs/heads/main"
+  ],
+  "remotes": [],
+  "status": [],
+  "skills_files": [],
+  "router_sha256": null,
+  "commits": [
+   "b3e1eec initial: nw-orders service"
+  ],
+  "base_skills_files": [],
+  "unreachable_objects": 0,
+  "ok": true
+ },
+ "prep_s": 0.0,
+ "prep_status": [],
+ "cmd": [
+  "claude",
+  "-p",
+  "## 1. nw-error-responses (northwind/nw-error-responses@5ca8e3e384d0)\n\n# API Error Responses\n\nAll API error responses must use the Northwind standard envelope:\n\n```json\n{\n  \"error\": {\n    \"code\": \"NW-<AREA>-<NNN>\",\n    \"message\": \"Human-readable description\",\n    \"trace_id\": \"<request trace id>\"\n  }\n}\n```\n\n- `code` uses prefix `NW-`, then an uppercase area tag (e.g. `ORDER`, `PROD`), then a dash and a zero-padded 3-digit number.\n- Every new error code must be registered in `errors/catalog.yaml` with `message` and `http_status`.\n- `trace_id` is a unique string per request (use UUID or request-scoped ID).\n\n## Good Example\n\n```python\nfrom uuid import uuid4\n\n@router.get(\"/orders/{order_id}\")\ndef get_order(order_id: str):\n    trace = str(uuid4())\n    order = db.find(order_id)\n    if not order:\n        return JSONResponse(status_code=404, content={\n            \"error\": {\n                \"code\": \"NW-ORDER-001\",\n                \"message\": \"Order not found\",\n                \"trace_id\": trace\n            }\n        })\n```\n\nerrors/catalog.yaml:\n```yaml\ncodes:\n  NW-ORDER-001:\n    message: \"Order not found\"\n    http_status: 404\n```\n\n## Bad Example\n\n```python\nraise HTTPException(status_code=404, detail=\"Order not found\")\n```\n\nThis uses FastAPI's default error format, which does not include a structured error code or trace ID.\n\n## Why\nStandardized error codes let clients handle errors programmatically and enable centralized error tracking across all Northwind services.\n\n## 2. nw-structured-logging (northwind/nw-structured-logging@161d6f75b1a4)\n\n# Structured Logging\n\nAll log output in new or modified code must use the `nwlog.event()` helper:\n\n```python\nfrom lib.nwlog import event as nwlog_event\nnwlog_event(\"<domain>.<action>\", tenant_id=tenant, trace_id=trace, key=value)\n```\n\n- The event name follows `<domain>.<action>` format (e.g. `orders.created`, `refunds.processed`).\n- Always pass `tenant_id` and `trace_id` as keyword arguments.\n- Do NOT use `print()`, `logging.info()`, `logging.warning()`, or any `logging.*` call for application log output.\n\n## Good Example\n\n```python\nfrom lib.nwlog import event as nwlog_event\n\nnwlog_event(\"orders.created\", tenant_id=tenant_id, trace_id=trace_id, order_id=order_id)\n```\n\n## Bad Example\n\n```python\nprint(f\"Order created: {order_id}\")\n# or\nimport logging\nlogging.info(\"Order created\", extra={\"order_id\": order_id})\n```\n\n## Why\nStructured JSON logs enable centralized log aggregation, tenant-scoped filtering, and distributed tracing across Northwind services.\n\n## 3. nw-endpoint-registry (northwind/nw-endpoint-registry@6c574e4601ff)\n\n# Endpoint Registry\n\nEvery new HTTP endpoint must be registered in `api/routes.toml`:\n\n```toml\n[[routes]]\nmethod = \"POST\"\npath = \"/refunds\"\nowner = \"orders\"\nrate_limit = 100\n```\n\nRequired fields: `method`, `path`, `owner` (team name), `rate_limit` (requests/min).\n\n## Good Example\n\nAdding `POST /refunds` then add to `api/routes.toml`:\n```toml\n[[routes]]\nmethod = \"POST\"\npath = \"/refunds\"\nowner = \"orders\"\nrate_limit = 100\n```\n\n## Bad Example\n\nAdding a new endpoint without registering it in `api/routes.toml`.\n\n## Why\nThe route registry feeds the API gateway for rate limiting, ownership tracking, and automated documentation.\n\n## 4. nw-money (northwind/nw-money@67a852d4dd9a)\n\n# Money Representation\n\nAll monetary amounts must be stored and transmitted as integer minor units (e.g. cents) with an ISO 4217 currency code:\n\n```python\nclass RefundResponse(BaseModel):\n    amount_minor: int    # e.g. 1999 for $19.99\n    currency: str        # e.g. \"USD\"\n```\n\n- Field name: `amount_minor` (not `amount`, `price`, `total`).\n- Type: integer (not float/decimal).\n- Always pair with a `currency` field (ISO 4217 three-letter code).\n\n## Good Example\n\n```python\n{\"amount_minor\": 1999, \"currency\": \"USD\"}\n```\n\n## Bad Example\n\n```python\n{\"amount\": 19.99, \"currency\": \"USD\"}\n# or\n{\"total\": 19.99}\n```\n\nUsing float for money or omitting the currency field.\n\n## Why\nInteger minor units eliminate floating-point rounding errors that cause accounting discrepancies.\n\n## 5. nw-public-ids (northwind/nw-public-ids@145779c6ee6f)\n\n# Public IDs\n\nAll IDs exposed in API responses must be generated with the `nwids` helper, never database auto-increment integers:\n\n```python\nfrom lib.nwids import new as nwids_new\n\npublic_id = nwids_new(\"ord\")  # returns \"ord_018c3a9f2e...\"\n```\n\n- Format: `<prefix>_<ulid-like string>` where prefix is a short entity identifier.\n- Database integer IDs must never appear in API responses.\n\n## Good Example\n\n```python\nfrom lib.nwids import new as nwids_new\n\norder = {\"id\": nwids_new(\"ord\"), \"customer_id\": nwids_new(\"cust\"), ...}\n```\n\n## Bad Example\n\n```python\norder = {\"id\": 42, ...}  # exposes DB auto-increment ID\n```\n\n## Why\nOpaque public IDs prevent enumeration attacks and decouple the API contract from the database schema.\n\n## 6. nw-changelog (northwind/nw-changelog@72d8f1872e37)\n\n# Changelog Fragments\n\nEvery user-facing change must create a changelog fragment file:\n\n    changes/<type>-<slug>.md\n\n- `<type>` is one of: `feat`, `fix`, `chore`.\n- `<slug>` is a short kebab-case identifier for the change.\n- The file body is a one-line description of the change.\n\n## Good Example\n\n`changes/feat-refund-endpoint.md`:\n```markdown\nAdded POST /refunds endpoint for processing order refunds.\n```\n\n## Bad Example\n\nCommitting a new feature without creating a changelog fragment.\n\n## Why\nFragment-based changelogs prevent merge conflicts and enable automated release note generation.\n\n환불 엔드포인트 `POST /refunds`를 추가해 주세요. 요청에 order_id, 금액, 사유를 받고, 주문이 없으면 404를 돌려주세요. 환불 데이터는 DB에 저장합니다.",
+  "--output-format",
+  "stream-json",
+  "--verbose",
+  "--include-hook-events",
+  "--max-turns",
+  "40",
+  "--allowedTools",
+  "Read,Edit,Write,Bash,Glob,Grep,mcp__skillfetch__*",
+  "--debug-file",
+  "<e2e>/stage12-private/dryrun/O/T1-d1.debug.log",
+  "--setting-sources",
+  "project",
+  "--strict-mcp-config",
+  "--mcp-config",
+  "<e2e>/stage12/mcp/mcp-none.json"
+ ],
+ "path_head": "/opt/homebrew/opt/openjdk/bin",
+ "index_ok_after": true,
+ "fake_server_pid": null,
+ "cleanup": {
+  "killed": [],
+  "remaining": []
+ },
+ "leftover_after": []
+}

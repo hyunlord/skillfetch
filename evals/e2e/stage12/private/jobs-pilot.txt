@@ -1,0 +1,6 @@
+T1 A p1
+T1 R p1
+T1 O p1
+T7 A p1
+T7 R p1
+T7 O p1

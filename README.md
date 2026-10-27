@@ -284,9 +284,9 @@ helped.
 
 ## Experiment artifacts (`evals/e2e/`)
 
-The end-to-end experiments behind [numbers.md](docs/writeup/numbers.md) §11–§20, stages 0–9
-(Stage 10 follows when its judging is done). Each stage folder holds what was fixed before the
-run and what came out of it:
+The end-to-end experiments behind [numbers.md](docs/writeup/numbers.md) §11–§23 and §26:
+stages 0–13 and Q. Stage 12 has no numbers.md section; its reports are in its folder. Each
+stage folder holds what was fixed before the run and what came out of it:
 
 - **Before the run:** `DESIGN.md`, `FROZEN*.sha256`, task definitions (`tasks*.jsonl`,
   `tasks*.yaml`) and rubrics.
@@ -305,6 +305,11 @@ run and what came out of it:
 | `codex` | Codex sessions, Codex as third judge for stage 6b | §16, §17 |
 | `stage6`, `stage7`, `stage8` | choosing none; working direction; Skillselion comparison | §17–§19 |
 | `stage9`, `staging` | index expansion | §20 |
+| `stage10` | final stack in real sessions | §21 |
+| `stage11` | index-staging-4 release gate, remeasured | §22 |
+| `stageQ` | qualitative round, re-fire check | §23 |
+| `stage12` | rule skills of a fictional company team (Northwind: 24 skills, 2 repositories, 10 tasks); `12b`: org baseline vs all 24 installed; `12c`: design only, cancelled | `report-12.md`, `12b/report-12b.md` |
+| `stage13` | popular skills installed, the router, or neither | §26 |
 | `router-e2e.json` | the export numbers.md §11–§12 read | §11, §12 |
 
 **Not here, and why.**
@@ -327,7 +332,10 @@ run and what came out of it:
 
   `evals/e2e/sanitized.tsv` lists each changed file with its original and published sha256 and
   what changed. The scripts' code that skips `.omc/` and `graft/` folders is kept as written.
-- Also left out: session workspaces, logs, screenshots, raw model replies and the task repositories.
+- Also left out: session workspaces, logs, screenshots, raw model replies and the task
+  repositories. The exception is Stage 12's Northwind repositories, which were written for the
+  experiment. They are published as start trees and branch diffs in
+  `stage12/private/northwind-repos/`, without commit history.
 
 Before publishing, every file was scanned:
 - credential-shaped strings: none;

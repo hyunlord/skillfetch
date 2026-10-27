@@ -1,0 +1,28 @@
+diff --git a/tests/test_pricing.py b/tests/test_pricing.py
+new file mode 100644
+index 0000000..6bf200d
+--- /dev/null
++++ b/tests/test_pricing.py
+@@ -0,0 +1,22 @@
++"""Tests for pricing module."""
++from orders.pricing import calculate_total, apply_tax
++
++
++def test_calculate_total_basic():
++    result = calculate_total(10.0, 2)
++    assert result == 20.0
++
++
++def test_calculate_total_with_discount():
++    result = calculate_total(10.0, 2, discount_pct=10.0)
++    assert result == 18.0
++
++
++def test_apply_tax_default():
++    result = apply_tax(100.0)
++    assert result == 110.0
++
++
++def test_apply_tax_custom_rate():
++    result = apply_tax(100.0, tax_rate=0.2)
++    assert result == 120.0
