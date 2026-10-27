@@ -42,7 +42,7 @@ None of the hits I read was an attack. That is the point of a warning: it tells 
 
 Many skills sell knowledge: a library's new API, a service's limits, a regulation's details. If the model already knows it, the skill costs context and adds nothing; if the skill is wrong, it does harm. So I asked the model first ([numbers.md](numbers.md) §24).
 
-I picked 30 skills from the index whose descriptions promise knowledge a model may lack, took 2 short factual questions from each skill's own files (60 questions), checked each accepted answer against official documentation, and asked each question 3 times to Claude Opus 5.5, Claude Code's default model, in an isolated session with no tools and no skills. 180 calls cost $0.88.
+I picked 30 skills from the index whose descriptions promise knowledge a model may lack, took 2 short factual questions from each skill's own files (60 questions), checked each accepted answer against official documentation, and asked each question 3 times to the same model the experiment sessions ran (claude-opus-5-5, [numbers.md](numbers.md) §24), in an isolated session with no tools and no skills. 180 calls cost $0.88.
 
 ![Figure 2. Top: 180 answers to factual questions without the skill (60 questions × 3 runs): correct 173, wrong 7. Middle: the three questions with a wrong answer, runs answered correctly out of 3: Claude Opus 5.5 input price 0/3; iOS version that added AdAttributionKit conversion tags 2/3; EDPB document on processing personal data through AI systems 0/3. The other 57 questions: 3 of 3 correct. Bottom: the 60 accepted answers checked against official sources: confirmed 47, partial 12, not confirmed 1.](img/fig6-knowledge-en.png)
 
