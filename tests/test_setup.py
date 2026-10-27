@@ -170,3 +170,97 @@ def test_packaged_skills_are_the_assets():
         assert asset_skill(kind) == (ROOT / "assets" / folder / "SKILL.md").read_text()
     pyproject = (ROOT / "pyproject.toml").read_text()
     assert '"assets/vet-skill/SKILL.md" = "skillfetch/_assets/vet-skill/SKILL.md"' in pyproject
+
+
+# --- other clients (Codex, Cursor), from each client's documentation ---------------------
+
+
+def test_codex_appends_a_table_and_installs_skills_under_agents(tmp_path):
+    import tomllib
+
+    s, out, runner, _ = _setup(tmp_path, client="codex", sync=False)
+    config = tmp_path / "home" / ".codex" / "config.toml"
+    config.parent.mkdir(parents=True)
+    config.write_text('model = "gpt-6-astra"\n\n[mcp_servers.other]\ncommand = "other"\n')
+    assert main(s, remove=False, yes=True) == 0
+    assert "append to ~/.codex/config.toml" in out[0] and "[mcp_servers.skillfetch]" in out[0]
+    data = tomllib.loads(config.read_text())
+    assert data["model"] == "gpt-6-astra" and data["mcp_servers"]["other"]["command"] == "other"
+    assert data["mcp_servers"]["skillfetch"] == {
+        "command": "uvx",
+        "args": ["--from", setup_mod.DEFAULT_FROM, "skillfetch", "serve", "--vet"],
+    }
+    vet = tmp_path / "home" / ".agents" / "skills" / "skillfetch-vet" / "SKILL.md"
+    assert vet.read_text() == asset_skill("vet") and runner.calls == []
+    out.clear()
+    assert main(s, remove=False, yes=True) == 0
+    assert "already registered, unchanged" in out[0]
+    out.clear()
+    assert main(s, remove=True, yes=True) == 0
+    data = tomllib.loads(config.read_text())
+    assert "skillfetch" not in data["mcp_servers"] and data["mcp_servers"]["other"]
+    assert config.read_text().startswith('model = "gpt-6-astra"') and not vet.exists()
+
+
+def test_codex_project_scope_and_unparsable_config(tmp_path):
+    s, out, _, _ = _setup(tmp_path, client="codex", scope="project", sync=False)
+    assert main(s, remove=False, yes=True) == 0
+    assert (tmp_path / "repo" / ".codex" / "config.toml").is_file()
+    assert (tmp_path / "repo" / ".agents" / "skills" / "skillfetch-vet" / "SKILL.md").is_file()
+    assert "trusted projects only" in out[0]
+    broken = tmp_path / "home2" / ".codex" / "config.toml"
+    broken.parent.mkdir(parents=True)
+    broken.write_text("this is = = not toml\n")
+    s2, out2, _, _ = _setup(tmp_path, client="codex", sync=False)
+    s2.home = tmp_path / "home2"
+    main(s2, remove=False, yes=True)
+    assert "cannot be parsed; left as it is" in out2[0]
+    assert broken.read_text() == "this is = = not toml\n"
+
+
+def test_codex_edited_table_is_left_on_remove(tmp_path):
+    s, out, _, _ = _setup(tmp_path, client="codex", sync=False)
+    main(s, remove=False, yes=True)
+    config = tmp_path / "home" / ".codex" / "config.toml"
+    config.write_text(config.read_text().replace("args = [", "startup_timeout_sec = 20\nargs = ["))
+    out.clear()
+    main(s, remove=True, yes=True)
+    assert "edited after setup; left as it is" in out[0]
+    assert "[mcp_servers.skillfetch]" in config.read_text()
+
+
+def test_cursor_merges_into_mcp_json_and_installs_no_skill(tmp_path):
+    s, out, runner, _ = _setup(tmp_path, client="cursor", sync=False)
+    config = tmp_path / "home" / ".cursor" / "mcp.json"
+    config.parent.mkdir(parents=True)
+    config.write_text(json.dumps({"mcpServers": {"other": {"command": "other"}}}))
+    assert main(s, remove=False, yes=True) == 0
+    assert "add to `mcpServers` in ~/.cursor/mcp.json" in out[0]
+    assert "skills: none for Cursor" in out[0]
+    servers = json.loads(config.read_text())["mcpServers"]
+    assert servers["other"] == {"command": "other"}
+    assert servers["skillfetch"]["args"][-2:] == ["serve", "--vet"]
+    assert not (tmp_path / "home" / ".claude").exists() and runner.calls == []
+    out.clear()
+    assert main(s, remove=True, yes=True) == 0
+    assert json.loads(config.read_text())["mcpServers"] == {"other": {"command": "other"}}
+
+
+def test_cursor_different_entry_is_shown_not_overwritten(tmp_path):
+    s, out, _, _ = _setup(tmp_path, client="cursor", scope="project", sync=False)
+    config = tmp_path / "repo" / ".cursor" / "mcp.json"
+    config.parent.mkdir(parents=True)
+    mine = {"mcpServers": {"skillfetch": {"command": "skillfetch", "args": ["serve"]}}}
+    config.write_text(json.dumps(mine))
+    assert main(s, remove=False, yes=True) == 0
+    assert "a different entry exists in" in out[0] and out[-1] == "\nNothing to change."
+    assert json.loads(config.read_text()) == mine
+
+
+def test_cli_client_option(monkeypatch):
+    seen = {}
+    monkeypatch.setattr(setup_mod, "main", lambda setup, remove, yes: seen.update(s=setup) or 0)
+    assert cli.main(["setup", "--client", "codex", "--no-sync", "-y"]) == 0
+    assert seen["s"].client == "codex"
+    with pytest.raises(SystemExit):
+        cli.main(["setup", "--client", "vim"])
