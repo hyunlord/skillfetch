@@ -32,7 +32,7 @@ None of the hits I read was an attack. That is the point of a warning: it tells 
 
 **Scripts.** 252 skills (9.0%) bundle scripts. Nothing is wrong with that in itself, but it changes the question from "what does this text tell my agent to do" to "what does this code do when my agent runs it", which no reading of `SKILL.md` answers.
 
-**Size.** 67 skills (2.4%) are over a limit: a `SKILL.md` over 8,000 tokens, more than 20 files, or more than 1 MB. Section 4 shows why that is a warning and not a style note.
+**Size.** 67 skills (2.4%) are over a limit: a `SKILL.md` over 8,000 tokens, more than 20 files, or more than 1 MB. Section 4 shows why that is a warning and not a style note: the skill that ran P's landing-page sessions into their turn limit there, design-taste-frontend, has 39 files and 2.4 MB, over two of these limits, so `scan` gives it CAUTION before you install it.
 
 **Licenses.** 89.3% of skills state no license of their own. If the license file of the repository they live in counts, which is the rule `scan` uses unless the repository is an aggregator of other people's skills, 53.5% have none. The license is shown next to the advice, not in it: it decides what you may redistribute, not whether a skill is safe to run.
 
@@ -80,6 +80,15 @@ The other three design tasks did not repeat it: d2-redesign A 3.50, P 4.50, R 3.
 
 Limits: P only installed the skills and left it to the model to pull them in, and the measure is the score of the final output. The value of workflow skills a user calls by name (tdd, for example) and of output-format or tone skills (saving tokens, for example) was not measured. Also: five of the eight popular skills are web or front-end skills; design scores come from still screenshots; A and R reuse runs from another day with the same harness; 18 tasks, 3 runs, two Claude judges.
 
+**Six requests in one session.** People do not open a new session for every task, so I also ran the three conditions through six different requests in one session (a landing page, an API endpoint, API tests, Rust concurrency, a README, a data script), in two orders ([numbers.md](numbers.md) §28).
+- **Scores over the six:** the router 4.708, the installed popular skills 3.833, no skill 4.458.
+- **Against the installed skills:** the router's lead, +0.875, comes mostly from the landing page again (P 1.5, the router 4.75). Without it the lead is +0.40.
+- **Against no skill:** the router's lead, +0.250, is within the disagreement between the two judges. Without the landing page it is 0.00.
+- **Cost:** the router's sessions cost about 1.5 times as much ($18.65 against $12.58 for no skill and $12.33 for P).
+- **Leftovers:** skills loaded for earlier requests did not carry over. The judges found no trace of an earlier skill in a later result: 0 of 57 skill pairs for the router, 0 of 5 for P.
+
+This is one run per order, two sessions per condition.
+
 ## 5. Where skills do help: rules the code does not show
 
 If the model already knows public facts and popular skills rarely change the work, what is a skill for? The case I could think of is knowledge nobody published: a team's own rules. So I wrote a fictional company, Northwind, with two repositories and 24 skills holding rules you cannot infer from the code (how money and public IDs are represented, when to add a changelog entry, how to log), 8 of them distractors that look similar ([numbers.md](numbers.md) §27). Ten tasks, three runs each; the main measure is the share of hidden rule checks passed on the eight rule tasks (126 checks per condition).
@@ -119,7 +128,7 @@ License: MIT (repo root). Not part of the advice: check it before you redistribu
 
 No model and no API key. Contradictions between installed copies of public skills are checked against the index (`skillfetch sync`); for other skills, `--claude-code` extracts their instructions with your own Claude Code login.
 
-**The router is experimental.** skillfetch also has the per-task router measured above: an MCP server and one router skill that search the index for each task and load a small, conflict-checked set. It works as designed, and in my measurements it did not improve results on public skills, cost 62% more per session, and lost to plain installation on a team's own skills. It stays in the repository as an experimental feature.
+**The router is experimental.** skillfetch also has the per-task router measured above: an MCP server and one router skill that search the index for each task and load a small, conflict-checked set. It works as designed. In my measurements it was better than the popular skills installed for good, but not better than no skill. It cost 62% more per session on single tasks and about 1.5 times as much over six requests in one session, and on a team's own skills it lost to plain installation. It stays in the repository as an experimental feature.
 
 **What the tool gets wrong.**
 - The injection scan is a regex blocklist. It cannot tell a tutorial from an exploit, and some remote-instruction hits are badges and doc links.
