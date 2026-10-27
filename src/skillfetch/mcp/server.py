@@ -6,14 +6,18 @@ Session; every result is a JSON object.
 
 from __future__ import annotations
 
+from collections.abc import Callable
 from pathlib import Path
 from typing import Any
 
 from mcp.server.mcpserver import MCPServer
 
-from skillfetch.index.loader import DEFAULT_INDEX_DIR, Index
+from skillfetch.index.loader import DEFAULT_INDEX_DIR, Index, IndexLoadError
 from skillfetch.index.search import DEFAULT_K, ONE_LINE_CHARS
-from skillfetch.mcp.session import DEFAULT_MAX_TOKENS, Session
+from skillfetch.ingest.extract import DEFAULT_MODEL
+from skillfetch.ingest.extract_cache import DEFAULT_CACHE_DIR, ExtractCache
+from skillfetch.ingest.local_scan import Lookup
+from skillfetch.mcp.session import DEFAULT_MAX_TOKENS, Session, scan_json
 
 INSTRUCTIONS = (
     "skillfetch finds vetted skills (SKILL.md instructions) for one task at a time. "
@@ -33,8 +37,42 @@ def _version() -> str:
         return "0+unknown"
 
 
+SCAN_INSTRUCTIONS = (
+    "skillfetch checks agent skills before they are installed. Call scan_skill with the "
+    "skill's local folder or GitHub URL, show the user its advice_line and license_line, "
+    "and ask before installing."
+)
+SCAN_DOC = """Check a skill (or a folder of skills) before installing it: a local path or a
+GitHub URL (https://github.com/<owner>/<repo>[/tree/<ref>[/<path>]], shallow-cloned into a
+temporary folder and deleted; nothing is installed or run). The same JSON as
+`skillfetch scan --json`: advice_line (RECOMMENDED / CAUTION / NOT RECOMMENDED with reasons),
+license_line, and per skill the lint, injection-scan, size, script, dated-line and license
+findings, each with its file, line number and line; contradictions between skills quote both
+lines. Uses no model. {error} for a missing folder or a refused URL."""
+
+
+def _add_scan_tool(server: MCPServer, scan: Callable[[str], dict]) -> None:
+    def scan_skill(target: str) -> dict[str, Any]:
+        return scan(target)
+
+    scan_skill.__doc__ = SCAN_DOC
+    server.tool()(scan_skill)
+
+
+def build_scan_server(index: Index | None, extract_cache: ExtractCache | None = None) -> MCPServer:
+    """`serve --scan-only`: scan_skill alone, for the vet skill (assets/vet-skill). The index
+    is optional: with one, installed copies of public skills are checked for contradictions
+    from it."""
+    server = MCPServer("skillfetch", instructions=SCAN_INSTRUCTIONS, version=_version())
+    model = (index.manifest.get("extract_model") if index else None) or DEFAULT_MODEL
+    lookup = Lookup(index, extract_cache or ExtractCache(DEFAULT_CACHE_DIR), model)
+    _add_scan_tool(server, lambda target: scan_json(target, lookup))
+    return server
+
+
 def build_server(session: Session) -> MCPServer:
     server = MCPServer("skillfetch", instructions=INSTRUCTIONS, version=_version())
+    _add_scan_tool(server, session.scan_skill)
 
     @server.tool()
     def profile_repo(path: str) -> dict[str, Any]:
@@ -108,3 +146,11 @@ def serve(
 ) -> None:
     session = Session(Index.load(index_dir), profile_root=profile_root, summary_chars=summary_chars)
     build_server(session).run("stdio")
+
+
+def serve_scan_only(index_dir: Path = DEFAULT_INDEX_DIR) -> None:
+    try:
+        index = Index.load(index_dir)
+    except IndexLoadError:  # scanning needs no index; contradictions then use the cache only
+        index = None
+    build_scan_server(index).run("stdio")

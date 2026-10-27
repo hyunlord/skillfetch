@@ -24,6 +24,7 @@ from skillfetch.ingest.ingest import run_extractions
 from skillfetch.ingest.injection import ScanResult, load_rules, scan_skill
 from skillfetch.ingest.licenses import skill_license
 from skillfetch.ingest.lint import LintResult, lint_skill
+from skillfetch.ingest.remote import checkout, is_remote, parse_github_url
 from skillfetch.ingest.repo_license import RepoLicenses, repo_root
 from skillfetch.ingest.skill_checks import DATED_NOTE, DatedLine, SkillSize, dated_lines, skill_size
 from skillfetch.ingest.skillfile import (
@@ -96,6 +97,8 @@ class ScanReport(BaseModel):
     # before-install advice (index-format.md §5.1): recommended / caution / not_recommended
     advice: Literal["recommended", "caution", "not_recommended"] | None = None
     advice_reasons: list[str] = []
+    advice_line: str | None = None  # the first line of the text report
+    license_line: str | None = None  # the second line: licenses and where they were found
 
 
 def _skill_id(root: Path, skill_dir: Path) -> str:
@@ -390,6 +393,35 @@ def scan_dir(root: Path, lookup: Lookup | None = None, cap: str | None = None) -
         skipped=sorted(r.id for r in records if r.status != "lint_failed" and r.id not in analyzed),
     )
     report.advice, report.advice_reasons = install_advice(report)
+    report.advice_line = advice_line(report)
+    report.license_line = license_line(report)
+    return report
+
+
+def scan_target(
+    target: str,
+    lookup: Lookup | None = None,
+    cap: str | None = None,
+    parse=parse_github_url,
+    checkout_fn=checkout,
+) -> ScanReport:
+    """scan_dir on a local folder, or on a shallow checkout of a GitHub URL (§5.1); the report
+    then names the URL and commit instead of the temporary folder, which is deleted. Raises
+    NotADirectoryError for a missing folder and RemoteError for a refused URL or a failed
+    clone. `parse` and `checkout_fn` let tests clone a local file:// repository."""
+    if not is_remote(target):
+        root = Path(target).expanduser()
+        if not root.is_dir():
+            raise NotADirectoryError(target)
+        return scan_dir(root, lookup, cap)
+    remote = parse(target)
+    with checkout_fn(remote) as (folder, commit):
+        report = scan_dir(folder, lookup, cap)
+        base = str(folder.resolve())
+        where = f"{remote.url}@{commit[:12]}"
+        for s in report.skills:
+            s.path = where + s.path.removeprefix(base)
+    report.root = where
     return report
 
 
@@ -520,6 +552,15 @@ def license_line(report: ScanReport) -> str:
     return f"License: {text}. Not part of the advice: check it before you redistribute a skill."
 
 
+def advice_line(report: ScanReport) -> str:
+    """ "Before you install: CAUTION (<reasons>)", the first line of the text report."""
+    advice = report.advice or install_advice(report)[0]
+    reasons = report.advice_reasons if report.advice else install_advice(report)[1]
+    return f"Before you install: {ADVICE_TEXT[advice]}" + (
+        f" ({'; '.join(reasons)})" if reasons else " (no failures or warnings)"
+    )
+
+
 def install_advice(report: ScanReport) -> tuple[str, list[str]]:
     """The one-line advice and its reasons ("<count> <what>"), most severe first."""
     counts = problem_counts(report)
@@ -561,11 +602,8 @@ def _contradiction_line(report: ScanReport) -> list[str]:
 def render_report(report: ScanReport) -> str:
     skills = report.skills
     counts = problem_counts(report)
-    advice = report.advice or install_advice(report)[0]
-    reasons = report.advice_reasons if report.advice else install_advice(report)[1]
     head = [
-        f"Before you install: {ADVICE_TEXT[advice]}"
-        + (f" ({'; '.join(reasons)})" if reasons else " (no failures or warnings)"),
+        advice_line(report),
         license_line(report),
         "",
         f"skillfetch scan {report.root}",

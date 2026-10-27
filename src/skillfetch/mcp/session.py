@@ -25,6 +25,8 @@ from skillfetch.ingest.extract import DEFAULT_MODEL
 from skillfetch.ingest.extract_cache import DEFAULT_CACHE_DIR, ExtractCache
 from skillfetch.ingest.injection import scan_skill
 from skillfetch.ingest.lint import lint_skill
+from skillfetch.ingest.local_scan import Lookup, scan_target
+from skillfetch.ingest.remote import RemoteError, checkout, parse_github_url
 from skillfetch.ingest.skillfile import content_hash, read_skill
 from skillfetch.resolve import resolve_set
 from skillfetch.resolve.models import Skill
@@ -36,6 +38,12 @@ DEFAULT_MAX_TOKENS = 8000  # load_skills budget for the concatenated bodies
 MAX_QUERY_CHARS = 2000  # longer queries are cut (the result says truncated)
 MAX_K = 200
 MAX_AUTO_IDS = 20  # resolve_set candidates per call (pinned ids are not limited)
+# scan_skill never extracts (the server uses no model): skills found in neither the index nor
+# the extract cache are left out of the contradiction check, and the report says so
+SCAN_EXTRACTION = (
+    "not extracted: the MCP server uses no model; run `skillfetch scan <target> --claude-code` "
+    "to check these skills for contradictions"
+)
 
 
 class Profile(BaseModel):
@@ -56,6 +64,24 @@ def _invalid(arg: str, exc: ValidationError) -> dict:
             for e in exc.errors(include_url=False)
         ],
     }
+
+
+def scan_json(target: str, lookup: Lookup, parse=parse_github_url, checkout_fn=checkout) -> dict:
+    """`skillfetch scan <target> --json`: a local folder, or a GitHub URL shallow-cloned into a
+    temporary folder and deleted. Nothing is installed or run, and no model is called (skills
+    in neither the index nor the extract cache skip the contradiction check, and the report
+    says so). A missing folder, a refused URL or a failed clone returns {error}."""
+    if not isinstance(target, str) or not target.strip():
+        return {"error": "invalid target: pass a local folder or a GitHub URL"}
+    try:
+        report = scan_target(target.strip(), lookup, parse=parse, checkout_fn=checkout_fn)
+    except NotADirectoryError:
+        return {"error": f"not a folder: {target}"}
+    except RemoteError as exc:
+        return {"error": str(exc)}
+    if report.skipped:
+        report.extraction = SCAN_EXTRACTION
+    return report.model_dump(mode="json")
 
 
 @dataclass
@@ -85,6 +111,9 @@ class Session:
     # summary_chars: the compact summary length (`serve --summary-chars`).
     profile_root: Path | None = None
     summary_chars: int = ONE_LINE_CHARS
+    # scan_skill's URL parser and shallow checkout (tests clone a local file:// repository)
+    scan_parse: object = parse_github_url
+    scan_checkout: object = checkout
 
     def __post_init__(self):
         if self.model is None:  # look up cached extractions made the way the index was built
@@ -99,6 +128,13 @@ class Session:
         if key not in self.profiles:
             self.profiles[key] = profile_repo(Path(key))
         return self.profiles[key]
+
+    # --- scan_skill ---------------------------------------------------------------------------
+
+    def scan_skill(self, target: str) -> dict:
+        """The scan_skill tool: scan_json with this session's index and extract cache."""
+        lookup = Lookup(self.index, self.extract_cache, self.model)
+        return scan_json(target, lookup, self.scan_parse, self.scan_checkout)
 
     # --- search_skills ------------------------------------------------------------------------
 
