@@ -6,6 +6,12 @@ uv run python scripts/scan_accuracy.py recall --split eval        (totals only)
     scanned. "Caught" = at least one failure or warning. The eval half prints totals only
     and refuses --cases unless --final is given (after the rules are settled); its file
     must still match recall/FROZEN-eval.sha256.
+
+uv run python scripts/scan_accuracy.py independent --set DIR --rules vN --out FILE
+    The independent set (written by another model without seeing the rules; README.md
+    here): each case folder scanned as it is, references included. DIR must match
+    independent/FROZEN.sha256. Run once per rules version, each under that version's code
+    (scripts/scan_accuracy_versions.sh). Writes case id, label, caught and rule ids only.
 """
 
 from __future__ import annotations
@@ -87,15 +93,75 @@ def main(argv: list[str] | None = None) -> int:
         "--final", action="store_true", help="the rules are settled: eval cases may show"
     )
     sub.add_parser("precision")
+    ind = sub.add_parser("independent")
+    ind.add_argument("--set", type=Path, required=True)
+    ind.add_argument("--rules", required=True, help="the rules version being run, e.g. v8")
+    ind.add_argument("--out", type=Path, required=True)
+    ind.add_argument("--frozen", type=Path, default=HERE / "independent" / "FROZEN.sha256")
     args = p.parse_args(argv)
     if args.cmd == "precision":
         print(json.dumps(precision(), indent=1))
+        return 0
+    if args.cmd == "independent":
+        independent(args.set, args.rules, args.out, args.frozen)
         return 0
     if args.cmd == "recall":
         if args.split == "eval" and args.cases and not args.final:
             raise SystemExit("eval cases stay hidden until the rules are settled (--final)")
         recall(args.split, args.cases)
     return 0
+
+
+LABELS = {"위험": "catch", "무해": "pass", "risky": "catch", "harmless": "pass"}
+
+
+def independent(folder: Path, version: str, out_path: Path, frozen: Path) -> dict:
+    """Scan every case folder of the frozen independent set with the installed rules."""
+    from skillfetch.ingest.injection import load_rules
+
+    sums = folder / "SHA256SUMS"
+    want = frozen.read_text().split()[0]
+    if hashlib.sha256(sums.read_bytes()).hexdigest() != want:
+        raise SystemExit(f"SHA256SUMS differs from {frozen.name}")
+    for line in sums.read_text().splitlines():
+        digest, name = line.split(maxsplit=1)
+        if hashlib.sha256((folder / name).read_bytes()).hexdigest() != digest:
+            raise SystemExit(f"{name} differs from SHA256SUMS")
+    loaded = load_rules()
+    got = f"v{loaded.version}" if getattr(loaded, "version", None) is not None else version
+    if got != version:
+        raise SystemExit(f"installed rules are {got}, not {version}")
+    rows = []
+    for line in (folder / "cases.jsonl").open():
+        case = json.loads(line)
+        case_dir = folder / Path(case["path"]).parent
+        result = scan_skill(case_dir)
+        rules = sorted({h.rule_id for h in result.failures + result.warnings})
+        rows.append(
+            {
+                "case": case_dir.name,
+                "expect": LABELS[case["label"]],
+                "caught": bool(rules),
+                "rules": rules,
+                "fails": bool(result.failures),
+            }
+        )
+    risky = [r for r in rows if r["expect"] == "catch"]
+    harmless = [r for r in rows if r["expect"] == "pass"]
+    out = {
+        "rules": version,
+        "risky_caught": sum(r["caught"] for r in risky),
+        "risky": len(risky),
+        "harmless_flagged": sum(r["caught"] for r in harmless),
+        "harmless": len(harmless),
+        "cases": rows,
+    }
+    out_path.write_text(json.dumps(out, indent=1, ensure_ascii=False) + "\n")
+    print(
+        f"independent ({version}): risky caught {out['risky_caught']}/{out['risky']}, "
+        f"harmless flagged {out['harmless_flagged']}/{out['harmless']}"
+    )
+    return out
 
 
 def precision() -> dict:
