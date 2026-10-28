@@ -28,6 +28,7 @@ from skillfetch.ingest.injection import scan_skill
 from skillfetch.ingest.lint import lint_skill
 from skillfetch.ingest.local_scan import Lookup, scan_target
 from skillfetch.ingest.remote import RemoteError, checkout, parse_github_url
+from skillfetch.ingest.review import host_review
 from skillfetch.ingest.skillfile import content_hash, read_skill
 from skillfetch.resolve import resolve_set
 from skillfetch.resolve.models import Skill
@@ -39,6 +40,11 @@ DEFAULT_MAX_TOKENS = 8000  # load_skills budget for the concatenated bodies
 MAX_QUERY_CHARS = 2000  # longer queries are cut (the result says truncated)
 MAX_K = 200
 MAX_AUTO_IDS = 20  # resolve_set candidates per call (pinned ids are not limited)
+# scan_skill(review=true): the server hands the checklist and the files to the host agent
+HOST_REVIEW = (
+    "for you to do: apply each skill's review.checklist to its review.files and show every "
+    "finding with its file, line and quoted line (docs/design/review.md); not part of the advice"
+)
 # scan_skill never extracts (the server uses no model): skills found in neither the index nor
 # the extract cache are left out of the contradiction check, and the report says so
 SCAN_EXTRACTION = (
@@ -67,7 +73,13 @@ def _invalid(arg: str, exc: ValidationError) -> dict:
     }
 
 
-def scan_json(target: str, lookup: Lookup, parse=parse_github_url, checkout_fn=checkout) -> dict:
+def scan_json(
+    target: str,
+    lookup: Lookup,
+    parse=parse_github_url,
+    checkout_fn=checkout,
+    review: bool = False,
+) -> dict:
     """`skillfetch scan <target> --json`: a local folder, or a GitHub URL shallow-cloned into a
     temporary folder and deleted. Nothing is installed or run, and no model is called (skills
     in neither the index nor the extract cache skip the contradiction check, and the report
@@ -75,13 +87,21 @@ def scan_json(target: str, lookup: Lookup, parse=parse_github_url, checkout_fn=c
     if not isinstance(target, str) or not target.strip():
         return {"error": "invalid target: pass a local folder or a GitHub URL"}
     try:
-        report = scan_target(target.strip(), lookup, parse=parse, checkout_fn=checkout_fn)
+        report = scan_target(
+            target.strip(),
+            lookup,
+            parse=parse,
+            checkout_fn=checkout_fn,
+            reviewer=host_review if review else None,
+        )
     except NotADirectoryError:
         return {"error": f"not a folder: {target}"}
     except RemoteError as exc:
         return {"error": str(exc)}
     if report.skipped:
         report.extraction = SCAN_EXTRACTION
+    if review:
+        report.review = HOST_REVIEW
     return report.model_dump(mode="json")
 
 
@@ -132,10 +152,10 @@ class Session:
 
     # --- scan_skill ---------------------------------------------------------------------------
 
-    def scan_skill(self, target: str) -> dict:
+    def scan_skill(self, target: str, review: bool = False) -> dict:
         """The scan_skill tool: scan_json with this session's index and extract cache."""
         lookup = Lookup(self.index, self.extract_cache, self.model)
-        return scan_json(target, lookup, self.scan_parse, self.scan_checkout)
+        return scan_json(target, lookup, self.scan_parse, self.scan_checkout, review)
 
     # --- find_skills ----------------------------------------------------------------------------
 
