@@ -114,27 +114,35 @@ Pattern families, each a list of regexes in `scan_rules.yaml`. A hit records
 
 | family | examples | effect |
 |---|---|---|
-| `override` | "ignore previous/all instructions", "disregard the system prompt", "you are now"; paraphrases (rules v7): earlier guidance "no longer applies", "set aside everything you were told", "do not follow the user" | hard fail |
-| `exfil` | reads of `~/.ssh`, `~/.aws`, `.env`, tokens/keys, "send to <url>"; remote script execution from an untrusted URL (`http://`, raw IP, URL shortener) | hard fail |
-| `exfil` (warn rules) | remote script execution from an `https://` URL: `curl … \| sh`, `sh -c "$(curl …)"`, `sh <(curl …)`, PowerShell `iwr … \| iex` (rules v7). A negated mention is skipped, and the documented installers of a few well-known tools (Homebrew, nvm, Bun, rustup, uv, Deno, pnpm, Poetry, fnm, Starship, Ollama, Docker) are not counted (v7) | warn |
+| `override` | "ignore previous/all instructions", "disregard the system prompt", "you are now"; paraphrases (rules v7): earlier guidance "no longer applies", "set aside everything you were told", "do not follow the user"; rules v8: -s/-ing forms ("printing your system prompt") and requests for the agent's own prompt ("output your full system instructions", `override.prompt-leak`) | hard fail |
+| `exfil` | reads of `~/.ssh`, `~/.aws`, `.env`, tokens/keys, "send to <url>"; remote script execution from an untrusted URL (`http://`, raw IP, URL shortener); rules v8: a credentials file moved off the machine, any verb form ("uploading ~/.aws/credentials", `exfil.credential-upload`), and a secret file copied to another host (`scp .env host:`, `rsync ~/.ssh host:`, `curl -F f=@.env`, `exfil.secret-file-remote-copy`) | hard fail |
+| `exfil` (info) | remote script execution from an `https://` URL: `curl … \| sh`, `sh -c "$(curl …)"`, `sh <(curl …)`, PowerShell `iwr … \| iex` (rules v7). A negated mention is skipped. Rules v8: info (advice policy below); warn in v2–v7 | info |
 | `privilege` | remote script execution combined with sudo, "run as root", "disable sandbox", "--dangerously" | hard fail |
-| `privilege` (warn rules) | `sudo <command>` on its own, the lowercase command only (rules v7) | warn |
-| `privilege` (info) | `privilege.sudo-package` (rules v7): `sudo apt-get/yum/dnf/brew/… install` | info |
+| `privilege` (warn rules) | rules v8, `privilege.bypass-check`: a safety check switched off (`git commit/push … --no-verify`, `--no-check-certificate`, `NODE_TLS_REJECT_UNAUTHORIZED=0`, `GIT_SSL_NO_VERIFY`, `StrictHostKeyChecking no`, `strict-ssl false`, `http.sslVerify false`, `setenforce 0`, `--allow-unauthenticated`) | warn |
+| `privilege` (info) | `sudo <command>`, the lowercase command only (rules v7; v8: info, warn in v2–v7); `privilege.sudo-package` (rules v7): `sudo apt-get/yum/dnf/brew/… install` | info |
+| `destructive` (rules v8) | a command that wipes or opens up a whole home folder or disk: `rm -rf /`, `rm -rf ~`, `$HOME`, `mkfs /dev/…`, `dd of=/dev/sd…`, a fork bomb; `chmod -R 777`, `chmod 777 ~` (not after `;` or a quote: an injection payload quoted in security docs) | hard fail |
 | `network` | `network.remote-instructions` (rules v6, v7): a URL that names an instruction file (`SKILL.md`, `AGENTS.md`, `CLAUDE.md`, `*instructions*`/`*prompt*`/`*rules*` `.md`/`.txt`, or any `.md`/`.txt` under a `prompts/`, `rules/` or `instructions/` folder, v7), or a fetch/curl/wget/read/follow/load/download/import verb that takes a URL in the same sentence (or after a lead-in line ending with ":") with an instruction word between them (follow, instructions, rules, prompt, skill, guidelines; v7: a bare "follow" before a markdown link does not count); negated sentences and archive downloads (`.zip`, `.tar.gz`, … v7) are skipped | warn |
 | `network` | `network.bare-url`: any other absolute `http(s)://` in an instruction (not in a docs link) | info (rules v6; warn before) |
 | `scripts` | folder contains executable files or `scripts/`; v7: `risky_scripts` names the scripts that use the network, run commands, delete files or read secrets (`SCRIPT_RISKS` in `injection.py`) | tag `has_scripts`; tier cap B→C unless publisher verified |
 | `hidden` | zero-width chars, HTML comments with instructions, base64 blobs > 200 chars; decode-and-run (rules v7): `base64 -d \| sh`, `eval "$(… base64 …)"`, PowerShell `-EncodedCommand`, `exec(b64decode(…))`, hex escapes piped into a shell | hard fail |
-| `conceal` (rules v7) | hiding things from the user: "do not tell the user", "without telling the user", "say the tests passed", "silently send/delete …" | warn |
+| `conceal` (rules v7) | hiding things from the user: "do not tell the user", "without telling the user", "say the tests passed", "silently send/delete …" | info (rules v8; warn in v7) |
+| `conceal` (warn rule) | rules v8, `conceal.clear-history`: erasing what ran (`history -c`, `unset HISTFILE`, `HISTSIZE=0`, deleting a `*_history` file, `Clear-EventLog`, `wevtutil cl`) | warn |
 
 Hard fail → `status: scan_failed`, excluded. This is a blocklist, not a proof of
-safety; say so in README. Its measured precision and recall, and the changes of rules v7, are
-in numbers.md §30 (`evals/scan-accuracy/`).
+safety; say so in README. Its measured precision and recall, and the changes of rules v7 and
+v8, are in numbers.md §30 (`evals/scan-accuracy/`).
 
-Why `curl … | sh` and bare `sudo` only warn (rules v2): they are the standard
+Why `curl … | sh` and bare `sudo` do not fail (rules v2): they are the standard
 install form of uv, rustup, Homebrew and nvm and of most setup steps. Failing
 them would drop a large share of legitimate setup skills, and anyone opening
 the "rejected because" list in the data write-up would stop trusting it. They
 fail only in the combinations above.
+
+Advice policy (rules v8, numbers.md §30): only checks whose measured precision held up change
+`scan`'s advice: size, risky scripts, remote instructions, the hard-fail injection rules, lint
+and conflicts. `sudo`, pipe-to-shell, concealment phrasing and dated lines are info: of the
+warnings sampled from the released index, 0 of 10, 0 of 3, 0 of 6 and 0 of 11 were worth a
+look to both judges. The policy was set after the evaluation half's precision was seen.
 
 Implementation notes (`ingest/injection.py`, rules in `ingest/scan_rules.yaml`):
 
@@ -171,12 +179,14 @@ Implementation notes (`ingest/injection.py`, rules in `ingest/scan_rules.yaml`):
   "always keep this table sorted" or "do not remove" pass (rules v2).
 - Rules may set `allow_negated`: a match is skipped when a negation (`not`,
   `never`, `n't`, `no`, `without`) appears at most two words before it. "Never
-  run sudo …" is advice; "Do not hesitate to run sudo …" still fails. Used only
+  run sudo …" is advice; "Do not hesitate to run sudo …" still fails. The match may open a
+  code span or quote ("never run `rm -rf ~`", rules v8). Used only
   where benign negated phrasing is common (sudo, root, sandbox,
   `--dangerously-*`, reading key/credential paths, system prompt).
 - `override.system-prompt` needs one of `ignore`, `disregard`, `bypass`,
-  `reveal`, `print`, `repeat`, `leak` within 20 characters before "system
-  prompt". `output` and `override` were dropped in rules v4: "… without test or
+  `reveal`, `print`, `repeat`, `leak` (rules v8: also `dump`, `recite`, and the -s and -ing
+  forms of each; not -ed: "leaked system prompt patterns" names a thing) within 20
+  characters before "system prompt". `output` and `override` were dropped in rules v4: "… without test or
   build output, add to the system prompt" (anthropics claude-api) and "Direct:
   override system prompts" (an OWASP table describing attacks) are
   documentation.

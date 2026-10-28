@@ -18,7 +18,8 @@ from skillfetch.ingest.skillfile import SKILL_FILE, read_text, skill_files
 # (LICENSE.md, the OFL that ships with fonts) are legal boilerplate, not instructions.
 TEXT_SUFFIXES = frozenset({".md"})
 _LEGAL_STEMS = frozenset({"license", "licence", "copying", "notice", "ofl"})
-_NEGATED = re.compile(r"(?:\bnot|\bnever|n't|\bno|\bwithout)\s+(?:[\w'-]+\s+){0,2}$", re.I)
+# rules v8: the match may open a code span or quote ("never run `sudo x`")
+_NEGATED = re.compile(r"(?:\bnot|\bnever|n't|\bno|\bwithout)\s+(?:[\w'-]+\s+){0,2}[`\"']?$", re.I)
 _LINK_TARGET = re.compile(r"\]\([^)]*\)")
 _AUTOLINK = re.compile(r"<https?://[^>]*>", re.I)
 _REF_DEF = re.compile(r"^\s{0,3}\[[^\]]+\]:\s*\S+")

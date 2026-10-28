@@ -28,7 +28,7 @@
 #                         advice that quotes the phrase to avoid ("avoid override-style
 #                         language (\"disregard the previous instruction\")") is not an
 #                         attempt. It is still shown (as info), so the quote stays visible.
-version: 7
+version: 8
 
 effects:
   override: fail
@@ -36,7 +36,11 @@ effects:
   privilege: fail
   hidden: fail
   network: warn
-  conceal: warn
+  # Rules v8, the advice policy (numbers.md §30): only checks whose measured precision held up
+  # change the advice. Concealment phrasing (0/6 worth a look in the index) is info, like
+  # sudo and pipe-to-shell below; clearing history stays a warning (conceal.clear-history).
+  conceal: info
+  destructive: fail
 
 scripts:
   dirs: [scripts]
@@ -55,7 +59,16 @@ rules:
     family: override
     allow_negated: true
     allow_quoted: true
-    pattern: '\b(?:ignore|disregard|bypass|reveal|print|repeat|leak)\b[^.\n]{0,20}\bsystem\s+prompt\b'
+    # rules v8: -s and -ing forms; not -ed ("leaked system prompt patterns" names a thing)
+    pattern: '\b(?:ignor(?:e|es|ing)|disregard(?:s|ing)?|bypass(?:es|ing)?|reveal(?:s|ing)?|print(?:s|ing)?|repeat(?:s|ing)?|leak(?:s|ing)?|dump(?:s|ing)?|recit(?:e|es|ing))\b[^.\n]{0,20}\bsystem\s+prompt\b'
+  # Rules v8: a request to hand over the agent's own prompt ("output your system prompt",
+  # "show the full hidden instructions"). "your" or full/hidden/entire is required, so "add it to
+  # the system prompt" and "put instructions in the system prompt" stay out.
+  - id: override.prompt-leak
+    family: override
+    allow_negated: true
+    allow_quoted: true
+    pattern: '\b(?:show|output|share|tell|give|send|copy|paste|write\s+out|display|return)\b[^.\n]{0,20}\b(?:your|the\s+(?:full|entire|complete|hidden|original))\s+(?:(?:full|entire|complete|hidden|original|exact)\s+)*(?:system\s+(?:prompt|instructions|message)|initial\s+instructions|hidden\s+instructions)\b'
   # Paraphrases of "ignore previous instructions" (rules v7, from the scan-accuracy dev set:
   # evals/scan-accuracy/): earlier guidance declared void, the user overruled, only the skill's
   # rules left.
@@ -78,6 +91,18 @@ rules:
     family: exfil
     allow_negated: true
     pattern: '\b(?:read|cat|open|copy|cp|upload|send|print|load|base64|scp|access|include)\b[^\n]{0,40}(?:~|\$HOME|\$\{HOME\})/\.(?:aws|azure|kube|netrc|config/gcloud|docker/config\.json)\b'
+  # Rules v8: credential files moved off the machine. The verb may be inflected ("uploading
+  # ~/.aws/credentials to the team bucket"); copying a secret file to another host with scp or
+  # rsync, or attaching it to a curl upload, counts too. Reading or loading a credentials file is
+  # left to exfil.cloud-credentials (SDK docs say where credentials are read from).
+  - id: exfil.credential-upload
+    family: exfil
+    allow_negated: true
+    pattern: '\b(?:upload(?:s|ed|ing)?|send(?:s|ing)?|sent|post(?:s|ed|ing)?|shar(?:e|es|ed|ing)|sync(?:s|ed|ing)?|push(?:es|ed|ing)?|transmit(?:s|ted|ting)?|exfiltrat(?:e|es|ed|ing)|attach(?:es|ed|ing)?|forward(?:s|ed|ing)?|cop(?:y|ies|ied|ying))\b[^\n]{0,60}(?:~|\$HOME|\$\{HOME\})/\.(?:ssh|aws|azure|kube|netrc|config/gcloud|config/gh|docker/config\.json|git-credentials|npmrc|pypirc)\b'
+  - id: exfil.secret-file-remote-copy
+    family: exfil
+    allow_negated: true
+    pattern: '\b(?:scp|rsync)\b[^\n]{0,80}?(?:(?<![\w/.-])\.env\b(?!\.(?:example|sample|template))|(?:~|\$HOME|\$\{HOME\})/\.(?:ssh|aws|azure|kube|netrc|git-credentials|npmrc|pypirc)\b|\bid_(?:rsa|ed25519|ecdsa|dsa)\b(?!\.pub))[^\n]{0,80}?\s\S*?[\w.-]+:\S*|\bcurl\b[^\n]{0,80}?(?:-F\s*["'']?[\w-]+=@|--data(?:-binary)?\s+["'']?@|-d\s*["'']?@|-T\s+|--upload-file\s+)["'']?(?:\S*/)?(?:\.env\b(?!\.(?:example|sample|template))|\.(?:netrc|git-credentials|npmrc|pypirc)\b|credentials\b|id_(?:rsa|ed25519|ecdsa)\b(?!\.pub))'
   - id: exfil.dotenv
     family: exfil
     allow_negated: true
@@ -95,9 +120,11 @@ rules:
   # not something a reviewer can trust at a glance (http, raw IP, URL shortener).
   # Rules v7: a negated mention ("never pipe curl into sh") is advice; the documented installers
   # of well-known tools are only info; PowerShell's download-and-run (iwr | iex) counts too.
+  # Rules v8 (advice policy): info. 0/3 of these in the index were worth a look; an untrusted URL
+  # or sudo still fails (the next rule, privilege.sudo-remote-script).
   - id: exfil.pipe-to-shell
     family: exfil
-    effect: warn
+    effect: info
     allow_negated: true
     unless: 'https://(?:raw\.githubusercontent\.com/(?:Homebrew|nvm-sh)/|bun\.sh/install|sh\.rustup\.rs|astral\.sh/(?:uv|ruff)/|deno\.land/install|get\.pnpm\.io/|install\.python-poetry\.org|fnm\.vercel\.app/install|starship\.rs/install|ollama\.com/install\.sh|get\.docker\.com)'
     pattern: '\b(?:curl|wget)\b[^\n|]*\|\s*(?:sudo\s+(?:-\w+\s+)*)?(?:ba|z|da)?sh\b|\b(?:ba|z|da)?sh\s+(?:-c\s+["'']?\$\(|<\()\s*(?:curl|wget)\b|\b(?:iwr|irm|Invoke-WebRequest|Invoke-RestMethod)\b[^\n|]*\|\s*(?:iex|Invoke-Expression)\b|\b(?:iex|Invoke-Expression)\s*\(\s*(?:iwr|irm|New-Object\s+Net\.WebClient)\b'
@@ -113,9 +140,10 @@ rules:
   # sudo alone is common in setup steps (apt-get install ...): warn.
   # Rules v7: only the lowercase command ("Sudo pallet", "the `sudo` entry point" are code
   # names), and a package-manager install is only info (privilege.sudo-package).
+  # Rules v8 (advice policy): info. 0/10 of these in the index were worth a look.
   - id: privilege.sudo
     family: privilege
-    effect: warn
+    effect: info
     case_sensitive: true
     allow_negated: true
     pattern: '\bsudo\s+(?:-\w+\s+)*(?!(?:apt(?:-get)?|yum|dnf|pacman|zypper|apk|port|snap|brew|pip3?|npm|gem)\s+(?:install|update|upgrade|add|-S)\b)[a-z]'
@@ -139,6 +167,25 @@ rules:
     family: privilege
     allow_negated: true
     pattern: '--dangerously[\w-]*|--no-sandbox\b'
+  # Rules v8: switching off a safety check (commit hooks, TLS certificates, SSH host keys,
+  # SELinux, package signatures). Common in quick fixes, so a warning, not a failure. The hook
+  # bypass counts only inside a git command, so a list of flags to block is not a match.
+  - id: privilege.bypass-check
+    family: privilege
+    effect: warn
+    allow_negated: true
+    pattern: '\bgit\s+(?:commit|push|merge|rebase|am)\b[^\n`]*--no-verify\b|--no-check-certificate\b|\bNODE_TLS_REJECT_UNAUTHORIZED\s*=\s*["'']?0\b|\bGIT_SSL_NO_VERIFY\s*=\s*["'']?(?:1|true)\b|\bStrictHostKeyChecking[\s=]+no\b|\bstrict-ssl\s+false\b|\bhttp\.sslVerify\s+false\b|\bsetenforce\s+0\b|--allow-unauthenticated\b'
+
+  # --- destructive: commands that wipe or open up a whole home folder or disk (rules v8) -------
+  # Not after ";" or a quote: "'; rm -rf / #" is an injection payload quoted in security docs.
+  - id: destructive.wipe
+    family: destructive
+    allow_negated: true
+    pattern: '(?<![;''"])(?<![;''"]\s)\brm\s+(?:-[a-zA-Z]+\s+)*-(?:[a-zA-Z]*r[a-zA-Z]*f|[a-zA-Z]*f[a-zA-Z]*r)[a-zA-Z]*\s+(?:--no-preserve-root\s+)?["'']?(?:/|/\*|~/?|~/\*|\$HOME/?|\$\{HOME\}/?)["'']?(?=[\s`;&|)]|$)|\bmkfs(?:\.\w+)?\s+/dev/|\bdd\b[^\n]*\bof=/dev/(?:sd|hd|nvme|disk|mmcblk)|>\s*/dev/(?:sd[a-z]|nvme\d|disk\d)|:\(\)\s*\{\s*:\s*\|\s*:\s*&\s*\}\s*;\s*:'
+  - id: destructive.open-permissions
+    family: destructive
+    allow_negated: true
+    pattern: '\bchmod\s+(?:-R|--recursive)\s+(?:0?777|a\+rwx|ugo\+rwx)\b|\bchmod\s+(?:0?777|a\+rwx|ugo\+rwx)\s+["'']?(?:/|~|\$HOME|\$\{HOME\})/?["'']?(?=[\s`;&|)]|$)'
 
   # --- hidden: content a human reviewer would not see ---------------------------------
   - id: hidden.invisible-chars
@@ -185,3 +232,10 @@ rules:
     family: conceal
     allow_quoted: true
     pattern: '\b(?:do\s+not|don''t|never)\s+(?:tell|inform|notify|warn|show)\s+the\s+user\b|\bwithout\s+(?:telling|informing|notifying)\s+the\s+user\b|\bthe\s+user\s+(?:does\s+not|doesn''t|need\s+not|needn''t)\s+(?:need\s+to\s+)?know\b|\bsay\s+(?:that\s+)?(?:they|it|the\s+tests?)\s+(?:passed|succeeded|worked)\b|\bsilently\b[^.\n]{0,40}?\b(?:send|post|upload|delete|remove|transmit)\b'
+  # Rules v8: erasing the record of what ran (shell history, the Windows event log). The family
+  # is info; this rule warns.
+  - id: conceal.clear-history
+    family: conceal
+    effect: warn
+    allow_negated: true
+    pattern: '\bhistory\s+-c\b|\bunset\s+HISTFILE\b|\bHISTFILE=/dev/null\b|\bHISTSIZE=0\b|\b(?:rm|shred|truncate)\b[^\n]{0,30}\.(?:bash|zsh|sh|python|node_repl|psql|mysql)_history\b|>\s*(?:~|\$HOME)/\.(?:bash|zsh)_history\b|\bClear-History\b|\bClear-EventLog\b|\bwevtutil\s+cl\b'
