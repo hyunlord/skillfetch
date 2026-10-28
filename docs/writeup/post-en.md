@@ -30,6 +30,14 @@ I ran the same checks `skillfetch scan` runs on every skill of the released inde
 
 None of the hits I read was an attack. That is the point of a warning: it tells you which line to read, not what to think of it.
 
+**Rules miss what is written in prose; a reading catches it.** The rules match commands, paths, flags and fixed phrases.
+- **Two independent sets** of 80 test skills (40 risky, 40 harmless lookalikes), written by GPT without seeing the rules:
+  - the rules caught 0–3 of the 40 risky cases;
+  - a review that reads each skill against a fixed checklist with a model (`scan --review`) caught 39–40 of 40;
+  - the review flagged 0 of the 40 harmless cases in both sets.
+- **60 real skills from the index,** 20 of them security skills that quote attacks: the review flagged none ([numbers.md](numbers.md) §30, §31).
+- **The scope:** both sets are synthetic cases written by one model. I have not yet tried the review on real attacks or on skills built to get past a check.
+
 **Scripts.** 252 skills (9.0%) bundle scripts. Nothing is wrong with that in itself, but it changes the question from "what does this text tell my agent to do" to "what does this code do when my agent runs it", which no reading of `SKILL.md` answers.
 
 **Size.** 67 skills (2.4%) were over a limit when I counted: a `SKILL.md` over 8,000 tokens, more than 20 files, or more than 1 MB. The file limit is now 50: two judges called 5 of 15 size warnings worth a look at 20 files, and 5 of 8 at 50 ([numbers.md](numbers.md) §30). Section 4 shows why size is a warning and not a style note: the skill that ran P's landing-page sessions into their turn limit there, design-taste-frontend, is 2.4 MB, over the 1 MB limit, so `scan` gives it CAUTION before you install it.
@@ -121,6 +129,7 @@ What I take from this, within what I measured (skills installed and left for the
 ```
 uvx --from git+https://github.com/hyunlord/skillfetch skillfetch scan https://github.com/<owner>/<repo>
 uvx --from git+https://github.com/hyunlord/skillfetch skillfetch scan ~/.claude/skills
+uvx --from git+https://github.com/hyunlord/skillfetch skillfetch scan ~/.claude/skills --review
 ```
 
 A GitHub URL is cloned shallowly into a temporary folder, scanned and deleted; nothing is installed or run. The report opens with one line of advice from safety and quality checks only: NOT RECOMMENDED when a skill fails the injection scan or lint, or two skills contradict each other; CAUTION for injection-scan warnings (remote instructions among them), size, bundled scripts that use the network, run commands, delete files or read secrets, or one skill covering another; RECOMMENDED otherwise. `sudo`, piping a download into a shell, concealment phrasing and dated lines are shown as notes and do not change the advice, because almost none of their warnings were worth a look (below). Under it is the license and where it was found. Then every finding, with the line it comes from. Run on the design skill from section 4:
@@ -130,12 +139,30 @@ Before you install: CAUTION (1 skill is over a size limit; 1 skill bundles scrip
 License: MIT (repo root). Not part of the advice: check it before you redistribute a skill.
 ```
 
-No model and no API key. Contradictions between installed copies of public skills are checked against the index (`skillfetch sync`); for other skills, `--claude-code` extracts their instructions with your own Claude Code login.
+The checks above need no model and no API key. Contradictions between installed copies of public skills are checked against the index (`skillfetch sync`); for other skills, `--claude-code` extracts their instructions with your own Claude Code login.
+
+**`--review` reads the skill.** It sends each skill's files, with a fixed checklist, to an isolated `claude -p` on your own Claude Code login. The checklist covers seven categories:
+- data sent out;
+- remote instructions;
+- destructive actions;
+- safeguards switched off;
+- hiding or false reporting;
+- claimed authority;
+- hidden text.
+
+It costs a model call per skill: about $0.02 per call in my runs, in API-price terms ([numbers.md](numbers.md) §31).
+- **Findings:** each quotes its line, and quotes not found in the files are dropped. They are listed under the advice, not counted in it.
+- **A failed review:** if a reply is cut off or declined, the skill is marked "review incomplete: read this skill yourself" and the advice becomes at least CAUTION. The same goes for a skill too long to read in full.
+- **In your agent:** `skillfetch setup` installs a vet skill that does the same reading before any skill is installed. The MCP server hands it the checklist and the files, and the agent quotes what it finds before asking.
 
 **The router is experimental.** skillfetch also has the per-task router measured above: an MCP server and one router skill that search the index for each task and load a small, conflict-checked set. It works as designed. In my measurements it was better than the popular skills installed for good, but not better than no skill. It cost 62% more per session on single tasks and about 1.5 times as much over six requests in one session, and on a team's own skills it lost to plain installation. It stays in the repository as an experimental feature.
 
 **What the tool gets wrong.**
-- The injection scan is a regex blocklist, and it misses most risks written in plain prose. On 80 test skills that GPT wrote without seeing the rules, it caught 3 of the 40 risky ones and flagged 1 of the 40 harmless lookalikes (the version before: 2 and 1; [numbers.md](numbers.md) §30). It catches commands, paths, flags and fixed phrases; "erase every project file and backup" or "turn off certificate validation" pass. The harmless case it flagged is a lesson that uses zero-width characters on purpose.
+- The injection scan is a regex blocklist, and it misses most risks written in plain prose. On 80 test skills that GPT wrote without seeing the rules, it caught 3 of the 40 risky ones and flagged 1 of the 40 harmless lookalikes (the version before: 2 and 1; [numbers.md](numbers.md) §30); on a second set of 80, it caught 0 of 40 (§31). It catches commands, paths, flags and fixed phrases; "erase every project file and backup" or "turn off certificate validation" pass. The harmless case it flagged is a lesson that uses zero-width characters on purpose.
+- The review (`--review`) caught 39–40 of 40 on the second set and flagged none of the 40 harmless cases there, nor any of 60 real index skills (§31).
+  - Both sets are synthetic, written by one model; real attacks and skills built to evade a check are untested.
+  - It runs on your model and costs a call per skill.
+  - In one of its two runs, a safety classifier cut off the reply for one risky case. Such a skill is now marked "review incomplete" and gets CAUTION.
 - Its warnings are not equally useful. Of a sample of the warnings it raised on the public index, two Claude judges both called these worth a reviewer's look: size 5 of 8, scripts that use the network, run commands, delete files or read secrets 6 of 8, remote instructions 2 of 3, `sudo` 0 of 10, pipe-to-shell 0 of 3, dated lines 0 of 11, concealment phrasing 0 of 6. The last four are now notes, not part of the advice.
 - The dated-claim check is a pattern match. It does not know whether a claim is out of date.
 - The size limits come from one failure I watched, not from a study of limits.
