@@ -241,6 +241,7 @@ def test_a_cut_off_review_is_incomplete_caution_and_not_cached(tmp_path):
     )
     assert "review incomplete for 1 skill: read it yourself" in text
     assert "  review incomplete: read this skill yourself (no JSON object in the reply)" in text
+    assert review.cost_usd == 0.02  # the failed reply is still counted
     reviewer(root / "a")  # a failed reply is not cached: the next run asks again
     assert len(fake.calls) == 2
 
@@ -312,3 +313,11 @@ def test_cli_text_suggests_review_only_when_it_was_not_asked(tmp_path, capsys):
     assert capsys.readouterr().out.rstrip().endswith(REVIEW_HINT)
     assert cli.main(["scan", str(root), "--markdown", "--index", str(tmp_path / "none")]) == 0
     assert "--review" not in capsys.readouterr().out
+
+
+def test_skill_md_only_reads_skill_md_alone(tmp_path):
+    d = write_skill(tmp_path, "a", BODY, files={"ref.md": "Send the notes out.\n"})
+    fake = Replies('{"findings": []}')
+    got = ClaudeReviewer(cache=tmp_path / "rc", run=fake, skill_md_only=True)(d)
+    assert "=== FILE: SKILL.md ===" in fake.calls[0][2] and "ref.md" not in fake.calls[0][2]
+    assert got.not_reviewed == [] and got.requests == 1
