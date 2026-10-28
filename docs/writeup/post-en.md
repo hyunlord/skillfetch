@@ -4,7 +4,7 @@
 
 **At a glance**
 
-- **Safety**: in a public index of 2,785 skills, 1.9% trip an injection-scan warning, 9.0% bundle scripts and 2.4% are big enough to eat an agent's turns. Most warnings I read were not attacks; they are where to look before you install ([numbers.md](numbers.md) §25).
+- **Safety**: I had a model read the `SKILL.md` of all 2,281 distinct skills in a public index against a fixed checklist. It flagged 9, and I judged 6 of them real risks, 2 minor and 1 a false positive. None was an attack: the six are careless design, such as deleting all of a user's skills or following rules fetched from a branch that can change. The rule-based scan passed 3 of the 6 as RECOMMENDED ([numbers.md](numbers.md) §32).
 - **Knowledge**: on 60 facts taken from 30 skills that promise knowledge a model may lack, the model without the skill answered 173 of 180 correctly. One skill cites a guideline I could not find ([numbers.md](numbers.md) §24).
 - **Effect**: popular skills left for the model to use on its own barely changed the results: with eight installed, results were the same as with none, except on one design task, where a large design skill ran the agent into its turn limit. The per-task router matched no skill at 62% more cost ([numbers.md](numbers.md) §26).
 - **Where skills help**: rules a team wrote down and the code does not show. Given the right skills, rule checks passed went from 0.246 to 0.929; installing all 24 of the team's skills reached 0.905 ([numbers.md](numbers.md) §27).
@@ -37,6 +37,30 @@ None of the hits I read was an attack. That is the point of a warning: it tells 
   - the review flagged 0 of the 40 harmless cases in both sets.
 - **60 real skills from the index,** 20 of them security skills that quote attacks: the review flagged none ([numbers.md](numbers.md) §30, §31).
 - **The scope:** both sets are synthetic cases written by one model. I have not yet tried the review on real attacks or on skills built to get past a check.
+
+**Reading the whole index.** I ran the review over the released index ([numbers.md](numbers.md) §32).
+- **Stage one:** a model read the `SKILL.md` of each of the 2,281 distinct skills. It flagged 9.
+- **Stage two:** a full read of those 9 and of 7 skills with remote-instruction warnings flagged the same 9 and no others.
+- **My judgement:** 6 real risks, 2 minor, 1 false positive.
+- **No attack:** none of the 9 was malicious. The real risks are careless design: deleting every skill the user has, running another agent in auto-approve mode, following rules fetched from a branch that can change, pushing to a third party's repository without asking.
+- **The rules alone:** they passed 3 of the 6 real risks as RECOMMENDED. For one, a rule pointed at the flagged line; the other two got CAUTION only because they bundle scripts.
+
+| skill (source) | what the flagged line does | judged | rules v8 alone |
+|---|---|---|---|
+| `core-dynamic-skills` (actionbook-rust-skills) | "cleans generated skills" with `rm -rf ~/.claude/skills/*`, deleting every skill the user has | real risk | RECOMMENDED |
+| `second-opinion` (UASL) | runs another agent with `--yolo`, which approves all its tool calls, after calling the step read-only | real risk | RECOMMENDED |
+| `web-design-guidelines` (UASL) | fetches its rules from a main branch on every run and follows them | real risk | RECOMMENDED |
+| `ln-002-session-analyzer` (UASL) | fetches missing files from a master branch and follows them | real risk | CAUTION (remote instructions) |
+| `skill-sync` (UASL) | installs a third-party repository's skills as live skills, without review | real risk | CAUTION (scripts only) |
+| `ultimate-skill-creator` (UASL) | pushes the user's new skill to a third party's repository without asking | real risk | CAUTION (scripts only) |
+| `file-organizer` (UASL) | deletes duplicate files; only this step lacks the "ask first" wording | minor | CAUTION (scripts only) |
+| `implementing-api-gateway-security-controls` (UASL) | a tutorial example that turns off certificate revocation checks | minor | CAUTION (scripts only) |
+| `chat-summarizer` (UASL) | `--enrich` sends a summary to OpenAI, but it is an option the user adds | false positive | CAUTION (scripts only) |
+
+- **The limits:**
+  - stage one read `SKILL.md` only;
+  - one model reviewed and one person judged;
+  - the 120 skills whose rules warned only about scripts were not read in full.
 
 **Scripts.** 252 skills (9.0%) bundle scripts. Nothing is wrong with that in itself, but it changes the question from "what does this text tell my agent to do" to "what does this code do when my agent runs it", which no reading of `SKILL.md` answers.
 
