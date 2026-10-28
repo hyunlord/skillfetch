@@ -10,7 +10,8 @@ agents.** Per-task routing is an experimental feature (below).
 
 `skillfetch setup` puts three features into Claude Code (`src/skillfetch/setup.py`): it
 registers the MCP server, installs the vet skill and syncs the index, after showing every change
-and asking; `--remove` undoes it.
+and asking; `--remove` undoes it. `--client claude-code|codex|cursor` picks the agent (Codex: `config.toml`
+and `.agents/skills`; Cursor: `mcp.json`, no skill).
 
 | feature | default | how |
 |---|---|---|
