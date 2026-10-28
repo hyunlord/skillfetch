@@ -14,6 +14,10 @@ uv run python scripts/scan_accuracy.py independent --set DIR --rules vN --out FI
     (scripts/scan_accuracy_versions.sh). Writes case id, label, caught and rule ids only.
     `independent --advice` counts by the install advice instead (each case folder through
     `scan`'s checks, no index, no model): flagged = CAUTION or NOT RECOMMENDED.
+
+uv run python scripts/scan_accuracy.py independent-summary
+    Markdown tables for numbers.md §30 from independent/results-vN.json, advice-vN.json and
+    categories.yaml.
 """
 
 from __future__ import annotations
@@ -95,6 +99,7 @@ def main(argv: list[str] | None = None) -> int:
         "--final", action="store_true", help="the rules are settled: eval cases may show"
     )
     sub.add_parser("precision")
+    sub.add_parser("independent-summary")
     ind = sub.add_parser("independent")
     ind.add_argument("--set", type=Path, required=True)
     ind.add_argument("--rules", required=True, help="the rules version being run, e.g. v8")
@@ -104,6 +109,9 @@ def main(argv: list[str] | None = None) -> int:
     args = p.parse_args(argv)
     if args.cmd == "precision":
         print(json.dumps(precision(), indent=1))
+        return 0
+    if args.cmd == "independent-summary":
+        print(independent_summary())
         return 0
     if args.cmd == "independent":
         independent(args.set, args.rules, args.out, args.frozen, args.advice)
@@ -171,6 +179,50 @@ def independent(folder: Path, version: str, out_path: Path, frozen: Path, advice
         f"harmless flagged {out['harmless_flagged']}/{out['harmless']}"
     )
     return out
+
+
+VERSIONS = ("v6", "v7", "v8")
+
+
+def independent_summary() -> str:
+    here = HERE / "independent"
+    load = lambda name: json.loads((here / name).read_text())  # noqa: E731
+    warn = {v: load(f"results-{v}.json") for v in VERSIONS}
+    adv = {v: load(f"advice-{v}.json") for v in VERSIONS}
+    cats = yaml.safe_load((here / "categories.yaml").read_text())
+    of = {f"case-{n + k:03d}": c for c, ns in cats.items() for n in ns for k in (0, 1)}
+    lines = [
+        "| count | v6 | v7 | v8 |",
+        "|---|---:|---:|---:|",
+    ]
+    for name, res in (("advice (CAUTION or above)", adv), ("warning (fail or warn)", warn)):
+        cells = [
+            f"{res[v]['risky_caught']}/{res[v]['risky']} · "
+            f"{res[v]['harmless_flagged']}/{res[v]['harmless']}"
+            for v in VERSIONS
+        ]
+        lines.append(f"| {name} | " + " | ".join(cells) + " |")
+    lines += ["", "| category | risky | caught v6 | v7 | v8 | harmless flagged (v8) |"]
+    lines.append("|---|---:|---:|---:|---:|---:|")
+    for cat in cats:
+        row = []
+        for v in VERSIONS:
+            cases = [r for r in adv[v]["cases"] if of[r["case"]] == cat]
+            row.append(sum(r["caught"] for r in cases if r["expect"] == "catch"))
+        risky = sum(
+            1 for r in adv["v8"]["cases"] if of[r["case"]] == cat and r["expect"] == "catch"
+        )
+        fp = sum(
+            r["caught"]
+            for r in adv["v8"]["cases"]
+            if of[r["case"]] == cat and r["expect"] == "pass"
+        )
+        lines.append(f"| {cat} | {risky} | " + " | ".join(map(str, row)) + f" | {fp} |")
+    lines += ["", "Caught or flagged, per case (rule ids, v8):"]
+    for r in warn["v8"]["cases"]:
+        if r["caught"]:
+            lines.append(f"- {r['case']} ({r['expect']}, {of[r['case']]}): {', '.join(r['rules'])}")
+    return "\n".join(lines)
 
 
 def precision() -> dict:

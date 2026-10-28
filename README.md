@@ -74,7 +74,7 @@ What the report says:
 
 | check | what it reports |
 |---|---|
-| injection scan | failures (instruction overrides, exfiltration, privilege, hidden text) and warnings (`sudo`, piping a download into a shell, a URL named as instructions to follow) |
+| injection scan | failures (instruction overrides, exfiltration, privilege, destructive commands, hidden text) and warnings (a URL named as instructions to follow, safety checks switched off, clearing history); `sudo`, piping a download into a shell and concealment phrasing are info, since almost none of their warnings were worth a look ([§30](docs/writeup/numbers.md#30-scan-accuracy-precision-and-recall-of-the-scan-rules)) |
 | size | `SKILL.md` over 8,000 tokens, more than 50 files, or more than 1 MB |
 | scripts | files a skill bundles to run; the ones that use the network, run commands, delete files or read secrets are named with what they do |
 | license | the skill's LICENSE file or frontmatter; else the nearest license file up to the repository root, unless the repository is an aggregator or the skill names an upstream (the rule discover uses); else none (all rights reserved) |
@@ -82,7 +82,7 @@ What the report says:
 | lint | frontmatter, links, length |
 | duplicates and contradictions | identical copies; pairs of skills whose extracted instructions conflict, quoting both lines |
 
-A real run (2026-10-28, scan rules v7, excerpt) on design-taste-frontend, a popular design skill that one
+A real run (2026-10-28, scan rules v8, excerpt) on design-taste-frontend, a popular design skill that one
 of our measured conditions installed:
 
 ```console
@@ -516,21 +516,29 @@ default produced none. Use it when recall matters more than precision.
 ### How often the scan is wrong
 
 Measured in [numbers.md §30](docs/writeup/numbers.md#30-scan-accuracy-precision-and-recall-of-the-scan-rules)
-(scan rules v7):
-- **Recall:** 40 hand-written test skills the rules were not tuned on.
-  - The scan caught 12 of the 20 risky ones and flagged 1 of the 20 harmless lookalikes (v6: 8 and 1).
-  - It misses `chmod -R 777 ~`, `git commit --no-verify`, download-then-run in two steps, curl output used as instructions, `scp .env` to a remote host, clearing the shell history, and word forms like "printing your system prompt".
-- **Precision:** of its warnings on the released index, two Claude judges both called these worth a reviewer's look:
+(scan rules v8):
+- **Recall on an independent set:** 80 test skills written by GPT without seeing the rules, run
+  once.
+  - The scan caught 3 of the 40 risky ones and flagged 1 of the 40 harmless lookalikes (v6
+    and v7: 2 and 1).
+  - It misses risks stated in prose without a command, path or flag: sending credentials to a
+    URL, wiping a workspace, turning off certificate checks, claiming authority over the user.
+  - The harmless case it flags is a lesson that contains zero-width characters on purpose.
+- **Recall on our own set:** 40 hand-written test skills.
+  - The scan caught 15 of the 20 risky ones and flagged 1 of the 20 harmless lookalikes.
+  - The v8 rules were written after these results were seen, so this is not a held-out number.
+- **Precision:** of its warnings on the released index, two Claude judges both called these
+  worth a reviewer's look:
 
-  | check | worth a look |
-  |---|---:|
-  | size | 5 of 8 |
-  | scripts that use the network, run commands, delete files or read secrets | 6 of 8 |
-  | remote instructions | 2 of 3 |
-  | `sudo` | 0 of 10 |
-  | pipe-to-shell | 0 of 3 |
-  | dated lines | 0 of 11 |
-  | concealment | 0 of 6 |
+  | check | worth a look | in the advice |
+  |---|---:|---|
+  | size | 5 of 8 | yes |
+  | scripts that use the network, run commands, delete files or read secrets | 6 of 8 | yes |
+  | remote instructions | 2 of 3 | yes |
+  | `sudo` | 0 of 10 | no (info) |
+  | pipe-to-shell | 0 of 3 | no (info) |
+  | dated lines | 0 of 11 | no (info) |
+  | concealment | 0 of 6 | no (info) |
 
 ### Cases we get wrong
 

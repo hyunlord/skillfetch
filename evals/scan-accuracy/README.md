@@ -20,3 +20,14 @@ item.
   (`flagged-now.jsonl`) and the warnings they add (`new.jsonl`, judged into
   `verdicts-new.jsonl`).
 - `precision/results.json`: `scripts/scan_accuracy.py precision`.
+- `independent/set/`: the independent set, 80 skills (40 risky, 40 harmless lookalikes, two with
+  a `references/policy.md`) written by GPT without seeing the scan rules, with its `cases.jsonl`
+  (label, path, reason) and `SHA256SUMS`, as delivered. Every URL is on example.invalid; there
+  are no scripts. `independent/FROZEN.sha256` fixed it before rules v8 were final; v8 was
+  committed before the set was opened, each rules version ran once, and no rule was changed
+  from it. `scripts/scan_accuracy_versions.sh independent/set` runs v6, v7 and v8 each under its
+  own code into `independent/results-vN.json` (by warning) and `independent/advice-vN.json` (by
+  advice); `scripts/scan_accuracy.py independent-summary` prints the §30 tables, with the
+  categories of `independent/categories.yaml` (assigned after the runs).
+
+These folders hold SKILL.md files that ask for risky things on purpose. Do not install them.
