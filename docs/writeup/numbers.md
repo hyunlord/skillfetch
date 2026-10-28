@@ -2609,3 +2609,64 @@ Caught or flagged, per case (rule ids, v8):
 - The judges are one model, called twice. "Worth a look" is their judgment, not a confirmed attack.
 - Small strata: 3 to 16 warnings per check and half.
 
+## 31. Semantic review: the checklist read by a model, and the rules, on a new set
+
+Source: `docs/design/review.md` (the checklist, frozen by `evals/scan-accuracy/review/FROZEN-checklist.sha256`), `evals/scan-accuracy/review/` (`run.py`, `index-sample.jsonl`, `results-*.jsonl`), `evals/scan-accuracy/independent-2/` (the set, `FROZEN.sha256`, `results-v8.json`, `advice-v8.json`, `categories.yaml`); `uv run python evals/scan-accuracy/review/run.py summary`. Measured after the post's numbers were frozen; not in §7's totals.
+
+**What is measured.**
+- **The semantic review** (`scan --review`): a fixed checklist of seven categories, read against each skill's files by an isolated `claude -p` (claude-opus-5-5, the user's Claude Code login, no tools, no MCP servers).
+  - A finding counts only if its quoted line is found in the files.
+  - "Flagged" = at least one finding.
+- **The rule-based scan** (rules v8), counted two ways: by advice (CAUTION or above) and by warning (a failure or warning).
+
+**Order.**
+1. The checklist was written in general terms and its hash committed (c2ed87c).
+2. `scan --review`, `scan_skill(review=true)` and the vet skill were committed (c17c948).
+3. The second independent set was checked against its `SHA256SUMS` and frozen (d6d2b3d), then opened.
+4. The rules were measured once. The review ran twice, each run with its own cache, so the second run is a fresh call per case.
+5. Neither the rules nor the checklist changed after the set was opened.
+
+**The second independent set:**
+- 80 skills (40 risky, 40 harmless), written by GPT without seeing the rules; every URL on example.invalid, no scripts;
+- 48 cases carry `references/input.md` and `references/completion.md`;
+- the risky cases ask for harmful handling of data, records and permissions in prose;
+- each harmless case quotes one risky case's sentence to analyse it and says not to carry it out;
+- the categories were assigned after the runs (`categories.yaml`).
+
+| set 2 (risky caught · harmless flagged, of 40 each) | result |
+|---|---:|
+| rules v8, by advice (CAUTION or above) | 0/40 · 0/40 |
+| rules v8, by warning (fail or warn) | 0/40 · 0/40 |
+| review, run1 | 40/40 · 0/40 |
+| review, run2 | 39/40 · 0/40 (1 not reviewed: error) |
+
+| category | risky | rules v8 | review run1 | review run2 | harmless | flagged (rules · review run1 · run2) |
+|---|---:|---:|---:|---:|---:|---|
+| send-out | 14 | 0 | 14 | 13 | 14 | 0 · 0 · 0 |
+| remote-instructions | 5 | 0 | 5 | 5 | 5 | 0 · 0 · 0 |
+| authority | 3 | 0 | 3 | 3 | 3 | 0 · 0 · 0 |
+| destructive | 4 | 0 | 4 | 4 | 4 | 0 · 0 · 0 |
+| disable-safeguards | 3 | 0 | 3 | 3 | 3 | 0 · 0 · 0 |
+| conceal | 10 | 0 | 10 | 10 | 10 | 0 · 0 · 0 |
+| hidden-text | 1 | 0 | 1 | 1 | 1 | 0 · 0 · 0 |
+
+- **Same verdict in both runs:** 79 of 80 cases.
+- **Same set of categories** on the 39 risky cases reviewed in both runs: 30; at least one category in common: 39.
+- **run1: the assigned category among the review's categories:** 36 of 40 flagged risky cases.
+- **run2: the assigned category among the review's categories:** 35 of 39 flagged risky cases.
+- **Cost, run1:** $0.87 for 80 calls.
+- **Cost, run2:** $0.57 for 80 calls.
+
+- **Independent set 1** (§30; seen before the checklist was written, reference only): review 40/40 · 0/40, $0.62 for 80 calls.
+- **Released index, 60 skills** (all passed lint and the injection scan at build): flagged 0 of 20 security skills that quote attacks and 0 of 40 drawn at random; 1 skill only partly read (over 60,000 characters); $3.78 for 60 calls.
+- **Quotes not found in the files** (dropped): 0 in all runs.
+
+- **The one error** (run2, case-061): Claude's safety classifier stopped the reply, so the case was not reviewed and counts as not caught. `scan --review` reports such a skill as "not reviewed (error)".
+- **Total usage** (API-price equivalent, Claude Code plan): $5.86 for 301 calls (a 1-call pilot, set 1, the index sample, two runs on set 2).
+
+**Limits.**
+- One model reviews, and one other model wrote both independent sets; the set's labels are its author's.
+- The index sample is assumed harmless because it passed the build's checks; "0 of 60 flagged" is a count of findings, not a check of those skills.
+- The review reads at most 60,000 characters per skill.
+- It does not change the install advice.
+
