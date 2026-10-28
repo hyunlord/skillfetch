@@ -518,7 +518,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         elif args.markdown:
             text = render_markdown(report)
         else:
-            text = render_report(report)
+            text = render_report(report, review_hint=True)
         sys.stdout.write(text)
         counts = fail_counts(report)
         triggered = [f"{counts[k]} {k}" for k in FAIL_ON if k in args.fail_on and counts[k]]

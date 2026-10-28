@@ -27,7 +27,6 @@ from skillfetch.ingest.licenses import skill_license
 from skillfetch.ingest.lint import LintResult, lint_skill
 from skillfetch.ingest.remote import checkout, is_remote, parse_github_url
 from skillfetch.ingest.repo_license import RepoLicenses, repo_root
-from skillfetch.ingest.review import MAX_CHARS as MAX_REVIEW_CHARS
 from skillfetch.ingest.review import Review
 from skillfetch.ingest.skill_checks import DATED_NOTE, DatedLine, SkillSize, dated_lines, skill_size
 from skillfetch.ingest.skillfile import (
@@ -490,6 +489,12 @@ SEVERITY_ROWS = (
         "skills whose scripts use the network, run commands, delete files or read secrets",
     ),
     ("medium", "REDUNDANT", "pairs where one skill covers the other"),
+    (
+        "medium",
+        "REVIEW_INCOMPLETE",
+        "skills whose review failed or was cut off (read them yourself)",
+    ),
+    ("medium", "REVIEW_PARTIAL", "skills only partly reviewed (too long to read in full)"),
     ("low", "DUPLICATE", "extra copies with identical content"),
     ("low", "TENSION", "tension / needs_review pairs (read both)"),
     ("low", "LINT_WARNING", "skills with lint warnings only"),
@@ -504,7 +509,17 @@ SEVERITY_ROWS = (
 # TENSION, DUPLICATE, LINT_WARNING, SCAN_INFO and DATED are shown but do not change the
 # advice; neither does the license (NO_LICENSE), shown on its own line under the advice.
 NOT_RECOMMENDED = ("SCAN_FAILED", "CONFLICT", "LINT_FAILED")
-CAUTION = ("SCAN_WARNING", "SIZE_WARNING", "RISKY_SCRIPTS", "INVALID_CONSTRAINTS", "REDUNDANT")
+# A review that failed or read only part of a skill is CAUTION (docs/design/review.md §2);
+# review findings themselves are shown but do not change the advice.
+CAUTION = (
+    "SCAN_WARNING",
+    "SIZE_WARNING",
+    "RISKY_SCRIPTS",
+    "INVALID_CONSTRAINTS",
+    "REDUNDANT",
+    "REVIEW_INCOMPLETE",
+    "REVIEW_PARTIAL",
+)
 ADVICE_PHRASES = {  # (one, several)
     "SCAN_FAILED": ("skill fails the injection scan", "skills fail the injection scan"),
     "CONFLICT": ("pair of skills gives opposite instructions", "pairs give opposite instructions"),
@@ -517,6 +532,11 @@ ADVICE_PHRASES = {  # (one, several)
     ),
     "INVALID_CONSTRAINTS": ("skill has invalid constraints", "skills have invalid constraints"),
     "REDUNDANT": ("pair where one skill covers the other", "pairs where one covers the other"),
+    "REVIEW_INCOMPLETE": (
+        "skill's review is incomplete: read it yourself",
+        "skills' reviews are incomplete: read them yourself",
+    ),
+    "REVIEW_PARTIAL": ("skill was only partly reviewed", "skills were only partly reviewed"),
 }
 ADVICE_TEXT = {
     "not_recommended": "NOT RECOMMENDED",
@@ -543,6 +563,13 @@ def problem_counts(report: ScanReport) -> dict[str, int]:
         "SCAN_INFO": sum(bool(s.scan.infos) for s in skills),
         "SIZE_WARNING": sum(bool(s.size and s.size.warnings) for s in skills),
         "DATED": sum(bool(s.dated) for s in skills),
+        "REVIEW_INCOMPLETE": sum(
+            s.review is not None and s.review.error is not None for s in skills
+        ),
+        "REVIEW_PARTIAL": sum(
+            s.review is not None and s.review.error is None and bool(s.review.not_reviewed)
+            for s in skills
+        ),
     }
 
 
@@ -630,20 +657,23 @@ def review_summary(report: ScanReport) -> list[str]:
     """The review line under the license line (docs/design/review.md §2); [] when not asked."""
     if report.review is None:
         return []
-    done = [s for s in report.skills if s.review is not None and s.review.error is None]
-    if not done:
+    reviewed = [s for s in report.skills if s.review is not None]
+    if not reviewed:
         return [f"Review: {report.review}."]
-    n = sum(len(s.review.findings) for s in done)
-    hit = sum(bool(s.review.findings) for s in done)
-    errors = sum(s.review is not None and s.review.error is not None for s in report.skills)
-    sha = done[0].review.checklist_sha[:12]
+    n = sum(len(s.review.findings) for s in reviewed)
+    hit = sum(bool(s.review.findings) for s in reviewed)
+    incomplete = sum(s.review.error is not None for s in reviewed)
+    partly = sum(s.review.error is None and bool(s.review.not_reviewed) for s in reviewed)
+    first = reviewed[0].review
     line = (
-        f"Review ({done[0].review.by}, checklist {sha}): {_plural(n, 'finding')} in "
+        f"Review ({first.by}, checklist {first.checklist_sha[:12]}): {_plural(n, 'finding')} in "
         f"{_plural(hit, 'skill')}"
     )
-    if errors:
-        line += f"; {_plural(errors, 'skill')} not reviewed (error)"
-    return [line + ". Not part of the advice: read the quoted lines."]
+    if incomplete:
+        line += f"; review incomplete for {_plural(incomplete, 'skill')}: read it yourself"
+    if partly:
+        line += f"; {_plural(partly, 'skill')} partly reviewed"
+    return [line + ". Findings are not part of the advice: read the quoted lines."]
 
 
 def review_blocks(report: ScanReport) -> list[str]:
@@ -652,24 +682,29 @@ def review_blocks(report: ScanReport) -> list[str]:
         r = s.review
         if r is None:
             continue
-        if r.error is not None:
-            blocks.append(f"REVIEW  {s.id}\n  not reviewed: {r.error}")
-            continue
-        if not r.findings and not r.not_reviewed:
+        if not r.findings and not r.not_reviewed and r.error is None:
             continue
         lines = [f"REVIEW  {s.id}"]
+        if r.error is not None:
+            lines.append(f"  review incomplete: read this skill yourself ({r.error})")
         for f in r.findings:
             quote = f.quote if len(f.quote) <= 300 else f.quote[:300] + "…"
             lines.append(f'  {s.id}/{f.file}:{f.line}  [{f.category}] "{quote}"')
             lines.append(f"    {f.why}")
         if r.not_reviewed:
             left = ", ".join(r.not_reviewed[:10]) + (" …" if len(r.not_reviewed) > 10 else "")
-            lines.append(f"  not reviewed (past {MAX_REVIEW_CHARS:,} characters): {left}")
+            lines.append(f"  partly reviewed; not read: {left}")
         blocks.append("\n".join(lines))
     return blocks
 
 
-def render_report(report: ScanReport) -> str:
+REVIEW_HINT = (
+    "Tip: `--review` also reads each skill against a checklist, so risky instructions written "
+    "in plain prose are checked too (your Claude Code login; docs/design/review.md)."
+)
+
+
+def render_report(report: ScanReport, review_hint: bool = False) -> str:
     skills = report.skills
     counts = problem_counts(report)
     head = [
@@ -804,6 +839,8 @@ def render_report(report: ScanReport) -> str:
     out = "\n".join(head)
     if blocks:
         out += "\n\nDetails, most severe first:\n\n" + "\n\n".join(blocks)
+    if review_hint and report.review is None:
+        out += "\n\n" + REVIEW_HINT
     return out + "\n"
 
 

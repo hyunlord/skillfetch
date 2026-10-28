@@ -72,6 +72,14 @@ Each finding is `{category, file, line, quote, why}`, with `category` one of `se
 - **Shown under the advice line, never inside it:**
   - `Review (<model>, checklist <sha12>): <n> findings in <m> skills`;
   - then each finding with its file, line, quoted line and reason.
+- **When the review fails, the advice says so** (added after the second independent set was
+  opened; numbers.md §31). The advice is then at least CAUTION:
+  - **Review incomplete** (REVIEW_INCOMPLETE): a request failed, timed out, or its reply held no
+    findings JSON, as when a safety classifier cut it off or the model declined. The skill is
+    shown as "review incomplete: read this skill yourself". Such a reply is not cached, so the
+    next run asks again.
+  - **Partly reviewed** (REVIEW_PARTIAL): part of the skill was left unread (§3). The files or
+    lines not read are listed.
 
 ## 3. Where it runs
 
@@ -80,6 +88,9 @@ Each finding is `{category, file, line, quote, why}`, with `category` one of `se
     `--claude-code` extraction runs: no tools, no MCP servers, project settings only, a scratch
     working folder, no API key;
   - the model is the CLI's default model;
+  - a skill over 60,000 characters is read in parts, one request each, up to five (300,000
+    characters). A file longer than one request is split between lines and keeps its line
+    numbers. What is left after five requests is not read, and the skill is partly reviewed;
   - answers are cached in `~/.skillfetch/review-cache/<sha>.json`, keyed by the checklist,
     the files sent and the request;
   - without the `claude` CLI the review is skipped and the report says so.
@@ -91,9 +102,11 @@ Each finding is `{category, file, line, quote, why}`, with `category` one of `se
 - **The MCP server never calls a model.** It only hands over the checklist and the files.
 
 **What is read:** `SKILL.md` first, then the skill folder's other text files (`.md`, `.txt`,
-`.yaml`, `.yml`, `.json`, `.toml` and script files by extension), in path order. The limit is
-60,000 characters in all. Files past the limit are listed as not reviewed. Symbolic links are
-never read.
+`.yaml`, `.yml`, `.json`, `.toml` and script files by extension), in path order. Symbolic links
+are never read.
+- **`scan --review`:** up to five requests of 60,000 characters (above).
+- **`scan_skill(review=true)`:** the files that fit in 60,000 characters. Files past that are
+  listed in `review.not_reviewed`, and the skill counts as partly reviewed.
 
 ## 4. Evaluation (numbers.md §31)
 

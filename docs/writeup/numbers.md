@@ -2662,7 +2662,12 @@ Source: `docs/design/review.md` (the checklist, frozen by `evals/scan-accuracy/r
 - **Quotes not found in the files** (dropped): 0 in all runs.
 
 - **The one error** (run2, case-061): Claude's safety classifier stopped the reply, so the case was not reviewed and counts as not caught. `scan --review` reports such a skill as "not reviewed (error)".
-- **Total usage** (API-price equivalent, Claude Code plan): $5.86 for 301 calls (a 1-call pilot, set 1, the index sample, two runs on set 2).
+- **Total usage** (API-price equivalent, Claude Code plan): $5.86 for 301 calls (a 1-call pilot, set 1, the index sample, two runs on set 2), $0.019 per call on average. Per call by set: set 2 $0.011 (run1) and $0.007 (run2), set 1 $0.008, the index sample $0.063.
+
+**Changed after set 2 was opened** (not measured again; the numbers above are from the code at c17c948):
+- **A review that fails is CAUTION.** A request that fails or whose reply holds no findings JSON is shown as "review incomplete: read this skill yourself" and makes the advice at least CAUTION. Run2's case-061 is such a reply.
+- **Partial reads are CAUTION.** A skill over 60,000 characters is now read in up to five requests; what is left unread makes it "partly reviewed" and CAUTION. The one partly read index skill above was read with the old single 60,000-character request.
+- **Failed replies are no longer cached.**
 
 **Limits.**
 - One model reviews, and one other model wrote both independent sets; the set's labels are its author's.
