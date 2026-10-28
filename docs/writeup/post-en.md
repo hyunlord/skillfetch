@@ -32,7 +32,7 @@ None of the hits I read was an attack. That is the point of a warning: it tells 
 
 **Scripts.** 252 skills (9.0%) bundle scripts. Nothing is wrong with that in itself, but it changes the question from "what does this text tell my agent to do" to "what does this code do when my agent runs it", which no reading of `SKILL.md` answers.
 
-**Size.** 67 skills (2.4%) are over a limit: a `SKILL.md` over 8,000 tokens, more than 20 files, or more than 1 MB. Section 4 shows why that is a warning and not a style note: the skill that ran P's landing-page sessions into their turn limit there, design-taste-frontend, has 39 files and 2.4 MB, over two of these limits, so `scan` gives it CAUTION before you install it.
+**Size.** 67 skills (2.4%) were over a limit when I counted: a `SKILL.md` over 8,000 tokens, more than 20 files, or more than 1 MB. The file limit is now 50: two judges called 5 of 15 size warnings worth a look at 20 files, and 5 of 8 at 50 ([numbers.md](numbers.md) §30). Section 4 shows why size is a warning and not a style note: the skill that ran P's landing-page sessions into their turn limit there, design-taste-frontend, is 2.4 MB, over the 1 MB limit, so `scan` gives it CAUTION before you install it.
 
 **Licenses.** 89.3% of skills state no license of their own. If the license file of the repository they live in counts, which is the rule `scan` uses unless the repository is an aggregator of other people's skills, 53.5% have none. The license is shown next to the advice, not in it: it decides what you may redistribute, not whether a skill is safe to run.
 
@@ -123,10 +123,10 @@ uvx --from git+https://github.com/hyunlord/skillfetch skillfetch scan https://gi
 uvx --from git+https://github.com/hyunlord/skillfetch skillfetch scan ~/.claude/skills
 ```
 
-A GitHub URL is cloned shallowly into a temporary folder, scanned and deleted; nothing is installed or run. The report opens with one line of advice from safety and quality checks only: NOT RECOMMENDED when a skill fails the injection scan or lint, or two skills contradict each other; CAUTION for injection-scan warnings (remote instructions among them), size, bundled scripts, or one skill covering another; RECOMMENDED otherwise. Under it is the license and where it was found. Then every finding, with the line it comes from. Run on the design skill from section 4:
+A GitHub URL is cloned shallowly into a temporary folder, scanned and deleted; nothing is installed or run. The report opens with one line of advice from safety and quality checks only: NOT RECOMMENDED when a skill fails the injection scan or lint, or two skills contradict each other; CAUTION for injection-scan warnings (remote instructions among them), size, bundled scripts that use the network, run commands, delete files or read secrets, or one skill covering another; RECOMMENDED otherwise. `sudo`, piping a download into a shell, concealment phrasing and dated lines are shown as notes and do not change the advice, because almost none of their warnings were worth a look (below). Under it is the license and where it was found. Then every finding, with the line it comes from. Run on the design skill from section 4:
 
 ```
-Before you install: CAUTION (1 skill is over a size limit; 1 skill bundles scripts)
+Before you install: CAUTION (1 skill is over a size limit; 1 skill bundles scripts that need a look)
 License: MIT (repo root). Not part of the advice: check it before you redistribute a skill.
 ```
 
@@ -135,7 +135,8 @@ No model and no API key. Contradictions between installed copies of public skill
 **The router is experimental.** skillfetch also has the per-task router measured above: an MCP server and one router skill that search the index for each task and load a small, conflict-checked set. It works as designed. In my measurements it was better than the popular skills installed for good, but not better than no skill. It cost 62% more per session on single tasks and about 1.5 times as much over six requests in one session, and on a team's own skills it lost to plain installation. It stays in the repository as an experimental feature.
 
 **What the tool gets wrong.**
-- The injection scan is a regex blocklist. It cannot tell a tutorial from an exploit, and some remote-instruction hits are badges and doc links.
+- The injection scan is a regex blocklist, and it misses most risks written in plain prose. On 80 test skills that GPT wrote without seeing the rules, it caught 3 of the 40 risky ones and flagged 1 of the 40 harmless lookalikes (the version before: 2 and 1; [numbers.md](numbers.md) §30). It catches commands, paths, flags and fixed phrases; "erase every project file and backup" or "turn off certificate validation" pass. The harmless case it flagged is a lesson that uses zero-width characters on purpose.
+- Its warnings are not equally useful. Of a sample of the warnings it raised on the public index, two Claude judges both called these worth a reviewer's look: size 5 of 8, scripts that use the network, run commands, delete files or read secrets 6 of 8, remote instructions 2 of 3, `sudo` 0 of 10, pipe-to-shell 0 of 3, dated lines 0 of 11, concealment phrasing 0 of 6. The last four are now notes, not part of the advice.
 - The dated-claim check is a pattern match. It does not know whether a claim is out of date.
 - The size limits come from one failure I watched, not from a study of limits.
 - The license line is a count of what is stated, not a legal opinion.
