@@ -2720,6 +2720,11 @@ Source: `evals/index-review/` (`run.py`, `results-stage1.jsonl`, `results-stage2
   - 5 others get CAUTION from the rules only for their bundled scripts;
   - 3 (`core-dynamic-skills`, `second-opinion`, `web-design-guidelines`) are RECOMMENDED by the rules.
 
+**Copies in an aggregator stay old.** Two of the six real risks were already fixed or gone at the source (checked 2026-10-28):
+- **`second-opinion`:** the UASL copy of Trail of Bits' skill. trailofbits/skills now runs Gemini CLI with `--approval-mode default` and says not to use `--yolo` (`plugins/second-opinion/skills/second-opinion/references/gemini-invocation.md` at f44eeba).
+- **`ln-002-session-analyzer`:** the UASL copy of a skill from levnikolaevich/claude-code-skills. That repository renamed `skills/` to `skills-catalog/` (d79dd8e), then moved to plugin bundles (3913e1f), and the skill is not in its current tree. The copy's fallback URL points at a path that no longer exists.
+- **The copies:** both are still in UASL at the indexed commit, which is also its HEAD (2a76bf42).
+
 **Limits.**
 - Stage 1 read SKILL.md only. A risk in a reference file or script of a skill that stage 1 did not flag and the rules did not warn about was not looked for, and the 120 script-warning skills were not read in full.
 - One model reviewed; the judgements are one person's.

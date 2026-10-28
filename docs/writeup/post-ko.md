@@ -48,14 +48,16 @@
 | 스킬(출처) | 표시된 줄이 하는 일 | 판정 | 규칙(v8)만으로 |
 |---|---|---|---|
 | `core-dynamic-skills`(actionbook-rust-skills) | "생성한 스킬 정리"라며 `rm -rf ~/.claude/skills/*`로 사용자의 스킬을 전부 지운다 | 실제 위험 | RECOMMENDED |
-| `second-opinion`(UASL) | 다른 에이전트를 모든 도구 호출을 자동 승인하는 `--yolo`로 실행하면서, 그 단계를 읽기 전용이라고 소개한다 | 실제 위험 | RECOMMENDED |
+| `second-opinion`(UASL의 사본. 원본 trailofbits/skills는 이미 `--yolo`를 기본 승인 모드로 바꿨다) | 다른 에이전트를 모든 도구 호출을 자동 승인하는 `--yolo`로 실행하면서, 그 단계를 읽기 전용이라고 소개한다 | 실제 위험 | RECOMMENDED |
 | `web-design-guidelines`(UASL) | 실행할 때마다 main 브랜치에서 규칙을 받아 따른다 | 실제 위험 | RECOMMENDED |
-| `ln-002-session-analyzer`(UASL) | 없는 파일을 master 브랜치에서 받아 따른다 | 실제 위험 | CAUTION(원격 지시) |
+| `ln-002-session-analyzer`(UASL의 사본. 원작자 저장소에서는 이 스킬이 없어졌다) | 없는 파일을 master 브랜치에서 받아 따른다 | 실제 위험 | CAUTION(원격 지시) |
 | `skill-sync`(UASL) | 제3자 저장소의 스킬을 검토 없이 바로 쓰는 스킬로 설치한다 | 실제 위험 | CAUTION(스크립트만) |
 | `ultimate-skill-creator`(UASL) | 사용자가 새로 만든 스킬을 묻지 않고 제3자 저장소로 push한다 | 실제 위험 | CAUTION(스크립트만) |
 | `file-organizer`(UASL) | 중복 파일을 지운다. 이 단계에만 "먼저 묻기" 문구가 없다 | 경미 | CAUTION(스크립트만) |
 | `implementing-api-gateway-security-controls`(UASL) | 튜토리얼 예시에서 인증서 폐기 확인을 끈다 | 경미 | CAUTION(스크립트만) |
 | `chat-summarizer`(UASL) | `--enrich`가 요약을 OpenAI로 보내지만, 사용자가 붙이는 선택 옵션이다 | 오탐 | CAUTION(스크립트만) |
+
+**집계 저장소의 사본은 원본이 고쳐도 옛 버전으로 남는다.** 표시된 실제 위험 6개 중 2개는 원본에서 이미 고쳐졌거나 사라진 것이었다. Trail of Bits의 `second-opinion`은 더 이상 `--yolo`를 쓰지 않고, 원작자 저장소에는 `ln-002-session-analyzer`가 없다. index가 가져온 집계 저장소 UASL의 사본에는 옛 줄이 그대로 남아 있다.
 
 - **한계:**
   - 1단계는 `SKILL.md`만 읽었다.

@@ -48,14 +48,16 @@ None of the hits I read was an attack. That is the point of a warning: it tells 
 | skill (source) | what the flagged line does | judged | rules v8 alone |
 |---|---|---|---|
 | `core-dynamic-skills` (actionbook-rust-skills) | "cleans generated skills" with `rm -rf ~/.claude/skills/*`, deleting every skill the user has | real risk | RECOMMENDED |
-| `second-opinion` (UASL) | runs another agent with `--yolo`, which approves all its tool calls, after calling the step read-only | real risk | RECOMMENDED |
+| `second-opinion` (UASL's copy; the original, trailofbits/skills, has since replaced `--yolo` with the default approval mode) | runs another agent with `--yolo`, which approves all its tool calls, after calling the step read-only | real risk | RECOMMENDED |
 | `web-design-guidelines` (UASL) | fetches its rules from a main branch on every run and follows them | real risk | RECOMMENDED |
-| `ln-002-session-analyzer` (UASL) | fetches missing files from a master branch and follows them | real risk | CAUTION (remote instructions) |
+| `ln-002-session-analyzer` (UASL's copy; the skill no longer exists in its author's repository) | fetches missing files from a master branch and follows them | real risk | CAUTION (remote instructions) |
 | `skill-sync` (UASL) | installs a third-party repository's skills as live skills, without review | real risk | CAUTION (scripts only) |
 | `ultimate-skill-creator` (UASL) | pushes the user's new skill to a third party's repository without asking | real risk | CAUTION (scripts only) |
 | `file-organizer` (UASL) | deletes duplicate files; only this step lacks the "ask first" wording | minor | CAUTION (scripts only) |
 | `implementing-api-gateway-security-controls` (UASL) | a tutorial example that turns off certificate revocation checks | minor | CAUTION (scripts only) |
 | `chat-summarizer` (UASL) | `--enrich` sends a summary to OpenAI, but it is an option the user adds | false positive | CAUTION (scripts only) |
+
+**Copies in an aggregator stay old when the original is fixed.** Two of the six real risks were already fixed or gone at the source. Trail of Bits' `second-opinion` no longer uses `--yolo`. The author's repository no longer has `ln-002-session-analyzer`. The copies in UASL, the aggregator the index took them from, still carry the old lines.
 
 - **The limits:**
   - stage one read `SKILL.md` only;
