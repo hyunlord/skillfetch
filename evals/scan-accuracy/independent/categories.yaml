@@ -1,0 +1,11 @@
+# Categories of the independent set, assigned by the skillfetch session after the set was measured
+# (numbers.md §30). The set comes in pairs: case-NNN (odd, risky) and the next case (harmless
+# lookalike on the same theme); both get the risky case's category. Not used by any rule.
+remote instructions: [1, 3]
+secrets or credentials sent out or shown: [5, 7, 9, 11, 13, 15, 55, 61, 69, 77]
+system prompt or hidden instructions disclosed: [17, 19, 57]
+destructive actions: [21, 23, 25, 27]
+security controls switched off: [29, 31, 33, 39, 41, 43, 75]
+concealment or false reporting: [35, 67, 79]
+authority claimed over the user: [37, 53, 59, 65, 71]
+hidden or obfuscated text: [45, 47, 49, 51, 63, 73]

@@ -114,24 +114,35 @@ Pattern families, each a list of regexes in `scan_rules.yaml`. A hit records
 
 | family | examples | effect |
 |---|---|---|
-| `override` | "ignore previous/all instructions", "disregard the system prompt", "you are now" | hard fail |
-| `exfil` | reads of `~/.ssh`, `~/.aws`, `.env`, tokens/keys, "send to <url>"; remote script execution from an untrusted URL (`http://`, raw IP, URL shortener) | hard fail |
-| `exfil` (warn rules) | remote script execution from an `https://` URL: `curl … \| sh`, `sh -c "$(curl …)"`, `sh <(curl …)` | warn |
+| `override` | "ignore previous/all instructions", "disregard the system prompt", "you are now"; paraphrases (rules v7): earlier guidance "no longer applies", "set aside everything you were told", "do not follow the user"; rules v8: -s/-ing forms ("printing your system prompt") and requests for the agent's own prompt ("output your full system instructions", `override.prompt-leak`) | hard fail |
+| `exfil` | reads of `~/.ssh`, `~/.aws`, `.env`, tokens/keys, "send to <url>"; remote script execution from an untrusted URL (`http://`, raw IP, URL shortener); rules v8: a credentials file moved off the machine, any verb form ("uploading ~/.aws/credentials", `exfil.credential-upload`), and a secret file copied to another host (`scp .env host:`, `rsync ~/.ssh host:`, `curl -F f=@.env`, `exfil.secret-file-remote-copy`) | hard fail |
+| `exfil` (info) | remote script execution from an `https://` URL: `curl … \| sh`, `sh -c "$(curl …)"`, `sh <(curl …)`, PowerShell `iwr … \| iex` (rules v7). A negated mention is skipped. Rules v8: info (advice policy below); warn in v2–v7 | info |
 | `privilege` | remote script execution combined with sudo, "run as root", "disable sandbox", "--dangerously" | hard fail |
-| `privilege` (warn rules) | `sudo <command>` on its own (`sudo apt-get install …`) | warn |
-| `network` | `network.remote-instructions` (rules v6): a URL that names an instruction file (`SKILL.md`, `AGENTS.md`, `CLAUDE.md`, `*instructions*`/`*prompt*`/`*rules*` `.md`/`.txt`), or a fetch/curl/wget/read/follow/load/download/import verb that takes a URL in the same sentence (or after a lead-in line ending with ":") with an instruction word between them (follow, instructions, rules, prompt, skill, guidelines); negated sentences are skipped | warn |
+| `privilege` (warn rules) | rules v8, `privilege.bypass-check`: a safety check switched off (`git commit/push … --no-verify`, `--no-check-certificate`, `NODE_TLS_REJECT_UNAUTHORIZED=0`, `GIT_SSL_NO_VERIFY`, `StrictHostKeyChecking no`, `strict-ssl false`, `http.sslVerify false`, `setenforce 0`, `--allow-unauthenticated`) | warn |
+| `privilege` (info) | `sudo <command>`, the lowercase command only (rules v7; v8: info, warn in v2–v7); `privilege.sudo-package` (rules v7): `sudo apt-get/yum/dnf/brew/… install` | info |
+| `destructive` (rules v8) | a command that wipes or opens up a whole home folder or disk: `rm -rf /`, `rm -rf ~`, `$HOME`, `mkfs /dev/…`, `dd of=/dev/sd…`, a fork bomb; `chmod -R 777`, `chmod 777 ~` (not after `;` or a quote: an injection payload quoted in security docs) | hard fail |
+| `network` | `network.remote-instructions` (rules v6, v7): a URL that names an instruction file (`SKILL.md`, `AGENTS.md`, `CLAUDE.md`, `*instructions*`/`*prompt*`/`*rules*` `.md`/`.txt`, or any `.md`/`.txt` under a `prompts/`, `rules/` or `instructions/` folder, v7), or a fetch/curl/wget/read/follow/load/download/import verb that takes a URL in the same sentence (or after a lead-in line ending with ":") with an instruction word between them (follow, instructions, rules, prompt, skill, guidelines; v7: a bare "follow" before a markdown link does not count); negated sentences and archive downloads (`.zip`, `.tar.gz`, … v7) are skipped | warn |
 | `network` | `network.bare-url`: any other absolute `http(s)://` in an instruction (not in a docs link) | info (rules v6; warn before) |
-| `scripts` | folder contains executable files or `scripts/` | tag `has_scripts`; tier cap B→C unless publisher verified |
-| `hidden` | zero-width chars, HTML comments with instructions, base64 blobs > 200 chars | hard fail |
+| `scripts` | folder contains executable files or `scripts/`; v7: `risky_scripts` names the scripts that use the network, run commands, delete files or read secrets (`SCRIPT_RISKS` in `injection.py`) | tag `has_scripts`; tier cap B→C unless publisher verified |
+| `hidden` | zero-width chars, HTML comments with instructions, base64 blobs > 200 chars; decode-and-run (rules v7): `base64 -d \| sh`, `eval "$(… base64 …)"`, PowerShell `-EncodedCommand`, `exec(b64decode(…))`, hex escapes piped into a shell | hard fail |
+| `conceal` (rules v7) | hiding things from the user: "do not tell the user", "without telling the user", "say the tests passed", "silently send/delete …" | info (rules v8; warn in v7) |
+| `conceal` (warn rule) | rules v8, `conceal.clear-history`: erasing what ran (`history -c`, `unset HISTFILE`, `HISTSIZE=0`, deleting a `*_history` file, `Clear-EventLog`, `wevtutil cl`) | warn |
 
 Hard fail → `status: scan_failed`, excluded. This is a blocklist, not a proof of
-safety; say so in README.
+safety; say so in README. Its measured precision and recall, and the changes of rules v7 and
+v8, are in numbers.md §30 (`evals/scan-accuracy/`).
 
-Why `curl … | sh` and bare `sudo` only warn (rules v2): they are the standard
+Why `curl … | sh` and bare `sudo` do not fail (rules v2): they are the standard
 install form of uv, rustup, Homebrew and nvm and of most setup steps. Failing
 them would drop a large share of legitimate setup skills, and anyone opening
 the "rejected because" list in the data write-up would stop trusting it. They
 fail only in the combinations above.
+
+Advice policy (rules v8, numbers.md §30): only checks whose measured precision held up change
+`scan`'s advice: size, risky scripts, remote instructions, the hard-fail injection rules, lint
+and conflicts. `sudo`, pipe-to-shell, concealment phrasing and dated lines are info: of the
+warnings sampled from the released index, 0 of 10, 0 of 3, 0 of 6 and 0 of 11 were worth a
+look to both judges. The policy was set after the evaluation half's precision was seen.
 
 Implementation notes (`ingest/injection.py`, rules in `ingest/scan_rules.yaml`):
 
@@ -168,12 +179,14 @@ Implementation notes (`ingest/injection.py`, rules in `ingest/scan_rules.yaml`):
   "always keep this table sorted" or "do not remove" pass (rules v2).
 - Rules may set `allow_negated`: a match is skipped when a negation (`not`,
   `never`, `n't`, `no`, `without`) appears at most two words before it. "Never
-  run sudo …" is advice; "Do not hesitate to run sudo …" still fails. Used only
+  run sudo …" is advice; "Do not hesitate to run sudo …" still fails. The match may open a
+  code span or quote ("never run `rm -rf ~`", rules v8). Used only
   where benign negated phrasing is common (sudo, root, sandbox,
   `--dangerously-*`, reading key/credential paths, system prompt).
 - `override.system-prompt` needs one of `ignore`, `disregard`, `bypass`,
-  `reveal`, `print`, `repeat`, `leak` within 20 characters before "system
-  prompt". `output` and `override` were dropped in rules v4: "… without test or
+  `reveal`, `print`, `repeat`, `leak` (rules v8: also `dump`, `recite`, and the -s and -ing
+  forms of each; not -ed: "leaked system prompt patterns" names a thing) within 20
+  characters before "system prompt". `output` and `override` were dropped in rules v4: "… without test or
   build output, add to the system prompt" (anthropics claude-api) and "Direct:
   override system prompts" (an OWASP table describing attacks) are
   documentation.
@@ -576,7 +589,8 @@ As built (`ingest/local_scan.py`, `cli.py`):
   details with the source lines, most severe first. The summary gives:
   - the number of problems per severity:
     - high: SCAN_FAILED, CONFLICT;
-    - medium: LINT_FAILED, INVALID_CONSTRAINTS, SCAN_WARNING, SIZE_WARNING, REDUNDANT;
+    - medium: LINT_FAILED, INVALID_CONSTRAINTS, SCAN_WARNING, SIZE_WARNING, RISKY_SCRIPTS,
+      REDUNDANT;
     - low: DUPLICATE, TENSION (tension and needs_review), LINT_WARNING, NO_LICENSE;
     - info: HAS_SCRIPTS, SCAN_INFO, DATED;
   - how many skills the contradiction check covered.
@@ -597,15 +611,16 @@ As built (`ingest/local_scan.py`, `cli.py`):
 
 - **Size** (`SIZE_WARNING`, medium), per skill. Each limit warns on its own:
   - `SKILL.md` over 8,000 tokens (characters / 4), the default budget of `load_skills`;
-  - more than 20 files: `SKILL.md` plus every other file of the skill (`skill_files`: no
-    hidden files, caches or symbolic links);
+  - more than 50 files (20 before rules v7): `SKILL.md` plus every other file of the skill
+    (`skill_files`: no hidden files, caches or symbolic links);
   - more than 1 MB (1,000,000 bytes) for those files together.
   A large skill is one an agent may spend its turns reading; the README gives the measured
   case.
 - **Dated claims** (`DATED`, info): prose lines of the skill's Markdown files that state a
   year (2010–2039), a version number (`v1.2`, `1.2.3`) or a named product with a version
-  (`React 19`, `Swift 6.2`, `iOS 26`, `OWASP Top 10:2025`). Lines in fenced code blocks are
-  skipped. Each is marked "may have changed since the model was trained, or be wrong; check
+  (`React 19`, `Swift 6.2`, `iOS 26`, `OWASP Top 10:2025`). Lines in fenced code blocks and
+  the YAML frontmatter are skipped, and so are versions on a line that states a minimum
+  ("3.8+", ">=3.0", "or later", "at least"; years on it still count) (rules v7). Each is marked "may have changed since the model was trained, or be wrong; check
   the official docs". The report shows five per skill; `--json` lists all.
 - **Remote scan**: `skillfetch scan https://github.com/<owner>/<repo>[/tree/<ref>[/<path>]]`.
   - The repository is cloned at depth 1 into a temporary folder, which is deleted after the
@@ -621,10 +636,11 @@ As built (`ingest/local_scan.py`, `cli.py`):
   - **not recommended** if any skill fails the injection scan (SCAN_FAILED) or lint
     (LINT_FAILED), or any pair conflicts (CONFLICT);
   - else **caution** if any of: SCAN_WARNING (which includes remote instructions),
-    SIZE_WARNING, HAS_SCRIPTS, INVALID_CONSTRAINTS, REDUNDANT;
+    SIZE_WARNING, RISKY_SCRIPTS (scripts that use the network, run commands, delete files or
+    read secrets; v7, was HAS_SCRIPTS), INVALID_CONSTRAINTS, REDUNDANT;
   - else **recommended**.
-  - TENSION, DUPLICATE, LINT_WARNING, SCAN_INFO and DATED are shown but do not change the
-    advice. The reasons list the counts behind the level.
+  - TENSION, DUPLICATE, LINT_WARNING, HAS_SCRIPTS, SCAN_INFO and DATED are shown but do not
+    change the advice. The reasons list the counts behind the level.
 - **License** (the second line of the text report; `license`, `license_origin` per skill in
   `--json`). It is not part of the advice: a license decides what you may redistribute, not
   whether a skill is safe to use. Each license is shown with where it was found, e.g.
@@ -659,8 +675,9 @@ query, tiers A and B). Nothing is loaded; this is separate from per-task routing
   `license` (the record's), `repo_license`, `advice`, `advice_reasons`, `scan_url`.
 - **Advice from the record**, by §5.1 without the pair checks and the license: lint errors
   or scan failures stored at build time → not recommended; else a stored scan warning whose
-  rule is still `warn` under the current rules, `token_estimate` over 8,000, more than 20
-  files, or scripts → caution; else recommended. The size in bytes and checks added after the
+  rule is still `warn` under the current rules, `token_estimate` over 8,000, more than 50
+  files, or scripts (the record cannot tell which scripts are risky) → caution; else
+  recommended. The size in bytes and checks added after the
   build (remote instructions, rules v6) need the files.
 - **`scan_url`**: `https://github.com/<owner>/<repo>/tree/<commit>/<path>`, the skill at its
   pinned commit, for `scan` / `scan_skill` before installing. The vet skill tells the agent

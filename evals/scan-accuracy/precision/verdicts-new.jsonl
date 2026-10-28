@@ -1,0 +1,14 @@
+{"item_id": "c81fb1c58292", "judge": 1, "verdict": "false_positive", "kind": "pattern match only"}
+{"item_id": "c81fb1c58292", "judge": 2, "verdict": "false_positive", "kind": "pattern match only"}
+{"item_id": "6e99a881f8e7", "judge": 1, "verdict": "false_positive", "kind": "pattern match only"}
+{"item_id": "6e99a881f8e7", "judge": 2, "verdict": "false_positive", "kind": "pattern match only"}
+{"item_id": "69bec4532485", "judge": 1, "verdict": "false_positive", "kind": "documentation or example"}
+{"item_id": "69bec4532485", "judge": 2, "verdict": "false_positive", "kind": "documentation or example"}
+{"item_id": "7b91d17e6e5e", "judge": 1, "verdict": "false_positive", "kind": "pattern match only"}
+{"item_id": "7b91d17e6e5e", "judge": 2, "verdict": "false_positive", "kind": "pattern match only"}
+{"item_id": "6a3e8d868261", "judge": 1, "verdict": "false_positive", "kind": "pattern match only"}
+{"item_id": "6a3e8d868261", "judge": 2, "verdict": "false_positive", "kind": "pattern match only"}
+{"item_id": "f33353165f39", "judge": 1, "verdict": "false_positive", "kind": "pattern match only"}
+{"item_id": "f33353165f39", "judge": 2, "verdict": "false_positive", "kind": "pattern match only"}
+{"item_id": "977339db0e69", "judge": 1, "verdict": "false_positive", "kind": "documentation or example"}
+{"item_id": "977339db0e69", "judge": 2, "verdict": "false_positive", "kind": "documentation or example"}

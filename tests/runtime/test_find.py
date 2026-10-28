@@ -47,8 +47,14 @@ def test_record_advice_follows_the_install_rule():
     # a stored warning whose rule is info under the current rules (v6) does not count
     bare = {**base, "scan": {"warnings": [{"rule_id": "network.bare-url"}]}}
     assert record_advice(bare) == ("recommended", [])
+    # sudo was a warning when the index was built and is info under rules v8
     sudo = {**base, "scan": {"warnings": [{"rule_id": "privilege.sudo"}]}}
-    assert record_advice(sudo) == ("caution", ["injection-scan warnings: privilege.sudo"])
+    assert record_advice(sudo) == ("recommended", [])
+    remote = {**base, "scan": {"warnings": [{"rule_id": "network.remote-instructions"}]}}
+    assert record_advice(remote) == (
+        "caution",
+        ["injection-scan warnings: network.remote-instructions"],
+    )
 
 
 def test_scan_url_points_at_the_pinned_folder():

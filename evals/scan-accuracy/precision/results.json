@@ -1,0 +1,230 @@
+{
+ "dated": {
+  "dev": {
+   "before": {
+    "n": 15,
+    "worth_a_look": 1,
+    "false_positive": 13,
+    "split": 1
+   },
+   "after": {
+    "n": 9,
+    "worth_a_look": 1,
+    "false_positive": 8,
+    "split": 0
+   }
+  },
+  "eval": {
+   "before": {
+    "n": 15,
+    "worth_a_look": 0,
+    "false_positive": 15,
+    "split": 0
+   },
+   "after": {
+    "n": 11,
+    "worth_a_look": 0,
+    "false_positive": 11,
+    "split": 0
+   }
+  }
+ },
+ "exfil.pipe-to-shell": {
+  "dev": {
+   "before": {
+    "n": 4,
+    "worth_a_look": 0,
+    "false_positive": 4,
+    "split": 0
+   },
+   "after": {
+    "n": 3,
+    "worth_a_look": 0,
+    "false_positive": 3,
+    "split": 0
+   }
+  },
+  "eval": {
+   "before": {
+    "n": 3,
+    "worth_a_look": 0,
+    "false_positive": 2,
+    "split": 1
+   },
+   "after": {
+    "n": 3,
+    "worth_a_look": 0,
+    "false_positive": 2,
+    "split": 1
+   }
+  }
+ },
+ "network.remote-instructions": {
+  "dev": {
+   "before": {
+    "n": 6,
+    "worth_a_look": 2,
+    "false_positive": 3,
+    "split": 1
+   },
+   "after": {
+    "n": 5,
+    "worth_a_look": 2,
+    "false_positive": 2,
+    "split": 1
+   }
+  },
+  "eval": {
+   "before": {
+    "n": 5,
+    "worth_a_look": 2,
+    "false_positive": 3,
+    "split": 0
+   },
+   "after": {
+    "n": 3,
+    "worth_a_look": 2,
+    "false_positive": 1,
+    "split": 0
+   }
+  }
+ },
+ "privilege.sudo": {
+  "dev": {
+   "before": {
+    "n": 17,
+    "worth_a_look": 2,
+    "false_positive": 15,
+    "split": 0
+   },
+   "after": {
+    "n": 10,
+    "worth_a_look": 2,
+    "false_positive": 8,
+    "split": 0
+   }
+  },
+  "eval": {
+   "before": {
+    "n": 16,
+    "worth_a_look": 0,
+    "false_positive": 14,
+    "split": 2
+   },
+   "after": {
+    "n": 10,
+    "worth_a_look": 0,
+    "false_positive": 9,
+    "split": 1
+   }
+  }
+ },
+ "scan.line-too-long": {
+  "dev": {
+   "before": {
+    "n": 1,
+    "worth_a_look": 0,
+    "false_positive": 1,
+    "split": 0
+   },
+   "after": {
+    "n": 1,
+    "worth_a_look": 0,
+    "false_positive": 1,
+    "split": 0
+   }
+  },
+  "eval": {
+   "before": {
+    "n": 1,
+    "worth_a_look": 1,
+    "false_positive": 0,
+    "split": 0
+   },
+   "after": {
+    "n": 1,
+    "worth_a_look": 1,
+    "false_positive": 0,
+    "split": 0
+   }
+  }
+ },
+ "scripts": {
+  "dev": {
+   "before": {
+    "n": 15,
+    "worth_a_look": 6,
+    "false_positive": 9,
+    "split": 0
+   },
+   "after": {
+    "n": 8,
+    "worth_a_look": 5,
+    "false_positive": 3,
+    "split": 0
+   }
+  },
+  "eval": {
+   "before": {
+    "n": 15,
+    "worth_a_look": 7,
+    "false_positive": 8,
+    "split": 0
+   },
+   "after": {
+    "n": 8,
+    "worth_a_look": 6,
+    "false_positive": 2,
+    "split": 0
+   }
+  }
+ },
+ "size": {
+  "dev": {
+   "before": {
+    "n": 15,
+    "worth_a_look": 7,
+    "false_positive": 6,
+    "split": 2
+   },
+   "after": {
+    "n": 9,
+    "worth_a_look": 7,
+    "false_positive": 1,
+    "split": 1
+   }
+  },
+  "eval": {
+   "before": {
+    "n": 15,
+    "worth_a_look": 5,
+    "false_positive": 6,
+    "split": 4
+   },
+   "after": {
+    "n": 8,
+    "worth_a_look": 5,
+    "false_positive": 1,
+    "split": 2
+   }
+  }
+ },
+ "conceal.from-user": {
+  "dev": {
+   "after": {
+    "n": 3,
+    "worth_a_look": 0,
+    "false_positive": 3,
+    "split": 0
+   }
+  },
+  "eval": {
+   "after": {
+    "n": 3,
+    "worth_a_look": 0,
+    "false_positive": 3,
+    "split": 0
+   }
+  }
+ }
+}

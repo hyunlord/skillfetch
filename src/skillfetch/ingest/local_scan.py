@@ -466,6 +466,11 @@ SEVERITY_ROWS = (
     ("medium", "INVALID_CONSTRAINTS", "skills whose constraints do not match their lines"),
     ("medium", "SCAN_WARNING", "skills with injection-scan warnings"),
     ("medium", "SIZE_WARNING", "skills over a size limit (SKILL.md tokens, files or MB)"),
+    (
+        "medium",
+        "RISKY_SCRIPTS",
+        "skills whose scripts use the network, run commands, delete files or read secrets",
+    ),
     ("medium", "REDUNDANT", "pairs where one skill covers the other"),
     ("low", "DUPLICATE", "extra copies with identical content"),
     ("low", "TENSION", "tension / needs_review pairs (read both)"),
@@ -481,14 +486,17 @@ SEVERITY_ROWS = (
 # TENSION, DUPLICATE, LINT_WARNING, SCAN_INFO and DATED are shown but do not change the
 # advice; neither does the license (NO_LICENSE), shown on its own line under the advice.
 NOT_RECOMMENDED = ("SCAN_FAILED", "CONFLICT", "LINT_FAILED")
-CAUTION = ("SCAN_WARNING", "SIZE_WARNING", "HAS_SCRIPTS", "INVALID_CONSTRAINTS", "REDUNDANT")
+CAUTION = ("SCAN_WARNING", "SIZE_WARNING", "RISKY_SCRIPTS", "INVALID_CONSTRAINTS", "REDUNDANT")
 ADVICE_PHRASES = {  # (one, several)
     "SCAN_FAILED": ("skill fails the injection scan", "skills fail the injection scan"),
     "CONFLICT": ("pair of skills gives opposite instructions", "pairs give opposite instructions"),
     "LINT_FAILED": ("skill fails lint", "skills fail lint"),
     "SCAN_WARNING": ("skill has injection-scan warnings", "skills have injection-scan warnings"),
     "SIZE_WARNING": ("skill is over a size limit", "skills are over a size limit"),
-    "HAS_SCRIPTS": ("skill bundles scripts", "skills bundle scripts"),
+    "RISKY_SCRIPTS": (
+        "skill bundles scripts that need a look",
+        "skills bundle scripts that need a look",
+    ),
     "INVALID_CONSTRAINTS": ("skill has invalid constraints", "skills have invalid constraints"),
     "REDUNDANT": ("pair where one skill covers the other", "pairs where one covers the other"),
 }
@@ -513,6 +521,7 @@ def problem_counts(report: ScanReport) -> dict[str, int]:
         "LINT_WARNING": sum(s.lint.ok and bool(s.lint.warnings) for s in skills),
         "NO_LICENSE": sum(s.license == "unknown" for s in skills),
         "HAS_SCRIPTS": sum(s.scan.has_scripts for s in skills),
+        "RISKY_SCRIPTS": sum(bool(s.scan.risky_scripts) for s in skills),
         "SCAN_INFO": sum(bool(s.scan.infos) for s in skills),
         "SIZE_WARNING": sum(bool(s.size and s.size.warnings) for s in skills),
         "DATED": sum(bool(s.dated) for s in skills),
@@ -687,6 +696,13 @@ def render_report(report: ScanReport) -> str:
             "skill with one (all rights reserved by default; not part of the advice)\n"
             + "\n".join(f"  {sid}" for sid in unlicensed)
         )
+    for s in skills:
+        if s.scan.risky_scripts:
+            lines = [f"RISKY_SCRIPTS  {s.id}"]
+            lines += [
+                f"  {s.id}/{path}: {', '.join(what)}" for path, what in s.scan.risky_scripts.items()
+            ]
+            blocks.append("\n".join(lines))
     for s in skills:
         if s.scan.has_scripts:
             lines = [f"HAS_SCRIPTS  {s.id}  (tier capped at C unless the publisher is verified)"]
