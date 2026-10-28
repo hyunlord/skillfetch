@@ -9,7 +9,8 @@
   ("SKILL.md only"), with scan --review's reviewer (ClaudeReviewer: isolated `claude -p`, the
   frozen checklist). Long SKILL.md files are read in parts as in scan --review.
 - **stage2**: the skills stage 1 flagged, plus the skills whose rule-based scan warns about
-  remote instructions or risky scripts, reviewed in full (all text files).
+  remote instructions (and, with `--with-scripts`, risky scripts), reviewed in full (all text
+  files). §32 ran it without the script-warning skills (the cap; numbers.md §32).
 - Each stage appends one row per skill to <work>/stage<N>.jsonl as it goes, so a stopped run
   resumes. A skill whose review failed (cut off, refused, no findings JSON) is asked once more
   at the end of the stage. The stage stops scheduling new skills once the spend of both stages
@@ -68,23 +69,24 @@ def _all_rows(stage: int) -> list[dict]:
     return [json.loads(x) for x in path.open()] if path.is_file() else []
 
 
-def targets() -> list[str]:
-    """Stage 2: flagged in stage 1, or the rules warn about remote instructions or scripts."""
+def targets(with_scripts: bool = False) -> list[str]:
+    """Stage 2: flagged in stage 1, or the rules warn about remote instructions (or, with
+    with_scripts, risky scripts)."""
     flagged = {s for s, x in _rows(1).items() if x["review"]["findings"]}
     picked = []
     for skill, folder in canonical():
         res = scan_skill(folder)
         remote = any(h.rule_id == "network.remote-instructions" for h in res.warnings)
-        if skill in flagged or remote or res.risky_scripts:
+        if skill in flagged or remote or (with_scripts and res.risky_scripts):
             picked.append(skill)
     return picked
 
 
-def run_stage(stage: int, jobs: int, budget: float) -> None:
+def run_stage(stage: int, jobs: int, budget: float, with_scripts: bool = False) -> None:
     WORK.mkdir(parents=True, exist_ok=True)
     reviewer = ClaudeReviewer(cache=WORK / "cache", skill_md_only=stage == 1)
     folders = dict(canonical())
-    names = list(folders) if stage == 1 else targets()
+    names = list(folders) if stage == 1 else targets(with_scripts)
     lock = threading.Lock()
     total = [spent()]
     out = (WORK / f"stage{stage}.jsonl").open("a")
@@ -198,16 +200,18 @@ def main(argv: list[str] | None = None) -> int:
         s = sub.add_parser(name)
         s.add_argument("--jobs", type=int, default=6)
         s.add_argument("--budget", type=float, default=95.0)
-    sub.add_parser("targets")
+        s.add_argument("--with-scripts", action="store_true")
+    t = sub.add_parser("targets")
+    t.add_argument("--with-scripts", action="store_true")
     sub.add_parser("export")
     args = p.parse_args(argv)
     if args.cmd == "targets":
-        names = targets()
+        names = targets(args.with_scripts)
         print(json.dumps({"stage2_targets": len(names)}))
     elif args.cmd == "export":
         export()
     else:
-        run_stage(int(args.cmd[-1]), args.jobs, args.budget)
+        run_stage(int(args.cmd[-1]), args.jobs, args.budget, args.with_scripts)
     return 0
 
 
