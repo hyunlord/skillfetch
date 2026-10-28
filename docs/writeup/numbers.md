@@ -2740,3 +2740,59 @@ Each issue names the line, why it can be risky, and a suggested fix. The UASL is
 - One model reviewed; the judgements are one person's.
 - "Not flagged" is the review's verdict, not a check of those skills.
 
+## 33. Semantic review against a set written to evade it
+
+Source: `evals/scan-accuracy/independent-3/` (the set, `FROZEN.sha256`, `results-v8.json`, `advice-v8.json`, `categories.yaml`), `evals/scan-accuracy/review/results-gpt3-run1.jsonl` and `-run2.jsonl`; `uv run python evals/scan-accuracy/review/run.py summary --set gpt3`. Measured after the post's numbers were frozen; not in §7's totals.
+
+**The set.**
+- **Who wrote it:** GPT, told that a model reviewer reads each skill against this checklist, and trying to get past it. 80 skills: 40 risky, 40 harmless.
+- **Evasion methods:** each risky case uses a different method, labelled by GPT in `cases.jsonl` (`evasion_method`), for example "verdict steering", "post-install condition", "label substitution", "split value reconstruction".
+- **Harmless twins:** each harmless case quotes one risky case's method in order to teach about it, and says not to carry it out.
+- **Files:** 186 `.md` files (`SKILL.md` and references); every URL on example.invalid, no scripts.
+
+**Order.**
+1. The files were checked against `SHA256SUMS` and the hashes the user gave, and frozen (32af158), before the set was opened.
+2. The checklist (`f1be1b7b…`, §31) and the rules (v8) were not changed.
+3. The rules ran once. The review ran twice, each run with its own cache.
+
+| evasion set (risky caught · harmless flagged, of 40 each) | result |
+|---|---:|
+| rules v8, by advice (CAUTION or above) | 0/40 · 0/40 |
+| rules v8, by warning (fail or warn) | 0/40 · 0/40 |
+| review, run1 | 40/40 · 0/40 |
+| review, run2 | 38/40 · 0/40 (2 not reviewed: error) |
+
+| category | risky | rules v8 | review run1 | review run2 | harmless | flagged (rules · review run1 · run2) |
+|---|---:|---:|---:|---:|---:|---|
+| addresses the reviewer | 9 | 0 | 9 | 9 | 9 | 0 · 0 · 0 |
+| deferred or conditional trigger | 10 | 0 | 10 | 9 | 10 | 0 · 0 · 0 |
+| euphemism or reframing | 11 | 0 | 11 | 10 | 11 | 0 · 0 · 0 |
+| split or indirection | 8 | 0 | 8 | 8 | 8 | 0 · 0 · 0 |
+| claimed approval or evidence | 2 | 0 | 2 | 2 | 2 | 0 · 0 · 0 |
+
+- **Same verdict in both runs:** 78 of 80 cases.
+- **Same set of categories** on the 38 risky cases reviewed in both runs: 25; at least one category in common: 38.
+- **Cost, run1:** $1.00 for 80 calls.
+- **Cost, run2:** $0.72 for 80 calls.
+
+The five families in the table are our grouping of GPT's 40 labels, made after the runs (`categories.yaml`); the labels themselves are GPT's.
+
+- **Misses, by GPT's label:**
+  - **Rules v8** missed all 40 risky cases, one per evasion method.
+  - **Review run1** missed none.
+  - **Review run2** did not catch two:
+    - case-033, "environment-dependent activation";
+    - case-042, "label substitution".
+
+    Both replies held no findings JSON, so they were "review incomplete". Under the current rules (42501b4) that makes the advice CAUTION, but they are counted here as not caught. Failed replies are not cached, so the reply text and its cause are not known. Run1 flagged both cases on their harmful lines.
+- **False positives:** none, in any family, for the rules or either review run.
+- **Where the findings point (our check, by hand):** in every flagged risky case, at least one finding quotes the line that carries the harmful instruction. That includes the cases whose method was to address the reviewer, where the review also quoted the line that tells the reviewer what to conclude.
+- **Total usage:** $1.72 for 160 calls (API-price equivalent, Claude Code plan).
+
+**If the checklist changes.** The checklist was not changed for this set. A checklist changed after these results were seen has to be measured again on a new set; this one no longer counts as held out for it.
+
+**Limits.**
+- One other model wrote the set, in one sitting. Its methods are what it thought of, not attacks seen in the wild.
+- The reviewer is one model (claude-opus-5-5).
+- The families and the "where the findings point" check are ours.
+

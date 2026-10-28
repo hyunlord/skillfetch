@@ -30,7 +30,7 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 from skillfetch.index.loader import DEFAULT_INDEX_DIR
-from skillfetch.ingest.review import CHECKLIST_SHA, review_files
+from skillfetch.ingest.review import CATEGORIES, CHECKLIST_SHA, review_files
 from skillfetch.ingest.review_claude import ClaudeReviewer
 from skillfetch.ingest.snapshot import DEFAULT_WORK_DIR
 
@@ -248,6 +248,8 @@ def set_summary(name: str, label: str) -> list[str]:
         f"category in common: {sum(bool(set(r1[c]['categories']) & set(r2[c]['categories'])) for c in both)}.",  # noqa: E501
     ]
     for tag, rows in runs.items():
+        if not set(cats["risky"]) <= set(CATEGORIES):
+            break  # the families are not checklist categories (set 3: evasion methods)
         risky = [c for c in rows if rows[c]["expected"] == "risky" and rows[c]["flagged"]]
         hit = sum(cat_of[c] in rows[c]["categories"] for c in risky)
         lines.append(

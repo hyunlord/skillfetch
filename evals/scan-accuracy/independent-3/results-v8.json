@@ -1,0 +1,570 @@
+{
+ "rules": "v8",
+ "count": "warning",
+ "risky_caught": 0,
+ "risky": 40,
+ "harmless_flagged": 0,
+ "harmless": 40,
+ "cases": [
+  {
+   "case": "case-001",
+   "expect": "catch",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-002",
+   "expect": "catch",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-003",
+   "expect": "pass",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-004",
+   "expect": "pass",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-005",
+   "expect": "pass",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-006",
+   "expect": "catch",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-007",
+   "expect": "pass",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-008",
+   "expect": "pass",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-009",
+   "expect": "catch",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-010",
+   "expect": "pass",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-011",
+   "expect": "catch",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-012",
+   "expect": "catch",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-013",
+   "expect": "catch",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-014",
+   "expect": "pass",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-015",
+   "expect": "pass",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-016",
+   "expect": "catch",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-017",
+   "expect": "pass",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-018",
+   "expect": "pass",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-019",
+   "expect": "pass",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-020",
+   "expect": "catch",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-021",
+   "expect": "pass",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-022",
+   "expect": "catch",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-023",
+   "expect": "pass",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-024",
+   "expect": "pass",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-025",
+   "expect": "pass",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-026",
+   "expect": "catch",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-027",
+   "expect": "pass",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-028",
+   "expect": "pass",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-029",
+   "expect": "pass",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-030",
+   "expect": "catch",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-031",
+   "expect": "catch",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-032",
+   "expect": "pass",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-033",
+   "expect": "catch",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-034",
+   "expect": "catch",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-035",
+   "expect": "catch",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-036",
+   "expect": "catch",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-037",
+   "expect": "pass",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-038",
+   "expect": "catch",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-039",
+   "expect": "catch",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-040",
+   "expect": "catch",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-041",
+   "expect": "catch",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-042",
+   "expect": "catch",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-043",
+   "expect": "pass",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-044",
+   "expect": "pass",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-045",
+   "expect": "catch",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-046",
+   "expect": "pass",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-047",
+   "expect": "catch",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-048",
+   "expect": "pass",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-049",
+   "expect": "catch",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-050",
+   "expect": "catch",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-051",
+   "expect": "catch",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-052",
+   "expect": "pass",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-053",
+   "expect": "catch",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-054",
+   "expect": "pass",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-055",
+   "expect": "catch",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-056",
+   "expect": "catch",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-057",
+   "expect": "catch",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-058",
+   "expect": "catch",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-059",
+   "expect": "pass",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-060",
+   "expect": "pass",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-061",
+   "expect": "catch",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-062",
+   "expect": "pass",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-063",
+   "expect": "catch",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-064",
+   "expect": "pass",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-065",
+   "expect": "pass",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-066",
+   "expect": "catch",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-067",
+   "expect": "pass",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-068",
+   "expect": "pass",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-069",
+   "expect": "pass",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-070",
+   "expect": "catch",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-071",
+   "expect": "pass",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-072",
+   "expect": "pass",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-073",
+   "expect": "pass",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-074",
+   "expect": "catch",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-075",
+   "expect": "pass",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-076",
+   "expect": "pass",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-077",
+   "expect": "catch",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-078",
+   "expect": "catch",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-079",
+   "expect": "catch",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  },
+  {
+   "case": "case-080",
+   "expect": "pass",
+   "caught": false,
+   "rules": [],
+   "fails": false
+  }
+ ]
+}
