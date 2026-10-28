@@ -4,7 +4,7 @@
 
 **At a glance**
 
-- **Safety**: I had a model read the `SKILL.md` of all 2,281 distinct skills in a public index against a fixed checklist. It flagged 9, and I judged 6 of them real risks, 2 minor and 1 a false positive. None was an attack: the six are careless design, such as deleting all of a user's skills or following rules fetched from a branch that can change. The rule-based scan passed 3 of the 6 as RECOMMENDED ([numbers.md](numbers.md) §32).
+- **Safety**: I had a model read the `SKILL.md` of all 2,281 distinct skills in a public index against a fixed checklist. It flagged 9, and I judged 6 of them real risks, 2 minor and 1 a false positive. None was an attack: the six are careless design, such as deleting all of a user's skills or following rules fetched from a branch that can change. The rule-based scan passed 3 of the 6 as RECOMMENDED ([numbers.md](numbers.md) §32). On GPT-written test sets, including one written to get past the review, the review caught 38–40 of 40 risky skills with no false positives, where the rules caught 0–3 (§31, §33).
 - **Knowledge**: on 60 facts taken from 30 skills that promise knowledge a model may lack, the model without the skill answered 173 of 180 correctly. One skill cites a guideline I could not find ([numbers.md](numbers.md) §24).
 - **Effect**: popular skills left for the model to use on its own barely changed the results: with eight installed, results were the same as with none, except on one design task, where a large design skill ran the agent into its turn limit. The per-task router matched no skill at 62% more cost ([numbers.md](numbers.md) §26).
 - **Where skills help**: rules a team wrote down and the code does not show. Given the right skills, rule checks passed went from 0.246 to 0.929; installing all 24 of the team's skills reached 0.905 ([numbers.md](numbers.md) §27).
@@ -35,8 +35,12 @@ None of the hits I read was an attack. That is the point of a warning: it tells 
   - the rules caught 0–3 of the 40 risky cases;
   - a review that reads each skill against a fixed checklist with a model (`scan --review`) caught 39–40 of 40;
   - the review flagged 0 of the 40 harmless cases in both sets.
+- **A third set written to get past the review:** GPT was told that a model reads each skill against the checklist, and used 40 different ways to slip by it.
+  - The review still caught 38–40 of the 40 risky cases and flagged none of the 40 harmless ones; the rules caught 0 of 40.
+  - It caught all 9 cases that speak to the reviewer to steer its verdict.
+  - In one of the two runs, the replies for 2 cases came back without findings. They are marked "review incomplete", and the safeguard makes their advice CAUTION ([numbers.md](numbers.md) §33).
 - **60 real skills from the index,** 20 of them security skills that quote attacks: the review flagged none ([numbers.md](numbers.md) §30, §31).
-- **The scope:** both sets are synthetic cases written by one model. I have not yet tried the review on real attacks or on skills built to get past a check.
+- **The scope:** all three sets are synthetic cases written by GPT, not real attacks, and one model did the reviewing.
 
 **Reading the whole index.** I ran the review over the released index ([numbers.md](numbers.md) §32).
 - **Stage one:** a model read the `SKILL.md` of each of the 2,281 distinct skills. It flagged 9.
@@ -185,10 +189,10 @@ It costs a model call per skill: about $0.02 per call in my runs, in API-price t
 
 **What the tool gets wrong.**
 - The injection scan is a regex blocklist, and it misses most risks written in plain prose. On 80 test skills that GPT wrote without seeing the rules, it caught 3 of the 40 risky ones and flagged 1 of the 40 harmless lookalikes (the version before: 2 and 1; [numbers.md](numbers.md) §30); on a second set of 80, it caught 0 of 40 (§31). It catches commands, paths, flags and fixed phrases; "erase every project file and backup" or "turn off certificate validation" pass. The harmless case it flagged is a lesson that uses zero-width characters on purpose.
-- The review (`--review`) caught 39–40 of 40 on the second set and flagged none of the 40 harmless cases there, nor any of 60 real index skills (§31).
-  - Both sets are synthetic, written by one model; real attacks and skills built to evade a check are untested.
+- The review (`--review`) caught 39–40 of 40 on the second set and 38–40 of 40 on a set written to evade it. It flagged none of the 80 harmless cases in those sets, nor any of 60 real index skills (§31, §33).
+  - All three sets are synthetic, written by GPT, not real attacks; one model did the reviewing.
   - It runs on your model and costs a call per skill.
-  - In one of its two runs, a safety classifier cut off the reply for one risky case. Such a skill is now marked "review incomplete" and gets CAUTION.
+  - Some replies come back cut off or empty: 1 risky case in the second set and 2 in the evasion set, each in one of the two runs. Such a skill is marked "review incomplete" and gets CAUTION.
 - Its warnings are not equally useful. Of a sample of the warnings it raised on the public index, two Claude judges both called these worth a reviewer's look: size 5 of 8, scripts that use the network, run commands, delete files or read secrets 6 of 8, remote instructions 2 of 3, `sudo` 0 of 10, pipe-to-shell 0 of 3, dated lines 0 of 11, concealment phrasing 0 of 6. The last four are now notes, not part of the advice.
 - The dated-claim check is a pattern match. It does not know whether a claim is out of date.
 - The size limits come from one failure I watched, not from a study of limits.

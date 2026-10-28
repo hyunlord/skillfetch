@@ -3,11 +3,12 @@
 **Check a skill before you install it: rules for what can be matched, and a checklist read by
 your own model for what is written in prose.**
 
-On two sets of 80 test skills that GPT wrote without seeing the rules (40 risky, 40 harmless),
-the rules caught 0–3 of the 40 risky ones. The checklist review caught 39–40 of them and flagged
-none of the 40 harmless ones, nor any of 60 real skills from the index. Both sets are synthetic;
-real attacks and skills built to evade a check are untested
-([numbers.md §31](docs/writeup/numbers.md#31-semantic-review-the-checklist-read-by-a-model-and-the-rules-on-a-new-set)).
+On three sets of 80 test skills written by GPT (40 risky, 40 harmless), the rules caught 0–3 of
+the 40 risky ones. One of the sets was written to get past the review. The checklist review
+caught 38–40 of the risky ones in every set, and flagged none of the harmless ones nor any of 60
+real skills from the index. All three sets are synthetic, not real attacks, and one model did the
+reviewing ([numbers.md §31](docs/writeup/numbers.md#31-semantic-review-the-checklist-read-by-a-model-and-the-rules-on-a-new-set),
+[§33](docs/writeup/numbers.md#33-semantic-review-against-a-set-written-to-evade-it)).
 
 ```console
 $ uvx --from git+https://github.com/hyunlord/skillfetch skillfetch setup
@@ -546,6 +547,17 @@ On a second set of 80 test skills written by GPT without seeing the rules
 | rules v8 | 0 | 0 |
 | `--review`, first run | 40 | 0 |
 | `--review`, second run | 39 (1 reply cut off by a safety classifier) | 0 |
+
+On a third set of 80, which GPT wrote knowing that a model reviews each skill against the
+checklist ([numbers.md §33](docs/writeup/numbers.md#33-semantic-review-against-a-set-written-to-evade-it)):
+
+| | risky caught (of 40) | harmless flagged (of 40) |
+|---|---:|---:|
+| rules v8 | 0 | 0 |
+| `--review`, first run | 40 | 0 |
+| `--review`, second run | 38 (2 replies without findings: "review incomplete", so CAUTION) | 0 |
+
+The review caught all 9 cases that address the reviewer to steer its verdict.
 
 On 60 skills from the released index (20 of them security skills that quote attacks), the
 review flagged none.
