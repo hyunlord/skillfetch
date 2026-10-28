@@ -1,0 +1,4 @@
+95d5ee861d54ef252967eaed572fd17037db87b4d6fe86f3338f84ac09aaf01d  SHA256SUMS
+# The independent set (~/skillfetch-work/scan-eval-gpt/): 80 SKILL.md, 2 references/policy.md,
+# cases.jsonl, each listed with its sha256 in SHA256SUMS. Fixed 2026-10-28 before any scan of it;
+# no rule is changed from it.
