@@ -2725,6 +2725,16 @@ Source: `evals/index-review/` (`run.py`, `results-stage1.jsonl`, `results-stage2
 - **`ln-002-session-analyzer`:** the UASL copy of a skill from levnikolaevich/claude-code-skills. That repository renamed `skills/` to `skills-catalog/` (d79dd8e), then moved to plugin bundles (3913e1f), and the skill is not in its current tree. The copy's fallback URL points at a path that no longer exists.
 - **The copies:** both are still in UASL at the indexed commit, which is also its HEAD (2a76bf42).
 
+**Reported to the authors** (2026-10-28, after the user read and approved each issue):
+
+| repository | skills | issue | status |
+|---|---|---|---|
+| actionbook/rust-skills | core-dynamic-skills | https://github.com/actionbook/rust-skills/issues/42 | open, no reply yet |
+| vercel-labs/agent-skills | web-design-guidelines | https://github.com/vercel-labs/agent-skills/issues/351 | open, no reply yet |
+| onfire7777/universal-ai-skills-library | second-opinion, ln-002-session-analyzer, skill-sync, ultimate-skill-creator | https://github.com/onfire7777/universal-ai-skills-library/issues/55 | open, no reply yet |
+
+Each issue names the line, why it can be risky, and a suggested fix. The UASL issue asks for the two copies to be brought in line with their originals. Replies and fixes will be added here with their date and commit.
+
 **Limits.**
 - Stage 1 read SKILL.md only. A risk in a reference file or script of a skill that stage 1 did not flag and the rules did not warn about was not looked for, and the 120 script-warning skills were not read in full.
 - One model reviewed; the judgements are one person's.
