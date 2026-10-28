@@ -1166,6 +1166,15 @@ def index_review(out: list[str]) -> None:
     out += [path.read_text().strip() if path.is_file() else "Not run yet.", ""]
 
 
+def robustness(out: list[str]) -> None:
+    """§33: the review against a set written to evade it (evals/scan-accuracy/independent-3/,
+    transcribed in data/e2e/robustness.md). Left out until it has run."""
+    path = DATA / "e2e" / "robustness.md"
+    if path.is_file():
+        out += ["## 33. Semantic review against a set written to evade it", ""]
+        out += [path.read_text().strip(), ""]
+
+
 def main() -> None:
     out = [
         "# Numbers for the write-up",
@@ -1209,6 +1218,7 @@ def main() -> None:
         scan_accuracy,
         scan_review,
         index_review,
+        robustness,
     ):
         section(out)
     OUT.parent.mkdir(parents=True, exist_ok=True)
