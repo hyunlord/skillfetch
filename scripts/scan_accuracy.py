@@ -12,6 +12,8 @@ uv run python scripts/scan_accuracy.py independent --set DIR --rules vN --out FI
     here): each case folder scanned as it is, references included. DIR must match
     independent/FROZEN.sha256. Run once per rules version, each under that version's code
     (scripts/scan_accuracy_versions.sh). Writes case id, label, caught and rule ids only.
+    `independent --advice` counts by the install advice instead (each case folder through
+    `scan`'s checks, no index, no model): flagged = CAUTION or NOT RECOMMENDED.
 """
 
 from __future__ import annotations
@@ -98,12 +100,13 @@ def main(argv: list[str] | None = None) -> int:
     ind.add_argument("--rules", required=True, help="the rules version being run, e.g. v8")
     ind.add_argument("--out", type=Path, required=True)
     ind.add_argument("--frozen", type=Path, default=HERE / "independent" / "FROZEN.sha256")
+    ind.add_argument("--advice", action="store_true", help="count by the install advice")
     args = p.parse_args(argv)
     if args.cmd == "precision":
         print(json.dumps(precision(), indent=1))
         return 0
     if args.cmd == "independent":
-        independent(args.set, args.rules, args.out, args.frozen)
+        independent(args.set, args.rules, args.out, args.frozen, args.advice)
         return 0
     if args.cmd == "recall":
         if args.split == "eval" and args.cases and not args.final:
@@ -115,7 +118,14 @@ def main(argv: list[str] | None = None) -> int:
 LABELS = {"위험": "catch", "무해": "pass", "risky": "catch", "harmless": "pass"}
 
 
-def independent(folder: Path, version: str, out_path: Path, frozen: Path) -> dict:
+def _advice(case_dir: Path) -> tuple[bool, list[str]]:
+    from skillfetch.ingest.local_scan import install_advice, scan_dir
+
+    level, reasons = install_advice(scan_dir(case_dir))
+    return level != "recommended", [level, *reasons]
+
+
+def independent(folder: Path, version: str, out_path: Path, frozen: Path, advice: bool) -> dict:
     """Scan every case folder of the frozen independent set with the installed rules."""
     from skillfetch.ingest.injection import load_rules
 
@@ -135,21 +145,19 @@ def independent(folder: Path, version: str, out_path: Path, frozen: Path) -> dic
     for line in (folder / "cases.jsonl").open():
         case = json.loads(line)
         case_dir = folder / Path(case["path"]).parent
-        result = scan_skill(case_dir)
-        rules = sorted({h.rule_id for h in result.failures + result.warnings})
-        rows.append(
-            {
-                "case": case_dir.name,
-                "expect": LABELS[case["label"]],
-                "caught": bool(rules),
-                "rules": rules,
-                "fails": bool(result.failures),
-            }
-        )
+        if advice:
+            caught, why = _advice(case_dir)
+            row = {"caught": caught, "advice": why}
+        else:
+            result = scan_skill(case_dir)
+            rules = sorted({h.rule_id for h in result.failures + result.warnings})
+            row = {"caught": bool(rules), "rules": rules, "fails": bool(result.failures)}
+        rows.append({"case": case_dir.name, "expect": LABELS[case["label"]], **row})
     risky = [r for r in rows if r["expect"] == "catch"]
     harmless = [r for r in rows if r["expect"] == "pass"]
     out = {
         "rules": version,
+        "count": "advice" if advice else "warning",
         "risky_caught": sum(r["caught"] for r in risky),
         "risky": len(risky),
         "harmless_flagged": sum(r["caught"] for r in harmless),
@@ -158,7 +166,8 @@ def independent(folder: Path, version: str, out_path: Path, frozen: Path) -> dic
     }
     out_path.write_text(json.dumps(out, indent=1, ensure_ascii=False) + "\n")
     print(
-        f"independent ({version}): risky caught {out['risky_caught']}/{out['risky']}, "
+        f"independent ({version}, {out['count']}): "
+        f"risky caught {out['risky_caught']}/{out['risky']}, "
         f"harmless flagged {out['harmless_flagged']}/{out['harmless']}"
     )
     return out

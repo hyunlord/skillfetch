@@ -2,7 +2,7 @@
 # The independent scan-accuracy set (numbers.md §30), scanned once under the code of each rules
 # version: v6 (c8cf328), v7 (e5014ad), v8 (e71139e). Each version's src/ is taken from git into
 # a temporary folder and put first on PYTHONPATH; results go to
-# evals/scan-accuracy/independent/results-vN.json.
+# evals/scan-accuracy/independent/results-vN.json (warnings) and advice-vN.json (advice).
 #
 #   sh scripts/scan_accuracy_versions.sh <set dir> [frozen file] [out dir]
 set -eu
@@ -22,4 +22,7 @@ for pair in v6:c8cf328 v7:e5014ad v8:e71139e; do
     || { echo "skillfetch did not load from $WORK/$v/src" >&2; exit 1; }
   PYTHONPATH="$WORK/$v/src" "$ROOT/.venv/bin/python" "$ROOT/scripts/scan_accuracy.py" \
     independent --set "$SET" --rules "$v" --frozen "$FROZEN" --out "$OUT/results-$v.json"
+  PYTHONPATH="$WORK/$v/src" "$ROOT/.venv/bin/python" "$ROOT/scripts/scan_accuracy.py" \
+    independent --advice --set "$SET" --rules "$v" --frozen "$FROZEN" \
+    --out "$OUT/advice-$v.json"
 done
