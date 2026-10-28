@@ -1,0 +1,5 @@
+59328b007bbe36e586561aad5380e003bbdf7633db7aa52543a4e802ef6e8df9  SHA256SUMS
+# The third independent set (~/skillfetch-work/scan-eval-gpt-3/): written by GPT to get past the
+# semantic review, knowing a model reads each skill against the checklist. 80 cases, 186 .md files
+# and cases.jsonl (e3bae6b4…), each listed in SHA256SUMS. Fixed 2026-10-28 before the set was
+# opened. The checklist (f1be1b7b…) and the rules (v8) do not change for this measurement.

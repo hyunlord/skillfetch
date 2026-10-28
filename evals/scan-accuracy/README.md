@@ -40,5 +40,12 @@ item.
   fixed it after the review was committed and before it was opened. Rules v8 ran once
   (`results-v8.json`, `advice-v8.json`), the review twice (`review/results-gpt2-run1|2.jsonl`).
   `categories.yaml` was assigned after the runs.
+- `independent-3/set/`: the evasion set (numbers.md §33), 80 skills (40 risky, 40 harmless)
+  written by GPT knowing that a model reviews each skill against the checklist, as delivered
+  with `cases.jsonl` (label, reason, `evasion_method` as GPT labelled it) and `SHA256SUMS`; every
+  URL on example.invalid, no scripts. `independent-3/FROZEN.sha256` fixed it before it was
+  opened. Rules v8 ran once (`results-v8.json`, `advice-v8.json`), the review twice
+  (`review/results-gpt3-run1|2.jsonl`) with the checklist unchanged. `categories.yaml` groups
+  GPT's 40 labels into five families of ours, made after the runs.
 
 These folders hold SKILL.md files that ask for risky things on purpose. Do not install them.

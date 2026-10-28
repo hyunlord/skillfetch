@@ -120,3 +120,10 @@ are never read.
    - Its hash is checked on arrival.
    - The rules and the review are each measured once: recall on the risky cases, false
      positives on the harmless ones.
+4. **Robustness (numbers.md §33):** a set written by another model that knows a model reads each
+   skill against this checklist and tries to get past it.
+   - Its hash is checked and committed before it is opened.
+   - The rules (v8) are measured once, and the review twice, with the checklist unchanged.
+   - Each miss is filed under the evasion it used.
+   - If the checklist is changed after these results are seen, the changed version is measured
+     again on a new set: this set no longer counts as held out for it.

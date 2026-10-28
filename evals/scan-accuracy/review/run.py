@@ -1,9 +1,9 @@
 """The semantic review's evaluation (docs/design/review.md §4, numbers.md §31).
 
     uv run python evals/scan-accuracy/review/run.py sample
-    uv run python evals/scan-accuracy/review/run.py estimate --set index|gpt1|gpt2
-    uv run python evals/scan-accuracy/review/run.py run --set index|gpt1|gpt2 --tag run1
-    uv run python evals/scan-accuracy/review/run.py summary
+    uv run python evals/scan-accuracy/review/run.py estimate --set index|gpt1|gpt2|gpt3
+    uv run python evals/scan-accuracy/review/run.py run --set index|gpt1|gpt2|gpt3 --tag run1
+    uv run python evals/scan-accuracy/review/run.py summary [--set gpt3]
 
 `sample`: 60 skills from the released index (canonical, SKILL.md present), all of which passed
 lint and the injection scan at build. 20 security or prompt-safety skills that quote attacks or
@@ -30,7 +30,7 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 from skillfetch.index.loader import DEFAULT_INDEX_DIR
-from skillfetch.ingest.review import CHECKLIST_SHA, review_files
+from skillfetch.ingest.review import CATEGORIES, CHECKLIST_SHA, review_files
 from skillfetch.ingest.review_claude import ClaudeReviewer
 from skillfetch.ingest.snapshot import DEFAULT_WORK_DIR
 
@@ -51,11 +51,15 @@ MARKERS = re.compile(
 SETS = {
     "gpt1": ROOT / "evals/scan-accuracy/independent/set",
     "gpt2": ROOT / "evals/scan-accuracy/independent-2/set",
+    # §33: written by GPT knowing that a model reads each skill against this checklist
+    "gpt3": ROOT / "evals/scan-accuracy/independent-3/set",
 }
 FROZEN = {
     "gpt1": ROOT / "evals/scan-accuracy/independent/FROZEN.sha256",
     "gpt2": ROOT / "evals/scan-accuracy/independent-2/FROZEN.sha256",
+    "gpt3": ROOT / "evals/scan-accuracy/independent-3/FROZEN.sha256",
 }
+SET_DIRS = {"gpt2": "independent-2", "gpt3": "independent-3"}
 LABELS = {"위험": "risky", "무해": "harmless", "risky": "risky", "harmless": "harmless"}
 
 
@@ -184,21 +188,29 @@ def _pair(rows: list[dict], key: str = "flagged") -> str:
     )
 
 
-def summary() -> str:
-    """Markdown for numbers.md §31 from the result files here and in independent-2/."""
+def set_summary(name: str, label: str) -> list[str]:
+    """Tables for one independent set: rules v8 by advice and warning, the two review runs,
+    per category (categories.yaml: `risky: {category: [case numbers]}`, and the harmless cases
+    either by `harmless_quotes: {case: risky case}` or by `harmless: {category: [numbers]}`),
+    and how far the two runs agree."""
     import yaml
 
-    ind = ROOT / "evals/scan-accuracy/independent-2"
+    ind = ROOT / "evals/scan-accuracy" / SET_DIRS[name]
     rules = {
         k: json.loads((ind / f"{k}-v8.json").read_text())["cases"] for k in ("advice", "results")
     }
-    runs = {tag: _load(HERE / f"results-gpt2-{tag}.jsonl") for tag in ("run1", "run2")}
+    runs = {tag: _load(HERE / f"results-{name}-{tag}.jsonl") for tag in ("run1", "run2")}
     cats = yaml.safe_load((ind / "categories.yaml").read_text())
     cat_of = {f"case-{n:03d}": c for c, ns in cats["risky"].items() for n in ns}
-    for h, r in cats["harmless_quotes"].items():
+    for h, r in (cats.get("harmless_quotes") or {}).items():
         cat_of[f"case-{h:03d}"] = cat_of[f"case-{r:03d}"]
+    for c, ns in (cats.get("harmless") or {}).items():
+        cat_of.update({f"case-{n:03d}": c for n in ns})
+    nr = sum(x["expected"] == "risky" for x in runs["run1"].values())
+    nh = len(runs["run1"]) - nr
+    of = f"of {nr} each" if nr == nh else f"of {nr} and {nh}"
     out = [
-        "| set 2 (risky caught · harmless flagged, of 40 each) | result |",
+        f"| {label} (risky caught · harmless flagged, {of}) | result |",
         "|---|---:|",
         f"| rules v8, by advice (CAUTION or above) | {_pair(rules['advice'], 'caught')} |",
         f"| rules v8, by warning (fail or warn) | {_pair(rules['results'], 'caught')} |",
@@ -214,7 +226,7 @@ def summary() -> str:
         "|---|---:|---:|---:|---:|---:|---|",
     ]
     rule_rows = {x["case"]: x for x in rules["advice"]}
-    for cat in cats["risky"]:
+    for cat in dict.fromkeys([*cats["risky"], *(cats.get("harmless") or {})]):
         cs = [c for c in sorted(cat_of) if cat_of[c] == cat]
         rk = [c for c in cs if runs["run1"][c]["expected"] == "risky"]
         hm = [c for c in cs if runs["run1"][c]["expected"] == "harmless"]
@@ -236,6 +248,8 @@ def summary() -> str:
         f"category in common: {sum(bool(set(r1[c]['categories']) & set(r2[c]['categories'])) for c in both)}.",  # noqa: E501
     ]
     for tag, rows in runs.items():
+        if not set(cats["risky"]) <= set(CATEGORIES):
+            break  # the families are not checklist categories (set 3: evasion methods)
         risky = [c for c in rows if rows[c]["expected"] == "risky" and rows[c]["flagged"]]
         hit = sum(cat_of[c] in rows[c]["categories"] for c in risky)
         lines.append(
@@ -245,7 +259,15 @@ def summary() -> str:
     for tag, rows in runs.items():
         cost = sum(x["cost_usd"] or 0 for x in rows.values())
         lines.append(f"- **Cost, {tag}:** ${cost:.2f} for {len(rows)} calls.")
-    out += lines
+    return out + lines
+
+
+def summary(name: str = "gpt2") -> str:
+    """Markdown for numbers.md §31 (set 2, set 1, the index sample) or §33 (`gpt3`)."""
+    if name != "gpt2":
+        return "\n".join(set_summary(name, "evasion set"))
+    out = set_summary("gpt2", "set 2")
+    r1, r2 = (_load(HERE / f"results-gpt2-{t}.jsonl") for t in ("run1", "run2"))
     gpt1 = _load(HERE / "results-gpt1-run1.jsonl")
     index = _load(HERE / "results-index-run1.jsonl")
     groups = {x["case"]: x["group"] for x in map(json.loads, (HERE / "index-sample.jsonl").open())}
@@ -272,18 +294,19 @@ def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     sub = p.add_subparsers(dest="cmd", required=True)
     sub.add_parser("sample")
-    sub.add_parser("summary")
+    sm = sub.add_parser("summary")
+    sm.add_argument("--set", default="gpt2", choices=["gpt2", "gpt3"])
     e = sub.add_parser("estimate")
-    e.add_argument("--set", required=True, choices=["index", "gpt1", "gpt2"])
+    e.add_argument("--set", required=True, choices=["index", "gpt1", "gpt2", "gpt3"])
     r = sub.add_parser("run")
-    r.add_argument("--set", required=True, choices=["index", "gpt1", "gpt2"])
+    r.add_argument("--set", required=True, choices=["index", "gpt1", "gpt2", "gpt3"])
     r.add_argument("--tag", required=True)
     r.add_argument("--jobs", type=int, default=4)
     args = p.parse_args(argv)
     if args.cmd == "sample":
         sample()
     elif args.cmd == "summary":
-        print(summary())
+        print(summary(args.set))
     elif args.cmd == "estimate":
         print(json.dumps(estimate(args.set)))
     else:
