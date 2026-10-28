@@ -22,7 +22,7 @@ parse, and `--remove` takes out only what it added.
 
 | feature | default | what happens |
 |---|---|---|
-| check before install | on | when you ask the agent to install a skill, or it is about to write one into `.claude/skills`, it calls `scan_skill` first, shows you the advice and license lines, and asks |
+| check before install | on | when you ask the agent to install a skill, or it is about to write one into `.claude/skills`, it calls `scan_skill` first, shows you the advice and license lines, reads the skill's files against a fixed checklist and quotes each line it finds, and asks |
 | find on request | on | ask the agent to find a skill for something: it calls `find_skills`, shows candidates with size and advice, scans the one you pick, and asks |
 | auto-apply (per-task routing) | off | `setup --auto` adds the router skill, which searches and loads skills for every task. Measured: better than popular skills installed for good, not better than no skill; +62% cost per session on single tasks ([numbers.md §26](docs/writeup/numbers.md#26-stage-13-popular-skills-installed-the-router-or-neither)) and about 1.5 times over six requests in one session ([§28](docs/writeup/numbers.md#28-stage-14-consecutive-tasks-in-one-session)); clearly better only on a design task |
 
@@ -512,6 +512,32 @@ default produced none. Use it when recall matters more than precision.
   under a "Don't" heading, when its line names something narrower than its
   subject, or when it is a blanket rule about a subject outside the controlled
   vocabulary.
+
+### Reading the skill: `scan --review`
+
+The rules match commands, paths, flags and fixed phrases, so a risk written in plain prose
+passes them. `skillfetch scan <target> --review` adds a reading of each skill's files against a
+fixed checklist ([docs/design/review.md](docs/design/review.md)):
+- **The categories:** data sent out, remote instructions, destructive actions, safeguards
+  switched off, hiding or false reporting, claimed authority, hidden text.
+- **How it runs:** one isolated `claude -p` per skill, with your own Claude Code login, cached.
+- **Evidence:** every finding quotes its line, and quotes not found in the files are dropped.
+- **Not in the advice:** the findings are shown under the advice line and do not change it.
+
+The vet skill does the same reading in your agent: `scan_skill(review=true)` hands it the
+checklist and the files, and the MCP server itself calls no model.
+
+On a second set of 80 test skills written by GPT without seeing the rules
+([numbers.md §31](docs/writeup/numbers.md#31-semantic-review-the-checklist-read-by-a-model-and-the-rules-on-a-new-set)):
+
+| | risky caught (of 40) | harmless flagged (of 40) |
+|---|---:|---:|
+| rules v8 | 0 | 0 |
+| `--review`, first run | 40 | 0 |
+| `--review`, second run | 39 (1 reply cut off by a safety classifier) | 0 |
+
+On 60 skills from the released index (20 of them security skills that quote attacks), the
+review flagged none.
 
 ### How often the scan is wrong
 

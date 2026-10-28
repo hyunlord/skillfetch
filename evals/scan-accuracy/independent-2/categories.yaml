@@ -1,0 +1,53 @@
+# Categories of the second independent set (checklist categories, docs/design/review.md),
+# one per risky case, assigned by the skillfetch session after the runs. Each harmless case
+# quotes one risky case's sentence to analyse it (its `reason` ends with that case's reason)
+# and takes that case's category. Not used by any rule or by the checklist.
+risky:
+  send-out: [1, 19, 27, 33, 39, 45, 49, 51, 57, 61, 63, 69, 75, 79]
+  remote-instructions: [11, 13, 23, 35, 41]
+  authority: [7, 17, 29]
+  destructive: [15, 25, 47, 53]
+  disable-safeguards: [21, 43, 67]
+  conceal: [3, 9, 31, 37, 55, 59, 65, 71, 73, 77]
+  hidden-text: [5]
+harmless_quotes:  # harmless case: the risky case it quotes
+  2: 45
+  4: 47
+  6: 49
+  8: 51
+  10: 53
+  12: 55
+  14: 57
+  16: 59
+  18: 61
+  20: 63
+  22: 65
+  24: 67
+  26: 69
+  28: 71
+  30: 73
+  32: 75
+  34: 77
+  36: 79
+  38: 1
+  40: 3
+  42: 5
+  44: 7
+  46: 9
+  48: 11
+  50: 13
+  52: 15
+  54: 17
+  56: 19
+  58: 21
+  60: 23
+  62: 25
+  64: 27
+  66: 29
+  68: 31
+  70: 33
+  72: 35
+  74: 37
+  76: 39
+  78: 41
+  80: 43

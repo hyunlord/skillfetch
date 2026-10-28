@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import json
 from collections import defaultdict
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from itertools import combinations
 from pathlib import Path
@@ -26,6 +27,7 @@ from skillfetch.ingest.licenses import skill_license
 from skillfetch.ingest.lint import LintResult, lint_skill
 from skillfetch.ingest.remote import checkout, is_remote, parse_github_url
 from skillfetch.ingest.repo_license import RepoLicenses, repo_root
+from skillfetch.ingest.review import Review
 from skillfetch.ingest.skill_checks import DATED_NOTE, DatedLine, SkillSize, dated_lines, skill_size
 from skillfetch.ingest.skillfile import (
     CONSTRAINTS_FILE,
@@ -72,6 +74,7 @@ class SkillScan(BaseModel):
     license_origin: str = "none"
     size: SkillSize | None = None  # index-format.md §5.1
     dated: list[DatedLine] = []  # prose lines stating a year or version (§5.1)
+    review: Review | None = None  # scan --review / scan_skill(review=true) (docs/design/review.md)
 
 
 class DuplicateGroup(BaseModel):
@@ -99,6 +102,8 @@ class ScanReport(BaseModel):
     advice_reasons: list[str] = []
     advice_line: str | None = None  # the first line of the text report
     license_line: str | None = None  # the second line: licenses and where they were found
+    # how the semantic review ran, when asked (docs/design/review.md); not part of the advice
+    review: str | None = None
 
 
 def _skill_id(root: Path, skill_dir: Path) -> str:
@@ -305,9 +310,18 @@ def _judged(
     return kept, len(findings) - len(kept)
 
 
-def scan_dir(root: Path, lookup: Lookup | None = None, cap: str | None = None) -> ScanReport:
+Reviewer = Callable[[Path], Review]
+
+
+def scan_dir(
+    root: Path,
+    lookup: Lookup | None = None,
+    cap: str | None = None,
+    reviewer: Reviewer | None = None,
+) -> ScanReport:
     """`cap`: the conflict cap (constraints.md §3 row 14d); default the index's
-    manifest.conflict_cap when there is an index, else DEFAULT_CAP."""
+    manifest.conflict_cap when there is an index, else DEFAULT_CAP. `reviewer`: the semantic
+    review of each skill folder (docs/design/review.md), run while the folder exists."""
     if cap is None:
         index = lookup.index if lookup is not None else None
         cap = (index.manifest.get("conflict_cap") if index else None) or DEFAULT_CAP
@@ -317,6 +331,8 @@ def scan_dir(root: Path, lookup: Lookup | None = None, cap: str | None = None) -
     repo = RepoLicenses(repo_root(root))
     for skill_dir in discover_skills(root):
         record, constraints = _scan_one(root, skill_dir, repo)
+        if reviewer is not None:
+            record.review = reviewer(skill_dir)
         records.append(record)
         if constraints is None and lookup is not None and record.constraints_source == "none":
             constraints = _lookup(lookup, record, skill_dir)
@@ -404,6 +420,7 @@ def scan_target(
     cap: str | None = None,
     parse=parse_github_url,
     checkout_fn=checkout,
+    reviewer: Reviewer | None = None,
 ) -> ScanReport:
     """scan_dir on a local folder, or on a shallow checkout of a GitHub URL (§5.1); the report
     then names the URL and commit instead of the temporary folder, which is deleted. Raises
@@ -413,10 +430,10 @@ def scan_target(
         root = Path(target).expanduser()
         if not root.is_dir():
             raise NotADirectoryError(target)
-        return scan_dir(root, lookup, cap)
+        return scan_dir(root, lookup, cap, reviewer)
     remote = parse(target)
     with checkout_fn(remote) as (folder, commit):
-        report = scan_dir(folder, lookup, cap)
+        report = scan_dir(folder, lookup, cap, reviewer)
         base = str(folder.resolve())
         where = f"{remote.url}@{commit[:12]}"
         for s in report.skills:
@@ -472,6 +489,12 @@ SEVERITY_ROWS = (
         "skills whose scripts use the network, run commands, delete files or read secrets",
     ),
     ("medium", "REDUNDANT", "pairs where one skill covers the other"),
+    (
+        "medium",
+        "REVIEW_INCOMPLETE",
+        "skills whose review failed or was cut off (read them yourself)",
+    ),
+    ("medium", "REVIEW_PARTIAL", "skills only partly reviewed (too long to read in full)"),
     ("low", "DUPLICATE", "extra copies with identical content"),
     ("low", "TENSION", "tension / needs_review pairs (read both)"),
     ("low", "LINT_WARNING", "skills with lint warnings only"),
@@ -486,7 +509,17 @@ SEVERITY_ROWS = (
 # TENSION, DUPLICATE, LINT_WARNING, SCAN_INFO and DATED are shown but do not change the
 # advice; neither does the license (NO_LICENSE), shown on its own line under the advice.
 NOT_RECOMMENDED = ("SCAN_FAILED", "CONFLICT", "LINT_FAILED")
-CAUTION = ("SCAN_WARNING", "SIZE_WARNING", "RISKY_SCRIPTS", "INVALID_CONSTRAINTS", "REDUNDANT")
+# A review that failed or read only part of a skill is CAUTION (docs/design/review.md §2);
+# review findings themselves are shown but do not change the advice.
+CAUTION = (
+    "SCAN_WARNING",
+    "SIZE_WARNING",
+    "RISKY_SCRIPTS",
+    "INVALID_CONSTRAINTS",
+    "REDUNDANT",
+    "REVIEW_INCOMPLETE",
+    "REVIEW_PARTIAL",
+)
 ADVICE_PHRASES = {  # (one, several)
     "SCAN_FAILED": ("skill fails the injection scan", "skills fail the injection scan"),
     "CONFLICT": ("pair of skills gives opposite instructions", "pairs give opposite instructions"),
@@ -499,6 +532,11 @@ ADVICE_PHRASES = {  # (one, several)
     ),
     "INVALID_CONSTRAINTS": ("skill has invalid constraints", "skills have invalid constraints"),
     "REDUNDANT": ("pair where one skill covers the other", "pairs where one covers the other"),
+    "REVIEW_INCOMPLETE": (
+        "skill's review is incomplete: read it yourself",
+        "skills' reviews are incomplete: read them yourself",
+    ),
+    "REVIEW_PARTIAL": ("skill was only partly reviewed", "skills were only partly reviewed"),
 }
 ADVICE_TEXT = {
     "not_recommended": "NOT RECOMMENDED",
@@ -525,6 +563,13 @@ def problem_counts(report: ScanReport) -> dict[str, int]:
         "SCAN_INFO": sum(bool(s.scan.infos) for s in skills),
         "SIZE_WARNING": sum(bool(s.size and s.size.warnings) for s in skills),
         "DATED": sum(bool(s.dated) for s in skills),
+        "REVIEW_INCOMPLETE": sum(
+            s.review is not None and s.review.error is not None for s in skills
+        ),
+        "REVIEW_PARTIAL": sum(
+            s.review is not None and s.review.error is None and bool(s.review.not_reviewed)
+            for s in skills
+        ),
     }
 
 
@@ -608,12 +653,64 @@ def _contradiction_line(report: ScanReport) -> list[str]:
     return lines
 
 
-def render_report(report: ScanReport) -> str:
+def review_summary(report: ScanReport) -> list[str]:
+    """The review line under the license line (docs/design/review.md §2); [] when not asked."""
+    if report.review is None:
+        return []
+    reviewed = [s for s in report.skills if s.review is not None]
+    if not reviewed:
+        return [f"Review: {report.review}."]
+    n = sum(len(s.review.findings) for s in reviewed)
+    hit = sum(bool(s.review.findings) for s in reviewed)
+    incomplete = sum(s.review.error is not None for s in reviewed)
+    partly = sum(s.review.error is None and bool(s.review.not_reviewed) for s in reviewed)
+    first = reviewed[0].review
+    line = (
+        f"Review ({first.by}, checklist {first.checklist_sha[:12]}): {_plural(n, 'finding')} in "
+        f"{_plural(hit, 'skill')}"
+    )
+    if incomplete:
+        line += f"; review incomplete for {_plural(incomplete, 'skill')}: read it yourself"
+    if partly:
+        line += f"; {_plural(partly, 'skill')} partly reviewed"
+    return [line + ". Findings are not part of the advice: read the quoted lines."]
+
+
+def review_blocks(report: ScanReport) -> list[str]:
+    blocks = []
+    for s in report.skills:
+        r = s.review
+        if r is None:
+            continue
+        if not r.findings and not r.not_reviewed and r.error is None:
+            continue
+        lines = [f"REVIEW  {s.id}"]
+        if r.error is not None:
+            lines.append(f"  review incomplete: read this skill yourself ({r.error})")
+        for f in r.findings:
+            quote = f.quote if len(f.quote) <= 300 else f.quote[:300] + "…"
+            lines.append(f'  {s.id}/{f.file}:{f.line}  [{f.category}] "{quote}"')
+            lines.append(f"    {f.why}")
+        if r.not_reviewed:
+            left = ", ".join(r.not_reviewed[:10]) + (" …" if len(r.not_reviewed) > 10 else "")
+            lines.append(f"  partly reviewed; not read: {left}")
+        blocks.append("\n".join(lines))
+    return blocks
+
+
+REVIEW_HINT = (
+    "Tip: `--review` also reads each skill against a checklist, so risky instructions written "
+    "in plain prose are checked too (your Claude Code login; docs/design/review.md)."
+)
+
+
+def render_report(report: ScanReport, review_hint: bool = False) -> str:
     skills = report.skills
     counts = problem_counts(report)
     head = [
         advice_line(report),
         license_line(report),
+        *review_summary(report),
         "",
         f"skillfetch scan {report.root}",
         f"{_plural(len(skills), 'skill')} · index: "
@@ -738,9 +835,12 @@ def render_report(report: ScanReport) -> str:
             f"{_plural(report.suppressed_by_judge, 'tension / needs_review pair')} not shown: "
             "the index's judge verdict for the pair is `independent`"
         )
+    blocks += review_blocks(report)
     out = "\n".join(head)
     if blocks:
         out += "\n\nDetails, most severe first:\n\n" + "\n\n".join(blocks)
+    if review_hint and report.review is None:
+        out += "\n\n" + REVIEW_HINT
     return out + "\n"
 
 

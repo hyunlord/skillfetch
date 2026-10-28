@@ -1149,6 +1149,15 @@ def scan_accuracy(out: list[str]) -> None:
     out += [path.read_text().strip() if path.is_file() else "Not run yet.", ""]
 
 
+def scan_review(out: list[str]) -> None:
+    """§31: the semantic review (scan --review) and the rules on the second independent set
+    (evals/scan-accuracy/review/, transcribed in data/e2e/scan_review.md)."""
+    title = "Semantic review: the checklist read by a model, and the rules, on a new set"
+    out += [f"## 31. {title}", ""]
+    path = DATA / "e2e" / "scan_review.md"
+    out += [path.read_text().strip() if path.is_file() else "Not run yet.", ""]
+
+
 def main() -> None:
     out = [
         "# Numbers for the write-up",
@@ -1190,6 +1199,7 @@ def main() -> None:
         stage14,
         router_release,
         scan_accuracy,
+        scan_review,
     ):
         section(out)
     OUT.parent.mkdir(parents=True, exist_ok=True)

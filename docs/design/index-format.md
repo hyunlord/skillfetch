@@ -637,7 +637,9 @@ As built (`ingest/local_scan.py`, `cli.py`):
     (LINT_FAILED), or any pair conflicts (CONFLICT);
   - else **caution** if any of: SCAN_WARNING (which includes remote instructions),
     SIZE_WARNING, RISKY_SCRIPTS (scripts that use the network, run commands, delete files or
-    read secrets; v7, was HAS_SCRIPTS), INVALID_CONSTRAINTS, REDUNDANT;
+    read secrets; v7, was HAS_SCRIPTS), INVALID_CONSTRAINTS, REDUNDANT, and with `--review` /
+    `review=true` REVIEW_INCOMPLETE and REVIEW_PARTIAL (a review that failed or read only part
+    of a skill; docs/design/review.md §2). Review findings do not change the advice;
   - else **recommended**.
   - TENSION, DUPLICATE, LINT_WARNING, HAS_SCRIPTS, SCAN_INFO and DATED are shown but do not
     change the advice. The reasons list the counts behind the level.

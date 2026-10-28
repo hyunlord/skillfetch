@@ -28,7 +28,9 @@ and `.agents/skills`; Cursor: `mcp.json`, no skill).
   (`docs/design/index-format.md` §5, §5.1). The same check runs as the MCP tool `scan_skill`
   and in CI (`.github/actions/skillfetch-scan`, `scan --markdown`). No model and no API key,
   except contradiction extraction for skills the index does not cover (`--claude-code`,
-  `--with-api`).
+  `--with-api`) and `--review`: a fixed checklist read against each skill's files by an
+  isolated `claude -p`, every finding quoting its line, not part of the advice
+  (`docs/design/review.md`, numbers.md §31).
 - **`skillfetch find "<what you want>"`** / `find_skills`: index matches for a request the
   user made, with an advice from the index record and the URL to scan (§5.2).
 - **The measurement study** is everything under `evals/` and `docs/writeup/numbers.md`: real
@@ -147,8 +149,9 @@ Built (v0.2): `profile_repo`, `search_skills`, `resolve_set`, `load_skills`. Bui
 for #26, off by default: `serve --auto-profile` (a search without `profile` uses the server's
 working directory) and `serve --summary-chars N` (docs/design/router-cost.md).
 Planned for v0.3, not built: `report_outcome`. `prepare_set`: not built, not planned for v0.3.
-Not part of routing: `scan_skill(target)` (a local folder or GitHub URL; the same JSON as
-`skillfetch scan --json`, no model) and `find_skills(want, k=10)` (index matches for a request
+Not part of routing: `scan_skill(target, review=false)` (a local folder or GitHub URL; the same
+JSON as `skillfetch scan --json`, no model; `review=true` adds the review checklist and the
+skill's numbered files for the host agent to read, docs/design/review.md) and `find_skills(want, k=10)` (index matches for a request
 the user made, with an advice from the record; index-format.md §5.2). Both are served with the
 router tools and, without routing, by `serve --vet`, for the vet skill
 `assets/vet-skill/SKILL.md` (install it without the router: it scans before a skill is

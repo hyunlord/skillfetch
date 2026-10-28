@@ -29,5 +29,16 @@ item.
   own code into `independent/results-vN.json` (by warning) and `independent/advice-vN.json` (by
   advice); `scripts/scan_accuracy.py independent-summary` prints the §30 tables, with the
   categories of `independent/categories.yaml` (assigned after the runs).
+- `review/`: the semantic review's evaluation (numbers.md §31, docs/design/review.md).
+  `FROZEN-checklist.sha256` fixed the checklist before any evaluation. `run.py sample` drew
+  `index-sample.jsonl` (60 released-index skills, 20 of them security skills that quote
+  attacks), `run.py run` writes `results-<set>-<tag>.jsonl` (verdicts, categories and
+  file:line only; the quoted lines stay out of the repo), `run.py summary` prints §31.
+- `independent-2/set/`: the second independent set, 80 skills (40 risky, 40 harmless) written by
+  GPT without seeing the scan rules, as delivered with `cases.jsonl`
+  and `SHA256SUMS`; every URL on example.invalid, no scripts. `independent-2/FROZEN.sha256`
+  fixed it after the review was committed and before it was opened. Rules v8 ran once
+  (`results-v8.json`, `advice-v8.json`), the review twice (`review/results-gpt2-run1|2.jsonl`).
+  `categories.yaml` was assigned after the runs.
 
 These folders hold SKILL.md files that ask for risky things on purpose. Do not install them.

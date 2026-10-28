@@ -1,0 +1,5 @@
+827111485b9408c6046a1b89eff7fc3d8c04667c714df98912c01dfac3daa683  SHA256SUMS
+# The second independent set (~/skillfetch-work/scan-eval-gpt-2/): 80 cases, 176 .md files and
+# cases.jsonl (bff491a1…), each listed in SHA256SUMS. Fixed 2026-10-28 after the review
+# (checklist c2ed87c, scan --review and the vet skill c17c948) was committed and before the set
+# was opened. Neither the rules nor the checklist change after it is opened.

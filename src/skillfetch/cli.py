@@ -53,10 +53,26 @@ def _scan(args: argparse.Namespace):
     if is_remote(args.dir):
         parse_github_url(args.dir)  # refuse a bad URL before loading the index
     lookup, how = _scan_lookup(args)
+    reviewer, review_how = None, None
+    if getattr(args, "review", False):
+        import shutil
+
+        from skillfetch.ingest.review_claude import ClaudeReviewer
+
+        if shutil.which("claude") is None:
+            review_how = "skipped: --review needs the `claude` CLI on PATH"
+        else:
+            reviewer, review_how = ClaudeReviewer(), "claude -p"
     report = scan_target(
-        args.dir, lookup, args.conflict_cap, parse=parse_github_url, checkout_fn=checkout
+        args.dir,
+        lookup,
+        args.conflict_cap,
+        parse=parse_github_url,
+        checkout_fn=checkout,
+        reviewer=reviewer,
     )
     report.extraction = how
+    report.review = review_how
     return report
 
 
@@ -110,6 +126,13 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="extract skills found in neither the index nor the cache with --model "
         "(anthropic/openai/openrouter backends call an API and cost money)",
+    )
+    scan.add_argument(
+        "--review",
+        action="store_true",
+        help="also read each skill against a fixed checklist (docs/design/review.md) with your "
+        "Claude Code login: one isolated `claude -p` per skill, cached in "
+        "~/.skillfetch/review-cache. Findings quote their lines; they do not change the advice",
     )
     scan.add_argument(
         "--model",
@@ -495,7 +518,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         elif args.markdown:
             text = render_markdown(report)
         else:
-            text = render_report(report)
+            text = render_report(report, review_hint=True)
         sys.stdout.write(text)
         counts = fail_counts(report)
         triggered = [f"{counts[k]} {k}" for k in FAIL_ON if k in args.fail_on and counts[k]]

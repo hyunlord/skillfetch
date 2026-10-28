@@ -40,9 +40,10 @@ def _version() -> str:
 
 VET_INSTRUCTIONS = (
     "skillfetch checks agent skills before they are installed. Call scan_skill with the "
-    "skill's local folder or GitHub URL, show the user its advice_line and license_line, "
-    "and ask before installing. When the user asks you to find a skill, call find_skills "
-    "and show the candidates; scan the one they pick before installing it."
+    "skill's local folder or GitHub URL and review=true, show the user its advice_line and "
+    "license_line, check review.files against review.checklist yourself and show each finding "
+    "with its quoted line, and ask before installing. When the user asks you to find a skill, "
+    "call find_skills and show the candidates; scan the one they pick before installing it."
 )
 FIND_DOC = """Find skills in the skillfetch index for something the user asked for (search on
 request; nothing is loaded). `want`: what the skill should do, in a sentence. Returns
@@ -56,12 +57,15 @@ temporary folder and deleted; nothing is installed or run). The same JSON as
 `skillfetch scan --json`: advice_line (RECOMMENDED / CAUTION / NOT RECOMMENDED with reasons),
 license_line, and per skill the lint, injection-scan, size, script, dated-line and license
 findings, each with its file, line number and line; contradictions between skills quote both
-lines. Uses no model. {error} for a missing folder or a refused URL."""
+lines. Uses no model. {error} for a missing folder or a refused URL.
+`review=true` adds, per skill, `review.checklist` and `review.files` (the skill's text files with
+line numbers): read them against the checklist yourself and show each finding with its file,
+line and quoted line before asking to install. The server does not review; it calls no model."""
 
 
-def _add_scan_tool(server: MCPServer, scan: Callable[[str], dict]) -> None:
-    def scan_skill(target: str) -> dict[str, Any]:
-        return scan(target)
+def _add_scan_tool(server: MCPServer, scan: Callable[[str, bool], dict]) -> None:
+    def scan_skill(target: str, review: bool = False) -> dict[str, Any]:
+        return scan(target, review)
 
     scan_skill.__doc__ = SCAN_DOC
     server.tool()(scan_skill)
@@ -85,7 +89,7 @@ def build_vet_server(index: Index | None, extract_cache: ExtractCache | None = N
     server = MCPServer("skillfetch", instructions=VET_INSTRUCTIONS, version=_version())
     model = (index.manifest.get("extract_model") if index else None) or DEFAULT_MODEL
     lookup = Lookup(index, extract_cache or ExtractCache(DEFAULT_CACHE_DIR), model)
-    _add_scan_tool(server, lambda target: scan_json(target, lookup))
+    _add_scan_tool(server, lambda target, review: scan_json(target, lookup, review=review))
     searcher = Searcher(index) if index is not None else None
     _add_find_tool(
         server,
