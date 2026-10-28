@@ -1,6 +1,13 @@
 # skillfetch
 
-**Check a skill before you install it.**
+**Check a skill before you install it: rules for what can be matched, and a checklist read by
+your own model for what is written in prose.**
+
+On two sets of 80 test skills that GPT wrote without seeing the rules (40 risky, 40 harmless),
+the rules caught 0–3 of the 40 risky ones. The checklist review caught 39–40 of them and flagged
+none of the 40 harmless ones, nor any of 60 real skills from the index. Both sets are synthetic;
+real attacks and skills built to evade a check are untested
+([numbers.md §31](docs/writeup/numbers.md#31-semantic-review-the-checklist-read-by-a-model-and-the-rules-on-a-new-set)).
 
 ```console
 $ uvx --from git+https://github.com/hyunlord/skillfetch skillfetch setup
@@ -22,11 +29,11 @@ parse, and `--remove` takes out only what it added.
 
 | feature | default | what happens |
 |---|---|---|
-| check before install | on | when you ask the agent to install a skill, or it is about to write one into `.claude/skills`, it calls `scan_skill` first, shows you the advice and license lines, reads the skill's files against a fixed checklist and quotes each line it finds, and asks |
+| check before install | on | when you ask the agent to install a skill, or it is about to write one into `.claude/skills`, it calls `scan_skill` first and shows you the advice and license lines. It then reads the skill's files against a fixed checklist itself (the vet skill's review, on your agent's model) and quotes each line it finds. Then it asks |
 | find on request | on | ask the agent to find a skill for something: it calls `find_skills`, shows candidates with size and advice, scans the one you pick, and asks |
 | auto-apply (per-task routing) | off | `setup --auto` adds the router skill, which searches and loads skills for every task. Measured: better than popular skills installed for good, not better than no skill; +62% cost per session on single tasks ([numbers.md §26](docs/writeup/numbers.md#26-stage-13-popular-skills-installed-the-router-or-neither)) and about 1.5 times over six requests in one session ([§28](docs/writeup/numbers.md#28-stage-14-consecutive-tasks-in-one-session)); clearly better only on a design task |
 
-No model and no API key. The rest of this repository is the measurement study behind it:
+The rule checks need no model and no API key. The review runs on your own model: the vet skill's reading in your agent, or `scan --review` with your Claude Code login (about $0.02 per call in our runs, API-price terms; one call per skill up to 60,000 characters). The rest of this repository is the measurement study behind it:
 what skills do for coding agents in real sessions ([numbers.md](docs/writeup/numbers.md)).
 
 ## Before you install a skill, scan it
@@ -37,6 +44,7 @@ Three ways to run the same check:
   ```console
   $ uvx --from git+https://github.com/hyunlord/skillfetch skillfetch scan https://github.com/<owner>/<repo>
   $ uvx --from git+https://github.com/hyunlord/skillfetch skillfetch scan ~/.claude/skills
+  $ uvx --from git+https://github.com/hyunlord/skillfetch skillfetch scan ~/.claude/skills --review
   $ uvx --from git+https://github.com/hyunlord/skillfetch skillfetch find "write Playwright tests"
   ```
 - **In your agent (MCP):** `skillfetch setup` gives Claude Code the `scan_skill` and
@@ -67,7 +75,10 @@ What the report says:
     read secrets, or covers another skill;
   - **RECOMMENDED** otherwise.
 
-  The rule is in [index-format.md §5.1](docs/design/index-format.md).
+  With `--review`, a review that failed (a reply cut off or declined: "review incomplete: read
+  this skill yourself") or read only part of a skill also makes it CAUTION; review findings are
+  listed under the advice, not counted in it. The rule is in
+  [index-format.md §5.1](docs/design/index-format.md).
 - **The second line** is the license, with where it was found (`MIT (repo root)`). It is not
   part of the advice: check it before you redistribute a skill.
 - **Then** a summary by severity, then the details, each with the line it comes from.
