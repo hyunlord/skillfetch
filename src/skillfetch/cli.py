@@ -251,6 +251,13 @@ def main(argv: Sequence[str] | None = None) -> int:
         help="also install the router skill and serve the routing tools (auto-apply; off by "
         "default, see numbers.md §26)",
     )
+    setup.add_argument(
+        "--client",
+        choices=["claude-code", "codex", "cursor"],
+        default="claude-code",
+        help="the agent to set up (default: %(default)s); codex: ~/.codex/config.toml and "
+        "~/.agents/skills, cursor: ~/.cursor/mcp.json (project scope: the same under .)",
+    )
     setup.add_argument("--remove", action="store_true", help="undo what setup installed")
     setup.add_argument("-y", "--yes", action="store_true", help="do not ask before changing")
     setup.add_argument("--no-sync", action="store_true", help="do not sync the index")
@@ -511,7 +518,13 @@ def main(argv: Sequence[str] | None = None) -> int:
         from skillfetch.setup import main as setup_main
 
         return setup_main(
-            Setup(scope=args.scope, auto=args.auto, source=args.source, sync=not args.no_sync),
+            Setup(
+                scope=args.scope,
+                auto=args.auto,
+                client=args.client,
+                source=args.source,
+                sync=not args.no_sync,
+            ),
             remove=args.remove,
             yes=args.yes,
         )

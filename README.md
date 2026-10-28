@@ -11,6 +11,15 @@ downloads the index. It shows every path, file and command first and asks; it ov
 nothing (a file or entry that differs is shown as a diff), and `skillfetch setup --remove`
 undoes it. `--project` installs into this repository instead of `~/.claude`.
 
+| client | command | MCP server goes to | skills go to |
+|---|---|---|---|
+| Claude Code (default) | `skillfetch setup` | `claude mcp add` (`~/.claude.json`; `--project`: `.mcp.json`) | `~/.claude/skills/` (`.claude/skills/`) |
+| Codex | `skillfetch setup --client codex` | a `[mcp_servers.skillfetch]` table in `~/.codex/config.toml` (`--project`: `.codex/config.toml`, read in trusted projects) | `~/.agents/skills/` (`.agents/skills/`) |
+| Cursor | `skillfetch setup --client cursor` | `mcpServers.skillfetch` in `~/.cursor/mcp.json` (`--project`: `.cursor/mcp.json`) | none: the server's instructions tell the agent to scan before installing and to find on request |
+
+Setup adds one table or key and keeps the rest of the file; it does not touch a file it cannot
+parse, and `--remove` takes out only what it added.
+
 | feature | default | what happens |
 |---|---|---|
 | check before install | on | when you ask the agent to install a skill, or it is about to write one into `.claude/skills`, it calls `scan_skill` first, shows you the advice and license lines, and asks |
