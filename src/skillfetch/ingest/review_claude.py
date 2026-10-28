@@ -39,9 +39,11 @@ class ClaudeReviewer:
         timeout: float = 600,
         chunk_chars: int = MAX_CHARS,
         max_chunks: int = MAX_CHUNKS,
+        skill_md_only: bool = False,
     ):
         self.cache, self.claude, self._run, self.timeout = cache, claude, run, timeout
         self.chunk_chars, self.max_chunks = chunk_chars, max_chunks
+        self.skill_md_only = skill_md_only
 
     def ask(self, prompt: str) -> dict:
         """{findings, model, cost_usd, cached} for one request, from the cache or `claude -p`.
@@ -92,13 +94,18 @@ class ClaudeReviewer:
             "model": next(iter((reply.get("modelUsage") or {}).keys()), None),
             "cost_usd": reply.get("total_cost_usd"),
         }
-        findings = _findings(out["result"])  # raises before anything is cached
+        try:
+            findings = _findings(out["result"])  # raises before anything is cached
+        except ValueError as exc:
+            raise ReplyError(str(exc), out["cost_usd"]) from exc
         self.cache.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(out, ensure_ascii=False))
         return {**out, "findings": findings, "cached": False}
 
     def __call__(self, skill_dir: Path) -> Review:
-        chunks, files, left = review_chunks(skill_dir, self.chunk_chars, self.max_chunks)
+        chunks, files, left = review_chunks(
+            skill_dir, self.chunk_chars, self.max_chunks, self.skill_md_only
+        )
         if not chunks:
             return Review(by="claude -p", not_reviewed=left, error="no text files to review")
         raw: list = []
@@ -107,6 +114,7 @@ class ClaudeReviewer:
             try:
                 got = self.ask(request_text(parts, i, len(chunks)))
             except (RuntimeError, ValueError, subprocess.TimeoutExpired, OSError) as exc:
+                cost += getattr(exc, "cost_usd", None) or 0  # a failed reply is still paid for
                 where = f"part {i} of {len(chunks)}: " if len(chunks) > 1 else ""
                 errors.append(where + str(exc)[:300])
                 continue
@@ -123,6 +131,14 @@ class ClaudeReviewer:
             cost_usd=cost or None,
             requests=len(chunks),
         )
+
+
+class ReplyError(ValueError):
+    """A reply that came back but holds no findings; carries what it cost."""
+
+    def __init__(self, message: str, cost_usd: float | None):
+        super().__init__(message)
+        self.cost_usd = cost_usd
 
 
 def _findings(result: str) -> list:

@@ -119,13 +119,21 @@ class Part(BaseModel):
 
 
 def review_chunks(
-    skill_dir: Path, chunk_chars: int = MAX_CHARS, max_chunks: int = MAX_CHUNKS
+    skill_dir: Path,
+    chunk_chars: int = MAX_CHARS,
+    max_chunks: int = MAX_CHUNKS,
+    skill_md_only: bool = False,
 ) -> tuple[list[list[Part]], list[tuple[str, str]], list[str]]:
     """The skill's text files packed into requests of at most chunk_chars each, in order; a file
     longer than that is split between lines, keeping its line numbers. Returns (requests, the
-    files read in full or in part, what is left unread past max_chunks requests)."""
+    files read in full or in part, what is left unread past max_chunks requests).
+    `skill_md_only` reads SKILL.md alone (a research pass over many skills, numbers.md §32);
+    the other files are then neither read nor listed."""
+    all_files = text_files(skill_dir)
+    if skill_md_only:
+        all_files = [(rel, text) for rel, text in all_files if rel == "SKILL.md"]
     pieces: list[Part] = []
-    for rel, text in text_files(skill_dir):
+    for rel, text in all_files:
         if len(text) <= chunk_chars:
             pieces.append(Part(path=rel, text=text))
             continue
@@ -152,7 +160,7 @@ def review_chunks(
             read_any = any(p.path == part.path for c in chunks for p in c)
             left.append(f"{part.path} from line {part.start}" if read_any else part.path)
     read = {p.path for c in chunks for p in c}
-    files = [(rel, text) for rel, text in text_files(skill_dir) if rel in read]
+    files = [(rel, text) for rel, text in all_files if rel in read]
     return chunks, files, left
 
 

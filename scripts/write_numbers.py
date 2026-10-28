@@ -1158,6 +1158,14 @@ def scan_review(out: list[str]) -> None:
     out += [path.read_text().strip() if path.is_file() else "Not run yet.", ""]
 
 
+def index_review(out: list[str]) -> None:
+    """§32: the semantic review over the released index (evals/index-review/, transcribed in
+    data/e2e/index_review.md), with the user's judgements."""
+    out += ["## 32. Semantic review over the released index", ""]
+    path = DATA / "e2e" / "index_review.md"
+    out += [path.read_text().strip() if path.is_file() else "Not run yet.", ""]
+
+
 def main() -> None:
     out = [
         "# Numbers for the write-up",
@@ -1200,6 +1208,7 @@ def main() -> None:
         router_release,
         scan_accuracy,
         scan_review,
+        index_review,
     ):
         section(out)
     OUT.parent.mkdir(parents=True, exist_ok=True)

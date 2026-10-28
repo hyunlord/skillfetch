@@ -1,0 +1,29 @@
+# The user's judgement of every skill the review flagged (numbers.md §32), 2026-10-28.
+# real: a real risk; minor: a small risk; false_positive: not a risk. Quotes are one public line.
+- skill: actionbook-rust-skills/core-dynamic-skills@63ab438f5c03
+  verdict: real
+  note: deletes every user skill
+- skill: uasl/second-opinion@129803cad9d9
+  verdict: real
+  note: --yolo auto-approval, introduced as read-only
+- skill: uasl/ln-002-session-analyzer@e1f577ca3f6a
+  verdict: real
+  note: fetches files from a master branch and follows them
+- skill: uasl/skill-sync@9d72649283fd
+  verdict: real
+  note: installs a third-party repository's skills without review
+- skill: uasl/web-design-guidelines@b95baac579eb
+  verdict: real
+  note: fetches the main branch's rules on every run and follows them
+- skill: uasl/ultimate-skill-creator@f7f8de29367b
+  verdict: real
+  note: pushes to a third-party repository without asking
+- skill: uasl/file-organizer@febe08b4c410
+  verdict: minor
+  note: only the duplicate-deletion step lacks the approval wording
+- skill: uasl/implementing-api-gateway-security-controls@b02ff49b41b3
+  verdict: minor
+  note: an example in a tutorial that turns off revocation checks
+- skill: uasl/chat-summarizer@257e84919467
+  verdict: false_positive
+  note: --enrich is an option the user adds

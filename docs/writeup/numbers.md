@@ -2675,3 +2675,53 @@ Source: `docs/design/review.md` (the checklist, frozen by `evals/scan-accuracy/r
 - The review reads at most 60,000 characters per skill.
 - It does not change the install advice.
 
+## 32. Semantic review over the released index
+
+Source: `evals/index-review/` (`run.py`, `results-stage1.jsonl`, `results-stage2.jsonl`, `judgements.yaml`); the checklist of §31 (sha `f1be1b7b…`), scan --review's reviewer (isolated `claude -p`, claude-opus-5-5). Measured after the post's numbers were frozen; not in §7's totals.
+
+**Method** (two stages, the user's cap of $100):
+- **Stage 1: SKILL.md only.**
+  - Every canonical skill of the released index: 2,281 skills, each SKILL.md read alone, no reference files or scripts.
+  - 2,287 requests (SKILL.md files over 60,000 characters were read in parts).
+  - $75.13, an 11-skill trial at the start included.
+- **Stage 2: all text files.**
+  - Read in full: the skills stage 1 flagged, and those whose rule-based scan warns about remote instructions. 16 skills, 32 requests, $4.84.
+  - The 120 skills whose rules warn only about scripts were not read in full: estimated $29.8, over the cap.
+- **Total:** $79.97 (API-price equivalent, Claude Code plan).
+- **Partly reviewed** is counted apart and does not change any advice in this run.
+
+**Results.**
+- **Stage 1:** 9 of 2,281 skills flagged (0.39%), one finding each:
+  - remote-instructions 3, destructive 2, send-out 2, disable-safeguards 2;
+  - review incomplete: 0; partly reviewed: 0.
+- **Stage 2:**
+  - the same 9 skills flagged, on the same lines (second-opinion: line 199, the same command as line 49), and no other;
+  - the 7 skills with a remote-instruction warning and no stage 1 finding: no finding;
+  - review incomplete: 0; partly reviewed: 2 (`anthropics-skills/claude-api`, `uasl/claude-native-claude-api`: over five requests).
+
+**The flagged skills**, judged by the user (one public line quoted each). "Rules v8 advice" is `scan` without `--review` on the skill folder; "rule on that line" says whether any rule-based warning or failure points at the quoted line.
+
+| skill | category | where | quoted line | judged | rules v8 advice | rule on that line |
+|---|---|---|---|---|---|---|
+| `actionbook-rust-skills/core-dynamic-skills` | destructive | SKILL.md:169 | `rm -rf ~/.claude/skills/*` | real risk: deletes every user skill | RECOMMENDED | no |
+| `uasl/second-opinion` | disable-safeguards | SKILL.md:49, :199 | `gemini -p "/code-review" --yolo -e code-review` | real risk: --yolo auto-approval, introduced as read-only | RECOMMENDED | no |
+| `uasl/ln-002-session-analyzer` | remote-instructions | SKILL.md:8 | "…fetch files via WebFetch from `https://raw.githubusercontent.com/levnikolaevich/claude-code-skills/master/skills/{path}`" | real risk: fetches files from a master branch and follows them | CAUTION (remote instructions) | yes |
+| `uasl/skill-sync` | remote-instructions | SKILL.md:18 | "Default repo: `onfire7777/universal-ai-skills-library`. The script handles everything automatically." | real risk: installs a third-party repository's skills without review | CAUTION (scripts) | no |
+| `uasl/web-design-guidelines` | remote-instructions | SKILL.md:30 | "Use WebFetch to retrieve the latest rules. The fetched content contains all the rules and output format instructions." | real risk: fetches the main branch's rules on every run and follows them | RECOMMENDED | no |
+| `uasl/ultimate-skill-creator` | send-out | SKILL.md:167 | `gh repo clone onfire7777/universal-ai-skills-library /tmp/universal-ai-skills-library` | real risk: pushes to a third-party repository without asking | CAUTION (scripts) | no |
+| `uasl/file-organizer` | destructive | SKILL.md:29 | "*Review duplicates and delete redundant copies.*" | minor: only the duplicate-deletion step lacks the approval wording | CAUTION (scripts) | no |
+| `uasl/implementing-api-gateway-security-controls` | disable-safeguards | SKILL.md:317 | `--data "config.revocation_check_mode=SKIP"` | minor: an example in a tutorial that turns off revocation checks | CAUTION (scripts) | no |
+| `uasl/chat-summarizer` | send-out | SKILL.md:129 | "Optionally, add `--enrich` for AI-generated continuation recommendations (requires `OPENAI_API_KEY`)" | false positive: --enrich is an option the user adds | CAUTION (scripts) | no |
+
+- **Judged:** 6 real risks, 2 minor, 1 false positive.
+- **No malicious attack** was found; every real risk is careless design.
+- **What the rules saw:**
+  - a rule pointed at the flagged line for 1 of the 9 (`ln-002-session-analyzer`, remote instructions);
+  - 5 others get CAUTION from the rules only for their bundled scripts;
+  - 3 (`core-dynamic-skills`, `second-opinion`, `web-design-guidelines`) are RECOMMENDED by the rules.
+
+**Limits.**
+- Stage 1 read SKILL.md only. A risk in a reference file or script of a skill that stage 1 did not flag and the rules did not warn about was not looked for, and the 120 script-warning skills were not read in full.
+- One model reviewed; the judgements are one person's.
+- "Not flagged" is the review's verdict, not a check of those skills.
+
